@@ -15,20 +15,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>tent</b></center>');
   scene.img('images/locations/city/shared/military/palatka.jpg');
-  (s as any).palrand = Math.floor(Math.random() * 11) + 0;
+  (s as any).palrand = (Math.floor(Math.random() * 11) + 0);
   if ((!((s as any).palrand ?? 0))) {
     qspGoto(s, 'Palatka', 'pal0');
   }
   if (((s as any).palrand ?? 0) === 1) {
     qspGoto(s, 'Palatka', 'pal1');
   }
-  scene.text('To your surprise, the tent is a quite spacious. It has a bed, a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, and even has an improvised <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vann\\u0027, \\u0027start\\u0027); return false;">shower</a>.');
+  scene.text('To your surprise, the tent is a quite spacious. It has a bed, a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, and even has an improvised <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vann/u0027, /u0027start/u0027); return false;">shower</a>.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Military', 'start'] },
     { label: 'Sleep', handler: (st: GameState) => {
-    qspCall(s, 'sleep_simple', 'forced', 480);
-    qspGoto(s, 'palatka', 'start');
+    qspCall(st, 'sleep_simple', 'forced', 480);
+    qspGoto(st, 'palatka', 'start');
   } },
   ]);
   scene.build();
@@ -49,23 +49,23 @@ function enterPal0(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Send', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'palatka', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'palatka', 'start');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Post', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'Soldier', Math.floor(Math.random() * 17) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'Soldier', (Math.floor(Math.random() * 17) + 18));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
     // TODO-QSP: $boy[0] = $boy
-    qspCall(s, 'npcgeneratec', '', 0, 'Soldier', Math.floor(Math.random() * 17) + 18);
+    qspCall(st, 'npcgeneratec', '', 0, 'Soldier', (Math.floor(Math.random() * 17) + 18));
     // TODO-QSP: $boy[1] = $npclastgenerated
-    (s as any).guy = ((s as any).guy ?? 0) + (2);
-    (s as any).picrand = 22;
-    qspGoto(s, 'sexdvoe', 'var');
+    (st as any).guy = ((st as any).guy ?? 0) + (2);
+    (st as any).picrand = 22;
+    qspGoto(st, 'sexdvoe', 'var');
   } },
   ]);
   scene.build();
@@ -86,21 +86,21 @@ function enterPal1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Say thank you ', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'palatka', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'palatka', 'start');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Repay in full', handler: (st: GameState) => {
-    (s as any).sexpartkno = 1;
-    qspCall(s, 'npcgeneratec', '', 0, 'Black Soldier', Math.floor(Math.random() * 18) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
-    (s as any).picrand = 43;
-    qspGoto(s, 'sex', 'minet');
+    (st as any).sexpartkno = 1;
+    qspCall(st, 'npcgeneratec', '', 0, 'Black Soldier', (Math.floor(Math.random() * 18) + 18));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
+    (st as any).picrand = 43;
+    qspGoto(st, 'sex', 'minet');
   } },
   ]);
   scene.build();

@@ -12,7 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pushkin/cafe/larek.jpg');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027larek\\u0027, \\u0027sofood\\u0027); return false;">Select Products</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027larek/u0027, /u0027sofood/u0027); return false;">Select Products</a>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
@@ -39,17 +39,17 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Grocery department</b></center>');
   scene.img('images/locations/pushkin/cafe/larek.jpg');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027larek\\u0027, \\u0027buyfood\\u0027); return false;">One serving food - 50 RUB</a>');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027larek\\u0027, \\u0027buyfood2\\u0027); return false;">One serving of diet friendly food - 250 RUB</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027larek/u0027, /u0027buyfood/u0027); return false;">One serving food - 50 RUB</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027larek/u0027, /u0027buyfood2/u0027); return false;">One serving of diet friendly food - 250 RUB</a>');
   if (((s as any).bottle ?? 0)===0  &&  ((s as any).bag ?? 0)>0) {
     scene.actions([
       { label: 'Buy a bottle of water', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50);
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_water'] = 1;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'money', 'pay', 50);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['food_water'] = 1;
+      qspCall(st, 'stat', '');
       scene.text('You bought a bottle of water and put it in your purse.');
       scene.actions([
         { label: 'Exit Department', goto: ['larek', 'food'] },
@@ -62,11 +62,11 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a sandwich', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 100);
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_sandwich'] = 1;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'money', 'pay', 100);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['food_sandwich'] = 1;
+      qspCall(st, 'stat', '');
       scene.text('You bought a sandwich and put it in your purse.');
       scene.actions([
         { label: 'Exit Department', goto: ['larek', 'food'] },
@@ -79,11 +79,11 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a bottle of cheap wine', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 500);
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_wine'] = 1;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'money', 'pay', 500);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['food_wine'] = 1;
+      qspCall(st, 'stat', '');
       scene.text('You bought a bottle of wine and put it in your purse.');
       scene.actions([
         { label: 'Exit Department', goto: ['larek', 'food'] },
@@ -97,11 +97,11 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
     { label: 'Exit Department', goto: ['larek', 'start'] },
     { label: 'Buy tea biscuits', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 300);
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_biscuits'] = ((s as any).mc_inventory['food_biscuits'] ?? 0) + (10);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'money', 'pay', 300);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['food_biscuits'] = ((st as any).mc_inventory['food_biscuits'] ?? 0) + (10);
+      qspCall(st, 'stat', '');
       scene.text('You bought a bag of biscuits that go well with tea. You figure there\'s about ten servings inside.');
       scene.actions([
         { label: 'Exit Department', goto: ['larek', 'food'] },

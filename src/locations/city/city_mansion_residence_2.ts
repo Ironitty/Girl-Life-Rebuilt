@@ -25,7 +25,7 @@ function enterYliving(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).ymanrem ?? 0)[7] === 2) {
-    scene.text('A large room where you can watch <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">TV</a>, or relax on your luxury <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027divan\\u0027, \\u0027start\\u0027); return false;">leather sofa</a>.');
+    scene.text('A large room where you can watch <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>, or relax on your luxury <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a>.');
     if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
       scene.text('Your guitar rests on its stand next to the sofa.');
     }
@@ -58,7 +58,7 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[8] === 2) {
     scene.text('The lounge, where you can work on your tapestries and relax in front of the fireplace.');
     if (((s as any).mc_inventory ?? 0)?.['sewing_kit'] === 1) {
-      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027sewing\\u0027, \\u0027start\\u0027); return false;">sewing kit</a> is stored next to your favorite chair.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027sewing/u0027, /u0027start/u0027); return false;">sewing kit</a> is stored next to your favorite chair.');
       if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] <= 0) {
         scene.text('You do not have any fabric.');
       }
@@ -78,7 +78,7 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {
-        // TODO-QSP: dynamic text: You have <<mc_inventory['tapestry']>> completed tapestries.
+        // TODO-QSP: dynamic text: You have <<mc_inventory[''tapestry'']>> completed tapestries.
         scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry'] ?? ''} completed tapestries.`);
       }
     }
@@ -137,7 +137,7 @@ function enterYoffice(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ymanrem ?? 0)[12] === 2) {
     scene.text('Your work room where you spend most of the time signing important papers and handling your business needs.');
     qspCall(s, 'internet_mobile', 'get_access');
-    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> sitting on your antique <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">desk</a>.');
+    scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> sitting on your antique <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">desk</a>.');
     qspCall(s, 'music_actions', 'start');
   }
   // TODO-QSP: end

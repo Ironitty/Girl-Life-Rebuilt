@@ -103,18 +103,18 @@ function enterVann(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Wash in the shower (0:15)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
-    (s as any).pcs_hairbsh = 0;
-    (s as any).pcs_makeup = 1;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    if (((s as any).frost ?? 0) > 0) {
-      (s as any).frost = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (1);
+    (st as any).pcs_hairbsh = 0;
+    (st as any).pcs_makeup = 1;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    if (((st as any).frost ?? 0) > 0) {
+      (st as any).frost = 0;
     }
     scene.img('images/shared/home/bathroom/dush.mp4');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
     scene.actions([
@@ -136,7 +136,7 @@ function enterKotovkom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Vitek\'s bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/vitekhome/kotovkom.jpg');
   scene.text('His bedroom doesn\'t look like it has been cleaned in weeks or maybe ever; dirty clothes lie on the floor, cleaner looking clothes are scattered around. Several empty beer bottles and other alcohol bottles are scattered around, a full ashtray rests on a wooden box he is using as a night stand next to the bed. The only thing in decent shape in the whole room is a newer looking TV.');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kotovdom\\u0027, \\u0027vitek_chat\\u0027); return false;">Vitek</a> is lying on his bed, relaxing and watching TV.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kotovdom/u0027, /u0027vitek_chat/u0027); return false;">Vitek</a> is lying on his bed, relaxing and watching TV.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     qspGoto(s, 'kotovdom', 'kotovkom');
     scene.actions([
@@ -205,23 +205,23 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kotovlefto_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat some left overs', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).kotovfood_day = ((s as any).daystart ?? 0);
-    (s as any).kotovlefto_count = ((s as any).kotovlefto_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).kotovfood_day = ((st as any).daystart ?? 0);
+    (st as any).kotovlefto_count = ((st as any).kotovlefto_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/leftovers.jpg');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
     scene.text('It seems to be leftovers from a last night\'s dinner, it isn\'t very good, even for left overs. You doubt it was much better when it was fresh.');
     scene.actions([
       { label: 'Continue', goto: ['kotovdom', 'kuh'] },
@@ -232,23 +232,23 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     if (((s as any).kotovwater_count ?? 0) >= 0) {
       scene.actions([
         { label: 'Have some water', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).kotovfood_day = ((s as any).daystart ?? 0);
-    (s as any).kotovwater_count = ((s as any).kotovwater_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).kotovfood_day = ((st as any).daystart ?? 0);
+    (st as any).kotovwater_count = ((st as any).kotovwater_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/waterbottle1.jpg');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
     scene.text('You drink some bottled water.');
     scene.actions([
       { label: 'Continue', goto: ['kotovdom', 'kuh'] },
@@ -259,23 +259,23 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
       if (((s as any).kotovsup_count ?? 0) >= 0) {
         scene.actions([
           { label: 'Have some soup', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).kotovfood_day = ((s as any).daystart ?? 0);
-    (s as any).kotovsup_count = ((s as any).kotovsup_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).kotovfood_day = ((st as any).daystart ?? 0);
+    (st as any).kotovsup_count = ((st as any).kotovsup_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/soup.jpg');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
     scene.text('You find some soup in the fridge. You spoon out a bowlful to eat. It isn\'t very good and you have a feeling that it was sitting in there for way too long.');
     scene.actions([
       { label: 'Continue', goto: ['kotovdom', 'kuh'] },
@@ -286,23 +286,23 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
         if (((s as any).kotovsanw_count ?? 0) >= 0) {
           scene.actions([
             { label: 'Make a sandwich', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).kotovfood_day = ((s as any).daystart ?? 0);
-    (s as any).kotovsanw_count = ((s as any).kotovsanw_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).kotovfood_day = ((st as any).daystart ?? 0);
+    (st as any).kotovsanw_count = ((st as any).kotovsanw_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/reuben.jpg');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
     scene.text('You get all the stuff you need from the fridge then get some bread out of the cabinet and make yourself a sandwich.');
     scene.actions([
       { label: 'Continue', goto: ['kotovdom', 'kuh'] },
@@ -328,11 +328,11 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kotovLoveQW ?? 0) > 0) {
     scene.actions([
       { label: 'Break up with him', handler: (st: GameState) => {
-    (s as any).kotovLoveQW = (-1);
-    qspCall(s, 'npc_relationship', 'set', 'A9', 0);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (50);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).kotovLoveQW = (-1);
+    qspCall(st, 'npc_relationship', 'set', 'A9', 0);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (50);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('You sit down without saying a word. Vitek barely acknowledges you.');
     scene.text('You look at him, frowning. "We should talk."');
@@ -354,8 +354,8 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Stop talking', goto: ['kotovdom', 'kotovkom'] },
     { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'like');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('You talk with Vitek about a variety of things, mostly about his friends and the other Gopniks. He doesn\'t ask about your life at all.');
     scene.actions([
@@ -364,8 +364,8 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about the future', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('"What do you plan to do after school?" you ask.');
     scene.text('He looks at you then laughs, "Fuck, I don\'t know. Who cares? I\'ll figure it out when it happens."');
@@ -376,7 +376,7 @@ function enterVitekChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask what he\'s been up to', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'like');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('You ask him, "So what have you been up to lately?"');
     scene.text('He gives you a slightly puzzled look. "Up to?"');

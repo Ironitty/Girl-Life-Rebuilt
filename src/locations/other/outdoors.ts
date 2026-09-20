@@ -14,67 +14,67 @@ function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).month ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).weatherMeanTemp = (-48);
     (s as any).weatherTempDelta = 47;
     (s as any).weatherFallM = 50;
     (s as any).weatherFallDelta = 25;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
       (s as any).weatherMeanTemp = (-50);
       (s as any).weatherTempDelta = 52;
       (s as any).weatherFallM = 40;
       (s as any).weatherFallDelta = 20;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
         (s as any).weatherMeanTemp = (-10);
         (s as any).weatherTempDelta = 63;
         (s as any).weatherFallM = 30;
         (s as any).weatherFallDelta = 20;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 4) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
           (s as any).weatherMeanTemp = 52;
           (s as any).weatherTempDelta = 78;
           (s as any).weatherFallM = 20;
           (s as any).weatherFallDelta = 15;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 5) {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
             (s as any).weatherMeanTemp = 115;
             (s as any).weatherTempDelta = 91;
             (s as any).weatherFallM = 20;
             (s as any).weatherFallDelta = 15;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 6) {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
               (s as any).weatherMeanTemp = 161;
               (s as any).weatherTempDelta = 83;
               (s as any).weatherFallM = 10;
               (s as any).weatherFallDelta = 10;
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 7) {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 7) {
                 (s as any).weatherMeanTemp = 191;
                 (s as any).weatherTempDelta = 80;
                 (s as any).weatherFallM = 5;
                 (s as any).weatherFallDelta = 5;
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 8) {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
                   (s as any).weatherMeanTemp = 174;
                   (s as any).weatherTempDelta = 75;
                   (s as any).weatherFallM = 10;
                   (s as any).weatherFallDelta = 10;
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 9) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 9) {
                     (s as any).weatherMeanTemp = 124;
                     (s as any).weatherTempDelta = 65;
                     (s as any).weatherFallM = 20;
                     (s as any).weatherFallDelta = 15;
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 10) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 10) {
                       (s as any).weatherMeanTemp = 62;
                       (s as any).weatherTempDelta = 46;
                       (s as any).weatherFallM = 20;
                       (s as any).weatherFallDelta = 15;
                     } else {
-                      if (((s as any).locArgs?.[1] ?? 0) === 11) {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 11) {
                         (s as any).weatherMeanTemp = 9;
                         (s as any).weatherTempDelta = 37;
                         (s as any).weatherFallM = 30;
@@ -268,28 +268,28 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
           (s as any).result = '' + (1000 - ((s as any).locArgs?.[1] ?? 0)*10 - ((s as any).locArgs?.[2] ?? 0))*3/20 + '°De';
         } else {
           if (((s as any).temp_sd_scale ?? 0) === 4) {
-            if (((s as any).locArgs?.[1] ?? 0) < -10) {
+            if (Number((s as any).locArgs?.[1] ?? 0) < -10) {
               (s as any).result = '❄️🧊';
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) < -5) {
+              if (Number((s as any).locArgs?.[1] ?? 0) < -5) {
                 (s as any).result = '🥶😬';
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) < 5) {
+                if (Number((s as any).locArgs?.[1] ?? 0) < 5) {
                   (s as any).result = '🌨️😐';
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) < 15) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) < 15) {
                     (s as any).result = '🌤️🙂';
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) < 22) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) < 22) {
                       (s as any).result = '☀️😊';
                     } else {
-                      if (((s as any).locArgs?.[1] ?? 0) < 28) {
+                      if (Number((s as any).locArgs?.[1] ?? 0) < 28) {
                         (s as any).result = '🌞😅';
                       } else {
-                        if (((s as any).locArgs?.[1] ?? 0) < 33) {
+                        if (Number((s as any).locArgs?.[1] ?? 0) < 33) {
                           (s as any).result = '🔆😤';
                         } else {
-                          if (((s as any).locArgs?.[1] ?? 0) < 38) {
+                          if (Number((s as any).locArgs?.[1] ?? 0) < 38) {
                             (s as any).result = '🔥😡';
                           } else {
                             (s as any).result = '☢️🤬';
@@ -309,16 +309,16 @@ function enterGetTempString(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
     (s as any).result = qspFunc(s, 'wrap', 'accent', ((s as any).result ?? 0));
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) < 10) {
+    if (Number((s as any).locArgs?.[1] ?? 0) < 10) {
       (s as any).result = qspFunc(s, 'wrap', 'v_pos', ((s as any).result ?? 0));
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) < 20) {
+      if (Number((s as any).locArgs?.[1] ?? 0) < 20) {
         (s as any).result = qspFunc(s, 'wrap', 'pos', ((s as any).result ?? 0));
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) < 30) {
+        if (Number((s as any).locArgs?.[1] ?? 0) < 30) {
           (s as any).result = qspFunc(s, 'wrap', 'neg', ((s as any).result ?? 0));
         } else {
           (s as any).result = qspFunc(s, 'wrap', 'v_neg', ((s as any).result ?? 0));
@@ -475,7 +475,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_mood ?? 0) > 20) {
           qspCall(s, 'mood', 'lower', 'medium');
         }
-        qspCall(s, 'clothing', 'decrease_cur_strength', Math.floor(Math.random() * 1001) + 500);
+        qspCall(s, 'clothing', 'decrease_cur_strength', (Math.floor(Math.random() * 1001) + 500));
       }
       if (((s as any).PCloInhibit ?? 0) >= ((s as any).pcs_inhib ?? 0) - 10  &&  ((s as any).loc ?? 0) !== 'gad_gpyard') {
         (s as any).exhibition_outdoors = ((s as any).exhibition_outdoors ?? 0) + (1);

@@ -406,7 +406,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).i ?? 0) <= Object.keys((s as any).materinstvo_dress ?? {}).length) {
     // TODO-QSP: jump 'materinstvo_dressmet'
   }
-  // TODO-QSP: dynamic text: You sold <<poshvalldrop>> items of unwanted clothing for a total of <<$func('mon...
+  // TODO-QSP: dynamic text: You sold <<poshvalldrop>> items of unwanted clothing for a total of <<$func(''mo...
   scene.text(`You sold ${((s as any).poshvalldrop || '')} items of unwanted clothing for a total of ${qspFunc(s, 'money', 'string_profit', ((s as any).selltot || ''))}.`);
   scene.build();
 }

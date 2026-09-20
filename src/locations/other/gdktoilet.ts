@@ -17,7 +17,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Community Center - Restrooms</b></center>');
   scene.img('images/locations/pavlovsk/community/bathroom/bathroom_entrance.jpg');
-  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027beverage\\u0027, \\u0027watercooler\\u0027); return false;">drinking fountain</a> near the doors to the bathrooms.');
+  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027watercooler/u0027); return false;">drinking fountain</a> near the doors to the bathrooms.');
   if (((s as any).hour ?? 0) >= 8) {
     qspCall(s, 'willpower', 'exhib', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -29,10 +29,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'exhib', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'gdktoilet_mens', 'mens_entrance_events');
+    qspCall(st, 'willpower', 'exhib', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'gdktoilet_mens', 'mens_entrance_events');
   } },
       ]);
     }
@@ -58,11 +58,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Go to the dance', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 25);
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspGoto(s, 'pav_disco', '');
+      qspCall(st, 'money', 'pay', 25);
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspGoto(st, 'pav_disco', '');
     }
   } },
         ]);
@@ -101,9 +101,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go outside', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) !== 'nude') {
-      qspCall(s, 'arousal', 'end');
-      qspGoto(s, 'pav_commcenter', '');
+    if (((st as any).clothingworntype ?? 0) !== 'nude') {
+      qspCall(st, 'arousal', 'end');
+      qspGoto(st, 'pav_commcenter', '');
     }
   } },
     { label: 'Change outfit in the locker room', goto: ['wardrobe', 'start'] },
@@ -118,7 +118,7 @@ function enterWomens(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Women\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/community/bathroom/womens/bathroom_women.jpg');
-  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a>. You notice the last stall has its door wide open.');
+  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>. You notice the last stall has its door wide open.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');

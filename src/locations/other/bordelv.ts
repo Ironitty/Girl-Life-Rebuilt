@@ -23,11 +23,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('A few minutes later, two men enter the room and Vika kneels between them. She grabs hold of their cocks and starts sucking them while looking in your direction.');
     scene.text('You look on in amazement as she takes one of the cocks down her throat before doing the same to the other.');
     scene.text('She diligently continues to satisfy the men, not taking her eyes from the mirror.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'arousal', 'clit_finger', (-5), 'masturbate');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'voyeur', 'self', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'arousal', 'clit_finger', (-5), 'masturbate');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'voyeur', 'self', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Keep watching', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -36,10 +36,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Keep watching', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'voyeur', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'bordelv', 'sex');
+    qspCall(st, 'willpower', 'voyeur', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'bordelv', 'sex');
   } },
       ]);
     }
@@ -54,7 +54,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterSex(s: GameState, scene: SceneBuilder): void {
   (s as any).dviksex = ((s as any).dviksex ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/residential/sauna/sex/bvika${Math.floor(Math.random() * 5) + 3}.jpg`);
+  scene.img(`images/locations/city/residential/sauna/sex/bvika${(Math.floor(Math.random() * 5) + 3)}.jpg`);
   scene.text('You continue to watch as the men strip Vika naked and start fucking her in various positions, both of them alternating between her pussy and her ass, and letting her taste it all.');
   scene.text('Vika moans loudly and struggles to please them as she tries her hardest to look at you behind the mirror.');
   scene.text('Even though you know that she can\'t see you, if feels like she\'s looking you right in the eyes, searching for your approval.');
@@ -71,10 +71,10 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'voyeur', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'bordelv', 'sex');
+    qspCall(st, 'willpower', 'voyeur', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'bordelv', 'sex');
   } },
     ]);
   }
@@ -100,9 +100,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/sauna/sex/bvika9.jpg');
     scene.text('A few minutes later, the door opens and Vika enters the room. She closes the door, but you can\'t really see her, only her silhouette.');
     scene.text('Not saying anything, Vika silently awaits your reaction.');
-    if (((s as any).stat ?? 0)?.['prostitution_count'] === 0) {
-      qspCall(s, 'willpower', 'misc', 'self', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((st as any).stat ?? 0)?.['prostitution_count'] === 0) {
+      qspCall(st, 'willpower', 'misc', 'self', 'hard');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Comfort her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -111,10 +111,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Comfort her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A220', 5);
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('"Why are you so upset? So what if you work in a brothel? It was so hot that I couldn\'t keep my hands off myself…" you say quietly.');
     scene.text('Vika sighs in relief. "I was worried that you wouldn\'t understand. I have to go back to work now."');
     scene.text('She then quietly leads you to the exit.');
@@ -128,8 +128,8 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         { label: 'Call her a whore', handler: (st: GameState) => {
     scene.text('"Whore" is perhaps the nicest word you direct at her. Due to the shock, you reel off every swear word you can think of, some of which you might have just made up.');
     scene.text('When you finish with your barrage, all you can hear is a distraught Vika crying.');
-    qspCall(s, 'willpower', 'misc', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Comfort her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -138,10 +138,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Comfort her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
-    qspCall(s, 'willpower', 'misc', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A220', 5);
+    qspCall(st, 'willpower', 'misc', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('You comfort her by saying that you didn\'t mean to hurt her and that what you said was because of the shock. Vika quietly approaches and you hug each other.');
     scene.text('Soon after, she stops crying and says that she should get back to work before walking you to the exit.');
     scene.actions([
@@ -152,16 +152,16 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'set', 'A220', 0);
-    (s as any).vikaend = 1;
-    qspGoto(s, 'city_redlight', 'start');
+    qspCall(st, 'npc_relationship', 'set', 'A220', 0);
+    (st as any).vikaend = 1;
+    qspGoto(st, 'city_redlight', 'start');
   } },
     ]);
   } },
       ]);
     } else {
-      qspCall(s, 'willpower', 'misc', 'self', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'misc', 'self', 'hard');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Ask about getting a job at the brothel', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -170,11 +170,11 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Ask about getting a job at the brothel', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
-    (s as any).bordel = 1;
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A220', 5);
+    (st as any).bordel = 1;
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('"That was so hot! Can you talk to your boss? I want to work here," you ask.');
     scene.text('Vika lets out a relieved sigh. "And here I was worried that you wouldn\'t understand! I\'ll ask the boss, but I can\'t guarantee they\'ll take you on."');
     scene.text('She then quietly leads you to the exit.');
@@ -186,7 +186,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Comfort her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
+    qspCall(st, 'npc_relationship', 'modify', 'A220', 5);
     scene.text('"Why are you so upset? So what if you work in a brothel? It was so hot that I couldn\'t keep my hands off myself…" you say quietly.');
     scene.text('Vika sighs in relief. "I was worried that you wouldn\'t understand. I have to go back to work now."');
     scene.text('She then quietly leads you to the exit.');
@@ -223,10 +223,10 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Comfort her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A220', 15);
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'npc_relationship', 'modify', 'A220', 15);
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'end');
     scene.text('Seeing her getting upset, you comfort her by saying that you didn\'t mean to hurt her and that what you said was because of the shock.');
     scene.text('She hugs you before saying that she should get back to work as she walks you to the exit.');
     scene.actions([
@@ -238,10 +238,10 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'set', 'A220', 0);
-    (s as any).vikaend = 1;
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'city_redlight', 'start');
+    qspCall(st, 'npc_relationship', 'set', 'A220', 0);
+    (st as any).vikaend = 1;
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'city_redlight', 'start');
   } },
   ]);
   scene.build();

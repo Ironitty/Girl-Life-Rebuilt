@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterActive(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).succubusQW ?? 0) >= ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).succubusQW ?? 0) !== 12  &&  ((s as any).succubusQW ?? 0) !== 13) {
+  if (((s as any).succubusQW ?? 0) >= Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).succubusQW ?? 0) !== 12  &&  ((s as any).succubusQW ?? 0) !== 13) {
     (s as any).result = 1;
   }
   return;
@@ -29,21 +29,21 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }, goto: ['succubus', 'init'] },
       { label: 'Try to control your urges', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You try to contain <<$sucself1>>…
-    scene.text(`You try to contain ${((s as any).sucself1 || '')}…`);
-    qspCall(s, 'willpower', 'misc', 'resist', 'easy');
-    (s as any).will_cost = ((s as any).will_cost ?? 0) * ((s as any).succublvl ?? 0);
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`You try to contain ${((st as any).sucself1 || '')}…`);
+    qspCall(st, 'willpower', 'misc', 'resist', 'easy');
+    (st as any).will_cost = ((st as any).will_cost ?? 0) * ((st as any).succublvl ?? 0);
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.text('<br>You don\'t have enough willpower to control your urges.');
       // TODO-QSP: dynamic text: <<$sucself1>> continues rising toward the surface of your being.
-      scene.text(`${((s as any).sucself1 || '')} continues rising toward the surface of your being.`);
-      (s as any).succonfail = 1;
-      (s as any).scpopt = 0;
-      qspGoto(s, 'succubus', 'init');
+      scene.text(`${((st as any).sucself1 || '')} continues rising toward the surface of your being.`);
+      (st as any).succonfail = 1;
+      (st as any).scpopt = 0;
+      qspGoto(st, 'succubus', 'init');
     } else {
-      qspCall(s, 'willpower', 'pay', 'resist');
-      qspCall(s, 'stat', '');
-      // TODO-QSP: dynamic text: And you're successful, <<$sucself1>> returns to your core.
-      scene.text(`And you're successful, ${((s as any).sucself1 || '')} returns to your core.`);
+      qspCall(st, 'willpower', 'pay', 'resist');
+      qspCall(st, 'stat', '');
+      // TODO-QSP: dynamic text: And you''re successful, <<$sucself1>> returns to your core.
+      scene.text(`And you're successful, ${((st as any).sucself1 || '')} returns to your core.`);
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     (st as any).scpopt = 2;
@@ -67,7 +67,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       (s as any).suceatinit = 1;
       (s as any).succonfail = 0;
       scene.actions([
-        { label: 'Continue', goto: ['succubus', 'scsubloc'] },
+        { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'succubus', ((st as any).scsubloc ?? '')); } },
       ]);
     }
   }
@@ -90,35 +90,35 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   if (((s as any).scpopt ?? 0) !== 1  ||  ((s as any).succhungry ?? 0) > 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).scpopt = 0;
-    (s as any).succubusQW = 14;
-    qspGoto(s, 'succubus', 'init');
+    (st as any).scpopt = 0;
+    (st as any).succubusQW = 14;
+    qspGoto(st, 'succubus', 'init');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Let go…', handler: (st: GameState) => {
-    (s as any).scpopt = 0;
-    (s as any).succubusQW = 14;
-    qspGoto(s, 'succubus', 'init');
+    (st as any).scpopt = 0;
+    (st as any).succubusQW = 14;
+    qspGoto(st, 'succubus', 'init');
   } },
       { label: 'Push it back down', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You try to contain <<$sucself1>>…
-    scene.text(`You try to contain ${((s as any).sucself1 || '')}…`);
-    qspCall(s, 'willpower', 'misc', 'resist', 'easy');
+    scene.text(`You try to contain ${((st as any).sucself1 || '')}…`);
+    qspCall(st, 'willpower', 'misc', 'resist', 'easy');
     // TODO-QSP: will_cost *= succublvl
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       // TODO-QSP: dynamic text: And you fail, <<$sucself1>> continues rising toward the surface of your being.
-      scene.text(`And you fail, ${((s as any).sucself1 || '')} continues rising toward the surface of your being.`);
-      (s as any).succonfail = 1;
-      (s as any).scpopt = 0;
-      (s as any).succubusQW = 14;
-      qspGoto(s, 'succubus', 'init');
+      scene.text(`And you fail, ${((st as any).sucself1 || '')} continues rising toward the surface of your being.`);
+      (st as any).succonfail = 1;
+      (st as any).scpopt = 0;
+      (st as any).succubusQW = 14;
+      qspGoto(st, 'succubus', 'init');
     } else {
-      qspCall(s, 'willpower', 'pay', 'resist');
-      qspCall(s, 'stat', '');
-      // TODO-QSP: dynamic text: And you're successful, <<$sucself1>> returns to your core.
-      scene.text(`And you're successful, ${((s as any).sucself1 || '')} returns to your core.`);
+      qspCall(st, 'willpower', 'pay', 'resist');
+      qspCall(st, 'stat', '');
+      // TODO-QSP: dynamic text: And you''re successful, <<$sucself1>> returns to your core.
+      scene.text(`And you're successful, ${((st as any).sucself1 || '')} returns to your core.`);
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     (st as any).scpopt = 2;
@@ -310,64 +310,64 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).scrand = Math.floor(Math.random() * 4) + 0;
-    if (((s as any).fightEnding ?? 0) === 8  &&  ((s as any).scfwon ?? 0) === 1) {
-      (s as any).scrand = ((s as any).scrand ?? 0) - (1);
-      (s as any).scfwon = 0;
-      (s as any).fightEnding = 0;
-      if (((s as any).rikudo ?? 0) > 10) {
-        (s as any).rikudo = ((s as any).rikudo ?? 0) + (100);
+    (st as any).scrand = (Math.floor(Math.random() * 4) + 0);
+    if (((st as any).fightEnding ?? 0) === 8  &&  ((st as any).scfwon ?? 0) === 1) {
+      (st as any).scrand = ((st as any).scrand ?? 0) - (1);
+      (st as any).scfwon = 0;
+      (st as any).fightEnding = 0;
+      if (((st as any).rikudo ?? 0) > 10) {
+        (st as any).rikudo = ((st as any).rikudo ?? 0) + (100);
       }
-      (s as any).Win = ((s as any).Win ?? 0) + (1);
+      (st as any).Win = ((st as any).Win ?? 0) + (1);
     } else {
-      if (((s as any).fightEnding ?? 0) === 8) {
-        (s as any).fightEnding = 0;
-        (s as any).SUB = ((s as any).SUB ?? 0) + (1);
-        (s as any).Loss = ((s as any).Loss ?? 0) + (1);
-        if (((s as any).rikudo ?? 0) > 10) {
-          (s as any).rikudo = ((s as any).rikudo ?? 0) - (10);
+      if (((st as any).fightEnding ?? 0) === 8) {
+        (st as any).fightEnding = 0;
+        (st as any).SUB = ((st as any).SUB ?? 0) + (1);
+        (st as any).Loss = ((st as any).Loss ?? 0) + (1);
+        if (((st as any).rikudo ?? 0) > 10) {
+          (st as any).rikudo = ((st as any).rikudo ?? 0) - (10);
         }
       } else {
-        (s as any).scrand = ((s as any).scrand ?? 0) - (1);
-        (s as any).scfwon = 0;
-        (s as any).fightEnding = 0;
+        (st as any).scrand = ((st as any).scrand ?? 0) - (1);
+        (st as any).scfwon = 0;
+        (st as any).fightEnding = 0;
       }
     }
-    if (((s as any).scrand ?? 0) < ((s as any).succublvl ?? 0)) {
-      (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
-      if (((s as any).scfeed ?? 0) === 2) {
-        (s as any).scxcum = 'twice';
+    if (((st as any).scrand ?? 0) < ((st as any).succublvl ?? 0)) {
+      (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
+      if (((st as any).scfeed ?? 0) === 2) {
+        (st as any).scxcum = 'twice';
       } else {
-        (s as any).scxcum = 'multiple times';
+        (st as any).scxcum = 'multiple times';
       }
       scene.text('You quickly drag him out of sight, then rip off his pants and expose your now hungry pussy.');
       scene.text('You force him to the ground and immediately mount him, your now hair-trigger snatch sending you into orgasm.');
       scene.text('');
       // TODO-QSP: dynamic text: You ride him for some time, your power forcing him to cum <<$scxcum>> pulling ev...
-      scene.text(`You ride him for some time, your power forcing him to cum ${((s as any).scxcum || '')} pulling every drop of energy out of each eruption, with the rush causing you to orgasm as he does…`);
+      scene.text(`You ride him for some time, your power forcing him to cum ${((st as any).scxcum || '')} pulling every drop of energy out of each eruption, with the rush causing you to orgasm as he does…`);
       scene.text('');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).succubusQW = (s as any).succubusQW ?? {})['rapist_cash'] = Math.floor(Math.random() * 251) + 50;
-    (s as any).i = 0;
+    ((st as any).succubusQW = (st as any).succubusQW ?? {})['rapist_cash'] = (Math.floor(Math.random() * 251) + 50);
+    (st as any).i = 0;
     // TODO-QSP: :sucfeeding_loop
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
-    if (((s as any).scfeed ?? 0) > ((s as any).i ?? 0)) {
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
+    if (((st as any).scfeed ?? 0) > ((st as any).i ?? 0)) {
       // TODO-QSP: jump 'sucfeeding_loop'
     }
-    qspCall(s, 'arousal', 'end');
-    (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).scfeed ?? 0));
-    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
-    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
-    (s as any).sucabscum = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + (15 + (20 * ((s as any).scfeed ?? 0)) / ((s as any).succublvl ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'end');
+    (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (((st as any).scfeed ?? 0));
+    (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
+    (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (30 * ((st as any).scfeed ?? 0));
+    (st as any).sucabscum = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + (15 + (20 * ((st as any).scfeed ?? 0)) / ((st as any).succublvl ?? 0));
+    qspCall(st, 'stat', '');
     scene.text('Finally, when your instincts tell you he has nothing left to give, you get off him and fix your clothes.');
     scene.text('As you make ready to leave, you look down upon your would-be-rapist-turned-meal as he lies there utterly exhausted and wonder if this experience will discourage him from such activities in the future…');
     // TODO-QSP: dynamic text: Before you leave him to contemplate such things you check his wallet and grab <<...
-    scene.text(`Before you leave him to contemplate such things you check his wallet and grab ${qspFunc(s, 'money', 'string_profit', ((s as any).succubusQW ?? 0)?.['rapist_cash'] ?? '')} as a bonus reward.`);
+    scene.text(`Before you leave him to contemplate such things you check his wallet and grab ${qspFunc(s, 'money', 'string_profit', ((st as any).succubusQW ?? 0)?.['rapist_cash'] ?? '')} as a bonus reward.`);
     // TODO-QSP: gs 'money', 'earn', succubusQW['rapist_cash'], 'cash'
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -377,8 +377,8 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspCall(st, 'stat', '');
       scene.text('');
       scene.text('And you feel his fear overcome his lust and your hold…');
       scene.text('By the time you pull yourself back to the physical world, he is long gone.');
@@ -410,23 +410,23 @@ function enterPavResfeed(s: GameState, scene: SceneBuilder): void {
     scene.text('"Find something you like?" he asks in a cocky tone. You don\'t know why. He doesn\'t have anything that impressive down there.');
     scene.actions([
       { label: 'Warm him up', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', Math.floor(Math.random() * 251) + 250, 'cash');
-    (s as any).scfeed = ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
-    (s as any).i = 0;
+    qspCall(st, 'money', 'earn', (Math.floor(Math.random() * 251) + 250), 'cash');
+    (st as any).scfeed = ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
+    (st as any).i = 0;
     // TODO-QSP: :sucfeeding_loop2
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
-    if (((s as any).scfeed ?? 0) > ((s as any).i ?? 0)) {
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', (-5), 'dom', 'no_orgasm_msg');
+    if (((st as any).scfeed ?? 0) > ((st as any).i ?? 0)) {
       // TODO-QSP: jump 'sucfeeding_loop2'
     }
-    qspCall(s, 'arousal', 'end');
-    (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).scfeed ?? 0));
-    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
-    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (30 * ((s as any).scfeed ?? 0));
-    (s as any).sucabscum = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + (15 + (20 * ((s as any).scfeed ?? 0)) / ((s as any).succublvl ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'end');
+    (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (((st as any).scfeed ?? 0));
+    (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
+    (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (30 * ((st as any).scfeed ?? 0));
+    (st as any).sucabscum = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + (15 + (20 * ((st as any).scfeed ?? 0)) / ((st as any).succublvl ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/blowjob/boybj2.jpg');
     scene.text('"Meh, it will have to do," you tell him. He drags you into the bushes and pushes you down to your knees. You decide to play along for now and place your lips around his cock and work your magic. Literally. You give him the kind of blowjob only a succubus like yourself can give. It isn\'t long before he cums in your mouth. You swallow it, savoring the appetizer before the main course with a smile on your face. He grabs your chin and looks at you with contempt.');
     scene.text('"What a slut, if you enjoy cum that much, maybe I should call my friends to give you all you can eat. Would you like that, whore?"');
@@ -456,19 +456,19 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
     if (((s as any).succubusQW ?? 0) === 11) {
       scene.text('Something in you panics at this, and the fear overtakes your mind.');
     }
-    // TODO-QSP: dynamic text: Distantly, you hear Tatiana mutter, "Huh, what's this?" and her power pokes <<$s...
+    // TODO-QSP: dynamic text: Distantly, you hear Tatiana mutter, "Huh, what''s this?" and her power pokes <<$...
     scene.text(`Distantly, you hear Tatiana mutter, "Huh, what's this?" and her power pokes ${((s as any).sucself1 || '')}.`);
     (s as any).sclocrt = 'succubus';
     (s as any).scargrt = 'tatianaask';
     (s as any).scsubloc = 'tatianasex';
     (s as any).scpopt = 1;
     (s as any).sucpcinfo = 3;
-    return;
     scene.actions([
-      { label: 'Continue', handler: (st: GameState) => {
+{ label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: xgt 'succubus', 'init'
   } },
-    ]);
+]);
+    return;
   } else {
     if (((s as any).sucpcinfo ?? 0) === 3) {
       scene.img('images/locations/city/citycenter/lab/event/main1.jpg');
@@ -481,11 +481,14 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).sucpcinfo = 4;
   (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
+  scene.actions([
+{ label: 'Get dressed', goto: ['succubus', 'tatianaask'] },
+]);
   return;
   // TODO-QSP: end
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
-  if (((s as any).sucpcinfo ?? 0) >= 4  &&  (!((s as any).locArgs?.[1] ?? 0))) {
+  if (((s as any).sucpcinfo ?? 0) >= 4  &&  Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.text('"You are a Succubus. Now, the Succubae are not demons, that impression is a byproduct of the masking spell; they are instead a type of Fae, like that Fairy you told me about, and they are native to this plane of existence. As Fae, Succubae have nothing to do with "souls", but they do feed on the energy released during sex. The most efficient means of getting this energy is semen taken internally, but a lot is gained by lesbian orgasm if the Succubus is in sexual contact with the woman as she cums."');
     if (((s as any).tatisucsex ?? 0) !== 0) {
       scene.text('She then gives you a coy smile and says, "I can tell you that sex with a willing Succubus is an <i>amazing experience</i>."');
@@ -498,7 +501,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       scene.text('"And I will be able to teach you how to tell what your energy levels are."');
     }
   }
-  if (((s as any).sucpcinfo ?? 0) >= 5  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 1)) {
+  if (((s as any).sucpcinfo ?? 0) >= 5  &&  (Number((s as any).locArgs?.[1] ?? 0) === 0  ||  Number((s as any).locArgs?.[1] ?? 0) === 1)) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('"Succubae can exceed normal human limitations in a way similar to the way Gustav does, but unlike Gustav, since they are Fae, the masking spell ignores them.');
     scene.text('"They automatically store sexual energy in excess of what they need to survive internally, and when this energy builds up enough, let\'s call that point 100 units, their bodies will automatically use this energy to improve themselves; increasing their physical and mental abilities, keeping themselves young looking, and providing a reserve in case they can\'t find food.');
@@ -509,7 +512,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       scene.text('"And," she adds with a grin, "I can teach you to store energy before your body uses it and to increase your storage capacity, as long as you have some reserves! Just make sure your reserves are full before we try to teach you."');
     }
   }
-  if (((s as any).sucpcinfo ?? 0) >= 6  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 2)) {
+  if (((s as any).sucpcinfo ?? 0) >= 6  &&  (Number((s as any).locArgs?.[1] ?? 0) === 0  ||  Number((s as any).locArgs?.[1] ?? 0) === 2)) {
     if (((s as any).sucskill ?? 0) >= 3) {
       scene.text('"They also learned, as you have, to be more efficient with the sexual energy, increasing the amount of energy they have available for survival and storage."');
     } else {
@@ -524,7 +527,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).sucpcinfo ?? 0) >= 7  &&  (((s as any).locArgs?.[1] ?? 0) === 0  ||  ((s as any).locArgs?.[1] ?? 0) === 3)) {
+  if (((s as any).sucpcinfo ?? 0) >= 7  &&  (Number((s as any).locArgs?.[1] ?? 0) === 0  ||  Number((s as any).locArgs?.[1] ?? 0) === 3)) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('"Succubae are somewhat territorial when hungry, but when sated, the impulse is weak enough to suppress easily. They seem to have established neutral territories in the flesh-pots of the world, like Amsterdam, Morocco, and Las Vegas. Places like that are not claimed by one Succubus, instead groups of them have made their homes there.');
     scene.text('"A Succubae\'s body can learn to expend a bit of power to accommodate nearly any size of… implement." She gives you a smug grin with that.');
@@ -532,7 +535,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       scene.text('And I can teach you, just go get the biggest dildo they sell at that shop down the street, then bring it and 100 units of stored energy back here.');
     }
   }
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.text('"They likely have other abilities and weaknesses, but the few Succubae I have encountered were not that willing to part with information, though I have put out requests for more information from my contacts.');
     scene.text('"As far as I know, you are the only Succubus in the region."');
     scene.actions([
@@ -548,7 +551,6 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Get dressed', goto: ['succubus', 'tatianaask'] },
     { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
   ]);
   scene.build();
@@ -588,39 +590,39 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
     scene.text('You pleasure each other for some time, orgasming together, and then at some point you flip over.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (((s as any).sucpcinfo ?? 0) >= 6  &&  ((s as any).sucskill ?? 0) < 3  &&  ((s as any).sctrainprep ?? 0) === 1) {
-      qspGoto(s, 'succubus', 'training3sex');
+    if (((st as any).sucpcinfo ?? 0) >= 6  &&  ((st as any).sucskill ?? 0) < 3  &&  ((st as any).sctrainprep ?? 0) === 1) {
+      qspGoto(st, 'succubus', 'training3sex');
     }
     scene.img('images/characters/city/tatiana/sex/karinsucsex3.jpg');
     scene.text('You continue this way for some time, flipping back and forth, having multiple simultaneous orgasms until you sense her body is tiring even though her power level is a bit higher than when you two started.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A176');
-    (s as any).scfeed = 2 + ((s as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
-    if ((!((s as any).tatianaSex ?? 0))) {
-      (s as any).tatianaSex = 1;
-      (s as any).girl = ((s as any).girl ?? 0) + (1);
+    qspCall(st, 'npcStat', 'A176');
+    (st as any).scfeed = 2 + ((st as any).succublvl ?? 0) + (Math.floor(Math.random() * 4) + 1);
+    if ((!((st as any).tatianaSex ?? 0))) {
+      (st as any).tatianaSex = 1;
+      (st as any).girl = ((st as any).girl ?? 0) + (1);
     }
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'cuni', 20, 'lesbian');
-    qspCall(s, 'arousal', 'end');
-    (s as any).pcs_horny = 0;
-    (s as any).orgasm = ((s as any).orgasm ?? 0) + (((s as any).scfeed ?? 0));
-    (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).scfeed ?? 0));
-    (s as any).sexnutrition = ((s as any).sexnutrition ?? 0) + (25 * ((s as any).scfeed ?? 0));
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
-    (s as any).succubxp = ((s as any).succubxp ?? 0) + (6);
-    (s as any).sucabslez = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + (20 + (20 * ((s as any).scfeed ?? 0)) / ((s as any).succublvl ?? 0));
-    (s as any).tatisucsexday = ((s as any).daystart ?? 0) + 1 + ((s as any).scfeed ?? 0) / 3;
-    if (((s as any).sucpcinfo ?? 0) < 4) {
-      qspGoto(s, 'succubus', 'tatianaask');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'cuni', 20, 'lesbian');
+    qspCall(st, 'arousal', 'end');
+    (st as any).pcs_horny = 0;
+    (st as any).orgasm = ((st as any).orgasm ?? 0) + (((st as any).scfeed ?? 0));
+    (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (((st as any).scfeed ?? 0));
+    (st as any).sexnutrition = ((st as any).sexnutrition ?? 0) + (25 * ((st as any).scfeed ?? 0));
+    (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+    (st as any).succubxp = ((st as any).succubxp ?? 0) + (6);
+    (st as any).sucabslez = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + (20 + (20 * ((st as any).scfeed ?? 0)) / ((st as any).succublvl ?? 0));
+    (st as any).tatisucsexday = ((st as any).daystart ?? 0) + 1 + ((st as any).scfeed ?? 0) / 3;
+    if (((st as any).sucpcinfo ?? 0) < 4) {
+      qspGoto(st, 'succubus', 'tatianaask');
     }
-    (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) + (1);
-    if ((!((s as any).tatisucsex ?? 0))) {
-      (s as any).tatisucsex = 1;
+    (st as any).tatisucsex = ((st as any).tatisucsex ?? 0) + (1);
+    if ((!((st as any).tatisucsex ?? 0))) {
+      (st as any).tatisucsex = 1;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('As you both put yourselves back together, Tatiana says, "That was intense, thank you!"');
     scene.actions([
       { label: 'Continue', goto: ['tatiana_lab', 'Tatiana'] },
@@ -645,32 +647,32 @@ function enterTraining3sex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    (s as any).sucskill = 3;
-    qspCall(s, 'npcStat', 'A176');
-    if ((!((s as any).tatianaSex ?? 0))) {
-      (s as any).tatianaSex = 1;
+    (st as any).sucskill = 3;
+    qspCall(st, 'npcStat', 'A176');
+    if ((!((st as any).tatianaSex ?? 0))) {
+      (st as any).tatianaSex = 1;
     }
-    (s as any).orgasm_or = 'no';
+    (st as any).orgasm_or = 'no';
     // TODO-QSP: gs 'arousal', 'cuni', 15 * rand(1, 8), 'dom', 'lesbian'
-    qspCall(s, 'arousal', 'cuni_give', (-15), 'dom', 'lesbian');
-    qspCall(s, 'arousal', 'end');
-    (s as any).suclezsex = ((s as any).stat ?? 0)?.['female_sexual_times'];
-    (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) + (1);
-    if ((!((s as any).tatisucsex ?? 0))) {
-      (s as any).tatisucsex = 1;
+    qspCall(st, 'arousal', 'cuni_give', (-15), 'dom', 'lesbian');
+    qspCall(st, 'arousal', 'end');
+    (st as any).suclezsex = ((st as any).stat ?? 0)?.['female_sexual_times'];
+    (st as any).tatisucsex = ((st as any).tatisucsex ?? 0) + (1);
+    if ((!((st as any).tatisucsex ?? 0))) {
+      (st as any).tatisucsex = 1;
     }
-    (s as any).pcs_willpwr = ((s as any).willpowermax ?? 0);
-    (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (100);
-    (s as any).succhungry = ((s as any).succhungry ?? 0) + (1);
-    (s as any).succubxp = ((s as any).succubxp ?? 0) + (10);
-    (s as any).tatisucsexday = ((s as any).daystart ?? 0) + (Math.floor(Math.random() * 6) + 5);
-    (s as any).pcs_hairbsh = 0;
-    if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
-      (s as any).pcs_makeup = 0;
+    (st as any).pcs_willpwr = ((st as any).willpowermax ?? 0);
+    (st as any).sucexcess = ((st as any).sucexcess ?? 0) - (100);
+    (st as any).succhungry = ((st as any).succhungry ?? 0) + (1);
+    (st as any).succubxp = ((st as any).succubxp ?? 0) + (10);
+    (st as any).tatisucsexday = ((st as any).daystart ?? 0) + (Math.floor(Math.random() * 6) + 5);
+    (st as any).pcs_hairbsh = 0;
+    if (((st as any).pcs_makeup ?? 0) > ((st as any).makeup ?? 0)?.['base']) {
+      (st as any).pcs_makeup = 0;
     }
-    (s as any).pcs_energy = 100;
-    (s as any).pcs_sleep = 40;
-    qspCall(s, 'stat', '');
+    (st as any).pcs_energy = 100;
+    (st as any).pcs_sleep = 40;
+    qspCall(st, 'stat', '');
     scene.text('As you both put yourselves back together, Tatiana says, "Wow… just wow! That was… indescribable! I have never felt <i>anything</i> like that!" She gives you a gentle kiss before adding, "Thank You!"');
     scene.text('She then lies down on the couch and immediately drops off to sleep. You toss the blanket over her and prepare to leave.');
     scene.actions([
@@ -881,7 +883,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['lipbalm'] > 0  &&  ((s as any).pcs_lipbalm ?? 0) <= 0) {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lipbalm'] = ((s as any).mc_inventory['lipbalm'] ?? 0) - (1);
-    (s as any).lipkoef = ((s as any).lipkoef ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (s as any).lipkoef = ((s as any).lipkoef ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     if (((s as any).lipkoef ?? 0) > 50) {
       (s as any).lipkoef = 0;
       (s as any).pcs_lip = ((s as any).pcs_lip ?? 0) + (1);
@@ -942,7 +944,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   (s as any).scwalkmon = ((s as any).rand ?? 0) (50, (100 * ((s as any).sucencntrand ?? 0)));
   qspCall(s, 'money', 'earn', ((s as any).scwalkmon ?? 0), 'cash');
   (s as any).sucwalkday = ((s as any).daystart ?? 0) + ((s as any).sucencntrand ?? 0) + (Math.floor(Math.random() * 6) + 0);
-  (s as any).sctemp = Math.floor(Math.random() * 10) + 1;
+  (s as any).sctemp = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).sucencntrand ?? 0) > 1) {
     if (((s as any).sctemp ?? 0) <= 6) {
       (s as any).sucabscum = 1;
@@ -977,7 +979,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    (s as any).sctemp = Math.floor(Math.random() * 11) + 1;
+    (s as any).sctemp = (Math.floor(Math.random() * 11) + 1);
     if (((s as any).sctemp ?? 0) === 1) {
       qspCall(s, 'car_funcs', 'setloc', 'city_residential', '', 'city');
     } else {
@@ -1019,12 +1021,12 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) - (Math.floor(Math.random() * 4) + 1);
-    ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).car['current_condition'] ?? 0) - (Math.floor(Math.random() * 4) + 3);
+    ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car['fuel'] ?? 0) - ((Math.floor(Math.random() * 4) + 1));
+    ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * 4) + 3));
     qspCall(s, 'carF', '');
     (s as any).sccarflag = 1;
   } else {
-    (s as any).sctemp = Math.floor(Math.random() * 5) + 1;
+    (s as any).sctemp = (Math.floor(Math.random() * 5) + 1);
     if (((s as any).sucslpzone ?? 0) === 1) {
       if (((s as any).sctemp ?? 0) === 1) {
         (s as any).sucgoloc = 'city_industrial';
@@ -1145,34 +1147,34 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Wake Up', handler: (st: GameState) => {
-    (s as any).pcs_sleep = 100;
-    qspCall(s, 'mood', 'raise', 'medium');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).healthmax ?? 0)/5);
-    (s as any).pcs_stam = ((s as any).stammax ?? 0);
-    (s as any).pcs_mana = (((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0)) + ((s as any).pcs_magik ?? 0) * 100 + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0);
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
-    (s as any).scwrdtmp = '.';
+    (st as any).pcs_sleep = 100;
+    qspCall(st, 'mood', 'raise', 'medium');
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (((st as any).healthmax ?? 0)/5);
+    (st as any).pcs_stam = ((st as any).stammax ?? 0);
+    (st as any).pcs_mana = (((st as any).pcs_intel ?? 0) * ((st as any).pcs_magik ?? 0)) + ((st as any).pcs_magik ?? 0) * 100 + ((st as any).pcs_vital ?? 0) * 10 + ((st as any).rikudo ?? 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
+    (st as any).scwrdtmp = '.';
     scene.text('');
     scene.text('You wake up and realize that you\'re not in your bed…');
-    if (((s as any).pcs_hairbsh ?? 0) === 1  &&  ((s as any).pcs_makeup ?? 0) > 1) {
-      (s as any).scwrdtmp = ', your hair is brushed, and you\'re wearing makeup.';
+    if (((st as any).pcs_hairbsh ?? 0) === 1  &&  ((st as any).pcs_makeup ?? 0) > 1) {
+      (st as any).scwrdtmp = ', your hair is brushed, and you\'re wearing makeup.';
     }
     // TODO-QSP: dynamic text: Instead, you are fully dressed<<$scwrdtmp>>
-    scene.text(`Instead, you are fully dressed${((s as any).scwrdtmp || '')}`);
-    if (((s as any).scwalkmon ?? 0) > 0) {
-      // TODO-QSP: dynamic text: You find <<$func('money', 'string_profit', scwalkmon)>> stuffed in your cleavage...
-      scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((s as any).scwalkmon || ''))} stuffed in your cleavage (which you place in your wallet).`);
-      qspCall(s, 'money', 'earn', ((s as any).scwalkmon ?? 0), 'cash');
+    scene.text(`Instead, you are fully dressed${((st as any).scwrdtmp || '')}`);
+    if (((st as any).scwalkmon ?? 0) > 0) {
+      // TODO-QSP: dynamic text: You find <<$func(''money'', ''string_profit'', scwalkmon)>> stuffed in your clea...
+      scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((st as any).scwalkmon || ''))} stuffed in your cleavage (which you place in your wallet).`);
+      qspCall(st, 'money', 'earn', ((st as any).scwalkmon ?? 0), 'cash');
     }
     scene.text('And you feel absolutely <i>bursting</i> with energy.');
     scene.text('');
     scene.text('After a moment, you start wondering where you are…');
     scene.actions([
       { label: 'Look around to see where you are', handler: (st: GameState) => {
-    if (((s as any).sccarflag ?? 0) === 1) {
+    if (((st as any).sccarflag ?? 0) === 1) {
     } else {
-      dynamicGoto(s, 'sucgoloc', 'sucgometka');
+      dynamicGoto(st, 'sucgoloc', 'sucgometka');
     }
   } },
     ]);

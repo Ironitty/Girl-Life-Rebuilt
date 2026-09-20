@@ -1,3 +1,5 @@
+import { dynamicGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -42,7 +44,7 @@ function enterIsHere(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).region ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['loc_arg']  &&  ((s as any).locArgs?.[3] ?? 0) === ((s as any).car ?? 0)?.['region']) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['loc_arg']  &&  Number((s as any).locArgs?.[3] ?? 0) === ((s as any).car ?? 0)?.['region']) {
     (s as any).result = 1;
   }
   return;
@@ -61,7 +63,7 @@ function enterIsHereArea(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).region ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['region']) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).car ?? 0)?.['loc']  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).car ?? 0)?.['region']) {
     (s as any).result = 1;
   }
   return;
@@ -107,7 +109,7 @@ function enterGotoCar(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   (s as any).region = ((s as any).car ?? 0)?.['region'];
-  // TODO-QSP: gt $car['loc'], $car['loc_arg']
+  dynamicGoto(s, (((s as any).car ?? {}))['loc'], (((s as any).car ?? {}))['loc_arg']);
   // TODO-QSP: end
   scene.build();
 }
@@ -151,24 +153,24 @@ function enterAvt(s: GameState, scene: SceneBuilder): void {
   (s as any).tehT = 0;
   if (((s as any).tehT ?? 0) < ((s as any).tehNT ?? 0) * 25 / 100) {
     (s as any).tehT_desc = 'You\'re not sure how someone managed to get this piece of junk here.';
-    (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? (Math.floor(Math.random() * 351) + 150) : (Math.floor(Math.random() * 251) + 150));
+    (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? ((Math.floor(Math.random() * 351) + 150)) : ((Math.floor(Math.random() * 251) + 150)));
   } else {
     if (((s as any).tehT ?? 0) < ((s as any).tehNT ?? 0) * 50 / 100) {
       (s as any).tehT_desc = 'When you turn on the car, the engine rumbles and smokes.';
-      (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? (Math.floor(Math.random() * 301) + 350) : (Math.floor(Math.random() * 301) + 300));
+      (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? ((Math.floor(Math.random() * 301) + 350)) : ((Math.floor(Math.random() * 301) + 300)));
     } else {
       if (((s as any).tehT ?? 0) < ((s as any).tehNT ?? 0) * 75 / 100) {
         (s as any).tehT_desc = 'When you turn on the car, the engine makes some noise.';
-        (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? (Math.floor(Math.random() * 701) + 600) : (Math.floor(Math.random() * 401) + 500));
+        (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? ((Math.floor(Math.random() * 701) + 600)) : ((Math.floor(Math.random() * 401) + 500)));
       } else {
         (s as any).tehT_desc = 'The car looks like it\'s in excellent condition.';
-        (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? (Math.floor(Math.random() * 801) + 1000) : (Math.floor(Math.random() * 201) + 800));
+        (s as any).bupay = 100 * ((((s as any).carT ?? 0) === 1) ? ((Math.floor(Math.random() * 801) + 1000)) : ((Math.floor(Math.random() * 201) + 800)));
       }
     }
   }
-  ((s as any).used_car = (s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_condition'] = ((s as any).tehT ?? 0);
-  ((s as any).used_car = (s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_condition_desc'] = ((s as any).tehT_desc ?? 0);
-  ((s as any).used_car = (s as any).used_car ?? {})['' + String((s as any).autotraidF_carnum || '') + '_price'] = ((s as any).bupay ?? 0);
+  ((s as any).used_car = (s as any).used_car ?? {})[String(((s as any).autotraidF_carnum ?? 0)) + '_condition'] = ((s as any).tehT ?? 0);
+  ((s as any).used_car = (s as any).used_car ?? {})[String(((s as any).autotraidF_carnum ?? 0)) + '_condition_desc'] = ((s as any).tehT_desc ?? 0);
+  ((s as any).used_car = (s as any).used_car ?? {})[String(((s as any).autotraidF_carnum ?? 0)) + '_price'] = ((s as any).bupay ?? 0);
   // TODO-QSP: end
   scene.build();
 }

@@ -19,24 +19,62 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
   }, goto: ['pushkin_sq', ''] },
     { label: 'View dresses', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'shop_tsar_bomba', 'dresses');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'dresses');
   } },
     { label: 'View outfits', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'shop_tsar_bomba', 'clothes');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'clothes');
   } },
     { label: 'View shoes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'shop_tsar_bomba', 'shoes');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'shoes');
   } },
     { label: 'View purses', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'shop_tsar_bomba', 'purses');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'purses');
   } },
     { label: 'View coats', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'shop_tsar_bomba', 'coats');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'coats');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_tsar_bomba', 'start');
+  (s as any).location_type = 'public_indoors';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Tsar Bomba</b></center>');
+  scene.img('images/locations/pushkin/bomba/shop.jpg');
+  scene.text('Tsar Bomba, a small clothing store in the Okhlopkov Square. It\'s fairly unique and used to be very cool with punk fashion, but is much more generic these days and could easily be mistaken for an alternative fashion chain store.');
+  scene.text('Simply put, this place is very cool and most of the clothes are strange, yet wonderful.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave the bomba', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pushkin_sq', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'dresses');
+  } },
+    { label: 'View outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'clothes');
+  } },
+    { label: 'View shoes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'shoes');
+  } },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'purses');
+  } },
+    { label: 'View coats', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'shop_tsar_bomba', 'coats');
   } },
   ]);
   scene.build();
@@ -58,9 +96,9 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_tsar_bomba', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_tsar_bomba', 'start');
   } },
   ]);
   scene.build();
@@ -82,9 +120,9 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_tsar_bomba', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_tsar_bomba', 'start');
   } },
   ]);
   scene.build();
@@ -105,9 +143,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_tsar_bomba', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_tsar_bomba', 'start');
   } },
   ]);
   scene.build();
@@ -128,9 +166,9 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_tsar_bomba', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_tsar_bomba', 'start');
   } },
   ]);
   scene.build();
@@ -151,9 +189,9 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_tsar_bomba', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_tsar_bomba', 'start');
   } },
   ]);
   scene.build();
@@ -162,6 +200,9 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'dresses':
       enterDresses(s, scene);
       break;

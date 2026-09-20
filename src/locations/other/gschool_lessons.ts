@@ -85,7 +85,7 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     scene.text('<center><b>School Hallway</b></center>');
-    scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
+    scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates and wave at them.');
     scene.actions([
       { label: 'Go to first period', handler: (st: GameState) => {
@@ -146,7 +146,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).school_period ?? 0) === 3) {
-        if (((s as any).locArgs?.[1] ?? 0) === '') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === '') {
           if (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 55) {
             (s as any).minut = ((s as any).minut ?? 0) + (55-((s as any).minut ?? 0));
             scene.text('Time to go to your next class.');
@@ -201,7 +201,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).school_period ?? 0) === 6) {
-              if (((s as any).locArgs?.[1] ?? 0) === '') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === '') {
                 if (((s as any).hour ?? 0) === 10) {
                   (s as any).minut = ((s as any).minut ?? 0) + (145-((s as any).minut ?? 0));
                 } else {
@@ -252,9 +252,9 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).school_period ?? 0) === 2) {
-    if (((s as any).locArgs?.[1] ?? 0) !== 'nopict') {
+    if (Number((s as any).locArgs?.[1] ?? 0) !== 'nopict') {
       scene.text('<center><b>School Hallway</b></center>');
-      scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
+      scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
       // TODO-QSP: nl
       qspCall(s, 'gschool', 'schedule');
     }
@@ -263,9 +263,9 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).school_period ?? 0) === 5) {
-      if (((s as any).locArgs?.[1] ?? 0) !== 'nopict') {
+      if (Number((s as any).locArgs?.[1] ?? 0) !== 'nopict') {
         scene.text('<center><b>School Hallway</b></center>');
-        scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
+        scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
         // TODO-QSP: nl
         qspCall(s, 'gschool', 'schedule');
       }
@@ -274,9 +274,9 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((((s as any).school_period ?? 0) < 8)) {
-        if (((s as any).locArgs?.[1] ?? 0) !== 'nopict') {
+        if (Number((s as any).locArgs?.[1] ?? 0) !== 'nopict') {
           scene.text('<center><b>School Hallway</b></center>');
-          scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
+          scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
           qspCall(s, 'gschool_gossip', 'gossip');
           // TODO-QSP: nl
           qspCall(s, 'gschool', 'schedule');
@@ -301,7 +301,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).Kuznetsov_punishment ?? 0) === 1) {
           scene.text('<center><b>School Hallway</b></center>');
-          scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
+          scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
           scene.actions([
             { label: 'Go to Mr. Kuznetsov\'s classroom', goto: ['gschool_lessonsev2', 'shop_punishment'] },
             { label: 'Leave the school', goto: ['gschool_lessons', 'schedule'] },
@@ -322,7 +322,7 @@ function enterSkip(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
   scene.text('<center><b>School Hallway</b></center>');
-  scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${Math.floor(Math.random() * 3) + 0}.jpg`);
+  scene.img(`images/locations/pavlovsk/school/building/gschool_hall0${(Math.floor(Math.random() * 3) + 0)}.jpg`);
   scene.text('You don\'t feel like attending all of your classes this morning. Surely no one will miss you if you skip one of your three morning classes?');
   // TODO-QSP: end
   scene.actions([
@@ -510,7 +510,7 @@ function enterSchedule(s: GameState, scene: SceneBuilder): void {
 function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
   ((s as any).class = (s as any).class ?? {})['grade_check_day'] = ((s as any).daystart ?? 0);
   scene.text('<center><b>School Hallway</b></center>');
-  scene.img(`images/locations/pavlovsk/school/building/grade_results${Math.floor(Math.random() * 2) + 1}.jpg`);
+  scene.img(`images/locations/pavlovsk/school/building/grade_results${(Math.floor(Math.random() * 2) + 1)}.jpg`);
   if (((s as any).class ?? 0)?.['first_grade_check'] === 0) {
     ((s as any).class = (s as any).class ?? {})['first_grade_check'] = 1;
     scene.text('You walk to the wall where the grades are posted and check your grades. You see that your final grade from last year is still there. Grades are updated every Monday, but you note your grade down in your journal so you can always check it.');

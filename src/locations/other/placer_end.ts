@@ -35,8 +35,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You say goodbye and Katja disappears into her house.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_index'] = 0;
-    qspGoto(s, 'pav_residential', '');
+    ((st as any).placerParameter = (st as any).placerParameter ?? {})['friend_index'] = 0;
+    qspGoto(st, 'pav_residential', '');
   } },
     ]);
   }

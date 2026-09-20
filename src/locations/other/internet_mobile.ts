@@ -7,54 +7,17 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: subscription[<plan name>]    The subscription itself that will be checked to see if Sveta can access...
-  // TODO-QSP: Possible values:
-  // TODO-QSP: Monthly subscriptions:
-  // TODO-QSP: 0: subscription is inactive, either never bought or expired.
-  // TODO-QSP: 1: subscription is active
-  // TODO-QSP: Metered plans:
-  // TODO-QSP: Any integer number, which means the available minutes left within the plan.
-  // TODO-QSP: This is how the old mobile minutes and internet time worked, but tracked in minutes,
-  // TODO-QSP: not hours for the internet.
-  // TODO-QSP: subscription[<plan name>-date]  The day the subscription was bought for the home (or mobile), this w...
-  // TODO-QSP: automatically set to `day`.
-  // TODO-QSP: Possible values 0-31, 1-31 are renewal days, 0 means the plan never expires.
-  // TODO-QSP: subscription[<plan name>-price]  The monthly fee of the subscription.
-  // TODO-QSP: subscription[<plan name>-discount]  The discount on the plan - relevant if the original discount was...
-  // TODO-QSP: fee. If the value is higher than 0, payments come from this first until the value gets to
-  // TODO-QSP: 0.
-  // TODO-QSP: subscription[<plan nam>-type]    The type of the subscription.
-  // TODO-QSP: Possible values:
-  // TODO-QSP: 1: Monthly subscription
-  // TODO-QSP: 2: Metered plan
-  // TODO-QSP: Plan Names
-  // TODO-QSP: free:    A subscription that is freely available, libraries, friends and lovers apartment, etc. that...
-  // TODO-QSP: The value of this plan is always 1 and the subscription date is 0.
-  // TODO-QSP: mobile:    Mobile telephone (only internet or calls too?) and laptop if taken somewhere else.
-  // TODO-QSP: If at a location where subscription['free'] is used, she has to ask first to be able to use her own ...
-  // TODO-QSP: with the local internet, otherwise it will still use the mobile subscription - if there is none, it ...
-  // TODO-QSP: metered_mobile  Cheaper option for broke Svetas. When subscription['mobile'] = 0 check for this and ...
-  // TODO-QSP: `subscription['metered_mobile'] > 0` then use it.
-  // TODO-QSP: <property code>  This is a monthly subscription that can be used in a specific home owned/rented by ...
-  // TODO-QSP: This is tracking the internet subscription per home. So if Sveta owns several places, she has a sepa...
-  // TODO-QSP: subscription for each of them.
-  // TODO-QSP: For allowed values see `homes_properties`.
-  // TODO-QSP: monthly_calls  A monthly mobile subscription giving unlimited call minutes and text message
-  // TODO-QSP: metered_calls  A mobile plan that gives a set amount of minutes that can be used.
-  if (((s as any).subscription ?? 0)?.['free'] === 0) {
-    ((s as any).subscription = (s as any).subscription ?? {})['free'] = 1;
-  }
   scene.build();
 }
 
 function enterTopUpMetered(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: subscription[$ARGS[1]] += ARGS[2]
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-date'] = ((((s as any).day ?? 0) <= 28) ? (((s as any).day ?? 0)) : (1));
-  if (((s as any).locArgs?.[1] ?? 0) === 'metered_calls') {
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-date'] = ((((s as any).day ?? 0) <= 28) ? (((s as any).day ?? 0)) : (1));
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'metered_calls') {
     ((s as any).subscription = (s as any).subscription ?? {})['metered_calls-sms_limit'] = ((s as any).subscription['metered_calls-sms_limit'] ?? 0) + (((s as any).locArgs?.[3] ?? 0));
   }
-  if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-type'] = 2;
+  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-type'] = 2;
   }
   // TODO-QSP: end
   scene.build();
@@ -62,11 +25,11 @@ function enterTopUpMetered(s: GameState, scene: SceneBuilder): void {
 
 function enterBuySubscription(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: subscription[$ARGS[1]] = 1
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-date'] = ((((s as any).day ?? 0) <= 28) ? (((s as any).day ?? 0)) : (1));
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-price'] = ((s as any).locArgs?.[2] ?? 0);
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-discount'] = ((s as any).locArgs?.[3] ?? 0);
-  if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-type'] = 1;
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-date'] = ((((s as any).day ?? 0) <= 28) ? (((s as any).day ?? 0)) : (1));
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-price'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'] = ((s as any).locArgs?.[3] ?? 0);
+  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-type'] === 0) {
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-type'] = 1;
   }
   // TODO-QSP: end
   scene.build();
@@ -138,11 +101,11 @@ function enterCheckSubscriptionActions(s: GameState, scene: SceneBuilder): void 
 
 function enterCancelSubscription(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: subscription[$ARGS[1]] = 0
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-date'] = 0;
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-sms_limit'] = 0;
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-type'] = 0;
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-price'] = 0;
-  ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-discount'] = 0;
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-date'] = 0;
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-sms_limit'] = 0;
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-type'] = 0;
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-price'] = 0;
+  ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'] = 0;
   // TODO-QSP: end
   scene.build();
 }
@@ -162,23 +125,23 @@ function enterRenewSubscription(s: GameState, scene: SceneBuilder): void {
   (s as any).rem_discount = Math.max(0, ((s as any).acc_discount ?? 0) - ((s as any).app_discount ?? 0));
   if (qspFunc(s, 'money', 'can_afford', ((s as any).finalfee ?? 0), 'bank')) {
     qspCall(s, 'money', 'pay', ((s as any).finalfee ?? 0), 'bank');
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-discount'] = ((s as any).rem_discount ?? 0);
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'] = ((s as any).rem_discount ?? 0);
     if (((s as any).app_discount ?? 0) > 0) {
       (s as any).discounttext = qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0)) + ' and you had ' + qspFunc(s, 'money', 'string_price', ((s as any).acc_discount ?? 0)) + ' left on your account. After applying ' + qspFunc(s, 'money', 'string_price', ((s as any).app_discount ?? 0)) + ' to your monthly fee, your final payable was ' + qspFunc(s, 'wrap', 'v_pos b', qspFunc(s, 'money', 'string_price', ((s as any).finalfee ?? 0))) + ' and you were left with ' + qspFunc(s, 'money', 'string_price', ((s as any).rem_discount ?? 0)) + ' on your account.';
     }
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-contract_message'] = 'Your monthly fee was ' + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (qspFunc(s, 'wrap', 'v_pos b', qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0))) + ' which was taken from your bank account.'));
-    if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] > 0) {
-      ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-suspension_day'] = 0;
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-contract_message'] = 'Your monthly fee was ' + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (qspFunc(s, 'wrap', 'v_pos b', qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0))) + ' which was taken from your bank account.'));
+    if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] > 0) {
+      ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-suspension_day'] = 0;
     }
   } else {
-    if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] === 0) {
+    if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] === 0) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 5]; enterSetSuspensionDate(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     (s as any).remainingday = ((s as any).subscription ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] - ((s as any).daystart ?? 0);
     if (((s as any).app_discount ?? 0) > 0) {
       (s as any).discounttext = ' and you had ' + qspFunc(s, 'money', 'string_price', ((s as any).acc_discount ?? 0)) + ' left on your account. After applying ' + qspFunc(s, 'money', 'string_price', ((s as any).app_discount ?? 0)) + ' to your monthly fee, your final payable was ' + qspFunc(s, 'money', 'string_price', ((s as any).finalfee ?? 0)) + ' and you were left with ' + qspFunc(s, 'money', 'string_price', ((s as any).rem_discount ?? 0)) + ' on your account.';
     }
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).$ARGS[1] || '') + '-contract_message'] = 'Your monthly fee was ' + qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0)) + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (', unfortunately your payment was declined. We will try to take the payment over the next \' + $func(\'wrap\', \'neg b\', \'' + ((s as any).remainingday ?? 0) + ' days\') + \' before suspending services.'));
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[1] ?? 0)) + '-contract_message'] = 'Your monthly fee was ' + qspFunc(s, 'money', 'string_price', ((s as any).renewfee ?? 0)) + ((((s as any).app_discount ?? 0) > 0) ? (((s as any).discounttext ?? 0)) : (', unfortunately your payment was declined. We will try to take the payment over the next \' + $func(\'wrap\', \'neg b\', \'' + ((s as any).remainingday ?? 0) + ' days\') + \' before suspending services.'));
   }
   // TODO-QSP: end
   scene.build();
@@ -189,10 +152,10 @@ function enterTransferSubscription(s: GameState, scene: SceneBuilder): void {
   ((s as any).allowed = (s as any).allowed ?? {})[2] = qspFunc(s, 'internet_mobile', 'check_allowed_location', ((s as any).locArgs?.[2] ?? 0));
   if (((s as any).allowed ?? 0)[1]  &&  ((s as any).allowed ?? 0)[2]) {
     // TODO-QSP: subscription[$ARGS[2]] = subscription[$ARGS[1]]
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).ARGS[2] || '') + '-date'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-date'];
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).ARGS[2] || '') + '-price'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-price'];
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).ARGS[2] || '') + '-discount'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'];
-    ((s as any).subscription = (s as any).subscription ?? {})['' + String((s as any).ARGS[2] || '') + '-type'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-type'];
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-date'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-date'];
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-price'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-price'];
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-discount'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-discount'];
+    ((s as any).subscription = (s as any).subscription ?? {})[String(((s as any).locArgs?.[2] ?? 0)) + '-type'] = ((s as any).subscription ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0)) + '-type'];
     // TODO-QSP: subscription[$ARGS[0]] = 0
   }
   // TODO-QSP: end
@@ -207,11 +170,11 @@ function enterCheckAllowedLocation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetAccess(s: GameState, scene: SceneBuilder): void {
-  (s as any).subsname = ((((s as any).locArgs?.[1] ?? 0) === '') ? (qspFunc(s, 'homes_properties', 'get_property_code')) : (qspFunc(s, 'homes_properties', 'get_property_code', ((s as any).locArgs?.[1] ?? 0))));
+  (s as any).subsname = ((Number((s as any).locArgs?.[1] ?? 0) === '') ? (qspFunc(s, 'homes_properties', 'get_property_code')) : (qspFunc(s, 'homes_properties', 'get_property_code', ((s as any).locArgs?.[1] ?? 0))));
   if (qspFunc(s, 'homes_properties', 'free_internet_available', ((s as any).subsname ?? 0)) !== 0) {
     ((s as any).access = (s as any).access ?? {})['subscription'] = 'free';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'free') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'free') {
       ((s as any).access = (s as any).access ?? {})['subscription'] = 'free';
     } else {
       if (((s as any).subscription ?? 0)?.[String((s as any).subsname ?? 0)] === 1) {
@@ -258,7 +221,7 @@ function enterRemoveLimitation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLimitationMessage(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).access ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
+  if (((s as any).access ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
     // TODO-QSP: $access[$ARGS[1]] = $ARGS[2]
   }
   // TODO-QSP: end
@@ -283,9 +246,9 @@ function enterSendSms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUseInternet(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-type'] === 2) {
+  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '-type'] === 2) {
     // TODO-QSP: subscription[$ARGS[1]] -= ARGS[2]
-    if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0)] < 0) {
+    if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < 0) {
       // TODO-QSP: subscription[$ARGS[1]] = 0
     }
   }
@@ -294,7 +257,7 @@ function enterUseInternet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckInternetAccess(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).subscription ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     (s as any).result = 1;
   }
   // TODO-QSP: end
@@ -302,6 +265,43 @@ function enterCheckInternetAccess(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: subscription[<plan name>]    The subscription itself that will be checked to see if Sveta can access...
+  // TODO-QSP: Possible values:
+  // TODO-QSP: Monthly subscriptions:
+  // TODO-QSP: 0: subscription is inactive, either never bought or expired.
+  // TODO-QSP: 1: subscription is active
+  // TODO-QSP: Metered plans:
+  // TODO-QSP: Any integer number, which means the available minutes left within the plan.
+  // TODO-QSP: This is how the old mobile minutes and internet time worked, but tracked in minutes,
+  // TODO-QSP: not hours for the internet.
+  // TODO-QSP: subscription[<plan name>-date]  The day the subscription was bought for the home (or mobile), this w...
+  // TODO-QSP: automatically set to `day`.
+  // TODO-QSP: Possible values 0-31, 1-31 are renewal days, 0 means the plan never expires.
+  // TODO-QSP: subscription[<plan name>-price]  The monthly fee of the subscription.
+  // TODO-QSP: subscription[<plan name>-discount]  The discount on the plan - relevant if the original discount was...
+  // TODO-QSP: fee. If the value is higher than 0, payments come from this first until the value gets to
+  // TODO-QSP: 0.
+  // TODO-QSP: subscription[<plan nam>-type]    The type of the subscription.
+  // TODO-QSP: Possible values:
+  // TODO-QSP: 1: Monthly subscription
+  // TODO-QSP: 2: Metered plan
+  // TODO-QSP: Plan Names
+  // TODO-QSP: free:    A subscription that is freely available, libraries, friends and lovers apartment, etc. that...
+  // TODO-QSP: The value of this plan is always 1 and the subscription date is 0.
+  // TODO-QSP: mobile:    Mobile telephone (only internet or calls too?) and laptop if taken somewhere else.
+  // TODO-QSP: If at a location where subscription['free'] is used, she has to ask first to be able to use her own ...
+  // TODO-QSP: with the local internet, otherwise it will still use the mobile subscription - if there is none, it ...
+  // TODO-QSP: metered_mobile  Cheaper option for broke Svetas. When subscription['mobile'] = 0 check for this and ...
+  // TODO-QSP: `subscription['metered_mobile'] > 0` then use it.
+  // TODO-QSP: <property code>  This is a monthly subscription that can be used in a specific home owned/rented by ...
+  // TODO-QSP: This is tracking the internet subscription per home. So if Sveta owns several places, she has a sepa...
+  // TODO-QSP: subscription for each of them.
+  // TODO-QSP: For allowed values see `homes_properties`.
+  // TODO-QSP: monthly_calls  A monthly mobile subscription giving unlimited call minutes and text message
+  // TODO-QSP: metered_calls  A mobile plan that gives a set amount of minutes that can be used.
+  if (((s as any).subscription ?? 0)?.['free'] === 0) {
+    ((s as any).subscription = (s as any).subscription ?? {})['free'] = 1;
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'top_up_metered':

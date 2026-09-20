@@ -27,7 +27,7 @@ function enterGoForWalk1(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You go for a walk along the main square of Pavlovsk Park. During the summer, it\'s one of the primary places in town where locals and tourists enjoy spending their spare time. As long as the weather is nice, it\'s always busy; people are resting, walking, playing and dating to their heart\'s desires, enjoying the pleasant surroundings.');
   } else {
-    qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+    qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
     qspCall(s, 'stat', '');
     scene.text('<center><h2>Pavlovsk Park</h2></center>');
     if (((s as any).month ?? 0) === 3  ||  ((s as any).month ?? 0) === 4  ||  ((s as any).month ?? 0) === 5) {
@@ -57,7 +57,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 2  ||  ((s as any).month ?? 0) === 12) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).temprand = Math.floor(Math.random() * 12) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 12) + 1);
       if (((s as any).temprand ?? 0) === 1) {
         scene.img('images/locations/pavlovsk/park/event/walk/day/winter/bench_couple1.jpg');
         scene.text('You see a couple sitting on one of the benches, flirting and brushing against each other as they talk. It seems likely they might be on an early date. You can\'t help but smile as you walk past them.');
@@ -79,7 +79,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
               scene.text('You pass by a guy and two girls hanging out and taking a bunch of selfies together. You can\'t tell if they\'re locals or not, nor can you tell if it\'s a couple with their friend or just three friends hanging out. Not that it really matters, but they seem happy.');
             } else {
               if (((s as any).temprand ?? 0) === 5) {
-                scene.img('images/locations/pavlovsk/park/event/walk/day/winter/selfie_2girls\' + rand(1, 3) + \'.jpg');
+                scene.img('images/locations/pavlovsk/park/event/walk/day/winter/selfie_2girls' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
                 scene.text('You pass by two girls hanging out and taking a bunch of selfies together. You can\'t tell if they\'re locals, but they seem to be close friends having fun. Maybe you should ask one of your girlfriends to come and hang out with you here? Goofing off and taking selfies in the park sounds like fun.');
               } else {
                 if (((s as any).temprand ?? 0) === 6) {
@@ -99,7 +99,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).temprand = Math.floor(Math.random() * 6) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 6) + 1);
       if (((s as any).temprand ?? 0) === 1) {
         qspCall(s, 'pav_park_meet_event', 'kol');
       } else {
@@ -109,9 +109,9 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).temprand = Math.floor(Math.random() * 35) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 35) + 1);
       if (((s as any).temprand ?? 0) === 1) {
-        qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+        qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
         scene.img('images/locations/pavlovsk/park/event/walk/day/accidental_titflash1.jpg');
         scene.text('You see a group of people not much older than you come to a stop from jogging. They seem to be giving each other a hard time about who did the best. Then, in an attempt to show off, one of the girls does a handstand, which causes her top to slip down and expose her breasts.');
         scene.text('The guys and girls hoot and holler and a few nearby adults look over at the sound; most shake their heads in disgust, though a few of the men linger on the younger lady and her breasts for longer than is needed.');
@@ -119,7 +119,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'end');
       } else {
         if (((s as any).temprand ?? 0) === 2) {
-          scene.img('images/locations/pavlovsk/park/event/walk/day/bench_2girls_drinking\' + rand(1, 2) + \'.jpg');
+          scene.img('images/locations/pavlovsk/park/event/walk/day/bench_2girls_drinking' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
           scene.text('Two girls are drinking beers on one of the benches on the primary walkway near the front of the park. You can\'t hear what they\'re talking about, but they\'re laughing, smiling and having a good time hanging out together.');
         } else {
           if (((s as any).temprand ?? 0) === 3) {
@@ -141,8 +141,8 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                   { label: 'Keep walking', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/walk/day/bench_girl_flash2.jpg');
     scene.text('As you get even closer, she pulls down her top and flashes her breasts in your direction. At first, you think she\'s flashing you, but a moment later, a guy jogs by you. When he gets to her, she puts her breasts away and they kiss as she gets up and the two of them walk away together.');
-    qspCall(s, 'arousal', 'erotic_nudity', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic_nudity', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish your walk', goto: ['pav_park', 'start'] },
     ]);
@@ -150,7 +150,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).temprand ?? 0) === 6) {
-                  scene.img('images/locations/pavlovsk/park/event/walk/day/bench_girl\' + rand(1, 2) + \'.jpg');
+                  scene.img('images/locations/pavlovsk/park/event/walk/day/bench_girl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                   scene.text('Sitting on one of the benches on the primary walkway near the front of the park is a girl about your sister\'s age. She\'s watching the people walk by, but doesn\'t seem to be paying attention to anyone. Perhaps she\'s waiting on someone…');
                 } else {
                   if (((s as any).temprand ?? 0) === 7) {
@@ -161,7 +161,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'arousal', 'end');
                   } else {
                     if (((s as any).temprand ?? 0) === 8) {
-                      qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+                      qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                       scene.img('images/locations/pavlovsk/park/event/walk/day/cat.jpg');
                       scene.text('As you walk along, you see a cat running through the park, but most people seem to ignore it. It looks very adorable as it runs over near you.');
                       scene.actions([
@@ -169,9 +169,9 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/event/walk/day/catpet.jpg');
     scene.text('You stop and hold your hand out to the cat. It takes a minute before it comes over, but once it does, you start petting it, causing it to purr. You fuss over it for several minutes before it runs away again.');
     scene.text('You smile after the cat, then get up and finish your walk.');
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish your walk', goto: ['pav_park', 'start'] },
     ]);
@@ -183,7 +183,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                         scene.text('As you take your walk, you pass by an old man and a young boy sitting on a bench with a chessboard between them. As you walk past them, the boy makes a move while the old man studies the board.');
                       } else {
                         if (((s as any).temprand ?? 0) === 10) {
-                          scene.img('images/locations/pavlovsk/park/event/walk/day/couple\' + rand(1, 2) + \'.jpg');
+                          scene.img('images/locations/pavlovsk/park/event/walk/day/couple' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                           scene.text('You pass by a man and a woman out and about as well. They seem to be romantically involved by how they look at each other and their body language. You can\'t help but smile a little.');
                         } else {
                           if (((s as any).temprand ?? 0) === 11) {
@@ -206,7 +206,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                                 scene.text('You see a girl sitting on a bench eating some ice cream. You briefly wonder if you should get one for yourself.');
                               } else {
                                 if (((s as any).temprand ?? 0) === 14) {
-                                  qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+                                  qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                                   scene.img('images/locations/pavlovsk/park/event/walk/day/girls_icecream1.jpg');
                                   scene.text('You see a group of kids about your brother\'s age hanging out together. The boys seem to be flirting with the girls and in response, the girls all start licking an ice cream one of them had, which causes the boys to stare nearly open-mouthed, seemingly loving every moment of the girls teasing them.');
                                 } else {
@@ -256,7 +256,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                                             qspCall(s, 'arousal', 'end');
                                           } else {
                                             if (((s as any).temprand ?? 0) === 20) {
-                                              scene.img('images/locations/pavlovsk/park/event/walk/day/selfie_girl\' + rand(1, 4) + \'.jpg');
+                                              scene.img('images/locations/pavlovsk/park/event/walk/day/selfie_girl' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
                                               scene.text('You see a young woman busy taking a lot of selfies in different poses who seems to be utterly oblivious to other people or that some of them are watching.');
                                             } else {
                                               if (((s as any).temprand ?? 0) === 21) {
@@ -299,7 +299,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
                                                         }
                                                       } else {
                                                         if (((s as any).temprand ?? 0) === 26) {
-                                                          qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+                                                          qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                                                           scene.img('images/locations/pavlovsk/park/event/walk/day/bench_flash_full.jpg');
                                                           scene.text('A group of boys and a single girl are hanging out near one of the benches. The boys are all talking to her and she seems reluctant, but you can tell by her posture that she gives in.');
                                                           scene.text('She pulls up her shirt, showing off her breasts, and spreads her legs wide before pulling up her skirt a little to show off her pussy. The boys all hoot and holler, drawing attention to her, causing her to blush and quickly pull her clothes back in place.');
@@ -340,9 +340,9 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).temprand = Math.floor(Math.random() * 6) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 6) + 1);
       if (((s as any).temprand ?? 0) === 1) {
-        qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+        qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
         scene.img('images/locations/pavlovsk/park/event/walk/night/2girls_humping1.jpg');
         scene.text('As you walk around the touristy area of the park near the theatre, you see a group of young people hanging out. One of the girls seems a bit drunk and is hanging onto her friends.');
         scene.text('As you watch them walk past, she says something, and one of her female friends immediately grabs her from behind and starts dry-humping her hard and fast, which gets everyone laughing. At the same time, the drunk girl laughs, but looks turned on by it.');
@@ -351,7 +351,7 @@ function enterWalk1(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'end');
       } else {
         if (((s as any).temprand ?? 0) === 2) {
-          qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+          qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
           scene.img('images/locations/pavlovsk/park/event/walk/night/bench_girl_pussyflash1.jpg');
           scene.text('As you walk around the touristy area of the park near the cafe, you see a girl sitting on a bench in a skirt with her legs spread wide, showing off her bare pussy. She\'s looking for a boy that you assume is her boyfriend.');
           scene.text('He laughs and starts taking pictures of her, neither seeming to care that other people can see her pussy as well. Finally, after several shots, he walks over and kisses her before she gets up and they walk away together arm in arm.');
@@ -394,7 +394,7 @@ function enterGoForWalk2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You walk along one of the trails deep in the park, and there are few people around. You know the more secluded area of the park has a reputation for being dangerous; it\'s popular with gopniks, prostitutes and criminals wanting to hide away from prying eyes.');
   } else {
-    qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+    qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
     scene.text('<center><h2>Pavlovsk Park</h2></center>');
     if (((s as any).month ?? 0) === 3  ||  ((s as any).month ?? 0) === 4  ||  ((s as any).month ?? 0) === 5) {
       scene.img('images/locations/pavlovsk/lake/skver.spring.night.jpg');
@@ -424,7 +424,7 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).month ?? 0) === 1  ||  ((s as any).month ?? 0) === 2  ||  ((s as any).month ?? 0) === 12) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).temprand = Math.floor(Math.random() * 13) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 13) + 1);
       if (((s as any).temprand ?? 0) === 1) {
         scene.img('images/locations/pavlovsk/park/event/walk/day/winter/deep/bench_girl_flash1.jpg');
         scene.text('You see a girl in a skirt sitting on a bench. With how cold it is, you imagine she has to be freezing, but as you walk past, she lifts one of her legs, giving you a nice view of her bare pussy. You can\'t help but smile and understand why she\'s wearing a skirt. Some people get off on teasing or flashing strangers, and she seems to be one of them.');
@@ -436,14 +436,14 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
           scene.text('You pass by a girl sitting on a bench with the hood of her oversized coat over her head, huddled on a bench. You have no clue how long she might have been sitting there, but despite the warm clothes, she looks like she\'s cold. Despite this, she seems intent to keep waiting for someone or something.');
         } else {
           if (((s as any).temprand ?? 0) === 3) {
-            qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+            qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
             scene.img('images/locations/pavlovsk/park/event/walk/day/winter/deep/kiss_couple1.jpg');
             scene.text('Walking down one of the less used trails, you find a couple kissing in a deep embrace. They seem utterly oblivious to you as you walk by them, and they never stop making out or seem to have even noticed you passing them.');
             qspCall(s, 'arousal', 'erotic', 1);
             qspCall(s, 'arousal', 'end');
           } else {
             if (((s as any).temprand ?? 0) === 4) {
-              qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+              qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
               scene.img('images/locations/pavlovsk/park/event/walk/day/winter/deep/picnic_2girl1.jpg');
               scene.text('As you walk down one of the trails, you see some girls sitting on a fallen tree, having a bit of a picnic together. They seem surprised and uncomfortable when they spot you, moving slightly apart. You can only guess they were not expecting someone to come out this far into the park. You can only assume this is a date by the flowers and teddy bears.');
               scene.text('`You pretend not to notice and walk on, trying your best not to interrupt their special moment.');
@@ -472,7 +472,7 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).temprand = Math.floor(Math.random() * 6) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 6) + 1);
       if (((s as any).temprand ?? 0) === 1) {
         qspCall(s, 'pav_park_meet_event', 'kol');
       } else {
@@ -486,7 +486,7 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      (s as any).temprand = Math.floor(Math.random() * 36) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 36) + 1);
       if (((s as any).temprand ?? 0) === 1) {
         scene.img('images/locations/pavlovsk/park/event/walk/day/deep/bench_couple_kiss1.jpg');
         scene.text('As you walk past one of the benches, you see a girl sitting on a boy\'s lap. They have their arms around each other and are passionately making out. You can\'t help but smile a little as you walk past them.');
@@ -522,12 +522,12 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
                   scene.text('As you pass one of the benches, you see a girl sitting on it with her shoes off, reading a book. As you walk past, she doesn\'t even glance up at you. Instead, she seems to be wholly engrossed in reading her book.');
                 } else {
                   if (((s as any).temprand ?? 0) === 7) {
-                    scene.img('images/locations/pavlovsk/park/event/walk/day/deep/bench_girl\' + rand(1, 2) + \'.jpg');
+                    scene.img('images/locations/pavlovsk/park/event/walk/day/deep/bench_girl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                     scene.text('As you come down one of the trails through a bunch of trees to one of the small clearings with a bench, you see a girl sitting on it. She looks up in your direction as you come into view and sighs a little before losing interest in you.');
                     scene.text('By her actions, she seems to be waiting on someone and that someone is not you.');
                   } else {
                     if (((s as any).temprand ?? 0) === 8) {
-                      qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+                      qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                       scene.img('images/locations/pavlovsk/park/event/walk/day/deep/condoms_ground1.jpg');
                       scene.text('Walking along one of the trails into a small clearing just off to the side, you see a bit of litter on the ground, but as you get closer, it looks odd. You take a few steps over, wondering what it is, before realizing that it\'s a bunch of condom wrappers and used condoms lying on the ground.');
                       scene.text('It seems someone had a lot of fun here at some point. You quickly step back to the trail and continue your walk.');
@@ -559,14 +559,14 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
                                 scene.actions([
                                   { label: 'Flash him back', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/get_flashed2.jpg');
-    if (((s as any).pantyworntype ?? 0) === 'none') {
+    if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('You laugh and pull up your skirt, flashing him your pussy back. Once you\'re past him, you drop your skirt back in place and finish your walk.');
     } else {
       scene.text('You laugh before pulling your skirt up and your panties down, flashing him your pussy back. Once you\'re past him, you pull up your panties and drop your skirt back in place.');
     }
-    qspCall(s, 'arousal', 'flash', 1);
-    qspCall(s, 'arousal', 'erotic_nudity', (-1));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flash', 1);
+    qspCall(st, 'arousal', 'erotic_nudity', (-1));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish your walk', goto: ['pav_park', 'deeper_park'] },
     ]);
@@ -585,13 +585,13 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
                                   scene.text('As you are walking along one of the trails, you come around a bend in the trees and see a naked girl partially covering herself up ahead of you. When she sees you, she blushes and does her best to cover herself while shrieking, then runs off into the woods before you can ask if she needs help.');
                                 } else {
                                   if (((s as any).temprand ?? 0) === 15) {
-                                    qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+                                    qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                                     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/panties_tree1.jpg');
                                     scene.text('Walking along, one of the trails opens into a small clearing just off to the side. You see something hanging from the trees, but as you get closer, it looks like significant bits of cloth. You take a few steps closer, wondering what it is before you realize it\'s three different pairs of panties hanging from the trees.');
                                     scene.text('As you quickly step back to the trail and continue your walk, you wonder exactly what happened back there. You shake your head as you can\'t fathom a reason for what you just saw.');
                                   } else {
                                     if (((s as any).temprand ?? 0) === 16) {
-                                      qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+                                      qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                                       scene.img('images/locations/pavlovsk/park/event/walk/day/deep/panties_ground1.jpg');
                                       scene.text('Walking along one of the trails into a small clearing just off to the side, you see a bit of litter on the ground, but as you get closer, it looks odd.');
                                       scene.text('You take a few steps over, wondering what it is before realizing that it\'s a bunch of different coloured panties lying on the ground. As you quickly step back to the trail and continue your walk, you wonder exactly what happened back there.');
@@ -609,7 +609,7 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
                                           scene.text('As you walk along one of the trails, you run across a girl sitting next to a tree reading a book. She never looks up at you as you walk past. Whatever the book is, she seems totally engrossed in it.');
                                         } else {
                                           if (((s as any).temprand ?? 0) === 19  &&  ((s as any).soniaQW ?? 0)?.['slut'] === 5  &&  ((s as any).hour ?? 0) > 14  &&  ((s as any).hour ?? 0) < 20) {
-                                            qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+                                            qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
                                             scene.img('images/locations/pavlovsk/park/event/walk/walk_deep_day.jpg');
                                             scene.text('While walking along a heavily forested area with many bushes growing between the trees, almost completely blocking any sight beyond the path, you hear what sounds like some soft moaning, but you can\'t be sure.');
                                             scene.actions([
@@ -655,9 +655,9 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      (s as any).temprand = Math.floor(Math.random() * 10) + 1;
+      (s as any).temprand = (Math.floor(Math.random() * 10) + 1);
       if (((s as any).temprand ?? 0) === 1) {
-        qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+        qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
         scene.img('images/locations/pavlovsk/park/event/walk/night/deep/girl_buttflash1.jpg');
         scene.text('As you walk along, you come upon a group drinking and hanging out. The boys and several other girls are trying to convince one of the girls to do something. You\'re not sure what it is at first, but after a bit of pressure from the rest, the girl in question turns, leans forward, and pulls down her pants part way to flash her bare ass and pussy.');
         scene.text('Her friends pull out their phones, which light up her bare backside as they take pictures. She quickly pulls her pants back up and they all start laughing and teasing her, but it seems good-natured enough.');
@@ -665,7 +665,7 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'end');
       } else {
         if (((s as any).temprand ?? 0) === 2) {
-          qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+          qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
           scene.img('images/locations/pavlovsk/park/event/walk/night/deep/girl_pantsdown1.jpg');
           scene.text('Up ahead, you see a few guys and a girl walking along. The girl is stumbling around, either high on drugs or drunk. You\'re not close enough to overhear them, but you can see the guys pawing at her body. They then stop and whatever they say to her next has an effect. She stumbles over to a tree and leans against it before pulling her shorts and panties down around her ankles.');
           scene.text('She bends over and wiggles her ass invitingly as the boys pull out their dicks and start stroking them, arguing over who gets to go first. You slip away into the night before they decide to try and add you as an option.');
@@ -694,7 +694,7 @@ function enterWalk2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOldMan(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/event/walk/day/deep/oldman_camera1.jpg');
   if (((s as any).pcs_hotcat ?? 0) < 5) {
@@ -760,8 +760,8 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/oldman_camera6.jpg');
     scene.text('You move your clothes out of the way to expose your midriff for him, and he smiles even more as he keeps taking pictures of you.');
     scene.text('"Yeah, just like that, perfect. You\'re a natural at this; you should really consider modelling. Now show me those perfect firm titties of yours."');
-    qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'exhib', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -770,8 +770,8 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/oldman_camera_no.jpg');
     scene.text('You shake your head. "I don\'t think so. This has gone too far," you say as you pull your clothes back in place and zip your jacket back up.');
     scene.text('He frowns, but nods. "Okay, sorry to bother you."');
@@ -788,16 +788,16 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
     scene.text('You move your clothes out of the way to expose your breasts for him, and he smiles as he keeps taking pictures of you.');
     scene.text('"Oh yeah, that\'s it. You have such perfect titties."');
     scene.text('As he keeps taking your picture, he gives you some directions on how to stand for him.');
-    qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flashlite', 5, 'inhibition');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep modeling for him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/oldman_camera8.jpg');
     scene.text('As he takes pictures of you, he slowly gets closer until he\'s taking very close-up photos of your breasts before he stops. "How about you come back to my place, and I can take more photos of you? I have lighting equipment that will make for much better photos. What do you say?"');
-    qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'flashlite', 5, 'inhibition');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'exhib', 'resist', 'easy');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -806,8 +806,8 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/oldman_camera_no.jpg');
     scene.text('You shake your head. "I don\'t think so. This has gone too far," you say as you pull your clothes back in place and zip your jacket back up.');
     scene.text('He frowns, but nods. "Okay, maybe some other time."');
@@ -850,19 +850,19 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
     { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
     { label: 'Join them', handler: (st: GameState) => {
     scene.text('You walk over to them. "Hey guys, mind if I join you?"');
-    if (((s as any).grupTipe ?? 0) === 5) {
+    if (((st as any).grupTipe ?? 0) === 5) {
       scene.text('Lena and Lera give you a look of disgust. "Get lost, loser!"');
       scene.text('Alyona ignores you and Anushka sighs, but you can\'t tell if the sigh is directed at you or the other girls.');
       scene.actions([
         { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
       ]);
     } else {
-      if (((s as any).grupTipe ?? 0) === 4) {
+      if (((st as any).grupTipe ?? 0) === 4) {
         // TODO-QSP: dynamic text: They make some room on the bench. "Sure. Come join us, <<$pcs_nickname>>," Anush...
-        scene.text(`They make some room on the bench. "Sure. Come join us, ${((s as any).pcs_nickname || '')}," Anushka says.`);
+        scene.text(`They make some room on the bench. "Sure. Come join us, ${((st as any).pcs_nickname || '')}," Anushka says.`);
         scene.text('As soon as you sit down, Lera hands you a beer.');
-        qspCall(s, 'willpower', 'drink', 'resist', 'medium');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        qspCall(st, 'willpower', 'drink', 'resist', 'medium');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -871,10 +871,10 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You refuse the beer and they give each other a look, but don\'t say anything. You make small talk with the girls for a while, but they seem to quickly get tired of listening and tell you they have things to do before they grab the few beers left and leave without inviting you to join them.');
     scene.actions([
@@ -887,7 +887,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
           { label: 'Drink beer', goto: ['pav_parkev1', 'female_gopnik_beer_1'] },
         ]);
       } else {
-        if (((s as any).grupTipe ?? 0) === 3) {
+        if (((st as any).grupTipe ?? 0) === 3) {
           scene.text('Anushka smiles at you and scoots over, giving you a spot to sit between her and Lera. "What\'s up, nerd?" she asks in a teasing tone as you take a seat.');
           scene.text('Lena glances over at you with a sneer. "Shouldn\'t you be off pretending to be an elf or something?"');
           scene.text('You glance around and notice that neither Lera nor Alyona are inviting you. It seems they don\'t relish hanging out with a nerd.');
@@ -897,9 +897,9 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Make an excuse and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, look at the time! I need to get going!"');
     scene.text('You wave goodbye to them and start walking away as you hear them laughing behind you.');
@@ -908,8 +908,8 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('You make small talk with the girls for a while, but they seem to quickly get tired of listening and tell you they\'ve have things to do before they grab the few beers left and leave without inviting you to join them.');
     scene.actions([
@@ -917,7 +917,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_girls.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Lera laughs and hands you a beer.');
@@ -943,16 +943,16 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
     { label: 'Join them', handler: (st: GameState) => {
     scene.text('You walk over to them. "Hey guys."');
-    if (((s as any).grupTipe ?? 0) === 5) {
+    if (((st as any).grupTipe ?? 0) === 5) {
       scene.text('They give you a look of disgust. "Get lost, loser!"');
       scene.actions([
         { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
       ]);
     } else {
-      if (((s as any).grupTipe ?? 0) === 4) {
+      if (((st as any).grupTipe ?? 0) === 4) {
         scene.text('Vasily smiles at you and scoots over, giving you a spot to sit between him and Dan. As you sit down, he offers you a beer.');
-        qspCall(s, 'willpower', 'drink', 'resist', 'medium');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        qspCall(st, 'willpower', 'drink', 'resist', 'medium');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -961,10 +961,10 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('You refuse the beer and they shrug and share a look before you make small talk with the guys for a while, but they seem to quickly get tired of listening and tell you they\'ve got things to do before they grab the few beers left and leaving without inviting you to join them.');
     scene.actions([
@@ -977,12 +977,12 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
           { label: 'Drink beer', goto: ['pav_parkev1', 'male_gopnik_beer'] },
         ]);
       } else {
-        if (((s as any).grupTipe ?? 0) === 3) {
+        if (((st as any).grupTipe ?? 0) === 3) {
           scene.text('Vasily smiles at you and scoots over, giving you a spot to sit between him and Dan. "What you up to, nerd?" he asks in a teasing tone.');
           scene.text('Dan glances over at you with a sneer. "You sure you should be here? This part of the park isn\'t really for people like you."');
           scene.text('You glance around and notice a few other rugged looks tossed your way. You\'ve heard stories about how rough and dangerous the gopniks can be. You know you should leave, but part of you wants to stay.');
-          qspCall(s, 'willpower', 'drink', 'self', 'medium');
-          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+          qspCall(st, 'willpower', 'drink', 'self', 'medium');
+          if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
             scene.actions([
               { label: 'Stay and hang out', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -991,7 +991,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Stay and hang out', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.text('You steel your nerves before you reply. "Yeah, I <i>am</i> sure I should be here. Why? You want me to leave?"');
     scene.text('Vasily smiles at you and scoots over, giving you a spot to sit between him and Dan. "It\'s cool. So what you up to?" he asks in a teasing tone as you take a seat.');
     scene.text('Dan glances over at you with a sneer. "Looking to slum it a little, princess?"');
@@ -1000,9 +1000,9 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     scene.text('You glance around and notice a few other rugged looks tossed your way. You know the gopniks have a bad reputation. Maybe hanging out with them in a deserted place isn\'t the best idea…');
     scene.actions([
       { label: 'Make an excuse and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time! I need to get going!"');
     scene.text('You wave goodbye to them and start walking away as you hear them laughing behind you.');
@@ -1011,8 +1011,8 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('You make small talk with the guys for a while, but they seem to quickly get tired of listening and tell you they\'ve got things to do before they grab the few beers left and leave without inviting you to join them.');
     scene.actions([
@@ -1020,7 +1020,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Vasily laughs and hands you a beer.');
@@ -1043,9 +1043,9 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
           scene.text('You glance around and notice a few other rugged looks tossed your way. You know the gopniks have a bad reputation. Maybe hanging out with them in a deserted place isn\'t the best idea…');
           scene.actions([
             { label: 'Make an excuse and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time! I need to get going!"');
     scene.text('You wave goodbye to them and start walking away as you hear them laughing behind you.');
@@ -1054,8 +1054,8 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('You make small talk with the guys for a while, but they seem to quickly get tired of listening and tell you they\'ve got things to do before they grab the few beers left and leave without inviting you to join them.');
     scene.actions([
@@ -1063,7 +1063,7 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopnik_boys.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Vasily laughs and hands you a beer.');
@@ -1090,16 +1090,16 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
     { label: 'Join them', handler: (st: GameState) => {
     scene.text('You walk over to them. "Hey guys."');
-    if (((s as any).grupTipe ?? 0) === 5) {
+    if (((st as any).grupTipe ?? 0) === 5) {
       scene.text('They give you a look of disgust. "Get lost, loser!"');
       scene.actions([
         { label: 'Move away', goto: ['pav_park', 'deeper_park'] },
       ]);
     } else {
-      if (((s as any).grupTipe ?? 0) === 4) {
+      if (((st as any).grupTipe ?? 0) === 4) {
         scene.text('Vasily smiles at you and scoots over, giving you a spot to sit between him and Dan. As you sit down, he offers you a beer, and you notice Anushka\'s guitar propped up against the side of the table. It\'s one of the few times you\'ve seen her take her dad\'s old guitar out of her room.');
-        qspCall(s, 'willpower', 'drink', 'resist', 'medium');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        qspCall(st, 'willpower', 'drink', 'resist', 'medium');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1108,10 +1108,10 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Refuse beer', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
     scene.text('You refuse the beer. They shrug and share a look before you make small talk with the guys for a while, but they seem to quickly get tired of listening and tell you they\'ve got things to do before they grab the few beers left and leave without inviting you to join them.');
     scene.actions([
@@ -1124,7 +1124,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
           { label: 'Drink beer', goto: ['pav_parkev1', 'gopnik_beer'] },
         ]);
       } else {
-        if (((s as any).grupTipe ?? 0) === 3) {
+        if (((st as any).grupTipe ?? 0) === 3) {
           scene.text('Vasily smiles at you and scoots over, giving you a spot to sit between him and Dan. "What you up to, nerd?" he asks in a teasing tone as you take a seat.');
           scene.text('Dan glances over at you with a sneer. "You sure you should be here? This part of the park isn\'t really for people like you."');
           scene.text('You glance around and notice a few other rugged looks tossed your way.');
@@ -1139,9 +1139,9 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
           scene.text('You glance around and notice a few other rugged looks tossed your way. You know the gopniks have a bad reputation. Maybe hanging out with them in a deserted place isn\'t the best idea.');
           scene.actions([
             { label: 'Make an excuse and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
     scene.text('Starting to feel nervous, you glance down at your phone. "Oh, I didn\'t notice the time! I need to get going!"');
     scene.text('You wave goodbye to them and start walking away as you hear them laughing behind you.');
@@ -1150,8 +1150,8 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
     scene.text('You make small talk with the guys for a while, but they seem to quickly get tired of listening and tell you they\'ve got things to do before they grab the few beers left and leave without inviting you to join them.');
     scene.actions([
@@ -1159,7 +1159,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ask for a beer', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/park/event/gopnik/gopniks.jpg');
     scene.text('"How about you pass me one of those beers?" you ask as you take a seat.');
     scene.text('Vasily laughs and hands you a beer. As you take the beer, you notice Anushka\'s guitar propped up against the side of the picnic table. It\'s one of the few times you\'ve seen her take her dad\'s old guitar out of her room.');

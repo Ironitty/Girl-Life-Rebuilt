@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'tatiana_lab', 'start');
-  if (((s as any).locArgs?.[1] ?? 0) !== 'no_time') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 'no_time') {
     (s as any).minut = ((s as any).minut ?? 0) + (5);
   }
   qspCall(s, 'stat', '');
@@ -43,22 +43,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).judosparday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Sparring (Gustav, mutant - power over 9000)', handler: (st: GameState) => {
-    (s as any).judosparday = ((s as any).daystart ?? 0);
-    qspCall(s, 'npcStat', 'A175');
-    qspCall(s, 'fight', 'initFight');
-    qspCall(s, 'fight_npcdata', 'gustav');
-    qspGoto(s, 'fight', 'start');
+    (st as any).judosparday = ((st as any).daystart ?? 0);
+    qspCall(st, 'npcStat', 'A175');
+    qspCall(st, 'fight', 'initFight');
+    qspCall(st, 'fight_npcdata', 'gustav');
+    qspGoto(st, 'fight', 'start');
   } },
     ]);
   }
   if (((s as any).tatianasparday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Sparring (Tatiana, magician - body magic)', handler: (st: GameState) => {
-    (s as any).tatianasparday = ((s as any).daystart ?? 0);
-    qspCall(s, 'npcStat', 'A176');
-    qspCall(s, 'fight', 'initFight');
-    qspCall(s, 'fight_npcdata', 'tatiana');
-    qspGoto(s, 'fight', 'start');
+    (st as any).tatianasparday = ((st as any).daystart ?? 0);
+    qspCall(st, 'npcStat', 'A176');
+    qspCall(st, 'fight', 'initFight');
+    qspCall(st, 'fight_npcdata', 'tatiana');
+    qspGoto(st, 'fight', 'start');
   } },
     ]);
   }
@@ -167,7 +167,7 @@ function enterBodyModActuate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'hair_color') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'hair_color') {
     (s as any).bodyModType = 'Hair Color';
     (s as any).bodyModMana = 500;
     (s as any).bodyModTime = 60;
@@ -183,7 +183,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
     ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'blonde';
     ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 3;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'hair_length') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'hair_length') {
       (s as any).bodyModType = 'Hair Length';
       (s as any).bodyModMana = 200;
       (s as any).bodyModTime = 120;
@@ -205,7 +205,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
       ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[6] = 'extremely long';
       ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[6] = 601;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'eye_color') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'eye_color') {
         (s as any).bodyModType = 'Eye Color';
         (s as any).bodyModMana = 300;
         (s as any).bodyModTime = 120;
@@ -221,7 +221,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
         ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[3] = 'blue';
         ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[3] = 3;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'eye_lashes') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'eye_lashes') {
           (s as any).bodyModType = 'Eye Lashes';
           (s as any).bodyModMana = 100;
           (s as any).bodyModTime = 30;
@@ -241,7 +241,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
           ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[5] = 'long, jewel-dusted';
           ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[5] = 5;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'lip_size') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'lip_size') {
             (s as any).bodyModType = 'Lip Size';
             (s as any).bodyModMana = 300;
             (s as any).bodyModTime = 120;
@@ -259,7 +259,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
             ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[4] = 'pillowy';
             ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[4] = 4;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'breast_size') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'breast_size') {
               (s as any).bodyModType = 'Breast Size';
               (s as any).bodyModMana = 1000;
               (s as any).bodyModTime = 240;
@@ -291,7 +291,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
               ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[11] = 'K';
               ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[11] = 58 - (((s as any).pcs_cupsize ?? 0) - (((s as any).bodyVars ?? {})?.['bust_magic'] ?? 0));
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'skin') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'skin') {
                 (s as any).bodyModType = 'Skin';
                 (s as any).bodyModMana = 1000;
                 (s as any).bodyModTime = 240;
@@ -301,7 +301,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
                 ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'clear';
                 ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 1000;
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 'virgin') {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 'virgin') {
                   (s as any).bodyModType = 'Virginity';
                   (s as any).bodyModMana = 1000;
                   (s as any).bodyModTime = 120;
@@ -311,7 +311,7 @@ function enterBodyModValues(s: GameState, scene: SceneBuilder): void {
                   ((s as any).bodyModDesc = (s as any).bodyModDesc ?? {})[0] = 'renewed';
                   ((s as any).bodymodValue = (s as any).bodymodValue ?? {})[0] = 20;
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 'silicone') {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 'silicone') {
                     (s as any).bodyModType = 'Boobs';
                     (s as any).bodyModMana = 1000;
                     (s as any).bodyModTime = 240;
@@ -387,28 +387,28 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
         scene.text('"I heard from one of my mage contacts, in Sydney, Australia of all places, and he passed on some more details."');
         (s as any).sucpcinfo = 5;
         (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
-        return;
         scene.actions([
-          { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '1'] },
-        ]);
+{ label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '1'] },
+]);
+        return;
       } else {
         if (((s as any).sucpcinfo ?? 0) === 5) {
           scene.text('"I heard from an old friend of mine who is now living in Morocco and also has a Succubus for a lover. She said that after they had been together for some time, they discovered that with her help, her Succubus lover learned something new."');
           (s as any).sucpcinfo = 6;
           (s as any).sucinfoday = ((s as any).daystart ?? 0) + 17 + (Math.floor(Math.random() * 8) + 0);
-          return;
           scene.actions([
-            { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '2'] },
-          ]);
+{ label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '2'] },
+]);
+          return;
         } else {
           if (((s as any).sucpcinfo ?? 0) === 6) {
             scene.text('"I heard from one of my contacts. He\'s living in Las Vegas in America, which, apparently, is the Succubus capital of North America, and he passed along two pieces of information."');
             (s as any).sucpcinfo = 7;
             (s as any).sucinfoday = ((s as any).daystart ?? 0) + 9000000;
-            return;
             scene.actions([
-              { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '3'] },
-            ]);
+{ label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '3'] },
+]);
+            return;
           }
         }
       }
@@ -433,15 +433,15 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     scene.text('"Tatiana, I\'m having problems with my body image. I\'m not happy and was hoping that you might be able to help me."');
     scene.text('"It\'s possible, but I will have to draw on your magical energy. It will cost some of your mana to perform a spell."');
     scene.text('"Also, this will be painful. The magic will force your flesh into new shapes."');
-    (s as any).HairColorTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'hair_color');
-    (s as any).HairLengthTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'hair_length');
-    (s as any).EyeColorTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'eye_color');
-    (s as any).EyeLashTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'eye_lashes');
-    (s as any).LipTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'lip_size');
-    (s as any).BreastTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'breast_size');
-    (s as any).SkinTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'skin');
-    (s as any).VirginTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'virgin');
-    (s as any).SiliconeTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'silicone');
+    (st as any).HairColorTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'hair_color');
+    (st as any).HairLengthTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'hair_length');
+    (st as any).EyeColorTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'eye_color');
+    (st as any).EyeLashTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'eye_lashes');
+    (st as any).LipTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'lip_size');
+    (st as any).BreastTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'breast_size');
+    (st as any).SkinTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'skin');
+    (st as any).VirginTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'virgin');
+    (st as any).SiliconeTab = qspFunc(s, 'tatiana_lab', 'ListBuilder', 'silicone');
     // TODO-QSP: </center>"
     scene.actions([
       { label: 'No, no, I\'ve changed my mind. Thank you.', goto: ['tatiana_lab', 'Tatiana'] },
@@ -450,14 +450,14 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s possible, but I will have to draw on your magical energy. It will cost 40 mana to perform a reset spell.');
     scene.text('This will reduce excess fat, growth of body parts and high levels of silicone, moving you closer to your original body shape.');
     scene.text('Do you wish to try this spell?');
-    if (((s as any).pcs_mana ?? 0) >= 40) {
+    if (((st as any).pcs_mana ?? 0) >= 40) {
       scene.actions([
         { label: 'That sounds great, let\'s do it!', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).dounspell = 1;
-    (s as any).dounsplkil = 2;
-    qspCall(s, 'body', 'hardreset');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).dounspell = 1;
+    (st as any).dounsplkil = 2;
+    qspCall(st, 'body', 'hardreset');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/tatiana/magiclook.jpg');
     scene.text('Tatiana lowers her glasses and stares deeply into your eyes. It feels like time just stops being a thing and you are floating.');
     scene.text('It seems very soon afterwards when you snap back to reality, but the big clock on the lab wall tells you it\'s been 30 minutes.');
@@ -479,12 +479,12 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
   if (((s as any).BurgerQW ?? 0)?.['IlyQWTatianaHelp'] === 1  &&  ((s as any).poverKAR ?? 0) === 0  &&  (!((s as any).softKAR ?? 0))) {
     scene.actions([
       { label: 'Ask Tatiana for help with Ivan', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You explain the situation and ask Tatiana for assistance. Tatiana says thoughtfully, "It doesn\'t sound like there is any physical evidence of Ivan\'s guilt, so you need a confession. I think it would be possible to capture and interrogate him. Or, you and I could try a more cunning approach to get the truth out of him. Either way, you need to capture it all on video."');
     scene.actions([
       { label: 'Military solution', handler: (st: GameState) => {
-    (s as any).poverKAR = 1;
-    qspCall(s, 'stat', '');
+    (st as any).poverKAR = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
     scene.text('You decide to get Ivan to admit what he\'s done by force. Tatiana tells you to go to Ivan\'s apartment. There you will meet with Gustav, who will help resolve the issue. She stresses that you keep an eye on him in case he starts getting distraught. Apparently when he does, he turns into a monster.');
     scene.actions([
@@ -492,8 +492,8 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Trick him', handler: (st: GameState) => {
-    (s as any).softKAR = 1;
-    qspCall(s, 'stat', '');
+    (st as any).softKAR = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
     scene.text('You decide to trick Ivan into admitting what he\'s done. Tatiana tells you to go to Ivan\'s apartment and that she will meet you there.');
     scene.actions([
@@ -507,8 +507,8 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     if (((s as any).poverKAR ?? 0) === 2) {
       scene.actions([
         { label: 'Approach Tatiana about the attack on Ivan\'s apartment', handler: (st: GameState) => {
-    (s as any).poverKAR = 3;
-    qspCall(s, 'stat', '');
+    (st as any).poverKAR = 3;
+    qspCall(st, 'stat', '');
     scene.text('You come to Tatiana, and she sighs. "Yes, you failed. That bullet Gustav caught in his head made his strength go up to the next level, almost invulnerable but deprived of his mind. That\'s why he couldn\'t stop himself from killing Ivan before you could get a confession out of him. There are pluses. The cops think it was just a gas explosion for one, so you probably don\'t need to worry about much of an investigation. But now you are going to have to pay the debt if you don\'t want to go to jail. "');
     scene.actions([
       { label: 'Leave', goto: ['tatiana_lab', 'Tatiana'] },
@@ -520,20 +520,20 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Tatianaday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Develop your intelligence (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 4) + 3);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).Tatianaday = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 4) + 3));
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).Tatianaday = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.text('You study with Tatiana developing your intellect.');
     scene.actions([
       { label: 'Leave', goto: ['tatiana_lab', 'Tatiana'] },
     ]);
   } },
       { label: 'Develop your inner spirit (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 4) + 3);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).Tatianaday = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'sprt', (Math.floor(Math.random() * 4) + 3));
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).Tatianaday = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.text('You meditate with Tatiana improving your spirituality.');
     scene.actions([
       { label: 'Leave', goto: ['tatiana_lab', 'Tatiana'] },
@@ -551,9 +551,9 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_magik ?? 0) >= 5  &&  (!((s as any).spellavtoklon ?? 0))) {
     scene.actions([
       { label: 'Learn technique preparation (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).spellavtoklon = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).spellavtoklon = 1;
+    qspCall(st, 'stat', '');
     scene.text('You learn the technique preparation. This technique allows you to enter into battle with three clones already created.');
     scene.actions([
       { label: 'Leave', goto: ['tatiana_lab', 'Tatiana'] },
@@ -564,9 +564,9 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_magik ?? 0) >= 6  &&  (!((s as any).spellbefshild ?? 0))) {
     scene.actions([
       { label: 'Learn technique pre-shield (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).spellbefshild = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).spellbefshild = 1;
+    qspCall(st, 'stat', '');
     scene.text('You learn the technique pre-shield. This technique allows you to enter into battle with a magical shield protecting you against physical attacks.');
     scene.actions([
       { label: 'Leave', goto: ['tatiana_lab', 'Tatiana'] },
@@ -578,20 +578,20 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
     if (((s as any).sucpcinfo ?? 0) >= 4  &&  ((s as any).sucskill ?? 0) < 1) {
       scene.actions([
         { label: 'Learn to monitor your Succubus Energies (may take some time)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).sucskill = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).sucskill = 1;
+    qspCall(st, 'stat', '');
     scene.text('You spend 30 minutes meditating with Tatiana in a light link with you as she shows you how to tell what your Succubus energy levels are.');
     scene.text('You open your eyes and look at Tatiana sitting across from you.');
     scene.text('She is flushed, breathing hard, and her nipples are showing clearly through her blouse.');
-    if (1 + (((s as any).succublvl ?? 0) * 2) + ((s as any).tatisucsex ?? 0) < 20  &&  (Math.floor(Math.random() * 101) + 0) < 90) {
+    if (1 + (((st as any).succublvl ?? 0) * 2) + ((st as any).tatisucsex ?? 0) < 20  &&  (Math.floor(Math.random() * 101) + 0) < 90) {
       scene.text('After a moment, she gives herself a shake and pulls herself together before saying, "There you go!"');
       scene.text('She then stands up and goes back to her studying.');
       scene.actions([
         { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
       ]);
     } else {
-      qspGoto(s, 'tatiana_lab', 'suctrainsex');
+      qspGoto(st, 'tatiana_lab', 'suctrainsex');
     }
   } },
       ]);
@@ -599,25 +599,25 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sucpcinfo ?? 0) >= 5  &&  ((s as any).sucskill ?? 0) < 2) {
         scene.actions([
           { label: 'Learn to increase your energy storage (may take some time)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('You settle into a meditative state and link with Tatiana.');
-    if (((s as any).succhungry ?? 0) > -2) {
-      qspCall(s, 'stat', '');
+    if (((st as any).succhungry ?? 0) > -2) {
+      qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: After a few minutes, you feel Tatiana break the link and say, "<<$pcs_nickname>>...
-      scene.text(`After a few minutes, you feel Tatiana break the link and say, "${((s as any).pcs_nickname || '')}, you need to build up <i>two</i> days of reserve before we do this training."`);
+      scene.text(`After a few minutes, you feel Tatiana break the link and say, "${((st as any).pcs_nickname || '')}, you need to build up <i>two</i> days of reserve before we do this training."`);
       scene.text('She then stands up and goes back to her studying.');
-      return;
       scene.actions([
-        { label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
-      ]);
+{ label: 'Finish', goto: ['tatiana_lab', 'Tatiana'] },
+]);
+      return;
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 55;
-    qspCall(s, 'stat', '');
-    (s as any).sucskill = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 55;
+    qspCall(st, 'stat', '');
+    (st as any).sucskill = 2;
     scene.text('Tatiana shows you how to build a storage reservoir that draws the excess energy in before your body uses it.');
     scene.text('Once you\'re finished, Tatiana is again showing clear signs of arousal, and she says, "You know, touching your power is a really, <i>really</i>, intense experience!"');
     scene.text('She then closes her eyes and visibly tries to get ahold of herself.');
-    if (((s as any).tatisucsex ?? 0) >= 20  ||  (Math.floor(Math.random() * 100) + 1) < 95) {
+    if (((st as any).tatisucsex ?? 0) >= 20  ||  (Math.floor(Math.random() * 100) + 1) < 95) {
       scene.text('After several moments, she pulls herself together, opens her eyes, smiles at you, and says, "There, I knew I could do it!"');
       scene.text('She then stands up and goes back to her studying.');
       scene.actions([
@@ -625,7 +625,7 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Then her eyes snap open, and you feel arousal suddenly flooding the link!');
-      qspGoto(s, 'tatiana_lab', 'suctrainsex');
+      qspGoto(st, 'tatiana_lab', 'suctrainsex');
     }
   } },
         ]);
@@ -635,36 +635,36 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Ask her about the preparations and training', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 15;
+      qspCall(st, 'stat', '');
       scene.text('You ask her what\'s involved in the training and preparations.');
       scene.text('She spends some time explaining the technical details of what you need to do during the "ritual", then says,');
-      // TODO-QSP: dynamic text: "The preparations will take 7 days, I'll need <<$func('money', 'string_price', 3...
+      // TODO-QSP: dynamic text: "The preparations will take 7 days, I''ll need <<$func(''money'', ''string_price...
       scene.text(`"The preparations will take 7 days, I'll need ${qspFunc(s, 'money', 'string_price', 3000)} to modify one of my devices to pull in free sexual energy from the adult businesses around here and another ${qspFunc(s, 'money', 'string_price', 2000)} to make several potions we'll need, one of which is going to temporarily make me into a sexual energy "battery" and the others are so we can do the ritual without hurting ourselves.`);
       scene.text('"Once I start, you\'ll have 2 days to tell me to abort, after that I will have started building up the charge. We would not be able stop ourselves, and premature sex could kill us, so I\'ll be putting up a barrier to keep you out until 7 days have passed, and I\'ll set it not to let you through unless you have 3 days of reserves and 100 units of stored energy.');
-      // TODO-QSP: dynamic text: "Once I've built up to a full charge, I'll only be able to hold it for a day, af...
+      // TODO-QSP: dynamic text: "Once I''ve built up to a full charge, I''ll only be able to hold it for a day, ...
       scene.text(`"Once I've built up to a full charge, I'll only be able to hold it for a day, after that I'll have to release it. The "battery" potion itself as well as the materials for it will not keep, so abort after I start or fail to show up on time and ${qspFunc(s, 'money', 'string_price', 2000)} will have been wasted.`);
       scene.text('"So, do you want me to start the preparations?"');
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 45;
-    qspCall(s, 'money', 'pay', 5000);
-    (s as any).sctrainprep = 1;
-    (s as any).tatisucsexday = ((s as any).daystart ?? 0) + 7;
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: "Ok, I'll get started! Be here next <<$weekName>> with 3 days of reserves and 10...
-    scene.text(`"Ok, I'll get started! Be here next ${((s as any).weekName || '')} with 3 days of reserves and 100 units of stored energy."`);
-    if (((s as any).tatisucsex ?? 0) > 0) {
+    (st as any).minut = ((st as any).minut ?? 0) + 45;
+    qspCall(st, 'money', 'pay', 5000);
+    (st as any).sctrainprep = 1;
+    (st as any).tatisucsexday = ((st as any).daystart ?? 0) + 7;
+    qspCall(st, 'stat', '');
+    // TODO-QSP: dynamic text: "Ok, I''ll get started! Be here next <<$weekName>> with 3 days of reserves and 1...
+    scene.text(`"Ok, I'll get started! Be here next ${((st as any).weekName || '')} with 3 days of reserves and 100 units of stored energy."`);
+    if (((st as any).tatisucsex ?? 0) > 0) {
       scene.text('She then pulls you in for a quick kiss before adding, "Now get out of here, I can\'t have you distracting me!"');
     } else {
       scene.text('She then surprises you with a peck on the cheek before adding, "Now get out of here, I can\'t have you distracting me!"');
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'city_center', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_center', '');
   } },
     ]);
   } },
@@ -678,23 +678,23 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Ask her to redo the preparations', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: Are you sure? The same things from before apply; 2 days to abort, the barrier, 3...
       scene.text(`Are you sure? The same things from before apply; 2 days to abort, the barrier, 3 days of reserves and 100 units of stored energy, 8 to 10 hours once I'm fully charged… Another ${qspFunc(s, 'money', 'string_price', 2000)} wasted. Are you <i>really</i> sure?`);
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 2000);
-    (s as any).sctrainprep = 1;
-    (s as any).tatisucsexday = ((s as any).daystart ?? 0) + 7;
-    // TODO-QSP: dynamic text: "Ok, I'll get started! Be here next <<$weekName>> with 3 days of reserves and 10...
-    scene.text(`"Ok, I'll get started! Be here next ${((s as any).weekName || '')} with 3 days of reserves and 100 units of stored energy."`);
+    qspCall(st, 'money', 'pay', 2000);
+    (st as any).sctrainprep = 1;
+    (st as any).tatisucsexday = ((st as any).daystart ?? 0) + 7;
+    // TODO-QSP: dynamic text: "Ok, I''ll get started! Be here next <<$weekName>> with 3 days of reserves and 1...
+    scene.text(`"Ok, I'll get started! Be here next ${((st as any).weekName || '')} with 3 days of reserves and 100 units of stored energy."`);
     scene.text('"Now get out of here, I can\'t have you distracting me!"');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'city_center', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_center', '');
   } },
     ]);
   } },
@@ -709,25 +709,25 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
           if (((s as any).sucpcinfo ?? 0) >= 7  &&  ((s as any).sucskill ?? 0) < 4  &&  ((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] === 1  &&  ((s as any).sucexcess ?? 0) >= 100) {
             scene.actions([
               { label: 'Ask Tatiana about the accommodation training', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('Tatiana asks, "Are you ready to do the accommodation training?"');
     scene.actions([
       { label: 'Yes, I\'m ready. (can take a lot of time)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/mast/dildo.jpg');
     scene.text('She walks you through everything you need to do while leading you to the couch.');
     scene.text('Once there, as you are stripping, so is she! At your look, she says, "What? I don\'t want to tear my clothes if one of us slips."');
     scene.text('You settle onto the couch then work a massive dildo into your snatch. After working the dildo for a bit, with Tatiana in a light link guiding you, you switch to your ass. You work there for a while before switching back. You continue this way for nearly two hours, concentrating so hard you only have two orgasms, before you feel your body responding as it should. A quick test and you’re done.');
-    (s as any).sucskill = 4;
-    (s as any).sucexcess = ((s as any).sucexcess ?? 0) - (100);
+    (st as any).sucskill = 4;
+    (st as any).sucexcess = ((st as any).sucexcess ?? 0) - (100);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).pcs_horny = 0;
+    (st as any).pcs_horny = 0;
     scene.text('As you\'re finishing, you notice Tatiana has her eyes closed and is visibly trying to get ahold of herself.');
-    if (((s as any).tatisucsexday ?? 0) < ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 100) + 1) > 95) {
+    if (((st as any).tatisucsexday ?? 0) < ((st as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 100) + 1) > 95) {
       scene.text('Then her eyes snap open, and you feel arousal suddenly flooding the link!');
-      qspGoto(s, 'tatiana_lab', 'suctrainsex');
+      qspGoto(st, 'tatiana_lab', 'suctrainsex');
     } else {
       scene.text('After several moments, she pulls herself together, opens her eyes, smiles at you, and says, "There, I knew I could do it!"');
       scene.text('She then stands up and goes back to her studying.');
@@ -750,16 +750,16 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) <=2  &&  ((s as any).pfilmNO ?? 0) === 1) {
     scene.actions([
       { label: 'Tell Tatiana that you can\'t finish the Aphrodite job.', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).AlexandriaQW = 3;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).AlexandriaQW = 3;
+    qspCall(st, 'stat', '');
     scene.text('"Tatiana, I have a problem. It seems that I\'ve been blacklisted and can\'t enter the Aphrodite building."');
     scene.text('She tilts her head and seems to think the problem over, but it looks like she isn\'t too worried by this revelation.');
     // TODO-QSP: dynamic text: "Hmm, that complicates the job somewhat, <<$pcs_nickname>>. It seems that the cu...
-    scene.text(`"Hmm, that complicates the job somewhat, ${((s as any).pcs_nickname || '')}. It seems that the curse is only active during operating hours, so sneaking back in during the night isn't an option."`);
+    scene.text(`"Hmm, that complicates the job somewhat, ${((st as any).pcs_nickname || '')}. It seems that the curse is only active during operating hours, so sneaking back in during the night isn't an option."`);
     scene.text('"So… I need to sneak back in there during daylight hours?"');
-    // TODO-QSP: dynamic text: Tatiana just snorts. "Don't worry, <<$pcs_nickname>>, I have Gustav for those so...
-    scene.text(`Tatiana just snorts. "Don't worry, ${((s as any).pcs_nickname || '')}, I have Gustav for those sorts of jobs. No, I was thinking of an <i>alternative.</i>" She gives you a look that makes you shiver, then continues, "I know a way to help you infiltrate the place so you can look for the item in question. When the moment feels right, go to the Aphrodite building and give me a call. But remember, only when it's open."`);
+    // TODO-QSP: dynamic text: Tatiana just snorts. "Don''t worry, <<$pcs_nickname>>, I have Gustav for those s...
+    scene.text(`Tatiana just snorts. "Don't worry, ${((st as any).pcs_nickname || '')}, I have Gustav for those sorts of jobs. No, I was thinking of an <i>alternative.</i>" She gives you a look that makes you shiver, then continues, "I know a way to help you infiltrate the place so you can look for the item in question. When the moment feels right, go to the Aphrodite building and give me a call. But remember, only when it's open."`);
     scene.text('Saying this, Tatiana turns towards her studies, leaving you to your own devices.');
     scene.actions([
       { label: 'Continue', goto: ['tatiana_lab', 'Tatiana'] },
@@ -770,52 +770,52 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlexandriaQW ?? 0) ===4  ||  ((s as any).AlexandriaQW ?? 0) ===5) {
     scene.actions([
       { label: 'Tell Tatiana about the Aphrodite job.', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/alexandria/photo.jpg');
     scene.text('It is time to tell Tatiana about your experience in Aphrodite. You head over to her and begin to explain everything, beginning with how you snooped around the agency and continuing with how you met her double. When you reach the part where you met Aleksei, Tatiana quickly walks towards a cabinet and pulls out an old photo, showing it to you. The image, taken in black and white, shows an armed Aleksei.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, are you sure that you met this woman? Blonde? Bossy? Tall?"
-    scene.text(`"${((s as any).pcs_nickname || '')}, are you sure that you met this woman? Blonde? Bossy? Tall?"`);
+    scene.text(`"${((st as any).pcs_nickname || '')}, are you sure that you met this woman? Blonde? Bossy? Tall?"`);
     scene.text('"Yes, I am pretty sure. Is that bad?"');
-    // TODO-QSP: dynamic text: Tatiana pinches the bridge of her nose and sighs. "Yeah, <<$pcs_nickname>>, it's...
-    scene.text(`Tatiana pinches the bridge of her nose and sighs. "Yeah, ${((s as any).pcs_nickname || '')}, it's pretty bad. Aleksei… Well, Alexandria, is an ex-councilor and probably one of the most powerful electric wizards in the world. Remember how The Amulet of Power isn't supposed to end up in the hands of a woman? Well, she was looking for a form to obtain it, the back alleys word is that the quest made her magic <i>quirky</i>, and that beautiful blonde hair is the consequence of a simple scare."`);
+    // TODO-QSP: dynamic text: Tatiana pinches the bridge of her nose and sighs. "Yeah, <<$pcs_nickname>>, it''...
+    scene.text(`Tatiana pinches the bridge of her nose and sighs. "Yeah, ${((st as any).pcs_nickname || '')}, it's pretty bad. Aleksei… Well, Alexandria, is an ex-councilor and probably one of the most powerful electric wizards in the world. Remember how The Amulet of Power isn't supposed to end up in the hands of a woman? Well, she was looking for a form to obtain it, the back alleys word is that the quest made her magic <i>quirky</i>, and that beautiful blonde hair is the consequence of a simple scare."`);
     scene.text('"So… Pretty bad?"');
     // TODO-QSP: dynamic text: "You have no idea <<$pcs_nickname>>." Tatiana sighs. "Look, we are talking here ...
-    scene.text(`"You have no idea ${((s as any).pcs_nickname || '')}." Tatiana sighs. "Look, we are talking here of a <i>centuries</i> old mindset, the one that yearns for the times where cannibalizing non-magical children was fashionable to recharge your energies. Do yourself a favor, just lie down and let Reinhold take care of this."`);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    scene.text(`"You have no idea ${((st as any).pcs_nickname || '')}." Tatiana sighs. "Look, we are talking here of a <i>centuries</i> old mindset, the one that yearns for the times where cannibalizing non-magical children was fashionable to recharge your energies. Do yourself a favor, just lie down and let Reinhold take care of this."`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: '"Okay, Tatiana, and what do I get out of this job?"', handler: (st: GameState) => {
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
     scene.text('Tatiana gives you a half-smile, and you understand that she isn\'t going to pay you for the Aphrodite job.');
-    if (((s as any).AlexandriaQW ?? 0) ===4) {
-      qspCall(s, 'money', 'earn', 5000);
-      // TODO-QSP: dynamic text: However, at that moment, to everyone's surprise, Gustav sneaks up to your side a...
-      scene.text(`However, at that moment, to everyone's surprise, Gustav sneaks up to your side and grabs your hand, placing a roll of bills on it. "Take this, ${((s as any).pcs_nickname || '')}. You succeeded in beating Tatiana's double, and if not for Alex, the film would be here."`);
-      if (((s as any).pfilmNO ?? 0) === 1) {
+    if (((st as any).AlexandriaQW ?? 0) ===4) {
+      qspCall(st, 'money', 'earn', 5000);
+      // TODO-QSP: dynamic text: However, at that moment, to everyone''s surprise, Gustav sneaks up to your side ...
+      scene.text(`However, at that moment, to everyone's surprise, Gustav sneaks up to your side and grabs your hand, placing a roll of bills on it. "Take this, ${((st as any).pcs_nickname || '')}. You succeeded in beating Tatiana's double, and if not for Alex, the film would be here."`);
+      if (((st as any).pfilmNO ?? 0) === 1) {
         scene.text('Gustav just stands there staring at a flabbergasted Tatiana who, after a beat, simply shrugs. "Okay, Gustav, don\'t suggest that I am scrimpy or anything… Jeez…"');
       } else {
         // TODO-QSP: dynamic text: Gustav just stands there staring at a flabbergasted Tatiana who, after a beat, s...
-        scene.text(`Gustav just stands there staring at a flabbergasted Tatiana who, after a beat, simply shrugs. "Okay, Gustav, don't suggest that I am scrimpy or anything… Jeez. I was going to speak to some of the people in the agency on her behalf, but now… Okay, fine. ${((s as any).pcs_nickname || '')}, I will do it anyway."`);
-        qspCall(s, 'fame', 'city', 'modelling', 10);
+        scene.text(`Gustav just stands there staring at a flabbergasted Tatiana who, after a beat, simply shrugs. "Okay, Gustav, don't suggest that I am scrimpy or anything… Jeez. I was going to speak to some of the people in the agency on her behalf, but now… Okay, fine. ${((st as any).pcs_nickname || '')}, I will do it anyway."`);
+        qspCall(st, 'fame', 'city', 'modelling', 10);
       }
     } else {
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you've failed to bring me the film. Instead, it has ended up...
-      scene.text(`"${((s as any).pcs_nickname || '')}, you've failed to bring me the film. Instead, it has ended up in the hands of a powerful magician, who may be planning to use it against us."`);
-      if (((s as any).pfilmNO ?? 0) === 1) {
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you''ve failed to bring me the film. Instead, it has ended u...
+      scene.text(`"${((st as any).pcs_nickname || '')}, you've failed to bring me the film. Instead, it has ended up in the hands of a powerful magician, who may be planning to use it against us."`);
+      if (((st as any).pfilmNO ?? 0) === 1) {
         scene.text('You open your mouth to protest that it isn\'t your fault, but one look at Tatiana\'s face tells you that she\'s already made up her mind… Fuck!');
       } else {
-        qspCall(s, 'fame', 'city', 'modelling', 10);
+        qspCall(st, 'fame', 'city', 'modelling', 10);
         scene.text('You open your mouth to protest that it isn\'t your fault, but before you can, Tatiana raises her hands consolingly.');
-        // TODO-QSP: dynamic text: "Don't worry, <<$pcs_nickname>>, you're not going to leave empty-handed. I'm goi...
-        scene.text(`"Don't worry, ${((s as any).pcs_nickname || '')}, you're not going to leave empty-handed. I'm going to speak to some of the people in the agency on your behalf. It'll be good for your modelling career."`);
+        // TODO-QSP: dynamic text: "Don''t worry, <<$pcs_nickname>>, you''re not going to leave empty-handed. I''m ...
+        scene.text(`"Don't worry, ${((st as any).pcs_nickname || '')}, you're not going to leave empty-handed. I'm going to speak to some of the people in the agency on your behalf. It'll be good for your modelling career."`);
       }
     }
-    (s as any).AlexandriaQW = 6;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).AlexandriaQW = 6;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('Tatiana returns to her job, and before you can ask any more questions, Gustav grabs your arm to take you away.');
     // TODO-QSP: dynamic text: As you walk, he presses a post-it into your hand. "Take this, <<$pcs_nickname>>....
-    scene.text(`As you walk, he presses a post-it into your hand. "Take this, ${((s as any).pcs_nickname || '')}. Now you can meet Alex."`);
+    scene.text(`As you walk, he presses a post-it into your hand. "Take this, ${((st as any).pcs_nickname || '')}. Now you can meet Alex."`);
     scene.text('"What? How? Why?" You ask, more than a little confused.');
     scene.text('After a moment of silence, the mutant shrugs. "I\'m good at finding people. I knew that a powerful wizard had made his home in Saint Petersburg, and after overhearing what you said, I put two-and-two together. The rest is complicated. I think that Alex just wanted to talk. Messing with The Council isn\'t on anyone\'s agenda, and now that Reinhold is involved, you\'re less likely to be in danger."');
     scene.text('You look at the post-it. Scrawled on it are directions to a place in the suburbs. To reach it, you must take the metro. There is a station nearby, but are you going to go and meet Alex?');
@@ -851,10 +851,10 @@ function enterTeach(s: GameState, scene: SceneBuilder): void {
     scene.text('"I guess that you want some explanation, correct? First: They are clean, I didn\'t have time to enjoy them; Two: If you want some, try Dildopolis in the red light district; Three: No, I didn\'t buy them, Gustav said that they are a <i>prize of war</i> but didn\'t elaborate. Four: Catch this!"');
     scene.text('Tatiana throws a little greenish item at you which you catch without a problem. It is a piece of pottery that sends a shiver up your hand and triggers a memory of… The Talisman of Power. It is a part of it.');
     // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, this is what I want you to do. Pick your favorite one, ...
-    scene.text(`"Okay ${((s as any).pcs_nickname || '')}, this is what I want you to do. Pick your favorite one, use it and I will cast this modified sex ritual. The original was supposed to let a couple share their mana, but my version will substitute the partner for a sex machine, so when you orgasm and your body is flooded by the mana, the excess that is supposed to go to your partner will be absorbed by the fragment. Any questions?"`);
+    scene.text(`"Okay ${((st as any).pcs_nickname || '')}, this is what I want you to do. Pick your favorite one, use it and I will cast this modified sex ritual. The original was supposed to let a couple share their mana, but my version will substitute the partner for a sex machine, so when you orgasm and your body is flooded by the mana, the excess that is supposed to go to your partner will be absorbed by the fragment. Any questions?"`);
     scene.text('"Ehm, several. Why is this so complicated? I mean… can\'t you just tap on me, instead of using THAT?"');
-    // TODO-QSP: dynamic text: "Yes and no <<$pcs_nickname>>. Tapping on your mana reserves isn't really diffic...
-    scene.text(`"Yes and no ${((s as any).pcs_nickname || '')}. Tapping on your mana reserves isn't really difficult, but the surge ones? They will burn me like a cinder, that's why I need the fragment. It somehow conserves some mana-battery properties, letting this little ritual channel the excess energy towards it for later use. That is the deal, you get some magical training and I get some nice mana. So, are you ready for a ride?"`);
+    // TODO-QSP: dynamic text: "Yes and no <<$pcs_nickname>>. Tapping on your mana reserves isn''t really diffi...
+    scene.text(`"Yes and no ${((st as any).pcs_nickname || '')}. Tapping on your mana reserves isn't really difficult, but the surge ones? They will burn me like a cinder, that's why I need the fragment. It somehow conserves some mana-battery properties, letting this little ritual channel the excess energy towards it for later use. That is the deal, you get some magical training and I get some nice mana. So, are you ready for a ride?"`);
     scene.actions([
       { label: '"I think I will pass for now"', handler: (st: GameState) => {
     (st as any).tatiana_teach_escalation = ((st as any).tatiana_teach_escalation ?? 0) + (1);
@@ -916,13 +916,13 @@ function enterSaddle(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Time for a lesson', handler: (st: GameState) => {
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((s as any).tatiana_teach_escalation ?? 0) < 2) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((st as any).tatiana_teach_escalation ?? 0) < 2) {
       if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-        (s as any).tatiana_teach_escalation = ((s as any).tatiana_teach_escalation ?? 0) + (1);
+        (st as any).tatiana_teach_escalation = ((st as any).tatiana_teach_escalation ?? 0) + (1);
       }
-      qspGoto(s, 'tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + '');
+      qspGoto(st, 'tatiana_lab', 'lesson' + ((st as any).tat_lesson_number ?? 0) + '');
     } else {
-      qspGoto(s, 'tatiana_lab', 'Escalation1');
+      qspGoto(st, 'tatiana_lab', 'Escalation1');
     }
   } },
   ]);
@@ -979,11 +979,11 @@ function enterTeachDildoAnal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Time for a lesson', handler: (st: GameState) => {
-    if (((s as any).tatiana_teach_escalation ?? 0) < 4) {
-      (s as any).tatiana_teach_escalation = ((s as any).tatiana_teach_escalation ?? 0) + (1);
-      qspGoto(s, 'tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + '');
+    if (((st as any).tatiana_teach_escalation ?? 0) < 4) {
+      (st as any).tatiana_teach_escalation = ((st as any).tatiana_teach_escalation ?? 0) + (1);
+      qspGoto(st, 'tatiana_lab', 'lesson' + ((st as any).tat_lesson_number ?? 0) + '');
     } else {
-      qspGoto(s, 'tatiana_lab', 'Escalation2');
+      qspGoto(st, 'tatiana_lab', 'Escalation2');
     }
   } },
   ]);
@@ -1020,11 +1020,11 @@ function enterTeachDildoVag(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Time for a lesson', handler: (st: GameState) => {
-    if (((s as any).tatiana_teach_escalation ?? 0) < 4) {
-      (s as any).tatiana_teach_escalation = ((s as any).tatiana_teach_escalation ?? 0) + (1);
-      qspGoto(s, 'tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + '');
+    if (((st as any).tatiana_teach_escalation ?? 0) < 4) {
+      (st as any).tatiana_teach_escalation = ((st as any).tatiana_teach_escalation ?? 0) + (1);
+      qspGoto(st, 'tatiana_lab', 'lesson' + ((st as any).tat_lesson_number ?? 0) + '');
     } else {
-      qspGoto(s, 'tatiana_lab', 'Escalation2');
+      qspGoto(st, 'tatiana_lab', 'Escalation2');
     }
   } },
   ]);
@@ -1037,7 +1037,7 @@ function enterEscalation2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Uh… That is interesting." Tatiana mumbles, taking you away from your reverie. She is cross-legged on the floor ignoring you, her attention fully focused on the talisman fragment.');
   scene.text('"Let me guess. It didn\'t work?"');
   scene.text('She looks at you for a moment before returning to her magical musing, then, laying down on the floor in thought before sitting up and snapping her fingers in your direction.');
-  // TODO-QSP: dynamic text: "No <<$pcs_nickname>>, it's actually worked perfectly, <i>too<i> perfectly. It s...
+  // TODO-QSP: dynamic text: "No <<$pcs_nickname>>, it''s actually worked perfectly, <i>too<i> perfectly. It ...
   scene.text(`"No ${((s as any).pcs_nickname || '')}, it's actually worked perfectly, <i>too<i> perfectly. It seems that the mana influx has reactivated the no-woman limitation, so this little piece of pretty garbage has locked me out of the wonderful mana inside."`);
   scene.text('She gets up with a jump and proceeds to grab all the fucking machines, placing them within your reach.');
   scene.text('"Fortunately, we can break that limitation with a sensory overload, so… Ready to give the show of your life?"');
@@ -1082,8 +1082,8 @@ function enterTeachFull(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'auto_lube', 'vag', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'auto_lube', 'vag', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/tatiana/sex/f2.jpg');
     scene.text('Immobilized thanks to the big rubber gimmick firmly jammed into your asshole, you can only observe as Tatiana begins to give a slick handjob to the other power-dildo. A shiver runs down your spine as you contemplate the size of the thing that is going to go up your pussy.');
     scene.text('As you mull over this, something brush your pussy\'s lips. Fortunately, it isn\'t the rubbery monstrosity, but Tatiana\'s fingers, which begin to spread lubricant all over your cunt, sending pleasant waves up your body, and eliciting some moans from your throat as she takes your head away from the coming onslaught.');
@@ -1091,7 +1091,7 @@ function enterTeachFull(s: GameState, scene: SceneBuilder): void {
       scene.text('She pushes the synthetic member against your tight, but very sticky twat, making you grit your teeth at the piercing sensation breaking through your cramped innards, compressed thanks to the other latex intruder up your ass.');
       scene.text('There is a barely perceptible sting as your hymen is torn as Tatiana unrelentingly pushes the phallic simulacrum into your pussy, making you push your head against the mat between moans, grunts and short breaths until she stops.');
     } else {
-      if (((s as any).pcs_vag ?? 0) < 15) {
+      if (((st as any).pcs_vag ?? 0) < 15) {
         scene.text('She pushes the synthetic member against your tight, but very sticky twat, making you moan in pleasure as the dildo passes your yielding lowers lips. Sadly, the sex toy\'s enormous girth makes you wince and grit your teeth as it stretches your vagina\'s delicate walls.');
         scene.text('Sweat runs over your brow as Tatiana unrelentingly pushes the phallic simulacrum up your vagina, making you push your head against the mat between moans, grunts and short breaths until she stops.');
       } else {
@@ -1102,29 +1102,29 @@ function enterTeachFull(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'D3');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_dildo', 30, 'self');
-    qspCall(s, 'arousal', 'anal_dildo', (-30), 'self');
-    qspCall(s, 'arousal', 'dildo_suck', (-30), 'self');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'npcStat', 'D3');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_dildo', 30, 'self');
+    qspCall(st, 'arousal', 'anal_dildo', (-30), 'self');
+    qspCall(st, 'arousal', 'dildo_suck', (-30), 'self');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/city/tatiana/sex/f3.jpg');
-    if ((!((s as any).pcs_throat ?? 0))) {
+    if ((!((st as any).pcs_throat ?? 0))) {
       scene.text('With another loud "SNAP!", Tatiana throws away the pair of gloves and kneels by your side. One of her hands grabs the back of your head and the other guides the last power-dildo towards your mouth, pushing it beyond your lips.');
       scene.text('You try to take the painfully big dildo into your mouth, but as it reaches your throat, you begin coughing, and Tatiana removes the jawbreaker.');
-      // TODO-QSP: dynamic text: "Easy <<$pcs_nickname>>! Just… play with it. Let's leave the deepthroating for <...
-      scene.text(`"Easy ${((s as any).pcs_nickname || '')}! Just… play with it. Let's leave the deepthroating for <i>professionals</i>."`);
+      // TODO-QSP: dynamic text: "Easy <<$pcs_nickname>>! Just… play with it. Let''s leave the deepthroating for ...
+      scene.text(`"Easy ${((st as any).pcs_nickname || '')}! Just… play with it. Let's leave the deepthroating for <i>professionals</i>."`);
       scene.text('She keeps the dildo in front of your face and turns it on. It begins lightly slap your face as you try to lick the shaft, but this is only a distraction, as Tatiana pushes the fucking machines\' controls before you, and with a devilish smile, turns all of them on.');
     } else {
-      if (((s as any).pcs_throat ?? 0) < 15) {
+      if (((st as any).pcs_throat ?? 0) < 15) {
         scene.text('With another "SNAP!", Tatiana throws away the pair of gloves and kneels by your side. One of her hands grabs the back of your head and the other guides the last power-dildo towards your mouth, pushing it beyond your lips.');
         // TODO-QSP: dynamic text: You try to take the painfully big dildo into your mouth, but is an ordeal as the...
-        scene.text(`You try to take the painfully big dildo into your mouth, but is an ordeal as the jawbreaker repeatedly triggers your gag reflex, but even then, you somehow chain a series of sucks and licks. "Easy ${((s as any).pcs_nickname || '')}! Just… play with it. I haven't even turned it on!"`);
+        scene.text(`You try to take the painfully big dildo into your mouth, but is an ordeal as the jawbreaker repeatedly triggers your gag reflex, but even then, you somehow chain a series of sucks and licks. "Easy ${((st as any).pcs_nickname || '')}! Just… play with it. I haven't even turned it on!"`);
         scene.text('Then, with evil parsimony, she turns it on and you begin to struggle to suck the animated sex toy as it pistons in and out of your mouth, but this is only a distraction, as Tatiana pushes the fucking machines\' controls before you, and with a devilish smile, turns all of them on.');
       } else {
         scene.text('With another loud "SNAP!", Tatiana throws away the pair of gloves and kneels by your side. One of her hands grabs the back of your head and the other guides the last power-dildo towards your mouth, pushing it beyond your lips.');
         // TODO-QSP: dynamic text: You take the big dildo into your mouth with ease, making Tatiana raise a brow. "...
-        scene.text(`You take the big dildo into your mouth with ease, making Tatiana raise a brow. "Easy ${((s as any).pcs_nickname || '')}! Just… play with it. This isn't a competition."`);
+        scene.text(`You take the big dildo into your mouth with ease, making Tatiana raise a brow. "Easy ${((st as any).pcs_nickname || '')}! Just… play with it. This isn't a competition."`);
         scene.text('Then, with the dildo firmly in your mouth, she turns it on and it begins pistoning down your throat, but this is only a distraction, as Tatiana pushes the fucking machines\' controls before you, and with a devilish smile, turns all of them on.');
       }
     }
@@ -1132,7 +1132,7 @@ function enterTeachFull(s: GameState, scene: SceneBuilder): void {
     scene.text('Your arousal grows little by little as your holes are pounded, Tatiana\'s magic quickly feeding into your mana and putting your nerves on fire, inducing intensities that <i>mundane</i> sex can\'t match, making your mind lose focus as something warm grows in your core.');
     scene.text('Finally, there is a sexual climax that makes you scream in delight as your magical core liberates your mana, causing it to course through your nerves, eliciting wave after wave of orgasmic bliss and causing you to collapse on the mat in a heaving mess.');
     scene.actions([
-      { label: 'Time for a lesson', goto: ['tatiana_lab', 'lesson' + ((s as any).tat_lesson_number ?? 0) + ''] },
+      { label: 'Time for a lesson', goto: ['tatiana_lab', 'lesson' + ((st as any).tat_lesson_number ?? 0) + ''] },
     ]);
   } },
     ]);
@@ -1153,18 +1153,18 @@ function enterLesson1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'spellList', 'addAvailableSpells', 'basicSpells');
-    qspCall(s, 'spellList', 'addAvailableSpells', 'healSpells');
+    qspCall(st, 'spellList', 'addAvailableSpells', 'basicSpells');
+    qspCall(st, 'spellList', 'addAvailableSpells', 'healSpells');
     scene.img('images/characters/city/tatiana/Tatianalesson.jpg');
     scene.text('Tatiana gets up with a jump and begins to slowly move her hands in a series of complex gestures accompanied with some weird words, and soon, rolling mist begins to fall through her fingers, quickly obscuring the vision in the room.');
-    // TODO-QSP: dynamic text: "Spooky isn't it? This is Fog <<$pcs_nickname>>, one of the most venerable and s...
-    scene.text(`"Spooky isn't it? This is Fog ${((s as any).pcs_nickname || '')}, one of the most venerable and simple spells. It's a favorite of the High Sidhe that used it in ancient ages for that <i>other wordly</i> scenery in their holdings. Today - thanks to The Veil - it has fallen into disuse, but it's useful for a quick and dirty combat distraction."`);
+    // TODO-QSP: dynamic text: "Spooky isn''t it? This is Fog <<$pcs_nickname>>, one of the most venerable and ...
+    scene.text(`"Spooky isn't it? This is Fog ${((st as any).pcs_nickname || '')}, one of the most venerable and simple spells. It's a favorite of the High Sidhe that used it in ancient ages for that <i>other wordly</i> scenery in their holdings. Today - thanks to The Veil - it has fallen into disuse, but it's useful for a quick and dirty combat distraction."`);
     scene.text('Tatiana dissolves the spell and makes a gesture for you to follow her to the lab, where she turns on a bunsen burner and proceeds to extend her hand over it, letting the flame burn the skin of her hand as the smell of burned flesh drifts through the lab.');
     // TODO-QSP: dynamic text: "Impressed <<$pcs_nickname>>? This is called… Pain Block! Yes, it sounds uncreat...
-    scene.text(`"Impressed ${((s as any).pcs_nickname || '')}? This is called… Pain Block! Yes, it sounds uncreative, but you'll find that most spells have fairly simple names, but beyond that little tidbit, this spell is one of the most useful out there, because beyond its mundane practicality to stop all pain sensation, it will do it <i>without eliminating the touch sense OR get you groogy</i>. Unfortunately, it can't be used in combat to eliminate systemic shock, but you can't have everything… <i>yet</i>."`);
+    scene.text(`"Impressed ${((st as any).pcs_nickname || '')}? This is called… Pain Block! Yes, it sounds uncreative, but you'll find that most spells have fairly simple names, but beyond that little tidbit, this spell is one of the most useful out there, because beyond its mundane practicality to stop all pain sensation, it will do it <i>without eliminating the touch sense OR get you groogy</i>. Unfortunately, it can't be used in combat to eliminate systemic shock, but you can't have everything… <i>yet</i>."`);
     scene.text('After saying this, Tatiana finally withdraws her hand, which has been burned down to the bone, and concentrates. The flesh quickly begins to regrow around her hand.');
-    // TODO-QSP: dynamic text: "How do you heal wounds? That's something for the next lesson <<$pcs_nickname>>....
-    scene.text(`"How do you heal wounds? That's something for the next lesson ${((s as any).pcs_nickname || '')}."`);
+    // TODO-QSP: dynamic text: "How do you heal wounds? That''s something for the next lesson <<$pcs_nickname>>...
+    scene.text(`"How do you heal wounds? That's something for the next lesson ${((st as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'End of lesson', goto: ['tatiana_lab', 'start'] },
     ]);
@@ -1179,7 +1179,7 @@ function enterLesson2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'spellList', 'addAvailableSpells', 'healSpells');
   scene.img('images/characters/city/tatiana/Tatianalesson.jpg');
   scene.text('Juggling the talisman\'s fragment between her fingers, Tatiana seems ready for your next lesson, and without missing a beat, she shows you some new magical passes that causes a second Tatiana to appear.');
-  // TODO-QSP: dynamic text: "Neat trick, isn't it <<$pcs_nickname>>? Now look at this!"
+  // TODO-QSP: dynamic text: "Neat trick, isn''t it <<$pcs_nickname>>? Now look at this!"
   scene.text(`"Neat trick, isn't it ${((s as any).pcs_nickname || '')}? Now look at this!"`);
   scene.text('The cheerful pair then do some coordinated dance moves before one of them bops your nose and disappears. Was that an illusion? You haven\'t sensed anything beyond a magical tingle.');
   scene.text('"This is a combat illusion called Clone. It will duplicate your moves, but will only stay within a few meters of you. With some luck, it will take a hit meant for you. And now to the fun part!"');
@@ -1236,7 +1236,7 @@ function enterLesson5(s: GameState, scene: SceneBuilder): void {
   scene.text('Tatiana doesn\'t wait for you to recover before placing a folder into your hands. Inside it is several photocopies full of magic theory for a spell, accompanied with photos showing hand gestures and a DVD.');
   scene.text('"The old geezers will scream bloody murder if they see this <i>disrespect</i>, but, hey, they aren\'t here! Those files will help you learn the more advanced Multi Clone spell. There isn\'t a great mystery about it. It\'s a combat spell that creates four clones of you that copy your movements and will disappear if touched, taking any hits meant for you."');
   scene.text('You observe the files, and can\'t negate that something is wrong with the presentation. However, Tatiana doesn\'t seem bothered and continues talking.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>> we are reaching the point where I can't teach you anything el...
+  // TODO-QSP: dynamic text: "<<$pcs_nickname>> we are reaching the point where I can''t teach you anything e...
   scene.text(`"${((s as any).pcs_nickname || '')} we are reaching the point where I can't teach you anything else, but this little spell here is going to be awesome. This is called Heal, your first and probably last combat healing spell. Yes. you can treat your - and only yours - wounds when somebody is trying to kill you! However, don't get cocky. This spell is less mana intense than Cure Wounds, but it isn't a substitute for that one, so if you aren't in a life-or-death situation choose the latter.`);
   // TODO-QSP: end
   scene.actions([
@@ -1322,10 +1322,10 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
     scene.text('She thinks about it for a moment and then says, "Well, I have a couple of ideas, but no sense guessing when I can just magically examine you."');
     scene.text('She hops up and says, "Get undressed and lie down on the couch."');
     (s as any).sucpcinfo = 2;
-    return;
     scene.actions([
-      { label: 'Undress and lie down', goto: ['succubus', 'tatianaask'] },
-    ]);
+{ label: 'Undress and lie down', goto: ['succubus', 'tatianaask'] },
+]);
+    return;
   }
   if (((s as any).tatisucsex ?? 0) === 0  &&  ((s as any).tatisucsexask ?? 0) !== ((s as any).daystart ?? 0)) {
     qspGoto(s, 'tatiana_lab', 'Tatianasucsexask');
@@ -1339,21 +1339,21 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask her to repeat what she knows about Succubae', goto: ['succubus', 'tatianaask'] },
     { label: 'Ask her if she has learned anything new about Succubae', handler: (st: GameState) => {
-    if (((s as any).sucinfoday ?? 0) !== 0  &&  ((s as any).sucinfoday ?? 0) <= ((s as any).daystart ?? 0)) {
-      if (((s as any).sucpcinfo ?? 0) === 4  &&  ((s as any).succublvl ?? 0) >= 2) {
+    if (((st as any).sucinfoday ?? 0) !== 0  &&  ((st as any).sucinfoday ?? 0) <= ((st as any).daystart ?? 0)) {
+      if (((st as any).sucpcinfo ?? 0) === 4  &&  ((st as any).succublvl ?? 0) >= 2) {
         scene.text('"Actually, I have gotten some more information about Succubae."');
         scene.text('"I heard from one of my mage contacts, in Sydney, Australia of all places, and he passed on some more details."');
-        (s as any).sucpcinfo = 5;
-        (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
+        (st as any).sucpcinfo = 5;
+        (st as any).sucinfoday = ((st as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
         scene.actions([
           { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '1'] },
         ]);
       } else {
-        if (((s as any).sucpcinfo ?? 0) === 5) {
+        if (((st as any).sucpcinfo ?? 0) === 5) {
           scene.text('"Actually, I have gotten some more information about Succubae."');
           scene.text('"I heard from an old friend of mine who is now living in Morocco and actually has a Succubus for a lover. She said that after they had been together for some time, they discovered that, with her help, her Succubus lover learned something new."');
-          (s as any).sucpcinfo = 6;
-          (s as any).sucinfoday = ((s as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
+          (st as any).sucpcinfo = 6;
+          (st as any).sucinfoday = ((st as any).daystart ?? 0) + 10 + (Math.floor(Math.random() * 8) + 0);
           scene.actions([
             { label: 'Ask her to tell you', goto: ['succubus', 'tatianaask', '2'] },
           ]);
@@ -1396,11 +1396,11 @@ function enterTatianasucsexask(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'She answers:', handler: (st: GameState) => {
-    if ((!((s as any).tatisucsex ?? 0))) {
+    if ((!((st as any).tatisucsex ?? 0))) {
       scene.text('She gives you a wide eyed look before saying,');
-      if (((s as any).succublvl ?? 0) + ((s as any).TatianaSex ?? 0) < (Math.floor(Math.random() * 7) + 0)) {
-        // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_firstname>>, I just don't have the time now."
-        scene.text(`"I'm sorry, ${((s as any).pcs_firstname || '')}, I just don't have the time now."`);
+      if (((st as any).succublvl ?? 0) + ((st as any).TatianaSex ?? 0) < (Math.floor(Math.random() * 7) + 0)) {
+        // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_firstname>>, I just don''t have the time now."
+        scene.text(`"I'm sorry, ${((st as any).pcs_firstname || '')}, I just don't have the time now."`);
         scene.actions([
           { label: 'Move on to something else', goto: ['tatiana_lab', 'Tatiana'] },
         ]);
@@ -1412,16 +1412,16 @@ function enterTatianasucsexask(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (((s as any).tatisucsexday ?? 0) <= ((s as any).daystart ?? 0)) {
-        if (1 + (((s as any).succublvl ?? 0) * 2) + ((s as any).tatisucsex ?? 0) < (Math.floor(Math.random() * 20) + 1)) {
-          // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>, I just don't have the time now."
-          scene.text(`"I'm sorry, ${((s as any).pcs_nickname || '')}, I just don't have the time now."`);
+      if (((st as any).tatisucsexday ?? 0) <= ((st as any).daystart ?? 0)) {
+        if (1 + (((st as any).succublvl ?? 0) * 2) + ((st as any).tatisucsex ?? 0) < (Math.floor(Math.random() * 20) + 1)) {
+          // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>, I just don''t have the time now."
+          scene.text(`"I'm sorry, ${((st as any).pcs_nickname || '')}, I just don't have the time now."`);
           scene.actions([
             { label: 'Move on to something else', goto: ['tatiana_lab', 'Tatiana'] },
           ]);
         } else {
           // TODO-QSP: dynamic text: She gives you a "come hither" smile and says, "I would love to, <<$pcs_nickname>...
-          scene.text(`She gives you a "come hither" smile and says, "I would love to, ${((s as any).pcs_nickname || '')}!"`);
+          scene.text(`She gives you a "come hither" smile and says, "I would love to, ${((st as any).pcs_nickname || '')}!"`);
           scene.text('You both head toward the couch, stripping as you go.');
           scene.text('Once there, you both sit down facing each other, and she looks at you in anticipation.');
           scene.actions([
@@ -1429,14 +1429,14 @@ function enterTatianasucsexask(s: GameState, scene: SceneBuilder): void {
           ]);
         }
       } else {
-        if (((s as any).tatisucsexday ?? 0) - ((s as any).daystart ?? 0) > 1) {
-          (s as any).scsextmp = 'days';
+        if (((st as any).tatisucsexday ?? 0) - ((st as any).daystart ?? 0) > 1) {
+          (st as any).scsextmp = 'days';
         } else {
-          (s as any).scsextmp = 'day';
+          (st as any).scsextmp = 'day';
         }
         scene.text('She looks at you with a sad smile and says,');
-        // TODO-QSP: dynamic text: "I'm sorry, <<$pcs_nickname>>, I need at least <<tatisucsexday - daystart>> more...
-        scene.text(`"I'm sorry, ${((s as any).pcs_nickname || '')}, I need at least ${((s as any).tatisucsexday ?? '') - ((s as any).daystart ?? '')} more ${((s as any).scsextmp || '')}."`);
+        // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>, I need at least <<tatisucsexday - daystart>> mor...
+        scene.text(`"I'm sorry, ${((st as any).pcs_nickname || '')}, I need at least ${((st as any).tatisucsexday ?? '') - ((st as any).daystart ?? '')} more ${((st as any).scsextmp || '')}."`);
         scene.actions([
           { label: 'Move on to something else', goto: ['tatiana_lab', 'Tatiana'] },
         ]);
@@ -1501,10 +1501,10 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
     scene.text('She stares at you for several seconds, then demands, "What the hell happened to you!?!?"');
     scene.text('You start to answer her when she holds up her hand and says, "Wait, come sit on the couch and tell me."');
     scene.text('She turns away from you and walks toward the couch.');
-    return;
     scene.actions([
-      { label: 'Follow her', goto: ['tatiana_lab', 'Tatianasuctalk'] },
-    ]);
+{ label: 'Follow her', goto: ['tatiana_lab', 'Tatianasuctalk'] },
+]);
+    return;
   } else {
     if (((s as any).sucpcinfo ?? 0) >= 6  &&  ((s as any).sucskill ?? 0) < 3  &&  ((s as any).sctrainprep ?? 0) === 1) {
       if (((s as any).tatisucsexday ?? 0) > ((s as any).daystart ?? 0)  &&  ((s as any).tatisucsexday ?? 0) - 5 >= ((s as any).daystart ?? 0)) {
@@ -1512,20 +1512,19 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><b>Tatiana</b></center>');
         scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
         scene.text('You attempt to enter Tatiana\'s lab, but an invisible barrier stops you. Tatiana apparently heard you as she rushes over and says, "What\'s wrong? Do we need to cancel?"');
-        return;
         scene.actions([
-          { label: 'Yes, I need to cancel', handler: (st: GameState) => {
+{ label: 'Yes, I need to cancel', handler: (st: GameState) => {
     scene.text('"Are you sure?"');
     scene.actions([
       { label: 'Yes, I\'m sure', handler: (st: GameState) => {
-    if (((s as any).tatisucsexday ?? 0) === ((s as any).daystart ?? 0) + 7) {
-      (s as any).sctrainprep = 0;
-      qspCall(s, 'money', 'earn', 5000);
-      // TODO-QSP: dynamic text: "Ok, good thing I hadn't bought anything yet." and she hands you back the <<$fun...
+    if (((st as any).tatisucsexday ?? 0) === ((st as any).daystart ?? 0) + 7) {
+      (st as any).sctrainprep = 0;
+      qspCall(st, 'money', 'earn', 5000);
+      // TODO-QSP: dynamic text: "Ok, good thing I hadn''t bought anything yet." and she hands you back the <<$fu...
       scene.text(`"Ok, good thing I hadn't bought anything yet." and she hands you back the ${qspFunc(s, 'money', 'string_profit', 5000)} before going back to her studying.`);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 3;
-      (s as any).sctrainprep = (-1);
+      (st as any).minut = ((st as any).minut ?? 0) + 3;
+      (st as any).sctrainprep = (-1);
       scene.text('"Ok, I\'ll dump the "battery" potion."');
       scene.text('With that, she walks over to her workbench and dumps the contents of several beakers into a barrel that flairs with magic as she does so.');
     }
@@ -1540,19 +1539,20 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     ]);
-  } },
-          { label: 'No…', handler: (st: GameState) => {
+  } },,
+{ label: 'No…', handler: (st: GameState) => {
     scene.text('You say, "No, I just wanted to see you."');
-    // TODO-QSP: dynamic text: She answers, "That's sweet, but I can't have you distracting me, come back all c...
-    scene.text(`She answers, "That's sweet, but I can't have you distracting me, come back all charged up in ${((s as any).tatisucsexday ?? '') - ((s as any).daystart ?? '')} days!"`);
+    // TODO-QSP: dynamic text: She answers, "That''s sweet, but I can''t have you distracting me, come back all...
+    scene.text(`She answers, "That's sweet, but I can't have you distracting me, come back all charged up in ${((st as any).tatisucsexday ?? '') - ((st as any).daystart ?? '')} days!"`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspGoto(s, 'city_center', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspGoto(st, 'city_center', '');
   } },
     ]);
   } },
-        ]);
+]);
+        return;
       } else {
         if (((s as any).tatisucsexday ?? 0) > ((s as any).daystart ?? 0)  &&  ((s as any).tatisucsexday ?? 0) - 5 < ((s as any).daystart ?? 0)) {
           if (((s as any).tatisucsexday ?? 0) - ((s as any).daystart ?? 0) > 1) {
@@ -1560,15 +1560,15 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
           } else {
             (s as any).scsextmp = 'day';
           }
-          // TODO-QSP: dynamic text: You attempt to enter Tatiana's lab, but an invisible barrier stops you. Tatiana ...
+          // TODO-QSP: dynamic text: You attempt to enter Tatiana''s lab, but an invisible barrier stops you. Tatiana...
           scene.text(`You attempt to enter Tatiana's lab, but an invisible barrier stops you. Tatiana apparently heard you as she shouts from across the lab, "I've already taken the first potion, so I can't come anywhere near you, come back all charged up in ${((s as any).tatisucsexday ?? '') - ((s as any).daystart ?? '')} ${((s as any).scsextmp || '')}!"`);
-          return;
           scene.actions([
-            { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspGoto(s, 'city_center', '');
+{ label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspGoto(st, 'city_center', '');
   } },
-          ]);
+]);
+          return;
         } else {
           if (((s as any).tatisucsexday ?? 0) === ((s as any).daystart ?? 0)  ||  ((s as any).tatisucsexday ?? 0) === ((s as any).daystart ?? 0) - 1) {
             qspCall(s, 'stat', '');
@@ -1583,10 +1583,10 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
               scene.text('It tastes like strawberry syrup.');
               scene.text('This time you\'re ready when Tatiana lunges at you, and you resume kissing as you lead her toward the couch while she is stripping both your clothes off and you feel a large amount of your stored energy being released into your body.');
               scene.text('Once there, you both sit down facing each other. She looks at you with burning lust and says, "Do it!"');
-              return;
               scene.actions([
-                { label: 'Proceed', goto: ['succubus', 'tatianasex'] },
-              ]);
+{ label: 'Proceed', goto: ['succubus', 'tatianasex'] },
+]);
+              return;
             } else {
               if (((s as any).sucexcess ?? 0) < 100  &&  ((s as any).succhungry ?? 0) > -2  &&  ((s as any).tatisucsexday ?? 0) === ((s as any).daystart ?? 0)) {
                 scene.text('She then says, "Damn! You don\'t have enough reserve <i>or</i> stored energy! Run over to the Park and find some robbers or something, then get back here tomorrow!"');
@@ -1603,19 +1603,19 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
                 }
               }
             }
-            return;
             scene.actions([
-              { label: 'Leave', handler: (st: GameState) => {
+{ label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['city_center', ''] },
-            ]);
+]);
+            return;
           } else {
             scene.text('The barrier is down when you get to the lab, and Tatiana calls from across the room, "You\'re too late, I had to release the energy, and we\'ll need to start over."');
             (s as any).sctrainprep = (-1);
-            return;
             scene.actions([
-              { label: 'Continue', goto: ['tatiana_lab', 'start'] },
-            ]);
+{ label: 'Continue', goto: ['tatiana_lab', 'start'] },
+]);
+            return;
           }
         }
       }
@@ -1630,7 +1630,7 @@ function enterSuctraining(s: GameState, scene: SceneBuilder): void {
 function enterMissions(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Tatiana</b></center>');
   scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
-  (s as any).temp_rand = Math.floor(Math.random() * 3) + 1;
+  (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
   if ((!((s as any).TatianaMissionQW ?? 0))) {
     (s as any).TatianaMissionQW = 1;
     (s as any).TatianaMissionDay = ((s as any).daystart ?? 0);
@@ -1684,7 +1684,7 @@ function enterMissions(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_rand ?? 0) === 2) {
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, glad you're here." Tatiana smiles at you. "What do you...
+        // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, glad you''re here." Tatiana smiles at you. "What do yo...
         scene.text(`"Hello ${((s as any).pcs_nickname || '')}, glad you're here." Tatiana smiles at you. "What do you say? Feel ready for a mission?"`);
         scene.actions([
           { label: 'Sure, let\'s do this', goto: ['tatiana_missions', 'start'] },
@@ -1780,20 +1780,20 @@ function enterAddSMS(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['q'] = 'Add Tatiana to your contacts';
   qspCall(s, 'SMStext_builder', 'start');
   // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
-  if (((s as any).locArgs?.[1] ?? 0) % 10 === 3) {
+  if (Number((s as any).locArgs?.[1] ?? 0) % 10 === 3) {
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a2']
     (s as any).tatiana_spell_reminder = 21;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) % 10 > 0) {
+    if (Number((s as any).locArgs?.[1] ?? 0) % 10 > 0) {
       // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a1']
       (s as any).tatiana_spell_reminder = 21;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) / 10 % 10 > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) / 10 % 10 > 0) {
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b']
     (s as any).tatiana_succubus_reminder = 21;
   }
-  if (((s as any).locArgs?.[1] ?? 0) / 100 % 10 > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) / 100 % 10 > 0) {
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['c']
     (s as any).tatiana_mission_reminder = 21;
   }
@@ -1802,13 +1802,13 @@ function enterAddSMS(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'SMStext_builder', 'add_sms', 'A176');
   qspCall(s, 'SMStext_builder', 'end');
-  if (((s as any).locArgs?.[1] ?? 0) % 10 > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) % 10 > 0) {
     (s as any).tatiana_spell_reminder = 21;
   }
-  if (((s as any).locArgs?.[1] ?? 0) / 10 % 10 > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) / 10 % 10 > 0) {
     (s as any).tatiana_succubus_reminder = 21;
   }
-  if (((s as any).locArgs?.[1] ?? 0) / 100 % 10 > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) / 100 % 10 > 0) {
     (s as any).tatiana_mission_reminder = 21;
   }
   // TODO-QSP: end

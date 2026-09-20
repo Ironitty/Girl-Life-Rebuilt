@@ -3,39 +3,39 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).TatQuality = 3;
     (s as any).TatPrice = 8050;
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).TatQuality = 3;
       (s as any).TatPrice = 8050;
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).TatQuality = 3;
         (s as any).TatPrice = 8050;
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).TatQuality = 3;
           (s as any).TatPrice = 8050;
         } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
             (s as any).TatQuality = 3;
             (s as any).TatPrice = 8050;
           } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
               (s as any).TatQuality = 3;
               (s as any).TatPrice = 8050;
             } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
                 (s as any).TatQuality = 3;
                 (s as any).TatPrice = 8050;
               } else {
-                if (((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
                   (s as any).TatQuality = 3;
                   (s as any).TatPrice = 8050;
                 } else {
-                  if (((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
                     (s as any).TatQuality = 3;
                     (s as any).TatPrice = 8050;
                   }

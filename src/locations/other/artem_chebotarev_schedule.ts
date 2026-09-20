@@ -11,32 +11,32 @@ function enterIsHome(s: GameState, scene: SceneBuilder): void {
 
 function enterForce(s: GameState, scene: SceneBuilder): void {
   (s as any).artemLoc = 0;
-  if (((s as any).locArgs?.[1] ?? 0) === 'home_hallway') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'home_hallway') {
     (s as any).artemLoc = 1;
     ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
     ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_hallway';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'home_bedroom') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'home_bedroom') {
       (s as any).artemLoc = 2;
       ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
       ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_bedroom';
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'home_bathroom') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'home_bathroom') {
         (s as any).artemLoc = 3;
         ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
         ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_bathroom';
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'home_kitchen') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'home_kitchen') {
           (s as any).artemLoc = 4;
           ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
           ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_kitchen';
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'home_livingroom') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'home_livingroom') {
             (s as any).artemLoc = 5;
             ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
             ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_livingroom';
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'home_parents') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'home_parents') {
               (s as any).artemLoc = 6;
               ((s as any).locat = (s as any).locat ?? {})['A2_rand1'] = ((s as any).daystart ?? 0);
               ((s as any).locat = (s as any).locat ?? {})['A2_save1'] = 'home_parents';

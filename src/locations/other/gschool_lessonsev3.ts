@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterLiterature(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
-    (s as any).scooltiperand = Math.floor(Math.random() * 14) + 1;
+    (s as any).scooltiperand = (Math.floor(Math.random() * 14) + 1);
     if (((s as any).scooltiperand ?? 0) === 1) {
       scene.img('images/characters/shared/headshots_main/big4.jpg');
       scene.text('During a rare moment of quietness, you take the opportunity to stretch and look around the room. Your attention settles on Igor, who is working quietly by himself, which is an odd sight as he\'s usually attached to Dimka\'s hip. As you continue to watch him, it dawns on you that, without his popular friend around, no one really wants to talk or hang out with him. Maybe those rumors of Dimka being his only friend are true?');
@@ -35,12 +35,12 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Defend Igor', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', 'A4', 2);
-    qspCall(s, 'npc_relationship', 'modify', 'A140', (-1));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A4', 2);
+    qspCall(st, 'npc_relationship', 'modify', 'A140', (-1));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
     scene.img('images/characters/shared/headshots_main/big140.jpg');
     scene.text('"You\'ve made your point, Lizaveta," you sigh. "Just leave him alone."');
     scene.text('"Are you really defending him right now?" She shoots you a disgusted look. "Someone told me that they heard Dimka and Igor call my friend a slut!"');
@@ -57,8 +57,8 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Say nothing and look away', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A4', (-1));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A4', (-1));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big4.jpg');
     scene.text('You quickly look away and spend the rest of class trying to avoid eye contact with Igor.');
     scene.actions([
@@ -66,10 +66,10 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Join in', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A4', (-3));
-    qspCall(s, 'npc_relationship', 'modify', 'A140', 1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A4', (-3));
+    qspCall(st, 'npc_relationship', 'modify', 'A140', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big4.jpg');
     scene.text('"It is pretty weird how he always follows Dimka around," you chime in.');
     scene.text('Lizaveta is quick to agree, and together with the other girls, you continue to mock him until Ms. Braakman finally steps in to put an end to it.');
@@ -96,15 +96,15 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
               scene.text('Before you can answer the question Ms. Braakman poses, you have to clean the blackboard, but accidentally drop the cloth. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
               if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-                qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 8) + 8);
+                qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
                 scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so are both your holes leaking cum that\'s dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Ms. Braakman having no idea why as she tries to shout for order.');
               } else {
                 if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
-                  qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 5) + 8);
+                  qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 5) + 8));
                   scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from your pussy and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Ms. Braakman having no idea why as she tries to shout for order.');
                 } else {
                   if (((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-                    qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 8) + 8);
+                    qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
                     scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from between your ass cheeks and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Ms. Braakman having no idea why as she tries to shout for order.');
                   }
                 }
@@ -112,7 +112,7 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).pantyworntype ?? 0) !== 'none') {
                 qspCall(s, 'arousal', 'flash', (-5));
-                qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 4) + 1);
+                qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 4) + 1));
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/pavlovsk/school/events/scoolrand_4_1.jpg');
                 scene.text('When you walk up to the blackboard to answer a question, you trip and fall. Somehow, you manage to fall in such a way that your skirt ends up on your back and the whole class can see your panty-clad ass. You quickly get up and straighten your clothes with a bright red face, trying to ignore the hollering from your classmates. You can tell that most of the guys and even a few girls definitely appreciated your show, even if it was involuntarily.');
@@ -150,8 +150,8 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
                   { label: 'Get to work', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/literature/events/roman_touch.mp4');
     scene.text('As you work, you feel his leg brush against yours. You think nothing of it at first, assuming it was just an accident, but then you feel his hand on your knee before it slowly moves up to your thigh. You look over at him, but he\'s still scribbling in his notebook as if nothing is happening.');
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Push his hand away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -160,9 +160,9 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Push his hand away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', 'A157', (-2));
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A157', (-2));
     scene.img('images/locations/pavlovsk/school/classroom/literature/events/rejection.jpg');
     scene.text('Knowing how aggressive he can be, you gently push his hand away and hope that doesn\'t provoke him. From the corner of your eye, you catch him glaring at you, his eyes narrowed and jaw clenched in anger.');
     scene.text('You prepare yourself for what he\'s going to say, but to your surprise, he just goes back to drawing in his notebook and keeps his hands to himself.');
@@ -174,19 +174,19 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Spread your legs', handler: (st: GameState) => {
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_finger', 5, 'no_orgasm_msg');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'fame', 'pav', 'sex', 1);
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'npc_relationship', 'modify', 'A157', 1);
-    qspCall(s, 'stat', '');
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_finger', 5, 'no_orgasm_msg');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'fame', 'pav', 'sex', 1);
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'npc_relationship', 'modify', 'A157', 1);
+    qspCall(st, 'stat', '');
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.img('images/locations/pavlovsk/school/classroom/literature/events/heavy_petting.mp4');
       scene.text('You spread your legs for him, and without hesitation, Roman\'s hand dips between your legs, his fingers trailing along your inner thigh until he\'s pressing against your pussy through your panties. You shiver with anticipation as he teasingly traces a finger along the outline of your lips. Slowly, he begins massaging circles around your clit, and in the heat of the moment, you let out a soft moan that catches the attention of the girl sitting a few feet away. You quickly drape your arm over your lap and lean forward to obscure her view. You give her a reassuring smile and hope she\'ll leave it at that, but she continues to stare, convinced that something is happening.');
       scene.text('"Don\'t worry, I\'m--" Your words get caught in your throat as Roman starts rubbing your sensitive button even harder. "I-I\'m fine…" you finally manage to say and the girl gives you one last look before slowly turning around, hopefully none the wiser.');
       // TODO-QSP: dynamic text: "Something wrong, <<$pcs_nickname>>?" Roman asks and you glance over at the gopn...
-      scene.text(`"Something wrong, ${((s as any).pcs_nickname || '')}?" Roman asks and you glance over at the gopnik to find him smiling wickedly at you. Without warning, he slides your panties aside and plunges two fingers into your wet pussy. Stifling a gasp, you can only nod as he crooks his fingers slightly, finding your sweet spot with ease. Biting your lip, you begin to rock yourself on his hand while his thumb teases your clit. You don't know when you closed your eyes, but when you open them again you notice Roman watching you intently, an amused smirk on his face as you continue to fuck yourself on his fingers.`);
+      scene.text(`"Something wrong, ${((st as any).pcs_nickname || '')}?" Roman asks and you glance over at the gopnik to find him smiling wickedly at you. Without warning, he slides your panties aside and plunges two fingers into your wet pussy. Stifling a gasp, you can only nod as he crooks his fingers slightly, finding your sweet spot with ease. Biting your lip, you begin to rock yourself on his hand while his thumb teases your clit. You don't know when you closed your eyes, but when you open them again you notice Roman watching you intently, an amused smirk on his face as you continue to fuck yourself on his fingers.`);
       scene.text('You soon feel your body tense up as the waves of your orgasm wash over you. You ride out the pleasure in silence until it finally passes, leaving you light-headed and dizzy. You look over at Roman and find him admiring his fingers, wet and shining with your juices.');
       scene.text('"Well?" he asks, and you realize that he needs to clean them off. Readjusting your soaked panties, you get up to get a tissue, but Roman laughs and shakes his head. Without warning, he uses your skirt to clean up. "This\'ll do."');
     } else {
@@ -194,7 +194,7 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
       scene.text('You spread your legs for him, and without hesitation, Roman\'s hand dips between your legs, his fingers trailing along your inner thigh until he\'s pressing against your bare pussy. You shiver with anticipation as he teasingly traces a finger along your lips. Slowly, he begins massaging circles around your clit, and in the heat of the moment, you let out a soft moan that catches the attention of the girl sitting a few feet away. You quickly drape your arm over your lap and lean forward to obscure her view. You give her a reassuring smile and hope she\'ll leave it at that, but she continues to stare, convinced that something is happening.');
       scene.text('"Don\'t worry, I\'m--" Your words get caught in your throat as Roman starts rubbing your sensitive button even harder. "I-I\'m fine…" You finally manage to say and the girl gives you one last look before slowly turning around, hopefully none the wiser.');
       // TODO-QSP: dynamic text: "Something wrong, <<$pcs_nickname>>?" Roman asks and you glance over at the gopn...
-      scene.text(`"Something wrong, ${((s as any).pcs_nickname || '')}?" Roman asks and you glance over at the gopnik to find him smiling wickedly at you. Without warning, he plunges two fingers into your wet pussy. Stifling a gasp, you can only nod as he crooks his fingers slightly, finding your sweet spot with ease. You bite your lip as you begin to rock yourself on his hand while his thumb teases your clit. You don't know when you closed your eyes but when you open them again, you notice Roman watching you intently, an amused smirk on his face as you continue to fuck yourself on his fingers.`);
+      scene.text(`"Something wrong, ${((st as any).pcs_nickname || '')}?" Roman asks and you glance over at the gopnik to find him smiling wickedly at you. Without warning, he plunges two fingers into your wet pussy. Stifling a gasp, you can only nod as he crooks his fingers slightly, finding your sweet spot with ease. You bite your lip as you begin to rock yourself on his hand while his thumb teases your clit. You don't know when you closed your eyes but when you open them again, you notice Roman watching you intently, an amused smirk on his face as you continue to fuck yourself on his fingers.`);
       scene.text('You soon feel your body tense up as the waves of your orgasm wash over you. You ride out the pleasure in silence until it finally passes, leaving you light-headed and dizzy. You look over at Roman and find him admiring his fingers, wet and shining with your juices.');
       scene.text('"Well?" he asks, and you realize that he needs to clean them off. Readjusting your uniform, you get up to get a tissue, but Roman laughs and shakes his head. Without warning, he uses your skirt to clean up. "This\'ll do."');
     }
@@ -208,7 +208,7 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).scooltiperand ?? 0) === 7) {
                   scene.img('images/locations/pavlovsk/school/classroom/literature/events/humpday.mp4');
-                  // TODO-QSP: dynamic text: You're standing at your desk when Anushka suddenly appears behind you, grinning ...
+                  // TODO-QSP: dynamic text: You''re standing at your desk when Anushka suddenly appears behind you, grinning...
                   scene.text(`You're standing at your desk when Anushka suddenly appears behind you, grinning wildly. "Guess what day it is today is, ${((s as any).pcs_nickname || '')}."`);
                   scene.text('Before you can react, she grabs you by the waist and pulls you close, your ass now pressed against her hips as she starts roughly thrusting against you. "It\'s hump day!"');
                   qspCall(s, 'willpower', 'exhib', 'resist');
@@ -221,11 +221,11 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
                   } else {
                     scene.actions([
                       { label: 'Push her away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A144', (-2));
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A144', (-2));
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('Unamused, you push her off you.');
     scene.text('"I was only fucking around! Christ, you\'re no fun," she says with a scowl.');
@@ -237,13 +237,13 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
                   }
                   scene.actions([
                     { label: 'Go along with it', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
     scene.img('images/locations/pavlovsk/school/classroom/literature/events/humpday.mp4');
     scene.text('You smile and stick your ass out more, encouraging her to keep going. Before you know it, a few other students have gathered around to watch and laugh. Eventually, Arkadi takes out his phone and starts recording, which prompts a few other girls to squeeze into the frame and start humping each other.');
-    qspCall(s, 'arousal', 'foreplay', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -336,16 +336,16 @@ function enterLiterature(s: GameState, scene: SceneBuilder): void {
 
 function enterReading(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'grades', 'class_activity_attributes', 'school', 'lit', ((s as any).pcs_prcptn ?? 0));
-  qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 0));
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (3);
   scene.img('images/locations/pavlovsk/school/classroom/ask.jpg');
   scene.text('You raise your hand, and with a nod, Ms. Braakman lets you speak. You read the passage clearly without any mistakes, which earns you some praise.');
   // TODO-QSP: dynamic text: "Very nice, Miss <<$pcs_lastname>>," Ms. Braakman says with a small smile before...
   scene.text(`"Very nice, Miss ${((s as any).pcs_lastname || '')}," Ms. Braakman says with a small smile before continuing on with the lesson.`);
-  (s as any).scooltiperand = Math.floor(Math.random() * 4) + 1;
+  (s as any).scooltiperand = (Math.floor(Math.random() * 4) + 1);
   if (((s as any).scooltiperand ?? 0) === 1) {
     scene.img('images/characters/shared/headshots_main/big159.jpg');
-    // TODO-QSP: dynamic text: "Screw reading! <<$pcs_nickname>>'s mouth is better suited for sucking cock!" yo...
+    // TODO-QSP: dynamic text: "Screw reading! <<$pcs_nickname>>''s mouth is better suited for sucking cock!" y...
     scene.text(`"Screw reading! ${((s as any).pcs_nickname || '')}'s mouth is better suited for sucking cock!" you overhear someone say behind you and turn around to see Petia staring back at you. Unashamed, a perverted smile spreads across his face and you get the feeling he's undressing you with his eyes.`);
     qspCall(s, 'willpower', 'bj', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -357,13 +357,13 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Tell him he\'s right', handler: (st: GameState) => {
-    qspCall(s, 'fame', 'pav', 'sex', 2);
-    qspCall(s, 'willpower', 'bj', 'self', 'easy');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
+    qspCall(st, 'fame', 'pav', 'sex', 2);
+    qspCall(st, 'willpower', 'bj', 'self', 'easy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (1);
     scene.text('"You\'re right, and I\'m pretty damn good at it too!" you say with a playful smile. A few nearby students overhear you and start whispering amongst themselves, the girls being quick to bash you and the guys eagerly wanting to put your skills to the test.');
     scene.text('Before you know it, the whole class is stealing glances at you, some looking disgusted, others lustful. You\'re sure that by the end of the day, the whole school will know about how proud you are of your cocksucking skills.');
     scene.actions([
@@ -382,21 +382,21 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Tell him to fuck off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'npc_relationship', 'modify', 'A159', (-2));
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 1);
-    qspCall(s, 'npc_relationship', 'modify', 'A157', 1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'npc_relationship', 'modify', 'A159', (-2));
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A157', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'stat', '');
     scene.text('"Fuck off you fat, disgusting pig!" you shout, jaw clenched and eyes narrowed. As if he had been slapped across the face, Petia\'s expression falls and is replaced by a mix of surprise and fear as he cowers slightly under your heated gaze.');
     scene.text('"I was just joking…" he says quietly while sinking back into his seat.');
-    // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>> isn't fucking around!" Anushka marvels while giving you...
-    scene.text(`"Damn, ${((s as any).pcs_nickname || '')} isn't fucking around!" Anushka marvels while giving you a nod of approval.`);
+    // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>> isn''t fucking around!" Anushka marvels while giving yo...
+    scene.text(`"Damn, ${((st as any).pcs_nickname || '')} isn't fucking around!" Anushka marvels while giving you a nod of approval.`);
     scene.text('"Just hit that fat piece of shit! Nobody\'s going to care," Roman comments as he turns to face Petia with a scowl.');
     scene.text('"When are you going to realize that <i>nobody. Fucking. Likes. You</i>, you smelly fucking cunt?" Arkadi adds, his lips curled back in disgust.');
     scene.text('Before you know it, the three gopniks have zeroed in on the outcast, giving him a verbal lashing he\'ll spend all day recovering from.');
@@ -408,10 +408,10 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Join in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.text('You join the three gopniks and continue to mercilessly berate Petia until he\'s saved by Ms. Braakman telling everyone to get back to work.');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -431,18 +431,18 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Insult him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    (s as any).demerit = ((s as any).demerit ?? 0) + (5);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'willpower', 'misc', 'self', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    (st as any).demerit = ((st as any).demerit ?? 0) + (5);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.text('"You\'re too fat to even see your own dick, so what would you know about blowjobs besides being a pro at giving them?" you say with a mocking smile.');
     scene.text('There\'s a moment of stunned silence before laughter breaks out in the class. Watching Petia\'s face flush bright red as he struggles to defend himself fills you with a smug satisfaction.');
-    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>! I don't want to hear that kind of language in my class!...
-    scene.text(`"Miss ${((s as any).pcs_lastname || '')}! I don't want to hear that kind of language in my class!" Ms. Braakman shouts, barely managing to speak above the noise of the class.`);
+    // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>! I don''t want to hear that kind of language in my class...
+    scene.text(`"Miss ${((st as any).pcs_lastname || '')}! I don't want to hear that kind of language in my class!" Ms. Braakman shouts, barely managing to speak above the noise of the class.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -459,7 +459,7 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
       { label: 'Blush', handler: (st: GameState) => {
     scene.text('Your cheeks flush with heat at his words and you meekly look away, feeling his leering gaze burn into your neck. A few boys nearby snigger at his remark and some girls huff in disgust.');
     scene.text('As class continues and everyone\'s attention moves on, you wonder if your reaction might\'ve given the wrong impression…');
-    qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 2) + 0);
+    qspCall(st, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 2) + 0));
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -498,7 +498,7 @@ function enterReading(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetphone(s: GameState, scene: SceneBuilder): void {
-  (s as any).scooltiperand = Math.floor(Math.random() * 2) + 1;
+  (s as any).scooltiperand = (Math.floor(Math.random() * 2) + 1);
   if (((s as any).scooltiperand ?? 0) === 1) {
     scene.img('images/characters/pavlovsk/school/teacher/raven/angry.jpg');
     scene.text('With class over, you make your way to Ms. Braakman\'s desk to get your phone back. You stand there waiting for her to notice you, but she makes it a point to ignore you until you finally speak up and ask for your phone.');
@@ -513,16 +513,16 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Roll your eyes', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/raven/angry.jpg');
     scene.text('"Whatever. Can I just have my phone back?" you moan, crossing your arms over your chest as you roll your eyes impatiently.');
     scene.text('Ms. Braakman\'s expression darkens as she stands from her seat, the sound of the chair scraping against the floor cutting through the silence like a knife. As she comes out from behind her desk, you notice she\'s holding something in her hand. It isn\'t until she\'s standing a few steps away that you realize it\'s the long wooden pointer she uses during class.');
     // TODO-QSP: dynamic text: "I think that answers my question," she says, her voice low and oddly calm. "Tur...
-    scene.text(`"I think that answers my question," she says, her voice low and oddly calm. "Turn around, ${((s as any).pcs_lastname || '')}."`);
+    scene.text(`"I think that answers my question," she says, her voice low and oddly calm. "Turn around, ${((st as any).pcs_lastname || '')}."`);
     scene.actions([
       { label: 'Obey', handler: (st: GameState) => {
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.img('images/locations/pavlovsk/school/classroom/literature/punishment1.jpg');
       scene.text('Swallowing hard, you feel all your earlier arrogance disappear as you do as you\'re told and turn your back to her. No longer able to see what she\'s doing, your mind begins to race with ideas of what she plans to do to you. "Bend over in front of that desk," she orders and you obediently do so.');
       scene.text('"If only you behaved this well in class," she quips as you place your hands on the desk, leaning down only slightly so your ass doesn\'t stick out too much. Ms. Braakman is quick to notice this, and without hesitation, grabs you by the back of the neck and shoves your upper half down onto the desk, forcing you to present your ass to her. You wince as your cheek hits the hard surface, but Ms. Braakman doesn\'t seem to care as she flips your skirt up onto your back and pulls your panties down.');
@@ -531,12 +531,12 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up, <<$pcs_lastname>>. You don't want to be late to your next cl...
-    scene.text(`"Clean yourself up, ${((s as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling up your panties. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
+    // TODO-QSP: dynamic text: "Clean yourself up, <<$pcs_lastname>>. You don''t want to be late to your next c...
+    scene.text(`"Clean yourself up, ${((st as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling up your panties. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -551,12 +551,12 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up fast, <<$pcs_lastname>>. You don't want to be late to your ne...
-    scene.text(`"Clean yourself up fast, ${((s as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling your skirt back down. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
+    // TODO-QSP: dynamic text: "Clean yourself up fast, <<$pcs_lastname>>. You don''t want to be late to your n...
+    scene.text(`"Clean yourself up fast, ${((st as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling your skirt back down. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -565,10 +565,10 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 2, 'cheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'cheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment1.jpg');
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('"Hell no, I\'m not going to--" You\'re cut off as Ms. Braakman slaps you hard across your face. You look back at her in stunned silence as you cup your burning cheek.');
       scene.text('"I wasn\'t asking!" she warns, her lips curling into a scowl. "Now do as I said!"');
       scene.text('Your earlier arrogance quickly disappears as you stare into her cold, dark eyes and you quickly turn your back to her and await further instructions. "Bend over in front of that desk," she orders and you obediently do so.');
@@ -578,12 +578,12 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up, <<$pcs_lastname>>. You don't want to be late to your next cl...
-    scene.text(`"Clean yourself up, ${((s as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling up your panties. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
+    // TODO-QSP: dynamic text: "Clean yourself up, <<$pcs_lastname>>. You don''t want to be late to your next c...
+    scene.text(`"Clean yourself up, ${((st as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling up your panties. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -599,12 +599,12 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mind blanks and you don\'t understand what she means until you feel the cold, thin length of her pointer tap your bare ass. "The less you move, the quicker this will go," she warns.');
       scene.actions([
         { label: 'Accept your punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
     scene.img('images/locations/pavlovsk/school/classroom/literature/punishment2.jpg');
     scene.text('You inhale sharply as you feel the sting from the first strike. You instinctively flinch away from the pain, but Ms. Braakman makes sure to pull you back before continuing. You try to convince yourself that it doesn\'t hurt as much after the first few hits, but it does little to comfort you as the pointer whistles through the air and connects with your reddened ass for a seventh time.');
     scene.text('By the end of the caning, you\'ve collapsed completely onto the desk, your sensitive flesh throbbing and covered with bright red welts. Ms. Braakman steps back to admire her work, a twisted smile spreading across her face as she listens to your muffled whimpers.');
-    // TODO-QSP: dynamic text: "Clean yourself up fast, <<$pcs_lastname>>. You don't want to be late to your ne...
-    scene.text(`"Clean yourself up fast, ${((s as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling your skirt back down. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
+    // TODO-QSP: dynamic text: "Clean yourself up fast, <<$pcs_lastname>>. You don''t want to be late to your n...
+    scene.text(`"Clean yourself up fast, ${((st as any).pcs_lastname || '')}. You don't want to be late to your next class," she says, her voice dripping with smug satisfaction as your phone is dropped onto the desk you're still bent over. You slowly stand up straight and use the back of your hand to wipe away the tears before carefully pulling your skirt back down. Grabbing your phone, you keep your head hung low as you inch your way to the door and down the hallway to your next class, trying your best to hide the pain.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -645,7 +645,7 @@ function enterGetphone(s: GameState, scene: SceneBuilder): void {
 function enterEnglish(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
-    (s as any).scooltiperand = Math.floor(Math.random() * 12) + 1;
+    (s as any).scooltiperand = (Math.floor(Math.random() * 12) + 1);
     if (((s as any).scooltiperand ?? 0) === 1) {
       scene.img('images/characters/shared/headshots_main/big154.jpg');
       scene.text('During class, you overhear Radomir bragging to a group of girls about his musical talents, and they\'re hanging on his every word.');
@@ -676,14 +676,14 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Trick them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'exp_gain', 'persuas', 10);
-    qspCall(s, 'npc_relationship', 'modify', 'A20', (-1));
-    qspCall(s, 'npc_relationship', 'modify', 'A21', (-1));
-    qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'exp_gain', 'persuas', 10);
+    qspCall(st, 'npc_relationship', 'modify', 'A20', (-1));
+    qspCall(st, 'npc_relationship', 'modify', 'A21', (-1));
+    qspCall(st, 'npc_relationship', 'modify', 'A23', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/english/events/badlanguage.jpg');
     scene.text('"Sure, repeat after me: I\'m a worthless cock-sleeve who enjoys being a cum dump for all the boys in school."');
     scene.text('Lera and Lena seem surprised with how much you say, but you reassure them it\'s a really good insult; the worst of the worst. With a smile, they repeat the sentence, completely unaware of what they\'re actually saying.');
@@ -696,8 +696,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Don\'t help them', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A20', (-1));
-    qspCall(s, 'npc_relationship', 'modify', 'A21', (-1));
+    qspCall(st, 'npc_relationship', 'modify', 'A20', (-1));
+    qspCall(st, 'npc_relationship', 'modify', 'A21', (-1));
     scene.img('images/locations/pavlovsk/school/classroom/english/events/badlanguage.jpg');
     scene.text('"Yeah, I got nothing," you say. "Sorry."');
     scene.text('Lera and Lena don\'t seem happy and ignore you for the rest of the class.');
@@ -706,8 +706,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Help them', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A20', 1);
-    qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A20', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A21', 1);
     scene.img('images/locations/pavlovsk/school/classroom/english/events/badlanguage.jpg');
     scene.text('"Yeah, I got something..." you say with a dark smile. "Repeat after me: cock-juggling thunder cunt."');
     scene.text('Lera and Lena repeat the words a few times until they can say it with confidence. When they ask what the words mean, you explain it to them in Russian.');
@@ -733,7 +733,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
               scene.text('Vicky taps you on the shoulder and shows you a small makeup bag. "Want me to put some makeup on you? Katja showed me some tips last night and I\'m looking to try them out on someone," she asks. "Other than myself, that is!" she adds with a laugh.');
               scene.actions([
                 { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A15', (-1));
+    qspCall(st, 'npc_relationship', 'modify', 'A15', (-1));
     scene.img('images/locations/pavlovsk/school/classroom/english/events/badlanguage.jpg');
     scene.text('You apologize and decline her offer. She seems disappointed, but is quick to recover and ask another girl if she wants her makeup done.');
     scene.actions([
@@ -741,9 +741,9 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                 { label: 'Agree', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'npc_relationship', 'modify', 'A15', 1);
-    (s as any).pcs_makeup = 2;
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'npc_relationship', 'modify', 'A15', 1);
+    (st as any).pcs_makeup = 2;
     scene.img('images/locations/pavlovsk/school/classroom/english/events/eavesdrop.jpg');
     scene.text('You nod your head and Vicky is quick to place herself in front of you. She\'s hesitant at first, but as she works she starts to gain confidence. She doesn\'t do anything too crazy, and when you look at yourself in her little pocket mirror, you\'re quite pleased with the freshly applied light makeup.');
     scene.text('"Wow, this looks really good! You\'re a natural," you tell her. Her face lights up and she gives you a quick hug before returning to her seat.');
@@ -767,15 +767,15 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.actions([
                   { label: 'Intervene', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', 'A141', 1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A141', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/classroom/eavesdrop.jpg');
     scene.text('"You\'re all just jealous that Veronika actually has a talent that isn\'t dick riding," you say with a smirk. "It must really scare you knowing that she\'s going to do something with her life, while the rest of you will end up pregnant before your 21st birthday by a deadbeat who\'ll see you as nothing more than a warm, wet hole he can stick his dick in."');
     scene.text('The girls and even Veronika stare at you in stunned silence. Did you go too far? You start to worry you did something wrong, but then you notice the smallest hint of a smile on Veronika\'s face.');
     // TODO-QSP: dynamic text: "S-screw you, <<$pcs_nickname>>!" one of the girls stutters as she and her group...
-    scene.text(`"S-screw you, ${((s as any).pcs_nickname || '')}!" one of the girls stutters as she and her group quickly retreat with their tails between their legs.`);
+    scene.text(`"S-screw you, ${((st as any).pcs_nickname || '')}!" one of the girls stutters as she and her group quickly retreat with their tails between their legs.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -787,10 +787,10 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act 'Wait for the end of the lesson': gt 'gschool_lessons', ...
   } },
                 { label: 'Mock her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A141', (-1));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A141', (-1));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
     scene.img('images/characters/shared/headshots_main/big141.jpg');
     scene.text('You don\'t hesitate to join the other girls in mocking Veronika. She turns to glare at you, but other than that, she doesn\'t react to your or the other girl\'s insults. She really is an ice queen.');
     scene.actions([
@@ -816,8 +816,8 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/english/lenaselfie2.jpg');
     scene.text('She gets a reply almost at once and grins, then exchanges a few more texts before she turns around in her seat so people can\'t see what she\'s doing, though you still can. She pulls open her shirt and her bra to take a picture of her breasts.');
     scene.text('You don\'t know who it is, but she seems to be sexting with them. You wonder if Vitek knows about this...');
-    qspCall(s, 'arousal', 'erotic_nudity', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic_nudity', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -890,7 +890,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWorking(s: GameState, scene: SceneBuilder): void {
-  (s as any).scooltiperand = Math.floor(Math.random() * 4) + 1;
+  (s as any).scooltiperand = (Math.floor(Math.random() * 4) + 1);
   if (((s as any).scooltiperand ?? 0) === 1) {
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('Someone taps you on the shoulder and when you turn around, you see Radomir leaning towards you. "Hey, let me copy off you."');
@@ -905,11 +905,11 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'mood', 'lower', 'tiny');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', (-1));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'mood', 'lower', 'tiny');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', (-1));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
     scene.text('You frown and shake your head.');
     scene.text('"Seriously?" he asks, genuinely surprised by your refusal, which doesn\'t come as a surprise. He seems to think everyone is obsessed with him, especially the girls. His eyes narrow as he leans back in his seat. "Well, fuck you then!"');
     scene.text('You just shrug indifferently and get back to work.');
@@ -921,11 +921,11 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Hand over your work', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.text('Sighing, you hand over your paper and his smile widens. "Thanks, babe. You\'re a lifesaver," he says with a wink.');
     scene.text('While you wait for him to finish copying, you take a small break and doodle in your notebook.');
-    qspGoto(s, 'gschool_lessonsev3', 'help_radomir');
+    qspGoto(st, 'gschool_lessonsev3', 'help_radomir');
   } },
     ]);
   } else {
@@ -942,24 +942,24 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Give them the wrong answers', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/literature/work.jpg');
-    if (((s as any).pcs_persuas ?? 0) >= 20) {
-      qspCall(s, 'exp_gain', 'persuas', 10);
-      qspCall(s, 'npc_relationship', 'modify', 'A20', (-2));
-      qspCall(s, 'npc_relationship', 'modify', 'A21', (-2));
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    if (((st as any).pcs_persuas ?? 0) >= 20) {
+      qspCall(st, 'exp_gain', 'persuas', 10);
+      qspCall(st, 'npc_relationship', 'modify', 'A20', (-2));
+      qspCall(st, 'npc_relationship', 'modify', 'A21', (-2));
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
       scene.text('"I can help if you\'re having trouble," you suggest with a small smile.');
       scene.text('Lera and Lena exchange a wary look before nodding their heads. You then carefully feed them wrong answers and by the time you\'ve finished helping them, they\'re none the wiser.');
     } else {
-      qspCall(s, 'exp_gain', 'persuas', 15);
-      qspCall(s, 'npc_relationship', 'modify', 'A20', (-1));
-      qspCall(s, 'npc_relationship', 'modify', 'A21', (-1));
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+      qspCall(st, 'exp_gain', 'persuas', 15);
+      qspCall(st, 'npc_relationship', 'modify', 'A20', (-1));
+      qspCall(st, 'npc_relationship', 'modify', 'A21', (-1));
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
       scene.text('"I can help if you\'re having trouble," you suggest with a small smile.');
       scene.text('Lera and Lena exchange a wary look before nodding their heads. You try to convince them that your wrong answers are right, but you\'re unable to fool them and they realize what you\'re trying to do.');
       scene.text('With some unsettlingly specific threats of violence against you, they scare you off.');
@@ -973,22 +973,22 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Help them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/literature/work.jpg');
-    if (((s as any).class ?? 0)?.['school_eng_grade'] >= 60) {
-      qspCall(s, 'npc_relationship', 'modify', 'A20', 1);
-      qspCall(s, 'npc_relationship', 'modify', 'A21', 1);
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    if (((st as any).class ?? 0)?.['school_eng_grade'] >= 60) {
+      qspCall(st, 'npc_relationship', 'modify', 'A20', 1);
+      qspCall(st, 'npc_relationship', 'modify', 'A21', 1);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (1);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
       scene.text('"I can help you if you want?" you offer.');
       scene.text('"Yeah, you\'ve got good grades, so you know all about this stuff," Lena says with a grin.');
       scene.text('With a smile, you start going through the problems with them. They still struggle with certain parts, but you easily break down the words and explain everything in a way that they can understand.');
-      // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>. If it weren't for you, Lera would have never gotten t...
-      scene.text(`"Thanks ${((s as any).pcs_nickname || '')}. If it weren't for you, Lera would have never gotten this stuff right," Lena teases.`);
+      // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>. If it weren''t for you, Lera would have never gotten ...
+      scene.text(`"Thanks ${((st as any).pcs_nickname || '')}. If it weren't for you, Lera would have never gotten this stuff right," Lena teases.`);
       scene.text('"Me?! You\'re the one that was having trouble!" Lera objects with a smile.');
       scene.actions([
         { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
       ]);
     } else {
-      qspCall(s, 'mood', 'lower', 'small');
+      qspCall(st, 'mood', 'lower', 'small');
       scene.text('"I can help you if you want?" you offer. They give each other a wary look before reluctantly nodding their heads.');
       scene.text('You start off confident, but you soon realize that you don\'t understand English any more than they do.');
       scene.text('"Are you kidding me? Don\'t offer to help if you don\'t know shit!" Lena snaps as she snatches her paper back from you.');
@@ -1021,10 +1021,10 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Make up an excuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A3', (-2));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A3', (-2));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big3.jpg');
     scene.text('"Sorry, but I\'ve still got a lot to finish," you reply, pointing to your own work.');
     scene.text('Ivan\'s smile fades and he looks disappointed, but shrugs his shoulders and leaves you alone.');
@@ -1036,8 +1036,8 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Help him', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A3', 1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A3', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big3.jpg');
     scene.text('You smile and nod your head as Ivan sighs in relief and makes room for you to pull up a seat next to him. His mistakes are easy to fix, so you end up finishing rather quickly.');
     scene.actions([
@@ -1055,7 +1055,7 @@ function enterWorking(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelpRadomir(s: GameState, scene: SceneBuilder): void {
-  (s as any).scooltiperand = Math.floor(Math.random() * 4) + 1;
+  (s as any).scooltiperand = (Math.floor(Math.random() * 4) + 1);
   if (((s as any).scooltiperand ?? 0) === 1) {
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     qspCall(s, 'npc_relationship', 'modify', 'A154', 1);
@@ -1070,9 +1070,9 @@ function enterHelpRadomir(s: GameState, scene: SceneBuilder): void {
       scene.text('Radomir has had your paper for a while, so you turn around to see what\'s taking him so long, but he\'s busy talking to someone behind him. Your paper is sitting on his desk, and it looks like he hasn\'t finished copying your answers.');
       scene.actions([
         { label: 'Take your work back', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', (-2));
-    // TODO-QSP: dynamic text: Fed up, you take your paper back. He doesn't notice at first, but when he finall...
-    scene.text(`Fed up, you take your paper back. He doesn't notice at first, but when he finally turns back around and sees it's missing, he starts to look for it. "Hey ${((s as any).pcs_nickname || '')}, I think I lost your work."`);
+    qspCall(st, 'npc_relationship', 'modify', 'A154', (-2));
+    // TODO-QSP: dynamic text: Fed up, you take your paper back. He doesn''t notice at first, but when he final...
+    scene.text(`Fed up, you take your paper back. He doesn't notice at first, but when he finally turns back around and sees it's missing, he starts to look for it. "Hey ${((st as any).pcs_nickname || '')}, I think I lost your work."`);
     scene.text('"You didn\'t lose it. I took it back since you weren\'t doing anything with it," you reply.');
     scene.text('Hearing this, Radomir tries to explain that he\'d just turned round for a moment and asks you to give him another chance, but you refuse. Angry, he mutters something under his breath before leaving you alone.');
     scene.actions([
@@ -1080,8 +1080,8 @@ function enterHelpRadomir(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Wait for him to finish', handler: (st: GameState) => {
-    ((s as any).class = (s as any).class ?? {})['school_eng_weekly_grade_gain'] = ((s as any).class['school_eng_weekly_grade_gain'] ?? 0) - (10);
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 1);
+    ((st as any).class = (st as any).class ?? {})['school_eng_weekly_grade_gain'] = ((st as any).class['school_eng_weekly_grade_gain'] ?? 0) - (10);
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 1);
     scene.text('You decide to give him a chance to finish, but it isn\'t until class is coming to an end that he\'s done and gets up to turn in his own work.');
     scene.text('"Thanks for letting me copy!" he says as he walks by.');
     scene.text('"Hey, where\'s my work?" you ask, but he just shrugs his shoulders.');
@@ -1125,7 +1125,7 @@ function enterHelpRadomir(s: GameState, scene: SceneBuilder): void {
 function enterMusic(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
-    (s as any).scooltiperand = Math.floor(Math.random() * 22) + 1;
+    (s as any).scooltiperand = (Math.floor(Math.random() * 22) + 1);
     if (((s as any).scooltiperand ?? 0) === 1) {
       if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
         qspCall(s, 'arousal', 'flash', (-5));
@@ -1164,15 +1164,15 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
               scene.text('Before you can answer the question Mr. Vasilyev poses, you have to clean the blackboard, but accidentally drop the cloth used to wipe it clean. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
               if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-                qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 8) + 8);
+                qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
                 scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so are both your holes leaking cum that\'s dribbling down your thighs. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
               } else {
                 if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
-                  qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 5) + 8);
+                  qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 5) + 8));
                   scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from your pussy and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
                 } else {
                   if (((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-                    qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 8) + 8);
+                    qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
                     scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from between your ass cheeks and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
                   }
                 }
@@ -1223,14 +1223,14 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.actions([
                     { label: 'Tell on him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
-    qspCall(s, 'npc_relationship', 'modify', 'A154', (-5));
+    qspCall(st, 'willpower', 'misc', 'self', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (3);
+    qspCall(st, 'npc_relationship', 'modify', 'A154', (-5));
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('You straighten up. "Yes. Radomir is grabbing my breasts."');
     scene.text('Mr. Vasilyev gives Radomir a disapproving look. "Is this true?"');
@@ -1251,17 +1251,17 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.actions([
                     { label: 'Slap Radomir', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    (s as any).demerit = ((s as any).demerit ?? 0) + (10);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A154', (-3));
+    qspCall(st, 'willpower', 'misc', 'self', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    (st as any).demerit = ((st as any).demerit ?? 0) + (10);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A154', (-3));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Mr. Vasilyev and turn around and slap Radomir with all your force. Radomir recoils, his hand going to his cheek as students start murmuring about what happened and some laugh.');
-    // TODO-QSP: dynamic text: Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss <<$pcs...
-    scene.text(`Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss ${((s as any).pcs_lastname || '')}! Go to the principal's office!"`);
+    // TODO-QSP: dynamic text: Mr. Vasilyev''s voice cuts through the noise. "That''s enough of that, Miss <<$p...
+    scene.text(`Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss ${((st as any).pcs_lastname || '')}! Go to the principal's office!"`);
     scene.actions([
       { label: 'Go to the principal\'s office', goto: ['gschool_office', 'principal'] },
     ]);
@@ -1270,8 +1270,8 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                 }
                 scene.actions([
                   { label: 'Nothing is wrong', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
     scene.text('You shake your head at Mr. Vasilyev, desperately wanting to turn around and strangle Radomir, but you don\'t dare with Mr. Vasilyev now keeping an eye on you.');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -1281,41 +1281,41 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/boobg.mp4');
     scene.text('You squeak loudly as his fingers quickly pinch your sensitive nipple and your hand quickly flies to your breast to shield it from further attack.');
     // TODO-QSP: dynamic text: "Is there a problem, Miss <<$pcs_lastname>>?" Mr. Vasilyev asks and you glance a...
-    scene.text(`"Is there a problem, Miss ${((s as any).pcs_lastname || '')}?" Mr. Vasilyev asks and you glance around and notice everyone is staring at you as Radomir snickers behind you.`);
+    scene.text(`"Is there a problem, Miss ${((st as any).pcs_lastname || '')}?" Mr. Vasilyev asks and you glance around and notice everyone is staring at you as Radomir snickers behind you.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                   { label: 'Enjoy', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 1);
-    qspCall(s, 'fame', 'pav', 'sex', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 1);
+    qspCall(st, 'fame', 'pav', 'sex', 1);
     scene.text('You bite your lip to silence the moan that wants to escape as you feel your molester\'s fingers give your nipple a quick pinch before retreating. It was a nice treat to keep class interesting.');
-    qspCall(s, 'arousal', 'foreplay', 5, 'exhibitionism');
-    if (((s as any).pcs_inhib ?? 0) >= 40) {
+    qspCall(st, 'arousal', 'foreplay', 5, 'exhibitionism');
+    if (((st as any).pcs_inhib ?? 0) >= 40) {
       scene.actions([
         { label: 'Come get some more', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 1);
     scene.text('You bite your lip to silence the moan that wants to escape as you feel your molester\'s fingers give your nipple a quick pinch before retreating. After the hand is gone, you move your hand to the opposite side of your face, as if to scratch an itch and simultaneously glance over your shoulder until your eye is on Radomir, who groped you.');
     scene.text('You give him a smile out of the corner of your mouth as you wink and scoot your chair back. His eyes fill with surprise and excitement and a few seconds after you turn back to face Mr. Vasilyev, you feel his hand massaging your breast again.');
-    qspCall(s, 'arousal', 'foreplay', 10, 'exhibitionism');
+    qspCall(st, 'arousal', 'foreplay', 10, 'exhibitionism');
     scene.actions([
       { label: 'Enjoy more', handler: (st: GameState) => {
     scene.text('You spend the rest of class with Radomir\'s hand coming and going to squeeze your breast and tweak your nipple, still careful to make sure Mr. Vasilyev doesn\'t catch on.');
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('Enjoying the feeling of Radomir\'s hand massaging your breast and his fingers tweaking your nipple, you decide to take advantage of the opportunity. The pencil you were using to take notes goes under your skirt and begins to prod and play with your hard clitoris through your quickly soaking panties.');
       scene.text('Eventually, you get bored of it and shift the fabric to the side to get access to your bare pussy and insert your two middle fingers. They easily slide between your wet lips and your breathing hitches slightly, matching the rhythm of your pistoning fingers.');
-      (s as any).orgasm_txt = 'Radomir seems to have caught on and starts to knead your breast and pull at your breast harder. In a moment of perfect coincidence, your pinch your clit right as Radomir squeezes your sensitive nipple and your knees fly together, your legs clenching hard in orgasm. You bite your lip hard as you ride out the waves and you feel Radomir\'s hand slide away before you see Mr. Vasilyev giving you a curious look. With confident eyes and a bright smile, you quickly fix your clothes and sit up in your seat.';
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate', 'exhibitionism');
-      qspCall(s, 'arousal', 'end');
+      (st as any).orgasm_txt = 'Radomir seems to have caught on and starts to knead your breast and pull at your breast harder. In a moment of perfect coincidence, your pinch your clit right as Radomir squeezes your sensitive nipple and your knees fly together, your legs clenching hard in orgasm. You bite your lip hard as you ride out the waves and you feel Radomir\'s hand slide away before you see Mr. Vasilyev giving you a curious look. With confident eyes and a bright smile, you quickly fix your clothes and sit up in your seat.';
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'arousal', 'clit_finger', 10, 'masturbate', 'exhibitionism');
+      qspCall(st, 'arousal', 'end');
       scene.text('You spend the rest of class with Radomir\'s hand playing with your breast as you sit satisfied in soaked panties and a small puddle of your own juices.');
     } else {
-      qspCall(s, 'fame', 'pav', 'sex', 1);
+      qspCall(st, 'fame', 'pav', 'sex', 1);
       scene.text('Enjoying the feeling of Radomir\'s hand massaging your breast and his fingers tweaking your nipple, you decide to take advantage of the opportunity. The pencil you were using to take notes goes under your skirt and begins to prod and play with your already exposed clitoris, but your bare pussy is too tempting and you abandon the pencil for your two middle fingers. They easily slide between your wet lips and your breathing hitches, matching the rhythm of your pistoning fingers.');
-      (s as any).orgasm_txt = 'Radomir seems to have caught on and starts to knead your breast and pull at your breast harder. In a moment of perfect coincidence, your pinch your clit right as Radomir squeezes your sensitive nipple and your knees fly together, your legs clenching hard in orgasm. You bite your lip hard as you ride out the waves and you feel Radomir\'s hand slide away just before you hear Mr. Vasilyev giving you a curious look. With confident eyes and a bright smile, you quickly fix your clothes and sit up in your seat.';
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate', 'exhibitionism');
-      qspCall(s, 'arousal', 'end');
+      (st as any).orgasm_txt = 'Radomir seems to have caught on and starts to knead your breast and pull at your breast harder. In a moment of perfect coincidence, your pinch your clit right as Radomir squeezes your sensitive nipple and your knees fly together, your legs clenching hard in orgasm. You bite your lip hard as you ride out the waves and you feel Radomir\'s hand slide away just before you hear Mr. Vasilyev giving you a curious look. With confident eyes and a bright smile, you quickly fix your clothes and sit up in your seat.';
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'arousal', 'clit_finger', 10, 'masturbate', 'exhibitionism');
+      qspCall(st, 'arousal', 'end');
       scene.text('You spend the rest of class with Radomir\'s hand playing with your breast as you sit satisfied in a small puddle of your own juices.');
     }
     scene.actions([
@@ -1347,14 +1347,14 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                   } else {
                     scene.actions([
                       { label: 'Tell on him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
-    qspCall(s, 'npc_relationship', 'modify', 'A155', (-5));
+    qspCall(st, 'willpower', 'misc', 'self', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (3);
+    qspCall(st, 'npc_relationship', 'modify', 'A155', (-5));
     scene.img('images/locations/pavlovsk/school/classroom/class1.jpg');
     scene.text('You straighten up. "Yes. Lavrenti is snapping my bra."');
     scene.text('Mr. Vasilyev gives Lavrenti a disapproving look. "Is this true?"');
@@ -1375,17 +1375,17 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                   } else {
                     scene.actions([
                       { label: 'Slap Lavrenti', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    (s as any).demerit = ((s as any).demerit ?? 0) + (10);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A155', (-1));
+    qspCall(st, 'willpower', 'misc', 'self', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    (st as any).demerit = ((st as any).demerit ?? 0) + (10);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A155', (-1));
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy1.jpg');
     scene.text('You ignore Mr. Vasilyev and turn around and slap Lavrenti with all your force. Lavrenti recoils, his hand going to his cheek. Students start murmuring about what happened, while some laugh.');
-    // TODO-QSP: dynamic text: Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss <<$pcs...
-    scene.text(`Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss ${((s as any).pcs_lastname || '')}! Go to the principal's office!"`);
+    // TODO-QSP: dynamic text: Mr. Vasilyev''s voice cuts through the noise. "That''s enough of that, Miss <<$p...
+    scene.text(`Mr. Vasilyev's voice cuts through the noise. "That's enough of that, Miss ${((st as any).pcs_lastname || '')}! Go to the principal's office!"`);
     scene.actions([
       { label: 'Go to the principal\'s office', goto: ['gschool_office', 'principal'] },
     ]);
@@ -1394,9 +1394,9 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                   }
                   scene.actions([
                     { label: 'Nothing is wrong', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A155', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A155', 1);
     scene.text('You shake your head at Mr. Vasilyev, desperately wanting to turn around and strangle Lavrenti, but you don\'t dare with Mr. Vasilyev now keeping an eye on you.');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -1441,175 +1441,175 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                             scene.actions([
                               { label: 'Katja', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Katja. She stares at you in disbelief and starts blushing bright red before she gets up and hurries to sit next to her sister.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 1) {
-        qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
+      if (((st as any).grupTipe ?? 0) === 1) {
+        qspCall(st, 'npc_relationship', 'modify', 'A14', 1);
         scene.text('You sit next to Katja and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Katja, but she awkwardly ignores you and chooses to talk to other people or do her coursework.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A14', 1);
           scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                               { label: 'Radomir', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 1);
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 1);
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150  ||  ((s as any).grupTipe ?? 0) === 5) {
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150  ||  ((st as any).grupTipe ?? 0) === 5) {
       scene.text('You sit next to Radomir, but he ignores your attempts to speak by saying that he only talks to girls he wants to fuck, making it clear that you aren\'t one of those girls.');
     } else {
       scene.text('You sit next to Radomir, but you don\'t get a chance to speak as he dominates the conversation about how amazing he and the band are and how he pulls all the hot chicks. He finishes by asking if you want to suck his dick.');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                               { label: 'Lavrenti', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Lavrenti, who gives you a perverted smile and keeps asking if you want to suck his dick.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 4) {
-        qspCall(s, 'npc_relationship', 'modify', 'A155', 1);
+      if (((st as any).grupTipe ?? 0) === 4) {
+        qspCall(st, 'npc_relationship', 'modify', 'A155', 1);
         scene.text('You sit next to Lavrenti and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You\'re forced to sit next to Lavrenti and he immediately starts bullying you, eventually getting some of the other gopniks to join in.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A155', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A155', 1);
           scene.text('You sit next to Lavrenti. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                               { label: 'Valentin', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Valentin, who gives you a perverted smile and keeps asking if you want \'go for a ride\' with him. "And I don\'t mean on my bike, slut," he adds with a wink.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 4) {
-        qspCall(s, 'npc_relationship', 'modify', 'A158', 1);
+      if (((st as any).grupTipe ?? 0) === 4) {
+        qspCall(st, 'npc_relationship', 'modify', 'A158', 1);
         scene.text('You sit next to Valentin and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You\'re forced to sit next to Valentin and he immediately starts bullying you, eventually getting some of the other gopniks to join in.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A158', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A158', 1);
           scene.text('You sit next to Valentin. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before Mr Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                               { label: 'Lariska', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Lariska, who gleefully laughs at you. "Don\'t you have a big cock waiting for you in the bathroom, slut?"');
     } else {
-      if (((s as any).grupTipe ?? 0) === 2) {
-        qspCall(s, 'npc_relationship', 'modify', 'A13', 1);
+      if (((st as any).grupTipe ?? 0) === 2) {
+        qspCall(st, 'npc_relationship', 'modify', 'A13', 1);
         scene.text('You sit next to Lariska and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Lariska, who giggles when you try talking to her. "Go and talk to Lesco. He\'s the only friend a loser like you will ever get. If you\'re lucky."');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A13', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A13', 1);
           scene.text('You sit next to Lariska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                               { label: 'Lina', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Lina, who loudly scoffs. "Don\'t you have to go and suck a dick somewhere, you massive whore?"');
     } else {
-      if (((s as any).grupTipe ?? 0) === 2) {
-        qspCall(s, 'npc_relationship', 'modify', 'A19', 1);
+      if (((st as any).grupTipe ?? 0) === 2) {
+        qspCall(st, 'npc_relationship', 'modify', 'A19', 1);
         scene.text('You sit next to Lina and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Lina, who scoffs loudly when you try talking to her. "Go and talk to Lesco. He\'s the only friend a loser like you will ever get. If you\'re lucky."');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A19', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A19', 1);
           scene.text('You sit next to Lina. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                               { label: 'Bella', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Bella, who makes no effort to hide her disgust. "You\'re such a washed up and desperate slut who\'ll do anything for a cock. How anyone here even tolerates you is beyond me."');
     } else {
-      if (((s as any).grupTipe ?? 0) === 1) {
-        qspCall(s, 'npc_relationship', 'modify', 'A22', 1);
+      if (((st as any).grupTipe ?? 0) === 1) {
+        qspCall(st, 'npc_relationship', 'modify', 'A22', 1);
         scene.text('You sit next to Bella and she begrudgingly engages you in a brief conversation that she quickly shuts down, deeming it to be too childish for her.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('Bella gives a disapproving look and makes no effort to hide her dislike of you. "How can you get to your age and not have at least one friend? You need to grow up."');
         } else {
           // TODO-QSP: dynamic text: You sit next to Bella and she rolls her eyes. "What do you want, <<$pcs_nickname...
-          scene.text(`You sit next to Bella and she rolls her eyes. "What do you want, ${((s as any).pcs_nickname || '')}? I don't have time to sit here and talk to kids."`);
+          scene.text(`You sit next to Bella and she rolls her eyes. "What do you want, ${((st as any).pcs_nickname || '')}? I don't have time to sit here and talk to kids."`);
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                               { label: 'Petka', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Petka, who looks at you in disgust and instead focuses on his coursework.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 3) {
-        qspCall(s, 'npc_relationship', 'modify', 'A6', 1);
+      if (((st as any).grupTipe ?? 0) === 3) {
+        qspCall(st, 'npc_relationship', 'modify', 'A6', 1);
         scene.text('You sit next to Petka and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Petka, but he ignores you and chooses to talk to other people or do his coursework.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 1);
           scene.text('You sit next to Petka. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -1632,10 +1632,10 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                               } else {
                                 scene.actions([
                                   { label: 'Ignore it', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'fame', 'pav', 'sex', 1);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', 'A159', 1);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'fame', 'pav', 'sex', 1);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A159', 1);
     scene.img('images/locations/pavlovsk/school/classroom/open.jpg');
     scene.text('You let Petka continue to gawk at you. You find yourself somewhat amused at how little it takes to completely enthrall some boys.');
     scene.actions([
@@ -1699,7 +1699,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
                                           { label: 'Ignore them and wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                                           { label: 'Eavesdrop', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/eavesdrop.jpg');
-    qspCall(s, 'gschool_gossip', 'lesson');
+    qspCall(st, 'gschool_gossip', 'lesson');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -1734,7 +1734,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) > 0) {
     (s as any).school_event_hour = 1;
     // TODO-QSP: :art_event_once_more
-    (s as any).scooltiperand = Math.floor(Math.random() * 19) + 1;
+    (s as any).scooltiperand = (Math.floor(Math.random() * 19) + 1);
     if (((s as any).scooltiperand ?? 0) === 1) {
       if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
         qspCall(s, 'arousal', 'flash', (-5));
@@ -1764,15 +1764,15 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/pavlovsk/school/events/scoolrand_4_2.jpg');
             scene.text('Before you can answer the question Mr. Vasilyev poses, you have to clean the blackboard, but accidentally drop the cloth. As you bend over to pick it up, you suddenly feel something <i>spurt</i> down your leg.');
             if (((s as any).cum_loc ?? 0)?.['vagina'] > 0  &&  ((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-              qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 8) + 8);
+              qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
               scene.text('There are histling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so are both your holes leaking cum that\'s dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
             } else {
               if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
-                qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 5) + 8);
+                qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 5) + 8));
                 scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from your pussy and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
               } else {
                 if (((s as any).cum_loc ?? 0)?.['anus'] > 0) {
-                  qspCall(s, 'fame', 'pav', 'sex', Math.floor(Math.random() * 8) + 8);
+                  qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * 8) + 8));
                   scene.text('There are whistling and shouting sounds from the boys and whispers of intense disapproval from most of the girls behind you, and you realize that not only is your complete lack of panties on display for everyone to see, so is the cum leaking from between your ass cheeks and dribbling down your thigh. You quickly straighten up, but it\'s too late and the class explodes into chaos, Mr. Vasilyev having no idea why as he tries to shout for order.');
                 }
               }
@@ -1857,89 +1857,89 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
                         scene.actions([
                           { label: 'Erast', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Erast, who awkwardly shuffles in his seat and avoids looking at you. You can tell your reputation as the school bike is making him feel uncomfortable, but he\'s too polite to say anything.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 2) {
-        qspCall(s, 'npc_relationship', 'modify', 'A150', 1);
+      if (((st as any).grupTipe ?? 0) === 2) {
+        qspCall(st, 'npc_relationship', 'modify', 'A150', 1);
         scene.text('You sit next to Erast and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Erast and he politely enages you in conversation before someone calls you out for trying to socialise with someone above your social standing and Erast grows quiet.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A146', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A146', 1);
           scene.text('You sit next to Erast. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Julia', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Julia. She avoids making eye contact with you and instead focuses on her coursework.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 3) {
-        qspCall(s, 'npc_relationship', 'modify', 'A12', 1);
+      if (((st as any).grupTipe ?? 0) === 3) {
+        qspCall(st, 'npc_relationship', 'modify', 'A12', 1);
         scene.text('You sit next to Julia and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Julia, but she awkwardly ignores you and chooses to talk to other people or do her coursework.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A12', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A12', 1);
           scene.text('You sit next to Julia. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Katja', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Katja, who stares at you in disbelief and starts blushing bright red before she gets up and hurries to sit next to her sister.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 1) {
-        qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
+      if (((st as any).grupTipe ?? 0) === 1) {
+        qspCall(st, 'npc_relationship', 'modify', 'A14', 1);
         scene.text('You sit next to Katja and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Katja, but she awkwardly ignores you and chooses to talk to other people or do her coursework.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A14', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A14', 1);
           scene.text('You sit next to Katja. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Albina', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150  &&  ((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150  &&  ((st as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
       scene.text('You sit next to Albina, who gives you a pitiful look. "Still slutting it up?"');
       scene.text('You blush slightly. but just nod. She just shakes her head and tells you to be careful before turning away.');
     } else {
-      if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+      if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
         scene.text('You sit next to Albina, who immediately looks you over before shaking her head in disgust. "Don\'t even think about it, cum rag."');
       } else {
-        if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
-          qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
-          if (((s as any).npc_rel ?? 0)?.['A23'] >= 60) {
+        if (((st as any).grupTipe ?? 0) === 1  ||  ((st as any).grupTipe ?? 0) === 2) {
+          qspCall(st, 'npc_relationship', 'modify', 'A23', 1);
+          if (((st as any).npc_rel ?? 0)?.['A23'] >= 60) {
             scene.text('You sit next to Albina and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+            if (((st as any).npc_rel ?? 0)?.['A23'] <= 20) {
               scene.text('You sit next to Albina, who rolls her eyes and scoffs at you. "Go bother someone who cares!"');
               scene.text('"Bitch…" you mutter and she shoots you a piercing glare.');
             } else {
@@ -1947,12 +1947,12 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (((s as any).grupTipe ?? 0) === 3) {
-            qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
-            if (((s as any).npc_rel ?? 0)?.['A23'] >= 60) {
+          if (((st as any).grupTipe ?? 0) === 3) {
+            qspCall(st, 'npc_relationship', 'modify', 'A23', 1);
+            if (((st as any).npc_rel ?? 0)?.['A23'] >= 60) {
               scene.text('You sit next to Albina. She\'s a little surprised that you chose to do so, but you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
             } else {
-              if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
+              if (((st as any).npc_rel ?? 0)?.['A23'] <= 20) {
                 scene.text('You sit next to Albina, who rolls her eyes and scoffs at you. "Go bother someone who cares, geek!"');
                 scene.text('"Okay…" you mumble before walking away.');
               } else {
@@ -1960,7 +1960,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
               }
             }
           } else {
-            if (((s as any).grupTipe ?? 0) === 4) {
+            if (((st as any).grupTipe ?? 0) === 4) {
               scene.text('You sit next to Albina, who rolls her eyes and scoffs at you. "Go bother someone else, junkie!"');
               scene.text('"Fucking cunt," you mutter and she shoots you a piercing glare.');
             } else {
@@ -1970,146 +1970,146 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Anushka', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Anushka, who ignores you at first before mouthing "slut" at you and doing a motion with her hands where she pretends to be forcing your head down on her imaginary dick.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 4) {
-        qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
+      if (((st as any).grupTipe ?? 0) === 4) {
+        qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
         scene.text('You sit next to Anushka and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Anushka and she starts having fun with you, gleefully mocking you so much that the other gopniks join in.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
           scene.text('You sit next to Anuska. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Natasha', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Natasha, who avoids making eye contact with you and instead focuses on her coursework.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 3) {
-        qspCall(s, 'npc_relationship', 'modify', 'A16', 1);
+      if (((st as any).grupTipe ?? 0) === 3) {
+        qspCall(st, 'npc_relationship', 'modify', 'A16', 1);
         scene.text('You sit next to Natasha and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Natasha, but she awkwardly ignores you and chooses to talk to other people or do her coursework.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A16', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A16', 1);
           scene.text('You sit next to Natasha. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Feofan', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Feofan, who looks at you in disgust and instead focuses on his coursework.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 3) {
-        qspCall(s, 'npc_relationship', 'modify', 'A152', 1);
+      if (((st as any).grupTipe ?? 0) === 3) {
+        qspCall(st, 'npc_relationship', 'modify', 'A152', 1);
         scene.text('You sit next to Feofan and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Feofan, but he ignores you and chooses to talk to other people or do his coursework.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A152', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A152', 1);
           scene.text('You sit next to Feofan. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with him before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Svyatoslav', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Svyatoslav, who ignores you at first before getting your attention and pointing at the bulge in his pants while winking.');
       scene.text('"You know you want it, so come and get it slut," he whispers with a smile.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 2) {
-        qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
+      if (((st as any).grupTipe ?? 0) === 2) {
+        qspCall(st, 'npc_relationship', 'modify', 'A8', 1);
         scene.text('You sit next to Svyatoslav and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Svyatoslav, who completely ignores you and talks to Vanya instead.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A8', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A8', 1);
           scene.text('You sit next to Svyatoslav. He\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with him where he flirts with you before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Vicky', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Vicky, who gives you a disgusted glare and walks away to sit with Vanya.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 1) {
-        qspCall(s, 'npc_relationship', 'modify', 'A15', 1);
+      if (((st as any).grupTipe ?? 0) === 1) {
+        qspCall(st, 'npc_relationship', 'modify', 'A15', 1);
         scene.text('You sit next to Vicky and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Vicky, but she ignores you and instead talks to Vanya and her sister.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A15', 1);
+          qspCall(st, 'npc_relationship', 'modify', 'A15', 1);
           scene.text('You sit next to Vicky. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                           { label: 'Zinaida', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/talkgirl3.jpg');
-    qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
-    if (((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
+    qspCall(st, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
+    if (((st as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.text('You sit next to Zinaida, who avoids making eye contact with you and instead focuses on playing a game on her phone before class starts.');
     } else {
-      if (((s as any).grupTipe ?? 0) === 3) {
-        qspCall(s, 'npc_relationship', 'modify', 'A142', 'like');
+      if (((st as any).grupTipe ?? 0) === 3) {
+        qspCall(st, 'npc_relationship', 'modify', 'A142', 'like');
         scene.text('You sit next to Zinaida and you spend most of the class talking quietly with each other, often getting stern looks from Mr. Vasilyev when you get a bit too loud. He clears his throat and hushes you a few times before he finally tells you to be quiet or he\'ll send you to the principal\'s office.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('You sit next to Zinaida, but she awkwardly ignores you and chooses to talk to other people or do her coursework.');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A142', 'like');
+          qspCall(st, 'npc_relationship', 'modify', 'A142', 'like');
           scene.text('You sit next to Zinaida. She\'s a little surprised that you chose to do so, but you\'re able to strike up a brief, if a little awkward, conversation with her before Mr. Vasilyev asks you to be quiet.');
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -2132,10 +2132,10 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
                           } else {
                             scene.actions([
                               { label: 'Ignore it', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'fame', 'pav', 'sex', 1);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', 'A152', 3);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'fame', 'pav', 'sex', 1);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A152', 3);
     scene.img('images/locations/pavlovsk/school/classroom/open.jpg');
     scene.text('You let Feofan continue to gawk at you. You find yourself somewhat amused at how little it takes to completely enthrall some boys.');
     scene.actions([
@@ -2180,8 +2180,8 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
     scene.text('Mr. Vasilyev looks surprised by the question. "Those are some classic artists. Of course there\'s nothing wrong with their work."');
     scene.text('She then smiles, as if she expected that response. "Yes, but doesn\'t some of their work show nudity? I only showed my panties, so why is their work okay and this isn\'t?"');
     scene.text('Mr. Vasilyev gives a bone weary sigh and starts trying to explain why art can show many things, but not everything is appropriate for school. It seems to be a losing discussion and you\'re sure Anushka is just yanking his chain for the fun of it. The rest of the class quickly loses interest in the discussion and goes back to doing their own thing.');
-    qspCall(s, 'arousal', 'erotic', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -2216,24 +2216,24 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
                                       { label: 'Look away', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/classart.jpg');
     scene.text('You quickly turn away and focus on paying attention to the rest of Mr. Vasilyev\'s lecture.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                                       { label: 'Keep looking', handler: (st: GameState) => {
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.img('images/locations/pavlovsk/school/classroom/art/nushpanties2.jpg');
       scene.text('When she notices you staring, she gives you a little kissy face before reaching down to her panties and pulling them aside to show you her shaved pussy while smiling at you.');
       // TODO-QSP: dynamic text: Before you can look away, you hear Mr. Vasilyev clear his throat. When you glanc...
-      scene.text(`Before you can look away, you hear Mr. Vasilyev clear his throat. When you glance at him, he gives you a stern look. "Please pay attention, Miss ${((s as any).pcs_lastname || '')}. I know art history is a bit dry and boring, but this will be in your test."`);
+      scene.text(`Before you can look away, you hear Mr. Vasilyev clear his throat. When you glance at him, he gives you a stern look. "Please pay attention, Miss ${((st as any).pcs_lastname || '')}. I know art history is a bit dry and boring, but this will be in your test."`);
       scene.text('You nod and he goes back to the lecture. When you glance back, you see that Anushka is now sitting normally.');
     } else {
       scene.img('images/locations/pavlovsk/school/classroom/art/nushpanties1.jpg');
       scene.text('When she notices you staring, she gives you a little smirk before turning her attention away from you. She apparently doesn\'t care if you look up her skirt at her panties.');
     }
-    qspCall(s, 'arousal', 'erotic', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -2247,7 +2247,7 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
                                       { label: 'Ignore them and wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
                                       { label: 'Eavesdrop', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/eavesdrop.jpg');
-    qspCall(s, 'gschool_gossip', 'lesson');
+    qspCall(st, 'gschool_gossip', 'lesson');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);

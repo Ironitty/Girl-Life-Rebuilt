@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -43,7 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     // TODO-QSP: xgt 'restoranM', 'a'
   } },
     { label: 'Smile', handler: (st: GameState) => {
@@ -87,6 +86,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   const arg = s.locArg;
   switch (arg) {
     case 'start':

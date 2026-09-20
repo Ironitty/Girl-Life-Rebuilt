@@ -32,29 +32,29 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bbq/sex/1b.jpg');
     scene.text('When you arrive at a house, the guys begin to strip you almost as soon as you walk through the door. You also noticed there was several of them waiting at the house for their friends to return with you. All six of them proceed to fuck all of your holes, two or three at a time. They take turns and swap holes fairly randomly, for a good two hours.');
     scene.text('At least they were nice enough to all wear condoms and use lubricant, still six guys all taking turns, fucking each of your three holes leaves them aching and gaping.');
-    (s as any).orgasm_txt = 'You reach an orgasm throughout their rough treatment of you, and lay quivering while they continue to pound you mercilessly.';
-    qspCall(s, 'arousal', 'bj', 120, 'sub', 'gangbang', 'prostitution');
-    qspCall(s, 'arousal', 'anal', (-120), 'sub', 'gangbang', 'prostitution');
-    qspCall(s, 'arousal', 'vaginal', (-120), 'sub', 'gangbang', 'prostitution');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'You reach an orgasm throughout their rough treatment of you, and lay quivering while they continue to pound you mercilessly.';
+    qspCall(st, 'arousal', 'bj', 120, 'sub', 'gangbang', 'prostitution');
+    qspCall(st, 'arousal', 'anal', (-120), 'sub', 'gangbang', 'prostitution');
+    qspCall(st, 'arousal', 'vaginal', (-120), 'sub', 'gangbang', 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bbq/sex/1b.jpg');
     scene.text('By the end, the guys tell you to kneel down in the center of the room and to bring them all to orgasm. You kneel down in the middle of them, sucking one off while your jerk off two more, it takes you a bit to work your way around and get them all off, by the time the last one cums on you, your entire body is covered in cum.');
     // TODO-QSP: dynamic text: Fortunately, they allow you to take a shower and one of them even drives you hom...
-    scene.text(`Fortunately, they allow you to take a shower and one of them even drives you home. He pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))}, and says he hopes you'll be their waitress again some day.`);
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    scene.text(`Fortunately, they allow you to take a shower and one of them even drives you home. He pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).randLCpay || ''))}, and says he hopes you'll be their waitress again some day.`);
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
-    qspCall(s, 'arousal', 'bj', 10, 'sub', 'gangbang', 'prostitution');
-    qspCall(s, 'arousal', 'hj', (-10), 'sub', 'gangbang', 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 10, 'sub', 'gangbang', 'prostitution');
+    qspCall(st, 'arousal', 'hj', (-10), 'sub', 'gangbang', 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get out of his car', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'money', 'earn', ((st as any).randLCpay ?? 0));
+    qspGoto(st, 'city_residential', '');
   } },
     ]);
   } },
@@ -65,7 +65,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart2(s: GameState, scene: SceneBuilder): void {
-  (s as any).horand = Math.floor(Math.random() * 100) + 1;
+  (s as any).horand = (Math.floor(Math.random() * 100) + 1);
   (s as any).spafinloc = 11;
   qspCall(s, 'cum_manage', '');
   (s as any).randLCpay = 500;
@@ -84,18 +84,18 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bbq/sex/2b.jpg');
     scene.text('At long last, the man pulls out of you and pulls your out of the van down onto your knees, where he shoots his load all over your face. It\'s surprisingly large amount of sperm, he must have been saving up for some time!');
     scene.text('He says kindly: "You were great! Get back in the van, I\'ll give you a ride back."');
     scene.text('With a wink he adds: "As long as you don\'t get any cum on the seats, my wife would kill me!"');
-    // TODO-QSP: dynamic text: You have the man pull over when you're in the residential district, and he happi...
-    scene.text(`You have the man pull over when you're in the residential district, and he happily pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} for your time.`);
-    qspCall(s, 'arousal', 'end');
+    // TODO-QSP: dynamic text: You have the man pull over when you''re in the residential district, and he happ...
+    scene.text(`You have the man pull over when you're in the residential district, and he happily pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).randLCpay || ''))} for your time.`);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get out of his van', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'money', 'earn', ((st as any).randLCpay ?? 0));
+    qspGoto(st, 'city_residential', '');
   } },
     ]);
   } },
@@ -128,20 +128,20 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bbq/sex/3b.jpg');
     // TODO-QSP: dynamic text: Finally, in a moment of mercy they both pull out of you and put you on your knee...
-    scene.text(`Finally, in a moment of mercy they both pull out of you and put you on your knees where they jerk off, covering your face and tits with their sperm. As soon as they finish, before you even have a chance to do anything, one of them grabs you roughly by the hair and drags you out of the apartment naked, while the other throws your clothes out into the hallway. With that done, they toss ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} out and slam the door. Leaving you standing naked, with your clothes and money scattered around the hall floor and your ass and pussy aching from the rough fucking.`);
+    scene.text(`Finally, in a moment of mercy they both pull out of you and put you on your knees where they jerk off, covering your face and tits with their sperm. As soon as they finish, before you even have a chance to do anything, one of them grabs you roughly by the hair and drags you out of the apartment naked, while the other throws your clothes out into the hallway. With that done, they toss ${qspFunc(s, 'money', 'string_profit', ((st as any).randLCpay || ''))} out and slam the door. Leaving you standing naked, with your clothes and money scattered around the hall floor and your ass and pussy aching from the rough fucking.`);
     scene.text('Wincing you gather up the money and put on your clothes, then you head down the stairs out of the apartment.');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'sub', 'group', 'prostitution', 'rough');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'prostitution', 'rough');
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 0);
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 0);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID ?? 0), 'sub', 'group', 'prostitution', 'rough');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID1 ?? 0), 'sub', 'group', 'prostitution', 'rough');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0), 0);
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0), 0);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the apartment building', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-    qspGoto(s, 'city_industrial', '');
+    qspCall(st, 'money', 'earn', ((st as any).randLCpay ?? 0));
+    qspGoto(st, 'city_industrial', '');
   } },
     ]);
   } },
@@ -175,20 +175,20 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).lcwork_counter = 1;
-    qspCall(s, 'stat', '');
+    (st as any).lcwork_counter = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bbq/sex/4b.jpg');
     scene.text('After an extended period of fucking your ass, she asks you a lot of questions about how getting fucked in the ass feels, if it hurts, if you enjoy it. You tell her the truth that it can be very pleasant if the guy is gentle. The boyfriend seems to really enjoy what you are telling her.');
     scene.text('After some time the guy pulls out of your ass and shoots his hot load all over your stomach. The girl laps some of it up, but leaves most of it on you and politely thanks you for a lovely evening. She\'s adorable!');
     scene.text('As you get up, the guy is very happy. He grins and says: "Thanks, you were great! She\'s still a bit shy, but at this rate it won\'t be long before I can properly introduce her to my buddies, if you know what I mean."');
     // TODO-QSP: dynamic text: He walks you out of the bedroom, after you get dressed, leaving her behind. "May...
-    scene.text(`He walks you out of the bedroom, after you get dressed, leaving her behind. "Maybe we can do it again next week and you can help me talk her into trying anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} as he walks you out.`);
-    qspCall(s, 'arousal', 'anal', 20, 'sub', 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`He walks you out of the bedroom, after you get dressed, leaving her behind. "Maybe we can do it again next week and you can help me talk her into trying anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((st as any).randLCpay || ''))} as he walks you out.`);
+    qspCall(st, 'arousal', 'anal', 20, 'sub', 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave their apartment building', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'money', 'earn', ((st as any).randLCpay ?? 0));
+    qspGoto(st, 'city_residential', '');
   } },
     ]);
   } },
@@ -206,25 +206,25 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bbq/sex/couple1.jpg');
     scene.text('At that point he comes over and sits on the couch with the two of you. He lubes up his dick, while you lube up her asshole. You help her ease down on his dick, he is very gentle with her and lets her lead the action. You help by licking her clit while she rides his dick with her ass.');
     scene.text('By the sounds of it, you can tell she kinda likes it but also finds it a bit painful. Before long she gets off him and says she can\'t take anymore and applogises to him. He tells her it\'s ok they can try again some other time. With that he bends you over the couch and starts to fuck you in the ass. He is fairly gentle with you, but not nearly as much as he was with his girlfriend, which is kinda sweet.');
-    (s as any).minut = ((s as any).minut ?? 0) + 100;
-    qspCall(s, 'arousal', 'cuni_give', (-60), 'sub', 'prostitution', 'lesbian');
-    qspCall(s, 'arousal', 'anal', (-60), 'sub', 'prostitution');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 100;
+    qspCall(st, 'arousal', 'cuni_give', (-60), 'sub', 'prostitution', 'lesbian');
+    qspCall(st, 'arousal', 'anal', (-60), 'sub', 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bbq/sex/couple2.jpg');
     scene.text('After an extended period of fucking your ass, she watches obviously a bit envious by how easily you are taking his anal fucking.');
     scene.text('Sometime later the guy shoots his load deep in your ass, pulling his dick out, she catches a few drops of sperm from his dick with her tongue.');
     // TODO-QSP: dynamic text: After you get dressed and he walks you to the door, he grins and says: "Thanks, ...
-    scene.text(`After you get dressed and he walks you to the door, he grins and says: "Thanks, you were great! She's still a bit shy, but at this rate it won't be long before I can properly introduce her to my buddies, if you know what I mean. Maybe we can do it again next week and you can help her get used to anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} as he walks you out.`);
-    qspCall(s, 'arousal', 'anal', 20, 'sub', 'prostitution');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0));
-    qspCall(s, 'stat', '');
+    scene.text(`After you get dressed and he walks you to the door, he grins and says: "Thanks, you were great! She's still a bit shy, but at this rate it won't be long before I can properly introduce her to my buddies, if you know what I mean. Maybe we can do it again next week and you can help her get used to anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((st as any).randLCpay || ''))} as he walks you out.`);
+    qspCall(st, 'arousal', 'anal', 20, 'sub', 'prostitution');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave their apartment building', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'money', 'earn', ((st as any).randLCpay ?? 0));
+    qspGoto(st, 'city_residential', '');
   } },
     ]);
   } },
@@ -237,7 +237,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart5(s: GameState, scene: SceneBuilder): void {
-  (s as any).horand = Math.floor(Math.random() * 100) + 1;
+  (s as any).horand = (Math.floor(Math.random() * 100) + 1);
   (s as any).randLCpay = 500;
   (s as any).girl = ((s as any).girl ?? 0) + (1);
   qspCall(s, 'dinSex', 'std_trigger');
@@ -260,14 +260,14 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
     scene.text('You mostly focus on making this a pleasurable experience for her, and don\'t orgasm yourself. That\'s fine, though… the ecstatic look in her eyes when you gave her the third orgasm of the evening more than makes up for it!');
   }
   scene.text('When you\'re finished and get dressed again, the girl reverts to being her old, shy self. Nevertheless, she gives you a peck on the cheek and thanks you for the lovely lesson. She does seem a bit more confident now.');
-  // TODO-QSP: dynamic text: She walks you out, giving you <<$func('money', 'string_profit', randLCpay)>>.
+  // TODO-QSP: dynamic text: She walks you out, giving you <<$func(''money'', ''string_profit'', randLCpay)>>...
   scene.text(`She walks you out, giving you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))}.`);
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave her apartment', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'money', 'earn', ((st as any).randLCpay ?? 0));
+    qspGoto(st, 'city_residential', '');
   } },
   ]);
   scene.build();
@@ -291,21 +291,21 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/bbq/sex/6b.jpg');
     scene.text('Finally, the man\'s cock erupts in your mouth, and he doesn\'t explain when you take his cock out of your mouth after a few spurts and release the rest onto your boobies.');
     scene.text('He gives you a satisfied grin and lets you use his shower to clean yourself up before you go. He peeks into the shower once or twice while you\'re washing yourself, but you don\'t care, it\'s not like he hasn\'t seen you naked before!');
-    // TODO-QSP: dynamic text: He gives you <<$func('money', 'string_profit', randLCpay)>>, and walks you to th...
-    scene.text(`He gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))}, and walks you to the door when you're all freshened up.`);
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    // TODO-QSP: dynamic text: He gives you <<$func(''money'', ''string_profit'', randLCpay)>>, and walks you t...
+    scene.text(`He gives you ${qspFunc(s, 'money', 'string_profit', ((st as any).randLCpay || ''))}, and walks you to the door when you're all freshened up.`);
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave his apartment', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', ((s as any).randLCpay ?? 0));
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'money', 'earn', ((st as any).randLCpay ?? 0));
+    qspGoto(st, 'city_residential', '');
   } },
     ]);
   } },
@@ -314,7 +314,7 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToiletsex(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Stranger from the diner restroom', Math.floor(Math.random() * 15) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Stranger from the diner restroom', (Math.floor(Math.random() * 15) + 18));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   scene.img('images/locations/city/industrial/bbq/sex/toiletsexend.jpg');
   scene.text('You come up from behind the man and suddenly wrap your arms around him. He\'s startled for a moment, but relaxes when you whisper: "That\'s a nice cock you have there! I bet we could have some fun together, you and I…"');

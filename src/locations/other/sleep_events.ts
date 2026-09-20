@@ -4,11 +4,62 @@ import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
+  if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+    if (((s as any).vibratorIN ?? 0) === 1) {
+      if (((s as any).pcs_horny ?? 0) >= 100) {
+        // TODO-QSP: $sleep_events[] = 'gs ''sleep_events'', ''vibr_orgasm'' '
+      }
+    } else {
+      if (((s as any).pcs_horny ?? 0) > 80  &&  ((s as any).pcs_sleep ?? 0) >= 30  &&  (Math.floor(Math.random() * 60) + 0) === 0  &&  ((s as any).succubusQW ?? 0) !== 1  &&  ((s as any).succubusQW ?? 0) !== 2) {
+        // TODO-QSP: $sleep_events[] = 'gs ''sleep_events'', ''wake_horny'' '
+      }
+    }
+    if (((s as any).strip_club ?? 0)?.['ivanna_dream'] === 1  &&  (!(Math.floor(Math.random() * 60) + 0))) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_events'', ''ivanna_dream'' '
+    }
+    if ((((s as any).start_type ?? 0) === 'sg_tg'  &&  (((s as any).year ?? 0) === 2016  &&  (((s as any).month ?? 0) > 8  &&  ((s as any).month ?? 0) < 11))  ||  (((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg')  &&  (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) < 11))  &&  (!(Math.floor(Math.random() * 9) + 0))) {
+      if (((s as any).tgQW ?? 0)?.['dream_sex_anya'] === 0  &&  ((s as any).start_type ?? 0) === 'sg_tg') {
+        // TODO-QSP: $tgQWtemp[] = 'dream_sex_anya'
+      } else {
+        if (((s as any).tgQW ?? 0)?.['dream_sex_vika'] === 0  &&  ((s as any).start_type ?? 0) === 'uni_tg') {
+          // TODO-QSP: $tgQWtemp[] = 'dream_sex_vika'
+        } else {
+          if (((s as any).tgQW ?? 0)?.['dream_sex_albina'] === 0  &&  (((s as any).start_type ?? 0) === 'sg_tg'  ||  ((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 1)) {
+            // TODO-QSP: $tgQWtemp[] = 'dream_sex_albina'
+          } else {
+            if (((s as any).tgQW ?? 0)?.['dream_sex_bella'] === 0  &&  ((s as any).start_type ?? 0) === 'sg_tg') {
+              // TODO-QSP: $tgQWtemp[] = 'dream_sex_bella'
+            } else {
+              if (((s as any).tgQW ?? 0)?.['dream_sex_nush'] === 0  &&  (((s as any).start_type ?? 0) === 'sg_tg'  ||  ((s as any).anushkaQW ?? 0)?.['coffee_hole'] === 1)) {
+                // TODO-QSP: $tgQWtemp[] = 'dream_sex_nush'
+              } else {
+                if (((s as any).tgQW ?? 0)?.['dream_sex_julia'] === 0  &&  (((s as any).start_type ?? 0) === 'sg_tg'  ||  ((s as any).nerd_game ?? 0)?.['stage'] >= 1)) {
+                  // TODO-QSP: $tgQWtemp[] = 'dream_sex_julia'
+                } else {
+                  if (((s as any).tgQW ?? 0)?.['dream_sex_katja_vicky'] === 0  &&  (((s as any).start_type ?? 0) === 'sg_tg'  ||  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 1)) {
+                    // TODO-QSP: $tgQWtemp[] = 'dream_sex_katja_vicky'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      if (Object.keys((s as any).tgQWtemp ?? {}).length > 0) {
+        // TODO-QSP: $sleep_events_priority[] = 'gs ''sleep_events'', ''male_dream'' '
+      }
+    }
+    qspCall(s, 'blackmailer', 'blackmail_sleep_events');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterModSleepevents(s, scene); (s as any).locArgs = __savedLocArgs; }
+  }
+  // TODO-QSP: end
   scene.build();
 }
 
-function enterStart(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
@@ -87,7 +138,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
-  if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
@@ -100,17 +151,17 @@ function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventEnd(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'dream') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'dream') {
     qspGoto(s, 'sleep_events', 'continue', 'dream');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'wake') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'wake') {
       // TODO-QSP: gs 'sleep_events', 'exit', ARGS[2]
       qspGoto(s, 'wakeup', 'start');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'no_interrupt') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'no_interrupt') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_interrupt']; enterContinue(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'sleep') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'sleep') {
           qspGoto(s, 'sleep_events', 'continue', 'sleep');
         } else {
           qspGoto(s, 'sleep_events', 'continue', 'sleep');
@@ -127,7 +178,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
   (s as any).inSleep = 0;
   qspCall(s, 'wakeup', 'wear_bed_clothes');
-  if (((s as any).locArgs?.[1] ?? 0) !== 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 0) {
     qspCall(s, 'clothing', 'strip');
   }
   // TODO-QSP: end
@@ -137,10 +188,10 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 function enterContinue(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 0;
-  if (((s as any).locArgs?.[1] ?? 0) === 'sleep') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'sleep') {
     qspGoto(s, 'sleep', 'sleep_handler');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'dream') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'dream') {
       qspGoto(s, 'sleep', 'start');
     }
   }
@@ -171,12 +222,12 @@ function enterVibrOrgasm2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    qspGoto(s, 'sleep_events', 'event_end', 'dream');
+    qspGoto(st, 'sleep_events', 'event_end', 'dream');
   } },
     { label: 'Give up trying to sleep', handler: (st: GameState) => {
     scene.img('images/shared/sex/oface/kotovfirst1.jpg');
     scene.text('Maybe trying to sleep with a vibrator in your pussy wasn\'t such a good idea…');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -212,10 +263,10 @@ function enterMaleDreamEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    qspGoto(s, 'sleep_events', 'event_end', 'dream');
+    qspGoto(st, 'sleep_events', 'event_end', 'dream');
   } },
     { label: 'Get up', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -233,7 +284,7 @@ function enterIvannaDream1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/ivanna3.jpg');
   scene.text('You dream about working a shift at the bar in the strip club when a naked Ivanna suddenly appears in front of you.');
-  // TODO-QSP: dynamic text: "Let's have some fun, <<$pcs_nickname>>," she smirks.
+  // TODO-QSP: dynamic text: "Let''s have some fun, <<$pcs_nickname>>," she smirks.
   scene.text(`"Let's have some fun, ${((s as any).pcs_nickname || '')}," she smirks.`);
   scene.text('You suddenly find yourself in one of the strip club\'s private rooms eagerly riding a massive dick as the thick, warm shaft stretches your inner walls.');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
@@ -261,17 +312,17 @@ function enterIvannaDreamOrgasm(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/oface/kotovfirst.jpg');
   // TODO-QSP: dynamic text: You abruptly wake up in the throes of a powerful orgasm that all but overwhelms ...
-  scene.text('You abruptly wake up in the throes of a powerful orgasm that all but overwhelms you, \' + iif($pantyworntype ! \'none\', \'your legs and panties\', \'your legs and sheets\') + \' drenched with the juices trickling from your soaking wet pussy.');
+  scene.text('You abruptly wake up in the throes of a powerful orgasm that all but overwhelms you, ' + ((((s as any).pantyworntype ?? 0) !== 'none') ? ('your legs and panties') : ('your legs and sheets')) + ' drenched with the juices trickling from your soaking wet pussy.');
   scene.text('You\'re not sure why you were having a wet dream about Ivanna in particular, or why she had a cock, but it felt very real for some reason, as if you were <i>actually</i> having sex.');
-  // TODO-QSP: dynamic text: It's still playing vividly in your mind as you glance over and check your alarm ...
+  // TODO-QSP: dynamic text: It''s still playing vividly in your mind as you glance over and check your alarm...
   scene.text(`It's still playing vividly in your mind as you glance over and check your alarm clock. It reads ${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
-    qspGoto(s, 'sleep_events', 'event_end', 'dream');
+    qspGoto(st, 'sleep_events', 'event_end', 'dream');
   } },
     { label: 'Get up', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'wake']; enterEventEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -306,7 +357,7 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: You glance at your alarm clock. It reads <b><<func('time', 'get_time_string', ho...
+  // TODO-QSP: dynamic text: You glance at your alarm clock. It reads <b><<func(''time'', ''get_time_string''...
   scene.text(`You glance at your alarm clock. It reads <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b>.`);
   if (((s as any).SleepHorny ?? 0) === 1) {
     scene.text('Your wet dream and overall horniness rouse you from your sleep. From one moment to the next, you\'re wide awake and very much aware that your pussy is hot and wet.');
@@ -343,15 +394,15 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'bedrPar'  &&  ((s as any).hour ?? 0) < 6) {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspGoto(s, 'selfplay', 'start');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspGoto(st, 'selfplay', 'start');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspGoto(s, 'selfplay', 'start');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspGoto(st, 'selfplay', 'start');
   } },
     ]);
   }
@@ -371,27 +422,27 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'bedrPar'  &&  ((s as any).sisterLesb ?? 0) === 6  &&  ((s as any).hour ?? 0) < 6) {
     scene.actions([
       { label: 'Wake Anya up', handler: (st: GameState) => {
-    (s as any).strip_here = 0;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspGoto(s, 'sistersleep', 'sister_sleep');
+    (st as any).strip_here = 0;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspGoto(st, 'sistersleep', 'sister_sleep');
   } },
     ]);
   } else {
     if (((s as any).loc ?? 0) === 'FedorEv4') {
       scene.actions([
         { label: 'Wake Fedor up', handler: (st: GameState) => {
-    (s as any).strip_here = 0;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspGoto(s, 'FedorEv4_sex', 'Bedroom 2');
+    (st as any).strip_here = 0;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspGoto(st, 'FedorEv4_sex', 'Bedroom 2');
   } },
       ]);
     } else {
       if ((((s as any).loc ?? 0) === 'bedr'  ||  ((s as any).loc ?? 0) === 'bedr2x')  &&  ((s as any).husID ?? 0) !== '') {
         scene.actions([
           { label: '', labelFn: (s: GameState) => 'Wake ' + String(((s as any).npc_usedname ?? 0)?.[String((s as any).husID ?? 0)] ?? '' ?? '') + ' up', handler: (st: GameState) => {
-    (s as any).strip_here = 0;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspGoto(s, 'husbSex', 'variant');
+    (st as any).strip_here = 0;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterExit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspGoto(st, 'husbSex', 'variant');
   } },
         ]);
       }
@@ -400,9 +451,9 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try and go back to sleep', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'lower', 'small');
-    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (5);
-    qspGoto(s, 'sleep_events', 'event_end', 'dream');
+    qspCall(st, 'mood', 'lower', 'small');
+    (st as any).pcs_sleep = ((st as any).pcs_sleep ?? 0) - (5);
+    qspGoto(st, 'sleep_events', 'event_end', 'dream');
   } },
   ]);
   scene.build();

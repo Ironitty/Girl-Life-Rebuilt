@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== 'C') {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_perstype ?? 0)[((s as any).locArgs?.[0] ?? 0)] === '') {
+  if (((s as any).npc_perstype ?? 0)[Number((s as any).locArgs?.[0] ?? 0)] === '') {
     // TODO-QSP: exit
   }
   (s as any).npctemp = ((s as any).locArgs?.[0] ?? 0);

@@ -22,17 +22,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a rabbit', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      if (((s as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'old_town_apartment') {
-        (s as any).minut = ((s as any).minut ?? 0) + 10;
-        (s as any).krolik = ((s as any).krolik ?? 0) + (1);
-        qspCall(s, 'money', 'pay', 2000);
+      if (((st as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((st as any).home ?? 0)?.['current'] === 'old_town_apartment') {
+        (st as any).minut = ((st as any).minut ?? 0) + 10;
+        (st as any).krolik = ((st as any).krolik ?? 0) + (1);
+        qspCall(st, 'money', 'pay', 2000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/rabbit.jpg');
         scene.text('<center><b>You bought a rabbit.</b></center>');
-        (s as any).namekrol = 0;
-        if (((s as any).namekrol ?? 0) === '') {
-          (s as any).namekrol = 'Bugs';
+        (st as any).namekrol = 0;
+        if (((st as any).namekrol ?? 0) === '') {
+          (st as any).namekrol = 'Bugs';
         }
       } else {
         scene.text('You need to have your own place before you can buy a rabbit.');
@@ -49,17 +49,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a dog', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      if (((s as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'old_town_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'matryona_mansion') {
-        (s as any).minut = ((s as any).minut ?? 0) + 10;
-        ((s as any).rex = (s as any).rex ?? {})['owned'] = 1;
-        qspCall(s, 'money', 'pay', 3000);
+      if (((st as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((st as any).home ?? 0)?.['current'] === 'old_town_apartment'  ||  ((st as any).home ?? 0)?.['current'] === 'matryona_mansion') {
+        (st as any).minut = ((st as any).minut ?? 0) + 10;
+        ((st as any).rex = (st as any).rex ?? {})['owned'] = 1;
+        qspCall(st, 'money', 'pay', 3000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/dog.jpg');
         scene.text('<center><b>You bought a dog.</b></center>');
-        ((s as any).rex = (s as any).rex ?? {})['name'] = 0;
-        if (((s as any).rex ?? 0)?.['name'] === '') {
-          ((s as any).rex = (s as any).rex ?? {})['name'] = 'Rex';
+        ((st as any).rex = (st as any).rex ?? {})['name'] = 0;
+        if (((st as any).rex ?? 0)?.['name'] === '') {
+          ((st as any).rex = (st as any).rex ?? {})['name'] = 'Rex';
         }
       } else {
         scene.text('You need to have your own place before you can buy a dog.');
@@ -76,17 +76,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a parrot', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      if (((s as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((s as any).home ?? 0)?.['current'] === 'old_town_apartment') {
-        (s as any).minut = ((s as any).minut ?? 0) + 10;
-        ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Owned1'] = 1;
-        qspCall(s, 'money', 'pay', 3000);
+      if (((st as any).home ?? 0)?.['current'] === 'city_apartment'  ||  ((st as any).home ?? 0)?.['current'] === 'old_town_apartment') {
+        (st as any).minut = ((st as any).minut ?? 0) + 10;
+        ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Owned1'] = 1;
+        qspCall(st, 'money', 'pay', 3000);
         scene.img('images/locations/city/citycenter/mall/pet shop/pets/parrot.jpg');
         scene.text('<center><b>You bought a parrot.</b></center>');
-        ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Name1'] = 0;
-        if (((s as any).ParrotQW ?? 0)?.['Name1'] === '') {
-          ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Name1'] = 'Polly';
+        ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name1'] = 0;
+        if (((st as any).ParrotQW ?? 0)?.['Name1'] === '') {
+          ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name1'] = 'Polly';
         }
       } else {
         scene.text('You need to have your own place before you can buy a parrot.');
@@ -103,18 +103,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a parrot for your parent\'s apartment', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
-      ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Owned2'] = ((s as any).ParrotQW['Owned2'] ?? 0) + (1);
-      ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['SisKeepParrot'] = 0;
-      ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['BuyDate'] = ((s as any).daystart ?? 0);
-      qspCall(s, 'money', 'pay', 3000);
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
+      ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Owned2'] = ((st as any).ParrotQW['Owned2'] ?? 0) + (1);
+      ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['SisKeepParrot'] = 0;
+      ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['BuyDate'] = ((st as any).daystart ?? 0);
+      qspCall(st, 'money', 'pay', 3000);
       scene.img('images/locations/city/citycenter/mall/pet shop/pets/parrot.jpg');
       scene.text('<center><b>You bought a parrot.</b></center>');
-      ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Name2'] = 0;
-      if (((s as any).ParrotQW ?? 0)?.['Name2'] === '') {
-        ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Name2'] = 'Polly';
+      ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name2'] = 0;
+      if (((st as any).ParrotQW ?? 0)?.['Name2'] === '') {
+        ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Name2'] = 'Polly';
       }
       scene.actions([
         { label: 'Move away from the counter', goto: ['zoomagazine', 'start'] },
@@ -148,8 +148,8 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"So little girl, what\'s the big emergency" the pet shop owner asks you.');
     scene.text('"Well, a few months ago I bought a parrot from this shop. Everything was fine at first but the last couple of weeks he has been saying some things he really should not be saying." you begin to explain.');
     scene.text('The owner smirks, "Oh, what kind of things would that be?"');
@@ -160,18 +160,18 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You realize the owner is probably just an old pervert trying to get some, but this is your only chance to save your bird.');
     scene.actions([
       { label: 'Berate him for wasting your time and leave the store', handler: (st: GameState) => {
-    ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Failed'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspGoto(s, 'city_mall', '');
+    ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Failed'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspGoto(st, 'city_mall', '');
   } },
       { label: 'Show your body', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npcgeneratec', '', 0);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npcgeneratec', '', 0);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet1.jpg');
-    // TODO-QSP: dynamic text: You slide up your top and show off your <a href="exec:gs 'obj_din', 'show_tits'"...
-    scene.text(`You slide up your top and show off your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obj_din\\u0027, \\u0027show_tits\\u0027); return false;">${((s as any).titsize || '')}</a> breasts.`);
+    // TODO-QSP: dynamic text: You slide up your top and show off your <a href="exec:gs ''obj_din'', ''show_tit...
+    scene.text(`You slide up your top and show off your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_tits/u0027); return false;">${((st as any).titsize || '')}</a> breasts.`);
     scene.text('The owner licks his lips, "Hmm, he was definitely not lying about your top half. Ok, show me the rest."');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet9.jpg');
     scene.text('You take off your pants and show your fully nude body to the owner.');
@@ -188,32 +188,32 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     scene.text('He proceeds to place his head between your legs and starts licking you.');
     scene.text('Sliding his tongue into your wet pussy, he elicits a light shiver from you before dragging his tongue lightly against your clit, causing you to purr with pleasure.');
     scene.text('Once you are wet enough, he takes a tissue and collects some of your juices, "That\'s the first ingredient, on to the next."');
-    qspCall(s, 'arousal', 'cuni', 15);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 15);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pet shop/pet5.jpg');
     // TODO-QSP: dynamic text: The man unbuttons his pants and takes out his erect <<dick>> cm penis, "Now, I n...
-    scene.text(`The man unbuttons his pants and takes out his erect ${((s as any).dick || '')} cm penis, "Now, I need you to sit on your knees and suck this cock if you want to get to the last ingredient."`);
+    scene.text(`The man unbuttons his pants and takes out his erect ${((st as any).dick || '')} cm penis, "Now, I need you to sit on your knees and suck this cock if you want to get to the last ingredient."`);
     scene.text('You are almost certain you are being conned now, but the pussy licking you received just moments ago made you so horny that you couldn\'t stop now, even if you wanted.');
     scene.text('You do as you are told and take the dick in your mouth');
     scene.text('You start pleasuring him to the best of your abilities.');
     scene.text('A few minutes into it, the man gestures you to get up and turn around.');
-    qspCall(s, 'arousal', 'bj', 15);
+    qspCall(st, 'arousal', 'bj', 15);
     scene.img('images/locations/city/citycenter/mall/pet shop/pet6.jpg');
-    qspCall(s, 'dinsex', 'vaginal_sex');
+    qspCall(st, 'dinsex', 'vaginal_sex');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/city/citycenter/mall/pet shop/pet7.jpg');
     scene.text('After a few minutes the owner pulls his dick out of you and turns you around, stroking his dick as he orgasms all over your face.');
     scene.text('He takes another tissue and wipes some of the cum off your face.');
     scene.text('He then goes to the counter and mixes both your juices in the vial, "Here you go miss, one parrot inhibitor potion for you, on the house."');
     scene.text('Taking the potion, you place it in your pocket and leave the store.');
-    qspCall(s, 'cum_call', 'face', ((s as any).npclastgenerated ?? 0));
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
-    ((s as any).ParrotQW = (s as any).ParrotQW ?? {})['Level'] = 2;
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', ((st as any).npclastgenerated ?? 0));
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
+    ((st as any).ParrotQW = (st as any).ParrotQW ?? {})['Level'] = 2;
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the store', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;

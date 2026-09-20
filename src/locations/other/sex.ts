@@ -12,13 +12,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).sexstart = 1;
-  (s as any).sexvar = Math.floor(Math.random() * 4) + 3;
+  (s as any).sexvar = (Math.floor(Math.random() * 4) + 3);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   qspCall(s, 'dinsex2', 'stamina_npc');
   scene.img('images/locations/shared/sex/sexrand/kiss.jpg');
   scene.text('You kiss for a while. It feels nice, but you want more!');
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'sex', 'var');
   // TODO-QSP: end
   scene.build();
@@ -26,7 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterVar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).textrand = Math.floor(Math.random() * 4) + 1;
+  (s as any).textrand = (Math.floor(Math.random() * 4) + 1);
   if (((s as any).SexTypeCheck ?? 0) === 0  &&  ((s as any).picrand ?? 0) > 1) {
     (s as any).SexTypeCheck = 1;
     (s as any).BlowBan = qspUntranslated(s, "arrpos('BlowArray', picrand)", { location: "sex" });
@@ -157,7 +157,142 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
 function enterVag(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).sexstart ?? 0))) {
     (s as any).sexstart = 1;
-    (s as any).sexvar = Math.floor(Math.random() * 5) + 3;
+    (s as any).sexvar = (Math.floor(Math.random() * 5) + 3);
+  }
+  (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
+  qspCall(s, 'dinsex2', 'stamina_npc');
+  (s as any).pos = 3;
+  if ((!((s as any).sxsex ?? 0))) {
+    if (((s as any).svidboysex ?? 0) === 1) {
+      (s as any).sexa = ((s as any).sexa ?? 0) + (1);
+    }
+    (s as any).sxsex = 1;
+  }
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand || '')}.jpg`);
+  if (((s as any).textrand ?? 0) === 1) {
+    scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
+  } else {
+    if (((s as any).textrand ?? 0) === 2) {
+      scene.text('His hard cock slides inside your wet cunt easily, and you feel the engorged head slowly part your insides when it goes deeper and deeper. You can\'t help but rub your clit, while you encourage him to fuck you harder.');
+    } else {
+      if (((s as any).textrand ?? 0) === 3) {
+        scene.text('He doesn\'t stop until his cock bottoms out in you and then proceeds to fuck you with the entire length of his impressive shaft. His thrusts become more and more intense, and soon, the sound of his skin slapping against yours fills the room.');
+      } else {
+        scene.text('Your wet pussy eagerly takes his cock in, and you hear some embarrassing sopping sounds when he proceeds to fuck your pussy enthusiastically. You must\'ve wanted him pretty badly if you got this wet…');
+      }
+    }
+  }
+  qspCall(s, 'arousal', 'vaginal', 10);
+  qspCall(s, 'stat', '');
+  if (((s as any).sexvar ?? 0) <= 0) {
+    (s as any).sexvar = 0;
+    qspGoto(s, 'sex', 'end');
+  } else {
+    if (((s as any).sexvar ?? 0) === 1) {
+      scene.text('<br>The man groans that he will cum soon.');
+    }
+  }
+  (s as any).cumprecheck = 1;
+  qspCall(s, 'cum_manage', '');
+  qspGoto(s, 'sex', 'var');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterNae(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).sexstart ?? 0))) {
+    (s as any).sexstart = 1;
+    (s as any).sexvar = (Math.floor(Math.random() * 5) + 3);
+  }
+  (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
+  qspCall(s, 'dinsex2', 'stamina_npc');
+  (s as any).pos = 3;
+  if ((!((s as any).sxsex ?? 0))) {
+    if (((s as any).svidboysex ?? 0) === 1) {
+      (s as any).sexa = ((s as any).sexa ?? 0) + (1);
+    }
+    (s as any).sxsex = 1;
+  }
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand || '')}.jpg`);
+  if (((s as any).textrand ?? 0) === 1) {
+    scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
+  } else {
+    if (((s as any).textrand ?? 0) === 2) {
+      scene.text('His hard cock slides inside your wet cunt easily, and you feel the engorged head slowly part your insides when it goes deeper and deeper. You can\'t help but rub your clit, while you encourage him to fuck you harder.');
+    } else {
+      if (((s as any).textrand ?? 0) === 3) {
+        scene.text('He doesn\'t stop until his cock bottoms out in you and then proceeds to fuck you with the entire length of his impressive shaft. His thrusts become more and more intense, and soon, the sound of his skin slapping against yours fills the room.');
+      } else {
+        scene.text('Your wet pussy eagerly takes his cock in, and you hear some embarrassing sopping sounds when he proceeds to fuck your pussy enthusiastically. You must\'ve wanted him pretty badly if you got this wet…');
+      }
+    }
+  }
+  qspCall(s, 'arousal', 'vaginal', 10);
+  qspCall(s, 'stat', '');
+  if (((s as any).sexvar ?? 0) <= 0) {
+    (s as any).sexvar = 0;
+    qspGoto(s, 'sex', 'end');
+  } else {
+    if (((s as any).sexvar ?? 0) === 1) {
+      scene.text('<br>The man groans that he will cum soon.');
+    }
+  }
+  (s as any).cumprecheck = 1;
+  qspCall(s, 'cum_manage', '');
+  qspGoto(s, 'sex', 'var');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterRak(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).sexstart ?? 0))) {
+    (s as any).sexstart = 1;
+    (s as any).sexvar = (Math.floor(Math.random() * 5) + 3);
+  }
+  (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
+  qspCall(s, 'dinsex2', 'stamina_npc');
+  (s as any).pos = 3;
+  if ((!((s as any).sxsex ?? 0))) {
+    if (((s as any).svidboysex ?? 0) === 1) {
+      (s as any).sexa = ((s as any).sexa ?? 0) + (1);
+    }
+    (s as any).sxsex = 1;
+  }
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand || '')}.jpg`);
+  if (((s as any).textrand ?? 0) === 1) {
+    scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
+  } else {
+    if (((s as any).textrand ?? 0) === 2) {
+      scene.text('His hard cock slides inside your wet cunt easily, and you feel the engorged head slowly part your insides when it goes deeper and deeper. You can\'t help but rub your clit, while you encourage him to fuck you harder.');
+    } else {
+      if (((s as any).textrand ?? 0) === 3) {
+        scene.text('He doesn\'t stop until his cock bottoms out in you and then proceeds to fuck you with the entire length of his impressive shaft. His thrusts become more and more intense, and soon, the sound of his skin slapping against yours fills the room.');
+      } else {
+        scene.text('Your wet pussy eagerly takes his cock in, and you hear some embarrassing sopping sounds when he proceeds to fuck your pussy enthusiastically. You must\'ve wanted him pretty badly if you got this wet…');
+      }
+    }
+  }
+  qspCall(s, 'arousal', 'vaginal', 10);
+  qspCall(s, 'stat', '');
+  if (((s as any).sexvar ?? 0) <= 0) {
+    (s as any).sexvar = 0;
+    qspGoto(s, 'sex', 'end');
+  } else {
+    if (((s as any).sexvar ?? 0) === 1) {
+      scene.text('<br>The man groans that he will cum soon.');
+    }
+  }
+  (s as any).cumprecheck = 1;
+  qspCall(s, 'cum_manage', '');
+  qspGoto(s, 'sex', 'var');
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterBok(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).sexstart ?? 0))) {
+    (s as any).sexstart = 1;
+    (s as any).sexvar = (Math.floor(Math.random() * 5) + 3);
   }
   (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
   qspCall(s, 'dinsex2', 'stamina_npc');
@@ -202,7 +337,7 @@ function enterVag(s: GameState, scene: SceneBuilder): void {
 function enterAnal(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).sexstart ?? 0))) {
     (s as any).sexstart = 1;
-    (s as any).sexvar = Math.floor(Math.random() * 5) + 3;
+    (s as any).sexvar = (Math.floor(Math.random() * 5) + 3);
   }
   (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
   qspCall(s, 'dinsex2', 'stamina_npc');
@@ -265,52 +400,52 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).picrand ?? 0) >= 54  &&  ((s as any).picrand ?? 0) <= 73) {
+    if (((st as any).picrand ?? 0) >= 54  &&  ((st as any).picrand ?? 0) <= 73) {
       // TODO-QSP: killvar 'picrand'
-      qspGoto(s, 'office', 'work');
+      qspGoto(st, 'office', 'work');
     }
-    if (((s as any).picrand ?? 0) >= 74  &&  ((s as any).picrand ?? 0) <= 76) {
+    if (((st as any).picrand ?? 0) >= 74  &&  ((st as any).picrand ?? 0) <= 76) {
       // TODO-QSP: killvar 'picrand'
-      qspGoto(s, 'vann', 'start');
+      qspGoto(st, 'vann', 'start');
     }
-    if (((s as any).picrand ?? 0) >= 77  &&  ((s as any).picrand ?? 0) <= 80) {
+    if (((st as any).picrand ?? 0) >= 77  &&  ((st as any).picrand ?? 0) <= 80) {
       // TODO-QSP: killvar 'picrand'
-      qspGoto(s, 'nichApartment', '');
+      qspGoto(st, 'nichApartment', '');
     }
-    if (((s as any).picrand ?? 0) >= 81  &&  ((s as any).picrand ?? 0) <= 82) {
+    if (((st as any).picrand ?? 0) >= 81  &&  ((st as any).picrand ?? 0) <= 82) {
       // TODO-QSP: killvar 'picrand'
-      qspGoto(s, 'city_center', '');
+      qspGoto(st, 'city_center', '');
     }
-    if (((s as any).picrand ?? 0) >= 83  &&  ((s as any).picrand ?? 0) <= 84) {
+    if (((st as any).picrand ?? 0) >= 83  &&  ((st as any).picrand ?? 0) <= 84) {
       // TODO-QSP: killvar 'picrand'
-      qspGoto(s, 'dina', 'brodila');
+      qspGoto(st, 'dina', 'brodila');
     }
-    if (((s as any).picrand ?? 0) >= 85  &&  ((s as any).picrand ?? 0) <= 86) {
+    if (((st as any).picrand ?? 0) >= 85  &&  ((st as any).picrand ?? 0) <= 86) {
       // TODO-QSP: killvar 'picrand'
-      qspGoto(s, 'city_center', '');
+      qspGoto(st, 'city_center', '');
     }
-    if (((s as any).picrand ?? 0) === 87  ||  ((s as any).picrand ?? 0) === 90) {
+    if (((st as any).picrand ?? 0) === 87  ||  ((st as any).picrand ?? 0) === 90) {
       // TODO-QSP: killvar 'picrand'
-      qspCall(s, 'dina', 'brodilk');
+      qspCall(st, 'dina', 'brodilk');
     }
-    if (((s as any).picrand ?? 0) === 88) {
+    if (((st as any).picrand ?? 0) === 88) {
       // TODO-QSP: killvar 'picrand'
-      qspCall(s, 'dina', 'brodils');
+      qspCall(st, 'dina', 'brodils');
     }
-    if (((s as any).picrand ?? 0) === 89) {
+    if (((st as any).picrand ?? 0) === 89) {
       // TODO-QSP: killvar 'picrand'
-      qspGoto(s, 'bed', 'start');
+      qspGoto(st, 'bed', 'start');
     }
-    if (((s as any).svidboysex ?? 0) === 1) {
-      dynamicGoto(s, 'svidboy_home', 'svidboy_home_arg');
+    if (((st as any).svidboysex ?? 0) === 1) {
+      dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
     }
-    if (((s as any).sexloc ?? 0) === 'uni_dorm') {
-      qspGoto(s, 'uni_dorm', 'dorm_room');
+    if (((st as any).sexloc ?? 0) === 'uni_dorm') {
+      qspGoto(st, 'uni_dorm', 'dorm_room');
     }
-    if (((s as any).sexloc ?? 0) === 'city_nightclub') {
-      qspGoto(s, 'city_nightclub', 'private_rooms');
+    if (((st as any).sexloc ?? 0) === 'city_nightclub') {
+      qspGoto(st, 'city_nightclub', 'private_rooms');
     }
-    dynamicGoto(s, 'sexloc');
+    dynamicGoto(st, 'sexloc');
   } },
   ]);
   scene.build();
@@ -333,6 +468,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'vag':
       enterVag(s, scene);
+      break;
+    case 'nae':
+      enterNae(s, scene);
+      break;
+    case 'rak':
+      enterRak(s, scene);
+      break;
+    case 'bok':
+      enterBok(s, scene);
       break;
     case 'anal':
       enterAnal(s, scene);

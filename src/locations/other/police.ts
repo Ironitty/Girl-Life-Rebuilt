@@ -39,8 +39,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Keep your mouth shut', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/police/sex/a2.jpg');
     scene.text('"I don\'t know what you\'re talking about", you declare with a stern face, even though it\'s obvious you\'re lying.');
     scene.text('"Then you\'re an idiot. Do you have any idea what happens with pretty girls like you in prison?" she says, and forces you to your knees. "Being some butch chick\'s prison bitch, licking her pussy hole every day? If the guards don\'t get a turn, too…"');
@@ -52,12 +52,12 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('When you hesitate, she uses the baton to lock your mouth against her pussy and hisses: "I said lick, criminal!"');
     scene.text('As you begin to lick, she moans: "Oh yeah! They\'re going to love you in there! Enjoy it, it\'s the last clean pussy your mouth is going to be on! Unless you confess, you\'ll be spending the rest of your life like this! And face it: a bitch like you won\'t last a month…"');
     scene.text('She pulls your head back by your hair again and threatens: "Final chance. Confess, or else."');
-    qspCall(s, 'arousal', 'cuni_give', 30, 'lesbian', 'rough', 'bound');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 30, 'lesbian', 'rough', 'bound');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'Police Officer', Math.floor(Math.random() * 11) + 25);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'Police Officer', (Math.floor(Math.random() * 11) + 25));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
     scene.img('images/locations/city/industrial/police/sex/a3.jpg');
     scene.text('When you refuse again, she angrily swoops all the items off the desk. "Take off your clothes, scum", she hisses as she unlocks your cuffs off and threatens to beat you with her baton.');
     scene.text('Once you\'re naked, she cuffs you again and orders you to lie down on the table, undressing as well. After taking her clothes off, she climbs on top of you and sits on your face, forcing you to lick her.');
@@ -72,11 +72,11 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Bitch!" she cries out. "Send her to prison, now!"');
     scene.text('"Wait, I\'m not done yet", the man says. The two of them force you back down on the desk and he thrusts his cock roughly inside you again, insulted by your comment on his size. He pounds his hips against yours furiously, and finally cums in your ass a few minutes later.');
     scene.text('After he straightens his clothes, he undoes your handcuffs and lets you get dressed again. At that point the girl turns off the camera - it turns out that she let it run the whole time!');
-    qspCall(s, 'arousal', 'cuni_give', (-30), 'lesbian', 'rough', 'bound');
-    qspCall(s, 'arousal', 'anal', 30, 'rough');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'anus', 'Police Officer');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', (-30), 'lesbian', 'rough', 'bound');
+    qspCall(st, 'arousal', 'anal', 30, 'rough');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'anus', 'Police Officer');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Be brought to a prison cell', goto: ['kamera', ''] },
     ]);
@@ -88,15 +88,15 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Confess everything', handler: (st: GameState) => {
-    (s as any).gopdeath = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 180;
-    (s as any).vsehsdaladay = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    (st as any).gopdeath = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 180;
+    (st as any).vsehsdaladay = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.text('You nod: "Okay, okay! I\'ll confess, if it gets me out of trouble!"');
     scene.text('The girl gives you a pleased nod and reassures you that you\'ll be fully pardoned, as long as you tell her what she wants to know. Then she presses a few buttons on the camera and begins to ask you questions.');
     scene.text('You answer all of them. How many of them there were, their names, what you did with the stolen goods… you even mention random things you overheard, when you were just chatting with the Gopniks! Anything she might be interested in, anything that might get you out of here!');
     scene.text('You\'re released after your confession, but your days may be numbered. Once the Gopniks find out you ratted them out, who knows what they\'ll do to you…');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the police station', goto: ['city_industrial', ''] },
     ]);

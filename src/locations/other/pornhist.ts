@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspFunc } from '../_shared/qspBridge';
+import { qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -56,8 +56,8 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
       (s as any).firstvariable = 1;
       (s as any).fvvalue = ((s as any).i ?? 0);
     }
-    // TODO-QSP: dynamic text: <b><a href="exec:$porntitle[fvvalue] = input('<font color=#FF0000>WARNING!</font...
-    scene.text(`<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $porntitle[fvvalue] = input(\\u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, it will name the <b>first</b> unnamed movie! This action can be done only once!\\u0027) */ return s; }); window.__gameStore.getState().doGoto(\\u0027pornhist\\u0027, \\u0027pdetail\\u0027); return false;">${((s as any).i || '')}. Movie</a></b>`);
+    // TODO-QSP: dynamic text: <b><a href="exec:$porntitle[fvvalue] = input(''<font color=#FF0000>WARNING!</fon...
+    scene.text(`<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $porntitle[fvvalue] = input(/u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, it will name the <b>first</b> unnamed movie! This action can be done only once!/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">${((s as any).i || '')}. Movie</a></b>`);
   } else {
     if (((s as any).i ?? 0) === 1) {
       // TODO-QSP: dynamic text: <b><font color="brown"><<$porntitle[i]>><<$pfname>></font></b>
@@ -88,7 +88,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text:  <b>Actors:</b> <font size=2><<$pornfilmActor[i]>> and <<$pfname>></font>
     scene.text(` <b>Actors:</b> <font size=2>${((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? ''} and ${((s as any).pfname || '')}</font>`);
   }
-  // TODO-QSP: dynamic text:  <b>Income:</b> <font size=2><<$func('money', 'string_profit', pornfilmCash[i])>...
+  // TODO-QSP: dynamic text:  <b>Income:</b> <font size=2><<$func(''money'', ''string_profit'', pornfilmCash[...
   scene.text(` <b>Income:</b> <font size=2>${qspFunc(s, 'money', 'string_profit', ((s as any).pornfilmCash ?? 0)?.[String((s as any).i ?? 0)] ?? '')}</font>`);
   if (((s as any).pornfilmacting ?? 0)?.[String((s as any).i ?? 0)] < 15) {
     scene.text(' <b>Acting:</b> <font size=2>Your acting was as fake as a bad boobjob. Did you get paid for this?</font>');
@@ -135,7 +135,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
       (s as any).firstvariable2 = 1;
       (s as any).fvvalue2 = ((s as any).i ?? 0);
     }
-    scene.text(' <b>Story:</b> <font size=2><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $pornfilmstory[fvvalue2] = input(\\u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, you will enter the story of the <b>first</b> movie missing it! This action can be done only once!\\u0027) */ return s; }); window.__gameStore.getState().doGoto(\\u0027pornhist\\u0027, \\u0027pdetail\\u0027); return false;">Missing story</a></font>');
+    scene.text(' <b>Story:</b> <font size=2><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $pornfilmstory[fvvalue2] = input(/u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, you will enter the story of the <b>first</b> movie missing it! This action can be done only once!/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">Missing story</a></font>');
   } else {
     // TODO-QSP: dynamic text:  <b>Story:</b> <font color=#1B4532 size=2><<$pornfilmstory[i]>></font>
     scene.text(` <b>Story:</b> <font color=#1B4532 size=2>${((s as any).pornfilmstory ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font>`);
@@ -203,7 +203,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
         (s as any).pfType = 0;
         (s as any).pcash = 50;
         (s as any).pfactor = 1;
-        (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+        (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
         (s as any).tags = 'blowjob, vaginal, facial';
         (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked you before giving you a facial.';
       } else {
@@ -211,7 +211,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
           (s as any).pfType = 0;
           (s as any).pcash = 60;
           (s as any).pfactor = 1;
-          (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+          (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
           (s as any).tags = 'blowjob, facial, vaginal, anal';
           (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your pussy and ass before giving you a facial.';
         } else {
@@ -219,7 +219,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
             (s as any).pfType = 0;
             (s as any).pcash = 70;
             (s as any).pfactor = 2;
-            (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+            (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
             (s as any).tags = 'facial, vaginal, anal, blowjob, anal creampie';
             (s as any).pfilmtext = 'A guy fucked your pussy and ass and came in your ass while you sucked off another guy who gave you a facial.';
           } else {
@@ -227,7 +227,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
               (s as any).pfType = 0;
               (s as any).pcash = 90;
               (s as any).pfactor = 2;
-              (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+              (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
               (s as any).tags = 'DP, vaginal, anal, blowjob, facial, swallowing';
               (s as any).pfilmtext = 'A guy fucked your pussy and ass while you sucked off another guy. They then double penetrated you before cumming on your face. You swallowed their loads.';
             } else {
@@ -235,7 +235,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                 (s as any).pfType = 1;
                 (s as any).pcash = 80;
                 (s as any).pfactor = 1;
-                (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
                 (s as any).tags = 'vaginal';
                 (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked you and gave you a creampie.';
               } else {
@@ -243,7 +243,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                   (s as any).pfType = 1;
                   (s as any).pcash = 100;
                   (s as any).pfactor = 2;
-                  (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                  (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
                   (s as any).tags = 'DP, vaginal, anal';
                   (s as any).pfilmtext = 'Two guys fucked you in double penetration before giving you a double creampie.';
                 } else {
@@ -251,7 +251,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                     (s as any).pfType = 1;
                     (s as any).pcash = 90;
                     (s as any).pfactor = 2;
-                    (s as any).actbonus = Math.floor(Math.random() * 3) + 1;
+                    (s as any).actbonus = (Math.floor(Math.random() * 3) + 1);
                     (s as any).tags = 'blowjob, vaginal, swallowing';
                     (s as any).pfilmtext = 'Two guys fucked your pussy and mouth. One gave you a creampie and the other came in your mouth and you swallowed.';
                   } else {
@@ -259,7 +259,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                       (s as any).pfType = 1;
                       (s as any).pcash = 120;
                       (s as any).pfactor = 4;
-                      (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                      (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
                       (s as any).tags = 'vaginal, cumshot';
                       (s as any).pfilmtext = 'Four guys fucked your pussy and they all ejaculated on your body and face.';
                     } else {
@@ -267,7 +267,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                         (s as any).pfType = 1;
                         (s as any).pcash = 150;
                         (s as any).pfactor = 4;
-                        (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                        (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
                         (s as any).tags = 'vaginal';
                         (s as any).pfilmtext = 'Four guys fucked your pussy, giving you four creampies.';
                       } else {
@@ -275,7 +275,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                           (s as any).pfType = 0;
                           (s as any).pcash = 150;
                           (s as any).pfactor = 4;
-                          (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                          (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
                           (s as any).tags = 'anal, anal creampie';
                           (s as any).pfilmtext = 'Four guys fucked your ass, giving you four anal creampies.';
                         } else {
@@ -283,7 +283,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                             (s as any).pfType = 1;
                             (s as any).pcash = 150;
                             (s as any).pfactor = 4;
-                            (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                            (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
                             (s as any).tags = 'DP, vaginal, anal';
                             (s as any).pfilmtext = 'Four guys fucked you in double penetration in pairs. You got two double creampies.';
                           } else {
@@ -291,7 +291,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                               (s as any).pfType = 1;
                               (s as any).pcash = 300;
                               (s as any).pfactor = 50;
-                              (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                              (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
                               (s as any).tags = 'vaginal, anal, blowjob, cumshot, facial, swallowing';
                               (s as any).pfilmtext = 'Fifty of your fans fucked you however they could. Almost all of them came in your pussy.';
                               (s as any).pstory = 'You called out to your fans on the internet, giving them an opportunity to fuck you however they like.';
@@ -300,7 +300,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                 (s as any).pfType = 0;
                                 (s as any).pcash = 50;
                                 (s as any).pfactor = 1;
-                                (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
                                 (s as any).tags = 'blowjob, anal, anal creampie';
                                 (s as any).pfilmtext = 'You gave a guy a blowjob before he fucked your ass and gave you an anal creampie.';
                               } else {
@@ -308,7 +308,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                   (s as any).pfType = 0;
                                   (s as any).pcash = 50;
                                   (s as any).pfactor = 1;
-                                  (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                  (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
                                   (s as any).tags = 'blowjob, anal, cumshot';
                                   (s as any).pfilmtext = 'You gave a guy a blowjob and he fucked your ass. He came over your ass.';
                                 } else {
@@ -316,7 +316,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                     (s as any).pfType = 0;
                                     (s as any).pcash = 50;
                                     (s as any).pfactress = 1;
-                                    (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                    (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
                                     (s as any).tags = 'tribbing, double dildo, vaginal';
                                     (s as any).pfilmtext = 'You had sex with a girl using a double dildo.';
                                   } else {
@@ -324,7 +324,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                       (s as any).pfType = 0;
                                       (s as any).pcash = 50;
                                       (s as any).pfactress = 1;
-                                      (s as any).actbonus = Math.floor(Math.random() * 2) + 1;
+                                      (s as any).actbonus = (Math.floor(Math.random() * 2) + 1);
                                       (s as any).tags = 'strapon, vaginal, anal';
                                       (s as any).pfilmtext = 'You had sex with a girl using a strapon.';
                                     } else {
@@ -333,7 +333,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                         (s as any).pcash = 100;
                                         (s as any).pfactor = 1;
                                         (s as any).pfactress = 1;
-                                        (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                                        (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
                                         (s as any).tags = 'mff, blowjob, anal, cumshare';
                                         (s as any).pfilmtext = 'You took part in an MFF threesome, sucking a guy off before he fucked your ass while the girl licked your pussy. You got an anal creampie and shared it with the girl.';
                                       } else {
@@ -342,7 +342,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
                                           (s as any).pcash = 100;
                                           (s as any).pfactor = 1;
                                           (s as any).pfactress = 1;
-                                          (s as any).actbonus = Math.floor(Math.random() * 2) + 2;
+                                          (s as any).actbonus = (Math.floor(Math.random() * 2) + 2);
                                           (s as any).tags = 'mff, blowjob, anal, creampie, cumshare, cuni';
                                           (s as any).pfilmtext = 'You took part in an MFF threesome, sucking him off before he fucked her ass while you licked her pussy. She shared her anal creampie with you.';
                                         }
@@ -459,7 +459,8 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'pornfilmdesc'
     // TODO-QSP: killvar 'porntag'
     (st as any).menu_page = 5;
-  }, goto: ['$menu_character', 'reputation'] },
+    dynamicGoto(st, 'menu_character', 'reputation');
+  } },
   ]);
   scene.build();
 }

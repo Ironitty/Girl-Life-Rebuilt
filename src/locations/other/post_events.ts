@@ -19,14 +19,14 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Model the gown for him', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/events/postevent1-2.jpg');
     scene.text('He didn\'t lie. The gown covers you up enough so you don\'t feel too exposed. You carefully put it on and open the bathroom door, modeling the gown for him.');
     scene.text('The man\'s eyes light up the moment you enter the room.');
     scene.text('"That\'s great! Fantastic! She\'s going to look so hot…" he murmurs.');
-    qspCall(s, 'willpower', 'exhib', 'self', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'exhib', 'self', 'easy');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Flirt with him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -35,16 +35,16 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Flirt with him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('"What about me?" you ask him sweetly. When he looks at you, you ask again. "What about me? Do you think I look hot in it?"');
     scene.text('"I, uhh…" he mumbles.');
     scene.text('"It\'s okay! Your wife isn\'t here, right? It\'s just you and me! You can say whatever you want!" you wink at him.');
     scene.text('The man is still speechless, but the bulge in his pants tells you everything you need to know. Nevertheless, you want to hear him say it.');
     scene.text('"Well?" you ask him sharply.');
     scene.text('"You look… Very sexy," he confesses. He\'s actually fairly attractive, despite his age.');
-    qspCall(s, 'willpower', 'foreplay', 'force', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'foreplay', 'force', 'easy');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Press on and seduce him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -53,9 +53,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Press on and seduce him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'force');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'force');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/events/postevent1-3.jpg');
     scene.text('"It\'d be so easy for you to just throw me down on that bed and fuck me…" you say huskily, whisking the gown to the side to show him your pussy. "See? Easy access. I wouldn\'t even have to take it off!"');
     scene.text('The man knows he shouldn\'t be looking at you, but at the same time can\'t look away. Still, he makes no move. "Please, I\'m a married man!" he mumbles.');
@@ -63,8 +63,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('You seem to have struck a nerve there! He looks you in the eye to be sure you\'re not joking, then sighs. "Needs? Things my wife won\'t do? "That would be just about everything. She\'s never ever given me a blowjob because she thinks it\'s degrading and disgusting!"');
     scene.text('You slip out of the gown and stand naked before him while smiling sweetly. "Well, I don\'t. Forget about your wife for a while and focus on me. Your wife isn\'t here, I am. If there was one thing you could ask of me, anything at all, what would it be?"');
     scene.text('The man ponders for a second, then looks at you as if he\'s too embarrassed to say it. "A blowjob, definitely a blowjob. I haven\'t had one in forever!"');
-    qspCall(s, 'willpower', 'bj', 'resist', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'bj', 'resist', 'easy');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Don\'t do it, but tell him he deserves better', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -73,10 +73,10 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Don\'t do it, but tell him he deserves better', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    (s as any).postmarriedQW = 1;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    (st as any).postmarriedQW = 1;
     scene.text('"You know what? No. Ask your wife one last time," you reply. "Just be straight with her and tell her what you want, like you told me. If she cares for you, she\'ll do it."');
     scene.text('The man looks at you in confusion for a second, but nods. In a way, he actually looks relieved…');
     scene.text('"And if she keeps saying no, then it\'s her own fault if you find someone else who\'s more willing. Someone like me. Right?" you smile at him. You\'re still completely naked, and the man\'s eyes explore your body once more.');
@@ -99,14 +99,14 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ease up and ask if that was all', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'earn', 300);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'earn', 300);
+    qspCall(st, 'stat', '');
     scene.text('"Anyway, that\'s all you needed from me, right?" you ask him with a wink after he\'s been staring at your outfit for a while.');
     scene.text('The man snaps out of his daydream and instantly feels guilty for lusting over you. "Erm, yes!" he mutters. "Thank you! That was exactly what I needed to see. It looks great…"');
     scene.text('"Great on me, you mean?" you laugh while nodding at the tenting erection in his pants. The man nods embarrassedly and leaves so you can change.');
     scene.text('You put your regular clothes back on and find him waiting outside, clearly looking relieved.');
-    // TODO-QSP: dynamic text: He offers you <<$func('money', 'string_profit', 300)>> and a wide smile. "Thank ...
+    // TODO-QSP: dynamic text: He offers you <<$func(''money'', ''string_profit'', 300)>> and a wide smile. "Th...
     scene.text(`He offers you ${qspFunc(s, 'money', 'string_profit', 300)} and a wide smile. "Thank you so much! I know it was weird of me to ask, but you really helped me out today. Please take this for your time."`);
     scene.actions([
       { label: 'Take the money and leave', goto: ['pav_residential', ''] },
@@ -118,13 +118,13 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ask if that was all', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'earn', 300);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'earn', 300);
+    qspCall(st, 'stat', '');
     scene.text('"Uhh… That\'s all you needed from me, right?" you ask after he\'s been staring at your outfit for a while.');
     scene.text('The man snaps out of his daydream and nods. "Erm, yes! Thank you! That was exactly what I needed to see. It looks great!"');
     scene.text('You change back into your regular clothes and find him waiting outside, clearly looking relieved.');
-    // TODO-QSP: dynamic text: "If this won't do it, I don't know what will," he mutters before he offers you <...
+    // TODO-QSP: dynamic text: "If this won''t do it, I don''t know what will," he mutters before he offers you...
     scene.text(`"If this won't do it, I don't know what will," he mutters before he offers you ${qspFunc(s, 'money', 'string_profit', 300)} and a wide smile. "Thank you so much! I know it was weird of me to ask…"`);
     scene.actions([
       { label: 'Take the money and leave', goto: ['pav_residential', ''] },
@@ -152,22 +152,22 @@ function enter1_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take his load on your body', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'breasts', 'Nice man');
+    qspCall(st, 'cum_call', 'breasts', 'Nice man');
     scene.img('images/locations/shared/postoffice/sex/postevent1-5.jpg');
     scene.text('When he\'s about to burst, you release his cock from your mouth and jerk him off while aiming the head at your breasts. Thick sperm soons covers them while you sit there grinning.');
-    qspCall(s, 'arousal', 'hj', 2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'hj', 2);
+    qspCall(st, 'arousal', 'end');
     scene.text('"That was… Oh wow… I don\'t…" the man mumbles as he sits on a chair and regains his breath.');
     scene.text('"Maybe you should be a bit more firm with your wife to get what you want! It\'s a crime to let a nice cock like that go to waste…" you wink at him.');
     scene.text('"My wife… What have I done!?" he exclaims, suddenly realizing what he\'s done. "Oh no. No no no! This is bad…"');
     scene.text('He looks at you desperately, expecting you to say something.');
     scene.actions([
       { label: 'Reassure him', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
-    (s as any).postmarriedQW = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
+    (st as any).postmarriedQW = 2;
     scene.text('"Relax, you did nothing wrong! She\'s the one not taking care of you! Right?" you tell him. The man looks at you, still rather doubtful.');
     scene.text('"Right!?" you repeat.');
     scene.text('"I guess… But…" he mutters.');
@@ -205,13 +205,13 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/postoffice/sex/postevent2-3.jpg');
     scene.text('"You know where we\'ll be, boys!" she shouts to the guys and ushers you into a bedroom without waiting for an answer. She guides you to a bed and lies down next to you.');
     scene.text('Her hands explore your body eagerly while she aggressively slips her tongue into your mouth and kisses you dominantly.');
-    qspCall(s, 'arousal', 'kiss', 5, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 5, 'sub');
+    qspCall(st, 'stat', '');
     scene.text('"Are you okay, dear? Want some vodka for your nerves?" she asks when she feels you\'re a bit overwhelmed by her raw sexuality.');
     scene.actions([
       { label: 'Drink vodka', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/sex/postevent2-4.jpg');
     scene.text('"Maybe a few sips to take the edge off," you mutter, but she pours a mug full and hands it to you. "Cheers!" she grins and takes a swig straight from the bottle before putting it away.');
     scene.text('You take a few sips of the vodka. It\'s the cheap home brewed stuff, but it gets the job done.');
@@ -227,8 +227,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('"You never asked him?" you ask. "Aren\'t you afraid someone will recognize you?"');
     scene.text('She laughs. "And then what? They would see I\'m hot, that I love sex, and that I\'m good at it! That\'s nothing to be ashamed of! Besides, it hasn\'t happened yet. I think he only publishes abroad…"');
     scene.text('When she sees your face, she kisses your neck. "You\'re not getting cold feet, are you? Here, have some vodka to ease your nerves! You\'ll be fine, trust me!"');
-    qspCall(s, 'willpower', 'sex', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'You don\'t want to do this', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -237,8 +237,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'You don\'t want to do this', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('"I\'m sorry, but I really can\'t do this," you tell her and push her off you.');
     scene.text('Jenya looks disappointed, but doesn\'t try to stop you. "That\'s a shame," she smiles. "Arsen would\'ve loved to have a cutie like you. Oh well, more cock for me!"');
     scene.text('You\'re gathering your clothes when Arsen and Maksim enter the room. Both their cocks are semi-erect and bob up and down with every step.');
@@ -253,8 +253,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Drink the vodka', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/sex/postevent2-4.jpg');
     scene.text('"Maybe a few sips to take the edge off," you mutter, but she completely fills the mug and hands it to you. "Cheers!" she grins and takes a swig straight from the bottle before putting it away.');
     scene.text('You take a few sips of the vodka. It\'s the cheap home brewed stuff, but it gets the job done.');
@@ -272,8 +272,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Come on, please?" you plead. "I really like you, but…"');
     scene.text('She sighs and thinks for a second. "Okay, look. I\'ll try to keep him happy and do most of the work, but you can\'t ignore him. At least suck him off a little, you know? Does that sound okay?"');
     scene.text('Before you can answer, she continues. "I\'ll tell him he can fuck my ass, if it really comes to that. He loves my ass, but I never let him have it. He just doesn\'t know how to pace himself and make it feel good for me too! Anyway, I don\'t think he\'ll say no, but if he goes for you, I won\'t stop him. I can\'t stop him. Not after everything he does for me. I already promised him he\'d get to fuck a young cutie today, so…"');
-    qspCall(s, 'willpower', 'sex', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'You don\'t want to do this', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -282,8 +282,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'You don\'t want to do this', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('"I\'m sorry, but I really can\'t do this," you tell her and push her off you.');
     scene.text('The girl looks disappointed, but doesn\'t try to stop you. "That\'s a shame. Arsen would\'ve loved to have a cutie like you. Oh well, more cocks for me!"');
     scene.text('You\'re gathering your clothes when Arsen and Maksim enter the room. Both their cocks are semi-erect and bob up and down with every step.');
@@ -298,8 +298,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Ask for the vodka', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/sex/postevent2-4.jpg');
     scene.text('"Maybe some vodka to take the edge off isn\'t such a bad idea after all," you mutter and she pours a mug full and hands it to you.');
     scene.text('"Cheers!" she grins and takes a swig straight from the bottle before putting it away.');
@@ -340,30 +340,30 @@ function enter2_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/shared/postoffice/sex/postevent2-7.jpg');
     scene.text('Jenya slides down and takes the mug from your hand, putting it on the nightstand. She then brings her mouth to Arsen\'s dick, and starts licking his shaft while you suck on the head. For the next few minutes, you take turns sucking him off while the other licks on his balls.');
     scene.text('"Do you want to fuck her now, babe?" you vaguely hear Jenya whisper in Arsen\'s ear. "You can do whatever you want… She\'s hammered, so she\'ll do whatever you want!"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-8.jpg');
-    (s as any).cumprecheck = 1;
-    qspCall(s, 'cum_manage', '');
+    (st as any).cumprecheck = 1;
+    qspCall(st, 'cum_manage', '');
     scene.text('The alcohol is really hitting you hard now, and the room feels a bit wobbly when Arsen pulls you on top of him. He guides his cock to your pussy and grunts in your ear. "Sit down on it. Go on."');
     scene.text('You slowly lower yourself onto his cock, feeling it penetrate you further and further. Jenya is smiling at you from the corner of the bed, idly jerking off Maksim as he continues taking photos.');
     scene.text('Arsen spanks your ass cheeks repeatedly until you move your hips back and forth.');
-    qspCall(s, 'pain', '', 2, 'asscheeks');
+    qspCall(st, 'pain', '', 2, 'asscheeks');
     scene.text('"That\'s it, cutie! Ride that cock! Isn\'t it the best cock you ever had?" Jenya grins, happy to see how enthusiastic you are. Is it because of the alcohol or just because his cock makes you feel really good?');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-9.jpg');
     scene.text('The next thing you remember is being on your knees next to the bed, getting fucked from behind by Arsen as Jenya eagerly grinds her crotch against your face, guiding your mouth to where she wants it.');
     scene.text('Maksim taking photos of you getting fucked doesn\'t even cross your mind any more, and you moan eagerly while Arsen drills his cock inside you over and over.');
-    qspCall(s, 'arousal', 'vaginal', 10, 'sub');
-    qspCall(s, 'arousal', 'cuni_give', (-10), 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 10, 'sub');
+    qspCall(st, 'arousal', 'cuni_give', (-10), 'sub');
+    qspCall(st, 'stat', '');
     scene.text('"Remember, don\'t cum inside her!" Jenya reminds Arsen. "If you\'re cumming inside anyone, it should be me…"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -371,30 +371,30 @@ function enter2_1(s: GameState, scene: SceneBuilder): void {
     scene.text('Arsen pulls out of you and tells you to get on your knees.');
     scene.text('As he guides his cock to your mouth, Jenya gets up from the bed and motions for Maksim to come closer. She takes the camera from him and grins. "Go on. You look like you\'re about to pop too!"');
     scene.text('It takes you a second to realize that there are two cocks in front of you instead of one, but you absent-mindedly close your fingers around them and suck the guys off in turn.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'cum_call', 'face', 'A163', 1);
-    qspCall(s, 'boyStat', 'A164');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'cum_call', 'face', 'A164', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'cum_call', 'face', 'A163', 1);
+    qspCall(st, 'boyStat', 'A164');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'cum_call', 'face', 'A164', 1);
+    qspCall(st, 'stat', '');
     scene.text('"This girl is amazing!" Maksim gasps right when he hits his orgasm and his warm cum lands on your face.');
     scene.text('Arsen laughs. "Drunk sluts are the best! You\'ve really outdone yourself this time, Jenya."');
     scene.text('Seconds later, he groans loudly and adds his load to Maksim\'s, completely covering your face. Jenya takes photos of it all while grinning at you like a proud mother hen.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).pcs_makeup = 1;
-    (s as any).cumspclnt = 9;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).cumspclnt = 13;
-    qspCall(s, 'cum_cleanup', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).pcs_makeup = 1;
+    (st as any).cumspclnt = 9;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).cumspclnt = 13;
+    qspCall(st, 'cum_cleanup', '');
     scene.img('images/locations/shared/postoffice/sex/postevent2-11.jpg');
     scene.text('Jenya gives the camera back to Maksim and gets down on the bed with you, softly kissing you and lapping their cum off your face with her tongue.');
     scene.text('Maksim takes a few more photos of the two of you before he leaves the room with Arsen. You\'re alone with Jenya now.');
     scene.text('"You were so great! Did you see how happy Arsen was!?" she beams between kisses. "Mmm… mmm… delicious…"');
     scene.text('For the next half hour, Jenya keeps kissing and fondling you. In your drunken haze, you can\'t think of anything else to do than to just kiss and fondle her back.');
-    qspCall(s, 'arousal', 'kiss', 30);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'kiss', 30);
+    qspCall(st, 'arousal', 'end');
     scene.text('She eventually gets up. "Alright, cutie! Time to get you out of here. Come on, I\'ll help you get dressed."');
     scene.text('You put your clothes back on with a little help from Jenya and walk to the living room with her. You see Arsen and Maksim near the PC again, looking over photos of you getting fucked from behind while you eat Jenya\'s pussy. They both give you a dismissive nod when they realize you\'re leaving.');
     scene.text('Jenya walks you down the stairs and kisses you on the cheek one more time before heading back up. Hopefully they\'ll keep those photos to themselves…');
@@ -434,11 +434,11 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You then sit up straight and kiss Jenya on the lips, stifling her moans while Arsen fucks her harder to try and coax a reaction out of her.');
     scene.text('After a few minutes, Arsen slows down a little and collapses on the bed, gasping for breath. His erection, glistening with Jenya\'s juices, is pointing straight up in the air.');
     scene.text('Jenya takes a moment to catch her breath as well, and wipes the sweat from her forehead. "What do you think, sweetie? Do you want to take it for a ride?" she asks between breaths. She looks fairly tired from the fucking Arsen just gave her.');
-    qspCall(s, 'arousal', 'masturbate', 5);
-    qspCall(s, 'arousal', 'kiss', (-5));
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'masturbate', 5);
+    qspCall(st, 'arousal', 'kiss', (-5));
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'easy');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline and let her do it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -447,7 +447,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline and let her do it', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
     scene.img('images/locations/shared/postoffice/sex/postevent2-14.jpg');
     scene.text('You discretely shake your head at her and she bites her lower lip in disappointment, but then smiles at Arsen as she straddles him. "You\'re not done yet, babe!" she tells him in a sing-song voice while she slowly lets his cock sink into her again.');
     scene.text('She silently mouths the words "You owe me!" to you while she begins to ride Arsen. From the ecstatic look on her face a few seconds later, she really doesn\'t seem to mind all that much!');
@@ -455,24 +455,24 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     scene.text('He suddenly realizes you\'re still here and his hand finds its way between your legs. He slips several fingers inside your pussy and starts fingering you.');
     scene.text('Arsen is very interested in you and keeps trying to get close to you, but Jenya is always one step ahead of him and offers herself so you don\'t have to.');
     scene.text('Eventually, his breathing grows short and more ragged, and you realize he must be close to orgasming. Jenya smiles tiredly at you. "Go ahead, cutie. Finish him off with your mouth!"');
-    qspCall(s, 'arousal', 'vaginal_finger', 5);
-    qspCall(s, 'arousal', 'foreplay_give', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger', 5);
+    qspCall(st, 'arousal', 'foreplay_give', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Give Arsen a blowjob', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/shared/postoffice/sex/postevent2-15.jpg');
     scene.text('You nod and get on your knees before Arsen, gently running your tongue across his shaft. You can taste Jenya\'s juices on it.');
     scene.text('Jenya beckons Maksim to come closer and grins. "I know I shouldn\'t, but you look like you could use some relief too, Maksim!"');
     scene.text('Maksim\'s cock had been hard throughout the shoot, and Jenya takes most of his length in her mouth immediately before he can say a word. You focus on sucking Arsen\'s dick as you hear Maksim groan behind you.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Let Arsen cum in your mouth', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A163', 1);
-    qspCall(s, 'boyStat', 'A164');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A164', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A163', 1);
+    qspCall(st, 'boyStat', 'A164');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A164', 1);
     scene.img('images/locations/shared/postoffice/sex/postevent2-16.jpg');
     scene.text('"I\'m going to cum!" Arsen groans and you feel the first jets of his sperm landing on your tongue. Jenya immediately gets down next to you and eagerly watches how her boyfriend shoots his load in your mouth. Arsen\'s load isn\'t very big, but that\'s no surprise - how many times did Jenya make him cum already today?');
     scene.text('When Arsen pulls back, she grins proudly at you and locks her lips onto yours. Your mouth is then filled with even more cum.');
@@ -482,7 +482,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m exhausted!" she says tiredly. "I\'m going to take a nap. You can stay if you want? We can nap together?"');
     scene.actions([
       { label: 'Stay and nap with Jenya', handler: (st: GameState) => {
-    qspCall(s, 'sleep_simple', 'forced', 65);
+    qspCall(st, 'sleep_simple', 'forced', 65);
     scene.img('images/locations/shared/postoffice/sex/postevent2-17.jpg');
     scene.text('"Now that you mention it, I could use a nap…" you reply and get comfortable on the bed.');
     scene.text('Jenya embraces you and you both fall asleep. You\'re then awoken by the sensation of her rubbing her body against yours. Her soft kisses on your neck give you goosebumps all over your body.');
@@ -498,8 +498,8 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'I can\'t stay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"Sorry, but I can\'t stay," you reply while shaking your head.');
     scene.text('She pouts, but nods understandingly. She gets up to give you one last kiss. "You were so much fun and I loved having you around! Maybe I\'ll see you again?"');
     scene.text('"Maybe. I deliver mail every week!" you smile as you put your clothes back on.');
@@ -519,17 +519,17 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Agree to ride Arsen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).cumprecheck = 1;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'pain', '', 1, 'asscheeks');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).cumprecheck = 1;
+    qspCall(st, 'cum_manage', '');
+    qspCall(st, 'pain', '', 1, 'asscheeks');
     scene.img('images/locations/shared/postoffice/sex/postevent2-8.jpg');
     scene.text('Without saying a word, you throw your leg over Arsen and straddle him before slowly guiding his cock to your wet slit.');
     scene.text('You groan loudly as you feel his cock parting your pussy lips and slowly sink into your body. Jenya is smiling at you from the corner of the bed while idly jerking off Maksim as he continues taking photos.');
     scene.text('Arsen spanks your ass cheeks a few times and you automatically start riding him.');
     scene.text('"That\'s it, cutie! Ride that cock!" Jenya grins, happy to see how enthusiastic you are.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-9.jpg');
@@ -537,18 +537,18 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     scene.text('Maksim taking photos of you getting fucked doesn\'t even cross your mind any more, and you moan eagerly into Jenya\'s pussy as Arsen drills his cock inside you over and over.');
     scene.text('"Remember, don\'t cum inside her!" Jenya reminds him. "If you\'re cumming inside anyone, it should be me…"');
     scene.text('Eventually, his breathing grows short and more ragged, and you realize he must be close to orgasming. Jenya smiles at you. "Go ahead, cutie. Finish him off with your mouth!"');
-    qspCall(s, 'arousal', 'vaginal', 15, 'sub');
-    qspCall(s, 'arousal', 'cuni_give', (-15), 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 15, 'sub');
+    qspCall(st, 'arousal', 'cuni_give', (-15), 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let Arsen cum in your mouth', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent2-16.jpg');
     scene.text('"I\'m going to cum!" Arsen groans, mere seconds after you take his cock into your mouth. You feel the first jets of his sperm landing on your tongue as Jenya immediately gets down next to you and eagerly watches how her boyfriend shoots his load in your mouth. Arsen\'s load isn\'t very big, but that\'s no surprise - how many times did Jenya make him cum already today?');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A163', 1);
-    qspCall(s, 'boyStat', 'A164');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A163', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A163', 1);
+    qspCall(st, 'boyStat', 'A164');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A163', 1);
+    qspCall(st, 'stat', '');
     scene.text('When Arsen pulls back, she grins proudly at you and locks her lips on yours. Your mouth is suddenly filled with even more cum! Jenya must\'ve gotten Maksim off while you were busy and kept his cum in her mouth.');
     scene.text('"Show the load to the camera and swallow it, cutie!" she orders. "Enjoy your tasty treat…"');
     scene.text('You obediently open your mouth and Maksim takes several more photos of you. "Oh man! This next update is going to be spectacular! I don\'t know where you found her, but wow!" he grins at Arsen.');
@@ -556,7 +556,7 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m exhausted!" she says tiredly. "I\'m going to take a nap. You can stay if you want? We can nap together?"');
     scene.actions([
       { label: 'Stay and nap with Jenya', handler: (st: GameState) => {
-    qspCall(s, 'sleep_simple', 'pass_time', 65);
+    qspCall(st, 'sleep_simple', 'pass_time', 65);
     scene.img('images/locations/shared/postoffice/sex/postevent2-17.jpg');
     scene.text('"Now that you mention it, I could use a nap…" you reply and get comfortable on the bed.');
     scene.text('Jenya embraces you and you both fall asleep. You\'re then awoken by the sensation of her rubbing her body against yours. Her soft kisses on your neck give you goosebumps all over your body.');
@@ -572,8 +572,8 @@ function enter2_2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'I can\'t stay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"Sorry, but I can\'t stay," you reply while shaking your head.');
     scene.text('She pouts, but nods understandingly. She gets up to give you one last kiss. "You were so much fun and I loved having you around! Maybe I\'ll see you again?"');
     scene.text('"Maybe. I deliver mail every week!" you smile as you put your clothes back on.');
@@ -607,7 +607,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('"So, girl… Tell me. Who are you and why are you here holding the cock of a man you\'ve just met?" he asks sharply, letting out a satisfied groan when you start moving your hand slowly. His cock is definitely not small, that\'s for sure!');
   qspCall(s, 'arousal', 'hj', 5, 'prostitution');
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: "Uhhh, I'm <<$pcs_firstname>>," you say. "And I'm here because…"
+  // TODO-QSP: dynamic text: "Uhhh, I''m <<$pcs_firstname>>," you say. "And I''m here because…"
   scene.text(`"Uhhh, I'm ${((s as any).pcs_firstname || '')}," you say. "And I'm here because…"`);
   // TODO-QSP: end
   scene.actions([
@@ -628,7 +628,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: '"I like being told what to do."', handler: (st: GameState) => {
-    (s as any).postcuffs = 1;
+    (st as any).postcuffs = 1;
     scene.text('"I like being told what to do."');
     scene.text('"Do you, now?" he grins evilly. "In that case, let\'s make this a little bit more interesting. Close your eyes, turn around and put your hands behind your back."');
     scene.text('You hear him rummaging in the nightstand drawer before you feel the cold touch of metal on your wrists. "Those are not coming off until you get me off. Start sucking."');
@@ -685,15 +685,15 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Beg him to let you try again', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
     scene.img('images/locations/shared/postoffice/sex/postevent3-6.jpg');
     scene.text('You shake your head. "No, I can do it! Please let me try again! No need for that thing."');
     scene.text('He looks at you intently for a second, but puts the gag away. "Alright then," he sighs. "I\'ll give you one more chance. Get down on your knees in front of me."');
     scene.text('You do as he says and take the head of his cock back into your mouth, making sure to be careful with your teeth.');
     scene.text('Luckily, he lets you control the pace. While you occasionally try to take a bit more of his shaft in your mouth, you decide to play it safe and mostly just focus on the head, gently sucking on it and teasing it with your tongue.');
-    qspCall(s, 'arousal', 'bj', 15, 'prostitution');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A108');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 15, 'prostitution');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A108');
+    qspCall(st, 'stat', '');
     scene.text('"Look at me!" he groans and a warm load of his cum fills your mouth seconds later. "That was better I guess, but rather half-hearted. Swallow," he orders as he strokes your hair with his hand. You do so without hesitation.');
     scene.text('"You have a lot to learn, but it\'ll be worth it!" he sighs contently. "You could become a good little slut for me, with some training."');
     scene.actions([
@@ -708,9 +708,9 @@ function enter3_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You let the man put the ring into your mouth and wait obediently as he fastens it behind your head.');
     scene.text('When he guides his cock back towards your wide open mouth, you realize how little control you have now. You cough and splutter several times when he shoves his cock inside your mouth further than you can handle. He usually backs off just enough to give you a moment to recover, then continues to fuck your unexperienced throat.');
     scene.text('You feel relieved when you feel the man\'s cum splurting down your throat a few minutes later.');
-    qspCall(s, 'arousal', 'bj', 15, 'sub', 'bound', 'prostitution');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A108');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 15, 'sub', 'bound', 'prostitution');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A108');
+    qspCall(st, 'stat', '');
     scene.text('"Don\'t feel bad, you did good!" he pants as he undoes the gag. "Not the blowjob itself, obviously. That was terrible, but you\'re not afraid to get a little kinky and continued to try and please me even when you were having a rough time. You\'re exactly the kind of girl I\'m looking for!"');
     scene.actions([
       { label: 'Continue', goto: ['post_events', '3-2'] },
@@ -745,7 +745,7 @@ function enter3_2(s: GameState, scene: SceneBuilder): void {
     scene.text('He then suddenly pulls away and dismisses you. "Anyway, I have to go now. When I want you to come over, I\'ll send a letter to my house on Saturday. I assume you\'ll be the one delivering it?"');
     scene.text('With that, he enters the bathroom. Figuring he expects you to see yourself out, you quickly change back into your normal clothes and put your new outfit in a bag.');
     if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', 11) === 0) {
-      qspCall(s, 'clothing', 'add_item', 'gm_school', 11);
+      qspCall(st, 'clothing', 'add_item', 'gm_school', 11);
     }
     scene.actions([
       { label: 'Leave his apartment', goto: ['pav_residential', ''] },
@@ -770,13 +770,13 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use some lubricant to get him off faster', handler: (st: GameState) => {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['lubricant'] = ((st as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/locations/shared/postoffice/sex/postevent4-6.jpg');
     scene.text('You stop jerking him off and reach for your things, quickly squirting some lube into the palm of your hand.');
     scene.text('The man is trying not to show you any emotions and tries to keep you here as long as possible, but when you put your hand back on his cock and start stroking it again, he can\'t help but groan. Initially from the cold touch of the lubricant, but immediately after because it feels so much better!');
     scene.text('"Slow down! You\'re going to ma-" he moans, but his cock already is already spasming and his jizz slowly dribbles down his shaft.');
-    qspCall(s, 'arousal', 'hj', 5, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'hj', 5, 'dom');
+    qspCall(st, 'stat', '');
     scene.text('"I\'m going to make you cum?" you say with a sly grin. "That was exactly what I was trying to do. Now sign so I can go!"');
     scene.text('The man sighs and signs as promised. "I hope I\'ll see you again!" he says as you walk towards the door.');
     scene.text('"I hope not!" you yell back at him before you close the door behind you.');
@@ -791,14 +791,14 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_intel ?? 0) > 70) {
     scene.actions([
       { label: 'Look around and try to figure out why it\'s not working', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
     scene.text('How is he no closer to orgasming after all that you\'ve done?! This doesn\'t make any sense! Is he tricking you?');
     scene.text('When you quickly cast a glance at his nightstand, you see an opened tube. Wait, is that… numbing cream!?');
     scene.text('"Numbing cream!?" you shout, making the guy flinch. Your hand is still firmly wrapped around his cock and he groans when you clench your fist in anger. He might\'ve numbed the head of his cock with it, but the way you\'re squeezing his cock and balls instantly puts the fear of God into him.');
     scene.text('"I-I\'m sorry!" he shouts. "I thought it wo- ow! Oww! Please let go! I\'ll sign! I\'ll sign your thing! I won\'t bother you ever again!"');
-    qspCall(s, 'willpower', 'misc', 'force', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'force', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'That\'s not good enough', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -807,15 +807,15 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'That\'s not good enough', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
     scene.text('"Not good enough!" you yell as you tighten your grip on his junk even more. "You take advantage of me while I\'m just trying to do my job!? How many girls have you degraded like this before me? I really should make you suffer…"');
-    // TODO-QSP: dynamic text: "N-no! Please! I can pay! I'll give you <<$func('money', 'string_profit', 1000)>...
+    // TODO-QSP: dynamic text: "N-no! Please! I can pay! I''ll give you <<$func(''money'', ''string_profit'', 1...
     scene.text(`"N-no! Please! I can pay! I'll give you ${qspFunc(s, 'money', 'string_profit', 1000)}, just please let go! I won't bother anyone ever again! I promise!" he cries out. You'd swear he's nearly in tears now.`);
     scene.actions([
       { label: 'Accept the money', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 1000);
-    // TODO-QSP: dynamic text: "Now you're talking!" you say menacingly. Without you even letting go, the man p...
+    qspCall(st, 'money', 'earn', 1000);
+    // TODO-QSP: dynamic text: "Now you''re talking!" you say menacingly. Without you even letting go, the man ...
     scene.text(`"Now you're talking!" you say menacingly. Without you even letting go, the man promptly reaches for his wallet on the nightstand and pulls out the ${qspFunc(s, 'money', 'string_profit', 1000)} he promised you.`);
     scene.text('You let go of his cock and balls to take the money from his trembling hand, causing the man to sigh in relief. "Oh thank God… I thought you were going to crush them!"');
     scene.text('"I was seriously considering it. And you definitely would\'ve deserved it. Now sign so I never have to see your face again!"');
@@ -825,7 +825,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Make him suffer', handler: (st: GameState) => {
-    ((s as any).post_vars = (s as any).post_vars ?? {})['qw_4'] = 1;
+    ((st as any).post_vars = (st as any).post_vars ?? {})['qw_4'] = 1;
     scene.text('"I don\'t want your money…" you reply and clench your fist as hard as you can.');
     scene.text('The man cries out in pain and you know one thing for sure: he\'ll never try to blackmail a girl again.');
     scene.text('You no longer care about getting his signature, you\'d be more than happy to explain to the postmaster why this one is missing. You give him a knee in the groin for good measure. "Asshole! Are you going to complain about this!?"');
@@ -866,8 +866,8 @@ function enter4(s: GameState, scene: SceneBuilder): void {
       scene.text('When he reaches out to touch you, you slap his hand away. "No touching! That was not part of the deal. Try that again and I\'m out of here!"');
       scene.text('He raises his hands apologetically and puts them behind his head while you resume jerking him off. A few minutes later, his breathing becomes more shallow and you can tell he\'s close to orgasming.');
       scene.text('You place your fingers around the base of his shaft and only very lightly brush one over his cock with a cruel grin until you see his cock spasm and shoot his cum straight up into the air, splattering onto his stomach.');
-      qspCall(s, 'arousal', 'hj', 5, 'dom');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'hj', 5, 'dom');
+      qspCall(st, 'stat', '');
       scene.text('The man groans in frustration, but just as he\'s about to complain, you stop him. "You asked me to touch your dick, and I did. Now sign so I can go."');
       scene.text('He signs without saying a word, still a bit dazed on how you completely ruined his orgasm. You wipe your hand on his bed sheets and put your clothes back on.');
     } else {
@@ -875,9 +875,9 @@ function enter4(s: GameState, scene: SceneBuilder): void {
       scene.text('"That\'s better… Keep stroking, girl!" he grunts as he pulls your bra aside. "You have nice tits and shouldn\'t be hiding them. Keep going!"');
       scene.text('Without realizing it, you\'ve started moving your hand again. Except this time, his cock is pointed straight at your face!');
       scene.text('"Yeah!" he grunts as several ropes of his warm cum land on the bottom of your chin.');
-      qspCall(s, 'arousal', 'hj', 5);
-      qspCall(s, 'cum_call', 'face', 'Sleazy man');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'hj', 5);
+      qspCall(st, 'cum_call', 'face', 'Sleazy man');
+      qspCall(st, 'stat', '');
       scene.text('"Wow, you\'re fun! And horribly naive…" the man pants as he picks up the clipboard and puts his signature on the sheet. "There. I\'ll be seeing you again!"');
       scene.text('You try to ignore his triumphant grin as you put your clothes back on. At least the postmaster can\'t give you any trouble now…');
     }
@@ -893,8 +893,8 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh, what\'s this? Starting to enjoy yourself? Good girl, I knew you had it in you…" he says with a laugh.');
     scene.text('You ignore his remarks and just keep doing what you\'re doing. Once you get him off, you can be on your way and hopefully never see him again.');
     scene.text('It seems to be having an effect on him. His breaths grow shorter, he starts thrusting his hips towards your mouth. He can\'t hold back any longer!');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Don\'t let him cum in your mouth', handler: (st: GameState) => {
     scene.img('images/locations/shared/postoffice/sex/postevent4-8.jpg');
@@ -909,12 +909,12 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Make him cum in your mouth', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth', 'Sleazy man');
+    qspCall(st, 'cum_call', 'mouth', 'Sleazy man');
     scene.img('images/locations/shared/postoffice/sex/postevent4-9.jpg');
     scene.text('You don\'t want his cum on your face or on your clothes. How would you explain that?');
     scene.text('Closing your lips tightly around the head, you flick your tongue over his cock a few times and feel his warm, tangy cum spurt against the back of your mouth.');
     scene.text('When he\'s mostly done, you let his cock slide out of your mouth and lick the head a few times, showing him his load on your tongue before swallowing it.');
-    // TODO-QSP: dynamic text: "Oh wow! You're… I've visited whores that weren't as good…" he pants, simply ama...
+    // TODO-QSP: dynamic text: "Oh wow! You''re… I''ve visited whores that weren''t as good…" he pants, simply ...
     scene.text(`"Oh wow! You're… I've visited whores that weren't as good…" he pants, simply amazed. He signs for his mail and gives you ${qspFunc(s, 'money', 'string_profit', 200)}. "Here, take this. If you ever want to make some extra cash during your round, you know where I live! Knock twice."`);
     scene.text('"Uhh, I\'ll keep it in mind," you tell him as you stand up to leave his apartment.');
     scene.actions([

@@ -16,7 +16,7 @@ function enterSetRandomTemplate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetRandomTemplate(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rand = Math.floor(Math.random() * 22) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 22) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
     (s as any).result = 'nerdqueen';
   } else {
@@ -191,19 +191,19 @@ function enterModOnlySetGroup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerd(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 300;
     qspCall(s, 'traits', 'level', 'academic', 2);
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['nerd_learn_home'] = 5;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
       (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (100);
     }
     (s as any).pcs_eyesize = ((s as any).pcs_eyesize ?? 0) - (1);
     (s as any).pcs_lashes = ((s as any).pcs_lashes ?? 0) - (1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     (s as any).money = ((s as any).money ?? 0) + (3000);
     ((s as any).BookVars = (s as any).BookVars ?? {})['fantasy_pages'] = 500;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
@@ -211,7 +211,7 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sanitary_pads'] = 40;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     (s as any).pcs_intel = ((s as any).pcs_intel ?? 0) + (20);
     (s as any).pcs_chess = ((s as any).pcs_chess ?? 0) + (20);
     (s as any).pcs_gaming = ((s as any).pcs_gaming ?? 0) + (20);
@@ -226,7 +226,7 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_compskl = ((s as any).pcs_compskl ?? 0) - (10);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     (s as any).grupTipe = 3;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 200;
@@ -242,7 +242,7 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A29', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A129', 10);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 30);
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 30);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 30);
@@ -261,7 +261,7 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 22;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 27;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 60;
@@ -274,14 +274,14 @@ function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) - (100);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 10;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = 10;
     qspCall(s, 'piercing_management', 'add', 'ears', 2);
     qspCall(s, 'purses', 'add_item', 'fashionista', 13);
     qspCall(s, 'purses', 'wear', 'fashionista', 13);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 52;
     (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) + (5);
     (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + (5);
@@ -299,7 +299,7 @@ function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_heels = ((s as any).pcs_heels ?? 0) - (10);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 300;
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 900;
@@ -307,7 +307,7 @@ function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'npc_relationship', 'socialgroup_setting', 10, 5, 10, 5, 5, 5);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', (-5));
     qspCall(s, 'grades', 'grade_award', 'school', 'art', (-10));
@@ -325,26 +325,26 @@ function enterNerdqueen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGoodstudent(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 500;
     qspCall(s, 'traits', 'level', 'academic', 3);
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['bookworm_exp'] = 10;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 18;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 105;
     (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) - (100);
     (s as any).glass = 1;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     (s as any).money = ((s as any).money ?? 0) + (2000);
     qspCall(s, 'purses', 'add_item', 'gm', 3);
     qspCall(s, 'purses', 'wear', 'gm', 3);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 48;
     (s as any).pcs_intel = ((s as any).pcs_intel ?? 0) + (5);
     (s as any).pcs_instrmusic = ((s as any).pcs_instrmusic ?? 0) + (10);
@@ -355,7 +355,7 @@ function enterGoodstudent(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 850;
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 700;
@@ -363,7 +363,7 @@ function enterGoodstudent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'socialgroup_setting', 0, 0, 5, 0, 0, 20);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A29', 20);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 5);
@@ -382,12 +382,12 @@ function enterGoodstudent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputergeek(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['bookworm_exp'] = 10;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 13;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 40;
@@ -399,13 +399,13 @@ function enterComputergeek(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_teeth = ((s as any).pcs_teeth ?? 0) + (1);
     (s as any).glass = 1;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_computer'] = 1;
     (s as any).internet = 20;
     qspCall(s, 'purses', 'add_item', 'gm', 3);
     qspCall(s, 'purses', 'wear', 'gm', 3);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 48;
     (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) + (5);
     (s as any).pcs_gaming = ((s as any).pcs_gaming ?? 0) + (10);
@@ -417,13 +417,13 @@ function enterComputergeek(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_compskl = ((s as any).pcs_compskl ?? 0) + (20);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A129', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A142', 15);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A152', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A153', 10);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'comp', 10);
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 10);
@@ -434,21 +434,21 @@ function enterComputergeek(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChessplayer(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 13;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 90;
     (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) - (100);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'other') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'other') {
     (s as any).chessyear = ((s as any).year ?? 0);
     (s as any).chessmonth = ((s as any).month ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     qspCall(s, 'purses', 'add_item', 'gm', 14);
     qspCall(s, 'purses', 'wear', 'gm', 14);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 45;
     (s as any).pcs_react = ((s as any).pcs_react ?? 0) + (5);
     (s as any).pcs_prcptn = ((s as any).pcs_prcptn ?? 0) + (5);
@@ -458,10 +458,10 @@ function enterChessplayer(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A151', 20);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 5);
@@ -473,7 +473,7 @@ function enterChessplayer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterJock(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (100);
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (20);
     (s as any).pcs_haircol = 3;
@@ -482,7 +482,7 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_eyesize = ((s as any).pcs_eyesize ?? 0) + (1);
     (s as any).pcs_lip = ((s as any).pcs_lip ?? 0) + (1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 10;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['scrunchies'] = 10;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = 10;
@@ -495,7 +495,7 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'add_item', 'fashionista', 11);
     qspCall(s, 'purses', 'wear', 'fashionista', 11);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (40);
     (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + (10);
     (s as any).pcs_vital = ((s as any).pcs_vital ?? 0) + (10);
@@ -521,7 +521,7 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_danc = ((s as any).pcs_danc ?? 0) - (30);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     (s as any).grupTipe = 2;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 400;
@@ -536,7 +536,7 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A34', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A129', (-10));
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', 40);
   }
   return;
@@ -545,15 +545,15 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVolleyball(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 27;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 56;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'other') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'other') {
     ((s as any).vballVars = (s as any).vballVars ?? {})['lessons_remaining'] = ((s as any).vballVars['lessons_remaining'] ?? 0) + (30);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 45;
     (s as any).pcs_vball = ((s as any).pcs_vball ?? 0) + (40);
     (s as any).willpowermax = ((s as any).willpowermax ?? 0) - (5);
@@ -563,7 +563,7 @@ function enterVolleyball(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A13', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A69', 10);
   }
@@ -573,7 +573,7 @@ function enterVolleyball(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDancer(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 12;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 27;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 51;
@@ -588,19 +588,19 @@ function enterDancer(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) - (245);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'fame') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'fame') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       qspCall(s, 'fame', 'pushkin', 'ballet', 15, 'local');
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'other') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'other') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).ballet = (s as any).ballet ?? {})['blocker'] = 1;
       qspCall(s, 'pushkin_ballet_init', 'start');
     }
     (s as any).gsAboDance = ((s as any).gsAboDance ?? 0) + (30);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 55;
     (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + (5);
     (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + (15);
@@ -623,7 +623,7 @@ function enterDancer(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_perform = ((s as any).pcs_perform ?? 0) - (35);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 500;
     }
@@ -635,7 +635,7 @@ function enterDancer(s: GameState, scene: SceneBuilder): void {
       ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Friends'] = 2;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', 25);
   }
   return;
@@ -644,15 +644,15 @@ function enterDancer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRunner(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 12;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 27;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 61;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'other') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'other') {
     (s as any).gsAboBeg = ((s as any).gsAboBeg ?? 0) + (30);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 50;
     (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + (5);
     (s as any).pcs_vital = ((s as any).pcs_vital ?? 0) + (5);
@@ -668,7 +668,7 @@ function enterRunner(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_run = ((s as any).pcs_run ?? 0) + (5);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 850;
     }
@@ -677,7 +677,7 @@ function enterRunner(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A8', 5);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A131', 10);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'bio', 20);
   }
   return;
@@ -686,16 +686,16 @@ function enterRunner(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFootball(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 27;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 60;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     qspCall(s, 'purses', 'add_item', 'fashionista', 11);
     qspCall(s, 'purses', 'wear', 'fashionista', 11);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 50;
     (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (5);
     (s as any).pcs_kick = ((s as any).pcs_kick ?? 0) + (20);
@@ -709,7 +709,7 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 900;
     }
@@ -723,12 +723,12 @@ function enterFootball(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCool(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (5);
     (s as any).pcs_haircol = 2;
     (s as any).pcs_eyecol = 2;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     (s as any).money = ((s as any).money ?? 0) + (1000);
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = 20;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = 20;
@@ -737,7 +737,7 @@ function enterCool(s: GameState, scene: SceneBuilder): void {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sanitary_pads'] = 20;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) + (10);
     (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + (10);
     (s as any).pcs_prcptn = ((s as any).pcs_prcptn ?? 0) + (10);
@@ -750,7 +750,7 @@ function enterCool(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_danc = ((s as any).pcs_danc ?? 0) - (45);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     (s as any).grupTipe = 1;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 800;
@@ -772,10 +772,10 @@ function enterCool(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSocialite(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).arch_vars = (s as any).arch_vars ?? {})['preppy_points'] = 125000;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 18;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 32;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 60;
@@ -783,13 +783,13 @@ function enterSocialite(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (200);
     (s as any).pcs_lip = ((s as any).pcs_lip ?? 0) + (1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 20;
     qspCall(s, 'piercing_management', 'add', 'ears', 1);
     qspCall(s, 'purses', 'add_item', 'fashionista', 4);
     qspCall(s, 'purses', 'wear', 'fashionista', 4);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 55;
     (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + (5);
     (s as any).pcs_perform = ((s as any).pcs_perform ?? 0) + (20);
@@ -801,10 +801,10 @@ function enterSocialite(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A140', 10);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 10);
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 35);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 10);
@@ -824,7 +824,7 @@ function enterSocialite(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBeautiful(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 22;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 32;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 56;
@@ -840,10 +840,10 @@ function enterBeautiful(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (5);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'fame') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'fame') {
     qspCall(s, 'fame', 'pav', 'sex', 20);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['comb'] = 1;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 50;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['travel_makeup'] = 10;
@@ -854,7 +854,7 @@ function enterBeautiful(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'add_item', 'fashionista', 9);
     qspCall(s, 'purses', 'wear', 'fashionista', 9);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 55;
     (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) + (5);
     (s as any).pcs_makupskl = ((s as any).pcs_makupskl ?? 0) + (40);
@@ -865,14 +865,14 @@ function enterBeautiful(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_humint = ((s as any).pcs_humint ?? 0) + (5);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 900;
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 300;
     }
     qspCall(s, 'npc_relationship', 'socialgroup_setting_boys', 10, 10, 10, 10, 10, 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 5);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 5);
@@ -892,7 +892,7 @@ function enterBeautiful(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnorexic(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 13;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 15;
@@ -902,7 +902,7 @@ function enterAnorexic(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_eyecol = 2;
     (s as any).pcs_teeth = ((s as any).pcs_teeth ?? 0) - (1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['comb'] = 1;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 10;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = 10;
@@ -911,7 +911,7 @@ function enterAnorexic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'add_item', 'coco', 29);
     qspCall(s, 'purses', 'wear', 'coco', 29);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 35;
     (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) - (10);
     (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) - (10);
@@ -926,7 +926,7 @@ function enterAnorexic(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_danc = ((s as any).pcs_danc ?? 0) + (10);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A15', 30);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A29', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A33', 20);
@@ -938,10 +938,10 @@ function enterAnorexic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBimbo(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).arch_vars = (s as any).arch_vars ?? {})['bimbo_points'] = 100000;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 22;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 32;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 60;
@@ -960,10 +960,10 @@ function enterBimbo(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (20);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'fame') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'fame') {
     qspCall(s, 'fame', 'pav', 'sex', 60);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['comb'] = 1;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tampons'] = 10;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 50;
@@ -986,7 +986,7 @@ function enterBimbo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'add_item', 'cats', 2);
     qspCall(s, 'purses', 'wear', 'cats', 2);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 60;
     (s as any).pcs_intel = ((s as any).pcs_intel ?? 0) - (10);
     (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) - (10);
@@ -1003,11 +1003,11 @@ function enterBimbo(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_persuas = ((s as any).pcs_persuas ?? 0) + (5);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     qspCall(s, 'npc_relationship', 'socialgroup_setting_boys', 20, 20, (-10), 20, 20, (-5));
     qspCall(s, 'npc_relationship', 'socialgroup_setting_girls', (-10), (-10), (-20), (-10), (-10), (-10));
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', (-35));
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-35));
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', (-35));
@@ -1027,7 +1027,7 @@ function enterBimbo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnik(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (100);
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (10);
     (s as any).pcs_haircol = 0;
@@ -1041,10 +1041,10 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_ass = ((s as any).pcs_ass ?? 0) + (8);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'fame') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'fame') {
     qspCall(s, 'fame', 'pav', 'sex', 30);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'sex') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
     ((s as any).stat = (s as any).stat ?? {})['hj'] = ((s as any).stat['hj'] ?? 0) + (10);
     ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (5);
     ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (1);
@@ -1062,7 +1062,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
       ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (11);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     (s as any).fakepassport = 1;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 10;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['razor'] = 10;
@@ -1074,7 +1074,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'piercing_management', 'add', 'ears', 1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (15);
     (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + (5);
     (s as any).pcs_vital = ((s as any).pcs_vital ?? 0) + (5);
@@ -1094,7 +1094,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_heels = ((s as any).pcs_heels ?? 0) - (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     (s as any).grupTipe = 4;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 100;
@@ -1110,7 +1110,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'set', 'A23', 20);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A129', (-30));
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', (-30));
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-30));
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', (-30));
@@ -1131,7 +1131,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnikstart(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 13;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 65;
@@ -1139,11 +1139,11 @@ function enterGopnikstart(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_teeth = ((s as any).pcs_teeth ?? 0) + (1);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     qspCall(s, 'purses', 'add_item', 'danilovich', 12);
     qspCall(s, 'purses', 'wear', 'danilovich', 12);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 45;
     (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (20);
     (s as any).strenbuf = ((s as any).strenbuf ?? 0) + (20);
@@ -1158,7 +1158,7 @@ function enterGopnikstart(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 900;
       qspCall(s, 'npc_relationship', 'socialgroup_setting', (-10), (-10), (-10), 10, (-10), (-10));
@@ -1182,22 +1182,22 @@ function enterGopnikstart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTroublemaker(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).arch_vars = (s as any).arch_vars ?? {})['punk_points'] = 75000;
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = (-250);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 13;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 53;
     (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) - (65);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     qspCall(s, 'piercing_management', 'add', 'nose', 4);
     qspCall(s, 'purses', 'add_item', 'dolls', 32);
     qspCall(s, 'purses', 'wear', 'dolls', 32);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 45;
     (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (10);
     (s as any).strenbuf = ((s as any).strenbuf ?? 0) + (10);
@@ -1214,7 +1214,7 @@ function enterTroublemaker(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (10);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     qspCall(s, 'npc_relationship', 'socialgroup_setting', 0, 0, (-10), 10, (-10), (-10));
     qspCall(s, 'npc_relationship', 'set', 'A23', 20);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A24', 10);
@@ -1234,10 +1234,10 @@ function enterTroublemaker(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVitekgf(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = (-50);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 32;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 95;
@@ -1247,7 +1247,7 @@ function enterVitekgf(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_eyesize = ((s as any).pcs_eyesize ?? 0) - (1);
     (s as any).pcs_throat = ((s as any).pcs_throat ?? 0) + (1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'sex') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
     ((s as any).stat = (s as any).stat ?? {})['hj'] = 10;
     ((s as any).stat = (s as any).stat ?? {})['bj'] = 5;
     ((s as any).stat = (s as any).stat ?? {})['vaginal'] = 2;
@@ -1260,12 +1260,12 @@ function enterVitekgf(s: GameState, scene: SceneBuilder): void {
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_desc'] = 'thick';
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_size'] = 18;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     qspCall(s, 'piercing_management', 'add', 'nose', 3);
     qspCall(s, 'purses', 'add_item', 'dolls', 19);
     qspCall(s, 'purses', 'wear', 'dolls', 19);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 40;
     (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + (5);
     (s as any).willpowermax = ((s as any).willpowermax ?? 0) - (15);
@@ -1277,7 +1277,7 @@ function enterVitekgf(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makupskl = ((s as any).pcs_makupskl ?? 0) + (5);
     (s as any).pcs_heels = ((s as any).pcs_heels ?? 0) + (20);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 700;
     qspCall(s, 'npc_relationship', 'modify_exact', 'A9', 50);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A10', 5);
@@ -1291,7 +1291,7 @@ function enterVitekgf(s: GameState, scene: SceneBuilder): void {
     (s as any).vitekvisit = 5;
     ((s as any).npc_vaginal_count = (s as any).npc_vaginal_count ?? {})['A9'] = ((s as any).npc_vaginal_count['A9'] ?? 0) + (5);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 30);
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 30);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 30);
@@ -1312,7 +1312,7 @@ function enterVitekgf(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAlternative(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['addictive_personality_exp'] = 2;
     qspCall(s, 'traits', 'level', 'addictive_personality', 1);
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = 25;
@@ -1321,7 +1321,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
       ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = 30;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 18;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 17;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 56;
@@ -1336,7 +1336,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_throat = ((s as any).pcs_throat ?? 0) + (6);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'fame') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'fame') {
     qspCall(s, 'fame', 'pav', 'sex', 40);
     ((s as any).fame = (s as any).fame ?? {})['pav_flash'] = 65;
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
@@ -1344,7 +1344,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
       ((s as any).fame = (s as any).fame ?? {})['pav_flash'] = ((s as any).fame['pav_flash'] ?? 0) + (10);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'sex') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
     ((s as any).stat = (s as any).stat ?? {})['hj'] = ((s as any).stat['hj'] ?? 0) + (5);
     ((s as any).stat = (s as any).stat ?? {})['bj'] = ((s as any).stat['bj'] ?? 0) + (5);
     ((s as any).stat = (s as any).stat ?? {})['vaginal'] = ((s as any).stat['vaginal'] ?? 0) + (2);
@@ -1365,7 +1365,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
       ((s as any).stat = (s as any).stat ?? {})['cuni_give'] = ((s as any).stat['cuni_give'] ?? 0) + (9);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 20;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['eyelash_fake'] = 5;
     qspCall(s, 'piercing_management', 'add', 'nose', 5);
@@ -1373,7 +1373,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'add_item', 'dolls', 15);
     qspCall(s, 'purses', 'wear', 'dolls', 15);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 50;
     (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) + (10);
     (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) + (10);
@@ -1391,7 +1391,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_danc = ((s as any).pcs_danc ?? 0) - (20);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 300;
     }
@@ -1407,7 +1407,7 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A156', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A158', 10);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'shop', (-25));
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', 30);
   }
@@ -1417,24 +1417,24 @@ function enterAlternative(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOutcast(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) - (100);
     (s as any).pcs_eyesize = ((s as any).pcs_eyesize ?? 0) - (1);
     (s as any).pcs_lashes = ((s as any).pcs_lashes ?? 0) - (1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = 20;
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['sanitary_pads'] = 40;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
       (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) - (5);
       (s as any).pcs_makupskl = ((s as any).pcs_makupskl ?? 0) - (5);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     (s as any).grupTipe = 5;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 100;
@@ -1455,7 +1455,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFriendless(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 12;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 7;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 42;
@@ -1467,7 +1467,7 @@ function enterFriendless(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) - (100);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 30;
     (s as any).pcs_chrsm = ((s as any).pcs_chrsm ?? 0) - (15);
     (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) - (5);
@@ -1479,14 +1479,14 @@ function enterFriendless(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 50;
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 200;
     }
     qspCall(s, 'npc_relationship', 'socialgroup_setting', (-10), (-10), (-10), (-10), (-10), 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-30));
     qspCall(s, 'grades', 'grade_award', 'school', 'eng', (-30));
   }
@@ -1496,7 +1496,7 @@ function enterFriendless(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUglyduckling(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 28;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 7;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 150;
@@ -1509,13 +1509,13 @@ function enterUglyduckling(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_teeth = ((s as any).pcs_teeth ?? 0) + (2);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
       qspCall(s, 'purses', 'add_item', 'gm', 8);
       qspCall(s, 'purses', 'wear', 'gm', 8);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 25;
     (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) - (5);
     (s as any).willpowermax = ((s as any).willpowermax ?? 0) - (20);
@@ -1525,13 +1525,13 @@ function enterUglyduckling(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 0;
     }
     qspCall(s, 'npc_relationship', 'socialgroup_setting_boys', (-10), (-10), 0, (-10), 0, 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-30));
     qspCall(s, 'grades', 'grade_award', 'school', 'pe', (-30));
   }
@@ -1541,13 +1541,13 @@ function enterUglyduckling(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGoodgirl(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).arch_vars = (s as any).arch_vars ?? {})['prude_points'] = 100000;
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 500;
     qspCall(s, 'traits', 'level', 'academic', 3);
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['nerd_learn_home'] = 5;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 13;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 7;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 111;
@@ -1559,16 +1559,16 @@ function enterGoodgirl(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) - (300);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'other') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'other') {
     (s as any).church_moral = 40;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     (s as any).money = ((s as any).money ?? 0) + (1000);
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['shampoo'] = 10;
     qspCall(s, 'purses', 'add_item', 'cats', 5);
     qspCall(s, 'purses', 'wear', 'cats', 5);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 40;
     (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) + (25);
     (s as any).pcs_inhib = 0;
@@ -1577,7 +1577,7 @@ function enterGoodgirl(s: GameState, scene: SceneBuilder): void {
       (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 400;
     }
@@ -1587,7 +1587,7 @@ function enterGoodgirl(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A28', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A29', 10);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', 25);
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', 25);
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 25);
@@ -1605,7 +1605,7 @@ function enterGoodgirl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSlut(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = 40;
     qspCall(s, 'traits', 'level', 'exhibitionist', 1);
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
@@ -1615,7 +1615,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'traits', 'level', 'panty_preference', 2);
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumeater_exp'] = 50;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 22;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 22;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 60;
@@ -1634,14 +1634,14 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_throat = ((s as any).pcs_throat ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'fame') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'fame') {
     qspCall(s, 'fame', 'pav', 'sex', 600);
     ((s as any).fame = (s as any).fame ?? {})['pav_flash'] = 100;
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
       ((s as any).fame = (s as any).fame ?? {})['pav_flash'] = ((s as any).fame['pav_flash'] ?? 0) + (25);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'sex') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
     (s as any).guy = ((s as any).guy ?? 0) + (15);
     (s as any).orgasm = ((s as any).orgasm ?? 0) + (120);
     ((s as any).stat = (s as any).stat ?? {})['swallow'] = ((s as any).stat['swallow'] ?? 0) + (40);
@@ -1682,7 +1682,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
       ((s as any).stat = (s as any).stat ?? {})['group'] = ((s as any).stat['group'] ?? 0) + (9);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['comb'] = 1;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['travel_mirror'] = 1;
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 30;
@@ -1699,7 +1699,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'add_item', 'cats', 10);
     qspCall(s, 'purses', 'wear', 'cats', 10);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 35;
     (s as any).pcs_inhib = ((s as any).pcs_inhib ?? 0) + (45);
     (s as any).willpowermax = ((s as any).willpowermax ?? 0) - (25);
@@ -1715,7 +1715,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_danc = ((s as any).pcs_danc ?? 0) - (20);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 0;
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 50;
@@ -1738,11 +1738,11 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGoth(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).arch_vars = (s as any).arch_vars ?? {})['goth_points'] = 100000;
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) - (50);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 13;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 7;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 51;
@@ -1759,7 +1759,7 @@ function enterGoth(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_eyesize = ((s as any).pcs_eyesize ?? 0) + (1);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['umbrella'] = 1;
     (s as any).money = ((s as any).money ?? 0) - (1000);
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = 25;
@@ -1768,7 +1768,7 @@ function enterGoth(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'purses', 'add_item', 'dolls', 18);
     qspCall(s, 'purses', 'wear', 'dolls', 18);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 45;
     (s as any).pcs_intel = ((s as any).pcs_intel ?? 0) + (5);
     (s as any).pcs_sprt = ((s as any).pcs_sprt ?? 0) + (10);
@@ -1790,7 +1790,7 @@ function enterGoth(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_artskls = ((s as any).pcs_artskls ?? 0) - (30);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 300;
       qspCall(s, 'npc_relationship', 'socialgroup_setting', (-5), 0, 0, 10, 0, (-10));
@@ -1804,7 +1804,7 @@ function enterGoth(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A144', 10);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A155', 5);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', 25);
     qspCall(s, 'grades', 'grade_award', 'school', 'art', 25);
     qspCall(s, 'grades', 'grade_award', 'school', 'mus', 25);
@@ -1816,15 +1816,15 @@ function enterGoth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPoor(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'inventory') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'inventory') {
     (s as any).money = ((s as any).money ?? 0) - (((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (1750) : (1500)));
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'traits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'traits') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['cumeater_exp'] = 50;
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['exhibitionist_exp'] = ((((s as any).start_type ?? 0)?.['loc'] === 'sg') ? (10) : (15));
     qspCall(s, 'traits', 'level', 'exhibitionist', 1);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'body') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body') {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust_gen'] = 16;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt_gen'] = 7;
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = 52;
@@ -1838,7 +1838,7 @@ function enterPoor(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_throat = ((s as any).pcs_throat ?? 0) + (5);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'fame') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'fame') {
     qspCall(s, 'fame', 'pav', 'sex', 100);
     ((s as any).fame = (s as any).fame ?? {})['pav_flash'] = 25;
     if (((s as any).start_type ?? 0)?.['loc'] !== 'sg') {
@@ -1847,7 +1847,7 @@ function enterPoor(s: GameState, scene: SceneBuilder): void {
       ((s as any).fame = (s as any).fame ?? {})['pav_flash'] = ((s as any).fame['pav_flash'] ?? 0) + (15);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'sex') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'sex') {
     ((s as any).stat = (s as any).stat ?? {})['porn'] = ((s as any).stat['porn'] ?? 0) + (36);
     ((s as any).stat = (s as any).stat ?? {})['mast'] = ((s as any).stat['mast'] ?? 0) + (24);
     ((s as any).stat = (s as any).stat ?? {})['hj'] = ((s as any).stat['hj'] ?? 0) + (15);
@@ -1883,7 +1883,7 @@ function enterPoor(s: GameState, scene: SceneBuilder): void {
       ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_desc'] = 'massive';
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'skills') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'skills') {
     ((s as any).moodVars = (s as any).moodVars ?? {})['disp_base'] = 30;
     (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (5);
     (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + (1);
@@ -1912,7 +1912,7 @@ function enterPoor(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_def = ((s as any).pcs_def ?? 0) + (5);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'relationships') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'relationships') {
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 100;
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 100;
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 100;
@@ -1927,7 +1927,7 @@ function enterPoor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify_exact', 'A34', (-15));
     qspCall(s, 'npc_relationship', 'modify_exact', 'A143', 45);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'school') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'school') {
     qspCall(s, 'grades', 'grade_award', 'school', 'math', (-25));
     qspCall(s, 'grades', 'grade_award', 'school', 'rus', (-25));
     qspCall(s, 'grades', 'grade_award', 'school', 'lit', (-25));

@@ -5,7 +5,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).totminut ?? 0) - ((s as any).locat ?? 0)?.['A84_rand_time'] > 60) {
     ((s as any).locat = (s as any).locat ?? {})['A84_rand_time'] = ((s as any).totminut ?? 0);
-    ((s as any).locat = (s as any).locat ?? {})['A84_rand'] = Math.floor(Math.random() * 10) + 0;
+    ((s as any).locat = (s as any).locat ?? {})['A84_rand'] = (Math.floor(Math.random() * 10) + 0);
   }
   if (((s as any).hour ?? 0) < 9) {
     ((s as any).locat = (s as any).locat ?? {})['A84_loc'] = 'uni_dorm';

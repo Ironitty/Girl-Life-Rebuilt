@@ -16,11 +16,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).FSHP ?? 0) < 100) {
       scene.actions([
         { label: 'Treated', handler: (st: GameState) => {
-    (s as any).FShour = ((s as any).FShour ?? 0) + (1);
-    (s as any).FSHP = 100;
-    (s as any).FSmedkit = ((s as any).FSmedkit ?? 0) - (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).FShour = ((st as any).FShour ?? 0) + (1);
+    (st as any).FSHP = 100;
+    (st as any).FSmedkit = ((st as any).FSmedkit ?? 0) - (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('You heal health through kits.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -33,9 +33,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Laze', handler: (st: GameState) => {
-    (s as any).FShour = ((s as any).FShour ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).FShour = ((st as any).FShour ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('You lounged in the apartment, lounging on the couch and thinking how you vykruchivatsya of the situation.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -44,10 +44,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Leave the room', handler: (st: GameState) => {
-    (s as any).FShour = ((s as any).FShour ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'FSroom', '');
+    (st as any).FShour = ((st as any).FShour ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'FSroom', '');
   } },
   ]);
   scene.build();

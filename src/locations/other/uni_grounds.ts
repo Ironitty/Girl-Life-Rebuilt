@@ -106,11 +106,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['katja'] === 25) {
     // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
-    scene.text('You see \'+iif(katjaQW[\'know_katja_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'a redheaded girl\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027katja_chat\\u0027, \\u0027start\\u0027); return false;">Katja</a>\')+\' sitting while talking on her phone.');
+    scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_chat/u0027, /u0027start/u0027); return false;">Katja</a>')) + ' sitting while talking on her phone.');
   }
   if (((s as any).locat ?? 0)?.['A23'] === 17) {
     // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
-    scene.text('You see \'+iif(AlbinaQW[\'know_albina_uni\'] = 0 and ($start_type[\'loc\'] ! \'sg\' and $start_type[\'magic\'] = \'tg\'), \'an attractive looking brunette\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027albina_events\\u0027, \\u0027albina_jogging_uni\\u0027); return false;">Albina</a>\')+\' jogging around the quad.');
+    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027albina_jogging_uni/u0027); return false;">Albina</a>')) + ' jogging around the quad.');
     scene.text('Her well-toned physique and tight fitting yoga pants are drawing the attention of multiple boys and even some girls around her, but she appears to have earbuds in and doesn\'t pay much attention to them.');
   }
   if (((s as any).university ?? 0)?.['semester_week'] > 0  &&  ((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
@@ -132,32 +132,194 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 7)  ||  (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 23)) {
     scene.actions([
       { label: 'Go to the library', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_library', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_library', 'start');
   } },
     ]);
   }
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 17) {
     scene.actions([
       { label: 'Go to the administration building', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_admin', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_admin', 'start');
   } },
     ]);
   }
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) < 17) {
     scene.actions([
       { label: 'Go to the university cafe', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_cafe', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_cafe', '');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the city', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'city_island', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_island', '');
+  } },
+    { label: 'Go to the dorms', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['uni_dorm', ''] },
+  ]);
+  scene.build();
+}
+
+function enterMain(s: GameState, scene: SceneBuilder): void {
+  (s as any).music_loop = 0;
+  qspCall(s, 'core_library', 'setloc', 'uni_grounds', '');
+  (s as any).location_type = 'public_outdoors';
+  qspCall(s, 'katja_meynold_schedule', '');
+  qspCall(s, 'schedule', 'A23');
+  qspCall(s, 'stat', '');
+  if (((s as any).university ?? 0)?.['campus_event_time'] > ((s as any).totminut ?? 0)) {
+    ((s as any).university = (s as any).university ?? {})['campus_event_time'] = ((s as any).totminut ?? 0);
+  }
+  if (((s as any).totminut ?? 0) > ((s as any).university ?? 0)?.['campus_event_time'] + 60  &&  ((s as any).sunWeather ?? 0) === 1  &&  (((s as any).hour ?? 0) !== 8  ||  ((s as any).minut ?? 0) <= 50)  &&  (((s as any).hour ?? 0) !== 9  ||  ((s as any).minut ?? 0) <= 20)  &&  (((s as any).hour ?? 0) !== 13  ||  ((s as any).minut ?? 0) <= 5)  &&  (((s as any).university ?? 0)?.['semester_week'] + ((s as any).university ?? 0)?.['exam_week']) > 0) {
+    ((s as any).university = (s as any).university ?? {})['campus_event_time'] = ((s as any).totminut ?? 0);
+    if (((s as any).hour ?? 0) > 7  &&  (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3)) {
+      if ((((s as any).hotornot_uni ?? 0) === 0  ||  ((s as any).fuckornot_uni ?? 0) === 0)  &&  ((s as any).yearstart ?? 0) === 2  &&  ((s as any).month ?? 0) >= 9  &&  ((s as any).day ?? 0) >= 11) {
+        (s as any).fuckornot_uni = 1;
+        (s as any).hotornot_uni = 1;
+        scene.text('As you head to class, you overhear many of your fellow students talking. It seems someone has made websites ranking both the male and female students on how bangable they are. You overhear someone mention the links and make a note of them to check when you get a chance.');
+      } else {
+        if (((s as any).temper ?? 0) >= 12  &&  (!(Math.floor(Math.random() * 4) + 0))) {
+          qspGoto(s, 'uni_grounds', 'day_warm');
+        } else {
+          if (((s as any).temper ?? 0) >= 8  &&  (!(Math.floor(Math.random() * 10) + 0))) {
+            qspGoto(s, 'uni_grounds', 'day_warm');
+          } else {
+            if ((!(Math.floor(Math.random() * 10) + 0))) {
+              qspGoto(s, 'uni_grounds', 'day_cold');
+            }
+          }
+        }
+      }
+    } else {
+      if ((((s as any).hour ?? 0) > 15  ||  ((s as any).hour ?? 0) === 1)  &&  (((s as any).daystage ?? 0) === 4  ||  ((s as any).daystage ?? 0) === 5)) {
+        if (((s as any).temper ?? 0) >= 12  &&  (!(Math.floor(Math.random() * 5) + 0))) {
+          qspGoto(s, 'uni_grounds', 'night_warm');
+        }
+      }
+    }
+  }
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    if (((s as any).month ?? 0) >= 11  &&  ((s as any).month ?? 0) <= 12  ||  ((s as any).month ?? 0) >= 1  &&  ((s as any).month ?? 0) <= 3) {
+      if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
+      }
+      if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
+      }
+    } else {
+      if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 23) {
+      }
+      if (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) <= 7) {
+      }
+    }
+  }
+  if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {
+    qspCall(s, 'mother_chats', 'reconciliation_talk');
+    return;
+  }
+  if (((s as any).hotcat ?? 0) >= 6  &&  ((s as any).hour ?? 0) > 15  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).porn_studio ?? 0)?.['pickup_porn'] === 0  &&  ((s as any).film ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+    qspGoto(s, 'pickup_porn', 'start');
+  }
+  scene.text('<center><b>University Campus</b></center>');
+  if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
+    if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
+      scene.img('images/locations/city/island/university/uni_day_winter.jpg');
+      scene.text('The university boasts a large amount of buildings hosting many different types of classes. Snow covers the ground and the cold wind bites through your clothes. Only a few of the walkways have been cleared of snow.');
+      if (((s as any).week ?? 0) > 5) {
+        scene.text('The campus is pretty quiet right now. The few students you see are rushing across the cold snowy quad.');
+      } else {
+        scene.text('The campus is quite lively right now with many students rushing to their next class, trying not to slip on any icy spots in the courtyard.');
+      }
+    } else {
+      scene.img('images/locations/city/island/university/uni_winter_night.jpg');
+      scene.text('The university boasts a large amount of buildings hosting many different types of classes. Snow covers the ground and the biting wind chills you to the bone. The lights around the walkways glare off the snow and give it a surreal glow, lighting the night up surprisingly well.');
+      scene.text('It\'s very quiet, with only a few students rushing across the campus, trying not to slip on any patches of ice.');
+    }
+  } else {
+    if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
+      scene.img('images/locations/city/island/university/uni_day.jpg');
+      scene.text('The university boasts a large amount of buildings hosting many different types of classes. It is nice and warm out.');
+      if (((s as any).week ?? 0) === 7) {
+        scene.text('Despite it being a Sunday, the quad is busy with students taking advantage of the nice weather, at least those who aren\'t still in their dorm rooms, recovering from a weekend of partying.');
+      } else {
+        if (((s as any).week ?? 0) > 5) {
+          scene.text('The campus is quite lively right now. Many of the students are taking advantage of the weather to hang out on the quad.');
+        } else {
+          scene.text('The campus is quite lively right now. Most of the students are on their way to their next class, or hanging out with friends.');
+        }
+      }
+    } else {
+      scene.img('images/locations/city/island/university/uni_night.jpg');
+      scene.text('The university boasts a large amount of buildings hosting many different types of classes. During the night, the quad is fairly well lit, though the lights are spread out enough to leave dark spots scattered around.');
+      if (((s as any).week ?? 0) === 7) {
+        scene.text('The campus is quiet right now. Most of the students seem to be sleeping, worn out from the weekend.');
+      } else {
+        if (((s as any).week ?? 0) > 5) {
+          scene.text('The campus is quite lively right now. Many of the students are moving around the courtyard visiting each other or enjoying their weekend.');
+        } else {
+          scene.text('The campus is quiet right now. Most of the students seem to be sleeping or studying late.');
+        }
+      }
+    }
+  }
+  if (((s as any).locat ?? 0)?.['katja'] === 25) {
+    // TODO-QSP: dynamic text: You see '+iif(katjaQW['know_katja_uni'] = 0 and ($start_type['loc'] ! 'sg' and $...
+    scene.text('You see ' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('a redheaded girl') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katja_chat/u0027, /u0027start/u0027); return false;">Katja</a>')) + ' sitting while talking on her phone.');
+  }
+  if (((s as any).locat ?? 0)?.['A23'] === 17) {
+    // TODO-QSP: dynamic text: You see '+iif(AlbinaQW['know_albina_uni'] = 0 and ($start_type['loc'] ! 'sg' and...
+    scene.text('You see ' + ((((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 0  &&  (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg')) ? ('an attractive looking brunette') : ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027albina_events/u0027, /u0027albina_jogging_uni/u0027); return false;">Albina</a>')) + ' jogging around the quad.');
+    scene.text('Her well-toned physique and tight fitting yoga pants are drawing the attention of multiple boys and even some girls around her, but she appears to have earbuds in and doesn\'t pay much attention to them.');
+  }
+  if (((s as any).university ?? 0)?.['semester_week'] > 0  &&  ((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
+    qspCall(s, 'uni_lessons', 'schedule');
+  }
+  if (((s as any).university ?? 0)?.['exam_week'] > 0  &&  ((s as any).university ?? 0)?.['enrolled_in_semester'] > ((s as any).university ?? 0)?.['semester_passed']) {
+    qspCall(s, 'uni_lessons', 'exam_schedule');
+  }
+  if (qspFunc(s, 'homes_properties', 'has_access', 'university_dorm')  ||  ((s as any).university ?? 0)?.['student'] === 1) {
+    scene.actions([
+      { label: 'Go to your room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 7;
+  }, goto: ['uni_dorm', 'dorm_room'] },
+    ]);
+  }
+  if (((s as any).daystart ?? 0) >= 760) {
+    qspCall(s, 'natbel_uni_dates_2', 'set_act');
+  }
+  if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 7)  ||  (((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 23)) {
+    scene.actions([
+      { label: 'Go to the library', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_library', 'start');
+  } },
+    ]);
+  }
+  if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 17) {
+    scene.actions([
+      { label: 'Go to the administration building', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_admin', 'start');
+  } },
+    ]);
+  }
+  if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) < 17) {
+    scene.actions([
+      { label: 'Go to the university cafe', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_cafe', '');
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Return to the city', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_island', '');
   } },
     { label: 'Go to the dorms', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
@@ -168,12 +330,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDayWarm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temper ?? 0) >= 18) {
-    (s as any).temp = Math.floor(Math.random() * 31) + 1;
+    (s as any).temp = (Math.floor(Math.random() * 31) + 1);
   } else {
     if (((s as any).temper ?? 0) >= 12) {
-      (s as any).temp = Math.floor(Math.random() * 25) + 7;
+      (s as any).temp = (Math.floor(Math.random() * 25) + 7);
     } else {
-      (s as any).temp = Math.floor(Math.random() * 3) + 29;
+      (s as any).temp = (Math.floor(Math.random() * 3) + 29);
     }
   }
   if (((s as any).temp ?? 0) === 1) {
@@ -187,7 +349,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp ?? 0) === 2) {
       (s as any).minut = ((s as any).minut ?? 0) + 2;
-      scene.img('images/locations/city/island/university/campus/events/day/warm/2guy_ir_pickup\' + rand(1, 3) + \'.jpg');
+      scene.img('images/locations/city/island/university/campus/events/day/warm/2guy_ir_pickup' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
       scene.text('As you cross the campus, you notice a lot of people are out taking advantage of the warm weather. You see two African guys sitting on a low wall, trying to chat up the girls as they walk by. When a girl stops to talk with them, they immediately start rubbing her legs. She seems to enjoy the attention and quickly sits with them. They chat while the guys continue pawing at her before they get up and leave together. It\'s obvious what the guys were looking for, and she seems happy to provide it.');
       scene.actions([
         { label: 'Continue', goto: ['uni_grounds', ''] },
@@ -212,7 +374,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).temp ?? 0) === 5) {
-            scene.img('images/locations/city/island/university/campus/events/day/warm/topless_sunbathing\' + rand(1, 2) + \'.jpg');
+            scene.img('images/locations/city/island/university/campus/events/day/warm/topless_sunbathing' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
             scene.text('As you cross the campus, you notice a lot of people are out taking advantage of the warm weather. There\'s a number of people out on the quad right now. Some are sitting around talking while others walk around. There\'s even a few people playing frisbee, but what has most people\'s attention, especially the guys passing by, are the group of topless girls sunbathing on the grass.');
             qspCall(s, 'arousal', 'voyeur', 2);
             qspCall(s, 'arousal', 'end');
@@ -228,7 +390,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).temp ?? 0) === 7) {
-                scene.img('images/locations/city/island/university/campus/events/day/warm/1nakedg_coed_group\' + rand(1, 3) + \'.jpg');
+                scene.img('images/locations/city/island/university/campus/events/day/warm/1nakedg_coed_group' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
                 scene.text('As you cross the campus, you notice a lot of people are out taking advantage of the good weather. Near the edge of the campus, you can\'t help but notice a group of students, at least you think they\'re students, hanging around one of the benches. Your attention is drawn to the naked girl who\'s wearing only a pair of high heels hanging out with them. You have no clue why she\'s naked, but her group doesn\'t seem to pay her too much attention. Others, however, have taken note of her and she seems to be enjoying herself. You shake your head slightly, curious what\'s going on but continue on your way.');
                 qspCall(s, 'arousal', 'voyeur', 2);
                 qspCall(s, 'arousal', 'end');
@@ -330,7 +492,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         if (((s as any).temp ?? 0) === 20) {
                                           (s as any).minut = ((s as any).minut ?? 0) + 2;
-                                          scene.img('images/locations/city/island/university/campus/events/day/warm/girl_fight\' + rand(1, 2) + \'.jpg');
+                                          scene.img('images/locations/city/island/university/campus/events/day/warm/girl_fight' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                                           scene.text('As you cross the campus, you notice a lot of people are out taking advantage of the good weather. You see a group of girls ahead of you. Two of them are arguing over some boy, apparently one of their boyfriends. One of the girls is accusing the other of cheating with him and she ends up tackling the other girl to the ground. Their group spreads out to watch the two of them fight.');
                                           scene.actions([
                                             { label: 'Continue', goto: ['uni_grounds', ''] },
@@ -362,7 +524,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
                                                 ]);
                                               } else {
                                                 if (((s as any).temp ?? 0) === 24) {
-                                                  scene.img('images/locations/city/island/university/campus/events/day/warm/naked_run_start\' + rand(1, 2) + \'.jpg');
+                                                  scene.img('images/locations/city/island/university/campus/events/day/warm/naked_run_start' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                                                   scene.text('As you cross the campus, you notice a lot of people are just standing around as if they\'re waiting for something. You start to ask one of them what\'s happening, but you soon have your answer. A dozen or so of them in the middle of the circle start quickly stripping down, most only to their shoes as those watching film and shout words of encouragement to them. Once most of them are naked, they start breaking out of the circle and start running across the quad. You can\'t help but smile in amusement; something like this would have never happened back in Pavlovsk. It\'s nice seeing a more relaxed attitude at the university. Once the last of the streakers is out of sight, you continue on your way.');
                                                   qspCall(s, 'arousal', 'voyeur', 5);
                                                   qspCall(s, 'arousal', 'end');
@@ -371,7 +533,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
                                                   ]);
                                                 } else {
                                                   if (((s as any).temp ?? 0) === 25) {
-                                                    scene.img('images/locations/city/island/university/campus/events/day/warm/naked_run\' + rand(1, 2) + \'.jpg');
+                                                    scene.img('images/locations/city/island/university/campus/events/day/warm/naked_run' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                                                     scene.text('As you cross the campus, you notice a lot of people are just standing around like they\'re waiting for something. You start to ask one of them what\'s happening, but you soon have your answer. A group of naked students of both genders go streaking by. You watch while others laugh at, film or shout encouragement at them. You can\'t help but smile in amusement; something like this would have never happened back in Pavlovsk. It\'s nice seeing a more relaxed attitude at the university. Once the last of the streakers is out of sight, you continue on your way.');
                                                     qspCall(s, 'arousal', 'voyeur', 5);
                                                     qspCall(s, 'arousal', 'end');
@@ -387,7 +549,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
                                                       ]);
                                                     } else {
                                                       if (((s as any).temp ?? 0) === 27) {
-                                                        scene.img('images/locations/city/island/university/campus/events/day/warm/titflash\' + rand(1, 2) + \'.jpg');
+                                                        scene.img('images/locations/city/island/university/campus/events/day/warm/titflash' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                                                         scene.text('As you cross the campus, you notice a lot of people are out taking advantage of the good weather. One girl in particular is amusing herself by flashing her breasts at everyone she passes, grinning the whole time. She soon exposes her breasts at you when you pass her by.');
                                                         qspCall(s, 'arousal', 'voyeur', 2);
                                                         qspCall(s, 'arousal', 'end');
@@ -460,7 +622,7 @@ function enterDayWarm(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDayCold(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = Math.floor(Math.random() * 5) + 1;
+  (s as any).temp = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).temp ?? 0) === 1) {
     scene.img('images/locations/city/island/university/campus/events/day/cold/4girl_titflashw.jpg');
     scene.text('Up ahead, you see four girls walking in your direction. As they pass by people, they flash their tits despite the cold weather. They seem to be enjoying themselves, and sure enough when they reach you, they exposes their chests again. You smile at them, shake your head, and continue on your way.');
@@ -471,7 +633,7 @@ function enterDayCold(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).temp ?? 0) === 2) {
-      scene.img('images/locations/city/island/university/campus/events/day/cold/naked_runw\' + rand(1, 2) + \'.jpg');
+      scene.img('images/locations/city/island/university/campus/events/day/cold/naked_runw' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
       scene.text('As you cross the campus you notice a lot of people are just standing around like they\'re waiting for something. You start to ask one of them what\'s happening, but you soon have your answer. A group of naked students of both genders go streaking by, with a few of them wearing caps or scarves. As you watch, others laugh, film it and shout encouragements. You can\'t help but smile in amusement; something like this would have never happened back in Pavlovsk. It\'s nice seeing a more relaxed attitude at the university. Once the last of the streakers is out of sight, you continue on your way.');
       qspCall(s, 'arousal', 'voyeur', 5);
       qspCall(s, 'arousal', 'end');
@@ -512,7 +674,7 @@ function enterDayCold(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNightWarm(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = Math.floor(Math.random() * 21) + 1;
+  (s as any).temp = (Math.floor(Math.random() * 21) + 1);
   if (((s as any).temp ?? 0) === 1) {
     scene.img('images/locations/city/island/university/campus/events/night/warm/1nakedg_coed_group1.jpg');
     scene.text('As you walk by a group of guys, you hear them trying to talk a girl wearing a dress into taking off her panties. Even her friend tries encouraging her. After a moment, the girl glances around, and not seeing too many people, starts to pull her panties down.');
@@ -523,22 +685,22 @@ function enterNightWarm(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop and watch', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/campus/events/night/warm/1nakedg_coed_group2.jpg');
     scene.text('The guys hoot and holler, drawing a little more attention that makes the girl in the dress blush. One of the guys tells her to show her tits and they\'re soon all chanting for her to do it. She bites her lower lip and looks around, meeting your eyes briefly before she looks back at her friend, who nods at her. She then pulls down the top of her dress, showing off her tits.');
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop watching', goto: ['uni_grounds', ''] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/campus/events/night/warm/1nakedg_coed_group3.jpg');
     scene.text('A few of the guys step over to the girl and try to tug down her dress, but she fends them off and steps back. Her friend tries to convince her to take it off, and the guys chant for her to do it. She turns to face the bench and starts sliding her dress off.');
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop watching', goto: ['uni_grounds', ''] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/campus/events/night/warm/1nakedg_coed_group4.jpg');
     scene.text('Once she\'s out of the dress and fully naked, she looks like she\'s starting to enjoy the attention she\'s getting. She even goes as far as to start posing for selfies with the group of guys and her friend. Having watched this unfold, you decide it\'s time to head on your way.');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stop watching', goto: ['uni_grounds', ''] },
     ]);
@@ -591,7 +753,7 @@ function enterNightWarm(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).temp ?? 0) === 7) {
-                scene.img('images/locations/city/island/university/campus/events/night/warm/femdom_foot_kiss\' + rand(1, 2) + \'.jpg');
+                scene.img('images/locations/city/island/university/campus/events/night/warm/femdom_foot_kiss' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                 scene.text('As you approach one of the buildings where the grass gives way to concrete, you spot a boy kneeling in front of a girl. You\'re not close enough to them to hear what they\'re saying, and they\'re not being very loud. As you near them, you overhear her telling the boy to kiss her shoe. He timidly notices you and blushes as he lifts her ankle and begins kissing her shoe. After a few pecks, she pulls her foot back and tells him to "kiss it where it is". He crawls closer to her and starts kissing her shoe again. The girl looks up at you and smiles proudly as you walk by. You then overhear her telling him to lick her shoe clean. It seems she\'s found a boy to dominate.');
                 scene.actions([
                   { label: 'Continue', goto: ['uni_grounds', ''] },
@@ -736,6 +898,9 @@ function enterNightWarm(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'main':
+      enterMain(s, scene);
+      break;
     case 'day_warm':
       enterDayWarm(s, scene);
       break;

@@ -27,10 +27,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No, leave me alone you freaky snake', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).serpent_path = 0;
-    qspGoto(s, 'gad_gpyard', 'start');
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).serpent_path = 0;
+    qspGoto(st, 'gad_gpyard', 'start');
   } },
       ]);
     }
@@ -44,10 +44,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Maybe, but first tell me more about what you can teach me', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'skill', 'magik', 'self', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).serpent_path = 1;
-    qspGoto(s, 'serpent', '');
+    qspCall(st, 'willpower', 'skill', 'magik', 'self', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).serpent_path = 1;
+    qspGoto(st, 'serpent', '');
   } },
       ]);
     }

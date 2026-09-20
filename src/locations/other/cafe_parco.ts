@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -13,7 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'cafe_parco', 'start');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Cafe "Del Parco"</b></center>');
-  scene.img('images/locations/pavlovsk/park/cafe/caffe_del_parco\' + iif(hour > 20 or hour < 7, \'_night\', \') + \'.jpg');
+  scene.img('images/locations/pavlovsk/park/cafe/caffe_del_parco' + ((((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 7) ? ('_night') : ('')) + '.jpg');
   // TODO-QSP: dynamic text: The newly opened cafe "Del Parco", with its striking facade, lots of tables and ...
   scene.text('The newly opened cafe "Del Parco", with its striking facade, lots of tables and a summer terrace. Opening hours are between 14:00 and 21:00.');
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 21) {
@@ -57,7 +56,7 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
   }
   if ((((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 5)  &&  ((s as any).week ?? 0) % 2 === 0  &&  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  &&  ((s as any).mey_vika_qw_day ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).mey_vika_qw_day = ((s as any).daystart ?? 0);
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 11) + 10));
     scene.text('You notice Vicky and Vanya sitting at a table.');
     if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 3) {
       scene.text('You\'re not really close with either of them, so you don\'t really know how to approach them.');
@@ -93,8 +92,8 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
               }
               scene.actions([
                 { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 15;
-    qspGoto(s, 'mey_vika_events', 'cafe_qw');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 15;
+    qspGoto(st, 'mey_vika_events', 'cafe_qw');
   } },
               ]);
             } else {
@@ -117,10 +116,10 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 350);
-      qspGoto(s, 'food', 'fast_food');
+      qspCall(st, 'money', 'pay', 350);
+      qspGoto(st, 'food', 'fast_food');
     }
   } },
   ]);
@@ -128,6 +127,7 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   const arg = s.locArg;
   switch (arg) {
     case 'start':

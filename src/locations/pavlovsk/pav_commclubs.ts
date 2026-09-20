@@ -29,7 +29,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Go to the sewing club', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Sewing circle</b></center>');
     scene.img('images/locations/pavlovsk/community/sew/sewing_class.jpg');
     // TODO-QSP: dynamic text: You go to the sewing club room. As you walk in, a teacher looks at you and says ...
@@ -37,10 +37,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 500) === 1) {
       scene.actions([
         { label: 'Sign up', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 500);
-    (s as any).krumonth = ((s as any).month ?? 0);
-    (s as any).kruyear = ((s as any).year ?? 0);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', 500);
+    (st as any).krumonth = ((st as any).month ?? 0);
+    (st as any).kruyear = ((st as any).year ?? 0);
+    qspCall(st, 'stat', '');
     scene.text('You pay for the tuition.');
     scene.actions([
       { label: 'Leave', goto: ['pav_commclubs', ''] },
@@ -61,7 +61,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Go to the chess club', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Chess Circle</b></center>');
     scene.img('images/locations/pavlovsk/community/chess/kruchess.jpg');
     // TODO-QSP: dynamic text: You go to the chess club room. As you walk in, a teacher looks at you and says "...
@@ -69,10 +69,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 500) === 1) {
       scene.actions([
         { label: 'Sign up', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 500);
-    (s as any).chessmonth = ((s as any).month ?? 0);
-    (s as any).chessyear = ((s as any).year ?? 0);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', 500);
+    (st as any).chessmonth = ((st as any).month ?? 0);
+    (st as any).chessyear = ((st as any).year ?? 0);
+    qspCall(st, 'stat', '');
     scene.text('You pay for the tuition.');
     scene.actions([
       { label: 'Leave', goto: ['pav_commclubs', ''] },
@@ -100,11 +100,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour']-1 === ((s as any).hour ?? 0))) {
         scene.actions([
           { label: 'Wait for your guitar lesson', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + ((60 - ((s as any).minut ?? 0)));
-      qspGoto(s, 'music_guitarlesson', 'lesson');
+      (st as any).minut = ((st as any).minut ?? 0) + ((60 - ((st as any).minut ?? 0)));
+      qspGoto(st, 'music_guitarlesson', 'lesson');
     }
   } },
         ]);
@@ -112,10 +112,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] === ((s as any).hour ?? 0))) {
         scene.actions([
           { label: 'Go to your guitar lesson', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'music_guitarlesson', 'lesson');
+      qspGoto(st, 'music_guitarlesson', 'lesson');
     }
   } },
         ]);

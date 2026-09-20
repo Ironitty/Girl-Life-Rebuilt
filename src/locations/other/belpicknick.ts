@@ -5,10 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).sashaBeliTimes = Math.floor(Math.random() * 3) + 1;
-  (s as any).sipliGangTimes = Math.floor(Math.random() * 3) + 1;
-  (s as any).kolGangTimes = Math.floor(Math.random() * 3) + 1;
-  (s as any).tatarGangTimes = Math.floor(Math.random() * 3) + 1;
+  (s as any).sashaBeliTimes = (Math.floor(Math.random() * 3) + 1);
+  (s as any).sipliGangTimes = (Math.floor(Math.random() * 3) + 1);
+  (s as any).kolGangTimes = (Math.floor(Math.random() * 3) + 1);
+  (s as any).tatarGangTimes = (Math.floor(Math.random() * 3) + 1);
   (s as any).times_picknick = ((s as any).sashaBeliTimes ?? 0) + ((s as any).sipliGangTimes ?? 0) + ((s as any).kolGangTimes ?? 0) + ((s as any).tatarGangTimes ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   scene.text('The band of criminals quickly fold out a convenient steel grill, and have it heated up within minutes. The one named Tatar fries the meat they brought with them, while one of the others pours vodka into some glasses. Vadim hands you a glass: "Here, drink". They didn\'t bring any other snacks, so you\'re pretty much drinking the vodka on an empty stomach.');
@@ -22,16 +22,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Drink the vodka', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    qspCall(st, 'stat', '');
     scene.text('You drink the vodka as you were told, and feel a shiver run down your spine. Your throat burns when you swallow it, but soon after a pleasant warmth spreads throughout your body. A few minutes later, you feel absolutely hammered.');
     scene.actions([
       { label: 'Continue', goto: ['belpicknick', '1'] },
@@ -59,24 +59,24 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Run away from them', handler: (st: GameState) => {
-    if (((s as any).pcs_danc ?? 0) < 40) {
-      qspCall(s, 'willpower', 'mast', 'resist', 'hard');
+    if (((st as any).pcs_danc ?? 0) < 40) {
+      qspCall(st, 'willpower', 'mast', 'resist', 'hard');
     } else {
-      qspCall(s, 'willpower', 'voyeur', 'resist', 'hard');
+      qspCall(st, 'willpower', 'voyeur', 'resist', 'hard');
     }
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Perform a striptease for them', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'striptease', 5);
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'stat', '');
-    if (((s as any).pcs_danc ?? 0) < 40) {
-      (s as any).prevdance = 1;
+    qspCall(st, 'arousal', 'striptease', 5);
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'stat', '');
+    if (((st as any).pcs_danc ?? 0) < 40) {
+      (st as any).prevdance = 1;
       scene.text('You know this is your cue, and you attempt to do a striptease for them. You would have to be very good at dancing to overcome you drunkenness and begin to dance a bit awkwardly, tugging at your clothes.');
       scene.text('The criminals are not impressed in the slightest, and one of them yells: "What kind of crap is this!? My elderly aunt Katinka could do a better job!"');
       scene.text('His friend agrees: "Yea, this is fucking terrible!"');
@@ -88,8 +88,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
         { label: 'Shove the bottom into your ass', goto: ['belpicknick', 'ab_hard'] },
       ]);
     }
-    if (((s as any).pcs_danc ?? 0) >= 40) {
-      qspGoto(s, 'belpicknick', 'dance');
+    if (((st as any).pcs_danc ?? 0) >= 40) {
+      qspGoto(st, 'belpicknick', 'dance');
     }
   } },
   ]);
@@ -114,9 +114,9 @@ function enterVbLight(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -135,9 +135,9 @@ function enterVbLight(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -172,9 +172,9 @@ function enterVbHard(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -193,9 +193,9 @@ function enterVbHard(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -230,9 +230,9 @@ function enterAbLight(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -251,9 +251,9 @@ function enterAbLight(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -286,9 +286,9 @@ function enterAbHard(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
     ]);
   }
@@ -301,62 +301,62 @@ function enterAbHard(s: GameState, scene: SceneBuilder): void {
 
 function enterDance(s: GameState, scene: SceneBuilder): void {
   scene.text('You slowly take off your clothes one piece at a time, while you skillfully try to give the bandits the sexy dance they want from you. You can tell they want you badly, and that your dancing is definitely having an effect on them.');
-  // TODO-QSP: dynamic text: Once you're completely naked, they applaud you and tell you: "Very nice, <<$pcs_...
+  // TODO-QSP: dynamic text: Once you''re completely naked, they applaud you and tell you: "Very nice, <<$pcs...
   scene.text(`Once you're completely naked, they applaud you and tell you: "Very nice, ${((s as any).pcs_nickname || '')}. Now let's see how good you are with your mouth."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get down on your knees', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A115', 'a');
-    qspCall(s, 'npcStat', 'A116', 'c');
-    if ((!((s as any).sashaBeliSex ?? 0))) {
-      (s as any).sashaBeliSex = 1;
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    qspCall(st, 'npcStat', 'A115', 'a');
+    qspCall(st, 'npcStat', 'A116', 'c');
+    if ((!((st as any).sashaBeliSex ?? 0))) {
+      (st as any).sashaBeliSex = 1;
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
-    if ((!((s as any).sipliGangSex ?? 0))) {
-      (s as any).sipliSex = 1;
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    if ((!((st as any).sipliGangSex ?? 0))) {
+      (st as any).sipliSex = 1;
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
-    if ((!((s as any).kolGangSex ?? 0))) {
-      (s as any).kolGangSex = 1;
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    if ((!((st as any).kolGangSex ?? 0))) {
+      (st as any).kolGangSex = 1;
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
-    if ((!((s as any).tatarGangSex ?? 0))) {
-      (s as any).tatarGangSex = 1;
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    if ((!((st as any).tatarGangSex ?? 0))) {
+      (st as any).tatarGangSex = 1;
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
     scene.img('images/characters/pavlovsk/vadim/sex/round.jpg');
     scene.text('You get down on your knees as the four men surround you, slapping their cocks against your cheeks and forehead. Dutifully keeping your hands behind your back, you do your best to serve them with your mouth alone as you suck on them in turns, licking the heads and teasing the balls as good as you can while trying to not make anyone feel left out.');
-    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-    (s as any).belsexpayment = 900;
-    qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
-    qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
-    qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID3 ?? 0), 'gangbang', 'sub', 'prostitution');
-    qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID3 ?? 0), 'gangbang', 'sub', 'prostitution');
-    qspCall(s, 'stat', '');
-    (s as any).fuckerrand = Math.floor(Math.random() * 4) + 1;
-    (s as any).gmember = ((s as any).fuckerrand ?? 0);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVibor(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
+    (st as any).belsexpayment = 900;
+    qspCall(st, 'arousal', 'bj', 2, ((st as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
+    qspCall(st, 'arousal', 'bj', 1, ((st as any).npcID1 ?? 0), 'gangbang', 'sub', 'prostitution');
+    qspCall(st, 'arousal', 'bj', 1, ((st as any).npcID3 ?? 0), 'gangbang', 'sub', 'prostitution');
+    qspCall(st, 'arousal', 'bj', 1, ((st as any).npcID3 ?? 0), 'gangbang', 'sub', 'prostitution');
+    qspCall(st, 'stat', '');
+    (st as any).fuckerrand = (Math.floor(Math.random() * 4) + 1);
+    (st as any).gmember = ((st as any).fuckerrand ?? 0);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(s, scene); (st as any).locArgs = __savedLocArgs; }
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      // TODO-QSP: dynamic text: Suddenly the cock you're currently sucking on is pulled away from you, and <<$bo...
-      scene.text(`Suddenly the cock you're currently sucking on is pulled away from you, and ${((s as any).boydesc || '')} pushes you onto your back saying he wants to try another hole now.`);
+      // TODO-QSP: dynamic text: Suddenly the cock you''re currently sucking on is pulled away from you, and <<$b...
+      scene.text(`Suddenly the cock you're currently sucking on is pulled away from you, and ${((st as any).boydesc || '')} pushes you onto your back saying he wants to try another hole now.`);
       scene.actions([
         { label: 'Lie on your back', handler: (st: GameState) => {
-    (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
-    qspGoto(s, 'belpicknick', 'missionary');
+    (st as any).belsexpayment = ((st as any).belsexpayment ?? 0) + (25);
+    qspGoto(st, 'belpicknick', 'missionary');
   } },
       ]);
     } else {
-      // TODO-QSP: dynamic text: Suddenly the cock you're currently sucking on is pulled away from you, and <<$bo...
-      scene.text(`Suddenly the cock you're currently sucking on is pulled away from you, and ${((s as any).boydesc || '')} tells you to get on all fours saying he wants to try another hole now.`);
+      // TODO-QSP: dynamic text: Suddenly the cock you''re currently sucking on is pulled away from you, and <<$b...
+      scene.text(`Suddenly the cock you're currently sucking on is pulled away from you, and ${((st as any).boydesc || '')} tells you to get on all fours saying he wants to try another hole now.`);
       scene.actions([
         { label: 'Get on your hands and knees', handler: (st: GameState) => {
-    (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
-    qspGoto(s, 'belpicknick', 'doggy');
+    (st as any).belsexpayment = ((st as any).belsexpayment ?? 0) + (25);
+    qspGoto(st, 'belpicknick', 'doggy');
   } },
       ]);
     }
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -365,9 +365,9 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -381,7 +381,7 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVibor(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
   (s as any).times_picknick = ((s as any).times_picknick ?? 0) - (1);
-  (s as any).pickrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).pickrand = (Math.floor(Math.random() * 2) + 0);
   if ((!((s as any).pickrand ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/vadim/sex/sex.jpg"></...
     scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/pavlovsk/vadim/sex/sex.jpg"></center>`);
@@ -418,11 +418,11 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPoisk(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVibor(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: All of a sudden, <<$boydesc>> slows down and tells you to get on all fours, sayi...
-      scene.text(`All of a sudden, ${((s as any).boydesc || '')} slows down and tells you to get on all fours, saying he wants to try another hole now.`);
+      scene.text(`All of a sudden, ${((st as any).boydesc || '')} slows down and tells you to get on all fours, saying he wants to try another hole now.`);
       scene.actions([
         { label: 'Get on your hands and knees', goto: ['belpicknick', 'doggy'] },
       ]);
@@ -432,8 +432,8 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['belpicknick', 'missionary'] },
       ]);
     }
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -442,9 +442,9 @@ function enterMissionary(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -460,7 +460,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVibor(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).belsexpayment = ((s as any).belsexpayment ?? 0) + (25);
   (s as any).times_picknick = ((s as any).times_picknick ?? 0) - (1);
-  (s as any).pickrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).pickrand = (Math.floor(Math.random() * 2) + 0);
   if ((!((s as any).pickrand ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/vadim/sex/sexd.jpg"><...
     scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/pavlovsk/vadim/sex/sexd.jpg"></center>`);
@@ -472,7 +472,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 1) <= 70) {
     // TODO-QSP: dynamic text: You get down on all fours revealing your cute tushy. <<$boydesc>> steps up from ...
     scene.text(`You get down on all fours revealing your cute tushy. ${((s as any).boydesc || '')} steps up from behind and shoves his dick into your pussy. You are surprised as he begins pounding you roughly right from the get go you. He keeps up this pace for five minutes, almost without slowing the pace, only occasionally stopping to take a breath. You think he would be tired soon, but it turns out that he is more tenacious than one might assume.`);
-    // TODO-QSP: dynamic text: As he's pounding away, you forget where you are, screaming your head off. <<$boy...
+    // TODO-QSP: dynamic text: As he''s pounding away, you forget where you are, screaming your head off. <<$bo...
     scene.text(`As he's pounding away, you forget where you are, screaming your head off. ${((s as any).boydesc || '')} is growling spanking your butt with one hand and pulling your ${((s as any).pcs_haircolor || '')} ${((s as any).curly_txt || '')} hair with the other.`);
     qspCall(s, 'dinsex', 'vaginal_sex', 10);
     qspCall(s, 'dinsex', 'sexcum');
@@ -482,7 +482,7 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).spafinloc = 3;
     qspCall(s, 'cum_manage', '');
-    // TODO-QSP: dynamic text: You find yourself being on elbows and knees as you're fully aware he is about to...
+    // TODO-QSP: dynamic text: You find yourself being on elbows and knees as you''re fully aware he is about t...
     scene.text(`You find yourself being on elbows and knees as you're fully aware he is about to penetrate your ass. ${((s as any).boydesc || '')} leans the tip of his cock against your anus and pushes it into you. It is a little painful, but the desire to pleasure him outweighs it. ${((s as any).boydesc || '')} gradually accelerates his pace, you can feel his balls slap against your wet clit. After a while your anus relaxes and stretches making his cock slide in and out easily now.`);
     qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
     qspCall(s, 'arousal', 'anal', 5, 'sub', 'prostitution');
@@ -508,11 +508,11 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPoisk(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVibor(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterVibor(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: <<$boydesc>> pushes you onto your back saying he wants to try another hole now.
-      scene.text(`${((s as any).boydesc || '')} pushes you onto your back saying he wants to try another hole now.`);
+      scene.text(`${((st as any).boydesc || '')} pushes you onto your back saying he wants to try another hole now.`);
       scene.actions([
         { label: 'Lie on your back', goto: ['belpicknick', 'missionary'] },
       ]);
@@ -522,8 +522,8 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['belpicknick', 'doggy'] },
       ]);
     }
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -532,9 +532,9 @@ function enterDoggy(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away from them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'belpicknick', 'leave');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'belpicknick', 'leave');
   } },
       ]);
     }
@@ -609,7 +609,7 @@ function enterGang(s: GameState, scene: SceneBuilder): void {
     (s as any).tatarGangSex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
-  (s as any).vagmembergang = Math.floor(Math.random() * 4) + 113;
+  (s as any).vagmembergang = (Math.floor(Math.random() * 4) + 113);
   (s as any).analmembergang = 113 + (Math.floor(Math.random() * 3) + 0);
   if (((s as any).vagmembergang ?? 0) === ((s as any).analmembergang ?? 0)) {
     (s as any).analmembergang = 116;
@@ -634,32 +634,32 @@ function enterGang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', (-10), ((s as any).npcID3 ?? 0), 'group', 'prostitution');
   qspCall(s, 'arousal', 'bj', (-10), ((s as any).npcID4 ?? 0), 'group', 'prostitution');
   qspCall(s, 'stat', '');
-  // TODO-QSP: dynamic text: After a while, you begin to struggle keeping your own weight up. The guys don't ...
+  // TODO-QSP: dynamic text: After a while, you begin to struggle keeping your own weight up. The guys don''t...
   scene.text(`After a while, you begin to struggle keeping your own weight up. The guys don't care, and your body lies prone on ${((s as any).boydesc1 || '')}'s chest as the guys keep up their rough fucking. After what feels like forever, you feel arms under your armpits lifting you up and pulling you away from ${((s as any).boydesc1 || '')}, putting you on your knees in front of the men. They gather in a circle around you and start stroking their cocks furiously.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Take their loads on your face', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', '', ((s as any).npcID1 ?? 0));
-    (s as any).sexpartkno = 1;
-    (s as any).spafinloc = 11;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'npcStat', '', ((s as any).npcID2 ?? 0));
-    (s as any).sexpartkno = 1;
-    (s as any).spafinloc = 11;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'npcStat', '', ((s as any).npcID3 ?? 0));
-    (s as any).sexpartkno = 1;
-    (s as any).spafinloc = 12;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'npcStat', '', ((s as any).npcID4 ?? 0));
-    (s as any).sexpartkno = 1;
-    (s as any).spafinloc = 12;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'stat', '');
-    (s as any).belsexpayment = 900;
+    qspCall(st, 'npcStat', '', ((st as any).npcID1 ?? 0));
+    (st as any).sexpartkno = 1;
+    (st as any).spafinloc = 11;
+    qspCall(st, 'cum_manage', '');
+    qspCall(st, 'npcStat', '', ((st as any).npcID2 ?? 0));
+    (st as any).sexpartkno = 1;
+    (st as any).spafinloc = 11;
+    qspCall(st, 'cum_manage', '');
+    qspCall(st, 'npcStat', '', ((st as any).npcID3 ?? 0));
+    (st as any).sexpartkno = 1;
+    (st as any).spafinloc = 12;
+    qspCall(st, 'cum_manage', '');
+    qspCall(st, 'npcStat', '', ((st as any).npcID4 ?? 0));
+    (st as any).sexpartkno = 1;
+    (st as any).spafinloc = 12;
+    qspCall(st, 'cum_manage', '');
+    qspCall(st, 'stat', '');
+    (st as any).belsexpayment = 900;
     scene.img('images/characters/pavlovsk/vadim/sex/bukkake.jpg');
     scene.text('You close your eyes just in time before the first load hits your face. You patiently wait until all four men are finished, and by the time they are your entire face is splattered with cum. Fortunately they don\'t make you swallow any more than the few drops that landed in your mouth before you could close it.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Sit down', goto: ['belpicknick', 'end'] },
     ]);
@@ -682,17 +682,17 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'debt_pay', 'belgangPay', ((s as any).belsexpayment ?? 0), 'none');
     qspCall(s, 'money', 'debt_pay', 'belgangPayWeek', ((s as any).belsexpayment ?? 0), 'none');
     qspCall(s, 'belgang', 'update_debt_calendar');
-    // TODO-QSP: dynamic text: "You're getting there whore." Mr. Bely writes off <<$func('money', 'string_debt_...
+    // TODO-QSP: dynamic text: "You''re getting there whore." Mr. Bely writes off <<$func(''money'', ''string_d...
     scene.text(`"You're getting there whore." Mr. Bely writes off ${qspFunc(s, 'money', 'string_debt_reduction', ((s as any).belsexpayment || ''))} from your debt. He looks at you probably planning what he could do next to you. "Run along now, I have business to take care off." he says as he's escorting you to the door, as he's closing the door you hear him say; "Don't you ever forget who's your master, ${((s as any).pcs_nickname || '')}."`);
-    // TODO-QSP: dynamic text: You owe him: <<$func('money', 'string_debt', belgangPay)>>
+    // TODO-QSP: dynamic text: You owe him: <<$func(''money'', ''string_debt'', belgangPay)>>
     scene.text(`You owe him: ${qspFunc(s, 'money', 'string_debt', ((s as any).belgangPay || ''))}`);
     if (((s as any).belgangPayWeek ?? 0) >= 0) {
-      // TODO-QSP: dynamic text: This week you need to pay him: <<$func('money', 'string_debt', belgangPayWeek)>>
+      // TODO-QSP: dynamic text: This week you need to pay him: <<$func(''money'', ''string_debt'', belgangPayWee...
       scene.text(`This week you need to pay him: ${qspFunc(s, 'money', 'string_debt', ((s as any).belgangPayWeek || ''))}`);
     } else {
-      // TODO-QSP: dynamic text: This week you need to pay him: <<$func('money', 'format', 0)>>
+      // TODO-QSP: dynamic text: This week you need to pay him: <<$func(''money'', ''format'', 0)>>
       scene.text(`This week you need to pay him: ${qspFunc(s, 'money', 'format', 0)}`);
-      // TODO-QSP: dynamic text: You have reduced your next weeks payment by: <<$func('money', 'string_debt_reduc...
+      // TODO-QSP: dynamic text: You have reduced your next weeks payment by: <<$func(''money'', ''string_debt_re...
       scene.text(`You have reduced your next weeks payment by: ${qspFunc(s, 'money', 'string_debt_reduction', -1*((s as any).belgangPayWeek ?? ''))}`);
     }
   }
@@ -715,7 +715,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLeave(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     qspGoto(s, 'road', '' + ((Math.floor(Math.random() * 9) + 1) + (Math.floor(Math.random() * 9) + 1)) / 2 + 10 * (Math.floor(Math.random() * 2) + 0) + '');
   } else {
     qspGoto(s, 'road', '' + ((Math.floor(Math.random() * 19) + 1) + (Math.floor(Math.random() * 19) + 1)) / 2 + '');

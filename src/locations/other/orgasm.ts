@@ -7,8 +7,8 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).orgasm_buildup = Math.max(0, ((s as any).orgasm_buildup ?? 0) - 70);
   if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2  &&  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 0) {
-    if (((s as any).orgasm_or ?? 0) !== 'custom'  &&  ((s as any).locArgs?.[0] ?? 0) !== 'hypno'  &&  (Math.floor(Math.random() * 9) + 1) > 2) {
-      (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+    if (((s as any).orgasm_or ?? 0) !== 'custom'  &&  Number((s as any).locArgs?.[0] ?? 0) !== 'hypno'  &&  (Math.floor(Math.random() * 9) + 1) > 2) {
+      (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
       if ((!((s as any).orgasm_rand ?? 0))) {
         (s as any).orgasm_txt = 'You feel an orgasm building up, the warmth in your abdomen, the tell tale tingles but it just stops and you feel calm again.';
       } else {
@@ -28,8 +28,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).orgasm_flag ?? 0)?.['masturbate'] === 1) {
     (s as any).orgasm_masturbate = ((s as any).orgasm_masturbate ?? 0) + (1);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) !== '') {
-      if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+    if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
+      if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
         (s as any).arousal_feed_orgasm_flag = 1;
       }
     }
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).orgasm_flag ?? 0)?.['anal'] === 1) {
         (s as any).orgasm_anal = ((s as any).orgasm_anal ?? 0) + (1);
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'hypno') {
+        if (Number((s as any).locArgs?.[0] ?? 0) === 'hypno') {
           (s as any).orgasm_hypno = ((s as any).orgasm_hypno ?? 0) + (1);
         }
       }
@@ -70,7 +70,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).orgasm_or ?? 0) === 'custom'  ||  ((s as any).orgasm_txt ?? 0) !== '') {
   } else {
     if (((s as any).pcs_horny ?? 0) <= 10) {
-      (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+      (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
       if ((!((s as any).orgasm_rand ?? 0))) {
         (s as any).orgasm_txt = 'You are caught off guard by your arousal and have a surprising, but pleasing orgasm.';
       } else {
@@ -87,7 +87,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_horny ?? 0) <= 20) {
         (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (10);
-        (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+        (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
         if ((!((s as any).orgasm_rand ?? 0))) {
           (s as any).orgasm_txt = 'The combination of sensations is enough to take you past your peak and you orgasm.';
         } else {
@@ -104,7 +104,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).pcs_horny ?? 0) <= 30) {
           (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (20);
-          (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+          (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
           if ((!((s as any).orgasm_rand ?? 0))) {
             (s as any).orgasm_txt = 'A long slow sigh escapes your lips as you ride the wave to its finish.';
           } else {
@@ -121,7 +121,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).pcs_horny ?? 0) <= 40) {
             (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (30);
-            (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+            (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
             if ((!((s as any).orgasm_rand ?? 0))) {
               (s as any).orgasm_txt = 'That was intense! You can still feel the tingles.';
             } else {
@@ -138,7 +138,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).pcs_horny ?? 0) <= 50) {
               (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (40);
-              (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+              (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
               if ((!((s as any).orgasm_rand ?? 0))) {
                 (s as any).orgasm_txt = 'An intense orgasm rocks your body and you momentarily forget where you are and what\'s going on.';
               } else {
@@ -155,7 +155,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).pcs_horny ?? 0) <= 60) {
                 (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) - (50);
-                (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+                (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
                 if ((!((s as any).orgasm_rand ?? 0))) {
                   (s as any).orgasm_txt = 'The feelings nearly overwhelm you, as you violently orgasm.';
                 } else {
@@ -175,7 +175,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   if ((Math.floor(Math.random() * 100) + 0) < 1) {
                     (s as any).orgasmic = ((s as any).totminut ?? 0);
                   }
-                  (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+                  (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
                   if ((!((s as any).orgasm_rand ?? 0))) {
                     (s as any).orgasm_txt = 'Shock waves of orgasms roll over you, leaving you a quivering heap.';
                   } else {
@@ -195,7 +195,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     if ((Math.floor(Math.random() * 100) + 0) < 5) {
                       (s as any).orgasmic = ((s as any).totminut ?? 0);
                     }
-                    (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+                    (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
                     if ((!((s as any).orgasm_rand ?? 0))) {
                       (s as any).orgasm_txt = 'Suddenly, you hit just the right spot and your whole body starts to shiver in orgasm. The intensity of the orgasm nearly makes you scream, but you bite down on your lip and do your best to stifle down the moans so no one hears you.';
                     } else {
@@ -215,7 +215,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       if ((Math.floor(Math.random() * 100) + 0) < 10) {
                         (s as any).orgasmic = ((s as any).totminut ?? 0);
                       }
-                      (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+                      (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
                       if ((!((s as any).orgasm_rand ?? 0))) {
                         (s as any).orgasm_txt = 'A blazing fire builds inside of you, burning its way out in waves of pleasure. As it sweeps through your body, you moan in a deep orgasm.';
                       } else {
@@ -234,7 +234,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       if ((Math.floor(Math.random() * 100) + 0) < 25) {
                         (s as any).orgasmic = ((s as any).totminut ?? 0);
                       }
-                      (s as any).orgasm_rand = Math.floor(Math.random() * 4) + 0;
+                      (s as any).orgasm_rand = (Math.floor(Math.random() * 4) + 0);
                       if ((!((s as any).orgasm_rand ?? 0))) {
                         (s as any).orgasm_txt = 'An intense erotic sensation builds inside your body, getting stronger and stronger. Then it suddenly bursts, like a dam bursting, with gushing water, you are overwhelmed in a sudden surge of hypersensitivity in every nerve in your body.';
                       } else {

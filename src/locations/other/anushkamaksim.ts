@@ -24,9 +24,9 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Tell him to fuck off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim.jpg');
     scene.text('"Fuck off, you little shit!" you snarl and he blinks in surprise, eliciting a smirk from you. He clearly expected you to agree without question.');
     scene.text('Anger washes over him. "Fine then, bitch! I\'ll just go and show her!"');
@@ -41,20 +41,20 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Show him your tits', handler: (st: GameState) => {
-    ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail'] = 1;
-    ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
-    qspCall(s, 'fame', 'pav', 'sex', 1);
-    qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
+    ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail'] = 1;
+    ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail_flash'] = ((st as any).maksimQW['blackmail_flash'] ?? 0) + (1);
+    qspCall(st, 'fame', 'pav', 'sex', 1);
+    qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/hallflashtits.jpg');
     scene.text('You sigh as you pull your clothes aside and show him your bare breasts. His grin widens as he stares at you. A few minutes pass and you\'re about to say something when he reaches out with his hand.');
     scene.text('You quickly pull your shirt back down. "You said show you."');
     scene.text('"Fine," he sneers before smiling again. "Come with me."');
-    qspCall(s, 'arousal', 'flashlite', 5, 'humiliation', 'sub');
-    qspCall(s, 'flash', 'exhibitionism', 'tits', 'secluded', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flashlite', 5, 'humiliation', 'sub');
+    qspCall(st, 'flash', 'exhibitionism', 'tits', 'secluded', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Follow him', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/resident/maksim/downstairs.jpg');
     scene.text('You follow him as he leads you down the stairs and outside to the playground. Once there, he walks over to a few boys around his age and stops. The boys check you out. "Who\'s that?" one of them asks.');
     scene.text('He has his back to you as he responds. You can only imagine the smug look on his face. "She does things for me."');
@@ -67,13 +67,13 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'money', 'can_afford', 150) === 1) {
       scene.actions([
         { label: 'Buy him cigarettes', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 150);
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    qspCall(st, 'money', 'pay', 150);
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.img('images/characters/pavlovsk/resident/maksim/buycig.jpg');
     scene.text('You walk to the kiosk and get in line. You wait your turn, wondering how you found yourself in this situation. When you finally get up to the window, you buy a pack of cigarettes, pay for them and start walking back.');
     scene.actions([
       { label: 'Walk back', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/resident/maksim/smoking.jpg');
     scene.text('When you get back, you see the other boys all eying you. You can only imagine what Maksim has been telling them. You walk up to them and hand him the pack of cigarettes. "Here you go."');
     scene.text('They all start muttering, seemingly surprised you actually did it.');
@@ -82,11 +82,11 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     scene.text('You give him a look of surprise and don\'t move, but his stern glare tells you what will happen if you don\'t.');
     scene.actions([
       { label: 'Flash them your tits', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'fame', 'pav', 'sex', 2);
-    qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
-    ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash_friends'] = ((s as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
-    (s as any).flash_image = 'images/characters/pavlovsk/resident/maksim/flashtits1.jpg';
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'fame', 'pav', 'sex', 2);
+    qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
+    ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail_flash_friends'] = ((st as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
+    (st as any).flash_image = 'images/characters/pavlovsk/resident/maksim/flashtits1.jpg';
     // TODO-QSP: $flash_text[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.'
     // TODO-QSP: $flash_text[0] += '<br>"Holy shit! She really did it!" They all look surprised, but Maksim just look...
     // TODO-QSP: $flash_text[0] += '<br>"See? I told you guys." One of them reaches for your bare breasts and you sta...
@@ -94,7 +94,7 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $flash_text[0] += '<br>"I''m still breaking her in and it will be when I say." He gives his friends ...
     // TODO-QSP: $flash_text[1] = 'The boys start handing over money, way more than the cigarettes would cost. He mus...
     // TODO-QSP: $flash_text[1] += '<br>You can''t help but roll your eyes as you rearrange your clothes back in plac...
-    qspCall(s, 'flash', 'tits', 'outdoors', 5, 2);
+    qspCall(st, 'flash', 'tits', 'outdoors', 5, 2);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
     ]);
@@ -107,14 +107,14 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Tell him you can\'t afford them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.img('images/characters/pavlovsk/resident/maksim/buycig.jpg');
     scene.text('You look down at the ground, then back up at him. "I don\'t have money to buy them."');
     scene.text('He looks at you in disbelief. "Are you kidding me? How pathetic are you?!" he snarls before reaching into his pocket and pulling out several crumbled bills. "Here, take this and go buy them."');
     scene.text('You walk to the kiosk and get in line. You wait your turn, wondering how you found yourself in this situation. When you finally get up to the window, you buy a pack of cigarettes, pay for them and start walking back.');
     scene.actions([
       { label: 'Walk back', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/resident/maksim/smoking.jpg');
     scene.text('When you get back, you see the other boys all eying you. You can only imagine what Maksim has been telling them. You walk up to them and hand him the pack of cigarettes. "Here you go."');
     scene.text('They all start muttering, seemingly surprised you actually did it.');
@@ -123,11 +123,11 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     scene.text('You give him a look of surprise and don\'t move, but his stern glare tells you what will happen if you don\'t.');
     scene.actions([
       { label: 'Flash them your tits', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'fame', 'pav', 'sex', 2);
-    qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
-    ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash_friends'] = ((s as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
-    (s as any).flash_image = 'images/characters/pavlovsk/resident/maksim/flashtits1.jpg';
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'fame', 'pav', 'sex', 2);
+    qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
+    ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail_flash_friends'] = ((st as any).maksimQW['blackmail_flash_friends'] ?? 0) + (1);
+    (st as any).flash_image = 'images/characters/pavlovsk/resident/maksim/flashtits1.jpg';
     // TODO-QSP: $flash_text[0] = 'You sigh as you pull aside your clothes and flash your breasts at them.'
     // TODO-QSP: $flash_text[0] += '<br>"Holy shit! She really did it!" They all look surprised, but Maksim just look...
     // TODO-QSP: $flash_text[0] += '<br>"See? I told you guys." One of them reaches for your bare breasts and you sta...
@@ -135,7 +135,7 @@ function enterMaksimBlackmail(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $flash_text[0] += '<br>"I''m still breaking her in and it will be when I say." He gives his friends ...
     // TODO-QSP: $flash_text[1] = 'The boys start handing over money, way more than the cigarettes would cost. He mus...
     // TODO-QSP: $flash_text[1] += 'You can''t help but roll your eyes as you rearrange your clothes back in place an...
-    qspCall(s, 'flash', 'tits', 'outdoors', 5, 2);
+    qspCall(st, 'flash', 'tits', 'outdoors', 5, 2);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
     ]);
@@ -157,7 +157,7 @@ function enterHallwayFlashTits(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 1);
-  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/hallflashtits.jpg');
   scene.text('You sigh as you pull your clothes aside and show him your bare breasts. His grin widens as he stares at you and a few seconds pass before he reaches out with his hand.');
   scene.text('You quickly pull your shirt back down. "You said show you."');
@@ -175,7 +175,7 @@ function enterHallwayFlashPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 1);
-  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   if (((s as any).PCLoSkirt ?? 0) > 0) {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim_blackmail/flash_pussy_dress.jpg');
     scene.text('You sigh as you lift your skirt to show him your naked pussy. His grin widens as he stares at you and a few seconds pass before he reaches out with his hand.');
@@ -200,7 +200,7 @@ function enterMaksimRoomNaked(s: GameState, scene: SceneBuilder): void {
   (s as any).AnushkaLoc = 2;
   ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
   qspCall(s, 'fame', 'pav', 'sex', 1);
-  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim_blackmail/strip_naked.jpg');
   scene.text('You follow him to his room and, just as he said, Timofey isn\'t here. Maksim sits on his bed looking at you with a huge grin. "Well go on, strip. Slow and sexy."');
   scene.text('You sigh loudly, but do as he says. You slowly start stripping out of your clothes as he leers at you. Once you\'re naked, you stand still for a few minutes and he continues to leer at you before you start grabbing your clothes. "You\'ve seen enough."');

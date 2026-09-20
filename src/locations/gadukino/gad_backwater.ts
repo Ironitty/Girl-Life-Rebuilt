@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'core_library', 'setloc', 'gad_backwater', '');
-  (s as any).location_type = 'secluded';
-  qspCall(s, 'gadukino_event', 'sound');
-  (s as any).clothesAtLocation = qspFunc(s, 'clothing', 'lost_clothes_here', 'gad_backwater');
   if (((s as any).hunterVars ?? 0)?.['Rape'] === 2) {
     scene.img('images/locations/gadukino/sex/hunter/backwaterrelax.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -29,9 +25,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterAlone(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Backwater</b></center>');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-    scene.img('images/locations/gadukino/hunters/\'+iif(DayStage < 4, \'backwater.jpg\', \'backwater_night.jpg\')+\'');
+    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('backwater.jpg') : ('backwater_night.jpg')) + '');
   } else {
-    scene.img('images/locations/gadukino/hunters/\'+iif(DayStage < 4, \'backwater_winter.jpg\', \'backwater_winter_night.jpg\')+\'');
+    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('backwater_winter.jpg') : ('backwater_winter_night.jpg')) + '');
   }
   scene.text('A small creek with relatively clean water. If the weather is warm, you can clean yourself up. Also, if your clothes are dirty, you can wash them here.');
   if (((s as any).clothesAtLocation ?? 0) === 1) {
@@ -40,23 +36,23 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
       { label: 'Wash self', handler: (st: GameState) => {
-    scene.img('images/locations/gadukino/hunters/\'+iif($pantyworntype = \'none\', \'backwaterswim2.jpg\', \'backwaterswim1.jpg\')+\'');
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).face_write = 0;
-    (s as any).body_write = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    if (((s as any).willday_bath ?? 0) !== ((s as any).daystart ?? 0)) {
-      (s as any).willday_bath = ((s as any).daystart ?? 0);
-      (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (1);
+    scene.img('images/locations/gadukino/hunters/' + ((((st as any).pantyworntype ?? 0) === 'none') ? ('backwaterswim2.jpg') : ('backwaterswim1.jpg')) + '');
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).face_write = 0;
+    (st as any).body_write = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    if (((st as any).willday_bath ?? 0) !== ((st as any).daystart ?? 0)) {
+      (st as any).willday_bath = ((st as any).daystart ?? 0);
+      (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (1);
     }
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
-    if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      ((s as any).hunterVars = (s as any).hunterVars ?? {})['Rape'] = 2;
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    if (((st as any).hunterVars ?? 0)?.['Rape'] === 1) {
+      ((st as any).hunterVars = (st as any).hunterVars ?? {})['Rape'] = 2;
     }
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
@@ -69,19 +65,19 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Clean the sperm from your face (0:10)', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/backwaterswim1.jpg');
-    (s as any).pcs_makeup = 1;
-    (s as any).cumspclnt = 9;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).cumspclnt = 13;
-    qspCall(s, 'cum_cleanup', '');
-    if (((s as any).pcs_sweat ?? 0) > 19) {
-      (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (5);
+    (st as any).pcs_makeup = 1;
+    (st as any).cumspclnt = 9;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).cumspclnt = 13;
+    qspCall(st, 'cum_cleanup', '');
+    if (((st as any).pcs_sweat ?? 0) > 19) {
+      (st as any).pcs_sweat = ((st as any).pcs_sweat ?? 0) - (5);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      ((s as any).hunterVars = (s as any).hunterVars ?? {})['Rape'] = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    if (((st as any).hunterVars ?? 0)?.['Rape'] === 1) {
+      ((st as any).hunterVars = (st as any).hunterVars ?? {})['Rape'] = 2;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['gad_backwater', ''] },
     ]);
@@ -92,10 +88,10 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Wash the writings off your body (0:10)', handler: (st: GameState) => {
     scene.img('images/shared/home/bathroom/wash1.jpg');
-    (s as any).body_write = 0;
-    (s as any).face_write = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).body_write = 0;
+    (st as any).face_write = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['gad_backwater', ''] },
     ]);
@@ -106,13 +102,13 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Wipe the cum off your clothes (0:10)', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/cumwash.jpg');
-    (s as any).cumspclnt = 6;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      ((s as any).hunterVars = (s as any).hunterVars ?? {})['Rape'] = 2;
+    (st as any).cumspclnt = 6;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    if (((st as any).hunterVars ?? 0)?.['Rape'] === 1) {
+      ((st as any).hunterVars = (st as any).hunterVars ?? {})['Rape'] = 2;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['gad_backwater', ''] },
     ]);
@@ -123,16 +119,16 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Quick wash (0:15)', handler: (st: GameState) => {
     scene.img('images/pc/activities/facewash.jpg');
-    (s as any).cumspclnt = 4;
-    qspCall(s, 'cum_cleanup', '');
-    if (((s as any).pcs_sweat ?? 0) < 30) {
-      (s as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
+    (st as any).cumspclnt = 4;
+    qspCall(st, 'cum_cleanup', '');
+    if (((st as any).pcs_sweat ?? 0) < 30) {
+      (st as any).pcs_sweat = 15 + (Math.floor(Math.random() * 5) + 0);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-      ((s as any).hunterVars = (s as any).hunterVars ?? {})['Rape'] = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    if (((st as any).hunterVars ?? 0)?.['Rape'] === 1) {
+      ((st as any).hunterVars = (st as any).hunterVars ?? {})['Rape'] = 2;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['gad_backwater', ''] },
     ]);
@@ -143,14 +139,14 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).temper ?? 0) >= 15) {
       scene.actions([
         { label: 'Get undressed', handler: (st: GameState) => {
-    if (((s as any).hunterVars ?? 0)?.['KnowSlut'] > 0  ||  (((s as any).hunterVars ?? 0)?.['outside'] === 0  &&  ((s as any).hunterVars ?? 0)?.['available'] === 0)  ||  (((s as any).hour ?? 0) < 7  ||  ((s as any).hour ?? 0) > 22)  ||  (((s as any).pcs_inhib ?? 0) >= 25  ||  ((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1)) {
-      scene.img('images/locations/gadukino/hunters/\'+iif(PCloSkirt > 0, \'backwaterundress_ski.jpg\', \'backwaterundress.jpg\')+\'');
+    if (((st as any).hunterVars ?? 0)?.['KnowSlut'] > 0  ||  (((st as any).hunterVars ?? 0)?.['outside'] === 0  &&  ((st as any).hunterVars ?? 0)?.['available'] === 0)  ||  (((st as any).hour ?? 0) < 7  ||  ((st as any).hour ?? 0) > 22)  ||  (((st as any).pcs_inhib ?? 0) >= 25  ||  ((st as any).trait_vars ?? 0)?.['exhibitionist'] > 1)) {
+      scene.img('images/locations/gadukino/hunters/' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('backwaterundress_ski.jpg') : ('backwaterundress.jpg')) + '');
       scene.text('You do not hesitate to get undressed, not caring if anyone is watching.');
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (((s as any).hunterVars ?? 0)?.['Rape'] === 1) {
-        ((s as any).hunterVars = (s as any).hunterVars ?? {})['Rape'] = 2;
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      if (((st as any).hunterVars ?? 0)?.['Rape'] === 1) {
+        ((st as any).hunterVars = (st as any).hunterVars ?? {})['Rape'] = 2;
       }
-      qspCall(s, 'outfit', 'strip_all', 'gad_backwater');
+      qspCall(st, 'outfit', 'strip_all', 'gad_backwater');
       scene.actions([
         { label: 'Back', goto: ['gad_backwater', ''] },
       ]);
@@ -170,17 +166,17 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       scene.actions([
         { label: 'Pick up your clothes', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'recover_lost_outfit', 'gad_backwater');
-    qspGoto(s, 'gad_backwater', '');
+    qspCall(st, 'outfit', 'recover_lost_outfit', 'gad_backwater');
+    qspGoto(st, 'gad_backwater', '');
   } },
       ]);
     } else {
       if (((s as any).forced_naked_day ?? 0) < ((s as any).daystart ?? 0)) {
         scene.actions([
           { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'recover_lost_outfit', 'gad_backwater', 1);
-    qspCall(s, 'underwear', 'wear');
-    qspGoto(s, 'gad_backwater', '');
+    qspCall(st, 'outfit', 'recover_lost_outfit', 'gad_backwater', 1);
+    qspCall(st, 'underwear', 'wear');
+    qspGoto(st, 'gad_backwater', '');
   } },
         ]);
       }
@@ -189,9 +185,9 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to the hut', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).hunterVars = (s as any).hunterVars ?? {})['refuse'] = 0;
-    qspGoto(s, 'gad_swamp_yard', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).hunterVars = (st as any).hunterVars ?? {})['refuse'] = 0;
+    qspGoto(st, 'gad_swamp_yard', 'start');
   } },
   ]);
   scene.build();
@@ -207,9 +203,9 @@ function enterHunter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/swampbackwaternude1.jpg');
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'recover_lost_outfit', 'gad_backwater', 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'recover_lost_outfit', 'gad_backwater', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.actions([
       { label: 'Further', goto: ['gad_backwater', ''] },
     ]);
@@ -220,7 +216,7 @@ function enterHunter(s: GameState, scene: SceneBuilder): void {
       { label: 'Hide', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/swampbackwaternude2.jpg');
     scene.text('Covering your breasts and crotch, you jump into the nearest bush. In your state of fear and confusion, you start scanning the area, but you don\'t see anyone there. So you quickly run back towards the cabin.');
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.actions([
       { label: 'Go back to the hut', goto: ['gad_swamp_yard', 'start'] },
     ]);
@@ -232,9 +228,9 @@ function enterHunter(s: GameState, scene: SceneBuilder): void {
     { label: 'Stay naked', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/swampbackwaternude3.jpg');
     scene.text('You decide that you have nothing to be afraid of and continue on completely nude. The hunter looks at you for a minute or so, and suddenly, you hear a "Hmph", him turning around and going away.');
-    ((s as any).hunterVars = (s as any).hunterVars ?? {})['slut'] = ((s as any).hunterVars['slut'] ?? 0) + (1);
-    ((s as any).hunterVars = (s as any).hunterVars ?? {})['knowday'] = ((s as any).day ?? 0);
-    qspCall(s, 'stat', '');
+    ((st as any).hunterVars = (st as any).hunterVars ?? {})['slut'] = ((st as any).hunterVars['slut'] ?? 0) + (1);
+    ((st as any).hunterVars = (st as any).hunterVars ?? {})['knowday'] = ((st as any).day ?? 0);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', goto: ['gad_backwater', ''] },
     ]);
@@ -244,6 +240,10 @@ function enterHunter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'gad_backwater', '');
+  (s as any).location_type = 'secluded';
+  qspCall(s, 'gadukino_event', 'sound');
+  (s as any).clothesAtLocation = qspFunc(s, 'clothing', 'lost_clothes_here', 'gad_backwater');
   const arg = s.locArg;
   switch (arg) {
     case 'alone':

@@ -60,6 +60,32 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterReturn2(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).hour ?? 0) < 8) {
+    scene.text('The museum is not open yet so it is too early to enjoy any of the collections now.');
+  } else {
+    if (((s as any).hour ?? 0) > 17) {
+      scene.text('The museum is closed, you have to leave.');
+    } else {
+      if (((s as any).hour ?? 0) === 17) {
+        scene.text('The museum is closing so it is too late to enjoy any of the collections now.');
+      } else {
+        scene.actions([
+          { label: 'View The Golden Peacock (90 mins)', goto: ['city_hermitage', 'peacock'] },
+          { label: 'View Catherine The Great\'s art collection (90 mins)', goto: ['city_hermitage', 'art'] },
+          { label: 'View some of it\'s highlights starting with the State Gala Staircase (90 mins)', goto: ['city_hermitage', 'highlights'] },
+          { label: 'View the red rooms (90 mins)', goto: ['city_hermitage', 'red_rooms'] },
+        ]);
+      }
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Return city center', goto: ['city_center', ''] },
+  ]);
+  scene.build();
+}
+
 function enterPeacock(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'exp_gain', 'intel', 5);
@@ -72,8 +98,8 @@ function enterPeacock(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'The Golden Peacock Clock', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/hermitage/gp3.jpg');
     scene.text('The Peacock Clock is a large automaton featuring three life-sized mechanical birds. It was manufactured by the entrepreneur James Cox in the 2nd half of the 18th century and was acquired by Catherine the Great in 1781. Today it is a prominent exhibit in the collections of the Hermitage museum and has been in the Hermitage since 1797 when it was moved there from the Taurida Palace.');
     scene.text('The history of the Golden Peacock Clock begins in 1777 when the Duchess of Kingston visited St Petersburg. Grigory Potiomkin, met the Duchess in society learned about the works of James Cox and commissioned him to make a monumental automaton with a clock for the Empress\'s Hermitage.');
@@ -103,8 +129,8 @@ function enterArt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Catherine The Great\'s collection', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/hermitage/gp5.jpg');
     scene.text('Catherine the Great started her art collection in 1764 by purchasing in excess of 200 paintings which were originally assembled collection for Frederick II of Prussia, however, he refused to complete the purchase.');
     scene.text('The collection consisted mainly of Dutch or Flemish pieces and included 13 by Rembrandt and 11 by Rubens plus a number of other well known and renowned artists.');
@@ -134,15 +160,15 @@ function enterHighlights(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'The Pavilion Hall', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/hermitage/gp7.jpg');
     scene.text('You decide to move on and take in the grandeur of the Pavilion Hall.');
     scene.text('It\'s really impressive and maybe the finest room in the palace. The hall is illuminated by twenty-eight large and small crystal chandeliers and it\'s embellished with Renaissance, Gothic and Oriental motifs.');
     scene.actions([
       { label: 'The Raphael Loggias', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/hermitage/gp8.jpg');
     scene.text('Catherine the Great admired the Papal Palace in Vatican City, painted by Raphael in the 15th century.');
     scene.text('She wanted her own copy so much so that she commissioned a reproduction in the late 1780s.');
@@ -172,10 +198,10 @@ function enterRedRooms(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Enter the museum\'s skylight rooms', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'exp_gain', 'intel', 2);
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'exp_gain', 'intel', 2);
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/hermitage/gp10.jpg');
     scene.text('The Large Italian Skylight Hall of the State Hermitage Museum is the biggest of the three splendid skylight rooms of the New Hermitage and was constructed to the design of Leo von Klenze for the Imperial Museum in the mid 19th century.');
     scene.text('These halls are intended to show large-scale paintings and owe their names to the vaulted ceilings with glass skylight windows.');
@@ -184,16 +210,16 @@ function enterRedRooms(s: GameState, scene: SceneBuilder): void {
     scene.text('The room is adorned with items made by 19th-century Russian craftsmen from coloured stones.');
     scene.actions([
       { label: 'The Ancient Hall', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/hermitage/gp11.jpg');
     scene.text('You now fancy stepping way back in time so head off to the first floor of the Old Hermitage.');
     scene.text('This is where you find the ancient hall and Antiquities Collection, which is different from the rest of the Hermitage collection.');
     scene.text('The area covers 31 halls which include an extensive collection, including Assyrian, Mesopotamian, and Egyptian artefacts, as well as Greek and Roman art work.');
     scene.actions([
       { label: 'Walk around the outside of the museum', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/hermitage/gp12.jpg');
     scene.text('At the Hermitage it\'s so easy to get lost in the thousands of paintings and numerous art collections inside so on this visit you decide to wander around the outside for a bit and admire the beautiful architecture.');
     scene.text('As you walk around the museum\'s exterior you ensure you have time to take in the building\'s green and white façade facing the Palace Square.');
@@ -223,6 +249,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'start':
       enterStart2(s, scene);
+      break;
+    case 'return':
+      enterReturn2(s, scene);
       break;
     case 'peacock':
       enterPeacock(s, scene);

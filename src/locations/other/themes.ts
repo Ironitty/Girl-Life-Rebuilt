@@ -5,11 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).theme ?? 0)?.['name'] === '') {
-    ((s as any).theme = (s as any).theme ?? {})['name'] = 'Dynamic Default';
-    ((s as any).theme = (s as any).theme ?? {})['type'] = 'dynamic';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Dynamic Default', 'dynamic']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
-  }
   scene.build();
 }
 
@@ -32,7 +27,7 @@ function enterMenuToggle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMenuCell(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_mc_full = ((((s as any).locArgs?.[2] ?? 0) === 'dynamic') ? ('Dynamic ' + ((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
+  (s as any).temp_mc_full = ((Number((s as any).locArgs?.[2] ?? 0) === 'dynamic') ? ('Dynamic ' + ((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
   ((s as any).theme = (s as any).theme ?? {})['name'] = ((s as any).temp_mc_full ?? 0);
   ((s as any).theme = (s as any).theme ?? {})['type'] = ((s as any).locArgs?.[2] ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'indoors']; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -40,7 +35,7 @@ function enterMenuCell(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_mc_fg = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']);
   (s as any).temp_mc_sel = ((((s as any).themes_menu_cur ?? 0) === ((s as any).temp_mc_full ?? 0)) ? ('outline:3px solid ' + ((s as any).theme_hex ?? 0)?.['accent'] + '; outline-offset:-3px; ') : (''));
   // TODO-QSP: dynamic text: '<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:...
-  scene.text(`'<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg + '; ' + $temp_mc_sel + 'width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[\\u0027theme_main_name\\u0027] = \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027set_theme\\u0027, \\u0027${((s as any).temp_mc_full || '')}\\u0027); return false;">${((s as any).locArgs?.[1] ?? '')}</a></td>'`);
+  scene.text(`'<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg + '; ' + $temp_mc_sel + 'width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[/u0027theme_main_name/u0027] = /u0027${((s as any).locArgs?.[1] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027set_theme/u0027, /u0027${((s as any).temp_mc_full || '')}/u0027); return false;">${((s as any).locArgs?.[1] ?? '')}</a></td>'`);
   return;
   // TODO-QSP: end
   scene.build();
@@ -72,14 +67,14 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>');
   if (((s as any).cfg_vars ?? 0)?.['themetype'] === 0) {
     // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027menu_toggle\\u0027); return false;">Dynamic</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Dynamic</a>\'');
     // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027menu_toggle\\u0027); return false;">Static</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Static</a>\'');
   } else {
     // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027menu_toggle\\u0027); return false;">Dynamic</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Dynamic</a>\'');
     // TODO-QSP: dynamic text: '<a href="exec: gs ''themes'', ''menu_toggle'' & gt ''themes'', ''menu''" style=...
-    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027menu_toggle\\u0027); return false;">Static</a>\'');
+    scene.text('\'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu_toggle/u0027); return false;">Static</a>\'');
   }
   scene.text('<table style="border-collapse:separate; border-spacing:0 6px;">');
   // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Classic</b></td...
@@ -147,7 +142,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('<hr>');
   scene.text('<b>Preview</b>');
   // TODO-QSP: dynamic text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i...
-  scene.text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> wandered into a <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> café, sparking a <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> uprising while the air crackled with <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027menu\\u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus et malesuada fames. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> smiled serenely, the <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> raised an eyebrow, the <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> tuned her guitar. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027menu\\u0027); return false;">Excepteur sint occaecat</a> cupidatat non proident. The <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> spiral deepened, and all four found something unexpected in the silence that followed.');
+  scene.text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> wandered into a <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> café, sparking a <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> uprising while the air crackled with <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu/u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus et malesuada fames. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The <font color="\' + $theme_hex[\'bimbo\'] + \'">bimbo</font> smiled serenely, the <font color="\' + $theme_hex[\'goth\'] + \'">goth</font> raised an eyebrow, the <font color="\' + $theme_hex[\'punk\'] + \'">punk</font> tuned her guitar. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu/u0027); return false;">Excepteur sint occaecat</a> cupidatat non proident. The <font color="\' + $theme_hex[\'hypno\'] + \'">hypno</font> spiral deepened, and all four found something unexpected in the silence that followed.');
   scene.text('<table style="border-collapse:collapse; vertical-align:top;"><tr>');
   scene.text('<td valign="top" style="vertical-align:top; padding-right:32px;">');
   scene.text('<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">');
@@ -186,22 +181,22 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   scene.text(qspFunc(s, 'progressbar', 'mono:accent', 20));
   scene.text('</td>');
   scene.text('</tr></table>');
+  scene.actions([
+{ label: 'Leave', handler: (st: GameState) => {
+    (st as any).temp_ret_loc = ((st as any).themes_menu_ret_loc ?? 0);
+    (st as any).temp_ret_arg = ((st as any).themes_menu_ret_arg ?? 0);
+    (st as any).settingmode = ((st as any).themes_menu_prev_settingmode ?? 0);
+    (st as any).themes_menu_active = 0;
+    dynamicGoto(st, 'temp_ret_loc', 'temp_ret_arg');
+  } },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
-    (s as any).temp_ret_loc = ((s as any).themes_menu_ret_loc ?? 0);
-    (s as any).temp_ret_arg = ((s as any).themes_menu_ret_arg ?? 0);
-    (s as any).settingmode = ((s as any).themes_menu_prev_settingmode ?? 0);
-    (s as any).themes_menu_active = 0;
-    dynamicGoto(s, 'temp_ret_loc', 'temp_ret_arg');
-  } },
-  ]);
   scene.build();
 }
 
 function enterAltColor(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = ((((s as any).locArgs?.[1] ?? 0) === ((s as any).theme_hex ?? 0)?.['table_bg']) ? (((s as any).theme_hex ?? 0)?.['table_bg_alt']) : (((s as any).theme_hex ?? 0)?.['table_bg']));
+  (s as any).result = ((Number((s as any).locArgs?.[1] ?? 0) === ((s as any).theme_hex ?? 0)?.['table_bg']) ? (((s as any).theme_hex ?? 0)?.['table_bg_alt']) : (((s as any).theme_hex ?? 0)?.['table_bg']));
   return;
   // TODO-QSP: end
   scene.build();
@@ -215,7 +210,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWrap(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = qspFunc(s, 'wrap', '$ARGS[1]', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
+  (s as any).result = qspFunc(s, 'wrap', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -387,7 +382,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
   if (((s as any).theme ?? 0)?.['type'] === 'dynamic') {
     if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Latte') {
       ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 0;
-      if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
         ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
         ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
         ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -864,7 +859,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Frappé') {
         ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-        if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
           ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
           ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
           ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -1341,7 +1336,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Macchiato') {
           ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-          if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
             ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
             ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
             ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -1818,7 +1813,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Mocha') {
             ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-            if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
               ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
               ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
               ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -2295,7 +2290,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Nord Dark') {
               ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-              if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                 ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                 ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                 ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -2772,7 +2767,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Nord Light') {
                 ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 0;
-                if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                   ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                   ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                   ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -3249,7 +3244,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Solarized Dark') {
                   ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-                  if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                     ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                     ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                     ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -3726,7 +3721,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Solarized Light') {
                     ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 0;
-                    if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                       ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                       ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                       ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -4203,7 +4198,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Tokyo Night') {
                       ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-                      if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                         ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                         ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                         ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -4680,7 +4675,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Tokyo Night Light') {
                         ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 0;
-                        if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                        if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                           ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                           ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                           ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -5157,7 +5152,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Rosé Pine') {
                           ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-                          if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                          if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                             ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                             ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                             ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -5634,7 +5629,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                         } else {
                           if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Rosé Pine Moon') {
                             ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 1;
-                            if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                            if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                               ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                               ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                               ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -6111,7 +6106,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Rosé Pine Dawn') {
                               ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 0;
-                              if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                              if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                                 ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                                 ((s as any).theme = (s as any).theme ?? {})['fcolor'] = 0;
                                 ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -6586,7 +6581,7 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
                                 }
                               }
                             } else {
-                              if (((s as any).locArgs?.[1] ?? 0) === 'indoors') {
+                              if (Number((s as any).locArgs?.[1] ?? 0) === 'indoors') {
                                 ((s as any).theme = (s as any).theme ?? {})['is_dark'] = 0;
                                 ((s as any).theme = (s as any).theme ?? {})['bcolor'] = 0;
                                 ((s as any).theme = (s as any).theme ?? {})['lcolor'] = 0;
@@ -7019,6 +7014,11 @@ function enterGetTheme(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).theme ?? 0)?.['name'] === '') {
+    ((s as any).theme = (s as any).theme ?? {})['name'] = 'Dynamic Default';
+    ((s as any).theme = (s as any).theme ?? {})['type'] = 'dynamic';
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Dynamic Default', 'dynamic']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'menu_toggle':

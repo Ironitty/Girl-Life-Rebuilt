@@ -11,27 +11,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'clothing') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'clothing') {
     (s as any).temp_type = ((s as any).locArgs?.[2] ?? 0);
   } else {
     (s as any).temp_type = (String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('_'))) + 1) - 1)));
   }
   // TODO-QSP: gs $ARGS[1], 'add_item', $temp_type, ARGS[3]
-  if (((s as any).locArgs?.[1] ?? 0) === 'clothing') {
-    if (((s as any).locArgs?.[4] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'clothing') {
+    if (Number((s as any).locArgs?.[4] ?? 0) > 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_h[<<ARGS[3]>>] = <<ARGS[4]>>'
     }
-    if (((s as any).locArgs?.[5] ?? 0) > 0) {
+    if (Number((s as any).locArgs?.[5] ?? 0) > 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_b[<<ARGS[3]>>] = <<ARGS[5]>>'
     }
-    if (((s as any).locArgs?.[6] ?? 0) > 0) {
+    if (Number((s as any).locArgs?.[6] ?? 0) > 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_h[<<ARGS[3]>>] += rand(-<<ARGS[6]>>, <<ARGS[6]>>)'
     }
-    if (((s as any).locArgs?.[6] ?? 0) < 0) {
+    if (Number((s as any).locArgs?.[6] ?? 0) < 0) {
       // TODO-QSP: dynamic '<<$ARGS[2]>>_h[<<ARGS[3]>>] += rand(<<ARGS[6]>>, 0)'
     }
   }
-  if (((s as any).locArgs?.[7] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[7] ?? 0) === 1) {
     // TODO-QSP: gs $ARGS[1], 'wear', $temp_type, ARGS[3]
   }
   return;
@@ -50,7 +50,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_tot_sum = 0;
   (s as any).temp_gr_ind = 1;
   // TODO-QSP: :generate_random_loop
-  if (((s as any).temp_gr_ind ?? 0) <= ((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).temp_gr_ind ?? 0) <= Number((s as any).locArgs?.[1] ?? 0)) {
     ((s as any).temp_rand = (s as any).temp_rand ?? {})[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2)));
     (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (((s as any).temp_rand ?? 0)?.[String((s as any).temp_gr_ind ?? 0)]);
     (s as any).temp_gr_ind = ((s as any).temp_gr_ind ?? 0) + (1);
@@ -160,7 +160,7 @@ function enterInitTime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  (s as any).fixed_prnd = Math.floor(Math.random() * 2147483647) + 0;
+  (s as any).fixed_prnd = (Math.floor(Math.random() * 2147483647) + 0);
   if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['new_again_exp'] = 84;
     qspCall(s, 'traits', 'level', 'new_again', 1);
@@ -199,7 +199,7 @@ function enterSgSettings(s: GameState, scene: SceneBuilder): void {
   (s as any).hcolmotherremember = ((s as any).pcs_haircol ?? 0);
   (s as any).hcolfatherremember = ((s as any).pcs_haircol ?? 0);
   (s as any).hcolfronce = 1;
-  (s as any).koldobtmp_d = Math.floor(Math.random() * 28) + 1;
+  (s as any).koldobtmp_d = (Math.floor(Math.random() * 28) + 1);
   (s as any).koldobtmp_y = ((s as any).birthyear ?? 0);
   (s as any).koldobtmp_m = ((s as any).birthmonth ?? 0) + 11;
   if (((s as any).koldobtmp_m ?? 0) > 12) {
@@ -312,26 +312,26 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'BanSexType', '');
   qspCall(s, 'outdoors', 'weather');
   ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['job_icon_themed'] = 1;
-  (s as any).menoage = Math.floor(Math.random() * 11) + 40;
-  (s as any).temprand = Math.floor(Math.random() * 11) + 0;
+  (s as any).menoage = (Math.floor(Math.random() * 11) + 40);
+  (s as any).temprand = (Math.floor(Math.random() * 11) + 0);
   if ((!((s as any).temprand ?? 0))) {
-    (s as any).menoage = ((s as any).menoage ?? 0) + (Math.floor(Math.random() * 6) + 0);
+    (s as any).menoage = ((s as any).menoage ?? 0) + ((Math.floor(Math.random() * 6) + 0));
   } else {
     if (((s as any).temprand ?? 0) < 4) {
-      (s as any).menoage = ((s as any).menoage ?? 0) + (Math.floor(Math.random() * 8) + 3);
+      (s as any).menoage = ((s as any).menoage ?? 0) + ((Math.floor(Math.random() * 8) + 3));
     } else {
       if (((s as any).temprand ?? 0) < 9) {
-        (s as any).menoage = ((s as any).menoage ?? 0) + (Math.floor(Math.random() * 8) + 5);
+        (s as any).menoage = ((s as any).menoage ?? 0) + ((Math.floor(Math.random() * 8) + 5));
       } else {
-        (s as any).menoage = ((s as any).menoage ?? 0) + (Math.floor(Math.random() * 7) + 7);
+        (s as any).menoage = ((s as any).menoage ?? 0) + ((Math.floor(Math.random() * 7) + 7));
       }
     }
   }
   (s as any).daylastperiod = ((s as any).daystart ?? 0);
-  (s as any).temprand = Math.floor(Math.random() * 3) + 1;
+  (s as any).temprand = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).temprand ?? 0) === 1) {
     (s as any).cycle = 1;
-    (s as any).EggRH = Math.floor(Math.random() * 149) + 1;
+    (s as any).EggRH = (Math.floor(Math.random() * 149) + 1);
     (s as any).focH = ((s as any).EggRH ?? 0) + 4 * 24;
     (s as any).mesec = 0;
     (s as any).unfertegg = 0;
@@ -344,7 +344,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).lastovulation = ((s as any).daystart ?? 0);
       (s as any).cycle = 2;
       (s as any).unfertegg = 1;
-      (s as any).ferteggage = Math.floor(Math.random() * 45) + 0;
+      (s as any).ferteggage = (Math.floor(Math.random() * 45) + 0);
       (s as any).Ovulate = ((Math.floor(Math.random() * 21) + 24) - ((s as any).ferteggage ?? 0));
       if (((s as any).Ovulate ?? 0) <= 0) {
         (s as any).Ovulate = 1;
@@ -357,7 +357,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temprand ?? 0) === 3) {
         (s as any).cycle = 3;
-        (s as any).lutH = Math.floor(Math.random() * 301) + 0;
+        (s as any).lutH = (Math.floor(Math.random() * 301) + 0);
         (s as any).ferteggage = 36 + ((s as any).lutH ?? 0);
         (s as any).mesec = 0;
         (s as any).EggRH = 0;

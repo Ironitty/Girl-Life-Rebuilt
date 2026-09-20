@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -118,7 +116,7 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
 function enterFetishes(s: GameState, scene: SceneBuilder): void {
   (s as any).will_fetish_mod = 0;
   (s as any).will_fetish_mod_pref = 0;
-  (s as any).temp_fetish_list = qspUntranslated(s, "trim(ARGS[1])", { location: "willpower" });
+  (s as any).temp_fetish_list = (String(((s as any).locArgs?.[1] ?? 0)).trim());
   if (((s as any).temp_fetish_list ?? 0) === '') {
     return;
   }
@@ -165,12 +163,12 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
     (s as any).will_cost = 0;
     return;
   }
-  if (((s as any).locArgs?.[2] ?? 0) === 'easy') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'easy') {
     if (((s as any).will_cost ?? 0) < 5) {
       (s as any).will_cost = 5;
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'hard') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'hard') {
       (s as any).will_cost = ((s as any).will_cost ?? 0) * 9 / 4;
       if (((s as any).will_cost ?? 0) < 7) {
         (s as any).will_cost = 7;
@@ -182,10 +180,10 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
     (s as any).will_cost = ((s as any).will_cost ?? 0) * (200 - ((s as any).pcs_persuas ?? 0)) / 100;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'resist') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'resist') {
       (s as any).will_cost = ((s as any).will_cost ?? 0) * (200 - ((s as any).pcs_sprt ?? 0)) / 100;
       if (((s as any).trait_vars ?? 0)?.['doormat'] > 0) {
         (s as any).will_cost = ((s as any).will_cost ?? 0) * (100 + 15 * (((s as any).trait_vars ?? {})?.['doormat'] ?? 0)) / 100;
@@ -207,21 +205,21 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) - (((s as any).will_cost ?? 0));
   }
-  if (((s as any).locArgs?.[2] ?? 0) !== 'chore') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== 'chore') {
     if (((s as any).willpowermax ?? 0) < 150) {
       (s as any).will_counter = ((s as any).will_counter ?? 0) + (1);
     }
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).willpowermax ?? 0) < 150) {
         (s as any).will_counter = ((s as any).will_counter ?? 0) + (9);
       }
       if (((s as any).will_enforced ?? 0) < 20) {
         (s as any).will_enforced = ((s as any).will_enforced ?? 0) + (1);
       }
-      qspCall(s, 'exp_gain', 'persuas', Math.floor(Math.random() * 2) + 1);
+      qspCall(s, 'exp_gain', 'persuas', (Math.floor(Math.random() * 2) + 1));
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'resist') {
-        qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 1);
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'resist') {
+        qspCall(s, 'exp_gain', 'sprt', (Math.floor(Math.random() * 2) + 1));
       }
     }
   }
@@ -238,7 +236,7 @@ function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 1) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).will_cost ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
@@ -247,16 +245,16 @@ function enterGetWillcostString(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = ((s as any).cheatVars ?? 0)?.['willcost_style'];
   }
-  if (((s as any).locArgs?.[3] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
     (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '/' + ((s as any).locArgs?.[2] ?? 0) + '';
   } else {
-    if (((s as any).locArgs?.[3] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[3] ?? 0) === 2) {
       (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + '';
     } else {
       (s as any).result = '' + ((s as any).locArgs?.[2] ?? 0) + '/' + ((s as any).locArgs?.[1] ?? 0) + '';
     }
   }
-  if (((s as any).locArgs?.[2] ?? 0) < ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).locArgs?.[4] ?? 0) === 0  &&  ((s as any).locArgs?.[4] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) < Number((s as any).locArgs?.[1] ?? 0)  &&  Number((s as any).locArgs?.[4] ?? 0) === 0  &&  Number((s as any).locArgs?.[4] ?? 0) === '') {
     (s as any).result = ' (' + qspFunc(s, 'wrap', 'v_neg', ((s as any).result ?? 0) + ' Willpower') + ')';
   } else {
     (s as any).result = ' (' + ((s as any).result ?? 0) + ' Willpower)';
@@ -303,14 +301,14 @@ function enterSimpleAct(s: GameState, scene: SceneBuilder): void {
 
 function enterVoyeur(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).stat ?? 0)?.['voyeur'] + ((s as any).stat ?? 0)?.['voyeur_sex'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['voyeur'] ?? 0) - (((s as any).stat ?? {})?.['voyeur_sex'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['voyeur'] + ((s as any).stat ?? 0)?.['voyeur_sex'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['voyeur'] ?? 0) - (((s as any).stat ?? {})?.['voyeur_sex'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
       } else {
@@ -332,14 +330,14 @@ function enterVoyeur(s: GameState, scene: SceneBuilder): void {
 
 function enterFlash(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).stat ?? 0)?.['flash'] + (((s as any).stat ?? 0)?.['flashlite'] / 2) <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['flash'] ?? 0) - ((((s as any).stat ?? {})?.['flashlite'] ?? 0) / 2) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['flash'] + (((s as any).stat ?? 0)?.['flashlite'] / 2) <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['flash'] ?? 0) - ((((s as any).stat ?? {})?.['flashlite'] ?? 0) / 2) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
       } else {
@@ -361,14 +359,14 @@ function enterFlash(s: GameState, scene: SceneBuilder): void {
 
 function enterMast(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).stat ?? 0)?.['mast'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['mast'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['mast'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['mast'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
       } else {
@@ -390,7 +388,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
 
 function enterHj(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -400,7 +398,7 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['hj'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['hj'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -425,7 +423,7 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
 
 function enterBj(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -435,7 +433,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['bj'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['bj'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -461,14 +459,14 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
 function enterCuni(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).cuni_check = ((((s as any).stat ?? {})?.['cuni'] ?? 0) + (((s as any).stat ?? {})?.['cuni_give'] ?? 0)) / 2;
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).cuni_check ?? 0) <= 90) {
       (s as any).will_cost = (100 - ((s as any).cuni_check ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).cuni_check ?? 0) <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - ((s as any).cuni_check ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -505,7 +503,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'pregnant') > 0) ? (1) : (0)));
   (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'creampie') > 0) ? (1) : (0)));
   // TODO-QSP: fetish_mod /= fetish_count
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -515,7 +513,57 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
+      if (((s as any).stat ?? 0)?.['vaginal'] <= 40) {
+        (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['vaginal'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
+      } else {
+        (s as any).will_cost = (70 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
+      }
+    } else {
+      if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
+        (s as any).will_calc = ((s as any).will_calc ?? 0) + (100);
+      }
+      if (((s as any).stat ?? 0)?.['vaginal'] <= 90) {
+        (s as any).will_cost = (10 + (((s as any).stat ?? {})?.['vaginal'] ?? 0) + ((s as any).will_calc ?? 0) + ((s as any).will_arousal_mod ?? 0) + ((s as any).fetish_mod ?? 0) + ((s as any).will_succubus_mod ?? 0))/10;
+      } else {
+        (s as any).will_cost = (100 + ((s as any).will_calc ?? 0) + ((s as any).will_arousal_mod ?? 0) + ((s as any).fetish_mod ?? 0) + ((s as any).will_succubus_mod ?? 0))/10;
+      }
+    }
+  }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterDifficulty(s, scene); (s as any).locArgs = __savedLocArgs; }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterVaginal(s: GameState, scene: SceneBuilder): void {
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
+  (s as any).fetish_mod = 0;
+  (s as any).fetish_count = 1;
+  if (((s as any).birth_control ?? 0)?.['think_safe'] !== 1  &&  ((s as any).succubusflag ?? 0) !== 1  &&  ((s as any).cycle ?? 0) < 4  &&  (((s as any).sexcontra ?? 0) === 7  ||  ((s as any).sexcontra ?? 0) === 0)) {
+    if (((s as any).cycle ?? 0) === 2) {
+      (s as any).fetish_mod = qspFunc(s, 'fetish', 'get_pref', 'pregnant');
+    } else {
+      if (((s as any).cycle ?? 0) === 0  ||  ((s as any).cycle ?? 0) === 3) {
+        (s as any).fetish_mod = qspFunc(s, 'fetish', 'get_pref', 'pregnant') / 4;
+      }
+    }
+  }
+  (s as any).fetish_mod = ((s as any).fetish_mod ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'creampie'));
+  (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'pregnant') > 0) ? (1) : (0)));
+  (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'creampie') > 0) ? (1) : (0)));
+  // TODO-QSP: fetish_mod /= fetish_count
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
+    if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
+      (s as any).will_calc = 0;
+    }
+    if (((s as any).stat ?? 0)?.['vaginal'] <= 90) {
+      (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['vaginal'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
+    } else {
+      (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
+    }
+  } else {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['vaginal'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['vaginal'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -540,7 +588,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
 
 function enterAnal(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -550,7 +598,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['anal'] <= 40) {
         (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) * 2 - (((s as any).stat ?? {})?.['anal'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -575,7 +623,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterGangbang(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -585,7 +633,7 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['gangbang_count'] <= 40) {
         (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) * 2 - (((s as any).stat ?? {})?.['gangbang_count'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -610,7 +658,42 @@ function enterGangbang(s: GameState, scene: SceneBuilder): void {
 
 function enterGroup(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
+    if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
+      (s as any).will_calc = 0;
+    }
+    if (((s as any).stat ?? 0)?.['gangbang_count'] <= 90) {
+      (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['gangbang_count'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
+    } else {
+      (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
+    }
+  } else {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
+      if (((s as any).stat ?? 0)?.['gangbang_count'] <= 40) {
+        (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) * 2 - (((s as any).stat ?? {})?.['gangbang_count'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
+      } else {
+        (s as any).will_cost = (120 - ((s as any).will_enforced ?? 0) * 2 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
+      }
+    } else {
+      if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
+        (s as any).will_calc = ((s as any).will_calc ?? 0) + (100);
+      }
+      if (((s as any).stat ?? 0)?.['gangbang_count'] <= 90) {
+        (s as any).will_cost = (10 + (((s as any).stat ?? {})?.['gangbang_count'] ?? 0) + ((s as any).will_calc ?? 0) + ((s as any).will_arousal_mod ?? 0) + ((s as any).will_succubus_mod ?? 0))/10;
+      } else {
+        (s as any).will_cost = (100 + ((s as any).will_calc ?? 0) + ((s as any).will_arousal_mod ?? 0) + ((s as any).will_succubus_mod ?? 0))/10;
+      }
+    }
+  }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterDifficulty(s, scene); (s as any).locArgs = __savedLocArgs; }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterGroup2(s: GameState, scene: SceneBuilder): void {
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -620,7 +703,7 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['group_count'] <= 40) {
         (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) * 2 - (((s as any).stat ?? {})?.['group_count'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -645,7 +728,7 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
 
 function enterOrgy(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -655,7 +738,7 @@ function enterOrgy(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['orgy_count'] <= 40) {
         (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) * 2 - (((s as any).stat ?? {})?.['orgy_count'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -680,7 +763,7 @@ function enterOrgy(s: GameState, scene: SceneBuilder): void {
 
 function enterProstitution(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -690,7 +773,7 @@ function enterProstitution(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['prostitution_count'] <= 40) {
         (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) * 2 - (((s as any).stat ?? {})?.['prostitution_count'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
       } else {
@@ -716,7 +799,7 @@ function enterProstitution(s: GameState, scene: SceneBuilder): void {
 
 function enterHumiliation(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -726,7 +809,7 @@ function enterHumiliation(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (120 - ((s as any).will_enforced ?? 0) * 2 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
@@ -747,14 +830,14 @@ function enterHumiliation(s: GameState, scene: SceneBuilder): void {
 
 function enterFootjob(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).stat ?? 0)?.['footjob'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['footjob'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['footjob'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['footjob'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -776,14 +859,14 @@ function enterFootjob(s: GameState, scene: SceneBuilder): void {
 
 function enterTitjob(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).stat ?? 0)?.['titjob'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['titjob'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['titjob'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['titjob'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -805,14 +888,14 @@ function enterTitjob(s: GameState, scene: SceneBuilder): void {
 
 function enterTrib(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).stat ?? 0)?.['trib'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['trib'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['trib'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['trib'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -835,14 +918,14 @@ function enterTrib(s: GameState, scene: SceneBuilder): void {
 function enterRimming(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).rimming_check = ((((s as any).stat ?? {})?.['rimming'] ?? 0) + (((s as any).stat ?? {})?.['rimming_give'] ?? 0)) / 2;
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).rimming_check ?? 0) <= 90) {
       (s as any).will_cost = (100 - ((s as any).rimming_check ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).rimming_check ?? 0) <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - ((s as any).rimming_check ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -864,14 +947,14 @@ function enterRimming(s: GameState, scene: SceneBuilder): void {
 
 function enterBDSM(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if ((((s as any).stat ?? 0)?.['BDSM'] + ((s as any).stat ?? 0)?.['BDSM_give']) / 2 <= 90) {
       (s as any).will_cost = (100 - (((((s as any).stat ?? {})?.['BDSM'] ?? 0) + (((s as any).stat ?? {})?.['BDSM_give'] ?? 0)) / 2) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['BDSM_give'] <= 40) {
         (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['BDSM_give'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
       } else {
@@ -909,7 +992,7 @@ function enterCumOutside(s: GameState, scene: SceneBuilder): void {
   (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'pregnant') > 0) ? (1) : (0)));
   (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'creampie') > 0) ? (1) : (0)));
   // TODO-QSP: fetish_mod /= fetish_count
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -919,7 +1002,7 @@ function enterCumOutside(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (100 - ((s as any).cum_check ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) + ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (120 - ((s as any).will_enforced ?? 0) * 2 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) + ((s as any).fetish_mod ?? 0))/10;
     } else {
       if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
@@ -940,7 +1023,7 @@ function enterCumOutside(s: GameState, scene: SceneBuilder): void {
 
 function enterSwallow(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -950,7 +1033,7 @@ function enterSwallow(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (100 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (80 - ((s as any).will_enforced ?? 0) - (((s as any).trait_vars ?? {})?.['cumeater'] ?? 0) * 10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
@@ -987,7 +1070,7 @@ function enterCumInside(s: GameState, scene: SceneBuilder): void {
   (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'pregnant') > 0) ? (1) : (0)));
   (s as any).fetish_count = ((s as any).fetish_count ?? 0) + (((qspFunc(s, 'fetish', 'get_pref', 'creampie') > 0) ? (1) : (0)));
   // TODO-QSP: fetish_mod /= fetish_count
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -997,7 +1080,7 @@ function enterCumInside(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (100 - ((s as any).creampie_count ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (120 - ((s as any).will_enforced ?? 0) * 2 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).fetish_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
     } else {
       if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
@@ -1018,7 +1101,7 @@ function enterCumInside(s: GameState, scene: SceneBuilder): void {
 
 function enterCumInsideAnal(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
@@ -1028,7 +1111,7 @@ function enterCumInsideAnal(s: GameState, scene: SceneBuilder): void {
       (s as any).will_cost = (100 - ((s as any).pcs_acp_known ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (120 - ((s as any).will_enforced ?? 0) * 2 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
     } else {
       if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
@@ -1049,14 +1132,14 @@ function enterCumInsideAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterKiss(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).stat ?? 0)?.['kiss'] <= 90) {
       (s as any).will_cost = (100 - (((s as any).stat ?? {})?.['kiss'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['kiss'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['kiss'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -1078,14 +1161,14 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
 
 function enterForeplay(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if ((((s as any).stat ?? 0)?.['foreplay'] + ((s as any).stat ?? 0)?.['foreplay_give']) / 2 <= 90) {
       (s as any).will_cost = (100 - (((((s as any).stat ?? {})?.['foreplay'] ?? 0) + (((s as any).stat ?? {})?.['foreplay_give'] ?? 0)) / 2) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['foreplay_give'] <= 40) {
         (s as any).will_cost = (110 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['foreplay_give'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0) - ((s as any).will_succubus_mod ?? 0)/2)/10;
       } else {
@@ -1107,14 +1190,14 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
 
 function enterPee(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if ((((s as any).stat ?? 0)?.['pee'] + ((s as any).stat ?? 0)?.['pee_give']) / 2 <= 90) {
       (s as any).will_cost = (100 - (((((s as any).stat ?? {})?.['pee'] ?? 0) + (((s as any).stat ?? {})?.['pee_give'] ?? 0)) / 2) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       if (((s as any).stat ?? 0)?.['pee_give'] <= 40) {
         (s as any).will_cost = (160 - ((s as any).will_enforced ?? 0) - (((s as any).stat ?? {})?.['pee_give'] ?? 0) + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
       } else {
@@ -1141,7 +1224,7 @@ function enterSkill(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pcs_') {
-    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 0;
+    ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((5)-1));
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[4] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((0 as any) >= 100) {
@@ -1178,13 +1261,13 @@ function enterSkillBase(s: GameState, scene: SceneBuilder): void {
 
 function enterRape(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
       (s as any).will_calc = 0;
     }
     (s as any).will_cost = (100 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (200 - ((s as any).will_enforced ?? 0) * 2 + ((s as any).will_calc ?? 0) - ((s as any).will_arousal_mod ?? 0))/10;
     } else {
       if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
@@ -1205,10 +1288,10 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
 
 function enterDrink(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     (s as any).will_cost = (60 - (((s as any).drugVars ?? {})?.['alcohol_exp'] ?? 0) * 40 + ((s as any).will_calc ?? 0))/10;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (100 - ((s as any).will_enforced ?? 0) - (((s as any).drugVars ?? {})?.['alcohol_exp'] ?? 0) * 30 + ((s as any).will_calc ?? 0))/10;
     } else {
       if (((s as any).alko ?? 0) > 10) {
@@ -1234,10 +1317,10 @@ function enterDrink(s: GameState, scene: SceneBuilder): void {
 
 function enterDrugs(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     (s as any).will_cost = (((s as any).will_calc ?? 0) + 100 - (((s as any).trait_vars ?? {})?.['addictive_personality'] ?? 0) * 30) / 10;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (((s as any).will_calc ?? 0) + 100 - ((s as any).will_enforced ?? 0) - (((s as any).trait_vars ?? {})?.['addictive_personality'] ?? 0) * 10) / 10;
     } else {
       (s as any).will_cost = (((s as any).will_calc ?? 0) + Math.max(10, (((s as any).trait_vars ?? {})?.['addictive_personality'] ?? 0) * 30)) / 10;
@@ -1251,7 +1334,7 @@ function enterDrugs(s: GameState, scene: SceneBuilder): void {
 
 function enterCrime(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[0] ?? 0) === 'force') {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 'force') {
     (s as any).will_cost = (80 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
   } else {
     (s as any).will_cost = (60 + ((s as any).will_calc ?? 0))/10;
@@ -1264,10 +1347,10 @@ function enterCrime(s: GameState, scene: SceneBuilder): void {
 
 function enterExhib(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'self') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'self') {
     (s as any).will_cost = (100 - (((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) * 20 - ((s as any).pcs_inhib ?? 0)/5 + ((s as any).will_calc ?? 0))/10;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
       (s as any).will_cost = (100 - ((s as any).will_enforced ?? 0) - (((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) * 10 + ((s as any).will_calc ?? 0))/10;
     } else {
       (s as any).will_cost = ((((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) * 25 + ((s as any).pcs_inhib ?? 0)/4 + ((s as any).will_calc ?? 0))/10;
@@ -1293,21 +1376,50 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
 
 function enterMisc(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).locArgs?.[1] ?? 0) === 'force') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'easy') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'easy') {
       (s as any).will_cost = (60 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'hard') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'hard') {
         (s as any).will_cost = (90 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
       } else {
         (s as any).will_cost = (70 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
       }
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'easy') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'easy') {
       (s as any).will_cost = (10 + ((s as any).will_calc ?? 0))/10;
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'hard') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'hard') {
+        (s as any).will_cost = (40 + ((s as any).will_calc ?? 0))/10;
+      } else {
+        (s as any).will_cost = (20 + ((s as any).will_calc ?? 0))/10;
+      }
+    }
+  }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterDifficulty(s, scene); (s as any).locArgs = __savedLocArgs; }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterChore(s: GameState, scene: SceneBuilder): void {
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[3] ?? 0)]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'force') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'easy') {
+      (s as any).will_cost = (60 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
+    } else {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'hard') {
+        (s as any).will_cost = (90 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
+      } else {
+        (s as any).will_cost = (70 - ((s as any).will_enforced ?? 0) + ((s as any).will_calc ?? 0))/10;
+      }
+    }
+  } else {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'easy') {
+      (s as any).will_cost = (10 + ((s as any).will_calc ?? 0))/10;
+    } else {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'hard') {
         (s as any).will_cost = (40 + ((s as any).will_calc ?? 0))/10;
       } else {
         (s as any).will_cost = (20 + ((s as any).will_calc ?? 0))/10;
@@ -1407,6 +1519,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'sex':
       enterSex(s, scene);
       break;
+    case 'vaginal':
+      enterVaginal(s, scene);
+      break;
     case 'anal':
       enterAnal(s, scene);
       break;
@@ -1415,6 +1530,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'group':
       enterGroup(s, scene);
+      break;
+    case 'group':
+      enterGroup2(s, scene);
       break;
     case 'orgy':
       enterOrgy(s, scene);
@@ -1487,6 +1605,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'misc':
       enterMisc(s, scene);
+      break;
+    case 'chore':
+      enterChore(s, scene);
       break;
     case 'dnd':
       enterDnd(s, scene);

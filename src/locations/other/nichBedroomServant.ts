@@ -5,37 +5,27 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'core_library', 'setloc', 'nichBedroomServant', '');
-  (s as any).nichLoc = 'servant';
-  (s as any).location_type = 'private';
-  (s as any).locclass = 'bedr';
-  if (((s as any).nichWork ?? 0) === 2) {
-    if (((s as any).nichLastWorkDay ?? 0) !== ((s as any).daystart ?? 0)) {
-      qspCall(s, 'nichUtil', 'startWorkday');
-    }
-    qspCall(s, 'nichUtil', 'checkOutfit');
-  }
   qspCall(s, 'stat', '');
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your Bedroom in Nicholas\' Apartment</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/bedroomServant.jpg');
   scene.text('Your bedroom is fairly large, considering you\'re only an employee.');
-  scene.text('There is a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">double bed</a> and an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027alarmclock\\u0027, \\u0027start\\u0027); return false;">alarm clock</a>.');
+  scene.text('There is a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">double bed</a> and an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027alarmclock/u0027, /u0027start/u0027); return false;">alarm clock</a>.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
-  scene.text('Half a wall is taken up by an expensive-looking <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a>.');
-  scene.text('There\'s a make-up table with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> beside the wardrobe.');
+  scene.text('Half a wall is taken up by an expensive-looking <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>.');
+  scene.text('There\'s a make-up table with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> beside the wardrobe.');
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access', 'free', 'nocamshow');
-    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a>.';
+    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a>.';
   } else {
     (s as any).komp = '.';
   }
-  scene.text('A luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027divan\\u0027, \\u0027start\\u0027); return false;">leather sofa</a> is on the other side of the wardrobe.');
-  scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">TV</a>.');
-  // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt 'nichBedroomServant', 'desk'">desk</...
-  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichBedroomServant\\u0027, \\u0027desk\\u0027); return false;">desk</a>${((s as any).komp || '')}`);
+  scene.text('A luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a> is on the other side of the wardrobe.');
+  scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>.');
+  // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt ''nichBedroomServant'', ''desk''">de...
+  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp || '')}`);
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('<br>Your hula hoop stands in a corner of the room. ');
   }
@@ -46,13 +36,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('A yoga mat is rolled up in a corner next to the wardrobe. ');
   }
   if (((s as any).mishka ?? 0) > 0) {
-    // TODO-QSP: dynamic text: On one of the shelves, you've placed your <<mishka>> teddy bear'+iif(mishka = 1,...
-    scene.text(`On one of the shelves, you've placed your ${((s as any).mishka || '')} teddy bear'+iif(mishka = 1, ', 's')+'.`);
+    // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
+    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka || '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
-    // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func('money', 'string_profit', nich...
-    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichBedroomServant\\u0027, \\u0027redeemSalary\\u0027); return false;">redeem</a>).`);
+    // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func(''money'', ''string_profit'', ...
+    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
   qspCall(s, 'music_actions', 'start');
@@ -62,13 +52,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sick ?? 0) >= 1) {
     scene.actions([
       { label: 'Get some bed rest (illness)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 240;
-    (s as any).sick = ((s as any).sick ?? 0) - (1);
-    if (((s as any).sick ?? 0) < 0) {
-      (s as any).sick = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 240;
+    (st as any).sick = ((st as any).sick ?? 0) - (1);
+    if (((st as any).sick ?? 0) < 0) {
+      (st as any).sick = 0;
     }
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/shared/apartment/event/sick/sick\'+rand(11, 17)+\'.jpg');
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/shared/apartment/event/sick/sick' + (Math.floor(Math.random() * 7) + 11) + '.jpg');
     scene.text('You lie in bed, coughing, sneezing, blowing your nose… and, as if that wasn\'t enough, you also think you might be getting a headache.');
     scene.text('Drifting in and out of sleep, you spend about 4 hours tossing and turning, trying to sweat out the illness, and you actually feel better when you decide to stretch your legs.');
     scene.actions([
@@ -89,14 +79,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'library_functions', 'set_read_porn_act');
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
-    // TODO-QSP: dynamic text: You have hidden <<mc_inventory['cocaine']>> doses of Pale Lady behind your wardr...
+    // TODO-QSP: dynamic text: You have hidden <<mc_inventory[''cocaine'']>> doses of Pale Lady behind your war...
     scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady behind your wardrobe.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Take some cocaine (0:05)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'drugs', 'cocaine');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'drugs', 'cocaine');
     scene.img('images/shared/drugs/dur.jpg');
     scene.text('You take a small dose of coke and not long after, you start to feel great, as if you could do anything, <b>be</b> anything - but you\'re also starting to feel incredibly horny.');
     scene.actions([
@@ -139,16 +129,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Go to the hallway', handler: (st: GameState) => {
-    if (((s as any).nichEvtGalaTele1 ?? 0) === 1  &&  ((s as any).nichGalaOpinion ?? 0) === 1  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
-      qspGoto(s, 'nichBedroomServant', 'evtBodyguardIntim1');
+    if (((st as any).nichEvtGalaTele1 ?? 0) === 1  &&  ((st as any).nichGalaOpinion ?? 0) === 1  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((st as any).nichDebug ?? 0) === 1)) {
+      qspGoto(st, 'nichBedroomServant', 'evtBodyguardIntim1');
     } else {
-      if (((s as any).nichGalaOpponent ?? 0) === 31  &&  ((Math.floor(Math.random() * 100) + 1) <= 10  ||  ((s as any).nichDebug ?? 0) === 1)) {
+      if (((st as any).nichGalaOpponent ?? 0) === 31  &&  ((Math.floor(Math.random() * 100) + 1) <= 10  ||  ((st as any).nichDebug ?? 0) === 1)) {
       } else {
-        if (((s as any).clothingworntype ?? 0) !== 'nude') {
-          (s as any).minut = ((s as any).minut ?? 0) + 1;
-          qspGoto(s, 'nichApartment', '');
+        if (((st as any).clothingworntype ?? 0) !== 'nude') {
+          (st as any).minut = ((st as any).minut ?? 0) + 1;
+          qspGoto(st, 'nichApartment', '');
         } else {
-          dynamicGoto(s, 'curloc');
+          dynamicGoto(st, 'curloc');
         }
       }
     }
@@ -156,11 +146,329 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Relax on your bed', goto: ['bed', 'start'] },
     { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },
     { label: 'Go to the servant bathroom', handler: (st: GameState) => {
-    qspGoto(s, 'nichBathServant', '');
+    qspGoto(st, 'nichBathServant', '');
   } },
     { label: 'Study (2:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'exp_gain', 'intel', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'exp_gain', 'intel', 1);
+    scene.img('images/pc/activities/study.jpg');
+    scene.text('You spend two hours studying and feel a little smarter now.');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'music_actions', 'clear_restrictions');
+  scene.text('<center><b>Your Bedroom in Nicholas\' Apartment</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/bedroomServant.jpg');
+  scene.text('Your bedroom is fairly large, considering you\'re only an employee.');
+  scene.text('There is a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">double bed</a> and an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027alarmclock/u0027, /u0027start/u0027); return false;">alarm clock</a>.');
+  if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
+    scene.text('Your guitar rests on its stand next to your bed.');
+  }
+  scene.text('Half a wall is taken up by an expensive-looking <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>.');
+  scene.text('There\'s a make-up table with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> beside the wardrobe.');
+  if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
+    qspCall(s, 'internet_mobile', 'get_access', 'free', 'nocamshow');
+    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a>.';
+  } else {
+    (s as any).komp = '.';
+  }
+  scene.text('A luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a> is on the other side of the wardrobe.');
+  scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>.');
+  // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt ''nichBedroomServant'', ''desk''">de...
+  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp || '')}`);
+  if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
+    scene.text('<br>Your hula hoop stands in a corner of the room. ');
+  }
+  if (((s as any).mc_inventory ?? 0)?.['skipping_rope'] > 0) {
+    scene.text('Your jump rope is sitting on a shelf. ');
+  }
+  if (((s as any).mc_inventory ?? 0)?.['book_yoga'] > 0) {
+    scene.text('A yoga mat is rolled up in a corner next to the wardrobe. ');
+  }
+  if (((s as any).mishka ?? 0) > 0) {
+    // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
+    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka || '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+  }
+  qspCall(s, 'exercise', 'start');
+  if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
+    // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func(''money'', ''string_profit'', ...
+    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
+  }
+  qspCall(s, 'library_functions', 'set_home_read_acts');
+  qspCall(s, 'music_actions', 'start');
+  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
+    qspGoto(s, 'tobiQW', 'start');
+  }
+  if (((s as any).sick ?? 0) >= 1) {
+    scene.actions([
+      { label: 'Get some bed rest (illness)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 240;
+    (st as any).sick = ((st as any).sick ?? 0) - (1);
+    if (((st as any).sick ?? 0) < 0) {
+      (st as any).sick = 0;
+    }
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/shared/apartment/event/sick/sick' + (Math.floor(Math.random() * 7) + 11) + '.jpg');
+    scene.text('You lie in bed, coughing, sneezing, blowing your nose… and, as if that wasn\'t enough, you also think you might be getting a headache.');
+    scene.text('Drifting in and out of sleep, you spend about 4 hours tossing and turning, trying to sweat out the illness, and you actually feel better when you decide to stretch your legs.');
+    scene.actions([
+      { label: 'Get up', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).pcs_horny ?? 0) >= 50) {
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {
+    scene.text('You hide a porn magazine under your mattress.');
+    qspCall(s, 'library_functions', 'set_read_porn_act');
+  }
+  if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
+    // TODO-QSP: dynamic text: You have hidden <<mc_inventory[''cocaine'']>> doses of Pale Lady behind your war...
+    scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady behind your wardrobe.`);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Take some cocaine (0:05)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'drugs', 'cocaine');
+    scene.img('images/shared/drugs/dur.jpg');
+    scene.text('You take a small dose of coke and not long after, you start to feel great, as if you could do anything, <b>be</b> anything - but you\'re also starting to feel incredibly horny.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'curloc');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.text('');
+  scene.text('On the wall next to your desk hangs your work schedule:');
+  if (((s as any).nichVactionTil ?? 0) >= ((s as any).daystart ?? 0)) {
+    scene.text('<b>You don\'t have to work today.</b>');
+    if (((s as any).nichVactionTil ?? 0) === ((s as any).daystart ?? 0) + 1) {
+      scene.text('Tomorrow is also a free day.');
+    } else {
+      if (((s as any).nichVactionTil ?? 0) > ((s as any).daystart ?? 0) + 1) {
+        // TODO-QSP: dynamic text: The next '+(nichVactionTil-daystart)+' days are also free.
+        scene.text('The next \'+(nichVactionTil-daystart)+\' days are also free.');
+      }
+    }
+  }
+  // TODO-QSP: dynamic text: You should start preparing breakfast before '+func('time', 'get_time_string', 7,...
+  scene.text('You should start preparing breakfast before 7:15 during the week and before 8:15 on weekends.');
+  if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  (!((s as any).nichPregnancy ?? 0))) {
+    scene.text('');
+    scene.text('<b>You are pregnant but Nicholas hasn\'t realized it yet. He won\'t allow you to continue working for him if he figures it out, that\'s for sure. Maybe you should wear baggy clothes to hide your condition?</b>');
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    qspCall(s, 'nichChore', 'inspect', 'servant');
+  }
+  qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
+  if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
+    scene.actions([
+      { label: 'Set the Nicholas house as your main home', handler: (st: GameState) => {
+    qspCall(st, 'homes_properties', 'set_home');
+  }, goto: ['nichBedroomServant', ''] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go to the hallway', handler: (st: GameState) => {
+    if (((st as any).nichEvtGalaTele1 ?? 0) === 1  &&  ((st as any).nichGalaOpinion ?? 0) === 1  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((st as any).nichDebug ?? 0) === 1)) {
+      qspGoto(st, 'nichBedroomServant', 'evtBodyguardIntim1');
+    } else {
+      if (((st as any).nichGalaOpponent ?? 0) === 31  &&  ((Math.floor(Math.random() * 100) + 1) <= 10  ||  ((st as any).nichDebug ?? 0) === 1)) {
+      } else {
+        if (((st as any).clothingworntype ?? 0) !== 'nude') {
+          (st as any).minut = ((st as any).minut ?? 0) + 1;
+          qspGoto(st, 'nichApartment', '');
+        } else {
+          dynamicGoto(st, 'curloc');
+        }
+      }
+    }
+  } },
+    { label: 'Relax on your bed', goto: ['bed', 'start'] },
+    { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },
+    { label: 'Go to the servant bathroom', handler: (st: GameState) => {
+    qspGoto(st, 'nichBathServant', '');
+  } },
+    { label: 'Study (2:00)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'exp_gain', 'intel', 1);
+    scene.img('images/pc/activities/study.jpg');
+    scene.text('You spend two hours studying and feel a little smarter now.');
+    scene.actions([
+      { label: 'Finish', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReturn(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'music_actions', 'clear_restrictions');
+  scene.text('<center><b>Your Bedroom in Nicholas\' Apartment</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/bedroomServant.jpg');
+  scene.text('Your bedroom is fairly large, considering you\'re only an employee.');
+  scene.text('There is a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">double bed</a> and an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027alarmclock/u0027, /u0027start/u0027); return false;">alarm clock</a>.');
+  if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
+    scene.text('Your guitar rests on its stand next to your bed.');
+  }
+  scene.text('Half a wall is taken up by an expensive-looking <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>.');
+  scene.text('There\'s a make-up table with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> beside the wardrobe.');
+  if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
+    qspCall(s, 'internet_mobile', 'get_access', 'free', 'nocamshow');
+    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a>.';
+  } else {
+    (s as any).komp = '.';
+  }
+  scene.text('A luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a> is on the other side of the wardrobe.');
+  scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>.');
+  // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt ''nichBedroomServant'', ''desk''">de...
+  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp || '')}`);
+  if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
+    scene.text('<br>Your hula hoop stands in a corner of the room. ');
+  }
+  if (((s as any).mc_inventory ?? 0)?.['skipping_rope'] > 0) {
+    scene.text('Your jump rope is sitting on a shelf. ');
+  }
+  if (((s as any).mc_inventory ?? 0)?.['book_yoga'] > 0) {
+    scene.text('A yoga mat is rolled up in a corner next to the wardrobe. ');
+  }
+  if (((s as any).mishka ?? 0) > 0) {
+    // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
+    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka || '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+  }
+  qspCall(s, 'exercise', 'start');
+  if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
+    // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func(''money'', ''string_profit'', ...
+    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
+  }
+  qspCall(s, 'library_functions', 'set_home_read_acts');
+  qspCall(s, 'music_actions', 'start');
+  if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  (!((s as any).tobiQW ?? 0))) {
+    qspGoto(s, 'tobiQW', 'start');
+  }
+  if (((s as any).sick ?? 0) >= 1) {
+    scene.actions([
+      { label: 'Get some bed rest (illness)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 240;
+    (st as any).sick = ((st as any).sick ?? 0) - (1);
+    if (((st as any).sick ?? 0) < 0) {
+      (st as any).sick = 0;
+    }
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/shared/apartment/event/sick/sick' + (Math.floor(Math.random() * 7) + 11) + '.jpg');
+    scene.text('You lie in bed, coughing, sneezing, blowing your nose… and, as if that wasn\'t enough, you also think you might be getting a headache.');
+    scene.text('Drifting in and out of sleep, you spend about 4 hours tossing and turning, trying to sweat out the illness, and you actually feel better when you decide to stretch your legs.');
+    scene.actions([
+      { label: 'Get up', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  if (((s as any).pcs_horny ?? 0) >= 50) {
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {
+    scene.text('You hide a porn magazine under your mattress.');
+    qspCall(s, 'library_functions', 'set_read_porn_act');
+  }
+  if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
+    // TODO-QSP: dynamic text: You have hidden <<mc_inventory[''cocaine'']>> doses of Pale Lady behind your war...
+    scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady behind your wardrobe.`);
+  }
+  if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
+    scene.actions([
+      { label: 'Take some cocaine (0:05)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'drugs', 'cocaine');
+    scene.img('images/shared/drugs/dur.jpg');
+    scene.text('You take a small dose of coke and not long after, you start to feel great, as if you could do anything, <b>be</b> anything - but you\'re also starting to feel incredibly horny.');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    dynamicGoto(st, 'curloc');
+  } },
+    ]);
+  } },
+    ]);
+  }
+  scene.text('');
+  scene.text('On the wall next to your desk hangs your work schedule:');
+  if (((s as any).nichVactionTil ?? 0) >= ((s as any).daystart ?? 0)) {
+    scene.text('<b>You don\'t have to work today.</b>');
+    if (((s as any).nichVactionTil ?? 0) === ((s as any).daystart ?? 0) + 1) {
+      scene.text('Tomorrow is also a free day.');
+    } else {
+      if (((s as any).nichVactionTil ?? 0) > ((s as any).daystart ?? 0) + 1) {
+        // TODO-QSP: dynamic text: The next '+(nichVactionTil-daystart)+' days are also free.
+        scene.text('The next \'+(nichVactionTil-daystart)+\' days are also free.');
+      }
+    }
+  }
+  // TODO-QSP: dynamic text: You should start preparing breakfast before '+func('time', 'get_time_string', 7,...
+  scene.text('You should start preparing breakfast before 7:15 during the week and before 8:15 on weekends.');
+  if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  (!((s as any).nichPregnancy ?? 0))) {
+    scene.text('');
+    scene.text('<b>You are pregnant but Nicholas hasn\'t realized it yet. He won\'t allow you to continue working for him if he figures it out, that\'s for sure. Maybe you should wear baggy clothes to hide your condition?</b>');
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    qspCall(s, 'nichChore', 'inspect', 'servant');
+  }
+  qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
+  if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
+    scene.actions([
+      { label: 'Set the Nicholas house as your main home', handler: (st: GameState) => {
+    qspCall(st, 'homes_properties', 'set_home');
+  }, goto: ['nichBedroomServant', ''] },
+    ]);
+  }
+  scene.actions([
+    { label: 'Go to the hallway', handler: (st: GameState) => {
+    if (((st as any).nichEvtGalaTele1 ?? 0) === 1  &&  ((st as any).nichGalaOpinion ?? 0) === 1  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((st as any).nichDebug ?? 0) === 1)) {
+      qspGoto(st, 'nichBedroomServant', 'evtBodyguardIntim1');
+    } else {
+      if (((st as any).nichGalaOpponent ?? 0) === 31  &&  ((Math.floor(Math.random() * 100) + 1) <= 10  ||  ((st as any).nichDebug ?? 0) === 1)) {
+      } else {
+        if (((st as any).clothingworntype ?? 0) !== 'nude') {
+          (st as any).minut = ((st as any).minut ?? 0) + 1;
+          qspGoto(st, 'nichApartment', '');
+        } else {
+          dynamicGoto(st, 'curloc');
+        }
+      }
+    }
+  } },
+    { label: 'Relax on your bed', goto: ['bed', 'start'] },
+    { label: 'Open wardrobe', goto: ['wardrobe', 'start'] },
+    { label: 'Go to the servant bathroom', handler: (st: GameState) => {
+    qspGoto(st, 'nichBathServant', '');
+  } },
+    { label: 'Study (2:00)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'exp_gain', 'intel', 1);
     scene.img('images/pc/activities/study.jpg');
     scene.text('You spend two hours studying and feel a little smarter now.');
     scene.actions([
@@ -198,7 +506,7 @@ function enterEvtBodyguardIntim1(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaOpinion = 2;
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -210,12 +518,12 @@ function enterDesk(s: GameState, scene: SceneBuilder): void {
     scene.text('You open your desk. Something doesn\'t seem to be right. After closer inspection, you find Gala\'s missing necklace hidden under some of your items.');
     scene.actions([
       { label: 'Leave it there', handler: (st: GameState) => {
-    qspGoto(s, 'stol', 'start');
+    qspGoto(st, 'stol', 'start');
   } },
       { label: 'Bring it back to where it belongs', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    (s as any).nichGalaOpponent = 22;
-    qspGoto(s, 'nichBedroomServant', 'return');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    (st as any).nichGalaOpponent = 22;
+    qspGoto(st, 'nichBedroomServant', 'return');
   } },
     ]);
   } else {
@@ -226,7 +534,7 @@ function enterDesk(s: GameState, scene: SceneBuilder): void {
 
 function enterRedeemSalary(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).nichSalaryOutstanding ?? 0), 'bank');
-  // TODO-QSP: dynamic text: Your salary of <<$func('money', 'string_profit', nichSalaryOutstanding)>> is tra...
+  // TODO-QSP: dynamic text: Your salary of <<$func(''money'', ''string_profit'', nichSalaryOutstanding)>> is...
   scene.text(`Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} is transferred to your bank account.`);
   scene.actions([
     { label: 'Back', goto: ['nichBedroomServant', 'return'] },
@@ -235,7 +543,7 @@ function enterRedeemSalary(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     if (((s as any).nichGalaOpponent ?? 0) === 30  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).nichDebug ?? 0) === 1) {
       qspGoto(s, 'nichBedroomServant', 'sleepEvents', '1000');
     } else {
@@ -244,11 +552,11 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 100) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 100) {
       (s as any).nichGalaContractTarasLast = ((s as any).daystart ?? 0);
       (s as any).nichRand = (-1);
       if (((s as any).nichGalaContractTarasCount ?? 0) > 10) {
-        (s as any).nichRand = Math.floor(Math.random() * 11) + 0;
+        (s as any).nichRand = (Math.floor(Math.random() * 11) + 0);
       }
       if (((s as any).nichTarSaunaPay ?? 0) >= 20000) {
         scene.img('images/characters/city/gala/slave/taras/chat.jpg');
@@ -276,7 +584,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
           scene.img('images/characters/city/gala/slave/taras/chat.jpg');
           scene.text('You wake up to the feeling of something heavy resting on you. A little bit sleepy you open your eyes and see the face of Taras directly in front of yours.');
           scene.text('"Slut, I heard that you are doing a fine job in the sauna. I knew you would perform this job with enthusiasm."');
-          // TODO-QSP: dynamic text: "Don't slack off now! I need <<$func('money', 'string_profit', 20000)>> in total...
+          // TODO-QSP: dynamic text: "Don''t slack off now! I need <<$func(''money'', ''string_profit'', 20000)>> in ...
           scene.text(`"Don't slack off now! I need ${qspFunc(s, 'money', 'string_profit', 20000)} in total from you. I am sure you can easily earn them for me. You are already more than half-way there."`);
           scene.text('He gives you a light smack on your face, then he stands up and leaves your room.');
           (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
@@ -416,14 +724,14 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/gala/slave/taras/bed4x2.jpg');
     scene.text('You don\'t know how long Taras was gone, but you must have fallen asleep at some point.');
     scene.text('You get woken up by Taras fucking you again. At first you thought this was a dream, but then you realize that this is reality.');
-    qspCall(s, 'arousal', 'vaginal', 20, 'bound');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 20, 'bound');
+    qspCall(st, 'arousal', 'end');
     scene.text('This time it takes a little longer before Taras cums. When he does, he pulls out of you and sends his load right onto your face.');
-    qspCall(s, 'cum_call', 'face', 'A513', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', 'A513', 1);
+    qspCall(st, 'stat', '');
     scene.text('"I am sure you will enjoy this."');
     scene.text('He unties your right wrist, allowing you to remove the other restraints, before he leaves your room again.');
-    (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
+    (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', 'event_end');
@@ -480,22 +788,22 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
     scene.text('He takes out a vibrator and pushes it inside your vagina. Then he turns it on. You feel the strong vibrations everywhere in your body.');
     scene.text('"I bet you will enjoy this. It will feel like being fucked by dozens of guys all night long."');
     scene.text('He leaves your room, leaving you tied up and being tormented by the vibrator.');
-    qspCall(s, 'arousal', 'vaginal_vibe', 30, 'bound');
+    qspCall(st, 'arousal', 'vaginal_vibe', 30, 'bound');
     scene.text('It feels like forever, but Taras does not return.');
-    qspCall(s, 'arousal', 'vaginal_vibe', 30, 'bound');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_vibe', 30, 'bound');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/slave/taras/bed1x3.jpg');
-    qspCall(s, 'arousal', 'vaginal_vibe', 30, 'bound');
+    qspCall(st, 'arousal', 'vaginal_vibe', 30, 'bound');
     scene.text('You wait for what seems to be forever. The constant vibrations in your pussy began being painful long ago but you can\'t deny that they still arouse you as well.');
-    qspCall(s, 'arousal', 'vaginal_vibe', 30, 'bound');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_vibe', 30, 'bound');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.text('Finally Taras returns and unties you. You waste no time and remove the vibrator, staring at him angrily.');
     scene.text('"I knew you would enjoy it. While normal people like me sleep at night, sluts like you want to get fucked all night long, and I am nothing but supportive in this regard."');
     scene.text('He leaves you with a grin on his face.');
-    (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
+    (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', 'event_end');
@@ -548,7 +856,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
       { label: 'Black out', handler: (st: GameState) => {
     scene.text('As you wake up this time, Taras is gone and you are untied.');
     scene.text('One horrific thought comes to your mind and makes you shiver: this man shows utter neglect for your safety. What if one day he kills you by accident?');
-    (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
+    (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', 'event_end');
@@ -573,22 +881,22 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/gala/slave/taras/bed8x2.jpg');
     scene.text('Taras pushes himself as far into your mouth as he can. You feel his dick deep in you throat.');
     scene.text('As he grabs your skull and pulls it to his crotch, it gets even harder for you to breath.');
-    qspCall(s, 'arousal', 'bj', 5, 'bound', 'rough', 'rape\' & gs \'stat');
+    qspCall(st, 'arousal', 'bj', 5, 'bound', 'rough', 'rape\' & gs \'stat');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/slave/taras/bed8x3.jpg');
     scene.text('He turns you around and starts fucking your exposed pussy.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'bound', 'rough', 'rape\' & gs \'stat');
+    qspCall(st, 'arousal', 'vaginal', 5, 'bound', 'rough', 'rape\' & gs \'stat');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/slave/taras/bed8x4.jpg');
     scene.text('It doesn\'t take long before he cums inside of you.');
     scene.text('"Well done, slave."');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', '', '', 'A513', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', '', '', 'A513', 1);
+    qspCall(st, 'stat', '');
     scene.text('He unties you and leaves your room again.');
-    (s as any).nichGalaContractTarasCount = ((s as any).nichGalaContractTarasCount ?? 0) + (1);
+    (st as any).nichGalaContractTarasCount = ((st as any).nichGalaContractTarasCount ?? 0) + (1);
     scene.actions([
       { label: 'Back to sleep', handler: (st: GameState) => {
     qspCall(st, 'pre_sleep_events', 'event_end');
@@ -614,7 +922,7 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 1000) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 1000) {
         (s as any).hour = 23;
         (s as any).minut = ((s as any).minut ?? 0) + 180;
         scene.text('In the middle of the night, you wake up from your sleep. You sense somebody is in your room watching you. You look around, but there is nobody to be seen.');
@@ -625,12 +933,12 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
         scene.text('<font color = red><b>Warning: This part of the story is currently not finished and most likely ends in a dead end. Click ignore to pass it.</b></font>');
         scene.actions([
           { label: 'Everything turns black', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
           { label: 'Ignore', handler: (st: GameState) => {
-    (s as any).nichGalaOpponent = 31;
-    (s as any).inSleep = 0;
-    qspGoto(s, 'nichBedroomServant', '');
+    (st as any).nichGalaOpponent = 31;
+    (st as any).inSleep = 0;
+    qspGoto(st, 'nichBedroomServant', '');
   } },
         ]);
       }
@@ -641,8 +949,24 @@ function enterSleepEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'nichBedroomServant', '');
+  (s as any).nichLoc = 'servant';
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
+  if (((s as any).nichWork ?? 0) === 2) {
+    if (((s as any).nichLastWorkDay ?? 0) !== ((s as any).daystart ?? 0)) {
+      qspCall(s, 'nichUtil', 'startWorkday');
+    }
+    qspCall(s, 'nichUtil', 'checkOutfit');
+  }
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'return':
+      enterReturn(s, scene);
+      break;
     case 'evtBodyguardIntim1':
       enterEvtBodyguardIntim1(s, scene);
       break;

@@ -5,36 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/locations/city/residential/lake/sex/vnlake1/vnlake1.jpg');
-  scene.text('While you are sunbathing, a tipsy girl holding a bottle of wine walks up to you. She sits down next to you and begins to stroke your back.');
-  qspCall(s, 'willpower', 'sex', 'resist');
-  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-    scene.actions([
-      { label: 'Drive her off', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-    ]);
-  } else {
-    scene.actions([
-      { label: 'Drive her off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspGoto(s, 'Nudelake', '');
-  } },
-    ]);
-  }
-  scene.actions([
-    { label: 'Kiss', handler: (st: GameState) => {
-    (s as any).girl = ((s as any).girl ?? 0) + (1);
-    scene.img('images/locations/city/residential/lake/sex/vnlake1/vnlake2.jpg');
-    scene.text('You turn to her and kiss her lips. She begins to fondle your breasts with her tongue, and her hand massages your pussy.');
-    qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
-    qspCall(s, 'arousal', 'foreplay', (-5), 'lesbian');
-    qspCall(s, 'stat', '');
-    scene.actions([
-      { label: 'Proceed', goto: ['Vnlake1', 'variant'] },
-    ]);
-  } },
-  ]);
   scene.build();
 }
 
@@ -189,6 +159,36 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/locations/city/residential/lake/sex/vnlake1/vnlake1.jpg');
+  scene.text('While you are sunbathing, a tipsy girl holding a bottle of wine walks up to you. She sits down next to you and begins to stroke your back.');
+  qspCall(s, 'willpower', 'sex', 'resist');
+  if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.actions([
+      { label: 'Drive her off', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+    ]);
+  } else {
+    scene.actions([
+      { label: 'Drive her off', handler: (st: GameState) => {
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspGoto(st, 'Nudelake', '');
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Kiss', handler: (st: GameState) => {
+    (st as any).girl = ((st as any).girl ?? 0) + (1);
+    scene.img('images/locations/city/residential/lake/sex/vnlake1/vnlake2.jpg');
+    scene.text('You turn to her and kiss her lips. She begins to fondle your breasts with her tongue, and her hand massages your pussy.');
+    qspCall(st, 'arousal', 'kiss', 5, 'lesbian');
+    qspCall(st, 'arousal', 'foreplay', (-5), 'lesbian');
+    qspCall(st, 'stat', '');
+    scene.actions([
+      { label: 'Proceed', goto: ['Vnlake1', 'variant'] },
+    ]);
+  } },
+  ]);
   const arg = s.locArg;
   switch (arg) {
     case 'variant':
@@ -231,6 +231,5 @@ export const Vnlake1: LocationDef = {
   name: 'Vnlake1',
   title: 'While you are sunbathing, a tipsy girl holding a bottle of w',
   region: 'other',
-  description: ['While you are sunbathing, a tipsy girl holding a bottle of wine walks up to you. She sits down next to you and begins to stroke your back.'],
   enter: enter,
 };

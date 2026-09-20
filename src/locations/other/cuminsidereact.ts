@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).eff_contra = ((((s as any).argc ?? 0) > 1) ? (((s as any).locArgs?.[1] ?? 0)) : (((s as any).sexcontra ?? 0)));
   if (((s as any).eff_contra ?? 0) !== 3) {
-    (s as any).tmp = qspFunc(s, 'pregriskeval', 'eff_contra');
+    (s as any).tmp = qspFunc(s, 'pregriskeval', ((s as any).eff_contra ?? 0));
     if (((s as any).succubusflag ?? 0) === 1) {
       scene.text('You think to yourself, "This should be Yummy!"');
     } else {
@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).tmp ?? 0) === -1) {
               // TODO-QSP: dynamic text: "Good thing '+iif(birth_control['implant_status'] > 1, 'I have a birth control i...
-              scene.text('"Good thing \'+iif(birth_control[\'implant_status\'] > 1, \'I have a birth control implant\', \'I\'m on the pill\')+\'…" you think to yourself.');
+              scene.text('"Good thing ' + ((((s as any).birth_control ?? 0)?.['implant_status'] > 1) ? ('I have a birth control implant') : ('I\'m on the pill')) + '…" you think to yourself.');
             } else {
               if (((s as any).tmp ?? 0) === 1) {
                 if (((s as any).risk_boy ?? 0) !== '') {

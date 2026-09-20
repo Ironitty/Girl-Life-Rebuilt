@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  (s as any).anrand = Math.floor(Math.random() * 40) + 0;
+  (s as any).anrand = (Math.floor(Math.random() * 40) + 0);
   scene.text('"');
   if ((!((s as any).anrand ?? 0))) {
     scene.text('What is the difference between a snowman and a snow-woman?');

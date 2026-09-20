@@ -171,7 +171,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         (s as any).giveNick = '' + ((s as any).pcs_nickname ?? 0) + '';
       }
     } else {
-      (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
+      (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
       if (((s as any).temp_rand ?? 0) === 0  &&  ((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] !== 1) {
         (s as any).giveNick = 'angel';
       } else {

@@ -47,7 +47,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) - (1);
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
-  (s as any).tmppicrand = Math.floor(Math.random() * 7) + 1;
+  (s as any).tmppicrand = (Math.floor(Math.random() * 7) + 1);
   if (((s as any).tmppicrand ?? 0) === 1) {
     scene.img('images/shared/sex/blowjob/bjp.jpg');
   } else {
@@ -90,7 +90,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'std_trigger_oral');
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
-  scene.img('images/shared/sex/blowjob/bjp\'+rand(8, 13)+\'.jpg');
+  scene.img('images/shared/sex/blowjob/bjp' + (Math.floor(Math.random() * 6) + 8) + '.jpg');
   scene.text('You close your lips around his member and flick your tongue over the tip of his cock teasingly. It stands at full erection in no time.');
   // TODO-QSP: end
   scene.actions([
@@ -105,7 +105,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
   qspCall(s, 'stat', '');
   if ((!((s as any).prosti ?? 0))) {
-    (s as any).bjrand = Math.floor(Math.random() * 100) + 1;
+    (s as any).bjrand = (Math.floor(Math.random() * 100) + 1);
     if (((s as any).bjrand ?? 0) <= 50) {
       (s as any).spafinloc = 12;
       qspCall(s, 'cum_manage', '');

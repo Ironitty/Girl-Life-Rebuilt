@@ -76,6 +76,8 @@ export interface QspGoto {
   arg: string;
   arg2?: string;
   arg3?: string;
+  argQuoted?: boolean;
+  arg2Quoted?: boolean;
 }
 
 export interface QspGsCall {

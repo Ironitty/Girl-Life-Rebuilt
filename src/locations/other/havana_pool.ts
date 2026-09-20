@@ -37,13 +37,13 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
     scene.actions([
       { label: 'Go for a swim (1:00)', handler: (st: GameState) => {
-    (s as any).pcs_makeup = 1;
-    (s as any).cumspclnt = 10;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
-    if (((s as any).pcs_inhib ?? 0) < 50) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).pcs_makeup = 1;
+    (st as any).cumspclnt = 10;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'exercise', 'tier1', 60, 'stren', 'vital');
+    (st as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
+    if (((st as any).pcs_inhib ?? 0) < 50) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     if (qspFunc(s, 'body_din', 'pregnancyVisibility') === 0) {
       scene.img('images/locations/city/citycenter/gym/pool/swim.jpg');
@@ -51,8 +51,8 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/gym/pool/swimpreg.jpg');
     }
     scene.text('You take a swim in the pool, which invigorates you and leaves you feeling refreshed.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([

@@ -17,9 +17,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Fitness Center</b></center>');
   scene.img('images/locations/city/citycenter/gym/desk.jpg');
   scene.text('This modern and well staffed fitness center features all of the latest equipment, as well as trainers to help you make the most of them.');
-  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027beverage\\u0027, \\u0027watercooler\\u0027); return false;">drinking fountain</a> near the doors to the bathrooms.');
+  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027watercooler/u0027); return false;">drinking fountain</a> near the doors to the bathrooms.');
   // TODO-QSP: dynamic text: You may buy '+iif(abonement > 0, 'a subscription package', 'an additional subscr...
-  scene.text('You may buy \'+iif(abonement > 0, \'a subscription package\', \'an additional subscription package\')+\' for access to all available facilities at reception.');
+  scene.text('You may buy ' + ((((s as any).abonement ?? 0) > 0) ? ('a subscription package') : ('an additional subscription package')) + ' for access to all available facilities at reception.');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
     scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
@@ -53,11 +53,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Use the pool', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 150) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 150);
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'havana', 'dressing_room');
+      qspCall(st, 'money', 'pay', 150);
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'havana', 'dressing_room');
     }
   } },
     ]);
@@ -140,7 +140,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
   }
   if (((s as any).nichTanya ?? 0)?.['Known'] === 0  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
-    scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027havana\\u0027, \\u0027fitgirl\\u0027); return false;">a cute girl</a> in the locker room.');
+    scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027havana/u0027, /u0027fitgirl/u0027); return false;">a cute girl</a> in the locker room.');
   }
   if (((s as any).fightClubQW ?? 0)?.['story'] === 0  &&  ((s as any).kickbox ?? 0)?.['sash'] >= 2  &&  (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  ||  ((s as any).gschoolVars ?? 0)?.['block'] === 1)) {
     qspGoto(s, 'fightClub_intro', 'start');
@@ -150,18 +150,18 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Take a shower (0:15)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
-    (s as any).pcs_hairbsh = 0;
-    (s as any).pcs_makeup = 1;
-    if (((s as any).pcs_inhib ?? 0) < 15) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (1);
+    (st as any).pcs_hairbsh = 0;
+    (st as any).pcs_makeup = 1;
+    if (((st as any).pcs_inhib ?? 0) < 15) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
-    qspCall(s, 'din_van', 'showerdin');
+    qspCall(st, 'din_van', 'showerdin');
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You go into the bathroom and turn on the shower. You lather your body and wash in the shower.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
     scene.actions([
@@ -199,8 +199,8 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).runnerQW ?? 0)?.['joined_team'] === 0) {
       scene.actions([
         { label: 'Join track team', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).runnerQW = (s as any).runnerQW ?? {})['joined_team'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).runnerQW = (st as any).runnerQW ?? {})['joined_team'] = 1;
     scene.text('You sign up for the track team.');
     scene.actions([
       { label: 'Leave', goto: ['havana', 'dressing_room'] },
@@ -269,9 +269,9 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Your deodorant will last for <b><<mc_inventory[''deodorant'']>></b> more '+iif(mc_inventory['deodor...
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
-    qspCall(s, 'sweat', 'deo');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
+    qspCall(st, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
@@ -286,11 +286,11 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit the locker room', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PSwim ?? 0))) {
-      if (((s as any).Fit ?? 0)?.['FMR'] === 0  &&  ((s as any).vidage ?? 0) <= 40  &&  ((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).fame ?? 0)?.['city_sport'] >= 10) {
-        qspGoto(s, 'havana', 'FMR');
+    if (((st as any).clothingworntype ?? 0) !== 'nude'  &&  (!((st as any).PSwim ?? 0))) {
+      if (((st as any).Fit ?? 0)?.['FMR'] === 0  &&  ((st as any).vidage ?? 0) <= 40  &&  ((st as any).pcs_hotcat ?? 0) >= 6  &&  ((st as any).fame ?? 0)?.['city_sport'] >= 10) {
+        qspGoto(st, 'havana', 'FMR');
       } else {
-        qspGoto(s, 'havana', 'start');
+        qspGoto(st, 'havana', 'start');
       }
     } else {
       scene.actions([
@@ -311,12 +311,12 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Turn away', goto: ['havana', 'dressing_room'] },
     { label: 'Follow her', handler: (st: GameState) => {
-    (s as any).pcs_hairbsh = 0;
-    (s as any).pcs_makeup = 1;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).shovertania = ((s as any).shovertania ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_hairbsh = 0;
+    (st as any).pcs_makeup = 1;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).shovertania = ((st as any).shovertania ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/tanya/gym/shower0.jpg');
     scene.text('There\'s no one else here. The girl looks around and smiles at you again before turning away.');
     scene.actions([
@@ -326,7 +326,7 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk up to the girl and she turns to face you.');
     scene.text('"Can I help you?" she asks with a puzzled stare.');
     scene.text('"Maybe I can help you?" you reply. "You look like you could use some help washing up there…"');
-    if (((s as any).pcs_hotcat ?? 0) < 6) {
+    if (((st as any).pcs_hotcat ?? 0) < 6) {
       scene.text('The girl glares at you in disgust while covering herself up. "Eww, what the fuck?! Are you some kind of pervert?!"');
       scene.text('Startled, you quickly run out of the room as the girl shouts after you, calling you various names.');
       scene.actions([
@@ -334,8 +334,8 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('The girl smirks at you as she looks you over. "Oh? And what part of me do you think needs cleaning?"');
-      qspCall(s, 'willpower', 'misc', 'force');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'misc', 'force');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Tease her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -344,10 +344,10 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Tease her', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'outfit', 'strip_all');
-    qspCall(s, 'arousal', 'foreplay', (-5), 'dom', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'outfit', 'strip_all');
+    qspCall(st, 'arousal', 'foreplay', (-5), 'dom', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/tanya/gym/shower_mol1.jpg');
     scene.text('"Down here for a start," you grin and firmly grope her ass before you start fondling her pussy with your fingers.');
     scene.text('She gasps before she starts moaning softly.');
@@ -359,8 +359,8 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Uhhh', handler: (st: GameState) => {
-    if (((s as any).pcs_hotcat ?? 0) < 7) {
-      qspCall(s, 'arousal', 'end');
+    if (((st as any).pcs_hotcat ?? 0) < 7) {
+      qspCall(st, 'arousal', 'end');
       scene.img('images/characters/city/tanya/gym/shower1.jpg');
       scene.text('The girl smiles at you. "You\'re cute, but I need to be somewhere else."');
       scene.text('She then returns to the changing room, leaving you alone in the showers. You follow a few minutes later, but she\'s already gone.');
@@ -368,9 +368,9 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'dressing_room'] },
       ]);
     } else {
-      qspCall(s, 'outfit', 'strip_all');
-      qspCall(s, 'arousal', 'foreplay', (-5), 'sub', 'lesbian');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'outfit', 'strip_all');
+      qspCall(st, 'arousal', 'foreplay', (-5), 'sub', 'lesbian');
+      qspCall(st, 'stat', '');
       scene.img('images/characters/city/tanya/gym/shower_mol2.jpg');
       scene.text('"Oh. Has cutie lost her nerve?" the girl smirks before she suddenly spins you around and starts groping your ass while nuzzling at your neck.');
       scene.actions([
@@ -399,7 +399,7 @@ function enterTanyaIntroduction(s: GameState, scene: SceneBuilder): void {
   scene.text('Just as you\'re about to go further, a group of women enter the showers. The girl is clearly afraid of being spotted with you and takes the first opportunity to quietly return to the dressing room.');
   scene.text('You follow her a few seconds later, but she\'s already started to dress herself.');
   scene.text('"So. Does cute girl have a name?" the girl asks.');
-  // TODO-QSP: dynamic text: "I'm <<$pcs_nickname>>," you reply while trying to find your panties.
+  // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>>," you reply while trying to find your panties.
   scene.text(`"I'm ${((s as any).pcs_nickname || '')}," you reply while trying to find your panties.`);
   scene.text('"Looking for these?" she asks and you look up to see her twirling your panties on her finger.');
   scene.text('"Can I have them back please?" you ask while holding out your hand.');
@@ -416,7 +416,7 @@ function enterTanyaIntroduction(s: GameState, scene: SceneBuilder): void {
 
 function enterGym(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  (s as any).sportzalrand = Math.floor(Math.random() * 21) + 0;
+  (s as any).sportzalrand = (Math.floor(Math.random() * 21) + 0);
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('<center><b>Fitness Center</b></center>');
@@ -429,10 +429,10 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).week ?? 0) === 7) {
       if (((s as any).centr ?? 0) === 1) {
-        scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027VolleyTrenCentr\\u0027, \\u0027\\u0027); return false;">Mikhail Nikolaevich</a> talking with a strange man.');
+        scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027VolleyTrenCentr/u0027, /u0027/u0027); return false;">Mikhail Nikolaevich</a> talking with a strange man.');
       } else {
         if (((s as any).centr ?? 0) === 2  &&  ((s as any).ricewine ?? 0) < 2) {
-          scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027VolleyTrenCentr\\u0027, \\u0027\\u0027); return false;">Guang</a> in the hall.');
+          scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027VolleyTrenCentr/u0027, /u0027/u0027); return false;">Guang</a> in the hall.');
         }
       }
     }
@@ -514,142 +514,142 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Aerobics (Burn fat)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier1', 30, 'vital', 'react');
-    (s as any).fat = ((s as any).fat ?? 0) - (Math.floor(Math.random() * 5) + 0);
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier1', 30, 'vital', 'react');
+    (st as any).fat = ((st as any).fat ?? 0) - ((Math.floor(Math.random() * 5) + 0));
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/pc/activities/exercises/gym/fit11.jpg');
     scene.text('You do some very vigorous exercises to the music, burning some fat.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Light weights (Build strength)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier3', 30, 'stren');
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier3', 30, 'stren');
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/pc/activities/exercises/gym/fit2.jpg');
     scene.text('You do some reps with the lighter dumbbells, building your strength.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Heavy weights (Build muscle <font color=red>This can lead to extreme strength at a cost to appearance</font>)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier3', 30, 'stren_plus');
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier3', 30, 'stren_plus');
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/pc/activities/exercises/gym/fit6.jpg');
     scene.text('You pump the heavy weights, building your muscle.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Squats (Tone your butt)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier2', 30, 'stren', 'butt_tr');
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier2', 30, 'stren', 'butt_tr');
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/pc/activities/exercises/butt_gym.jpg');
     scene.text('You do various squats to tone your thighs and glutes, which also helps with building strength.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Cross trainer (endurance)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier3', 30, 'vital');
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier3', 30, 'vital');
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/pc/activities/exercises/gym/fit3.jpg');
     scene.text('You spend half an hour doing reps on the cross trainer, developing your endurance.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Tennis practice (agility)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier3', 30, 'agil');
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier3', 30, 'agil');
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/pc/activities/exercises/gym/fit4.jpg');
     scene.text('You run some tennis exercises, concentrating on defensive drills.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Tennis practice (reactions)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier3', 30, 'react');
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier3', 30, 'react');
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/pc/activities/exercises/gym/fit4.jpg');
     scene.text('You run some tennis exercises, concentrating on court reactions.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Yoga (agility)', handler: (st: GameState) => {
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    qspCall(s, 'exercise', 'tier2', 30, 'sprt', 'agil');
-    if (((s as any).pcs_inhib ?? 0) < 30) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    qspCall(st, 'exercise', 'tier2', 30, 'sprt', 'agil');
+    if (((st as any).pcs_inhib ?? 0) < 30) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
-    qspCall(s, 'mood', 'raise', 'medium');
+    qspCall(st, 'mood', 'raise', 'medium');
     scene.img('images/pc/activities/exercises/yoga_dressed.mp4');
     scene.text('You spend half an hour performing a yoga session, improving your agility. You also feel yourself relaxing, improving your mood.');
-    if (((s as any).pcs_stam ?? 0) < 30) {
+    if (((st as any).pcs_stam ?? 0) < 30) {
       scene.text('You\'re too tired to do any more exercise and will have to rest and regain some stamina.');
     } else {
       scene.actions([
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Go to the kickboxing gym', goto: ['havana_kickboxing', 'start'] },
         ]);
@@ -662,11 +662,11 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = Math.floor(Math.random() * 20) + 0;
+  (s as any).result = (Math.floor(Math.random() * 20) + 0);
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish your workout', handler: (st: GameState) => {
-    if ((!((s as any).result ?? 0))) {
+    if ((!((st as any).result ?? 0))) {
       scene.img('images/locations/city/citycenter/gym/sex/zal1.jpg');
       scene.text('As you finish up your workout, you spot a rather attractive looking guy working out on the weight machine.');
       scene.actions([
@@ -693,27 +693,27 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
       { label: 'Very much', handler: (st: GameState) => {
     scene.text('"Oh, very much so…" you mumble while still absent-mindedly staring at him.');
     scene.text('"Thanks," he says with a grin. "It\'s nice to know that my hard work is getting the intended results."');
-    if (((s as any).hour ?? 0) >= 20  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).hour ?? 0) >= 20  &&  ((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.text('He looks around the empty room before smiling at you. "You\'re pretty cute. Do you want to help me… relax? I\'m feeling pretty tense after that workout."');
-      qspCall(s, 'willpower', 'misc', 'force');
-      if (((s as any).pcs_willpwr ?? 0) > ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'misc', 'force');
+      if (((st as any).pcs_willpwr ?? 0) > ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Suck his dick', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
-    qspCall(s, 'npcgeneratec', '', 0, 'guy from the gym', Math.floor(Math.random() * 27) + 19);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
+    qspCall(st, 'npcgeneratec', '', 0, 'guy from the gym', (Math.floor(Math.random() * 27) + 19));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/blowjob/bj9.jpg');
     scene.text('You nod and squat on the floor as the man gets up and eagerly pulls his shorts down, releasing his already rock hard dick. The head is already glistening with precum.');
     scene.text('He places his hand on the back of your head as you take his cock into your mouth and start sucking.');
     scene.text('"Oh fuck yeah, use that tongue, girl!" he groans as you gaze up at him.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', (-5), 'sub', 'exhibitionism');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'guy from the gym');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', (-5), 'sub', 'exhibitionism');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'guy from the gym');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/mouth/cum14.jpg');
     scene.text('You continue sucking his dick, the thrill of being caught only empowering you further. The guy then groans loudly and says that he\'s about to cum.');
     scene.text('A few seconds later, you feel spurts of warm cum hitting your throat as his cock twitches in your mouth.');
@@ -758,11 +758,11 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).result ?? 0) === 1  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).pcs_hotcat ?? 0) >= 7) {
+      if (((st as any).result ?? 0) === 1  &&  ((st as any).hour ?? 0) >= 20  &&  ((st as any).pcs_hotcat ?? 0) >= 7) {
         scene.img('images/locations/city/citycenter/gym/sex/zal3.jpg');
         scene.text('You finish up your workout and are taking a break on one of the weight benches when a guy sits behind you and suddenly starts caressing your breasts.');
-        qspCall(s, 'willpower', 'misc', 'self', 'medium');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        qspCall(st, 'willpower', 'misc', 'self', 'medium');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Hit him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -771,8 +771,8 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Hit him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('You jab him as hard as you can in the ribs and quickly squirm out of his grasp as he cries out in pain. You then run to the changing room without looking back.');
     scene.actions([
       { label: 'Continue', goto: ['havana', 'dressing_room'] },
@@ -804,7 +804,7 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (((s as any).result ?? 0) === 2  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
+        if (((st as any).result ?? 0) === 2  &&  ((st as any).pcs_hotcat ?? 0) >= 6) {
           scene.text('As you finish your workout, a rather pretty looking girl approaches you.');
           scene.text('"Hey, you! I need a squash partner and my boyfriend is taking <i>forever</i> to show up! Can you play with me until he gets here?"');
           scene.actions([
@@ -828,20 +828,20 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Join in', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
-    (s as any).girl = ((s as any).girl ?? 0) + (1);
-    qspCall(s, 'npcgeneratec', '', 0, 'guy from the gym', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 1, 'girl from the gym', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
+    (st as any).girl = ((st as any).girl ?? 0) + (1);
+    qspCall(st, 'npcgeneratec', '', 0, 'guy from the gym', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 1, 'girl from the gym', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
     scene.img('images/locations/city/citycenter/gym/sex/zal5.jpg');
     scene.text('You smile at the girl and she nods at her boyfriend, who starts groping your ass.');
     scene.text('"We\'re too exposed here. We should go to our usual spot," the girl says.');
     scene.text('The guy nods and they lead you to what appears to be a storage area for equipment.');
     scene.text('Once inside, the guy pulls off his pants and takes a seat on an old weightlifting bench.');
-    qspCall(s, 'arousal', 'foreplay', (-2), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-3), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', (-2), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-3), ((st as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/gym/sex/threesome1.jpg');
@@ -849,17 +849,17 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fuck, that feels good!" he says. "I need to fuck her before I blow my load!"');
     scene.text('"You\'re cumming already?" the girl moans.');
     scene.text('"Hey, it\'s not my fault that I have two hot girls worshipping my cock!" he replies with a grin.');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Strip', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/gym/sex/threesome2.jpg');
     scene.text('You all strip your clothes off before they have you lie back on the bench and spread your legs. As the guy moves in between your legs, the girl straddles the bench above you and sits on your face.');
     scene.text('She starts grinding against you, her wetness smearing across your face as you feel the guy\'s dick slide into your pussy, causing you to moan softly into the girl\'s crotch.');
     scene.text('You keep licking and teasing her pussy as the guy fucks you with plenty of enthusiasm, but little technique. After a few minutes, he moans out that he\'s about to cum.');
-    qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'cuni_give', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'cuni_give', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep going', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/gym/sex/threesome3.jpg');
@@ -869,11 +869,11 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry, but this girl you brought has a great pussy! You also worked me up earlier, so it\'s not really my fault!"');
     scene.text('They start bickering with each other, so you quietly gather your clothes up before getting dressed and slipping out of the room.');
     scene.text('You feel pretty dirty and should probably clean up in the shower.');
-    qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'cuni_give', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0));
-    qspCall(s, 'cum_call', 'stomach', ((s as any).npcID ?? 0));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'cuni_give', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'cum_call', 'labia', ((st as any).npcID ?? 0));
+    qspCall(st, 'cum_call', 'stomach', ((st as any).npcID ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to the changing room', goto: ['havana', 'dressing_room'] },
     ]);
@@ -888,7 +888,7 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (((s as any).result ?? 0) === 3) {
+          if (((st as any).result ?? 0) === 3) {
             scene.img('images/locations/city/citycenter/gym/sex/zal6.jpg');
             scene.text('As you work out, another girl approaches and smiles before engaging you in conversation. As you exercise together, two guys walk up and try to chat you up.');
             scene.actions([
@@ -937,7 +937,7 @@ function enterFMR(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn and see a man with several cameras hanging from his neck. You recognize him as one of Aphrodite\'s photographers. Now that you think about it, he\'s been hanging around some of the sports events in which you have participated.');
     scene.text('"The agency sent me to tell you that our sponsors want to give you an opportunity as a fitness model. It seems you\'re getting pretty famous!"');
     scene.text('You smile. The fitness gigs at the agency are paid based not only on your modeling experience, but also your relative sports fame and bodybuild.');
-    // TODO-QSP: dynamic text: "Congratulations <<$pcs_nickname>>, you've earned it!" he smiles.
+    // TODO-QSP: dynamic text: "Congratulations <<$pcs_nickname>>, you''ve earned it!" he smiles.
     scene.text(`"Congratulations ${((s as any).pcs_nickname || '')}, you've earned it!" he smiles.`);
     scene.text('He then turns around and, after waving a final goodbye, leaves.');
     scene.actions([
@@ -945,7 +945,7 @@ function enterFMR(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('You see a man with several cameras hanging from his neck. You vaguely remember him hanging around some of the sports events in which you have participated. He smiles and quickly takes your hand in a handshake.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, isn't it? I'm here to make a proposal. A serious business <i...
+    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, isn''t it? I''m here to make a proposal. A serious business ...
     scene.text(`"${((s as any).pcs_lastname || '')}, isn't it? I'm here to make a proposal. A serious business <i>career-oriented</i> proposal. Would you consider becoming a model?"`);
     scene.text('You blink, utterly taken aback. You? A model?! You have the looks, and it\'s not that weird for a woman in the sports career to be offered a job in the model business, but are you going to trust this stranger?');
     scene.text('Sensing your hesitation, the man pushes a business card into your hands. "You don\'t need to give an answer right now. Ask around if you want, and when you\'ve made your decision, come and see us. If you pass some basic tests, you can start a new and very exciting career."');

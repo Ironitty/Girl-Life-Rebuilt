@@ -71,12 +71,12 @@ function enterAutoPill(s: GameState, scene: SceneBuilder): void {
       (s as any).tabletkipi = (-4);
     } else {
       if (((s as any).tabletkiap ?? 0) < 350) {
-        (s as any).temprand = Math.floor(Math.random() * 6) + 0;
+        (s as any).temprand = (Math.floor(Math.random() * 6) + 0);
       } else {
-        (s as any).temprand = Math.floor(Math.random() * 1001) + 0;
+        (s as any).temprand = (Math.floor(Math.random() * 1001) + 0);
       }
       if ((!((s as any).temprand ?? 0))) {
-        (s as any).temprand = Math.floor(Math.random() * 2) + 0;
+        (s as any).temprand = (Math.floor(Math.random() * 2) + 0);
         if ((!((s as any).temprand ?? 0))) {
           qspCall(s, 'din_bad', 'takepill');
           (s as any).tabletkipt = (-2);
@@ -184,7 +184,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tabletkishot ?? 0) !== 0) {
       (s as any).mesec = 0;
       if ((Math.floor(Math.random() * 1001) + 0) === 1000) {
-        (s as any).EggRH = Math.floor(Math.random() * 61) + 20;
+        (s as any).EggRH = (Math.floor(Math.random() * 61) + 20);
       } else {
         (s as any).EggRH = 0;
       }
@@ -231,7 +231,7 @@ function enterDailyUpdate(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).birth_control ?? 0)?.['implant_status'] > 1) {
-      (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 2) + 0);
+      (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + ((Math.floor(Math.random() * 2) + 0));
       (s as any).pillcon = ((s as any).pillcon ?? 0) + (((((s as any).pillcon ?? 0) + 15000) / 25) + 4000);
       if (((s as any).pillcon ?? 0) > 40000) {
         (s as any).pillcon = 40000;
@@ -674,11 +674,11 @@ function enterForcePregBy(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[1] ?? 0)) === 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_usedname ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+  if (((s as any).npc_usedname ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 0) {
-    if (((s as any).npc_spermpot ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= 0) {
+  if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0) {
+    if (((s as any).npc_spermpot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= 0) {
       return;
     }
   }
@@ -709,7 +709,7 @@ function enterForcePregBy(s: GameState, scene: SceneBuilder): void {
     (s as any).fertegg = ((s as any).fertegg ?? 0) - (1);
   } else {
     (s as any).nextBaby = 0;
-    (s as any).Temppolkid = Math.floor(Math.random() * 2) + 0;
+    (s as any).Temppolkid = (Math.floor(Math.random() * 2) + 0);
     ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).Temppolkid ?? 0);
     // TODO-QSP: $kidname[nextBaby] = 'unborn'
     ((s as any).kidage = (s as any).kidage ?? {})[String((s as any).nextBaby ?? 0)] = 0;
@@ -719,8 +719,8 @@ function enterForcePregBy(s: GameState, scene: SceneBuilder): void {
     ((s as any).babyptype = (s as any).babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 0;
     // TODO-QSP: $ChildFath[nextBaby] = $fp_bio
     // TODO-QSP: $ChildThFath[nextBaby] = $fp_bel
-    ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
-    ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
+    ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
+    ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
     ((s as any).ChildConType = (s as any).ChildConType ?? {})[String((s as any).nextBaby ?? 0)] = 0;
     ((s as any).babyptype = (s as any).babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 1;
   }

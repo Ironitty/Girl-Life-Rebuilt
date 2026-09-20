@@ -22,16 +22,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Get down on your knees', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall1.mp4');
     scene.text('You unzip then drop Fedor\'s pants as you continue kissing him while stroking his cock. After a few seconds, you drop to your knees and start sucking his dick without ever breaking eye contact. Fedor moans a bit. "You know just what I like." You respond with "What kind of girlfriend would I be if I didn\'t know how to please my man."');
-    qspCall(s, 'arousal', 'bj', (-5), 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', (-5), 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/blowjob/blowjob2.mp4');
     scene.text('Fedor says, "Let\'s see how much you can take." as he grabs you by the back of your head and begins pushing his cock further down you throat. You do your best not to gag as Fedor begin fucking your throat. The sensation is unpleasant but you do your best to please Fedor, letting him fuck your throat deeper and rougher while trying to hold back the tears streaming down your face. After a few seconds Fedor notices your discomfort and releases you. Fedor then kneels down front of you and kisses you gently. "Since you did that for me, I\'m going to give you a reward."');
-    qspCall(s, 'arousal', 'bj', (-5), 'sub', 'deepthroat');
-    qspCall(s, 'stat', '');
-    (s as any).VK = Math.floor(Math.random() * 4) + 1;
-    if (((s as any).VK ?? 0) === 4  &&  ((s as any).fedorKozlovQW ?? 0) > -10) {
+    qspCall(st, 'arousal', 'bj', (-5), 'sub', 'deepthroat');
+    qspCall(st, 'stat', '');
+    (st as any).VK = (Math.floor(Math.random() * 4) + 1);
+    if (((st as any).VK ?? 0) === 4  &&  ((st as any).fedorKozlovQW ?? 0) > -10) {
       scene.actions([
         { label: 'See what he does', goto: ['FedorEv4_sex', '3Way'] },
       ]);
@@ -39,38 +39,38 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'See what he does', goto: ['FedorEv4_sex', 'Hall Sex'] },
         { label: 'Put your feet in his face', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall6.jpg');
     scene.text('You lean back and lift your feet to his face. "Good, Kiss my feet." Fedor is surprised at first but then starts slowly rubbing your ankles with his hands as he begins gently kissing your feet. Fedor begins kissing each of your toes one at a time then starts to suck on them as you watch him in excitement of how much he is willing to do for you and how much he enjoys pleasing you.');
-    qspCall(s, 'arousal', 'foreplay_give', (-10), 'dom', 'feet');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay_give', (-10), 'dom', 'feet');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Give him a footjob', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall7.jpg');
-    // TODO-QSP: dynamic text: You pull your foot away from Fedor's mouth then place it on his chest lightly pu...
-    scene.text(`You pull your foot away from Fedor's mouth then place it on his chest lightly pushing him on his back as you wrap both your feet around his dick and begin to stroking his cock while staring into his eyes, enjoying the very adoring look he is giving you. Fedor remarks. "Wow ${((s as any).pcs_nickname || '')}, Your feet are so soft."`);
+    // TODO-QSP: dynamic text: You pull your foot away from Fedor''s mouth then place it on his chest lightly p...
+    scene.text(`You pull your foot away from Fedor's mouth then place it on his chest lightly pushing him on his back as you wrap both your feet around his dick and begin to stroking his cock while staring into his eyes, enjoying the very adoring look he is giving you. Fedor remarks. "Wow ${((st as any).pcs_nickname || '')}, Your feet are so soft."`);
     scene.text('You respond, "And so is your dick. I want to ride it." as you withdraw your feet then crawl on top of Fedor, burying his dick in your pussy while forcing your tongue in Fedor\'s mouth as he caresses it with his.');
-    qspCall(s, 'arousal', 'footjob', (-10), 'dom', 'feet');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'footjob', (-10), 'dom', 'feet');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Ride Fedor', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall8.jpg');
     scene.text('You ride Fedor\'s cock slowly at first but then begin picking up the pace as you see him begin to squirm. You can see that he is trying to keep himself from cumming.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
-    qspCall(s, 'stat', '');
-    if (((s as any).FedorLoveTalk ?? 0) === 1) {
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'stat', '');
+    if (((st as any).FedorLoveTalk ?? 0) === 1) {
       scene.actions([
         { label: 'Make him cum inside you', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum3.mp4');
-    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor's eyes, feeling both t...
-    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You start thrusting rapidly, ready to take his load inside you and after the fourth thrust Fedor groans and you can feel his cum filling you with its warmth. You continue riding him, doing your best to milk his dick dry, feeling him filling your womb almost completely. Fedor take a few seconds to catch his breath. "${((s as any).pcs_firstname || '')} you're so damn good at that."`);
+    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor''s eyes, feeling both ...
+    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You start thrusting rapidly, ready to take his load inside you and after the fourth thrust Fedor groans and you can feel his cum filling you with its warmth. You continue riding him, doing your best to milk his dick dry, feeling him filling your womb almost completely. Fedor take a few seconds to catch his breath. "${((st as any).pcs_firstname || '')} you're so damn good at that."`);
     scene.text('You respond, "I will always do my best to please you Fyodor." Fedor gives you a warm smile then begins getting dressed as he replies, "That\'s my girl. Shall we go and watch a movie together?" You reply, "Sure but I need to wash up first.');
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
-    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Clean up', goto: ['FedorEv4', 'Bathroom Wash'] },
     ]);
@@ -79,15 +79,118 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Make him cum', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum7.mp4');
-    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor's eyes, feeling both t...
-    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You give him 3 more thrust then pull Fedor's dick out of you and begin rubbing it with your hands as he cums on your feet. You do your best to milk him dry while staring into his eyes as he cums for you. Fedor takes a few seconds to catch his breath. "Damn ${((s as any).pcs_firstname || '')}, I love it when you take control."`);
+    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor''s eyes, feeling both ...
+    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You give him 3 more thrust then pull Fedor's dick out of you and begin rubbing it with your hands as he cums on your feet. You do your best to milk him dry while staring into his eyes as he cums for you. Fedor takes a few seconds to catch his breath. "Damn ${((st as any).pcs_firstname || '')}, I love it when you take control."`);
     scene.text('You respond, "What can I say? I know what my man needs." Fedor begins dressed as he replies, "You certainly do… So are you still up for a good movie?" You reply, "Sure but I need to wash up first."');
-    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
-    qspCall(s, 'cum_call', 'hands', ((s as any).boy ?? 0), 1);
-    qspCall(s, 'cum_call', 'legs', ((s as any).boy ?? 0), 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'cum_call', 'hands', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', 'legs', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'stat', '');
+    scene.actions([
+      { label: 'Go wash up', handler: (st: GameState) => {
+    qspCall(st, 'arousal', 'end');
+  }, goto: ['FedorEv4', 'Bathroom Wash'] },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+    ]);
+  } },
+      ]);
+    }
+  } },
+    ]);
+  } },
+  ]);
+  scene.build();
+}
+
+function enterHome(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
+  (s as any).FedorHomeDate = 1;
+  (s as any).WithFedor = 1;
+  qspCall(s, 'boyStat', 'A5');
+  scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/kiss2.mp4');
+  scene.text('As you arrive at Fedor\'s house and he opens the door for you then gives you a pat on the ass with a playful smile on his face as you walk in. You respond by pushing him against the wall while grabbing the back of his head and passionately kissing his lips as you rub on his crotch.');
+  qspCall(s, 'arousal', 'foreplay', 5, 'sub');
+  qspCall(s, 'arousal', 'kiss', (-5), 'dom');
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Head to the livingroom', goto: ['FedorEv4', 'Home 2'] },
+    { label: 'Get down on your knees', handler: (st: GameState) => {
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall1.mp4');
+    scene.text('You unzip then drop Fedor\'s pants as you continue kissing him while stroking his cock. After a few seconds, you drop to your knees and start sucking his dick without ever breaking eye contact. Fedor moans a bit. "You know just what I like." You respond with "What kind of girlfriend would I be if I didn\'t know how to please my man."');
+    qspCall(st, 'arousal', 'bj', (-5), 'dom');
+    qspCall(st, 'stat', '');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    scene.img('images/shared/sex/blowjob/blowjob2.mp4');
+    scene.text('Fedor says, "Let\'s see how much you can take." as he grabs you by the back of your head and begins pushing his cock further down you throat. You do your best not to gag as Fedor begin fucking your throat. The sensation is unpleasant but you do your best to please Fedor, letting him fuck your throat deeper and rougher while trying to hold back the tears streaming down your face. After a few seconds Fedor notices your discomfort and releases you. Fedor then kneels down front of you and kisses you gently. "Since you did that for me, I\'m going to give you a reward."');
+    qspCall(st, 'arousal', 'bj', (-5), 'sub', 'deepthroat');
+    qspCall(st, 'stat', '');
+    (st as any).VK = (Math.floor(Math.random() * 4) + 1);
+    if (((st as any).VK ?? 0) === 4  &&  ((st as any).fedorKozlovQW ?? 0) > -10) {
+      scene.actions([
+        { label: 'See what he does', goto: ['FedorEv4_sex', '3Way'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'See what he does', goto: ['FedorEv4_sex', 'Hall Sex'] },
+        { label: 'Put your feet in his face', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall6.jpg');
+    scene.text('You lean back and lift your feet to his face. "Good, Kiss my feet." Fedor is surprised at first but then starts slowly rubbing your ankles with his hands as he begins gently kissing your feet. Fedor begins kissing each of your toes one at a time then starts to suck on them as you watch him in excitement of how much he is willing to do for you and how much he enjoys pleasing you.');
+    qspCall(st, 'arousal', 'foreplay_give', (-10), 'dom', 'feet');
+    qspCall(st, 'stat', '');
+    scene.actions([
+      { label: 'Give him a footjob', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall7.jpg');
+    // TODO-QSP: dynamic text: You pull your foot away from Fedor''s mouth then place it on his chest lightly p...
+    scene.text(`You pull your foot away from Fedor's mouth then place it on his chest lightly pushing him on his back as you wrap both your feet around his dick and begin to stroking his cock while staring into his eyes, enjoying the very adoring look he is giving you. Fedor remarks. "Wow ${((st as any).pcs_nickname || '')}, Your feet are so soft."`);
+    scene.text('You respond, "And so is your dick. I want to ride it." as you withdraw your feet then crawl on top of Fedor, burying his dick in your pussy while forcing your tongue in Fedor\'s mouth as he caresses it with his.');
+    qspCall(st, 'arousal', 'footjob', (-10), 'dom', 'feet');
+    qspCall(st, 'stat', '');
+    scene.actions([
+      { label: 'Ride Fedor', handler: (st: GameState) => {
+    qspCall(st, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/hall/sex/hall8.jpg');
+    scene.text('You ride Fedor\'s cock slowly at first but then begin picking up the pace as you see him begin to squirm. You can see that he is trying to keep himself from cumming.');
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'stat', '');
+    if (((st as any).FedorLoveTalk ?? 0) === 1) {
+      scene.actions([
+        { label: 'Make him cum inside you', handler: (st: GameState) => {
+    qspCall(st, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum3.mp4');
+    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor''s eyes, feeling both ...
+    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You start thrusting rapidly, ready to take his load inside you and after the fourth thrust Fedor groans and you can feel his cum filling you with its warmth. You continue riding him, doing your best to milk his dick dry, feeling him filling your womb almost completely. Fedor take a few seconds to catch his breath. "${((st as any).pcs_firstname || '')} you're so damn good at that."`);
+    scene.text('You respond, "I will always do my best to please you Fyodor." Fedor gives you a warm smile then begins getting dressed as he replies, "That\'s my girl. Shall we go and watch a movie together?" You reply, "Sure but I need to wash up first.');
+    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'arousal', 'end');
+    scene.actions([
+      { label: 'Clean up', goto: ['FedorEv4', 'Bathroom Wash'] },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Make him cum', handler: (st: GameState) => {
+    qspCall(st, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum7.mp4');
+    // TODO-QSP: dynamic text: You continue picking up the pace while staring into Fedor''s eyes, feeling both ...
+    scene.text(`You continue picking up the pace while staring into Fedor's eyes, feeling both the rush of pleasure and the thrill of dominance, Knowing that Fedor's pleasure is completely in your hands. Thrusting faster and faster until you hear Fedor say, "I can't hold on much longer. I'm gonna cum." You give him 3 more thrust then pull Fedor's dick out of you and begin rubbing it with your hands as he cums on your feet. You do your best to milk him dry while staring into his eyes as he cums for you. Fedor takes a few seconds to catch his breath. "Damn ${((st as any).pcs_firstname || '')}, I love it when you take control."`);
+    scene.text('You respond, "What can I say? I know what my man needs." Fedor begins dressed as he replies, "You certainly do… So are you still up for a good movie?" You reply, "Sure but I need to wash up first."');
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'cum_call', 'hands', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', 'legs', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go wash up', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -114,7 +217,7 @@ function enterHome2(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'livingr';
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/sitting.jpg');
-  scene.text('You walk into the living room then take a seat on the couch. Fedor walks into the kitchen and returns with a bowl of <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Popcorn\\u0027); return false;">popcorn</a>, some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Snacks\\u0027); return false;">snacks</a> and a few cans of soda then lays them down on the table. Fedor grabs the remote then sits down next to you as he begins flipping through channels.');
+  scene.text('You walk into the living room then take a seat on the couch. Fedor walks into the kitchen and returns with a bowl of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Popcorn/u0027); return false;">popcorn</a>, some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Snacks/u0027); return false;">snacks</a> and a few cans of soda then lays them down on the table. Fedor grabs the remote then sits down next to you as he begins flipping through channels.');
   qspCall(s, 'FedorEV4', 'movie_choice');
   // TODO-QSP: end
   scene.build();
@@ -159,17 +262,17 @@ function enterMovieChoice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Wait for Fedor to pick a channel', handler: (st: GameState) => {
-    (s as any).VK = Math.floor(Math.random() * 4) + 1;
-    if (((s as any).VK ?? 0) <= 1) {
-      qspGoto(s, 'FedorEv4', 'Movie Family');
+    (st as any).VK = (Math.floor(Math.random() * 4) + 1);
+    if (((st as any).VK ?? 0) <= 1) {
+      qspGoto(st, 'FedorEv4', 'Movie Family');
     } else {
-      if (((s as any).VK ?? 0) === 2) {
-        qspGoto(s, 'FedorEv4', 'Movie Sports');
+      if (((st as any).VK ?? 0) === 2) {
+        qspGoto(st, 'FedorEv4', 'Movie Sports');
       } else {
-        if (((s as any).VK ?? 0) === 3) {
-          qspGoto(s, 'FedorEv4', 'Movie Porn');
+        if (((st as any).VK ?? 0) === 3) {
+          qspGoto(st, 'FedorEv4', 'Movie Porn');
         } else {
-          qspGoto(s, 'FedorEv4', 'Movie Action');
+          qspGoto(st, 'FedorEv4', 'Movie Action');
         }
       }
     }
@@ -186,7 +289,7 @@ function enterMovieAction(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino\'+rand(2, 3)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino' + (Math.floor(Math.random() * 2) + 2) + '.mp4');
   scene.text('You and Fedor begin watching an action/drama movie while occasionally discussing your favorite scenes as you see them.');
   // TODO-QSP: end
   scene.actions([
@@ -199,7 +302,7 @@ function enterMovieSports(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport\'+rand(1, 2)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   scene.text('You and Fedor begin watching a variety of different sports channels while occasionally discussing your favorite teams and fighters.');
   // TODO-QSP: end
   scene.actions([
@@ -212,7 +315,7 @@ function enterMovieFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult\'+rand(1, 2)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   scene.text('You and Fedor begin watching a family/drama while occasionally discussing your favorite characters.');
   // TODO-QSP: end
   scene.actions([
@@ -226,7 +329,7 @@ function enterMoviePorn(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn\'+rand(1, 5)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   scene.text('You and Fedor begin watching a variety of different adult films while occasionally discussing your favorite pornstars and positions.');
   // TODO-QSP: end
   scene.actions([
@@ -246,11 +349,11 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FedorLove ?? 0) === 1) {
     scene.actions([
       { label: 'I could use a nice warm bed right now', handler: (st: GameState) => {
-    (s as any).VK = Math.floor(Math.random() * 2) + 1;
-    if (((s as any).VK ?? 0) <= 1) {
-      qspGoto(s, 'FedorEv4_sex', 'Bedroom Cam');
+    (st as any).VK = (Math.floor(Math.random() * 2) + 1);
+    if (((st as any).VK ?? 0) <= 1) {
+      qspGoto(st, 'FedorEv4_sex', 'Bedroom Cam');
     } else {
-      qspGoto(s, 'FedorEv4_sex', 'Bedroom 1');
+      qspGoto(st, 'FedorEv4_sex', 'Bedroom 1');
     }
   } },
     ]);
@@ -264,20 +367,20 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Take me', goto: ['FedorEv4', 'random_sex'] },
     { label: 'Suck Fedor\'s dick', handler: (st: GameState) => {
-    (s as any).VK = Math.floor(Math.random() * 2) + 1;
-    if (((s as any).VK ?? 0) <= 1) {
-      qspGoto(s, 'FedorEv4_sex', 'Livingroom 1');
+    (st as any).VK = (Math.floor(Math.random() * 2) + 1);
+    if (((st as any).VK ?? 0) <= 1) {
+      qspGoto(st, 'FedorEv4_sex', 'Livingroom 1');
     } else {
-      qspGoto(s, 'FedorEv4_sex', 'Livingroom 2');
+      qspGoto(st, 'FedorEv4_sex', 'Livingroom 2');
     }
   } },
     { label: 'I have a treat for you in the kitchen', handler: (st: GameState) => {
-    (s as any).locclass = 'kitr';
-    (s as any).VK = Math.floor(Math.random() * 2) + 1;
-    if (((s as any).VK ?? 0) <= 1) {
-      qspGoto(s, 'FedorEv4_sex', 'Kitchen 1');
+    (st as any).locclass = 'kitr';
+    (st as any).VK = (Math.floor(Math.random() * 2) + 1);
+    if (((st as any).VK ?? 0) <= 1) {
+      qspGoto(st, 'FedorEv4_sex', 'Kitchen 1');
     } else {
-      qspGoto(s, 'FedorEv4_sex', 'Kitchen 2');
+      qspGoto(st, 'FedorEv4_sex', 'Kitchen 2');
     }
   } },
     { label: 'Use bathroom', goto: ['FedorEv4_sex', 'Bathroom 1'] },
@@ -286,7 +389,7 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandomSex(s: GameState, scene: SceneBuilder): void {
-  (s as any).VK = Math.floor(Math.random() * 8) + 1;
+  (s as any).VK = (Math.floor(Math.random() * 8) + 1);
   if (((s as any).VK ?? 0) <= 1) {
     qspGoto(s, 'FedorEv4_sex', 'Livingroom 1');
   } else {
@@ -343,7 +446,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.img('images/locations/pavlovsk/resident/fedorhome/bathroom.jpg');
-      scene.text('This bathroom is very clean and organized with a sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Toilet\\u0027); return false;">Toilet</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> and bathtub.');
+      scene.text('This bathroom is very clean and organized with a sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Toilet/u0027); return false;">Toilet</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> and bathtub.');
       if ((!((s as any).WithFedor ?? 0))) {
         scene.actions([
           { label: 'Leave bathroom', goto: ['FedorEv4', 'Hallway'] },
@@ -433,23 +536,23 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Potty_Daystart ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Use the toilet', handler: (st: GameState) => {
-    (s as any).VK = Math.floor(Math.random() * 6) + 1;
-    if (((s as any).VK ?? 0) >= 1  &&  ((s as any).VK ?? 0) <= 3  &&  ((s as any).WithFedor ?? 0) === 1) {
-      qspGoto(s, 'FedorEv4_sex', 'Bathroom Cam');
+    (st as any).VK = (Math.floor(Math.random() * 6) + 1);
+    if (((st as any).VK ?? 0) >= 1  &&  ((st as any).VK ?? 0) <= 3  &&  ((st as any).WithFedor ?? 0) === 1) {
+      qspGoto(st, 'FedorEv4_sex', 'Bathroom Cam');
     } else {
-      if (((s as any).VK ?? 0) >= 4  &&  ((s as any).VK ?? 0) <= 6  &&  ((s as any).WithFedor ?? 0) === 1) {
-        qspGoto(s, 'FedorEv4_sex', 'Bathroom 2');
+      if (((st as any).VK ?? 0) >= 4  &&  ((st as any).VK ?? 0) <= 6  &&  ((st as any).WithFedor ?? 0) === 1) {
+        qspGoto(st, 'FedorEv4_sex', 'Bathroom 2');
       } else {
-        if (((s as any).VK ?? 0) >= 7  &&  ((s as any).VK ?? 0) <= 9  &&  ((s as any).WithFedor ?? 0) === 1  &&  ((s as any).VKwip ?? 0) === 100) {
-          qspGoto(s, 'FedorEv4_sex', 'Bathroom 3');
+        if (((st as any).VK ?? 0) >= 7  &&  ((st as any).VK ?? 0) <= 9  &&  ((st as any).WithFedor ?? 0) === 1  &&  ((st as any).VKwip ?? 0) === 100) {
+          qspGoto(st, 'FedorEv4_sex', 'Bathroom 3');
         } else {
-          if (((s as any).VK ?? 0) < 6  &&  (!((s as any).WithFedor ?? 0))) {
-            qspGoto(s, 'FedorEv4', 'Toilet 2');
+          if (((st as any).VK ?? 0) < 6  &&  (!((st as any).WithFedor ?? 0))) {
+            qspGoto(st, 'FedorEv4', 'Toilet 2');
           } else {
-            if (((s as any).VK ?? 0) === 6  &&  (!((s as any).WithFedor ?? 0))) {
-              qspGoto(s, 'FedorEv4', 'Toilet 3');
+            if (((st as any).VK ?? 0) === 6  &&  (!((st as any).WithFedor ?? 0))) {
+              qspGoto(st, 'FedorEv4', 'Toilet 3');
             } else {
-              qspGoto(s, 'FedorEv4', 'Toilet');
+              qspGoto(st, 'FedorEv4', 'Toilet');
             }
           }
         }
@@ -502,18 +605,18 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/kitchen.jpg');
   scene.text('This kitchen is very clean. Fedor\'s parents must be very neat people.');
-  scene.text('There is a sink, a microwave, a stove and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fridge\\u0027); return false;">refrigerator</a> stocked with food.');
+  scene.text('There is a sink, a microwave, a stove and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Fridge/u0027); return false;">refrigerator</a> stocked with food.');
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 20  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Kitchen\\u0027); return false;">Fedor</a> is sitting down, eating dinner.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Fedor Kitchen/u0027); return false;">Fedor</a> is sitting down, eating dinner.');
   } else {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 22  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 16) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is sitting at the table, eating dinner.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Regina Chat/u0027); return false;">Regina</a> is sitting at the table, eating dinner.');
     } else {
       if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 20) {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is cleaning the kitchen.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Regina Chat/u0027); return false;">Regina</a> is cleaning the kitchen.');
       } else {
         if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) === 11) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is getting ready to leave for work.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Regina Chat/u0027); return false;">Regina</a> is getting ready to leave for work.');
         }
       }
     }
@@ -535,15 +638,15 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/livingroom.jpg');
-  scene.text('The living room looks very neat and has a couch, a blu-ray player and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027TV\\u0027); return false;">TV</a>.');
+  scene.text('The living room looks very neat and has a couch, a blu-ray player and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027TV/u0027); return false;">TV</a>.');
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 22  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 19  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 16  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Livingroom\\u0027); return false;">Fedor</a> is sitting on the couch, watching TV.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Fedor Livingroom/u0027); return false;">Fedor</a> is sitting on the couch, watching TV.');
   }
   if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 12) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is vacuuming the floor.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Regina Chat/u0027); return false;">Regina</a> is vacuuming the floor.');
   } else {
     if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) > 22  &&  ((s as any).hour ?? 0) <= 24  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Regina Chat\\u0027); return false;">Regina</a> is sitting down on the couch, watching TV.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Regina Chat/u0027); return false;">Regina</a> is sitting down on the couch, watching TV.');
     }
   }
   // TODO-QSP: end
@@ -564,7 +667,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/hallway.jpg');
-  scene.text('This is the central hallway which connects the whole house. There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a>, a coat rack and multiple paintings on the walls.');
+  scene.text('This is the central hallway which connects the whole house. There is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a>, a coat rack and multiple paintings on the walls.');
   if (((s as any).fedorKozlovQW ?? 0) > 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 17) {
     scene.actions([
       { label: 'Go to Fedor\'s bedroom', goto: ['FedorMisc', 'Workout Time'] },
@@ -604,15 +707,15 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave the house</b>', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
-      qspGoto(s, 'FedorEv4', 'Nude');
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
+      qspGoto(st, 'FedorEv4', 'Nude');
     } else {
-      if (((s as any).FedorHomeDate ?? 0) === 1  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 24) {
-        qspGoto(s, 'FedorEv4', 'End Date');
+      if (((st as any).FedorHomeDate ?? 0) === 1  &&  ((st as any).week ?? 0) <= 5  &&  ((st as any).hour ?? 0) >= 14  &&  ((st as any).hour ?? 0) <= 24) {
+        qspGoto(st, 'FedorEv4', 'End Date');
       } else {
-        (s as any).FedorHomeDate = 0;
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        qspGoto(s, 'pav_residential', '');
+        (st as any).FedorHomeDate = 0;
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
+        qspGoto(st, 'pav_residential', '');
       }
     }
   } },
@@ -626,18 +729,18 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/bedroom.jpg');
-  scene.text('Fedor\'s bedroom is very neat, it has a bed, a computer desk with a chair and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a>, where you can choose outfits and organize your clothing.');
+  scene.text('Fedor\'s bedroom is very neat, it has a bed, a computer desk with a chair and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>, where you can choose outfits and organize your clothing.');
   if (((s as any).FedorLove ?? 0) === 1) {
-    scene.text('Fedor has a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Picture\\u0027); return false;">framed picture</a> by his bed.');
+    scene.text('Fedor has a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Picture/u0027); return false;">framed picture</a> by his bed.');
   }
   if (((s as any).hour ?? 0) < 8) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Sleeping\\u0027); return false;">Fedor</a> is sleeping in his bed.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Fedor Sleeping/u0027); return false;">Fedor</a> is sleeping in his bed.');
   } else {
     if (((s as any).hour ?? 0) >= 22) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Bedroom\\u0027); return false;">Fedor</a> is laying on his bed.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Fedor Bedroom/u0027); return false;">Fedor</a> is laying on his bed.');
     } else {
       if (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).hour ?? 0) < 14  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22) {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorEv4\\u0027, \\u0027Fedor Bedroom 2\\u0027); return false;">Fedor</a> is on his computer.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorEv4/u0027, /u0027Fedor Bedroom 2/u0027); return false;">Fedor</a> is on his computer.');
       }
     }
   }
@@ -709,13 +812,13 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Close refrigerator door', goto: ['FedorEv4', 'Kitchen'] },
     { label: 'Have a snack', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (5);
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (5);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (20);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (5);
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/munch1.jpg');
     scene.text('You grab a variety of different snacks and begin eating them while pondering over what your favorite snack is.');
     scene.actions([
@@ -723,14 +826,14 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Have some leftovers', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (60);
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/eating.jpg');
     scene.text('You search the fridge for something to eat and notice a few containers of leftovers, so you grab one of them then begin heating it up in the microwave. When the food is ready you grab a can of soda then sit down and eat the meal.');
     scene.actions([
@@ -745,10 +848,10 @@ function enterFedorSleeping(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/fedor.jpg');
-  // TODO-QSP: dynamic text: Hey <<$pcs_firstname>>, I'm a bit too tired to walk you home right now but you c...
+  // TODO-QSP: dynamic text: Hey <<$pcs_firstname>>, I''m a bit too tired to walk you home right now but you ...
   scene.text(`Hey ${((s as any).pcs_firstname || '')}, I'm a bit too tired to walk you home right now but you can climb into bed and spend the night if you like. Just don't let my mother see you leave.`);
   if (((s as any).pcs_health ?? 0) < 100) {
-    // TODO-QSP: dynamic text: Fedor then looks back at you and frowns. "<<$pcs_firstname>> you're hurt. My mot...
+    // TODO-QSP: dynamic text: Fedor then looks back at you and frowns. "<<$pcs_firstname>> you''re hurt. My mo...
     scene.text(`Fedor then looks back at you and frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse. You should have her take a look at you."`);
   }
   // TODO-QSP: end
@@ -768,10 +871,10 @@ function enterEndDate(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Not right now', goto: ['FedorEv4', 'Hallway'] },
     { label: 'Yes I am', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
-      qspGoto(s, 'FedorEv4', 'Nude');
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
+      qspGoto(st, 'FedorEv4', 'Nude');
     } else {
-      qspGoto(s, 'FedorEv4', 'End Date 2');
+      qspGoto(st, 'FedorEv4', 'End Date 2');
     }
   } },
   ]);
@@ -801,17 +904,17 @@ function enterEndDate2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTV(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 6) + 5);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 6) + 5));
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/sitting.jpg');
   scene.text('You sit down on the couch and lay back, trying to get as comfortable as possible while you decide what channel you would like to watch.');
   if (((s as any).VKwip ?? 0) === 100) {
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
-    if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 24  &&  ((s as any).hour ?? 0) > 20  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 10  &&  ((s as any).hour ?? 0) > 9  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) <= 18  &&  ((s as any).hour ?? 0) > 9) {
-      qspGoto(s, 'FedorEv4', 'Solo Caught');
+    if (((st as any).week ?? 0) <= 5  &&  ((st as any).hour ?? 0) <= 24  &&  ((st as any).hour ?? 0) > 20  ||  ((st as any).week ?? 0) <= 5  &&  ((st as any).hour ?? 0) <= 10  &&  ((st as any).hour ?? 0) > 9  ||  ((st as any).week ?? 0) > 5  &&  ((st as any).hour ?? 0) <= 18  &&  ((st as any).hour ?? 0) > 9) {
+      qspGoto(st, 'FedorEv4', 'Solo Caught');
     } else {
-      qspGoto(s, 'FedorEv4', 'Solo');
+      qspGoto(st, 'FedorEv4', 'Solo');
     }
   } },
     ]);
@@ -819,10 +922,10 @@ function enterTV(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) < 20  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 22  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) < 10  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) > 18) {
     scene.actions([
       { label: 'Watch porn (0:30)', handler: (st: GameState) => {
-    if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 24  &&  ((s as any).hour ?? 0) > 20  &&  ((s as any).VKwip ?? 0) === 100  ||  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) <= 10  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).VKwip ?? 0) === 100  ||  ((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) <= 18  &&  ((s as any).hour ?? 0) > 9  &&  ((s as any).VKwip ?? 0) === 100) {
-      qspGoto(s, 'FedorEv4', 'Porn Caught');
+    if (((st as any).week ?? 0) <= 5  &&  ((st as any).hour ?? 0) <= 24  &&  ((st as any).hour ?? 0) > 20  &&  ((st as any).VKwip ?? 0) === 100  ||  ((st as any).week ?? 0) <= 5  &&  ((st as any).hour ?? 0) <= 10  &&  ((st as any).hour ?? 0) > 9  &&  ((st as any).VKwip ?? 0) === 100  ||  ((st as any).week ?? 0) > 5  &&  ((st as any).hour ?? 0) <= 18  &&  ((st as any).hour ?? 0) > 9  &&  ((st as any).VKwip ?? 0) === 100) {
+      qspGoto(st, 'FedorEv4', 'Porn Caught');
     } else {
-      qspGoto(s, 'FedorEv4', 'TV Porn');
+      qspGoto(st, 'FedorEv4', 'TV Porn');
     }
   } },
     ]);
@@ -839,10 +942,10 @@ function enterTV(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTVAction(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 11) + 15);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 15));
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino\'+rand(2, 3)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvkino' + (Math.floor(Math.random() * 2) + 2) + '.mp4');
   scene.text('You and Fedor begin watching an action/drama movie while occasionally discussing your favorite scenes as you see them.');
   // TODO-QSP: end
   scene.actions([
@@ -853,10 +956,10 @@ function enterTVAction(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTVGeographic(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 6) + 5);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 6) + 5));
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo\'+rand(1, 4)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvgeo' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
   scene.text('You change to the geographic channel. You study what you see to have a better understanding of the world around you.');
   // TODO-QSP: end
   scene.actions([
@@ -867,10 +970,10 @@ function enterTVGeographic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTVSports(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 11) + 10);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 10));
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport\'+rand(1, 2)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvsport' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   scene.text('You begin cycling through sports channels, enjoying the athletes competing in various sports.');
   // TODO-QSP: end
   scene.actions([
@@ -881,10 +984,10 @@ function enterTVSports(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTVFamily(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 11) + 15);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 15));
   (s as any).minut = ((s as any).minut ?? 0) + 90;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult\'+rand(1, 2)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvmult' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   scene.text('You change to the family channel and begin watch an animated movie with cute cuddly animals.');
   // TODO-QSP: end
   scene.actions([
@@ -895,11 +998,11 @@ function enterTVFamily(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTVPorn(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 6) + 5);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 6) + 5));
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn\'+rand(1, 5)+\'.mp4');
+  scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvporn' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   scene.text('You begin cycling through adult channels watching various sexual acts being performed by professional pornstars…');
   // TODO-QSP: end
   scene.actions([
@@ -929,7 +1032,7 @@ function enterReginaIntro(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><b><h4><font color="#FF00FF"><<"Regina Kozlov">></font></h4></b></center...
   scene.text(`<center><b><h4><font color="#FF00FF">${'Regina Kozlov'}</font></h4></b></center>`);
   scene.img('images/locations/pavlovsk/resident/fedorhome/regina.jpg');
-  // TODO-QSP: dynamic text: You approach Fedor's mother and her eyes light up when she sees you. "Ahh, you m...
+  // TODO-QSP: dynamic text: You approach Fedor''s mother and her eyes light up when she sees you. "Ahh, you ...
   scene.text(`You approach Fedor's mother and her eyes light up when she sees you. "Ahh, you must be ${((s as any).pcs_firstname || '')}. Fedor told me a bit about you but I can never get that boy to talk to me about anything. So how serious are things between you two? Ohh but where are my manners? My name is Regina. I am Fyodor's mother. I have been looking forward to meeting my son's first girlfriend." You tilt your head as you reply, "His first?" Regina replies, "Well yes. Fedor usually spends too much time in front of that TV or with his friend Ivan. His father always lectures that boy about not being more active, that is… when he's here anyway, I've droned on for long enough. Would you like me to make you something to eat?"`);
   // TODO-QSP: end
   scene.actions([
@@ -979,9 +1082,9 @@ function enterReginaChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let Regina help you', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'FedorEv4', 'check_up');
+      qspGoto(st, 'FedorEv4', 'check_up');
     }
   } },
     ]);
@@ -1019,7 +1122,7 @@ function enterReginaChat2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><b><h4><font color="#FF00FF"><<"Regina Kozlov">></font></h4></b></center...
   scene.text(`<center><b><h4><font color="#FF00FF">${'Regina Kozlov'}</font></h4></b></center>`);
   scene.img('images/locations/pavlovsk/resident/fedorhome/regina.jpg');
-  (s as any).VK = Math.floor(Math.random() * 7) + 1;
+  (s as any).VK = (Math.floor(Math.random() * 7) + 1);
   if (((s as any).VK ?? 0) === 1) {
     scene.text('You and Regina discuss the latest fashion trends.');
   } else {
@@ -1096,7 +1199,7 @@ function enterCheckUp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/fedorhome/reginahelp.jpg');
   scene.text('You sit down on a nearby chair as Regina runs off to fetch her medical supplies. When Regina comes back she begins unpacking her supplies as she asks you about any health issues you may have. After a few minutes of being patching up, you feel a lot better. Regina gives you a warm smile while re-packing her supplies. When Regina finishes she gives you a lollipop as she says, "I know you might feel too old for these but I can\'t let any patient go with out one of these, I\'m just really old fashioned like that."');
-  // TODO-QSP: dynamic text: You give her <<$func('money', 'string_price', 20)>> and say, "Please take this, ...
+  // TODO-QSP: dynamic text: You give her <<$func(''money'', ''string_price'', 20)>> and say, "Please take th...
   scene.text(`You give her ${qspFunc(s, 'money', 'string_price', 20)} and say, "Please take this, for helping me." Regina gives you a smile before leaving the room to put her supplies away.`);
   // TODO-QSP: end
   scene.actions([
@@ -1114,7 +1217,7 @@ function enterFedorLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/livingroom/fedor.jpg');
   scene.text('Fedor is sitting on the sofa watching tv and when he notices you, he pats the seat next to him, offering you a seat.');
   if (((s as any).pcs_health ?? 0) < 100) {
-    // TODO-QSP: dynamic text: Fedor looks at you and frowns. "<<$pcs_firstname>> you're hurt. My mother works ...
+    // TODO-QSP: dynamic text: Fedor looks at you and frowns. "<<$pcs_firstname>> you''re hurt. My mother works...
     scene.text(`Fedor looks at you and frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse, if she is home then you should have her take a look at you."`);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -1122,7 +1225,7 @@ function enterFedorLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor reaches over, then begins rubbing your ass, "You have a body to die for ${((s as any).pcs_nickname || '')}."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Comb/u0027); return false;">comb</a>.');
   }
   if (((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).DimaRudeBlock ?? 0) === 0  &&  ((s as any).FedorLove ?? 0) === 1  &&  (!((s as any).FedorvsDimka ?? 0))) {
     scene.actions([
@@ -1160,11 +1263,11 @@ function enterFedorKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((s as any).pcs_firstname || '')} would you like something to eat?"`);
   }
   if (((s as any).pcs_health ?? 0) < 100) {
-    // TODO-QSP: dynamic text: Fedor looks at you and frowns. "<<$pcs_firstname>> you're hurt. My mother works ...
+    // TODO-QSP: dynamic text: Fedor looks at you and frowns. "<<$pcs_firstname>> you''re hurt. My mother works...
     scene.text(`Fedor looks at you and frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse, if she is home then you should have her take a look at you."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Comb/u0027); return false;">comb</a>.');
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     // TODO-QSP: dynamic text: Fedor reaches over, then begins feeling up your legs, "You are so hot, <<$pcs_ni...
@@ -1173,15 +1276,15 @@ function enterFedorKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FedorKoz_Daystart ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).FedorKoz_Daystart = ((s as any).daystart ?? 0);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (1);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).FedorKoz_Daystart = ((st as any).daystart ?? 0);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (1);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (60);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/kitchen/eating2.jpg');
     scene.text('Fedor gets up then opens the refrigerator and grabs a few things that he begins cooking. When Fedor finishes then he places the plate of food and an empty cup in front of you as he pours you a drink then sits across from you. Both of you spend a few minutes eating while discussing favorite foods and snacks.');
     scene.actions([
@@ -1225,11 +1328,11 @@ function enterFedorBedroom(s: GameState, scene: SceneBuilder): void {
     scene.text('He seems lost in thought but as soon as you approach, he opens his mouth to speak but no words escape his mouth. He then closes his mouth and stares at the ceiling. It seems as though he has something he wants to talk to you about.');
   }
   if (((s as any).pcs_health ?? 0) < 100) {
-    // TODO-QSP: dynamic text: Fedor looks at you then frowns. "<<$pcs_firstname>> you're hurt. My mother works...
+    // TODO-QSP: dynamic text: Fedor looks at you then frowns. "<<$pcs_firstname>> you''re hurt. My mother work...
     scene.text(`Fedor looks at you then frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse. You should have her take a look at you."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Comb/u0027); return false;">comb</a>.');
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
@@ -1259,9 +1362,9 @@ function enterFedorBedroom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Chat', goto: ['FedorEv4', 'Fedor Bedroom Chat'] },
           { label: 'Break up with Fedor', handler: (st: GameState) => {
-    (s as any).fedorkoztalk = 1;
-    (s as any).fedorKozlovQW = (-1);
-    qspCall(s, 'stat', '');
+    (st as any).fedorkoztalk = 1;
+    (st as any).fedorKozlovQW = (-1);
+    qspCall(st, 'stat', '');
     scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorangry.jpg');
     scene.text('"I\'m sorry Fedor but I don\'t think this is working out, I think we need to break up." Fedor lowers his head clearly upset but after a few seconds he raises his head then looks in your eyes and says, "I guess what we had was a lie then… Go be with other men then if you want, I won\'t hold you back anymore." he takes a few steps back, never breaking eye contact with you until he suddenly turns away and walks off.');
@@ -1315,11 +1418,11 @@ function enterFedorBedroom2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Fedor is watching videos on his computer. As you approach, Fedor turns to you an...
   scene.text(`Fedor is watching videos on his computer. As you approach, Fedor turns to you and asks "Hey ${((s as any).pcs_nickname || '')}, wanna check out some videos?"`);
   if (((s as any).pcs_health ?? 0) < 100) {
-    // TODO-QSP: dynamic text: Fedor looks at you and frowns. "<<$pcs_firstname>> you're hurt. My mother works ...
+    // TODO-QSP: dynamic text: Fedor looks at you and frowns. "<<$pcs_firstname>> you''re hurt. My mother works...
     scene.text(`Fedor looks at you and frowns. "${((s as any).pcs_firstname || '')} you're hurt. My mother works as a nurse, if she is home then you should have her take a look at you."`);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FedorMisc\\u0027, \\u0027Comb\\u0027); return false;">comb</a>.');
+    scene.text('Fedor notices your messy hair and pulls out his <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FedorMisc/u0027, /u0027Comb/u0027); return false;">comb</a>.');
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     // TODO-QSP: dynamic text: Fedor reaches over, then begins gently squeezing your breasts, "You have great t...
@@ -1363,9 +1466,9 @@ function enterLoveTalkStrela(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/fedor.jpg');
-  // TODO-QSP: dynamic text: You sit down next to Fedor and ask him "You look troubled. What's on your mind?"...
+  // TODO-QSP: dynamic text: You sit down next to Fedor and ask him "You look troubled. What''s on your mind?...
   scene.text(`You sit down next to Fedor and ask him "You look troubled. What's on your mind?" With a tear sliding down his cheek, Fedor responds, "I keep thinking of that day where I felt completely helpless and almost lost everything to those bastards. The thought of what might have happened if you weren't there, chills me to my very core." You crawl forward and lay next to him "It was a crazy day and I'm glad everything worked out in the end. I would hate for something like that to happen to you because of me." Fedor places his hand on your cheek "You saved me ${((s as any).pcs_firstname || '')} and I will never forget it. You are everything I could ever hope for in a girl."`);
-  // TODO-QSP: dynamic text: You can feel your cheeks getting flushed as you respond, "Well you're everything...
+  // TODO-QSP: dynamic text: You can feel your cheeks getting flushed as you respond, "Well you''re everythin...
   scene.text(`You can feel your cheeks getting flushed as you respond, "Well you're everything I need in a man and that is why I… I love you Fyodor." Fedor looks shocked for a moment then responds, "I love you too ${((s as any).pcs_firstname || '')}. You really mean everything to me and I never want to lose you." You respond, "You never will." as you lean forward and share a very passionate kiss with Fedor.`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/kiss.jpg');
   // TODO-QSP: end
@@ -1408,14 +1511,14 @@ function enterFuture(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FedorLoveTalk ?? 0) < 1) {
     scene.actions([
       { label: 'Pregnancy', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/talk.jpg');
     scene.text('You look Fedor in the eyes. "I have always wanted to one day… be a mother and I was thinking that maybe we could… have a baby together." Fedor\'s eyes widen and his jaw lowers. "You want… You want us to? I don\'t know. That\'s a very big step. Are you sure you want this?"');
     scene.actions([
       { label: 'I\'m sure', handler: (st: GameState) => {
-    (s as any).FedorLoveTalk = 1;
-    qspCall(s, 'stat', '');
+    (st as any).FedorLoveTalk = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/kiss.jpg');
     scene.text('You give Fedor a light kiss then reply, "I\'m positive. I want you to be the father of my child so… what do you think? Would you like to be a father?" Fedor thinks it over for a few seconds then responds, "I care for you so much and would love to start a family with you. Whenever you feel ready to try for a baby then let me know." You lean forward and give Fedor a passionate kiss before responding "Thank you so much Fyodor. I\'m sure any child we make together will be perfect."');
     scene.actions([
@@ -1429,7 +1532,7 @@ function enterFuture(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Try for baby', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/talk.jpg');
     scene.text('You lean forward and whisper in his ear. "I would like to try for a baby with you. Are you ready for some fun?" Fedor brings his face to yours and replies, "I\'m ready whenever you are."');
     scene.actions([
@@ -1443,7 +1546,7 @@ function enterFuture(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Never mind', goto: ['FedorEv4', 'Fedor Bedroom'] },
     { label: 'Marriage', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/sitting.jpg');
     scene.text('<b><h4><font color=#FF00FF>To be continued… Love Violet Kitten.</font></h4></b>');
     scene.actions([
@@ -1571,12 +1674,12 @@ function enterDimkaHelp(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'It\'s… It\'s nothing', goto: ['FedorEv4', 'Bedroom'] },
     { label: 'Ask him for help', handler: (st: GameState) => {
-    (s as any).FedorvsDimka = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).FedorvsDimka = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/console2.jpg');
     // TODO-QSP: dynamic text: "I… well… Dimka has a video of me and I need to know if you can help me get it b...
-    scene.text(`"I… well… Dimka has a video of me and I need to know if you can help me get it back or erase it." Fedor frowns as he asks "Have you been having an affair with him?" You reply, "No. He blackmailed me into doing something… dirty and he filmed me. I'm sorry that I didn't tell you about this before but I needed to know for sure that I could trust you not to share the video." Fedor places his finger under your chin and raises your face to meet his as he replies, "I understand ${((s as any).pcs_firstname || '')} and don't worry, we will get that video from Dimka even if I have to beat it out of him. I never liked that cocky like punk anyway."`);
+    scene.text(`"I… well… Dimka has a video of me and I need to know if you can help me get it back or erase it." Fedor frowns as he asks "Have you been having an affair with him?" You reply, "No. He blackmailed me into doing something… dirty and he filmed me. I'm sorry that I didn't tell you about this before but I needed to know for sure that I could trust you not to share the video." Fedor places his finger under your chin and raises your face to meet his as he replies, "I understand ${((st as any).pcs_firstname || '')} and don't worry, we will get that video from Dimka even if I have to beat it out of him. I never liked that cocky like punk anyway."`);
     scene.text('You remain speechless for a few seconds before you respond, "Ohh thank you Fedor. I thought that he was going to keep blackmailing me forever." Fedor gives you a kiss on the forehead. "You have nothing to fear with me around. Meet me after school and we\'ll deal with that punk together." Fedor then gives you a long passionate kiss.');
     scene.actions([
       { label: 'Get out of bed', goto: ['FedorEv4', 'Bedroom'] },
@@ -1598,11 +1701,11 @@ function enterDimkaAftermath(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'FedorEv4') {
-      qspGoto(s, 'FedorEv4', 'Bedroom');
+    if (((st as any).loc ?? 0) === 'FedorEv4') {
+      qspGoto(st, 'FedorEv4', 'Bedroom');
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspGoto(s, 'pav_residential', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspGoto(st, 'pav_residential', '');
     }
   } },
   ]);
@@ -1679,6 +1782,9 @@ function enterHomeEntrance3(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'Home':
+      enterHome(s, scene);
+      break;
     case 'Home 2':
       enterHome2(s, scene);
       break;

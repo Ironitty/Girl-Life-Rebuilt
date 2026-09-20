@@ -5,19 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'boyStat', 'A160');
-  (s as any).lustPool = 100;
-  if (((s as any).leonidInFavour ?? 0) < -5) {
-    (s as any).slaveTitle = 'slave slut';
-  } else {
-    if (((s as any).leonidInFavour ?? 0) >= -5  &&  ((s as any).leonidInFavour ?? 0) <= 5) {
-      (s as any).slaveTitle = 'slave girl';
-    } else {
-      if (((s as any).leonidInFavour ?? 0) > 5) {
-        (s as any).slaveTitle = 'slave darling';
-      }
-    }
-  }
   scene.build();
 }
 
@@ -40,13 +27,13 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).bName || '')} orders you to kneel in front of his desk.`);
   // TODO-QSP: dynamic text: "So <<$pcs_firstname>>, I have taken you out of that hole. Do you already see wh...
   scene.text(`"So ${((s as any).pcs_firstname || '')}, I have taken you out of that hole. Do you already see why?"`);
-  // TODO-QSP: dynamic text: "I'm not sure Mister <<$bSurname>>"
+  // TODO-QSP: dynamic text: "I''m not sure Mister <<$bSurname>>"
   scene.text(`"I'm not sure Mister ${((s as any).bSurname || '')}"`);
   scene.text('"Then let me explain. I love my wife, but I have certain needs. I have neglected myself for a long time now, and things got even worse. When I got the opportunity, I got in touch with the \'Haulers\'. You know them, those are the people that abducted you and made you a what you are now."');
   scene.text('"What? What do you mean by \'what am I now?\'"');
   scene.text('"A slave. My slave."');
   scene.text('"How do you imagine this? You\'ll keep me locked in this room or what?"');
-  // TODO-QSP: dynamic text: "No, of course not <<$pcs_firstname>>. I'm not a monster. I just want a tool to ...
+  // TODO-QSP: dynamic text: "No, of course not <<$pcs_firstname>>. I''m not a monster. I just want a tool to...
   scene.text(`"No, of course not ${((s as any).pcs_firstname || '')}. I'm not a monster. I just want a tool to ventilate my urges. That tool is you."`);
   scene.text('"What do you mean?"');
   scene.text('"As beautiful you are so slow your thinking is. I will do to you whatever I want to. And it does not matter if you agree or not, you are my slave after all."');
@@ -56,11 +43,11 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   scene.text('');
   scene.text('"Do you think I am stupid? The authorities are under my grasp. I own them. Do it and nobody will see you ever again."');
   scene.text('You get up back to your knees.');
-  // TODO-QSP: dynamic text: "All right Mister <<$bSurname>>, I've got the idea. I promise to keep quiet and ...
+  // TODO-QSP: dynamic text: "All right Mister <<$bSurname>>, I''ve got the idea. I promise to keep quiet and...
   scene.text(`"All right Mister ${((s as any).bSurname || '')}, I've got the idea. I promise to keep quiet and be your… slave."`);
   scene.text('"Very well. I will call you if I require your presence. Until then you are free to go."');
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
-    // TODO-QSP: dynamic text: "But Mister <<$bSurname>>, what do I tell to my <<$npc_nickname['A29']>>? How do...
+    // TODO-QSP: dynamic text: "But Mister <<$bSurname>>, what do I tell to my <<$npc_nickname[''A29'']>>? How ...
     scene.text(`"But Mister ${((s as any).bSurname || '')}, what do I tell to my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}? How do I explain my absence from the school and everything?"`);
     // TODO-QSP: dynamic text: "Do not care about the school. I will take care of it. As for your <<$npc_nickna...
     scene.text(`"Do not care about the school. I will take care of it. As for your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, if she asks, tell her you ran from home to a friend but reconsidered and went back."`);
@@ -73,12 +60,12 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Do as he says', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
-    if (((s as any).bagtaken ?? 0) === 1) {
-      (s as any).bag = 1;
-      (s as any).bagtaken = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
+    if (((st as any).bagtaken ?? 0) === 1) {
+      (st as any).bag = 1;
+      (st as any).bagtaken = 0;
     }
     scene.img('images/characters/pavlovsk/resident/leonid/office.jpg');
     scene.text('You quickly put your clothes on, surprised to find they are clean and fresh.');
@@ -94,13 +81,13 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   scene.img('images/characters/pavlovsk/resident/leonid/officehall.jpg');
   // TODO-QSP: dynamic text: You are in the hallway leading to several offices. One of the doors has a doorsi...
-  scene.text(`You are in the hallway leading to several offices. One of the doors has a doorsign <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027office\\u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}, lawyer.</a>`);
+  scene.text(`You are in the hallway leading to several offices. One of the doors has a doorsign <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027office/u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}, lawyer.</a>`);
   qspCall(s, 'stat', '');
-  (s as any).leoHorny = Math.floor(Math.random() * 21) + 0;
-  (s as any).leoStress = Math.floor(Math.random() * 31) + 0;
-  (s as any).leoCoffee = Math.floor(Math.random() * 21) + 80;
-  (s as any).leoComfort = Math.floor(Math.random() * 31) + 0;
-  (s as any).paperwork = Math.floor(Math.random() * 21) + 40;
+  (s as any).leoHorny = (Math.floor(Math.random() * 21) + 0);
+  (s as any).leoStress = (Math.floor(Math.random() * 31) + 0);
+  (s as any).leoCoffee = (Math.floor(Math.random() * 21) + 80);
+  (s as any).leoComfort = (Math.floor(Math.random() * 31) + 0);
+  (s as any).paperwork = (Math.floor(Math.random() * 21) + 40);
   // TODO-QSP: end
   scene.actions([
     { label: 'Get back', goto: ['pav_commercial_offices', ''] },
@@ -114,17 +101,17 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
     if (((s as any).POffice ?? 0) === 1) {
       scene.img('images/characters/pavlovsk/resident/leonid/office.jpg');
       // TODO-QSP: dynamic text: You are in the office of <<$bName>> <<$bSurname>>, working as his secretary. The...
-      scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}, working as his secretary. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeKitchen\\u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027toilet\\u0027); return false;">toilet</a>.`);
+      scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}, working as his secretary. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeKitchen/u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027toilet/u0027); return false;">toilet</a>.`);
       (s as any).atWork = 1;
       qspGoto(s, 'leonid', 'secretaryGate');
     } else {
       scene.text('You need to be dressed as a secretary.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
-      qspCall(s, 'outfit', 'wear_last_worn');
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
+      qspCall(st, 'outfit', 'wear_last_worn');
     }
-    qspGoto(s, 'leonid', 'hall');
+    qspGoto(st, 'leonid', 'hall');
   } },
       ]);
     }
@@ -135,25 +122,25 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
       if ((((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 19)  &&  ((s as any).leonidVisit ?? 0) === 0  &&  ((s as any).week ?? 0) < 6) {
         scene.img('images/characters/pavlovsk/resident/leonid/office.jpg');
         // TODO-QSP: dynamic text: You are in the office of <<$bName>> <<$bSurname>>. There are three other doors i...
-        scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeKitchen\\u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027toilet\\u0027); return false;">toilet</a>.`);
-        // TODO-QSP: dynamic text: <a href="exec:gt 'leonid', 'officeLeonidGate'"><<$bName>> <<$bSurname>></a> is s...
-        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeLeonidGate\\u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}</a> is sitting behind his desk, working.`);
+        scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeKitchen/u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027toilet/u0027); return false;">toilet</a>.`);
+        // TODO-QSP: dynamic text: <a href="exec:gt ''leonid'', ''officeLeonidGate''"><<$bName>> <<$bSurname>></a> ...
+        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeLeonidGate/u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}</a> is sitting behind his desk, working.`);
         if (((s as any).slaveEventCount ?? 0) > 0) {
-          scene.text('In the middle of the bookcase, there are hidden doors to a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027secretRoom\\u0027); return false;">bondage rooms</a>.');
+          scene.text('In the middle of the bookcase, there are hidden doors to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027secretRoom/u0027); return false;">bondage rooms</a>.');
         }
       } else {
         if ((((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 22)  &&  ((s as any).leonidVisit ?? 0) === 1) {
           scene.img('images/characters/pavlovsk/resident/leonid/office.jpg');
           // TODO-QSP: dynamic text: You are in the office of <<$bName>> <<$bSurname>>. There are three other doors i...
-          scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeKitchen\\u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027toilet\\u0027); return false;">toilet</a>.`);
-          // TODO-QSP: dynamic text: <a href="exec:gt 'leonid', 'officeLeonidGate'"><<$bName>> <<$bSurname>></a> is s...
-          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeLeonidGate\\u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}</a> is sitting behind his desk, waiting for you to come.`);
+          scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeKitchen/u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027toilet/u0027); return false;">toilet</a>.`);
+          // TODO-QSP: dynamic text: <a href="exec:gt ''leonid'', ''officeLeonidGate''"><<$bName>> <<$bSurname>></a> ...
+          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeLeonidGate/u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}</a> is sitting behind his desk, waiting for you to come.`);
           if (((s as any).slaveEventCount ?? 0) > 0) {
-            scene.text('In the middle of the bookcase, there are hidden doors to a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027secretRoom\\u0027); return false;">bondage room</a>.');
+            scene.text('In the middle of the bookcase, there are hidden doors to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027secretRoom/u0027); return false;">bondage room</a>.');
           }
         } else {
           scene.img('images/characters/pavlovsk/resident/leonid/officehall.jpg');
-          scene.text('The office is locked, you cannot enter. The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027toilet\\u0027); return false;">toilet</a> is still open.');
+          scene.text('The office is locked, you cannot enter. The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027toilet/u0027); return false;">toilet</a> is still open.');
         }
       }
     }
@@ -196,9 +183,9 @@ function enterSecretaryGate(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You are in the office of <<$bName>> <<$bSurname>>. There are three other doors i...
-  scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeKitchen\\u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027toilet\\u0027); return false;">toilet</a>.`);
-  // TODO-QSP: dynamic text: <a href="exec:gt 'leonid', 'officeLeonidGate'"><<$bName>> <<$bSurname>></a> is s...
-  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeLeonidGate\\u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}</a> is sitting behind his desk, working.`);
+  scene.text(`You are in the office of ${((s as any).bName || '')} ${((s as any).bSurname || '')}. There are three other doors inside the office, one leading to a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeKitchen/u0027); return false;">kitchen</a>, second leading to a conference room and third leading to a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027toilet/u0027); return false;">toilet</a>.`);
+  // TODO-QSP: dynamic text: <a href="exec:gt ''leonid'', ''officeLeonidGate''"><<$bName>> <<$bSurname>></a> ...
+  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeLeonidGate/u0027); return false;">${((s as any).bName || '')} ${((s as any).bSurname || '')}</a> is sitting behind his desk, working.`);
   if (((s as any).leoHorny ?? 0) < 0) {
     (s as any).leoHorny = 0;
   }
@@ -273,9 +260,9 @@ function enterSecretaryEndWorkday(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$bName>>: <<$pcs_firstname>>, my <<$slaveTitle>> secretary. Today you did a <<...
   scene.text(`${((s as any).bName || '')}: ${((s as any).pcs_firstname || '')}, my ${((s as any).slaveTitle || '')} secretary. Today you did a ${((s as any).workQualityText || '')} job.`);
   // TODO-QSP: dynamic text: He hands you '+workPayment+' RUB and leaves.
-  scene.text('He hands you \'+workPayment+\' RUB and leaves.');
+  scene.text('He hands you ' + ((s as any).workPayment || '') + ' RUB and leaves.');
   scene.text('');
-  // TODO-QSP: dynamic text: Today you've done your duties on '+(100 - workQuality)+' %.
+  // TODO-QSP: dynamic text: Today you''ve done your duties on '+(100 - workQuality)+' %.
   scene.text('Today you\'ve done your duties on \'+(100 - workQuality)+\' %.');
   qspCall(s, 'money', 'earn', ((s as any).workPayment ?? 0));
   // TODO-QSP: end
@@ -304,7 +291,7 @@ function enterDoPaperwork(s: GameState, scene: SceneBuilder): void {
   (s as any).leoComfort = ((s as any).leoComfort ?? 0) + (0);
   (s as any).donePaperwork = 0;
   (s as any).paperwork = ((s as any).paperwork ?? 0) - (((s as any).donePaperwork ?? 0));
-  scene.img('images/characters/pavlovsk/resident/leonid/paperwork\'+rand(1, 5)+\'.jpg');
+  scene.img('images/characters/pavlovsk/resident/leonid/paperwork' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
   scene.text('You manage to get part of the workload to order, copying, filing and archiving.');
   scene.text('');
   // TODO-QSP: 'Paperwork has diminished by '+donePaperwork
@@ -322,7 +309,7 @@ function enterDoLazy(s: GameState, scene: SceneBuilder): void {
   (s as any).leoStress = ((s as any).leoStress ?? 0) + (0);
   (s as any).leoCoffee = ((s as any).leoCoffee ?? 0) + (0);
   (s as any).leoComfort = ((s as any).leoComfort ?? 0) + (0);
-  scene.img('images/characters/pavlovsk/resident/leonid/lazy\'+rand(1, 5)+\'.jpg');
+  scene.img('images/characters/pavlovsk/resident/leonid/lazy' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
   scene.text('You spend your working time polishing your nails and all the stuff everyone actually thinks secretaries do.');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -338,7 +325,7 @@ function enterOfficeKitchen(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/leonid/kitchen.jpg');
   scene.text('Small office kitchen, equipped with all that is needed for a regular working day.');
   if (((s as any).taskCoffee ?? 0) === 1  ||  ((s as any).leonidSecretary ?? 0) === 1) {
-    scene.text('You can use the coffee maker to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027leonid\\u0027, \\u0027officeKitchenMakeCoffe\\u0027); return false;">prepare a coffee</a>.');
+    scene.text('You can use the coffee maker to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027leonid/u0027, /u0027officeKitchenMakeCoffe/u0027); return false;">prepare a coffee</a>.');
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -429,9 +416,9 @@ function enterOfficeKitchenBringCoffeeNormal(s: GameState, scene: SceneBuilder):
 }
 
 function enterOfficeFuck(s: GameState, scene: SceneBuilder): void {
-  (s as any).sexType = Math.floor(Math.random() * 2) + 1;
+  (s as any).sexType = (Math.floor(Math.random() * 2) + 1);
   if (((s as any).sexType ?? 0) === 1) {
-    scene.img('images/characters/pavlovsk/resident/leonid/sex/pussy\'+rand(1, 5)+\'.mp4');
+    scene.img('images/characters/pavlovsk/resident/leonid/sex/pussy' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
     // TODO-QSP: dynamic text: <<$bName>> bends you over his desk, pushing the paperwork away.
     scene.text(`${((s as any).bName || '')} bends you over his desk, pushing the paperwork away.`);
     // TODO-QSP: dynamic text: You angle your ass for better access, just like his true <<$slaveTitle>>.
@@ -443,7 +430,7 @@ function enterOfficeFuck(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['leonid', 'cumPussy'] },
     ]);
   } else {
-    scene.img('images/characters/pavlovsk/resident/leonid/sex/anal\'+rand(1, 2)+\'.mp4');
+    scene.img('images/characters/pavlovsk/resident/leonid/sex/anal' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
     // TODO-QSP: dynamic text: <<$bName>> bends you over his desk, pushing the paperwork away.
     scene.text(`${((s as any).bName || '')} bends you over his desk, pushing the paperwork away.`);
     // TODO-QSP: dynamic text: You angle your ass for better access, just like his true <<$slaveTitle>>.
@@ -465,7 +452,7 @@ function enterCumAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (50);
   qspCall(s, 'cum_call', 'anus', 'A160', 1);
   qspCall(s, 'arousal', 'end');
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/cumanal\'+rand(1, 2)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/cumanal' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> cums deep in your intestines.
   scene.text(`${((s as any).bName || '')} cums deep in your intestines.`);
   if (qspFunc(s, 'money', 'can_afford', 2000) === 0  &&  (!((s as any).leonidSecretary ?? 0))) {
@@ -490,7 +477,7 @@ function enterCumPussy(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Mister ' + String(((s as any).bSurname || '') ?? '') + ', may I ask you something?', goto: ['leonid', 'askForJob'] },
     ]);
   }
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/cumpussy\'+rand(1, 1)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/cumpussy' + (Math.floor(Math.random() * 1) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> cums deep in your vagina.
   scene.text(`${((s as any).bName || '')} cums deep in your vagina.`);
   // TODO-QSP: end
@@ -522,7 +509,7 @@ function enterAskForJobYes(s: GameState, scene: SceneBuilder): void {
   scene.text('Good.');
   scene.text('Come next working day between 9 and 10.');
   scene.text('Be sure to dress as befits to your new role.');
-  // TODO-QSP: dynamic text: He takes <<$func('money', 'string_profit', 5000)>> and hands them to you. Here, ...
+  // TODO-QSP: dynamic text: He takes <<$func(''money'', ''string_profit'', 5000)>> and hands them to you. He...
   scene.text(`He takes ${qspFunc(s, 'money', 'string_profit', 5000)} and hands them to you. Here, buy some office clothes, I need you to at least look the part.`);
   qspCall(s, 'money', 'earn', 5000);
   (s as any).leonidSecretary = 1;
@@ -536,7 +523,7 @@ function enterAskForJobYes(s: GameState, scene: SceneBuilder): void {
 function enterAskForJobNo(s: GameState, scene: SceneBuilder): void {
   scene.text('On second thought… I\'m not qualified enough');
   scene.text('');
-  // TODO-QSP: dynamic text: <<$pcs_firstname>>, don't play with me.
+  // TODO-QSP: dynamic text: <<$pcs_firstname>>, don''t play with me.
   scene.text(`${((s as any).pcs_firstname || '')}, don't play with me.`);
   scene.text('You are still my slave and I think you need to be reminded of that!');
   // TODO-QSP: end
@@ -599,10 +586,10 @@ function enterSecretRoom(s: GameState, scene: SceneBuilder): void {
 
 function enterBdsmGate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).leoHorny ?? 0) < 30) {
-    (s as any).actionType = Math.floor(Math.random() * 2) + 1;
+    (s as any).actionType = (Math.floor(Math.random() * 2) + 1);
   } else {
     if (((s as any).leoHorny ?? 0) >= 30) {
-      (s as any).actionType = Math.floor(Math.random() * 6) + 3;
+      (s as any).actionType = (Math.floor(Math.random() * 6) + 3);
     }
   }
   if (((s as any).actionType ?? 0) === 1) {
@@ -643,7 +630,7 @@ function enterBdsmGate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBdsmFuckVaginal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/pussybound\'+rand(1, 5)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/pussybound' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and positions you as he will.
   scene.text(`${((s as any).bName || '')} ties you up and positions you as he will.`);
   scene.text('Then he takes his hard cock and shoves it into your unprepared pussy.');
@@ -658,7 +645,7 @@ function enterBdsmFuckVaginal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBdsmFuckAnal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/analbound\'+rand(1, 5)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/analbound' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and positions you as he will.
   scene.text(`${((s as any).bName || '')} ties you up and positions you as he will.`);
   scene.text('Then he takes his hard cock and shoves it into your unprepared anus.');
@@ -674,8 +661,8 @@ function enterBdsmFuckAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterBdsmHorse(s: GameState, scene: SceneBuilder): void {
   (s as any).actionTypeRecent = 3;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (Math.floor(Math.random() * 31) + 20);
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/horse\'+rand(1, 5)+\'.mp4');
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - ((Math.floor(Math.random() * 31) + 20));
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/horse' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and leads you to a room with bondage devices.
   scene.text(`${((s as any).bName || '')} ties you up and leads you to a room with bondage devices.`);
   scene.text('He decides to play with you on a wooden horse… this is going to hurt!');
@@ -693,8 +680,8 @@ function enterBdsmHorse(s: GameState, scene: SceneBuilder): void {
 
 function enterBdsmWhip(s: GameState, scene: SceneBuilder): void {
   (s as any).actionTypeRecent = 4;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (Math.floor(Math.random() * 31) + 20);
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/whip\'+rand(1, 7)+\'.mp4');
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - ((Math.floor(Math.random() * 31) + 20));
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/whip' + (Math.floor(Math.random() * 7) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and leads you to a room with bondage devices.
   scene.text(`${((s as any).bName || '')} ties you up and leads you to a room with bondage devices.`);
   scene.text('He suspends your hand to a hook on the ceiling, leaving you almost hanging by your hands.');
@@ -715,8 +702,8 @@ function enterBdsmWhip(s: GameState, scene: SceneBuilder): void {
 
 function enterBdsmDildo(s: GameState, scene: SceneBuilder): void {
   (s as any).actionTypeRecent = 5;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (Math.floor(Math.random() * 31) + 20);
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/dildo\'+rand(1, 4)+\'.mp4');
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - ((Math.floor(Math.random() * 31) + 20));
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/dildo' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and leads you to a room with bondage devices.
   scene.text(`${((s as any).bName || '')} ties you up and leads you to a room with bondage devices.`);
   scene.text('He orders you to kneel down, sticking your ass high in the air and ties your hands and legs so you cannot move.');
@@ -739,8 +726,8 @@ function enterBdsmDildo(s: GameState, scene: SceneBuilder): void {
 
 function enterBdsmMachine(s: GameState, scene: SceneBuilder): void {
   (s as any).actionTypeRecent = 6;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (Math.floor(Math.random() * 31) + 20);
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/machine\'+rand(1, 5)+\'.mp4');
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - ((Math.floor(Math.random() * 31) + 20));
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/machine' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and leads you to a room with bondage devices.
   scene.text(`${((s as any).bName || '')} ties you up and leads you to a room with bondage devices.`);
   scene.text('He orders you to kneel down into a strange device - the most visible part of it is a rod with a screw. What could be screwed on it, you wonder.');
@@ -762,8 +749,8 @@ function enterBdsmMachine(s: GameState, scene: SceneBuilder): void {
 
 function enterBdsmDeepthroat(s: GameState, scene: SceneBuilder): void {
   (s as any).actionTypeRecent = 7;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (Math.floor(Math.random() * 31) + 20);
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/dildothroat\'+rand(1, 3)+\'.mp4');
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - ((Math.floor(Math.random() * 31) + 20));
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/dildothroat' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and leads you to a room with bondage devices.
   scene.text(`${((s as any).bName || '')} ties you up and leads you to a room with bondage devices.`);
   scene.text('He orders you to kneel down, having your hands bound behind your back.');
@@ -784,8 +771,8 @@ function enterBdsmDeepthroat(s: GameState, scene: SceneBuilder): void {
 
 function enterBdsmForcedOrgasm(s: GameState, scene: SceneBuilder): void {
   (s as any).actionTypeRecent = 8;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (Math.floor(Math.random() * 31) + 20);
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/forcedorgasm\'+rand(1, 4)+\'.mp4');
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) - ((Math.floor(Math.random() * 31) + 20));
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/forcedorgasm' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> ties you up and leads you to a room with bondage devices.
   scene.text(`${((s as any).bName || '')} ties you up and leads you to a room with bondage devices.`);
   scene.text('He lies you down, securing your hands and legs so you cannot move and also exposing your crotch to his liking.');
@@ -820,7 +807,7 @@ function enterOfficeLeonidGate(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if ((!((s as any).leonidVisit ?? 0))) {
-      // TODO-QSP: dynamic text: What do you want <<$pcs_firstname>>? I'm working, can't you see?
+      // TODO-QSP: dynamic text: What do you want <<$pcs_firstname>>? I''m working, can''t you see?
       scene.text(`What do you want ${((s as any).pcs_firstname || '')}? I'm working, can't you see?`);
       if (((s as any).leoComfort ?? 0) > 50) {
         scene.actions([
@@ -862,7 +849,7 @@ function enterMassageErotic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 30);
   (s as any).leoHorny = ((s as any).leoHorny ?? 0) + (0);
   (s as any).leoComfort = ((s as any).leoComfort ?? 0) - (0);
-  scene.img('images/characters/pavlovsk/resident/leonid/massageerotic\'+rand(1, 2)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/massageerotic' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> lies down on a table. You strip down your clothes and give him erroti...
   scene.text(`${((s as any).bName || '')} lies down on a table. You strip down your clothes and give him errotic massage using oil.`);
   scene.text('First his back, then you move to his front. He seems to enjoy it…');
@@ -878,7 +865,7 @@ function enterMassageEroticHandjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'hj', 5);
   scene.img('images/characters/pavlovsk/resident/leonid/sex/massageerotichand.mp4');
-  // TODO-QSP: dynamic text: <<$bName>>'s member is already hard in the moment you reach for it.
+  // TODO-QSP: dynamic text: <<$bName>>''s member is already hard in the moment you reach for it.
   scene.text(`${((s as any).bName || '')}'s member is already hard in the moment you reach for it.`);
   scene.text('Gently jerking it off he seems to be aroused even more.');
   // TODO-QSP: end
@@ -906,7 +893,7 @@ function enterMassageEroticHandjobFinish(s: GameState, scene: SceneBuilder): voi
 function enterMassageEroticBlowjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'bj', 5);
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/massageeroticmouth\'+rand(1, 2)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/massageeroticmouth' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   // TODO-QSP: dynamic text: His hard cock feels nice in your mouth and <<$bName>> seems to enjoy it even mor...
   scene.text(`His hard cock feels nice in your mouth and ${((s as any).bName || '')} seems to enjoy it even more than just your hand…`);
   // TODO-QSP: end
@@ -962,7 +949,7 @@ function enterOfficeLeonidHasTime(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   (s as any).serveType = (Math.floor(Math.random() * 50) + 1) + ((s as any).leoStress ?? 0);
   if (((s as any).serveType ?? 0) > 70) {
-    // TODO-QSP: dynamic text: I said I'm working, <<$slaveTitle>>. Do you want to be punished for causing trou...
+    // TODO-QSP: dynamic text: I said I''m working, <<$slaveTitle>>. Do you want to be punished for causing tro...
     scene.text(`I said I'm working, ${((s as any).slaveTitle || '')}. Do you want to be punished for causing trouble?`);
     if (((s as any).leonidSecretary ?? 0) === 1) {
       scene.actions([
@@ -1005,7 +992,7 @@ function enterOfficeLeonidVoluntaryServeGate(s: GameState, scene: SceneBuilder):
 }
 
 function enterOfficeLeonidSuckUnderTable(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/suckundertable\'+rand(1, 4)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/suckundertable' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
   qspCall(s, 'stat', '');
   qspCall(s, 'arousal', 'bj', 20, 'sub');
   qspCall(s, 'arousal', 'end');
@@ -1022,7 +1009,7 @@ function enterOfficeLeonidSuckUnderTable1(s: GameState, scene: SceneBuilder): vo
   (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (40);
   qspCall(s, 'cum_call', 'mouth', 'A160', 1);
   qspCall(s, 'stat', '');
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/cummouth\'+rand(1, 4)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/cummouth' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
   // TODO-QSP: dynamic text: As <<$bName>> cums, you let the tip of his cock point into your mouth and catch ...
   scene.text(`As ${((s as any).bName || '')} cums, you let the tip of his cock point into your mouth and catch all the sperm.`);
   scene.text('Then you stick your head up, show him your mouth full of his sperm and with smile you swallow it.');
@@ -1038,7 +1025,7 @@ function enterOfficeLeonidSuckUnderTable2(s: GameState, scene: SceneBuilder): vo
   (s as any).leoHorny = ((s as any).leoHorny ?? 0) - (40);
   qspCall(s, 'cum_call', 'face', 'A160', 1);
   qspCall(s, 'stat', '');
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/cumface\'+rand(1, 5)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/cumface' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   // TODO-QSP: dynamic text: As <<$bName>> cums, you let the tip of his cock point towards your face, letting...
   scene.text(`As ${((s as any).bName || '')} cums, you let the tip of his cock point towards your face, letting him spray all over your face.`);
   scene.text('Then you stick your head up, showing him your face cowered in sperm.');
@@ -1058,7 +1045,7 @@ function enterOfficeLeonidPunishmentGate(s: GameState, scene: SceneBuilder): voi
 }
 
 function enterOfficeLeonidPunishmentSpank(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/pavlovsk/resident/leonid/sex/spank\'+rand(1, 5)+\'.mp4');
+  scene.img('images/characters/pavlovsk/resident/leonid/sex/spank' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
   // TODO-QSP: dynamic text: <<$bName>> strips down your clothes and gives you a harsh spanking.
   scene.text(`${((s as any).bName || '')} strips down your clothes and gives you a harsh spanking.`);
   (s as any).leoStress = ((s as any).leoStress ?? 0) - (50);
@@ -1102,7 +1089,7 @@ function enterCallMissed(s: GameState, scene: SceneBuilder): void {
     scene.text('Are you forgetting what you are, slave? Be at 20:00 at the office and don\'t fail me again, or there will be consequences. Understood?');
   } else {
     if (((s as any).leonidVisitMissed ?? 0) >= 3) {
-      // TODO-QSP: dynamic text: This is your last warning, slave. If you won't come to my office today at '+func...
+      // TODO-QSP: dynamic text: This is your last warning, slave. If you won''t come to my office today at '+fun...
       scene.text('This is your last warning, slave. If you won\'t come to my office today at 20:00, bad things will happen. Understood?');
     }
   }
@@ -1186,6 +1173,19 @@ function enterOnMiss(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A160');
+  (s as any).lustPool = 100;
+  if (((s as any).leonidInFavour ?? 0) < -5) {
+    (s as any).slaveTitle = 'slave slut';
+  } else {
+    if (((s as any).leonidInFavour ?? 0) >= -5  &&  ((s as any).leonidInFavour ?? 0) <= 5) {
+      (s as any).slaveTitle = 'slave girl';
+    } else {
+      if (((s as any).leonidInFavour ?? 0) > 5) {
+        (s as any).slaveTitle = 'slave darling';
+      }
+    }
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'firstTime':

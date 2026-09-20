@@ -16,7 +16,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), (-15));
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).husID ?? 0)] > 0  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 11) {
-      ((s as any).spouseVars = (s as any).spouseVars ?? {})['drink'] = Math.floor(Math.random() * 11) + 0;
+      ((s as any).spouseVars = (s as any).spouseVars ?? {})['drink'] = (Math.floor(Math.random() * 11) + 0);
     }
     ((s as any).spouseVars = (s as any).spouseVars ?? {})['sexday'] = 0;
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
@@ -36,7 +36,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).wifID ?? 0), (-15));
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).wifID ?? 0)] > 0  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 11) {
-      ((s as any).spouseVars = (s as any).spouseVars ?? {})['drink'] = Math.floor(Math.random() * 11) + 0;
+      ((s as any).spouseVars = (s as any).spouseVars ?? {})['drink'] = (Math.floor(Math.random() * 11) + 0);
     }
     ((s as any).spouseVars = (s as any).spouseVars ?? {})['sexday'] = 0;
     if (((s as any).spouseVars ?? 0)?.['pervert_add'] > 5) {
@@ -91,7 +91,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lover_index ?? 0) < 0) {
     return;
   }
-  if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'wife'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'boyfriend'  ||   ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'girlfriend'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
+  if (((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'wife'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'boyfriend'  ||   ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'girlfriend'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
     // TODO-QSP: $npc_rel_type[$ARGS[1]] = 'ex-' + $npc_rel_type[$ARGS[1]]
   }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  (String(((s as any).locArgs?.[1] ?? 0)).length) > 1  &&  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
@@ -315,7 +315,7 @@ function enterChangeWife(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDrawRandomFrom(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'all') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'all') {
     (s as any).result = ((s as any).lover ?? 0)?.[((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('lover')-1)];
     return;
   }
@@ -390,10 +390,10 @@ function enterClearAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_residence ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)) {
-    if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1) > 0) {
-      // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt 'sex_ev_start', 'initiate_pre', '<<$ARGS[1]>>', '...
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027sex_ev_start\\u0027, \\u0027initiate_pre\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]}'s</a>' + iif($npc_residence[$ARGS[1]] = 'uni_grounds', 'dorm', 'apartment') + ' is nearby.`);
+  if (((s as any).npc_residence ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)) {
+    if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1) > 0) {
+      // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt ''sex_ev_start'', ''initiate_pre'', ''<<$ARGS[1]>...
+      scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, /u0027' + ((s as any).locArgs?.[1] ?? '') + '/u0027); return false;">' + ((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')] + '\'s</a>\' + iif($npc_residence[$ARGS[1]] = \'uni_grounds\', \'dorm\', \'apartment\') + \' is nearby.');
     }
   }
   return;
@@ -403,10 +403,10 @@ function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'is_hotel', ((s as any).loc ?? 0))) {
-    if (((s as any).booty_call_hotel ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
-      if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1) > 0) {
-        // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt 'sex_ev_start', 'initiate_pre', '<<$ARGS[1]>>', '...
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027sex_ev_start\\u0027, \\u0027initiate_pre\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]}</a> booked a hotel room to meet you in.`);
+    if (((s as any).booty_call_hotel ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
+      if (((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + ((s as any).npc_rel_type ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1) > 0) {
+        // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt ''sex_ev_start'', ''initiate_pre'', ''<<$ARGS[1]>...
+        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027sex_ev_start/u0027, /u0027initiate_pre/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]}</a> booked a hotel room to meet you in.`);
       }
     }
   }
@@ -416,14 +416,14 @@ function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateDateLink(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_date_loc ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)  &&  ((s as any).daystart ?? 0) === ((s as any).npc_date_invite ?? 0)[((s as any).locArgs?.[1] ?? 0)]  &&  ((s as any).daystart ?? 0) > ((s as any).npc_last_date ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-    if (((s as any).hour ?? 0) < ((s as any).npc_date_meethour ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-      // TODO-QSP: dynamic text: You have a date with <<$npc_firstname[$ARGS[1]]>> at <<func('time', 'get_time_st...
+  if (((s as any).npc_date_loc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)  &&  ((s as any).daystart ?? 0) === ((s as any).npc_date_invite ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]  &&  ((s as any).daystart ?? 0) > ((s as any).npc_last_date ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).hour ?? 0) < ((s as any).npc_date_meethour ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+      // TODO-QSP: dynamic text: You have a date with <<$npc_firstname[$ARGS[1]]>> at <<func(''time'', ''get_time...
       scene.text(`You have a date with ${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} at ${qspFunc(s, 'time', 'get_time_string', ((s as any).npc_date_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')], 0)}.`);
     } else {
-      if (((s as any).hour ?? 0) === ((s as any).npc_date_meethour ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-        // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt 'date_ev', 'initiate_pre', '<<$ARGS[1]>>' "><<$np...
-        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(\\u0027date_ev\\u0027, \\u0027initiate_pre\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} is waiting for you</a>.`);
+      if (((s as any).hour ?? 0) === ((s as any).npc_date_meethour ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+        // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt ''date_ev'', ''initiate_pre'', ''<<$ARGS[1]>>'' "...
+        scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027date_ev/u0027, /u0027initiate_pre/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} is waiting for you</a>.`);
       } else {
         scene.text(`You missed your date with ${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} at ${qspFunc(s, 'time', 'get_time_string', ((s as any).npc_date_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')], 0)}.`);
       }
@@ -436,14 +436,14 @@ function enterGenerateDateLink(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateOldDateLink(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'check_home_loc_old_content')) {
-    if (((s as any).daystart ?? 0) === ((s as any).npc_meetday ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-      if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-        // TODO-QSP: dynamic text: <b><<$npc_usedname[$ARGS[1]]>> will be waiting for you by <<$func('homes_propert...
+    if (((s as any).daystart ?? 0) === ((s as any).npc_meetday ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+      if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+        // TODO-QSP: dynamic text: <b><<$npc_usedname[$ARGS[1]]>> will be waiting for you by <<$func(''homes_proper...
         scene.text(`<b>${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} will be waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')} at ${qspFunc(s, 'time', 'get_time_string', ((s as any).npc_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')], 0)}.</b>`);
       } else {
-        if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-          // TODO-QSP: dynamic text: <b><a href="exec: gt 'lover_meet', 'start', '<<$ARGS[1]>>'"><<$npc_usedname[$ARG...
-          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lover_meet\\u0027, \\u0027start\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]}</a> is waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')}.</b>`);
+        if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
+          // TODO-QSP: dynamic text: <b><a href="exec: gt ''lover_meet'', ''start'', ''<<$ARGS[1]>>''"><<$npc_usednam...
+          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]}</a> is waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')}.</b>`);
         } else {
           scene.text(`<center><b>${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} was waiting for you by ${qspFunc(s, 'homes_properties', 'get_home_desc')} at ${qspFunc(s, 'time', 'get_time_string', ((s as any).npc_meethour ?? 0)?.[((s as any).locArgs?.[1] ?? '')], 0)}.</b></center>`);
         }
@@ -459,12 +459,12 @@ function enterGenerateExceptionLinks(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'check_home_loc_old_content')) {
     if (((s as any).daystart ?? 0) === ((s as any).vladimirQW ?? 0)?.['day']  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).week ?? 0) === 6) {
       if (((s as any).vladimirQW ?? 0)?.['stage'] === 30) {
-        // TODO-QSP: dynamic text: <a href="exec: gt 'vladimirQW_meet', '2'">There's an Audi parked near <<$func('h...
-        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vladimirQW_meet\\u0027, \\u00272\\u0027); return false;">There's an Audi parked near ${qspFunc(s, 'homes_properties', 'get_home_desc')}, and standing beside it, you notice Vladimir</a>.`);
+        // TODO-QSP: dynamic text: <a href="exec: gt ''vladimirQW_meet'', ''2''">There''s an Audi parked near <<$fu...
+        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00272/u0027); return false;">There's an Audi parked near ${qspFunc(s, 'homes_properties', 'get_home_desc')}, and standing beside it, you notice Vladimir</a>.`);
       } else {
         if (((s as any).vladimirQW ?? 0)?.['stage'] === 40) {
-          // TODO-QSP: dynamic text: <a href="exec: gt 'vladimirQW_meet', '3'">There's an Audi parked near <<$func('h...
-          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vladimirQW_meet\\u0027, \\u00273\\u0027); return false;">There's an Audi parked near ${qspFunc(s, 'homes_properties', 'get_home_desc')}, and standing beside it, you notice Vladimir</a>.`);
+          // TODO-QSP: dynamic text: <a href="exec: gt ''vladimirQW_meet'', ''3''">There''s an Audi parked near <<$fu...
+          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vladimirQW_meet/u0027, /u00273/u0027); return false;">There's an Audi parked near ${qspFunc(s, 'homes_properties', 'get_home_desc')}, and standing beside it, you notice Vladimir</a>.`);
         }
       }
     }
@@ -509,7 +509,7 @@ function enterCheckHomeLocOldContent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsHotel(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'pav_hotel'  ||  ((s as any).locArgs?.[1] ?? 0) === 'city_hotel');
+  (s as any).result = (Number((s as any).locArgs?.[1] ?? 0) === 'pav_hotel'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'city_hotel');
   return;
   // TODO-QSP: end
   scene.build();

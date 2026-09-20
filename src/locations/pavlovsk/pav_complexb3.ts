@@ -5,16 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'themes', 'indoors');
-  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
-  (s as any).loc = 'pav_complexb3';
-  if (((s as any).liftnotwork_day ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).liftnotwork_count = 1;
-  }
-  if (((s as any).mishahouse_day ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).mishahouse_count = 1;
-  }
-  (s as any).rnd_money_sex = Math.floor(Math.random() * 301) + 50;
   scene.build();
 }
 
@@ -43,8 +33,8 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Ground floor of the apartment building</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/podezd2.jpg');
   scene.text('<center>A dirty and poorly maintained stairwell, the same as any other in your town.</center>');
-  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_complexb3\\u0027, \\u0027housemates\\u0027); return false;">list</a> of the people who live here on the wall.');
-  scene.text('Someone put up some <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_complexb3\\u0027, \\u0027pod_objava\\u0027); return false;">advertisements</a> on the wall near the entrance.');
+  scene.text('There\'s a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_complexb3/u0027, /u0027housemates/u0027); return false;">list</a> of the people who live here on the wall.');
+  scene.text('Someone put up some <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_complexb3/u0027, /u0027pod_objava/u0027); return false;">advertisements</a> on the wall near the entrance.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', handler: (st: GameState) => {
@@ -163,11 +153,11 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
       { label: 'Change back into your clothes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
-    qspGoto(s, 'pav_complexb3', 'roof');
+    qspGoto(st, 'pav_complexb3', 'roof');
   } },
     ]);
   }
@@ -182,21 +172,21 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PSwim ?? 0) === 1) {
       scene.actions([
         { label: 'Sunbathe (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
-    if (((s as any).pcs_sweat ?? 0) < 35) {
-      qspCall(s, 'sweat', 'add', 5);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    if (((st as any).pcs_sweat ?? 0) < 35) {
+      qspCall(st, 'sweat', 'add', 5);
     }
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/apartment/zagar1.jpg');
-    if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
-      (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
+    if (((st as any).mc_inventory ?? 0)?.['suncream'] === 0) {
+      (st as any).pcs_tan = ((st as any).pcs_tan ?? 0) + (1);
       scene.text('You lie down to sunbathe.');
     } else {
-      if (((s as any).mc_inventory ?? 0)?.['suncream'] > 0) {
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
-        (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
+      if (((st as any).mc_inventory ?? 0)?.['suncream'] > 0) {
+        ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['suncream'] = ((st as any).mc_inventory['suncream'] ?? 0) - (1);
+        (st as any).pcs_tan = ((st as any).pcs_tan ?? 0) + (3);
         scene.text('You put the sunblock on your body and lie down on the roof to sunbathe.');
       }
     }
@@ -210,11 +200,11 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go down to the fifth floor', handler: (st: GameState) => {
-    if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
-      qspGoto(s, 'pav_complexb3', 'roof');
+    if (((st as any).PSwim ?? 0) === 1  ||  ((st as any).clothingworntype ?? 0) === 'nude') {
+      qspGoto(st, 'pav_complexb3', 'roof');
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspGoto(s, 'pav_complexb3', 'etaj_5');
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspGoto(st, 'pav_complexb3', 'etaj_5');
     }
   } },
   ]);
@@ -226,7 +216,7 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator.jpg');
-  scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_complexb3\\u0027, \\u0027elev_objava\\u0027, String(window.__gameStore.getState().ARGS ?? \\u0027\\u0027)); return false;">notification</a> in the elevator.</center>');
+  scene.text('<center>The elevator in the apartment building is quite old. The building supervisor does his best to keep it running, but it breaks down a lot. Someone put up a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_complexb3/u0027, /u0027elev_objava/u0027, String(window.__gameStore.getState().ARGS ?? /u0027/u0027)); return false;">notification</a> in the elevator.</center>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Push button: Floor 1', goto: ['pav_complexb3', 'etaj_1'] },
@@ -239,7 +229,7 @@ function enterLift(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
-  (s as any).pod_lift_ev = Math.floor(Math.random() * 101) + 0;
+  (s as any).pod_lift_ev = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).pod_lift_ev ?? 0) <= 5) {
     qspGoto(s, 'pav_complexb3', 'lift_event_1');
   } else {
@@ -254,7 +244,7 @@ function enterLiftEvents(s: GameState, scene: SceneBuilder): void {
 function enterLiftEvent_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/elevator\'+rand(1, 2)+\'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/elevator' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   scene.text('When the elevator door opens, you are surprised to see a naked woman standing in it. She looks at you in panic and is frantically pressing all the elevator buttons. You\'re too baffled to do anything until it\'s too late. The door has already closed, and the elevator is moving away from you.');
   // TODO-QSP: dynamic "
   // TODO-QSP: "
@@ -284,7 +274,7 @@ function enterLiftEvent_2(s: GameState, scene: SceneBuilder): void {
 function enterElevObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator_ob\'+rand(1, 2)+\'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -297,7 +287,7 @@ function enterElevObjava(s: GameState, scene: SceneBuilder): void {
 function enterPodObjava(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob\'+rand(1, 2)+\'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/stairs/pod_ob' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['pav_complexb3', 'etaj_1'] },
@@ -306,6 +296,16 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  (s as any).loc_arg = ((s as any).locArgs?.[0] ?? 0);
+  (s as any).loc = 'pav_complexb3';
+  if (((s as any).liftnotwork_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).liftnotwork_count = 1;
+  }
+  if (((s as any).mishahouse_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).mishahouse_count = 1;
+  }
+  (s as any).rnd_money_sex = (Math.floor(Math.random() * 301) + 50);
   const arg = s.locArg;
   switch (arg) {
     case 'housemates':

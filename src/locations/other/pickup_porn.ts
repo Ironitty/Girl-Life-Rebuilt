@@ -28,13 +28,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('He smiles again. "Relax, I\'m not going to hurt you. I\'m Ignat."');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" you reply.
     scene.text(`"${((s as any).pcs_nickname || '')}…" you reply.`);
-    // TODO-QSP: dynamic text: "Sexy name for a sexy girl," he grins. "So here's the deal. I'm an art student a...
+    // TODO-QSP: dynamic text: "Sexy name for a sexy girl," he grins. "So here''s the deal. I''m an art student...
     scene.text(`"Sexy name for a sexy girl," he grins. "So here's the deal. I'm an art student and I'm looking for a model to do a… private shoot with me. I'll pay you ${qspFunc(s, 'money', 'string_profit', 3000)} for your time."`);
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = (-1);
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    ((st as any).porn_studio = (st as any).porn_studio ?? {})['pickup_porn'] = (-1);
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/ignat.jpg');
     scene.text('There\'s something about him and the way he\'s looking at you, something that tells you not to trust him.');
     scene.text('"Sorry, but I don\'t have time right now…" you mumble in response.');
@@ -45,8 +45,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Accept', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('You accept his offer. It\'s easy money and sounds like fun.');
     scene.text('He leads you to his car and you climb inside. He turns to you with a wad of cash in his hand.');
@@ -54,7 +54,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and he pulls out a handheld camera to film you accepting the money. You give the camera a little smile as Ignat smiles at you.');
     scene.text('After this is done, he continues filming you for a few minutes before he starts the car and drives the short distance to an apartment block on the edge of the island, where he takes you up to his apartment and leads you inside.');
     scene.text('You follow him into the bedroom, where you find multiple cameras and lights set up around the bed.');
-    if (((s as any).pcs_intel ?? 0) >= 50) {
+    if (((st as any).pcs_intel ?? 0) >= 50) {
       scene.actions([
         { label: 'Call him out', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/porn_bed.jpg');
@@ -67,14 +67,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You back away from him and turn to head for the door. "Fuck you! I\'m not having sex with you, especially not on camera for a bunch of creeps to watch on the internet!"');
     scene.text('He scoffs. "People are going to learn you\'re a slut one way or the other. The question is, how many do you <i>want</i> to find out?"');
     scene.text('You turn back and see a cruel smile on his face. "Either we do this and <i>some</i> of your fellow students might see it online, or I\'ll see to it that <i>all</i> of them know that you let the black guys in the dorm run trains on you every night."');
-    if (((s as any).DjibrilQW ?? 0)?.['african_gangbang'] === 1) {
+    if (((st as any).DjibrilQW ?? 0)?.['african_gangbang'] === 1) {
       scene.text('Your eyes go wide. Does he actually know about what you\'ve been doing with Djibril and his friends?!');
     } else {
       scene.text('He\'s probably just bluffing, but it would destroy your reputation if he actually did carry out such a threat.');
     }
     scene.text('"So what will it be? A porno that pretty much nobody will see or everyone on campus knowing that you like taking big black cocks in every hole at once?"');
-    qspCall(s, 'willpower', 'misc', 'force', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'force', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -83,13 +83,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse and leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'force', 'medium');
-    qspCall(s, 'willpower', 'pay', 'force');
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(st, 'willpower', 'misc', 'force', 'medium');
+    qspCall(st, 'willpower', 'pay', 'force');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
     if ((Math.floor(Math.random() * 3) + 1) === 1) {
-      qspCall(s, 'fame', 'city', 'sex', 2);
+      qspCall(st, 'fame', 'city', 'sex', 2);
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('"Go suck your own dick, asshole!" you scornfully reply and head for the door.');
     scene.text('"Have it your way. Just know that everyone on campus will know that you\'re a filthy whore who craves big black cocks!"');
     scene.text('You flip him off as you leave and walk back to campus to clear your head.');
@@ -101,9 +101,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Give in', handler: (st: GameState) => {
-    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = 1;
-    qspCall(s, 'stat', '');
-    if (((s as any).DjibrilQW ?? 0)?.['african_gangbang'] === 1) {
+    ((st as any).porn_studio = (st as any).porn_studio ?? {})['pickup_porn'] = 1;
+    qspCall(st, 'stat', '');
+    if (((st as any).DjibrilQW ?? 0)?.['african_gangbang'] === 1) {
       scene.text('You can\'t be sure if he actually knows about what you\'ve been doing with Djibril and his friends or if he\'s just bluffing, but you also have a feeling he\'ll actually carry out his threat and expose you, so you resign yourself to his demands.');
       scene.text('"I knew you were a smart girl," he smirks. "Now get undressed."');
     } else {
@@ -117,8 +117,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Let\'s do it then', handler: (st: GameState) => {
-    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = 1;
-    qspCall(s, 'stat', '');
+    ((st as any).porn_studio = (st as any).porn_studio ?? {})['pickup_porn'] = 1;
+    qspCall(st, 'stat', '');
     scene.text('You smile. "Then you should have just said that! I like getting freaky and doing it on camera sounds hot…"');
     scene.text('He looks taken aback by your response. "Oh, okay. Get undressed and we can start…"');
     scene.text('You smile at his reaction as you do as he asks.');
@@ -139,8 +139,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"An… erotic shoot, so to speak," he replies as he rubs his hand against your arm. "You\'re a sexy girl, and I want to show your beauty to everyone who\'ll watch."');
     scene.text('You back away slightly. "Watch? You mean you\'re going to upload this to the internet?"');
     scene.text('"Yes. Everyone loves my work when I upload it."');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -149,9 +149,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('You don\'t like the way this is going and shake your head. "No! I can\'t do this!"');
     scene.text('You rush out of his apartment and hurry back to campus without stopping.');
     scene.actions([
@@ -162,8 +162,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Do it', handler: (st: GameState) => {
-    ((s as any).porn_studio = (s as any).porn_studio ?? {})['pickup_porn'] = 1;
-    qspCall(s, 'stat', '');
+    ((st as any).porn_studio = (st as any).porn_studio ?? {})['pickup_porn'] = 1;
+    qspCall(st, 'stat', '');
     scene.text('You\'re not sure if you can trust him, but something manages to tempt you into doing what he wants. You\'re not sure if it\'s because of the money or if the idea itself is appealing to you.');
     scene.actions([
       { label: 'Continue', goto: ['pickup_porn', 'hesitant_start'] },
@@ -193,47 +193,47 @@ function enterReluctantStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3);
+    qspCall(st, 'stat', '');
     scene.img('image=shared/sex/blowjob/kotovbj114.mp4');
     scene.text('You grab his cock and jerk it in your hand before taking it into your mouth.');
     scene.text('He moans lightly before looking down at you. "Let me see those pretty eyes as you suck my dick, baby."');
     scene.text('You begrudgingly do as you\'re told and maintain eye contact with the camera above you for the duration of the blowjob, his reactions telling you that he likes what he\'s seeing.');
     scene.actions([
       { label: 'Penetration', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/miss/enter1.mp4');
     scene.text('After a few minutes, he has you pop his dick of your mouth and lie back on the bed with your legs spread wide.');
     scene.text('He gets another close up of your pussy before stepping in between your legs and rubbing his dick against your lips before pushing it into your awaiting hole, causing you both to moan as he slides inside you.');
     scene.text('"Oh shit, you\'re so fucking tight! I can feel you squeezing around me!"');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/miss/hard3.mp4');
     scene.text('He doesn\'t hold back and immediately starts pounding your pussy. You instinctively cover your face every time you see the camera getting a shot of you, but he\'s enjoying himself too much to say anything about it.');
     scene.actions([
       { label: 'Get fucked some more', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/doggy/kotovsex11.mp4');
     scene.text('He pulls out and flips you up onto your knees before inserting himself back into your pussy. He then resumes fucking you just as hard, if not harder than before.');
     scene.text('"Look into the camera there. I want to see the pleasure on your face."');
     scene.text('You put on a fake show of moaning at the camera in front of you as he keeps pounding you.');
     scene.actions([
       { label: 'Get fucked even more', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/cowgirl/med1.mp4');
     scene.text('He then pulls out and lies flat on the bed before grabbing his camera. He holds it up close as you mount him and slide down onto his dick.');
     scene.text('You lean back on your hands and start riding him as he moves his camera around, getting as many shots of you as he can.');
     scene.actions([
       { label: 'Facial', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'cum_call', 'face', 'A193');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'cum_call', 'face', 'A193');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/cum/facial/cumface3.mp4');
     scene.text('He says he\'s about to cum and you quickly pull yourself off of his cock before he stands up on the bed next to you and jerks his cock.');
     scene.text('A few seconds later, you\'re hit in the face by a blast of cum that\'s followed by several more as he groans loudly.');
@@ -241,11 +241,11 @@ function enterReluctantStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You give the camera a fake smile before he stops filming and you glare at him. "Are we done now?"');
     scene.actions([
       { label: 'Finished', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'money', 'earn', 3000);
-    (s as any).cumspclnt = 1;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'money', 'earn', 3000);
+    (st as any).cumspclnt = 1;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('He nods, seemingly satisfied with his footage before he throws you a rag to clean your face. "You\'re a good fuck. You ever considered a career in porn?"');
     scene.text('You ignore his comment and wipe the cum off your face before you start getting dressed. "Just give me the money so I can get out of here."');
@@ -296,10 +296,10 @@ function enterHesitantStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'force', 'medium');
-    qspCall(s, 'willpower', 'pay', 'force');
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'misc', 'force', 'medium');
+    qspCall(st, 'willpower', 'pay', 'force');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('You knew there was a catch. He wants to film a porno with you! You quickly climb off the bed and start getting dressed.');
     scene.text('"What the fuck? We were in the middle of something!" he exclaims.');
@@ -315,59 +315,59 @@ function enterHesitantStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3);
+    qspCall(st, 'stat', '');
     scene.img('image=shared/sex/blowjob/kotovbj114.mp4');
     scene.text('You smile and get on your knees. You then grab his cock and jerk it before taking it into your mouth.');
     scene.text('He moans lightly before looking down at you. "Let me see those pretty eyes as you suck my dick, baby."');
     scene.text('You do as you\'re told and maintain eye contact with the camera above you for the duration of the blowjob, his reactions telling you that he likes what he\'s seeing.');
     scene.actions([
       { label: 'Penetration', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/miss/enter1.mp4');
     scene.text('After a few minutes, he has you pop his dick of your mouth and lie back on the bed with your legs spread wide.');
     scene.text('He gets another close up of your pussy before stepping in between your legs and rubbing his dick against your lips before pushing it into your awaiting hole, causing you both to moan as he slides inside you.');
     scene.text('"Oh shit, you\'re so fucking tight! I can feel you squeezing around me!"');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/miss/hard1.mp4');
     scene.text('He doesn\'t hold back and immediately starts pounding your pussy, causing you to moan loudly in pleasure.');
     scene.text('You\'re enjoying yourself too much to care about the camera getting shots of your face.');
     scene.actions([
       { label: 'Get fucked some more', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/doggy/kotovsex11.mp4');
     scene.text('He pulls out and flips you up onto your knees before inserting himself back into your pussy. He resumes fucking you just as hard, if not harder than before, causing you to shriek loudly in pleasure.');
     scene.text('"Look into the camera there. I want to see the pleasure on your face."');
     scene.text('You gaze into the camera in front of you in between moans of pleasure as he keeps pounding you.');
     scene.actions([
       { label: 'Get fucked even more', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/cowgirl/med1.mp4');
     scene.text('He then pulls out and lies flat on the bed before grabbing his camera. He holds it up close as you mount him and slide down onto his dick.');
     scene.text('You lean back on your hands and start riding him, moaning as his shaft slides in and out of you. He moves his camera around, getting as many shots of you as he can.');
     scene.actions([
       { label: 'Facial', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'cum_call', 'face', 'A193');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'cum_call', 'face', 'A193');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/cum/facial/cumface3.mp4');
     scene.text('He says he\'s about to cum and you quickly pull yourself off of his cock before he stands up on the bed next to you and jerks his cock.');
     scene.text('A few seconds later, you\'re hit in the face by a blast of cum that\'s followed by several more as he groans loudly.');
     scene.text('Once he\'s finished, you sit on your knees on the bed as he films a shot of your cum covered face. You give the camera a smile before he stops filming.');
     scene.actions([
       { label: 'Finished', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'money', 'earn', 3000);
-    (s as any).cumspclnt = 1;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'money', 'earn', 3000);
+    (st as any).cumspclnt = 1;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('He nods, seemingly satisfied with his footage before he passes you a rag to clean your face. "You\'re a good fuck. You ever considered a career in porn?"');
     scene.text('You\'re not sure what to make of his comment and just wipe the cum off your face before you start getting dressed. "Can I get my money now?"');
@@ -414,59 +414,59 @@ function enterEnthusiasticStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3);
+    qspCall(st, 'stat', '');
     scene.img('image=shared/sex/blowjob/kotovbj114.mp4');
     scene.text('You smile and get on your knees. You then grab his cock and jerk it before taking it into your mouth.');
     scene.text('He moans lightly before looking down at you. "Let me see those pretty eyes as you suck my dick, baby."');
     scene.text('You do as you\'re told and maintain eye contact with the camera above you for the duration of the blowjob, his reactions telling you that he likes what he\'s seeing.');
     scene.actions([
       { label: 'Penetration', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/miss/enter1.mp4');
     scene.text('After a few minutes, he has you pop his dick of your mouth and lie back on the bed with your legs spread wide.');
     scene.text('He gets another close up of your pussy before stepping in between your legs and rubbing his dick against your lips before pushing it into your awaiting hole, causing you both to moan as he slides inside you.');
     scene.text('"Oh shit, you\'re so fucking tight! I can feel you squeezing around me!"');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/miss/hard1.mp4');
     scene.text('He doesn\'t hold back and immediately starts pounding your pussy, causing you to moan loudly in pleasure.');
     scene.text('You\'re enjoying yourself too much to care about the camera getting shots of your face.');
     scene.actions([
       { label: 'Get fucked some more', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/doggy/kotovsex11.mp4');
     scene.text('He pulls out and flips you up onto your knees before inserting himself back into your pussy. He resumes fucking you just as hard, if not harder than before, causing you to shriek loudly in pleasure.');
     scene.text('"Look into the camera there. I want to see the pleasure on your face."');
     scene.text('You gaze into the camera in front of you in between moans of pleasure as he keeps pounding you.');
     scene.actions([
       { label: 'Get fucked even more', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/vag/cowgirl/med1.mp4');
     scene.text('He then pulls out and lies flat on the bed before grabbing his camera. He holds it up close as you mount him and slide down onto his dick.');
     scene.text('You lean back on your hands and start riding him, moaning as his shaft slides in and out of you. He moves his camera around, getting as many shots of you as he can.');
     scene.actions([
       { label: 'Facial', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'cum_call', 'face', 'A193');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'cum_call', 'face', 'A193');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.img('shared/sex/cum/facial/cumface3.mp4');
     scene.text('He says he\'s about to cum and you quickly pull yourself off of his cock before he stands up on the bed next to you and jerks his cock.');
     scene.text('A few seconds later, you\'re hit in the face by a blast of cum that\'s followed by several more as he groans loudly.');
     scene.text('Once he\'s finished, you sit on the bed as he films a shot of your cum covered face. You give the camera a flirty smile and wave before he stops filming.');
     scene.actions([
       { label: 'Finished', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'money', 'earn', 3000);
-    (s as any).cumspclnt = 1;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'money', 'earn', 3000);
+    (st as any).cumspclnt = 1;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('He nods, seemingly satisfied with his footage before he passes you a rag to clean your face. "You\'re a good fuck. You ever considered a career in porn?"');
     scene.text('You giggle and blush at his comment and wipe the cum off your face before you start getting dressed. "That was fun."');
@@ -502,15 +502,15 @@ function enterTalentScoutMeet(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Reluctantly undress', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('Last minute doubt starts creeping into your mind as you strip down, the talent scout watching from the corner of his eye as he adjusts a camera set up to face the bed.');
     scene.text('"I know you might be a little hesitant right now, but let\'s start with some pictures and let you get used to the camera. Sit up on the bed for me."');
     scene.actions([
       { label: 'Sit on the bed', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'striptease', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'striptease', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting1.jpg');
     scene.text('Your heart races as you climb onto the bed and watch as he grabs a camera and points it at you.');
     scene.text('"Nerves are normal," he says. "Just relax and try not to focus too much on the camera. It will come to you eventually and all that hesitation will melt away."');
@@ -523,15 +523,15 @@ function enterTalentScoutMeet(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Quickly strip down', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('You\'re eager to get started and quickly strip out of your clothes, surprsing the talent scout as he adjusts a camera set up to face the bed.');
     scene.text('"I would ask if you\'re ready to get started, but I see you\'re more than eager, so let\'s get started. Sit up on the bed for me and we\'ll start with a few pictures."');
     scene.actions([
       { label: 'Sit on the bed', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'striptease', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'striptease', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting1.jpg');
     scene.text('You feel a rush of excitment as you climb onto the bed and watch as he grabs a camera and points it at you.');
     scene.text('"You\'re just <i>oozing</i> confidence right now, girl! Love that smile!"');
@@ -548,7 +548,7 @@ function enterTalentScoutMeet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'the porn talent scout', Math.floor(Math.random() * 11) + 35);
+  qspCall(s, 'npcgeneratec', '', 0, 'the porn talent scout', (Math.floor(Math.random() * 11) + 35));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
@@ -567,8 +567,8 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting3.jpg');
     scene.text('You smile and crawl over to the edge of the bed before you slide off and get on your knees, his already rock hard cock awaiting you. You jerk it in your hand a few times before taking it into your mouth.');
     scene.text('He moans before looking down at you. "Let me see those pretty eyes as you suck my dick, girl."');
@@ -576,17 +576,17 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Once he\'s happy, he moves the scene on.');
     scene.actions([
       { label: 'Get on your back', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting4.jpg');
     scene.text('You pop his dick of your mouth and lie back on the bed with your legs spread wide.');
     scene.text('He gets a close up of your pussy before stepping in between your legs and rubbing his dick against your lips before pushing it into your awaiting hole, causing you both to moan as he slides inside you.');
     scene.text('You moan loudly in pleasure as he starts fucking you, alternating between filming his dick thrusting into your pussy and capturing your reaction.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'arousal', 'vaginal_finger', (-3));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'arousal', 'vaginal_finger', (-3));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting5.jpg');
     scene.text('He suddenly pulls out and grins at you before having you flip over and get onto your hands and knees, spreading your legs slightly before you feel his finger thrusting into your pussy, causing you to moan softly before he pulls it out and his cock stretches your pussy once more.');
     scene.text('He resumes fucking you a little harder than before, causing you to moan loudly in pleasure as you try your best to look as sexy as you can, knowing he\'s filming you from his point of view.');
@@ -595,9 +595,9 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', (-3));
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', (-3));
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting6.jpg');
     scene.text('You feel him tense up a little before he suddenly pulls out of you, panting as you gaze back and see his cock glistening with your pussy juices.');
     scene.text('"Damn, does your pussy feel good!" he quips as he joins you on the bed, laying on his back as crawl over to him.');
@@ -607,10 +607,10 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He nods in appreciation and motions for you to ride him faster. You do as he asks and the room is soon filled with the sound of your ass slapping against his thighs as you moan loudly. His reaction tells you that he\'s close to blowing his load, but is holding out to get as much footage as he can.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 2);
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting7.jpg');
     scene.text('His grunts grow louder and you gaze back to see what he wants you to do. He signals that he wants to cum in your mouth, so you quickly pull yourself off of his dick and kneel between his legs before taking it into your mouth and sucking.');
     scene.text('A few seconds later, he tenses up and you feel spurts of warm, sticky cum shooting into your throat. You keep your lips wrapped firmly around his shaft until he stops.');
@@ -619,25 +619,25 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('After showing him your clean tongue, you give the camera a flirty smile and a wave before he stops filming and places the camera down.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('He flops back on the bed. "Fuck, that was amazing! There\'s just one more thing we need to do before we finish up."');
     scene.text('"Oh?" you reply. "And what\'s that?"');
     scene.text('"We like to do post sex interviews with the girls, preferably in the shower for that extra erotic factor. We can start as soon as you wish."');
     scene.actions([
       { label: 'Ask for some water first', handler: (st: GameState) => {
-    qspCall(s, 'beverage', 'water_stats');
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(st, 'beverage', 'water_stats');
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting8.jpg');
     scene.text('"Do you have any water I could drink first?" you ask. "I worked up quite the thrist there."');
     scene.text('"Oh sure," he says and quickly hands you a bottle of water.');
     scene.text('After rehydrating yourself, you tell him you\'re ready to continue and he grabs his camera and starts filming you again as you walk into the ensuite bathroom and turn the shower on.');
     scene.text('You flirt with him and let him record your naked body some more before you step into the shower and start cleaning yourself.');
     scene.text('He continues to record you as you rinse your hair and lather up your body, all while listening to him compliment your body and answering his questions about yourself, the sex you just had, and whether or not you\'ll join the industry.');
-    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (((st as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He makes sure to capture you from every angle, paying special attention to both your breasts and ass. At one point, he even has you press them up against the glass door of the shower.');
     } else {
-      if (((s as any).tits ?? 0) >= 4) {
+      if (((st as any).tits ?? 0) >= 4) {
         scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
       } else {
         if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
@@ -652,9 +652,9 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Amazing work," he says. "Get yourself dressed and we can talk about your payment."');
     scene.actions([
       { label: 'Finished', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'money', 'earn', 6000);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'money', 'earn', 6000);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('You nod and walk back into the bedroom, where you drop your towel and start pulling your clothes back on.');
     scene.text('"You\'re a pretty good fuck," he says as he starts getting dressed himself. "I seriously think you have what it takes to work in porn."');
@@ -668,16 +668,16 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Go for a shower', handler: (st: GameState) => {
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
     scene.img('images/locations/city/redlight/stripclub/sex/club_casting8.jpg');
     scene.text('You tell him you\'re ready to continue and he grabs his camera and starts filming you again as you walk into the ensuite bathroom and turn the shower on.');
     scene.text('You flirt with him and let him record your naked body some more before you step into the shower and start cleaning yourself.');
     scene.text('He continues to record you as you rinse your hair and lather up your body, all while listening to him compliment your body and answering his questions about yourself, the sex you just had, and whether or not you\'ll join the industry.');
-    if (((s as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
+    if (((st as any).tits ?? 0) >= 4  &&  qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('He makes sure to capture you from every angle, paying special attention to both your breasts and ass. At one point, he even has you press them up against the glass door of the shower.');
     } else {
-      if (((s as any).tits ?? 0) >= 4) {
+      if (((st as any).tits ?? 0) >= 4) {
         scene.text('He makes sure to capture you from every angle, paying special attention to your breasts. At one point, he even has you lather them up before pressing them up against the glass door of the shower.');
       } else {
         if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
@@ -692,9 +692,9 @@ function enterTalentScoutSex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Amazing work," he says. "Get yourself dressed and we can talk about your payment."');
     scene.actions([
       { label: 'Finished', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'money', 'earn', 6000);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'money', 'earn', 6000);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/porn_bed.jpg');
     scene.text('You nod and walk back into the bedroom, where you drop your towel and start pulling your clothes back on.');
     scene.text('"You\'re a pretty good fuck," he says as he starts getting dressed himself. "I seriously think you have what it takes to work in porn."');
@@ -769,9 +769,9 @@ function enterDiscoverVideo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Cry', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'fame', 'city', 'sex', 2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'fame', 'city', 'sex', 2);
+    qspCall(st, 'stat', '');
     scene.img('images/pc/items/accessories/computer/porno.jpg');
     scene.text('Suddenly feeling dirty and ashamed, you bury your head in your hands and start crying as questions start flooding your mind:');
     scene.text('Why did you agree to do that?');
@@ -782,31 +782,31 @@ function enterDiscoverVideo(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Whatever', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 3) {
+      (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (30);
     } else {
-      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
-        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+      if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+        (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
       } else {
-        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+        if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+          (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
         } else {
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+          (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
         }
       }
     }
-    qspCall(s, 'fame', 'city', 'sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'fame', 'city', 'sex', 2);
+    qspCall(st, 'stat', '');
     scene.img('images/pc/items/accessories/computer/porno.jpg');
     scene.text('You shrug off the comments. There\'s nothing you can do about it now and it\'s not like these guys will ever have a chance with you.');
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
       scene.text('You\'re not sure why, but you feel a little turned on at the idea of them jerking off to you getting fucked.');
     } else {
-      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+      if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
         scene.text('Even so, you still feel a little aroused at the idea of them watching you get fucked.');
       } else {
-        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+        if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
           scene.text('Even so, you still find yourself more than a little turned on at the idea of them watching you get fucked.');
         } else {
           scene.text('Even so, you feel yourself getting wet at the idea of countless people on the internet watching you get fucked and let out a little moan.');
@@ -854,9 +854,9 @@ function enterWatchCastingCall(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Cry', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'fame', 'city', 'sex', 2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'fame', 'city', 'sex', 2);
+    qspCall(st, 'stat', '');
     scene.img('images/pc/items/accessories/computer/porno.jpg');
     scene.text('Suddenly feeling dirty and ashamed, you bury your head in your hands and start crying.');
     scene.text('Why did you agree to do that? How many people have already seen it?!');
@@ -865,31 +865,31 @@ function enterWatchCastingCall(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Whatever', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 3) {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (30);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 3) {
+      (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (30);
     } else {
-      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
-        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+      if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+        (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
       } else {
-        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+        if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+          (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
         } else {
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
+          (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
         }
       }
     }
-    qspCall(s, 'fame', 'city', 'sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'fame', 'city', 'sex', 2);
+    qspCall(st, 'stat', '');
     scene.img('images/pc/items/accessories/computer/porno.jpg');
     scene.text('You shrug off the comments. There\'s nothing you can do about it now and it\'s not like these guys will ever have a chance with you.');
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 0) {
       scene.text('You\'re not sure why, but you feel a little turned on at the idea of them jerking off to you getting fucked.');
     } else {
-      if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
+      if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 1) {
         scene.text('Even so, you still feel a little aroused at the idea of them watching you get fucked.');
       } else {
-        if (((s as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
+        if (((st as any).trait_vars ?? 0)?.['exhibitionist'] === 2) {
           scene.text('Even so, you still find yourself more than a little turned on at the idea of them watching you get fucked.');
         } else {
           scene.text('Even so, you feel yourself getting wet at the idea of countless people on the internet watching you get fucked and let out a little moan.');

@@ -32,13 +32,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Dance', handler: (st: GameState) => {
-    (s as any).hour = 23;
-    qspCall(s, 'drugs', 'alcohol', 'wine');
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    qspCall(s, 'drugs', 'alcohol', 'beer');
+    (st as any).hour = 23;
+    qspCall(st, 'drugs', 'alcohol', 'wine');
+    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
     scene.text('You have fun, drinking and dancing.');
-    (s as any).itrand = Math.floor(Math.random() * 12) + 1;
-    qspGoto(s, 'vecher', 'end' + ((s as any).itrand ?? 0) + '');
+    (st as any).itrand = (Math.floor(Math.random() * 12) + 1);
+    qspGoto(st, 'vecher', 'end' + ((st as any).itrand ?? 0) + '');
   } },
   ]);
   scene.build();
@@ -74,11 +74,11 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get a room with Vika', handler: (st: GameState) => {
-    if ((!((s as any).vikasex ?? 0))) {
-      (s as any).vikasex = 1;
+    if ((!((st as any).vikasex ?? 0))) {
+      (st as any).vikasex = 1;
     }
-    (s as any).sexloc = 'uni_dorm';
-    qspGoto(s, 'lezbsex', 'start');
+    (st as any).sexloc = 'uni_dorm';
+    qspGoto(st, 'lezbsex', 'start');
   } },
   ]);
   scene.build();
@@ -97,19 +97,19 @@ function enterEnd3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'cuni', 5);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'uni_dorm', 'tenth_floor');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'uni_dorm', 'tenth_floor');
   } },
       { label: 'Stay and enjoy yourself', handler: (st: GameState) => {
-    if ((!((s as any).vikasex ?? 0))) {
-      (s as any).vikasex = 1;
+    if ((!((st as any).vikasex ?? 0))) {
+      (st as any).vikasex = 1;
     }
     scene.img('images/locations/city/island/university/dorm/sex/party/vechend2.jpg');
     scene.text('You relax, allowing the girls to caress your body. Periodically changing positions so another can take post at your pussy, they settle into a rotation, trying to see who can trigger the most orgasms.');
-    qspCall(s, 'arousal', 'cuni', 15);
-    qspCall(s, 'arousal', 'cuni', (-15));
-    qspCall(s, 'arousal', 'cuni', (-15));
-    qspCall(s, 'arousal', 'cuni', (-15));
+    qspCall(st, 'arousal', 'cuni', 15);
+    qspCall(st, 'arousal', 'cuni', (-15));
+    qspCall(st, 'arousal', 'cuni', (-15));
+    qspCall(st, 'arousal', 'cuni', (-15));
     scene.actions([
       { label: 'Continue', goto: ['vecher', 'end12'] },
     ]);
@@ -140,11 +140,11 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Vika to an empty room', handler: (st: GameState) => {
-    if ((!((s as any).vikasex ?? 0))) {
-      (s as any).vikasex = 1;
+    if ((!((st as any).vikasex ?? 0))) {
+      (st as any).vikasex = 1;
     }
-    (s as any).sexloc = 'uni_dorm';
-    qspGoto(s, 'lezbsex', 'start');
+    (st as any).sexloc = 'uni_dorm';
+    qspGoto(st, 'lezbsex', 'start');
   } },
   ]);
   scene.build();
@@ -196,29 +196,29 @@ function enterEnd7(s: GameState, scene: SceneBuilder): void {
     { label: 'Remove your panties', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/sex/party/itog71.jpg');
     scene.text('You get up off the man\'s lap to finish your stripping, shuffling out of your panties drunkenly, almost toppling over again. Catching a glimpse of your pussy, the man hastens to strip off his clothes too, fumbling with his fly.');
-    qspCall(s, 'arousal', 'flash', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/sex/party/itog72.jpg');
     scene.text('Getting down on your knees and clasping his member greedily between your lips, you start to move back and forth on his length, slurping noisily, ignoring the crowd in the rest of the room. The man seems to want more however, wrapping his fingers in your hair and starting to drag your head back and forth, using your mouth to masturbate.');
-    qspCall(s, 'arousal', 'bj', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/sex/party/itog73.jpg');
     scene.text('With his cock rock-hard and nicely wet, he lifts you bodily and turns you around, pushing you into the sofa doggystyle. He shoves himself into your pussy and starts to pound away, not caring about your enjoyment, just fucking. A crowd gathers to view the show, calling out encouragements and suggestions on how best to fuck you. The guy pounding you keeps it up for a long time, too drunk to do the deed properly.');
-    qspCall(s, 'arousal', 'vaginal', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/sex/party/itog74.jpg');
     scene.text('Just when you start to get tired of his thrusting, he tugs his dick out of your aching puss, shooting a few meager ropes of cum onto your buttocks. Scooping up your clothes from the floor, you follow him to his room to sleep it off.');
-    qspCall(s, 'arousal', 'vaginal', 2);
-    qspCall(s, 'arousal', 'end');
-    (s as any).spafinloc = 4;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 2);
+    qspCall(st, 'arousal', 'end');
+    (st as any).spafinloc = 4;
+    qspCall(st, 'cum_manage', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -253,26 +253,26 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Caress Vika', handler: (st: GameState) => {
-    if ((!((s as any).vikasex ?? 0))) {
-      (s as any).vikasex = 1;
+    if ((!((st as any).vikasex ?? 0))) {
+      (st as any).vikasex = 1;
     }
     scene.img('images/locations/city/island/university/dorm/sex/party/itog81.jpg');
     scene.text('You kiss and fondle at Vika\'s breasts, making her wriggle and moan. She soon offers to reward you with some cunnilingus.');
-    (s as any).orgasm_txt = 'The muscles of your vagina start to clench and ripple with pleasure, a warm wave of pleasure suffusing your lower body as you howl in orgasm.';
-    qspCall(s, 'arousal', 'kuni', 10, 'lesbian');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'The muscles of your vagina start to clench and ripple with pleasure, a warm wave of pleasure suffusing your lower body as you howl in orgasm.';
+    qspCall(st, 'arousal', 'kuni', 10, 'lesbian');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.text('The stranger tugs his dick out of Vika with a wet slurp and lifts his body to press it into her mouth.');
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/sex/party/itog82.jpg');
     scene.text('The man cums in Vika\'s mouth with a shudder, prompting her to open her mouth and show off her creamy treat. You want to taste…');
     scene.actions([
       { label: 'Kiss Vika', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth', 'A86', 1, 0, 0, 0, 20);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth', 'A86', 1, 0, 0, 0, 20);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/sex/party/itog83.jpg');
     scene.text('You spend a couple of moments making out and snowballing the cum between the two of you.');
     scene.actions([
@@ -282,17 +282,17 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Share the dick', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 10);
-    qspCall(s, 'cum_call', 'face', 'A86', 1, 0, 0, 0, 20);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 10);
+    qspCall(st, 'cum_call', 'face', 'A86', 1, 0, 0, 0, 20);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/sex/party/itog84.jpg');
     scene.text('You suck and lick the dick together, working as a team until the man climaxes across your faces and tongues.');
     scene.actions([
       { label: 'Kiss Vika', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'kiss', 2);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'mouth', 'A86', 1, 0, 0, 0, 20);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 2);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'mouth', 'A86', 1, 0, 0, 0, 20);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/sex/party/itog83.jpg');
     scene.text('You spend a couple of moments making out and snowballing the cum between the two of you.');
     scene.actions([
@@ -337,11 +337,11 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Grab his crotch', handler: (st: GameState) => {
-    (s as any).sexloc = 'uni_dorm';
-    qspCall(s, 'npcgeneratec', '', 0, 'stranger from a party', Math.floor(Math.random() * 11) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    (s as any).picrand = Math.floor(Math.random() * 21) + 20;
-    qspGoto(s, 'sex', 'start');
+    (st as any).sexloc = 'uni_dorm';
+    qspCall(st, 'npcgeneratec', '', 0, 'stranger from a party', (Math.floor(Math.random() * 11) + 18));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    (st as any).picrand = (Math.floor(Math.random() * 21) + 20);
+    qspGoto(st, 'sex', 'start');
   } },
   ]);
   scene.build();
@@ -361,7 +361,7 @@ function enterEnd11(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnd12(s: GameState, scene: SceneBuilder): void {
-  (s as any).picrand = Math.floor(Math.random() * 7) + 3;
+  (s as any).picrand = (Math.floor(Math.random() * 7) + 3);
   scene.img(`images/locations/city/island/university/dorm/sex/party/vechend${((s as any).picrand || '')}.jpg`);
   scene.text('All mixed up in a big ball of women\'s bodies, you can\'t remember the name of the girl your fingers are exploring, put a face to the taste on your tongue, or identify who is delving into your pussy.');
   qspCall(s, 'arousal', 'cuni', 15);

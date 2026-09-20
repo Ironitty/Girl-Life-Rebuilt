@@ -9,19 +9,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[2] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[4] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[4] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[5] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[5] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[6] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[6] ?? 0) === '') {
     // TODO-QSP: exit
   }
   (s as any).arousal_maxi = 0;
@@ -30,7 +30,7 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :arousal_stat_core_loop1
     (s as any).arousal_temp_npcID = 0;
     if ((!(0 as any))) {
-      if (((s as any).locArgs?.[7] ?? 0) !== '') {
+      if (Number((s as any).locArgs?.[7] ?? 0) !== '') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[7] ?? 0), ((s as any).arousal_temp_npcID ?? 0)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
@@ -53,11 +53,11 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic '<<$ARGS[2]>>[$arousal_temp_npcID] += 1'
-    if (((s as any).locArgs?.[3] ?? 0) !== '') {
+    if (Number((s as any).locArgs?.[3] ?? 0) !== '') {
       // TODO-QSP: dynamic '<<$ARGS[3]>>[$arousal_temp_npcID] = daystart'
     }
-    if (((s as any).locArgs?.[8] ?? 0) !== '') {
-      if (((s as any).locArgs?.[3] ?? 0) !== '') {
+    if (Number((s as any).locArgs?.[8] ?? 0) !== '') {
+      if (Number((s as any).locArgs?.[3] ?? 0) !== '') {
         (s as any).su_ld_variant = 'known';
       } else {
         (s as any).su_ld_variant = 'hidden';
@@ -88,16 +88,16 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetStatFucked(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_vaginal_count ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).npc_vaginal_count ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_anal_count ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).npc_anal_count ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
     ((s as any).stat = (s as any).stat ?? {})['men_fucked'] = ((s as any).stat['men_fucked'] ?? 0) + (1);
   } else {
-    if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+    if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
       ((s as any).stat = (s as any).stat ?? {})['women_fucked'] = ((s as any).stat['women_fucked'] ?? 0) + (1);
     } else {
       ((s as any).stat = (s as any).stat ?? {})['herm_fucked'] = ((s as any).stat['herm_fucked'] ?? 0) + (1);
@@ -109,16 +109,16 @@ function enterSetStatFucked(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetStatHiddenFucked(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_hidden_vaginal_count ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).npc_hidden_vaginal_count ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_hidden_anal_count ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).npc_hidden_anal_count ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
     ((s as any).stat = (s as any).stat ?? {})['men_hidden_fucked'] = ((s as any).stat['men_hidden_fucked'] ?? 0) + (1);
   } else {
-    if (((s as any).npc_gender ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+    if (((s as any).npc_gender ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
       ((s as any).stat = (s as any).stat ?? {})['women_hidden_fucked'] = ((s as any).stat['women_hidden_fucked'] ?? 0) + (1);
     } else {
       ((s as any).stat = (s as any).stat ?? {})['herm_hidden_fucked'] = ((s as any).stat['herm_hidden_fucked'] ?? 0) + (1);
@@ -476,7 +476,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).zoo = ((s as any).temp_beast_exp ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) !== 'no_stat') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 'no_stat') {
     qspCall(s, 'stat', '');
   }
   // TODO-QSP: end

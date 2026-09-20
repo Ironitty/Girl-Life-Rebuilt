@@ -15,12 +15,51 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the store', handler: (st: GameState) => {
-    (s as any).shoplocation = '';
-    if (((s as any).torg ?? 0) === 1) {
-      (s as any).minut = ((s as any).minut ?? 0) + 3;
-      qspGoto(s, 'city_mall', '');
+    (st as any).shoplocation = '';
+    if (((st as any).torg ?? 0) === 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + 3;
+      qspGoto(st, 'city_mall', '');
     } else {
-      qspGoto(s, 'pav_industrial', '');
+      qspGoto(st, 'pav_industrial', '');
+    }
+  } },
+    { label: 'Visit clothing department', goto: ['shop_gm', 'clothing_department'] },
+    { label: 'View shoes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_gm', 'shoes'] },
+    { label: 'View coats', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_gm', 'coats'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_gm', 'purses'] },
+    { label: 'View panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_gm', 'panties'] },
+    { label: 'View bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_gm', 'bras'] },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_gm', 'start');
+  (s as any).location_type = 'event';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Welcome to G & M - Clothes for all your needs</b></center>');
+  scene.img('images/locations/city/citycenter/mall/gandm/shop.jpg');
+  scene.text('G&M is certainly not high fashion, but it\'s affordable and has specific work and school wear.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave the store', handler: (st: GameState) => {
+    (st as any).shoplocation = '';
+    if (((st as any).torg ?? 0) === 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + 3;
+      qspGoto(st, 'city_mall', '');
+    } else {
+      qspGoto(st, 'pav_industrial', '');
     }
   } },
     { label: 'Visit clothing department', goto: ['shop_gm', 'clothing_department'] },
@@ -91,9 +130,9 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'clothing_department');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'clothing_department');
   } },
   ]);
   scene.build();
@@ -114,9 +153,9 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'clothing_department');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'clothing_department');
   } },
   ]);
   scene.build();
@@ -136,9 +175,9 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'clothing_department');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'clothing_department');
   } },
   ]);
   scene.build();
@@ -159,9 +198,9 @@ function enterGmMaid(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'clothing_department');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'clothing_department');
   } },
   ]);
   scene.build();
@@ -182,9 +221,9 @@ function enterGmServer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'clothing_department');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'clothing_department');
   } },
   ]);
   scene.build();
@@ -206,9 +245,9 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'clothing_department');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'clothing_department');
   } },
   ]);
   scene.build();
@@ -228,9 +267,9 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'start');
   } },
   ]);
   scene.build();
@@ -250,9 +289,9 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'start');
   } },
   ]);
   scene.build();
@@ -272,9 +311,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'start');
   } },
   ]);
   scene.build();
@@ -295,9 +334,9 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'start');
   } },
   ]);
   scene.build();
@@ -318,9 +357,9 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_gm', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_gm', 'start');
   } },
   ]);
   scene.build();
@@ -329,6 +368,9 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'clothing_department':
       enterClothingDepartment(s, scene);
       break;

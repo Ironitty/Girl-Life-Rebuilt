@@ -24,8 +24,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 9  &&  (((s as any).hour ?? 0) < 15  ||  (((s as any).hour ?? 0) === 14  &&  ((s as any).minut ?? 0) <= 30))  &&  ((s as any).week ?? 0) < 6) {
       scene.actions([
         { label: 'Talk to the manager', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'andrey', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'andrey', '');
   } },
       ]);
     }
@@ -33,29 +33,122 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_pussycats_clerk') === 1) {
     scene.actions([
       { label: 'Go to work', handler: (st: GameState) => {
-    qspCall(s, 'jobs', 'clock', 'city_pussycats_clerk');
-    qspCall(s, 'jobs', 'get_shift_for_day', 'city_pussycats_clerk', ((s as any).daystart ?? 0));
-    if (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) < ((s as any).result_start ?? 0)) {
-      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).result_start ?? 0) - (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)));
+    qspCall(st, 'jobs', 'clock', 'city_pussycats_clerk');
+    qspCall(st, 'jobs', 'get_shift_for_day', 'city_pussycats_clerk', ((st as any).daystart ?? 0));
+    if (((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0) < ((st as any).result_start ?? 0)) {
+      (st as any).minut = ((st as any).minut ?? 0) + (((st as any).result_start ?? 0) - (((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0)));
     }
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).result_duration ?? 0));
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (((s as any).result_duration ?? 0) / 10);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (((s as any).result_duration ?? 0) / 5);
-    qspCall(s, 'stat', '');
-    if (((s as any).result_duration ?? 0) <= 240) {
+    (st as any).minut = ((st as any).minut ?? 0) + (((st as any).result_duration ?? 0));
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (((st as any).result_duration ?? 0) / 10);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (((st as any).result_duration ?? 0) / 5);
+    qspCall(st, 'stat', '');
+    if (((st as any).result_duration ?? 0) <= 240) {
       scene.text('You spend 4 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
     } else {
       scene.text('You spend 6 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
   if ((((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'terminated'  ||  ((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'fired')  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6) {
     scene.actions([
       { label: 'Talk to the manager again', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'andrey', '');
+  } },
+    ]);
+  }
+  if (((s as any).hour ?? 0) > 21  ||  ((s as any).hour ?? 0) < 8) {
+    scene.text('A security guard approaches you. "Sorry, but the store is closed. You\'ll have to leave."');
+    scene.text('<center><b>The store is closed.</b></center>');
+    scene.actions([
+      { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['city_mall', ''] },
+    ]);
+  }
+  qspCall(s, 'stat', '');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave the shop', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['city_mall', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'dress'] },
+    { label: 'View other outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'clothes'] },
+    { label: 'View panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'panties'] },
+    { label: 'View bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'bras'] },
+    { label: 'View shoes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'shoes'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'purses'] },
+    { label: 'View coats', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_pussycats', 'coats'] },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_pussycats', 'start');
+  (s as any).sexloc = 'shop_pussycats';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<b><center><font size="4">Pussy-Cats</font></center></b>');
+  scene.img('images/locations/city/citycenter/mall/cats/young_shop.jpg');
+  scene.text('The latest chart topping pop single is playing throughout the small store. The interior is decorated in bright colors and bold designs, and the floor is packed with stands and tables displaying clothes with a more daring style.');
+  scene.text('Looking around at all the advertisements with attractive yet emaciated models, you\'ll either leave here seduced into buying something or with lower self-esteem.');
+  if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed'  &&  ((s as any).job_booking_debt ?? 0)?.['city_pussycats_clerk'] >= 3  &&  qspFunc(s, 'jobs', 'is_work_time', 'city_pussycats_clerk') === 1) {
     qspGoto(s, 'andrey', '');
+  }
+  if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === '') {
+    // TODO-QSP: dynamic text: As you enter, you notice a for hire sign with a note scribbled on it that reads:...
+    scene.text('As you enter, you notice a for hire sign with a note scribbled on it that reads: "<b>The Manager Mr. Sobulyagin works weekdays from 9:00 to 20:00, weekends 9:00 to 15:00; Applicants should speak to him weekdays BEFORE 14:30!</b>"');
+    if (((s as any).hour ?? 0) >= 9  &&  (((s as any).hour ?? 0) < 15  ||  (((s as any).hour ?? 0) === 14  &&  ((s as any).minut ?? 0) <= 30))  &&  ((s as any).week ?? 0) < 6) {
+      scene.actions([
+        { label: 'Talk to the manager', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'andrey', '');
+  } },
+      ]);
+    }
+  }
+  if (((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_arrival_time', 'city_pussycats_clerk') === 1) {
+    scene.actions([
+      { label: 'Go to work', handler: (st: GameState) => {
+    qspCall(st, 'jobs', 'clock', 'city_pussycats_clerk');
+    qspCall(st, 'jobs', 'get_shift_for_day', 'city_pussycats_clerk', ((st as any).daystart ?? 0));
+    if (((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0) < ((st as any).result_start ?? 0)) {
+      (st as any).minut = ((st as any).minut ?? 0) + (((st as any).result_start ?? 0) - (((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0)));
+    }
+    (st as any).minut = ((st as any).minut ?? 0) + (((st as any).result_duration ?? 0));
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (((st as any).result_duration ?? 0) / 10);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (((st as any).result_duration ?? 0) / 5);
+    qspCall(st, 'stat', '');
+    if (((st as any).result_duration ?? 0) <= 240) {
+      scene.text('You spend 4 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
+    } else {
+      scene.text('You spend 6 hours cleaning the department, folding and rehanging clothes and serving customers. The store now looks clean and pretty organized.');
+    }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEvents(s, scene); (st as any).locArgs = __savedLocArgs; }
+  } },
+    ]);
+  }
+  if ((((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'terminated'  ||  ((s as any).job_status ?? 0)?.['city_pussycats_clerk'] === 'fired')  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).week ?? 0) < 6) {
+    scene.actions([
+      { label: 'Talk to the manager again', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'andrey', '');
   } },
     ]);
   }
@@ -115,9 +208,9 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_pussycats', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_pussycats', 'start');
   } },
   ]);
   scene.build();
@@ -138,9 +231,9 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_pussycats', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_pussycats', 'start');
   } },
   ]);
   scene.build();
@@ -160,9 +253,9 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_pussycats', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_pussycats', 'start');
   } },
   ]);
   scene.build();
@@ -182,9 +275,9 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_pussycats', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_pussycats', 'start');
   } },
   ]);
   scene.build();
@@ -204,9 +297,9 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_pussycats', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_pussycats', 'start');
   } },
   ]);
   scene.build();
@@ -226,9 +319,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_pussycats', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_pussycats', 'start');
   } },
   ]);
   scene.build();
@@ -248,16 +341,16 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_pussycats', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_pussycats', 'start');
   } },
   ]);
   scene.build();
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  (s as any).random = Math.floor(Math.random() * 15) + 0;
+  (s as any).random = (Math.floor(Math.random() * 15) + 0);
   if ((!((s as any).random ?? 0))) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enter0(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
@@ -347,7 +440,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
   scene.text('There are a lot of customers today and you\'re run off your feet working hard for the next two hours.');
   scene.text('At the end of your shift, the manager approaches you.');
-  // TODO-QSP: dynamic text: "Listen <<$pcs_nickname>>, I know you've worked hard today, but as you can see, ...
+  // TODO-QSP: dynamic text: "Listen <<$pcs_nickname>>, I know you''ve worked hard today, but as you can see,...
   scene.text(`"Listen ${((s as any).pcs_nickname || '')}, I know you've worked hard today, but as you can see, we're short on staff. Hang on for another hour and I'll give you a bonus you won't regret!"`);
   qspCall(s, 'willpower', 'misc', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -359,10 +452,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if (((s as any).job_bonus_pay ?? 0)?.['city_pussycats_clerk'] >= 205) {
-      qspCall(s, 'jobs', 'bonus_pay', 'city_pussycats_clerk', (-205));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if (((st as any).job_bonus_pay ?? 0)?.['city_pussycats_clerk'] >= 205) {
+      qspCall(st, 'jobs', 'bonus_pay', 'city_pussycats_clerk', (-205));
     }
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
     scene.text('You start making excuses, but the manager just shrugs.');
@@ -377,8 +470,8 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'jobs', 'bonus_pay', 'city_pussycats_clerk', 205);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'jobs', 'bonus_pay', 'city_pussycats_clerk', 205);
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
     scene.text('It seems that you have no choice. After working for another hour, you\'re very tired, but the thought of a bonus makes you smile.');
     scene.actions([
@@ -435,7 +528,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
     scene.text('You step away from the desk, thinking about what he\'d do if he saw you looking at his computer.');
     // TODO-QSP: dynamic text: A minute later, he returns, "Ah, <<$pcs_nickname>>, nice of you to come! I have ...
-    scene.text(`A minute later, he returns, "Ah, ${((s as any).pcs_nickname || '')}, nice of you to come! I have something for you to sign."`);
+    scene.text(`A minute later, he returns, "Ah, ${((st as any).pcs_nickname || '')}, nice of you to come! I have something for you to sign."`);
     scene.text('He walks over to his desk and shuffles through some paperwork before handing you a form.');
     scene.text('You\'re not really focused on the piece of paper, so you don\'t read it before signing and returning it. After saying goodbye, you return to the shop floor.');
     scene.actions([
@@ -477,32 +570,32 @@ function enter7(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at the outfit and see that it\'s one you already own. "Thanks, but I already have that outfit."');
     scene.actions([
       { label: 'Finish your shift', handler: (st: GameState) => {
-    qspGoto(s, 'shop_pussycats', 'endwork');
+    qspGoto(st, 'shop_pussycats', 'endwork');
   } },
     ]);
   } else {
     if (qspFunc(s, 'money', 'can_afford', 720)) {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Buy the outfit (Kats #' + String(((s as any).temp_pussycats_index || '') ?? '') + '  [720₽])...]', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 720);
-    qspCall(s, 'clothing', 'add_item', 'cats_outfits', ((s as any).temp_pussycats_index ?? 0));
-    qspCall(s, 'clothing', 'decrease_strength', 'cats_outfits', ((s as any).temp_pussycats_index ?? 0), 40);
+    qspCall(st, 'money', 'pay', 720);
+    qspCall(st, 'clothing', 'add_item', 'cats_outfits', ((st as any).temp_pussycats_index ?? 0));
+    qspCall(st, 'clothing', 'decrease_strength', 'cats_outfits', ((st as any).temp_pussycats_index ?? 0), 40);
     scene.text('You hand over the money for the slightly less than perfect outfit. It\'s not going to last you as long it should since the stitching has a flaw, but you still got quite a bargain.');
     scene.actions([
       { label: 'Finish your shift', handler: (st: GameState) => {
-    qspGoto(s, 'shop_pussycats', 'endwork');
+    qspGoto(st, 'shop_pussycats', 'endwork');
   } },
     ]);
   } },
         { label: 'Refuse', handler: (st: GameState) => {
-    qspGoto(s, 'shop_pussycats', 'endwork');
+    qspGoto(st, 'shop_pussycats', 'endwork');
   } },
       ]);
     } else {
       scene.text('You don\'t have the cash on you, so you can\'t take her up on this offer.');
       scene.actions([
         { label: 'Finish your shift', handler: (st: GameState) => {
-    qspGoto(s, 'shop_pussycats', 'endwork');
+    qspGoto(st, 'shop_pussycats', 'endwork');
   } },
       ]);
     }
@@ -518,7 +611,7 @@ function enter8(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'May I help you?', handler: (st: GameState) => {
     scene.text('"I see you\'re picking out a gift for a girl. Can I be of any help?"');
-    if (((s as any).pcs_hotcat ?? 0) < 6) {
+    if (((st as any).pcs_hotcat ?? 0) < 6) {
       scene.text('One of them examines you from head to toe.');
       scene.text('"Honey, it looks like you need the help!" he says with disdain.');
       scene.text('He starts insultingly discussing your appearance with his boyfriend as you leave to look for another, hopefully nicer, customer.');
@@ -552,10 +645,10 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell the manager', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/young_shop.jpg');
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.text('You storm into the manager\'s office without knocking and start chattering about what happened.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, calm down! What happened?!"
-    scene.text(`"${((s as any).pcs_nickname || '')}, calm down! What happened?!"`);
+    scene.text(`"${((st as any).pcs_nickname || '')}, calm down! What happened?!"`);
     scene.text('You point with trembling hands in the direction of the changing booths. "There! There! In the booth! Hurry!"');
     scene.text('He reluctantly gets up from his chair and goes with you. Walking back into the booth, he squats down and pulls on the camera glued to the plinth.');
     scene.text('"We should call th-" you start to say, but he interrupts you mid-sentence.');
@@ -597,16 +690,16 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Keep it', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
     scene.text('Before leaving, you take the outfit with you. The girl clearly didn\'t want it and you\'re not about to throw away fairly new clothing that\'s free for the taking!');
-    if (((s as any).gm_outfits ?? 0)?.[String((s as any).temp_pussycats_index ?? 0)] === 0) {
+    if (((st as any).gm_outfits ?? 0)?.[String((st as any).temp_pussycats_index ?? 0)] === 0) {
       scene.text('However, it then occurs to you that you already have this outfit, so you decide to leave it behind in the store. Perhaps it could be resold? Your boss will love you for that!');
     } else {
-      qspCall(s, 'clothing', 'add_item', 'gm_outfits', ((s as any).temp_pussycats_index ?? 0));
+      qspCall(st, 'clothing', 'add_item', 'gm_outfits', ((st as any).temp_pussycats_index ?? 0));
     }
     scene.actions([
       { label: 'Finish your shift', handler: (st: GameState) => {
-    qspGoto(s, 'shop_pussycats', 'endwork');
+    qspGoto(st, 'shop_pussycats', 'endwork');
   } },
     ]);
   } },
@@ -615,7 +708,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put it back and finish your shift', handler: (st: GameState) => {
-    qspGoto(s, 'shop_pussycats', 'endwork');
+    qspGoto(st, 'shop_pussycats', 'endwork');
   } },
   ]);
   scene.build();
@@ -635,14 +728,14 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Listen to them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.text('You stand next to the booth and listen as she licks and sucks his cock. Suddenly she makes a strange sound indicating that something has changed.');
     scene.text('You quickly peek into the booth again and see the guy holding the girl\'s hair as he firmly pulls her down onto his cock. You\'ve never seen a girl getting fucked in the throat with such force.');
     scene.text('Then you hear the guy starting to moan, he must be close.');
     scene.text('The girl coughs loudly before you hear her giggle. "Yes, cum on my face! Yes…"');
-    qspCall(s, 'arousal', 'voyeur_sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Look into the booth', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/sex/young_shop_quest3.jpg');
@@ -650,8 +743,8 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     scene.text('When he\'s done, he quietly pulls up his pants while watching the girl use her hands to scoop up the cum from her face and lick them.');
     scene.text('You decide to leave before you get caught. A minute later, the pair shows up and you see that she didn\'t wipe her face very thoroughly.');
     scene.text('You stay quiet as the two of them leave the store.');
-    qspCall(s, 'arousal', 'voyeur_sex', (-2));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', (-2));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish your shift', goto: ['shop_pussycats', 'endwork'] },
     ]);
@@ -691,8 +784,8 @@ function enter12(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Shame on you, grandma!', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('"And why should I be ashamed of that? I\'ve done nothing wrong! This is just today\'s fashion; we don\'t live in Stalin\'s time anymore!"');
     scene.text('"During Comrade Stalin\'s time, this would not have happened!" she scowls.');
     scene.text('She then starts a new lecture about old times, honesty, integrity and correctness.');
@@ -738,7 +831,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
     scene.text('The woman grabs her daughter by the arm and takes her to the booth. They return a few minutes later.');
     scene.text('"As I thought," you smile. "You look great in this one!"');
     scene.text('"All of Kira\'s friends will be so jealous! How much is this beauty?"');
-    // TODO-QSP: dynamic text: "Only <<$func('money', 'string_price', 2400)>>!"
+    // TODO-QSP: dynamic text: "Only <<$func(''money'', ''string_price'', 2400)>>!"
     scene.text(`"Only ${qspFunc(s, 'money', 'string_price', 2400)}!"`);
     scene.text('The woman beams happily and hands over the money before grabbing Kira by the arm and practically dragging her out of the store.');
     scene.actions([
@@ -805,6 +898,9 @@ function enterEndwork(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'dress':
       enterDress(s, scene);
       break;

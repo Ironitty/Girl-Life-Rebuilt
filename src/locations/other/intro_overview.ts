@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -506,23 +504,23 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('</table>');
   scene.text('</center>');
   // TODO-QSP: view $func('$face_image')
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: '<b>Continue</b>', goto: ['intro_overview', 'leave'] },
-    { label: '<b>Skip Intro</b>', goto: ['intro_overview', 'quick_leave'] },
-    { label: 'Change theme', handler: (st: GameState) => {
-    (s as any).themes_menu_ret_loc = 'intro_overview';
-    (s as any).themes_menu_ret_arg = '';
-    qspGoto(s, 'themes', 'menu');
-  } },
-    { label: 'Return to Start', handler: (st: GameState) => {
+{ label: '<b>Continue</b>', goto: ['intro_overview', 'leave'] },,
+{ label: '<b>Skip Intro</b>', goto: ['intro_overview', 'quick_leave'] },,
+{ label: 'Change theme', handler: (st: GameState) => {
+    (st as any).themes_menu_ret_loc = 'intro_overview';
+    (st as any).themes_menu_ret_arg = '';
+    qspGoto(st, 'themes', 'menu');
+  } },,
+{ label: 'Return to Start', handler: (st: GameState) => {
     scene.actions([
       { label: 'Return to Start', goto: ['start', ''] },
       { label: 'Cancel', goto: ['intro_overview', ''] },
     ]);
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -541,9 +539,9 @@ function enterQuickLeave(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRenderCell(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_header = ((((s as any).locArgs?.[1] ?? 0) !== '') ? (((s as any).locArgs?.[1] ?? 0)) : (qspUntranslated(s, "str(ARGS[1])", { location: "intro_overview" })));
-  (s as any).temp_value = ((((s as any).locArgs?.[2] ?? 0) !== '') ? (((s as any).locArgs?.[2] ?? 0)) : (qspUntranslated(s, "str(ARGS[2])", { location: "intro_overview" })));
-  if ((!((s as any).locArgs?.[3] ?? 0))) {
+  (s as any).temp_header = ((Number((s as any).locArgs?.[1] ?? 0) !== '') ? (((s as any).locArgs?.[1] ?? 0)) : (String(((s as any).locArgs?.[1] ?? 0))));
+  (s as any).temp_value = ((Number((s as any).locArgs?.[2] ?? 0) !== '') ? (((s as any).locArgs?.[2] ?? 0)) : (String(((s as any).locArgs?.[2] ?? 0))));
+  if (Number((s as any).locArgs?.[3] ?? 0) === 0) {
     (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0" border="0">';
     // TODO-QSP: $result +=    '<tr>'
     // TODO-QSP: $result +=      '<td width="1%" nowrap rowspan="3" align="center" valign="middle" style="text-align:...
@@ -567,7 +565,7 @@ function enterRenderCell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result +=    '</tr>'
     // TODO-QSP: $result +=  '</table>'
   } else {
-    if (((s as any).locArgs?.[3] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
       (s as any).result = '<a style="text-decoration: none; color: inherit;" href="exec:' + ((s as any).locArgs?.[4] ?? 0) + ' & gt \'intro_overview\'">';
       // TODO-QSP: $result +=    '<table width="100%" cellpadding="0" cellspacing="0" border="0">'
       // TODO-QSP: $result +=      '<tr>'
@@ -583,7 +581,7 @@ function enterRenderCell(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $result +=    '</table>'
       // TODO-QSP: $result +=  '</a>'
     } else {
-      if (((s as any).locArgs?.[3] ?? 0) === 2) {
+      if (Number((s as any).locArgs?.[3] ?? 0) === 2) {
         (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0" border="0">';
         // TODO-QSP: $result +=    '<tr>'
         // TODO-QSP: $result +=      '<td align="center" valign="middle" style="text-align: center; vertical-align:middle...
@@ -605,7 +603,7 @@ function enterRenderCell(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFirstnameSetter(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_action_firstname = '$temp = input(\'What is your first name? (Leave blank for \\"' + ((s as any).pcs_firstname ?? 0) + '\\")\') & $pcs_firstname = iif($temp = \'\', $pcs_firstname, $temp)';
+  (s as any).temp_action_firstname = '$temp = input(\'What is your first name? (Leave blank for /"' + ((s as any).pcs_firstname ?? 0) + '/")\') & $pcs_firstname = iif($temp = \'\', $pcs_firstname, $temp)';
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'First Name', ((s as any).pcs_firstname ?? 0), 1, ((s as any).temp_action_firstname ?? 0));
   return;
   // TODO-QSP: end
@@ -613,7 +611,7 @@ function enterGetFirstnameSetter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetNicknameSetter(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_action_nickname = '$temp = input(\'What is your nickname? (Leave blank for \\"' + ((s as any).pcs_nickname ?? 0) + '\\")\') & $pcs_nickname = iif($temp = \'\', $pcs_nickname, $temp)';
+  (s as any).temp_action_nickname = '$temp = input(\'What is your nickname? (Leave blank for /"' + ((s as any).pcs_nickname ?? 0) + '/")\') & $pcs_nickname = iif($temp = \'\', $pcs_nickname, $temp)';
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Nickname', ((s as any).pcs_nickname ?? 0), 1, ((s as any).temp_action_nickname ?? 0));
   return;
   // TODO-QSP: end
@@ -621,7 +619,7 @@ function enterGetNicknameSetter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetLastnameSetter(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_action_lastname = '$temp = input(\'What is your last name? (Leave blank for \\"' + ((s as any).pcs_lastname ?? 0) + '\\")\') & $pcs_lastname = iif($temp = \'\', $pcs_lastname, $temp)';
+  (s as any).temp_action_lastname = '$temp = input(\'What is your last name? (Leave blank for /"' + ((s as any).pcs_lastname ?? 0) + '/")\') & $pcs_lastname = iif($temp = \'\', $pcs_lastname, $temp)';
   (s as any).result = qspFunc(s, 'intro_overview', 'render_cell', 'Last Name', ((s as any).pcs_lastname ?? 0), 1, ((s as any).temp_action_lastname ?? 0));
   return;
   // TODO-QSP: end
@@ -1332,16 +1330,16 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['group'] === 'nerd') {
     if (((s as any).start_type ?? 0)?.['cat'] === 'nerdqueen') {
-      ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodstudent') : ('chessplayer'));
+      ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodstudent') : ('chessplayer'));
     } else {
       if (((s as any).start_type ?? 0)?.['cat'] === 'goodstudent') {
-        ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('computergeek') : ('nerdqueen'));
+        ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('computergeek') : ('nerdqueen'));
       } else {
         if (((s as any).start_type ?? 0)?.['cat'] === 'computergeek') {
-          ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('chessplayer') : ('goodstudent'));
+          ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('chessplayer') : ('goodstudent'));
         } else {
           if (((s as any).start_type ?? 0)?.['cat'] === 'chessplayer') {
-            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('nerdqueen') : ('computergeek'));
+            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('nerdqueen') : ('computergeek'));
           }
         }
       }
@@ -1349,16 +1347,16 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).start_type ?? 0)?.['group'] === 'jock') {
       if (((s as any).start_type ?? 0)?.['cat'] === 'volleyball') {
-        ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('dancer') : ('football'));
+        ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('dancer') : ('football'));
       } else {
         if (((s as any).start_type ?? 0)?.['cat'] === 'dancer') {
-          ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('runner') : ('volleyball'));
+          ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('runner') : ('volleyball'));
         } else {
           if (((s as any).start_type ?? 0)?.['cat'] === 'runner') {
-            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('football') : ('dancer'));
+            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('football') : ('dancer'));
           } else {
             if (((s as any).start_type ?? 0)?.['cat'] === 'football') {
-              ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('volleyball') : ('runner'));
+              ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('volleyball') : ('runner'));
             }
           }
         }
@@ -1366,16 +1364,16 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).start_type ?? 0)?.['group'] === 'cool') {
         if (((s as any).start_type ?? 0)?.['cat'] === 'socialite') {
-          ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('beautiful') : ('bimbo'));
+          ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('beautiful') : ('bimbo'));
         } else {
           if (((s as any).start_type ?? 0)?.['cat'] === 'beautiful') {
-            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('anorexic') : ('socialite'));
+            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('anorexic') : ('socialite'));
           } else {
             if (((s as any).start_type ?? 0)?.['cat'] === 'anorexic') {
-              ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('bimbo') : ('beautiful'));
+              ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('bimbo') : ('beautiful'));
             } else {
               if (((s as any).start_type ?? 0)?.['cat'] === 'bimbo') {
-                ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('socialite') : ('anorexic'));
+                ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('socialite') : ('anorexic'));
               }
             }
           }
@@ -1383,20 +1381,20 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).start_type ?? 0)?.['group'] === 'gopnik') {
           if (((s as any).start_type ?? 0)?.['cat'] === 'gopnikstart') {
-            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('troublemaker') : ('alternative'));
+            ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('troublemaker') : ('alternative'));
           } else {
             if (((s as any).start_type ?? 0)?.['cat'] === 'troublemaker') {
-              if (((s as any).locArgs?.[1] ?? 0) === 1) {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                 ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).tsg ?? 0) === 1) ? ('vitekgf') : ('alternative'));
               } else {
                 ((s as any).start_type = (s as any).start_type ?? {})['cat'] = 'gopnikstart';
               }
             } else {
               if (((s as any).start_type ?? 0)?.['cat'] === 'vitekgf') {
-                ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('alternative') : ('troublemaker'));
+                ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('alternative') : ('troublemaker'));
               } else {
                 if (((s as any).start_type ?? 0)?.['cat'] === 'alternative') {
-                  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                     ((s as any).start_type = (s as any).start_type ?? {})['cat'] = 'gopnikstart';
                   } else {
                     ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).tsg ?? 0) === 1) ? ('vitekgf') : ('troublemaker'));
@@ -1408,22 +1406,22 @@ function enterCycleSubgroup(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).start_type ?? 0)?.['group'] === 'outcast') {
             if (((s as any).start_type ?? 0)?.['cat'] === 'friendless') {
-              ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('uglyduckling') : ('poor'));
+              ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('uglyduckling') : ('poor'));
             } else {
               if (((s as any).start_type ?? 0)?.['cat'] === 'uglyduckling') {
-                ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodgirl') : ('friendless'));
+                ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('goodgirl') : ('friendless'));
               } else {
                 if (((s as any).start_type ?? 0)?.['cat'] === 'goodgirl') {
-                  ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('slut') : ('uglyduckling'));
+                  ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('slut') : ('uglyduckling'));
                 } else {
                   if (((s as any).start_type ?? 0)?.['cat'] === 'slut') {
-                    ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('goth') : ('goodgirl'));
+                    ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('goth') : ('goodgirl'));
                   } else {
                     if (((s as any).start_type ?? 0)?.['cat'] === 'goth') {
-                      ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('poor') : ('slut'));
+                      ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('poor') : ('slut'));
                     } else {
                       if (((s as any).start_type ?? 0)?.['cat'] === 'poor') {
-                        ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((((s as any).locArgs?.[1] ?? 0) === 1) ? ('friendless') : ('goth'));
+                        ((s as any).start_type = (s as any).start_type ?? {})['cat'] = ((Number((s as any).locArgs?.[1] ?? 0) === 1) ? ('friendless') : ('goth'));
                       }
                     }
                   }
@@ -1476,7 +1474,7 @@ function enterCycleSgTime(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetPortraitMode(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
       ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = 0;
       if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
@@ -1491,34 +1489,34 @@ function enterSetPortraitMode(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetArchetypeLabel(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     (s as any).result = 'None';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) <= 25000) {
+    if (Number((s as any).locArgs?.[1] ?? 0) <= 25000) {
       (s as any).result = 'Trace';
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) <= 50000) {
+      if (Number((s as any).locArgs?.[1] ?? 0) <= 50000) {
         (s as any).result = 'Active';
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) <= 75000) {
+        if (Number((s as any).locArgs?.[1] ?? 0) <= 75000) {
           (s as any).result = 'Low';
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) <= 100000) {
+          if (Number((s as any).locArgs?.[1] ?? 0) <= 100000) {
             (s as any).result = 'Moderate';
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) <= 125000) {
+            if (Number((s as any).locArgs?.[1] ?? 0) <= 125000) {
               (s as any).result = 'Strong';
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) <= 150000) {
+              if (Number((s as any).locArgs?.[1] ?? 0) <= 150000) {
                 (s as any).result = 'Very Strong';
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) <= 200000) {
+                if (Number((s as any).locArgs?.[1] ?? 0) <= 200000) {
                   (s as any).result = 'Dominant';
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) <= 300000) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) <= 300000) {
                     (s as any).result = 'Intense';
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) <= 400000) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) <= 400000) {
                       (s as any).result = 'Extreme';
                     } else {
                       (s as any).result = 'Full';

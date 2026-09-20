@@ -112,24 +112,24 @@ function enterKGOLrise(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGOLpoint ?? 0) > 0) {
     scene.actions([
       { label: 'Improve your strength', handler: (st: GameState) => {
-    (s as any).KGOLstren = ((s as any).KGOLstren ?? 0) + (1);
-    (s as any).KGOLpoint = ((s as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKGOLrise(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).KGOLstren = ((st as any).KGOLstren ?? 0) + (1);
+    (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Improve your speed', handler: (st: GameState) => {
-    (s as any).KGOLspeed = ((s as any).KGOLspeed ?? 0) + (1);
-    (s as any).KGOLpoint = ((s as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKGOLrise(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).KGOLspeed = ((st as any).KGOLspeed ?? 0) + (1);
+    (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Improve your endurance', handler: (st: GameState) => {
-    (s as any).KGOLvital = ((s as any).KGOLvital ?? 0) + (1);
-    (s as any).KGOLpoint = ((s as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKGOLrise(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).KGOLvital = ((st as any).KGOLvital ?? 0) + (1);
+    (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Improve your intelligence', handler: (st: GameState) => {
-    (s as any).KGOLintel = ((s as any).KGOLintel ?? 0) + (1);
-    (s as any).KGOLpoint = ((s as any).KGOLpoint ?? 0) - (1);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKGOLrise(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).KGOLintel = ((st as any).KGOLintel ?? 0) + (1);
+    (st as any).KGOLpoint = ((st as any).KGOLpoint ?? 0) - (1);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterKGOLrise(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -147,51 +147,51 @@ function enterKGOLrise2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGOLspellpoint ?? 0) >= 4) {
     if (((s as any).KGOLklass ?? 0) === 'Warrior') {
       // TODO-QSP: dynamic text: Powerful Strike = <<KGOLspell>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell +...
-      scene.text(`Powerful Strike = ${((s as any).KGOLspell || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+      scene.text(`Powerful Strike = ${((s as any).KGOLspell || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
       // TODO-QSP: dynamic text: Multiple Blows = <<KGOLspell2>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell2 ...
-      scene.text(`Multiple Blows = ${((s as any).KGOLspell2 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell2 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+      scene.text(`Multiple Blows = ${((s as any).KGOLspell2 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell2 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
       // TODO-QSP: dynamic text: Increased Armor = <<KGOLspell3>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell3...
-      scene.text(`Increased Armor = ${((s as any).KGOLspell3 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell3 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+      scene.text(`Increased Armor = ${((s as any).KGOLspell3 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell3 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
     } else {
       if (((s as any).KGOLklass ?? 0) === 'Rogue') {
         // TODO-QSP: dynamic text: Stealth Strike = <<KGOLspell4>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell4 ...
-        scene.text(`Stealth Strike = ${((s as any).KGOLspell4 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell4 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+        scene.text(`Stealth Strike = ${((s as any).KGOLspell4 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell4 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
         // TODO-QSP: dynamic text: Poison Blade = <<KGOLspell5>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell5 +=...
-        scene.text(`Poison Blade = ${((s as any).KGOLspell5 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell5 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+        scene.text(`Poison Blade = ${((s as any).KGOLspell5 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell5 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
         // TODO-QSP: dynamic text: Invisibility = <<KGOLspell6>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell6 +=...
-        scene.text(`Invisibility = ${((s as any).KGOLspell6 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell6 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+        scene.text(`Invisibility = ${((s as any).KGOLspell6 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell6 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
       } else {
         if (((s as any).KGOLklass ?? 0) === 'Mage') {
           // TODO-QSP: dynamic text: Fireball = <<KGOLspell7>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell7 += 1 &...
-          scene.text(`Fireball = ${((s as any).KGOLspell7 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell7 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+          scene.text(`Fireball = ${((s as any).KGOLspell7 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell7 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
           // TODO-QSP: dynamic text: Kinetic Pulse = <<KGOLspell8>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell8 +...
-          scene.text(`Kinetic Pulse = ${((s as any).KGOLspell8 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell8 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+          scene.text(`Kinetic Pulse = ${((s as any).KGOLspell8 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell8 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
           // TODO-QSP: dynamic text: Circle of Fire = <<KGOLspell9>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell9 ...
-          scene.text(`Circle of Fire = ${((s as any).KGOLspell9 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell9 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+          scene.text(`Circle of Fire = ${((s as any).KGOLspell9 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell9 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
         } else {
           if (((s as any).KGOLklass ?? 0) === 'Priest') {
             // TODO-QSP: dynamic text: Divine Strike = <<KGOLspell10>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell10...
-            scene.text(`Divine Strike = ${((s as any).KGOLspell10 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell10 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+            scene.text(`Divine Strike = ${((s as any).KGOLspell10 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell10 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
             // TODO-QSP: dynamic text: Healing = <<KGOLspell11>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell11 += 1 ...
-            scene.text(`Healing = ${((s as any).KGOLspell11 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell11 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+            scene.text(`Healing = ${((s as any).KGOLspell11 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell11 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
             // TODO-QSP: dynamic text: Divine Protection = <<KGOLspell12>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspe...
-            scene.text(`Divine Protection = ${((s as any).KGOLspell12 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell12 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+            scene.text(`Divine Protection = ${((s as any).KGOLspell12 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell12 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
           } else {
             if (((s as any).KGOLklass ?? 0) === 'Archer') {
               // TODO-QSP: dynamic text: Powerful Shot = <<KGOLspell13>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell13...
-              scene.text(`Powerful Shot = ${((s as any).KGOLspell13 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell13 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+              scene.text(`Powerful Shot = ${((s as any).KGOLspell13 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell13 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
               // TODO-QSP: dynamic text: Triple Shot = <<KGOLspell14>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell14 +...
-              scene.text(`Triple Shot = ${((s as any).KGOLspell14 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell14 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+              scene.text(`Triple Shot = ${((s as any).KGOLspell14 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell14 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
               // TODO-QSP: dynamic text: Regen Mana = <<KGOLspell15>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell15 +=...
-              scene.text(`Regen Mana = ${((s as any).KGOLspell15 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell15 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+              scene.text(`Regen Mana = ${((s as any).KGOLspell15 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell15 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
             } else {
               if (((s as any).KGOLklass ?? 0) === 'Barbarian') {
                 // TODO-QSP: dynamic text: Thunderbolt = <<KGOLspell16>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell16 +...
-                scene.text(`Thunderbolt = ${((s as any).KGOLspell16 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell16 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+                scene.text(`Thunderbolt = ${((s as any).KGOLspell16 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell16 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
                 // TODO-QSP: dynamic text: Stun = <<KGOLspell17>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell17 += 1 & g...
-                scene.text(`Stun = ${((s as any).KGOLspell17 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell17 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+                scene.text(`Stun = ${((s as any).KGOLspell17 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell17 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
                 // TODO-QSP: dynamic text: Recovery = <<KGOLspell18>>. <a href="exec:KGOLspellpoint -= 4 & KGOLspell18 += 1...
-                scene.text(`Recovery = ${((s as any).KGOLspell18 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell18 +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">Spend a skill point</a>`);
+                scene.text(`Recovery = ${((s as any).KGOLspell18 || '')}. <a href="#" onclick="window.__gameStore.setState((s) => { s.KGOLspellpoint -=s.4; s.KGOLspell18 +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">Spend a skill point</a>`);
               }
             }
           }

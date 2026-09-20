@@ -17,7 +17,7 @@ function enterCommunityAlleys(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t know anybody here, and the locals haven\'t formed any opinion about you yet.');
   }
   if (((s as any).exhib ?? 0)?.['status'] === 10) {
-    scene.text('You can start at the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027ETO_village\\u0027, \\u0027saw_noise\\u0027); return false;">clanging saws</a>.');
+    scene.text('You can start at the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027ETO_village/u0027, /u0027saw_noise/u0027); return false;">clanging saws</a>.');
   }
   // TODO-QSP: end
   scene.actions([
@@ -31,7 +31,7 @@ function enterCommunityAlleys(s: GameState, scene: SceneBuilder): void {
 function enterForestArea(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  ((s as any).forest = (s as any).forest ?? {})['rand'] = Math.floor(Math.random() * 100) + 1;
+  ((s as any).forest = (s as any).forest ?? {})['rand'] = (Math.floor(Math.random() * 100) + 1);
   scene.img('images/locations/suburban/1fores.jpg');
   scene.text('Leafy forest.');
   if (((s as any).forest ?? 0)?.['rand'] < 30) {
@@ -64,10 +64,10 @@ function enterMushroomPicker(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Show your pussy', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'flash', 'pussy', 'outdoors', 2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    qspCall(st, 'flash', 'pussy', 'outdoors', 2);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/2fores.jpg');
     scene.text('Smiling, you show the mushroom picker your pussy. He stops in his tracks and stares at you, not understanding what\'s happening.');
     scene.actions([
@@ -106,14 +106,14 @@ function enterSpringWater(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Drink from the spring', handler: (st: GameState) => {
-    if (((s as any).pcs_hydra ?? 0) >= 90) {
+    if (((st as any).pcs_hydra ?? 0) >= 90) {
       scene.text('You are not thirsty.');
     } else {
-      if (((s as any).pcs_hydra ?? 0) < 90) {
-        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-        (s as any).cumspclnt = 2;
-        qspCall(s, 'cum_cleanup', '');
-        (s as any).pcs_breath = 0;
+      if (((st as any).pcs_hydra ?? 0) < 90) {
+        (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
+        (st as any).cumspclnt = 2;
+        qspCall(st, 'cum_cleanup', '');
+        (st as any).pcs_breath = 0;
         scene.text('You gladly drink the spring water.');
       }
     }
@@ -131,23 +131,23 @@ function enterInfoColumn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/suburban/stolbik.jpg');
   scene.text('The writing on the column has some useful information.');
-  // TODO-QSP: dynamic text: Nina in the 3rd alley sells goat milk at <<$func('money', 'string_price', 300)>>...
+  // TODO-QSP: dynamic text: Nina in the 3rd alley sells goat milk at <<$func(''money'', ''string_price'', 30...
   scene.text(`Nina in the 3rd alley sells goat milk at ${qspFunc(s, 'money', 'string_price', 300)} per liter`);
   if (((s as any).pcs_energy ?? 0) < 70) {
     scene.actions([
       { label: 'Buy milk', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 300);
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      (s as any).frost = 0;
-      (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-      qspCall(s, 'mood', 'raise', 'small');
-      qspCall(s, 'stat', '');
-      (s as any).fat = ((s as any).fat ?? 0) + (1);
-      (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (40);
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      qspCall(st, 'money', 'pay', 300);
+      (st as any).minut = ((st as any).minut ?? 0) + 30;
+      (st as any).frost = 0;
+      (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+      qspCall(st, 'mood', 'raise', 'small');
+      qspCall(st, 'stat', '');
+      (st as any).fat = ((st as any).fat ?? 0) + (1);
+      (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
       scene.text('You gladly drink some goat\'s milk.');
       scene.actions([
         { label: 'Leave', goto: ['dachi', ''] },
@@ -173,12 +173,12 @@ function enterNeighborCottage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).exhib ?? 0)?.['status'] < 10) {
     scene.actions([
       { label: 'Approach neighbors', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).exhib = (s as any).exhib ?? {})['status'] = 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    ((st as any).exhib = (st as any).exhib ?? {})['status'] = 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/kuzmich.jpg');
-    // TODO-QSP: dynamic text: You: "Hello! My name is <<$pcs_nickname>>, I'm your new neighbor. We haven't met...
-    scene.text(`You: "Hello! My name is ${((s as any).pcs_nickname || '')}, I'm your new neighbor. We haven't met yet."`);
+    // TODO-QSP: dynamic text: You: "Hello! My name is <<$pcs_nickname>>, I''m your new neighbor. We haven''t m...
+    scene.text(`You: "Hello! My name is ${((st as any).pcs_nickname || '')}, I'm your new neighbor. We haven't met yet."`);
     scene.text('Neighbor: "Hi. I\'m Kuzmich. So you\'re the new neighbor."');
     scene.text('<font color="magenta">You: "Yes. Can you help me? My entire garden is overgrown with weeds, and I\'d like to clean it up."</font>');
     scene.text('Kuzmich: "Well, you can hire some of the local men. They\'re all workers. You can find them across the alley."');
@@ -204,16 +204,16 @@ function enterSawNoise(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask workers to clear your garden', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/dachastroy.jpg');
     scene.text('You: "Hello! I need to clean up my garden. Could you help? And how much will it cost?"');
-    // TODO-QSP: dynamic text: Worker: "For some shoveling work, <<$func('money', 'string_profit', 3000)>>."
+    // TODO-QSP: dynamic text: Worker: "For some shoveling work, <<$func(''money'', ''string_profit'', 3000)>>....
     scene.text(`Worker: "For some shoveling work, ${qspFunc(s, 'money', 'string_profit', 3000)}."`);
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).exhib = (s as any).exhib ?? {})['status'] = 11;
-    qspCall(s, 'stat', '');
+    ((st as any).exhib = (st as any).exhib ?? {})['status'] = 11;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/dachastroy.jpg');
     scene.text('You agree to the price and ask them to clean your vegetable garden.');
     scene.actions([
@@ -274,16 +274,16 @@ function enterWorkerConversation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Approach the workers', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/dachabust3.jpg');
     scene.text('You: "Hello guys! I see the work is progressing, but somewhat slowly."');
     scene.text('Worker: "Sorry, young lady. Some motivation would help us work harder."');
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
-    ((s as any).exhib = (s as any).exhib ?? {})['status'] = 15;
-    (s as any).temp = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    ((st as any).exhib = (st as any).exhib ?? {})['status'] = 15;
+    (st as any).temp = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/dachabust3.jpg');
     scene.text('<font color="magenta">You: "Until you finish the work, you don\'t get anything."</font>');
     scene.actions([
@@ -291,10 +291,10 @@ function enterWorkerConversation(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Accept and give half the amount', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 1500);
-    ((s as any).exhib = (s as any).exhib ?? {})['status'] = 14;
-    (s as any).temp = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', 1500);
+    ((st as any).exhib = (st as any).exhib ?? {})['status'] = 14;
+    (st as any).temp = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/dachabust3.jpg');
     scene.text('"Well, here\'s half. But tomorrow morning everything has to be finished."');
     scene.actions([
@@ -317,7 +317,7 @@ function enterGardenStrip(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Undress completely', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/sex/event/dachagang1.jpg');
     scene.text('You strip naked and stand in front of the guys.');
     scene.text('<font color="magenta">"Well, how about a 100% discount?"</font>');
@@ -325,33 +325,33 @@ function enterGardenStrip(s: GameState, scene: SceneBuilder): void {
       { label: 'Have sex', handler: (st: GameState) => {
     scene.img('images/locations/suburban/sex/event/dachagang4.jpg');
     scene.text('The guys pounce on you, and after a few brief caresses, they start fucking all your holes.');
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID1 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID2 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID1 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID2 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID3 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID2 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID3 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID3 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID1 ?? 0), 'group', 'gangbang');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0));
-    qspCall(s, 'cum_call', 'butt', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'cum_call', '', '', ((s as any).npcID2 ?? 0));
-    qspCall(s, 'cum_call', 'anus', ((s as any).npcID3 ?? 0));
-    ((s as any).exhib = (s as any).exhib ?? {})['status'] = 16;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID1 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID2 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID1 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID2 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID3 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID2 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID3 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID3 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID1 ?? 0), 'group', 'gangbang');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0));
+    qspCall(st, 'cum_call', 'butt', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'cum_call', '', '', ((st as any).npcID2 ?? 0));
+    qspCall(st, 'cum_call', 'anus', ((st as any).npcID3 ?? 0));
+    ((st as any).exhib = (st as any).exhib ?? {})['status'] = 16;
+    qspCall(st, 'stat', '');
     scene.text('When it\'s over, you pick up your clothes, put them on, and go back into the house.');
     scene.actions([
       { label: 'Next', goto: ['dachain', 'start'] },
@@ -372,40 +372,40 @@ function enterWorkerAssault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Next', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/sex/event/dachagang3.jpg');
     scene.text('The guys grab you and start to undress and grope you.');
     scene.actions([
       { label: 'Surrender', handler: (st: GameState) => {
     scene.img('images/locations/suburban/sex/event/dachagang4.jpg');
     scene.text('The drunk workers pounce on you, and after a few brief caresses, they fuck all your holes.');
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-    qspCall(s, 'npcgeneratec', '', 0, 'gardener', Math.floor(Math.random() * 16) + 25, 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID1 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID2 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID1 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID2 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID3 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID2 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID3 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID3 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'anal', (-30), ((s as any).npcID ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'vaginal', (-30), ((s as any).npcID1 ?? 0), 'rough', 'group', 'gangbang', 'rape');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0));
-    qspCall(s, 'cum_call', 'butt', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'cum_call', '', '', ((s as any).npcID2 ?? 0));
-    qspCall(s, 'cum_call', 'anus', ((s as any).npcID3 ?? 0));
-    ((s as any).exhib = (s as any).exhib ?? {})['status'] = 16;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
+    qspCall(st, 'npcgeneratec', '', 0, 'gardener', (Math.floor(Math.random() * 16) + 25), 3, 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID1 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID2 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID1 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID2 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID3 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID2 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID3 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'bj', 30, ((st as any).npcID3 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'anal', (-30), ((st as any).npcID ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'vaginal', (-30), ((st as any).npcID1 ?? 0), 'rough', 'group', 'gangbang', 'rape');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0));
+    qspCall(st, 'cum_call', 'butt', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'cum_call', '', '', ((st as any).npcID2 ?? 0));
+    qspCall(st, 'cum_call', 'anus', ((st as any).npcID3 ?? 0));
+    ((st as any).exhib = (st as any).exhib ?? {})['status'] = 16;
+    qspCall(st, 'stat', '');
     scene.text('When it\'s over, you pick up your clothes, put them on, and run into the house.');
     scene.actions([
       { label: 'Next', goto: ['dachain', 'start'] },
@@ -425,15 +425,15 @@ function enterLakeArea(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temper ?? 0) >= 20  &&  ((s as any).bikini ?? 0) > 0  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
       scene.actions([
         { label: 'Swim with a swimsuit (1 hour)', handler: (st: GameState) => {
-    (s as any).cumspclnt = 4;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
-    scene.img(`images/pc/activities/swim/lake/swim_bikini_${Math.floor(Math.random() * 9) + 0}.jpg`);
+    (st as any).cumspclnt = 4;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'exercise', 'tier1', 60, 'stren', 'vital');
+    (st as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
+    scene.img(`images/pc/activities/swim/lake/swim_bikini_${(Math.floor(Math.random() * 9) + 0)}.jpg`);
     scene.text('You swim in the lake. The water refreshes and invigorates you.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
@@ -445,17 +445,17 @@ function enterLakeArea(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temper ?? 0) >= 20  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
       scene.actions([
         { label: 'Swim naked (1 hour)', handler: (st: GameState) => {
-    (s as any).cumspclnt = 4;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (3);
-    qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
-    qspCall(s, 'arousal', 'foreplay', (-60), 'exhibition');
-    qspCall(s, 'arousal', 'end');
-    scene.img(`images/pc/activities/swim/lake/swim_nude_${Math.floor(Math.random() * 11) + 0}.jpg`);
+    (st as any).cumspclnt = 4;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (3);
+    qspCall(st, 'exercise', 'tier1', 60, 'stren', 'vital');
+    (st as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
+    qspCall(st, 'arousal', 'foreplay', (-60), 'exhibition');
+    qspCall(st, 'arousal', 'end');
+    scene.img(`images/pc/activities/swim/lake/swim_nude_${(Math.floor(Math.random() * 11) + 0)}.jpg`);
     scene.text('You swim in the lake completely naked. The water refreshes and invigorates you.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([

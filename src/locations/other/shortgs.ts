@@ -45,7 +45,7 @@ function enterShowTable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGuy(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     (s as any).temptask = qspUntranslated(s, "'ABCM' else temptask = ARGS[1]", { location: "shortgs" });
   }
   if (((s as any).temptask ?? 0) === 'ABCM') {
@@ -59,7 +59,7 @@ function enterGuy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGirl(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     (s as any).temptask = qspUntranslated(s, "'ABCM' else temptask = ARGS[1]", { location: "shortgs" });
   }
   if (((s as any).temptask ?? 0) === 'ABCM') {
@@ -341,7 +341,7 @@ function enterTestsize(s: GameState, scene: SceneBuilder): void {
 function enterNpctest(s: GameState, scene: SceneBuilder): void {
   scene.text(' --- init --- ');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTestsize(s, scene); (s as any).locArgs = __savedLocArgs; }
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 28) + 18, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 28) + 18), 1);
   scene.text(' --- gen npc C --- ');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTestsize(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
@@ -360,7 +360,7 @@ function enterReplaceHeader(s: GameState, scene: SceneBuilder): void {
   (s as any).RH_temp = ((s as any).maintxt ?? 0);
   // TODO-QSP: :RH_label
   (s as any).RH_temp_lenght = (String(((s as any).RH_temp ?? 0)).length);
-  (s as any).RH_temp_LFpos = ((String(((s as any).RH_temp ?? 0)).indexOf(String('\\n'))) + 1);
+  (s as any).RH_temp_LFpos = ((String(((s as any).RH_temp ?? 0)).indexOf(String('/n'))) + 1);
   (s as any).RH_temp = (String(((s as any).RH_temp ?? 0)).slice((((s as any).RH_temp_LFpos ?? 0) + 1)-1, ((((s as any).RH_temp_LFpos ?? 0) + 1)-1)+(((s as any).RH_temp_lenght ?? 0) - ((s as any).RH_temp_LFpos ?? 0))));
   (s as any).RH_Count = ((s as any).RH_Count ?? 0) - (1);
   if (((s as any).RH_Count ?? 0) > 0) {
@@ -398,8 +398,8 @@ function enterRoundTool(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandPick(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'delimit') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'string') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'delimit') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'string') {
       (s as any).result = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), 1);
     } else {
       (s as any).result = qspFunc(s, 'random', 'pick_from_delimited_string', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
@@ -407,7 +407,7 @@ function enterRandPick(s: GameState, scene: SceneBuilder): void {
   } else {
     if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'string') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'string') {
         (s as any).result = ((s as any).ARGS ?? 0)?.[((s as any).rand ?? 0)(2, ((s as any).arrsize ?? 0)('ARGS')-1)];
       } else {
         (s as any).result = ((s as any).ARGS ?? 0)[((s as any).rand ?? 0)(2, ((s as any).arrsize ?? 0)('ARGS')-1)];
@@ -517,25 +517,25 @@ function enterPayments(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).epayments ?? 0)?.['item_variable'] !== '') {
-    (s as any).construct_cash = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[\\u0027method\\u0027] = \\u0027cash\\u0027 */ s.money -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; /* TODO-QSP: ' + qspUntranslated(s, "epayments[\\u0027item_variable\\u0027]", { location: "shortgs" }) + ' += ' + qspUntranslated(s, "epayments[\\u0027quantity\\u0027]", { location: "shortgs" }) + ' */ return s; }); window.__gameStore.getState().doGoto(\\u0027shortgs\\u0027, \\u0027paymentcomplete\\u0027); return false;">Cash</a>';
-    (s as any).construct_card = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[\\u0027method\\u0027] = \\u0027card\\u0027 */ s.karta -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; /* TODO-QSP: ' + qspUntranslated(s, "epayments[\\u0027item_variable\\u0027]", { location: "shortgs" }) + ' += ' + qspUntranslated(s, "epayments[\\u0027quantity\\u0027]", { location: "shortgs" }) + ' */ return s; }); window.__gameStore.getState().doGoto(\\u0027shortgs\\u0027, \\u0027paymentcomplete\\u0027); return false;">Card</a>';
+    (s as any).construct_cash = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[/u0027method/u0027] = /u0027cash/u0027 */ s.money -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; /* TODO-QSP: ' + qspUntranslated(s, "epayments[\\u0027item_variable\\u0027]", { location: "shortgs" }) + ' += ' + qspUntranslated(s, "epayments[\\u0027quantity\\u0027]", { location: "shortgs" }) + ' */ return s; }); window.__gameStore.getState().doGoto(/u0027shortgs/u0027, /u0027paymentcomplete/u0027); return false;">Cash</a>';
+    (s as any).construct_card = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[/u0027method/u0027] = /u0027card/u0027 */ s.karta -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; /* TODO-QSP: ' + qspUntranslated(s, "epayments[\\u0027item_variable\\u0027]", { location: "shortgs" }) + ' += ' + qspUntranslated(s, "epayments[\\u0027quantity\\u0027]", { location: "shortgs" }) + ' */ return s; }); window.__gameStore.getState().doGoto(/u0027shortgs/u0027, /u0027paymentcomplete/u0027); return false;">Card</a>';
   } else {
-    (s as any).construct_cash = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[\\u0027method\\u0027] = \\u0027cash\\u0027 */ s.money -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; return s; }); window.__gameStore.getState().doGoto(\\u0027shortgs\\u0027, \\u0027paymentcomplete\\u0027); return false;">Cash</a>';
-    (s as any).construct_card = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[\\u0027method\\u0027] = \\u0027card\\u0027 */ s.karta -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; return s; }); window.__gameStore.getState().doGoto(\\u0027shortgs\\u0027, \\u0027paymentcomplete\\u0027); return false;">Card</a>';
+    (s as any).construct_cash = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[/u0027method/u0027] = /u0027cash/u0027 */ s.money -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; return s; }); window.__gameStore.getState().doGoto(/u0027shortgs/u0027, /u0027paymentcomplete/u0027); return false;">Cash</a>';
+    (s as any).construct_card = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $epayments[/u0027method/u0027] = /u0027card/u0027 */ s.karta -=' + qspUntranslated(s, "epayments[\\u0027value\\u0027]", { location: "shortgs" }) + '; return s; }); window.__gameStore.getState().doGoto(/u0027shortgs/u0027, /u0027paymentcomplete/u0027); return false;">Card</a>';
   }
   if (((s as any).epayments ?? 0)?.['banner'] !== '') {
     scene.img('images/\' + $epayments[\'banner\'] + \'');
   }
   if ((((s as any).epayments ?? 0)?.['method'] !== 'cash'  &&  ((s as any).epayments ?? 0)?.['method'] !== 'card')  &&  (((s as any).epayments ?? 0)?.['value'] <= ((s as any).money ?? 0)  &&  ((s as any).epayments ?? 0)?.['value'] <= ((s as any).karta ?? 0))) {
-    // TODO-QSP: dynamic text: How do you want to pay for the <<$epayments['description']>>? <<$construct_cash>...
+    // TODO-QSP: dynamic text: How do you want to pay for the <<$epayments[''description'']>>? <<$construct_cas...
     scene.text(`How do you want to pay for the ${((s as any).epayments ?? 0)?.['description'] ?? ''}? ${((s as any).construct_cash || '')} or ${((s as any).construct_card || '')}`);
   } else {
     if ((((s as any).epayments ?? 0)?.['method'] === 'cash'  ||  ((s as any).epayments ?? 0)?.['method'] === '')  &&  ((s as any).epayments ?? 0)?.['value'] <= ((s as any).money ?? 0)) {
-      // TODO-QSP: dynamic text: Pay for the <<$epayments['description']>> with <<$construct_cash>>?
+      // TODO-QSP: dynamic text: Pay for the <<$epayments[''description'']>> with <<$construct_cash>>?
       scene.text(`Pay for the ${((s as any).epayments ?? 0)?.['description'] ?? ''} with ${((s as any).construct_cash || '')}?`);
     } else {
       if ((((s as any).epayments ?? 0)?.['method'] === 'card'  ||  ((s as any).epayments ?? 0)?.['method'] === '')  &&  ((s as any).epayments ?? 0)?.['value'] <= ((s as any).karta ?? 0)) {
-        // TODO-QSP: dynamic text: Pay for the <<$epayments['description']>> with your <<$construct_card>>?
+        // TODO-QSP: dynamic text: Pay for the <<$epayments[''description'']>> with your <<$construct_card>>?
         scene.text(`Pay for the ${((s as any).epayments ?? 0)?.['description'] ?? ''} with your ${((s as any).construct_card || '')}?`);
       } else {
         scene.text('You don\'t have enough money in your purse or bank account for this item.');
@@ -543,13 +543,13 @@ function enterPayments(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).epayments = (s as any).epayments ?? {})['paid'] = (-1);
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Cancel Payment', handler: (st: GameState) => {
+{ label: 'Cancel Payment', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -636,7 +636,7 @@ function enterSetStat(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_xpnxt = 1 + (146 * (((s as any).temp_input ?? 0)) * (((s as any).temp_input ?? 0)) / 91);
   (s as any).temp_max_deg = (102 - ((s as any).temp_input ?? 0)) * 100;
-  if (((s as any).locArgs?.[1] ?? 0) === 'magik') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'magik') {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_lvl = temp_input
     // TODO-QSP: <<$ARGS[1]>>_adj = temp_xpprv - orgasm
@@ -649,7 +649,7 @@ function enterSetStat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: <<$ARGS[1]>>_flr = <<$ARGS[1]>>_lvl / 5
     // TODO-QSP: "
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'inhib') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'inhib') {
       // TODO-QSP: dynamic "
       // TODO-QSP: <<$ARGS[1]>>_lvl = temp_input
       // TODO-QSP: <<$ARGS[1]>>_exp = temp_xpprv
@@ -661,7 +661,7 @@ function enterSetStat(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: <<$ARGS[1]>>_flr = <<$ARGS[1]>>_lvl
       // TODO-QSP: "
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'stren'  ||  ((s as any).locArgs?.[1] ?? 0) === 'stren_plus') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'stren'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'stren_plus') {
         // TODO-QSP: dynamic "
         // TODO-QSP: <<$ARGS[1]>>_lvl = temp_input
         // TODO-QSP: <<$ARGS[1]>>_exp = temp_xpprv
@@ -675,7 +675,7 @@ function enterSetStat(s: GameState, scene: SceneBuilder): void {
         (s as any).strenbuf = ((s as any).stren_lvl ?? 0) + ((s as any).stren_plus_lvl ?? 0);
         qspCall(s, 'body', 'DailyUpdate');
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'agil'  ||  ((s as any).locArgs?.[1] ?? 0) === 'vital') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'agil'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'vital') {
           // TODO-QSP: dynamic "
           // TODO-QSP: <<$ARGS[1]>>_lvl = temp_input
           // TODO-QSP: <<$ARGS[1]>>_exp = temp_xpprv
@@ -715,6 +715,13 @@ function enterSPow(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterSPow2(s: GameState, scene: SceneBuilder): void {
+  (s as any).result = qspFunc(s, 'math', 'int_power', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
 function enterCoupledArraySort(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'array', 'coupled_sort', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), ((s as any).locArgs?.[8] ?? 0));
   return;
@@ -726,7 +733,7 @@ function enterIntToHexStr(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :int_to_hex_loop
   (s as any).result = (String('0123456789ABCDEF').slice((1 + (((s as any).locArgs?.[1] ?? 0) % 16))-1, ((1 + (((s as any).locArgs?.[1] ?? 0) % 16))-1)+(1))) + ((s as any).result ?? 0);
   // TODO-QSP: ARGS[1] /= 16
-  if (((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
     // TODO-QSP: jump 'int_to_hex_loop'
   }
   return;
@@ -775,7 +782,7 @@ function enterRgbToHex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInvertColor(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'bw') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'bw') {
     if (qspFunc(s, 'shortgs', 'color_is_dark', ((s as any).locArgs?.[1] ?? 0)) === 1) {
       (s as any).result = '#FFFFFF';
     } else {
@@ -819,7 +826,7 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetNumberSuffix(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) < 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) < 0) {
     (s as any).query_number = (-((s as any).locArgs?.[1] ?? 0)) % 100;
   } else {
     (s as any).query_number = ((s as any).locArgs?.[1] ?? 0) % 100;
@@ -867,7 +874,7 @@ function enterDobToAge(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateDickSizes(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) > 100) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 100) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 100;
   }
   ((s as any).shortgsVars = (s as any).shortgsVars ?? {})['maxi'] = ((s as any).locArgs?.[1] ?? 0);
@@ -892,11 +899,11 @@ function enterGenerateDickSizes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUnitString(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     (s as any).result = 'Error: Invalid metric value.';
     return;
   }
-  if (((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
     (s as any).metric_value = ((s as any).locArgs?.[1] ?? 0);
     (s as any).imperial_value_int = (((s as any).metric_value ?? 0) * 328) / 10000;
     (s as any).imperial_value_float = ((((s as any).metric_value ?? 0) * 3937) / 10000) % 12;
@@ -906,10 +913,10 @@ function enterUnitString(s: GameState, scene: SceneBuilder): void {
       (s as any).result = '' + ((s as any).imperial_value_int ?? 0) + '\'';
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) < 100) {
+    if (Number((s as any).locArgs?.[1] ?? 0) < 100) {
       (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) + ' cm';
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) % 100 === 0) {
+      if (Number((s as any).locArgs?.[1] ?? 0) % 100 === 0) {
         (s as any).result = '' + ((s as any).locArgs?.[1] ?? 0) / 100 + ' m';
       } else {
         (s as any).metervalue = ((s as any).locArgs?.[1] ?? 0) / 100;
@@ -924,10 +931,10 @@ function enterUnitString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNum2txt(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     (s as any).num = ((s as any).locArgs?.[1] ?? 0);
   } else {
-    if (!isNaN(((s as any).locArgs?.[1] ?? 0)) && ((s as any).locArgs?.[1] ?? 0) !== '') {
+    if (!isNaN(Number((s as any).locArgs?.[1] ?? 0)) && Number((s as any).locArgs?.[1] ?? 0) !== '') {
       (s as any).num = parseFloat(((s as any).locArgs?.[1] ?? 0));
     } else {
       return;
@@ -1059,6 +1066,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 's_pow':
       enterSPow(s, scene);
+      break;
+    case 's_pow2':
+      enterSPow2(s, scene);
       break;
     case 'coupled_array_sort':
       enterCoupledArraySort(s, scene);

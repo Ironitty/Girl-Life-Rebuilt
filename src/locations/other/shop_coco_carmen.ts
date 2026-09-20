@@ -30,6 +30,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'start');
+  (s as any).location_type = 'public_indoors';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Coco Carmen</b></center>');
+  scene.img('images/locations/pavlovsk/coco/shop.jpg');
+  scene.text('If you\'re happy to push through the tourists, then Coco has everything a young adult might like to wear. It\'s a step up from G&M and unless you can afford the boutiques in Old Town, you\'ll be spending some time buying outfits here.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave the coco', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pav_commercial', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_coco_carmen', 'dress'] },
+    { label: 'View other outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_coco_carmen', 'outfits'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_coco_carmen', 'purses'] },
+  ]);
+  scene.build();
+}
+
 function enterDress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_coco_carmen', 'dress');
   (s as any).locclass = 'changingroom';
@@ -45,9 +71,9 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_coco_carmen', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_coco_carmen', 'start');
   } },
   ]);
   scene.build();
@@ -68,9 +94,9 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_coco_carmen', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_coco_carmen', 'start');
   } },
   ]);
   scene.build();
@@ -91,9 +117,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_coco_carmen', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_coco_carmen', 'start');
   } },
   ]);
   scene.build();
@@ -102,6 +128,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'dress':
       enterDress(s, scene);
       break;

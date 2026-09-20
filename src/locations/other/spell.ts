@@ -7,75 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).SuccessValue = ((!isNaN(((s as any).locArgs?.[1] ?? 0)) && ((s as any).locArgs?.[1] ?? 0) !== '') ? (parseFloat(((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
-  (s as any).SplTxtColGood = 'green';
-  (s as any).SplTxtColBad = 'red';
-  (s as any).TargetType = ((s as any).locArgs?.[2] ?? 0);
-  if (((s as any).spellTarget ?? 0)[((s as any).locArgs?.[2] ?? 0)] === 'self') {
-    (s as any).CasterType = ((s as any).TargetType ?? 0);
-    (s as any).TargetNumber = ((s as any).locArgs?.[3] ?? 0);
-    (s as any).CasterNumber = ((s as any).locArgs?.[3] ?? 0);
-  } else {
-    if (((s as any).spellTarget ?? 0)[((s as any).locArgs?.[2] ?? 0)] === 'team') {
-      (s as any).CasterType = ((s as any).TargetType ?? 0);
-      (s as any).TargetNumber = ((s as any).locArgs?.[3] ?? 0);
-      (s as any).CasterNumber = ((s as any).locArgs?.[4] ?? 0);
-    } else {
-      if (((s as any).TargetType ?? 0) === 'pcs') {
-        if (((s as any).locArgs?.[0] ?? 0) === 'heal'  ||  ((s as any).locArgs?.[0] ?? 0) === 'clone'  ||  ((s as any).locArgs?.[0] ?? 0) === 'multiclone'  ||  ((s as any).locArgs?.[0] ?? 0) === 'energo'  ||  ((s as any).locArgs?.[0] ?? 0) === 'haste') {
-          (s as any).CasterType = 'pcs';
-          (s as any).SplTxtColGood = 'green';
-          (s as any).SplTxtColBad = 'red';
-        } else {
-          (s as any).CasterType = 'opp';
-          (s as any).SplTxtColGood = 'red';
-          (s as any).SplTxtColBad = 'green';
-        }
-      } else {
-        if (((s as any).TargetType ?? 0) === 'opp') {
-          (s as any).CasterType = 'pcs';
-        } else {
-          (s as any).CasterType = 'pcs';
-          (s as any).TargetType = 'pcs';
-        }
-      }
-      (s as any).TargetNumber = ((s as any).locArgs?.[3] ?? 0);
-      (s as any).CasterNumber = ((s as any).locArgs?.[4] ?? 0);
-    }
-  }
-  ((s as any).spellFunc = (s as any).spellFunc ?? {})['UpdateAttrib'] = qspUntranslated(s, "{", { location: "spell" });
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['BaseArray'] = ((s as any).locArgs?.[0] ?? 0);
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetNum'] = ((s as any).locArgs?.[2] ?? 0);
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Operation'] = ((s as any).locArgs?.[3] ?? 0);
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Amount'] = ((s as any).locArgs?.[4] ?? 0);
-  if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '===') {
-    // TODO-QSP: !"opp_fog[0] = 0"
-    // TODO-QSP: dynamic "<<$SpellFuncVar['TargetType']>>_<<$SpellFuncVar['BaseArray']>>[<<SpellFuncVar['TargetNum']>...
-  } else {
-    if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '+'  ||  ((s as any).SpellFuncVar ?? 0)?.['Operation'] === '-') {
-      // TODO-QSP: !"opp_fog[0] += 10"
-      // TODO-QSP: dynamic "<<$SpellFuncVar['TargetType']>>_<<$SpellFuncVar['BaseArray']>>[<<SpellFuncVar['TargetNum']>...
-    } else {
-      // TODO-QSP: dynamic text: Invalid Operator, must be "+", "-", or "=".
-      scene.text('Invalid Operator, must be "+", "-", or "=".');
-    }
-  }
-  ((s as any).spellFunc = (s as any).spellFunc ?? {})['GetCombatantName'] = qspUntranslated(s, "{", { location: "spell" });
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetNum'] = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).result = 0;
-  ((s as any).spellFunc = (s as any).spellFunc ?? {})['ApplyDamageToAll'] = qspUntranslated(s, "{", { location: "spell" });
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
-  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Damage'] = ((s as any).locArgs?.[1] ?? 0);
-  // TODO-QSP: dynamic "
-  // TODO-QSP: :DamageAllLoop1
-  if (((s as any).i ?? 0) < Object.keys((s as any)['' + ((s as any).SpellFuncVar ?? 0)?.['TargetType'] + '_health'] ?? {}).length) {
-    // TODO-QSP: gs 'fight', 'applyDamage', '<<$SpellFuncVar['TargetType']>>', i, <<SpellFuncVar['Damage']>>
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    // TODO-QSP: jump 'DamageAllLoop1'
-  }
-  // TODO-QSP: "
   scene.build();
 }
 
@@ -263,7 +194,7 @@ function enterAlterself(s: GameState, scene: SceneBuilder): void {
 
 function enterMakeup(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
-    if (((s as any).locArgs?.[2] ?? 0) === '') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === '') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[2] = '210';
     }
     ((s as any).MakeupArg = (s as any).MakeupArg ?? {})[0] = parseFloat((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))));
@@ -655,7 +586,7 @@ function enterEarthshield(s: GameState, scene: SceneBuilder): void {
 function enterAbyss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 250 * SuccessValue
-    // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>The Earth opens up beneath your opponent's f...
+    // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>The Earth opens up beneath your opponent''s ...
     scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>The Earth opens up beneath your opponent's feet, slamming shut damaging him and depriving him of the ability to move.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
@@ -773,7 +704,7 @@ function enterVacuumshells(s: GameState, scene: SceneBuilder): void {
 
 function enterDevouringvacuum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
-    // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A devouring vacuum sucks away your enemy's d...
+    // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A devouring vacuum sucks away your enemy''s ...
     scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A devouring vacuum sucks away your enemy's defenses.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
@@ -862,6 +793,75 @@ function enterGreatflood(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).SuccessValue = ((!isNaN(Number((s as any).locArgs?.[1] ?? 0)) && Number((s as any).locArgs?.[1] ?? 0) !== '') ? (parseFloat(((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
+  (s as any).SplTxtColGood = 'green';
+  (s as any).SplTxtColBad = 'red';
+  (s as any).TargetType = ((s as any).locArgs?.[2] ?? 0);
+  if (((s as any).spellTarget ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] === 'self') {
+    (s as any).CasterType = ((s as any).TargetType ?? 0);
+    (s as any).TargetNumber = ((s as any).locArgs?.[3] ?? 0);
+    (s as any).CasterNumber = ((s as any).locArgs?.[3] ?? 0);
+  } else {
+    if (((s as any).spellTarget ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] === 'team') {
+      (s as any).CasterType = ((s as any).TargetType ?? 0);
+      (s as any).TargetNumber = ((s as any).locArgs?.[3] ?? 0);
+      (s as any).CasterNumber = ((s as any).locArgs?.[4] ?? 0);
+    } else {
+      if (((s as any).TargetType ?? 0) === 'pcs') {
+        if (Number((s as any).locArgs?.[0] ?? 0) === 'heal'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'clone'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'multiclone'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'energo'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'haste') {
+          (s as any).CasterType = 'pcs';
+          (s as any).SplTxtColGood = 'green';
+          (s as any).SplTxtColBad = 'red';
+        } else {
+          (s as any).CasterType = 'opp';
+          (s as any).SplTxtColGood = 'red';
+          (s as any).SplTxtColBad = 'green';
+        }
+      } else {
+        if (((s as any).TargetType ?? 0) === 'opp') {
+          (s as any).CasterType = 'pcs';
+        } else {
+          (s as any).CasterType = 'pcs';
+          (s as any).TargetType = 'pcs';
+        }
+      }
+      (s as any).TargetNumber = ((s as any).locArgs?.[3] ?? 0);
+      (s as any).CasterNumber = ((s as any).locArgs?.[4] ?? 0);
+    }
+  }
+  ((s as any).spellFunc = (s as any).spellFunc ?? {})['UpdateAttrib'] = qspUntranslated(s, "{", { location: "spell" });
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['BaseArray'] = ((s as any).locArgs?.[0] ?? 0);
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetNum'] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Operation'] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Amount'] = ((s as any).locArgs?.[4] ?? 0);
+  if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '===') {
+    // TODO-QSP: !"opp_fog[0] = 0"
+    // TODO-QSP: dynamic "<<$SpellFuncVar['TargetType']>>_<<$SpellFuncVar['BaseArray']>>[<<SpellFuncVar['TargetNum']>...
+  } else {
+    if (((s as any).SpellFuncVar ?? 0)?.['Operation'] === '+'  ||  ((s as any).SpellFuncVar ?? 0)?.['Operation'] === '-') {
+      // TODO-QSP: !"opp_fog[0] += 10"
+      // TODO-QSP: dynamic "<<$SpellFuncVar['TargetType']>>_<<$SpellFuncVar['BaseArray']>>[<<SpellFuncVar['TargetNum']>...
+    } else {
+      // TODO-QSP: dynamic text: Invalid Operator, must be "+", "-", or "=".
+      scene.text('Invalid Operator, must be "+", "-", or "=".');
+    }
+  }
+  ((s as any).spellFunc = (s as any).spellFunc ?? {})['GetCombatantName'] = qspUntranslated(s, "{", { location: "spell" });
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetNum'] = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).result = 0;
+  ((s as any).spellFunc = (s as any).spellFunc ?? {})['ApplyDamageToAll'] = qspUntranslated(s, "{", { location: "spell" });
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['TargetType'] = ((s as any).locArgs?.[0] ?? 0);
+  ((s as any).SpellFuncVar = (s as any).SpellFuncVar ?? {})['Damage'] = ((s as any).locArgs?.[1] ?? 0);
+  // TODO-QSP: dynamic "
+  // TODO-QSP: :DamageAllLoop1
+  if (((s as any).i ?? 0) < Object.keys((s as any)['' + ((s as any).SpellFuncVar ?? 0)?.['TargetType'] + '_health'] ?? {}).length) {
+    // TODO-QSP: gs 'fight', 'applyDamage', '<<$SpellFuncVar['TargetType']>>', i, <<SpellFuncVar['Damage']>>
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    // TODO-QSP: jump 'DamageAllLoop1'
+  }
+  // TODO-QSP: "
   const arg = s.locArg;
   switch (arg) {
     case 'teleport':

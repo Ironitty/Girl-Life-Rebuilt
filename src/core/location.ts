@@ -40,10 +40,8 @@ export function inferLegacyLocationType(loc: string): string | undefined {
 }
 
 export function setloc(s: GameState, loc: string, arg: string, arg2?: string, arg3?: string): void {
-  if (s.loc !== loc) {
-    s.prevLoc = s.loc;
-    s.prevArg = s.locArg;
-  }
+  s.prevLoc = s.loc;
+  s.prevArg = s.locArg;
   s.loc = loc;
   s.menuLoc = loc;
   s.locArg = arg;
@@ -63,31 +61,49 @@ export function setloc(s: GameState, loc: string, arg: string, arg2?: string, ar
 }
 
 export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3?: string): void {
-  if (s.loc && s.loc !== loc) {
-    const prevDef = getLocation(s.loc);
-    if (prevDef?.exit) {
-      prevDef.exit(s, { targetLoc: loc, targetArg: arg });
+  const visited: Set<string> | undefined = (s as any).__gotoVisited;
+  const isOuter = !visited;
+  const vis = visited ?? new Set<string>();
+  if (isOuter) (s as any).__gotoVisited = vis;
+  const key = `${loc}:${arg}`;
+  try {
+    if (vis.has(key)) {
+      if (import.meta.env.DEV) console.warn(`[goto] loop detected at ${key}`);
+      return;
     }
-  }
+    vis.add(key);
 
-  setloc(s, loc, arg, arg2, arg3);
-  s.navigationVersion++;
-  const def = getLocation(loc);
-  if (def) {
-    const scene = new SceneBuilder();
-    _currentScene = scene;
-    if (def.background) scene.background(def.background);
-    if (def.enter) {
-      def.enter(s, scene);
-    } else if (def.description && def.description.length > 0) {
-      scene.text(def.description[0]);
-      if (def.actions) scene.actions(def.actions);
-    } else {
-      scene.text('');
-      if (def.actions) scene.actions(def.actions);
+    if (s.loc && s.loc !== loc) {
+      const prevDef = getLocation(s.loc);
+      if (prevDef?.exit) {
+        prevDef.exit(s, { targetLoc: loc, targetArg: arg });
+      }
     }
-    _currentScene = null;
-    s.scene = scene.build();
+
+    setloc(s, loc, arg, arg2, arg3);
+    s.navigationVersion++;
+    const navBefore = s.navigationVersion;
+    const def = getLocation(loc);
+    if (def) {
+      const scene = new SceneBuilder();
+      _currentScene = scene;
+      if (def.background) scene.background(def.background);
+      if (def.enter) {
+        def.enter(s, scene);
+      } else if (def.description && def.description.length > 0) {
+        scene.text(def.description[0]);
+        if (def.actions) scene.actions(def.actions);
+      } else {
+        scene.text('');
+        if (def.actions) scene.actions(def.actions);
+      }
+      _currentScene = null;
+      if (s.navigationVersion === navBefore) {
+        s.scene = scene.build();
+      }
+    }
+  } finally {
+    if (isOuter) (s as any).__gotoVisited = undefined;
   }
 }
 

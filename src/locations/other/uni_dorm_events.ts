@@ -9,10 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDormFloor(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = Math.floor(Math.random() * 100) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 100) + 0);
   ((s as any).uni_dorm = (s as any).uni_dorm ?? {})['event_minut'] = ((s as any).totminut ?? 0) + 60;
   if ((!((s as any).temp ?? 0))) {
-    scene.img('images/locations/city/island/university/dorm/hallway/events/floor/2girl_hump\' + rand(1, 2) + \'.jpg');
+    scene.img('images/locations/city/island/university/dorm/hallway/events/floor/2girl_hump' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('As you walk down the hall, you see two girls grinding and dancing provocatively against each other while another takes photos with her phone. Some boys are also watching them.');
     scene.text('As you pass by, you wonder if they\'re just doing it to get the boys attention or if they\'re actually into it.');
     qspCall(s, 'arousal', 'voyeur', 1);
@@ -25,7 +25,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).temp ?? 0) === 1) {
-      scene.img('images/locations/city/island/university/dorm/hallway/events/floor/3naked_girls\' + rand(1, 3) + \'.jpg');
+      scene.img('images/locations/city/island/university/dorm/hallway/events/floor/3naked_girls' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
       scene.text('As you walk down the hall, you\'re greeted by three tipsy, giggling, completely naked girls. The dark haired one looks familiar and you\'re sure you\'ve seen her around campus before; she doesn\'t seem to mind as her friend gropes at her breasts.');
       scene.text('They push by you and continue into the stairwell, leaving you to imagine where they\'re off to next.');
       qspCall(s, 'arousal', 'voyeur', 1);
@@ -60,7 +60,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).temp ?? 0) === 4) {
-            scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_girl\' + rand(1, 2) + \'.jpg');
+            scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_girl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
             scene.text('As you walk down the hallway, one of the dorm room doors suddenly opens and a naked girl steps into view and casually walks down the hall to the communal showers.');
             qspCall(s, 'arousal', 'voyeur', 1);
             qspCall(s, 'arousal', 'end');
@@ -72,7 +72,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).temp ?? 0) === 5) {
-              scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_girls_group\' + rand(1, 2) + \'.jpg');
+              scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_girls_group' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
               scene.text('There\'s loud, booming music coming from an open door at the end of the hallway as a group of semi and completely nude girls come running in and out with drinks in hand.');
               scene.text('Seeing how much fun they\'re having, you almost consider joining them before you decide to just keep walking.');
               qspCall(s, 'arousal', 'voyeur', 1);
@@ -125,7 +125,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
                     ]);
                   } else {
                     if (((s as any).temp ?? 0) === 9) {
-                      scene.img('images/locations/city/island/university/dorm/hallway/events/floor/topless_girl\' + rand(1, 2) + \'.jpg');
+                      scene.img('images/locations/city/island/university/dorm/hallway/events/floor/topless_girl' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                       scene.text('You pass several people walking around in their underwear or, in the case of one girl, completely naked. No one seems to take much notice as they get on with their daily routine.');
                       qspCall(s, 'arousal', 'voyeur', 1);
                       qspCall(s, 'arousal', 'end');
@@ -294,9 +294,9 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/naked_shower_girl2.jpg');
     scene.text('She walks down the hallway, completely naked. "Okay, very funny Anya! I <i>will</i> get you back for this, you bitch!"');
     scene.text('She doesn\'t sound too mad, but then again she doesn\'t exactly sound happy about it either.');
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go on', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
@@ -307,9 +307,9 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     scene.text('She smirks before she turns around and spreads her asscheeks, showing off her pussy and asshole to everyone looking.');
     scene.text('He looks around in shock. "Fuck yeah, that\'s how every slut should be!"');
     scene.text('She just ignores his comment and walks further down the hallway.');
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go where you were going', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
@@ -319,9 +319,9 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
     scene.text('She finally stops at a door and turns the handle. You can hear the laughter of several other girls inside as she opens the door.');
     scene.text('"Fuck you! I\'m going to fucking kill you fucking bitches! I had to-"');
     scene.text('Her rant is cut off as she marches into the room and slams the door behind her.');
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go on your way', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_dorm', $uni_dorm['floor']
@@ -377,7 +377,7 @@ function enterDormFloor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = Math.floor(Math.random() * 90) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 90) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor/sex/2wf_2wm_orgy1.jpg');
     scene.text('You turn the handle and gently push the door open just wide enough to look inside. You see two girls riding two guys reverse cowgirl style, toasting each other with drinks as they fuck the guys beneath them.');
@@ -785,7 +785,7 @@ function enterDormFloorSex(s: GameState, scene: SceneBuilder): void {
 
 function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
   ((s as any).uni_dorm = (s as any).uni_dorm ?? {})['event_minut'] = ((s as any).totminut ?? 0) + 60;
-  (s as any).temp = Math.floor(Math.random() * 100) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 100) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/cuffed_girl.jpg');
     scene.text('As you walk down the hallway, you see a naked white girl standing next to a dorm room door. Her hands are handcuffed behind her back, with another pair of cuffs with a short chain cuffed around each of her ankles. When she notices you coming down the hall, she blushes and hides her face. You have no clue why she\'s out in the hallway like this, but she seems to be going along with it.');
@@ -815,7 +815,7 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).temp ?? 0) === 2) {
-        scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/ir_kiss\' + rand(1, 2) + \'.jpg');
+        scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/ir_kiss' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
         scene.text('As you walk down the hallway, you spot a white girl with a black guy. They stop in front of one of the doors and make out for a few seconds before the guy unlocks the door and leads the girl into his room.');
         qspCall(s, 'arousal', 'voyeur', 1);
         qspCall(s, 'arousal', 'end');
@@ -895,9 +895,9 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('They keep watching you, as the guy pulls up the girls shirt, exposing her breasts. His right hand slides up to cup her breast while the other slides down the front of her shorts.');
     scene.text('By the way his hand is moving in her shorts, you think he might actually be fingerbanging her right there as she reaches back to grope his crotch.');
     scene.text('A few seconds later, he drags her into one of the dorm rooms and closes the door.');
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep going', goto: ['uni_dorm', 'eighth_floor'] },
     ]);
@@ -988,9 +988,9 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set1/bm_wf_leash1.jpg');
     scene.text('He reaches down and smacks her face hard enough that her head moves slightly. "Don\'t just sit there! Get sucking, slut!"');
     scene.text('She obediently starts sucking his large black dick, not seeming to mind or maybe even liking being slapped.');
-    qspCall(s, 'arousal', 'voyeur_sex', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Turn around and go back', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Keep watching', handler: (st: GameState) => {
@@ -1001,9 +1001,9 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('He then reaches down and grabs her by the hair before roughly pulling her off his dick and pushing her down.');
     scene.text('"Down on all fours, bitch!" he tells her and she obeys his command without complaint.');
     scene.text('He pulls up his pants with his free hand, then starts walking down the hallway as you debate whether you should follow them or not.');
-    qspCall(s, 'arousal', 'voyeur_sex', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Don\'t follow them', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Follow them', handler: (st: GameState) => {
@@ -1012,9 +1012,9 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('He seems to be doing it on purpose so he can yank the chain leash attached to her collar. "Hurry up, bitch! I want to fuck you!"');
     scene.text('He leads her down the hallway, almost to the furthest part of the eighth floor. You\'ve heard rumors that this part of the floor is filled with sex crazed Africans who kidnap and rape Russian girls, but you don\'t believe it in the slightest.');
     scene.text('He stops and opens a door before leading her in, but he doesn\'t close the door. You take this as an invitation to look in, if you dare.');
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Peek into the room', handler: (st: GameState) => {
@@ -1022,39 +1022,39 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('You peek in and see that he has walked her over to a chair. He looks up at you as if he was expecting you to follow. "If you want to see how a tight little white bitch takes a proper black cock, then come in and close the door."');
     scene.text('He undresses and sits in the chair before yanking the chain again. "Take off your bra and panties, bitch!"');
     scene.text('She does as he commands and takes them off, leaving her mostly naked with everything on display. They both look at you, waiting to see if you stay or not.');
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave and close the door', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Enter the room', handler: (st: GameState) => {
-    qspCall(s, 'fame', 'city', 'bbc', 'tiny');
+    qspCall(st, 'fame', 'city', 'bbc', 'tiny');
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set1/bm_wf_leash5.jpg');
     scene.text('You step into the room and close the door behind you. Looking around, you find a chair near the door and sit on it. Is this here for people like you?');
     scene.text('As you\'re pondering this, he stands up. "Get on all fours on the bed, bitch!"');
     scene.text('She crawls over to the bed and crawls up onto it, stopping near the middle of the bed with her ass facing him.');
     scene.text('His dick swings back and forth as he walks over to the bed and climbs onto it. He kneels behind her before violently thrusting his hips forward.');
     scene.text('You hear her gasp in pain slightly and glance back at him as he starts fucking her hard and fast right away.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Watch her get fucked', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set1/bm_wf_leash6.jpg');
     scene.text('The sound of slapping flesh echoes into the room along with her grunts of pain and moans of pleasure while he grunts loudly with each thrust. "That\'s it, bitch! Take this black cock!"');
     scene.text('She isn\'t telling him to stop and isn\'t pulling away from him, so she must be enjoying it to one degree or another. You could keep watching, but maybe you should leave now?');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set1/bm_wf_leash7.jpg');
     scene.text('He hammers her pussy with long, hard, fast thrusts. "Fuck, this pussy used to be tighter! I must be wearing it out!" he chuckles. "Luckily for me, you have another hole that\'s not as well used."');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Watch her get ass fucked', handler: (st: GameState) => {
@@ -1066,18 +1066,18 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('She white knuckles the sheets. "Ow! It hurts!"');
     scene.text('He just ignores her as he starts fucking her ass. She starts lowering her hips down so he can\'t thrust as deep, but he shoves her all the way down until she\'s laying on her stomach.');
     scene.text('"No more pulling away now, bitch!" he laughs as he pins her to the bed beneath him.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Watch her submit to him', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set1/bm_wf_leash9.jpg');
     scene.text('Now that she\'s pinned between him and the bed, he shoves his hips forward again, causing her to hiss in pain before he lets go and places a hand on her shoulder to keep her from trying to squirm away from him.');
     scene.text('"I was going to take it easy on your ass the first time, but now I\'m going to teach you a fucking lesson."');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Watch as she gets her ass pounded', handler: (st: GameState) => {
@@ -1087,9 +1087,9 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t think she\'s enjoying the physical act of anal sex, but you\'re pretty sure she\'s getting off on being fully submissive and treated like this.');
     scene.text('He laughs at her response. "I know. I\'m going to keep fucking this ass every night until you learn to love it. Would you like that?"');
     scene.text('"Yes!" she whispers just loud enough for you to hear and he starts frantically fucking her ass.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Watch him cum', handler: (st: GameState) => {
@@ -1097,9 +1097,9 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('He suddenly crawls off her and drags her by her leash with him as he gets off the bed and drags her onto the floor, where she kneels in front of him with her mouth already open.');
     scene.text('He aims for and starts cumming in her mouth, but some lands on her face.');
     scene.text('"Tell our guest what you live for," he commands as he looks at you.');
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Watch her becomes his submissive', handler: (st: GameState) => {
@@ -1107,9 +1107,9 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
     scene.text('She turns to look at you and beams with pride and happiness. "The best thing about life is being a black man\'s personal fuck toy. It gives me purpose and makes me life have meaning. It\'s the only thing I have ever been good at."');
     scene.text('She looks up at him for approval and he pats her on the head again. "Good bitch." Then he looks back at you. "You should do the same. It\'s the only thing you bitches are good for. You may leave now."');
     scene.text('You get the feeling you have now overstayed your welcome, so you get up out of the chair and leave the room. You close the door behind you and start walking down the hall again, not sure how you feel about what you just watched. She did seem awfully happy there at the end…');
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
     ]);
@@ -1173,7 +1173,7 @@ function enterDormFloor8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDormFloorEightSex(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = Math.floor(Math.random() * 90) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 90) + 0);
   qspCall(s, 'schedule', 'A23');
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/2bf_1wf1.jpg');
@@ -1532,9 +1532,9 @@ function enterDormFloorEightSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You enter the room and stand by the door after closing it. You watch as Haruna walks up behind the first girl and lines his dick up with her asshole.');
     scene.text('He pushes forward and his large massively thick black dick slides into her asshole with surprising ease.');
     scene.text('She moans as he starts fucking her ass, the other girls looking over and watching as their friend gets her ass fucked; all but the last look eager for their turn.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Keep watching', handler: (st: GameState) => {
@@ -1542,9 +1542,9 @@ function enterDormFloorEightSex(s: GameState, scene: SceneBuilder): void {
     scene.text('After fucking the first girl\'s ass for several minutes, he pulls out of her and moves down to the second one. He lines his dick up and shoves it up her ass, causing her to tense up and hiss in pain before she relaxes and starts moaning, really getting into it.');
     scene.text('Before she can get off, he pulls out and slides his dick into the third girl\'s ass. She starts moaning loudly at once and begs him to fuck her harder, which Haruna is only to happy to do.');
     scene.text('He quickly starts hammering her ass hard and fast as you see the last girl\'s eyes grow wide; she looks even more nervous as Haruna grunts and fills the third girl\'s ass with his cum.');
-    qspCall(s, 'arousal', 'voyeur_sex', 10);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 10);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Wonder if he is done', handler: (st: GameState) => {
@@ -1552,9 +1552,9 @@ function enterDormFloorEightSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He pants for a moment before pulling out of the girl\'s ass. You see some cum leaking out of her asshole as he strokes his dick to get it hard again before he moves to the fourth girl in line.');
     scene.text('She cries out as he shoves his dick up her ass, but you can\'t tell if it\'s pleasure, pain or both.');
     scene.text('"Oh my god! His black dick… Is so big!" she pants and leans all the way forward with her face on the couch as he fucks her ass, clearly enjoying it.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Watch him finish', handler: (st: GameState) => {
@@ -1566,9 +1566,9 @@ function enterDormFloorEightSex(s: GameState, scene: SceneBuilder): void {
     scene.text('With their encouragement, she stops complaining and just lets him fuck her ass, but you can tell she\'s not enjoying it.');
     scene.text('After a few minutes, he pulls out of Gagolina\'s ass and she sighs in relief as he walks back to the first girl and slides his dick back in her ass.');
     scene.text('He fucks her hard and fast before he buries his dick balls deep in her ass and grunts as he cums in her ass as well. When he pulls out, you can see some cum leaking from her well fucked ass.');
-    qspCall(s, 'arousal', 'voyeur_sex', 10);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 10);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'eighth_floor'] },
       { label: 'Ask the girls why they did this', handler: (st: GameState) => {

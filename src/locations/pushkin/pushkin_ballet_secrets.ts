@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pushkin/ballet_secrets';
   scene.build();
 }
 
@@ -52,10 +51,10 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
     dynamicGoto(s, 'prevLoc');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'pushkin') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'pushkin') {
       qspGoto(s, 'pushkin_sq', '');
     } else {
       // TODO-QSP: gt $ARGS[1], $ARGS[2]
@@ -102,7 +101,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   scene.text('As you enter you are greeted warmly by the gym staff. The gym has an industrial feel reflecting the building being converted from an old factory.');
-  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027beverage\\u0027, \\u0027watercooler\\u0027); return false;">drinking fountain</a> near the doors to the gym hall to refill your water bottle.');
+  scene.text('There is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027beverage/u0027, /u0027watercooler/u0027); return false;">drinking fountain</a> near the doors to the gym hall to refill your water bottle.');
   if (((s as any).apparel ?? 0)?.['status'] !== 'nude') {
     scene.actions([
       { label: 'Leave the studio', goto: ['pushkin_ballet_secrets', 'exit', 'pushkin'] },
@@ -170,10 +169,10 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin_ballet_secrets', 'reception'] },
     { label: 'Purchase a weekly subscription', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1500) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 1500);
-      ((s as any).balletqw = (s as any).balletqw ?? {})['membership'] = ((s as any).daystart ?? 0) + 7;
+      qspCall(st, 'money', 'pay', 1500);
+      ((st as any).balletqw = (st as any).balletqw ?? {})['membership'] = ((st as any).daystart ?? 0) + 7;
       // TODO-QSP: dynamic text: You purchase a weeks subscription for ' + $func('money', 'string_price', 1500) +...
       scene.text('You purchase a weeks subscription for 1500₽.');
       scene.actions([
@@ -185,10 +184,10 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Purchase a monthly subscription', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 4500) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 4500);
-      ((s as any).balletqw = (s as any).balletqw ?? {})['membership'] = ((s as any).daystart ?? 0) + 28;
+      qspCall(st, 'money', 'pay', 4500);
+      ((st as any).balletqw = (st as any).balletqw ?? {})['membership'] = ((st as any).daystart ?? 0) + 28;
       // TODO-QSP: dynamic text: You purchase a monthly subscription for ' + $func('money', 'string_price', 4500)...
       scene.text('You purchase a monthly subscription for 4500₽ and got a week free.');
       scene.actions([
@@ -215,9 +214,9 @@ function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Your deodorant will last you for <b><<mc_inventory[''deodorant'']>></b> more '+iif(mc_inventory['de...
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
-    qspCall(s, 'sweat', 'deo');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
+    qspCall(st, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
@@ -358,9 +357,9 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin_ballet_secrets', 'reception'] },
     ]);
   } else {
-    (s as any).scene_sel = Math.floor(Math.random() * 61) + 0;
+    (s as any).scene_sel = (Math.floor(Math.random() * 61) + 0);
     if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).scene_sel ?? 0) >= 55) {
-      (s as any).img_sel = Math.floor(Math.random() * 3) + 1;
+      (s as any).img_sel = (Math.floor(Math.random() * 3) + 1);
       ((s as any).balletqw = (s as any).balletqw ?? {})['yoga_session'] = ((s as any).daystart ?? 0);
       scene.img(((s as any).setloc ?? 0)?.['imagepath'] + '/awakened_yoga_' + ((s as any).img_sel ?? 0) + '.jpg');
       qspCall(s, 'core_library', 'stage_title');
@@ -368,10 +367,10 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
         scene.actions([
           { label: 'Join the Fae', handler: (st: GameState) => {
-    qspCall(s, 'exercise', 'tier4', 60, 'sprt', 'agil');
-    qspCall(s, 'exp_gain', 'magik', Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 4) + 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exercise', 'tier4', 60, 'sprt', 'agil');
+    qspCall(st, 'exp_gain', 'magik', (Math.floor(Math.random() * 3) + 1));
+    qspCall(st, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 4) + 2));
+    qspCall(st, 'stat', '');
     scene.text('You are about to leave when one of the Fae spots you and waves you over. "Come join us." she says with a smile and a soft voice. You are not sure what to do but one of the Fae indicates a spot for you and for the next hour is aa surreal experience of guided deep meditative yoga and magic that helps you refocus your powers.');
     scene.actions([
       { label: 'Return to the studio reception', handler: (st: GameState) => {
@@ -395,7 +394,7 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(s, 'core_library', 'stage_title');
       ((s as any).balletqw = (s as any).balletqw ?? {})['yoga_session'] = ((s as any).daystart ?? 0);
-      (s as any).lesson_tier = Math.floor(Math.random() * 3) + 1;
+      (s as any).lesson_tier = (Math.floor(Math.random() * 3) + 1);
       if (((s as any).lesson_tier ?? 0) === 1) {
         qspCall(s, 'exercise', 'tier2', 60, 'sprt', 'agil');
         scene.text('You spend sixty minutes in an easy going class today, leaving you feeling refreshed and ready to face the world again.');
@@ -481,16 +480,16 @@ function enterCafe(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pushkin_ballet_secrets', 'reception'] },
     { label: 'Buy an energy bar', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 150, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'pushkin_ballet_secrets', 'energy_bar');
+      qspGoto(st, 'pushkin_ballet_secrets', 'energy_bar');
     }
   } },
     { label: 'Buy an energy drink', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'pushkin_ballet_secrets', 'energy_drink');
+      qspGoto(st, 'pushkin_ballet_secrets', 'energy_drink');
     }
   } },
   ]);
@@ -538,6 +537,7 @@ function enterEnergyDrink(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pushkin/ballet_secrets';
   const arg = s.locArg;
   switch (arg) {
     case 'init':

@@ -7,7 +7,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     // TODO-QSP: exit
   }
   if (((s as any).deodorant_on ?? 0) === 1) {
@@ -21,7 +21,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterShower(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sweat ?? 0) >= 10) {
-    (s as any).pcs_sweat = Math.floor(Math.random() * 10) + 0;
+    (s as any).pcs_sweat = (Math.floor(Math.random() * 10) + 0);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRemoveDeo(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end

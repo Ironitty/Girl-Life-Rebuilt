@@ -234,31 +234,31 @@ function enterCalcAppearance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterConvertToHotcat(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 40) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 40) {
     (s as any).result = 1;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) <= 60) {
+    if (Number((s as any).locArgs?.[1] ?? 0) <= 60) {
       (s as any).result = 2;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) <= 80) {
+      if (Number((s as any).locArgs?.[1] ?? 0) <= 80) {
         (s as any).result = 3;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) <= 100) {
+        if (Number((s as any).locArgs?.[1] ?? 0) <= 100) {
           (s as any).result = 4;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) <= 125) {
+          if (Number((s as any).locArgs?.[1] ?? 0) <= 125) {
             (s as any).result = 5;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) <= 150) {
+            if (Number((s as any).locArgs?.[1] ?? 0) <= 150) {
               (s as any).result = 6;
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) <= 165) {
+              if (Number((s as any).locArgs?.[1] ?? 0) <= 165) {
                 (s as any).result = 7;
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) <= 180) {
+                if (Number((s as any).locArgs?.[1] ?? 0) <= 180) {
                   (s as any).result = 8;
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) <= 199) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) <= 199) {
                     (s as any).result = 9;
                   } else {
                     (s as any).result = 10;

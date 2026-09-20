@@ -28,7 +28,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
   }
   scene.img('images/shared/sex/anal/doggy/anal30.jpg');
-  // TODO-QSP: dynamic text: You immediately feel the man's hands on your ass cheeks when you get on your han...
+  // TODO-QSP: dynamic text: You immediately feel the man''s hands on your ass cheeks when you get on your ha...
   scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter and slowly thrusts all of his ${((s as any).dick || '')} centimeters inside you.`);
   // TODO-QSP: dynamic text: <<$analsex>>
   scene.text(`${((s as any).analsex || '')}`);
@@ -66,7 +66,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal', (-5), 'sub', 'unknown', 'prostitution');
     qspCall(s, 'stat', '');
   }
-  scene.img(`images/shared/sex/anal/mis/cowl${Math.floor(Math.random() * 6) + 1}.jpg`);
+  scene.img(`images/shared/sex/anal/mis/cowl${(Math.floor(Math.random() * 6) + 1)}.jpg`);
   scene.text('As soon as you lie down on the hood of the car, the man parts your legs and eagerly presses the tip of his cock against your anus.');
   qspCall(s, 'arousal', 'anal', 10, 'sub', 'unknown', 'prostitution');
   qspCall(s, 'stat', '');
@@ -76,7 +76,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     qspCall(s, 'money', 'earn', 2000);
-    (s as any).cumanalRand = Math.floor(Math.random() * 3) + 0;
+    (s as any).cumanalRand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).cumanalRand ?? 0))) {
       (s as any).spafinloc = 4;
       qspCall(s, 'cum_manage', '');

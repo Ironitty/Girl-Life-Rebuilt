@@ -15,8 +15,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude')  &&  ((s as any).lastwornclothingtype ?? 0)?.['swim'] !== ''  &&  ((s as any).lastwornclothingtype ?? 0)?.['swim'] !== 'nude') {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'outfit', 'restore', 'swim');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'outfit', 'restore', 'swim');
     scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/dress_nudebeach.jpg');
     scene.text('You put your clothes back on.');
     scene.actions([
@@ -34,8 +34,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'changingroom', 'count_swim_item') > 0  &&  (!((s as any).PSwim ?? 0))) {
         scene.actions([
           { label: 'Change into your swimwear', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).pcs_horny ?? 0) >= 90) {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    if (((st as any).pcs_horny ?? 0) >= 90) {
       scene.img('images/locations/pavlovsk/lake/secluded_beach/self/wetpussypants1.jpg');
       scene.text('You want to change into a swimsuit, but with no changing room here and your pussy oozing juices down your leg, coupled with the thought that people will see, horrifies you. You abandon the idea.');
       scene.text('"I should sort out my arousal first." you think to yourself.');
@@ -55,27 +55,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).clothingworntype ?? 0) !== 'nude') {
         scene.actions([
           { label: 'Take off your clothes', handler: (st: GameState) => {
-    if (((s as any).pcs_inhib ?? 0) > 30) {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      if (((s as any).pcs_horny ?? 0) >= 80  &&  ((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  &&  (((s as any).PCloPanties ?? 0) === 1  ||  ((s as any).pantyworntype ?? 0) !== 'none')) {
+    if (((st as any).pcs_inhib ?? 0) > 30) {
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      if (((st as any).pcs_horny ?? 0) >= 80  &&  ((st as any).trait_vars ?? 0)?.['exhibitionist'] > 1  &&  (((st as any).PCloPanties ?? 0) === 1  ||  ((st as any).pantyworntype ?? 0) !== 'none')) {
         scene.img('images/locations/pavlovsk/lake/secluded_beach/self/wetpussypants3.jpg');
         scene.text('You strip off. A few passing men do a double-take and pause to look at your sopping wet panties, probably thinking about what is making you so excited. You don\'t care about what they might say or think of you.');
       } else {
-        if (((s as any).pcs_inhib ?? 0) >= 60) {
+        if (((st as any).pcs_inhib ?? 0) >= 60) {
           scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/undressnudebeach.jpg');
           scene.text('Not caring if anyone is looking at you, you slowly take off your clothes. You peel off each item like a stripper. Soon, you are completely naked.');
         } else {
-          if (((s as any).pcs_inhib ?? 0) < 60) {
+          if (((st as any).pcs_inhib ?? 0) < 60) {
             scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/undressnudebeach.jpg');
             scene.text('You quickly check to see if anyone is watching, and when you\'re satisfied no one is paying you undue attention, you take off your clothes. You\'re naked now.');
           }
         }
       }
-      if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
-        qspCall(s, 'outfit', 'backup', 'swim');
+      if (((st as any).PSwim ?? 0) === 0  &&  ((st as any).clothingworntype ?? 0) !== 'nude') {
+        qspCall(st, 'outfit', 'backup', 'swim');
       }
-      qspCall(s, 'outfit', 'strip_all');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'outfit', 'strip_all');
+      qspCall(st, 'stat', '');
     } else {
       scene.img('images/locations/pavlovsk/lake/secluded_beach/self/shyness.jpg');
       scene.text('Even though no one is around, you don\'t feel confident enough to actually take your clothes off.');
@@ -87,13 +87,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).clothingworntype ?? 0) === 'nude') {
-        scene.text('Here you can <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Nudelake\\u0027, \\u0027zagarat\\u0027); return false;">sunbathe</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Nudelake\\u0027, \\u0027swim\\u0027); return false;">swim</a>');
+        scene.text('Here you can <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027zagarat/u0027); return false;">sunbathe</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027swim/u0027); return false;">swim</a>');
         if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
           scene.actions([
             { label: 'Go swimming', goto: ['Nudelake', 'swim'] },
           ]);
         }
-        scene.text('You can play <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Nudelake\\u0027, \\u0027voleybol\\u0027); return false;">beach volleyball</a>.');
+        scene.text('You can play <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027voleybol/u0027); return false;">beach volleyball</a>.');
         scene.actions([
           { label: 'Sunbathe', goto: ['Nudelake', 'zagarat'] },
         ]);
@@ -109,8 +109,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'restore', 'swim');
-    qspGoto(s, 'Nudelake', '');
+    qspCall(st, 'outfit', 'restore', 'swim');
+    qspGoto(st, 'Nudelake', '');
   } },
     ]);
   } else {
@@ -134,11 +134,11 @@ function enterVoleybol(s: GameState, scene: SceneBuilder): void {
     { label: 'Watch', goto: ['Nudelake', 'smotr'] },
     { label: 'Leave', goto: ['Nudelake', ''] },
     { label: 'Play', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'agil', 1);
-    qspCall(s, 'exp_gain', 'react', 1);
-    qspCall(s, 'exp_gain', 'vball', Math.floor(Math.random() * 3) + 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    qspCall(st, 'exp_gain', 'agil', 1);
+    qspCall(st, 'exp_gain', 'react', 1);
+    qspCall(st, 'exp_gain', 'vball', (Math.floor(Math.random() * 3) + 1));
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     scene.img('images/locations/city/residential/lake/volleyball.jpg');
     scene.text('You go up to the players and ask whether it is possible to join in. They are happy to put you on a team.');
     scene.actions([
@@ -155,7 +155,7 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sweat ?? 0) < 35) {
     qspCall(s, 'sweat', 'add', 5);
   }
-  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/lake/tanning_nude.jpg');
@@ -167,7 +167,7 @@ function enterZagarat(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
     scene.text('You smear sunblock on your body and sunbathe.');
   }
-  (s as any).nzagrand = Math.floor(Math.random() * 101) + 0;
+  (s as any).nzagrand = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).nzagrand ?? 0) < 60) {
   } else {
     if (((s as any).nzagrand ?? 0) < 70) {
@@ -203,14 +203,14 @@ function enterSwim(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     qspCall(s, 'exercise', 'tier1', (-5), 'stren', 'vital');
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   } else {
     if (((s as any).pcs_inhib ?? 0) < 50) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
   }
   (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
-  scene.img(`images/pc/activities/swim/lake/swim_nude_${Math.floor(Math.random() * 11) + 0}.jpg`);
+  scene.img(`images/pc/activities/swim/lake/swim_nude_${(Math.floor(Math.random() * 11) + 0)}.jpg`);
   scene.text('You go for a swim.');
   if (((s as any).deodorant_on ?? 0) === 1) {
     qspCall(s, 'sweat', 'remove_deo');

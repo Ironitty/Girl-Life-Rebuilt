@@ -59,12 +59,12 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Caress Yourself', handler: (st: GameState) => {
-    if (((s as any).pcs_inhib ?? 0) < 40) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    if (((st as any).pcs_inhib ?? 0) < 40) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
-    qspCall(s, 'willpower', 'mast', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'gloryhole', 'mast');
+    qspCall(st, 'willpower', 'mast', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'gloryhole', 'mast');
   } },
       ]);
     }
@@ -80,7 +80,7 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMast(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/caress1.mp4');
     scene.text('Feeling a bit turned on, you close the door to the stall and you behind to reach down your underwear and start rubbing your clit.');
@@ -93,7 +93,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'stage2') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'stage2') {
     qspCall(s, 'mood', 'raise', 'tiny');
     if (((s as any).picrand ?? 0) === 1) {
       scene.img('images/locations/shared/gloryhole/sex/caress1.mp4');
@@ -118,10 +118,10 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'willpower', 'mast', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'willpower', 'mast', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'end');
     scene.text('You decide that you shouldn\'t continue and stop yourself from finishing.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -134,15 +134,15 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_horny ?? 0) >= 90) {
       scene.actions([
         { label: 'Climax', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'small');
-    if (((s as any).pcs_inhib ?? 0) < 40) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    qspCall(st, 'mood', 'raise', 'small');
+    if (((st as any).pcs_inhib ?? 0) < 40) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
     scene.img('images/locations/shared/gloryhole/sex/orgasm.mp4');
-    (s as any).orgasm_or = 'custom';
-    (s as any).orgasm_txt = 'As your pussy gets wet you pulls your panties down and slip your fingers inside of yourself. You start finger fucking yourself, with in a few minutes a powerful orgasm rocks your body. Leaving you gasping and trembling as you recover.';
-    qspCall(s, 'arousal', 'clit_finger', 2, 'masturbate');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'custom';
+    (st as any).orgasm_txt = 'As your pussy gets wet you pulls your panties down and slip your fingers inside of yourself. You start finger fucking yourself, with in a few minutes a powerful orgasm rocks your body. Leaving you gasping and trembling as you recover.';
+    qspCall(st, 'arousal', 'clit_finger', 2, 'masturbate');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -161,7 +161,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHole(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'unknown guy', Math.floor(Math.random() * 23) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'unknown guy', (Math.floor(Math.random() * 23) + 18));
   if (((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] < 6) {
     ((s as any).npc_dick = (s as any).npc_dick ?? {})[String((s as any).npclastgenerated ?? 0)] = 6;
   }
@@ -172,12 +172,12 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['gloryhole'] === 0  ||  (Math.floor(Math.random() * 5) + 1) === 5) {
     scene.actions([
       { label: 'Sign the wall', handler: (st: GameState) => {
-    ((s as any).stat = (s as any).stat ?? {})['know_glory'] = 1;
-    qspCall(s, 'stat', '');
+    ((st as any).stat = (st as any).stat ?? {})['know_glory'] = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/ghstartled.mp4');
     scene.text('While looking through the hole you decided to write something on the wall just above it. While you were focused on writing, you didn\'t notice the dick poking through the hole until the tip of it nearly went into your mouth. Startled you jerk away from the offending penis.');
-    qspCall(s, 'willpower', 'bj', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'bj', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Suck it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -186,15 +186,15 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Suck it', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'gloryhole', 'blowjob');
+    qspCall(st, 'willpower', 'bj', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'gloryhole', 'blowjob');
   } },
       ]);
     }
-    if ((!((s as any).pcs_throat ?? 0))) {
-      qspCall(s, 'willpower', 'hj', 'self', 'easy');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if ((!((st as any).pcs_throat ?? 0))) {
+      qspCall(st, 'willpower', 'hj', 'self', 'easy');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Touch the shaft', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -203,17 +203,17 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Touch the shaft', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'hj', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'gloryhole', 'virgin');
+    qspCall(st, 'willpower', 'hj', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'gloryhole', 'virgin');
   } },
         ]);
       }
     }
     scene.actions([
       { label: 'Quickly leave the stall ', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/eww.mp4');
     scene.text('You shudder in disgust at the thought that some stranger\'s dick was just practically in your mouth, you get up and quickly leave.');
     scene.actions([
@@ -240,26 +240,26 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Stick your finger in the hole', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 100);
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'willpower', 'bj', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if (((s as any).stat ?? 0)?.['gloryhole'] === 0) {
-      scene.img('images/shared/sex/gloryhole/ghfinger\'+rand(1, 5)+\'.jpg');
+    qspCall(st, 'money', 'earn', 100);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'willpower', 'bj', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if (((st as any).stat ?? 0)?.['gloryhole'] === 0) {
+      scene.img('images/shared/sex/gloryhole/ghfinger' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
       scene.text('You put your finger in the hole hoping to entice a man to come over…');
-      // TODO-QSP: dynamic text: The man slips <<$func('money', 'string_profit', 100)>> into the hole, and then p...
+      // TODO-QSP: dynamic text: The man slips <<$func(''money'', ''string_profit'', 100)>> into the hole, and th...
       scene.text(`The man slips ${qspFunc(s, 'money', 'string_profit', 100)} into the hole, and then puts his erect cock through the hole.`);
     } else {
-      if (((s as any).stat ?? 0)?.['gloryhole'] > 0) {
+      if (((st as any).stat ?? 0)?.['gloryhole'] > 0) {
         scene.img('images/locations/shared/gloryhole/action/ready.jpg');
         scene.text('You poke your finger in the hole showing that you are ready to serve a man. Then you put your face close to the hole and open your mouth.');
-        // TODO-QSP: dynamic text: The stranger slips <<$func('money', 'string_profit', 100)>> into the hole, and t...
+        // TODO-QSP: dynamic text: The stranger slips <<$func(''money'', ''string_profit'', 100)>> into the hole, a...
         scene.text(`The stranger slips ${qspFunc(s, 'money', 'string_profit', 100)} into the hole, and then his erect cock pokes out of the hole.`);
       }
     }
-    qspCall(s, 'willpower', 'bj', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'bj', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -268,12 +268,12 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('Seeing the dick poke through, you reconsider what you are about to do, do you really want to suck some strange man\'s dick, through a hole in the bathroom for money?');
-    qspCall(s, 'willpower', 'bj', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'bj', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Take his money and Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -282,17 +282,17 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Take his money and Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    qspCall(st, 'willpower', 'bj', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
     scene.actions([
       { label: 'Give back the money and Leave', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 100);
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    qspCall(st, 'money', 'pay', 100);
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Blow Him', goto: ['gloryhole', 'blowjob'] },
     ]);
@@ -337,8 +337,8 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Quickly leave the stall', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/eww.mp4');
     scene.text('You shudder in disgust at the thought that you were just touching some stranger\'s dick. You get up and quickly leave.');
     scene.actions([
@@ -350,10 +350,10 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     { label: 'Grab it', handler: (st: GameState) => {
     scene.img('images/locations/shared/gloryhole/sex/ghfeeling.mp4');
     scene.text('Biting your lip and deciding you want to feel it some more, you reach over again and grab it. You caress it with your hand, it is harder than you expected and warm to the touch, it almost feels like it is throbbing in your hand. Unexplained feelings of excitement run through your body. You hear through the wall the guy saying, "Stop playing with it and stroke it." "Huh?" You reply, not knowing why he wants you to stroke it. He replies, "Really, you don\'t know? Just grab it with your hand and slide it up and down."');
-    qspCall(s, 'arousal', 'foreplay', 5, 'unknown');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'hj', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', 5, 'unknown');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'hj', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -362,9 +362,9 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'hj', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'hj', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/shared/gloryhole/sex/eww.mp4');
     scene.text('You let go of him, wondering what possessed you to grab some stranger\'s dick in the first place. You quickly leave the stall, you can hear the guy. "Hey why did you stop…? Hello? Are you still there? What the fuck!"');
     scene.actions([
@@ -377,17 +377,17 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Slide your hand on his penis', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/ghstroke1.mp4');
     scene.text('You decide to gently slide your hand on his dick. You feel his hard penis throb as you continue to slide your hand up and down. To your surprise you are really enjoying stroking the dick, your pussy starts to itch from the experience. As you get more turned on, you grab it with both hands and stroke it.');
-    qspCall(s, 'arousal', 'hj', 5, 'unknown');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'hj', 5, 'unknown');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue Stroking', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'hands', 'an unknown guy from the gloryhole');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'hands', 'an unknown guy from the gloryhole');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/gloryhole/sex/ghmastcum.mp4');
     scene.text('Without any warning, hot white liquid spurts out the tip of his penis. You look at your hands, watching the sperm run down the back of your hand and down onto your arm. The man panting says, "That was," he takes another breath, "That was great."');
     scene.text('You decide to lick a bit of the white liquid off your hand curiously wanting to know what it tastes like. It\'s slimy and tastes tart.');
@@ -407,8 +407,8 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   (s as any).ghnow = ((s as any).ghnow ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
-  (s as any).temp = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${Math.floor(Math.random() * 5) + 1}.mp4`);
+  (s as any).temp = (Math.floor(Math.random() * 5) + 1);
+  scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${(Math.floor(Math.random() * 5) + 1)}.mp4`);
   // TODO-QSP: dynamic text: You wrap your lips around his dick and take his <<npc_dick[$npclastgenerated]>>c...
   scene.text(`You wrap your lips around his dick and take his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm long ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''} cock in your mouth and start to suck it, you suck the cock enthusiastically.`);
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'sub');
@@ -421,12 +421,12 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue to Suck', handler: (st: GameState) => {
-    scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${Math.floor(Math.random() * 5) + 1}.mp4`);
+    scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${(Math.floor(Math.random() * 5) + 1)}.mp4`);
     scene.text('You suck on his dick, bobbing your head, sometimes using your hands to stroke his shaft at the same time, other times your hands massage his balls. Before to long you hear the guy moan in pleasure, "I\'m cuming."');
-    qspCall(s, 'arousal', 'bj', 5, 'unknown', 'sub');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'swallow', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'bj', 5, 'unknown', 'sub');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'swallow', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Step back', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -435,10 +435,10 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Step back', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'swallow', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'cum_call', 'face', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'swallow', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'cum_call', 'face', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/shared/gloryhole/sex/ghfacial.mp4');
     scene.text('You pull your mouth off his dick but keep jerking him off, shortly later, hot spurts of cum start flying and covering your face.');
     scene.actions([
@@ -449,20 +449,20 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {
-    scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${Math.floor(Math.random() * 5) + 1}.mp4`);
+    scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${(Math.floor(Math.random() * 5) + 1)}.mp4`);
     scene.text('Despite what he says you keep sucking his dick, you are looking forward to him filling your mouth up with his tasty sperm. Moments later hot spurts of cum fill your mouth.');
     scene.actions([
       { label: 'Swallow', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth_swallow', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'end');
     scene.text('You gather a mouthful of sperm, and then swallow it. Their sperm has a sticky and sharp taste which makes you grimace.');
     scene.actions([
       { label: 'Get up', goto: ['gloryhole', 'return'] },
     ]);
   } },
       { label: 'Spit out', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'mouth', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'end');
     scene.text('You decide to spit it all out.');
     scene.actions([
       { label: 'Get up', goto: ['gloryhole', 'return'] },
@@ -502,9 +502,9 @@ function enterGhsex(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Pussy', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).sexcontra = 0;
-    qspGoto(s, 'gloryhole', 'pussy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).sexcontra = 0;
+    qspGoto(st, 'gloryhole', 'pussy');
   } },
       ]);
     }
@@ -537,7 +537,7 @@ function enterCondom(s: GameState, scene: SceneBuilder): void {
 
 function enterPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  (s as any).temp = Math.floor(Math.random() * 5) + 1;
+  (s as any).temp = (Math.floor(Math.random() * 5) + 1);
   if ((Math.floor(Math.random() * 3) + 0) > 0) {
     scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp || '')}.mp4`);
   } else {
@@ -564,14 +564,14 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Allow him to cum inside', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'cum_call', '', '', 'an unknown guy from the gloryhole');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'cum_call', '', '', 'an unknown guy from the gloryhole');
     scene.img('images/locations/shared/gloryhole/sex/ghcreampie.mp4');
     scene.text('Instead of pulling away, you moan "Inside me, please," and push yourself hard against the opening in the wall. You feel his hot sperm fill your pussy in spurt after spurt. When you finally pull yourself off him, you can feel the sperm leaking out of your pussy.');
-    qspCall(s, 'cuminsidereact', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'vaginal', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cuminsidereact', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'vaginal', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['gloryhole', 'return'] },
     ]);
@@ -581,13 +581,13 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Allow him to cum inside', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'cum_call', '', '', 'an unknown guy from the gloryhole');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'cum_call', '', '', 'an unknown guy from the gloryhole');
     scene.img('images/locations/shared/gloryhole/sex/ghcreampie.mp4');
     scene.text('Instead of pulling away, you moan "Inside me, please," and push yourself hard against the opening in the wall. You feel his hot sperm fill your pussy in spurt after spurt. When you finally pull yourself off him, you can feel the sperm leaking out of your pussy.');
-    qspCall(s, 'cuminsidereact', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'vaginal', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cuminsidereact', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'vaginal', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['gloryhole', 'return'] },
     ]);
@@ -596,24 +596,24 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Quickly turn around and get on your knees', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let him cum in your mouth', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'cum_call', 'mouth_swallow', 'an unknown guy from the gloryhole');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'cum_call', 'mouth_swallow', 'an unknown guy from the gloryhole');
     scene.img('images/locations/shared/gloryhole/sex/ghswallow.mp4');
     scene.text('Once down on your knees you take his dick into your mouth and start sucking him. You are looking forward to him filling your mouth up with his tasty sperm. Moments later hot spurts of cum fill your mouth, you savor the taste of it in your mouth, before you swallow it all down.');
-    qspCall(s, 'arousal', 'bj', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['gloryhole', 'return'] },
     ]);
   } },
       { label: 'Let him cum on your face', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'cum_call', 'face', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'hj', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'cum_call', 'face', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'hj', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/shared/gloryhole/sex/ghfacial.mp4');
     scene.text('You put your face near his dick and start jerking him off, shortly later, hot spurts of cum start flying and covering your face.');
     scene.actions([
@@ -657,26 +657,26 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Keep Going', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    (s as any).temp = Math.floor(Math.random() * 5) + 1;
+    qspCall(st, 'stat', '');
+    (st as any).temp = (Math.floor(Math.random() * 5) + 1);
     if ((Math.floor(Math.random() * 3) + 0) > 0) {
-      scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp || '')}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/sex${((st as any).temp || '')}.mp4`);
     } else {
-      scene.img(`images/locations/shared/gloryhole/sex/anal${((s as any).temp || '')}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/anal${((st as any).temp || '')}.mp4`);
     }
-    if (((s as any).pcs_ass ?? 0) < 10) {
+    if (((st as any).pcs_ass ?? 0) < 10) {
       scene.text('The pain doesn\'t fade and instead it starts to hurt worse after a while and the pleasure starts to fade. You fuck his dick with your ass, at first taking him deeper and deeper, as you get faster and faster. As the pleasure fades and the pain gets worse you slow down and don\'t take him as deep. You start to rub your clit to help with the sensation of pleasure. You consider stopping as the pain gets worse, but you can tell by the throbbing of his dick and ragged breathing he is about to cum and decided to keep it up so he can finish.');
     } else {
-      if (((s as any).pcs_ass ?? 0) < 20) {
+      if (((st as any).pcs_ass ?? 0) < 20) {
         scene.text('The pain fades slowly and soon all you feel pleasure. You fuck his dick with your ass, taking him deeper and deeper, as you get faster and faster, you start to rub your clit as you feel yourself getting close to climax. You can tell by the throbbing of his dick and ragged breathing he is about to cum.');
       } else {
         scene.text('The pain fades quickly and soon all you feel pleasure. You fuck his dick with your ass, taking him deeper and deeper, as you get faster and faster, you start to rub your clit as you feel yourself getting close to climax. You can tell by the throbbing of his dick and ragged breathing he is about to cum.');
       }
     }
-    qspCall(s, 'arousal', 'anal', 5, 'unknown', 'sub');
-    qspCall(s, 'stat', '');
-    if (((s as any).pcs_ass ?? 0) < 10) {
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'anal', 5, 'unknown', 'sub');
+    qspCall(st, 'stat', '');
+    if (((st as any).pcs_ass ?? 0) < 10) {
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -685,9 +685,9 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Stop', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'anal', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'anal', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/shared/gloryhole/sex/analpain.jpg');
     scene.text('The pain becomes too much and you can\'t take it anymore, on the verge of tears you stop and pull your ass off his dick. You quickly get dressed and leave, you wonder if it was supposed to hurt that much. You can hear the guy yelling at you for having stopped before he finished.');
     scene.actions([
@@ -699,9 +699,9 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    qspCall(s, 'willpower', 'anal', 'resist');
-    qspCall(s, 'willpower', 'swallow', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'anal', 'resist');
+    qspCall(st, 'willpower', 'swallow', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Turn around, kneel and let him cum in your mouth', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -710,14 +710,14 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Turn around, kneel and let him cum in your mouth', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'willpower', 'swallow', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'an unknown guy from the gloryhole');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'willpower', 'swallow', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'an unknown guy from the gloryhole');
     scene.img('images/locations/shared/gloryhole/sex/ghswallow.mp4');
     scene.text('Once down on your knees you take his dick into your mouth and start sucking him, tasting your own ass on his dick. But you are looking forward to him filling your mouth up with his tasty sperm. Moments later hot spurts of cum fill your mouth, you savor the taste of it in your mouth, before you swallow it all down.');
-    qspCall(s, 'arousal', 'bj', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['gloryhole', 'return'] },
     ]);
@@ -726,10 +726,10 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let him cum in your ass', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'cum_call', 'anus', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'anal', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'cum_call', 'anus', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'anal', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/shared/gloryhole/sex/ghanalcream1.mp4');
     scene.text('You feel his dick throb as he shoots his load of sperm deep in your ass, filling it up. When you pull your ass off his dick, you feel the hot sperm spilling out of your gaping asshole.');
     scene.actions([
@@ -737,10 +737,10 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Let him cum all over your ass', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'cum_call', 'butt', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'anal', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'cum_call', 'butt', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'anal', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/shared/gloryhole/sex/ghcumonass.jpg');
     scene.text('You pull your ass away, feeling his cock slip out of your asshole, just as you feel hot splashing of cum landing on your butt, coating your cheeks and running down the crack of your ass.');
     scene.actions([
@@ -748,10 +748,10 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Turn around, kneel and let him cum on your face', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'cum_call', 'face', 'an unknown guy from the gloryhole');
-    qspCall(s, 'arousal', 'hj', (-10), 'unknown', 'sub');
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'cum_call', 'face', 'an unknown guy from the gloryhole');
+    qspCall(st, 'arousal', 'hj', (-10), 'unknown', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/shared/gloryhole/sex/ghfacial.mp4');
     scene.text('You put your face near his dick and start jerking him off, shortly later, hot spurts of cum start flying and covering your face.');
     scene.actions([

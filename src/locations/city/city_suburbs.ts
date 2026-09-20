@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'public_outdoors';
   scene.build();
 }
 
@@ -15,16 +14,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Elite settlement<h4></center>');
   scene.img('images/locations/city/suburb/settlement.jpg');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> stands on the street...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> stands on the street.`);
+    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> stands on the ...
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> stands on the street.`);
   }
-  // TODO-QSP: dynamic text: The <a href="exec: minut += 20 & gt 'metro', 'suburbs'">Metro</a> station is a 2...
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.20; return s; }); window.__gameStore.getState().doGoto(\\u0027metro\\u0027, \\u0027suburbs\\u0027); return false;">Metro</a> station is a 20 minute walk from here.');
+  // TODO-QSP: dynamic text: The <a href="exec: minut += 20 & gt ''metro'', ''suburbs''">Metro</a> station is...
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.20; return s; }); window.__gameStore.getState().doGoto(/u0027metro/u0027, /u0027suburbs/u0027); return false;">Metro</a> station is a 20 minute walk from here.');
   qspCall(s, 'taxi', '');
   if (((s as any).AlexandriaQW ?? 0) > 6) {
     if (((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 20) {
-      // TODO-QSP: dynamic text: You can visit <a href="exec: minut += 5 & gt 'AlexandriaHome', 'intercom'">Aleks...
-      scene.text('You can visit <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027AlexandriaHome\\u0027, \\u0027intercom\\u0027); return false;">Aleksei\'s home</a> if you want to see the cranky wizard.');
+      // TODO-QSP: dynamic text: You can visit <a href="exec: minut += 5 & gt ''AlexandriaHome'', ''intercom''">A...
+      scene.text('You can visit <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027AlexandriaHome/u0027, /u0027intercom/u0027); return false;">Aleksei\'s home</a> if you want to see the cranky wizard.');
     }
   }
   if (((s as any).bdsmclub ?? 0)?.['unlocked'] === 1) {
@@ -74,8 +73,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Look for Alexandria', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'easy');
-    qspGoto(s, 'alexandriaEv', 'interview1');
+    qspCall(st, 'willpower', 'pay', 'easy');
+    qspGoto(st, 'alexandriaEv', 'interview1');
   } },
       ]);
     }
@@ -144,6 +143,7 @@ function enterPs2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   const arg = s.locArg;
   switch (arg) {
     case 'start':

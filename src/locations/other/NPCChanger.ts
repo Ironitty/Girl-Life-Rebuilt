@@ -38,11 +38,11 @@ function enterNPCLoop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'LoopNPC'
   }
   scene.text('<hr>');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027next10\\u0027); return false;">Next 10</a> ');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027back10\\u0027); return false;">Previous 10</a> ');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027next50\\u0027); return false;">Skip 50</a> ');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027back50\\u0027); return false;">Back 50</a> ');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027selection\\u0027); return false;">Select an NPC to modify</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027next10/u0027); return false;">Next 10</a> ');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027back10/u0027); return false;">Previous 10</a> ');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027next50/u0027); return false;">Skip 50</a> ');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027back50/u0027); return false;">Back 50</a> ');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027selection/u0027); return false;">Select an NPC to modify</a>');
   scene.text('</td></tr></table></center>');
   // TODO-QSP: end
   scene.actions([
@@ -125,22 +125,22 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSelection2(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: NPC first name: <<$npc_firstname['A<<s>>']>> <a href="exec:gt 'NPCChanger', 'edi...
-  scene.text(`NPC first name: ${qspUntranslated(s, "npc_firstname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027editf\\u0027); return false;">Change</a>`);
-  // TODO-QSP: dynamic text: NPC nickname: <<$npc_nickname['A<<s>>']>> <a href="exec:gt 'NPCChanger', 'editn'...
-  scene.text(`NPC nickname: ${qspUntranslated(s, "npc_nickname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027editn\\u0027); return false;">Change</a>`);
-  // TODO-QSP: dynamic text: NPC last name: <<$npc_lastname['A<<s>>']>> <a href="exec:gt 'NPCChanger', 'editl...
-  scene.text(`NPC last name: ${qspUntranslated(s, "npc_lastname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027editl\\u0027); return false;">Change</a>`);
-  // TODO-QSP: dynamic text: NPC used name: <<$npc_usedname['A<<s>>']>> <a href="exec:gt 'NPCChanger', 'editu...
-  scene.text(`NPC used name: ${qspUntranslated(s, "npc_usedname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027editu\\u0027); return false;">Change</a>`);
-  // TODO-QSP: dynamic text: NPC date of birth: <<npc_dob['A<<s>>']>> <a href="exec:gt 'NPCChanger', 'editd'"...
-  scene.text(`NPC date of birth: ${qspUntranslated(s, "npc_dob['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027NPCChanger\\u0027, \\u0027editd\\u0027); return false;">Change</a>`);
+  // TODO-QSP: dynamic text: NPC first name: <<$npc_firstname[''A<<s>>'']>> <a href="exec:gt ''NPCChanger'', ...
+  scene.text(`NPC first name: ${qspUntranslated(s, "npc_firstname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027editf/u0027); return false;">Change</a>`);
+  // TODO-QSP: dynamic text: NPC nickname: <<$npc_nickname[''A<<s>>'']>> <a href="exec:gt ''NPCChanger'', ''e...
+  scene.text(`NPC nickname: ${qspUntranslated(s, "npc_nickname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027editn/u0027); return false;">Change</a>`);
+  // TODO-QSP: dynamic text: NPC last name: <<$npc_lastname[''A<<s>>'']>> <a href="exec:gt ''NPCChanger'', ''...
+  scene.text(`NPC last name: ${qspUntranslated(s, "npc_lastname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027editl/u0027); return false;">Change</a>`);
+  // TODO-QSP: dynamic text: NPC used name: <<$npc_usedname[''A<<s>>'']>> <a href="exec:gt ''NPCChanger'', ''...
+  scene.text(`NPC used name: ${qspUntranslated(s, "npc_usedname['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027editu/u0027); return false;">Change</a>`);
+  // TODO-QSP: dynamic text: NPC date of birth: <<npc_dob[''A<<s>>'']>> <a href="exec:gt ''NPCChanger'', ''ed...
+  scene.text(`NPC date of birth: ${qspUntranslated(s, "npc_dob['A<<s", { location: "NPCChanger" })}']>> <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027NPCChanger/u0027, /u0027editd/u0027); return false;">Change</a>`);
   // TODO-QSP: 'NPC description: '+ $func('npc_notes', s)
   if (((s as any).npc_gender ?? 0)['A' + ((s as any).s ?? 0)] === 0) {
     scene.text('NPC gender: Male');
-    // TODO-QSP: dynamic text: NPC dick length: <<npc_dick['A<<s>>']>>cm
+    // TODO-QSP: dynamic text: NPC dick length: <<npc_dick[''A<<s>>'']>>cm
     scene.text(`NPC dick length: ${qspUntranslated(s, "npc_dick['A<<s", { location: "NPCChanger" })}']>>cm`);
-    // TODO-QSP: dynamic text: NPC dick description: <<$npc_thdick['A<<s>>']>>
+    // TODO-QSP: dynamic text: NPC dick description: <<$npc_thdick[''A<<s>>'']>>
     scene.text(`NPC dick description: ${qspUntranslated(s, "npc_thdick['A<<s", { location: "NPCChanger" })}']>>`);
   } else {
     scene.text('NPC gender: Female');
@@ -148,43 +148,43 @@ function enterSelection2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Done', handler: (st: GameState) => {
-    (s as any).n = (((s as any).o ?? 0) - 10);
-    qspGoto(s, 'NPCChanger', 'NPCLoop');
+    (st as any).n = (((st as any).o ?? 0) - 10);
+    qspGoto(st, 'NPCChanger', 'NPCLoop');
   } },
   ]);
   scene.build();
 }
 
 function enterEditf(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String(((s as any).s ?? 0))] = 0;
   qspGoto(s, 'NPCChanger', 'selection2');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditn(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String(((s as any).s ?? 0))] = 0;
   qspGoto(s, 'NPCChanger', 'selection2');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditl(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String(((s as any).s ?? 0))] = 0;
   qspGoto(s, 'NPCChanger', 'selection2');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditu(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String(((s as any).s ?? 0))] = 0;
   qspGoto(s, 'NPCChanger', 'selection2');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterEditd(s: GameState, scene: SceneBuilder): void {
-  ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String((s as any).s || '') + ''] = 0;
+  ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String(((s as any).s ?? 0))] = 0;
   qspGoto(s, 'NPCChanger', 'selection2');
   // TODO-QSP: end
   scene.build();

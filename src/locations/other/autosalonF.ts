@@ -79,7 +79,7 @@ function enterDisplayVehicle(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/pc/items/accessories/car/car${((s as any).autosalonF_carnum || '')}.jpg`);
     scene.actions([
       { label: 'Sit behind the wheel', handler: (st: GameState) => {
-    scene.img(`images/pc/items/accessories/car/salon${((s as any).autosalonF_carnum || '')}.jpg`);
+    scene.img(`images/pc/items/accessories/car/salon${((st as any).autosalonF_carnum || '')}.jpg`);
     scene.actions([
       { label: 'Return', goto: ['autosalonF', 'display_vehicle'] },
     ]);
@@ -101,7 +101,7 @@ function enterManager1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Car Dealership</b></center>');
   scene.img('images/locations/city/industrial/cardealer/manager.jpg');
-  // TODO-QSP: dynamic text: You have <<$func('money', 'format', karta - bankDebtLimit)>> in your bank accoun...
+  // TODO-QSP: dynamic text: You have <<$func(''money'', ''format'', karta - bankDebtLimit)>> in your bank ac...
   scene.text(`You have ${qspFunc(s, 'money', 'format', ((s as any).karta ?? '') - ((s as any).bankDebtLimit ?? ''))} in your bank account.`);
   scene.text('The manager smiles affably and explains routinely what is required to purchase a car: A driver\'s license and the sum, in full, in your bank account.');
   scene.text('"With how the economy is right now, we can\'t accept payment by installments at this time I\'m afraid," he apologizes. "A few new laws have also been passed too: We cannot accept cash payment - the Duma believes that will help fight crime - and it is currently not possible to own more than one car, according to the Oblast\'s new anti-corruption law.');

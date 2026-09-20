@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  (s as any).strand = Math.floor(Math.random() * 11) + 0;
+  (s as any).strand = (Math.floor(Math.random() * 11) + 0);
   if ((!((s as any).strand ?? 0))) {
     // TODO-QSP: And hell - this is where you do not have with me.'
   } else {

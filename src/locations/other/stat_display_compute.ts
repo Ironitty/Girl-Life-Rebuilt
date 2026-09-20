@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sd_qa = (s as any).sd_qa ?? {})['text'] = ((((s as any).locArgs?.[2] ?? 0) !== ''  &&  ((s as any).locArgs?.[2] ?? 0) !== 'none') ? (qspFunc(s, 'wrap', '$ARGS[2]', ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
+  ((s as any).sd_qa = (s as any).sd_qa ?? {})['text'] = ((Number((s as any).locArgs?.[2] ?? 0) !== ''  &&  Number((s as any).locArgs?.[2] ?? 0) !== 'none') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
   // TODO-QSP: $sd_alerts[] = $sd_qa['text']
   return;
   // TODO-QSP: end
@@ -19,13 +19,13 @@ function enterQueueAlert(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[3] ?? 0) === 'pos'  ||  ((s as any).locArgs?.[3] ?? 0) === 'const') {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 'pos'  ||  Number((s as any).locArgs?.[3] ?? 0) === 'const') {
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon_arg'] = '';
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['row_arg'] = 0;
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['action_arg'] = '';
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['gate'] = ((s as any).locArgs?.[3] ?? 0);
   } else {
-    if (((s as any).locArgs?.[5] ?? 0) === 'pos'  ||  ((s as any).locArgs?.[5] ?? 0) === 'const') {
+    if (Number((s as any).locArgs?.[5] ?? 0) === 'pos'  ||  Number((s as any).locArgs?.[5] ?? 0) === 'const') {
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['icon_arg'] = ((s as any).locArgs?.[3] ?? 0);
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['row_arg'] = ((s as any).locArgs?.[4] ?? 0);
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['action_arg'] = '';
@@ -37,7 +37,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_qm = (s as any).sd_qm ?? {})['gate'] = ((s as any).locArgs?.[6] ?? 0);
     }
   }
-  ((s as any).sd_qm = (s as any).sd_qm ?? {})['title'] = ((((s as any).stat_texts ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_tooltip'] !== '') ? (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_tooltip']) : (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]));
+  ((s as any).sd_qm = (s as any).sd_qm ?? {})['title'] = ((((s as any).stat_texts ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_tooltip'] !== '') ? (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_tooltip']) : (((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]));
   ((s as any).sd_qm = (s as any).sd_qm ?? {})['display'] = ((s as any).stat_texts ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   if (((s as any).sd_qm ?? 0)?.['action_arg'] !== '') {
     ((s as any).sd_qm = (s as any).sd_qm ?? {})['action'] = ((s as any).sd_qm ?? 0)?.['action_arg'];
@@ -100,7 +100,7 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).sd_qm ?? 0)?.['display'] !== ''  &&  (((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 0  ||  ((s as any).stat_cfg ?? 0)?.['msg_display_mode'] === 2  ||  ((s as any).sd_qm ?? 0)?.['icon'] === '')) {
-    ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_text'] = ((((s as any).locArgs?.[2] ?? 0) !== '') ? (qspFunc(s, 'wrap', '$ARGS[2]', ((s as any).sd_qm ?? 0)?.['display'])) : (((s as any).sd_qm ?? 0)?.['display']));
+    ((s as any).sd_qm = (s as any).sd_qm ?? {})['final_text'] = ((Number((s as any).locArgs?.[2] ?? 0) !== '') ? (qspFunc(s, 'wrap', ((s as any).locArgs?.[2] ?? 0), ((s as any).sd_qm ?? 0)?.['display'])) : (((s as any).sd_qm ?? 0)?.['display']));
     // TODO-QSP: $sd_texts[] = $sd_qm['final_text']
   }
   return;
@@ -224,7 +224,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_ap = (s as any).sd_ap ?? {})['bi'] = 0;
   // TODO-QSP: :sd_ap_bucket
   if (((s as any).sd_ap ?? 0)?.['bi'] < ((s as any).sd_ap ?? 0)?.['cnt']) {
-    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = ((s as any).sd_ap ?? 0)?.['v_' + qspUntranslated(s, "str(sd_ap['bi'])", { location: "stat_display_compute" })];
+    ((s as any).sd_ap = (s as any).sd_ap ?? {})['bv'] = ((s as any).sd_ap ?? 0)?.['v_' + String(((s as any).sd_ap ?? 0)?.['bi'])];
     ((s as any).sd_ap = (s as any).sd_ap ?? {})['dev'] = (((s as any).sd_ap ?? {})?.['bv'] ?? 0) - (((s as any).sd_ap ?? {})?.['mean'] ?? 0);
     if (((s as any).sd_ap ?? 0)?.['bv'] >= 80  ||  ((s as any).sd_ap ?? 0)?.['dev'] >= 15) {
       // TODO-QSP: $sd_ap['high_' + $str(sd_ap['n_high'])] = $sd_ap['n_' + $str(sd_ap['bi'])]
@@ -271,7 +271,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
         ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = 1;
         // TODO-QSP: :sd_ap_join_low
         if (((s as any).sd_ap ?? 0)?.['ji'] < (((s as any).sd_ap ?? 0)?.['n_low'] - 1)) {
-          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_' + qspUntranslated(s, "str(sd_ap['ji'])", { location: "stat_display_compute" })]));
+          ((s as any).sd_ap = (s as any).sd_ap ?? {})['low_list'] = ((s as any).sd_ap['low_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'neg', ((s as any).sd_ap ?? 0)?.['low_' + String(((s as any).sd_ap ?? 0)?.['ji'])]));
           ((s as any).sd_ap = (s as any).sd_ap ?? {})['ji'] = ((s as any).sd_ap['ji'] ?? 0) + (1);
           // TODO-QSP: jump 'sd_ap_join_low'
         }
@@ -297,7 +297,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
 
 function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 100) {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'Craving floods your senses. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/pussy/aroused/\\u0027 + \\u0027__qspDyn\\u0027 + \\u0027_high.jpg\\u0027; return s; }); return false;">soaked</a> from your juices.';
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'Craving floods your senses. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/pussy/aroused//u0027 + /u0027__qspDyn/u0027 + /u0027_high.jpg/u0027; return s; }); return false;">soaked</a> from your juices.';
     ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal_tooltip'] = 'Craving floods your senses. You are soaked from your juices.';
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'bimbo', 'status/arousal_high', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are overwhelmed by arousal.', 'bimbo']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -306,7 +306,7 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).pcs_horny ?? 0) >= 75) {
-      ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'You can\'t stop thinking about sex. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/pussy/aroused/\\u0027 + \\u0027__qspDyn\\u0027 + \\u0027_low.jpg\\u0027; return s; }); return false;">itching</a> with arousal.';
+      ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal'] = 'You can\'t stop thinking about sex. You are <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/pussy/aroused//u0027 + /u0027__qspDyn/u0027 + /u0027_low.jpg/u0027; return s; }); return false;">itching</a> with arousal.';
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['arousal_tooltip'] = 'You can\'t stop thinking about sex. You are itching with arousal.';
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'bimbo', 'status/arousal_high', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
@@ -1277,7 +1277,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_cm = (s as any).sd_cm ?? {})['si'] = ((s as any).sd_cm['si'] ?? 0) + (1);
       // TODO-QSP: jump 'sd_spell_loop'
     }
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['active_spells'] = qspFunc(s, 'cleanHTML', '$sd_cm[\'spell_text\']');
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['active_spells'] = qspFunc(s, 'cleanHTML', ((s as any).sd_cm ?? 0)?.['spell_text']);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'active_spells']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).stat_cfg ?? 0)?.['notify_exp'] !== 1) {
@@ -1346,13 +1346,13 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = 'Your basket is partially full.';
       }
       if (((s as any).boletus ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus -=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;"><b>' + ((s as any).boletus ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;"><b>' + ((s as any).boletus ?? 0) + '</b></a> kg.');
       }
       if (((s as any).boletus_cooked ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Cooked Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus_cooked -=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;"><b>' + ((s as any).boletus_cooked ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Cooked Mushrooms: <a href="#" onclick="window.__gameStore.setState((s) => { s.boletus_cooked -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;"><b>' + ((s as any).boletus_cooked ?? 0) + '</b></a> kg.');
       }
       if (((s as any).bilberry ?? 0) > 0) {
-        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Berries: <a href="#" onclick="window.__gameStore.setState((s) => { s.bilberry -=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027stat\\u0027, \\u0027\\u0027); return false;"><b>' + ((s as any).bilberry ?? 0) + '</b></a> kg.');
+        ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>Berries: <a href="#" onclick="window.__gameStore.setState((s) => { s.bilberry -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027stat/u0027, /u0027/u0027); return false;"><b>' + ((s as any).bilberry ?? 0) + '</b></a> kg.');
       }
       ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino'] = ((s as any).stat_texts['gadukino'] ?? 0) + ('<br>(Click numbers to throw away one a time)');
     }
@@ -1381,7 +1381,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).stat_texts ?? 0)?.['gadukino'] !== '') {
-    ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino_tooltip'] = qspFunc(s, 'cleanHTML', '$stat_texts[\'gadukino\']');
+    ((s as any).stat_texts = (s as any).stat_texts ?? {})['gadukino_tooltip'] = qspFunc(s, 'cleanHTML', ((s as any).stat_texts ?? 0)?.['gadukino']);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gadukino']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   ((s as any).sd_cm = (s as any).sd_cm ?? {})['lover_max'] = 0;
@@ -1493,11 +1493,11 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
 
 function enterCondString(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
-  if (((s as any).locArgs?.[2] ?? 0) === 0  &&  (!((s as any).locArgs?.[4] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0  &&  Number((s as any).locArgs?.[4] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = '';
-  if (((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
     ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_pct'] = Math.min(Math.max(0, ((s as any).locArgs?.[1] ?? 0) / 24), 100);
     if (((s as any).sd_cs ?? 0)?.['dirt_pct'] <= 20) {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_col'] = 'v_pos';
@@ -1508,26 +1508,26 @@ function enterCondString(s: GameState, scene: SceneBuilder): void {
         ((s as any).sd_cs = (s as any).sd_cs ?? {})['dirt_col'] = 'neg';
       }
     }
-    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = qspFunc(s, 'wrap', '$sd_cs[\'dirt_col\']', '[' + qspUntranslated(s, "str(sd_cs['dirt_pct'])", { location: "stat_display_compute" }) + '% dirt]');
+    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = qspFunc(s, 'wrap', ((s as any).sd_cs ?? 0)?.['dirt_col'], '[' + String(((s as any).sd_cs ?? 0)?.['dirt_pct']) + '% dirt]');
   }
-  if (((s as any).locArgs?.[4] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[4] ?? 0) === 1) {
     if (((s as any).sd_cs ?? 0)?.['out'] !== '') {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (' ');
     }
-    if (((s as any).locArgs?.[3] ?? 0) <= 5) {
+    if (Number((s as any).locArgs?.[3] ?? 0) <= 5) {
       ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'v_neg';
     } else {
-      if (((s as any).locArgs?.[3] ?? 0) <= 15) {
+      if (Number((s as any).locArgs?.[3] ?? 0) <= 15) {
         ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'neg';
       } else {
-        if (((s as any).locArgs?.[3] ?? 0) <= 25) {
+        if (Number((s as any).locArgs?.[3] ?? 0) <= 25) {
           ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'neutral';
         } else {
           ((s as any).sd_cs = (s as any).sd_cs ?? {})['wear_col'] = 'v_pos';
         }
       }
     }
-    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (qspFunc(s, 'wrap', '$sd_cs[\'wear_col\']', '[wear ' + qspUntranslated(s, "str(ARGS[3])", { location: "stat_display_compute" }) + ']'));
+    ((s as any).sd_cs = (s as any).sd_cs ?? {})['out'] = ((s as any).sd_cs['out'] ?? 0) + (qspFunc(s, 'wrap', ((s as any).sd_cs ?? 0)?.['wear_col'], '[wear ' + String(((s as any).locArgs?.[3] ?? 0)) + ']'));
   }
   (s as any).result = ((s as any).sd_cs ?? 0)?.['out'];
   return;
@@ -1699,7 +1699,7 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
     ((s as any).sd_img = (s as any).sd_img ?? {})['cond_face'] = qspFunc(s, 'stat_display_compute', 'cond_face');
   } else {
     if (((s as any).sd_ci ?? 0)?.['key'] === 'body') {
-      ((s as any).sd_img = (s as any).sd_img ?? {})['url_body'] = qspFunc(s, '$body_image', 'body');
+      ((s as any).sd_img = (s as any).sd_img ?? {})['url_body'] = qspFunc(s, '$body_image', '', 'body');
       ((s as any).sd_img = (s as any).sd_img ?? {})['label_body'] = 'Body';
       ((s as any).sd_img = (s as any).sd_img ?? {})['short_body'] = 'Body';
       ((s as any).sd_img = (s as any).sd_img ?? {})['cond_body'] = qspFunc(s, 'stat_display_compute', 'cond_sweat');
@@ -1712,19 +1712,19 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
         if (((s as any).coatworntype ?? 0) === 'none'  ||  ((s as any).coatworntype ?? 0) === '') {
           // TODO-QSP: jump 'sd_compute_images_next'
         }
-        ((s as any).sd_img = (s as any).sd_img ?? {})['url_coat'] = qspFunc(s, '$body_image', 'coat');
+        ((s as any).sd_img = (s as any).sd_img ?? {})['url_coat'] = qspFunc(s, '$body_image', '', 'coat');
         ((s as any).sd_img = (s as any).sd_img ?? {})['label_coat'] = 'Coat';
-        ((s as any).sd_img = (s as any).sd_img ?? {})['short_coat'] = qspFunc(s, '$item_description', 'coat', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0));
+        ((s as any).sd_img = (s as any).sd_img ?? {})['short_coat'] = qspFunc(s, '$item_description', '', 'coat', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0));
         ((s as any).sd_img = (s as any).sd_img ?? {})['cond_coat'] = qspFunc(s, 'stat_display_compute', 'cond_coat_temp');
       } else {
         if (((s as any).sd_ci ?? 0)?.['key'] === 'clothes') {
-          ((s as any).sd_img = (s as any).sd_img ?? {})['url_clothes'] = qspFunc(s, '$body_image', 'clothes');
+          ((s as any).sd_img = (s as any).sd_img ?? {})['url_clothes'] = qspFunc(s, '$body_image', '', 'clothes');
           if (((s as any).clothingworntype ?? 0) === 'nude') {
             ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = ((((s as any).towel ?? 0) === 1) ? ('Towel') : (((((s as any).robe ?? 0) === 1) ? ('Robe') : ('Naked'))));
             ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = ((s as any).sd_img ?? 0)?.['label_clothes'];
           } else {
             ((s as any).sd_img = (s as any).sd_img ?? {})['label_clothes'] = 'Clothes';
-            ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = qspFunc(s, '$short_description', '$clothingworntype', ((s as any).clothingwornnumber ?? 0));
+            ((s as any).sd_img = (s as any).sd_img ?? {})['short_clothes'] = qspFunc(s, '$short_description', '', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0));
             ((s as any).sd_img = (s as any).sd_img ?? {})['cond_clothes'] = 0;
             ((s as any).sd_ci = (s as any).sd_ci ?? {})['style_line'] = qspFunc(s, 'stat_display_compute', 'cond_clo_style');
             if (((s as any).sd_ci ?? 0)?.['style_line'] !== '') {
@@ -1733,35 +1733,35 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).sd_ci ?? 0)?.['key'] === 'bra') {
-            ((s as any).sd_img = (s as any).sd_img ?? {})['url_bra'] = qspFunc(s, '$body_image', 'bra');
+            ((s as any).sd_img = (s as any).sd_img ?? {})['url_bra'] = qspFunc(s, '$body_image', '', 'bra');
             if (((s as any).braworntype ?? 0) === 'none'  ||  ((s as any).braworntype ?? 0) === '') {
               ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Breasts';
               ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = 'Breasts';
             } else {
               ((s as any).sd_img = (s as any).sd_img ?? {})['label_bra'] = 'Bra';
-              ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = qspFunc(s, '$item_description', 'bra', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
+              ((s as any).sd_img = (s as any).sd_img ?? {})['short_bra'] = qspFunc(s, '$item_description', '', 'bra', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
               ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bra'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PBraDirt ?? 0), 1, 0, 0);
             }
           } else {
             if (((s as any).sd_ci ?? 0)?.['key'] === 'panties') {
-              ((s as any).sd_img = (s as any).sd_img ?? {})['url_panties'] = qspFunc(s, '$body_image', 'panties');
+              ((s as any).sd_img = (s as any).sd_img ?? {})['url_panties'] = qspFunc(s, '$body_image', '', 'panties');
               if (((s as any).pantyworntype ?? 0) === 'none'  ||  ((s as any).pantyworntype ?? 0) === '') {
                 ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Pussy';
                 ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = 'Pussy';
               } else {
                 ((s as any).sd_img = (s as any).sd_img ?? {})['label_panties'] = 'Panties';
-                ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = qspFunc(s, '$item_description', 'panty', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0));
+                ((s as any).sd_img = (s as any).sd_img ?? {})['short_panties'] = qspFunc(s, '$item_description', '', 'panty', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0));
                 ((s as any).sd_img = (s as any).sd_img ?? {})['cond_panties'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
               }
             } else {
               if (((s as any).sd_ci ?? 0)?.['key'] === 'shoes') {
-                ((s as any).sd_img = (s as any).sd_img ?? {})['url_shoes'] = qspFunc(s, '$body_image', 'shoes');
+                ((s as any).sd_img = (s as any).sd_img ?? {})['url_shoes'] = qspFunc(s, '$body_image', '', 'shoes');
                 if (((s as any).shoeworntype ?? 0) === 'none'  ||  ((s as any).shoeworntype ?? 0) === '') {
                   ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Feet';
                   ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = 'Feet';
                 } else {
                   ((s as any).sd_img = (s as any).sd_img ?? {})['label_shoes'] = 'Shoes';
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = qspFunc(s, '$shoe_description', '$shoeworntype', ((s as any).shoewornnumber ?? 0));
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_shoes'] = qspFunc(s, '$shoe_description', '', ((s as any).shoeworntype ?? 0), ((s as any).shoewornnumber ?? 0));
                 }
                 ((s as any).sd_img = (s as any).sd_img ?? {})['cond_shoes'] = qspFunc(s, 'stat_display_compute', 'cond_heel_skill');
               } else {
@@ -1772,9 +1772,9 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).stat_hide ?? 0)?.['bra'] === 1  &&  ((s as any).stat_hide ?? 0)?.['panties'] === 1) {
                     // TODO-QSP: jump 'sd_compute_images_next'
                   }
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['url_bodysuit'] = qspFunc(s, '$body_image', 'bodysuit');
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['url_bodysuit'] = qspFunc(s, '$body_image', '', 'bodysuit');
                   ((s as any).sd_img = (s as any).sd_img ?? {})['label_bodysuit'] = 'Bodysuit';
-                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_bodysuit'] = qspFunc(s, '$item_description', 'bodysuit', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0));
+                  ((s as any).sd_img = (s as any).sd_img ?? {})['short_bodysuit'] = qspFunc(s, '$item_description', '', 'bodysuit', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0));
                   ((s as any).sd_img = (s as any).sd_img ?? {})['cond_bodysuit'] = qspFunc(s, 'stat_display_compute', 'cond_string', ((s as any).PPanDirt ?? 0), 1, 0, 0);
                 }
               }

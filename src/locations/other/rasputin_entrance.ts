@@ -17,33 +17,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('The front door is closed, you may use the employee\'s entrance if you work here.');
     scene.actions([
       { label: 'Return to the square', handler: (st: GameState) => {
-    if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 2  ||  ((s as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
+    if (((st as any).rasputin ?? 0)?.['burlesque_ticket'] === 2  ||  ((st as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
       scene.text('You will not be able to return for the second half of the show. Are you sure you want to leave?');
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
-    if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 2) {
-      ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 0;
+    if (((st as any).rasputin ?? 0)?.['burlesque_ticket'] === 2) {
+      ((st as any).rasputin = (st as any).rasputin ?? {})['burlesque_ticket'] = 0;
     }
-    if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
-      ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 0;
+    if (((st as any).rasputin ?? 0)?.['variety_ticket'] === 2) {
+      ((st as any).rasputin = (st as any).rasputin ?? {})['variety_ticket'] = 0;
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'pushkin_sq', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'pushkin_sq', '');
   } },
         { label: 'No', goto: ['rasputin_entrance', ''] },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspGoto(s, 'pushkin_sq', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspGoto(st, 'pushkin_sq', '');
     }
   } },
       { label: 'Go to emplyee\'s entrance', handler: (st: GameState) => {
-    if (((s as any).rasputin ?? 0)?.['work'] === 1) {
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspGoto(s, 'rasputin_room_staff', '');
+    if (((st as any).rasputin ?? 0)?.['work'] === 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspGoto(st, 'rasputin_room_staff', '');
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspGoto(s, 'rasputin_entrance', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspGoto(st, 'rasputin_entrance', '');
     }
   } },
     ]);
@@ -53,25 +53,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).rasputin ?? 0)?.['work'] === 1) {
       scene.actions([
         { label: 'Go to the staff lounge', handler: (st: GameState) => {
-    if (((s as any).rasputin ?? 0)?.['work'] === 1) {
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspGoto(s, 'rasputin_room_staff', '');
+    if (((st as any).rasputin ?? 0)?.['work'] === 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspGoto(st, 'rasputin_room_staff', '');
     }
   } },
       ]);
     }
     scene.actions([
       { label: 'Return to the square', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'pushkin_sq', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'pushkin_sq', '');
   } },
       { label: 'Visit the hostess', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'rasputin_host', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'rasputin_host', 'start');
   } },
       { label: 'Go inside the club', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'rasputin_walkway', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'rasputin_walkway', '');
   } },
     ]);
   }

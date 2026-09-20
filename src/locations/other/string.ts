@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -11,13 +9,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterParseString(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     return;
   }
-  if (((s as any).locArgs?.[3] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[3] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = '|';
   }
-  if (((s as any).locArgs?.[2] ?? 0) === ''  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String(((s as any).locArgs?.[3] ?? 0)))) + 1) <= 0) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === ''  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String(((s as any).locArgs?.[3] ?? 0)))) + 1) <= 0) {
     return;
   }
   (s as any).ParserTmpDelim = ((s as any).locArgs?.[3] ?? 0);
@@ -50,12 +48,12 @@ function enterParseString(s: GameState, scene: SceneBuilder): void {
 function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['text'] = '';
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['name'] = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).locArgs?.[2] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[2] ?? 0) <= 0) {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i'] = 0;
   } else {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i'] = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i_max'] = 0;
   } else {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i_max'] = (((s as any).temp_stringVars ?? {})?.['i'] ?? 0) + ((s as any).locArgs?.[3] ?? 0);
@@ -63,17 +61,17 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
       ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['i_max'] = 0;
     }
   }
-  if (((s as any).locArgs?.[4] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[4] ?? 0) === '') {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['small_sep'] = ', ';
   } else {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['small_sep'] = ((s as any).locArgs?.[4] ?? 0);
   }
-  if (((s as any).locArgs?.[5] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[5] ?? 0) === '') {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['duo_sep'] = ' and ';
   } else {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['duo_sep'] = ((s as any).locArgs?.[5] ?? 0);
   }
-  if (((s as any).locArgs?.[6] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[6] ?? 0) === '') {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['final_sep'] = ', and ';
   } else {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['final_sep'] = ((s as any).locArgs?.[6] ?? 0);
@@ -105,10 +103,10 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterParseNumber(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['num'] = ((s as any).locArgs?.[1] ?? 0);
   } else {
-    if (!isNaN(((s as any).locArgs?.[1] ?? 0)) && ((s as any).locArgs?.[1] ?? 0) !== '') {
+    if (!isNaN(Number((s as any).locArgs?.[1] ?? 0)) && Number((s as any).locArgs?.[1] ?? 0) !== '') {
       ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['num'] = parseFloat(((s as any).locArgs?.[1] ?? 0));
     } else {
       return;
@@ -338,7 +336,7 @@ function enterHash(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['index'] = 1;
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['counter'] = 1;
   // TODO-QSP: :hash_loop
-  (s as any).result = ((s as any).result ?? 0) + ((((s as any).temp_stringVars ?? {})?.['counter'] ?? 0) * qspFunc(s, 'string', 'to_ascii', qspUntranslated(s, "mid(\u00000\u0000, temp_stringVars['index'], 1)", { location: "string" })));
+  (s as any).result = ((s as any).result ?? 0) + ((((s as any).temp_stringVars ?? {})?.['counter'] ?? 0) * qspFunc(s, 'string', 'to_ascii', (String(((s as any).locArgs?.[1] ?? 0)).slice((((s as any).temp_stringVars ?? 0)?.['index'])-1, ((((s as any).temp_stringVars ?? 0)?.['index'])-1)+(1)))));
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['counter'] = ((s as any).temp_stringVars['counter'] ?? 0) + ((1 + (((s as any).temp_stringVars ?? {})?.['index'] ?? 0)) / 2);
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['index'] = ((s as any).temp_stringVars['index'] ?? 0) + (1);
   if (((s as any).temp_stringVars ?? 0)?.['index'] <= (String(((s as any).locArgs?.[1] ?? 0)).length)) {
@@ -353,7 +351,7 @@ function enterToAscii(s: GameState, scene: SceneBuilder): void {
   if ((String(((s as any).locArgs?.[1] ?? 0)).length) !== 1) {
     // TODO-QSP: msg 'ERROR: string, to_ascii did not get a single character as an argument'
   }
-  (s as any).result = 31 + ((String(' !"#$%&\'()*+,-./123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~').indexOf(String(((s as any).locArgs?.[1] ?? 0)))) + 1);
+  (s as any).result = 31 + ((String(' !"#$%&\'()*+,-./123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[/]^_`abcdefghijklmnopqrstuvwxyz{|}~').indexOf(String(((s as any).locArgs?.[1] ?? 0)))) + 1);
   return;
   // TODO-QSP: end
   scene.build();
@@ -364,10 +362,10 @@ function enterSplitKeyValue(s: GameState, scene: SceneBuilder): void {
     return;
   }
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['key-value-string'] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['pair_sep'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? (',') : (((s as any).locArgs?.[2] ?? 0)));
-  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['kv_sep'] = ((((s as any).locArgs?.[3] ?? 0) === '') ? ('=') : (((s as any).locArgs?.[3] ?? 0)));
-  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['keys_array'] = ((((s as any).locArgs?.[4] ?? 0) === '') ? ('string_keys') : (((s as any).locArgs?.[4] ?? 0)));
-  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['values_array'] = ((((s as any).locArgs?.[5] ?? 0) === '') ? ('string_values') : (((s as any).locArgs?.[5] ?? 0)));
+  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['pair_sep'] = ((Number((s as any).locArgs?.[2] ?? 0) === '') ? (',') : (((s as any).locArgs?.[2] ?? 0)));
+  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['kv_sep'] = ((Number((s as any).locArgs?.[3] ?? 0) === '') ? ('=') : (((s as any).locArgs?.[3] ?? 0)));
+  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['keys_array'] = ((Number((s as any).locArgs?.[4] ?? 0) === '') ? ('string_keys') : (((s as any).locArgs?.[4] ?? 0)));
+  ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['values_array'] = ((Number((s as any).locArgs?.[5] ?? 0) === '') ? ('string_values') : (((s as any).locArgs?.[5] ?? 0)));
   ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['type_flag'] = 0;
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf(1) : -1) > 0) {
     ((s as any).temp_stringVars = (s as any).temp_stringVars ?? {})['type_flag'] = 1;

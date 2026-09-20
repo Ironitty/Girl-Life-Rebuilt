@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -7,6 +5,90 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterTeacherActions(s: GameState, scene: SceneBuilder): void {
+  (s as any).ThisArrayName = (String(((s as any).locArgs?.[1] ?? 0)).split('$').join(undefined));
+  (s as any).ExitLocation = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).ExitLocation2 = ((s as any).locArgs?.[3] ?? 0);
+  (s as any).ThisArraySize = 0;
+  (s as any).MaxAvailable = ((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)];
+  (s as any).i = 0;
+  // TODO-QSP: :LearnSpellLoop
+  (s as any).ThisSpellName = 0;
+  (s as any).spellDifficulty = Math.max(((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)], 1);
+  if (((s as any).i ?? 0) < ((s as any).ThisArraySize ?? 0)  &&  ((s as any).i ?? 0) < ((s as any).MaxAvailable ?? 0)) {
+    if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 0  &&  (((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === ''  ||  (((s as any).spellKnown ?? 0)[((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)]] === 1))) {
+      if (((s as any).pcs_magik ?? 0) >= ((s as any).spellDifficulty ?? 0)) {
+        // TODO-QSP: dynamic "act 'Practice <<$spellName[$ThisSpellName]>> (1:00) (Magic level <<pcs_magik>> / Level requ...
+      } else {
+        // TODO-QSP: act $func('wrap', 'neg', 'Practice <<$spellName[$ThisSpellName]>> (Magic level <<pcs_magik>> / Level...
+      }
+    }
+    (s as any).i = ((s as any).i ?? 0) + (1);
+    // TODO-QSP: jump 'LearnSpellLoop'
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterActLearn(s: GameState, scene: SceneBuilder): void {
+  (s as any).ThisSpellName = ((s as any).locArgs?.[1] ?? 0);
+  (s as any).ExitLocation = ((s as any).locArgs?.[2] ?? 0);
+  (s as any).ExitLocation2 = ((s as any).locArgs?.[3] ?? 0);
+  (s as any).spellDifficulty = Math.max(((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)], 1);
+  if (((s as any).pcs_mana ?? 0) >= 1000) {
+    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (1000);
+    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    if ((((s as any).pcs_splcstng ?? 0)/((s as any).spellDifficulty ?? 0)) > 0) {
+      ((s as any).spellLearn = (s as any).spellLearn ?? {})[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/((s as any).spellDifficulty ?? 0) - 1 + 1)) + (1)) * (((s as any).pcs_splcstng ?? 0)/((s as any).spellDifficulty ?? 0)));
+    } else {
+      ((s as any).spellLearn = (s as any).spellLearn ?? {})[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/((s as any).spellDifficulty ?? 0) - 1 + 1)) + (1)));
+    }
+    if (((s as any).spellLearn ?? 0)?.[String((s as any).ThisSpellName ?? 0)] < 100) {
+      scene.text('You diligently study the spell for an hour, but cannot grasp it.');
+    } else {
+      ((s as any).spellKnown = (s as any).spellKnown ?? {})[String((s as any).ThisSpellName ?? 0)] = 1;
+      scene.text('Finally, you are able to grasp and learn the spell.');
+      // TODO-QSP: dynamic text: <<$spellName[$ThisSpellName]>>: <<$spellDesc[$ThisSpellName]>>
+      scene.text(`${((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? ''}: ${((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? ''}`);
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'ExitLocation', 'ExitLocation2');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterNumAvailableSpells(s: GameState, scene: SceneBuilder): void {
+  (s as any).ThisArrayName = (String(((s as any).locArgs?.[1] ?? 0)).split('$').join(undefined));
+  (s as any).ThisArraySize = 0;
+  (s as any).result = ((s as any).ThisArraySize ?? 0);
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterAddAvailableSpells(s: GameState, scene: SceneBuilder): void {
+  (s as any).ThisArrayName = (String(((s as any).locArgs?.[1] ?? 0)).split('$').join(undefined));
+  (s as any).ThisNumToAdd = ((s as any).locArgs?.[2] ?? 0);
+  if ((!((s as any).ThisNumToAdd ?? 0))) {
+    (s as any).ThisNumToAdd = 1;
+  }
+  (s as any).ThisArraySize = 0;
+  if (((s as any).ThisArraySize ?? 0) - ((s as any).ThisNumToAdd ?? 0) - ((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)] < 0) {
+    ((s as any).spellListAvail = (s as any).spellListAvail ?? {})[String((s as any).ThisArrayName ?? 0)] = ((s as any).ThisArraySize ?? 0);
+  } else {
+    ((s as any).spellListAvail = (s as any).spellListAvail ?? {})[String((s as any).ThisArrayName ?? 0)] = ((s as any).spellListAvail[String((s as any).ThisArrayName ?? 0)] ?? 0) + (((s as any).ThisNumToAdd ?? 0));
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).spellMana = (s as any).spellMana ?? {})['teleport'] = 1000;
   ((s as any).spellTime = (s as any).spellTime ?? {})['teleport'] = 20;
   ((s as any).spellDiff = (s as any).spellDiff ?? {})['teleport'] = 20;
@@ -470,90 +552,6 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $comAtkSpells[16] = 'leechmana'
   // TODO-QSP: $comAtkSpells[17] = 'stun'
   // TODO-QSP: $comAtkSpells[18] = 'weapon'
-  scene.build();
-}
-
-function enterTeacherActions(s: GameState, scene: SceneBuilder): void {
-  (s as any).ThisArrayName = qspUntranslated(s, "replace(ARGS[1], '$')", { location: "spellList" });
-  (s as any).ExitLocation = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).ExitLocation2 = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).ThisArraySize = 0;
-  (s as any).MaxAvailable = ((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)];
-  (s as any).i = 0;
-  // TODO-QSP: :LearnSpellLoop
-  (s as any).ThisSpellName = 0;
-  (s as any).spellDifficulty = Math.max(((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)], 1);
-  if (((s as any).i ?? 0) < ((s as any).ThisArraySize ?? 0)  &&  ((s as any).i ?? 0) < ((s as any).MaxAvailable ?? 0)) {
-    if (((s as any).spellKnown ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === 0  &&  (((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)] === ''  ||  (((s as any).spellKnown ?? 0)[((s as any).spellReq ?? 0)?.[String((s as any).ThisSpellName ?? 0)]] === 1))) {
-      if (((s as any).pcs_magik ?? 0) >= ((s as any).spellDifficulty ?? 0)) {
-        // TODO-QSP: dynamic "act 'Practice <<$spellName[$ThisSpellName]>> (1:00) (Magic level <<pcs_magik>> / Level requ...
-      } else {
-        // TODO-QSP: act $func('wrap', 'neg', 'Practice <<$spellName[$ThisSpellName]>> (Magic level <<pcs_magik>> / Level...
-      }
-    }
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    // TODO-QSP: jump 'LearnSpellLoop'
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterActLearn(s: GameState, scene: SceneBuilder): void {
-  (s as any).ThisSpellName = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).ExitLocation = ((s as any).locArgs?.[2] ?? 0);
-  (s as any).ExitLocation2 = ((s as any).locArgs?.[3] ?? 0);
-  (s as any).spellDifficulty = Math.max(((s as any).spellDiff ?? 0)?.[String((s as any).ThisSpellName ?? 0)], 1);
-  if (((s as any).pcs_mana ?? 0) >= 1000) {
-    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (1000);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if ((((s as any).pcs_splcstng ?? 0)/((s as any).spellDifficulty ?? 0)) > 0) {
-      ((s as any).spellLearn = (s as any).spellLearn ?? {})[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/((s as any).spellDifficulty ?? 0) - 1 + 1)) + (1)) * (((s as any).pcs_splcstng ?? 0)/((s as any).spellDifficulty ?? 0)));
-    } else {
-      ((s as any).spellLearn = (s as any).spellLearn ?? {})[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/((s as any).spellDifficulty ?? 0) - 1 + 1)) + (1)));
-    }
-    if (((s as any).spellLearn ?? 0)?.[String((s as any).ThisSpellName ?? 0)] < 100) {
-      scene.text('You diligently study the spell for an hour, but cannot grasp it.');
-    } else {
-      ((s as any).spellKnown = (s as any).spellKnown ?? {})[String((s as any).ThisSpellName ?? 0)] = 1;
-      scene.text('Finally, you are able to grasp and learn the spell.');
-      // TODO-QSP: dynamic text: <<$spellName[$ThisSpellName]>>: <<$spellDesc[$ThisSpellName]>>
-      scene.text(`${((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? ''}: ${((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? ''}`);
-    }
-  }
-  // TODO-QSP: end
-  scene.actions([
-    { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(st, 'ExitLocation', 'ExitLocation2');
-  } },
-  ]);
-  scene.build();
-}
-
-function enterNumAvailableSpells(s: GameState, scene: SceneBuilder): void {
-  (s as any).ThisArrayName = qspUntranslated(s, "replace(ARGS[1], '$')", { location: "spellList" });
-  (s as any).ThisArraySize = 0;
-  (s as any).result = ((s as any).ThisArraySize ?? 0);
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enterAddAvailableSpells(s: GameState, scene: SceneBuilder): void {
-  (s as any).ThisArrayName = qspUntranslated(s, "replace(ARGS[1], '$')", { location: "spellList" });
-  (s as any).ThisNumToAdd = ((s as any).locArgs?.[2] ?? 0);
-  if ((!((s as any).ThisNumToAdd ?? 0))) {
-    (s as any).ThisNumToAdd = 1;
-  }
-  (s as any).ThisArraySize = 0;
-  if (((s as any).ThisArraySize ?? 0) - ((s as any).ThisNumToAdd ?? 0) - ((s as any).spellListAvail ?? 0)?.[String((s as any).ThisArrayName ?? 0)] < 0) {
-    ((s as any).spellListAvail = (s as any).spellListAvail ?? {})[String((s as any).ThisArrayName ?? 0)] = ((s as any).ThisArraySize ?? 0);
-  } else {
-    ((s as any).spellListAvail = (s as any).spellListAvail ?? {})[String((s as any).ThisArrayName ?? 0)] = ((s as any).spellListAvail[String((s as any).ThisArrayName ?? 0)] ?? 0) + (((s as any).ThisNumToAdd ?? 0));
-  }
-  // TODO-QSP: end
-  scene.build();
-}
-
-function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
     case 'teacherActions':

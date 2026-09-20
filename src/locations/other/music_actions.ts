@@ -59,21 +59,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 8) {
     scene.text('It\'s too early to do anything noisy like playing the guitar or singing.');
-    return;
     scene.actions([
-      { label: 'Finish', handler: (st: GameState) => {
+{ label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'finish');
   } },
-    ]);
+]);
+    return;
   } else {
     if (((s as any).hour ?? 0) > 22) {
       scene.text('It\'s too late to do anything noisy like playing the guitar or singing.');
-      return;
       scene.actions([
-        { label: 'Finish', handler: (st: GameState) => {
+{ label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'music_actions', 'finish');
   } },
-      ]);
+]);
+      return;
     }
   }
   (s as any).ml_time_left = (((s as any).ml_performance ?? {})?.['max_perform_minutes'] ?? 0)-(((s as any).ml_performance ?? {})?.['performed_minutes'] ?? 0);
@@ -108,18 +108,18 @@ function enterPutDownPickUp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_guitar ?? 0)?.['carried'] === 1) {
     scene.actions([
       { label: 'Place the guitar next to your desk', handler: (st: GameState) => {
-    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 0;
-    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['location'] = ((s as any).loc ?? 0);
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 0;
+    ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['location'] = ((st as any).loc ?? 0);
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
     if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
       scene.actions([
         { label: 'Pick up the guitar', handler: (st: GameState) => {
-    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
-    ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['location'] = 'carried';
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
+    ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['location'] = 'carried';
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
@@ -133,9 +133,9 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ml_not_alone ?? 0) === 0  ||  (!((s as any).will_cost ?? 0))) {
       scene.actions([
         { label: 'Play something on the guitar (10 minutes)', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/music/guitarpractice_1.jpg');
     scene.text('You pick up your guitar and start to play some songs you know, just for your own entertainment.');
     scene.text('You hum along to the tune, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
@@ -156,12 +156,12 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Play something on the guitar (10 minutes) (you are not alone)', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/music/guitarpractice_1.jpg');
     scene.text('You pick up your guitar and start to play some songs you know, just for your own entertainment.');
     scene.text('You hum along to the tune, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
@@ -178,9 +178,9 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_not_alone ?? 0) === 0  ||  (!((s as any).will_cost ?? 0))) {
     scene.actions([
       { label: 'Sing something (10 minutes)', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.text('You hum a few notes to warm up your throat and start to some some songs you know, just for your own entertainment.');
     scene.text('You sway and move your head to keep the tempo, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
     scene.actions([
@@ -200,12 +200,12 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Sing something (10 minutes) (you are not alone)', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.text('You hum a few notes to warm up your throat and start to some some songs you know, just for your own entertainment.');
     scene.text('You sway and move your head to keep the tempo, relaxing into the music and enjoying it. When you look up, 10 minutes has passed and you are in a much better mood.');
     scene.actions([
@@ -244,10 +244,10 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Practice guitar (15 minutes) (you are not alone)', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'music_bedroomPractice', 'guitar');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'music_bedroomPractice', 'guitar');
   } },
           ]);
         }
@@ -290,10 +290,10 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Start busking (60 minutes)', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'music_buskingevents', 'busking');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'music_buskingevents', 'busking');
   } },
           ]);
         }
@@ -362,10 +362,10 @@ function enterStreamMusic(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.actions([
                     { label: 'Live stream (60 minutes)', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'music_onlinemusic', 'live_stream');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'music_onlinemusic', 'live_stream');
   } },
                   ]);
                 }
@@ -410,10 +410,10 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Record a song with your phone (30 minutes) [+iif(ml_not_alone, \' (you are not alone)\'...]', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'music_onlinemusic', 'record_song');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'music_onlinemusic', 'record_song');
   } },
           ]);
         }
@@ -428,10 +428,10 @@ function enterEditRecording(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['tech_webcam'] === 1  &&  ((s as any).ml_studio ?? 0)?.['scarlet-3rd-gen'] === 1) {
     scene.actions([
       { label: 'Edit a song', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'music_onlinemusic', 'recordAndEditSong');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'music_onlinemusic', 'recordAndEditSong');
   } },
     ]);
   }
@@ -469,10 +469,10 @@ function enterRehearseSets(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Rehearse your set (guitar and vocals, 30 minutes) (you are not alone)', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'music_bedroompractice', 'rehearse');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'music_bedroompractice', 'rehearse');
   } },
             ]);
           }

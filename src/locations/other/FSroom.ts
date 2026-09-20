@@ -11,15 +11,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Street</b></center>');
   scene.actions([
     { label: 'Walk into a room', handler: (st: GameState) => {
-    (s as any).FShour = ((s as any).FShour ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'FSgame', '');
+    (st as any).FShour = ((st as any).FShour ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'FSgame', '');
   } },
     { label: 'Wander', handler: (st: GameState) => {
-    (s as any).FShour = ((s as any).FShour ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).FShour = ((st as any).FShour ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('You wander through the deserted streets.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {

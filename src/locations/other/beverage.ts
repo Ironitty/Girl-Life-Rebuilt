@@ -749,7 +749,7 @@ function enterOnlyCostChampagne(s: GameState, scene: SceneBuilder): void {
 
 function enterCocktailText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAfteralcohol(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.img(`images/shared/drinks/cocktail${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/shared/drinks/cocktail${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   // TODO-QSP: dynamic text: You drink a fancy cocktail and<<$mtxt>>
   scene.text(`You drink a fancy cocktail and${((s as any).mtxt || '')}`);
   // TODO-QSP: end
@@ -758,7 +758,7 @@ function enterCocktailText(s: GameState, scene: SceneBuilder): void {
 
 function enterCocktailStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'raise', 'small');
-  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 41) + 10);
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 41) + 10));
   qspCall(s, 'drugs', 'alcohol', 'rum');
   qspCall(s, 'stat', '');
   // TODO-QSP: end

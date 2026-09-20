@@ -15,15 +15,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('"Hello miss, I was just about to have a break. Would you like to join me for a cup of tea?"');
         scene.actions([
           { label: 'Drink some tea', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You agree and sit at a table near his desk as he pours two cups of tea. He places them on the table and sits down next to you.');
     scene.text('As you chat about Pavlovsk, you can tell he\'s practically undressing you with his eyes before you suddenly feel his hand resting on your thigh and gently squeezing it.');
     scene.text('You quietly begin to sputter some objections as he moves closer to you and cuts you off. "You\'re cute, miss. You have to forgive me. Us police officers are just people too…"');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -32,10 +32,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_station', 'station_inside');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_station', 'station_inside');
   } },
       ]);
     }
@@ -50,10 +50,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (qspFunc(s, 'money', 'can_afford', ((s as any).schtraf ?? 0), 'cash')) {
           scene.actions([
             { label: 'Pay the fine', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', ((s as any).schtraf ?? 0), 'cash');
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', ((st as any).schtraf ?? 0), 'cash');
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You agree to pay the fine and put the money on his desk after counting it. He swipes the money away, putting it in a box before he returns to his duties. As far as he\'s concerned, you\'re no longer there.');
     scene.actions([
@@ -66,11 +66,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'You can\'t pay the fine', handler: (st: GameState) => {
-    qspCall(s, 'money', 'set', 0, 'cash');
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    (s as any).kutime = 24;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'set', 0, 'cash');
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    (st as any).kutime = 24;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You shake your head. "I\'m sorry officer, but I can\'t afford that."');
     scene.text('He looks at you indifferently. "In that case, you\'ll spend the next 24 hours in jail."');
@@ -83,18 +83,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Beg', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You try to look cute and innocent for him. "Please sir, I can\'t go to jail! Can\'t you let me go just this once?"');
     scene.text('He checks to make sure the room is empty before he turns to you. His eyes are exploring your body as he puts his sweaty hand on your knee.');
     scene.text('"Well, we might be able to arrange something…"');
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).schtraf ?? 0), 'cash')) {
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).schtraf ?? 0), 'cash')) {
       scene.actions([
         { label: 'Pay the fine', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', ((s as any).schtraf ?? 0), 'cash');
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', ((st as any).schtraf ?? 0), 'cash');
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You tell him you\'ll pay the fine and put the money on his desk after counting it.');
     scene.text('He disappointedly swipes the money away before putting it in a box and returning to his duties. As far as he\'s concerned, you\'re no longer there.');
@@ -108,11 +108,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Spend the night in jail', handler: (st: GameState) => {
-    qspCall(s, 'money', 'set', 0);
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    (s as any).kutime = 24;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'set', 0);
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    (st as any).kutime = 24;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You shake your head. "I\'m sorry officer, but I can\'t afford that."');
     scene.text('He looks at you indifferently. "In that case, you\'ll spend the next 24 hours in jail."');
@@ -123,8 +123,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspCall(s, 'willpower', 'sex', 'self', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'self', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Accept his offer', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -133,9 +133,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Accept his offer', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'katalkinSex', 'sex');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'katalkinSex', 'sex');
   } },
       ]);
     }
@@ -150,14 +150,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('From your previous experience with him, you know he\'s probably not just talking about tea.');
           scene.actions([
             { label: 'Drink some tea', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You agree and sit at a table near his desk as he pours two cups of tea. He places them on the table and sits down next to you.');
     scene.text('As you chat about Pavlovsk, you can tell he\'s practically undressing you with his eyes before he moves closer and cups your breasts through your clothing.');
-    // TODO-QSP: dynamic text: "Let's cut the crap, <<$pcs_nickname>>…" he whispers. "Did you come here just so...
-    scene.text(`"Let's cut the crap, ${((s as any).pcs_nickname || '')}…" he whispers. "Did you come here just so you could have some fun with me again?"`);
+    // TODO-QSP: dynamic text: "Let''s cut the crap, <<$pcs_nickname>>…" he whispers. "Did you come here just s...
+    scene.text(`"Let's cut the crap, ${((st as any).pcs_nickname || '')}…" he whispers. "Did you come here just so you could have some fun with me again?"`);
     scene.actions([
       { label: 'Put your hand on his groin', goto: ['katalkinSex', 'sexgo'] },
       { label: 'Don\'t move', goto: ['katalkinSex', 'sex'] },
@@ -179,14 +179,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.actions([
                   { label: 'Give him the money', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', ((s as any).schtraf ?? 0), 'cash');
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', ((st as any).schtraf ?? 0), 'cash');
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You see a tinge of disappointment in his face when you give him the money.');
-    // TODO-QSP: dynamic text: "Oh. Very well then, miss <<$pcs_lastname>>. You're free to go."
-    scene.text(`"Oh. Very well then, miss ${((s as any).pcs_lastname || '')}. You're free to go."`);
+    // TODO-QSP: dynamic text: "Oh. Very well then, miss <<$pcs_lastname>>. You''re free to go."
+    scene.text(`"Oh. Very well then, miss ${((st as any).pcs_lastname || '')}. You're free to go."`);
     scene.actions([
       { label: 'Leave the police station', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -198,11 +198,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Spend the night in jail', handler: (st: GameState) => {
-    qspCall(s, 'money', 'set', 0);
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    (s as any).kutime = 24;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'set', 0);
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    (st as any).kutime = 24;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You shake your head. "I\'m sorry officer, but I can\'t afford that."');
     scene.text('He looks somewhat disappointed. "In that case, you\'ll spend the next 24 hours in jail."');
@@ -223,13 +223,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text('Captain Katalkin is sitting in his chair, working on some documents. He gives you a friendly nod but keeps working, indicating that he doesn\'t want to be disturbed right now.');
         } else {
           if (((s as any).schtraf ?? 0) > 0) {
-            // TODO-QSP: dynamic text: Captain Katalkin pretends he's looking through some files before he rips up a pi...
+            // TODO-QSP: dynamic text: Captain Katalkin pretends he''s looking through some files before he rips up a p...
             scene.text(`Captain Katalkin pretends he's looking through some files before he rips up a piece of paper and grins at you. "Good news! It seems like your fine has been paid in full, miss ${((s as any).pcs_lastname || '')}."`);
             scene.actions([
               { label: 'Say goodbye', handler: (st: GameState) => {
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You give him a weak smile. "Thank you, officer. Have a nice day."');
     scene.text('Captain Katalkin nods as he shoos you away. "Same to you, miss. Now if you don\'t mind, I have a lot of work to do."');
@@ -252,10 +252,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. "${((s as any).pcs_nickname || '')}! Come here, let me fuckin' introduce you to my boys!"`);
         scene.actions([
           { label: 'Sit down with them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).katalkinNoexit = 0;
-    (s as any).katGangMeet = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).katalkinNoexit = 0;
+    (st as any).katGangMeet = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You join the officers at the table, who have clearly been drinking for a while already. They immediately pour you a glass of vodka.');
     scene.text('"This is Pasha, and the other guy is Sergei…" Katalkin slurs. "They\'re good officers, the best Pavlovsk has to offer. Let\'s have a toast! To meeting new friends!"');
@@ -273,9 +273,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. ${((s as any).pcs_nickname || '')}! Come over here and have a drink with me and my boys!"`);
         scene.actions([
           { label: 'Sit down with them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You join the officers at the table, who clearly have been drinking for a while already. They immediately pour you a glass of vodka and have a swig from their own.');
     scene.actions([
@@ -295,14 +295,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
           scene.text(`When Katalkin sees you walk by, he drunkenly waves you over. ${((s as any).pcs_nickname || '')}! Come over here and join me for a drink!"`);
           scene.actions([
             { label: 'Sit down with him', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You decline the drink, but don\'t mind joining him for a chat. Almost immediately, he scoots his chair close to yours and puts his hand on your thigh, slowly rubbing and squeezing his way upwards.');
     scene.text('He clearly didn\'t invite you over to just have a chat.');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -311,10 +311,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_station', 'station_inside');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_station', 'station_inside');
   } },
       ]);
     }
@@ -331,10 +331,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (qspFunc(s, 'money', 'can_afford', ((s as any).schtraf ?? 0), 'cash')) {
               scene.actions([
                 { label: 'Pay the fine', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', ((s as any).schtraf ?? 0), 'cash');
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', ((st as any).schtraf ?? 0), 'cash');
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You agree to pay the fine and put the money on his desk after counting it. He swipes the money away before putting it in a box. As far as he\'s concerned, you\'re no longer there.');
     scene.actions([
@@ -347,11 +347,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'You can\'t pay the fine', handler: (st: GameState) => {
-    qspCall(s, 'money', 'set', 0);
-    (s as any).schtraf = 0;
-    (s as any).katalkinNoexit = 0;
-    (s as any).kutime = 24;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'set', 0);
+    (st as any).schtraf = 0;
+    (st as any).katalkinNoexit = 0;
+    (st as any).kutime = 24;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/katalkin.jpg');
     scene.text('You shake your head. "I\'m sorry captain, but I can\'t afford that."');
     scene.text('He looks at you indifferently. "In that case, you spend the next 24 hours in jail."');
@@ -373,9 +373,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Accept his offer', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'katalkinSex', 'sex');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'katalkinSex', 'sex');
   } },
               ]);
             }

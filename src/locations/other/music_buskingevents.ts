@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterBusking(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_buskingtime = 60;
   (s as any).minut = ((s as any).minut ?? 0) + (((s as any).ml_buskingtime ?? 0));
-  qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);
-  qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 3) + 1);
+  qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 1));
+  qspCall(s, 'exp_gain', 'vokal', (Math.floor(Math.random() * 3) + 1));
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_count'] = ((s as any).ml_busking['busking_count'] ?? 0) + (1);
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_time'] = ((s as any).ml_busking['busking_time'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
   if (((s as any).perform_lvl ?? 0) < 50) {
-    qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 3) + 1);
+    qspCall(s, 'exp_gain', 'perform', (Math.floor(Math.random() * 3) + 1));
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateTips(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'money', 'earn', ((s as any).ml_tipsearned ?? 0));
@@ -27,9 +27,9 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_count'] = ((s as any).ml_busking['busking_count'] ?? 0) + (1);
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['busking_time'] = ((s as any).ml_busking['busking_time'] ?? 0) + (((s as any).ml_buskingtime ?? 0));
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['total_earnings'] = ((s as any).ml_busking['total_earnings'] ?? 0) + (((s as any).ml_tipsearned ?? 0));
-  scene.img('images/pc/activities/music/guitarf\'+ rand(1, 2) +\'.jpg');
+  scene.img('images/pc/activities/music/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You start to play the songs you know, pushing your open guitar case forward a li...
-  scene.text(`You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.' + iif(ml_online['account'] = 1 and ml_online['active'] = 1, ' You also set up the sign with the link to your webprofile.', ') + ' After playing for an hour you have made ${((s as any).ml_tipsearned || '')} <b>P</b> in tips.`);
+  scene.text('You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.\' + iif(ml_online[\'account\'] = 1 and ml_online[\'active\'] = 1, \' You also set up the sign with the link to your webprofile.\', \') + \' After playing for an hour you have made ' + ((s as any).ml_tipsearned || '') + ' <b>P</b> in tips.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
@@ -67,7 +67,7 @@ function enterCalculateTips(s: GameState, scene: SceneBuilder): void {
 
 function enterAnushka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.img('images/pc/activities/music/guitarf\'+ rand(1, 2) +\'.jpg');
+  scene.img('images/pc/activities/music/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   if (((s as any).pcs_instrmusic ?? 0) > 80) {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'love');
     if (((s as any).npc_rel ?? 0)?.['A144'] > 50) {
@@ -108,13 +108,13 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
         if (((s as any).npc_rel ?? 0)?.['A144'] > 50) {
           scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
-          // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "I didn't know you...
+          // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "I didn''t know yo...
           scene.text(`When she notices that you saw her, she smiles and walks over. "I didn't know you had turned into a wandering minstrel, ${((s as any).pcs_nickname || '')}. Not bad, not bad at all. You should come over sometime and we can play together. I can give you some tips if you like?"`);
           scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
         } else {
           if (((s as any).npc_rel ?? 0)?.['A144'] > 20) {
             scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
-            // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "I didn't know you...
+            // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "I didn''t know yo...
             scene.text(`When she notices that you saw her, she smiles and walks over. "I didn't know you had turned into a wandering minstrel, ${((s as any).pcs_nickname || '')}. Not bad, not bad at all."`);
             scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
           } else {
@@ -184,7 +184,7 @@ function enterLenaAndLera(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFinish(s: GameState, scene: SceneBuilder): void {
-  (s as any).ml_rand_event = Math.floor(Math.random() * 101) + 0;
+  (s as any).ml_rand_event = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).ml_rand_event ?? 0) <= 10  &&  ((s as any).region ?? 0) === 'pav'  &&  ((s as any).npc_rel ?? 0)?.['A144'] > 40) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnushka(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {

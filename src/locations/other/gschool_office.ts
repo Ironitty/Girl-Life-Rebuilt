@@ -23,7 +23,7 @@ function enterPrincipal(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).demerit ?? 0) > 50) {
       scene.text('You take a seat at Miss Volkov\'s desk and wait for her to address you with an exacerbated tone.');
-      // TODO-QSP: dynamic text: "What did you do this time, <<$pcs_lastname>>? No, I don't want to know. I reall...
+      // TODO-QSP: dynamic text: "What did you do this time, <<$pcs_lastname>>? No, I don''t want to know. I real...
       scene.text(`"What did you do this time, ${((s as any).pcs_lastname || '')}? No, I don't want to know. I really don't care. You obviously have no respect for me or your teachers."`);
       scene.text('She looks over your file some more and shakes her head slightly. "You\'ve been here enough and you know what comes next. So, what will it be this time? Spanking or Saturday detention?"');
       scene.text('She seems more than a bit annoyed that you appear to be immune to her punishment system, or maybe that you\'re that troubled of a student.');
@@ -42,7 +42,7 @@ function enterPrincipal(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).demerit ?? 0) > 20) {
-        // TODO-QSP: dynamic text: You take a seat at Miss Volkov's desk and wait for her to address you. "This is ...
+        // TODO-QSP: dynamic text: You take a seat at Miss Volkov''s desk and wait for her to address you. "This is...
         scene.text(`You take a seat at Miss Volkov's desk and wait for her to address you. "This is becoming a routine with you; I feel like I'm seeing you every day! What changed, ${((s as any).pcs_lastname || '')}? You used to be such a good girl, perhaps a bit quiet, but now? This is not the way to get attention."`);
         scene.text('She looks over your file some more and shakes her head slightly. "We can\'t have you continuing to get in trouble like this - I\'ll have to punish you."');
         scene.text('She looks directly at you for a moment to make sure you understand that, when you cause problems, you\'ll be getting punished.');
@@ -62,7 +62,7 @@ function enterPrincipal(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         scene.text('You take a seat at Miss Volkov\'s desk and wait for her to address you.');
-        // TODO-QSP: dynamic text: "Do you know why you're here, <<$pcs_lastname>>?" Before you have a chance to re...
+        // TODO-QSP: dynamic text: "Do you know why you''re here, <<$pcs_lastname>>?" Before you have a chance to r...
         scene.text(`"Do you know why you're here, ${((s as any).pcs_lastname || '')}?" Before you have a chance to reply, she continues. "It was a rhetorical question! We both know why you're here. You're here because you got in trouble."`);
         scene.text('She pauses to look over at the folder in front of her. "Your file shows you\'ve mostly stayed out of trouble until now. I hope this is only a minor lapse in judgment and not a new trend from you. We won\'t get into what you did, just understand this is a warning. Straighten yourself out or there will be consequences. Now, return to class."');
         scene.actions([
@@ -97,25 +97,25 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Take punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 1, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolspank.jpg');
     scene.text('Once you walk over to her, Miss Volkov pulls you down across her knees, pulls up your skirt and gives your ass a hard smack with her hand. You jerk a little in reflex - she\'s a strong woman and her blows sting quite a bit.');
     scene.text('You silently take your punishment, even if it\'s not all that bad and a part of you actually likes it. Regardless, you don\'t want her to know this doesn\'t bother you all that much, so you play along, withering around and whimpering as she spanks you for a good solid minute.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet and rubs your arm. "I hope this has taught ...
-    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you head back to class.');
-    qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
             { label: 'Flirt/rebel', handler: (st: GameState) => {
-    (s as any).principal_spank = 6;
-    qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    (st as any).principal_spank = 6;
+    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolspank.jpg');
     scene.text('Once you walk over to her, Miss Volkov pulls you down across her knees, pulls up your skirt and gives your ass a hard smack with her hand. You jerk a little in reflex - she\'s a strong woman and her blows sting quite a bit.');
     scene.text('You let out a moan with each hit, soft at first but getting louder each time she strikes.');
@@ -124,10 +124,10 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
     scene.text('To her credit, she doesn\'t relent and even manages to spank you harder. After another a minute or two of this, however, she roughly lifts you off her knees and back on your feet.');
     scene.text('She points at the door, her voice quivering with anger. "Back to class <i>now</i>, before I give you detention as well!"');
     scene.text('Not wanting detention, you don\'t say anything and quickly head for the door, putting a bit of extra sway into your hips as you go.');
-    qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -150,26 +150,26 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Take punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolbarespank.jpg');
     scene.text('Once you walk over to her, Miss Volkov pulls you down across her knees, pulls up your skirt and your panties down to your knees, exposing your bare ass before she gives it a hard smack with her hand. You jerk a little in reflex - she\'s a strong woman and her blows sting quite a bit.');
     scene.text('You silently take your punishment, even if it\'s not all that bad and a part of you actually likes it. Regardless, you don\'t want her to know this doesn\'t bother you all that much, so you play along, withering around and whimpering as she spanks you for a good solid minute, giving your ass a nice crimson hue.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet and rubs your arm. "I hope this has taught ...
-    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your panties up before heading back to class.');
-    qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
               { label: 'Flirt/rebel', handler: (st: GameState) => {
-    (s as any).principal_spank = 11;
-    qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    (st as any).principal_spank = 11;
+    qspCall(st, 'pain', '', 3, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolbarespank.jpg');
     scene.text('Once you walk over to her, Miss Volkov pulls you down across her knees and pulls your skirt up and your panties down to your knees, exposing your bare ass before she gives it a hard smack with her hand. You jerk a little in reflex - she\'s a strong woman and her blows sting quite a bit.');
     scene.text('You let out a moan with each hit, soft at first but getting louder each time she strikes.');
@@ -178,10 +178,10 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
     scene.text('To her credit, she doesn\'t relent and even manages to spank you harder. After another a minute or two of this, she roughly lifts you off her knees and back on your feet.');
     scene.text('She points at the door, her voice quivering with anger. "Back to class <i>now</i>, before I give you detention as well!"');
     scene.text('Not wanting detention, you slowly pull your panties back up, giving her an extra-long look at your cherry-red cheeks before you head for the door, putting a bit of extra sway into your hips as you go.');
-    qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -204,26 +204,26 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Take punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 4, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle2.jpg');
     scene.text('Once you walk over to her, Miss Volkov pulls you down across her knees and pulls your skirt up and your panties down to your knees, exposing your bare ass. This time she pulls out a leather paddle and gives your ass a hard smack. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> stings, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet and rubs your arm. "I hope this has taught ...
-    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your panties up before heading back to class.');
-    qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                 { label: 'Flirt/rebel', handler: (st: GameState) => {
-    (s as any).principal_spank = 16;
-    qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    (st as any).principal_spank = 16;
+    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle2.jpg');
     scene.text('You walk over to her while swaying your hips. You pull your panties down to your knees and lay across her legs, biting your lower lip and looking back up at her expectantly.');
     scene.text('Miss Volkov tries to ignore you as she picks up a leather paddle, which she smacks hard across your bare ass. You jerk in reflex - she\'s a strong woman and her blows really sting, but a soft moan escapes you.');
@@ -233,10 +233,10 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
     scene.text('To her credit, she doesn\'t relent and even manages to spank you harder. After another a minute or two of this, she roughly lifts you off her knees and back on your feet.');
     scene.text('She points at the door, her voice quivering with anger, but also uncertainty. "Back to class <i>now</i>, before this gets worse for you!"');
     scene.text('You head for the door, putting a bit of extra sway into your hips and very slowly pulling your panties back up as you go, giving her an extra-long look at your cherry-red cheeks.');
-    qspCall(s, 'pain', '', 6, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 6, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -262,25 +262,25 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.actions([
                   { label: 'Take punishment', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('Once you walk over to her, Miss Volkov pulls you down across her knees and pulls your skirt up and your panties down to your knees, exposing your bare ass. This time she pulls out a large wooden paddle and gives you a hard smack. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> stings, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet and rubs your arm. "I hope this has taught ...
-    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet and rubs your arm. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your panties up before heading back to class.');
-    qspCall(s, 'pain', '', 6, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 6, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
   } },
                   { label: 'Flirt/rebel', handler: (st: GameState) => {
-    (s as any).principal_spank = ((s as any).principal_spank ?? 0) + (1);
-    qspCall(s, 'pain', '', 6, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    (st as any).principal_spank = ((st as any).principal_spank ?? 0) + (1);
+    qspCall(st, 'pain', '', 6, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('You walk over to her, swaying your hips. You pull your panties down to your knees and lay across her legs, biting your lower lips and looking back up at her expectantly.');
     scene.text('Miss Volkov tries to ignore your look and picks up a large wooden paddle which she smacks hard across your bare ass. You jerk in reflex - she\'s a strong woman and her blows really sting, but a soft moan escapes you.');
@@ -290,9 +290,9 @@ function enterSpanked(s: GameState, scene: SceneBuilder): void {
     scene.text('To her credit, she doesn\'t relent and even manages to spank you harder. After another a minute or two of this, she roughly lifts you off her knees and back on your feet. Her hands rest on your hips and as she stands up to face you, one hand slips down to your bare ass and stays there for just a moment.');
     scene.text('She then removes her hand and points at the door, her expression unreadable. "You\'re playing a very dangerous game, young lady! Get back to class., <i>now</i>!"');
     scene.text('You head for the door, putting a bit of extra sway into your hips and very slowly pulling your panties back up as you go, giving her an extra-long look at your cherry-red cheeks. You don\'t dare to look back, but you\'re almost certain that Miss Volkov had her eyes on your ass right until the door closed behind you.');
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -336,25 +336,25 @@ function enterNoPluginNude(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Feign innocence', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('"Oh? I must have forgotten them," you tell her in mock surprise.');
     // TODO-QSP: dynamic text: She sighs. "You seriously expect me to believe you <i>forgot</i> to put on your ...
-    scene.text(`She sighs. "You seriously expect me to believe you <i>forgot</i> to put on your underwear?" She pauses, but before you can reply, she continues. "I don't care what reasons you have, it is simply unacceptable not to wear underwear to school. I will note this down as an additional demerit; don't let me catch you not wearing them again, ${((s as any).pcs_lastname || '')}. Do you understand me?"`);
+    scene.text(`She sighs. "You seriously expect me to believe you <i>forgot</i> to put on your underwear?" She pauses, but before you can reply, she continues. "I don't care what reasons you have, it is simply unacceptable not to wear underwear to school. I will note this down as an additional demerit; don't let me catch you not wearing them again, ${((st as any).pcs_lastname || '')}. Do you understand me?"`);
     scene.text('Without waiting for a response, she pulls out a large wooden paddle and gives you a hard smack across your bare ass. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> hurts, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet. "I hope this has taught you a lesson; I do...
-    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your skirt down before heading back to class.');
-    if ((!((s as any).detention_set ?? 0))) {
-      (s as any).detention_set = 1;
+    if ((!((st as any).detention_set ?? 0))) {
+      (st as any).detention_set = 1;
       scene.text('Just before you walk out the door, she stops you.');
-      // TODO-QSP: dynamic text: "I'm also giving you detention this Saturday, <<$pcs_lastname>>. Do <i>not</i> m...
-      scene.text(`"I'm also giving you detention this Saturday, ${((s as any).pcs_lastname || '')}. Do <i>not</i> miss it."`);
+      // TODO-QSP: dynamic text: "I''m also giving you detention this Saturday, <<$pcs_lastname>>. Do <i>not</i> ...
+      scene.text(`"I'm also giving you detention this Saturday, ${((st as any).pcs_lastname || '')}. Do <i>not</i> miss it."`);
     }
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -364,8 +364,8 @@ function enterNoPluginNude(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t like wearing them; the freedom I feel when I don\'t have them on is just so…"');
     scene.text('You stop when you realize how quickly her face darkens. A blind man could tell she\'s angry with you, even without the shrill tone of her voice.');
     scene.text('"I don\'t care if you don\'t like wearing them, you will <i>not</i> walk around my school like some common whore! Do you understand me?"');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -374,8 +374,8 @@ function enterNoPluginNude(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/angry.jpg');
     scene.text('"No, I don\'t have to wear them if I don\'t want to!" you reply in a haughty voice.');
     scene.text('She gives you a long, hard look and her eyes narrow dangerously. "Fine. If that\'s what you want to be, but this is a school, <b>your</b> school, and as your teacher, I will show you how to be a proper whore."');
@@ -387,16 +387,16 @@ function enterNoPluginNude(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('"I won\'t let it happen again…" you respond meekly and she nods before she pulls out a large wooden paddle and gives you a hard smack across your bare ass. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> hurts, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet. "I hope this has taught you a lesson; I do...
-    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your skirt down before heading back to class.');
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -424,23 +424,23 @@ function enterPluginPanties(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('"What? Oh, sorry. I like the way it feels and I forgot I was wearing it. I meant to take it out before I came to school this morning," you reply.');
     // TODO-QSP: dynamic text: She sighs. "You seriously expect me to believe you forgot you had a plug jammed ...
-    scene.text(`She sighs. "You seriously expect me to believe you forgot you had a plug jammed in your ass?" She pauses, but before you can reply, she continues. "I don't care what reasons you have, it is simply unacceptable to wear a buttplug to school. I will note this down as an additional demerit; don't let me catch you wearing this again, ${((s as any).pcs_lastname || '')}. Do you understand me?"`);
+    scene.text(`She sighs. "You seriously expect me to believe you forgot you had a plug jammed in your ass?" She pauses, but before you can reply, she continues. "I don't care what reasons you have, it is simply unacceptable to wear a buttplug to school. I will note this down as an additional demerit; don't let me catch you wearing this again, ${((st as any).pcs_lastname || '')}. Do you understand me?"`);
     scene.text('Without waiting for a response, she pulls out a large wooden paddle and gives you a hard smack across your bare ass. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> hurts, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet. "I hope this has taught you a lesson; I do...
-    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your skirt down before heading back to class.');
-    if ((!((s as any).detention_set ?? 0))) {
-      (s as any).detention_set = 1;
+    if ((!((st as any).detention_set ?? 0))) {
+      (st as any).detention_set = 1;
       scene.text('Just before you walk out the door, she adds. "I\'m also giving you detention this Saturday. Do <i>not</i> miss it."');
     }
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -450,8 +450,8 @@ function enterPluginPanties(s: GameState, scene: SceneBuilder): void {
     scene.text('"I like the way it feels," you reply while wiggling your ass. "It especially helps class pass more quickly."');
     scene.text('Her face darkens and you can tell she\'s angry with you, even without the shrill tone of her voice.');
     scene.text('"I don\'t care if you like wearing it, you will <i>not</i> walk around my school like some common whore! Do you understand me?!"');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -460,8 +460,8 @@ function enterPluginPanties(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/angry.jpg');
     scene.text('"No, I like wearing it and I\'m not going to let you tell me what I can and can\'t do!" you reply in a haughty voice.');
     scene.text('She gives you a long, hard look and her eyes narrow dangerously. "Fine, if that\'s what you want to be, but this is a school, <b>your</b> school, and as your teacher, I will show you how to be a proper whore."');
@@ -473,20 +473,20 @@ function enterPluginPanties(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('"I won\'t let it happen again…" you respond meekly and she nods before she pulls out a large wooden paddle and gives you a hard smack across your bare ass. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> hurts, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet. "I hope this has taught you a lesson; I do...
-    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your skirt down before heading back to class.');
-    if ((!((s as any).detention_set ?? 0))) {
-      (s as any).detention_set = 1;
+    if ((!((st as any).detention_set ?? 0))) {
+      (st as any).detention_set = 1;
       scene.text('Just before you walk out the door, she adds. "I\'m also giving you detention this Saturday. Do <i>not</i> miss it."');
     }
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -514,25 +514,25 @@ function enterPluginNude(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Apologize', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('"What? Oh, sorry. I like the way it feels and forgot I was wearing it. I meant to take it out before I came to school this morning. I guess I also forgot my panties too…" you smile.');
     // TODO-QSP: dynamic text: She sighs. "You seriously expect me to believe you forgot to put on your underwe...
-    scene.text(`She sighs. "You seriously expect me to believe you forgot to put on your underwear <b>and</b> forgot that you had a plug jammed in your ass?" She pauses, but before you can reply, she continues. "I don't care what reasons you have, it is simply unacceptable to wear a buttplug to school… or <i>not to</i> wear underwear. I will note these down as additional demerits; don't let me catch you doing this again, ${((s as any).pcs_lastname || '')}. Do you understand me?"`);
+    scene.text(`She sighs. "You seriously expect me to believe you forgot to put on your underwear <b>and</b> forgot that you had a plug jammed in your ass?" She pauses, but before you can reply, she continues. "I don't care what reasons you have, it is simply unacceptable to wear a buttplug to school… or <i>not to</i> wear underwear. I will note these down as additional demerits; don't let me catch you doing this again, ${((st as any).pcs_lastname || '')}. Do you understand me?"`);
     scene.text('Without waiting for a response, she pulls out a large wooden paddle and gives you a hard smack across your bare ass. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> hurts, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet. "I hope this has taught you a lesson; I do...
-    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your skirt down before heading back to class.');
-    if ((!((s as any).detention_set ?? 0))) {
-      (s as any).detention_set = 1;
+    if ((!((st as any).detention_set ?? 0))) {
+      (st as any).detention_set = 1;
       scene.text('Just before you walk out the door, she stops you.');
-      // TODO-QSP: dynamic text: "I'm also giving you detention this Saturday, <<$pcs_lastname>>. Do <i>not</i> m...
-      scene.text(`"I'm also giving you detention this Saturday, ${((s as any).pcs_lastname || '')}. Do <i>not</i> miss it."`);
+      // TODO-QSP: dynamic text: "I''m also giving you detention this Saturday, <<$pcs_lastname>>. Do <i>not</i> ...
+      scene.text(`"I'm also giving you detention this Saturday, ${((st as any).pcs_lastname || '')}. Do <i>not</i> miss it."`);
     }
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -542,8 +542,8 @@ function enterPluginNude(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t like wearing them; the freedom I feel when I don\'t have them on is incredible, and the sensation of having a plug in my ass is…"');
     scene.text('You stop when you realize how quickly her face darkens. A blind man could tell she\'s angry with you, even without the shrill tone of her voice.');
     scene.text('"I don\'t care if you don\'t like wearing them, you will <i>not</i> walk around my school like some whore! Do you understand me?!"');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -552,8 +552,8 @@ function enterPluginNude(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/angry.jpg');
     scene.text('"No, I\'m not going to let you tell me what I can and can\'t wear!" you reply in a haughty voice.');
     scene.text('She gives you a long, hard look and her eyes narrow dangerously. "Fine. If that\'s what you want to be, but this is a school, <b>your</b> school, and as your teacher, I will show you how to be a proper whore."');
@@ -565,22 +565,22 @@ function enterPluginNude(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 7, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 7, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/schoolpaddle1.jpg');
     scene.text('"I won\'t let it happen again…" you respond meekly and she nods before she pulls out a large wooden paddle and gives you a hard smack across your bare ass. You jerk in reflex - she\'s a strong woman and her blows sting quite a bit. She clearly wants to teach you a lesson this time… and it\'s kind of working.');
     scene.text('You silently take your punishment. It almost brings you to tears, but a part of you gets turned on by it as well, a circumstance you don\'t want her to know. You don\'t have to play along much to hide it, though: It <b>really</b> hurts, even if you are enjoying it, so you wither around and whimper as she spanks you until your ass is bright red and feels like it\'s radiating heat.');
     // TODO-QSP: dynamic text: She then lifts you back to your feet. "I hope this has taught you a lesson; I do...
-    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((s as any).pcs_lastname || '')}. You can return to class now."`);
+    scene.text(`She then lifts you back to your feet. "I hope this has taught you a lesson; I don't want to see you in my office anymore, ${((st as any).pcs_lastname || '')}. You can return to class now."`);
     scene.text('With that, she goes back to her desk and you pull your skirt down before heading back to class.');
-    if ((!((s as any).detention_set ?? 0))) {
-      (s as any).detention_set = 1;
+    if ((!((st as any).detention_set ?? 0))) {
+      (st as any).detention_set = 1;
       scene.text('Just before you walk out the door, she stops you.');
-      // TODO-QSP: dynamic text: "I'm also giving you detention this Saturday, <<$pcs_lastname>>. Do <i>not</i> m...
-      scene.text(`"I'm also giving you detention this Saturday, ${((s as any).pcs_lastname || '')}. Do <i>not</i> miss it."`);
+      // TODO-QSP: dynamic text: "I''m also giving you detention this Saturday, <<$pcs_lastname>>. Do <i>not</i> ...
+      scene.text(`"I'm also giving you detention this Saturday, ${((st as any).pcs_lastname || '')}. Do <i>not</i> miss it."`);
     }
-    qspCall(s, 'arousal', 'foreplay', 5, 'maso', 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'maso', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -614,27 +614,27 @@ function enterDetPunishment1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/detention/ffspank2.jpg');
     scene.text('Once she\'s satisfied, she pulls you up and points to the corner of her office. "Go and stand over there. Leave your clothes where they are and face the corner."');
-    // TODO-QSP: dynamic text: You do as you're told, gingerly rubbing your ass as you go. You glance back when...
-    scene.text(`You do as you're told, gingerly rubbing your ass as you go. You glance back when you hear the slap of flesh on flesh; ${((s as any).rand_girl || '')} is laid out across Miss Volkov's lap, getting her ass spanked as well.`);
+    // TODO-QSP: dynamic text: You do as you''re told, gingerly rubbing your ass as you go. You glance back whe...
+    scene.text(`You do as you're told, gingerly rubbing your ass as you go. You glance back when you hear the slap of flesh on flesh; ${((st as any).rand_girl || '')} is laid out across Miss Volkov's lap, getting her ass spanked as well.`);
     // TODO-QSP: dynamic text: As time passes, you can hear <<$rand_girl>> moaning, either pretending to like i...
-    scene.text(`As time passes, you can hear ${((s as any).rand_girl || '')} moaning, either pretending to like it or really enjoying it. Miss Volkov seems annoyed at this and spends considerably more time spanking ${((s as any).rand_girl || '')}'s already glowing ass than she did with you before she finally seems to grow tired.`);
+    scene.text(`As time passes, you can hear ${((st as any).rand_girl || '')} moaning, either pretending to like it or really enjoying it. Miss Volkov seems annoyed at this and spends considerably more time spanking ${((st as any).rand_girl || '')}'s already glowing ass than she did with you before she finally seems to grow tired.`);
     // TODO-QSP: dynamic text: Lifting <<$rand_girl>> off her lap, she points to your corner. "Go join your fri...
-    scene.text(`Lifting ${((s as any).rand_girl || '')} off her lap, she points to your corner. "Go join your friend."`);
+    scene.text(`Lifting ${((st as any).rand_girl || '')} off her lap, she points to your corner. "Go join your friend."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/detention/ffspank3.jpg');
     // TODO-QSP: dynamic text: You and <<$rand_girl>> stand facing the corner together; your ass is seriously s...
-    scene.text(`You and ${((s as any).rand_girl || '')} stand facing the corner together; your ass is seriously stinging and if anything ${((s as any).rand_girl || '')}'s must be much redder than yours.`);
+    scene.text(`You and ${((st as any).rand_girl || '')} stand facing the corner together; your ass is seriously stinging and if anything ${((st as any).rand_girl || '')}'s must be much redder than yours.`);
     scene.text('Apparently expecting one of you to disobey her, Miss Volkov keeps an eye on you for a while, but neither of you do. The two of you stay standing facing the corner, naked with your backsides on fire.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/detention/ffspank4.jpg');
     scene.text('A few hours later, Miss Volkov finally speaks to you. "Alright you two, get dressed and go home. I don\'t want to see you in here again."');
     scene.text('You quickly gather up your clothes and get dressed again before hurrying out of her office.');
@@ -664,7 +664,7 @@ function enterWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('After a while, the pain is really starting to get to you, but she doesn\'t seem to have any intention of stopping. Finally, after many minutes, she seems to be getting tired, her hits lacking the sting the early ones had.');
     scene.text('She pulls you away from the desk and turns you to face the other way, then forces you down to your knees.');
     scene.text('"Stay like this!" she commands and walks back to her desk.');
-    qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
+    qspCall(st, 'pain', '', 5, 'asscheeks', 'spank');
     scene.actions([
       { label: 'When she comes back…', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/whore4.jpg');
@@ -673,14 +673,14 @@ function enterWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('"Open your mouth like the good little whore you so desperately want to be."');
     scene.actions([
       { label: 'Suck it', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'D3');
+    qspCall(st, 'boyStat', 'D3');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/whore5.jpg');
     // TODO-QSP: dynamic text: You barely even have time to open your mouth at all before she shoves the <<dick...
-    scene.text(`You barely even have time to open your mouth at all before she shoves the ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} strap-on down your throat, causing you to start gagging. Unconcerned by this, she shoves the dildo as far down your throat as it will physically go and starts roughly fucking your throat with it, barely giving you any time to catch your breath.`);
+    scene.text(`You barely even have time to open your mouth at all before she shoves the ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} strap-on down your throat, causing you to start gagging. Unconcerned by this, she shoves the dildo as far down your throat as it will physically go and starts roughly fucking your throat with it, barely giving you any time to catch your breath.`);
     scene.text('After several minutes, your throat feels like it\'s on fire and she finally stops, giving you time to gulp down the air you so desperately need. As you do, she lifts you up and bends you over her desk once more. She briefly slips one finger into your pussy, likely checking if you\'re a virgin.');
-    qspCall(s, 'pain', '', 3, 'throat', 'choke');
-    qspCall(s, 'arousal', 'bj', 5, 'lesbian', 'humiliation', 'sub', 'deepthroat');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 3, 'throat', 'choke');
+    qspCall(st, 'arousal', 'bj', 5, 'lesbian', 'humiliation', 'sub', 'deepthroat');
+    qspCall(st, 'stat', '');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
       scene.text('"I must admit, I\'m very surprised that anyone acting like such a whore would still be a virgin. I suppose that means you\'re one of those girls that just let the boys use their other holes instead…"');
       scene.actions([
@@ -693,8 +693,8 @@ function enterWhore(s: GameState, scene: SceneBuilder): void {
     scene.text('Lifting one of your legs up to place your knee on the desk, you know what\'s about to come next, and though knowing itself only helps so much, the natural wetness of your pussy and your drool on the dildo absolutely do.');
     scene.text('It hurts a little when she shoves the strap-on all the way inside you, and the moan you give is one of both pain and pleasure.');
     scene.text('"You even moan like a little whore," she says as she repeatedly hammers the dildo\'s full length into you.');
-    qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'humiliation', 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_strap', 5, 'lesbian', 'humiliation', 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get your ass fucked', goto: ['gschool_office', 'whore2'] },
     ]);
@@ -714,7 +714,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/whore7.jpg');
   scene.text('She half-lifts, half-pushes you onto her desk, where she has you kneel down and sit back until you\'re touching your heels. With your feet dangling off the edge of the desk, your backdoor is easily accessible, which seems to be the idea - you feel the pressure of the strap-on against your anus.');
   scene.text('It only lasts for a moment, though: As soon as she\'s sure she has it lined up, she shoves the dildo up your ass. Given how unprepared you were and that the only lubrication was whatever wetness clung to the dildo, your cry of pain is surprisingly soft, but your first reflex is to move forward.');
-  // TODO-QSP: dynamic text: Realizing this, she grabs hold of your hips to keep you from pulling away. "I'm ...
+  // TODO-QSP: dynamic text: Realizing this, she grabs hold of your hips to keep you from pulling away. "I''m...
   scene.text(`Realizing this, she grabs hold of your hips to keep you from pulling away. "I'm not done with you yet, ${((s as any).pcs_lastname || '')}. This is what whores do every day, and they have to like it!" she says as she pounds the dildo into your ass.`);
   scene.text('The first few thrusts are the worst, even worse than the initial penetration, but after a while - and maybe also due to her spitting on your puckered hole several times - the pain subsides to tolerable levels and it starts feeling good, <i>really</i> good.');
   scene.text('Soft moans escape your lips and you no longer try to pull away; you\'re now pushing back against her.');
@@ -725,9 +725,9 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take it deep', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 5, 'asshole', 'ache');
-    qspCall(s, 'arousal', 'anal_strap', 10, 'lesbian', 'humiliation', 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 5, 'asshole', 'ache');
+    qspCall(st, 'arousal', 'anal_strap', 10, 'lesbian', 'humiliation', 'sub');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/whore8.jpg');
     scene.text('She pulls out of you and part of you is relieved, but the other wants her to keep going. She pushes you forward until your elbows touch the top of her desk and climbs onto the desk behind you before sliding the dildo back into your gaping ass.');
     scene.text('Her free hand holds onto your hips for leverage while the other grabs a handful of your hair and painfully pulls and twists it as she starts jackhammering your ass again.');
@@ -744,17 +744,17 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good little whores get their customers off. Maybe you changed your mind, or maybe you just told me what I wanted to hear, but either way, this lesson isn\'t over yet. Get licking or I\'ll fuck that ass of yours again."');
     scene.text('Not wanting her to make good on that threat, you start licking her pussy and find it soaking wet already; it would seem the rumors that she used to be or still is a dominatrix really are true.');
     scene.text('You lick and suck on her pussy lips and clit, avoiding the center for a few minutes, but then slip your tongue into her, fucking her pussy as well as you can. It doesn\'t take long until she orgasms and coats your face in her pussy juices.');
-    qspCall(s, 'arousal', 'cuni_give', 5, 'humiliation', 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 5, 'humiliation', 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/whore10.jpg');
     // TODO-QSP: dynamic text: She lifts herself up and uses her hand to tilt the dildo down to your mouth. "Th...
-    scene.text(`She lifts herself up and uses her hand to tilt the dildo down to your mouth. "That wasn't too bad, ${((s as any).pcs_lastname || '')}. All you have to do now is suck my dick clean, and then you can go. Or maybe you'd rather…?"`);
+    scene.text(`She lifts herself up and uses her hand to tilt the dildo down to your mouth. "That wasn't too bad, ${((st as any).pcs_lastname || '')}. All you have to do now is suck my dick clean, and then you can go. Or maybe you'd rather…?"`);
     scene.text('She leaves the exact alternative unspoken, but you have no doubt as to what she\'s alluding to, and while you\'d rather be doing anything else than sucking a dildo your headmistress just violated your ass with, it beats getting fucked with it again.');
     scene.text('With the choice rather easy, you obediently open your mouth and start sucking it clean, ignoring both the taste and the throbbing pain in your bowels as best as you can.');
-    qspCall(s, 'arousal', 'dildo_suck', 2, 'lesbian', 'humiliation', 'sub');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'dildo_suck', 2, 'lesbian', 'humiliation', 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/teacher/aleksandrina/sex/school/whore11.jpg');
@@ -788,7 +788,7 @@ function enterIvanovRevenge(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Admit it', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Principal\'s Office</b></center>');
     scene.img('images/locations/pavlovsk/school/principal/office.jpg');
     scene.text('You sigh, knowing there\'s no way she\'ll believe you over Mr. Ivanov. "Yes Miss Volkov, I was taking drugs and I\'m very sorry."');
@@ -799,7 +799,7 @@ function enterIvanovRevenge(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Say nothing', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Principal\'s Office</b></center>');
     scene.img('images/locations/pavlovsk/school/principal/office.jpg');
     scene.text('You sigh, knowing there\'s no way she\'ll believe you over Mr. Ivanov, so you decide to say nothing at all.');
@@ -810,7 +810,7 @@ function enterIvanovRevenge(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Deny it', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Principal\'s Office</b></center>');
     scene.img('images/locations/pavlovsk/school/principal/office.jpg');
     scene.text('"I wasn\'t doing drugs! I didn\'t do anything!" you angrily reply while glancing at Mr. Ivanov. "I don\'t know what he thought he saw, but I wasn\'t doing what he says I did!"');
@@ -821,12 +821,12 @@ function enterIvanovRevenge(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Say he\'s lying', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Principal\'s Office</b></center>');
     scene.img('images/locations/pavlovsk/school/principal/office.jpg');
     scene.text('"He\'s lying! He tried to blackmail me into having sex with him!" you angrily reply.');
-    // TODO-QSP: dynamic text: She leans back in her chair. "That's a very serious accusation, Miss <<$pcs_last...
-    scene.text(`She leans back in her chair. "That's a very serious accusation, Miss ${((s as any).pcs_lastname || '')}. Do you have any proof?"`);
+    // TODO-QSP: dynamic text: She leans back in her chair. "That''s a very serious accusation, Miss <<$pcs_las...
+    scene.text(`She leans back in her chair. "That's a very serious accusation, Miss ${((st as any).pcs_lastname || '')}. Do you have any proof?"`);
     scene.text('You shake your head. "No, just my word."');
     scene.text('She shakes her head. "I\'m sorry, but if Mr. Ivanov says he saw you, then I\'m inclinded to believe him since he has no reason to lie. As for your accusation, I just don\'t believe he would ever do that. I never thought you would resort to such tactics to try and keep yourself out of trouble. Shame on you! You\'re suspended for one week, but I would expel you if I could. Now go and sit in the waiting area until one of your parents can come and get you."');
     scene.text('Your heart sinks and you just nod before leaving.');

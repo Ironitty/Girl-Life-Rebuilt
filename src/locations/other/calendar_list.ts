@@ -34,7 +34,7 @@ function enterInitEventVars(s: GameState, scene: SceneBuilder): void {
 
 function enterAssignColor(s: GameState, scene: SceneBuilder): void {
   if (((s as any).event_vars ?? 0)?.['color'] === 0) {
-    ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = Math.floor(Math.random() * 20) + 1;
+    ((s as any).event_vars = (s as any).event_vars ?? {})['color'] = (Math.floor(Math.random() * 20) + 1);
   }
   return;
   // TODO-QSP: end

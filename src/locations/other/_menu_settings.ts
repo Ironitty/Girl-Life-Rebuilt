@@ -29,7 +29,7 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $tabsaction[5] = "menu_page = <<i>> & gt '$menu_settings', 'mods'"
   // TODO-QSP: $tabsname[6] = 'Information'
   // TODO-QSP: $tabsaction[6] = "menu_page = <<i>> & gt '$menu_settings', 'explanation_start'"
-  if (((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
     (s as any).temp_menu_page = qspUntranslated(s, "arrpos('tabsname', ARGS[1])", { location: "_menu_settings" });
     if (((s as any).temp_menu_page ?? 0) >= 0) {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
@@ -39,8 +39,8 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).settingmode ?? 0) === 1) {
     scene.actions([
       { label: '<center><b>Return to character creation</b></center>', handler: (st: GameState) => {
-    qspCall(s, '$menu_settings', 'menu_exit');
-    qspGoto(s, 'begin', 'start');
+    qspCall(st, '$menu_settings', 'menu_exit');
+    qspGoto(st, 'begin', 'start');
   } },
     ]);
   } else {
@@ -57,7 +57,8 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
   }, goto: ['import_export', 'import'] },
       { label: 'Emergency Exit', handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'menu_exit');
-  }, goto: ['$menu_settings', 'emergency'] },
+    dynamicGoto(st, 'menu_settings', 'emergency');
+  } },
       { label: 'Exit the menu', handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'menu_exit');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
@@ -70,18 +71,18 @@ function enterSettingtabs(s: GameState, scene: SceneBuilder): void {
 
 function enterSwap(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_arr = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).locArgs?.[2] ?? 0) === 0  &&  ((s as any).locArgs?.[3] ?? 0) === 'up') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0  &&  Number((s as any).locArgs?.[3] ?? 0) === 'up') {
     // TODO-QSP: jump 'swap_cleanup'
   }
-  if (((s as any).locArgs?.[2] ?? 0) === (Object.keys((s as any)['$' + ((s as any).temp_arr ?? 0)] ?? {}).length - 1)  &&  ((s as any).locArgs?.[3] ?? 0) === 'down') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === (Object.keys((s as any)['$' + ((s as any).temp_arr ?? 0)] ?? {}).length - 1)  &&  Number((s as any).locArgs?.[3] ?? 0) === 'down') {
     // TODO-QSP: jump 'swap_cleanup'
   }
-  if (((s as any).locArgs?.[3] ?? 0) === 'up') {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 'up') {
     (s as any).temp_stat_feature = 0;
     // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2] - 1>>] = $<<$temp_arr>>[<<ARGS[2]>>]'
     // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2]>>] = $temp_stat_feature'
   } else {
-    if (((s as any).locArgs?.[3] ?? 0) === 'down') {
+    if (Number((s as any).locArgs?.[3] ?? 0) === 'down') {
       (s as any).temp_stat_feature = 0;
       // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2] + 1>>] = $<<$temp_arr>>[<<ARGS[2]>>]'
       // TODO-QSP: dynamic '$<<$temp_arr>>[<<ARGS[2]>>] = $temp_stat_feature'
@@ -96,17 +97,17 @@ function enterSwap(s: GameState, scene: SceneBuilder): void {
 function enterSwapGrpMember(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sgm_base = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_sgm_i = ((s as any).locArgs?.[3] ?? 0);
-  if (((s as any).locArgs?.[4] ?? 0) === 'up'  &&  ((s as any).temp_sgm_i ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[4] ?? 0) === 'up'  &&  ((s as any).temp_sgm_i ?? 0) > 0) {
     (s as any).temp_sgm_j = ((s as any).temp_sgm_i ?? 0) - 1;
   } else {
-    if (((s as any).locArgs?.[4] ?? 0) === 'down') {
+    if (Number((s as any).locArgs?.[4] ?? 0) === 'down') {
       (s as any).temp_sgm_j = ((s as any).temp_sgm_i ?? 0) + 1;
     } else {
       // TODO-QSP: jump 'swap_gm_cleanup'
     }
   }
-  (s as any).temp_sgm_a = ((s as any).locArgs?.[2] ?? 0) + '_' + qspUntranslated(s, "str(temp_sgm_i)", { location: "_menu_settings" });
-  (s as any).temp_sgm_b = ((s as any).locArgs?.[2] ?? 0) + '_' + qspUntranslated(s, "str(temp_sgm_j)", { location: "_menu_settings" });
+  (s as any).temp_sgm_a = ((s as any).locArgs?.[2] ?? 0) + '_' + String(((s as any).temp_sgm_i ?? 0));
+  (s as any).temp_sgm_b = ((s as any).locArgs?.[2] ?? 0) + '_' + String(((s as any).temp_sgm_j ?? 0));
   (s as any).temp_sgm_bval = 0;
   if (((s as any).temp_sgm_bval ?? 0) === '') {
     // TODO-QSP: jump 'swap_gm_cleanup'
@@ -147,7 +148,7 @@ function enterToggleMenu(s: GameState, scene: SceneBuilder): void {
     scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</b>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i || '')} */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i || '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
   }
   // TODO-QSP: dynamic text: $temp_toggle_names
   scene.text(String((s as any).temp_toggle_names ?? ''));
@@ -174,7 +175,7 @@ function enterToggleMenuRev(s: GameState, scene: SceneBuilder): void {
     scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</b>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i || '')} */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i || '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
   }
   (s as any).i = ((s as any).i ?? 0) - (1);
   if (((s as any).i ?? 0) >= 0) {
@@ -207,7 +208,7 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic 'temp_tms_cur = ' + $ARGS[2]
   (s as any).temp_tms_i = 0;
   (s as any).temp_tms_matched = 0;
-  if (((s as any).locArgs?.[6] ?? 0) !== ''  &&  ((s as any).temp_tms_cur ?? 0) === -99) {
+  if (Number((s as any).locArgs?.[6] ?? 0) !== ''  &&  ((s as any).temp_tms_cur ?? 0) === -99) {
     (s as any).temp_tms_matched = 1;
   }
   // TODO-QSP: :toggle_menu_sym_loop
@@ -221,31 +222,31 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_tms_matched = 1;
     } else {
       // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<tms_opt_val[temp_tms_i]>> & gt '$menu_settings', '<...
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).tms_opt_val ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? ''} */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? ''}</a>`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).tms_opt_val ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? ''} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).tms_opt_lbl ?? 0)?.[String((s as any).temp_tms_i ?? 0)] ?? ''}</a>`);
     }
     (s as any).temp_tms_i = ((s as any).temp_tms_i ?? 0) + (1);
     // TODO-QSP: jump 'toggle_menu_sym_loop'
   }
-  if (((s as any).locArgs?.[4] ?? 0) !== ''  &&  ((s as any).locArgs?.[5] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[4] ?? 0) !== ''  &&  Number((s as any).locArgs?.[5] ?? 0) !== '') {
     scene.text('&nbsp;|&nbsp;');
     if ((!((s as any).temp_tms_matched ?? 0))) {
       // TODO-QSP: dynamic '$temp_tms_custom_val = $str(' + $ARGS[4] + ')'
       // TODO-QSP: dynamic text: <b>Custom: <<$temp_tms_custom_val>>%</b>
       scene.text(`<b>Custom: ${((s as any).temp_tms_custom_val || '')}%</b>`);
     } else {
-      (s as any).temp_tms_custom_exec = qspUntranslated(s, "replace(ARGS[5], \"''\", \"'\")", { location: "_menu_settings" });
+      (s as any).temp_tms_custom_exec = (String(((s as any).locArgs?.[5] ?? 0)).split('\'').join('\''));
       // TODO-QSP: dynamic text: <a href="exec: <<$temp_tms_custom_exec>>">Custom</a>
       scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).temp_tms_custom_exec || '')} */ return s; }); return false;">Custom</a>`);
     }
   }
-  if (((s as any).locArgs?.[6] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[6] ?? 0) !== '') {
     scene.text('&nbsp;|&nbsp;');
     if (((s as any).temp_tms_cur ?? 0) === -99) {
       // TODO-QSP: dynamic text: '<b>' + $ARGS[6] + '</b>'
       scene.text('\'<b>\' + $ARGS[6] + \'</b>\'');
     } else {
       // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=-99 & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[6]...
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=-99 */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027); return false;">${((s as any).locArgs?.[6] ?? '')}</a>`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=-99 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).locArgs?.[6] ?? '')}</a>`);
     }
   }
   return;
@@ -257,10 +258,10 @@ function enterToggleMenuShowHide(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "temp_value = " + $ARGS[1]
   if (((s as any).temp_value ?? 0) === 1) {
     // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[1]>>=0 & gt '$menu_settings', 'status' & gs 'stat_display'...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[1] ?? '')}=0 */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027status\\u0027); return false;">Show</a>&nbsp;|&nbsp;<b>Hide</b>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[1] ?? '')}=0 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">Show</a>&nbsp;|&nbsp;<b>Hide</b>`);
   } else {
     // TODO-QSP: dynamic text: <b>Show</b>&nbsp;|&nbsp;<a href="exec:<<$ARGS[1]>>=1 & gt '$menu_settings', 'sta...
-    scene.text(`<b>Show</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[1] ?? '')}=1 */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027status\\u0027); return false;">Hide</a>`);
+    scene.text(`<b>Show</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[1] ?? '')}=1 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">Hide</a>`);
   }
   return;
   // TODO-QSP: end
@@ -268,17 +269,17 @@ function enterToggleMenuShowHide(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowHideCalendar(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[3] ?? 0) === 'pack') {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 'pack') {
     (s as any).temp_func = ' \'pack\',';
   } else {
     (s as any).temp_func = '';
   }
-  if (((s as any).calendar_show ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).calendar_show ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
     // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>> Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: ...
-    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')} Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { (s.calendar_show ??= {})\\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027calendar\\u0027, \\u0027\\u0027); return false;">Show</a><br>'`);
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')} Events:</span><b>Hide</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { (s.calendar_show ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027calendar/u0027, /u0027/u0027); return false;">Show</a><br>'`);
   } else {
     // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>> Events:</span><a href="exec: calendar_show[''<<$ARGS[...
-    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')} Events:</span><a href="#" onclick="window.__gameStore.setState((s) => { (s.calendar_show ??= {})\\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027calendar\\u0027, \\u0027\\u0027); return false;">Hide</a>&nbsp;|&nbsp;<b>Show</b><br>'`);
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')} Events:</span><a href="#" onclick="window.__gameStore.setState((s) => { (s.calendar_show ??= {})/u0027${((s as any).locArgs?.[1] ?? '')}/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027calendar/u0027, /u0027/u0027); return false;">Hide</a>&nbsp;|&nbsp;<b>Show</b><br>'`);
   }
   return;
   // TODO-QSP: end
@@ -286,12 +287,12 @@ function enterShowHideCalendar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowHideCycleCal(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).calCycleOpts ?? 0)['show_' + ((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).calCycleOpts ?? 0)['show_' + Number((s as any).locArgs?.[1] ?? 0)] === 0) {
     // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>>:</span><b>Hide</b>&nbsp;|&nbsp;<a href="exec: calCycl...
-    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')}:</span><b>Hide</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { (s.calCycleOpts ??= {})\\u0027show_${((s as any).locArgs?.[1] ?? '')}\\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027calendar\\u0027, \\u0027cycle_rebuild\\u0027, String(window.__gameStore.getState().1 ?? \\u0027\\u0027)); return false;">Show</a><br>'`);
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')}:</span><b>Hide</b>&nbsp;|&nbsp;<a href="#" onclick="window.__gameStore.setState((s) => { (s.calCycleOpts ??= {})/u0027show_${((s as any).locArgs?.[1] ?? '')}/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027calendar/u0027, /u0027cycle_rebuild/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Show</a><br>'`);
   } else {
     // TODO-QSP: dynamic text: $menu_span + '<<$ARGS[2]>>:</span><a href="exec: calCycleOpts[''show_<<ARGS[1]>>...
-    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')}:</span><a href="#" onclick="window.__gameStore.setState((s) => { (s.calCycleOpts ??= {})\\u0027show_${((s as any).locArgs?.[1] ?? '')}\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027calendar\\u0027, \\u0027cycle_rebuild\\u0027, String(window.__gameStore.getState().1 ?? \\u0027\\u0027)); return false;">Hide</a>&nbsp;|&nbsp;<b>Show</b><br>'`);
+    scene.text(`$menu_span + '${((s as any).locArgs?.[2] ?? '')}:</span><a href="#" onclick="window.__gameStore.setState((s) => { (s.calCycleOpts ??= {})/u0027show_${((s as any).locArgs?.[1] ?? '')}/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027calendar/u0027, /u0027cycle_rebuild/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Hide</a>&nbsp;|&nbsp;<b>Show</b><br>'`);
   }
   return;
   // TODO-QSP: end
@@ -300,7 +301,7 @@ function enterShowHideCycleCal(s: GameState, scene: SceneBuilder): void {
 
 function enterPickTheme(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: iif($theme['name'] = $iif(cfg_vars['themetype'] = 0, 'Dynamic ', '') + $ARGS[1],...
-  scene.text(`iif($theme['name'] = $iif(cfg_vars['themetype'] = 0, 'Dynamic ', ') + $ARGS[1], '<b>${((s as any).locArgs?.[1] ?? '')}</b>', '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[\\u0027theme_main_name\\u0027] = \\u0027${((s as any).locArgs?.[1] ?? '')}\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027set_theme\\u0027, \\u0027${'TODO'}</a>')`);
+  scene.text(`iif($theme['name'] = $iif(cfg_vars['themetype'] = 0, 'Dynamic ', ') + $ARGS[1], '<b>${((s as any).locArgs?.[1] ?? '')}</b>', '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $cfg_vars[/u0027theme_main_name/u0027] = /u0027${((s as any).locArgs?.[1] ?? '')}/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027set_theme/u0027, /u0027${'TODO'}</a>')`);
   // TODO-QSP: end
   scene.build();
 }
@@ -403,34 +404,34 @@ function enterLifesimCheatsOn(s: GameState, scene: SceneBuilder): void {
   scene.text('This will activate multiple cheats and have a profound impact on how the game is experienced.');
   scene.text('We strongly discourage the use of this feature, but we also recognize that the life sim aspect is not for everybody.');
   scene.text('Are you sure you want to activate this?');
+  scene.actions([
+{ label: 'No, I do not want to disable all life sim features', goto: ['$menu_settings', ''] },,
+{ label: 'Yes, disable all life sim features', handler: (st: GameState) => {
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['willpower'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['inf_willpower'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['hunger'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['thirst'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['mood'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['sleep'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['always_brushed'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['makeup_smear'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['no_sweat'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['no_leghair'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['fat'] = 1;
+    if (((st as any).cheatVars ?? 0)?.['no_periods'] === 0) {
+      qspCall(st, 'cheatmenu_din', 'slutshot');
+    }
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['auto_tampons'] = 1;
+    ((st as any).cheatVars = (st as any).cheatVars ?? {})['clothes_dirt'] = 1;
+    qspCall(st, 'washer', 'wash_all');
+    ((st as any).pcs_mass = (st as any).pcs_mass ?? {})['body'] = qspFunc(s, 'body', 'CalcOptBodyMass', 225);
+    qspCall(st, 'body', 'softreset');
+    qspCall(st, 'stat', '');
+    dynamicGoto(st, 'menu_settings');
+  } },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'No, I do not want to disable all life sim features', goto: ['$menu_settings', ''] },
-    { label: 'Yes, disable all life sim features', handler: (st: GameState) => {
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['willpower'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['inf_willpower'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['hunger'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['thirst'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['mood'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['sleep'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['always_brushed'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['makeup_smear'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['no_sweat'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['no_leghair'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['fat'] = 1;
-    if (((s as any).cheatVars ?? 0)?.['no_periods'] === 0) {
-      qspCall(s, 'cheatmenu_din', 'slutshot');
-    }
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['auto_tampons'] = 1;
-    ((s as any).cheatVars = (s as any).cheatVars ?? {})['clothes_dirt'] = 1;
-    qspCall(s, 'washer', 'wash_all');
-    ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = qspFunc(s, 'body', 'CalcOptBodyMass', 225);
-    qspCall(s, 'body', 'softreset');
-    qspCall(s, 'stat', '');
-    dynamicGoto(s, 'menu_settings');
-  } },
-  ]);
   scene.build();
 }
 
@@ -449,10 +450,6 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).settings = (s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings = (s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings = (s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
-  qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   (s as any).BACKIMAGE = '';
   if (((s as any).theme ?? 0)?.['name'] === 'Custom') {
@@ -489,7 +486,61 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'daily_routine', 'settings_defaults');
   // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "droutine_settings['disabled']", 'Quick morning and e...
   if (((s as any).droutine_settings ?? 0)?.['disabled'] === 0) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027menu_exit\\u0027); return false;">Set up your daily routine</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027menu_exit/u0027); return false;">Set up your daily routine</a>');
+  }
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['rename_porn']", 'Renaming porn movies you...
+  scene.text('<b>Calendar Events</b>');
+  qspCall(s, '$menu_settings', 'show_hide_calendar', 'disco_party', 'Disco Party');
+  qspCall(s, '$menu_settings', 'show_hide_calendar', 'church', 'Church Service', 'pack');
+  qspCall(s, '$menu_settings', 'show_hide_calendar', 'intercity_trains', 'Intercity Trains', 'pack');
+  scene.text('<b>Cycle Calendar Events</b>');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 0, 'Menstrual Phase');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 1, 'Follicular Phase');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 2, 'Fertile Phase');
+  qspCall(s, '$menu_settings', 'show_hide_cycle_cal', 3, 'Luteal Phase');
+  // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterSetting(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).BACKIMAGE = '';
+  if (((s as any).theme ?? 0)?.['name'] === 'Custom') {
+    qspCall(s, 'themes', 'check_custom_vars');
+    qspCall(s, 'themes', 'set_theme', 'Custom', 'static');
+    qspCall(s, '$menu_obnovit', '');
+  }
+  (s as any).menu_page = 0;
+  qspCall(s, '$menu_settings', 'settingtabs', 'Gameplay');
+  scene.text('<center><h2>General Settings</h2></center>');
+  // TODO-QSP: $settings['table_start']
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['disable_autosave']", 'AutoSave', 'Enabled'...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['music_off']", 'Music', 'Enabled', 'Dis...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['environment_off']", 'Environment sound...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'music', "sound_settings['menu_off']", 'Menu/Phone sounds', 'Ena...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt']", 'Default payment method', 'Cas...
+  if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 0) {
+    // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+  } else {
+    if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1) {
+      // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['pay_opt_backup']", 'Backup payment method'...
+    }
+  }
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['income_opt']", 'Income method', 'Cash', 'C...
+  if (((s as any).bankAccount ?? 0) === 0  &&  (((s as any).cfg_vars ?? 0)?.['income_opt'] === 1  ||  ((s as any).cfg_vars ?? 0)?.['pay_opt'] === 1)) {
+    scene.text('<center><b>Warning: You\'ve selected the card payment option, but you don\'t have a bank account yet!</b></center>');
+  }
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cfg_vars['allow_overdraft']", 'Allow paying with ove...
+  scene.text('<font color="grey">Hybrid payment will first use up your cash, then pay the remainder with your card.</font>');
+  qspCall(s, '$menu_settings', 'print_life_sim_cheat');
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['auto_brush']", 'Auto brush hair on mirror...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu_rev', 'setting', "cheatVars['enema']", 'Enema realism', 'Enabled',...
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['pee']", 'Peeing', 'Enabled', 'Disabled' &...
+  qspCall(s, 'daily_routine', 'settings_defaults');
+  // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "droutine_settings['disabled']", 'Quick morning and e...
+  if (((s as any).droutine_settings ?? 0)?.['disabled'] === 0) {
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027menu_exit/u0027); return false;">Set up your daily routine</a>');
   }
   // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'setting', "cheatVars['rename_porn']", 'Renaming porn movies you...
   scene.text('<b>Calendar Events</b>');
@@ -515,32 +566,32 @@ function enterDifficulty(s: GameState, scene: SceneBuilder): void {
   scene.text('$menu_span + \'<b>Difficulty Presets:</b></span>\'');
   (s as any).temp_preset = qspFunc(s, '_difficulty', 'preset', 'get');
   // TODO-QSP: dynamic text: iif(temp_preset = 1, '<b>Sims</b>', '<a href="exec: gs ''_difficulty'', ''preset...
-  scene.text('iif(temp_preset = 1, \'<b>Sims</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027preset\\u0027, \\u0027set\\u0027); return false;">Sims</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(temp_preset = 1, \'<b>Sims</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027preset/u0027, /u0027set/u0027); return false;">Sims</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(temp_preset = 2, '<b>Very Easy</b>', '<a href="exec: gs ''_difficulty'', ''p...
-  scene.text('iif(temp_preset = 2, \'<b>Very Easy</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027preset\\u0027, \\u0027set\\u0027); return false;">Very Easy</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(temp_preset = 2, \'<b>Very Easy</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027preset/u0027, /u0027set/u0027); return false;">Very Easy</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(temp_preset = 3, '<b>Easy</b>', '<a href="exec: gs ''_difficulty'', ''preset...
-  scene.text('iif(temp_preset = 3, \'<b>Easy</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027preset\\u0027, \\u0027set\\u0027); return false;">Easy</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(temp_preset = 3, \'<b>Easy</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027preset/u0027, /u0027set/u0027); return false;">Easy</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(temp_preset = 4, '<b>Normal</b>', '<a href="exec: gs ''_difficulty'', ''pres...
-  scene.text('iif(temp_preset = 4, \'<b>Normal</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027preset\\u0027, \\u0027set\\u0027); return false;">Normal</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(temp_preset = 4, \'<b>Normal</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027preset/u0027, /u0027set/u0027); return false;">Normal</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(temp_preset = 5, '<b>Hard</b>', '<a href="exec: gs ''_difficulty'', ''preset...
-  scene.text('iif(temp_preset = 5, \'<b>Hard</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027preset\\u0027, \\u0027set\\u0027); return false;">Hard</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(temp_preset = 5, \'<b>Hard</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027preset/u0027, /u0027set/u0027); return false;">Hard</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(temp_preset = 6, '<b>Very Hard</b>', '<a href="exec: gs ''_difficulty'', ''p...
-  scene.text('iif(temp_preset = 6, \'<b>Very Hard</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027preset\\u0027, \\u0027set\\u0027); return false;">Very Hard</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(temp_preset = 6, \'<b>Very Hard</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027preset/u0027, /u0027set/u0027); return false;">Very Hard</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(temp_preset = 7, '<b>Russia</b>', '<a href="exec: gs ''_difficulty'', ''pres...
-  scene.text('iif(temp_preset = 7, \'<b>Russia</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027preset\\u0027, \\u0027set\\u0027); return false;">Russia</a>\')');
+  scene.text('iif(temp_preset = 7, \'<b>Russia</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027preset/u0027, /u0027set/u0027); return false;">Russia</a>\')');
   scene.text('<font color="grey">Selecting a preset will adjust multiple settings at once.</font>');
   scene.text('<center><h3>Custom difficulty settings</h3></center>');
   scene.text('<b>Skill multipliers:</b>');
   // TODO-QSP: dynamic text: $menu_span + '    Skill gain rate:</span>'
   scene.text('$menu_span + \'    Skill gain rate:</span>\'');
   // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 1, '<b>Very Fast</b>', '<a href="exec: gs ''_diffi...
-  scene.text('iif(cheatVars[\'skill_gain\'] = 1, \'<b>Very Fast</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027setdifficulty_int\\u0027, String(window.__gameStore.getState().1 ?? \\u0027\\u0027)); return false;">Very Fast</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(cheatVars[\'skill_gain\'] = 1, \'<b>Very Fast</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027setdifficulty_int/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Very Fast</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 2, '<b>Fast</b>', '<a href="exec: gs ''_difficulty...
-  scene.text('iif(cheatVars[\'skill_gain\'] = 2, \'<b>Fast</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027setdifficulty_int\\u0027, String(window.__gameStore.getState().2 ?? \\u0027\\u0027)); return false;">Fast</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(cheatVars[\'skill_gain\'] = 2, \'<b>Fast</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027setdifficulty_int/u0027, String(window.__gameStore.getState().2 ?? /u0027/u0027)); return false;">Fast</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 3, '<b>Normal</b>', '<a href="exec: gs ''_difficul...
-  scene.text('iif(cheatVars[\'skill_gain\'] = 3, \'<b>Normal</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027setdifficulty_int\\u0027, String(window.__gameStore.getState().3 ?? \\u0027\\u0027)); return false;">Normal</a>\') + \'&nbsp;|&nbsp;\'');
+  scene.text('iif(cheatVars[\'skill_gain\'] = 3, \'<b>Normal</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027setdifficulty_int/u0027, String(window.__gameStore.getState().3 ?? /u0027/u0027)); return false;">Normal</a>\') + \'&nbsp;|&nbsp;\'');
   // TODO-QSP: dynamic text: iif(cheatVars['skill_gain'] = 4, '<b>Slow</b>', '<a href="exec: gs ''_difficulty...
-  scene.text('iif(cheatVars[\'skill_gain\'] = 4, \'<b>Slow</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027_difficulty\\u0027, \\u0027setdifficulty_int\\u0027, String(window.__gameStore.getState().4 ?? \\u0027\\u0027)); return false;">Slow</a>\')');
+  scene.text('iif(cheatVars[\'skill_gain\'] = 4, \'<b>Slow</b>\', \'<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027_difficulty/u0027, /u0027setdifficulty_int/u0027, String(window.__gameStore.getState().4 ?? /u0027/u0027)); return false;">Slow</a>\')');
   qspCall(s, '$menu_settings', 'toggle_menu_sym_opt', '-4:⅓×', '-3:½×', '-1:¾×', '0:1× ✿', '2:1½×', '3:2×', '4:3×');
   // TODO-QSP: gs '$menu_settings', 'toggle_menu_sym', 'difficulty', "cheatVars['deg_speed_opt']", '    Skill degra...
   scene.text('<b>Economic multipliers:</b>');
@@ -594,7 +645,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_settings', 'settingtabs', 'Display');
   scene.text('<center><h2>Display Settings</h2></center>');
   // TODO-QSP: $settings['table_start']
-  scene.text('<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $themes_menu_ret_loc = \\u0027$menu_settings\\u0027 */ /* TODO-QSP: $themes_menu_ret_arg = \\u0027display\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027themes\\u0027, \\u0027menu\\u0027); return false;">Show theme selector</a></b>');
+  scene.text('<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $themes_menu_ret_loc = /u0027$menu_settings/u0027 */ /* TODO-QSP: $themes_menu_ret_arg = /u0027display/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027themes/u0027, /u0027menu/u0027); return false;">Show theme selector</a></b>');
   // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cfg_vars['themetype']", 'Theme type', 'Dynamic', 'St...
   if (((s as any).theme ?? 0)?.['name'] === ''  ||  ((s as any).theme ?? 0)?.['type'] === '') {
     ((s as any).theme = (s as any).theme ?? {})['name'] = 'Dynamic Default';
@@ -669,8 +720,8 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).temp_height = ((((s as any).cfg_vars ?? 0)?.['imgh']===0) ? ('OFF') : (qspUntranslated(s, "str(cfg_vars['imgh'])", { location: "_menu_settings" })));
-  (s as any).temp_width = ((((s as any).cfg_vars ?? 0)?.['imgw']===0) ? ('OFF') : (qspUntranslated(s, "str(cfg_vars['imgw'])", { location: "_menu_settings" })));
+  (s as any).temp_height = ((((s as any).cfg_vars ?? 0)?.['imgh']===0) ? ('OFF') : (String(((s as any).cfg_vars ?? 0)?.['imgh'])));
+  (s as any).temp_width = ((((s as any).cfg_vars ?? 0)?.['imgw']===0) ? ('OFF') : (String(((s as any).cfg_vars ?? 0)?.['imgw'])));
   // TODO-QSP: $menu_span + 'Force Image height:</span><a href="exec:cfg_vars[''imgw'']=0 & cfg_vars[''imgh'']=inpu...
   // TODO-QSP: $menu_span + 'Force Image width:</span><a href="exec:cfg_vars[''imgh'']=0 & cfg_vars[''imgw'']=input...
   // TODO-QSP: gs '$menu_settings', 'toggle_menu', 'display', "cfg_vars['tablemap']", 'List friends in table', 'Dis...
@@ -792,7 +843,7 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   (s as any).tc_fg_hex = qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['fcolor']);
   scene.text('<td valign="top" style="padding:20px;">');
   // TODO-QSP: dynamic text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="<<$custo...
-  scene.text(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="${((s as any).custom_theme ?? 0)?.['bimbo'] ?? ''}">bimbo</font> wandered into a <font color="${((s as any).custom_theme ?? 0)?.['goth'] ?? ''}">goth</font> café, sparking a <font color="${((s as any).custom_theme ?? 0)?.['punk'] ?? ''}">punk</font> uprising while the air crackled with <font color="${((s as any).custom_theme ?? 0)?.['hypno'] ?? ''}">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027theme_customize\\u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus.`);
+  scene.text(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="${((s as any).custom_theme ?? 0)?.['bimbo'] ?? ''}">bimbo</font> wandered into a <font color="${((s as any).custom_theme ?? 0)?.['goth'] ?? ''}">goth</font> café, sparking a <font color="${((s as any).custom_theme ?? 0)?.['punk'] ?? ''}">punk</font> uprising while the air crackled with <font color="${((s as any).custom_theme ?? 0)?.['hypno'] ?? ''}">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027theme_customize/u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus.`);
   scene.text('<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">');
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg']>>; padding:6px 14px; color...
   scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 1, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 1, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
@@ -834,7 +885,8 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
     (st as any).menu_page = 2;
-  }, goto: ['$menu_settings', 'display'] },
+    dynamicGoto(st, 'menu_settings', 'display');
+  } },
     { label: 'Presets', handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'theme_presets');
   } },
@@ -847,9 +899,9 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'rgb') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'rgb') {
     (s as any).result = ((s as any).locArgs?.[3] ?? 0);
-    (s as any).temp_input = (String(qspUntranslated(s, "trim(input(\u00000\u0000))", { location: "_menu_settings" })).toUpperCase());
+    (s as any).temp_input = (String((String(qspUntranslated(s, "input(\u00000\u0000)", { location: "_menu_settings" })).trim())).toUpperCase());
     if (((s as any).temp_input ?? 0) !== '') {
       if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
         if (parseFloat(((s as any).temp_input ?? 0)) < 0  ||  parseFloat(((s as any).temp_input ?? 0)) > 255) {
@@ -864,24 +916,24 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (Object.keys((s as any).temp_result ?? {}).length === 1) {
-      if (((s as any).locArgs?.[2] ?? 0) === 'red') {
-        (s as any).result = ((((s as any).locArgs?.[3] ?? 0)  &&  (-256))  ||  ((s as any).temp_result ?? 0));
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'red') {
+        (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-256))  ||  ((s as any).temp_result ?? 0));
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'green') {
-          (s as any).result = ((((s as any).locArgs?.[3] ?? 0)  &&  (-65281))  ||  (((s as any).temp_result ?? 0) * 256));
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'green') {
+          (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-65281))  ||  (((s as any).temp_result ?? 0) * 256));
         } else {
-          if (((s as any).locArgs?.[2] ?? 0) === 'blue') {
-            (s as any).result = ((((s as any).locArgs?.[3] ?? 0)  &&  (-16711681))  ||  (((s as any).temp_result ?? 0) * 65536));
+          if (Number((s as any).locArgs?.[2] ?? 0) === 'blue') {
+            (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-16711681))  ||  (((s as any).temp_result ?? 0) * 65536));
           }
         }
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'hex') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'hex') {
       (s as any).result = ((s as any).locArgs?.[2] ?? 0);
-      (s as any).temp_input = (String(qspUntranslated(s, "trim(input('Enter color in ABC  ||  AABBCC format'))", { location: "_menu_settings" })).toUpperCase());
+      (s as any).temp_input = (String((String(qspUntranslated(s, "input('Enter color in ABC  ||  AABBCC format')", { location: "_menu_settings" })).trim())).toUpperCase());
       if (((s as any).temp_input ?? 0) !== '') {
-        (s as any).temp_input = qspUntranslated(s, "replace(temp_input, '#')", { location: "_menu_settings" });
+        (s as any).temp_input = (String(((s as any).temp_input ?? 0)).split('#').join(undefined));
         (s as any).temp_length = (String(((s as any).temp_input ?? 0)).length);
         if (((s as any).temp_length ?? 0) === 3  ||  ((s as any).temp_length ?? 0) === 6) {
           (s as any).temp_index = 1;
@@ -893,16 +945,16 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: jump 'is_hex_loop'
           }
           if (((s as any).temp_length ?? 0) === 3) {
-            (s as any).temp_red = 0;
+            (s as any).temp_red = (String(((s as any).temp_input ?? 0)).slice((1)-1, ((1)-1)+(1)));
             (s as any).temp_red = ((s as any).temp_red ?? 0) + ((s as any).temp_red ?? 0);
-            (s as any).temp_green = 0;
+            (s as any).temp_green = (String(((s as any).temp_input ?? 0)).slice((2)-1, ((2)-1)+(1)));
             (s as any).temp_green = ((s as any).temp_green ?? 0) + ((s as any).temp_green ?? 0);
-            (s as any).temp_blue = 0;
+            (s as any).temp_blue = (String(((s as any).temp_input ?? 0)).slice((3)-1, ((3)-1)+(1)));
             (s as any).temp_blue = ((s as any).temp_blue ?? 0) + ((s as any).temp_blue ?? 0);
           } else {
-            (s as any).temp_red = 0;
-            (s as any).temp_green = 0;
-            (s as any).temp_blue = 0;
+            (s as any).temp_red = (String(((s as any).temp_input ?? 0)).slice((1)-1, ((1)-1)+(2)));
+            (s as any).temp_green = (String(((s as any).temp_input ?? 0)).slice((3)-1, ((3)-1)+(2)));
+            (s as any).temp_blue = (String(((s as any).temp_input ?? 0)).slice((5)-1, ((5)-1)+(2)));
           }
           (s as any).result = qspUntranslated(s, "rgb(func('shortgs', 'hex_str_to_int', temp_red), func('shortgs', 'hex_str_to_int', temp_green), func('shortgs', 'hex_str_to_int', temp_blue))", { location: "_menu_settings" });
         }
@@ -915,7 +967,7 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemeCustomizeInputFname(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = qspUntranslated(s, "trim(input('Enter Font name:'))", { location: "_menu_settings" });
+  (s as any).temp_input = (String(qspUntranslated(s, "input('Enter Font name:')", { location: "_menu_settings" })).trim());
   if (((s as any).temp_input ?? 0) !== '') {
     ((s as any).custom_theme = (s as any).custom_theme ?? {})['fname'] = ((s as any).temp_input ?? 0);
   }
@@ -924,7 +976,7 @@ function enterThemeCustomizeInputFname(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterThemeCustomizeInputFsize(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = qspUntranslated(s, "trim(input('Enter Font size:'))", { location: "_menu_settings" });
+  (s as any).temp_input = (String(qspUntranslated(s, "input('Enter Font size:')", { location: "_menu_settings" })).trim());
   if (((s as any).temp_input ?? 0) !== '') {
     if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '') {
       ((s as any).custom_theme = (s as any).custom_theme ?? {})['fsize'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 9) ? (9) : (parseFloat(((s as any).temp_input ?? 0))));
@@ -935,7 +987,7 @@ function enterThemeCustomizeInputFsize(s: GameState, scene: SceneBuilder): void 
 }
 
 function enterThemeCustomizeInputIncrement(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_input = qspUntranslated(s, "trim(input('Enter increment:'))", { location: "_menu_settings" });
+  (s as any).temp_input = (String(qspUntranslated(s, "input('Enter increment:')", { location: "_menu_settings" })).trim());
   if (((s as any).temp_input ?? 0) !== '') {
     if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '') {
       ((s as any).custom_theme = (s as any).custom_theme ?? {})['increment'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 1) ? (1) : (parseFloat(((s as any).temp_input ?? 0))));
@@ -947,9 +999,9 @@ function enterThemeCustomizeInputIncrement(s: GameState, scene: SceneBuilder): v
 
 function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).locArgs?.[1] ?? 0);
-  (s as any).temp_hsi = (String(qspUntranslated(s, "trim(input(\u00000\u0000))", { location: "_menu_settings" })).toUpperCase());
+  (s as any).temp_hsi = (String((String(qspUntranslated(s, "input(\u00000\u0000)", { location: "_menu_settings" })).trim())).toUpperCase());
   if (((s as any).temp_hsi ?? 0) !== '') {
-    (s as any).temp_hsi = qspUntranslated(s, "replace(temp_hsi, '#')", { location: "_menu_settings" });
+    (s as any).temp_hsi = (String(((s as any).temp_hsi ?? 0)).split('#').join(undefined));
     (s as any).temp_hsi_len = (String(((s as any).temp_hsi ?? 0)).length);
     if (((s as any).temp_hsi_len ?? 0) === 3  ||  ((s as any).temp_hsi_len ?? 0) === 6) {
       (s as any).temp_hsi_idx = 1;
@@ -961,7 +1013,7 @@ function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void
         // TODO-QSP: jump 'hsi_hex_loop'
       }
       if (((s as any).temp_hsi_len ?? 0) === 3) {
-        (s as any).result = '#' + 0 + 0 + 0 + 0 + 0 + 0;
+        (s as any).result = '#' + (String(((s as any).temp_hsi ?? 0)).slice((1)-1, ((1)-1)+(1))) + (String(((s as any).temp_hsi ?? 0)).slice((1)-1, ((1)-1)+(1))) + (String(((s as any).temp_hsi ?? 0)).slice((2)-1, ((2)-1)+(1))) + (String(((s as any).temp_hsi ?? 0)).slice((2)-1, ((2)-1)+(1))) + (String(((s as any).temp_hsi ?? 0)).slice((3)-1, ((3)-1)+(1))) + (String(((s as any).temp_hsi ?? 0)).slice((3)-1, ((3)-1)+(1)));
       } else {
         (s as any).result = '#' + ((s as any).temp_hsi ?? 0);
       }
@@ -973,14 +1025,14 @@ function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void
 }
 
 function enterExtractColorComponent(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'red') {
-    (s as any).result = (((s as any).locArgs?.[2] ?? 0)  &&  255);
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'red') {
+    (s as any).result = (Number((s as any).locArgs?.[2] ?? 0)  &&  255);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'green') {
-      (s as any).result = ((((s as any).locArgs?.[2] ?? 0)  &&  65280) / 256);
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'green') {
+      (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0)  &&  65280) / 256);
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'blue') {
-        (s as any).result = ((((s as any).locArgs?.[2] ?? 0)  &&  16711680) / 65536);
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'blue') {
+        (s as any).result = ((Number((s as any).locArgs?.[2] ?? 0)  &&  16711680) / 65536);
       }
     }
   }
@@ -989,17 +1041,17 @@ function enterExtractColorComponent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemeCustomizeIncrement(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'rgb') {
-    (s as any).result = qspFunc(s, '$menu_settings', 'extract_color_component', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)) + ((s as any).locArgs?.[4] ?? 0);
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'rgb') {
+    (s as any).result = qspFunc(s, '$menu_settings', '', 'extract_color_component', ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0)) + ((s as any).locArgs?.[4] ?? 0);
     (s as any).result = ((((s as any).result ?? 0) > 255) ? (((s as any).result ?? 0) - 256) : (((((s as any).result ?? 0) < 0) ? (256 + ((s as any).result ?? 0)) : (((s as any).result ?? 0)))));
-    if (((s as any).locArgs?.[2] ?? 0) === 'red') {
-      (s as any).result = ((((s as any).locArgs?.[3] ?? 0)  &&  (-256))  ||  ((s as any).result ?? 0));
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'red') {
+      (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-256))  ||  ((s as any).result ?? 0));
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'green') {
-        (s as any).result = ((((s as any).locArgs?.[3] ?? 0)  &&  (-65281))  ||  (((s as any).result ?? 0) * 256));
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'green') {
+        (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-65281))  ||  (((s as any).result ?? 0) * 256));
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'blue') {
-          (s as any).result = ((((s as any).locArgs?.[3] ?? 0)  &&  (-16711681))  ||  (((s as any).result ?? 0) * 65536));
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'blue') {
+          (s as any).result = ((Number((s as any).locArgs?.[3] ?? 0)  &&  (-16711681))  ||  (((s as any).result ?? 0) * 65536));
         } else {
           (s as any).result = ((s as any).locArgs?.[2] ?? 0);
         }
@@ -1011,7 +1063,7 @@ function enterThemeCustomizeIncrement(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterThemeCustomizePrintColorLine(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + ((s as any).locArgs?.[2] ?? 0) + ' = func(\\u0027$menu_settings\\u0027, \\u0027theme_customize_increment\\u0027, \\u0027rgb\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027, ' + ((s as any).locArgs?.[2] ?? 0) + ', -custom_theme[\\u0027increment\\u0027]) */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027theme_customize\\u0027); return false;"><img src="images/system/ui/less' + ((s as any).icon_selector ?? 0) + '.png" height="' + ((s as any).icon_height ?? 0) + '"></img></a>';
+  (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + ((s as any).locArgs?.[2] ?? 0) + ' = func(/u0027$menu_settings/u0027, /u0027theme_customize_increment/u0027, /u0027rgb/u0027, /u0027' + ((s as any).locArgs?.[1] ?? 0) + '/u0027, ' + ((s as any).locArgs?.[2] ?? 0) + ', -custom_theme[/u0027increment/u0027]) */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027theme_customize/u0027); return false;"><img src="images/system/ui/less' + ((s as any).icon_selector ?? 0) + '.png" height="' + ((s as any).icon_height ?? 0) + '"></img></a>';
   // TODO-QSP: $result += '&nbsp;<<func(''$menu_settings'', ''extract_color_component'', ''<<$ARGS[1]>>'', dyneval(...
   // TODO-QSP: $result += '<a href="exec: <<$ARGS[2]>> = func(''$menu_settings'', ''theme_customize_increment'', ''...
   // TODO-QSP: $result += '&nbsp;'
@@ -1190,13 +1242,13 @@ function enterStatus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFonts(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
     (s as any).temp_args1 = ((s as any).locArgs?.[1] ?? 0);
   }
-  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
     (s as any).temp_args2 = ((s as any).locArgs?.[2] ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[3] ?? 0) !== '') {
     (s as any).temp_args3 = ((s as any).locArgs?.[3] ?? 0);
   }
   // TODO-QSP: $fontList[] = 'Default'
@@ -1345,13 +1397,13 @@ function enterFonts(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $menu_span + 'Current font family:</span><a href="exec: font_vars[$temp_args1 + ''_font''] = (font_v...
   // TODO-QSP: $menu_span + 'Current font color:</span><a href="exec: font_vars[$temp_args1 + ''_color''] = (font_v...
   // TODO-QSP: $menu_span + 'Current font modifier:</span><a href="exec: font_vars[$temp_args1 + ''_mod''] = (font_...
+  scene.actions([
+{ label: 'Back', handler: (st: GameState) => {
+    dynamicGoto(st, 'temp_loc_font', 'temp_loc_arg_font');
+  } },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'Back', handler: (st: GameState) => {
-    dynamicGoto(s, 'temp_loc_font', 'temp_loc_arg_font');
-  } },
-  ]);
   scene.build();
 }
 
@@ -1369,21 +1421,21 @@ function enterMods(s: GameState, scene: SceneBuilder): void {
   if (((s as any).settingmode ?? 0) === 2) {
     scene.actions([
       { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Return to game start' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
-    qspGoto(s, 'start', 'start');
+    qspGoto(st, 'start', 'start');
   } },
     ]);
   } else {
     if (((s as any).settingmode ?? 0) === 1) {
       scene.actions([
         { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Return to character creation' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
-    qspGoto(s, 'begin', 'start');
+    qspGoto(st, 'begin', 'start');
   } },
       ]);
     } else {
       scene.actions([
         { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Exit the menu' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
-    qspCall(s, '$menu_settings', 'menu_exit');
-    dynamicGoto(s, 'menu_loc', 'menu_arg');
+    qspCall(st, '$menu_settings', 'menu_exit');
+    dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
       ]);
     }
@@ -1463,7 +1515,7 @@ function enterInstallNewMod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).input ?? 0)('Are you sure you want to delete ' + ((s as any).mod_name ?? 0)[((s as any).locArgs?.[1] ?? 0)] + '? (type anything to confirm)') !== '') {
+  if (((s as any).input ?? 0)('Are you sure you want to delete ' + ((s as any).mod_name ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] + '? (type anything to confirm)') !== '') {
     // TODO-QSP: gs 'mod_system', 'delete_mod', ARGS[1]
     dynamicGoto(s, 'menu_settings');
   }
@@ -1571,14 +1623,14 @@ function enterExplanationStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Here we want to explain the different stats <<$pcs_firstname>> has, and give oth...
   scene.text(`Here we want to explain the different stats ${((s as any).pcs_firstname || '')} has, and give other useful information about the play mechanics.`);
   scene.text('The glossary is divided over several pages explaining different aspects of the character stats. For a new player we recommend going through them in the order presented, but if you need some specific information, just go to the page containing it.');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027explanation_icons\\u0027); return false;">The first page</a> includes the basic information and explanations of the different icons that appear in the stat display.');
-  // TODO-QSP: dynamic text: <a href="exec:gt '$menu_settings', 'explanation_attributes'">The second page</a>...
-  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027explanation_attributes\\u0027); return false;">The second page</a> includes information about the basic attributes ${((s as any).pcs_firstname || '')} has.`);
-  // TODO-QSP: dynamic text: <a href="exec:gt '$menu_settings', 'explanation_skill'">The third page</a> inclu...
-  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027explanation_skill\\u0027); return false;">The third page</a> includes information about the skills ${((s as any).pcs_firstname || '')} has.`);
-  // TODO-QSP: dynamic text: <a href="exec:gt '$menu_settings', 'explanation_status'">The fourth page</a> inc...
-  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027explanation_status\\u0027); return false;">The fourth page</a> includes information about the different status effects like mood, hunger, and willpower ${((s as any).pcs_firstname || '')} has.`);
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027explanation_archetypes\\u0027); return false;">The fifth page</a> includes information about the archetype system, its effects, and withdrawal.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_icons/u0027); return false;">The first page</a> includes the basic information and explanations of the different icons that appear in the stat display.');
+  // TODO-QSP: dynamic text: <a href="exec:gt ''$menu_settings'', ''explanation_attributes''">The second page...
+  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_attributes/u0027); return false;">The second page</a> includes information about the basic attributes ${((s as any).pcs_firstname || '')} has.`);
+  // TODO-QSP: dynamic text: <a href="exec:gt ''$menu_settings'', ''explanation_skill''">The third page</a> i...
+  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_skill/u0027); return false;">The third page</a> includes information about the skills ${((s as any).pcs_firstname || '')} has.`);
+  // TODO-QSP: dynamic text: <a href="exec:gt ''$menu_settings'', ''explanation_status''">The fourth page</a>...
+  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_status/u0027); return false;">The fourth page</a> includes information about the different status effects like mood, hunger, and willpower ${((s as any).pcs_firstname || '')} has.`);
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_archetypes/u0027); return false;">The fifth page</a> includes information about the archetype system, its effects, and withdrawal.');
   // TODO-QSP: $settings['table_end']
   if (((s as any).stat_explanation ?? 0) === '') {
     qspCall(s, 'saveg', '');
@@ -1605,7 +1657,7 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
   scene.text('Below the weather image is a line that gives the current time and date, maybe followed by a line saying if you have vacation and how long time until the vacation ends.');
   scene.img('images/system/icons/menu/icon_character.png');
   // TODO-QSP: dynamic text: The Character description have ' + iif($start_type['magic'] <> 'nomagic' , '6', ...
-  scene.text('The Character description have \' + iif($start_type[\'magic\'] <> \'nomagic\' , \'6\', \'7\') + \' different tabs. The first tab "Character" gives a general overview of your character\'s looks and physique. The second tab is "Skills". We will explain skills later in this introduction.');
+  scene.text('The Character description have ' + ((((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') ? ('6') : ('7')) + ' different tabs. The first tab "Character" gives a general overview of your character\'s looks and physique. The second tab is "Skills". We will explain skills later in this introduction.');
   // TODO-QSP: dynamic text: The third tab "Statistics" lists several achievements that <<$pcs_firstname>> ha...
   scene.text(`The third tab "Statistics" lists several achievements that ${((s as any).pcs_firstname || '')} has made in the game. The fourth tab "Pain" has a detailed description of any pain ${((s as any).pcs_firstname || '')} is experiencing.`);
   // TODO-QSP: 'The fifth tab, "Traits" lists several traits <<$pcs_firstname>> has or can obtain, as well as how t...
@@ -1620,7 +1672,7 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('  This includes a tab for a description of where you live and the possibility to change this is you have several options. A tab with information about your work.');
   scene.text('  The "Quest" tab contains hints on how to start and proceed with several of the quests in the game. Not all quests are included yet, but this a good place to look if you want to know some of the things that are possible, and the first place you should look if you feel stuck in a quest.');
-  // TODO-QSP: dynamic text:   The relations tab has information about how other NPC's see <<$pcs_firstname>>...
+  // TODO-QSP: dynamic text:   The relations tab has information about how other NPC''s see <<$pcs_firstname>...
   scene.text(`  The relations tab has information about how other NPC's see ${((s as any).pcs_firstname || '')}. The value goes from 0 to 100. If it is below 20 it means they dislike or even hate you. Between 20 and 60 is generally neutral. Above 60 the NPC considers ${((s as any).pcs_firstname || '')} a friend and above 80 is when they might fall in love with a character.`);
   scene.text('  But each character is different, and some might never fall in love with the character and for some NPC\'s it might not be enough to just get them to like you.');
   // TODO-QSP: '  The game information tab includes a lot of information about the world. ' + iif($start_type['loc'...
@@ -1727,7 +1779,7 @@ function enterExplanationStatus(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Status Bars</h2></center>');
   // TODO-QSP: '<table border="0"><tr><td colspan="2">The status bars represent different parts of the player''s ph...
   qspCall(s, '$menu_settings', 'explanation_build_stat');
-  // TODO-QSP: dynamic text: <center>This ends the basic description of <<$pcs_firstname>>'s stat. Next, we'l...
+  // TODO-QSP: dynamic text: <center>This ends the basic description of <<$pcs_firstname>>''s stat. Next, we'...
   scene.text(`<center>This ends the basic description of ${((s as any).pcs_firstname || '')}'s stat. Next, we'll cover the archetype system.</center>`);
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
@@ -1786,11 +1838,11 @@ function enterExplanationStartExit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_explanation ?? 0) === 'sg') {
     scene.actions([
       { label: 'Start playing', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    if ((!((s as any).start_location ?? 0))) {
-      qspGoto(s, 'intro_sg', 'intro_pavlovsk');
+    (st as any).music_loop = 0;
+    if ((!((st as any).start_location ?? 0))) {
+      qspGoto(st, 'intro_sg', 'intro_pavlovsk');
     } else {
-      qspGoto(s, 'intro_sg', 'intro_gadukino');
+      qspGoto(st, 'intro_sg', 'intro_gadukino');
     }
   } },
       { label: 'Restart the character selection', handler: (st: GameState) => {
@@ -1807,11 +1859,11 @@ function enterExplanationStartExit(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat_explanation ?? 0) === 'sg_m') {
       scene.actions([
         { label: '<center><b>Begin!</b></center>', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    if ((!((s as any).start_location ?? 0))) {
-      qspGoto(s, 'intro_sg', 'intro_pavlovsk');
+    (st as any).music_loop = 0;
+    if ((!((st as any).start_location ?? 0))) {
+      qspGoto(st, 'intro_sg', 'intro_pavlovsk');
     } else {
-      qspGoto(s, 'intro_sg', 'intro_gadukino');
+      qspGoto(st, 'intro_sg', 'intro_gadukino');
     }
   } },
       ]);
@@ -1819,11 +1871,11 @@ function enterExplanationStartExit(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat_explanation ?? 0) === 'sg_tg') {
         scene.actions([
           { label: 'Start your new life', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    if ((!((s as any).start_location ?? 0))) {
-      qspGoto(s, 'intro_sg', 'intro_pavlovsk');
+    (st as any).music_loop = 0;
+    if ((!((st as any).start_location ?? 0))) {
+      qspGoto(st, 'intro_sg', 'intro_pavlovsk');
     } else {
-      qspGoto(s, 'intro_sg', 'intro_gadukino');
+      qspGoto(st, 'intro_sg', 'intro_gadukino');
     }
   } },
         ]);
@@ -1963,6 +2015,10 @@ function enterExplanationBuildArchetypes(s: GameState, scene: SceneBuilder): voi
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  ((s as any).settings = (s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings = (s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings = (s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
+  qspCall(s, 'themes', 'indoors');
   const arg = s.locArg;
   switch (arg) {
     case 'menu_exit':
@@ -2024,6 +2080,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'music':
       enterMusic(s, scene);
+      break;
+    case 'setting':
+      enterSetting(s, scene);
       break;
     case 'difficulty':
       enterDifficulty(s, scene);

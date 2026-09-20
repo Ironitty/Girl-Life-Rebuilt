@@ -12,9 +12,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kutime ?? 0) > 0) {
     scene.actions([
       { label: 'Sit out your punishment (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).kutime = ((s as any).kutime ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).kutime = ((st as any).kutime ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.text('You take a seat on the wooden plank, and have nothing else to do but just wait.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

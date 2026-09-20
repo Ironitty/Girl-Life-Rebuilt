@@ -37,7 +37,7 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStageTitle(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: <center><h2><<$setloc['StageTitle']>></h2></center>
+  // TODO-QSP: dynamic text: <center><h2><<$setloc[''StageTitle'']>></h2></center>
   scene.text(`<center><h2>${((s as any).setloc ?? 0)?.['StageTitle'] ?? ''}</h2></center>`);
   scene.img(`images/${((s as any).setloc ?? 0)?.['StageImage'] ?? ''}`);
   // TODO-QSP: end
@@ -45,7 +45,7 @@ function enterStageTitle(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEventViewer(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[5] ?? 0) === 'random') {
+  if (Number((s as any).locArgs?.[5] ?? 0) === 'random') {
     (s as any).array_idx = 0;
   }
   // TODO-QSP: $events_viewer[] = 'gs <<$ARGS[3]>>, <<$ARGS[4]>>, <<array_idx>>'
@@ -71,22 +71,22 @@ function enterCorridor(s: GameState, scene: SceneBuilder): void {
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).location_type ?? 0) === 'private'  ||  ((s as any).location_type ?? 0) === 'bathroom') {
     scene.text('Your accommodation for the week has the luxury of a private shower and a bath. There\'s a poster on the wall promoting the health benefits of ice baths and other advice on looking after your body.');
-    // TODO-QSP: dynamic text: There is a shower, toilet, sink, and a <a href="exec:gt 'mirror','start'">mirror...
-    scene.text('There is a shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair.');
+    // TODO-QSP: dynamic text: There is a shower, toilet, sink, and a <a href="exec:gt ''mirror'',''start''">mi...
+    scene.text('There is a shower, toilet, sink, and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
     qspCall(s, 'din_van', 'private');
   } else {
     if ((String(((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public'  ||  ((s as any).location_type ?? 0) === 'private_shared') {
-      // TODO-QSP: dynamic text: There is a shower and <a href="exec:gt 'mirror','start'">mirrors</a> where you c...
-      scene.text('There is a shower and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair.');
+      // TODO-QSP: dynamic text: There is a shower and <a href="exec:gt ''mirror'',''start''">mirrors</a> where y...
+      scene.text('There is a shower and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
       scene.actions([
         { label: 'Take a shower', handler: (st: GameState) => {
-    (s as any).pcs_hairbsh = 0;
-    (s as any).pcs_makeup = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
+    (st as any).pcs_hairbsh = 0;
+    (st as any).pcs_makeup = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
     scene.text('You grab a quick shower, but you wish you could stay longer in the shower to let the heat soak into your muscles.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -111,9 +111,9 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Your deodorant will last you for <b><<deodorant>></b> more '+iif(deodorant = 1, 'application.', 'ap...
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).deodorant = ((s as any).deodorant ?? 0) - (1);
-    qspCall(s, 'sweat', 'deo');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).deodorant = ((st as any).deodorant ?? 0) - (1);
+    qspCall(st, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility'), '<center><img <<$set_imgh>> src="images/shared/home/bat...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
@@ -130,7 +130,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'full') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'full') {
     qspCall(s, 'kit_din', 'edasnack');
     qspCall(s, 'kit_din', 'sandwich');
     qspCall(s, 'kit_din', 'edaD');
@@ -139,19 +139,19 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'kit_din', 'lekarstvo');
     qspCall(s, 'kit_din', 'vitamin');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'communal') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'communal') {
       qspCall(s, 'kit_din', 'edasnack');
       qspCall(s, 'kit_din', 'sandwich');
       qspCall(s, 'kit_din', 'edaD');
       qspCall(s, 'kit_din', 'fatdel');
       qspCall(s, 'kit_din', 'vitamin');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'hotel') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'hotel') {
         qspCall(s, 'kit_din', 'lekarstvo');
         qspCall(s, 'kit_din', 'fatdel');
         qspCall(s, 'kit_din', 'vitamin');
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'shared') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'shared') {
         }
       }
     }

@@ -20,16 +20,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).photography_start ?? 0) === 1  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).photography ?? 0)?.['datecheck'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask about work', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
     scene.text('You walk up to Branko. "Excuse me Branko, but you said you might have some work for me. Would you happen to have anything?"');
-    // TODO-QSP: dynamic text: He smiles at you. "Yes yes, I remember. You're <<$pcs_nickname>>, right? Let me ...
-    scene.text(`He smiles at you. "Yes yes, I remember. You're ${((s as any).pcs_nickname || '')}, right? Let me check."`);
+    // TODO-QSP: dynamic text: He smiles at you. "Yes yes, I remember. You''re <<$pcs_nickname>>, right? Let me...
+    scene.text(`He smiles at you. "Yes yes, I remember. You're ${((st as any).pcs_nickname || '')}, right? Let me check."`);
     scene.text('He opens a laptop sitting on the counter next to him and taps on the keys before he looks up at you.');
-    ((s as any).photography = (s as any).photography ?? {})['datecheck'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'photography_work', 'job_init');
-    qspCall(s, 'jobs_gigs', 'disp_evt', 1);
+    ((st as any).photography = (st as any).photography ?? {})['datecheck'] = ((st as any).daystart ?? 0);
+    qspCall(st, 'photography_work', 'job_init');
+    qspCall(st, 'jobs_gigs', 'disp_evt', 1);
   } },
     ]);
   }
@@ -42,28 +42,28 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk to the shop owner', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    if ((!((s as any).photographyEv ?? 0))) {
-      (s as any).photographyEv = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    if ((!((st as any).photographyEv ?? 0))) {
+      (st as any).photographyEv = 1;
       scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
       scene.text('"Hello there! What\'s your name?" the friendly man behind the counter asks with a smile.');
       // TODO-QSP: dynamic text: "<<$pcs_firstname>>," you reply.
-      scene.text(`"${((s as any).pcs_firstname || '')}," you reply.`);
+      scene.text(`"${((st as any).pcs_firstname || '')}," you reply.`);
       // TODO-QSP: dynamic text: "Nice to meet you, <<$pcs_firstname>>. You look like the sort of person who woul...
-      scene.text(`"Nice to meet you, ${((s as any).pcs_firstname || '')}. You look like the sort of person who would be interested in a quality camera. In fact, judging by the sort of person I see before me, I have just the camera right here that would be perfect for you. Only ${qspFunc(s, 'money', 'string_price', 20000)}!"`);
+      scene.text(`"Nice to meet you, ${((st as any).pcs_firstname || '')}. You look like the sort of person who would be interested in a quality camera. In fact, judging by the sort of person I see before me, I have just the camera right here that would be perfect for you. Only ${qspFunc(s, 'money', 'string_price', 20000)}!"`);
       scene.text('"Well, I <i>have</i> been thinking about getting into photography… It might be worth it," you reply and he immediately launches into a long-winded discussion about the joys you can have with a camera.');
       scene.text('He talks about what the camera in question can do, along with all it\'s features. It does sound like the perfect camera for someone that\'s serious about getting into photography, but is that you?');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'first']; enterCameraOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'first']; enterCameraOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      if (((s as any).photographyEv ?? 0) === 1) {
+      if (((st as any).photographyEv ?? 0) === 1) {
         scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
         // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
-        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((s as any).pcs_firstname || '')}! How fantastic it is that you should return to my shop! Have you changed your mind about buying a camera?"`);
-        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'repeat']; enterCameraOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname || '')}! How fantastic it is that you should return to my shop! Have you changed your mind about buying a camera?"`);
+        { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'repeat']; enterCameraOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
-        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((s as any).pcs_firstname || '')}! How fantastic it is that you should return to my shop! How are you getting on with your recent purchase? Brilliantly I hope? I know what I see and I see brilliance before me, so it can only be that you would get on brilliantly!"`);
+        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname || '')}! How fantastic it is that you should return to my shop! How are you getting on with your recent purchase? Brilliantly I hope? I know what I see and I see brilliance before me, so it can only be that you would get on brilliantly!"`);
         scene.actions([
           { label: 'Walk away', goto: ['shop_photography', 'start'] },
         ]);
@@ -85,10 +85,10 @@ function enterCameraOptions(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Can\'t afford camera', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
-    if (((s as any).locArgs?.[1] ?? 0) === 'first') {
+    if (Number((st as any).locArgs?.[1] ?? 0) === 'first') {
       scene.text('You consider it for a moment. You\'d love to buy it, but you know you don\'t have enough money for it right now. "Maybe some other time? I can\'t really afford it, but thank you for taking the time to explain things to me."');
       scene.text('He smiles. "It was my pleasure, young lady. I hope to see you again soon."');
     } else {
@@ -107,10 +107,10 @@ function enterCameraOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Don\'t buy camera', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
-    if (((s as any).locArgs?.[1] ?? 0) === 'first') {
+    if (Number((st as any).locArgs?.[1] ?? 0) === 'first') {
       scene.text('You consider it for a moment, but decide against it. "Maybe some other time, but thank you for taking the time to explain things to me."');
       scene.text('He smiles. "It was my pleasure young lady. If you change your mind, you know where to find me."');
     } else {
@@ -128,7 +128,7 @@ function enterCameraOptions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuycamera(s: GameState, scene: SceneBuilder): void {
-  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 2) + 1);
+  (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'money', 'pay', 20000);
   (s as any).photographyEv = 2;
   qspCall(s, 'stat', '');

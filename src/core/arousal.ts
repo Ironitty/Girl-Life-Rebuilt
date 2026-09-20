@@ -289,15 +289,15 @@ export function arousal(s: GameState, params: ArousalParams): void {
   if (s.pcs_horny < 0) s.pcs_horny = 0;
 
   // Reset size backups
-  if (arousalVars['pcs_vag_backup'] !== 0 && arousalVars['pcs_vag_backup'] !== s.pcs_vag) {
+  if (typeof arousalVars['pcs_vag_backup'] === 'number' && arousalVars['pcs_vag_backup'] !== 0 && arousalVars['pcs_vag_backup'] !== s.pcs_vag) {
     s.pcs_vag = arousalVars['pcs_vag_backup'];
     arousalVars['pcs_vag_backup'] = 0;
   }
-  if (arousalVars['pcs_ass_backup'] !== 0 && arousalVars['pcs_ass_backup'] !== s.pcs_ass) {
+  if (typeof arousalVars['pcs_ass_backup'] === 'number' && arousalVars['pcs_ass_backup'] !== 0 && arousalVars['pcs_ass_backup'] !== s.pcs_ass) {
     s.pcs_ass = arousalVars['pcs_ass_backup'];
     arousalVars['pcs_ass_backup'] = 0;
   }
-  if (arousalVars['pcs_throat_backup'] !== 0 && arousalVars['pcs_throat_backup'] !== s.pcs_throat) {
+  if (typeof arousalVars['pcs_throat_backup'] === 'number' && arousalVars['pcs_throat_backup'] !== 0 && arousalVars['pcs_throat_backup'] !== s.pcs_throat) {
     s.pcs_throat = arousalVars['pcs_throat_backup'];
     arousalVars['pcs_throat_backup'] = 0;
   }

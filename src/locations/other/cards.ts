@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -62,7 +60,7 @@ function enterShell(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
-  ((s as any).card_in = (s as any).card_in ?? {})['icon'] = ((((s as any).locArgs?.[2] ?? 0) > 0) ? ('images/characters/shared/headshots_main/' + qspUntranslated(s, "str(ARGS[2])", { location: "cards" }) + '.jpg') : (''));
+  ((s as any).card_in = (s as any).card_in ?? {})['icon'] = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? ('images/characters/shared/headshots_main/' + String(((s as any).locArgs?.[2] ?? 0)) + '.jpg') : (''));
   ((s as any).card_in = (s as any).card_in ?? {})['icon_size'] = 90;
   ((s as any).card_in = (s as any).card_in ?? {})['title'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).card_in = (s as any).card_in ?? {})['border'] = ((s as any).theme_hex ?? 0)?.['accent'];

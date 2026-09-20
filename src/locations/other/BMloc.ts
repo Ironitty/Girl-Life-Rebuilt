@@ -9,53 +9,53 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', goto: ['pav_disco', ''] },
     { label: 'Dance', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     // TODO-QSP: gs 'boystat', $bmNane[Tboynum]
-    (s as any).hookupboy = ((s as any).bmNane ?? 0)?.[String((s as any).Tboynum ?? 0)];
+    (st as any).hookupboy = ((st as any).bmNane ?? 0)?.[String((st as any).Tboynum ?? 0)];
     // TODO-QSP: $npc_usedname[$npclastcalled] = $npc_nickname[$npclastcalled]
-    if (((s as any).bmFrend ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
-      if (((s as any).bmHJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmBJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmSEX ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmANAL ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmGANG ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
-        if (((s as any).bmHJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
-          (s as any).text2 = 'you gave me a hand job.';
+    if (((st as any).bmFrend ?? 0)?.[String((st as any).Tboynum ?? 0)] === 0) {
+      if (((st as any).bmHJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmBJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmSEX ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmANAL ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmGANG ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
+        if (((st as any).bmHJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
+          (st as any).text2 = 'you gave me a hand job.';
         }
-        if (((s as any).bmBJ ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
-          (s as any).text2 = 'you gave me a blowjob.';
+        if (((st as any).bmBJ ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
+          (st as any).text2 = 'you gave me a blowjob.';
         }
-        if (((s as any).bmSEX ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
-          (s as any).text2 = 'you let me fuck you.';
+        if (((st as any).bmSEX ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
+          (st as any).text2 = 'you let me fuck you.';
         }
-        if (((s as any).bmANAL ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
-          (s as any).text2 = 'you let me fuck you in the ass.';
+        if (((st as any).bmANAL ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
+          (st as any).text2 = 'you let me fuck you in the ass.';
         }
-        if (((s as any).bmGANG ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
-          (s as any).text2 = 'you let me and my friend fuck you.';
+        if (((st as any).bmGANG ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
+          (st as any).text2 = 'you let me and my friend fuck you.';
         }
-        // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, <<$text2>>. I'm <<$boydesc>>."
-        scene.text(`${((s as any).niknameboy || '')} tells you "Remember me, ${((s as any).text2 || '')}. I'm ${((s as any).boydesc || '')}."`);
+        // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, <<$text2>>. I''m <<$boydesc>>."
+        scene.text(`${((st as any).niknameboy || '')} tells you "Remember me, ${((st as any).text2 || '')}. I'm ${((st as any).boydesc || '')}."`);
       } else {
-        if (((s as any).bmKISS ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmTITS ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
-          // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we hung out and drank together beer. I'm...
-          scene.text(`${((s as any).niknameboy || '')} tells you "Remember me, we hung out and drank together beer. I'm ${((s as any).boydesc || '')}."`);
+        if (((st as any).bmKISS ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0  ||  ((st as any).bmTITS ?? 0)?.[String((st as any).Tboynum ?? 0)] > 0) {
+          // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we hung out and drank together beer. I''...
+          scene.text(`${((st as any).niknameboy || '')} tells you "Remember me, we hung out and drank together beer. I'm ${((st as any).boydesc || '')}."`);
         } else {
-          // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we danced together. I'm <<$boydesc>>."
-          scene.text(`${((s as any).niknameboy || '')} tells you "Remember me, we danced together. I'm ${((s as any).boydesc || '')}."`);
+          // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we danced together. I''m <<$boydesc>>."
+          scene.text(`${((st as any).niknameboy || '')} tells you "Remember me, we danced together. I'm ${((st as any).boydesc || '')}."`);
         }
       }
     }
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
+    if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 0) {
       // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go out and drink beer.
-      scene.text(`After the Dance ${((s as any).boydesc || '')} offers to go out and drink beer.`);
+      scene.text(`After the Dance ${((st as any).boydesc || '')} offers to go out and drink beer.`);
     }
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 1) {
+    if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 1) {
       // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go hang out.
-      scene.text(`After the Dance ${((s as any).boydesc || '')} offers to go hang out.`);
+      scene.text(`After the Dance ${((st as any).boydesc || '')} offers to go hang out.`);
     }
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 2) {
+    if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 2) {
       // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go to his hotel.
-      scene.text(`After the Dance ${((s as any).boydesc || '')} offers to go to his hotel.`);
+      scene.text(`After the Dance ${((st as any).boydesc || '')} offers to go to his hotel.`);
     }
-    qspCall(s, 'willpower', 'drink', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'drink', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -64,27 +64,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'willpower', 'drink', 'resist');
-    qspCall(s, 'willpower', 'pay');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_disco', '');
+    qspCall(st, 'exp_gain', 'sprt', (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'willpower', 'drink', 'resist');
+    qspCall(st, 'willpower', 'pay');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_disco', '');
   } },
       ]);
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    (s as any).boynumBlock = 1;
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
-      (s as any).gdk_nice_guy = 1;
-      qspGoto(s, 'pav_disco_sex', 'outside');
+    (st as any).boynumBlock = 1;
+    if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 0) {
+      (st as any).gdk_nice_guy = 1;
+      qspGoto(st, 'pav_disco_sex', 'outside');
     }
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 1) {
-      qspGoto(s, 'pav_disco_sex', 'outside');
+    if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 1) {
+      qspGoto(st, 'pav_disco_sex', 'outside');
     }
-    if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 2) {
-      (s as any).DPtipe = 2;
-      qspGoto(s, 'pav_disco_sex', 'hotel');
+    if (((st as any).bmTip ?? 0)?.[String((st as any).Tboynum ?? 0)] === 2) {
+      (st as any).DPtipe = 2;
+      qspGoto(st, 'pav_disco_sex', 'hotel');
     }
   } },
     ]);

@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  qspGoto(s, 'bus_incidental', 'event' + Math.floor(Math.random() * 1) + 1 + '');
+  qspGoto(s, 'bus_incidental', 'event' + (Math.floor(Math.random() * 1) + 1) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -29,7 +29,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspGoto(s, 'bus_incidental', 'end' + Math.floor(Math.random() * 1) + 1 + '');
+  qspGoto(s, 'bus_incidental', 'end' + (Math.floor(Math.random() * 1) + 1) + '');
   // TODO-QSP: end
   scene.build();
 }

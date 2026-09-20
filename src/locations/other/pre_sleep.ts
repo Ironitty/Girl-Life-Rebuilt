@@ -4,11 +4,14 @@ import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['slept_in'] = 0;
+  qspGoto(s, 'pre_sleep_events', 'start');
+  // TODO-QSP: end
   scene.build();
 }
 
-function enterStart(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['slept_in'] = 0;
   qspGoto(s, 'pre_sleep_events', 'start');
   // TODO-QSP: end
@@ -42,10 +45,10 @@ function enterPrepareSleep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1) {
     if (((s as any).alarmVars ?? 0)?.['alarm_holiday'] === 1  &&  ((s as any).kanikuli ?? 0) !== 0  ||  ((((s as any).hour ?? 0) >= ((s as any).alarmVars ?? 0)?.['timerEndH']  &&  (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6))  ||  (((s as any).hour ?? 0) < ((s as any).alarmVars ?? 0)?.['timerEndH']  &&  (((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7)))) {
-      // TODO-QSP: dynamic text: You run through your regular nightly routine, setting your alarm for <<func('ala...
+      // TODO-QSP: dynamic text: You run through your regular nightly routine, setting your alarm for <<func(''al...
       scene.text(`You run through your regular nightly routine, setting your alarm for ${qspFunc(s, 'alarmclock', 'get_weekend_display')}, you undress, and prepare for sleep:`);
     } else {
-      // TODO-QSP: dynamic text: You run through your regular nightly routine, setting your alarm for <<func('ala...
+      // TODO-QSP: dynamic text: You run through your regular nightly routine, setting your alarm for <<func(''al...
       scene.text(`You run through your regular nightly routine, setting your alarm for ${qspFunc(s, 'alarmclock', 'get_week_display')}, you undress, and prepare for sleep:`);
     }
   } else {
@@ -168,11 +171,11 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sleep…', handler: (st: GameState) => {
-    ((s as any).clo_flag = (s as any).clo_flag ?? {})['bed'] = 0;
-    (s as any).inSleep = 1;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'mood', 'reset');
-    qspGoto(s, 'sleep', 'start');
+    ((st as any).clo_flag = (st as any).clo_flag ?? {})['bed'] = 0;
+    (st as any).inSleep = 1;
+    qspCall(st, 'stat', '');
+    qspCall(st, 'mood', 'reset');
+    qspGoto(st, 'sleep', 'start');
   } },
   ]);
   scene.build();

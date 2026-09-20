@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputers_101(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/computer/class.jpg');
   if (((s as any).university ?? 0)?.['first_visit_computers_101']) {
@@ -37,10 +37,10 @@ function enterComputers_101(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Listen attentively to Professor Blagov', handler: (st: GameState) => {
-    if (((s as any).will_cost ?? 0) > 0) {
-      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    if (((st as any).will_cost ?? 0) > 0) {
+      qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
-    qspGoto(s, 'uni_lessons_electives_computers1', 'computers_101_listen');
+    qspGoto(st, 'uni_lessons_electives_computers1', 'computers_101_listen');
   } },
     ]);
   }
@@ -53,16 +53,16 @@ function enterComputers_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputers_101Listen(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'compskl', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'compskl', (Math.floor(Math.random() * 2) + 0));
   ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Blagov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/question1.jpg');
     scene.text('Professor Blagov nods approvingly, happy to see his students engaged and trying their best. He happily spends some extra time explaining the topic again, and answers any additional questions you might have.');
     scene.text('You feel smarter, thoroughly understanding today\'s lesson.');
@@ -99,7 +99,7 @@ function enterComputers_101Talk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputers_102(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/computer/class.jpg');
   if (((s as any).university ?? 0)?.['first_visit_computers_102']) {
@@ -127,10 +127,10 @@ function enterComputers_102(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Listen attentively to Professor Blagov', handler: (st: GameState) => {
-    if (((s as any).will_cost ?? 0) > 0) {
-      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    if (((st as any).will_cost ?? 0) > 0) {
+      qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
-    qspGoto(s, 'uni_lessons_electives_computers1', 'computers_102_listen');
+    qspGoto(st, 'uni_lessons_electives_computers1', 'computers_102_listen');
   } },
     ]);
   }
@@ -143,16 +143,16 @@ function enterComputers_102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputers_102Listen(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'compskl', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'compskl', (Math.floor(Math.random() * 2) + 0));
   ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Blagov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/question1.jpg');
     scene.text('Professor Blagov nods approvingly, happy to see his students engaged and trying their best. He happily spends some extra time explaining the topic again, and answers any additional questions you might have.');
     scene.text('You feel smarter, thoroughly understanding today\'s lesson.');
@@ -190,7 +190,7 @@ function enterComputers_102Talk(s: GameState, scene: SceneBuilder): void {
 
 function enterComputers_101TalkDimka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -220,7 +220,7 @@ function enterComputers_101TalkDimka(s: GameState, scene: SceneBuilder): void {
 
 function enterComputers_102TalkDimka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -250,7 +250,7 @@ function enterComputers_102TalkDimka(s: GameState, scene: SceneBuilder): void {
 
 function enterComputers_101TalkAnushka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
@@ -277,7 +277,7 @@ function enterComputers_101TalkAnushka(s: GameState, scene: SceneBuilder): void 
 
 function enterComputers_102TalkAnushka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
@@ -304,7 +304,7 @@ function enterComputers_102TalkAnushka(s: GameState, scene: SceneBuilder): void 
 
 function enterComputers_101TalkDjibril(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
@@ -325,7 +325,7 @@ function enterComputers_101TalkDjibril(s: GameState, scene: SceneBuilder): void 
 
 function enterComputers_102TalkDjibril(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A82'] <= 20) {
@@ -346,7 +346,7 @@ function enterComputers_102TalkDjibril(s: GameState, scene: SceneBuilder): void 
 
 function enterComputers_101TalkNatasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).NatbelQW ?? 0)?.['Lover'] >= 2) {
@@ -383,7 +383,7 @@ function enterComputers_101TalkNatasha(s: GameState, scene: SceneBuilder): void 
 
 function enterComputers_102TalkNatasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).NatbelQW ?? 0)?.['Lover'] >= 2) {
@@ -420,7 +420,7 @@ function enterComputers_102TalkNatasha(s: GameState, scene: SceneBuilder): void 
 
 function enterComputers_101Events(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 17) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 17) + 0);
   if (((s as any).temp ?? 0) < 2) {
     scene.img('images/locations/city/island/university/classroom/electives/computer/eatme.jpg');
     scene.text('As Professor Blagov continues his lecture, you notice a boy sitting next to you looking past you. You turn your head and glance over to see a girl making the \'eat me\' sign with her fingers and tongue at him. You shake your head and go back to focusing on the lecture.');
@@ -465,11 +465,11 @@ function enterComputers_101Events(s: GameState, scene: SceneBuilder): void {
                   scene.text('With class finished, everyone gets up and heads for the exit. You glance back and see that the man has stopped Anushka and they\'re talking by one of the computers.');
                 }
               }
-              return;
               scene.actions([
-                { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
-                { label: 'Wait for Anushka', goto: ['uni_lessons_electives_computers1', 'anushka_djibril'] },
-              ]);
+{ label: 'Leave', goto: ['uni_lessons', 'short_break'] },,
+{ label: 'Wait for Anushka', goto: ['uni_lessons_electives_computers1', 'anushka_djibril'] },
+]);
+              return;
             } else {
               if (((s as any).temp ?? 0) === 12  &&  ((s as any).anushkaQW ?? 0)?.['photoshoot'] >= 1  &&  ((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
                 scene.img('images/locations/city/island/university/classroom/electives/computer/nush_nipple.jpg');
@@ -479,12 +479,12 @@ function enterComputers_101Events(s: GameState, scene: SceneBuilder): void {
                 scene.text('You smile to her. "Right here, after everyone leaves, this would be perfect."');
                 qspCall(s, 'arousal', 'voyeur', 1);
                 qspCall(s, 'arousal', 'end');
-                return;
                 scene.actions([
-                  { label: 'Wait for everyone to leave', goto: ['uni_lessons_electives_computers1', 'anushka_photoshoot'] },
-                ]);
+{ label: 'Wait for everyone to leave', goto: ['uni_lessons_electives_computers1', 'anushka_photoshoot'] },
+]);
+                return;
               } else {
-                scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+                scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
                 scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
               }
             }
@@ -527,9 +527,9 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Ask if you can come along', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'uni_lessons_electives', 'study_with_friends');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'uni_lessons_electives', 'study_with_friends');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You smile. "Yeah, that sounds like a good idea. Mind if I come?"');
     scene.text('She shrugs. "Sure, if you want, but I really do have to study." Her tone makes it clear she doesn\'t have time to mess around like she did back in Pavlovsk.');
@@ -554,7 +554,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       scene.text('"Going to the library to study some before work. You want to come?" she asks while giving you a friendly smile and slowing down a little.');
       scene.actions([
         { label: 'Let\'s have fun instead', handler: (st: GameState) => {
-    ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+    ((st as any).anushkaCityQW = (st as any).anushkaCityQW ?? {})['first_visit'] = 1;
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You shake your head. "I really wanted to go have some fun and thought you might want to hang out or something…"');
     scene.text('She\'s shaking her head before you finish. "Can\'t. I need to get some studying done at the library before tonight."');
@@ -566,10 +566,10 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Agree to go', handler: (st: GameState) => {
-    ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'uni_lessons_electives', 'study_with_friends');
-    qspCall(s, 'stat', '');
+    ((st as any).anushkaCityQW = (st as any).anushkaCityQW ?? {})['first_visit'] = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'uni_lessons_electives', 'study_with_friends');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You smile. "Yeah, that sounds like a good idea. Mind if I come?"');
     scene.text('She shrugs. "If you want, but I really do have to study." Her tone makes it clear she doesn\'t have time to mess around like she did back in Pavlovsk.');
@@ -590,7 +590,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
 
 function enterAnushkaPhotoshoot(s: GameState, scene: SceneBuilder): void {
   ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['photoshoot'] = ((s as any).anushkaQW['photoshoot'] ?? 0) + (1);
-  qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A144', 'like', 1, 'coffee_hole_photo');
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose0.jpg');
@@ -598,64 +598,64 @@ function enterAnushkaPhotoshoot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Spice this up', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose1.jpg');
     scene.text('You want more, and you know she loves showing off. "Come on, famous model, let\'s do something a little more risque!" Anushka reaches down and pulls up the hem of her already fairly short skirt, almost to the point of showing off her panties, as you snap a few more photo\'s.');
     scene.actions([
       { label: 'Keep going', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose2.jpg');
     scene.text('"That\'s it keep going." You tell her and you move around taking pictures from different locations and angles. She turns around and pulls up the hem of her skirt again, almost showing off her butt, but stops just short of that.');
     scene.actions([
       { label: 'Let\'s see that butt', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose3.jpg');
     scene.text('"Let\'s see that tight little butt you love getting fucked in." She pulls her skirt all the way up to show off her butt almost completely bare, with only a pair of thong panties hiding anything. "Nice panties," you tell her. "Okay, turn around, so we can see the rest of those slutty panties of yours."');
     scene.actions([
       { label: 'Keep taking photos', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose4.jpg');
     scene.text('She turns back to face you, pulling her skirt up showing off her panties for you. You snap a few more photos while she hooks her thumbs into her panties to pull them this way and that, teasing you by almost showing off her pussy at times but stopping just short. "That\'s it, work the camera for me, Nush! Now lets see them little titties of yours"');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Photograph her breasts', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose5.jpg');
     scene.text('She unbuttons the front of her shirt, taking off her bra one arm at a time while keeping the shirt and jacket on. Once she has tosses the bra aside she opens her shirt wide showing off her small firm breasts. "That\'s it, now why don\'t you turn around and lose those panties."');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep taking photo\'s', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose6.jpg');
     scene.text('She turns around and bends over, with her skirt pulled up, she slowly pulls the panties down. She climbs partially on a chair with her panties part way down her thigh, showing off her naked pussy for you to photograph. You keep moving around her, snapping photos as she changes poses for you. "Nice, nice. Now lose them completely." you tell her as you keep taking photos. She slips the panties the rest of the way off and steps out of them.');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Work the camera', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose7.jpg');
     scene.text('Under your direction, she spreads her legs wide while sitting in a chair, putting one foot up on the chair, giving you a better shot at her pussy. She uses her hands to keep the skirt pulled up and out of the way, while the other keeps her shirt open, so her breasts are always on full display.');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Play with yourself', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose8.jpg');
     scene.text('"You are looking a little turned on, why don\'t you rub that pussy of yours for the camera. Pretend like it is a guy you are trying to get to fuck you right here and now." She watch you and starts getting into it, as she seduces the camera, using one hand to rub her clits, starting to softly moan.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Final photos', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 2) + 1));
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose9.jpg');
     scene.text('She sits in various poses, while rubbing her clit, she starts breathing harder as things progress, before you finally think you have the perfect final image. She\'s leaning back in the chair rubbing her clit while you take a photo of her from the side, while she watches you; it\'s the perfect image to end this photo session.');
     scene.text('With the image taken, you lower the camera. "Thanks, Nush, that was amazing. This place made for an amazing place to take photos in. You can get dressed now."');
@@ -663,12 +663,12 @@ function enterAnushkaPhotoshoot(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile a bit and nod. "Sure no problem, this is a really good set. Thanks for working with me." You tell her.');
     scene.text('"My pleasure. I love modeling almost as much as I love my music."');
     scene.text('You review the photos on your camera as she gets dressed again. "Well, I need to get going, got to go study."');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Head out', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/sveta_photographer/comp_class/pose9.jpg');
     scene.text('You nod at her. "Sure thing, I should get going anyway. Thanks again. I\'ll see you around campus, hopefully. If not, I\'ll stop by your place sometime, and we can hang out." The two of you then leave the classroom behind and both of you head out.');
     scene.actions([
@@ -761,7 +761,7 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
         scene.text('"Going to the library to study some before work. You want to come?" she asks while giving you a friendly smile and slowing down a little.');
         scene.actions([
           { label: 'Let\'s have fun instead', handler: (st: GameState) => {
-    ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+    ((st as any).anushkaCityQW = (st as any).anushkaCityQW ?? {})['first_visit'] = 1;
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You shake your head. "I really wanted to go have some fun and thought you might want to hang out or something…"');
     scene.text('She\'s shaking her head before you finish. "Can\'t. I need to get some studying done at the library before tonight."');
@@ -774,10 +774,10 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
           { label: 'Ask if you can come along', handler: (st: GameState) => {
-    ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'uni_lessons_electives', 'study_with_friends');
-    qspCall(s, 'stat', '');
+    ((st as any).anushkaCityQW = (st as any).anushkaCityQW ?? {})['first_visit'] = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'uni_lessons_electives', 'study_with_friends');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You smile. "Yeah, that sounds like a good idea. Mind if I come?"');
     scene.text('She shrugs. "Sure, if you want, but I really do have to study." Her tone makes it clear she doesn\'t have time to mess around like she did back in Pavlovsk.');
@@ -837,7 +837,7 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
         scene.text('"Going to the library to study some before work. You want to come?" she asks while giving you a friendly smile and slowing down a little.');
         scene.actions([
           { label: 'Let\'s have fun instead', handler: (st: GameState) => {
-    ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+    ((st as any).anushkaCityQW = (st as any).anushkaCityQW ?? {})['first_visit'] = 1;
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You shake your head. "I really wanted to go have some fun and thought you might want to hang out or something…"');
     scene.text('She\'s shaking her head before you finish. "Can\'t. I need to get some studying done at the library before tonight."');
@@ -870,51 +870,51 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     scene.text('In fact, she\'s grinning from ear to ear. You can just make out Djibril saying "Come on, suck my dick."');
     scene.text('Anushka glances around and you duck back from the door. "What if someone comes back?" she asks as you peek back in.');
     scene.text('Djibril grins. "No one is coming back, but getting caught is part of the thrill. Even if they did, so what? They\'ll just see a pretty little thing like you sucking my big black dick. Come on, I know you want to…"');
-    qspCall(s, 'arousal', 'voyeur', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl4.jpg');
     scene.text('It doesn\'t take a lot of convincing as Anushka slides off her chair and onto her knees in front of Djibril before taking his thick cock into her mouth and sucking it. He moans softly as she does and leans back enjoying it. You can faintly hear the slurping sounds of her mouth on his cock and it seems like she\'s looking in your direction a few times, making you wonder if she\'s spotted you.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl5.jpg');
     scene.text('Anushka starts playing with her breasts as she bobs her head up and down on Djirbil\'s dick. "Fuccck… You\'re amazing at this," he moans out fairly loudly, which only encourages her to redouble her efforts and pick up the pace, making even more wet slurping sounds as she takes his cock deep into her mouth. "Oh, fuck yeah, just like that…" he moans out.');
     scene.text('She then pops his dick out of her mouth and gets off her knees. "My turn," she says as she sits on the table.');
-    qspCall(s, 'arousal', 'voyeur_sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl6.jpg');
     scene.text('Anushka sits on the table and spreads her legs wide while pulling her panties aside to expose her pussy. Djibril gets down on his knees in front of her and starts licking her pussy as she moans loudly and her hand slides up to the back of his head, forcing his face into her pussy as she grinds against him.');
-    qspCall(s, 'arousal', 'voyeur_sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl7.jpg');
     scene.text('He stops going down on her and stands up. He takes off her shirt and bra, leaving her small breasts on full display as he pushes her skirt up around her waist and pulls her panties off before grabbing her legs and spreading them apart. He rubs the tip of his dick against her pussy and then slides it in, causing her to moan loudly as he starts fucking her.');
-    qspCall(s, 'arousal', 'voyeur_sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl8.jpg');
     scene.text('Anushka starts rubbing her clit as Djibril thrusts his cock balls deep into her over and over. "Oh… Fuck… Yes… Tear my little white pussy up. With your huge black cock… Fuck… Yes!" The louder she moans and the more she gets into it, the faster and harder he thrusts into her. After a few minutes, he pulls all the way out of her. "Oh fuck… Don\'t stop… Slide that massive cock back in…" she pleads with him.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/classroom/comp_djibirl9.jpg');
     scene.text('Instead, he manhandles her and flips her over onto her stomach, then pulls her up into a standing position, only to roughly push her forward at her back, making her partially bend over in front of him. He slides the tip of his dick back to her wet slit, then keeps going up to her asshole. "I\'m going to rip that tight little asshole of yours apart with my big black dick." You can tell his words turn her on as he slides his cock into her asshole. She gasps in a mix of pain and pleasure as he starts fucking her asshole, but it quickly turns into full pleasure.');
-    qspCall(s, 'arousal', 'voyeur_sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
@@ -922,8 +922,8 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     scene.text('"OH GOD! You\'re so big… Oh fuck…" she moans as he thrusts his thick dick deeper and deeper into her ass.');
     scene.text('Djibril slaps her ass. "Yeah, that\'s right. You love my big black cock in your ass, don\'t you?" he says while slapping her ass. "You just love it when you have a black dick balls deep in your ass. Tell me how much you love it."');
     scene.text('The more he talks dirty to her, the more turned on she looks and the more she gets into it. "Yes… I love big black cocks… In my tight little… White ass…"');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
@@ -932,8 +932,8 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ohhh… Your cock… Is so big…" she moans as he keeps fucking her.');
     scene.text('He starts to grunt and thrust even harder into her ass. "Just think. Anyone could walk in and see you taking a big black cock, balls deep in your ass while you\'re loving it."');
     scene.text('She doesn\'t respond, but her legs start shaking and her whole body soon spasms as she has an orgasm. At this point, she can\'t really support herself and he holds her up as he keeps fucking her with a sudden urgency.');
-    qspCall(s, 'arousal', 'voyeur_sex', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Keep watching', handler: (st: GameState) => {
@@ -943,16 +943,16 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He laughs at her reply. "Oh, I\'m a real good boy!" As she finishes cleaning up her face, he adds. "I need to get going, but stop by my room sometime and we can hang out, play some games or watch TV or something."');
     scene.text('She shrugs. "Maybe. I\'m pretty busy with studying, my job, modeling, the band…"');
     scene.text('He nods. "Cool, cool. See you later." With that, he turns to head for the exit. You quickly duck aside hoping he doesn\'t see you.');
-    qspCall(s, 'arousal', 'voyeur_sex', 2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 2);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Quickly leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Stand near the door and wait', handler: (st: GameState) => {
-    if (((s as any).DjibrilQW ?? 0)?.['nush_compclass'] === 0) {
-      ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['nush_compclass'] = 1;
+    if (((st as any).DjibrilQW ?? 0)?.['nush_compclass'] === 0) {
+      ((st as any).DjibrilQW = (st as any).DjibrilQW ?? {})['nush_compclass'] = 1;
       scene.img('images/characters/shared/headshots_main/big82.jpg');
-      // TODO-QSP: dynamic text: You don't have to wait long before Djibril walks out with a huge grin on his fac...
-      scene.text(`You don't have to wait long before Djibril walks out with a huge grin on his face. When he sees you, he stops and impulsively glances back at the door. You could swear he's blushing, but it's hard to tell with his dark skin. He rubs the back of his head with one hand. "Uh… Hey ${((s as any).pcs_nickname || '')}… Did you need something?"`);
+      // TODO-QSP: dynamic text: You don''t have to wait long before Djibril walks out with a huge grin on his fa...
+      scene.text(`You don't have to wait long before Djibril walks out with a huge grin on his face. When he sees you, he stops and impulsively glances back at the door. You could swear he's blushing, but it's hard to tell with his dark skin. He rubs the back of his head with one hand. "Uh… Hey ${((st as any).pcs_nickname || '')}… Did you need something?"`);
       scene.text('You grin at him and decide to tease him a little. "Yeah, I was waiting on my friend to leave class and see if they wanted to study, but you guys were in there for so long and it sounded like you were exercising or something…"');
       scene.text('Now you\'re sure he\'s blushing. "Oh…" Then he just laughs and relaxes. "Yeah, you caught us. We were fucking like rabbits. Maybe next time you might want to stay over instead, or maybe join us?"');
       scene.text('Now it\'s your turn to blush. "Maybe…" you mutter back.');
@@ -968,12 +968,12 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
       { label: 'Wait for Anushka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
     scene.img('images/characters/shared/headshots_main/big144.jpg');
-    if (((s as any).DjibrilQW ?? 0)?.['nush_compclass'] === 0) {
-      ((s as any).DjibrilQW = (s as any).DjibrilQW ?? {})['nush_compclass'] = 1;
+    if (((st as any).DjibrilQW ?? 0)?.['nush_compclass'] === 0) {
+      ((st as any).DjibrilQW = (st as any).DjibrilQW ?? {})['nush_compclass'] = 1;
       // TODO-QSP: dynamic text: A few minutes later, the door opens again and Anushka comes out, all cleaned up ...
-      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "Been waiting long, ${((s as any).pcs_nickname || '')}?"`);
+      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "Been waiting long, ${((st as any).pcs_nickname || '')}?"`);
       scene.text('You grin at her and decide to tease her a little. "Yeah, I was waiting on my friend to leave class and see if they wanted to study, but you guys were in there for so long and it sounded like you were exercising or something…"');
       scene.text('She just rolls her eyes at your attempt at a joke, then smirks at you. "Uh-huh. You know what we were doing. I was getting fucked good and proper by a big black cock and I loved it."');
       scene.text('You laugh and hip bump her. "Yeah, I could hear that much. So where are you off to?" you ask as you start walking together.');
@@ -984,11 +984,11 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head. "I really wanted to go have some fun and thought you might want to hang out or something…"');
     scene.text('She\'s shaking her head before you finish. "Can\'t. I need to get some studying done at the library before tonight."');
     scene.text('You sigh, dejected. "Oh, okay. Maybe some other time?"');
-    if (((s as any).npc_rel ?? 0)?.['A144'] < 60) {
+    if (((st as any).npc_rel ?? 0)?.['A144'] < 60) {
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later." She puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');
     } else {
-      ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+      ((st as any).anushkaCityQW = (st as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located and puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');
@@ -1001,7 +1001,7 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: A few minutes later, the door opens again and Anushka comes out, all cleaned up ...
-      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "You been perving and spying on us again, ${((s as any).pcs_nickname || '')}?"`);
+      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "You been perving and spying on us again, ${((st as any).pcs_nickname || '')}?"`);
       scene.text('You can\'t help but blush. "Maybe… I was waiting to see if you wanted to do something after class and well… You took your time…"');
       scene.text('She giggles. "What can I say? He knows how to make a girl feel <i>really</i> good."');
       scene.text('You laugh and hip bump her. "Yeah, I heard you calling out to god a few times in there. So where are you off to?" you ask as you start walking together.');
@@ -1012,11 +1012,11 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head. "I really wanted to go have some fun and thought you might want to hang out or something…"');
     scene.text('She\'s shaking her head before you finish. "Can\'t. I need to get some studying done at the library before tonight."');
     scene.text('You sigh, dejected. "Oh, okay. Maybe some other time?"');
-    if (((s as any).npc_rel ?? 0)?.['A144'] < 60) {
+    if (((st as any).npc_rel ?? 0)?.['A144'] < 60) {
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later."');
       scene.text('She puts some extra sway in her hips as she walks away, really rocking her ass. You smile and shake your head before turning to leave yourself.');
     } else {
-      ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 1;
+      ((st as any).anushkaCityQW = (st as any).anushkaCityQW ?? {})['first_visit'] = 1;
       scene.text('She nods. "Totally. Maybe over the weekend when I\'ve got some free time? Catch you later, but you should stop by my place sometime."');
       scene.text('She tells you where the apartment she shares with the boys from the band is located and she puts some extra sway in her hips as she walks away, really rocking her ass.');
       scene.text('You smile and shake your head before turning to leave yourself.');

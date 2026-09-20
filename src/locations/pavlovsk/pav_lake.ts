@@ -56,7 +56,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).season ?? 0) === 'winter') {
     if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12) {
-      scene.text('Looking out over the frozen lake, you see a figure in the distance figure skating and doing all types of crazy moves. Stepping onto the ice and skating out, you notice that it\'s <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_socialchg1\\u0027, \\u0027tVeronika\\u0027); return false;">Veronika</a>.');
+      scene.text('Looking out over the frozen lake, you see a figure in the distance figure skating and doing all types of crazy moves. Stepping onto the ice and skating out, you notice that it\'s <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027tVeronika/u0027); return false;">Veronika</a>.');
     }
   }
   if (((s as any).konki_cloth ?? 0) === 1  ||  (!((s as any).pcs_ski_worn ?? 0))) {
@@ -78,7 +78,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  (((s as any).season ?? 0) === 'spring'  ||  ((s as any).season ?? 0) === 'fall')  &&  ((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 21  &&  ((s as any).christinaQW ?? 0)?.['subpath'] === 1  &&  ((s as any).socialchg ?? 0)?.['tChristina_day'] !== ((s as any).daystart ?? 0)) {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Zvereva_sub_1\\u0027, \\u0027chris_sub\\u0027); return false;">Christina</a> is standing by the beach looking out over the lake as Lina stands next to her, breathing heavily.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Zvereva_sub_1/u0027, /u0027chris_sub/u0027); return false;">Christina</a> is standing by the beach looking out over the lake as Lina stands next to her, breathing heavily.');
       }
     }
     qspCall(s, 'camera', 'check_location');
@@ -107,16 +107,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Strip naked', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).sauna_stripped = 0;
-    if (((s as any).pcs_inhib ?? 0) < 60) {
-      qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).sauna_stripped = 0;
+    if (((st as any).pcs_inhib ?? 0) < 60) {
+      qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
     }
-    if (((s as any).PSwim ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
-      qspCall(s, 'outfit', 'backup', 'swim');
+    if (((st as any).PSwim ?? 0) === 0  &&  ((st as any).clothingworntype ?? 0) !== 'nude') {
+      qspCall(st, 'outfit', 'backup', 'swim');
     }
-    qspCall(s, 'outfit', 'strip_all');
+    qspCall(st, 'outfit', 'strip_all');
     scene.img('images/locations/pavlovsk/lake/event/strip.jpg');
     scene.text('Without hesitation and despite the fact that other people are around, you strip from your clothes and neatly fold them before putting them down in a pile. Without your clothes holding you back, you can go for a swim in the lake or do some sunbathing.');
     scene.actions([
@@ -133,7 +133,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_stam ?? 0) >= (10 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
         scene.actions([
           { label: 'Go for a swim in the lake', handler: (st: GameState) => {
-    qspGoto(s, 'pav_lake', 'swimming');
+    qspGoto(st, 'pav_lake', 'swimming');
   } },
         ]);
       }
@@ -148,27 +148,27 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Take a walk along the beach', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
       scene.img('images/locations/pavlovsk/lake/walknude.jpg');
-      qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
+      qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
     } else {
-      if ((!((s as any).PSwim ?? 0))) {
-        scene.img('images/locations/pavlovsk/lake/lake.walk0,\'+rand(0, 2)+\'.jpg');
+      if ((!((st as any).PSwim ?? 0))) {
+        scene.img('images/locations/pavlovsk/lake/lake.walk0,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
       } else {
-        if (((s as any).pcs_hips ?? 0) >= 110) {
+        if (((st as any).pcs_hips ?? 0) >= 110) {
           scene.img('images/locations/pavlovsk/lake/lake.walk.bikini.fat0,1.jpg');
         } else {
-          if (((s as any).pcs_bmi ?? 0) > 24) {
+          if (((st as any).pcs_bmi ?? 0) > 24) {
             scene.img('images/locations/pavlovsk/lake/lake.walk.bikini.fat0,0.jpg');
           } else {
-            scene.img('images/locations/pavlovsk/lake/lake.walk.bikini0,\'+rand(0, 3)+\'.jpg');
+            scene.img('images/locations/pavlovsk/lake/lake.walk.bikini0,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
           }
         }
-        if (((s as any).pcs_inhib ?? 0) < 50) {
-          qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
+        if (((st as any).pcs_inhib ?? 0) < 50) {
+          qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
         }
       }
     }
@@ -190,9 +190,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_ski_worn ?? 0) === 1) {
       scene.actions([
         { label: 'Take off your skis', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_ski_worn = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_ski_worn = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/lake/skiing_3.jpg');
     scene.text('You can\'t believe your time skiing is already over. It feels like you just put on your ski boots and started around the lake. But now, as you sit down on the bench to take them off, your legs are tired and sore from a day of skiing. You unlace your boots and wiggle your toes, relieved to finally be able to stretch them out. You stand up and take a few steps, savouring the feeling of being barefoot after a day in stiff ski boots before you put your regular shoes back on.');
     scene.actions([
@@ -205,9 +205,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mc_inventory ?? 0)?.['ski'] > 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).konki_cloth ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
         scene.actions([
           { label: 'Put your skis on', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_ski_worn = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_ski_worn = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/lake/skiing_1.jpg');
     scene.text('You pull your ski boots out of your bag and sit down on the bench near the lake. The cold air nips at your cheeks as you begin to lace up your boots. You wiggle your toes, trying to get them as far back in the boots as possible. They feel a bit tight, but you know they\'ll stretch out as you ski. You stand up and take a few steps, getting a feel for the boots.');
     scene.actions([
@@ -220,9 +220,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).konki_cloth ?? 0) === 1) {
       scene.actions([
         { label: 'Take off your skates', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).konki_cloth = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).konki_cloth = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/lake/konki0,1.jpg');
     scene.text('You take off your skates and put your shoes back on. It takes you a while to adjust to walking on your feet again.');
     scene.actions([
@@ -235,9 +235,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mc_inventory ?? 0)?.['ice_skates'] > 0  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).pcs_ski_worn ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
         scene.actions([
           { label: 'Put your skates on', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).konki_cloth = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).konki_cloth = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/lake/konki0,0.jpg');
     scene.text('You take your shoes off and put your skates on.');
     scene.actions([
@@ -251,32 +251,32 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to Pavlovsk', handler: (st: GameState) => {
-    if (((s as any).konki_cloth ?? 0) === 1) {
+    if (((st as any).konki_cloth ?? 0) === 1) {
       scene.text('You need to remove your skates first.');
       scene.actions([
         { label: 'Go back', goto: ['pav_lake', ''] },
       ]);
     } else {
-      if (((s as any).pcs_ski_worn ?? 0) === 1) {
+      if (((st as any).pcs_ski_worn ?? 0) === 1) {
         scene.text('You need to remove your skis first.');
         scene.actions([
           { label: 'Return', goto: ['pav_lake', ''] },
         ]);
       } else {
-        if (((s as any).PSwim ?? 0) === 1) {
+        if (((st as any).PSwim ?? 0) === 1) {
           scene.text('You need to get dressed into your regular clothing first.');
           scene.actions([
             { label: 'Return', goto: ['pav_lake', ''] },
           ]);
         } else {
-          if (((s as any).clothingworntype ?? 0) === 'nude') {
+          if (((st as any).clothingworntype ?? 0) === 'nude') {
             scene.text('You need to put some clothes on first.');
             scene.actions([
               { label: 'Return', goto: ['pav_lake', ''] },
             ]);
           } else {
-            (s as any).minut = ((s as any).minut ?? 0) + 5;
-            qspGoto(s, 'pav_residential', '');
+            (st as any).minut = ((st as any).minut ?? 0) + 5;
+            qspGoto(st, 'pav_residential', '');
           }
         }
       }
@@ -290,33 +290,33 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your clothes back on', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).nudelake = Math.floor(Math.random() * 20) + 0;
-    if (((s as any).nudelake ?? 0) >= 4  ||  qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0) {
-      qspCall(s, 'outfit', 'restore', 'swim');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).nudelake = (Math.floor(Math.random() * 20) + 0);
+    if (((st as any).nudelake ?? 0) >= 4  ||  qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0) {
+      qspCall(st, 'outfit', 'restore', 'swim');
       scene.text('You return to the place where you left your clothes and put them back on.');
       scene.actions([
         { label: 'Continue', goto: ['pav_lake', ''] },
       ]);
     } else {
-      if (((s as any).nudelake ?? 0) < 3) {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        qspCall(s, 'mood', 'lower', 'tiny');
-        qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
+      if (((st as any).nudelake ?? 0) < 3) {
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
+        qspCall(st, 'mood', 'lower', 'tiny');
+        qspCall(st, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
         scene.img('images/locations/pavlovsk/lake/event/noclothes.jpg');
         scene.text('You return to the place where put your clothes to get dressed… except you can\'t find them. You desperately search the beach as a few passers-by give you amused stares. Despite your efforts, you can\'t find them. You panic and, without thinking, start running home naked.');
         scene.actions([
           { label: 'Run home naked', goto: ['home_events', 'go_home_naked_pre'] },
         ]);
       } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        qspCall(s, 'mood', 'lower', 'tiny');
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
+        qspCall(st, 'mood', 'lower', 'tiny');
         scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
         scene.text('You return to the place where you put your clothes to get dressed… except you can\'t find them. You desperately search the beach as a few passers-by give you amused stares. A man eventually approaches you, his eyes darting over your body as he speaks. "Is there a problem, sweetheart? You seem upset…"');
-        if (((s as any).bag ?? 0) === 1) {
+        if (((st as any).bag ?? 0) === 1) {
           scene.text('Luckily, your bag is sitting where you left it.');
         } else {
-          qspCall(s, 'money', 'set', 0, 'cash');
+          qspCall(st, 'money', 'set', 0, 'cash');
         }
         scene.text('You\'re seriously panicking now. "I can\'t find my clothes! I left them right here and now they\'re gone! I don\'t know what to do!" you blurt out and he tries to calm you down.');
         scene.text('"Don\'t worry girl, you\'re going to be fine. Come on, I happen to have some sportswear in my car."');
@@ -325,9 +325,9 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
         if (qspFunc(s, 'money', 'can_afford', 3000, 'cash')) {
           scene.actions([
             { label: 'Pay  [3000₽]', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 3000, 'cash');
-    qspCall(s, 'clothing', 'add_item', 'danilovich_outfits', 1);
-    qspCall(s, 'clothing', 'wear', 'danilovich_outfits', 1);
+    qspCall(st, 'money', 'pay', 3000, 'cash');
+    qspCall(st, 'clothing', 'add_item', 'danilovich_outfits', 1);
+    qspCall(st, 'clothing', 'wear', 'danilovich_outfits', 1);
     scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
     scene.text('There\'s the catch. He looks at your naked body as you mull over his proposition. You realize that you don\'t really have any other choice, so you silently nod and give him the money before quickly putting the clothes on when he hands them over. You feel relieved that you won\'t have to go home naked and hope that your clothes turn up later.');
     scene.actions([
@@ -343,8 +343,8 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
     scene.text('He shakes his head and you can see a slight bulge forming in his pants. "No, but I might be willing to trade the clothes…" He trails off suggestively and with the way he\'s looking at you, you have no doubt as to what he has in mind.');
     scene.text('"What did you have in mind?" you ask rhetorically and he grins.');
     scene.text('"Well, how about we get in my car and you let me fuck you? Then you can have the clothes."');
-    qspCall(s, 'willpower', 'prostitution', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'prostitution', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse and run home naked', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -353,8 +353,8 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse and run home naked', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspGoto(s, 'home_events', 'go_home_naked_pre');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspGoto(st, 'home_events', 'go_home_naked_pre');
   } },
       ]);
     }
@@ -364,8 +364,8 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         }
-        qspCall(s, 'willpower', 'prostitution', 'self');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        qspCall(st, 'willpower', 'prostitution', 'self');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Suggest alternative payment', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -374,7 +374,7 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Suggest alternative payment', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
     // TODO-QSP: dynamic text: This is not how you planned for your day to go! Too afraid to look him in the ey...
     scene.text('This is not how you planned for your day to go! Too afraid to look him in the eye, you feebly make a suggestion. "Is there… is there some other way I can pay you? 3000₽ is a lot of money…"');
@@ -384,13 +384,13 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree to have sex', goto: ['pav_lake', 'car_sex'] },
       { label: 'Just pay', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 3000, 'cash');
-      qspCall(s, 'clothing', 'add_item', 'danilovich_outfits', 1);
-      qspCall(s, 'clothing', 'wear', 'danilovich_outfits', 1);
+      qspCall(st, 'money', 'pay', 3000, 'cash');
+      qspCall(st, 'clothing', 'add_item', 'danilovich_outfits', 1);
+      qspCall(st, 'clothing', 'wear', 'danilovich_outfits', 1);
       scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
-      // TODO-QSP: dynamic text: You don't want to have sex with him, but you also don't want to go home naked. N...
+      // TODO-QSP: dynamic text: You don''t want to have sex with him, but you also don''t want to go home naked....
       scene.text('You don\'t want to have sex with him, but you also don\'t want to go home naked. Not seeing any other option, you decide to pay him the 3000₽. You quickly put on the clothes as he hands them over. You feel relieved that you won\'t have to go home naked and hope that your clothes turn up later.');
       scene.actions([
         { label: 'Continue', goto: ['pav_lake', ''] },
@@ -418,11 +418,11 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1) {
     scene.img('images/locations/shared/lake/tanning_swimsuit.jpg');
     if (((s as any).pcs_inhib ?? 0) < 50) {
-      qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
+      qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
     }
   } else {
     scene.img('images/locations/shared/lake/tanning_nude.jpg');
-    qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
+    qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
   }
   if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
     scene.text('You lie down on your towel and enjoy the warm rays of the sun on your body.');
@@ -437,7 +437,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop sunbathing', goto: ['pav_lake', ''] },
     ]);
   } else {
-    (s as any).tipelakeboyrand = Math.floor(Math.random() * 100) + 0;
+    (s as any).tipelakeboyrand = (Math.floor(Math.random() * 100) + 0);
     if (((s as any).tipelakeboyrand ?? 0) < 40) {
       scene.text('Three men sit down near you as you sunbathe. While you notice them looking at you and talking about your body, they don\'t come over.');
       scene.actions([
@@ -449,7 +449,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
         (s as any).lbz_npc = ((s as any).npclastgenerated ?? 0);
         qspCall(s, 'npcStat', '', ((s as any).lbz_npc ?? 0));
         scene.text('A rather cute looking guy sits down next to you as you sunbathe.');
-        // TODO-QSP: dynamic text: "Hey there beautiful, I'm <<$boydesc>>. What's your name?" he asks in an attempt...
+        // TODO-QSP: dynamic text: "Hey there beautiful, I''m <<$boydesc>>. What''s your name?" he asks in an attem...
         scene.text(`"Hey there beautiful, I'm ${((s as any).boydesc || '')}. What's your name?" he asks in an attempt to chat you up.`);
         qspCall(s, 'LakeBoyZ', 'gL_boy_z');
         scene.actions([
@@ -458,22 +458,22 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_QW ?? 0)?.['A113'] >= 1) {
           scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
-          // TODO-QSP: dynamic text: While you're sunbathing, you see Vadim Bely and his brother sitting not far from...
+          // TODO-QSP: dynamic text: While you''re sunbathing, you see Vadim Bely and his brother sitting not far fro...
           scene.text(`While you're sunbathing, you see Vadim Bely and his brother sitting not far from you. The brother points at you, and seconds later Vadim walks over and sits down next to you. He idly scratches his tattoo covered belly as he speaks to you. "Hello ${((s as any).pcs_nickname || '')}, want to go for a ride with me?"`);
           scene.text('The greedy look in his eyes tells you that when he says \'ride\', he doesn\'t just mean in his car.');
-          return;
           scene.actions([
-            { label: 'Get dressed and go with him', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
-      qspCall(s, 'outfit', 'wear_last_worn');
+{ label: 'Get dressed and go with him', handler: (st: GameState) => {
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
+      qspCall(st, 'outfit', 'wear_last_worn');
     } else {
-      if (((s as any).PSwim ?? 0) === 1) {
-        qspCall(s, 'outfit', 'restore', 'swim');
+      if (((st as any).PSwim ?? 0) === 1) {
+        qspCall(st, 'outfit', 'restore', 'swim');
       }
     }
-    qspGoto(s, 'LakeBoyDy', 'ride');
+    qspGoto(st, 'LakeBoyDy', 'ride');
   } },
-          ]);
+]);
+          return;
         } else {
           qspCall(s, 'stat', '');
           scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
@@ -481,15 +481,15 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
           scene.text('His head is mostly bald, and a large golden cross dangles on a thick chain from his neck. He sits his fat body down next to you before you can protest, idly scratching his belly as he begins to chat. "Hello! I\'m not interrupting anything, am I?"');
           scene.actions([
             { label: 'Annoyed', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('"Erm, excuse me!? I was here first!" you exclaim in an annoyed tone.');
     scene.text('The man is not impressed in the slightest, obviously having played this game before, and immediately challenges your claim. "Oh, excuse me princess! Is this your spot? Do you own it?"');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('"Yes, this is my spot! I was here first, that\'s how it works!" you respond indignantly.');
     scene.text('You suddenly hear a deep voice behind you. "This beach is only used by prostitutes and bus drivers, and I don\'t see any fucking buses nearby!"');
@@ -506,14 +506,14 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Ignore them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('Feeling intimidated and not wanting any trouble, you ignore them and pretend they\'re not there, lying on the beach with your eyes closed. However, you feel a strange tickling sensation on your stomach few seconds later and open your eyes. You see the fat man running a blade of grass over your stomach with a smug grin on his face.');
     scene.actions([
       { label: 'Keep ignoring them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     scene.text('You try to ignore them and close your eyes again, but you feel the blade of grass continuously teasing your body, and after a few minutes his sweaty hand is pawing at your breasts.');
     scene.text('"Come with me, baby and I\'ll make you feel so good! You won\'t regret it." His groping becomes more insistent.');
@@ -545,12 +545,12 @@ function enterSwimming(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'mood', 'raise', 'tiny');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    scene.img(`images/pc/activities/swim/lake/swim_nude_${Math.floor(Math.random() * 11) + 0}.jpg`);
-    qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
+    scene.img(`images/pc/activities/swim/lake/swim_nude_${(Math.floor(Math.random() * 11) + 0)}.jpg`);
+    qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
   } else {
-    scene.img(`images/pc/activities/swim/lake/swim_bikini_${Math.floor(Math.random() * 9) + 0}.jpg`);
+    scene.img(`images/pc/activities/swim/lake/swim_bikini_${(Math.floor(Math.random() * 9) + 0)}.jpg`);
     if (((s as any).pcs_inhib ?? 0) < 50) {
-      qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 2) + 1);
+      qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 2) + 1));
     }
   }
   scene.text('You swim and play in the lake, feeling refreshed and invigorated by the water.');
@@ -606,7 +606,7 @@ function enterCarSex(s: GameState, scene: SceneBuilder): void {
 function enterSkatingStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/pavlovsk/lake/katok0,${Math.floor(Math.random() * 4) + 0}.jpg`);
+  scene.img(`images/locations/pavlovsk/lake/katok0,${(Math.floor(Math.random() * 4) + 0)}.jpg`);
   scene.text('You slowly make your way over to the ice rink where a lot of people are already skating. Some of them are really good and fly around the lake, while others carefully shuffle around, doing their best to just stay on their feet without falling.');
   // TODO-QSP: end
   scene.actions([
@@ -624,7 +624,7 @@ function enterSkating(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'agil', 1);
   qspCall(s, 'exp_gain', 'react', 1);
   qspCall(s, 'exp_gain', 'icesktng', 1);
-  scene.img('images/locations/pavlovsk/lake/katok_do0,\'+rand(0, 7)+\'.jpg');
+  scene.img('images/locations/pavlovsk/lake/katok_do0,' + (Math.floor(Math.random() * 8) + 0) + '.jpg');
   if (((s as any).pcs_icesktng ?? 0) <= 10) {
     qspCall(s, 'mood', 'lower', 'small');
     scene.text('You do your best to ride your skates, but you\'re not very good at it. You fall flat on your ass several times.');

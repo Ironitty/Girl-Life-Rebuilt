@@ -68,21 +68,21 @@ function enterFairyChatNo1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat with the fairy', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).fairychat = 1;
-    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + (25 * ((s as any).pcs_magik ?? 0));
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).fairychat = 1;
+    (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) + (25 * ((st as any).pcs_magik ?? 0));
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'stat', '');
     scene.text('You chat with the fairy. At first it feels strange to talk with a creature, you thought was a myth from children\'s books. More so, since the small beautiful woman flutters in front of your face the whole time. But the fairy is so amicable that half hour has passed before you even notice.');
-    if (((s as any).fairyQW ?? 0)?.['skin_increase'] <= 10) {
-      if (((s as any).pcs_skin ?? 0) <= 990) {
-        (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (10);
+    if (((st as any).fairyQW ?? 0)?.['skin_increase'] <= 10) {
+      if (((st as any).pcs_skin ?? 0) <= 990) {
+        (st as any).pcs_skin = ((st as any).pcs_skin ?? 0) + (10);
       } else {
-        (s as any).pcs_skin = 1000;
+        (st as any).pcs_skin = 1000;
       }
-      ((s as any).fairyQW = (s as any).fairyQW ?? {})['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-      qspCall(s, 'stat', '');
+      ((st as any).fairyQW = (st as any).fairyQW ?? {})['skin_increase'] = ((st as any).fairyQW['skin_increase'] ?? 0) + (1);
+      (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+      qspCall(st, 'stat', '');
       scene.text('The fairy bids you farewell. Just as she flies off, she returns fluttering in front of your face.');
       scene.text('"You know, someone as nice as you should look just as lovely.", she says. "Hold still and don\'t breath!"');
       scene.text('Before you can do anything, the fairy blows some sparkling dust into your face. Surprised you hold your breath, albeit barely. You feel the powdery substance soak into your skin and your face starts tingling. It is not uncomfortable, rather like the brush of a feather.');
@@ -140,29 +140,29 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat with the fairy', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    if (((s as any).fairyshoo ?? 0) === 1  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
-      (s as any).fairyshoo = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    if (((st as any).fairyshoo ?? 0) === 1  &&  (Math.floor(Math.random() * 3) + 1) === 2) {
+      (st as any).fairyshoo = 0;
     } else {
-      if (((s as any).fairyshoo ?? 0) > 1  &&  (((s as any).fairyshoo ?? 0) * 3 - ((s as any).fairychat ?? 0)) <= 0) {
-        (s as any).fairyshoo = ((s as any).fairyshoo ?? 0) - (1);
+      if (((st as any).fairyshoo ?? 0) > 1  &&  (((st as any).fairyshoo ?? 0) * 3 - ((st as any).fairychat ?? 0)) <= 0) {
+        (st as any).fairyshoo = ((st as any).fairyshoo ?? 0) - (1);
       }
     }
-    (s as any).fairychat = ((s as any).fairychat ?? 0) + (1);
-    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + (25 * ((s as any).pcs_magik ?? 0));
-    qspCall(s, 'mood', 'raise', 'small');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFairychattopic(s, scene); (s as any).locArgs = __savedLocArgs; }
-    if (((s as any).fairyQW ?? 0)?.['skin_increase'] <= 10  &&  ((s as any).fairyQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  (!((s as any).fairyshoo ?? 0))) {
-      if (((s as any).pcs_skin ?? 0) <= 990) {
-        (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (10);
+    (st as any).fairychat = ((st as any).fairychat ?? 0) + (1);
+    (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) + (25 * ((st as any).pcs_magik ?? 0));
+    qspCall(st, 'mood', 'raise', 'small');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFairychattopic(s, scene); (st as any).locArgs = __savedLocArgs; }
+    if (((st as any).fairyQW ?? 0)?.['skin_increase'] <= 10  &&  ((st as any).fairyQW ?? 0)?.['day'] !== ((st as any).daystart ?? 0)  &&  (!((st as any).fairyshoo ?? 0))) {
+      if (((st as any).pcs_skin ?? 0) <= 990) {
+        (st as any).pcs_skin = ((st as any).pcs_skin ?? 0) + (10);
       } else {
-        (s as any).pcs_skin = 1000;
+        (st as any).pcs_skin = 1000;
       }
-      ((s as any).fairyQW = (s as any).fairyQW ?? {})['skin_increase'] = ((s as any).fairyQW['skin_increase'] ?? 0) + (1);
-      ((s as any).fairyQW = (s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
-      qspCall(s, 'stat', '');
+      ((st as any).fairyQW = (st as any).fairyQW ?? {})['skin_increase'] = ((st as any).fairyQW['skin_increase'] ?? 0) + (1);
+      ((st as any).fairyQW = (st as any).fairyQW ?? {})['day'] = ((st as any).daystart ?? 0);
+      qspCall(st, 'stat', '');
       scene.text('The fairy bids you farewell.');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       scene.text('Just as she flies off, she returns fluttering in front of your face.');
       scene.text('"You know, you could still look lovelier.", she says. "Don\'t move."');
       scene.text('Remembering the last time you hold your breath and close your eyes. Just a moment later you feel your skin start tingling, again, as if brushed by a feather.');
@@ -172,13 +172,13 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).fairyQW ?? 0)?.['skin_increase'] > 10  &&  ((s as any).fairyQW ?? 0)?.['day'] < ((s as any).daystart ?? 0)  &&  ((s as any).fairyshoo ?? 0) === 0  &&  ((s as any).pcs_magik ?? 0) >= 8  &&  ((s as any).fairychat ?? 0) > 9  &&  ((s as any).succubusQW ?? 0) < 1) {
-        (s as any).succubusQW = 1;
-        (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
-        ((s as any).fairyQW = (s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
-        qspCall(s, 'stat', '');
+      if (((st as any).fairyQW ?? 0)?.['skin_increase'] > 10  &&  ((st as any).fairyQW ?? 0)?.['day'] < ((st as any).daystart ?? 0)  &&  ((st as any).fairyshoo ?? 0) === 0  &&  ((st as any).pcs_magik ?? 0) >= 8  &&  ((st as any).fairychat ?? 0) > 9  &&  ((st as any).succubusQW ?? 0) < 1) {
+        (st as any).succubusQW = 1;
+        (st as any).pcs_horny = Math.max(100, ((st as any).pcs_horny ?? 0));
+        ((st as any).fairyQW = (st as any).fairyQW ?? {})['day'] = ((st as any).daystart ?? 0);
+        qspCall(st, 'stat', '');
         scene.text('The fairy bids you farewell.');
-        qspCall(s, 'stat', '');
+        qspCall(st, 'stat', '');
         scene.text('Just as she flies off, she returns fluttering in front of your face.');
         scene.text('"You know, you\'re almost a magical creature now.", she says. "Don\'t move."');
         scene.text('Remembering the last time you hold your breath and close your eyes. Just a moment later you feel a much more intense tingling, this time seeming to go all the way through you.');
@@ -188,8 +188,8 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (((s as any).fairyQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  (((s as any).pcs_nips ?? 0) < 80  ||  ((s as any).clit_size ?? 0) < 80)) {
-          ((s as any).fairyQW = (s as any).fairyQW ?? {})['day'] = ((s as any).daystart ?? 0);
+        if (((st as any).fairyQW ?? 0)?.['day'] !== ((st as any).daystart ?? 0)  &&  (((st as any).pcs_nips ?? 0) < 80  ||  ((st as any).clit_size ?? 0) < 80)) {
+          ((st as any).fairyQW = (st as any).fairyQW ?? {})['day'] = ((st as any).daystart ?? 0);
           scene.text('The fairy takes another quick look at you, rubs her chin, and says "Hmm, since you\'ve been a little nice to me, maybe I could be a little nice to you."');
           scene.actions([
             { label: 'Huh?', handler: (st: GameState) => {
@@ -201,42 +201,42 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
             { label: 'Sure', handler: (st: GameState) => {
-    (s as any).fday_surprise = ((s as any).fday_surprise ?? 0) + (1);
-    (s as any).fairy_surprise = Math.floor(Math.random() * 8) + 1;
-    if (((s as any).fairy_surprise ?? 0) === 1) {
-      (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) + (5);
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-      scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((s as any).pcs_nips ?? '') / 20 + 1))}.jpg`);
+    (st as any).fday_surprise = ((st as any).fday_surprise ?? 0) + (1);
+    (st as any).fairy_surprise = (Math.floor(Math.random() * 8) + 1);
+    if (((st as any).fairy_surprise ?? 0) === 1) {
+      (st as any).pcs_nips = ((st as any).pcs_nips ?? 0) + (5);
+      (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+      scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((st as any).pcs_nips ?? '') / 20 + 1))}.jpg`);
       scene.text('You hear a giggle. Suddenly, your nipples get really firm and pointed, and seem to be a bit larger now.');
       scene.text('You can\'t help but rub both breasts, feeling the warm tingling in them, and in your pussy.');
     } else {
-      if (((s as any).fairy_surprise ?? 0) === 2) {
-        (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) - (5);
-        scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((s as any).pcs_nips ?? '') / 20 + 1))}.jpg`);
+      if (((st as any).fairy_surprise ?? 0) === 2) {
+        (st as any).pcs_nips = ((st as any).pcs_nips ?? 0) - (5);
+        scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((st as any).pcs_nips ?? '') / 20 + 1))}.jpg`);
         scene.text('You hear a giggle. Suddenly, your nipples get really firm and pointed, yet seem to be smaller than before.');
         scene.text('You can\'t help but rub both breasts, feeling the warm tingling in them, and in your pussy.');
       } else {
-        if (((s as any).fairy_surprise ?? 0) === 3) {
-          (s as any).clit_size = ((s as any).clit_size ?? 0) + (5);
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-          scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((s as any).clit_size ?? '') / 20 + 1))}.jpg`);
+        if (((st as any).fairy_surprise ?? 0) === 3) {
+          (st as any).clit_size = ((st as any).clit_size ?? 0) + (5);
+          (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+          scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((st as any).clit_size ?? '') / 20 + 1))}.jpg`);
           scene.text('You hear a giggle and you feel a warm tingle at the top of your slit, you reach down and part your pussy lips with your fingers.');
           scene.text('Your clitoris has swollen, and seems to stand out even more than before! You can\'t help but rub all around it, feeling the warm tingling and the moisture build at the entrance.');
           scene.text('The fairy admires the changes she\'s made, and smiles at you, looking again at your puffy pussy and licking her lips.');
           scene.text('You two say your goodbyes and the fairy flies off.');
         } else {
-          if (((s as any).fairy_surprise ?? 0) === 4) {
-            (s as any).clit_size = ((s as any).clit_size ?? 0) - (5);
-            scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((s as any).clit_size ?? '') / 20 + 1))}.jpg`);
+          if (((st as any).fairy_surprise ?? 0) === 4) {
+            (st as any).clit_size = ((st as any).clit_size ?? 0) - (5);
+            scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((st as any).clit_size ?? '') / 20 + 1))}.jpg`);
             scene.text('You hear a giggle and you feel a warm tingle at the top of your slit, you reach down and part your pussy lips with your fingers.');
             scene.text('Your clitoris has shrunk, and seems to more demure than before! You can\'t help but rub all around it, feeling the warm tingling and the moisture build at the entrance.');
           } else {
-            if (((s as any).fairy_surprise ?? 0) <= 6) {
-              (s as any).min_arousal = ((s as any).min_arousal ?? 0) + (Math.floor(Math.random() * 5) + 1);
+            if (((st as any).fairy_surprise ?? 0) <= 6) {
+              (st as any).min_arousal = ((st as any).min_arousal ?? 0) + ((Math.floor(Math.random() * 5) + 1));
               scene.text('You hear a giggle, then sparkles surround your body and you get all tingly.');
               scene.text('You suddenly feel flustered and more aroused than before.');
             } else {
-              (s as any).min_arousal = ((s as any).min_arousal ?? 0) - (Math.floor(Math.random() * 5) + 1);
+              (st as any).min_arousal = ((st as any).min_arousal ?? 0) - ((Math.floor(Math.random() * 5) + 1));
               scene.text('You hear a giggle, then sparkles surround your body and you get all tingly.');
               scene.text('You suddenly feel colder and less aroused than before.');
             }
@@ -244,7 +244,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go on your way', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -255,14 +255,14 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
   } },
   ]);
   scene.build();
 }
 
 function enterFairychattopic(s: GameState, scene: SceneBuilder): void {
-  (s as any).frandchat = Math.floor(Math.random() * 16) + 1;
+  (s as any).frandchat = (Math.floor(Math.random() * 16) + 1);
   if (((s as any).frandchat ?? 0) === 1) {
     scene.text('You spend a while chatting with the fairy. She openly wonders why human children need to go to school, and brags about how fairies already know everything there is to know.');
   } else {
@@ -346,8 +346,8 @@ function enterTeleport(s: GameState, scene: SceneBuilder): void {
     scene.text('The view outside the circle seems blurry and a little indistinct. The Fairy\'s face scrunches up in concentration as she incants "inla", and the world outside seems to shimmer a little. You feel like you understand how she did that. Though you can\'t tell exactly where you are now in the blurriness, it does look different.');
     scene.text('The Fairy says, "It\'s important to take the time to feel each Fairy Ring, that\'s how you can find your way back." She flies off.');
     scene.text('You decide it would be wise to memorize your surroundings.');
-    ((s as any).spellKnown = (s as any).spellKnown ?? {})['teleport'] = 1;
-    ((s as any).tpKnown = (s as any).tpKnown ?? {})['gad_forest'] = 1;
+    ((st as any).spellKnown = (st as any).spellKnown ?? {})['teleport'] = 1;
+    ((st as any).tpKnown = (st as any).tpKnown ?? {})['gad_forest'] = 1;
     scene.actions([
       { label: 'You step out of the circle…', goto: ['gad_forest', 'forest_edge'] },
     ]);

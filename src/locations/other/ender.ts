@@ -16,10 +16,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).fightEnding = 0;
     scene.text('You fall to the floor and feel your consciousness slipping away.');
-    return;
     scene.actions([
-      { label: 'Further', goto: ['intro_start', 'tg_adult_shared', '3'] },
-    ]);
+{ label: 'Further', goto: ['intro_start', 'tg_adult_shared', '3'] },
+]);
+    return;
   } else {
     if (((s as any).fightEnding ?? 0) === 2) {
       if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
@@ -27,10 +27,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).fightEnding = 0;
       scene.text('You fall to the floor as you\'re not longer able to fight Gustav.');
-      return;
       scene.actions([
-        { label: 'Further', goto: ['tatiana_lab', 'start'] },
-      ]);
+{ label: 'Further', goto: ['tatiana_lab', 'start'] },
+]);
+      return;
     } else {
       if (((s as any).fightEnding ?? 0) === 3) {
         if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
@@ -38,10 +38,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
         }
         (s as any).fightEnding = 0;
         scene.text('You fall to the floor as you\'re not longer able to fight Tatiana.');
-        return;
         scene.actions([
-          { label: 'Further', goto: ['tatiana_lab', 'start'] },
-        ]);
+{ label: 'Further', goto: ['tatiana_lab', 'start'] },
+]);
+        return;
       } else {
         if (((s as any).fightEnding ?? 0) === 4) {
           if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
@@ -55,10 +55,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
           }
           scene.img('images/shared/sex/dom/spit.jpg');
           scene.text('You fall to the ground. The prostitute kicks you around a couple of times before she grabs hold of your purse and takes all your money. As she\'s done she leans over you and spits in your face.');
-          return;
           scene.actions([
-            { label: 'Further', goto: ['city_park', 'start'] },
-          ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+          return;
         } else {
           if (((s as any).fightEnding ?? 0) === 5) {
             if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
@@ -74,10 +74,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/city/centralpark/sex/event/band.jpg');
             scene.text('You fall to the ground. As you\'re lying there, the pimp lights a cigarette while rummaging through your stuff. He finally finds what he\'s been looking for - all of your money. "Open your mouth slut." he orders.');
             scene.text('You obey and open your mouth. He sighs as he taps ash into your mouth. "I hope you\'ve learned a valuable lesson slut. I won\'t be this kind next time."');
-            return;
             scene.actions([
-              { label: 'Further', goto: ['city_park', 'start'] },
-            ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+            return;
           } else {
             if (((s as any).fightEnding ?? 0) === 6) {
               if (((s as any).autocombat_surrender ?? 0) === 0  ||  ((s as any).pcs_health ?? 0) < 100) {
@@ -96,10 +96,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
               scene.text('Afraid of getting beaten again, you carefully lick her crotch clean. After a few minutes she\'s satisfied and leaves.');
               qspCall(s, 'arousal', 'cuni_give', 10, 'sub', 'prostitution');
               qspCall(s, 'arousal', 'end');
-              return;
               scene.actions([
-                { label: 'Further', goto: ['city_park', 'start'] },
-              ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+              return;
             } else {
               if (((s as any).fightEnding ?? 0) === 7) {
               } else {
@@ -152,7 +152,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                       scene.text('Your assailant knocks you down with one final hit, and you pass out.');
                       scene.actions([
                         { label: 'Pass out', handler: (st: GameState) => {
-    qspGoto(s, 'abduction', 'abdCarTrunk');
+    qspGoto(st, 'abduction', 'abdCarTrunk');
   } },
                       ]);
                     } else {
@@ -285,7 +285,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Oh my god! What happened to you?!"
                                   scene.text(`"${((s as any).pcs_nickname || '')}! Oh my god! What happened to you?!"`);
                                   scene.text('Katja and Vicky appear over you and help Vanya take away your beaten body. It hurts a lot but somehow, after a while, you manage to stand without seeing stars. The trio looks at you in askance.');
-                                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don't know what to do with you! What were you thinking?!"
+                                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
                                   scene.text(`"${((s as any).pcs_nickname || '')}! I don't know what to do with you! What were you thinking?!"`);
                                   scene.text('Katja is really, really pissed and for a long while, she chastizes your actions. The fact that you are hurting doesn\'t seem to make her stop, but finally, after a long-winded tirade, the redhead seems to deflate and gives you a tired hug.');
                                   scene.text('"Please! Don\'t do that again!"');
@@ -344,17 +344,17 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         scene.actions([
                                           { label: 'Run!', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).AlexandriaMissionQW = ((s as any).AlexandriaMissionQW ?? 0) + (1);
-    (s as any).dummy = Math.floor(Math.random() * 100) + 1;
-    qspCall(s, 'stat', '');
-    if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      qspGoto(s, 'alexandriaEv', 'anachase3');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) + (1);
+    (st as any).dummy = (Math.floor(Math.random() * 100) + 1);
+    qspCall(st, 'stat', '');
+    if (((st as any).dummy ?? 0) <= ((st as any).pcs_run ?? 0)) {
+      qspGoto(st, 'alexandriaEv', 'anachase3');
     } else {
-      if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
-        qspGoto(s, 'alexandriaEv', 'anacrash1');
+      if (((st as any).dummy ?? 0) >= ((st as any).pcs_run ?? 0)  &&  ((st as any).dummy ?? 0) >= 90) {
+        qspGoto(st, 'alexandriaEv', 'anacrash1');
       } else {
-        qspGoto(s, 'alexandriaEv', 'anachase4');
+        qspGoto(st, 'alexandriaEv', 'anachase4');
       }
     }
   } },
@@ -384,9 +384,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                           } else {
                                             scene.actions([
                                               { label: 'Will you to cast Heal.', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'alexandriaEv', 'heal2');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'alexandriaEv', 'heal2');
   } },
                                             ]);
                                           }
@@ -419,9 +419,9 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                             } else {
                                               scene.actions([
                                                 { label: 'Will you to cast Heal.', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'alexandriaEv', 'heal4');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'alexandriaEv', 'heal4');
   } },
                                               ]);
                                             }
@@ -531,10 +531,10 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Gustav falls to the floor. He can no longer continue the fight.');
     scene.text('"You have improved greatly, few can beat me in combat." he says with reverence.');
-    return;
     scene.actions([
-      { label: 'Further', goto: ['tatiana_lab', 'start'] },
-    ]);
+{ label: 'Further', goto: ['tatiana_lab', 'start'] },
+]);
+    return;
   } else {
     if (((s as any).fightEnding ?? 0) === 3) {
       (s as any).pcs_health = ((s as any).pcs_vital ?? 0)*10;
@@ -544,10 +544,10 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
         (s as any).wintatiana = 1;
       }
       scene.text('Tatiana falls to the floor and can no longer keep on fighting.');
-      return;
       scene.actions([
-        { label: 'Further', goto: ['tatiana_lab', 'start'] },
-      ]);
+{ label: 'Further', goto: ['tatiana_lab', 'start'] },
+]);
+      return;
     } else {
       if (((s as any).fightEnding ?? 0) === 4) {
         (s as any).fightEnding = 0;
@@ -556,10 +556,10 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
         (s as any).rikudo = ((s as any).rikudo ?? 0) + 10;
         scene.img('images/locations/shared/streetwalker/defeat.jpg');
         scene.text('The prostitute falls to the ground and starts pleading with you not to beat her again.');
-        return;
         scene.actions([
-          { label: 'Further', goto: ['city_park', 'start'] },
-        ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+        return;
       } else {
         if (((s as any).fightEnding ?? 0) === 5) {
           (s as any).fightEnding = 0;
@@ -568,25 +568,25 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
           (s as any).rikudo = ((s as any).rikudo ?? 0) + 10;
           if ((!((s as any).prostOnce ?? 0))) {
             (s as any).prostOnce = 1;
-            qspCall(s, 'money', 'earn', Math.floor(Math.random() * 4501) + 500);
+            qspCall(s, 'money', 'earn', (Math.floor(Math.random() * 4501) + 500));
           }
           scene.text('The pimp falls to the ground, letting out a pained groan. You take his wallet and kick him around before moving away.');
-          return;
           scene.actions([
-            { label: 'Further', goto: ['city_park', 'start'] },
-          ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+          return;
         } else {
           if (((s as any).fightEnding ?? 0) === 6) {
             (s as any).fightEnding = 0;
             (s as any).Win = ((s as any).Win ?? 0) + (1);
             (s as any).stellfight = ((s as any).stellfight ?? 0) + 1;
             (s as any).rikudo = ((s as any).rikudo ?? 0) + 10;
-            qspCall(s, 'money', 'earn', Math.floor(Math.random() * 201) + 300);
+            qspCall(s, 'money', 'earn', (Math.floor(Math.random() * 201) + 300));
             scene.text('The tattered prostitute falls to the ground. You give her a powerful kick in the ribs and she hands over her money, begging for you to stop.');
-            return;
             scene.actions([
-              { label: 'Further', goto: ['city_park', 'start'] },
-            ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+            return;
           } else {
             if (((s as any).fightEnding ?? 0) === 7) {
             } else {
@@ -600,20 +600,20 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                 }
                 scene.img('images/locations/shared/street/rapist_defeat.jpg');
                 // TODO-QSP: dynamic text: You defeat the '+iif(fightEnding = 8, 'rapist', 'thief')+' and empty his wallet ...
-                scene.text('You defeat the \'+iif(fightEnding = 8, \'rapist\', \'thief\')+\' and empty his wallet as he lies unconscious on the street.');
+                scene.text('You defeat the ' + ((((s as any).fightEnding ?? 0) === 8) ? ('rapist') : ('thief')) + ' and empty his wallet as he lies unconscious on the street.');
                 (s as any).fightEnding = 0;
                 (s as any).scpopt = 0;
                 if (((s as any).rikudo ?? 0) > 10) {
                   (s as any).rikudo = ((s as any).rikudo ?? 0) + (100);
                 }
                 (s as any).Win = ((s as any).Win ?? 0) + (1);
-                qspCall(s, 'money', 'earn', Math.floor(Math.random() * 1501) + 500);
-                return;
+                qspCall(s, 'money', 'earn', (Math.floor(Math.random() * 1501) + 500));
                 scene.actions([
-                  { label: 'Leave', handler: (st: GameState) => {
+{ label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-                ]);
+]);
+                return;
               } else {
                 if (((s as any).fightEnding ?? 0) === 10) {
                   qspCall(s, 'money', 'earn', 10000);
@@ -625,7 +625,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                   scene.text('"I\'ll stop, I swear!" Dimka says between pained breaths.');
                   scene.text('"You better." You turn to leave, but Lena stops you.');
                   scene.text('"Check his pockets." she says "I\'ll keep watch."');
-                  // TODO-QSP: dynamic text: You check his pockets and find <<$func('money', 'string_profit', 10000)>> in his...
+                  // TODO-QSP: dynamic text: You check his pockets and find <<$func(''money'', ''string_profit'', 10000)>> in...
                   scene.text(`You check his pockets and find ${qspFunc(s, 'money', 'string_profit', 10000)} in his wallet. Fucking rich kid. This should teach him. "The teacher is coming!" says Lera, "Let's get out of here!"`);
                   scene.actions([
                     { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -637,7 +637,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                       (s as any).rikudo = ((s as any).rikudo ?? 0) + (100);
                     }
                     (s as any).Win = ((s as any).Win ?? 0) + (1);
-                    qspCall(s, 'money', 'earn', Math.floor(Math.random() * 1501) + 500);
+                    qspCall(s, 'money', 'earn', (Math.floor(Math.random() * 1501) + 500));
                     qspCall(s, 'stat', '');
                     scene.text('You\'ve managed to batter one of your attacker\'s face while you broke the other\'s nose. As he spits, you can see that his spit is mixed with blood as he can barely hold his hand up to surrender. You quickly run over to them and empty the cash from their pockets and mock them. They quickly stumble to their feet and run away in fear.');
                     scene.actions([
@@ -707,7 +707,7 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                               scene.img('images/locations/shared/street/girlgang.jpg');
                               scene.text('"Take that bitches!"');
                               scene.text('With one last kick, the bitch squad lies fallen before you, whimpering in pain thanks to the sound beating they\'ve received at your hand, but as you look around for your next victim, a redheaded girl grabs you and pulls you away from the brawl turned riot, towards the waiting Vanya & Vicky.');
-                              // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don't know what to do with you! What were you thinking?!"
+                              // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
                               scene.text(`"${((s as any).pcs_nickname || '')}! I don't know what to do with you! What were you thinking?!"`);
                               scene.text('You… aren\'t too sure why the hell you incited the massive brawl that now is being broken apart by the police, and as you try to look for a good answer, Vanya chooses that moment to express his opinion.');
                               // TODO-QSP: dynamic text: "Well… Katja, I want to say, well… That is hockey! Give me those five <<$pcs_nic...
@@ -750,17 +750,17 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                                   } else {
                                     scene.actions([
                                       { label: 'Run!', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).AlexandriaMissionQW = ((s as any).AlexandriaMissionQW ?? 0) + (1);
-    (s as any).dummy = Math.floor(Math.random() * 100) + 1;
-    qspCall(s, 'stat', '');
-    if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      qspGoto(s, 'alexandriaEv', 'anachase3');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) + (1);
+    (st as any).dummy = (Math.floor(Math.random() * 100) + 1);
+    qspCall(st, 'stat', '');
+    if (((st as any).dummy ?? 0) <= ((st as any).pcs_run ?? 0)) {
+      qspGoto(st, 'alexandriaEv', 'anachase3');
     } else {
-      if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
-        qspGoto(s, 'alexandriaEv', 'anacrash1');
+      if (((st as any).dummy ?? 0) >= ((st as any).pcs_run ?? 0)  &&  ((st as any).dummy ?? 0) >= 90) {
+        qspGoto(st, 'alexandriaEv', 'anacrash1');
       } else {
-        qspGoto(s, 'alexandriaEv', 'anachase4');
+        qspGoto(st, 'alexandriaEv', 'anachase4');
       }
     }
   } },
@@ -873,10 +873,10 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
     (s as any).fightEnding = 0;
     scene.text('He ignores your pleas and hits you with a huge upper cut.');
     scene.text('You fall to the floor and feel your consciousness slipping away.');
-    return;
     scene.actions([
-      { label: 'Further', goto: ['intro_start', 'tg_adult_shared', '3'] },
-    ]);
+{ label: 'Further', goto: ['intro_start', 'tg_adult_shared', '3'] },
+]);
+    return;
   } else {
     if (((s as any).fightEnding ?? 0) === 2) {
       if (((s as any).pcs_health ?? 0) < 100) {
@@ -884,10 +884,10 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).fightEnding = 0;
       scene.text('You raise your hands asking Gustav to stop. He complains that he hasn\'t even warmed up yet, but stops the fight.');
-      return;
       scene.actions([
-        { label: 'Further', goto: ['tatiana_lab', 'start'] },
-      ]);
+{ label: 'Further', goto: ['tatiana_lab', 'start'] },
+]);
+      return;
     } else {
       if (((s as any).fightEnding ?? 0) === 3) {
         if (((s as any).pcs_health ?? 0) < 100) {
@@ -895,10 +895,10 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
         }
         (s as any).fightEnding = 0;
         scene.text('You tell Tatiana you\'ve had enough. She shakes her head and tells you you need to toughen up.');
-        return;
         scene.actions([
-          { label: 'Further', goto: ['tatiana_lab', 'start'] },
-        ]);
+{ label: 'Further', goto: ['tatiana_lab', 'start'] },
+]);
+        return;
       } else {
         if (((s as any).fightEnding ?? 0) === 4) {
           (s as any).fightEnding = 0;
@@ -926,10 +926,10 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_health ?? 0) < 100) {
             (s as any).pcs_health = 100;
           }
-          return;
           scene.actions([
-            { label: 'Further', goto: ['city_park', 'start'] },
-          ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+          return;
         } else {
           if (((s as any).fightEnding ?? 0) === 5) {
             if (((s as any).pcs_health ?? 0) < 100) {
@@ -942,10 +942,10 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/city/centralpark/sex/event/band.jpg');
             scene.text('The pimp lights a cigarette while rummaging through your stuff. He finally finds what he\'s been looking for - all of your money. "Open your mouth slut." he orders.');
             scene.text('You obey and open your mouth. He sighs as he taps ash into your mouth. "I hope you\'ve learned a valuable lesson slut. I won\'t be this kind next time."');
-            return;
             scene.actions([
-              { label: 'Further', goto: ['city_park', 'start'] },
-            ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+            return;
           } else {
             if (((s as any).fightEnding ?? 0) === 6) {
               (s as any).fightEnding = 0;
@@ -969,10 +969,10 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
               }
               qspCall(s, 'arousal', 'cuni_give', 10, 'sub', 'prostitution');
               qspCall(s, 'arousal', 'end');
-              return;
               scene.actions([
-                { label: 'Further', goto: ['city_park', 'start'] },
-              ]);
+{ label: 'Further', goto: ['city_park', 'start'] },
+]);
+              return;
             } else {
               if (((s as any).fightEnding ?? 0) === 7) {
               } else {
@@ -1014,12 +1014,12 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                       }
                     }
                     scene.text('He snatches your purse and rifles through it. After a few seconds, he decides to leave you some of the cash, tossing it on the ground with your purse and running away.');
-                    return;
                     scene.actions([
-                      { label: 'Get back on your feet', handler: (st: GameState) => {
+{ label: 'Get back on your feet', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-                    ]);
+]);
+                    return;
                   } else {
                     if (((s as any).fightEnding ?? 0) === 10) {
                       (s as any).fightEnding = 0;
@@ -1170,7 +1170,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                   scene.text('Oh shit! This was obviously a bad idea, and the girls surrounding you with murder in their eyes are more than willing to show you your error, so… you retreat and lift your hands in defeat, waiting for some mercy…');
                                   scene.text('"You will piss blood bitch!"');
                                   scene.text('Suddenly, a screaming Vanya runs towards the bitch squad and sweeps their legs with his hockey stick, causing them fall and letting the twins grab your hands and take you away from the brawl turned riot."');
-                                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don't know what to do with you! What were you thinking?!"
+                                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
                                   scene.text(`"${((s as any).pcs_nickname || '')}! I don't know what to do with you! What were you thinking?!"`);
                                   scene.text('Katja is really, really pissed and for a long while, she chastizes your actions, but finally, after a long-winded tirade, the redhead seems to deflate and gives you a tired hug.');
                                   scene.text('"Please! Don\'t do that again!"');
@@ -1223,17 +1223,17 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         scene.actions([
                                           { label: 'Run!', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).AlexandriaMissionQW = ((s as any).AlexandriaMissionQW ?? 0) + (1);
-    (s as any).dummy = Math.floor(Math.random() * 100) + 1;
-    qspCall(s, 'stat', '');
-    if (((s as any).dummy ?? 0) <= ((s as any).pcs_run ?? 0)) {
-      qspGoto(s, 'alexandriaEv', 'anachase3');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) + (1);
+    (st as any).dummy = (Math.floor(Math.random() * 100) + 1);
+    qspCall(st, 'stat', '');
+    if (((st as any).dummy ?? 0) <= ((st as any).pcs_run ?? 0)) {
+      qspGoto(st, 'alexandriaEv', 'anachase3');
     } else {
-      if (((s as any).dummy ?? 0) >= ((s as any).pcs_run ?? 0)  &&  ((s as any).dummy ?? 0) >= 90) {
-        qspGoto(s, 'alexandriaEv', 'anacrash1');
+      if (((st as any).dummy ?? 0) >= ((st as any).pcs_run ?? 0)  &&  ((st as any).dummy ?? 0) >= 90) {
+        qspGoto(st, 'alexandriaEv', 'anacrash1');
       } else {
-        qspGoto(s, 'alexandriaEv', 'anachase4');
+        qspGoto(st, 'alexandriaEv', 'anachase4');
       }
     }
   } },
@@ -1261,12 +1261,12 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                           { label: 'Go to jail', goto: ['alexandriaEv', 'jail'] },
                                           { label: 'Quick! Bribe them!', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 30000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
-      qspCall(s, 'money', 'pay', 30000, 'cash');
-      (s as any).AlexandriaMissionQW = ((s as any).AlexandriaMissionQW ?? 0) + (1);
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
+      qspCall(st, 'money', 'pay', 30000, 'cash');
+      (st as any).AlexandriaMissionQW = ((st as any).AlexandriaMissionQW ?? 0) + (1);
+      qspCall(st, 'stat', '');
       scene.img('images/characters/city/ana/gopniks.jpg');
       scene.text('"Hey guys! There is no need to involve the police! I learned the lesson! Let me show you!"');
       scene.text('The gang look at you, with murder in their eyes. Your presence is barely tolerated and is evident that some of them want to do more than just call the police, but before they can backtalk, you rise, take away your wallet and pull a roll of billets on the nearer.');

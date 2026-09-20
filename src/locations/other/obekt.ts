@@ -12,8 +12,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/construction/obekt.jpg');
   scene.text('The construction work has stopped and there is complete silence, the only person there is the guard walking around.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: The <a href="exec:gs 'carF', 'start'"> <<$car['name']>></a> is standing in the p...
-    scene.text(`The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;"> ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is standing in the parking.`);
+    // TODO-QSP: dynamic text: The <a href="exec:gs ''carF'', ''start''"> <<$car[''name'']>></a> is standing in...
+    scene.text(`The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;"> ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is standing in the parking.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -21,11 +21,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
   }, goto: ['road', '16'] },
     { label: 'Sneak into the construction site', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    if (((s as any).obekt ?? 0)?.['open'] === 0) {
-      if (((s as any).obekt ?? 0)?.['bil'] === 0) {
-        ((s as any).obekt = (s as any).obekt ?? {})['bil'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    if (((st as any).obekt ?? 0)?.['open'] === 0) {
+      if (((st as any).obekt ?? 0)?.['bil'] === 0) {
+        ((st as any).obekt = (st as any).obekt ?? {})['bil'] = 1;
         scene.text('Before you\'re able to enter, you hear a voice asking you what you\'re doing. It\'s the guard that caught you. He points towards the direction you should be heading instead.');
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
@@ -33,7 +33,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        qspGoto(s, 'obekt', 'obekt2');
+        qspGoto(st, 'obekt', 'obekt2');
       }
     }
   } },
@@ -113,72 +113,72 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['obekt', 'dungeon3'] },
     { label: 'Sign in 2w room', handler: (st: GameState) => {
-    if (((s as any).obekt ?? 0)?.['openstateDM1'] === 1) {
-      (s as any).minut = ((s as any).minut ?? 0) + (5);
-      qspGoto(s, 'obekt', 'dungeon4');
+    if (((st as any).obekt ?? 0)?.['openstateDM1'] === 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + (5);
+      qspGoto(st, 'obekt', 'dungeon4');
     } else {
-      if (((s as any).obekt ?? 0)?.['openstateDM1'] === 0) {
+      if (((st as any).obekt ?? 0)?.['openstateDM1'] === 0) {
         // TODO-QSP: :markanotherrand
-        ((s as any).obekt = (s as any).obekt ?? {})['DMN'] = '' + (String(String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4))) + '';
-        if (((s as any).obekt ?? 0)?.['DMN'] === (String(((s as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + (String(((s as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
+        ((st as any).obekt = (st as any).obekt ?? {})['DMN'] = '' + (String(String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4))) + '';
+        if (((st as any).obekt ?? 0)?.['DMN'] === (String(((st as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + (String(((st as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '8809') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '8809') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '7111') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '7111') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '2172') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '2172') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '3213') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '3213') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '7662') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '7662') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '9312') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '9312') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '8193') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '8193') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '8096') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '8096') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '7756') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '7756') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '6855') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '6855') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '9881') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '9881') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        if (((s as any).obekt ?? 0)?.['DMN'] === '5531') {
+        if (((st as any).obekt ?? 0)?.['DMN'] === '5531') {
           // TODO-QSP: jump 'markanotherrand'
         }
-        ((s as any).obekt = (s as any).obekt ?? {})['i'] = 1;
-        ((s as any).obekt = (s as any).obekt ?? {})['numdmr'] = 0;
+        ((st as any).obekt = (st as any).obekt ?? {})['i'] = 1;
+        ((st as any).obekt = (st as any).obekt ?? {})['numdmr'] = 0;
         // TODO-QSP: :markdnm
-        if (((String('69').indexOf(String((String(((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1)))))) + 1) > 0) {
-          ((s as any).obekt = (s as any).obekt ?? {})['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (1);
+        if (((String('69').indexOf(String((String(((st as any).obekt ?? 0)?.['DMN']).slice((((st as any).obekt ?? 0)?.['i'])-1, ((((st as any).obekt ?? 0)?.['i'])-1)+(1)))))) + 1) > 0) {
+          ((st as any).obekt = (st as any).obekt ?? {})['numdmr'] = ((st as any).obekt['numdmr'] ?? 0) + (1);
         } else {
-          if ((String(((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1))) === '8') {
-            ((s as any).obekt = (s as any).obekt ?? {})['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (2);
+          if ((String(((st as any).obekt ?? 0)?.['DMN']).slice((((st as any).obekt ?? 0)?.['i'])-1, ((((st as any).obekt ?? 0)?.['i'])-1)+(1))) === '8') {
+            ((st as any).obekt = (st as any).obekt ?? {})['numdmr'] = ((st as any).obekt['numdmr'] ?? 0) + (2);
           }
         }
-        ((s as any).obekt = (s as any).obekt ?? {})['i'] = ((s as any).obekt['i'] ?? 0) + (1);
-        if (((s as any).obekt ?? 0)?.['i'] < 5) {
+        ((st as any).obekt = (st as any).obekt ?? {})['i'] = ((st as any).obekt['i'] ?? 0) + (1);
+        if (((st as any).obekt ?? 0)?.['i'] < 5) {
           // TODO-QSP: jump 'markdnm'
         }
-        ((s as any).obekt = (s as any).obekt ?? {})['numberOSDM'] = 0;
-        if (((s as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((s as any).obekt ?? 0)?.['numberOSDM'] !== ((s as any).obekt ?? 0)?.['numdmr']) {
+        ((st as any).obekt = (st as any).obekt ?? {})['numberOSDM'] = 0;
+        if (((st as any).obekt ?? 0)?.['numberOSDM'] < 0  ||  ((st as any).obekt ?? 0)?.['numberOSDM'] >= 9  ||  ((st as any).obekt ?? 0)?.['numberOSDM'] !== ((st as any).obekt ?? 0)?.['numdmr']) {
         } else {
-          ((s as any).obekt = (s as any).obekt ?? {})['openstateDM1'] = 1;
+          ((st as any).obekt = (st as any).obekt ?? {})['openstateDM1'] = 1;
         }
-        qspGoto(s, 'obekt', 'dungeon2');
+        qspGoto(st, 'obekt', 'dungeon2');
       }
     }
   } },
@@ -189,7 +189,7 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
 function enterDungeon3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pre/shared/dunpre3.jpg');
   scene.text('The room in which the middle stands a stone dais on which are various dusty bottles.');
-  scene.text('Scrawled on the wall of what is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obekt\\u0027, \\u0027dungeon3_labels\\u0027); return false;">signs</a>.');
+  scene.text('Scrawled on the wall of what is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obekt/u0027, /u0027dungeon3_labels/u0027); return false;">signs</a>.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
@@ -231,17 +231,17 @@ function enterDungeon3Labels(s: GameState, scene: SceneBuilder): void {
 
 function enterDungeon4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pre/shared/dunpre4.jpg');
-  scene.text('Small room in which there are what that <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obekt\\u0027, \\u0027dungeon4_drums\\u0027); return false;">Drums</a>.');
+  scene.text('Small room in which there are what that <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obekt/u0027, /u0027dungeon4_drums/u0027); return false;">Drums</a>.');
   if (((s as any).obekt ?? 0)?.['openstateDM2'] === 1) {
     scene.text('In another barrel you see a device where you can enter numbers.');
     scene.actions([
       { label: 'Enter the numbers', handler: (st: GameState) => {
-    ((s as any).obekt = (s as any).obekt ?? {})['numberOSDM2'] = 0;
-    if (((s as any).obekt ?? 0)?.['numberOSDM2'] === 1415) {
-      ((s as any).obekt = (s as any).obekt ?? {})['openstateDM2'] = 2;
+    ((st as any).obekt = (st as any).obekt ?? {})['numberOSDM2'] = 0;
+    if (((st as any).obekt ?? 0)?.['numberOSDM2'] === 1415) {
+      ((st as any).obekt = (st as any).obekt ?? {})['openstateDM2'] = 2;
     }
-    qspCall(s, 'array', 'remove_element', 'dungeon', 'numberOSDM2');
-    qspGoto(s, 'obekt', 'dungeon4');
+    qspCall(st, 'array', 'remove_element', 'dungeon', 'numberOSDM2');
+    qspGoto(st, 'obekt', 'dungeon4');
   } },
     ]);
   }
@@ -271,7 +271,7 @@ function enterDungeon5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pre/shared/dunpre5.jpg');
   scene.text('The room in which the middle, sitting on a stone throne cobwebbed skeleton.');
   if (((s as any).obekt ?? 0)?.['svitokRTS'] === 0) {
-    scene.text('In the hands of a skeleton lying <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obekt\\u0027, \\u0027dungeon5_scroll\\u0027); return false;">scroll</a>.');
+    scene.text('In the hands of a skeleton lying <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obekt/u0027, /u0027dungeon5_scroll/u0027); return false;">scroll</a>.');
   }
   // TODO-QSP: end
   scene.actions([

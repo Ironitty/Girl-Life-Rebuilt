@@ -49,7 +49,7 @@ function enterRiverRapeConvo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
-  (s as any).convo_rng_roll = Math.floor(Math.random() * 28) + 1;
+  (s as any).convo_rng_roll = (Math.floor(Math.random() * 28) + 1);
   if (((s as any).convo_rng_roll ?? 0) === 1) {
     scene.text('"What\'s the difference between a dog and a fox?"');
     scene.text('"Two shots of vodka!"');
@@ -241,7 +241,7 @@ function enterGenericConvo(s: GameState, scene: SceneBuilder): void {
 function enterYardConvo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/hunters/hanterstalk.jpg');
   scene.text('While walking around the yard, you overhear the hunters\' conversation.');
-  (s as any).convo_rng_roll = Math.floor(Math.random() * 20) + 1;
+  (s as any).convo_rng_roll = (Math.floor(Math.random() * 20) + 1);
   if (((s as any).convo_rng_roll ?? 0) === 1) {
     if (((s as any).fame_sexind ?? 0) > 10  &&  ((s as any).fame ?? 0)?.['city_modelling'] > 30  &&  ((s as any).hunterVars ?? 0)?.['knowfoto'] === 0) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeModelConvo(s, scene); (s as any).locArgs = __savedLocArgs; }

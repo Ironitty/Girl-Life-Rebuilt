@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterLesco(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A7', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big7.jpg');
   if ((!(Math.floor(Math.random() * 6) + 0))) {
@@ -20,7 +20,7 @@ function enterLesco(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 50) {
-        // TODO-QSP: dynamic text: Lesco doesn't look comfortable as you approach, but you think he's too shy to sa...
+        // TODO-QSP: dynamic text: Lesco doesn''t look comfortable as you approach, but you think he''s too shy to ...
         scene.text(`Lesco doesn't look comfortable as you approach, but you think he's too shy to say anything to chase you off. "Oh… Hey ${((s as any).pcs_nickname || '')}…" You engage in an awkward conversation with him as he avoids eye contact with you and gives you brief, one word answers.`);
       } else {
         scene.text('He panics when he sees you walking over. "Get away from me! I have enough problems without being seen with the likes of you!" he exclaims as he quickly moves away from you.');
@@ -91,7 +91,7 @@ function enterLesco(s: GameState, scene: SceneBuilder): void {
 
 function enterPetia(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A159', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big159.jpg');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
@@ -168,21 +168,21 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'npc_relationship', 'modify', 'A159', 'like');
-      qspCall(s, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'npc_relationship', 'modify', 'A159', 'like');
+      qspCall(st, 'money', 'pay', 50, 'cash');
       scene.img('images/characters/shared/headshots_main/big159.jpg');
       scene.text('You feel sorry for him and do have the money to spare. "Here, go and get yourself some lunch."');
-      if (((s as any).tits ?? 0) >= 4) {
+      if (((st as any).tits ?? 0) >= 4) {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort as you notice him staring at your breasts.');
-        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you're the best!" he says with a grin and, is that lo...
-        scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
+        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       } else {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort.');
-        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you're the best!" he says with a grin and, is that lo...
-        scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
+        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       }
       scene.actions([
@@ -191,10 +191,10 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
     }
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A159', 'dislike');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I thought we were friends… I\'m…"');
@@ -211,21 +211,21 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'npc_relationship', 'modify', 'A159', 'like');
-      qspCall(s, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'npc_relationship', 'modify', 'A159', 'like');
+      qspCall(st, 'money', 'pay', 50, 'cash');
       scene.img('images/characters/shared/headshots_main/big159.jpg');
       scene.text('You feel sorry for him and do have the money to spare. "Here, go and get yourself some lunch."');
-      if (((s as any).tits ?? 0) >= 4) {
+      if (((st as any).tits ?? 0) >= 4) {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort as you notice him staring at your breasts.');
-        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you're the best!" he says with a grin and, is that lo...
-        scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
+        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       } else {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort.');
-        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you're the best!" he says with a grin and, is that lo...
-        scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
+        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       }
       scene.actions([
@@ -234,10 +234,10 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
     }
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A159', 'dislike');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I… I\'m…"');
@@ -281,21 +281,21 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'npc_relationship', 'modify', 'A159', 'like');
-      qspCall(s, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'npc_relationship', 'modify', 'A159', 'like');
+      qspCall(st, 'money', 'pay', 50, 'cash');
       scene.img('images/characters/shared/headshots_main/big159.jpg');
       scene.text('You feel sorry for him and do have the money to spare. "Here, go and get yourself some lunch."');
-      if (((s as any).tits ?? 0) >= 4) {
+      if (((st as any).tits ?? 0) >= 4) {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort as you notice him staring at your breasts.');
-        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you're the best!" he says with a grin and, is that lo...
-        scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
+        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       } else {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort.');
-        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you're the best!" he says with a grin and, is that lo...
-        scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
+        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       }
       scene.actions([
@@ -304,10 +304,10 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
     }
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A159', 'dislike');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I thought we were friends… I\'m…"');
@@ -324,24 +324,24 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
               scene.actions([
                 { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'npc_relationship', 'modify', 'A159', 'like');
-      qspCall(s, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'npc_relationship', 'modify', 'A159', 'like');
+      qspCall(st, 'money', 'pay', 50, 'cash');
       scene.img('images/characters/shared/headshots_main/big159.jpg');
       scene.text('You feel sorry for him and do have the money to spare. "Here, go and get yourself some lunch."');
       // TODO-QSP: dynamic text: His eyes grow wide and he takes the money from your hand, letting his hand linge...
-      scene.text(`His eyes grow wide and he takes the money from your hand, letting his hand linger against yours way too long for comfort. "Thanks ${((s as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes? After another awkward moment, he leaves to go and buy lunch.`);
+      scene.text(`His eyes grow wide and he takes the money from your hand, letting his hand linger against yours way too long for comfort. "Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes? After another awkward moment, he leaves to go and buy lunch.`);
       scene.actions([
         { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
       ]);
     }
   } },
                 { label: 'Tell him to stop being a mooch', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A159', 'dislike');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A159', 'dislike');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
     scene.img('images/characters/shared/headshots_main/big159.jpg');
     scene.text('Tired of him always mooching off you and the others, you snap. "Stop being a mooch and try taking care of yourself for once!"');
     scene.text('His eyes water up a little. "I… I\'m…"');
@@ -369,23 +369,23 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('Sonia sees you approaching and gets up, walking away without a word before you can even reach her.');
-    return;
     scene.actions([
-      { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
-    ]);
+{ label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
+]);
+    return;
   } else {
     if (((s as any).soniaQW ?? 0)?.['fallenangel'] >= 1  &&  ((s as any).daystart ?? 0) <= ((s as any).soniaQW ?? 0)?.['fallday'] + 7) {
       qspCall(s, 'stat', '');
       scene.img('images/characters/shared/headshots_main/big25.jpg');
       scene.text('Sonia is sitting alone, staring blankly at nothing. She doesn\'t look up or respond when you approach, so you decide to leave her alone for now.');
-      return;
       scene.actions([
-        { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
-      ]);
+{ label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
+]);
+      return;
     }
   }
   qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big25.jpg');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 250) {
@@ -403,7 +403,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
         scene.text('She\'s reluctant at first, but slowly starts to get engaged in the conversation. The two of you talk about fashion, makeup and eventually sex, discussing the different people you\'ve had sex with and who is better.');
       } else {
         scene.text('You see Sonia sitting by herself as usual and approach her with a friendly smile.');
-        // TODO-QSP: dynamic text: She looks up and gives you a smile in return. "What's up, <<$pcs_nickname>>?"
+        // TODO-QSP: dynamic text: She looks up and gives you a smile in return. "What''s up, <<$pcs_nickname>>?"
         scene.text(`She looks up and gives you a smile in return. "What's up, ${((s as any).pcs_nickname || '')}?"`);
         scene.text('You sit next to her. "I just wanted to talk."');
         scene.text('She\'s reluctant at first, but quickly relaxes and gets into the conversation. The two of you talk about fashion, makeup and eventually sex, discussing the different people you\'ve had sex with and who is better.');
@@ -529,15 +529,15 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a pad. Can I borrow one?"';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period just started and I don\'t have a tampon. Can I borrow one?"';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -545,15 +545,15 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pantyworntype ?? 0) !== 'none') {
         scene.actions([
           { label: 'Ask for a pad', handler: (st: GameState) => {
-    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a pad. Can I borrow one?"';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
       scene.actions([
         { label: 'Ask for a tampon', handler: (st: GameState) => {
-    ((s as any).temp = (s as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).temp = (st as any).temp ?? {})['tampon_ask'] = '"Sonia," you whisper. "My period is starting soon and I don\'t have a tampon. Can I borrow one?"';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSoniaTampon(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -567,11 +567,11 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
 
 function enterSoniaTampon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big25.jpg');
-  // TODO-QSP: dynamic text: <<$temp['tampon_ask']>>
+  // TODO-QSP: dynamic text: <<$temp[''tampon_ask'']>>
   scene.text(`${((s as any).temp ?? 0)?.['tampon_ask'] ?? ''}`);
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
-      // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, I've got your back," she says, immediately diggi...
+      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, I''ve got your back," she says, immediately dig...
       scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, I've got your back," she says, immediately digging into her purse to produce one.`);
       scene.text('"Thanks Sonia, you\'re a lifesaver."');
     } else {
@@ -581,7 +581,7 @@ function enterSoniaTampon(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
-      // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, I've only got tampons," she says, digging into her pur...
+      // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, I''ve only got tampons," she says, digging into her pu...
       scene.text(`"Sorry ${((s as any).pcs_nickname || '')}, I've only got tampons," she says, digging into her purse to produce one. "But anything in an emergency, right?`);
       scene.text('"Thanks Sonia, you\'re a lifesaver."');
     } else {

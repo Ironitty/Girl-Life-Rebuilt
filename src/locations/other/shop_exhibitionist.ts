@@ -64,6 +64,66 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'start');
+  (s as any).location_type = 'public_indoors';
+  if (((s as any).exhibitionQW ?? 0) === 3) {
+    (s as any).exhibitionQW = 4;
+  }
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Simply Salacious</b></center>');
+  scene.img('images/locations/pushkin/exhibitshop/shop.jpg');
+  scene.text('A modern looking store where the clothing is all very revealing and not nearly as classy as the store itself.');
+  if (((s as any).hypnoClothes ?? 0) === 1  &&  ((s as any).exhibitionQW ?? 0) === 4) {
+    scene.actions([
+      { label: 'Look for Ksenya', goto: ['shop_exhibitionist', 'ksenya_intro'] },
+    ]);
+  }
+  if (((s as any).exhibitionQW ?? 0) === 5  &&  ((s as any).daystart ?? 0) >= ((s as any).exhibitionQW ?? 0)?.['daystart'] + 3  &&  ((s as any).KsenyaQW ?? 0) >= 3) {
+    if ((Math.floor(Math.random() * 2) + 1) === 1) {
+      qspGoto(s, 'shop_exhibitionist', 'ksenya_date');
+    }
+  }
+  if (((s as any).exhibitionQW ?? 0) === 5  &&  ((s as any).exhibitionQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)) {
+    if (((s as any).KsenyaQW ?? 0) === 2) {
+      scene.actions([
+        { label: 'Ask to see Ksenya', goto: ['shop_exhibitionist', 'ksenya_shop'] },
+      ]);
+    } else {
+      scene.actions([
+        { label: 'Talk to Ksenya', goto: ['shop_exhibitionist', 'ksenya_chat'] },
+      ]);
+    }
+  }
+  if (((s as any).hour ?? 0) >= 18) {
+    scene.text('The shop is closing and you have to leave.');
+    return;
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['pushkin_sq', ''] },
+    { label: 'View outfits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'outfits'] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'dresses'] },
+    { label: 'View panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'panties'] },
+    { label: 'View bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'bras'] },
+    { label: 'View bodysuits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_exhibitionist', 'bodysuit'] },
+  ]);
+  scene.build();
+}
+
 function enterOutfits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_exhibitionist', 'outfits');
   (s as any).locclass = 'changingroom';
@@ -78,9 +138,9 @@ function enterOutfits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_exhibitionist', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_exhibitionist', 'start');
   } },
   ]);
   scene.build();
@@ -101,9 +161,9 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_exhibitionist', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_exhibitionist', 'start');
   } },
   ]);
   scene.build();
@@ -123,9 +183,9 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_exhibitionist', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_exhibitionist', 'start');
   } },
   ]);
   scene.build();
@@ -145,9 +205,9 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_exhibitionist', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_exhibitionist', 'start');
   } },
   ]);
   scene.build();
@@ -167,9 +227,9 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_exhibitionist', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_exhibitionist', 'start');
   } },
   ]);
   scene.build();
@@ -202,8 +262,8 @@ function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'hard');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'hard');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/park/ksenya/ksenya8.jpg');
     scene.text('"Yes? I no longer like wearing underwear. Are you referring to that?" you inquire.');
     scene.text('"Is he doing hypnosis with you?" she asks and you nod your head. "I think you may be in trouble if you continue seeing him."');
@@ -254,55 +314,55 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask her out', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A263', 2);
+    qspCall(st, 'npc_relationship', 'modify', 'A263', 2);
     scene.img('images/locations/shared/park/ksenya/ksenya8.jpg');
     scene.text('"Not today. I wanted to see if you wanted to go and see a movie or something?" you ask.');
     scene.text('"Oh, like a date?" she asks and gives you another hug. "I would love to! Just let me close up," she says and moves behind the counter to turn off the \'Open\' sign before placing a \'Be Back Later\' sign on the door.');
     scene.actions([
       { label: 'Wait for Ksenya', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A263');
-    qspCall(s, 'npc_relationship', 'modify', 'A263', 2);
+    qspCall(st, 'npcStat', 'A263');
+    qspCall(st, 'npc_relationship', 'modify', 'A263', 2);
     scene.text('The two of you get into her Ferrari and drive to the local cinema, where you spend a few minutes in her car kissing before you head into the theatre.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'kiss', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Take a seat', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.text('You both get some snacks before taking your seats. It\'s dark when the movie starts and the theatre is empty.');
     scene.text('The adverts haven\'t even finished before she pulls you over to her and you cuddle and kiss a little, touching each other and stealing kisses throughout the movie.');
-    qspCall(s, 'arousal', 'kiss', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Make out', handler: (st: GameState) => {
     scene.text('You\'re ignoring the movie at this point and are just making out as her hand snakes under your clothes and starts groping your breasts as she kisses your neck.');
     scene.text('You moan out loud, but when you try to touch her in return, she stops you.');
     scene.text('"Not right now; this is for you…" she whispers into your ear before pushing her tongue into your mouth.');
-    qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let her eat you out', handler: (st: GameState) => {
     scene.text('By now, she has removed most of your clothes and is between your legs, eating you out. You are glad you are alone in the movie theatre as Ksenya\'s tongue is making you moan out loudly. Your rapidly approaching orgasm is interrupted when the lights of the theatre turn back on.');
     scene.text('She helps you redress and you weakly exit the theatre.');
-    qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go back to her car', handler: (st: GameState) => {
     scene.text('She drives to a secluded area and gets on top of you, pushing your seat back and quickly removing her clothes and yours. She hastily grabs your breasts and suckles on your nipples.');
-    if (((s as any).lactation ?? 0)?.['active'] >= 1) {
+    if (((st as any).lactation ?? 0)?.['active'] >= 1) {
       scene.text('"Mmm, you have milk? It\'s tasty!" she says and spends a moment on your nipples, drinking your sweet milk. "I may partake in this more often," she says and goes back to your nipples.');
     }
     scene.text('She spends a few more minutes on your nipples before pulling back and moving her leg between yours and one of yours between hers as you start to grind on each other.');
-    (s as any).orgasm_txt = 'This only lasts a few minutes before you orgasm from all her teasing back in the theatre. She doesn\'t stop and rides your leg until she orgasms herself.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'foreplay', 10, 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_txt = 'This only lasts a few minutes before you orgasm from all her teasing back in the theatre. She doesn\'t stop and rides your leg until she orgasms herself.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'foreplay', 10, 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Relax', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
     scene.text('You lay under her for a while as the two of you relax in each other\'s arms.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, that was amazing! I hope we can do this again soon," she say...
-    scene.text(`"${((s as any).pcs_nickname || '')}, that was amazing! I hope we can do this again soon," she says without pulling back, not wanting to part from you as she kisses you sweetly.`);
+    scene.text(`"${((st as any).pcs_nickname || '')}, that was amazing! I hope we can do this again soon," she says without pulling back, not wanting to part from you as she kisses you sweetly.`);
     scene.text('"I\'d like that," you reply while running a hand through her hair.');
     scene.text('"I need to get back to the store. Is there any place you want me to drop you off?" she asks as she slowly gets up and starts to get dressed in the cramped space of the car.');
     scene.text('You pull your clothes back on before smiling at her. "I\'d like you to drop me off at…" ');
@@ -324,8 +384,8 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Run', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A263', (-5));
-    qspGoto(s, 'pushkin_sq', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A263', (-5));
+    qspGoto(st, 'pushkin_sq', '');
   } },
     ]);
   } },
@@ -388,6 +448,9 @@ function enterKsenyaShop(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'outfits':
       enterOutfits(s, scene);
       break;

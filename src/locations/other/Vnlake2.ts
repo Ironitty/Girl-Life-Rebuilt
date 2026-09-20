@@ -17,55 +17,55 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Push them away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspGoto(s, 'Nudelake', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspGoto(st, 'Nudelake', '');
   } },
     ]);
   }
   scene.actions([
     { label: 'Touch member', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'guy from the nudist beach', Math.floor(Math.random() * 10) + 21);
-    (s as any).boy1 = ((s as any).npclastgenerated ?? 0);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 0, 'guy from the nudist beach', Math.floor(Math.random() * 10) + 21);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    (s as any).guy = ((s as any).guy ?? 0) + (2);
+    qspCall(st, 'npcgeneratec', '', 0, 'guy from the nudist beach', (Math.floor(Math.random() * 10) + 21));
+    (st as any).boy1 = ((st as any).npclastgenerated ?? 0);
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'guy from the nudist beach', (Math.floor(Math.random() * 10) + 21));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/vnlake2/vnlake2.jpg');
     scene.text('You touch one of their members and smile invitingly as you get up onto your knees. The men rise and stand next to you, their members close to you. You take them in your hands and begin to suck them, alternating between one and the other.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stand on all fours', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vnlake2/vnlake3.jpg');
     scene.text('Having sucked them enough, you get on to all fours. One of the men lies in front of you, and you take his cock in your mouth. The second kneels behind you and drives himself into your vagina.');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vnlake2/vnlake4.jpg');
-    qspCall(s, 'arousal', 'auto_lube', 'anal');
+    qspCall(st, 'arousal', 'auto_lube', 'anal');
     scene.text('You move forwards and sit on the cock that was in your mouth. Hands on your buttocks, you present your ass to the other. Encouraged, he accepts. They fuck you in both holes, while you moan loudly.');
     scene.text('This continues for what feels like forever as you are lost in bliss. Finally, the member in your ass is removed. You are spent and happy to finish now.');
     scene.text('"Sit your ass here," says the man on the bottom.');
-    qspCall(s, 'arousal', 'vaginal', 20, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'anal', (-20), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 20, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', (-20), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Take your seat', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vnlake2/vnlake5.jpg');
     scene.text('You get up, turn around and sit your ass down on his member. The other man stands next to your face, and you eagerly take his cock in your mouth. Soon, you feel that your ass has been flooded with sperm and the dick in your mouth is twitching as the guy struggles to hold back.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'cum_call', 'butt', ((s as any).npcID ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'cum_call', 'butt', ((st as any).npcID ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Remove from mouth', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vnlake2/vnlake6.jpg');
     scene.text('You spit the dick out of your mouth, and the man splatters your face with his load.');
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stay on the beach', goto: ['Nudelake', ''] },
     ]);

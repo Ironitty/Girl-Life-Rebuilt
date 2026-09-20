@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   qspCall(s, 'park_walkevents', '');
-  (s as any).parkrand = Math.floor(Math.random() * 20) + 1;
+  (s as any).parkrand = (Math.floor(Math.random() * 20) + 1);
   if (((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 21) {
     if (((s as any).parkrand ?? 0) < 10) {
       qspGoto(s, 'park_walkevents', '' + ((s as any).parkrand ?? 0) + '');

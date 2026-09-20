@@ -4,11 +4,40 @@ import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sleepVars ?? 0)?.['dreams_active'] === 1) {
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+    if (((s as any).stepdadQW ?? 0) === 3) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''dream_events'', ''stepdad_dream'' '
+    }
+    if (((s as any).canBraidHair ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).pcs_hairlng ?? 0) > 80) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''dream_events'', ''braid_hair_dream'' '
+    }
+    if (((s as any).succubusQW ?? 0) === 1  ||  ((s as any).succubusQW ?? 0) === 2) {
+      // TODO-QSP: $sleep_events_priority[] = 'gs ''dream_events'', ''succubus_dream'' '
+    }
+    if ((Math.floor(Math.random() * 100) + 1) <= ((s as any).cheatVars ?? 0)?.['no_dream_chance']) {
+      // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''no_dream'' '
+    } else {
+      if (((s as any).pcs_horny ?? 0) <= 50) {
+        // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''d_dreams'' '
+      } else {
+        if ((Math.floor(Math.random() * 4) + 0) < ((s as any).hypnoTime ?? 0)) {
+          // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''hypno_dreams'' '
+        } else {
+          // TODO-QSP: $sleep_events[] = 'gs ''dream_events'', ''erotic_dream_switch'' '
+        }
+      }
+      qspCall(s, 'blackmailer', 'blackmail_dream_events');
+    }
+    qspGoto(s, 'dream_events', 'mod_sleepevents');
+  }
+  qspGoto(s, 'dream_events', 'continue');
+  // TODO-QSP: end
   scene.build();
 }
 
-function enterStart(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['dreams_active'] === 1) {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).stepdadQW ?? 0) === 3) {
@@ -65,7 +94,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
-  if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {
@@ -137,7 +166,7 @@ function enterNoDream(s: GameState, scene: SceneBuilder): void {
   if (((s as any).start_type ?? 0)?.['magic'] !== 'tg'  ||  (Math.floor(Math.random() * 10) + 0) > 2) {
     scene.text('You sleep without dreaming.');
   } else {
-    (s as any).temp = Math.floor(Math.random() * 3) + 0;
+    (s as any).temp = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).temp ?? 0))) {
       scene.text('You have hazy dreams about your past.');
     } else {
@@ -155,7 +184,7 @@ function enterNoDream(s: GameState, scene: SceneBuilder): void {
 
 function enterEroticDreamSwitch(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).pcs_ass ?? 0) === 0  &&  (!(((s as any).stat ?? 0)?.['anal'] + ((s as any).stat ?? 0)?.['bj'] + ((s as any).stat ?? 0)?.['hj'] + ((s as any).stat ?? 0)?.['cuni']+ ((s as any).stat ?? 0)?.['female_sexual_partners'] + ((s as any).stat ?? 0)?.['male_sexual_partners'] + ((s as any).stat ?? 0)?.['herm_sexual_partners']))) {
-    (s as any).temp_rand = Math.floor(Math.random() * 6) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 1);
   } else {
     (s as any).temp_rand = (Math.floor(Math.random() * (7 + ((s as any).succublvl ?? 0) - 1 + 1)) + (1));
   }
@@ -194,9 +223,9 @@ function enterEroticDreamSwitch(s: GameState, scene: SceneBuilder): void {
 
 function enterDDreams(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).clownQW ?? 0))) {
-    (s as any).temp_rand = Math.floor(Math.random() * 13) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 13) + 1);
   } else {
-    (s as any).temp_rand = Math.floor(Math.random() * 14) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 14) + 1);
   }
   if (((s as any).temp_rand ?? 0) === 1) {
     scene.img('images/shared/home/bedroom/dream/dream1.jpg');
@@ -273,10 +302,10 @@ function enterDDreams(s: GameState, scene: SceneBuilder): void {
 function enterHypnoDreams(s: GameState, scene: SceneBuilder): void {
   if (((s as any).therapistFuckedPussyStage ?? 0) < 1) {
     qspCall(s, 'arousal', 'erotic', (-15));
-    (s as any).temp_rand = Math.floor(Math.random() * 2) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
   } else {
     qspCall(s, 'arousal', 'erotic', (-20));
-    (s as any).temp_rand = Math.floor(Math.random() * 7) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 7) + 1);
   }
   if (((s as any).temp_rand ?? 0) === 1) {
     scene.img('images/locations/pavlovsk/clinic/therapist/sex/schoolSitBlow2.mp4');
@@ -405,9 +434,9 @@ function enterHypnoDreams(s: GameState, scene: SceneBuilder): void {
 function enterEroDreams(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic', (-10));
   if (((s as any).start_type ?? 0)?.['magic'] === 'no_magic') {
-    (s as any).temp_rand = Math.floor(Math.random() * 5) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
   } else {
-    (s as any).temp_rand = Math.floor(Math.random() * 6) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 1);
   }
   if (((s as any).temp_rand ?? 0) === 1) {
     scene.img('images/shared/home/bedroom/dream/ero1.jpg');
@@ -446,7 +475,7 @@ function enterEroDreams(s: GameState, scene: SceneBuilder): void {
 
 function enterSexDreams(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'erotic', (-25));
-  (s as any).temp_rand = Math.floor(Math.random() * 5) + 1;
+  (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).temp_rand ?? 0) === 1) {
     scene.img('images/shared/home/bedroom/dream/sex/sex1.jpg');
     scene.text('You dream about having sex at the poolside of an expensive mansion with an attractive athletic man, bouncing up and down on his cock while he firmly grasps your ass.');
@@ -577,9 +606,9 @@ function enterGangDreams(s: GameState, scene: SceneBuilder): void {
 
 function enterSuccubDreams(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sucpcinfo ?? 0) < 4) {
-    (s as any).temp_rand = Math.floor(Math.random() * 5) + 1;
+    (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
   } else {
-    (s as any).temp_rand = Math.floor(Math.random() * 4) + 2;
+    (s as any).temp_rand = (Math.floor(Math.random() * 4) + 2);
   }
   if (((s as any).temp_rand ?? 0) === 1) {
     scene.img('images/shared/home/bedroom/dream/sucrandream1.jpg');
@@ -601,7 +630,7 @@ function enterSuccubDreams(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).sucselftmp = ((s as any).sucself1 ?? 0);
         }
-        // TODO-QSP: dynamic text: You dream that you're arguing with <<$sucselftmp>>.
+        // TODO-QSP: dynamic text: You dream that you''re arguing with <<$sucselftmp>>.
         scene.text(`You dream that you're arguing with ${((s as any).sucselftmp || '')}.`);
         scene.text('You don\'t know what it\'s about, but you think you won…');
       } else {
@@ -627,8 +656,8 @@ function enterSuccubDreams(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPregDreams(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/pc/body/shape/preg/0/${Math.floor(Math.random() * 6) + 3}.jpg`);
-  (s as any).temp_rand = Math.floor(Math.random() * 10) + 1;
+  scene.img(`images/pc/body/shape/preg/0/${(Math.floor(Math.random() * 6) + 3)}.jpg`);
+  (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).temp_rand ?? 0) === 1) {
     scene.text('You dream you\'re walking through a quiet forest, heavily pregnant as sunlight filters gently through the leaves. The trees seem to watch you with kindness.');
     scene.text('When you reach a still pond, you look down and see not your face, but a child\'s smiling face reflected back from inside you.');

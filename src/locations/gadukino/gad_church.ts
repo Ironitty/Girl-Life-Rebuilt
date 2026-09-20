@@ -71,7 +71,7 @@ function enterSermon(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 5) +\'.jpg');
+  scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
   scene.text('The candles are dimmed as the sermon begins. You listen intently to the priest as he preaches the word of God. You study His teachings, feeling enlightened until you reach the end of the sermon.');
   // TODO-QSP: end
   scene.actions([
@@ -83,7 +83,7 @@ function enterSermon(s: GameState, scene: SceneBuilder): void {
 function enterVigil(s: GameState, scene: SceneBuilder): void {
   (s as any).churchday = ((s as any).daystart ?? 0);
   qspCall(s, 'mood', 'raise', 'tiny');
-  (s as any).temprand = Math.floor(Math.random() * 6) + 0;
+  (s as any).temprand = (Math.floor(Math.random() * 6) + 0);
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).temprand ?? 0));
   } else {
@@ -99,20 +99,20 @@ function enterVigil(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
-  scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 5) +\'.jpg');
+  scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
   scene.text('You attend the vigil and reflect on the recent events in your life. The harmonies as the hymns and psalms are sung sweep aside some of the worries in your heart; although you know they will return once you leave this holy place, you still enjoy the rest. The sweet scent of incense tickles your nose.');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
     { label: 'Stay for the Rite of Mutual Forgiveness', handler: (st: GameState) => {
-    (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'fame', 'church_reduction', 'village', 2);
-    scene.img('images/locations/pavlovsk/church/church\'+ rand(9, 10) +\'.jpg');
+    (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - (20);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    qspCall(st, 'fame', 'church_reduction', 'village', 2);
+    scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 2) + 9) + '.jpg');
     scene.text('You decide to stay for the Rite of Mutual Forgiveness and feel much better afterwards.');
     scene.actions([
       { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
@@ -136,9 +136,9 @@ function enterLiturgy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'church_reduction', 'village', 1);
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
-  scene.img('images/locations/pavlovsk/church/church\'+ rand(1, 8) +\'.jpg');
+  scene.img('images/locations/pavlovsk/church/church' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
   scene.text('You join the congregation for the Divine Liturgy. You see mostly older people around, but some people around your age are also present. You participate in the singing, but that\'s about it. Your presence seems to go largely unnoticed, and you have the chance to rest. You feel a lot better.');
-  qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 4) + 0);
+  qspCall(s, 'exp_gain', 'vokal', (Math.floor(Math.random() * 4) + 0));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -163,9 +163,9 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
     { label: 'Light a candle', goto: ['gad_church', 'candle'] },
     { label: 'Donate for a candle', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'gad_church', 'candle1');
+      qspGoto(st, 'gad_church', 'candle1');
     }
   } },
     { label: 'Pray', goto: ['gad_church', 'pray'] },
@@ -213,13 +213,13 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
     scene.actions([
       { label: 'Be naughty', handler: (st: GameState) => {
-    qspCall(s, 'fame', 'gad', 'sex', 2);
-    qspCall(s, 'archetypes', 'gain', 'bimbo', 'tiny', 'Flashing in church', 1);
-    (s as any).pcs_faith = Math.max(0, ((s as any).pcs_faith ?? 0) - 15);
-    (s as any).flash_image = 'images/locations/pavlovsk/church/ch_prayingflash.jpg';
+    qspCall(st, 'fame', 'gad', 'sex', 2);
+    qspCall(st, 'archetypes', 'gain', 'bimbo', 'tiny', 'Flashing in church', 1);
+    (st as any).pcs_faith = Math.max(0, ((st as any).pcs_faith ?? 0) - 15);
+    (st as any).flash_image = 'images/locations/pavlovsk/church/ch_prayingflash.jpg';
     // TODO-QSP: $flash_text[0] = 'While you''re praying, you get a devious idea. With a sly smile, you expose your a...
-    qspCall(s, 'flash', 'butt', 'indoors', 2, 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'flash', 'butt', 'indoors', 2, 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
     ]);
@@ -229,57 +229,57 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Pray', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'fame', 'church_reduction', 'village', 1);
-    qspCall(s, 'archetypes', 'faith_gain', 'pray', 10);
-    if (((s as any).arch_vars ?? 0)?.['main_active'] === 'prude') {
-      qspCall(s, 'mood', 'raise', 'tiny');
-      qspCall(s, 'fame', 'church_reduction', 'village', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'fame', 'church_reduction', 'village', 1);
+    qspCall(st, 'archetypes', 'faith_gain', 'pray', 10);
+    if (((st as any).arch_vars ?? 0)?.['main_active'] === 'prude') {
+      qspCall(st, 'mood', 'raise', 'tiny');
+      qspCall(st, 'fame', 'church_reduction', 'village', 1);
     }
     scene.img('images/locations/pavlovsk/church/ch_praying.jpg');
-    if (((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).church_moral ?? 0) < 30) {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (10);
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
+    if (((st as any).hour ?? 0) > 6  &&  ((st as any).hour ?? 0) < 20  &&  ((st as any).church_moral ?? 0) < 30) {
+      (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - (10);
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
       scene.text('You decide to pray for a while. You\'re not overly religious, but the peace and quiet give you the time to think.');
     } else {
-      if (((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).church_moral ?? 0) >= 30  &&  ((s as any).church_moral ?? 0) < 60) {
-        (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
-        qspCall(s, 'mood', 'raise', 'small');
-        (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
-        (s as any).minut = ((s as any).minut ?? 0) + 15;
+      if (((st as any).hour ?? 0) > 6  &&  ((st as any).hour ?? 0) < 20  &&  ((st as any).church_moral ?? 0) >= 30  &&  ((st as any).church_moral ?? 0) < 60) {
+        (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - (20);
+        qspCall(st, 'mood', 'raise', 'small');
+        (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
+        (st as any).minut = ((st as any).minut ?? 0) + 15;
         scene.text('You decide to pray for a while. While you don\'t consider yourself deeply religious, you feel a solid connection to God when you look at the icons around you. You allow yourself to look deeply into your soul as you contemplate your life\'s direction.');
       } else {
-        if (((s as any).hour ?? 0) >6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).church_moral ?? 0) >= 60) {
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (30);
-          qspCall(s, 'mood', 'raise', 'medium');
-          (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
-          (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
+        if (((st as any).hour ?? 0) >6  &&  ((st as any).hour ?? 0) < 20  &&  ((st as any).church_moral ?? 0) >= 60) {
+          (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - (30);
+          qspCall(st, 'mood', 'raise', 'medium');
+          (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
+          (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 30));
           scene.text('You decide to pray. The beauty and glory of being in the body of God overwhelm you, and you lose yourself in prayer. When you finally become aware of your surroundings again, you\'re unsure how much time has passed, but it doesn\'t matter as you are at peace with God and the world.');
         } else {
-          if ((((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 6)  &&  ((s as any).church_moral ?? 0) < 30) {
-            (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (40);
-            qspCall(s, 'mood', 'raise', 'medium');
-            (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
-            (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
+          if ((((st as any).hour ?? 0) >= 20  ||  ((st as any).hour ?? 0) <= 6)  &&  ((st as any).church_moral ?? 0) < 30) {
+            (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) - (40);
+            qspCall(st, 'mood', 'raise', 'medium');
+            (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
+            (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 30));
             scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness. You start to get a strange vibe you can\'t quite shake. You suddenly get the urge to pray very intensely, and before you know it, an hour has passed, and you feel reborn.');
           } else {
-            if ((((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) <= 6)  &&  ((s as any).church_moral ?? 0) >= 30  &&  ((s as any).church_moral ?? 0) < 60) {
-              (s as any).pcs_horny = 0;
-              qspCall(s, 'mood', 'raise', 'medium');
-              (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
-              (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
-              if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
+            if ((((st as any).hour ?? 0) >= 20  ||  ((st as any).hour ?? 0) <= 6)  &&  ((st as any).church_moral ?? 0) >= 30  &&  ((st as any).church_moral ?? 0) < 60) {
+              (st as any).pcs_horny = 0;
+              qspCall(st, 'mood', 'raise', 'medium');
+              (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
+              (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 30));
+              if (((st as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
                 // TODO-QSP: 3 * drugVars['cocaine_system'] = drugVars['cocaine_system'] / 4
               }
               scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but you find it comforting. You get the urge to pray very intensely, and before you know it, an hour has passed, and you feel cleansed.');
             } else {
-              (s as any).pcs_horny = 0;
-              qspCall(s, 'mood', 'raise', 'large');
-              (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
-              (s as any).minut = ((s as any).minut ?? 0) + 60;
-              if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                ((s as any).drugVars = (s as any).drugVars ?? {})['cocaine_system'] = (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
+              (st as any).pcs_horny = 0;
+              qspCall(st, 'mood', 'raise', 'large');
+              (st as any).church_moral = ((st as any).church_moral ?? 0) + (1);
+              (st as any).minut = ((st as any).minut ?? 0) + 60;
+              if (((st as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
+                ((st as any).drugVars = (st as any).drugVars ?? {})['cocaine_system'] = (((st as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
               }
               scene.text('The Nave is lit only with candles and small presence lights, and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely, and before you know it, more than an hour has passed, and you feel reborn and cleansed.');
             }
@@ -287,7 +287,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
     ]);

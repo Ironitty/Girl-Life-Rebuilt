@@ -26,12 +26,12 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Get out of here', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', (-10));
-    (s as any).minut = ((s as any).minut ?? 0) + 7;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A89', (-10));
+    (st as any).minut = ((st as any).minut ?? 0) + 7;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('No, no! You quickly squirm past Eugene and leave the pantry, and don\'t stop walking until you\'re well away from the diner.');
-    (s as any).LCEugenefirst = 0;
+    (st as any).LCEugenefirst = 0;
     scene.actions([
       { label: 'Continue', goto: ['city_industrial', ''] },
     ]);
@@ -41,20 +41,20 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with it', handler: (st: GameState) => {
-    (s as any).randlcpic = Math.floor(Math.random() * 7) + 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
-    qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-    (s as any).pose = 1;
-    scene.img(`images/locations/city/industrial/bbq/sex/${((s as any).randlcpic || '')}.jpg`);
+    (st as any).randlcpic = (Math.floor(Math.random() * 7) + 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 5);
+    qspCall(st, 'boyStat', 'A89');
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[String((st as any).boy ?? 0)] = 1;
+    (st as any).pose = 1;
+    scene.img(`images/locations/city/industrial/bbq/sex/${((st as any).randlcpic || '')}.jpg`);
     scene.text('You smile encouragingly at Eugene and tell her that she is even hotter than you imagined. Eugene, emboldened by your reaction, starts to help you undress. Finally, she descends upon your naked body like a hungry predator…');
-    qspCall(s, 'dinsex', 'boy_puts_his_condom');
-    qspCall(s, 'dinsex', 'vaginal_sex', 40, 'shemale');
+    qspCall(st, 'dinsex', 'boy_puts_his_condom');
+    qspCall(st, 'dinsex', 'vaginal_sex', 40, 'shemale');
     scene.text('Finally, a good half hour after the two of you started fucking, Eugene lets out a loud and husky moan as she orgasmed.');
-    qspCall(s, 'dinsex', 'sexcum');
+    qspCall(st, 'dinsex', 'sexcum');
     // TODO-QSP: dynamic text: She kisses you and begins to get dressed while tells you: "Thanks, <<$pcs_nickna...
-    scene.text(`She kisses you and begins to get dressed while tells you: "Thanks, ${((s as any).pcs_nickname || '')}! That was amazing… but I really need to get back to work before someone take a notice! Please do visit me again, ${((s as any).pcs_nickname || '')}!"`);
-    qspCall(s, 'stat', '');
+    scene.text(`She kisses you and begins to get dressed while tells you: "Thanks, ${((st as any).pcs_nickname || '')}! That was amazing… but I really need to get back to work before someone take a notice! Please do visit me again, ${((st as any).pcs_nickname || '')}!"`);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', goto: ['Lakecafe', 'main'] },
     ]);
@@ -71,69 +71,69 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fuck me, Eugene!', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
-    qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-    (s as any).pose = 1;
-    (s as any).randlcpic = Math.floor(Math.random() * 7) + 1;
-    scene.img(`images/locations/city/industrial/bbq/sex/${((s as any).randlcpic || '')}.jpg`);
-    // TODO-QSP: dynamic text: Eugene grins and says: "I was hoping you'd say that. Come on, <<$pcs_nickname>>....
-    scene.text(`Eugene grins and says: "I was hoping you'd say that. Come on, ${((s as any).pcs_nickname || '')}."`);
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 5);
+    qspCall(st, 'boyStat', 'A89');
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[String((st as any).boy ?? 0)] = 1;
+    (st as any).pose = 1;
+    (st as any).randlcpic = (Math.floor(Math.random() * 7) + 1);
+    scene.img(`images/locations/city/industrial/bbq/sex/${((st as any).randlcpic || '')}.jpg`);
+    // TODO-QSP: dynamic text: Eugene grins and says: "I was hoping you''d say that. Come on, <<$pcs_nickname>>...
+    scene.text(`Eugene grins and says: "I was hoping you'd say that. Come on, ${((st as any).pcs_nickname || '')}."`);
     scene.text('She helps you to undress, and lies down on the mattress with you. She slips her cock into your pussy and starts to fuck you. She skillfully rubs your clit while she thrusts in and out of you, to keep you nice and wet.');
-    qspCall(s, 'dinsex', 'boy_puts_his_condom');
-    qspCall(s, 'dinsex', 'vaginal_sex', 40, 'shemale', 'sub');
+    qspCall(st, 'dinsex', 'boy_puts_his_condom');
+    qspCall(st, 'dinsex', 'vaginal_sex', 40, 'shemale', 'sub');
     scene.text('Finally, a good half hour after the hot sex session, Eugene lets out a loud girly moan.');
-    qspCall(s, 'dinsex', 'sexcum');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'dinsex', 'sexcum');
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: She smiles and kisses you before she starts to get dressed. She tells you: "Than...
-    scene.text(`She smiles and kisses you before she starts to get dressed. She tells you: "Thanks, ${((s as any).pcs_nickname || '')}! You were great… but I need to get back before someone notices my absence! Please come to see me again soon, ${((s as any).pcs_nickname || '')}!"`);
-    qspCall(s, 'arousal', 'end');
+    scene.text(`She smiles and kisses you before she starts to get dressed. She tells you: "Thanks, ${((st as any).pcs_nickname || '')}! You were great… but I need to get back before someone notices my absence! Please come to see me again soon, ${((st as any).pcs_nickname || '')}!"`);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['Lakecafe', 'main'] },
     ]);
   } },
     { label: 'Let me pleasure you, Eugene!', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
-    qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-    (s as any).randlcpic = Math.floor(Math.random() * 7) + 10;
-    scene.img(`images/locations/city/industrial/bbq/sex/${((s as any).randlcpic || '')}.jpg`);
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 5);
+    qspCall(st, 'boyStat', 'A89');
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[String((st as any).boy ?? 0)] = 1;
+    (st as any).randlcpic = (Math.floor(Math.random() * 7) + 10);
+    scene.img(`images/locations/city/industrial/bbq/sex/${((st as any).randlcpic || '')}.jpg`);
     // TODO-QSP: dynamic text: You take your clothes off, give Eugene a deep kiss before drop to your knees in ...
-    scene.text(`You take your clothes off, give Eugene a deep kiss before drop to your knees in front of her. "Mmmm…${((s as any).pcs_nickname || '')}!" she whispers and looks at you intently.`);
+    scene.text(`You take your clothes off, give Eugene a deep kiss before drop to your knees in front of her. "Mmmm…${((st as any).pcs_nickname || '')}!" she whispers and looks at you intently.`);
     scene.text('Eugene shoves her hardened cock deep into your mouth as soon as you open your lips. She holds you firmly by the hair and begins to thrust her hips back and forth, making you take her whole length repeatedly. After a while, with her cock deep down your throat, you begin to wonder how it\'s possible that she still hasn\'t reached orgasm yet… guys never last this long!');
-    qspCall(s, 'arousal', 'bj', 20, 'shemale', 'sub', 'deepthroat');
+    qspCall(st, 'arousal', 'bj', 20, 'shemale', 'sub', 'deepthroat');
     scene.text('Finally, a good half hour after you started sucking her cock, Eugene finally lets out a loud and girly moan and releases her load all over your face. Thick strands of saliva are running down your chin by now.');
-    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: She licks her cum on your face and kisses you. She smiles and starts to get dres...
-    scene.text(`She licks her cum on your face and kisses you. She smiles and starts to get dressed. She tells you: "Thank you, ${((s as any).pcs_nickname || '')}! That was great… but I should go back to work before someone realizes I am missing! We've got to do this again, ${((s as any).pcs_nickname || '')}!"`);
-    qspCall(s, 'arousal', 'end');
+    scene.text(`She licks her cum on your face and kisses you. She smiles and starts to get dressed. She tells you: "Thank you, ${((st as any).pcs_nickname || '')}! That was great… but I should go back to work before someone realizes I am missing! We've got to do this again, ${((st as any).pcs_nickname || '')}!"`);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['Lakecafe', 'main'] },
     ]);
   } },
     { label: 'Use me, Eugene', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
-    qspCall(s, 'boyStat', 'A89');
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
-    (s as any).randlcpic = Math.floor(Math.random() * 4) + 1;
-    scene.img(`images/locations/city/industrial/bbq/sex/anal${((s as any).randlcpic || '')}.jpg`);
-    if (((s as any).analPlugIn ?? 0) === 1) {
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 5);
+    qspCall(st, 'boyStat', 'A89');
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[String((st as any).boy ?? 0)] = 1;
+    (st as any).randlcpic = (Math.floor(Math.random() * 4) + 1);
+    scene.img(`images/locations/city/industrial/bbq/sex/anal${((st as any).randlcpic || '')}.jpg`);
+    if (((st as any).analPlugIn ?? 0) === 1) {
       scene.text('Eugene carefully pulls the plug out of your butt.');
-      (s as any).analPlugIn = 0;
-      (s as any).analPlugOut = 1;
+      (st as any).analPlugIn = 0;
+      (st as any).analPlugOut = 1;
     }
     scene.text('After some intense foreplay and stimulation, Eugene grabs some cooking oil and lubes up her cock and then does the same to your ass as well. With that done she bends you over and lifts one of your legs off the ground. You put your hands against the wall to help keep your balance. Then she slides her cock inside your ass and begins to thrust away as if her life depends on it.');
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) + (1);
-    qspCall(s, 'arousal', 'anal_finger', 1, 'lube');
-    qspCall(s, 'arousal', 'anal', 40, 'shemale');
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['lubricant'] = ((st as any).mc_inventory['lubricant'] ?? 0) + (1);
+    qspCall(st, 'arousal', 'anal_finger', 1, 'lube');
+    qspCall(st, 'arousal', 'anal', 40, 'shemale');
     scene.text('She pounds and enjoys your ass for a surprising amount of time, considering how hard and fast she is hammering it. She makes sure to reapply some of the cooking oil as needed, while greatly helps you enjoy the experience as well. Finally, a good half hour after she started fucking your ass, Eugene finally lets out a loud and girly scream and shoots her load deep inside your ass.');
-    qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: She kisses you and savours the moment. She starts to get dressed and let you kno...
-    scene.text(`She kisses you and savours the moment. She starts to get dressed and let you know: "Thanks, ${((s as any).pcs_nickname || '')}! That was amazing… I have to go now but come visit me soon, okay, ${((s as any).pcs_nickname || '')}? I really want us to spend more time together."`);
-    qspCall(s, 'dinsex', 'after_anal', 'no_plug');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`She kisses you and savours the moment. She starts to get dressed and let you know: "Thanks, ${((st as any).pcs_nickname || '')}! That was amazing… I have to go now but come visit me soon, okay, ${((st as any).pcs_nickname || '')}? I really want us to spend more time together."`);
+    qspCall(st, 'dinsex', 'after_anal', 'no_plug');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed again', goto: ['Lakecafe', 'main'] },
     ]);

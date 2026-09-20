@@ -125,7 +125,7 @@ function enterShouldEventBeVisible(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loop_check_conflicts
   if (((s as any).temp_i ?? 0) < Object.keys((s as any).day_events ?? {}).length) {
     (s as any).other_event_id = ((s as any).day_events ?? 0)?.[String((s as any).temp_i ?? 0)];
-    if (((s as any).other_event_id ?? 0) !== ''  &&  ((s as any).other_event_id ?? 0) !== ((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).other_event_id ?? 0) !== ''  &&  ((s as any).other_event_id ?? 0) !== Number((s as any).locArgs?.[1] ?? 0)) {
       qspCall(s, 'calendar_events', 'get_event', ((s as any).other_event_id ?? 0));
       if (((s as any).event_vars ?? 0)?.['priority'] > ((s as any).check_priority ?? 0)  &&  ((s as any).event_vars ?? 0)?.['all_day'] === 0) {
         // TODO-QSP: gs 'calendar_query', 'get_event_display_range', $other_event_id, ARGS[2]
@@ -175,8 +175,8 @@ function enterGetEventStartTimeslot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetUpcoming(s: GameState, scene: SceneBuilder): void {
-  ((s as any).upc = (s as any).upc ?? {})['max'] = ((((s as any).locArgs?.[1] ?? 0) > 0) ? (((s as any).locArgs?.[1] ?? 0)) : (3));
-  ((s as any).upc = (s as any).upc ?? {})['today'] = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).daystart ?? 0)));
+  ((s as any).upc = (s as any).upc ?? {})['max'] = ((Number((s as any).locArgs?.[1] ?? 0) > 0) ? (((s as any).locArgs?.[1] ?? 0)) : (3));
+  ((s as any).upc = (s as any).upc ?? {})['today'] = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).daystart ?? 0)));
   ((s as any).upc = (s as any).upc ?? {})['cur_ts'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).upc = (s as any).upc ?? {})['count'] = 0;
   ((s as any).upc = (s as any).upc ?? {})['ei'] = 0;

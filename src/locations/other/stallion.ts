@@ -7,14 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat', '');
-  qspCall(s, 'boyStat', 'A117');
-  (s as any).sexpartkno = 1;
-  (s as any).spafinloc = 0;
-  (s as any).sexcontra = 0;
-  (s as any).protect = 0;
-  (s as any).dick = 14;
-  (s as any).silavag = 2;
   scene.build();
 }
 
@@ -22,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/bathroom/publictoilet.jpg');
   (s as any).stallionQ = 4;
   scene.text('You enter the men\'s restroom. It appears empty. You move into a stall and sit down. As you relieve yourself, you hear chuckling in the next stall.');
-  // TODO-QSP: dynamic text: After a second, you hear a strange man's voice. "<<$pcs_nickname>>. My <<$pcs_ni...
+  // TODO-QSP: dynamic text: After a second, you hear a strange man''s voice. "<<$pcs_nickname>>. My <<$pcs_n...
   scene.text(`After a second, you hear a strange man's voice. "${((s as any).pcs_nickname || '')}. My ${((s as any).pcs_nickname || '')}. Show me more of that cute vagina of yours."`);
   qspCall(s, 'willpower', 'misc', 'self', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -34,11 +26,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Confront the strange man', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.text('You jump out of your stall and move to open the other one, but it opens before you reach it. Out of it comes a naked middle aged man.');
-    // TODO-QSP: dynamic text: "I've been watching you, <<$pcs_nickname>> <<$pcs_lastname>>. You think it's a c...
-    scene.text(`"I've been watching you, ${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')}. You think it's a coincidence you are here? I've been planning things out. Preparing.`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFight(s, scene); (s as any).locArgs = __savedLocArgs; }
+    // TODO-QSP: dynamic text: "I''ve been watching you, <<$pcs_nickname>> <<$pcs_lastname>>. You think it''s a...
+    scene.text(`"I've been watching you, ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}. You think it's a coincidence you are here? I've been planning things out. Preparing.`);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFight(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -48,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly sort yourself out and get out of the stall. You try the bathroom door. It\'s locked. There is no handle, and the lock is just a keyhole.');
     scene.text('"It\'s no use. You are trapped," The strange man says.');
     scene.text('A naked middle aged man exits the other stall and walks towards you.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFight(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFight(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -60,10 +52,10 @@ function enterFight(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Give up', goto: ['stallion', 'rape'] },
     { label: 'Fight', handler: (st: GameState) => {
-    (s as any).nameV = 'Naked Man';
-    qspCall(s, 'fight', 'initFight');
-    qspCall(s, 'fight_npcdata', 'stallion');
-    qspGoto(s, 'fight', 'start');
+    (st as any).nameV = 'Naked Man';
+    qspCall(st, 'fight', 'initFight');
+    qspCall(st, 'fight_npcdata', 'stallion');
+    qspGoto(st, 'fight', 'start');
   } },
   ]);
   scene.build();
@@ -74,7 +66,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.text('The man pushes you down, and you fall on your ass. He advances towards you, grabs a hold of your clothes and rips them open. He falls on top of you. You feel his hot breath against your face as he ruthlessly grabs your arms. You feel his penis poking you in the leg.');
-  // TODO-QSP: dynamic text: "So you know what's coming next, don't you my little <<$pcs_nickname>>?"
+  // TODO-QSP: dynamic text: "So you know what''s coming next, don''t you my little <<$pcs_nickname>>?"
   scene.text(`"So you know what's coming next, don't you my little ${((s as any).pcs_nickname || '')}?"`);
   if (((s as any).pcs_horny ?? 0) < 30) {
     scene.text('You feel his cock stab you in your unprepared vagina, not even the slightest slowed down by the lack of lubrication. It\'s rough and raw, pulling at your skin and pressing against your sensitive flesh painfully. You can\'t help but cry out.');
@@ -102,12 +94,12 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
       scene.text('You feel a tingling in your body. You are pretty sure it is something Stallion has done to you.');
     } else {
       if (((s as any).pcs_magik ?? 0) < 3) {
-        // TODO-QSP: dynamic text: "Is that magic I feel in you, <<$pcs_nickname>>? It's not going to protect you. ...
+        // TODO-QSP: dynamic text: "Is that magic I feel in you, <<$pcs_nickname>>? It''s not going to protect you....
         scene.text(`"Is that magic I feel in you, ${((s as any).pcs_nickname || '')}? It's not going to protect you. I have some magic of my own."`);
         scene.text('You feel a tingling in your body as he does something to you.');
       } else {
         if (((s as any).pcs_magik ?? 0) < 7) {
-          // TODO-QSP: dynamic text: "Don't think I don't feel the magic in you, <<$pcs_nickname>>. It's not going to...
+          // TODO-QSP: dynamic text: "Don''t think I don''t feel the magic in you, <<$pcs_nickname>>. It''s not going...
           scene.text(`"Don't think I don't feel the magic in you, ${((s as any).pcs_nickname || '')}. It's not going to protect you. I have some magic of my own."`);
           scene.text('You feel a tingling in your body as he works some fertility magic upon you.');
         } else {
@@ -120,7 +112,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'What have you done to me?', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I have given you a gift, sweet <<$pcs_nickname>>. I have turned you into a broo...
-    scene.text(`"I have given you a gift, sweet ${((s as any).pcs_nickname || '')}. I have turned you into a broodmare," he replies as he continues to repeatedly thrust into you.`);
+    scene.text(`"I have given you a gift, sweet ${((st as any).pcs_nickname || '')}. I have turned you into a broodmare," he replies as he continues to repeatedly thrust into you.`);
   } },
     ]);
   }
@@ -134,22 +126,22 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Beg for mercy', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'easy');
-    qspCall(s, 'willpower', 'pay', 'self');
-    if (((s as any).kid ?? 0) <= 0  &&  ((s as any).age ?? 0) < 18) {
+    qspCall(st, 'willpower', 'misc', 'self', 'easy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    if (((st as any).kid ?? 0) <= 0  &&  ((st as any).age ?? 0) < 18) {
       scene.text('You beg and plead with him to not impregnate you, informing him that you are too young to be a mother.');
     } else {
-      if (((s as any).money ?? 0) < 1000  &&  ((s as any).age ?? 0) > 18) {
+      if (((st as any).money ?? 0) < 1000  &&  ((st as any).age ?? 0) > 18) {
         scene.text('You beg and plead with him to not impregnate you, informing him that you cannot afford to be a mother.');
       } else {
-        if (((s as any).broodcurse ?? 0) === 1) {
+        if (((st as any).broodcurse ?? 0) === 1) {
           scene.text('You beg and plead for Stallion to lift the curse and release you.');
         } else {
           scene.text('You beg and plead with him to not impregnate you, informing him that you are not ready to be a mother.');
         }
       }
     }
-    if ((!((s as any).broodcurse ?? 0))) {
+    if ((!((st as any).broodcurse ?? 0))) {
       scene.text('Stallion smiles as you plead for him not to cum inside you.');
       scene.text('"I\'m sure you\'ll manage to bear my child just fine," he says as he continues to thrust into you.');
     } else {
@@ -171,8 +163,8 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Struggle', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'skill_base', 'stren', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'resist');
+    qspCall(st, 'willpower', 'skill_base', 'stren', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'resist');
     scene.text('You attempt to throw him off you, but he is able to resist your efforts.');
     scene.text('"Tightening up like that makes it feel so good," he says as he continues to thrust into you.');
     scene.actions([
@@ -197,7 +189,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/body/cum/creampie/cumpussy3.jpg');
   scene.text('Stallion moans, "I\'m cumming!"');
   scene.text('He twitches on top of you, and you feel him fill you with his seed.');
-  // TODO-QSP: dynamic text: "Give birth to a cute baby for me, <<$pcs_nickname>>. But don't you dare kill it...
+  // TODO-QSP: dynamic text: "Give birth to a cute baby for me, <<$pcs_nickname>>. But don''t you dare kill i...
   scene.text(`"Give birth to a cute baby for me, ${((s as any).pcs_nickname || '')}. But don't you dare kill it. You won't survive it long. Ta ta!" He says, pulling out.`);
   // TODO-QSP: end
   scene.actions([
@@ -226,7 +218,7 @@ function enterAwaken(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bag ?? 0) > 0) {
     scene.text('Your handbag is sitting on top of the clothing. You check it for missing items.');
     if (((s as any).money ?? 0) > 0) {
-      // TODO-QSP: dynamic text: You have <<$func('money', 'format_balance', 'cash')>>.
+      // TODO-QSP: dynamic text: You have <<$func(''money'', ''format_balance'', ''cash'')>>.
       scene.text(`You have ${qspFunc(s, 'money', 'format_balance', 'cash')}.`);
     }
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] + ((s as any).mc_inventory ?? 0)?.['normal_condoms'] + ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
@@ -250,7 +242,7 @@ function enterAwaken(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp = (s as any).temp ?? {})[1] = 'I am called Stallion, and you have become my victim. I am called Stallion because I impregnate those whom I target. Today, that was you. ';
     (s as any).stallionQ = 5;
   }
-  // TODO-QSP: dynamic text: There is a note next to your clothing. '<<$temp[1]>>You were a pretty good fuck....
+  // TODO-QSP: dynamic text: There is a note next to your clothing. ''<<$temp[1]>>You were a pretty good fuck...
   scene.text(`There is a note next to your clothing. '${qspUntranslated(s, "temp[1]", { location: "stallion" })}You were a pretty good fuck. I'll be keeping my eye on you. I look forward to see you growing large with my baby. If you go get an abortion to stop it, ${((s as any).temp || '')}. Go to the cops if you want, you'll never stop me. The door is unlocked, you can leave now. -Stallion`);
   // TODO-QSP: end
   scene.actions([
@@ -260,6 +252,14 @@ function enterAwaken(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'boyStat', 'A117');
+  (s as any).sexpartkno = 1;
+  (s as any).spafinloc = 0;
+  (s as any).sexcontra = 0;
+  (s as any).protect = 0;
+  (s as any).dick = 14;
+  (s as any).silavag = 2;
   const arg = s.locArg;
   switch (arg) {
     case 'start':

@@ -7,64 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).cumboy = ((s as any).boy ?? 0);
-  (s as any).cumnpc = ((s as any).npcID ?? 0);
-  (s as any).cumCon = ((s as any).npcCondom ?? 0);
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '' === 0) {
-    if (((s as any).locArgs?.[2] ?? 0) !== 1) {
-      qspCall(s, 'npcgeneratec', '', 0, ((s as any).locArgs?.[1] ?? 0), Math.floor(Math.random() * 43) + 18, 0, 1);
-      // TODO-QSP: $ARGS[1] = $npclastgenerated
-    } else {
-      (s as any).tempnpcid = qspUntranslated(s, "arrpos('npc_usedname', ARGS[1])", { location: "cum_call" });
-      if (((s as any).tempnpcid ?? 0) > 0) {
-        // TODO-QSP: $ARGS[1] = 'A<<tempnpcid>>'
-        // TODO-QSP: dynamic text: <br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade ...
-        scene.text(`<br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade from ${((s as any).locArgs?.[1] ?? '')} to A${((s as any).tempnpcid || '')}</font></b>`);
-      } else {
-        // TODO-QSP: $ARGS[1] = 'D1'
-      }
-    }
-  }
-  qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
-  (s as any).sexpartkno = ((((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] > 0) ? (1) : (0));
-  if (((s as any).locArgs?.[2] ?? 0) === 1) {
-    (s as any).sexpartkno = 1;
-  } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 2) {
-      (s as any).sexunaware = 1;
-    }
-  }
-  if (((s as any).locArgs?.[3] ?? 0) === '') {
-    (s as any).sexcontra = Math.max(0, Math.min(((s as any).locArgs?.[3] ?? 0), 7), ((s as any).sexcontra ?? 0));
-  } else {
-    if (((s as any).locArgs?.[3] ?? 0) === 'none') {
-      if (((s as any).pillcon2 ?? 0) > 1000) {
-        (s as any).sexcontra = 2;
-      } else {
-        (s as any).sexcontra = 1;
-      }
-    } else {
-      if (((s as any).locArgs?.[3] ?? 0) === 'sabotaged') {
-        (s as any).sexcontra = 7;
-      } else {
-        if (((s as any).locArgs?.[3] ?? 0) === 'sabotaged_other') {
-          (s as any).sexcontra = 6;
-        } else {
-          if (((s as any).locArgs?.[3] ?? 0) === 'slipped') {
-            (s as any).sexcontra = 5;
-          } else {
-            if (((s as any).locArgs?.[3] ?? 0) === 'broken') {
-              (s as any).sexcontra = 4;
-            } else {
-              (s as any).sexcontra = 3;
-            }
-          }
-        }
-      }
-    }
-  }
-  (s as any).sexspecpot = ((((s as any).locArgs?.[4] ?? 0) > 0) ? (((s as any).locArgs?.[4] ?? 0)) : (((s as any).npcSpermPot ?? 0)));
-  (s as any).sexvolume = ((((s as any).locArgs?.[5] ?? 0) > 0) ? (((s as any).locArgs?.[5] ?? 0)) : (Math.max(0, ((s as any).npcSpermVol ?? 0))));
   scene.build();
 }
 
@@ -119,7 +61,7 @@ function enterPrecum(s: GameState, scene: SceneBuilder): void {
                               if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('mouth_swallow') : -1) >= 0) {
                                 (s as any).spafinloc = 12;
                                 ((s as any).stat = (s as any).stat ?? {})['swallow'] = ((s as any).stat['swallow'] ?? 0) + (1);
-                                if (((s as any).locArgs?.[2] ?? 0) === 2) {
+                                if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
                                   ((s as any).stat = (s as any).stat ?? {})['swallow_unaware'] = ((s as any).stat['swallow_unaware'] ?? 0) + (1);
                                 }
                                 ((s as any).stat = (s as any).stat ?? {})['cum_swallowed_ml'] = ((s as any).stat['cum_swallowed_ml'] ?? 0) + (((s as any).sexvolume ?? 0));
@@ -173,6 +115,64 @@ function enterPrecum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).cumboy = ((s as any).boy ?? 0);
+  (s as any).cumnpc = ((s as any).npcID ?? 0);
+  (s as any).cumCon = ((s as any).npcCondom ?? 0);
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '' === 0) {
+    if (Number((s as any).locArgs?.[2] ?? 0) !== 1) {
+      qspCall(s, 'npcgeneratec', '', 0, ((s as any).locArgs?.[1] ?? 0), (Math.floor(Math.random() * 43) + 18), 0, 1);
+      // TODO-QSP: $ARGS[1] = $npclastgenerated
+    } else {
+      (s as any).tempnpcid = qspUntranslated(s, "arrpos('npc_usedname', ARGS[1])", { location: "cum_call" });
+      if (((s as any).tempnpcid ?? 0) > 0) {
+        // TODO-QSP: $ARGS[1] = 'A<<tempnpcid>>'
+        // TODO-QSP: dynamic text: <br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade ...
+        scene.text(`<br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade from ${((s as any).locArgs?.[1] ?? '')} to A${((s as any).tempnpcid || '')}</font></b>`);
+      } else {
+        // TODO-QSP: $ARGS[1] = 'D1'
+      }
+    }
+  }
+  qspCall(s, 'npcStat', '', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
+  (s as any).sexpartkno = ((((s as any).npc_love ?? 0)?.[String((s as any).npcID ?? 0)] > 0) ? (1) : (0));
+  if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+    (s as any).sexpartkno = 1;
+  } else {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+      (s as any).sexunaware = 1;
+    }
+  }
+  if (Number((s as any).locArgs?.[3] ?? 0) === '') {
+    (s as any).sexcontra = Math.max(0, Math.min(((s as any).locArgs?.[3] ?? 0), 7), ((s as any).sexcontra ?? 0));
+  } else {
+    if (Number((s as any).locArgs?.[3] ?? 0) === 'none') {
+      if (((s as any).pillcon2 ?? 0) > 1000) {
+        (s as any).sexcontra = 2;
+      } else {
+        (s as any).sexcontra = 1;
+      }
+    } else {
+      if (Number((s as any).locArgs?.[3] ?? 0) === 'sabotaged') {
+        (s as any).sexcontra = 7;
+      } else {
+        if (Number((s as any).locArgs?.[3] ?? 0) === 'sabotaged_other') {
+          (s as any).sexcontra = 6;
+        } else {
+          if (Number((s as any).locArgs?.[3] ?? 0) === 'slipped') {
+            (s as any).sexcontra = 5;
+          } else {
+            if (Number((s as any).locArgs?.[3] ?? 0) === 'broken') {
+              (s as any).sexcontra = 4;
+            } else {
+              (s as any).sexcontra = 3;
+            }
+          }
+        }
+      }
+    }
+  }
+  (s as any).sexspecpot = ((Number((s as any).locArgs?.[4] ?? 0) > 0) ? (((s as any).locArgs?.[4] ?? 0)) : (((s as any).npcSpermPot ?? 0)));
+  (s as any).sexvolume = ((Number((s as any).locArgs?.[5] ?? 0) > 0) ? (((s as any).locArgs?.[5] ?? 0)) : (Math.max(0, ((s as any).npcSpermVol ?? 0))));
   const arg = s.locArg;
   switch (arg) {
     case 'precum':

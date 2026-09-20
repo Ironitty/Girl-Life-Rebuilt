@@ -59,6 +59,20 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterRemove(s: GameState, scene: SceneBuilder): void {
+  if (((String(((s as any).clothingworntype ?? 0)).indexOf(String('swimsuit'))) + 1) <= 0  &&  ((String(((s as any).clothingworntype ?? 0)).indexOf(String('bikinis'))) + 1) <= 0) {
+    if (((s as any).underwear ?? 0)?.['type'] === 2) {
+      qspCall(s, 'underwear_bodysuits', 'strip');
+    } else {
+      qspCall(s, 'panties', 'strip');
+      qspCall(s, 'bras', 'strip');
+    }
+  }
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
 function enterRestore(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornunderwear ?? 0)?.['backup'] === 2) {
     // TODO-QSP: gs 'underwear_bodysuits', 'wear', $lastwornbodysuittype['backup'], lastwornbodysuitnumber['backup']
@@ -87,18 +101,18 @@ function enterDresser(s: GameState, scene: SceneBuilder): void {
   scene.text('In your dresser, you can sort through all your underwear. Much of it is just regular underwear, but you can also own some distinct items.');
   scene.text('The distinct items are sorted into bras and panties and by the shop in which they were purchased. They must be picked here, and automatic options will default to regular underwear.');
   scene.text('The wear panties and bra options here are for the regular underwear, the large buttons for choosing unique items.');
-  // TODO-QSP: dynamic text: Your dresser contains <<func('panties','sum','dresser')>> pairs of regular panti...
+  // TODO-QSP: dynamic text: Your dresser contains <<func(''panties'',''sum'',''dresser'')>> pairs of regular...
   scene.text(`Your dresser contains ${qspFunc(s, 'panties', 'sum', 'dresser')} pairs of regular panties and ${qspFunc(s, 'bras', 'sum', 'dresser')} regular bras.`);
   scene.img('images/system/icons/bra.png');
   qspCall(s, 'din_van', 'wearpan');
   qspCall(s, 'din_van', 'removepan');
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Return', handler: (st: GameState) => {
+{ label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -113,6 +127,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'strip':
       enterStrip(s, scene);
+      break;
+    case 'remove':
+      enterRemove(s, scene);
       break;
     case 'restore':
       enterRestore(s, scene);

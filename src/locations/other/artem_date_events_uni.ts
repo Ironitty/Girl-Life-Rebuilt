@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
-  scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
+  scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
   scene.text('You enjoy a pleasant walk around the quad while making small talk with Artem.');
   scene.text('After a while, you end up near the small movie theater on campus. Artem\'s eyes light up when he sees it. "Hey, let\'s go see a movie!"');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -18,19 +18,19 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sounds like fun', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
-    scene.img(`images/locations/shared/cinema/kino_${Math.floor(Math.random() * 3) + 1}.jpg`);
+    qspCall(st, 'npc_relationship', 'modify', 'A2', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
+    scene.img(`images/locations/shared/cinema/kino_${(Math.floor(Math.random() * 3) + 1)}.jpg`);
     scene.text('You enter the movie theater with Artem. After he buys the tickets and some popcorn, candy and soda for the two of you, you head into the dark theater and find some seats in the back row to watch the movie.');
     scene.actions([
       { label: 'Leave the theater', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('When the movie ends, you and Artem leave the theater and he offers to walk you back to the dorms.');
     // TODO-QSP: dynamic text: Arriving outside your dorm building, Artem stops and looks at you. "I had fun, <...
-    scene.text(`Arriving outside your dorm building, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`Arriving outside your dorm building, Artem stops and looks at you. "I had fun, ${((st as any).pcs_nickname || '')}."`);
     scene.text('You smile at him. "Me too."');
     scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
     scene.text('You nod. "Maybe. We\'ll see."');
@@ -43,13 +43,13 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Just keep walking', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
-    scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
+    scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You don\'t really feel like going to the cinema. "Let\'s just enjoy the walk we\'re on."');
     scene.text('Artem is happy enough to just spend time with you, regardless of what the two of you are doing. He nods as you continue on your walk, talking about everyday things. After a while, he checks his watch. "We should be getting back. I\'ll walk you to your dorm."');
-    // TODO-QSP: dynamic text: Once you're outside your dorm room, Artem stops and looks at you. "I had fun, <<...
-    scene.text(`Once you're outside your dorm room, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname || '')}."`);
+    // TODO-QSP: dynamic text: Once you''re outside your dorm room, Artem stops and looks at you. "I had fun, <...
+    scene.text(`Once you're outside your dorm room, Artem stops and looks at you. "I had fun, ${((st as any).pcs_nickname || '')}."`);
     scene.text('You smile at him. "Me too."');
     scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
     scene.text('You nod. "Maybe. We\'ll see."');

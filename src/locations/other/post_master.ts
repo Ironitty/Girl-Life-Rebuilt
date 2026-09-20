@@ -46,13 +46,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).job_suspended ?? 0)?.['pav_mailgirl'] === 1) {
         scene.actions([
           { label: 'Tell him you can work this coming Saturday after all', handler: (st: GameState) => {
-    qspCall(s, 'jobs', 'resume_job', 'pav_mailgirl');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'jobs', 'resume_job', 'pav_mailgirl');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/postmaster.jpg');
     scene.text('You enter the postmaster\'s office at an opportune time. It looks like he\'s not doing anything right now.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, can I help you?" he asks as soon as he sees you.
-    scene.text(`"${((s as any).pcs_firstname || '')}, can I help you?" he asks as soon as he sees you.`);
+    scene.text(`"${((st as any).pcs_firstname || '')}, can I help you?" he asks as soon as he sees you.`);
     scene.text('"I came to say that I can make it after all this Saturday!" you reply.');
     scene.text('"Ah, excellent news! I\'ll tell Aleksiy he can stay at home with his daughter," he says while quickly making a note. "Is there anything else I can do for you?"');
     scene.text('"No, that was it," you tell him. "See you on Saturday!"');
@@ -65,9 +65,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (qspFunc(s, 'jobs', 'is_work_day', 'pav_mailgirl') === 0  ||  (qspFunc(s, 'jobs', 'is_work_day', 'pav_mailgirl') === 1  &&  ((s as any).job_last_work_day ?? 0)?.['pav_mailgirl'] === ((s as any).daystart ?? 0))) {
           scene.actions([
             { label: 'Tell him you can\'t work next Saturday', handler: (st: GameState) => {
-    qspCall(s, 'jobs', 'suspend_job', 'pav_mailgirl');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'jobs', 'suspend_job', 'pav_mailgirl');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/postmaster.jpg');
     scene.text('The postmaster looks like he\'s swamped with work right now. His desk is completely covered with mail.');
     scene.text('"Excuse me?" you say, trying to get his attention. "I won\'t be able to make it next Saturday after all."');
@@ -91,7 +91,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               (s as any).minut = ((s as any).minut ?? 0) + 2;
               qspCall(s, 'stat', '');
               scene.img('images/locations/shared/postoffice/postmaster.jpg');
-              // TODO-QSP: dynamic text: "You're a bit early, <<$pcs_firstname>>!" the postmaster says when he sees you e...
+              // TODO-QSP: dynamic text: "You''re a bit early, <<$pcs_firstname>>!" the postmaster says when he sees you ...
               scene.text(`"You're a bit early, ${((s as any).pcs_firstname || '')}!" the postmaster says when he sees you enter his office. "I don't have your mail yet, but I like the enthusiasm. Come see me between 11:00 and 12:00. I should have it ready then."`);
               scene.actions([
                 { label: 'Leave him alone', goto: ['post_office', 'start'] },
@@ -102,7 +102,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 ((s as any).job_last_work_day = (s as any).job_last_work_day ?? {})['pav_mailgirl'] = ((s as any).daystart ?? 0);
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/shared/postoffice/postmaster.jpg');
-                // TODO-QSP: dynamic text: "You're late, <<$pcs_firstname>>!" the postmaster scoffs when he sees you enter ...
+                // TODO-QSP: dynamic text: "You''re late, <<$pcs_firstname>>!" the postmaster scoffs when he sees you enter...
                 scene.text(`"You're late, ${((s as any).pcs_firstname || '')}!" the postmaster scoffs when he sees you enter his office. "I already called Aleksiy in to cover your shift. He wasn't happy, and neither am I. Don't make this a habit…"`);
                 scene.text('You try to apologize, but he\'s not interested and tells you to leave him alone.');
                 scene.actions([
@@ -166,7 +166,7 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
       scene.text('He shakes his head in frustration. "I\'m giving you another chance because you do good work when you actually show up. But I\'m warning you — don\'t make this a habit."');
     } else {
       if (((s as any).job_booking_debt ?? 0)?.['pav_mailgirl'] >= 3) {
-        // TODO-QSP: dynamic text: "<<$pcs_firstname>>." The postmaster's voice is ice cold. "You didn't come in. A...
+        // TODO-QSP: dynamic text: "<<$pcs_firstname>>." The postmaster''s voice is ice cold. "You didn''t come in....
         scene.text(`"${((s as any).pcs_firstname || '')}." The postmaster's voice is ice cold. "You didn't come in. Again. Without a word."`);
         scene.text('He leans forward, his expression dead serious. "This is your last warning. One more no-show and I\'m giving your job to someone who actually wants it. Aleksiy has been asking for his Saturday shifts back, and right now I\'m struggling to think of a reason not to let him."');
       }
@@ -187,12 +187,12 @@ function enterAskForWork(s: GameState, scene: SceneBuilder): void {
   scene.text('"A job? I haven\'t got any jobs," he shrugs.');
   scene.text('Just as you\'re about to turn around to leave, he stops you. "Actually, Aleksiy has been mentioning he wants to spend more time with his sick daughter on weekends. Maybe… Come back here, girl."');
   scene.text('He takes another good look at you and seems to be in deep thought for a moment before humming contently.');
-  // TODO-QSP: dynamic text: "Alright, I'll give you a chance to prove yourself. You can deliver some urgent ...
+  // TODO-QSP: dynamic text: "Alright, I''ll give you a chance to prove yourself. You can deliver some urgent...
   scene.text(`"Alright, I'll give you a chance to prove yourself. You can deliver some urgent letters and packages on Saturday afternoon. You'll get the same pay Aleksiy gets, assuming you do a good job. ${qspFunc(s, 'money', 'string_profit', 500)} total, for about three hours of work - from 12:00 to roughly 15:00. If you do well, you can do it every week," he offers.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
-    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_mailgirl'] = 1;
+    ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_mailgirl'] = 1;
     scene.text('"Sorry, but I don\'t know. That\'s not what I\'m looking for," you reply.');
     scene.text('The postmaster looks at you in confusion, wondering what kind of job you expected to get here. Nevertheless, he sighs. "Suit yourself. Tough luck for Aleksiy, then. Well, let me know if you change your mind," he says before returning to work.');
     scene.actions([
@@ -200,7 +200,7 @@ function enterAskForWork(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Accept the job', handler: (st: GameState) => {
-    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_mailgirl'] = 2;
+    ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_mailgirl'] = 2;
     scene.text('"That sounds great, thank you!" you smile.');
     // TODO-QSP: dynamic text: "<b>Meet me here on Saturday, between '+func('time', 'get_time_string', 11, 0)+'...
     scene.text('"<b>Meet me here on Saturday, between 11:00 and 12:00.</b> I\'ll talk you through the details then," he grunts. "By the way: any complaints from people not receiving their mail in good shape and you\'re out. Our post office has a damn near perfect record for deliveries, and I intend to keep it that way!"');
@@ -231,7 +231,7 @@ function enterVisitAfterRefusing(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Accept the job', handler: (st: GameState) => {
-    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_mailgirl'] = 2;
+    ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_mailgirl'] = 2;
     scene.text('"That sounds great, thank you!" you smile');
     // TODO-QSP: dynamic text: "<b>Meet me here on Saturday, between '+func('time', 'get_time_string', 11, 0)+'...
     scene.text('"<b>Meet me here on Saturday, between 11:00 and 12:00.</b> I\'ll talk you through the details then," he grunts. "By the way: any complaints from people not receiving their mail in good shape and you\'re out! Our post office has a damn near perfect record for deliveries, and I intend to keep it that way!"');
@@ -254,7 +254,7 @@ function enterVisitAfterRefusing2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Decline the job', handler: (st: GameState) => {
-    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_mailgirl'] = 1;
+    ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_mailgirl'] = 1;
     scene.text('"I\'ve given it some thought, but no. You\'ll have to find someone else," you tell him.');
     scene.text('"That\'s too bad. You could\'ve been a great post girl! Well, thanks for letting me know," he mutters, clearly disappointed. "My door is always open for you if you change your mind."');
     scene.actions([
@@ -262,9 +262,9 @@ function enterVisitAfterRefusing2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Accept the job', handler: (st: GameState) => {
-    (s as any).temp_prev_job_last_work_day = ((s as any).job_last_work_day ?? 0)?.['pav_mailgirl'];
-    qspCall(s, 'jobs', 'set_employed', 'pav_mailgirl');
-    ((s as any).job_last_work_day = (s as any).job_last_work_day ?? {})['pav_mailgirl'] = ((s as any).temp_prev_job_last_work_day ?? 0);
+    (st as any).temp_prev_job_last_work_day = ((st as any).job_last_work_day ?? 0)?.['pav_mailgirl'];
+    qspCall(st, 'jobs', 'set_employed', 'pav_mailgirl');
+    ((st as any).job_last_work_day = (st as any).job_last_work_day ?? {})['pav_mailgirl'] = ((st as any).temp_prev_job_last_work_day ?? 0);
     scene.text('"I\'ve given it some thought and I\'d like to take the job," you tell him.');
     scene.text('"That\'s great! In that case, I\'ll let Aleksiy know he no longer has to come in on weekends. See you on Saturday!" he says while shaking your hand.');
     // TODO-QSP: dynamic text: You can now deliver mail every Saturday from '+func('time', 'get_time_string', 1...
@@ -283,7 +283,7 @@ function enterVisitOutsideWorkHours(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/postoffice/postmaster.jpg');
   scene.text('The postmaster looks at you in confusion, wondering why you\'re here. "Yes? More questions? You look like you want to ask something…"');
   scene.text('"Could you tell me about the job again?" you ask.');
-  // TODO-QSP: dynamic text: He nods. "Of course. As you probably know, Russian Post doesn't deliver regular ...
+  // TODO-QSP: dynamic text: He nods. "Of course. As you probably know, Russian Post doesn''t deliver regular...
   scene.text('He nods. "Of course. As you probably know, Russian Post doesn\'t deliver regular mail on Saturdays, only priority mail. That\'s what you will be delivering. Not a lot of mail, but if people choose to have it delivered on Saturdays, it must be important! It\'s a big responsibility, but I trust you to get the job done. It\'ll take you roughly three hours, going on past experience. Some days we have more, some days we have less. <b>Make sure you\'re here between 11:00 and 12:00 on Saturday, so I can talk you through what exactly it is you have to do.</b>"');
   scene.text('He watches you for a second while you try to memorize it all. "Was that all? I really need to get back to work…" he says somewhat impatiently.');
   // TODO-QSP: end
@@ -307,14 +307,14 @@ function enterStartWork(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Start your round', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    ((s as any).job_last_work_day = (s as any).job_last_work_day ?? {})['pav_mailgirl'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    ((st as any).job_last_work_day = (st as any).job_last_work_day ?? {})['pav_mailgirl'] = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/postgirl.jpg');
     scene.text('The first hour goes by rather quickly. It\'s fairly easy work, but you notice that you\'re losing a lot of time by avoiding the \'dangerous\' streets. You could easily save half an hour, if not more, just by cutting through them if needed.');
     scene.text('Then again, he wouldn\'t warn you and go through the trouble of drawing out a map if it wasn\'t important…');
-    qspCall(s, 'willpower', 'misc', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Use the more dangerous shortcuts', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -323,35 +323,35 @@ function enterStartWork(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Use the more dangerous shortcuts', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).minut = ((s as any).minut ?? 0) + 70;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).minut = ((st as any).minut ?? 0) + 70;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/postmaster.jpg');
     scene.text('You walk by yet another empty street and look at your map again. Deciding to ignore the risk, you head down one of the streets marked as dangerous.');
     scene.text('You sometimes feel a little uncomfortable when small groups of rowdy looking guys are checking you out, but fortunately they leave you alone and your bag is empty in no time at all.');
-    // TODO-QSP: dynamic text: You're done almost an hour faster than planned, and it's only '+func('time', 'ge...
+    // TODO-QSP: dynamic text: You''re done almost an hour faster than planned, and it''s only '+func('time', '...
     scene.text('You\'re done almost an hour faster than planned, and it\'s only 14:10 when you return to the postmaster.');
     scene.text('He gives you a suspicious look and shakes his head. "There\'s no way you\'d be back already if you listened to what I said. You ignored my warning, didn\'t you?"');
     scene.actions([
       { label: 'Be honest', handler: (st: GameState) => {
-    (s as any).money = ((s as any).money ?? 0) + (500);
-    qspCall(s, 'stat', '');
+    (st as any).money = ((st as any).money ?? 0) + (500);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/postmaster.jpg');
     scene.text('"Yes…" you admit. "But I can take care of myself!"');
     scene.text('He lets out an exasperated sigh, but nods. "I drew out that map for your safety, girl, but fine. As long as you do a good job and everyone gets their mail on time, I won\'t ask how you do it. Just be careful, okay?"');
     // TODO-QSP: dynamic text: He hands you the full amount for your work despite you finishing quicker. You ev...
     scene.text(`He hands you the full amount for your work despite you finishing quicker. You even find ${qspFunc(s, 'money', 'string_profit', 50)} extra. "From Aleksiy. He says thanks for his first Saturday off in months! He and his little girl dropped by earlier, he looked so happy!" he explains. "Anyway, as far as I'm concerned, you got the job for every weekend. What do you say, same time next Saturday?"`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJobOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Lie', handler: (st: GameState) => {
-    (s as any).money = ((s as any).money ?? 0) + (500);
-    qspCall(s, 'stat', '');
+    (st as any).money = ((st as any).money ?? 0) + (500);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/postmaster.jpg');
     scene.text('"No, I\'m just a fast worker," you lie.');
     scene.text('He sees right through you, but can\'t help but laugh. "You kids and your youthful hubris! I drew out that map for your safety, but fine. As long as you do a good job and everyone gets their mail on time, I won\'t ask how you do it. Just be careful, okay?"');
     // TODO-QSP: dynamic text: He hands you the full amount for your work despite you finishing quicker. You ev...
     scene.text(`He hands you the full amount for your work despite you finishing quicker. You even find ${qspFunc(s, 'money', 'string_profit', 50)} extra. "From Aleksiy. He says thanks for his first Saturday off in months! He and his little girl dropped by earlier, he looked so happy!" he explains. "Anyway, as far as I'm concerned, you got the job for every weekend. What do you say, same time next Saturday?"`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJobOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -359,17 +359,17 @@ function enterStartWork(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Stick to the \'safe\' streets', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 115;
-    (s as any).money = ((s as any).money ?? 0) + (500);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 115;
+    (st as any).money = ((st as any).money ?? 0) + (500);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/postmaster.jpg');
     scene.text('He warned you for a reason, so you think it best to play it safe, especially on your first day.');
     // TODO-QSP: dynamic text: You stick to the route he suggested and have a fairly uneventful day delivering ...
     scene.text('You stick to the route he suggested and have a fairly uneventful day delivering the rest of your mail. You return to the post office just before 15:00.');
     scene.text('"You managed to deliver all of it? That\'s great!" the postmaster beams as you put the empty bag back where it belongs.');
-    // TODO-QSP: dynamic text: He hands you your pay right away, with another <<$func('money', 'string_profit',...
+    // TODO-QSP: dynamic text: He hands you your pay right away, with another <<$func(''money'', ''string_profi...
     scene.text(`He hands you your pay right away, with another ${qspFunc(s, 'money', 'string_profit', 50)} extra. "From Aleksiy. He says thanks for his first Saturday off in months! He and his little girl dropped by earlier and he looked so happy!" he explains. "As far as I'm concerned, you got the job for every weekend. What do you say, same time next Saturday?"`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJobOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterJobOffer(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -381,9 +381,9 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'You\'re not sure', handler: (st: GameState) => {
-    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_mailgirl'] = 3;
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_mailgirl'] = 3;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('"I don\'t know how next week will look yet. Can I think about it?" you ask.');
     scene.text('"I guess, but I\'m telling Aleksiy he has to come in next Saturday then. I can\'t work with maybes," he shrugs. "If you want the job, let me know before Saturday so I can make the arrangements. If I haven\'t heard from you by closing time on Friday, I will assume you\'re not coming."');
     scene.text('You nod understandingly. "That sounds fair. I\'ll come and tell you once I\'ve made my decision."');
@@ -392,11 +392,11 @@ function enterJobOffer(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Accept the job', handler: (st: GameState) => {
-    (s as any).temp_prev_job_last_work_day = ((s as any).job_last_work_day ?? 0)?.['pav_mailgirl'];
-    qspCall(s, 'jobs', 'set_employed', 'pav_mailgirl');
-    ((s as any).job_last_work_day = (s as any).job_last_work_day ?? {})['pav_mailgirl'] = ((s as any).temp_prev_job_last_work_day ?? 0);
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).temp_prev_job_last_work_day = ((st as any).job_last_work_day ?? 0)?.['pav_mailgirl'];
+    qspCall(st, 'jobs', 'set_employed', 'pav_mailgirl');
+    ((st as any).job_last_work_day = (st as any).job_last_work_day ?? {})['pav_mailgirl'] = ((st as any).temp_prev_job_last_work_day ?? 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('You tell him you want to work again next Saturday.');
     scene.text('"That\'s great! I\'ll let Aleksiy know he no longer has to come in on weekends, in that case. See you next week!" he says while shaking your hand. "And thank you for a job well done!"');
     // TODO-QSP: dynamic text: You can now deliver mail every Saturday from '+func('time', 'get_time_string', 1...

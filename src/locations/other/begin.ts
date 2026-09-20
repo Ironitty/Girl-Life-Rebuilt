@@ -1,4 +1,4 @@
-import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -21,10 +21,10 @@ function enterWarning(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckimg(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === ((s as any).locArgs?.[3] ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).locArgs?.[4] ?? 0)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === Number((s as any).locArgs?.[3] ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === Number((s as any).locArgs?.[4] ?? 0)) {
     (s as any).result = '<td><center><img src="images/system/icons/check.png" height="50"></center></td>';
   } else {
-    (s as any).result = '<td><center><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $start_type[\\u0027loc\\u0027] = \\u0027' + ((s as any).locArgs?.[3] ?? 0) + '\\u0027 */ /* TODO-QSP: $start_type[\\u0027magic\\u0027] = \\u0027' + ((s as any).locArgs?.[4] ?? 0) + '\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027begin\\u0027, \\u0027start\\u0027); return false;"><img src="images/system/icons/uncheck.png" height="50"></a></center></td>';
+    (s as any).result = '<td><center><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $start_type[/u0027loc/u0027] = /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027 */ /* TODO-QSP: $start_type[/u0027magic/u0027] = /u0027' + ((s as any).locArgs?.[4] ?? 0) + '/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027begin/u0027, /u0027start/u0027); return false;"><img src="images/system/icons/uncheck.png" height="50"></a></center></td>';
   }
   return;
   // TODO-QSP: end
@@ -68,9 +68,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change theme', handler: (st: GameState) => {
-    (s as any).themes_menu_ret_loc = 'begin';
-    (s as any).themes_menu_ret_arg = 'start';
-    qspGoto(s, 'themes', 'menu');
+    (st as any).themes_menu_ret_loc = 'begin';
+    (st as any).themes_menu_ret_arg = 'start';
+    qspGoto(st, 'themes', 'menu');
   } },
     { label: 'Change game settings', handler: (st: GameState) => {
     (st as any).settingmode = 1;
@@ -78,7 +78,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Manage mods', handler: (st: GameState) => {
     (st as any).settingmode = 1;
-  }, goto: ['$menu_settings', 'mods'] },
+    dynamicGoto(st, 'menu_settings', 'mods');
+  } },
   ]);
   scene.build();
 }
@@ -92,8 +93,8 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetRandom(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'loc') {
-    (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'loc') {
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
       (s as any).result = 'sg';
     } else {
@@ -104,8 +105,8 @@ function enterGetRandom(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'magic') {
-      (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'magic') {
+      (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
       if ((!((s as any).temp_rand ?? 0))) {
         (s as any).result = 'nomagic';
       } else {
@@ -142,16 +143,16 @@ function enterRealCharacter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '<b>Use the dynamic profile system</b>', handler: (st: GameState) => {
-    ((s as any).face_style = (s as any).face_style ?? {})['type'] = 0;
-    qspGoto(s, 'intro_start', 'start');
+    ((st as any).face_style = (st as any).face_style ?? {})['type'] = 0;
+    qspGoto(st, 'intro_start', 'start');
   } },
     { label: '<b>Use a fixed profile image</b>', handler: (st: GameState) => {
-    ((s as any).face_style = (s as any).face_style ?? {})['type'] = 1;
-    qspGoto(s, 'begin', 'use_avatar_menu');
+    ((st as any).face_style = (st as any).face_style ?? {})['type'] = 1;
+    qspGoto(st, 'begin', 'use_avatar_menu');
   } },
     { label: '<b>Use the rendered profile system</b>', handler: (st: GameState) => {
-    ((s as any).face_style = (s as any).face_style ?? {})['type'] = 2;
-    qspGoto(s, 'intro_start', 'start');
+    ((st as any).face_style = (st as any).face_style ?? {})['type'] = 2;
+    qspGoto(st, 'intro_start', 'start');
   } },
   ]);
   scene.build();
@@ -162,7 +163,7 @@ function enterUseAvatarMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).face_style ?? 0)?.['avatar_path'] === '') {
     ((s as any).face_style = (s as any).face_style ?? {})['avatar_path'] = 'images/avatar.jpg';
   }
-  // TODO-QSP: dynamic text: You have selected: <<$face_style['avatar_path']>>. Is this correct?
+  // TODO-QSP: dynamic text: You have selected: <<$face_style[''avatar_path'']>>. Is this correct?
   scene.text(`You have selected: ${((s as any).face_style ?? 0)?.['avatar_path'] ?? ''}. Is this correct?`);
   // TODO-QSP: end
   scene.actions([

@@ -21,7 +21,7 @@ function logAction(type: string, detail: string) {
 interface GameStore extends GameState {
   reminders: Reminder[];
   set: (partial: Partial<GameState> | ((state: GameState) => Partial<GameState> | void)) => void;
-  doGoto: (loc: string, arg: string) => void;
+  doGoto: (loc: string, arg: string, arg2?: string, arg3?: string) => void;
   doCall: (loc: string, arg: string) => void;
   doPush: () => void;
   doPop: () => void;
@@ -52,6 +52,10 @@ export const initialState = {
   prevLoc: '',
   prevArg: '',
   locationType: 'public',
+  ReturnAdr: '',
+  forest_args1: '',
+  eventtype: 'before_school',
+  temp_kickboxVars: { round: 1, npc_health: 10, fight_type: 0, time: 0, active_init: 0 },
 
   scene: {
     mainText: '',
@@ -127,6 +131,16 @@ export const initialState = {
   cheatVars: {},
   pcs_mood_effects: {},
   sleepVars: {},
+  cgd_clothes: {} as Record<string, string>,
+  casino_chips: 0,
+  deckFace: [] as number[],
+  temp_player_hand: [] as number[],
+  temp_dealer_hand: [] as number[],
+  numHands: 0,
+  currentHand: 0,
+  menu_settings: '_menu_settings',
+  menu_loc: 'start',
+  menu_arg: 'start',
   pcs_condition: {},
   pcs_period: {},
   birth_control: {},
@@ -263,6 +277,28 @@ export const initialState = {
 
   npcIndex: [],
   npcID: [],
+  numnpc: 0,
+  VKWoods: 0,
+  picpRand: 0,
+  rel_id: 0,
+  car: {},
+  setloc: {},
+  modelfoto: {},
+  picrand: 1,
+  SexTypeCheck: 1,
+  moodType: 'fairly normal',
+  holeType: 1,
+  droutine: { morning_count: 0, evening_count: 0, current_label: '' },
+  date_ev: { unique_npc: 1, loc: 'npc_home', leave_dialogue: 'Bye', leave_action: '' },
+  date_ev_exit: { exit_file: 'city_center', exit_arg: 'start' },
+  fightTimType: 'fight',
+  fightTimNum: 1,
+  fightEnding: 1,
+  npc_img_path: {},
+  zz_stage: 0,
+  pro_rand: 0,
+  lern_imgset: 0,
+  salonpicrand: 0,
   npc_dob: {},
   npc_rel: {},
   npc_gender: {},
@@ -476,7 +512,7 @@ export const initialState = {
   heelsminut: 0,
   heelstime: 0,
   sparrvol: {},
-  underwear: { type: 0 },
+  underwear: { type: 0, pair: 0 },
   stat_texts: {},
   stat_cfg: {},
   sd_icons_4: [],
@@ -529,6 +565,59 @@ export const initialState = {
   calendar_ui_week_start: 0,
   calCycleOpts: {},
   cal_upcoming_dirty: 0,
+  pc_descFull: {} as Record<string, string>,
+  pc_desc: {} as Record<string, string>,
+  pcs_lashes_txt: '',
+
+  CloQuality: 0, CloThinness: 0, CloTopCut: 0, CloBra: 0, CloPanties: 0,
+  CloPantsShortness: 0, CloSkirtShortness: 0, CloDress: 0, CloOnePiece: 0,
+  CloInhibit: 0, CloCoverFront: 0, CloCoverBack: 0, CloCoverTop: 0,
+  CloStyle: 0, CloStyle2: 0, CloStyle3: 0,
+  CloBimbo: 0, CloGoth: 0, CloPunk: 0, CloPrep: 0, CloPrude: 0,
+  CloProstitute: 0, CloMaid: 0, CloServer: 0, CloStrip: 0,
+  CloSchool: 0, CloOffice: 0, CloSport: 0, CloSwim: 0,
+  CloPrice: 0, CloDirt: 0, CloStrength: 0, CloMaxStrength: 0,
+
+  BraMaterial: 0, BraType: 0, BraFun: 0, BraQuality: 0, BraThinness: 0,
+  BraCover: 4, BraSport: 0, BraPrice: 0, BraDirt: 0, BraStrength: 0, BraMaxStrength: 0,
+
+  PanMaterial: 0, PanType: 0, PanFun: 0, PanQuality: 0, PanThinness: 0,
+  PanCoverFront: 4, PanCoverBack: 4, PanSport: 0, PanPrice: 0, PanDirt: 0, PanStrength: 0, PanMaxStrength: 0,
+
+  ShoQuality: 0, ShoHeels: 0, ShoCut: 0, ShoStyle: 0, ShoStyle2: 0,
+  ShoStrip: 0, ShoSport: 0, ShoBimbo: 0, ShoGoth: 0, ShoPunk: 0,
+  ShoPrice: 0, ShoStrength: 0, ShoMaxStrength: 0, ShoSkill: 0,
+  ShoPain: { severe: 0, medium: 0, mild: 0 },
+
+  CoatWarm: 0, CoatQuality: 0, CoatPrice: 0, CoatStrength: 0, CoatMaxStrength: 0,
+  coat_description: '',
+
+  PurseQuality: 0, PursePrice: 0, PurseStrength: 0,
+
+  hypnoClothes: 0, pcs_hips: 0,
+  CloLosTyp: [] as string[], CloLosNum: [] as number[],
+  theme_hex: {} as Record<string, string>,
+  bodysuitworntype: 'none', bodysuitwornnumber: 0,
+  default_entry: 0,
+  default_sport_number: {} as Record<string, number>,
+  default_school_number: {} as Record<string, number>,
+
+  def_clothing_name: {} as Record<string, string>,
+  defclothingnumber: {} as Record<string, number>,
+  defclothingtype: {} as Record<string, string>,
+  defunderwear: {} as Record<string, number>,
+  defbodysuitnumber: {} as Record<string, number>,
+  defbodysuittype: {} as Record<string, string>,
+  defbranumber: {} as Record<string, number>,
+  defbratype: {} as Record<string, string>,
+  defpantynumber: {} as Record<string, number>,
+  defpantytype: {} as Record<string, string>,
+  defshoenumber: {} as Record<string, number>,
+  defshoetype: {} as Record<string, string>,
+  defcoatnumber: {} as Record<string, number>,
+  defcoattype: {} as Record<string, string>,
+  defpursenumber: {} as Record<string, number>,
+  defpursetype: {} as Record<string, string>,
 };
 
 const GAME_STATE_KEYS = Object.keys(initialState) as (keyof GameState)[];
@@ -556,12 +645,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }
   },
 
-  doGoto: (loc, arg) => {
+  doGoto: (loc, arg, arg2?, arg3?) => {
     logAction('GOTO', `${loc}${arg ? ':' + arg : ''}`);
     const s = extractState(get());
     pushSnapshot(s, s.loc, `GOTO ${loc}${arg ? ':' + arg : ''}`);
     try {
-      goto(s, loc, arg);
+      goto(s, loc, arg, arg2, arg3);
       computeStats(s);
       let soundOn = true;
       try {

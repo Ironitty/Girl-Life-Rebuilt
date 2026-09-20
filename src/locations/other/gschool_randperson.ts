@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterCoupleGenerator(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :couple_jump
-  (s as any).couple_rand = Math.floor(Math.random() * 53) + 1;
+  (s as any).couple_rand = (Math.floor(Math.random() * 53) + 1);
   if (((s as any).couple_rand ?? 0) === 1) {
     (s as any).rand_girl = 'Viktoriya';
     (s as any).rand_boy = 'Vanya';

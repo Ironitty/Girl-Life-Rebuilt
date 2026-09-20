@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReceptionOptionLabel(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rol_recur = ((((s as any).locArgs?.[1] ?? 0) === 'Pavlov'  &&  ((s as any).hypnoSchedule ?? 0) === 1) ? ('therapist_appointment') : (''));
+  (s as any).temp_rol_recur = ((Number((s as any).locArgs?.[1] ?? 0) === 'Pavlov'  &&  ((s as any).hypnoSchedule ?? 0) === 1) ? ('therapist_appointment') : (''));
   (s as any).temp_rol_state = qspFunc(s, 'appointments', 'get_state', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_rol_recur ?? 0));
   if (((s as any).temp_rol_state ?? 0) === 'none') {
     (s as any).result = 'Book an appointment with ' + ((s as any).locArgs?.[2] ?? 0);
@@ -35,7 +35,7 @@ function enterReceptionOptionLabel(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReceptionAttend(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_ra_recur = ((((s as any).locArgs?.[1] ?? 0) === 'Pavlov'  &&  ((s as any).hypnoSchedule ?? 0) === 1) ? ('therapist_appointment') : (''));
+  (s as any).temp_ra_recur = ((Number((s as any).locArgs?.[1] ?? 0) === 'Pavlov'  &&  ((s as any).hypnoSchedule ?? 0) === 1) ? ('therapist_appointment') : (''));
   qspCall(s, 'appointments', 'render_acts', ((s as any).locArgs?.[1] ?? 0), 'clinic_functions', 'request_appointment', 'attend_appointment', ((s as any).temp_ra_recur ?? 0));
   return;
   // TODO-QSP: end
@@ -43,13 +43,13 @@ function enterReceptionAttend(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCategoryName(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'Pavlov') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'Pavlov') {
     (s as any).result = 'Dr. Pavlov';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'Ninel') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'Ninel') {
       (s as any).result = 'Dr. Ninel';
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'Petrovich') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'Petrovich') {
         (s as any).result = 'Dr. Petrovich';
       } else {
         (s as any).result = '';
@@ -66,7 +66,7 @@ function enterCategoryDesc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cd_name ?? 0) !== '') {
     (s as any).result = ((s as any).temp_cd_name ?? 0);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'Optometrist') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'Optometrist') {
       (s as any).result = 'an ' + (String(((s as any).locArgs?.[1] ?? 0)).toLowerCase());
     } else {
       (s as any).result = 'a ' + (String(((s as any).locArgs?.[1] ?? 0)).toLowerCase());
@@ -79,24 +79,24 @@ function enterCategoryDesc(s: GameState, scene: SceneBuilder): void {
 
 function enterRequestAppointment(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  if (((s as any).locArgs?.[1] ?? 0) === 'Pavlov'  &&  ((s as any).hypnoSchedule ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'Pavlov'  &&  ((s as any).hypnoSchedule ?? 0) === 1) {
     // TODO-QSP: dynamic text: "Dr. Pavlov only sees you on Thursdays, between ' + func('time', 'get_time_strin...
     scene.text('"Dr. Pavlov only sees you on Thursdays, between 18:00 and 19:00," the receptionist tells you. "Come back then."');
-    return;
     scene.actions([
-      { label: 'Leave', handler: (st: GameState) => {
+{ label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+]);
+    return;
   }
   (s as any).doctorname = qspFunc(s, 'clinic_functions', '_category_name', ((s as any).locArgs?.[1] ?? 0));
-  if (((s as any).locArgs?.[1] ?? 0) === 'Pavlov') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'Pavlov') {
     (s as any).doctortype = 'Therapist';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'Ninel') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'Ninel') {
       (s as any).doctortype = 'General practitioner';
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'Petrovich') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'Petrovich') {
         (s as any).doctortype = 'Gynecologist';
       } else {
         (s as any).doctortype = ((s as any).locArgs?.[1] ?? 0);
@@ -138,7 +138,7 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
     ((s as any).appointment_offer_window_end = (s as any).appointment_offer_window_end ?? {})[String((s as any).same_day_offer_index ?? 0)] = ((s as any).same_day_window_end ?? 0);
   }
   (s as any).temp_doc_desc = qspFunc(s, 'clinic_functions', '_category_desc', ((s as any).doc_category ?? 0));
-  (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
   if (((s as any).temp_rand ?? 0) === 1) {
     // TODO-QSP: dynamic text: "For an appointment with <<$temp_doc_desc>>, we have some options:"
     scene.text(`"For an appointment with ${((s as any).temp_doc_desc || '')}, we have some options:"`);
@@ -174,20 +174,20 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
   scene.text('</table>');
   if (((s as any).same_day_offer_index ?? 0) >= 0) {
     if (((s as any).same_day_free ?? 0) === 1) {
-      // TODO-QSP: dynamic text: "Actually, it looks like something opened up for later today, too. You're welcom...
+      // TODO-QSP: dynamic text: "Actually, it looks like something opened up for later today, too. You''re welco...
       scene.text(`"Actually, it looks like something opened up for later today, too. You're welcome to wait for ${((s as any).temp_doc_desc || '')}, free of charge, if you'd rather not book ahead."`);
     } else {
-      // TODO-QSP: dynamic text: "If you'd prefer not to wait for one of these, we also offer an expedited appoin...
+      // TODO-QSP: dynamic text: "If you''d prefer not to wait for one of these, we also offer an expedited appoi...
       scene.text(`"If you'd prefer not to wait for one of these, we also offer an expedited appointment with ${((s as any).temp_doc_desc || '')} today, for a fee."`);
     }
   }
   if (((s as any).appointment_selected_index ?? 0) >= 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).temp_appt_dest_loc = ((s as any).appt_ret_loc ?? 0);
-    (s as any).temp_appt_dest_arg = ((s as any).appt_ret_arg ?? 0);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).appointment_selected_index ?? 0)]; enterBookAppointmentConfirm(s, scene); (s as any).locArgs = __savedLocArgs; }
-    dynamicGoto(s, 'temp_appt_dest_loc', 'temp_appt_dest_arg');
+    (st as any).temp_appt_dest_loc = ((st as any).appt_ret_loc ?? 0);
+    (st as any).temp_appt_dest_arg = ((st as any).appt_ret_arg ?? 0);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).appointment_selected_index ?? 0)]; enterBookAppointmentConfirm(s, scene); (st as any).locArgs = __savedLocArgs; }
+    dynamicGoto(st, 'temp_appt_dest_loc', 'temp_appt_dest_arg');
   } },
     ]);
   } else {
@@ -199,38 +199,38 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).same_day_free ?? 0) === 1) {
       scene.actions([
         { label: 'Wait for the opening today, free of charge', handler: (st: GameState) => {
-    (s as any).temp_wait_minutes = ((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).same_day_offer_index ?? 0)] * 15 - (((s as any).totminut ?? 0) % 1440);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).same_day_offer_index ?? 0)]; enterBookAppointmentConfirm(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'appointments', 'resolve', ((s as any).doc_category ?? 0));
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).doc_category ?? 0), ((s as any).temp_wait_minutes ?? 0)]; enterWaitForAppointment(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).temp_wait_minutes = ((st as any).appointment_offer_window_end ?? 0)?.[String((st as any).same_day_offer_index ?? 0)] * 15 - (((st as any).totminut ?? 0) % 1440);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).same_day_offer_index ?? 0)]; enterBookAppointmentConfirm(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'appointments', 'resolve', ((st as any).doc_category ?? 0));
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).doc_category ?? 0), ((st as any).temp_wait_minutes ?? 0)]; enterWaitForAppointment(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Pay for an expedited appointment', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 1000);
-      (s as any).temp_wait_minutes = ((s as any).appointment_offer_window_end ?? 0)?.[String((s as any).same_day_offer_index ?? 0)] * 15 - (((s as any).totminut ?? 0) % 1440);
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).same_day_offer_index ?? 0)]; enterBookAppointmentConfirm(s, scene); (s as any).locArgs = __savedLocArgs; }
-      qspCall(s, 'appointments', 'resolve', ((s as any).doc_category ?? 0));
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).doc_category ?? 0), ((s as any).temp_wait_minutes ?? 0)]; enterWaitForAppointment(s, scene); (s as any).locArgs = __savedLocArgs; }
+      qspCall(st, 'money', 'pay', 1000);
+      (st as any).temp_wait_minutes = ((st as any).appointment_offer_window_end ?? 0)?.[String((st as any).same_day_offer_index ?? 0)] * 15 - (((st as any).totminut ?? 0) % 1440);
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).same_day_offer_index ?? 0)]; enterBookAppointmentConfirm(s, scene); (st as any).locArgs = __savedLocArgs; }
+      qspCall(st, 'appointments', 'resolve', ((st as any).doc_category ?? 0));
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).doc_category ?? 0), ((st as any).temp_wait_minutes ?? 0)]; enterWaitForAppointment(s, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
       ]);
     }
   }
+  scene.actions([
+{ label: 'Go back', handler: (st: GameState) => {
+    (st as any).temp_appt_dest_loc = ((st as any).appt_ret_loc ?? 0);
+    (st as any).temp_appt_dest_arg = ((st as any).appt_ret_arg ?? 0);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBookAppointmentCleanup(s, scene); (st as any).locArgs = __savedLocArgs; }
+    dynamicGoto(st, 'temp_appt_dest_loc', 'temp_appt_dest_arg');
+  } },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'Go back', handler: (st: GameState) => {
-    (s as any).temp_appt_dest_loc = ((s as any).appt_ret_loc ?? 0);
-    (s as any).temp_appt_dest_arg = ((s as any).appt_ret_arg ?? 0);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBookAppointmentCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
-    dynamicGoto(s, 'temp_appt_dest_loc', 'temp_appt_dest_arg');
-  } },
-  ]);
   scene.build();
 }
 
@@ -307,7 +307,7 @@ function enterAttendAppointment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWaitingGenericScene(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_wgs_rand = Math.floor(Math.random() * 9) + 0;
+  (s as any).temp_wgs_rand = (Math.floor(Math.random() * 9) + 0);
   if ((!((s as any).temp_wgs_rand ?? 0))) {
     scene.text('You are waiting patiently in the waiting area.');
   } else {
@@ -346,7 +346,7 @@ function enterWaitingGenericScene(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWaitForAppointment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[2] ?? 0) > 0) {
     scene.text('"Please take a seat in the waiting area. We will call you as soon as the Doctor is available." The nurse replies and marks something in her papers.');
     (s as any).tmp_doc = ((s as any).locArgs?.[1] ?? 0);
     (s as any).tmp_remain = ((s as any).locArgs?.[2] ?? 0);
@@ -364,7 +364,7 @@ function enterWaitForAppointment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWaitForAppointmentWait(s: GameState, scene: SceneBuilder): void {
-  (s as any).tmp_minut = Math.max(0, Math.min(((s as any).locArgs?.[2] ?? 0), Math.floor(Math.random() * 30) + 1));
+  (s as any).tmp_minut = Math.max(0, Math.min(((s as any).locArgs?.[2] ?? 0), (Math.floor(Math.random() * 30) + 1)));
   (s as any).tmp_remain = ((s as any).locArgs?.[2] ?? 0) - ((s as any).tmp_minut ?? 0);
   (s as any).tmp_doc = ((s as any).locArgs?.[1] ?? 0);
   qspCall(s, 'stat', '');
@@ -391,10 +391,10 @@ function enterWaitForAppointmentWait(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWaitForAppointmentEnd(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'General practitioner') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'General practitioner') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetGeneralAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'City General practitioner') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'City General practitioner') {
       if (((s as any).sick ?? 0) > 0) {
         if ((!((s as any).ninelsex ?? 0))) {
           scene.actions([
@@ -409,26 +409,26 @@ function enterWaitForAppointmentEnd(s: GameState, scene: SceneBuilder): void {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetGeneralAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'Petrovich') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'Petrovich') {
         scene.actions([
           { label: 'Go to the Doctor', goto: ['pav_clinic', 'Petrovich1'] },
         ]);
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'Pavlov') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'Pavlov') {
           scene.actions([
             { label: 'Go to the Doctor', goto: ['therapist', 'start'] },
           ]);
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'Therapist') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'Therapist') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetPsycologistAct(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'Dentist'  ||  ((s as any).locArgs?.[1] ?? 0) === 'City Dentist') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'Dentist'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'City Dentist') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetDentistAct(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'Optometrist'  ||  ((s as any).locArgs?.[1] ?? 0) === 'City Optometrist') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'Optometrist'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'City Optometrist') {
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetOptometristActs(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 'Pediatrician') {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 'Pediatrician') {
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetPediatricianAct(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   scene.actions([
@@ -466,9 +466,9 @@ function enterSetAbortionAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get an abortion', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'get_abortion');
+      qspGoto(st, 'clinic_functions', 'get_abortion');
     }
   } },
     ]);
@@ -499,25 +499,25 @@ function enterSetGeneralAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Doctor (1:00)', handler: (st: GameState) => {
-    scene.img(`images/locations/city/residential/clinic/experiments/doc${Math.floor(Math.random() * 2) + 1}.jpg`);
-    if ((((s as any).pcs_health ?? 0) < ((s as any).healthmax ?? 0) / 2  ||  ((s as any).pain ?? 0)?.['total'] >= 70)  &&  ((s as any).clinic ?? 0)?.['docheal'] !== ((s as any).daystart ?? 0)) {
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      ((s as any).clinic = (s as any).clinic ?? {})['docheal'] = ((s as any).daystart ?? 0);
-      qspCall(s, 'medical_din', 'healthTreatment');
-      qspCall(s, 'stat', '');
+    scene.img(`images/locations/city/residential/clinic/experiments/doc${(Math.floor(Math.random() * 2) + 1)}.jpg`);
+    if ((((st as any).pcs_health ?? 0) < ((st as any).healthmax ?? 0) / 2  ||  ((st as any).pain ?? 0)?.['total'] >= 70)  &&  ((st as any).clinic ?? 0)?.['docheal'] !== ((st as any).daystart ?? 0)) {
+      (st as any).minut = ((st as any).minut ?? 0) + 60;
+      ((st as any).clinic = (st as any).clinic ?? {})['docheal'] = ((st as any).daystart ?? 0);
+      qspCall(st, 'medical_din', 'healthTreatment');
+      qspCall(st, 'stat', '');
       scene.text('After a quick discussion about your health, the doctor gives you an injection of a combined painkiller, steroid and vitamin shot which not only helps the pain, but speeds your recovery too, reducing your current pain and increasing your health. You immediately feel much better, and should recover health faster over the coming days.');
-      (s as any).general_treated = 1;
+      (st as any).general_treated = 1;
     }
-    if (((s as any).sick ?? 0) >= 1) {
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      (s as any).sick = 0;
-      qspCall(s, 'stat', '');
+    if (((st as any).sick ?? 0) >= 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + 15;
+      (st as any).sick = 0;
+      qspCall(st, 'stat', '');
       scene.text('The doctor quickly examines you, and establishes that you\'ve caught a cold. He prescribes you some pills and suggests you dress warmer when going outdoors so it doesn\'t come back.');
-      (s as any).general_treated = 1;
+      (st as any).general_treated = 1;
     }
-    if ((!((s as any).general_treated ?? 0))) {
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      qspCall(s, 'stat', '');
+    if ((!((st as any).general_treated ?? 0))) {
+      (st as any).minut = ((st as any).minut ?? 0) + 15;
+      qspCall(st, 'stat', '');
       scene.text('The doctor gives you a quick check-up and finds nothing wrong with you. He advises you to keep taking care of yourself and to come back if anything changes.');
     }
     scene.actions([
@@ -534,8 +534,8 @@ function enterSetGynocolonistAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the Doctor (1:00)', handler: (st: GameState) => {
-    if (((s as any).region ?? 0)[1] === 'pav') {
-      qspGoto(s, 'pav_clinic', 'Petrovich1');
+    if (((st as any).region ?? 0)[1] === 'pav') {
+      qspGoto(st, 'pav_clinic', 'Petrovich1');
     } else {
       scene.text('<br><b><font color="red">DEVELOPER WARNING: "clinic_functions","set_gynocolonist_act" for regions other than pavlovsk not Implemented.</font></b>');
     }
@@ -553,11 +553,11 @@ function enterSetPsycologistAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the therapist (1:00)', handler: (st: GameState) => {
-    if (((s as any).region ?? 0)[1] === 'pav') {
-      if (((s as any).therapistQW ?? 0)?.['met'] === 0) {
-        qspGoto(s, 'therapist', 'intro');
+    if (((st as any).region ?? 0)[1] === 'pav') {
+      if (((st as any).therapistQW ?? 0)?.['met'] === 0) {
+        qspGoto(st, 'therapist', 'intro');
       } else {
-        qspGoto(s, 'therapist', 'start');
+        qspGoto(st, 'therapist', 'start');
       }
     } else {
       scene.text('<br><b><font color="red">DEVELOPER WARNING: "clinic_functions","set_psycologist_act" for regions other than pavlovsk not Implemented.</font></b>');
@@ -612,11 +612,11 @@ function enterDentistInspection(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Sort out your missing teeth', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).zubpay ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).zubpay ?? 0)) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', ((s as any).zubpay ?? 0));
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFixMissingTeeth(s, scene); (s as any).locArgs = __savedLocArgs; }
+      qspCall(st, 'money', 'pay', ((st as any).zubpay ?? 0));
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFixMissingTeeth(s, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -645,11 +645,11 @@ function enterDentistInspection(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Sort out your croocked teeth', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).zubpay ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).zubpay ?? 0)) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', ((s as any).zubpay ?? 0));
-      qspGoto(s, 'clinic_functions', 'fix_teeth');
+      qspCall(st, 'money', 'pay', ((st as any).zubpay ?? 0));
+      qspGoto(st, 'clinic_functions', 'fix_teeth');
     }
   } },
       ]);
@@ -769,47 +769,47 @@ function enterSetOptometristActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Visit the optometrist (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/clinic/optometrist.jpg');
     scene.text('The optometrist takes you through a series of tests to measure the condition of your eyes.');
-    if (((s as any).glassqw ?? 0) === 1  ||  ((s as any).glass ?? 0) > 0) {
+    if (((st as any).glassqw ?? 0) === 1  ||  ((st as any).glass ?? 0) > 0) {
       scene.text('He looks at you as if he has bad news for you. "Well, you probably already expected this, but your vision has deteriorated significantly. You\'re going to need glasses to be able to read. The prescription I\'m writing for you is for a simple set of rimmed glasses which you can pick up at the front desk before you leave."');
       scene.text('He hands you a piece of paper. "Of course you can get a different pair elsewhere if you want better looking ones, the details for which ones you need are on your prescription. You can also get laser vision correction if you really don\'t want to use glasses, but I\'m going to be honest with you: that\'s a very expensive procedure."');
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['bookworm_exp'] = ((s as any).trait_vars['bookworm_exp'] ?? 0) + (1);
-      (s as any).glassqw = 2;
-      (s as any).glass = 1;
-      (s as any).blizoruk = ((s as any).blizoruk ?? 0) + (1);
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['bookworm_exp'] = ((st as any).trait_vars['bookworm_exp'] ?? 0) + (1);
+      (st as any).glassqw = 2;
+      (st as any).glass = 1;
+      (st as any).blizoruk = ((st as any).blizoruk ?? 0) + (1);
     } else {
       scene.text('He looks at you. "Well, your vision has not deteriorated."');
     }
-    if (((s as any).glass ?? 0) > 0) {
-      qspCall(s, 'stat', '');
+    if (((st as any).glass ?? 0) > 0) {
+      qspCall(st, 'stat', '');
       scene.img('images/locations/pavlovsk/clinic/optometrist.jpg');
       // TODO-QSP: dynamic text: The optometrist examines your eyes and says that he can perform laser eye surger...
       scene.text('The optometrist examines your eyes and says that he can perform laser eye surgery for 75000₽. Of course, reading books can cause your eyesight to deteriorate again.');
-      if (((s as any).glass ?? 0) === 1) {
+      if (((st as any).glass ?? 0) === 1) {
         // TODO-QSP: dynamic text: The optometrist also tells you about the option to buy glasses for ' + $func('mo...
         scene.text('The optometrist also tells you about the option to buy glasses for 4500₽.');
       }
-      if (((s as any).glass ?? 0) === 1) {
+      if (((st as any).glass ?? 0) === 1) {
         scene.actions([
           { label: 'Buy glasses', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 4500) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'buy_stylish_glasses');
+      qspGoto(st, 'clinic_functions', 'buy_stylish_glasses');
     }
   } },
         ]);
       }
-      if (((s as any).glass ?? 0) !== 0) {
+      if (((st as any).glass ?? 0) !== 0) {
         scene.actions([
           { label: 'Pay for laser correction', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 75000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'buy_laser_correction');
+      qspGoto(st, 'clinic_functions', 'buy_laser_correction');
     }
   } },
         ]);
@@ -863,9 +863,9 @@ function enterSetStdHerpesShotAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get herpes shot', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 450) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'herpes_shot');
+      qspGoto(st, 'clinic_functions', 'herpes_shot');
     }
   } },
     ]);
@@ -879,9 +879,9 @@ function enterSetStdGonorrheaShotAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get gonorrhea shot', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 750) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'gonorrhea_shot');
+      qspGoto(st, 'clinic_functions', 'gonorrhea_shot');
     }
   } },
     ]);
@@ -895,9 +895,9 @@ function enterSetStdSyphilisShotAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get syphilis shot', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'syphilis_shot');
+      qspGoto(st, 'clinic_functions', 'syphilis_shot');
     }
   } },
     ]);
@@ -911,9 +911,9 @@ function enterSetStdHerpesCureAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to private clinic and completely cure your herpes', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 45000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'herpes_cure');
+      qspGoto(st, 'clinic_functions', 'herpes_cure');
     }
   } },
     ]);
@@ -927,9 +927,9 @@ function enterSetStdYeastCureAct(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to private clinic and completely cure your yeast infection.', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'clinic_functions', 'yeast_cure');
+      qspGoto(st, 'clinic_functions', 'yeast_cure');
     }
   } },
     ]);
@@ -1123,7 +1123,7 @@ function enterSetLiposuctionAct(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'Liposuction - ' + $func('money', 'string_price', 75000)
     }
   } else {
-    // TODO-QSP: dynamic text: Liposuction - ' + $func('money', 'string_price', 75000) + ' - You're already thi...
+    // TODO-QSP: dynamic text: Liposuction - ' + $func('money', 'string_price', 75000) + ' - You''re already th...
     scene.text('Liposuction - 75000₽ - You\'re already thin.');
   }
   // TODO-QSP: end
@@ -1148,7 +1148,7 @@ function enterSetRemoveBreastImplantAct(s: GameState, scene: SceneBuilder): void
 function enterSetGetSmallBreastImplantAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fillimplant ?? 0) === 1  ||  ((s as any).stringimplant ?? 0) === 1) {
     // TODO-QSP: dynamic text: Get small breast implants - ' + $func('money', 'string_price', 170000) + ' - You...
-    scene.text('Get small breast implants - 170000₽ - You already have \' + iif(fillimplant = 1, \'fillable\', \'string\') + \' implants.');
+    scene.text('Get small breast implants - 170000₽ - You already have ' + ((((s as any).fillimplant ?? 0) === 1) ? ('fillable') : ('string')) + ' implants.');
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 170000)) {
@@ -1164,7 +1164,7 @@ function enterSetGetSmallBreastImplantAct(s: GameState, scene: SceneBuilder): vo
 function enterSetGetMediumBreastImplantAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fillimplant ?? 0) === 1  ||  ((s as any).stringimplant ?? 0) === 1) {
     // TODO-QSP: dynamic text: Get medium breast implants - ' + $func('money', 'string_price', 180000) + ' - Yo...
-    scene.text('Get medium breast implants - 180000₽ - You already have \' + iif(fillimplant = 1, \'fillable\', \'string\') + \' implants.');
+    scene.text('Get medium breast implants - 180000₽ - You already have ' + ((((s as any).fillimplant ?? 0) === 1) ? ('fillable') : ('string')) + ' implants.');
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 180000)) {
@@ -1180,7 +1180,7 @@ function enterSetGetMediumBreastImplantAct(s: GameState, scene: SceneBuilder): v
 function enterSetGetLargeBreastImplantAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fillimplant ?? 0) === 1  ||  ((s as any).stringimplant ?? 0) === 1) {
     // TODO-QSP: dynamic text: Get large breast implants - ' + $func('money', 'string_price', 190000) + ' - You...
-    scene.text('Get large breast implants - 190000₽ - You already have \' + iif(fillimplant = 1, \'fillable\', \'string\') + \' implants.');
+    scene.text('Get large breast implants - 190000₽ - You already have ' + ((((s as any).fillimplant ?? 0) === 1) ? ('fillable') : ('string')) + ' implants.');
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 190000)) {
@@ -1196,7 +1196,7 @@ function enterSetGetLargeBreastImplantAct(s: GameState, scene: SceneBuilder): vo
 function enterSetGet_XXLBreastImplantAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fillimplant ?? 0) === 1  ||  ((s as any).stringimplant ?? 0) === 1) {
     // TODO-QSP: dynamic text: Get XXL breast implants - ' + $func('money', 'string_price', 200000) + ' - You a...
-    scene.text('Get XXL breast implants - 200000₽ - You already have \' + iif(fillimplant = 1, \'fillable\', \'string\') + \' implants.');
+    scene.text('Get XXL breast implants - 200000₽ - You already have ' + ((((s as any).fillimplant ?? 0) === 1) ? ('fillable') : ('string')) + ' implants.');
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 200000)) {
@@ -1212,7 +1212,7 @@ function enterSetGet_XXLBreastImplantAct(s: GameState, scene: SceneBuilder): voi
 function enterSetGetFillableBreastImplantAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fillimplant ?? 0) === 1  ||  ((s as any).stringimplant ?? 0) === 1) {
     // TODO-QSP: dynamic text: Get fillable implants - ' + $func('money', 'string_price', 200000) + ' - You alr...
-    scene.text('Get fillable implants - 200000₽ - You already have \' + iif(fillimplant = 1, \'fillable\', \'string\') + \' implants.');
+    scene.text('Get fillable implants - 200000₽ - You already have ' + ((((s as any).fillimplant ?? 0) === 1) ? ('fillable') : ('string')) + ' implants.');
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 200000)) {
@@ -1228,7 +1228,7 @@ function enterSetGetFillableBreastImplantAct(s: GameState, scene: SceneBuilder):
 function enterSetGetStringBreastImplantAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fillimplant ?? 0) === 1  ||  ((s as any).stringimplant ?? 0) === 1) {
     // TODO-QSP: dynamic text: Get string implants - ' + $func('money', 'string_price', 250000) + ' - You alrea...
-    scene.text('Get string implants - 250000₽ - You already have \' + iif(fillimplant = 1, \'fillable\', \'string\') + \' implants.');
+    scene.text('Get string implants - 250000₽ - You already have ' + ((((s as any).fillimplant ?? 0) === 1) ? ('fillable') : ('string')) + ' implants.');
     return;
   }
   if (qspFunc(s, 'money', 'can_afford', 250000)) {
@@ -1243,7 +1243,7 @@ function enterSetGetStringBreastImplantAct(s: GameState, scene: SceneBuilder): v
 
 function enterSetDrainStringBreastImplantAct(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).stringimplant ?? 0))) {
-    // TODO-QSP: dynamic text: Drain string implant - ' + $func('money', 'string_price', 2000) + ' - You don't ...
+    // TODO-QSP: dynamic text: Drain string implant - ' + $func('money', 'string_price', 2000) + ' - You don''t...
     scene.text('Drain string implant - 2000₽ - You don\'t have string implants.');
     return;
   }
@@ -1264,7 +1264,7 @@ function enterSetDrainStringBreastImplantAct(s: GameState, scene: SceneBuilder):
 
 function enterSetBuySiliconeBagAct(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).fillimplant ?? 0))) {
-    // TODO-QSP: dynamic text: Buy silicone bag - ' + $func('money', 'string_price', 500) + ' - You don't have ...
+    // TODO-QSP: dynamic text: Buy silicone bag - ' + $func('money', 'string_price', 500) + ' - You don''t have...
     scene.text('Buy silicone bag - 500₽ - You don\'t have fillable implants.');
     return;
   }
@@ -1387,37 +1387,37 @@ function enterLyposuction(s: GameState, scene: SceneBuilder): void {
 
 function enterBImplantA(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  if (((s as any).locArgs?.[1] ?? 0) === 'small') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'small') {
     (s as any).temp_pay_amount = 170000;
     (s as any).temp_bust_size = 10;
     (s as any).fillimplant = 0;
     (s as any).stringimplant = 0;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'medium') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'medium') {
       (s as any).temp_pay_amount = 180000;
       (s as any).temp_bust_size = 20;
       (s as any).fillimplant = 0;
       (s as any).stringimplant = 0;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'large') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'large') {
         (s as any).temp_pay_amount = 190000;
         (s as any).temp_bust_size = 30;
         (s as any).fillimplant = 0;
         (s as any).stringimplant = 0;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'XXL') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'XXL') {
           (s as any).temp_pay_amount = 200000;
           (s as any).temp_bust_size = 40;
           (s as any).fillimplant = 0;
           (s as any).stringimplant = 0;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'fillable') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'fillable') {
             (s as any).temp_pay_amount = 200000;
             (s as any).temp_bust_size = 20;
             (s as any).fillimplant = 1;
             (s as any).stringimplant = 0;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'string') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'string') {
               (s as any).temp_pay_amount = 250000;
               (s as any).temp_bust_size = 20;
               (s as any).fillimplant = 0;
@@ -1444,11 +1444,11 @@ function enterBImplantA(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBImplantB(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'drain') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'drain') {
     qspCall(s, 'money', 'pay', 2000);
     ((s as any).bodyVars = (s as any).bodyVars ?? {})['bust_silicone'] = ((s as any).bodyVars['bust_silicone'] ?? 0) - (10);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'bag') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'bag') {
       qspCall(s, 'money', 'pay', 500);
       (s as any).siliconeBag = ((s as any).siliconeBag ?? 0) + (1);
     }

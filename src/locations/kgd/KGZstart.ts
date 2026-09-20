@@ -13,7 +13,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any).KGZVars = (s as any).KGZVars ?? {})['record'] = ((s as any).KGZVars ?? 0)?.['rec'];
   }
   scene.text('<center><b>Dead City</b></center>');
-  // TODO-QSP: dynamic text: <center><b>Your record: <<KGZVars['record']>> hours</b></center>
+  // TODO-QSP: dynamic text: <center><b>Your record: <<KGZVars[''record'']>> hours</b></center>
   scene.text(`<center><b>Your record: ${((s as any).KGZVars ?? 0)?.['record'] ?? ''} hours</b></center>`);
   if (((s as any).KGZVars ?? 0)?.['dost'] === 1) {
     scene.text('Achievement unlocked: Found Fort Bragg');
@@ -26,12 +26,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Play a new game', handler: (st: GameState) => {
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['HP'] = 100;
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['day'] = 1;
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['hour'] = 8;
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['sup'] = 3;
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['medkit'] = 1;
-    ((s as any).KGZVars = (s as any).KGZVars ?? {})['rec'] = 0;
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['HP'] = 100;
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['day'] = 1;
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['hour'] = 8;
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['sup'] = 3;
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['medkit'] = 1;
+    ((st as any).KGZVars = (st as any).KGZVars ?? {})['rec'] = 0;
     scene.text('Various logos fade in and out on the screen as the game boots up.');
     scene.text('DeGross Entertainment');
     scene.text('In collaboration with');

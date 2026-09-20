@@ -75,48 +75,48 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue sucking.', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     scene.img('images/shared/sex/cum/mouth/cum30.jpg');
     // TODO-QSP: dynamic text: A jet of hot sperm hits you in the mouth. You begin to swallow cum, and <<$boyde...
-    scene.text(`A jet of hot sperm hits you in the mouth. You begin to swallow cum, and ${((s as any).boydesc || '')} continues to cum in your mouth. Finally, the flow of hot pungent liquid stops.`);
+    scene.text(`A jet of hot sperm hits you in the mouth. You begin to swallow cum, and ${((st as any).boydesc || '')} continues to cum in your mouth. Finally, the flow of hot pungent liquid stops.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'city_park', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'city_park', 'start');
   } },
     ]);
   } },
     { label: 'Remove from your mouth.', handler: (st: GameState) => {
-    if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
+    if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       scene.img('images/shared/sex/handjob/hj.jpg');
       // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
-      scene.text(`You take his cock out of your mouth and ${((s as any).boydesc || '')} finishes in your hand.`);
+      scene.text(`You take his cock out of your mouth and ${((st as any).boydesc || '')} finishes in your hand.`);
     } else {
-      if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
-        (s as any).tiprand = Math.floor(Math.random() * 4) + 0;
+      if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
+        (st as any).tiprand = (Math.floor(Math.random() * 4) + 0);
         if ((Math.floor(Math.random() * 4) + 0) < 3) {
           scene.img('images/shared/sex/handjob/hj.jpg');
           // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
-          scene.text(`You take his cock out of your mouth and ${((s as any).boydesc || '')} finishes in your hand.`);
+          scene.text(`You take his cock out of your mouth and ${((st as any).boydesc || '')} finishes in your hand.`);
         } else {
-          (s as any).spafinloc = 11;
-          qspCall(s, 'cum_manage', '');
+          (st as any).spafinloc = 11;
+          qspCall(st, 'cum_manage', '');
           scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
           // TODO-QSP: dynamic text: You took his cock out of your mouth and immediately <<$boydesc>> cums directly o...
-          scene.text(`You took his cock out of your mouth and immediately ${((s as any).boydesc || '')} cums directly on your face, covering it with his warm and sticky seed.`);
+          scene.text(`You took his cock out of your mouth and immediately ${((st as any).boydesc || '')} cums directly on your face, covering it with his warm and sticky seed.`);
         }
       } else {
-        (s as any).spafinloc = 11;
-        qspCall(s, 'cum_manage', '');
+        (st as any).spafinloc = 11;
+        qspCall(st, 'cum_manage', '');
         scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
         // TODO-QSP: dynamic text: <<$boydesc>> holds your hair, pulls his dick out of your mouth and finishes on y...
-        scene.text(`${((s as any).boydesc || '')} holds your hair, pulls his dick out of your mouth and finishes on your face. Covering it with warm and sticky cum.`);
+        scene.text(`${((st as any).boydesc || '')} holds your hair, pulls his dick out of your mouth and finishes on your face. Covering it with warm and sticky cum.`);
       }
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'city_park', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'city_park', 'start');
   } },
     ]);
   } },
@@ -153,19 +153,19 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'No', goto: ['shop', 'start'] },
       { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
     scene.text('"Thanks, My name is Dmitry".');
     // TODO-QSP: dynamic text: You hold out your hand to him - "<<$pcs_nickname>>".
-    scene.text(`You hold out your hand to him - "${((s as any).pcs_nickname || '')}".`);
+    scene.text(`You hold out your hand to him - "${((st as any).pcs_nickname || '')}".`);
     scene.text('He was a man in his forties, average height, a pretty strong constitution, short dark hair, nose slightly hooked. Off you go, speaking about the weather, and current affairs. Finally, Dima says that you had arrived at his home. The house is a two-story, pretty cute. In the living room there is a man holding a bottle of beer.');
     scene.text('"Hi Dima, and I was bored and didn\'t know what to do", he says and adds, "What a beautiful woman you have with you, this lovely girl will surely brighten up our evening.". His eyes look all over your body and stop on your breasts.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> meet Aleksei, my friend. My wife is not home yet, she went to...
-    scene.text(`"${((s as any).pcs_nickname || '')} meet Aleksei, my friend. My wife is not home yet, she went to see her mother, the train must be running late. Luda should be here soon and then we will be at full strength" Dima said smiling.`);
+    scene.text(`"${((st as any).pcs_nickname || '')} meet Aleksei, my friend. My wife is not home yet, she went to see her mother, the train must be running late. Luda should be here soon and then we will be at full strength" Dima said smiling.`);
     // TODO-QSP: dynamic text: "Aleksei, but you can call me Alex" introduced his friend. He was slightly talle...
-    scene.text(`"Aleksei, but you can call me Alex" introduced his friend. He was slightly taller than Dima and looked a little older. Dark-haired with blue eyes, a rather handsome man. You thought to yourself, "What am I doing here?" Probably, there is no wife, it's not too late to get out of here! But Dmitry puts his arm around your waist and leads you into the kitchen. "Alex, you have set the table without me, well done!" says Dmitry. "Here, have a seat in the middle ${((s as any).pcs_nickname || '')}, we will look after you" said Alex while helping you sit. On the table are plates of snacks and a bottle of vodka. Dima pours the vodka. You say:`);
+    scene.text(`"Aleksei, but you can call me Alex" introduced his friend. He was slightly taller than Dima and looked a little older. Dark-haired with blue eyes, a rather handsome man. You thought to yourself, "What am I doing here?" Probably, there is no wife, it's not too late to get out of here! But Dmitry puts his arm around your waist and leads you into the kitchen. "Alex, you have set the table without me, well done!" says Dmitry. "Here, have a seat in the middle ${((st as any).pcs_nickname || '')}, we will look after you" said Alex while helping you sit. On the table are plates of snacks and a bottle of vodka. Dima pours the vodka. You say:`);
     scene.text('"I don\'t usually drink vodka." Maybe this was a bad idea.');
-    qspCall(s, 'willpower', 'drink', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'drink', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Make excuses and go', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -174,9 +174,9 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Make excuses and go', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_residential', '');
   } },
       ]);
     }
@@ -361,8 +361,8 @@ function enterDima10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Struggle free and escape', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'city_residential', '');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'city_residential', '');
   } },
     { label: 'Fall asleep', goto: ['event', 'dima11'] },
   ]);
@@ -431,18 +431,18 @@ function enterDima14(s: GameState, scene: SceneBuilder): void {
 
 function enterDima15(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  (s as any).runrnd = Math.floor(Math.random() * 11) + 0;
+  (s as any).runrnd = (Math.floor(Math.random() * 11) + 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('Dima unties you from the radiator. He throws you a parcel and orders you to go the bathroom and freshen up, as he goes and talks to Alexsei.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to escape', handler: (st: GameState) => {
-    if (((s as any).runrnd ?? 0) < 9) {
-      qspGoto(s, 'event', 'dima18');
+    if (((st as any).runrnd ?? 0) < 9) {
+      qspGoto(st, 'event', 'dima18');
     } else {
-      qspCall(s, 'arousal', 'end');
-      qspGoto(s, 'city_residential', '');
+      qspCall(st, 'arousal', 'end');
+      qspGoto(st, 'city_residential', '');
     }
   } },
     { label: 'Go to the bathroom', goto: ['event', 'dima16'] },
@@ -467,17 +467,17 @@ function enterDima16(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDima17(s: GameState, scene: SceneBuilder): void {
-  (s as any).runrnd = Math.floor(Math.random() * 11) + 0;
+  (s as any).runrnd = (Math.floor(Math.random() * 11) + 0);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/dmitry/sex/dima6.jpg');
   scene.text('You leave the bathroom in the buff, despite the instructions');
   // TODO-QSP: end
   scene.actions([
     { label: 'See Alex in the hall', handler: (st: GameState) => {
-    if (((s as any).runrnd ?? 0) < 9) {
-      qspGoto(s, 'event', 'dima18');
+    if (((st as any).runrnd ?? 0) < 9) {
+      qspGoto(st, 'event', 'dima18');
     } else {
-      qspGoto(s, 'event', 'dima21');
+      qspGoto(st, 'event', 'dima21');
     }
   } },
   ]);
@@ -583,9 +583,9 @@ function enterDima32(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Kick', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'event', 'dima37');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'event', 'dima37');
   } },
     ]);
   }
@@ -818,7 +818,7 @@ function enterDima45(s: GameState, scene: SceneBuilder): void {
 
 function enterDima46(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  qspCall(s, 'npcgeneratec', '', 0, 'gloryhole stranger', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'gloryhole stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   ((s as any).stat = (s as any).stat ?? {})['gloryhole'] = ((s as any).stat['gloryhole'] ?? 0) + (1);
   qspCall(s, 'stat', '');
@@ -844,7 +844,7 @@ function enterDima47(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 5);
   (s as any).dimagh_counter = 0;
   // TODO-QSP: :gloryhole1
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID ?? 0), 'sub', 'prostitution', 'unknown');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID2 ?? 0));
@@ -885,7 +885,7 @@ function enterDima48(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 5);
   (s as any).dimagh_counter = 0;
   // TODO-QSP: :gloryhole2
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID2 ?? 0), 'sub', 'prostitution', 'rough', 'deepthroat');
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
@@ -951,7 +951,7 @@ function enterDima50(s: GameState, scene: SceneBuilder): void {
 
 function enterDima51(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 27) + 19);
+  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/street/sex/10022_paristommy_088.jpg');
@@ -969,9 +969,9 @@ function enterDima51(s: GameState, scene: SceneBuilder): void {
 
 function enterDima52(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 2);
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 27) + 19, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 27) + 19), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
   qspCall(s, 'money', 'set', 0, 'cash');
   qspCall(s, 'stat', '');

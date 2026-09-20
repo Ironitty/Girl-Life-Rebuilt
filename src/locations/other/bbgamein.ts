@@ -18,9 +18,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('They look like they\'re about to play some basketball and a few of them acknowledge you, but none wave you over.');
     scene.actions([
       { label: 'Sit and watch them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/watch.jpg');
     scene.text('You take a seat on the bleachers near the court and watch them play. Most of them are pretty competitive, really pushing it to try and win.');
     scene.text('There\'s the occasional argument about a foul, but everyone mostly gets along and has fun. You have to admit it looks pretty fun and think you should ask to join them one day.');
@@ -29,20 +29,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask to join', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (2);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/teampick.jpg');
     scene.text('You walk over to them and several turn towards you. "Hey guys, what are you doing?"');
     scene.text('"We\'re about to divide up into teams and play," Lazar replies. "You can watch if you want."');
     scene.text('"Could I maybe join you instead?" you ask meekly.');
     // TODO-QSP: dynamic text: "Maybe some other time, <<$pcs_nickname>>…" he says and they start picking teams...
-    scene.text(`"Maybe some other time, ${((s as any).pcs_nickname || '')}…" he says and they start picking teams, forcing you away.`);
+    scene.text(`"Maybe some other time, ${((st as any).pcs_nickname || '')}…" he says and they start picking teams, forcing you away.`);
     scene.actions([
       { label: 'Sit and watch them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/watch.jpg');
     scene.text('You take a seat on the bleachers near the court and watch them play. Most of them are pretty competitive, really pushing it to try and win.');
     scene.text('There\'s the occasional argument about a foul, but everyone mostly gets along and has fun. You have to admit it looks pretty fun and think you should ask to join them again one day.');
@@ -62,9 +62,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('Everyone nods and their eyes start scanning around as they search for a team.');
     scene.actions([
       { label: 'Ask around', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'gdksport', 'jocks_acceptance');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'gdksport', 'jocks_acceptance');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/teampick.jpg');
     scene.text('You cautiously walk around, deciding who you could form a team with. Most of them invite you to join them.');
     scene.text('After hearing everyone out, you can form an all-girls team, a mixed team with two girls and a boy or join a team with two boys.');
@@ -83,7 +83,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterGirls(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_events', 'rand_girl_arg', 0, 1, 0, 0, 0, 0);
   qspCall(s, 'gschool_events', 'rand_girl_arg1', 0, 1, 0, 0, 0, 0);
-  qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
+  qspCall(s, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pregame.jpg');
@@ -94,26 +94,26 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Wait for opponent', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pregame.jpg');
     scene.text('You\'re up against the toughest possible opponent, the all boys team. They\'re a rowdy bunch and as they enter the court, they start mockingly laughing as they point towards you.');
     scene.text('"You won\'t be laughing after we beat you!" you yell out.');
     // TODO-QSP: dynamic text: The boys break out in even bigger laughter and have a hard time holding back the...
-    scene.text(`The boys break out in even bigger laughter and have a hard time holding back their tears. "Sure, sure. Whatever you say, ${((s as any).pcs_nickname || '')}…"`);
+    scene.text(`The boys break out in even bigger laughter and have a hard time holding back their tears. "Sure, sure. Whatever you say, ${((st as any).pcs_nickname || '')}…"`);
     scene.text('You\'re now even more determined to beat them.');
     scene.actions([
       { label: 'Give it your best', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pregame.jpg');
     scene.text('"We\'ll show them…" you say under your breath.');
     scene.text('You take a deep sigh and turn to your teammates. "Okay, listen up. I don\'t care if they\'re stronger than us, we\'re going to win this. I\'ll give my best and I want you to give it your best too."');
     scene.text('Your teammates look at each other with some hesitation, but they cautiously nod and walk out onto the court with you.');
     scene.actions([
       { label: 'Play the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
     scene.text('You\'re putting up a pretty good fight, but the physical advantage the boys have is proving to be too much. Before you know it, they\'re leading by quite a large margin.');
     scene.text('"This is so unfair!" you yell as you pant for breath.');
@@ -123,13 +123,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     scene.text('"Too scared?" you say teasingly with an even bigger smirk.');
     scene.actions([
       { label: 'Let\'s go then', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
     scene.text('You\'ve struck a nerve and they all turn serious and get ready. The ball-holder passes to you and you begin your attack.');
     scene.text('You quickly take a step to the side, but their defender is already on you and you need to make a decision.');
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -144,13 +144,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as he\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the other boys busy so that they can\'t help out their teammate.');
@@ -161,9 +161,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('You move to the left, but their defender is too quick on his feet and blocks you before you can go right. He\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse him. However, he\'s not buying it and quickly slaps the ball out of your hands before passing it to his teammate, who dunks it and wins the game for them.');
@@ -174,13 +174,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -190,28 +190,28 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, you tried your best," one teammate says, trying ...
-      scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
+      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
+      scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -221,9 +221,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the boys grabs the rebound and passes it to his teammate, who takes a shot and scores, winning the game.');
@@ -237,9 +237,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'huge');
-    qspCall(s, 'sweat', 'add', 40);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'huge');
+    qspCall(st, 'sweat', 'add', 40);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself and lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
@@ -261,8 +261,8 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     scene.text('The three of you huddle up and talk about different strategies before stepping back out onto the court.');
     scene.actions([
       { label: 'Play the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
     scene.text('You\'re putting up a pretty good fight, but the physical advantage the boys have is proving too much. Before you know it, they\'re leading by quite a large margin.');
     scene.text('"This is so unfair!" you yell as you pant for breath.');
@@ -272,13 +272,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     scene.text('"Too scared?" you teasingly with an even bigger smirk.');
     scene.actions([
       { label: 'Let\'s go then', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
     scene.text('You\'ve struck a nerve and they all turn serious and get ready. The ball-holder passes to you and you begin your attack.');
     scene.text('You quickly take a step to the side, but their defender is already on you and you need to make a decision.');
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -293,13 +293,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as he\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the other boys busy so that they can\'t help out their teammate.');
@@ -310,9 +310,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('You move to the left, but their defender is too quick on his feet and blocks you before you can go right. He\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse him. However, he\'s not buying it and quickly slaps the ball out of your hands before passing it to his teammate, who dunks it and wins the game for them.');
@@ -323,13 +323,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -339,28 +339,28 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, you tried your best," one teammate says, trying ...
-      scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
+      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
+      scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -370,9 +370,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the boys grabs the rebound and passes it to his teammate, who takes a shot and scores, winning the game.');
@@ -386,9 +386,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'medium');
-    qspCall(s, 'sweat', 'add', 20);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'medium');
+    qspCall(st, 'sweat', 'add', 20);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself and lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
@@ -410,8 +410,8 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     scene.text('"No, there\'s no need. As long as we play as we normally would, I don\'t see why we couldn\'t win," you reply.');
     scene.actions([
       { label: 'Play the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
     scene.text('You\'re putting up a pretty good fight, but the boys physical advantage is proving too much. Before you know it, they\'re leading by quite a large margin.');
     scene.text('"This is so unfair!" you yell as you pant for breath.');
@@ -421,13 +421,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     scene.text('"Too scared?" you teasingly with an even bigger smirk.');
     scene.actions([
       { label: 'Let\'s go then', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
     scene.text('You\'ve struck a nerve and they all turn serious and get ready. The ball-holder passes to you and you begin your attack.');
     scene.text('You quickly take a step to the side, but their defender is already on you and you need to make a decision.');
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -442,13 +442,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as he\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the other boys busy so that they can\'t help out their teammate.');
@@ -459,9 +459,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('You move to the left to no avail, but their defender is too quick on his feet and blocks you before you can go right. He\'s got you totally covered, but you have one last option left.');
       scene.text('You move to the left, but their defender is too quick on his feet and blocks you before you can go right. He\'s got you totally covered, but you have one last option left.');
@@ -473,13 +473,13 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -489,28 +489,28 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, you tried your best," one teammate says, trying ...
-      scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
+      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
+      scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the boys loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -520,9 +520,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the boys grabs the rebound and passes it to his teammate, who takes a shot and scores, winning the game.');
@@ -536,9 +536,9 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'large');
-    qspCall(s, 'sweat', 'add', 30);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'large');
+    qspCall(st, 'sweat', 'add', 30);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself and lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
@@ -562,7 +562,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
 function enterMixed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_events', 'rand_boy_arg', 0, 1, 0, 0, 0, 0);
   qspCall(s, 'gschool_events', 'rand_girl_arg', 0, 1, 0, 0, 0, 0);
-  qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
+  qspCall(s, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pregame.jpg');
@@ -572,23 +572,23 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Give it your best', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pregame.jpg');
     scene.text('"We\'ll show them…" you say under your breath…');
     scene.text('You take a deep breath and turn to your teammates. "Okay, listen up. I don\'t care if they\'re stronger than us, we\'ll win this. I\'ll give my best and I want you to give it your best too."');
     scene.text('Your teammates look at each other with some hesitation, but cautiously nod and walk out onto the court with you.');
     scene.actions([
       { label: 'Start the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/game.jpg');
     scene.text('You get an early lead against another mixed team, but as the match continues, the score is soon tied up.');
     scene.text('Everything is on the last attack as your teammate grabs the ball and nods at you.');
     // TODO-QSP: dynamic text: As expected, your opponents double team your teammate and they pass the ball to ...
-    scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((s as any).pcs_nickname || '')}!"`);
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((st as any).pcs_nickname || '')}!"`);
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -603,13 +603,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -620,9 +620,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('You move to the left, but their defender is too quick on her feet and blocks you before you can go right. She\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse her. However, she\'s not buying it and quickly slaps the ball out of your hands before passing it to her teammate, who dunks it and wins the game for them.');
@@ -633,13 +633,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -648,28 +648,28 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, you tried your best," one teammate says, trying ...
-      scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
+      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
+      scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -679,9 +679,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the girls grabs the rebound and passes it to her teammate, who takes a shot and scores, winning the game.');
@@ -695,9 +695,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'huge');
-    qspCall(s, 'sweat', 'add', 40);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'huge');
+    qspCall(st, 'sweat', 'add', 40);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself and lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
@@ -717,15 +717,15 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     scene.text('The three of you huddle up and talk about different strategies before stepping out onto the court.');
     scene.actions([
       { label: 'Start the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/game.jpg');
     scene.text('You get an early lead against another mixed team, but as the match continues, the score is soon tied up.');
     scene.text('Everything is on the last attack as your teammate grabs the ball and nods at you.');
     // TODO-QSP: dynamic text: As expected, your opponents double team your teammate and they pass the ball to ...
-    scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((s as any).pcs_nickname || '')}!"`);
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((st as any).pcs_nickname || '')}!"`);
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -740,13 +740,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -757,9 +757,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('You move to the left, but their defender is too quick on her feet and blocks you before you can go right. She\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse her. However, she\'s not buying it and quickly slaps the ball out of your hands before passing it to her teammate, who dunks it and wins the game for them.');
@@ -770,13 +770,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -785,28 +785,28 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, you tried your best," one teammate says, trying ...
-      scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
+      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
+      scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -816,9 +816,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the girls grabs the rebound and passes it to her teammate, who takes a shot and scores, winning the game.');
@@ -832,9 +832,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'medium');
-    qspCall(s, 'sweat', 'add', 20);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'medium');
+    qspCall(st, 'sweat', 'add', 20);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself and lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
@@ -854,15 +854,15 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     scene.text('"No, there\'s no need. As long as we play as we normally would, I don\'t see why we couldn\'t win," you reply.');
     scene.actions([
       { label: 'Start the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/game.jpg');
     scene.text('You get an early lead against another mixed team, but as the match continues, the score is soon tied up.');
     scene.text('Everything is on the last attack as your teammate grabs the ball and nods at you.');
     // TODO-QSP: dynamic text: As expected, your opponents double team your teammate and they pass the ball to ...
-    scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((s as any).pcs_nickname || '')}!"`);
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`As expected, your opponents double team your teammate and they pass the ball to you. "Finish it, ${((st as any).pcs_nickname || '')}!"`);
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -877,13 +877,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('Even though your opponent is pressing tightly against your body, you manage to quickly move to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are doing a great job keeping the others busy so that they can\'t help out their teammate.');
@@ -894,9 +894,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside.jpg');
       scene.text('You move to the left, but their defender is too quick on her feet and blocks you before you can go right. She\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse her. However, she\'s not buying it and quickly slaps the ball out of your hands before passing it to her teammate, who dunks it and wins the game for them.');
@@ -907,13 +907,13 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and scores.');
@@ -922,28 +922,28 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the boy moves between you and your teammate, ready to intercept.');
       scene.text('Your teammate tries her best to get into position, but the boy is too strong and easily wrestles the ball from her grasp. He makes a perfect shot and dunks the ball into your basket.');
-      // TODO-QSP: dynamic text: "Don't worry <<$pcs_nickname>>, you tried your best," one teammate says, trying ...
-      scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
+      // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you tried your best," one teammate says, trying...
+      scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}, you tried your best," one teammate says, trying to cheer you up while the other team loudly celebrate.`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell your amused opponent, who seems willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -953,9 +953,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the girls grabs the rebound and passes it to her teammate, who takes a shot and scores, winning the game.');
@@ -969,9 +969,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'large');
-    qspCall(s, 'sweat', 'add', 30);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'large');
+    qspCall(st, 'sweat', 'add', 30);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself and lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
@@ -991,35 +991,35 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
 function enterBoys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gschool_events', 'rand_boy_arg', 0, 1, 0, 0, 0, 0);
   qspCall(s, 'gschool_events', 'rand_boy_arg1', 0, 1, 0, 0, 0, 0);
-  qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
+  qspCall(s, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
   scene.text('Today\'s your lucky day. You end up on a team with two boys and you\'re playing against a mixed team with two girls.');
   scene.text('The boys confidently walk over to you, acting all cocky.');
   scene.text('"We\'ve got this!" the first one says.');
-  // TODO-QSP: dynamic text: "Yeah, let us show you how it's done, <<$pcs_nickname>>," the other adds. "Just ...
+  // TODO-QSP: dynamic text: "Yeah, let us show you how it''s done, <<$pcs_nickname>>," the other adds. "Just...
   scene.text(`"Yeah, let us show you how it's done, ${((s as any).pcs_nickname || '')}," the other adds. "Just pass us the ball and we'll be fine."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Give it your best', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys.jpg');
     scene.text('"We\'ll show them…" you say under your breath.');
     scene.text('You take a deep breath and turn to your teammates. "Okay I\'ll give my best, but I want you two to do your best as well."');
     scene.text('Your teammates nod in agreement and walk out onto the court with you.');
     scene.actions([
       { label: 'Start the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys1.jpg');
     scene.text('The physical difference between the teams means that you\'re crushing your opposition as the game comes close to the end.');
-    // TODO-QSP: dynamic text: You're holding your distance from your teammates, letting them do all the work, ...
-    scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((s as any).pcs_nickname || '')}! Let me finish this!"`);
+    // TODO-QSP: dynamic text: You''re holding your distance from your teammates, letting them do all the work,...
+    scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((st as any).pcs_nickname || '')}! Let me finish this!"`);
     scene.text('Annoyed at them not letting you play, you shout at him to pass the ball.');
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1034,28 +1034,28 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
-      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can d...
-      scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((s as any).pcs_nickname || '')}."`);
+      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let''s see what you can ...
+      scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((st as any).pcs_nickname || '')}."`);
       scene.text('Determined to show them up, you wait for your opponent to press tightly against your body before quickly jumping to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are rather easily keeping the others at bay so that they can\'t help out their teammate.');
       scene.text('Their defender can only stand in awe as you leave her behind. You quickly move towards the basket and slam the ball in, securing your victory.');
       // TODO-QSP: dynamic text: Your teammates sarcastically clap. "<i>Great</i> job, <<$pcs_nickname>>! <i>Real...
-      scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((s as any).pcs_nickname || '')}! <i>Really</i> impressive stuff there…"`);
+      scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((st as any).pcs_nickname || '')}! <i>Really</i> impressive stuff there…"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
       scene.text('You move to the left, but their defender is too quick on her feet and blocks you before you can go right. She\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse her. However, she\'s not buying it and quickly slaps the ball out of your hands before passing it to her teammate, who dunks it into your basket.');
@@ -1066,44 +1066,44 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
       // TODO-QSP: dynamic text: You walk over to your teammates, who rather surprisingly praise you. "Great pass...
-      scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((s as any).pcs_nickname || '')}! We didn't think you had it in you."`);
+      scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((st as any).pcs_nickname || '')}! We didn't think you had it in you."`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the girl moves between you and your teammate, ready to intercept.');
       scene.text('Your teammates try to gain control of the ball, but they\'re too slow and the girl makes a perfect shot and dunks the ball into your basket.');
       // TODO-QSP: dynamic text: Your teammates throw their hands in the air before glaring at you in disappointm...
-      scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((s as any).pcs_nickname || '')}?!"`);
+      scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((st as any).pcs_nickname || '')}?!"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 40);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 40);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell both your amused opponent and your teammates, who seem willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1113,9 +1113,9 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'huge');
-      qspCall(s, 'sweat', 'add', 40);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'huge');
+      qspCall(st, 'sweat', 'add', 40);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the girls grabs the rebound and passes it to her teammate, who takes a shot and scores.');
@@ -1129,15 +1129,15 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'huge');
-    qspCall(s, 'sweat', 'add', 40);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'huge');
+    qspCall(st, 'sweat', 'add', 40);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail1.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself. Everything goes black and you lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
     scene.text('Snickering, she takes the ball and easily scores as your teammates stare at you in disbelief.');
-    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You're lucky we have such a go...
-    scene.text(`"What the fuck are you doing, ${((s as any).pcs_nickname || '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
+    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You''re lucky we have such a g...
+    scene.text(`"What the fuck are you doing, ${((st as any).pcs_nickname || '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
     scene.actions([
       { label: 'End the game', goto: ['bbgamein', 'end_game'] },
     ]);
@@ -1154,15 +1154,15 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     scene.text('They step out onto the court without another word.');
     scene.actions([
       { label: 'Start the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys1.jpg');
     scene.text('The physical difference between the teams means that you\'re crushing your opposition as the game comes close to the end.');
-    // TODO-QSP: dynamic text: You're holding your distance from your teammates, letting them do all the work, ...
-    scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((s as any).pcs_nickname || '')}! Let me finish this!"`);
+    // TODO-QSP: dynamic text: You''re holding your distance from your teammates, letting them do all the work,...
+    scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((st as any).pcs_nickname || '')}! Let me finish this!"`);
     scene.text('Annoyed at them not letting you play, you shout at him to pass the ball.');
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1177,28 +1177,28 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
-      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can d...
-      scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((s as any).pcs_nickname || '')}."`);
+      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let''s see what you can ...
+      scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((st as any).pcs_nickname || '')}."`);
       scene.text('Determined to show them up, you wait for your opponent to press tightly against your body before quickly jumping to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are rather easily keeping the others at bay so that they can\'t help out their teammate.');
       scene.text('Their defender can only stand in awe as you leave her behind. You quickly move towards the basket and slam the ball in, securing your victory.');
       // TODO-QSP: dynamic text: Your teammates sarcastically clap. "<i>Great</i> job, <<$pcs_nickname>>! <i>Real...
-      scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((s as any).pcs_nickname || '')}! <i>Really</i> impressive stuff there…"`);
+      scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((st as any).pcs_nickname || '')}! <i>Really</i> impressive stuff there…"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
       scene.text('You move to the left, but their defender is too quick on her feet and blocks you before you can go right. She\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse her. However, she\'s not buying it and quickly slaps the ball out of your hands before passing it to her teammate, who dunks it into your basket.');
@@ -1209,43 +1209,43 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
       // TODO-QSP: dynamic text: You walk over to your teammates, who rather surprisingly praise you. "Great pass...
-      scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((s as any).pcs_nickname || '')}! We didn't think you had it in you."`);
+      scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((st as any).pcs_nickname || '')}! We didn't think you had it in you."`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.text('Their defender is playing exceptionally well and you can barely keep control over the ball when you suddenly hear someone yell your name and look to see that your teammate is positioned for a pass.');
       scene.text('However, as you release the ball, the girl moves between you and your teammate, ready to intercept.');
       scene.text('Your teammates try to gain control of the ball, but they\'re too slow and the girl makes a perfect shot and dunks the ball into your basket.');
       // TODO-QSP: dynamic text: Your teammates throw their hands in the air before glaring at you in disappointm...
-      scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((s as any).pcs_nickname || '')}?!"`);
+      scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((st as any).pcs_nickname || '')}?!"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 20);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 20);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell both your amused opponent and your teammates, who seem willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1255,9 +1255,9 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'medium');
-      qspCall(s, 'sweat', 'add', 20);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'medium');
+      qspCall(st, 'sweat', 'add', 20);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the girls grabs the rebound and passes it to her teammate, who takes a shot and scores.');
@@ -1271,15 +1271,15 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'medium');
-    qspCall(s, 'sweat', 'add', 20);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'medium');
+    qspCall(st, 'sweat', 'add', 20);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail1.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself. Everything goes black and you lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
     scene.text('Snickering, she takes the ball and easily scores as your teammates stare at you in disbelief.');
-    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You're lucky we have such a go...
-    scene.text(`"What the fuck are you doing, ${((s as any).pcs_nickname || '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
+    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You''re lucky we have such a g...
+    scene.text(`"What the fuck are you doing, ${((st as any).pcs_nickname || '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
     scene.actions([
       { label: 'End the game', goto: ['bbgamein', 'end_game'] },
     ]);
@@ -1296,15 +1296,15 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     scene.text('One of your teammates sarcastically rolls his eyes. "Play as we normally would? How else would we play? Just stay out of our way and we\'ll be fine."');
     scene.actions([
       { label: 'Start the game', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/boys1.jpg');
     scene.text('The physical difference between the teams means that you\'re crushing your opposition as the game comes close to the end.');
-    // TODO-QSP: dynamic text: You're holding your distance from your teammates, letting them do all the work, ...
-    scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((s as any).pcs_nickname || '')}! Let me finish this!"`);
+    // TODO-QSP: dynamic text: You''re holding your distance from your teammates, letting them do all the work,...
+    scene.text(`You're holding your distance from your teammates, letting them do all the work, when one of them grabs the ball and yells at you. "Get out the way, ${((st as any).pcs_nickname || '')}! Let me finish this!"`);
     scene.text('Annoyed at them not letting you play, you shout at him to pass the ball.');
-    qspCall(s, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'skill_base', 'bkbll', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1319,28 +1319,28 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Drive in', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
-      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can d...
-      scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((s as any).pcs_nickname || '')}."`);
+      // TODO-QSP: dynamic text: Your teammate nonchalantly passes the ball. "Okay then. Let''s see what you can ...
+      scene.text(`Your teammate nonchalantly passes the ball. "Okay then. Let's see what you can do, ${((st as any).pcs_nickname || '')}."`);
       scene.text('Determined to show them up, you wait for your opponent to press tightly against your body before quickly jumping to one side. Just as she\'s about to stop you, you quickly dribble the ball between your legs and are free.');
       scene.text('Your teammates are rather easily keeping the others at bay so that they can\'t help out their teammate.');
       scene.text('Their defender can only stand in awe as you leave her behind. You quickly move towards the basket and slam the ball in, securing your victory.');
       // TODO-QSP: dynamic text: Your teammates sarcastically clap. "<i>Great</i> job, <<$pcs_nickname>>! <i>Real...
-      scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((s as any).pcs_nickname || '')}! <i>Really</i> impressive stuff there…"`);
+      scene.text(`Your teammates sarcastically clap. "<i>Great</i> job, ${((st as any).pcs_nickname || '')}! <i>Really</i> impressive stuff there…"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/bbinside2.jpg');
       scene.text('You move to the left, but their defender is too quick on her feet and blocks you before you can go right. She\'s got you totally covered, but you have one last option left.');
       scene.text('You jump to the left, but push the ball to the right, trying to confuse her. However, she\'s not buying it and quickly slaps the ball out of your hands before passing it to her teammate, who dunks it into your basket.');
@@ -1351,43 +1351,43 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
   } },
         { label: 'Pass', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('You\'re pressured, but are able to keep control of the ball. You can\'t move, but then you see one of your teammates lift their hand, calling for your attention.');
       scene.text('Seeing a gap where you can pass, you release the ball at the perfect time. It bounces into the hands of your teammate, who takes a shot and easily scores.');
       // TODO-QSP: dynamic text: You walk over to your teammates, who rather surprisingly praise you. "Great pass...
-      scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((s as any).pcs_nickname || '')}! We didn't think you had it in you."`);
+      scene.text(`You walk over to your teammates, who rather surprisingly praise you. "Great pass, ${((st as any).pcs_nickname || '')}! We didn't think you had it in you."`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/pass.jpg');
       scene.text('However, as you release the ball, the girl moves between you and your teammate, ready to intercept.');
       scene.text('Your teammates try to gain control of the ball, but they\'re too slow and the girl makes a perfect shot and dunks the ball into your basket.');
       // TODO-QSP: dynamic text: Your teammates throw their hands in the air before glaring at you in disappointm...
-      scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((s as any).pcs_nickname || '')}?!"`);
+      scene.text(`Your teammates throw their hands in the air before glaring at you in disappointment. "What the hell was that, ${((st as any).pcs_nickname || '')}?!"`);
       scene.actions([
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     }
   } },
         { label: 'Shoot', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    qspCall(s, 'mood', 'raise', 'medium');
-    qspCall(s, 'exp_gain', 'bkbll', Math.floor(Math.random() * 3) + 0);
-    qspCall(s, 'sweat', 'add', 30);
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * 101) + 0) + ((s as any).pcs_bkbll ?? 0) >= 100) {
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    qspCall(st, 'mood', 'raise', 'medium');
+    qspCall(st, 'exp_gain', 'bkbll', (Math.floor(Math.random() * 3) + 0));
+    qspCall(st, 'sweat', 'add', 30);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * 101) + 0) + ((st as any).pcs_bkbll ?? 0) >= 100) {
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('"Watch this!" you confidently tell both your amused opponent and your teammates, who seem willing to watch you try. You take aim and shoot the ball towards the hoop.');
       scene.text('Everyone stops and follows the ball as it flies through the air before it goes through the hoop.');
@@ -1397,9 +1397,9 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
         { label: 'End the game', goto: ['bbgamein', 'end_game'] },
       ]);
     } else {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (1);
-      qspCall(s, 'mood', 'lower', 'large');
-      qspCall(s, 'sweat', 'add', 30);
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (1);
+      qspCall(st, 'mood', 'lower', 'large');
+      qspCall(st, 'sweat', 'add', 30);
       scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/shoot.jpg');
       scene.text('You feel pretty confident and even smirk a little as you take a quick step back and attempt a shot from long distance. However, just as you\'re getting ready to shoot, you feel your opponent come just close enough to distract you.');
       scene.text('Your resultant shot is off and bounces off the backboard before one of the girls grabs the rebound and passes it to her teammate, who takes a shot and scores.');
@@ -1413,15 +1413,15 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get rid of the ball', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
-    qspCall(s, 'mood', 'lower', 'large');
-    qspCall(s, 'sweat', 'add', 30);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
+    qspCall(st, 'mood', 'lower', 'large');
+    qspCall(st, 'sweat', 'add', 30);
     scene.img('images/locations/pavlovsk/school/pickupgames/bbinside/fail1.jpg');
     scene.text('Seeing the defender quickly closing in on you, you start doubting yourself. Everything goes black and you lose your focus as you hear your teammates yelling voices blur into white noise.');
     scene.text('Panicking, you choose the worst option possible. Without looking, you shriek and randomly toss the ball. When you come to your senses, you see that you\'ve thrown the ball to your opponent.');
     scene.text('Snickering, she takes the ball and easily scores as your teammates stare at you in disbelief.');
-    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You're lucky we have such a go...
-    scene.text(`"What the fuck are you doing, ${((s as any).pcs_nickname || '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
+    // TODO-QSP: dynamic text: "What the fuck are you doing, <<$pcs_nickname>>?! You''re lucky we have such a g...
+    scene.text(`"What the fuck are you doing, ${((st as any).pcs_nickname || '')}?! You're lucky we have such a good lead, otherwise we would have told you to fuck off!"`);
     scene.actions([
       { label: 'End the game', goto: ['bbgamein', 'end_game'] },
     ]);

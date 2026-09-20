@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
-  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     qspGoto(s, 'metro_events', 'frot');
   } else {
@@ -37,7 +37,7 @@ function enterFrot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterA(s: GameState, scene: SceneBuilder): void {
-  (s as any).svol = Math.floor(Math.random() * 21) + 30;
+  (s as any).svol = (Math.floor(Math.random() * 21) + 30);
   (s as any).spot = 500 * (Math.floor(Math.random() * 9) + 16);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/metro/sex/grop/frot.jpg');
@@ -52,21 +52,21 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'metro_events', 'fin');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Disregard', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frot1.jpg');
     scene.text('The guy standing behind you disregards the other passengers and grabs your ass cheek with his hand while rubbing his crotch against your ass.');
-    qspCall(s, 'arousal', 'foreplay', 2, 'sub', 'unknown');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', 2, 'sub', 'unknown');
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -75,20 +75,20 @@ function enterA(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
     scene.actions([
       { label: 'Disregard', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frot2.jpg');
     scene.text('You feel his rock-hard cock more clearly now. By the way it is moving, you\'re sure he\'s taken it out of his pants and is rubbing it against your ass. His hands continue to cling on to you, squeezing your buttocks.');
-    qspCall(s, 'arousal', 'foreplay', 2, 'sub', 'unknown');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', 2, 'sub', 'unknown');
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -97,21 +97,21 @@ function enterA(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
     scene.actions([
       { label: 'Disregard', handler: (st: GameState) => {
-    (s as any).frot = ((s as any).frot ?? 0) + (1);
-    qspCall(s, 'cum_call', 'pantyrear', 'stranger on the metro', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    qspCall(s, 'clothing', 'decrease_cur_strength', Math.floor(Math.random() * 1001) + 500);
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/city/shared/metro/sex/grop/frotc\' + rand(1, 2) + \'.jpg');
+    (st as any).frot = ((st as any).frot ?? 0) + (1);
+    qspCall(st, 'cum_call', 'pantyrear', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
+    qspCall(st, 'clothing', 'decrease_cur_strength', (Math.floor(Math.random() * 1001) + 500));
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/city/shared/metro/sex/grop/frotc' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('The man jerks back, and stops molesting you. A few seconds later, you feel something wet seep through your clothes. After a few more seconds, the guy moves away.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finished', goto: ['metro_events', 'fin2'] },
     ]);
@@ -125,7 +125,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterB(s: GameState, scene: SceneBuilder): void {
-  (s as any).svol = Math.floor(Math.random() * 21) + 30;
+  (s as any).svol = (Math.floor(Math.random() * 21) + 30);
   (s as any).spot = 500 * (Math.floor(Math.random() * 9) + 16);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/metro/sex/grop/frotd2.jpg');
@@ -140,21 +140,21 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'metro_events', 'fin');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Disregard', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frota1.jpg');
     scene.text('The man cautiously lifts your skirt and starts caressing your buttocks.');
-    qspCall(s, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -163,20 +163,20 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
     scene.actions([
       { label: 'Disregard', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frota2.jpg');
     scene.text('The man pulls your panties down to your knees, then lets your skirt fall back into place. He slides his hand between your thighs, caressing your clit. After spending a few minutes pleasuring you, he pulls your hand back and places it on his cock.');
-    qspCall(s, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -185,15 +185,15 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
-    qspCall(s, 'willpower', 'hj', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'hj', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Pull your hand away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -202,15 +202,15 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Pull your hand away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'hj', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    (s as any).frot = ((s as any).frot ?? 0) + (1);
-    qspCall(s, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'hj', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    (st as any).frot = ((st as any).frot ?? 0) + (1);
+    qspCall(st, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frotd1.jpg');
     scene.text('You angrily pull your hand away, which he allows you to do. A few seconds later, you feel the head of his cock bumping against your ass cheek as he jerks off. Minutes later, you feel spurts of hot cum splashing against your ass cheeks. Once he\'s finished, he pulls your panties back up over your sperm covered ass and pats you on the ass before disappearing into the crowd.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finished', goto: ['metro_events', 'fin2'] },
     ]);
@@ -219,14 +219,14 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Stroke his cock', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    (s as any).frot = ((s as any).frot ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
+    (st as any).frot = ((st as any).frot ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frotd.jpg');
     scene.text('You firmly grip his cock in your hand and start stroking as he places his hands on your shoulders and tries to push you down on your knees.');
-    qspCall(s, 'arousal', 'hj', (-2), 'sub', 'unknown');
-    qspCall(s, 'willpower', 'hj', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'hj', (-2), 'sub', 'unknown');
+    qspCall(st, 'willpower', 'hj', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Pull your hand away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -235,14 +235,14 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Pull your hand away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    (s as any).frot = ((s as any).frot ?? 0) + (1);
-    qspCall(s, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    (st as any).frot = ((st as any).frot ?? 0) + (1);
+    qspCall(st, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frotd1.jpg');
     scene.text('You angrily pull your hand away, which he allows you to do. A few seconds later, you feel the head of his cock bumping against your ass cheek as he jerks off. Minutes later, you feel spurts of hot cum splashing against your ass cheeks. Once he\'s finished, he pulls your panties back up over your sperm covered ass and pats you on the ass before disappearing into the crowd.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finished', goto: ['metro_events', 'fin2'] },
     ]);
@@ -251,12 +251,12 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Squat', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frote1.jpg');
     scene.text('You give into his demands and squat down in front of him. He grabs your head and turns your face to his crotch, his rock-hard cock waiting for you. He starts rubbing his cock against your face and lips, teasing his cock.');
-    qspCall(s, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
-    qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
+    qspCall(st, 'willpower', 'bj', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -265,27 +265,27 @@ function enterB(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
     scene.actions([
       { label: 'Suck it', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
-    (s as any).frot = ((s as any).frot ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
+    (st as any).frot = ((st as any).frot ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frote2.jpg');
     scene.text('You obediently open your mouth and begin sucking his hard cock. You\'re sitting on your haunches, in the middle of a crowded subway car, sucking a stranger\'s cock!');
-    qspCall(s, 'arousal', 'bj', (-3), 'sub', 'unknown');
+    qspCall(st, 'arousal', 'bj', (-3), 'sub', 'unknown');
     scene.actions([
       { label: 'Continue to suck', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', 'stranger on the metro', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frote3.jpg');
     scene.text('The man pulls his cock out of your mouth, and hot cum splatters across your cheek and chin. Once he\'s milked the last drop from his cock onto your face, he tucks it back into his pants and forces his way through the crowd, leaving you alone with his cum all over your face.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finished', goto: ['metro_events', 'fin2'] },
     ]);
@@ -305,7 +305,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterC(s: GameState, scene: SceneBuilder): void {
-  (s as any).svol = Math.floor(Math.random() * 21) + 30;
+  (s as any).svol = (Math.floor(Math.random() * 21) + 30);
   (s as any).spot = 500 * (Math.floor(Math.random() * 9) + 16);
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/metro/sex/grop/frotp.jpg');
@@ -320,24 +320,24 @@ function enterC(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'metro_events', 'fin');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Disregard', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger on the Metro', 0, Math.floor(Math.random() * 3) + 2, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npcgeneratec', '', 0, 'Stranger on the Metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
     scene.img('images/locations/city/shared/metro/sex/grop/frotp.jpg');
     scene.text('You enjoy the sensation of the stranger caressing your ass as his other hand reaches around and starts fondling your left breast under your shirt.');
-    qspCall(s, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -346,21 +346,21 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
     scene.actions([
       { label: 'Disregard', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frotp2.jpg');
     scene.text('After a few minutes, he pulls his hand out and grabs your other breast. He\'s now fondling both of your breasts as his cock pushes against your ass.');
-    qspCall(s, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -369,21 +369,21 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
     scene.actions([
       { label: 'Enjoy', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frotd.jpg');
     scene.text('Once he hears you moan, he pulls his hands away from your breasts and slides them down the front of your body to the waist of your pants. He unbuttons your pants and pulls them, along with your panties, down to your knees, leaving you exposed from the waist down in a crowded subway car. He takes your hand and places it on his rock-hard cock.');
-    qspCall(s, 'arousal', 'foreplay', (-2), 'sub', 'unknown', 'exhibitionism');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown', 'exhibitionism');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'bj', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -392,15 +392,15 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'bj', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
-    qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'bj', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist and keep jerking him off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -409,9 +409,9 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Resist and keep jerking him off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'bj', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/shared/metro/sex/grop/frotd1.jpg');
     scene.text('He stands firm, and once again tries to push you down, but you won\'t budge. As he can\'t convince you, he relaxes instead, letting you go on as you keep jerking him off. When he moans into your ear, you start stroking it more vigorously, a couple of minutes later, you feel spurts of hot cum splashing against your ass cheek. Once he is finished he pulls your panties back up over your sperm covered ass then pats you on the butt, before moving away, and disappearing in the crowd.');
     scene.actions([
@@ -422,14 +422,14 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Stroke his cock', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    (s as any).frot = ((s as any).frot ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'butt', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
+    (st as any).frot = ((st as any).frot ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frotd.jpg');
     scene.text('You firmly grip his cock in your hand and start stroking as he places his hands on your shoulders and tries to push you down on your knees.');
-    qspCall(s, 'arousal', 'hj', (-2), 'sub', 'unknown');
-    qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'hj', (-2), 'sub', 'unknown');
+    qspCall(st, 'willpower', 'bj', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist and keep jerking him off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -438,8 +438,8 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Resist and keep jerking him off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/shared/metro/sex/grop/frotd1.jpg');
     scene.text('He stands firm, and once again tries to push you down, but you won\'t budge. As he can\'t convince you, he relaxes instead, letting you go on as you keep jerking him off. When he moans into your ear, you start stroking it more vigorously and a few minutes later, you feel spurts of hot cum splashing against your ass cheek. Once he\'s finished, he pulls your panties back up over your sperm covered ass and pats you on the ass before disappearing into the crowd.');
     scene.actions([
@@ -450,12 +450,12 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Squat', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frote1.jpg');
     scene.text('You give into his demands and squat down in front of him. He grabs your head and turns your face to his crotch, his rock-hard cock waiting for you. He starts rubbing his cock against your face and lips, teasing his cock.');
-    qspCall(s, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
-    qspCall(s, 'willpower', 'bj', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', (-2), 'sub', 'unknown');
+    qspCall(st, 'willpower', 'bj', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -464,26 +464,26 @@ function enterC(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'metro_events', 'fin');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'metro_events', 'fin');
   } },
       ]);
     }
     scene.actions([
       { label: 'Suck it', handler: (st: GameState) => {
-    (s as any).frot = ((s as any).frot ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).frot = ((st as any).frot ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frote2.jpg');
     scene.text('You obediently open your mouth and begin sucking his hard cock. You\'re sitting on your haunches, in the middle of a crowded subway car, sucking a stranger\'s cock!');
-    qspCall(s, 'arousal', 'bj', (-2), 'sub', 'unknown');
+    qspCall(st, 'arousal', 'bj', (-2), 'sub', 'unknown');
     scene.actions([
       { label: 'Continue to suck', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', 'stranger on the metro', 0, 0, ((s as any).spot ?? 0), ((s as any).svol ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', 'stranger on the metro', 0, 0, ((st as any).spot ?? 0), ((st as any).svol ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/grop/frote3.jpg');
     scene.text('The man pulls his cock out of your mouth, and hot cum splatters across your cheek and chin. Once he\'s milked the last drop from his cock onto your face, he tucks it back into his pants and forces his way through the crowd, leaving you alone with his cum all over your face.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finished', goto: ['metro_events', 'fin2'] },
     ]);
@@ -529,7 +529,7 @@ function enterFin2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStation(s: GameState, scene: SceneBuilder): void {
-  (s as any).metrorand = Math.floor(Math.random() * 22) + 0;
+  (s as any).metrorand = (Math.floor(Math.random() * 22) + 0);
   if ((!((s as any).metrorand ?? 0))) {
     scene.img('images/locations/city/shared/metro/station/aflash1.jpg');
     scene.text('After your ride on the metro, you leave the station, following several people up the stairs towards the street. The backside of a women\'s skirt keeps lifting up from the draft of air. Each time it lifts up, it shows off her firm tight ass, which draws the attention of several men and even a few of the women.');
@@ -544,7 +544,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).metrorand ?? 0) === 1) {
       qspCall(s, 'stat', '');
-      scene.img('images/locations/city/shared/metro/station/guitar\' + rand(1, 7) + \'.jpg');
+      scene.img('images/locations/city/shared/metro/station/guitar' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
       scene.text('As you head through the metro station, you notice a man playing a guitar; he has his guitar case open and you can see some money in it already. Several other people have stopped to listen to him play; he isn\'t half bad.');
       scene.actions([
         { label: 'Ignore', handler: (st: GameState) => {
@@ -552,9 +552,9 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         { label: 'Listen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/guitar\' + rand(1, 7) + \'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    scene.img('images/locations/city/shared/metro/station/guitar' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
     scene.text('You stop and listen to him play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -563,10 +563,10 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50, 'cash');
-      qspCall(s, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'mood', 'raise', 'tiny');
       scene.img('images/locations/city/shared/metro/station/givemoney.jpg');
       scene.text('You reach into your purse and pull out some money to drop into his case. He looks up at you and smiles and nods his head, but keeps playing. With your good deed done, you leave the station and go on your way.');
       scene.actions([
@@ -583,7 +583,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).metrorand ?? 0) === 2) {
         qspCall(s, 'stat', '');
-        scene.img('images/locations/city/shared/metro/station/violin\' + rand(1, 3) + \'.jpg');
+        scene.img('images/locations/city/shared/metro/station/violin' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
         scene.text('As you head through the metro station, you notice a young woman has her violin case open and you can see some money in it already. Several other people have stopped to listen to her play; she isn\'t half bad.');
         scene.actions([
           { label: 'Ignore', handler: (st: GameState) => {
@@ -591,9 +591,9 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
           { label: 'Listen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/violin\' + rand(1, 3) + \'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    scene.img('images/locations/city/shared/metro/station/violin' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
     scene.text('You stop and listen to her play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -602,10 +602,10 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50, 'cash');
-      qspCall(s, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'mood', 'raise', 'tiny');
       scene.img('images/locations/city/shared/metro/station/givemoney.jpg');
       scene.text('You reach into your purse and pull out some money to drop into her case. She looks up at you and smiles and nods her head, but keeps playing. With your good deed done, you leave the station and go on your way.');
       scene.actions([
@@ -635,29 +635,29 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Return the favor', handler: (st: GameState) => {
-    if (((s as any).pantyworntype ?? 0) === 'none') {
-      if (((s as any).PCloPants ?? 0) > 0) {
+    if (((st as any).pantyworntype ?? 0) === 'none') {
+      if (((st as any).PCloPants ?? 0) > 0) {
         scene.img('images/pc/activities/flashing/pants/inside/pussy/hairy1.jpg');
         scene.text('You smile back at them and pull down your pants, flashing your pussy at them. They wave you over.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/pussy/hairy4.jpg');
         // TODO-QSP: dynamic text: You smile back at them and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
-        scene.text('You smile back at them and pull up your \' + iif(PCloSkirt > 0, \'skirt\', \'dress\') + \', flashing your pussy at them. They wave you over.');
+        scene.text('You smile back at them and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your pussy at them. They wave you over.');
       }
-      qspCall(s, 'flash', 'pussy', 'outdoors', 3, 1);
+      qspCall(st, 'flash', 'pussy', 'outdoors', 3, 1);
     } else {
-      if (((s as any).PCloPants ?? 0) > 0) {
+      if (((st as any).PCloPants ?? 0) > 0) {
         scene.img('images/pc/activities/flashing/pants/inside/panty/1.jpg');
         scene.text('You smile back at them and pull down your pants, flashing your panties at them. They wave you over.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/panty/4.jpg');
         // TODO-QSP: dynamic text: You smile back at them and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress')...
-        scene.text('You smile back at them and pull up your \' + iif(PCloSkirt > 0, \'skirt\', \'dress\') + \', flashing your panties at them. They wave you over.');
+        scene.text('You smile back at them and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your panties at them. They wave you over.');
       }
-      qspCall(s, 'flash', 'panties', 'outdoors', 1, 1);
+      qspCall(st, 'flash', 'panties', 'outdoors', 1, 1);
     }
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -670,15 +670,15 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Hurry away', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
             { label: 'Stare in shock', handler: (st: GameState) => {
     scene.img('images/pc/reactions/shock.jpg');
     scene.text('It\'s so big that you can\'t help but stare at it while wondering if his friend is as big as he is. You notice them smiling and staring at you as he puts his dick back away they wave you over.');
-    qspCall(s, 'arousal', 'erotic', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -690,8 +690,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
             { label: 'Lick your lips', handler: (st: GameState) => {
     scene.img('images/pc/reactions/shock.jpg');
     scene.text('You lick your lips at the sight. They see that and both grin and wave you over he puts his dick away.');
-    qspCall(s, 'arousal', 'erotic', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -703,7 +703,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           if (((s as any).metrorand ?? 0) === 6) {
-            scene.img('images/locations/city/shared/metro/station/flashus\' + rand(1, 5) + \'.jpg');
+            scene.img('images/locations/city/shared/metro/station/flashus' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
             scene.text('As you head through the metro station, you notice a pretty young woman who keeps lifting her skirt and flashing her pussy at various strangers. As you get closer, she smiles at and then flashes you.');
             qspCall(s, 'arousal', 'erotic', 3);
             qspCall(s, 'arousal', 'end');
@@ -717,29 +717,29 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Return the favor', handler: (st: GameState) => {
-    if (((s as any).pantyworntype ?? 0) === 'none') {
-      if (((s as any).PCloPants ?? 0) > 0) {
+    if (((st as any).pantyworntype ?? 0) === 'none') {
+      if (((st as any).PCloPants ?? 0) > 0) {
         scene.img('images/pc/activities/flashing/pants/inside/pussy/hairy1.jpg');
         scene.text('You smile back at her and pull down your pants, flashing your pussy back at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/pussy/hairy4.jpg');
         // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
-        scene.text('You smile back at her and pull up your \' + iif(PCloSkirt > 0, \'skirt\', \'dress\') + \', flashing your pussy back at her. You both share a laugh before going on your way.');
+        scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your pussy back at her. You both share a laugh before going on your way.');
       }
-      qspCall(s, 'flash', 'pussy', 'outdoors', 3, 1);
+      qspCall(st, 'flash', 'pussy', 'outdoors', 3, 1);
     } else {
-      if (((s as any).PCloPants ?? 0) > 0) {
+      if (((st as any).PCloPants ?? 0) > 0) {
         scene.img('images/pc/activities/flashing/pants/inside/panty/1.jpg');
         scene.text('You smile back at her and pull down your pants, flashing your panties at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/panty/4.jpg');
         // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
-        scene.text('You smile back at her and pull up your \' + iif(PCloSkirt > 0, \'skirt\', \'dress\') + \', flashing your panties at her. You both share a laugh before going on your way.');
+        scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your panties at her. You both share a laugh before going on your way.');
       }
-      qspCall(s, 'flash', 'panties', 'outdoors', 1, 1);
+      qspCall(st, 'flash', 'panties', 'outdoors', 1, 1);
     }
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -751,9 +751,9 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Hurry away', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
             ]);
           } else {
@@ -781,11 +781,11 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
                   { label: 'Help her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50, 'cash');
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      qspCall(st, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
       scene.img('images/locations/city/shared/metro/station/nakedg2.jpg');
       scene.text('You notice a newspaper on one of the benches and grab it before walking over and offering it to her. Now that you\'re closer, you can see she\'s crying, though she takes the newspaper and covers up as best as she can before you lead her out of the metro and call her a taxi. As you wait for the taxi, you find out she made her boyfriend mad and he stripped her and left her naked. Once the taxi arrives, she thanks you and climbs in.');
       scene.actions([
@@ -854,16 +854,16 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'stat', '');
                           scene.actions([
                             { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                             { label: 'Record them', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', 2);
+    qspCall(st, 'exp_gain', 'photoskl', 2);
     scene.img('images/locations/city/shared/metro/station/sex/les1.jpg');
     scene.text('You pull out your phone and start recording them. The one on all fours is going at it, and has her friend quickly moaning loudly while clutching at her hair. Seconds later, she gasps loudly and withers against her friend\'s face as she had an orgasm. Once she recovers, they passionately kiss before standing up and straightening their clothes before heading out.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -874,23 +874,23 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                           ]);
                         } else {
                           if (((s as any).metrorand ?? 0) === 14) {
-                            ((s as any).metrorand = (s as any).metrorand ?? {})['rand'] = Math.floor(Math.random() * 2) + 1;
-                            scene.img('images/locations/city/shared/metro/station/sex/fuck\' + metrorand[\'rand\'] + \'.jpg');
+                            ((s as any).metrorand = (s as any).metrorand ?? {})['rand'] = (Math.floor(Math.random() * 2) + 1);
+                            scene.img('images/locations/city/shared/metro/station/sex/fuck' + ((s as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg');
                             scene.text('As you head through the metro station, you see a couple leaning against one of the walls, the woman struggling to keep her moans quiet as the man hammers her for all he is worth. Several people gather around to watch, many of them pulling out their phones to record the scene. A few men try to join in, but are quickly shooed away.');
                             qspCall(s, 'arousal', 'voyeur_sex', 3);
                             qspCall(s, 'stat', '');
                             scene.actions([
                               { label: 'Hurry away', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                               { label: 'Record them', handler: (st: GameState) => {
-    scene.img('images/locations/city/shared/metro/station/sex/fuck\' + metrorand[\'rand\'] + \'.jpg');
-    qspCall(s, 'exp_gain', 'photoskl', 2);
+    scene.img('images/locations/city/shared/metro/station/sex/fuck' + ((st as any).metrorand ?? 0)?.['rand'] ?? '' + '.jpg');
+    qspCall(st, 'exp_gain', 'photoskl', 2);
     scene.text('You pull out your phone and start recording them. He pounds her without mercy, but by the sounds of her moans, she is loving every moment of it. They fuck for several more minutes until he starts to grunt and buries himself balls deep. Once he pulls out of her, they both quickly get dressed and hurry to catch a train.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -902,7 +902,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).metrorand ?? 0) === 15) {
                               qspCall(s, 'stat', '');
-                              scene.img('images/locations/city/shared/metro/station/guitarf\' + rand(1, 2) + \'.jpg');
+                              scene.img('images/locations/city/shared/metro/station/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                               scene.text('As you head through the metro station, you notice a woman playing a guitar; she has her guitar case open and you can see some money in it already. Several other people have stopped to listen to her play; she isn\'t half bad.');
                               scene.actions([
                                 { label: 'Ignore', handler: (st: GameState) => {
@@ -910,9 +910,9 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                 { label: 'Listen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/guitarf\' + rand(1, 2) + \'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    scene.img('images/locations/city/shared/metro/station/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('You stop and listen to her play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -921,10 +921,10 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50, 'cash');
-      qspCall(s, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'mood', 'raise', 'tiny');
       scene.img('images/locations/city/shared/metro/station/givemoney.jpg');
       scene.text('You reach into your purse and pull out some money to drop into her case. She looks up at you and smiles and nods her head, but keeps playing. With your good deed done, you leave the station and go on your way.');
       scene.actions([
@@ -941,7 +941,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                             } else {
                               if (((s as any).metrorand ?? 0) === 16) {
                                 qspCall(s, 'stat', '');
-                                scene.img('images/locations/city/shared/metro/station/musicgroupm\' + rand(1, 7) + \'.jpg');
+                                scene.img('images/locations/city/shared/metro/station/musicgroupm' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
                                 scene.text('As you head through the metro station, you notice a group of men playing music; there is a case open and you can see some money in it already. Several other people have stopped to listen to them play; they aren\'t half bad.');
                                 scene.actions([
                                   { label: 'Ignore', handler: (st: GameState) => {
@@ -949,9 +949,9 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                   { label: 'Listen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/musicgroupm\' + rand(1, 7) + \'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    scene.img('images/locations/city/shared/metro/station/musicgroupm' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
     scene.text('You stop and listen to them play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -960,10 +960,10 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give them money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50, 'cash');
-      qspCall(s, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'mood', 'raise', 'tiny');
       scene.img('images/locations/city/shared/metro/station/givemoney.jpg');
       scene.text('You reach into your purse and pull out some money to drop into the case. One of the men looks up at you and smiles and nods his head, but keeps playing. With your good deed done, you leave the station and go on your way.');
       scene.actions([
@@ -980,7 +980,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                               } else {
                                 if (((s as any).metrorand ?? 0) === 17) {
                                   qspCall(s, 'stat', '');
-                                  scene.img('images/locations/city/shared/metro/station/accordionm\' + rand(1, 2) + \'.jpg');
+                                  scene.img('images/locations/city/shared/metro/station/accordionm' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                                   scene.text('As you head through the metro station, you notice a man playing an accordion; he has his case open and you can see some money in it already. Several other people have stopped to listen to him play; he isn\'t half bad.');
                                   scene.actions([
                                     { label: 'Ignore', handler: (st: GameState) => {
@@ -988,9 +988,9 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                     { label: 'Listen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    scene.img('images/locations/city/shared/metro/station/accordionm\' + rand(1, 2) + \'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    scene.img('images/locations/city/shared/metro/station/accordionm' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('You stop and listen to him play several songs.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -999,10 +999,10 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50, 'cash');
-      qspCall(s, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'mood', 'raise', 'tiny');
       scene.img('images/locations/city/shared/metro/station/givemoney.jpg');
       scene.text('You reach into your purse and pull out some money to drop into his case. He looks up at you and smiles and nods his head, but keeps playing. With your good deed done, you leave the station and go on your way.');
       scene.actions([
@@ -1027,8 +1027,8 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                       { label: 'Listen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
     scene.img('images/locations/city/shared/metro/station/musicgroup1.jpg');
     scene.text('You stop and listen to them play several songs.');
     scene.actions([
@@ -1038,10 +1038,10 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 50, 'cash');
-      qspCall(s, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 50, 'cash');
+      qspCall(st, 'mood', 'raise', 'tiny');
       scene.img('images/locations/city/shared/metro/station/givemoney.jpg');
       scene.text('You reach into your purse and pull out some money to drop into the case. One of the men looks up at you and smiles and nods his head, but keeps playing. With your good deed done, you leave the station and go on your way.');
       scene.actions([
@@ -1064,16 +1064,16 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
                                       qspCall(s, 'stat', '');
                                       scene.actions([
                                         { label: 'Hurry away', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                                         { label: 'Record them', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'photoskl', 2);
+    qspCall(st, 'exp_gain', 'photoskl', 2);
     scene.img('images/locations/city/shared/metro/station/sex/fuck3.mp4');
     scene.text('You pull out your phone and start recording them. He pounds her without mercy, but by the sounds of her moans, she is loving every moment of it. They fuck for several more minutes until he starts to grunt and buries himself balls deep. Once he pulls out of her, they both quickly get dressed and rush to catch a train.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1127,7 +1127,7 @@ function enterStation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTrain(s: GameState, scene: SceneBuilder): void {
-  (s as any).metrorand = Math.floor(Math.random() * 34) + 0;
+  (s as any).metrorand = (Math.floor(Math.random() * 34) + 0);
   if (((s as any).metrorand ?? 0) === 1) {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/metro/annoyed.jpg');
@@ -1152,7 +1152,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).metrorand ?? 0) === 3) {
-        scene.img('images/locations/city/shared/metro/flasha\' + rand(1, 2) + \'.jpg');
+        scene.img('images/locations/city/shared/metro/flasha' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
         scene.text('As you ride the metro, you notice a young woman who seems to have almost everyone\'s attention, and you soon learn why. She repeatedly lifts her skirt up, flashing her ass at the other passengers. She seems to love the attention that she\'s getting, as she maintains a very pleased smile.');
         qspCall(s, 'arousal', 'erotic_nudity', 5);
         qspCall(s, 'arousal', 'end');
@@ -1163,7 +1163,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).metrorand ?? 0) === 4) {
-          scene.img('images/locations/city/shared/metro/flashb\' + rand(1, 2) + \'.jpg');
+          scene.img('images/locations/city/shared/metro/flashb' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
           scene.text('As you ride the metro, you notice a young woman who seems to have almost everyone\'s attention, and you soon learn why. She repeatedly lifts her shirt up, flashing her breasts at the other passengers. She seems to love the attention she\'s getting, as she maintains a very pleased smile.');
           qspCall(s, 'arousal', 'erotic_nudity', 5);
           qspCall(s, 'arousal', 'end');
@@ -1185,7 +1185,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             if (((s as any).metrorand ?? 0) === 6) {
-              scene.img('images/locations/city/shared/metro/flashg\' + rand(1, 3) + \'.jpg');
+              scene.img('images/locations/city/shared/metro/flashg' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
               scene.text('As you ride the metro, you notice a young woman who seems to have almost everyone\'s attention and you soon learn why. She repeatedly pulls her clothes away, flashing her naked body at the other passengers. She seems to love the attention she\'s getting, as she maintains a very pleased smile.');
               qspCall(s, 'arousal', 'erotic_nudity', 5);
               qspCall(s, 'arousal', 'end');
@@ -1199,7 +1199,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).pcs_hotcat ?? 0) < 7) {
                   qspGoto(s, 'metro', 'vagon');
                 }
-                scene.img('images/locations/city/shared/metro/flashus\' + rand(1, 5) + \'.jpg');
+                scene.img('images/locations/city/shared/metro/flashus' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
                 scene.text('As you ride the metro, you notice a young woman. When she sees you looking at her, she gives you a wicked grin and winks before spreading her legs, showing off her pussy from under her skirt. She sticks out her tongue and flicks it at you, as if mimicking eating pussy.');
                 qspCall(s, 'arousal', 'erotic_nudity', 5);
                 qspCall(s, 'stat', '');
@@ -1213,29 +1213,29 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.actions([
                     { label: 'Return the favor', handler: (st: GameState) => {
-    if (((s as any).pantyworntype ?? 0) === 'none') {
-      if (((s as any).PCloPants ?? 0) > 0) {
+    if (((st as any).pantyworntype ?? 0) === 'none') {
+      if (((st as any).PCloPants ?? 0) > 0) {
         scene.img('images/pc/activities/flashing/pants/inside/pussy/hairy1.jpg');
         scene.text('You smile back at her and pull down your pants, flashing your pussy back at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/pussy/hairy4.jpg');
         // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
-        scene.text('You smile back at her and pull up your \' + iif(PCloSkirt > 0, \'skirt\', \'dress\') + \', flashing your pussy back at her. You both share a laugh before going on your way.');
+        scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your pussy back at her. You both share a laugh before going on your way.');
       }
-      qspCall(s, 'flash', 'pussy', 'outdoors', 3, 1);
+      qspCall(st, 'flash', 'pussy', 'outdoors', 3, 1);
     } else {
-      if (((s as any).PCloPants ?? 0) > 0) {
+      if (((st as any).PCloPants ?? 0) > 0) {
         scene.img('images/pc/activities/flashing/pants/inside/panty/1.jpg');
         scene.text('You smile back at her and pull down your pants, flashing your panties at her. You both share a laugh before going on your way.');
       } else {
         scene.img('images/pc/activities/flashing/dress/inside/panty/4.jpg');
         // TODO-QSP: dynamic text: You smile back at her and pull up your ' + iif(PCloSkirt > 0, 'skirt', 'dress') ...
-        scene.text('You smile back at her and pull up your \' + iif(PCloSkirt > 0, \'skirt\', \'dress\') + \', flashing your panties at her. You both share a laugh before going on your way.');
+        scene.text('You smile back at her and pull up your ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('skirt') : ('dress')) + ', flashing your panties at her. You both share a laugh before going on your way.');
       }
-      qspCall(s, 'flash', 'panties', 'outdoors', 1, 1);
+      qspCall(st, 'flash', 'panties', 'outdoors', 1, 1);
     }
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Hurry away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1247,8 +1247,8 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                 }
                 scene.actions([
                   { label: 'Ignore her', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    qspCall(st, 'arousal', 'end');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
                 ]);
               } else {
@@ -1283,7 +1283,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                       ]);
                     } else {
                       if (((s as any).metrorand ?? 0) === 11) {
-                        scene.img('images/locations/city/shared/metro/nakedg\' + rand(1, 5) + \'.jpg');
+                        scene.img('images/locations/city/shared/metro/nakedg' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
                         scene.text('As you find a seat, you notice a woman wearing only a pair of shoes. She is strangely calm, as if riding the metro naked was the most normal thing in the world. She gets off at the next stop, leaving you wondering why she was naked, and where she was going.');
                         qspCall(s, 'arousal', 'erotic_nudity', 5);
                         qspCall(s, 'arousal', 'end');
@@ -1294,7 +1294,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         if (((s as any).metrorand ?? 0) === 12) {
-                          scene.img('images/locations/city/shared/metro/nakedm\' + rand(1, 2) + \'.jpg');
+                          scene.img('images/locations/city/shared/metro/nakedm' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                           scene.text('As you find a seat, you notice a naked man who acts as if walking around naked is the most normal thing in the world to do. He gets off at the next stop, leaving you wondering why he was naked, and where he was going.');
                           qspCall(s, 'arousal', 'erotic_nudity', 5);
                           qspCall(s, 'arousal', 'end');
@@ -1350,7 +1350,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                   ]);
                                 } else {
                                   if (((s as any).metrorand ?? 0) === 17) {
-                                    scene.img('images/locations/city/shared/metro/sex/fuck\' + rand(1, 3) + \'.mp4');
+                                    scene.img('images/locations/city/shared/metro/sex/fuck' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
                                     scene.text('As you find a seat, you notice a couple having intercourse in the car, going at each other like animals. Many people are watching them, some even pulling out their phones to record them. They switch between several sex positions during the ride, getting more and more turned on. The man seems to have a lot of stamina, as they are still going at it as you leave the car at your stop.');
                                     qspCall(s, 'arousal', 'voyeur_sex', 5);
                                     qspCall(s, 'arousal', 'end');
@@ -1383,7 +1383,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         if (((s as any).metrorand ?? 0) === 20) {
                                           qspCall(s, 'stat', '');
-                                          scene.img('images/locations/city/shared/metro/girlsbff\' + rand(1, 2) + \'.jpg');
+                                          scene.img('images/locations/city/shared/metro/girlsbff' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                                           scene.text('As you find a seat, you see some girls horsing around, talking loudly and goofing off. While they seem to be having fun, they\'re also annoying several of the other passengers.');
                                           scene.actions([
                                             { label: 'Leave', handler: (st: GameState) => {
@@ -1445,7 +1445,7 @@ function enterTrain(s: GameState, scene: SceneBuilder): void {
                                                     if (((s as any).metrorand ?? 0) === 26  &&  (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 15)) {
                                                       qspCall(s, 'stat', '');
                                                       scene.img('images/characters/shared/headshots_main/big77.jpg');
-                                                      scene.text('You spot your neighbor <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027tryndin\\u0027, \\u0027tryndinmetro\\u0027); return false;">Tryndin</a> sitting across from you.');
+                                                      scene.text('You spot your neighbor <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027tryndin/u0027, /u0027tryndinmetro/u0027); return false;">Tryndin</a> sitting across from you.');
                                                       scene.actions([
                                                         { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -1584,8 +1584,8 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Tell them no', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/no.jpg');
     scene.text('You shake your head and step away, causing them both to frown. "Sorry, I was just playing. I didn\'t mean to tease you," you tell them before turning and hurrying away.');
     scene.actions([
@@ -1603,10 +1603,10 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc1.jpg');
     scene.text('You decide to go with them. As soon as you walk in the mens room, one of them takes you over near the stalls and starts kissing you while his friend seems to be doing something at the door.');
     scene.text('After a few minutes of kissing, he pushes you down by your shoulders.');
-    qspCall(s, 'arousal', 'foreplay', 3, 'exhibitionism');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', 3, 'exhibitionism');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Change your mind', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1615,12 +1615,12 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Change your mind', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/metro/sex/station/2bbcno.jpg');
     scene.text('You pull away and shake your head. "I\'m sorry, but I can\'t do this." You turn and rush to the door where the other one is; it looks like he might stop you, but his friend says something you don\'t understand and he steps aside. You rush out of the mens room, breathing heavily.');
-    qspCall(s, 'arousal', 'foreplay', 3, 'exhibitionism');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 3, 'exhibitionism');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1632,39 +1632,39 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Squat', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'Black guy from the metro', 0, Math.floor(Math.random() * 3) + 2, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 0, 'Other black guy from the metro', 0, Math.floor(Math.random() * 3) + 2, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '', 0, 'Black guy from the metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'Other black guy from the metro', 0, (Math.floor(Math.random() * 3) + 2), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
     scene.img('images/locations/city/shared/metro/sex/station/2bbc2.jpg');
     scene.text('You squat down and rub his crotch through his pants; his cock is already rock-hard. He looks down at you and in accented Russian says "Suck it." He seems to speak Russian better than his friend, who seems to be trying to jam something under the door.');
-    qspCall(s, 'arousal', 'foreplay_give', 3, ((s as any).npcID ?? 0), 'exhibitionism');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay_give', 3, ((st as any).npcID ?? 0), 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc3.jpg');
     scene.text('You drop to your knees as you unbutton his pants before reaching inside and pulling his cock free. You stroke it several times before opening your mouth. You take his cock into your mouth, wrapping your lips tightly around the shaft and bobbing your head up and down as you suck his cock. While you\'re sucking his dick, you notice his friend walking back over and they exchange a few words in a language you don\'t recognize. After their exchange of words, the other guy pulls his dick out of your mouth and they trade places.');
-    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID ?? 0), 'exhibitionism');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID ?? 0), 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck the other dick', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc4.jpg');
     scene.text('As soon as he steps in place of where his friend was, his dick already out, you wrap your lips around his dick and start sucking it. The other one now walks to the other side of you, and you reach over to play with his balls and jerk him off at the same time. By the sounds of their moans and tone of voice when they talk to each other, they sound happy.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
-    qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck the other dick', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc5.jpg');
     scene.text('You start switching which dick you\'re sucking while you jerk the other one off, trying to keep them both happy. Part of you is thrilled at the excitement of blowing two guys in a public mens room, even more so because they are black. The one you are jerking off starts stripping you while waiting for his turn.');
     scene.text('Once you\'re naked, the one you\'re not sucking tries to get you to stand up and bend over.');
-    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID ?? 0), 'exhibitionism', 'group');
-    qspCall(s, 'arousal', 'hj', (-2), ((s as any).npcID ?? 0), 'exhibitionism', 'group');
-    qspCall(s, 'arousal', 'bj', (-2), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
-    qspCall(s, 'arousal', 'hj', (-3), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(st, 'arousal', 'hj', (-2), ((st as any).npcID ?? 0), 'exhibitionism', 'group');
+    qspCall(st, 'arousal', 'bj', (-2), ((st as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(st, 'arousal', 'hj', (-3), ((st as any).npcID1 ?? 0), 'exhibitionism', 'group');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Just suck them off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1673,9 +1673,9 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Just suck them off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'metro_events', 'twobbcfinish');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'metro_events', 'twobbcfinish');
   } },
       ]);
     }
@@ -1683,18 +1683,18 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc6.jpg');
     scene.text('You stand up while you keep sucking his friend, leaving you bent over. You feel the head of his hard dick rubbing against your slit, getting the head of his cock and your pussy wet in the process. Once he\'s convinced you\'re wet enough, he slides his dick into your pussy. You feel it filling you up and moan softly around the cock in your mouth. He starts fucking you hard and fast almost at once.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked again', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc7.jpg');
     scene.text('After a few minutes, the one whose dick you\'re sucking says something to his friend and soon both of them pull out of you. They switch places and you find a wet dick covered in your pussy juices shoved into your mouth. You start sucking on it as you feel the other dick being shoved into your wet pussy and fucking you hard and rough. Several minutes go by before the one fucking you spits on your ass and you feel him working the spit into your asshole with his finger.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Finish them off with blowjobs', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1703,9 +1703,9 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Finish them off with blowjobs', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'metro_events', 'twobbcfinish');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'metro_events', 'twobbcfinish');
   } },
       ]);
     }
@@ -1713,19 +1713,19 @@ function enterTwobbc(s: GameState, scene: SceneBuilder): void {
       { label: 'Take it up the ass', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc8.jpg');
     scene.text('He pulls his dick out of you and rubs the tip against your anus before pushing against against it until the head of his cock pops into your ass, causing you to groan in pain. He starts fucking your ass as you suck his friend\'s dick, and it doesn\'t take him very long until he works his cock balls deep into your ass and starts hammering away at it. They excitedly talk back and forth while laughing.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'arousal', 'anal', (-5), ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'pain', '', 1, 'asshole', 'stretch');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'arousal', 'anal', (-5), ((st as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Another ass pounding', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/metro/sex/station/2bbc9.jpg');
     scene.text('After a few minutes, the one whose dick you\'re sucking starts saying something urgently before they both pull out of you and walk around you, switching positions. The one that was just in your ass does make a detour to grab some toilet paper, which he uses to wipe off his dick before walking over to shove it back in your mouth.');
     scene.text('His friend wastes no time and shoves his cock into your much looser asshole. He very quickly works himself balls deep into your ass, grabbing you by the hips as he starts hammering away at your ass as fast as he can. Several minutes of this go by until they both pull out of you.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'arousal', 'anal', (-5), ((s as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
-    qspCall(s, 'pain', '', 1, 'asshole', 'stretch');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'arousal', 'anal', (-5), ((st as any).npcID ?? 0), 'exhibitionism', 'group', 'sub', 'rough');
+    qspCall(st, 'pain', '', 1, 'asshole', 'stretch');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish them off with blowjobs', goto: ['metro_events', 'twobbcfinish'] },
     ]);

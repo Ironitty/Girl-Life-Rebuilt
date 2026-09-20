@@ -47,7 +47,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDoesIndexExist(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).locArgs?.[1] ?? 0) >= 0  &&  ((s as any).locArgs?.[1] ?? 0) < ((s as any).telefon ?? 0)?.['SMSCount']);
+  (s as any).result = (Number((s as any).locArgs?.[1] ?? 0) >= 0  &&  Number((s as any).locArgs?.[1] ?? 0) < ((s as any).telefon ?? 0)?.['SMSCount']);
   return;
   // TODO-QSP: end
   scene.build();
@@ -72,7 +72,7 @@ function enterSend(s: GameState, scene: SceneBuilder): void {
 
 function enterSendImg(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td width=10%></td><td collspan=2 bgcolor=pink align=center style="white-space:pre-wrap">');
-  if (((s as any).locArgs?.[2] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<br><img src="' + ((s as any).locArgs?.[1] ?? 0) + '" alt="' + ((s as any).locArgs?.[2] ?? 0) + '" style="horizontal-align:center; max-height:90%; max-width:90%"><br><br>');
@@ -82,7 +82,7 @@ function enterSendImg(s: GameState, scene: SceneBuilder): void {
 
 function enterSendVideo(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td width=10%></td><td collspan=2 bgcolor=pink align=center style="white-space:pre-wrap">');
-  if (((s as any).locArgs?.[2] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<br><video autoplay loop src="' + ((s as any).locArgs?.[1] ?? 0) + '" alt="' + ((s as any).locArgs?.[2] ?? 0) + '" style="horizontal-align:center; max-height:90%; max-width:90%"></video><br><br>');
@@ -100,7 +100,7 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
 
 function enterReceiveImg(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" align=center style="white-space:pre-wrap">');
-  if (((s as any).locArgs?.[2] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<br><img src="' + ((s as any).locArgs?.[1] ?? 0) + '" alt="' + ((s as any).locArgs?.[2] ?? 0) + '" style="horizontal-align:center; max-height:90%; max-width:90%"><br><br>');
@@ -110,7 +110,7 @@ function enterReceiveImg(s: GameState, scene: SceneBuilder): void {
 
 function enterReceiveVideo(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" align=center style="white-space:pre-wrap">');
-  if (((s as any).locArgs?.[2] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).locArgs?.[1] ?? 0);
   }
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<br><video autoplay loop src="' + ((s as any).locArgs?.[1] ?? 0) + '" alt="' + ((s as any).locArgs?.[2] ?? 0) + '" style="horizontal-align:center; max-height:90%; max-width:90%"></video><br><br>');
@@ -154,7 +154,7 @@ function enterPrivateSetReplies(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSendSelfie(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_reply_str = '[Selfie] <a href="exec: gs \'SMS_selfies\', \'send_selfie\', \'' + qspUntranslated(s, "lcase(ARGS[2])", { location: "SMStext_builder" }) + '\', telefon[\'SMSIndex\']';
+  (s as any).temp_reply_str = '[Selfie] <a href="exec: gs \'SMS_selfies\', \'send_selfie\', \'' + (String(((s as any).locArgs?.[2] ?? 0)).toLowerCase()) + '\', telefon[\'SMSIndex\']';
   (s as any).stb_n_args = 0;
   (s as any).stb_i = 3;
   // TODO-QSP: :SMS_build_send_selfie_loop
@@ -197,16 +197,16 @@ function enterPrivateSetEndImg(s: GameState, scene: SceneBuilder): void {
   (s as any).stb_i = 0;
   // TODO-QSP: :stb_psei_loop
   if (((s as any).stb_i ?? 0) < Object.keys((s as any).SMSBuilderImages ?? {}).length) {
-    if (((s as any).SMSPicture1 ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+    if (((s as any).SMSPicture1 ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
       // TODO-QSP: $SMSPicture1[ARGS[1]] = $SMSBuilderImages[stb_i]
     } else {
-      if (((s as any).SMSPicture2 ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+      if (((s as any).SMSPicture2 ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
         // TODO-QSP: $SMSPicture2[ARGS[1]] = $SMSBuilderImages[stb_i]
       } else {
-        if (((s as any).SMSPicture3 ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+        if (((s as any).SMSPicture3 ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
           // TODO-QSP: $SMSPicture3[ARGS[1]] = $SMSBuilderImages[stb_i]
         } else {
-          if (((s as any).SMSPicture4 ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+          if (((s as any).SMSPicture4 ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
             // TODO-QSP: $SMSPicture4[ARGS[1]] = $SMSBuilderImages[stb_i]
           }
         }
@@ -231,7 +231,7 @@ function enterAddSms(s: GameState, scene: SceneBuilder): void {
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['replies'] = '';
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIdentifier'] = ((s as any).telefon ?? 0)?.['SMSIdentifier'];
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['SMSIndex'] = ((s as any).telefon ?? 0)?.['SMSIndex'];
-  if (((s as any).locArgs?.[2] ?? 0) !== 0  &&  ((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== 0  &&  Number((s as any).locArgs?.[2] ?? 0) !== '') {
     ((s as any).telefon = (s as any).telefon ?? {})['UnreadSMS'] = ((s as any).telefon['UnreadSMS'] ?? 0) - (1);
     // TODO-QSP: SMSMessageRead[SMSBuilderVars['SMSIndex']] = 1
   }
@@ -240,7 +240,7 @@ function enterAddSms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdateSmsFromId(s: GameState, scene: SceneBuilder): void {
-  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'SMStext_builder', 'get_index_from_id', ((s as any).locArgs?.[1] ?? 0)), ((((s as any).locArgs?.[2] ?? 0) === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))]; enterUpdateSms(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'SMStext_builder', 'get_index_from_id', ((s as any).locArgs?.[1] ?? 0)), ((Number((s as any).locArgs?.[2] ?? 0) === '') ? (((s as any).locArgs?.[2] ?? 0)) : (((s as any).locArgs?.[2] ?? 0)))]; enterUpdateSms(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -262,7 +262,7 @@ function enterUpdateSms(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $SMSMessage[SMSBuilderVars['SMSIndex']] += $SMSBuilderVars['text']
   // TODO-QSP: $SMSReplies[SMSBuilderVars['SMSIndex']] = $SMSBuilderVars['replies']
-  if (((s as any).locArgs?.[2] ?? 0) !== 0  ||  ((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== 0  ||  Number((s as any).locArgs?.[2] ?? 0) !== '') {
     // TODO-QSP: gs 'SMStext_builder', 'set_unread', SMSBuilderVars['SMSIndex']
   }
   ((s as any).SMSBuilderVars = (s as any).SMSBuilderVars ?? {})['reset_flag'] = 0;
@@ -299,7 +299,7 @@ function enterSetUnread(s: GameState, scene: SceneBuilder): void {
   if (! qspFunc(s, 'SMStext_builder', 'does_index_exist', ((s as any).locArgs?.[1] ?? 0))) {
     return;
   }
-  if (((s as any).SMSMessageRead ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).SMSMessageRead ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
     ((s as any).telefon = (s as any).telefon ?? {})['UnreadSMS'] = ((s as any).telefon['UnreadSMS'] ?? 0) + (1);
     // TODO-QSP: SMSMessageRead[ARGS[1]] = 0
   }

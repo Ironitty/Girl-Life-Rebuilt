@@ -42,7 +42,7 @@ function enterCheckFoyerEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 85) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_hallway', 'foyer_event_' + Math.floor(Math.random() * 5) + 1 + '');
+  qspGoto(s, 'bdsm_hallway', 'foyer_event_' + (Math.floor(Math.random() * 5) + 1) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -112,11 +112,11 @@ function enterFoyerEvent_5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/sex/maid_b4.mp4');
     scene.text('It looks like she has learnt to overcome her gag-reflex.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Return', goto: ['bdsm_hallway', 'foyer'] },
     ]);

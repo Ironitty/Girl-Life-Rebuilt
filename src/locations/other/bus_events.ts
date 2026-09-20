@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   ((s as any).transportVars = (s as any).transportVars ?? {})['bus_event_day'] = ((s as any).daystart ?? 0);
-  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 100) + 0;
+  ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_transportVars ?? 0)?.['rand'] < 100) {
     qspGoto(s, 'bus_events', 'placeholder');
   }

@@ -47,42 +47,42 @@ function enterThroat(s: GameState, scene: SceneBuilder): void {
   (s as any).throattipe = '';
   if (((s as any).pcs_throat ?? 0) <= 0) {
     (s as any).pcs_throat = 0;
-    ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have a chaste <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/throat/th0.jpg\\u0027; return s; }); return false;">mouth</a>.';
+    ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have a chaste <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/throat/th0.jpg/u0027; return s; }); return false;">mouth</a>.';
     ((s as any).pc_desc = (s as any).pc_desc ?? {})['throat'] = 'virgin';
     ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['throat'] = 'virginal, unused';
     (s as any).throattipe = 'virgin';
   } else {
     if (((s as any).pcs_throat ?? 0) <= 5) {
-      ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have an extremely inexperienced <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/throat/th1.jpg\\u0027; return s; }); return false;">mouth</a>.';
+      ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have an extremely inexperienced <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/throat/th1.jpg/u0027; return s; }); return false;">mouth</a>.';
       ((s as any).pc_desc = (s as any).pc_desc ?? {})['throat'] = 'narrow';
       ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['throat'] = 'reluctant, gag-prone';
       (s as any).throattipe = 'narrow';
     } else {
       if (((s as any).pcs_throat ?? 0) <= 10) {
-        ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'Your slightly-experienced mouth leads to a sensitive <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/throat/th2.jpg\\u0027; return s; }); return false;">throat</a> with an easily-triggered gag reflex.';
+        ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'Your slightly-experienced mouth leads to a sensitive <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/throat/th2.jpg/u0027; return s; }); return false;">throat</a> with an easily-triggered gag reflex.';
         ((s as any).pc_desc = (s as any).pc_desc ?? {})['throat'] = 'delicate';
         ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['throat'] = 'delicate, barely-experienced';
         (s as any).throattipe = 'delicate';
       } else {
         if (((s as any).pcs_throat ?? 0) <= 15) {
-          ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have an experienced mouth and fairly practiced <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/throat/th3.jpg\\u0027; return s; }); return false;">throat</a>.';
+          ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have an experienced mouth and fairly practiced <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/throat/th3.jpg/u0027; return s; }); return false;">throat</a>.';
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['throat'] = 'fairly practiced';
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['throat'] = 'fairly practiced';
           (s as any).throattipe = 'fairly practiced';
         } else {
           if (((s as any).pcs_throat ?? 0) <= 25) {
-            ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have a willing mouth and trained <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/throat/th4.jpg\\u0027; return s; }); return false;">throat</a>.';
+            ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'You have a willing mouth and trained <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/throat/th4.jpg/u0027; return s; }); return false;">throat</a>.';
             ((s as any).pc_desc = (s as any).pc_desc ?? {})['throat'] = 'well-trained';
             ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['throat'] = 'experienced, well-trained and eager';
             (s as any).throattipe = 'well-trained';
           } else {
             if (((s as any).pcs_throat ?? 0) <= 35) {
-              ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'Your deep tunnel of a <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/throat/th5.jpg\\u0027; return s; }); return false;">throat</a> may adopt any member.';
+              ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'Your deep tunnel of a <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/throat/th5.jpg/u0027; return s; }); return false;">throat</a> may adopt any member.';
               ((s as any).pc_desc = (s as any).pc_desc ?? {})['throat'] = 'capacious';
               ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['throat'] = 'seasoned, effortlessly-plumbed';
               (s as any).throattipe = 'capacious';
             } else {
-              ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'Your gag reflex is completely absent and your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/throat/th6.jpg\\u0027; return s; }); return false;">throat</a> has seen nearly as much cock as it has food.';
+              ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['throat'] = 'Your gag reflex is completely absent and your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/throat/th6.jpg/u0027; return s; }); return false;">throat</a> has seen nearly as much cock as it has food.';
               ((s as any).pc_desc = (s as any).pc_desc ?? {})['throat'] = 'bottomless';
               ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['throat'] = 'elastic, oft-fucked';
               (s as any).throattipe = 'bottomless';
@@ -121,45 +121,45 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
-    (s as any).pcs_vag_image = 'images/pc/body/pussy/stage0/' + Math.floor(Math.random() * 5) + 1 + '.jpg';
+    (s as any).pcs_vag_image = 'images/pc/body/pussy/stage0/' + (Math.floor(Math.random() * 5) + 1) + '.jpg';
     (s as any).pcs_vag_txt = 'Your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + 'virgin <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">pussy</a> still has its hymen intact, ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 0) ? ('even though you are not a virgin.') : ('which makes sense for a virgin.'));
     ((s as any).pc_desc = (s as any).pc_desc ?? {})['pussy'] = ((s as any).pc_desc['pussy'] ?? 0) + ('virgin');
     ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pussy'] = ((s as any).pc_descWordy['pussy'] ?? 0) + ('virgin');
     (s as any).vaginatipe = 'virgin';
   } else {
     if (((s as any).vgape ?? 0) === 0  &&  ((s as any).pcs_vag ?? 0) <= 30) {
-      (s as any).pcs_vag_image = 'images/pc/body/pussy/stage1/' + Math.floor(Math.random() * 5) + 1 + '.jpg';
+      (s as any).pcs_vag_image = 'images/pc/body/pussy/stage1/' + (Math.floor(Math.random() * 5) + 1) + '.jpg';
       (s as any).pcs_vag_txt = 'Your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">pussy</a> looks perfectly normal, ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 0) ? ('for someone sexually active.') : ('just not as virginal as you would expect.'));
       ((s as any).pc_desc = (s as any).pc_desc ?? {})['pussy'] = ((s as any).pc_desc['pussy'] ?? 0) + (qspFunc(s, 'body_desc', 'ChooseDescWord', 'snug', 'tight', 'cosy'));
       ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pussy'] = ((s as any).pc_descWordy['pussy'] ?? 0) + ('tight and unused');
       (s as any).vaginatipe = 'unused';
     } else {
       if (((s as any).vgape ?? 0) <= 1) {
-        (s as any).pcs_vag_image = 'images/pc/body/pussy/stage2/' + Math.floor(Math.random() * 5) + 1 + '.jpg';
-        (s as any).pcs_vag_txt = 'Your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">pussy</a> looks like it has been used recently or is just well worn in, ' + 'TODO';
+        (s as any).pcs_vag_image = 'images/pc/body/pussy/stage2/' + (Math.floor(Math.random() * 5) + 1) + '.jpg';
+        (s as any).pcs_vag_txt = 'Your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">pussy</a> looks like it has been used recently or is just well worn in, ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 0) ? ('maybe you\'ve been over doing it?') : ('which seems unfair for a virgin like yourself.'));
         ((s as any).pc_desc = (s as any).pc_desc ?? {})['pussy'] = ((s as any).pc_desc['pussy'] ?? 0) + (qspFunc(s, 'body_desc', 'ChooseDescWord', 'pliable', 'used'));
         ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pussy'] = ((s as any).pc_descWordy['pussy'] ?? 0) + ('worn in');
         (s as any).vaginatipe = 'used';
       } else {
         if (((s as any).vgape ?? 0) === 2) {
-          (s as any).pcs_vag_image = 'images/pc/body/pussy/stage3/' + Math.floor(Math.random() * 5) + 1 + '.jpg';
+          (s as any).pcs_vag_image = 'images/pc/body/pussy/stage3/' + (Math.floor(Math.random() * 5) + 1) + '.jpg';
           (s as any).pcs_vag_txt = 'Your ' + ((s as any).pc_desc ?? 0)?.['pussy'] + '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">vagina</a> looks like it has seen some action, ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 0) ? ('which it totally has.') : ('which doesn\'t make sense. You\'re still a virgin.'));
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['pussy'] = ((s as any).pc_desc['pussy'] ?? 0) + (qspFunc(s, 'body_desc', 'ChooseDescWord', 'recovering', 'recently used', 'welcoming'));
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pussy'] = ((s as any).pc_descWordy['pussy'] ?? 0) + ('experienced, welcoming');
           (s as any).vaginatipe = 'welcoming';
         } else {
           if (((s as any).vgape ?? 0) === 3) {
-            (s as any).pcs_vag_image = 'images/pc/body/pussy/stage4/' + Math.floor(Math.random() * 5) + 1 + '.jpg';
-            (s as any).pcs_vag_txt = 'You have a ' + ((s as any).pc_desc ?? 0)?.['pussy'] + 'gaping hole of a <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">vagina</a>, ' + 'TODO';
+            (s as any).pcs_vag_image = 'images/pc/body/pussy/stage4/' + (Math.floor(Math.random() * 5) + 1) + '.jpg';
+            (s as any).pcs_vag_txt = 'You have a ' + ((s as any).pc_desc ?? 0)?.['pussy'] + 'gaping hole of a <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">vagina</a>, ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 0) ? ('it has seen a lot of action.') : ('how though? Maybe something is wrong with you, virgins don\'t look like this.'));
             ((s as any).pc_desc = (s as any).pc_desc ?? {})['pussy'] = ((s as any).pc_desc['pussy'] ?? 0) + (qspFunc(s, 'body_desc', 'ChooseDescWord', 'gaping', 'open', 'extended', 'wide'));
             ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pussy'] = ((s as any).pc_descWordy['pussy'] ?? 0) + ('gaping and well used');
             (s as any).vaginatipe = 'gaping';
           } else {
-            (s as any).pcs_vag_image = 'images/pc/body/pussy/stage5/' + Math.floor(Math.random() * 5) + 1 + '.jpg';
+            (s as any).pcs_vag_image = 'images/pc/body/pussy/stage5/' + (Math.floor(Math.random() * 5) + 1) + '.jpg';
             if ((!(Math.floor(Math.random() * 2) + 0))) {
-              (s as any).pcs_vag_txt = 'Your regularly-fucked ' + ((s as any).pc_desc ?? 0)?.['pussy'] + '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">playground</a> can take most things you force up there, ' + 'TODO';
+              (s as any).pcs_vag_txt = 'Your regularly-fucked ' + ((s as any).pc_desc ?? 0)?.['pussy'] + '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">playground</a> can take most things you force up there, ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 0) ? ('maybe you should skip the next gangbang?.') : ('this can\'t be right. What could be doing this to me?'));
             } else {
-              (s as any).pcs_vag_txt = 'Your poor little <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">pussy</a> is broken from too much stuffing, it\'ll need time to recover, ' + 'TODO';
+              (s as any).pcs_vag_txt = 'Your poor little <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.pcs_vag_image; return s; }); return false;">pussy</a> is broken from too much stuffing, it\'ll need time to recover, ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 0) ? ('maybe you should skip the next gangbang?.') : ('this can\'t be right. What could be doing this to me?'));
             }
             ((s as any).pc_desc = (s as any).pc_desc ?? {})['pussy'] = ((s as any).pc_desc['pussy'] ?? 0) + (qspFunc(s, 'body_desc', 'ChooseDescWord', 'ruined', 'broken', 'proplapsed', 'destroyed', 'annihilated', 'obliterated', 'decimated'));
             ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pussy'] = ((s as any).pc_descWordy['pussy'] ?? 0) + ('prolapsed, ruined, chasm of a');
@@ -184,21 +184,21 @@ function enterAnus(s: GameState, scene: SceneBuilder): void {
     ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['anus'] = 'plug-stuffed';
     (s as any).anustipe = 'plugged';
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/analplug.jpg\\u0027; return s; }); return false;">anus</a> is currently filled with your butt plug.';
+      (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/analplug.jpg/u0027; return s; }); return false;">anus</a> is currently filled with your butt plug.';
     } else {
       if (((s as any).pcs_piercings ?? 0)?.['pussy'] > 0) {
-        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/pirs\\u0027 + rand(1, 3) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a> is currently filled with your butt plug.';
+        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/pirs/u0027 + rand(1, 3) + /u0027.jpg/u0027; return s; }); return false;">anus</a> is currently filled with your butt plug.';
       } else {
-        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/analplugnotanga.jpg\\u0027; return s; }); return false;">anus</a> is currently filled with your butt plug.';
+        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/analplugnotanga.jpg/u0027; return s; }); return false;">anus</a> is currently filled with your butt plug.';
       }
     }
   } else {
     if (((s as any).agape ?? 0) >= 4) {
       (s as any).anpic = 5;
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/stage5/\\u0027 + rand(1, 5) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a> genuinely doesn\'t fully close on its own currently. You could put a fist through it and it would scarcely stretch at all.';
+        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/stage5//u0027 + rand(1, 5) + /u0027.jpg/u0027; return s; }); return false;">anus</a> genuinely doesn\'t fully close on its own currently. You could put a fist through it and it would scarcely stretch at all.';
       } else {
-        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/stage5/\\u0027 + rand(1, 5) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a> is almost completely wrecked at this time. Even with conscious effort it\'s hard to close it.';
+        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/stage5//u0027 + rand(1, 5) + /u0027.jpg/u0027; return s; }); return false;">anus</a> is almost completely wrecked at this time. Even with conscious effort it\'s hard to close it.';
       }
       ((s as any).pc_desc = (s as any).pc_desc ?? {})['anus'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'gaping', 'yawning', 'destroyed', 'demolished', 'uselessly loose', 'ruined', 'wrecked');
       ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['anus'] = 'gaping, seemingly constantly-fucked';
@@ -206,34 +206,34 @@ function enterAnus(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).agape ?? 0) === 3) {
         (s as any).anpic = 4;
-        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/stage4/\\u0027 + rand(1, 5) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a> looks like a wide hole, it is clear you have recently been penetrated.';
+        (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/stage4//u0027 + rand(1, 5) + /u0027.jpg/u0027; return s; }); return false;">anus</a> looks like a wide hole, it is clear you have recently been penetrated.';
         ((s as any).pc_desc = (s as any).pc_desc ?? {})['anus'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'loose', 'casually open', 'routinely-fucked');
         ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['anus'] = 'loose, open';
         (s as any).anustipe = 'loose';
       } else {
         if (((s as any).agape ?? 0) === 2) {
           (s as any).anpic = 3;
-          (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/stage3/\\u0027 + rand(1, 5) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a> gapes a little from anal penetration, it should recover soon.';
+          (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/stage3//u0027 + rand(1, 5) + /u0027.jpg/u0027; return s; }); return false;">anus</a> gapes a little from anal penetration, it should recover soon.';
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['anus'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'stretchy', 'welcomingly ready', 'experienced');
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['anus'] = 'stretchy, regularly-fucked';
           (s as any).anustipe = 'stretchy';
         } else {
           if (((s as any).agape ?? 0) === 1  ||  ((s as any).pcs_ass ?? 0) > 10) {
             (s as any).anpic = 2;
-            (s as any).pcs_ass_txt = 'Your pliable <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/stage2/\\u0027 + rand(1, 5) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a> has the shape of an asterisk and has clearly been used.';
+            (s as any).pcs_ass_txt = 'Your pliable <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/stage2//u0027 + rand(1, 5) + /u0027.jpg/u0027; return s; }); return false;">anus</a> has the shape of an asterisk and has clearly been used.';
             ((s as any).pc_desc = (s as any).pc_desc ?? {})['anus'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'flexible', 'slightly experienced', 'pliable');
             ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['anus'] = 'flexible, still-snug';
             (s as any).anustipe = 'flexible';
           } else {
             if (((s as any).pcs_ass ?? 0) > 0) {
               (s as any).anpic = 1;
-              (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/stage1/\\u0027 + rand(1, 5) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a> shows no sign of having been penetrated.';
+              (s as any).pcs_ass_txt = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/stage1//u0027 + rand(1, 5) + /u0027.jpg/u0027; return s; }); return false;">anus</a> shows no sign of having been penetrated.';
               ((s as any).pc_desc = (s as any).pc_desc ?? {})['anus'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'tight', 'tightly-clenching', 'snug');
               ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['anus'] = 'tight, scarcely-used';
               (s as any).anustipe = 'tight';
             } else {
               (s as any).anpic = 0;
-              (s as any).pcs_ass_txt = 'You have a virgin <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/anus/stage0/\\u0027 + rand(1, 5) + \\u0027.jpg\\u0027; return s; }); return false;">anus</a>.';
+              (s as any).pcs_ass_txt = 'You have a virgin <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/anus/stage0//u0027 + rand(1, 5) + /u0027.jpg/u0027; return s; }); return false;">anus</a>.';
               ((s as any).pc_desc = (s as any).pc_desc ?? {})['anus'] = 'virgin';
               ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['anus'] = 'virgin';
               (s as any).anustipe = 'virgin';
@@ -319,7 +319,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'pcs_has_attr', 'body_tits_a_cup')) {
       (s as any).tits = 1;
       (s as any).titsize = 'A cup';
-      (s as any).rand_breasts = Math.floor(Math.random() * 2) + 0;
+      (s as any).rand_breasts = (Math.floor(Math.random() * 2) + 0);
       if ((!((s as any).rand_breasts ?? 0))) {
         (s as any).pcdesc_breastsrandom = 'petite';
       } else {
@@ -460,7 +460,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterButt(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_img = qspFunc(s, '$body_image', 'butt');
+  (s as any).temp_img = qspFunc(s, '$body_image', '', 'butt');
   if (((s as any).bodyVars ?? 0)?.['butt_silicone'] > 0) {
     ((s as any).pc_desc = (s as any).pc_desc ?? {})['butt'] = 'jiggly bubble';
     ((s as any).pc_descFull = (s as any).pc_descFull ?? {})['butt'] = 'Through the use of implants, you have given yourself a jiggly bubble <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = s.temp_img; return s; }); return false;">butt</a>.';
@@ -1113,26 +1113,26 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
 
 function enterNipples(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_nips ?? 0) < 20) {
-    (s as any).nipplesize = 'You have average <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/nipples/nipples1.jpg\\u0027; return s; }); return false;">nipples</a>.';
+    (s as any).nipplesize = 'You have average <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/nipples/nipples1.jpg/u0027; return s; }); return false;">nipples</a>.';
     ((s as any).pc_desc = (s as any).pc_desc ?? {})['nipples'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'small', 'tiny', 'little');
     ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['nipples'] = 'small, tiny';
   } else {
     if (((s as any).pcs_nips ?? 0) < 40) {
-      (s as any).nipplesize = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/nipples/nipples2.jpg\\u0027; return s; }); return false;">nipples</a> are slightly on the large side.';
+      (s as any).nipplesize = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/nipples/nipples2.jpg/u0027; return s; }); return false;">nipples</a> are slightly on the large side.';
       ((s as any).pc_desc = (s as any).pc_desc ?? {})['nipples'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'slightly large', 'decently-sized');
       ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['nipples'] = 'slightly large';
     } else {
       if (((s as any).pcs_nips ?? 0) < 60) {
-        (s as any).nipplesize = 'You have large, puffy <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/nipples/nipples3.jpg\\u0027; return s; }); return false;">nipples</a>.';
+        (s as any).nipplesize = 'You have large, puffy <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/nipples/nipples3.jpg/u0027; return s; }); return false;">nipples</a>.';
         ((s as any).pc_desc = (s as any).pc_desc ?? {})['nipples'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'puffy', 'swollen', 'large');
         ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['nipples'] = 'large, puffy';
       } else {
         if (((s as any).pcs_nips ?? 0) < 80) {
-          (s as any).nipplesize = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/nipples/nipples4.jpg\\u0027; return s; }); return false;">nipples</a> are the size of radio knobs.';
+          (s as any).nipplesize = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/nipples/nipples4.jpg/u0027; return s; }); return false;">nipples</a> are the size of radio knobs.';
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['nipples'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'big', 'thick');
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['nipples'] = 'big, thick';
         } else {
-          (s as any).nipplesize = 'You have huge <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/nipples/nipples5.jpg\\u0027; return s; }); return false;">nipples</a>.';
+          (s as any).nipplesize = 'You have huge <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/nipples/nipples5.jpg/u0027; return s; }); return false;">nipples</a>.';
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['nipples'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'enormous', 'meaty', 'huge', 'unmistakably big');
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['nipples'] = 'huge, meaty';
         }
@@ -1148,26 +1148,26 @@ function enterClit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clit_size ?? 0) < 20) {
     ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['clit'] = 'small, oft-hidden';
     ((s as any).pc_desc = (s as any).pc_desc ?? {})['clit'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'small', 'tiny');
-    (s as any).clitsize = 'You consider your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/clit/clit1.jpg\\u0027; return s; }); return false;">clitoris</a> to be on the small size.';
+    (s as any).clitsize = 'You consider your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/clit/clit1.jpg/u0027; return s; }); return false;">clitoris</a> to be on the small size.';
   } else {
     if (((s as any).clit_size ?? 0) < 40) {
       ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['clit'] = 'average, regular sized';
       ((s as any).pc_desc = (s as any).pc_desc ?? {})['clit'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'average', 'regular');
-      (s as any).clitsize = 'You feel your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/clit/clit2.jpg\\u0027; return s; }); return false;">clitoris</a> is pretty average sized.';
+      (s as any).clitsize = 'You feel your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/clit/clit2.jpg/u0027; return s; }); return false;">clitoris</a> is pretty average sized.';
     } else {
       if (((s as any).clit_size ?? 0) < 60) {
         ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['clit'] = 'big, easily-found';
         ((s as any).pc_desc = (s as any).pc_desc ?? {})['clit'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'large', 'big', 'engorged');
-        (s as any).clitsize = 'You feel your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/clit/clit3.jpg\\u0027; return s; }); return false;">clitoris</a> is somewhat on the large side.';
+        (s as any).clitsize = 'You feel your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/clit/clit3.jpg/u0027; return s; }); return false;">clitoris</a> is somewhat on the large side.';
       } else {
         if (((s as any).clit_size ?? 0) < 80) {
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['clit'] = 'thick, meaty';
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['clit'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'meaty', 'thick', 'swollen');
-          (s as any).clitsize = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/clit/clit4.jpg\\u0027; return s; }); return false;">clit</a> is quite large.';
+          (s as any).clitsize = 'Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/clit/clit4.jpg/u0027; return s; }); return false;">clit</a> is quite large.';
         } else {
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['clit'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'oversized', 'huge');
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['clit'] = 'big, practically phallic';
-          (s as any).clitsize = 'You have a big <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/clit/clit5.jpg\\u0027; return s; }); return false;">clit</a> that permanently protrudes.';
+          (s as any).clitsize = 'You have a big <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/clit/clit5.jpg/u0027; return s; }); return false;">clit</a> that permanently protrudes.';
         }
       }
     }
@@ -1181,27 +1181,27 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lashair ?? 0) === 1) {
     ((s as any).pc_desc = (s as any).pc_desc ?? {})['pubes'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'hairless', 'smooth', 'bald', 'silky-smooth');
     ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pubes'] = 'eternally silky-smooth';
-    (s as any).pcs_pubes_txt = 'You have a smooth, <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">bald pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+    (s as any).pcs_pubes_txt = 'You have a smooth, <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">bald pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
     ((s as any).pube_style = (s as any).pube_style ?? {})['word'] = 'shaved';
   } else {
     ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = '';
     if (((s as any).pcs_pubes ?? 0) <= 3) {
       (s as any).lobkoef = 3;
-      (s as any).pcs_pubes_txt = 'You have a smoothly <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">shaved pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+      (s as any).pcs_pubes_txt = 'You have a smoothly <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">shaved pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
       ((s as any).pc_desc = (s as any).pc_desc ?? {})['pubes'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'silky', 'hairless', 'smooth-shaven', 'freshly-shaven');
       ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pubes'] = 'silky, freshly-shaven';
       ((s as any).pube_style = (s as any).pube_style ?? {})['word'] = 'shaved';
     } else {
       if (((s as any).pcs_pubes ?? 0) <= 10) {
         (s as any).lobkoef = 0;
-        (s as any).pcs_pubes_txt = 'You have stubble growing around your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+        (s as any).pcs_pubes_txt = 'You have stubble growing around your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
         ((s as any).pc_desc = (s as any).pc_desc ?? {})['pubes'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'stubbly', 'scratchy', 'roughly-stubbled');
         ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pubes'] = 'scratchy, roughly-stubbled';
         ((s as any).pube_style = (s as any).pube_style ?? {})['word'] = 'stubble';
       } else {
         if (((s as any).pcs_pubes ?? 0) <= 15) {
           (s as any).lobkoef = 0;
-          (s as any).pcs_pubes_txt = 'You have a tidy patch of hair growing above your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+          (s as any).pcs_pubes_txt = 'You have a tidy patch of hair growing above your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['pubes'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'almost bare', 'barely-haired', 'well-kept');
           ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pubes'] = 'scratchy, roughly-stubbled';
           ((s as any).pube_style = (s as any).pube_style ?? {})['word'] = 'patch';
@@ -1211,47 +1211,47 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
             ((s as any).pube_style = (s as any).pube_style ?? {})['word'] = 'trimmed';
             if (((s as any).pubestyle ?? 0) === 9) {
               ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'bush';
-              (s as any).pcs_pubes_txt = 'You have neatly trimmed section of hair around your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+              (s as any).pcs_pubes_txt = 'You have neatly trimmed section of hair around your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
             } else {
               if (((s as any).pubestyle ?? 0) === 12) {
                 ((s as any).pube_style = (s as any).pube_style ?? {})['word'] = 'patch';
-                (s as any).pcs_pubes_txt = 'You have cute little patch of bush at the top of your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                (s as any).pcs_pubes_txt = 'You have cute little patch of bush at the top of your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
               } else {
                 if (((s as any).pubestyle ?? 0) === 13) {
                   ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'strip';
-                  (s as any).pcs_pubes_txt = 'You have tidy strip of bush covering your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                  (s as any).pcs_pubes_txt = 'You have tidy strip of bush covering your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                 } else {
                   if (((s as any).pubestyle ?? 0) === 14) {
                     ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'rectangle';
-                    (s as any).pcs_pubes_txt = 'You have neatly trimmed rectangle of hair just above your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                    (s as any).pcs_pubes_txt = 'You have neatly trimmed rectangle of hair just above your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                   } else {
                     if (((s as any).pubestyle ?? 0) === 2) {
                       ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'V';
-                      (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">shape of a V</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                      (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">shape of a V</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                     } else {
                       if (((s as any).pubestyle ?? 0) === 3) {
                         ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'triangle';
-                        (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">shape of a triangle</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                        (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">shape of a triangle</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                       } else {
                         if (((s as any).pubestyle ?? 0) === 4) {
                           ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'landing strip';
-                          (s as any).pcs_pubes_txt = 'You have a cleanly trimmed <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">landing strip</a> between your legs. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                          (s as any).pcs_pubes_txt = 'You have a cleanly trimmed <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">landing strip</a> between your legs. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                         } else {
                           if (((s as any).pubestyle ?? 0) === 5) {
                             ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'heart';
-                            (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">shape of a heart</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                            (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">shape of a heart</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                           } else {
                             if (((s as any).pubestyle ?? 0) === 6) {
                               ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'flame';
-                              (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">shape of a flame</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                              (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">shape of a flame</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                             } else {
                               if (((s as any).pubestyle ?? 0) === 7) {
                                 ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'cross';
-                                (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">shape of a cross</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                                (s as any).pcs_pubes_txt = 'You have a cleanly trimmed mat of pubic hair in the <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">shape of a cross</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                               } else {
                                 if (((s as any).pubestyle ?? 0) === 8) {
                                   ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'bush';
-                                  (s as any).pcs_pubes_txt = 'You have a close-cropped lawn of pubic hair covering your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+                                  (s as any).pcs_pubes_txt = 'You have a close-cropped lawn of pubic hair covering your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pussy</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
                                 }
                               }
                             }
@@ -1268,14 +1268,14 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).pcs_pubes ?? 0) <= 30) {
               (s as any).lobkoef = 0;
-              (s as any).pcs_pubes_txt = 'You have a bushy but well-maintained mat of <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pubic hair</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+              (s as any).pcs_pubes_txt = 'You have a bushy but well-maintained mat of <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pubic hair</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
               ((s as any).pc_desc = (s as any).pc_desc ?? {})['pubes'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'furred', 'bushy', 'partially-maintained');
               ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pubes'] = 'bushy, thick';
               ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'bush';
               ((s as any).pube_style = (s as any).pube_style ?? {})['word'] = 'bush';
             } else {
               (s as any).lobkoef = 0;
-              (s as any).pcs_pubes_txt = 'You have a wild and unkempt jungle of <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;">pubic hair</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
+              (s as any).pcs_pubes_txt = 'You have a wild and unkempt jungle of <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;">pubic hair</a>. ' + ((s as any).pcs_piercings ?? 0)?.['pussy_desc'] + '<br>' + ((s as any).clitsize ?? 0) + '';
               ((s as any).pc_desc = (s as any).pc_desc ?? {})['pubes'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'thickly-furred', 'very hairy', 'ill-maintained');
               ((s as any).pc_descWordy = (s as any).pc_descWordy ?? {})['pubes'] = 'hairy, wild-maned';
               ((s as any).pube_style = (s as any).pube_style ?? {})['shape'] = 'bush';
@@ -1713,7 +1713,7 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTeeth(s: GameState, scene: SceneBuilder): void {
-  (s as any).teeth_text = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obj_din\\u0027, \\u0027show_teeth\\u0027); return false;">teeth</a>';
+  (s as any).teeth_text = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_teeth/u0027); return false;">teeth</a>';
   if (((s as any).pcs_missing_teeth ?? 0) <= 0) {
     (s as any).missing_teeth = '';
     if (((s as any).pcs_brace ?? 0) === 1) {
@@ -1751,7 +1751,7 @@ function enterTeeth(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).pcs_missing_teeth ?? 0) === 1) {
-      (s as any).missing_teeth = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obj_din\\u0027, \\u0027show_missing_teeth\\u0027); return false;">tooth</a>';
+      (s as any).missing_teeth = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_missing_teeth/u0027); return false;">tooth</a>';
       if (((s as any).pcs_brace ?? 0) === 1) {
         if (((s as any).pcs_teeth ?? 0) < 0) {
           ((s as any).pc_desc = (s as any).pc_desc ?? {})['teeth'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'braced', 'sparkling', 'white');
@@ -1787,7 +1787,7 @@ function enterTeeth(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).pcs_missing_teeth ?? 0) === 2) {
-        (s as any).missing_teeth = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obj_din\\u0027, \\u0027show_missing_teeth\\u0027); return false;">teeth</a>';
+        (s as any).missing_teeth = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_missing_teeth/u0027); return false;">teeth</a>';
         if (((s as any).pcs_brace ?? 0) === 1) {
           if (((s as any).pcs_teeth ?? 0) < 0) {
             ((s as any).pc_desc = (s as any).pc_desc ?? {})['teeth'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'braced', 'sparkling', 'white');
@@ -1822,7 +1822,7 @@ function enterTeeth(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        (s as any).missing_teeth = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obj_din\\u0027, \\u0027show_missing_teeth\\u0027); return false;">teeth</a>';
+        (s as any).missing_teeth = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_missing_teeth/u0027); return false;">teeth</a>';
         if (((s as any).pcs_brace ?? 0) === 1) {
           if (((s as any).pcs_teeth ?? 0) < 0) {
             ((s as any).pc_desc = (s as any).pc_desc ?? {})['teeth'] = qspFunc(s, 'body_desc', 'ChooseDescWord', 'braced', 'gappy', 'flawed', 'white');

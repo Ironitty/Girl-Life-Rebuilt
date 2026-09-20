@@ -31,7 +31,7 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $tabsname[7] = 'Magic'
     // TODO-QSP: $tabsaction[7] = "menu_page = 7 & gt '$menu_character', 'magic'"
   }
-  if (((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
     (s as any).temp_menu_page = qspUntranslated(s, "arrpos('tabsname', ARGS[1])", { location: "_menu_character" });
     if (((s as any).temp_menu_page ?? 0) >= 0) {
       (s as any).menu_page = ((s as any).temp_menu_page ?? 0);
@@ -49,9 +49,6 @@ function enterCharactertabs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).settings = (s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings = (s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
-  ((s as any).settings = (s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
   (s as any).BACKIMAGE = '';
   (s as any).menu_page = 0;
   qspCall(s, '$menu_character', 'charactertabs', 'Character');
@@ -102,13 +99,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'homes_properties', 'get_accessible_property_count') === 0) {
-    scene.text('You have nowhere to live, if this is an error, you can set your current home <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_character\\u0027, \\u0027current_home\\u0027); return false;">here</a>.');
+    scene.text('You have nowhere to live, if this is an error, you can set your current home <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027current_home/u0027); return false;">here</a>.');
   } else {
     if (((s as any).home ?? 0)?.['current'] === '') {
-      scene.text('You don\'t have a current home set. If this is an error, you can set your current home <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_character\\u0027, \\u0027current_home\\u0027); return false;">here</a>.');
+      scene.text('You don\'t have a current home set. If this is an error, you can set your current home <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027current_home/u0027); return false;">here</a>.');
     } else {
-      // TODO-QSP: dynamic text: Your current home is <a href="exec:gs '$menu_character', 'current_home'"><<$home...
-      scene.text(`Your current home is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_character\\u0027, \\u0027current_home\\u0027); return false;">${((s as any).home ?? 0)?.['name'] ?? ''}</a>.`);
+      // TODO-QSP: dynamic text: Your current home is <a href="exec:gs ''$menu_character'', ''current_home''"><<$...
+      scene.text(`Your current home is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027current_home/u0027); return false;">${((s as any).home ?? 0)?.['name'] ?? ''}</a>.`);
     }
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucpcinfo ?? 0) >= 4) {
@@ -138,10 +135,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: Your date of birth is <<$birthdayD>>
   scene.text(`Your date of birth is ${((s as any).birthdayD || '')}`);
-  // TODO-QSP: dynamic text: You are <<pcs_hgt>>cm tall and <a href="exec:view $func('$body_image', 'body')">...
-  scene.text(`You are ${((s as any).pcs_hgt || '')}cm tall and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(\\u0027$body_image\\u0027, \\u0027body\\u0027) */ return s; }); return false;">${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}</a>.`);
-  // TODO-QSP: dynamic text: Your breasts would be considered an EU <a href="exec:view $func('$body_image', '...
-  scene.text(`Your breasts would be considered an EU <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(\\u0027$body_image\\u0027, \\u0027tits\\u0027) */ return s; }); return false;">${((s as any).titsize || '')}</a>.`);
+  // TODO-QSP: dynamic text: You are <<pcs_hgt>>cm tall and <a href="exec:view $func(''$body_image'', ''body'...
+  scene.text(`You are ${((s as any).pcs_hgt || '')}cm tall and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027body/u0027) */ return s; }); return false;">${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}</a>.`);
+  // TODO-QSP: dynamic text: Your breasts would be considered an EU <a href="exec:view $func(''$body_image'',...
+  scene.text(`Your breasts would be considered an EU <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027tits/u0027) */ return s; }); return false;">${((s as any).titsize || '')}</a>.`);
   if (((s as any).preg ?? 0) === 1) {
     if (((s as any).denypreg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) > 2688) {
       scene.text('You seem to be putting on a bit of weight, your belly is definitely bigger.');
@@ -176,7 +173,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
-    // TODO-QSP: dynamic text: Your hair: <<$face_style['avatar_hair']>>.
+    // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
     scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
   } else {
     // TODO-QSP: dynamic text: <<$hair>>
@@ -198,8 +195,163 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_brace ?? 0) === 1) {
     qspCall(s, 'time', 'to_date', ((s as any).dentistday ?? 0));
-    // TODO-QSP: dynamic text: You are wearing a brace on your <a href="exec:gs 'obj_din', 'show_teeth'">teeth<...
-    scene.text(`You are wearing a brace on your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027obj_din\\u0027, \\u0027show_teeth\\u0027); return false;">teeth</a>, you can remove them on or after the ${((s as any).dateVars ?? 0)?.['day'] ?? ''}${((s as any).dateVars ?? 0)?.['suffix'] ?? ''} of ${qspUntranslated(s, "monthName[dateVars['month']]", { location: "_menu_character" })}, ${((s as any).dateVars ?? 0)?.['year'] ?? ''}.`);
+    // TODO-QSP: dynamic text: You are wearing a brace on your <a href="exec:gs ''obj_din'', ''show_teeth''">te...
+    scene.text(`You are wearing a brace on your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_teeth/u0027); return false;">teeth</a>, you can remove them on or after the ${((s as any).dateVars ?? 0)?.['day'] ?? ''}${((s as any).dateVars ?? 0)?.['suffix'] ?? ''} of ${qspUntranslated(s, "monthName[dateVars['month']]", { location: "_menu_character" })}, ${((s as any).dateVars ?? 0)?.['year'] ?? ''}.`);
+  }
+  // TODO-QSP: $settings['table_end']
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterDescription(s: GameState, scene: SceneBuilder): void {
+  (s as any).BACKIMAGE = '';
+  (s as any).menu_page = 0;
+  qspCall(s, '$menu_character', 'charactertabs', 'Character');
+  qspCall(s, 'AppearanceSystem', '');
+  qspCall(s, 'body_desc', '');
+  scene.text('<center><h1>Character Description</h1></center>');
+  // TODO-QSP: $settings['table_start']
+  // TODO-QSP: dynamic text: Your name is <<$pcs_firstname>> <<$pcs_lastname>>.
+  scene.text(`Your name is ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}.`);
+  if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
+    // TODO-QSP: dynamic text: Your friends and family call you <<$pcs_nickname>>.
+    scene.text(`Your friends and family call you ${((s as any).pcs_nickname || '')}.`);
+  } else {
+    // TODO-QSP: dynamic text: Your friends call you <<$pcs_nickname>>.
+    scene.text(`Your friends call you ${((s as any).pcs_nickname || '')}.`);
+  }
+  if (((s as any).start_type ?? 0)?.['cat'] === 'goodgirl') {
+    scene.text('Your start background is: Good Girl');
+  } else {
+    if (((s as any).start_type ?? 0)?.['cat'] === 'uglyduckling') {
+      scene.text('Your start background is: Ugly Duckling');
+    } else {
+      if (((s as any).start_type ?? 0)?.['cat'] === 'gopnikstart') {
+        scene.text('Your start background is: Gopnik Start');
+      } else {
+        if (((s as any).start_type ?? 0)?.['cat'] === 'vitekgf') {
+          scene.text('Your start background is: Vitek\'s Girlfriend');
+        } else {
+          if (((s as any).start_type ?? 0)?.['cat'] === 'nerdqueen') {
+            scene.text('Your start background is: Nerd Queen');
+          } else {
+            if (((s as any).start_type ?? 0)?.['cat'] === 'goodstudent') {
+              scene.text('Your start background is: Good Student');
+            } else {
+              if (((s as any).start_type ?? 0)?.['cat'] === 'computergeek') {
+                scene.text('Your start background is: Computer Geek');
+              } else {
+                if (((s as any).start_type ?? 0)?.['cat'] === 'chessplayer') {
+                  scene.text('Your start background is: Chess Player');
+                } else {
+                  // TODO-QSP: 'Your start background is: ' + $ucase($mid($start_type['cat'], 1, 1)) + $mid($start_type['cat'], 2)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (qspFunc(s, 'homes_properties', 'get_accessible_property_count') === 0) {
+    scene.text('You have nowhere to live, if this is an error, you can set your current home <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027current_home/u0027); return false;">here</a>.');
+  } else {
+    if (((s as any).home ?? 0)?.['current'] === '') {
+      scene.text('You don\'t have a current home set. If this is an error, you can set your current home <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027current_home/u0027); return false;">here</a>.');
+    } else {
+      // TODO-QSP: dynamic text: Your current home is <a href="exec:gs ''$menu_character'', ''current_home''"><<$...
+      scene.text(`Your current home is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027current_home/u0027); return false;">${((s as any).home ?? 0)?.['name'] ?? ''}</a>.`);
+    }
+  }
+  if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucpcinfo ?? 0) >= 4) {
+    scene.text('You are a Succubus.');
+    // TODO-QSP: dynamic text: Succubus Level: <<succublvl>>
+    scene.text(`Succubus Level: ${((s as any).succublvl || '')}`);
+  }
+  if (((s as any).age ?? 0) === ((s as any).vidage ?? 0)) {
+    // TODO-QSP: dynamic text: You are <<age>> years old.
+    scene.text(`You are ${((s as any).age || '')} years old.`);
+  } else {
+    // TODO-QSP: dynamic text: You are <<age>> years old, but you appear to be <<vidage>>.
+    scene.text(`You are ${((s as any).age || '')} years old, but you appear to be ${((s as any).vidage || '')}.`);
+  }
+  if (((s as any).birthday ?? 0) <= 9  &&  ((s as any).birthmonth ?? 0) <= 9) {
+    (s as any).birthdayD = '0' + ((s as any).birthday ?? 0) + '.0' + ((s as any).birthmonth ?? 0) + '.' + ((s as any).birthyear ?? 0) + '.';
+  } else {
+    if (((s as any).birthday ?? 0) > 9  &&  ((s as any).birthmonth ?? 0) <= 9) {
+      (s as any).birthdayD = '' + ((s as any).birthday ?? 0) + '.0' + ((s as any).birthmonth ?? 0) + '.' + ((s as any).birthyear ?? 0) + '.';
+    } else {
+      if (((s as any).birthday ?? 0) > 9  &&  ((s as any).birthmonth ?? 0) > 9) {
+        (s as any).birthdayD = '' + ((s as any).birthday ?? 0) + '.' + ((s as any).birthmonth ?? 0) + '.' + ((s as any).birthyear ?? 0) + '.';
+      } else {
+        (s as any).birthdayD = '0' + ((s as any).birthday ?? 0) + '.' + ((s as any).birthmonth ?? 0) + '.' + ((s as any).birthyear ?? 0) + '.';
+      }
+    }
+  }
+  // TODO-QSP: dynamic text: Your date of birth is <<$birthdayD>>
+  scene.text(`Your date of birth is ${((s as any).birthdayD || '')}`);
+  // TODO-QSP: dynamic text: You are <<pcs_hgt>>cm tall and <a href="exec:view $func(''$body_image'', ''body'...
+  scene.text(`You are ${((s as any).pcs_hgt || '')}cm tall and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027body/u0027) */ return s; }); return false;">${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}</a>.`);
+  // TODO-QSP: dynamic text: Your breasts would be considered an EU <a href="exec:view $func(''$body_image'',...
+  scene.text(`Your breasts would be considered an EU <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027tits/u0027) */ return s; }); return false;">${((s as any).titsize || '')}</a>.`);
+  if (((s as any).preg ?? 0) === 1) {
+    if (((s as any).denypreg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) > 2688) {
+      scene.text('You seem to be putting on a bit of weight, your belly is definitely bigger.');
+    } else {
+      if (((s as any).pregChem ?? 0) > 4704) {
+        scene.text('You\'re rapidly approaching the finish line and have entered the third trimester. Your belly is so big now that you can barely remember what your toes look like. Your back hurts most of the time and it is a struggle to get to your feet if you sit down. The baby seems to think that your bladder makes a nice punching bag.');
+      } else {
+        if (((s as any).pregChem ?? 0) > 3696) {
+          scene.text('Your belly is quite swollen now and shows under even the loosest of clothes. You find yourself constantly caressing your belly without realizing it.');
+        } else {
+          if (((s as any).pregChem ?? 0) > 3192  &&  ((s as any).knowpreg ?? 0) === 1) {
+            scene.text('You are showing for sure now. Your tummy is starting to become rounder as it grows larger each day, although you can still wear baggy clothes to hide it. At least the morning sickness and nausea seem to have gone away for the most part.');
+          } else {
+            if (((s as any).pregChem ?? 0) > 3192  &&  (!((s as any).knowpreg ?? 0))) {
+              scene.text('You can\'t seem to stop gaining weight and your belly looks like it is getting bigger everyday, although you can still wear baggy clothes to hide it. At least the flu you\'ve been fighting lately seems to have finally gone away for the most part.');
+            } else {
+              if (((s as any).pregChem ?? 0) > 1800  &&  ((s as any).knowpreg ?? 0) === 1) {
+                // TODO-QSP: iif(lactation['growthsoreness_on']>0, 'Your breasts look and feel swollen and tingle at the slightes...
+              } else {
+                if (((s as any).pregChem ?? 0) > 1800  &&  (!((s as any).knowpreg ?? 0))) {
+                  // TODO-QSP: iif(lactation['growthsoreness_on']>0, 'Your breasts look and feel swollen and tingle at the slightes...
+                } else {
+                  if (((s as any).pregChem ?? 0) > 1200  &&  ((s as any).lactation ?? 0)?.['preggrowth'] > 0) {
+                    scene.text('You\'ve noticed that your breasts seem firmer lately and your nipples seem to be sticking out more.');
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
+    // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
+    scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
+  } else {
+    // TODO-QSP: dynamic text: <<$hair>>
+    scene.text(`${((s as any).hair || '')}`);
+  }
+  if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
+    // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
+    scene.text(`Your curls are good for another ${((s as any).curly || '')} days.`);
+  }
+  if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
+    // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
+    scene.text(`Your hair should be straight for another ${((s as any).straight || '')} days.`);
+  }
+  if (((s as any).pcs_mass ?? 0)?.['body'] < 10  &&  ((s as any).strenbuf ?? 0) > 0  &&  (!((s as any).dounspell ?? 0))) {
+    // TODO-QSP: $func('wrap', 'neg b', 'You are showing signs of malnourishment. You should probably eat more and mo...
+  }
+  if (((s as any).pcs_mass ?? 0)?.['body'] < 10  &&  ((s as any).strenbuf ?? 0) === 0  &&  (!((s as any).dounspell ?? 0))) {
+    // TODO-QSP: $func('wrap', 'v_neg b', 'You are dangerously malnourished, which has led to a loss in muscle mass. ...
+  }
+  if (((s as any).pcs_brace ?? 0) === 1) {
+    qspCall(s, 'time', 'to_date', ((s as any).dentistday ?? 0));
+    // TODO-QSP: dynamic text: You are wearing a brace on your <a href="exec:gs ''obj_din'', ''show_teeth''">te...
+    scene.text(`You are wearing a brace on your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_teeth/u0027); return false;">teeth</a>, you can remove them on or after the ${((s as any).dateVars ?? 0)?.['day'] ?? ''}${((s as any).dateVars ?? 0)?.['suffix'] ?? ''} of ${qspUntranslated(s, "monthName[dateVars['month']]", { location: "_menu_character" })}, ${((s as any).dateVars ?? 0)?.['year'] ?? ''}.`);
   }
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
@@ -207,58 +359,58 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCurrentHome(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: <center><h1><<$pcs_firstname>>'s Home Location</h1></center>
+  // TODO-QSP: dynamic text: <center><h1><<$pcs_firstname>>''s Home Location</h1></center>
   scene.text(`<center><h1>${((s as any).pcs_firstname || '')}'s Home Location</h1></center>`);
   // TODO-QSP: $settings['table_start']
-  // TODO-QSP: dynamic text: Your current home is <<$home['name']>>.
+  // TODO-QSP: dynamic text: Your current home is <<$home[''name'']>>.
   scene.text(`Your current home is ${((s as any).home ?? 0)?.['name'] ?? ''}.`);
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'city_apartment')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027city_apartment\\u0027); return false;">City residential apartment</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027city_apartment/u0027); return false;">City residential apartment</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'parents_home')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027parents_home\\u0027); return false;">Parent\'s home in Pavlovsk</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027parents_home/u0027); return false;">Parent\'s home in Pavlovsk</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'village_cottage')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027village_cottage\\u0027); return false;">My cottage in the cooperative farm</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027village_cottage/u0027); return false;">My cottage in the cooperative farm</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'old_town_apartment')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027old_town_apartment\\u0027); return false;">Old town apartment</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027old_town_apartment/u0027); return false;">Old town apartment</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'matryona_mansion')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027matryona_mansion\\u0027); return false;">Matryona mansion</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027matryona_mansion/u0027); return false;">Matryona mansion</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'pavlovsk_hotel')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027pavlovsk_hotel\\u0027); return false;">My hotel room in Pavlovsk</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027pavlovsk_hotel/u0027); return false;">My hotel room in Pavlovsk</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'maid_bedroom')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027maid_bedroom\\u0027); return false;">Nicholas\' apartment</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027maid_bedroom/u0027); return false;">Nicholas\' apartment</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'niko_apartment')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027niko_apartment\\u0027); return false;">Niko\'s apartment</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027niko_apartment/u0027); return false;">Niko\'s apartment</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'shulga_apartment')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027shulga_apartment\\u0027); return false;">Uncle Sergey\'s apartment</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027shulga_apartment/u0027); return false;">Uncle Sergey\'s apartment</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'lyceum_dorm')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027lyceum_dorm\\u0027); return false;">Lyceum school</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027lyceum_dorm/u0027); return false;">Lyceum school</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'university_dorm')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027university_dorm\\u0027); return false;">University halls</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027university_dorm/u0027); return false;">University halls</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'hunters_lodge')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027hunters_lodge\\u0027); return false;">Hunter\'s lodge in Gadukino</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027hunters_lodge/u0027); return false;">Hunter\'s lodge in Gadukino</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'shared_apartment')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027shared_apartment\\u0027); return false;">Shared apartment in Pavlovsk</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027shared_apartment/u0027); return false;">Shared apartment in Pavlovsk</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'grandparents_house')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027grandparents_house\\u0027); return false;">Grandparent\'s house in Gadukino</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027grandparents_house/u0027); return false;">Grandparent\'s house in Gadukino</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'city_house')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027city_house\\u0027); return false;">My house in the City residential district</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027city_house/u0027); return false;">My house in the City residential district</a>');
   }
   if (qspFunc(s, 'homes_properties', 'can_live_here', 'meynold_household')) {
-    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027homes_properties\\u0027, \\u0027set_home\\u0027, \\u0027meynold_household\\u0027); return false;">Meynold Houshold</a>');
+    scene.text('Set current home as <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027homes_properties/u0027, /u0027set_home/u0027, /u0027meynold_household/u0027); return false;">Meynold Houshold</a>');
   }
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
@@ -335,13 +487,13 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: $temp_table += '</table>'
     if (((s as any).teacher ?? 0)?.['level'] > 0) {
-      // TODO-QSP: dynamic text: Teacher - credibility <<teacher['level']>>
+      // TODO-QSP: dynamic text: Teacher - credibility <<teacher[''level'']>>
       scene.text(`Teacher - credibility ${((s as any).teacher ?? 0)?.['level'] ?? ''}`);
     }
   } else {
     if (((s as any).teacher ?? 0)?.['level'] > 0) {
       scene.text('<h2>Job Skills</h2>');
-      // TODO-QSP: dynamic text: Teacher - credibility <<teacher['level']>>
+      // TODO-QSP: dynamic text: Teacher - credibility <<teacher[''level'']>>
       scene.text(`Teacher - credibility ${((s as any).teacher ?? 0)?.['level'] ?? ''}`);
     }
   }
@@ -372,7 +524,7 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
     scene.text('<h2>Other Skills</h2>');
     if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       if (((s as any).gschoolVars ?? 0)?.['absence_count'] > 0) {
-        // TODO-QSP: dynamic text: School absenteeism - <<gschoolVars['absence_count']>> days
+        // TODO-QSP: dynamic text: School absenteeism - <<gschoolVars[''absence_count'']>> days
         scene.text(`School absenteeism - ${((s as any).gschoolVars ?? 0)?.['absence_count'] ?? ''} days`);
       }
     }
@@ -497,7 +649,7 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
 function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp = (s as any).temp ?? {})['skl_name'] = ((s as any).locArgs?.[1] ?? 0);
   ((s as any).temp = (s as any).temp ?? {})['skl_popup'] = ((s as any).locArgs?.[2] ?? 0);
-  if (((s as any).locArgs?.[3] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[3] ?? 0) !== '') {
     ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = ((s as any).locArgs?.[3] ?? 0);
     ((s as any).temp = (s as any).temp ?? {})['skl_only'] = ((s as any).locArgs?.[4] ?? 0);
     ((s as any).temp = (s as any).temp ?? {})['no_exp'] = ((s as any).locArgs?.[5] ?? 0);
@@ -512,7 +664,7 @@ function enterSkillFormatFunc(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp ?? 0)?.['skl_desc'] === '') {
     ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = ((s as any).att_desc ?? 0)?.[((s as any).temp ?? 0)?.['skl_name']];
-    ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = '<b>' + qspUntranslated(s, "mid(temp['skl_desc'], 1, 3)", { location: "_menu_character" }) + '</b>' + qspUntranslated(s, "mid(temp['skl_desc'], 4)", { location: "_menu_character" }) + '';
+    ((s as any).temp = (s as any).temp ?? {})['skl_desc'] = '<b>' + (String(((s as any).temp ?? 0)?.['skl_desc']).slice((1)-1, ((1)-1)+(3))) + '</b>' + (String(((s as any).temp ?? 0)?.['skl_desc']).slice((4)-1)) + '';
   }
   if (((s as any).temp ?? 0)?.['skl_name'] === 'stren') {
     ((s as any).temp = (s as any).temp ?? {})['skl_lvl'] = ((s as any).stren_lvl ?? 0) + ((s as any).stren_plus_lvl ?? 0);
@@ -668,7 +820,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).gschoolVars ?? 0)?.['absence_count'] > 0) {
-      // TODO-QSP: dynamic text: School absenteeism - <<gschoolVars['absence_count']>> days
+      // TODO-QSP: dynamic text: School absenteeism - <<gschoolVars[''absence_count'']>> days
       scene.text(`School absenteeism - ${((s as any).gschoolVars ?? 0)?.['absence_count'] ?? ''} days`);
     }
   }
@@ -680,19 +832,19 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: The monthly rent for your city apartment is <<$func('money', 'string_price', ren...
       scene.text(`The monthly rent for your city apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue || ''))}.`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).rentdue ?? 0))) {
-        scene.text(' You can make an advance <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027money\\u0027, \\u0027pay\\u0027, String(window.__gameStore.getState().rentdue ?? \\u0027\\u0027)); return false;">payment</a>.');
+        scene.text(' You can make an advance <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().rentdue ?? /u0027/u0027)); return false;">payment</a>.');
       } else {
         scene.text(' You can\'t afford to make an advance payment right now, but you should try to have enough money in your account, so you don\'t get evicted.');
       }
     }
     if (((s as any).accessible_property ?? 0)?.['old_town_apartment'] > 0) {
       (s as any).rentdue = qspFunc(s, 'homes_properties', 'get_rent_amount', 'old_town_apartment');
-      // TODO-QSP: dynamic text: You have rented an apartment in Pushkin, and you're paid up for <<func('homes_pr...
+      // TODO-QSP: dynamic text: You have rented an apartment in Pushkin, and you''re paid up for <<func(''homes_...
       scene.text(`You have rented an apartment in Pushkin, and you're paid up for ${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')} days`);
       // TODO-QSP: dynamic text: The monthly rent for your Pushkin apartment is <<$func('money', 'string_price', ...
       scene.text(`The monthly rent for your Pushkin apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue || ''))}.`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).rentdue ?? 0))) {
-        scene.text(' You can make an advance <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027money\\u0027, \\u0027pay\\u0027, String(window.__gameStore.getState().rentdue ?? \\u0027\\u0027)); return false;">payment</a>.');
+        scene.text(' You can make an advance <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().rentdue ?? /u0027/u0027)); return false;">payment</a>.');
       } else {
         scene.text(' You can\'t afford to make an advance payment right now, but you should try to have enough money in your account, so you don\'t get evicted.');
       }
@@ -720,13 +872,13 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
-    // TODO-QSP: dynamic text: Reputation as a teacher <<teacher['level']>>
+    // TODO-QSP: dynamic text: Reputation as a teacher <<teacher[''level'']>>
     scene.text(`Reputation as a teacher ${((s as any).teacher ?? 0)?.['level'] ?? ''}`);
   }
   scene.text('<center><b>Sports Career</b></center>');
   if (((s as any).kickbox ?? 0)?.['proWin'] + ((s as any).kickbox ?? 0)?.['proLoss'] + ((s as any).kickbox ?? 0)?.['proDraw'] > 0) {
     scene.text('Professional Kickboxing Record:Win (Victory KO) - Loss (Defeat KO) - Draw');
-    // TODO-QSP: dynamic text: <<kickbox['proWin']>> (<<kickbox['proWinKO']>>KO) - <<kickbox['proLoss']>> (<<ki...
+    // TODO-QSP: dynamic text: <<kickbox[''proWin'']>> (<<kickbox[''proWinKO'']>>KO) - <<kickbox[''proLoss'']>>...
     scene.text(`${((s as any).kickbox ?? 0)?.['proWin'] ?? ''} (${((s as any).kickbox ?? 0)?.['proWinKO'] ?? ''}KO) - ${((s as any).kickbox ?? 0)?.['proLoss'] ?? ''} (${((s as any).kickbox ?? 0)?.['proLossKO'] ?? ''}KO) - ${((s as any).kickbox ?? 0)?.['proDraw'] ?? ''}`);
   }
   if (((s as any).Win ?? 0) > 0  ||  ((s as any).Loss ?? 0) > 0) {
@@ -751,7 +903,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).kickbox ?? 0)?.['amateurWin'] + ((s as any).kickbox ?? 0)?.['amateurLoss'] + ((s as any).kickbox ?? 0)?.['amateurDraw'] > 0) {
-    // TODO-QSP: dynamic text: Amateur Kickboxing Record:<br>Wins: <<kickbox['amateurWin']>> (<<kickbox['amateu...
+    // TODO-QSP: dynamic text: Amateur Kickboxing Record:<br>Wins: <<kickbox[''amateurWin'']>> (<<kickbox[''ama...
     scene.text(`Amateur Kickboxing Record:<br>Wins: ${((s as any).kickbox ?? 0)?.['amateurWin'] ?? ''} (${((s as any).kickbox ?? 0)?.['amateurWinKO'] ?? ''} by KO) - Losses: ${((s as any).kickbox ?? 0)?.['amateurLoss'] ?? ''} (${((s as any).kickbox ?? 0)?.['amateurLossKO'] ?? ''} by KO) - Draws: ${((s as any).kickbox ?? 0)?.['amateurDraw'] ?? ''}`);
   }
   if (((s as any).runnerQW ?? 0)?.['races_ran'] > 0) {
@@ -848,105 +1000,105 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       if (((s as any).model ?? 0)?.['firstname'] === ((s as any).pcs_firstname ?? 0)  &&  ((s as any).model ?? 0)?.['lastname'] === ((s as any).pcs_lastname ?? 0)) {
         scene.text('You are working as a model using your real name.');
       } else {
-        // TODO-QSP: dynamic text: You are working as a model under the name <<$model['firstname']>> <<$model['last...
+        // TODO-QSP: dynamic text: You are working as a model under the name <<$model[''firstname'']>> <<$model[''l...
         scene.text(`You are working as a model under the name ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${((s as any).model ?? 0)?.['lastname'] ?? ''}.`);
       }
-      // TODO-QSP: dynamic text: <<modelfoto['shoots']>> - Number of times you have worked as a model
+      // TODO-QSP: dynamic text: <<modelfoto[''shoots'']>> - Number of times you have worked as a model
       scene.text(`${((s as any).modelfoto ?? 0)?.['shoots'] ?? ''} - Number of times you have worked as a model`);
-      // TODO-QSP: dynamic text: <<modelfoto['earnings']>> - The amount of money you've made modelling
+      // TODO-QSP: dynamic text: <<modelfoto[''earnings'']>> - The amount of money you''ve made modelling
       scene.text(`${((s as any).modelfoto ?? 0)?.['earnings'] ?? ''} - The amount of money you've made modelling`);
       if (((s as any).modelfoto ?? 0)?.['catalog'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['catalog']>> - Number of catalog shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''catalog'']>> - Number of catalog shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['catalog'] ?? ''} - Number of catalog shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['fashion'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['fashion']>> - Number of fashion shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''fashion'']>> - Number of fashion shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['fashion'] ?? ''} - Number of fashion shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['bikini'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['bikini']>> - Number of swimsuit shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''bikini'']>> - Number of swimsuit shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['bikini'] ?? ''} - Number of swimsuit shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['lingerie'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['lingerie']>> - Number of lingerie shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''lingerie'']>> - Number of lingerie shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['lingerie'] ?? ''} - Number of lingerie shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['trans_ling'] > 0) {
-        // TODO-QSP: dynamic text:   <<modelfoto['trans_ling']>> of those were with transparent lingerie
+        // TODO-QSP: dynamic text:   <<modelfoto[''trans_ling'']>> of those were with transparent lingerie
         scene.text(`  ${((s as any).modelfoto ?? 0)?.['trans_ling'] ?? ''} of those were with transparent lingerie`);
       }
       if (((s as any).modelfoto ?? 0)?.['sexy'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['sexy']>> - Number of sexy clothing shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''sexy'']>> - Number of sexy clothing shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['sexy'] ?? ''} - Number of sexy clothing shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['transparent'] > 0) {
-        // TODO-QSP: dynamic text:   <<modelfoto['transparent']>> of those were with transparent clothing that expo...
+        // TODO-QSP: dynamic text:   <<modelfoto[''transparent'']>> of those were with transparent clothing that ex...
         scene.text(`  ${((s as any).modelfoto ?? 0)?.['transparent'] ?? ''} of those were with transparent clothing that exposed your breasts`);
       }
       if (((s as any).modelfoto ?? 0)?.['fitness'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['fitness']>> - Number of fitness shoots you have participated in
+        // TODO-QSP: dynamic text: <<modelfoto[''fitness'']>> - Number of fitness shoots you have participated in
         scene.text(`${((s as any).modelfoto ?? 0)?.['fitness'] ?? ''} - Number of fitness shoots you have participated in`);
       }
       if (((s as any).modelfoto ?? 0)?.['glamour'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['glamour']>> - Number of glamour shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''glamour'']>> - Number of glamour shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['glamour'] ?? ''} - Number of glamour shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['topless']>> - Number of topless shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''topless'']>> - Number of topless shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['topless'] ?? ''} - Number of topless shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['nude'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['nude']>> - Number of shoots in which you have been nude
+        // TODO-QSP: dynamic text: <<modelfoto[''nude'']>> - Number of shoots in which you have been nude
         scene.text(`${((s as any).modelfoto ?? 0)?.['nude'] ?? ''} - Number of shoots in which you have been nude`);
       }
       if (((s as any).modelfoto ?? 0)?.['tastenude'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['tastenude']>> - Number of shoots in which you have been nude but no...
+        // TODO-QSP: dynamic text: <<modelfoto[''tastenude'']>> - Number of shoots in which you have been nude but ...
         scene.text(`${((s as any).modelfoto ?? 0)?.['tastenude'] ?? ''} - Number of shoots in which you have been nude but not shown breasts or pussy`);
       }
       if (((s as any).modelfoto ?? 0)?.['toplessnude'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['toplessnude']>> - Number of nude shoots you have shown your breasts...
+        // TODO-QSP: dynamic text: <<modelfoto[''toplessnude'']>> - Number of nude shoots you have shown your breas...
         scene.text(`${((s as any).modelfoto ?? 0)?.['toplessnude'] ?? ''} - Number of nude shoots you have shown your breasts but not your pussy`);
       }
       if (((s as any).modelfoto ?? 0)?.['fullnude'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['fullnude']>> - Number of full frontal nude shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''fullnude'']>> - Number of full frontal nude shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['fullnude'] ?? ''} - Number of full frontal nude shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['erotic'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['erotic']>> - Number of softcore erotic shoots you've done
+        // TODO-QSP: dynamic text: <<modelfoto[''erotic'']>> - Number of softcore erotic shoots you''ve done
         scene.text(`${((s as any).modelfoto ?? 0)?.['erotic'] ?? ''} - Number of softcore erotic shoots you've done`);
       }
       if (((s as any).modelfoto ?? 0)?.['nip'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['nip']>> - Number of shoots your nipples have been visible
+        // TODO-QSP: dynamic text: <<modelfoto[''nip'']>> - Number of shoots your nipples have been visible
         scene.text(`${((s as any).modelfoto ?? 0)?.['nip'] ?? ''} - Number of shoots your nipples have been visible`);
       }
       if (((s as any).modelfoto ?? 0)?.['pussy'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['pussy']>> - Number of shoots your pussy has been visible
+        // TODO-QSP: dynamic text: <<modelfoto[''pussy'']>> - Number of shoots your pussy has been visible
         scene.text(`${((s as any).modelfoto ?? 0)?.['pussy'] ?? ''} - Number of shoots your pussy has been visible`);
       }
       if (((s as any).modelfoto ?? 0)?.['bush'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['bush']>> - Number of shoots you have had visible pubic hair
+        // TODO-QSP: dynamic text: <<modelfoto[''bush'']>> - Number of shoots you have had visible pubic hair
         scene.text(`${((s as any).modelfoto ?? 0)?.['bush'] ?? ''} - Number of shoots you have had visible pubic hair`);
       }
       if (((s as any).modelfoto ?? 0)?.['asshole'] > 0) {
-        // TODO-QSP: dynamic text: <<modelfoto['asshole']>> - Number of shoots your asshole has been visible
+        // TODO-QSP: dynamic text: <<modelfoto[''asshole'']>> - Number of shoots your asshole has been visible
         scene.text(`${((s as any).modelfoto ?? 0)?.['asshole'] ?? ''} - Number of shoots your asshole has been visible`);
       }
     }
   }
   if ((((s as any).job_status ?? 0)?.['city_salon_masseuse'] === 'employed'  ||  ((s as any).masseuse ?? 0)?.['salon_state'] !== '')  &&  ((s as any).masseuse ?? 0)?.['money_earned'] > 0) {
     scene.text('<b>Masseuse</b>');
-    // TODO-QSP: dynamic text: You have earned <<func('money', 'string_profit', masseuse['money_earned'])>> wor...
+    // TODO-QSP: dynamic text: You have earned <<func(''money'', ''string_profit'', masseuse[''money_earned''])...
     scene.text(`You have earned ${qspFunc(s, 'money', 'string_profit', ((s as any).masseuse ?? 0)?.['money_earned'] ?? '')} working at the salon as well as ${qspFunc(s, 'money', 'string_profit', (((s as any).massage ?? {})?.['shift_tips_total'] ?? 0) + (((s as any).massage ?? {})?.['sex_tips_total'] ?? 0))} in tips.`);
     if (((s as any).masseuse ?? 0)?.['nude_mass_money_earned'] > 0) {
-      // TODO-QSP: dynamic text:  - <<func('money', 'string_profit', masseuse['nude_mass_money_earned'])>> of it ...
+      // TODO-QSP: dynamic text:  - <<func(''money'', ''string_profit'', masseuse[''nude_mass_money_earned''])>> ...
       scene.text(` - ${qspFunc(s, 'money', 'string_profit', ((s as any).masseuse ?? 0)?.['nude_mass_money_earned'] ?? '')} of it was made working as a nude masseuse.`);
     }
     if (((s as any).masseuse ?? 0)?.['sex_money_earned'] > 0) {
-      // TODO-QSP: dynamic text:  - <<func('money', 'string_profit', masseuse['sex_money_earned'])>> of it was ma...
+      // TODO-QSP: dynamic text:  - <<func(''money'', ''string_profit'', masseuse[''sex_money_earned''])>> of it ...
       scene.text(` - ${qspFunc(s, 'money', 'string_profit', ((s as any).masseuse ?? 0)?.['sex_money_earned'] ?? '')} of it was made working as a whore.`);
     }
     if (((s as any).massage ?? 0)?.['sex_tips_total'] > 0) {
-      // TODO-QSP: dynamic text:  - <<func('money', 'string_profit', massage['sex_tips_total'])>> of your tips ca...
+      // TODO-QSP: dynamic text:  - <<func(''money'', ''string_profit'', massage[''sex_tips_total''])>> of your t...
       scene.text(` - ${qspFunc(s, 'money', 'string_profit', ((s as any).massage ?? 0)?.['sex_tips_total'] ?? '')} of your tips came after performing a sexual act.`);
     }
   }
@@ -964,7 +1116,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).slavafuck ?? 0) > 0  ||  ((s as any).slava_bj ?? 0) > 0  ||  ((s as any).maxdamage ?? 0) > 0) {
   }
   if (((s as any).strip_club ?? 0)?.['total_stripshows'] > 0  &&  (!((s as any).hidden_stripdancesum ?? 0))) {
-    // TODO-QSP: dynamic text: You have danced <<strip_club['total_stripshows']>> times in the stripclub
+    // TODO-QSP: dynamic text: You have danced <<strip_club[''total_stripshows'']>> times in the stripclub
     scene.text(`You have danced ${((s as any).strip_club ?? 0)?.['total_stripshows'] ?? ''} times in the stripclub`);
   } else {
     if (((s as any).strip_club ?? 0)?.['total_stripshows'] === 0  &&  ((s as any).hidden_stripdancesum ?? 0) > 0) {
@@ -972,7 +1124,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       scene.text(`You have danced ${((s as any).hidden_stripdancesum || '')} times in the stripclub, but you do not remember it`);
     } else {
       if (((s as any).strip_club ?? 0)?.['total_stripshows'] > 0  &&  ((s as any).hidden_stripdancesum ?? 0) > 0) {
-        // TODO-QSP: dynamic text: You have danced <<strip_club['total_stripshows'] + hidden_stripdancesum>> times ...
+        // TODO-QSP: dynamic text: You have danced <<strip_club[''total_stripshows''] + hidden_stripdancesum>> time...
         scene.text(`You have danced ${(((s as any).strip_club ?? {})?.['total_stripshows'] ?? 0) + ((s as any).hidden_stripdancesum ?? '')} times in the stripclub, but you only remember ${((s as any).strip_club ?? 0)?.['total_stripshows'] ?? ''} times`);
       }
     }
@@ -990,7 +1142,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
     scene.text('You graduated.');
   }
   if (((s as any).teacher ?? 0)?.['level'] > 0) {
-    // TODO-QSP: dynamic text: Your credibility as a teacher is <<teacher['level']>>
+    // TODO-QSP: dynamic text: Your credibility as a teacher is <<teacher[''level'']>>
     scene.text(`Your credibility as a teacher is ${((s as any).teacher ?? 0)?.['level'] ?? ''}`);
   }
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] > 0  ||  ((s as any).university ?? 0)?.['diploma'] > 0  ||  ((s as any).teacher ?? 0)?.['level'] > 0) {
@@ -1980,12 +2132,12 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pain ?? 0)?.['asscheeks'] + (((s as any).spanked ?? 0) * 24) > 0) {
     if (((s as any).pain ?? 0)?.['asscheeks'] + (((s as any).spanked ?? 0) * 24) > 70) {
-      scene.text('<center><b>Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/spankedass2.jpg\\u0027; return s; }); return false;">asscheeks</a> are in extreme pain.</b></center>');
+      scene.text('<center><b>Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/spankedass2.jpg/u0027; return s; }); return false;">asscheeks</a> are in extreme pain.</b></center>');
     } else {
       if (((s as any).pain ?? 0)?.['asscheeks'] + (((s as any).spanked ?? 0) * 24) > 40) {
-        scene.text('<center><b>Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/spankedass1.jpg\\u0027; return s; }); return false;">asscheeks</a> are very sore.</b></center>');
+        scene.text('<center><b>Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/spankedass1.jpg/u0027; return s; }); return false;">asscheeks</a> are very sore.</b></center>');
       } else {
-        scene.text('<center><b>Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/pc/body/spankedass.jpg\\u0027; return s; }); return false;">asscheeks</a> hurt.</b></center>');
+        scene.text('<center><b>Your <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images/pc/body/spankedass.jpg/u0027; return s; }); return false;">asscheeks</a> hurt.</b></center>');
       }
     }
   }
@@ -2250,11 +2402,11 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
 function enterArchetypes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, '$menu_character', 'charactertabs', 'Archetypes');
   scene.text('<center><h2>Archetypes</h2></center>');
-  qspCall(s, 'archetypes', 'arch_tabs', ((((s as any).locArgs?.[1] ?? 0) !== '') ? (((s as any).locArgs?.[1] ?? 0)) : ('main')));
-  if (((s as any).locArgs?.[1] ?? 0) === 'catalog') {
+  qspCall(s, 'archetypes', 'arch_tabs', ((Number((s as any).locArgs?.[1] ?? 0) !== '') ? (((s as any).locArgs?.[1] ?? 0)) : ('main')));
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'catalog') {
     qspCall(s, 'archetypes', 'cause_catalog');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'history') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'history') {
       qspCall(s, 'archetypes', 'history_page');
     } else {
       // TODO-QSP: dynamic text: $settings['table_start']
@@ -2286,10 +2438,10 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $settings['table_start']
   scene.text('<center><b>Family</b></center>');
   if ((!((s as any).Enable_family_Reputation ?? 0))) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_character\\u0027, \\u0027reputation\\u0027); return false;">Show details</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027reputation/u0027); return false;">Show details</a></center>');
   }
   if (((s as any).Enable_family_Reputation ?? 0) === 1) {
-    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = s.0; return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_character\\u0027, \\u0027reputation\\u0027); return false;">Hide details</a></center>');
+    scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.Enable_family_Reputation = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027$menu_character/u0027, /u0027reputation/u0027); return false;">Hide details</a></center>');
     if (((s as any).rinslut ?? 0) > 0  ||  ((s as any).kavslut ?? 0) > 0) {
       scene.text('In the residential area of you are known as a whore that sleeps with Caucasians.');
     }
@@ -2368,26 +2520,26 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).brotherQW ?? 0)?.['shower_talk'] > 0) {
-        // TODO-QSP: dynamic text: <<brotherQW['shower_talk']>> - Number of conversations you've had with your brot...
+        // TODO-QSP: dynamic text: <<brotherQW[''shower_talk'']>> - Number of conversations you''ve had with your b...
         scene.text(`${((s as any).brotherQW ?? 0)?.['shower_talk'] ?? ''} - Number of conversations you've had with your brother in the shower.`);
       }
       if (((s as any).brotherQW ?? 0)?.['shower_look']) {
         scene.text('You let your brother look at you when you\'re shower');
       }
       if (((s as any).brotherQW ?? 0)?.['shave'] > 0) {
-        // TODO-QSP: dynamic text: <<brotherQW['shave']>> - Number of times you've let your brother watch you shave...
+        // TODO-QSP: dynamic text: <<brotherQW[''shave'']>> - Number of times you''ve let your brother watch you sh...
         scene.text(`${((s as any).brotherQW ?? 0)?.['shave'] ?? ''} - Number of times you've let your brother watch you shave your pussy`);
       }
       if (((s as any).brotherQW ?? 0)?.['kiss'] > 0) {
-        // TODO-QSP: dynamic text: <<brotherQW['kiss']>> - Number of times you and your brother have kissed
+        // TODO-QSP: dynamic text: <<brotherQW[''kiss'']>> - Number of times you and your brother have kissed
         scene.text(`${((s as any).brotherQW ?? 0)?.['kiss'] ?? ''} - Number of times you and your brother have kissed`);
       }
       if (((s as any).brotherQW ?? 0)?.['bj'] > 0) {
-        // TODO-QSP: dynamic text: <<brotherQW['bj']>> - Number of times you've given your brother blowjobs
+        // TODO-QSP: dynamic text: <<brotherQW[''bj'']>> - Number of times you''ve given your brother blowjobs
         scene.text(`${((s as any).brotherQW ?? 0)?.['bj'] ?? ''} - Number of times you've given your brother blowjobs`);
       }
       if (((s as any).brotherQW ?? 0)?.['fuck'] + ((s as any).brotherQW ?? 0)?.['anal'] > 0) {
-        // TODO-QSP: dynamic text: <<brotherQW['fuck'] + brotherQW['anal']>> - Number of times you've had sex with ...
+        // TODO-QSP: dynamic text: <<brotherQW[''fuck''] + brotherQW[''anal'']>> - Number of times you''ve had sex ...
         scene.text(`${(((s as any).brotherQW ?? {})?.['fuck'] ?? 0) + (((s as any).brotherQW ?? {})?.['anal'] ?? 0)} - Number of times you've had sex with your brother`);
       }
     }
@@ -2441,7 +2593,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <font color="magenta"><<$pfname>></font> retired after <b><<film>></b> porn film...
       scene.text(`<font color="magenta">${((s as any).pfname || '')}</font> retired after <b>${((s as any).film || '')}</b> porn films:`);
     }
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pornhist\\u0027, \\u0027pdetail\\u0027); return false;">View detailed Filmography</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">View detailed Filmography</a>');
     // TODO-QSP: dynamic text: <<$pfilmhistory>>
     scene.text(`${((s as any).pfilmhistory || '')}`);
   }
@@ -2452,7 +2604,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
 
 function enterDisplayRegionFames(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: "
-  (s as any).result = qspUntranslated(s, "replace(result, '  ', '')", { location: "_menu_character" });
+  (s as any).result = (String(((s as any).result ?? 0)).split('  ').join(''));
   // TODO-QSP: end
   scene.build();
 }
@@ -2497,6 +2649,9 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  ((s as any).settings = (s as any).settings ?? {})['table_start'] = '<center><table width="80%" cellspacing="0" cellpadding="20" valign="top"><tr><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings = (s as any).settings ?? {})['table_second'] = '</td><td width="500" cellspacing="0" cellpadding="20" valign="top">';
+  ((s as any).settings = (s as any).settings ?? {})['table_end'] = '</td></tr></table></center>';
   const arg = s.locArg;
   switch (arg) {
     case 'menu_exit':
@@ -2504,6 +2659,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'charactertabs':
       enterCharactertabs(s, scene);
+      break;
+    case 'description':
+      enterDescription(s, scene);
       break;
     case 'current_home':
       enterCurrentHome(s, scene);

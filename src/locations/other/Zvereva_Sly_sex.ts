@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,71 +12,71 @@ function enterSlyRandomSexActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A248');
-    ((s as any).slyQW = (s as any).slyQW ?? {})['sex_stam'] = ((s as any).slyQW['sex_stam'] ?? 0) + (1);
-    (s as any).pursepantytype = ((s as any).pantyworntype ?? 0);
-    (s as any).pursepantynumber = ((s as any).pantywornnumber ?? 0);
-    (s as any).pursebratype = ((s as any).braworntype ?? 0);
-    (s as any).pursebranumber = ((s as any).brawornnumber ?? 0);
-    qspCall(s, 'clothing', 'strip');
-    qspCall(s, 'underwear', 'remove');
-    if (((s as any).slyQW ?? 0)?.['Chris_peek_daystart'] !== ((s as any).daystart ?? 0)) {
-      ((s as any).slyQW = (s as any).slyQW ?? {})['Chris_peek_daystart'] = ((s as any).daystart ?? 0);
-      if (((s as any).slyQW ?? 0)?.['Chris_caught'] < 5) {
+    qspCall(st, 'boyStat', 'A248');
+    ((st as any).slyQW = (st as any).slyQW ?? {})['sex_stam'] = ((st as any).slyQW['sex_stam'] ?? 0) + (1);
+    (st as any).pursepantytype = ((st as any).pantyworntype ?? 0);
+    (st as any).pursepantynumber = ((st as any).pantywornnumber ?? 0);
+    (st as any).pursebratype = ((st as any).braworntype ?? 0);
+    (st as any).pursebranumber = ((st as any).brawornnumber ?? 0);
+    qspCall(st, 'clothing', 'strip');
+    qspCall(st, 'underwear', 'remove');
+    if (((st as any).slyQW ?? 0)?.['Chris_peek_daystart'] !== ((st as any).daystart ?? 0)) {
+      ((st as any).slyQW = (st as any).slyQW ?? {})['Chris_peek_daystart'] = ((st as any).daystart ?? 0);
+      if (((st as any).slyQW ?? 0)?.['Chris_caught'] < 5) {
         if ((Math.floor(Math.random() * 4) + 1) === 1) {
-          ((s as any).slyQW = (s as any).slyQW ?? {})['Chris_caught'] = ((s as any).slyQW['Chris_caught'] ?? 0) + (1);
-          ((s as any).slyQW = (s as any).slyQW ?? {})['Chris_peeking'] = 1;
+          ((st as any).slyQW = (st as any).slyQW ?? {})['Chris_caught'] = ((st as any).slyQW['Chris_caught'] ?? 0) + (1);
+          ((st as any).slyQW = (st as any).slyQW ?? {})['Chris_peeking'] = 1;
         }
       } else {
-        if (((s as any).slyQW ?? 0)?.['Chris_caught'] < 10  &&  ((s as any).christinaQW ?? 0)?.['subpath'] >= 6) {
+        if (((st as any).slyQW ?? 0)?.['Chris_caught'] < 10  &&  ((st as any).christinaQW ?? 0)?.['subpath'] >= 6) {
           if ((Math.floor(Math.random() * 2) + 1) === 1) {
-            ((s as any).slyQW = (s as any).slyQW ?? {})['Chris_caught'] = ((s as any).slyQW['Chris_caught'] ?? 0) + (1);
-            ((s as any).slyQW = (s as any).slyQW ?? {})['Chris_peeking'] = 1;
+            ((st as any).slyQW = (st as any).slyQW ?? {})['Chris_caught'] = ((st as any).slyQW['Chris_caught'] ?? 0) + (1);
+            ((st as any).slyQW = (st as any).slyQW ?? {})['Chris_peeking'] = 1;
           }
         } else {
-          if (((s as any).slyQW ?? 0)?.['Chris_caught'] === 10  &&  ((s as any).christinaQW ?? 0)?.['subpath'] >= 6) {
-            if (((s as any).christinaQW ?? 0)?.['subpath'] === 6) {
-              ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 7;
+          if (((st as any).slyQW ?? 0)?.['Chris_caught'] === 10  &&  ((st as any).christinaQW ?? 0)?.['subpath'] >= 6) {
+            if (((st as any).christinaQW ?? 0)?.['subpath'] === 6) {
+              ((st as any).christinaQW = (st as any).christinaQW ?? {})['subpath'] = 7;
             }
-            ((s as any).slyQW = (s as any).slyQW ?? {})['Chris_peeking'] = 1;
+            ((st as any).slyQW = (st as any).slyQW ?? {})['Chris_peeking'] = 1;
           }
         }
       }
     }
-    if (((s as any).slyQW ?? 0)?.['sex_stam'] < 6) {
+    if (((st as any).slyQW ?? 0)?.['sex_stam'] < 6) {
       // TODO-QSP: :sly_loop
-      ((s as any).slyQW = (s as any).slyQW ?? {})['sex_act'] = Math.floor(Math.random() * 8) + 1;
-      if (((s as any).slyQW ?? 0)?.['sex_act'] === 1  &&  ((s as any).slyQW ?? 0)?.['foreplay'] !== ((s as any).daystart ?? 0)) {
-        ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-        qspGoto(s, 'Zvereva_Sly_sex', 'hj_1');
+      ((st as any).slyQW = (st as any).slyQW ?? {})['sex_act'] = (Math.floor(Math.random() * 8) + 1);
+      if (((st as any).slyQW ?? 0)?.['sex_act'] === 1  &&  ((st as any).slyQW ?? 0)?.['foreplay'] !== ((st as any).daystart ?? 0)) {
+        ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+        qspGoto(st, 'Zvereva_Sly_sex', 'hj_1');
       } else {
-        if (((s as any).slyQW ?? 0)?.['sex_act'] === 2  &&  ((s as any).slyQW ?? 0)?.['foreplay'] !== ((s as any).daystart ?? 0)) {
-          ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-          qspGoto(s, 'Zvereva_Sly_sex', 'bj_1');
+        if (((st as any).slyQW ?? 0)?.['sex_act'] === 2  &&  ((st as any).slyQW ?? 0)?.['foreplay'] !== ((st as any).daystart ?? 0)) {
+          ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+          qspGoto(st, 'Zvereva_Sly_sex', 'bj_1');
         } else {
-          if (((s as any).slyQW ?? 0)?.['sex_act'] === 3  &&  ((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
-            ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-            qspGoto(s, 'Zvereva_Sly_sex', 'vag_cow_1');
+          if (((st as any).slyQW ?? 0)?.['sex_act'] === 3  &&  ((st as any).slyQW ?? 0)?.['virgin'] !== 2) {
+            ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+            qspGoto(st, 'Zvereva_Sly_sex', 'vag_cow_1');
           } else {
-            if (((s as any).slyQW ?? 0)?.['sex_act'] === 4  &&  ((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
-              ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-              qspGoto(s, 'Zvereva_Sly_sex', 'vag_doggy_1');
+            if (((st as any).slyQW ?? 0)?.['sex_act'] === 4  &&  ((st as any).slyQW ?? 0)?.['virgin'] !== 2) {
+              ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+              qspGoto(st, 'Zvereva_Sly_sex', 'vag_doggy_1');
             } else {
-              if (((s as any).slyQW ?? 0)?.['sex_act'] === 5  &&  ((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
-                ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-                qspGoto(s, 'Zvereva_Sly_sex', 'vag_stomach_1');
+              if (((st as any).slyQW ?? 0)?.['sex_act'] === 5  &&  ((st as any).slyQW ?? 0)?.['virgin'] !== 2) {
+                ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+                qspGoto(st, 'Zvereva_Sly_sex', 'vag_stomach_1');
               } else {
-                if (((s as any).slyQW ?? 0)?.['sex_act'] === 6) {
-                  ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-                  qspGoto(s, 'Zvereva_Sly_sex', 'anal_doggy_1');
+                if (((st as any).slyQW ?? 0)?.['sex_act'] === 6) {
+                  ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+                  qspGoto(st, 'Zvereva_Sly_sex', 'anal_doggy_1');
                 } else {
-                  if (((s as any).slyQW ?? 0)?.['sex_act'] === 7) {
-                    ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-                    qspGoto(s, 'Zvereva_Sly_sex', 'anal_stomach_1');
+                  if (((st as any).slyQW ?? 0)?.['sex_act'] === 7) {
+                    ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+                    qspGoto(st, 'Zvereva_Sly_sex', 'anal_stomach_1');
                   } else {
-                    if (((s as any).slyQW ?? 0)?.['sex_act'] === 8) {
-                      ((s as any).slyQW = (s as any).slyQW ?? {})['foreplay'] = ((s as any).daystart ?? 0);
-                      qspGoto(s, 'Zvereva_Sly_sex', 'anal_piledriver_1');
+                    if (((st as any).slyQW ?? 0)?.['sex_act'] === 8) {
+                      ((st as any).slyQW = (st as any).slyQW ?? {})['foreplay'] = ((st as any).daystart ?? 0);
+                      qspGoto(st, 'Zvereva_Sly_sex', 'anal_piledriver_1');
                     } else {
                       // TODO-QSP: jump 'sly_loop'
                     }
@@ -88,7 +88,7 @@ function enterSlyRandomSexActs(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      qspGoto(s, 'Zvereva_Sly_sex', 'cum_decide');
+      qspGoto(st, 'Zvereva_Sly_sex', 'cum_decide');
     }
   } },
   ]);
@@ -159,7 +159,7 @@ function enterChristinaPeek(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumDecide(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = Math.floor(Math.random() * 10) + 1;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).temp ?? 0) <= 2  &&  ((s as any).slyQW ?? 0)?.['virgin'] !== 2) {
     qspGoto(s, 'Zvereva_Sly_sex', 'vag_doggy_cum_1');
   } else {
@@ -177,25 +177,25 @@ function enterSexEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Clean up', handler: (st: GameState) => {
-    ((s as any).slyQW = (s as any).slyQW ?? {})['sex_act'] = 0;
-    ((s as any).slyQW = (s as any).slyQW ?? {})['sex_stam'] = 0;
-    ((s as any).slyQW = (s as any).slyQW ?? {})['trained'] = ((s as any).slyQW['trained'] ?? 0) + (1);
-    ((s as any).slyQW = (s as any).slyQW ?? {})['Chris_peeking'] = 0;
-    qspCall(s, 'panties', 'wear', ((s as any).pursepantytype ?? 0), ((s as any).pursepantynumber ?? 0));
-    qspCall(s, 'bras', 'wear', ((s as any).pursebratype ?? 0), ((s as any).pursebranumber ?? 0));
-    qspCall(s, 'clothing', 'wear_last_worn');
-    qspCall(s, 'shoes', 'wear', 'last_worn');
-    qspCall(s, 'purses', 'wear', 'last_worn');
-    qspCall(s, 'coats', 'wear', 'last_worn');
-    if (((s as any).analPlugOut ?? 0) === 1) {
-      qspCall(s, 'dinsex', 'after_anal');
+    ((st as any).slyQW = (st as any).slyQW ?? {})['sex_act'] = 0;
+    ((st as any).slyQW = (st as any).slyQW ?? {})['sex_stam'] = 0;
+    ((st as any).slyQW = (st as any).slyQW ?? {})['trained'] = ((st as any).slyQW['trained'] ?? 0) + (1);
+    ((st as any).slyQW = (st as any).slyQW ?? {})['Chris_peeking'] = 0;
+    qspCall(st, 'panties', 'wear', ((st as any).pursepantytype ?? 0), ((st as any).pursepantynumber ?? 0));
+    qspCall(st, 'bras', 'wear', ((st as any).pursebratype ?? 0), ((st as any).pursebranumber ?? 0));
+    qspCall(st, 'clothing', 'wear_last_worn');
+    qspCall(st, 'shoes', 'wear', 'last_worn');
+    qspCall(st, 'purses', 'wear', 'last_worn');
+    qspCall(st, 'coats', 'wear', 'last_worn');
+    if (((st as any).analPlugOut ?? 0) === 1) {
+      qspCall(st, 'dinsex', 'after_anal');
     }
-    if (((s as any).vibratorOUT ?? 0) === 1) {
-      (s as any).vibratorIN = 1;
-      (s as any).vibratorOUT = 0;
+    if (((st as any).vibratorOUT ?? 0) === 1) {
+      (st as any).vibratorIN = 1;
+      (st as any).vibratorOUT = 0;
     }
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'Zvereva_house', 'hallw');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'Zvereva_house', 'hallw');
   } },
   ]);
   scene.build();
@@ -221,7 +221,7 @@ function enterHj_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBj_1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/sex/blowjob/kotovbj\'+rand(110, 114)+\'.mp4');
+  scene.img('images/shared/sex/blowjob/kotovbj' + (Math.floor(Math.random() * 5) + 110) + '.mp4');
   scene.text('He grabs his dick with one hand, the back of your head with his other hand, and lines the tip of it up with your lips.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('You try to keep your lips pressed tightly shut, but he forces his way in, trying to fit the whole thing down your throat all at once! Almost immediately you find yourself unable to breathe, gagging and drooling all over his cock.');
@@ -258,10 +258,10 @@ function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
     ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
-  scene.img('images/shared/sex/vag/cowgirl/hard\'+rand(1, 4)+\'.mp4');
+  scene.img('images/shared/sex/vag/cowgirl/hard' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock ...
-  scene.text('Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock in hard, without any attempt to be gentle. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'"Start shaking those hips," he says, laying back with his arms behind his head.');
+  scene.text('Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock in hard, without any attempt to be gentle. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + '"Start shaking those hips," he says, laying back with his arms behind his head.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('You reluctantly move your hips back and forth until he seems to get annoyed at your pace. Grabbing your hips, he takes over, thrusting in and out as he pulls you forward and pushes you back.');
   } else {
@@ -291,10 +291,10 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
     ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
-  scene.img('images/shared/sex/vag/doggy/kotovsex\'+rand(10, 13)+\'.mp4');
+  scene.img('images/shared/sex/vag/doggy/kotovsex' + (Math.floor(Math.random() * 4) + 10) + '.mp4');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: He flips you onto your hands and knees and just slams his cock inside without wa...
-  scene.text('He flips you onto your hands and knees and just slams his cock inside without warning. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'He presses your face into the bed and, finding his rhythm, pounds away.');
+  scene.text('He flips you onto your hands and knees and just slams his cock inside without warning. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + 'He presses your face into the bed and, finding his rhythm, pounds away.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('You grunt into the blankets with each thrust, annoyed at how your body reacts to the unwanted stimulus. Even with your face smashed into the blankets, you can hear the wet sounds your pussy makes as he plunges in and out of you.');
   } else {
@@ -322,20 +322,20 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
     ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
-  scene.img('images/shared/sex/vag/facedown/kotovsex\'+rand(40, 45)+\'.mp4');
+  scene.img('images/shared/sex/vag/facedown/kotovsex' + (Math.floor(Math.random() * 6) + 40) + '.mp4');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
     // TODO-QSP: dynamic text: Sly pushes you to your stomach and pushes his way inside. '+iif(func('pcs_has_at...
-    scene.text('Sly pushes you to your stomach and pushes his way inside. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'He starts fucking you hard, giving you no chance to adjust to the speed of his thrusts.');
+    scene.text('Sly pushes you to your stomach and pushes his way inside. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + 'He starts fucking you hard, giving you no chance to adjust to the speed of his thrusts.');
     scene.text('As you think he\'s going to ease up, instead the pace picks up and Sly is now violently thrusting into you. The pain is making you teary-eyed as you\'re not able to handle the pounding.');
   } else {
     if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
       // TODO-QSP: dynamic text: "W-Wait…" you manage to yell out before as he grabs hold of the back of your hea...
-      scene.text('"W-Wait…" you manage to yell out before as he grabs hold of the back of your head pushes you down onto your stomach, facefirst into the bed. "I-I…" You take too long to utter a word as he enters you without pardon. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin, as \', \')+ \'Sly plunges deep into your pussy, leaving you barely able to keep in control of yourself.');
+      scene.text('"W-Wait…" you manage to yell out before as he grabs hold of the back of your head pushes you down onto your stomach, facefirst into the bed. "I-I…" You take too long to utter a word as he enters you without pardon. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin, as ') : ('')) + 'Sly plunges deep into your pussy, leaving you barely able to keep in control of yourself.');
     } else {
       scene.text('He grabs hold of you and throws you on the bed with ease. You try to squirm into a more pleasant position, but he\'s got you firmly held on your stomach with your face down, not letting you move an inch in any direction.');
       // TODO-QSP: dynamic text: Without any hesitation, his cock plunges inside of you. '+iif(func('pcs_has_attr...
-      scene.text('Without any hesitation, his cock plunges inside of you. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'You let out a little screech, to let him know that he\'s hurting you, but he\'s not easing up as he continues to furiously thrust without any consideration.');
+      scene.text('Without any hesitation, his cock plunges inside of you. ' + ((qspFunc(s, 'pcs_has_attr', 'sex_virgin')) ? ('You feel your hymen rip, you\'re no longer a virgin. ') : ('')) + 'You let out a little screech, to let him know that he\'s hurting you, but he\'s not easing up as he continues to furiously thrust without any consideration.');
     }
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -439,7 +439,7 @@ function enterAnalPiledriver_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnalDoggyCum_1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/sex/cum/analcreampie/cumanal\'+rand(1, 2)+\'.mp4');
+  scene.img('images/shared/sex/cum/analcreampie/cumanal' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   scene.text('You suddenly find yourself bent over, his dick in your asshole. You can feel it twitching inside you, and a warmth is spreading. He pulls out, and you feel his cum leaking out.');
   scene.text('"Now clean up and get the fuck out of my room." He starts getting dressed, so you gather your own clothes and leave.');
   qspCall(s, 'cum_call', 'anus', 'A248', 1);
@@ -450,7 +450,7 @@ function enterAnalDoggyCum_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVagDoggyCum_1(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/sex/cum/vagcreampie/doggy\'+rand(1, 3)+\'.mp4');
+  scene.img('images/shared/sex/cum/vagcreampie/doggy' + (Math.floor(Math.random() * 3) + 1) + '.mp4');
   scene.text('You suddenly find yourself bent over, his dick shoved in your pussy. You can feel it twitching inside you, and a warmth is spreading. He pulls out, and you feel his cum leaking out.');
   scene.text('"Now clean up and get the fuck out of my room." He starts getting dressed, so you gather your own clothes and leave.');
   qspCall(s, 'cum_call', '', '', 'A248', 1);

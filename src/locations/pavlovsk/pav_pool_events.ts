@@ -37,24 +37,24 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/storeclerk.jpg');
   scene.text('The store clerk looks bored and doesn\'t even seem to notice you until you speak to him.');
   scene.text('"Do you have any swimsuits for sale?" you ask, but he just looks directly into your eyes without saying anything. The silence feels extremely intimidating, but he finally responds after what seems like an eternity.');
-  // TODO-QSP: dynamic text: "I don't get much stock delivered here, so I only have this. It's yours for ' + ...
+  // TODO-QSP: dynamic text: "I don''t get much stock delivered here, so I only have this. It''s yours for ' ...
   scene.text('"I don\'t get much stock delivered here, so I only have this. It\'s yours for 1200₽."');
   scene.text('He shows you a skimpy polka dot bikini that barely covers anything. It isn\'t pretty, but there aren\'t any other options.');
   if (qspFunc(s, 'money', 'can_afford', 1200) === 1) {
     scene.actions([
       { label: 'Buy it', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('<center><h3>Pool Store</h3></center>');
     scene.img('images/locations/pavlovsk/community/swim/storeclerk.jpg');
-    if (((s as any).pcs_inhib ?? 0) >= 80) {
+    if (((st as any).pcs_inhib ?? 0) >= 80) {
       scene.text('The cheap, flimsy bikini looks like it could fall apart at any moment, and is also far too revealing for your taste, but with no other options available, you reluctantly purchase it.');
     } else {
       scene.text('The cheap, flimsy bikini is cheap looks like it could fall apart at any moment, but with no other options available, you reluctantly purchase it.');
     }
-    qspCall(s, 'money', 'pay', 1200);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', 1200);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool', 'entrance'] },
     ]);
@@ -64,23 +64,23 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'I don\'t have enough money', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('<center><h3>Pool Store</h3></center>');
     scene.img('images/locations/pavlovsk/community/swim/storeclerk.jpg');
     scene.text('"Well, how much do you have?" he asks with a wide grin on his face.');
-    if (((s as any).money ?? 0) !== 0) {
+    if (((st as any).money ?? 0) !== 0) {
       scene.text('You count your money.');
-      // TODO-QSP: dynamic text: "I only have <<$func('money', 'format', money)>>. Do you have anything for that ...
-      scene.text(`"I only have ${qspFunc(s, 'money', 'format', ((s as any).money || ''))}. Do you have anything for that amount?"`);
+      // TODO-QSP: dynamic text: "I only have <<$func(''money'', ''format'', money)>>. Do you have anything for t...
+      scene.text(`"I only have ${qspFunc(s, 'money', 'format', ((st as any).money || ''))}. Do you have anything for that amount?"`);
     } else {
       scene.text('Your purse is empty.');
       scene.text('"Well, I don\'t have anything…" you mumble.');
     }
     scene.text('"I have a… suggestion. If you let me see you naked, then I\'ll give it to you, free of charge…" he says with a perverted smile.');
     scene.text('You look at him perplexed, but he just keeps smiling at you.');
-    qspCall(s, 'willpower', 'humiliation', 'self');
-    if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
+    qspCall(st, 'willpower', 'humiliation', 'self');
+    if (((st as any).will_cost ?? 0) > ((st as any).pcs_willpwr ?? 0)) {
       scene.actions([
         { label: 'Do it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -89,24 +89,24 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Do it', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('<center><h3>Pool Store</h3></center>');
     scene.img('images/locations/pavlovsk/community/swim/divider.jpg');
     scene.text('You hide behind the divider and undress. You can see his shadow through the semi-transparent cloth but are unaware that, due to the position of the lights, he can see you quite well.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.text('<center><h3>Pool Store</h3></center>');
     scene.img('images/locations/pavlovsk/community/swim/photo.jpg');
     scene.text('Once you finish stripping down, you slowly come out from behind the divider and he immediately starts taking photos. It looks like quite an expensive camera, and the objectifying shutter sound is very distinctive every time he shoots.');
     scene.text('You feel ashamed, and after a short while decide that he\'s seen enough and disappear behind the divider again.');
     scene.text('You quickly pull your clothes back on and leave with the bikini in hand, not looking back at him. You can feel his creepy stare on the back of your head and pick up your pace.');
-    qspCall(s, 'money', 'set', 0, 'cash');
-    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkvisit'] = 1;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'set', 0, 'cash');
+    ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['storeclerkvisit'] = 1;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool', 'entrance'] },
     ]);
@@ -138,7 +138,7 @@ function enterNakedMirror(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/nakedcover.jpg');
   scene.text('You\'re standing naked in front of the mirror when you hear a noise behind you.');
-  (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
     scene.text('You turn around and find a girl studying you from head to toe.');
     scene.text('"Sorry!" she squeaks before quickly leaving.');
@@ -173,7 +173,7 @@ function enterNakedLocker(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/nakedcover.jpg');
   scene.text('You\'re standing naked in the changing room when you hear a noise behind you.');
-  (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
     scene.text('You turn around and find a girl studying you from head to toe.');
     scene.text('"Sorry!" she squeaks before quickly leaving.');
@@ -216,7 +216,7 @@ function enterLockerClothedToNude(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'re certain that it sounded like that creepy store clerk\'s camera, but you can\'t see anything and just tell yourself that you\'re being paranoid and continue stripping.');
       ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
     } else {
-      scene.img(`images/locations/pavlovsk/community/swim/spychange${Math.floor(Math.random() * 2) + 1}.jpg`);
+      scene.img(`images/locations/pavlovsk/community/swim/spychange${(Math.floor(Math.random() * 2) + 1)}.jpg`);
       scene.text('As you take your clothes off, you can\'t shake the feeling that you\'re being watched, but you don\'t see anything.');
     }
   }
@@ -264,7 +264,7 @@ function enterLockerNudeToClothed(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'re certain that it sounded like that creepy store clerk\'s camera, but as you don\'t see anything, you tell yourself you\'re just being paranoid and continue getting dressed.');
       ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
     } else {
-      scene.img(`images/locations/pavlovsk/community/swim/spychange${Math.floor(Math.random() * 2) + 1}.jpg`);
+      scene.img(`images/locations/pavlovsk/community/swim/spychange${(Math.floor(Math.random() * 2) + 1)}.jpg`);
       scene.text('As you change back into your clothes, you can\'t shake the feeling that you\'re being watched, but you don\'t see anything.');
     }
   }
@@ -302,7 +302,7 @@ function enterLockerNudeToSwim(s: GameState, scene: SceneBuilder): void {
 function enterLockerClothedToSwim(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  (s as any).temp_rand = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 10) + 0);
   if (((s as any).temp_rand ?? 0) > 1) {
     scene.img('images/locations/pavlovsk/school/gym/locker/change.jpg');
     scene.text('You take your clothes off and change into your swimwear.');
@@ -314,7 +314,7 @@ function enterLockerClothedToSwim(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'re certain that it sounded like that creepy store clerk\'s camera, but you can\'t see anything and just tell yourself that you\'re being paranoid and continue getting dressed.');
         ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
       } else {
-        scene.img(`images/locations/pavlovsk/community/swim/spychange${Math.floor(Math.random() * 2) + 1}.jpg`);
+        scene.img(`images/locations/pavlovsk/community/swim/spychange${(Math.floor(Math.random() * 2) + 1)}.jpg`);
         scene.text('As you take your clothes off, you can\'t shake the feeling that you\'re being watched, you quickly change into your swimwear.');
       }
     } else {
@@ -339,7 +339,7 @@ function enterLockerClothedToSwim(s: GameState, scene: SceneBuilder): void {
 function enterLockerSwimToClothed(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 6;
   qspCall(s, 'stat', '');
-  (s as any).temp_rand = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 10) + 0);
   if (((s as any).temp_rand ?? 0) > 1) {
     scene.img('images/locations/pavlovsk/school/gym/locker/change.jpg');
     scene.text('You take your swimwear off and change back into your clothes.');
@@ -361,7 +361,7 @@ function enterLockerSwimToClothed(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'re certain that it sounded like that creepy store clerk\'s camera, but as you don\'t see anything, you tell yourself you\'re just being paranoid and continue getting dressed.');
         ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['storeclerkhiddenphotos'] = ((s as any).pav_swimpool['storeclerkhiddenphotos'] ?? 0) + (1);
       } else {
-        scene.img(`images/locations/pavlovsk/community/swim/spychange${Math.floor(Math.random() * 2) + 1}.jpg`);
+        scene.img(`images/locations/pavlovsk/community/swim/spychange${(Math.floor(Math.random() * 2) + 1)}.jpg`);
         scene.text('As you change back into your clothes, you can\'t shake the feeling that you\'re being watched, but you don\'t see anything.');
       }
     }
@@ -401,7 +401,7 @@ function enterRelaxedswim(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) < 12) {
       scene.text('The pool is mostly used by families with children and older people at this time, but it\'s still quiet enough for you to enjoy your swim undisturbed.');
       qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
+      (s as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
       if ((!((s as any).temp_rand ?? 0))) {
         scene.actions([
           { label: 'Continue', goto: ['pav_pool_events', 'kidsplash'] },
@@ -417,7 +417,7 @@ function enterRelaxedswim(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) < 18) {
         scene.text('The pool is crowded with all kinds of people. It\'s noisy and difficult to move around, so swimming is far from peaceful and relaxing.');
         qspCall(s, 'mood', 'lower', 'small');
-        (s as any).temp_rand = Math.floor(Math.random() * 31) + 0;
+        (s as any).temp_rand = (Math.floor(Math.random() * 31) + 0);
         if ((!((s as any).temp_rand ?? 0))) {
           scene.actions([
             { label: 'Continue', goto: ['pav_pool_events', 'kidsplash'] },
@@ -479,17 +479,17 @@ function enterExerciseswim(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 10) {
     scene.text('The pool is almost empty, so you enjoy your swim a lot.');
     qspCall(s, 'exercise', 'tier1', 15, 'stren', 'vital');
-    (s as any).fat = ((s as any).fat ?? 0) - (Math.floor(Math.random() * 5) + 0);
+    (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 5) + 0));
   } else {
     if (((s as any).hour ?? 0) < 12) {
       scene.text('The pool is mostly used by families with children and older people at this time. You enjoy your swim mostly undisturbed.');
       qspCall(s, 'exercise', 'tier1', 15, 'stren', 'vital');
-      (s as any).fat = ((s as any).fat ?? 0) - (Math.floor(Math.random() * 5) + 0);
+      (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 5) + 0));
     } else {
       if (((s as any).hour ?? 0) < 18) {
         scene.text('The pool is crowded with of all kinds of people. It\'s difficult to move around and your attempts at doing exercise fail.');
         (s as any).minut = ((s as any).minut ?? 0) + 15;
-        (s as any).temp_rand = Math.floor(Math.random() * 16) + 0;
+        (s as any).temp_rand = (Math.floor(Math.random() * 16) + 0);
         if ((!((s as any).temp_rand ?? 0))) {
           scene.actions([
             { label: 'Continue', goto: ['pav_pool_events', 'kidsplash'] },
@@ -528,7 +528,7 @@ function enterExerciseswim(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('Given how late it is, only a few adults are in the water, so you enjoy your swim undisturbed.');
         qspCall(s, 'exercise', 'tier1', 15, 'stren', 'vital');
-        (s as any).fat = ((s as any).fat ?? 0) - (Math.floor(Math.random() * 5) + 0);
+        (s as any).fat = ((s as any).fat ?? 0) - ((Math.floor(Math.random() * 5) + 0));
         if ((!(Math.floor(Math.random() * 31) + 0))) {
           scene.actions([
             { label: 'Continue', goto: ['pav_pool_events', 'late_assault'] },
@@ -562,7 +562,7 @@ function enterDive(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) < 18) {
         qspCall(s, 'mood', 'raise', 'tiny');
         scene.text('The pool is crowded with all kinds of people. It\'s difficult to move around on the surface, but diving around them is quite fun.');
-        (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
+        (s as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
         if ((!((s as any).temp_rand ?? 0))) {
           scene.actions([
             { label: 'Continue', goto: ['pav_pool_events', 'divedickout'] },
@@ -647,7 +647,7 @@ function enterRelaxedwater(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) < 12) {
       qspCall(s, 'mood', 'raise', 'tiny');
       scene.text('The pool is mostly used by families with children and older people at this time. You enjoy lying in the water mostly undisturbed.');
-      (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
+      (s as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
       if ((!((s as any).temp_rand ?? 0))) {
         scene.actions([
           { label: 'Continue', goto: ['pav_pool_events', 'kidsplash'] },
@@ -663,7 +663,7 @@ function enterRelaxedwater(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) < 18) {
         qspCall(s, 'mood', 'lower', 'small');
         scene.text('The pool is crowded with all kinds of people. It\'s impossible to relax in the water without someone constantly bumping into you or getting stinging water splashed across your face.');
-        (s as any).temp_rand = Math.floor(Math.random() * 31) + 0;
+        (s as any).temp_rand = (Math.floor(Math.random() * 31) + 0);
         if ((!((s as any).temp_rand ?? 0))) {
           scene.actions([
             { label: 'Continue', goto: ['pav_pool_events', 'kidsplash'] },
@@ -719,7 +719,7 @@ function enterFeetwater(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) < 18) {
         qspCall(s, 'mood', 'lower', 'tiny');
         scene.text('The pool is crowded with all kinds of people and sitting here is proving not to be as relaxing as you hoped. You get splashed with water from time to time.');
-        (s as any).temp_rand = Math.floor(Math.random() * 13) + 0;
+        (s as any).temp_rand = (Math.floor(Math.random() * 13) + 0);
         if ((!((s as any).temp_rand ?? 0))) {
           (s as any).minut = ((s as any).minut ?? 0) + 3;
           scene.text('Some children push you from behind and you fall into the water as they run away snickering loudly.');
@@ -769,35 +769,35 @@ function enterWatertoplost(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to reach the edge', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18) {
-      qspGoto(s, 'pav_pool_events', 'tryreachedgenotop');
+    if (((st as any).hour ?? 0) >= 12  &&  ((st as any).hour ?? 0) < 18) {
+      qspGoto(st, 'pav_pool_events', 'tryreachedgenotop');
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 3;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 3;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimedesc(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTimedesc(s, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('You reach the edge of the pool and manage to climb out unnoticed before running to the locker room. You can get rid of this bottom since it\'s useless now.');
-      ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['toplost'] = 0;
-      qspCall(s, 'clothing', 'strip');
+      ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['toplost'] = 0;
+      qspCall(st, 'clothing', 'strip');
       scene.actions([
         { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
       ]);
     }
   } },
     { label: 'Wait around', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 18) {
-      (s as any).temp_rand = Math.floor(Math.random() * 7) + 0;
-      if (((s as any).temp_rand ?? 0) < 2) {
-        qspGoto(s, 'pav_pool_events', 'WTL_nothinghappens');
+    if (((st as any).hour ?? 0) >= 12  &&  ((st as any).hour ?? 0) < 18) {
+      (st as any).temp_rand = (Math.floor(Math.random() * 7) + 0);
+      if (((st as any).temp_rand ?? 0) < 2) {
+        qspGoto(st, 'pav_pool_events', 'WTL_nothinghappens');
       } else {
-        if (((s as any).temp_rand ?? 0) === 2) {
-          qspGoto(s, 'pav_pool_events', 'WTL_mast');
+        if (((st as any).temp_rand ?? 0) === 2) {
+          qspGoto(st, 'pav_pool_events', 'WTL_mast');
         } else {
-          qspGoto(s, 'pav_pool_events', 'WTL_boystole');
+          qspGoto(st, 'pav_pool_events', 'WTL_boystole');
         }
       }
     } else {
-      qspGoto(s, 'pav_pool_events', 'WTL_nothinghappens');
+      qspGoto(st, 'pav_pool_events', 'WTL_nothinghappens');
     }
   } },
   ]);
@@ -833,8 +833,8 @@ function enterWTLMast(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Stop it', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 100) + 0) < 75) {
       scene.img('images/locations/pavlovsk/community/swim/stopit.jpg');
       scene.text('You manage to shake them off and move away without looking back.');
@@ -863,8 +863,8 @@ function enterWTLMast(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Flee', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/waterleave.jpg');
     scene.text('You manage to get rid of your assailant and flee to an emptier part of the pool.');
     scene.actions([
@@ -876,13 +876,13 @@ function enterWTLMast(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Freeze', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/grope2.jpg');
     scene.text('You freeze, not sure how to react. Your assailant is standing behind you and notices your submissivness, which makes him bolder.');
     scene.text('"I\'ve got your bikini top right here. I\'ll give it back in a minute."');
     scene.actions([
       { label: 'Turn around', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim//toploosen.jpg');
     scene.text('You turn and notice that your assailant has his dick out and is discreetly masturbating as he stares at you.');
     scene.text('He seems to be reaching climax and ejaculates while looking directly into your eyes.');
@@ -916,8 +916,8 @@ function enterWTLBoystole(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
     scene.text('You shake your head and he laughs. "Well, good luck then," he says mockingly before swimming away with your bikini top.');
     scene.actions([
@@ -929,15 +929,15 @@ function enterWTLBoystole(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Reluctantly do it', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['boystole'] = 0;
+    qspCall(st, 'stat', '');
+    ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['boystole'] = 0;
     scene.img('images/locations/pavlovsk/community/swim/exposebreasts.jpg');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('You look around before nodding and reluctantly removing your hands from your breasts. He dives down to take a look at you.');
       scene.text('He immediately surfaces with a disappointed look on his face. "I wanted to see some tits! That fat kid over there has bigger tits than you!"');
       scene.text('He tosses your bikini top at you before swimming away in frustration. You quickly put it back on before anyone sees you, feeling a little hurt by his comments.');
     } else {
-      if (((s as any).tits ?? 0) <= 4) {
+      if (((st as any).tits ?? 0) <= 4) {
         scene.text('You look around before nodding and reluctantly removing your hands from your breasts. He dives down to take a look at you.');
         scene.text('He surfaces after a short while with a smile on his face. "Nice tits!"');
         scene.text('He returns your bikini top and happily swims away. You quickly put it back on before anyone sees you.');
@@ -1106,7 +1106,7 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Blow him off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/swim/flirtside.jpg');
     scene.text('"If you say so…" you answer in the most uninterested tone you can manage and look away from him.');
     scene.text('"Whatever. You\'re not worth the effort," he replies and goes back to swimming laps.');
@@ -1126,9 +1126,9 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 7) + 0) < 5) {
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/flirtside.jpg');
     scene.text('He thanks you for your time and leaves. It\'s getting late and you decide that it\'s time to go. You climb out of the pool and head for the locker room.');
     scene.actions([
@@ -1142,8 +1142,8 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/swim/abouttokiss.jpg');
     scene.text('You didn\'t realize that he\'s slowly been inching closer to you, and is now so close that you feel him pressing against you.');
     scene.text('He then grabs and pulls you towards him, about to kiss you.');
-    qspCall(s, 'willpower', 'kiss', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'kiss', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Pull away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1152,8 +1152,8 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Pull away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    scene.img(`images/locations/pavlovsk/community/swim/ladder${Math.floor(Math.random() * 2) + 1}.jpg`);
+    qspCall(st, 'willpower', 'pay', 'self');
+    scene.img(`images/locations/pavlovsk/community/swim/ladder${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You slide out of his hands, climb out of the pool and make a dash for the locker room without looking back.');
     scene.text('"Oh come on!" he shouts at you as you flee.');
     scene.actions([
@@ -1162,8 +1162,8 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspCall(s, 'willpower', 'kiss', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'kiss', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Kiss him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1172,10 +1172,10 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Kiss him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/swim/kisswater.jpg');
     scene.text('You decide to accept the kiss. Your lips welcome each other and soon both your tongues entangle each other in a long deep kiss as he holds your face with both hands.');
-    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['kiss_event'] = 1;
+    ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['kiss_event'] = 1;
     scene.actions([
       { label: 'Continue', goto: ['pav_pool_events', 'edge_kiss'] },
     ]);
@@ -1186,7 +1186,7 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
       { label: 'Stay passive', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/swim/kisswater.jpg');
     scene.text('You freeze, not sure how to react. He notices your submissivness, but doesn\'t seem to care. He engulfs your lips in his mouth as his tongue inches deeper into your mouth.');
-    ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['kiss_event'] = 2;
+    ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['kiss_event'] = 2;
     scene.actions([
       { label: 'Continue', goto: ['pav_pool_events', 'edge_kiss'] },
     ]);
@@ -1211,7 +1211,7 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
       scene.text('He starts massaging your clit as he continues to make out with you. You remain frozen in place, still unsure about what\'s happening.');
     }
   }
-  (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1230,32 +1230,32 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/swim/blowforced.jpg');
     scene.text('After a short while, he breaks the kiss. "Take a deep breath. You\'ll need it!"');
     scene.text('You barely manage to take a quick gulp of air before he shoves you under the water, where you\'re greeted by the sight of his hard dick throbbing in front of you.');
-    if (((s as any).pav_swimpool ?? 0)?.['kiss_event'] === 1) {
+    if (((st as any).pav_swimpool ?? 0)?.['kiss_event'] === 1) {
       scene.text('He shoves his dick into your mouth and starts thrusting with great determination. You get the hint and start sucking his dick.');
     } else {
-      if (((s as any).pav_swimpool ?? 0)?.['kiss_event'] === 2) {
+      if (((st as any).pav_swimpool ?? 0)?.['kiss_event'] === 2) {
         scene.text('He shoves his dick into your mouth and starts thrusting with great determination. You make efforts to break free from his grip as he fucks your unwilling mouth.');
       }
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/swim/cummouth.jpg');
-    qspCall(s, 'arousal', 'bj', (-3), 'rough', 'sub');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'cum_call', 'mouth', 'pool stranger', 0);
-    qspCall(s, 'cum_call', 'hair', 'pool stranger', 0, '', (-1), 10);
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).pav_swimpool ?? 0)?.['kiss_event'] === 1) {
+    qspCall(st, 'arousal', 'bj', (-3), 'rough', 'sub');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'cum_call', 'mouth', 'pool stranger', 0);
+    qspCall(st, 'cum_call', 'hair', 'pool stranger', 0, '', (-1), 10);
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).pav_swimpool ?? 0)?.['kiss_event'] === 1) {
       scene.text('After a short while, you feel his dick starting to throb and shots of cum start blasting into your throat as he holds you firmly in place. Your mouth is soon full of cum, and you try to gulp as much down as you can. Once he releases you, the rest of the cum spills out of your mouth and into the water. Quite a lot of the sticky mess gets tangled in your hair.');
       scene.text('You surface to find him climbing out of the pool, seemingly done with you. You can\'t believe you actually did that. You decide it\'s time for you to leave as well and climb out of the pool and head for the locker room.');
     } else {
-      if (((s as any).pav_swimpool ?? 0)?.['kiss_event'] === 2) {
-        qspCall(s, 'mood', 'lower', 'small');
+      if (((st as any).pav_swimpool ?? 0)?.['kiss_event'] === 2) {
+        qspCall(st, 'mood', 'lower', 'small');
         scene.text('You eventually manage to get his dick out of your mouth, but he still holds you under the water. He starts jerking off and his cum soon starts blasting into the water in front of you. It gets tangled in your hair and some of it ends up in your mouth.');
         scene.text('You surface to find him climbing out of the pool, seemingly done with you. You can\'t believe you let him do that to you! You climb out of the pool and run to the locker room to get cleaned up.');
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
     ]);
@@ -1268,8 +1268,8 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/swim/pussyplay1.jpg');
     scene.text('He pulls your bikini bottom down slightly and you feel something hard pushing between your legs and probing your labia. He starts to slowly hump you without penetrating, sliding the whole length of his hard dick between your legs with each thrust.');
-    qspCall(s, 'willpower', 'sex', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Have sex with him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1278,14 +1278,14 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Have sex with him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/swim/poolfuck.mp4');
-    qspCall(s, 'arousal', 'vaginal', (-3), 'exhibitionism', 'sub');
-    qspCall(s, 'cum_call', '', '', 'pool stranger', 0, '', 10000, 50);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', (-3), 'exhibitionism', 'sub');
+    qspCall(st, 'cum_call', '', '', 'pool stranger', 0, '', 10000, 50);
+    qspCall(st, 'arousal', 'end');
     scene.text('You\'re far too horny now, so you untie your bikini bottom and pull it off before wrapping yourself around him, the tip of his dick pressing against your pussy.');
     scene.text('He doesn\'t hesitate and immediately slides you down onto his shaft, causing you to let out a quiet moan. You grip him tightly as he thrusts his full length in and out of your pussy, doing your best to stay as quiet as possible.');
-    if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
+    if (((st as any).birth_control ?? 0)?.['think_safe'] === 1) {
       scene.text('This goes on for a while until he stops thrusting and holds you tightly as you feel a warmth spilling deep into your pussy. He just came inside you! Even though you\'re on birth control and it was the heat of the moment, you\'re still a little pissed that he didn\'t say anything. When he pulls out, his cum spills out of you into the water.');
       scene.text('"That pussy was amazing!" he says before giving you a final passionate kiss and letting you down. You watch as he fixes his shorts and climbs out of the pool. You grab your bikini bottom and make a dash for the locker room, deciding it\'s best not to hang around half naked in the pool with cum leaking out of you.');
     } else {
@@ -1300,11 +1300,11 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Stop him', handler: (st: GameState) => {
-    scene.img(`images/locations/pavlovsk/community/swim/ladder${Math.floor(Math.random() * 2) + 1}.jpg`);
+    scene.img(`images/locations/pavlovsk/community/swim/ladder${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You break the kiss and quickly push yourself away from him before pulling your bikini bottom back up. "What the fuck, asshole?! I\'m not some cheap whore for you to fuck!" you shout at him angrily.');
     scene.text('"Don\'t tease guys if you\'re going to be such a fucking prude about it then! Whatever, bitch…" he scoffs before swimming away.');
     scene.text('Deciding it\'s time to leave, you climb out of the pool and run to the locker room.');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
     ]);
@@ -1327,13 +1327,13 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/assault1.jpg');
     scene.text('"Shut the fuck up and stop struggling, bitch! I\'m going to have some fun with you and you\'re going to let me, otherwise you\'re going to regret it. Understand?"');
-    if (((s as any).pcs_agil ?? 0) >= 50) {
-      qspCall(s, 'willpower', 'humiliation', 'self');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((st as any).pcs_agil ?? 0) >= 50) {
+      qspCall(st, 'willpower', 'humiliation', 'self');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Try to slip away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1342,10 +1342,10 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Try to slip away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'humiliation', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'humiliation', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('You contort your limber body and manage to slip out of his grasp. Seizing the opportunity, you quickly make your way out of the pool before he can grab you again and run to the locker room without looking back.');
     scene.actions([
       { label: 'Continue', goto: ['pav_pool', 'lockerfemale'] },
@@ -1354,9 +1354,9 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    if (((s as any).pcs_stren ?? 0) >= 60) {
-      qspCall(s, 'willpower', 'rape', 'resist');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((st as any).pcs_stren ?? 0) >= 60) {
+      qspCall(st, 'willpower', 'rape', 'resist');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Elbow him in the face', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1365,10 +1365,10 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Elbow him in the face', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'rape', 'resist');
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'rape', 'resist');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('You jab your arm back and your elbow makes contact with his nose, causing him to reel back in pain and let you go. You quickly make your way out of the pool before he can grab you again and run to the locker room without looking back.');
     scene.text('You can hear him loudly cursing about how you\'ve broken his nose.');
     scene.actions([
@@ -1380,58 +1380,58 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Surrender', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('You silently and fearfully nod your head as you feel his other hand slide into your bikini bottom and start stroking your pussy.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/swim/assault2.jpg');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-      ((s as any).stat = (s as any).stat ?? {})['think_virgin'] = 0;
-      ((s as any).stat = (s as any).stat ?? {})['vaginal'] = 1;
-      ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['virgin_rape'] = 1;
-      qspCall(s, 'stat', '');
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
+      ((st as any).stat = (st as any).stat ?? {})['think_virgin'] = 0;
+      ((st as any).stat = (st as any).stat ?? {})['vaginal'] = 1;
+      ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['virgin_rape'] = 1;
+      qspCall(st, 'stat', '');
       scene.text('Panic and dread set in as you realize that you\'re about to lose your virginity to this rapist, but you\'re helpless to resist as he bends you over and pulls your bikini bottom off. You squirm as you feel the tip of his dick pushing against your pussy and instinctively try to pull away, but he tightens his grip before forcing his way inside.');
       scene.text('You squeal in pain as your virgin pussy is violently deflowered, causing the man to chuckle. "Oh, have I popped your cherry? This <i>is</i> going to be fun…"');
     } else {
-      ((s as any).pav_swimpool = (s as any).pav_swimpool ?? {})['rape'] = 1;
-      qspCall(s, 'stat', '');
+      ((st as any).pav_swimpool = (st as any).pav_swimpool ?? {})['rape'] = 1;
+      qspCall(st, 'stat', '');
       scene.text('You\'re helpless to resist as he bends you over the edge of the pool and pulls your bikini bottom off. You feel the tip of his dick pushing against your pussy and you instinctively try to pull away, but he holds you tightly and forces his full length inside you.');
       scene.text('You again try to escape, but he responds by roughly pulling on your hair. "I told you not to fucking squirm, bitch!"');
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/assault2.jpg');
     scene.text('He starts violently thrusting in and out of your pussy, holding you by your hair and using it as a handle to apply more force. Your only thought is hoping this will end soon…');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/community/swim/assault3.jpg');
     scene.text('After a few minutes, he pulls you on top of him, slides you down onto his dick and resumes roughly fucking you.');
     scene.text('Your attention wanders around the pool. To your dismay, it\'s completely empty and you realize that nobody is coming to help you. Your thoughts are then interrupted when your assailant suddenly groans and you feel a warmth spilling into your pussy. He\'s cumming inside you!');
     scene.text('It might be shock, but you somehow manage to ignore the fact that you\'re being filled with a stranger\'s cum and instead concentrate on the eerie sounds of the deserted pool.');
-    qspCall(s, 'arousal', 'vaginal', 10, 'rape');
-    qspCall(s, 'cum_call', '', '', 'pool rapist', 0, '', 15000, 60);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 10, 'rape');
+    qspCall(st, 'cum_call', '', '', 'pool rapist', 0, '', 15000, 60);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/assault4.jpg');
     scene.text('When he finishes emptying his load inside you, he pulls out and immediately plugs your pussy with his fingers before leaning in and whispering into your ear.');
     scene.text('"Just making sure it stays in there. I want you to get pregnant so you\'ll always remember what happened here. Don\'t think about telling anyone either, because nobody will believe a slutty little bitch like you."');
     scene.text('He keeps his fingers jammed inside your pussy for a few minutes before he finally releases you and climbs out of the pool. You stay frozen in place until you\'re sure he\'s gone, not willing to look back at him as he makes his escape.');
-    if (((s as any).pav_swimpool ?? 0)?.['virgin_rape'] === 1  &&  ((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
+    if (((st as any).pav_swimpool ?? 0)?.['virgin_rape'] === 1  &&  ((st as any).birth_control ?? 0)?.['think_safe'] === 1) {
       scene.text('You start sobbing as your emotions overwhelm you. That man defiled your womanhood and wanted you to get pregnant from it! Luckily, your birth control should stop that from happening.');
       scene.text('You can\'t find your bikini bottom, so you slowly climb out of the pool, clutching your stomach as a sharp pain shoots through your sore and tender pussy. You then make your way to the locker room, trying not to think about what happened.');
     } else {
-      if (((s as any).pav_swimpool ?? 0)?.['virgin_rape'] === 1) {
+      if (((st as any).pav_swimpool ?? 0)?.['virgin_rape'] === 1) {
         scene.text('You start sobbing as your emotions overwhelm you. That man defiled your womanhood and wants you to get pregnant from it! You clutch your stomach as a sharp pain suddenly shoots through your sore and tender pussy. That\'s likely to happen given that you\'re not on birth control.');
         scene.text('You can\'t find your bikini bottom, so you slowly climb out of the pool and make your way to the locker room, trying not to think about what happened.');
       } else {
-        if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
+        if (((st as any).birth_control ?? 0)?.['think_safe'] === 1) {
           scene.text('You place a hand on your stomach, even though you\'re on birth control and shouldn\'t need to worry about getting pregnant. You can\'t find your bikini bottom, so you climb out of the pool and quickly make your way to the locker room, trying not to think about what happened.');
         } else {
           scene.text('You place a hand on your stomach and hold in your sobs, hoping that his words about you getting pregnant don\'t come true. You can\'t find your bikini bottom, so you climb out of the pool and quickly make your way to the locker room, trying not to think about what happened.');

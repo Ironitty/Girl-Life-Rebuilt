@@ -5,15 +5,15 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).result = qspFunc(s, 'progressbar', 'positive', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
     return;
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 2) {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
     (s as any).result = qspFunc(s, 'progressbar', 'negative', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
     return;
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 3) {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
     (s as any).result = qspFunc(s, 'progressbar', 'mono:accent', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[3] ?? 0));
     return;
   }

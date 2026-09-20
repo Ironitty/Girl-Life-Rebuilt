@@ -7,22 +7,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) > 0) {
-    (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: :knownloop
-    ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
-    (s as any).knwn = ((s as any).knwn ?? 0) - (1);
-    if (((s as any).knwn ?? 0) > 0) {
-      // TODO-QSP: jump 'knownloop'
-    }
-  }
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
   qspCall(s, 'sweat', 'add', 10);
-  (s as any).picrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'paysex', 'var');
   // TODO-QSP: end
   scene.build();
@@ -31,7 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).sexvar = ((s as any).sexvar ?? 0) - (1);
   qspCall(s, 'dinsex2', 'stamina_npc');
-  (s as any).temp_randpicture = Math.floor(Math.random() * 3) + 0;
+  (s as any).temp_randpicture = (Math.floor(Math.random() * 3) + 0);
   if ((!((s as any).temp_randpicture ?? 0))) {
     (s as any).randpicture = 'vag';
   }
@@ -220,7 +211,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).j ?? 0) > 2) {
-          (s as any).cumrand = Math.floor(Math.random() * 9) + 0;
+          (s as any).cumrand = (Math.floor(Math.random() * 9) + 0);
           if ((!((s as any).cumrand ?? 0))) {
             // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your tits.
             scene.text(`${((s as any).boydesc || '')} is cumming on your tits.`);
@@ -305,18 +296,18 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).paysxbj = 0;
-    (s as any).paysxsex = 0;
-    (s as any).paysxanal = 0;
-    (s as any).paysxhj = 0;
-    (s as any).firstact = 0;
-    if (((s as any).picrand ?? 0) === 16  ||  ((s as any).picrand ?? 0) === 17) {
-      qspGoto(s, 'office', 'work');
+    (st as any).paysxbj = 0;
+    (st as any).paysxsex = 0;
+    (st as any).paysxanal = 0;
+    (st as any).paysxhj = 0;
+    (st as any).firstact = 0;
+    if (((st as any).picrand ?? 0) === 16  ||  ((st as any).picrand ?? 0) === 17) {
+      qspGoto(st, 'office', 'work');
     } else {
-      if (((s as any).picrand ?? 0) === 18) {
-        qspGoto(s, 'husbSex', 'dolgend');
+      if (((st as any).picrand ?? 0) === 18) {
+        qspGoto(st, 'husbSex', 'dolgend');
       } else {
-        dynamicGoto(s, 'sexloc');
+        dynamicGoto(st, 'sexloc');
       }
     }
   } },
@@ -325,6 +316,15 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+    (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
+    // TODO-QSP: :knownloop
+    ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
+    (s as any).knwn = ((s as any).knwn ?? 0) - (1);
+    if (((s as any).knwn ?? 0) > 0) {
+      // TODO-QSP: jump 'knownloop'
+    }
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'start':

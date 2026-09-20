@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShow(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
     (s as any).calendar_ui_week_start = ((s as any).locArgs?.[1] ?? 0);
   } else {
     (s as any).calendar_ui_week_start = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 1;
@@ -66,7 +66,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
 
 function enterPack(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_function = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).locArgs?.[2] ?? 0) === 'holidays') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'holidays') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_new_year']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_christmas']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_fatherland']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -78,7 +78,7 @@ function enterPack(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_june_13']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'holiday_unity_day']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'school') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'school') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_winter_break']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_spring_break']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_summer_break']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -105,31 +105,31 @@ function enterPack(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_thursday_final2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'school_friday_final2017']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'church') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'church') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'church_vigil']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'church_liturgy']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'intercity_trains') {
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'intercity_trains') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'train_morning']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'train_evening']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          if (((s as any).locArgs?.[2] ?? 0) === 'starlets') {
+          if (Number((s as any).locArgs?.[2] ?? 0) === 'starlets') {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'starlets_practice_regular']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'starlets_practice_friday']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            if (((s as any).locArgs?.[2] ?? 0) === 'cheerleading_practice') {
+            if (Number((s as any).locArgs?.[2] ?? 0) === 'cheerleading_practice') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_1']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_2']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_3']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_practice_4']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
-              if (((s as any).locArgs?.[2] ?? 0) === 'cheerleading_games') {
+              if (Number((s as any).locArgs?.[2] ?? 0) === 'cheerleading_games') {
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_1']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_2']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_3']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cheerleading_game_4']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
-                if (((s as any).locArgs?.[2] ?? 0) === 'cycle_phases') {
+                if (Number((s as any).locArgs?.[2] ?? 0) === 'cycle_phases') {
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cycle_0']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cycle_1']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_function ?? 0), 'cycle_2']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -147,7 +147,7 @@ function enterPack(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCycleRebuild(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).calCycleOpts ?? 0)?.['rebuild_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).locArgs?.[1] ?? 0) !== 1) {
+  if (((s as any).calCycleOpts ?? 0)?.['rebuild_day'] === ((s as any).daystart ?? 0)  &&  Number((s as any).locArgs?.[1] ?? 0) !== 1) {
     // TODO-QSP: exit
   }
   ((s as any).calCycleOpts = (s as any).calCycleOpts ?? {})['rebuild_day'] = ((s as any).daystart ?? 0);

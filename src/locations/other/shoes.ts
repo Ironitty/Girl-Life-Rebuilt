@@ -239,20 +239,20 @@ function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).shoeworntype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).shoewornnumber ?? 0) === ((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).shoeworntype ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).shoewornnumber ?? 0) === Number((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).shoeworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
-  (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'gm'  &&  ((s as any).locArgs?.[2] ?? 0) === 6);
+  (s as any).result = (Number((s as any).locArgs?.[1] ?? 0) === 'gm'  &&  Number((s as any).locArgs?.[2] ?? 0) === 6);
   return;
   // TODO-QSP: end
   scene.build();
@@ -272,10 +272,10 @@ function enterShoesOwned(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   // TODO-QSP: gs 'shoe_attributes', $ARGS[1], ARGS[2]
@@ -293,13 +293,13 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).shoeworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
   // TODO-QSP: dynamic "
@@ -307,7 +307,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_shoe_s[<<ARGS[2]>>] = 0
   // TODO-QSP: <<$ARGS[1]>>_shoe_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
-  if (((s as any).locArgs?.[1] ?? 0) === ((s as any).shoeworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).shoewornnumber ?? 0)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).shoeworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).shoewornnumber ?? 0)) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).lastwornshoetype = 'none';
     (s as any).lastwornshoenumber = 0;
@@ -334,10 +334,10 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).shoeworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
   if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -349,10 +349,10 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).shoeworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
   if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -364,10 +364,10 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).shoeworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
   if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -453,11 +453,11 @@ function enterReset_PShoVars(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWear(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
     // TODO-QSP: $ARGS[1] = $lastwornshoetype
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).lastwornshoenumber ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -543,7 +543,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 1;
   }
   // TODO-QSP: gs 'shoes', 'increase_strength', $shoeworntype, shoewornnumber, ARGS[1]
@@ -553,7 +553,7 @@ function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDecreaseCurStrength(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 1;
   }
   // TODO-QSP: gs 'shoes', 'decrease_strength', $shoeworntype, shoewornnumber, ARGS[1]
@@ -563,20 +563,20 @@ function enterDecreaseCurStrength(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).shoeworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: gs 'shoe_attributes', $ARGS[1], ARGS[2]
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_shoe_h[<<ARGS[2]>>] = min(<<$ARGS[1]>>_shoe_h[<<ARGS[2]>>] + <<ARGS[3]>>, <<ShoMaxStren...
-    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).shoeworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).shoewornnumber ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).shoeworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).shoewornnumber ?? 0)) {
       (s as any).PShoStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_shoe_h[((s as any).locArgs?.[2] ?? 0)]", { location: "shoes" });
     }
     // TODO-QSP: "
@@ -587,22 +587,22 @@ function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).shoeworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).shoewornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'shoes', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_shoe_h[<<ARGS[2]>>] -= <<ARGS[3]>>
-    if (((s as any).locArgs?.[1] ?? 0)((s as any)._shoe_h ?? 0)[((s as any).locArgs?.[2] ?? 0)] < 0) {
+    if (Number((s as any).locArgs?.[1] ?? 0)((s as any)._shoe_h ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] < 0) {
       // TODO-QSP: <<$ARGS[1]>>_shoe_h[<<ARGS[2]>>] = 0
     }
-    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).shoeworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).shoewornnumber ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).shoeworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).shoewornnumber ?? 0)) {
       (s as any).PShoStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_shoe_h[((s as any).locArgs?.[2] ?? 0)]", { location: "shoes" });
     }
     // TODO-QSP: "
@@ -669,8 +669,8 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   // TODO-QSP: :loopdanilovich_shoe2
   if (qspFunc(s, 'shoes', 'can_wear', 'danilovich', ((s as any).i ?? 0))) {
-    // TODO-QSP: dynamic text: <a href="exec:gt 'shoe_view', 'view_item', 'wardrobe', 'danilovich', <<i>>"><img...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shoe_view\\u0027, \\u0027view_item\\u0027, \\u0027wardrobe\\u0027); return false;"><img height="250" src="images/pc/items/danilovich/shoes/${((s as any).i || '')}.jpg"/></a>`);
+    // TODO-QSP: dynamic text: <a href="exec:gt ''shoe_view'', ''view_item'', ''wardrobe'', ''danilovich'', <<i...
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shoe_view/u0027, /u0027view_item/u0027, /u0027wardrobe/u0027); return false;"><img height="250" src="images/pc/items/danilovich/shoes/${((s as any).i || '')}.jpg"/></a>`);
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) <= 40) {
@@ -692,9 +692,9 @@ function enterGym2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your regular shoes back on', handler: (st: GameState) => {
-    (s as any).shoeworntype = ((s as any).regularwornshoetype ?? 0);
-    (s as any).shoewornnumber = ((s as any).regularwornshoenumber ?? 0);
-    qspGoto(s, 'shoes', 'gym');
+    (st as any).shoeworntype = ((st as any).regularwornshoetype ?? 0);
+    (st as any).shoewornnumber = ((st as any).regularwornshoenumber ?? 0);
+    qspGoto(st, 'shoes', 'gym');
   } },
   ]);
   scene.build();
@@ -715,7 +715,7 @@ function enterGetShopFilterHeader(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFilterHeaderBase(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'shop') {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 'shop') {
     qspCall(s, 'shoe_view', 'filter_builder', 'setup_shop_filters');
   } else {
     qspCall(s, 'shoe_view', 'filter_builder', 'setup_home_filterS');
@@ -747,7 +747,7 @@ function enterShopFilter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFilterBase(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'shop') {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 'shop') {
     qspCall(s, 'shoe_view', 'shop_filter');
   } else {
     qspCall(s, 'shoe_view', 'home_base');

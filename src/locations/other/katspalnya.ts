@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).sexloc = 'katspalnya';
   scene.build();
 }
 
@@ -21,10 +20,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/katja/bedroom.jpg');
   scene.text('Katja\'s apartment. It\'s mostly just one large room, with a huge bed in it. There\'s a small couch to the side.');
   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027katspalnya\\u0027, \\u0027kat\\u0027); return false;">Kat</a> is sitting on the couch. She\'s watching TV.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katspalnya/u0027, /u0027kat/u0027); return false;">Kat</a> is sitting on the couch. She\'s watching TV.');
   }
   if (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 6) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027katspalnya\\u0027, \\u0027katslip\\u0027); return false;">Kat</a> is sound asleep in her huge bed.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027katspalnya/u0027, /u0027katslip/u0027); return false;">Kat</a> is sound asleep in her huge bed.');
   }
   // TODO-QSP: end
   scene.actions([
@@ -39,7 +38,7 @@ function enterKatslip(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'katspalnya', 'katjobs');
   }
   scene.img('images/characters/city/katja/kat.jpg');
-  // TODO-QSP: dynamic text: When you awaken Kat, she rubs her eyes tiredly: "Hey, <<$pcs_nickname>>… what's ...
+  // TODO-QSP: dynamic text: When you awaken Kat, she rubs her eyes tiredly: "Hey, <<$pcs_nickname>>… what''s...
   scene.text(`When you awaken Kat, she rubs her eyes tiredly: "Hey, ${((s as any).pcs_nickname || '')}… what's up?"`);
   if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
     scene.actions([
@@ -70,11 +69,11 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Make up an excuse and leave', goto: ['katspalnya', 'start'] },
     { label: 'Chat with Kat', handler: (st: GameState) => {
-    if ((!((s as any).telkat ?? 0))) {
-      (s as any).telkat = 1;
+    if ((!((st as any).telkat ?? 0))) {
+      (st as any).telkat = 1;
     }
-    qspCall(s, 'npc_relationship', 'modify', 'A219', 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    qspCall(st, 'npc_relationship', 'modify', 'A219', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
     scene.img('images/characters/city/katja/kat.jpg');
     scene.text('You talk with Kat for half an hour, occasionally glancing at the TV. She\'s a lot of fun to be around.');
     scene.actions([
@@ -106,6 +105,7 @@ function enterKatjobs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).sexloc = 'katspalnya';
   const arg = s.locArg;
   switch (arg) {
     case 'start':

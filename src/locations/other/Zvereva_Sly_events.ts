@@ -77,9 +77,9 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Insist', handler: (st: GameState) => {
-    ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 2;
+    ((st as any).slyQW = (st as any).slyQW ?? {})['virgin'] = 2;
     scene.img('images/characters/shared/headshots_main/big248.jpg');
-    if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
+    if (((st as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('Cheeks turning red, you say "I don\'t have a choice. My mother makes me do regular check ups at the gynecologist. If she finds out I\'ve lost my virginity to you there will be a lot of trouble. For you."');
       scene.text('He stares at you, obviously trying to decide if you\'re lying or not, before saying "For now, we will work on training your other sexual skills. If I find out you\'re lying to me though, things will get bad for you, really fast. And the next time I have to remind you to call me Master I will leave a bruise."');
       scene.text('"I\'m not lying, <i>Master</i>. I can\'t stop you from doing what you want to me, but if you cross that line, it won\'t be me you\'re dealing with."');
@@ -152,15 +152,15 @@ function enterSubmit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.actions([
       { label: 'Angrily start stroking it', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A248');
-    qspGoto(s, 'Zvereva_Sly_sex', 'hj_1');
+    qspCall(st, 'boyStat', 'A248');
+    qspGoto(st, 'Zvereva_Sly_sex', 'hj_1');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Gently start stroking it', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A248');
-    qspGoto(s, 'Zvereva_Sly_sex', 'hj_1');
+    qspCall(st, 'boyStat', 'A248');
+    qspGoto(st, 'Zvereva_Sly_sex', 'hj_1');
   } },
     ]);
   }
@@ -181,48 +181,48 @@ function enterSlyHouseChat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
         scene.actions([
           { label: 'Offer virginity', handler: (st: GameState) => {
-    ((s as any).slyQW = (s as any).slyQW ?? {})['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
-    ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
-    scene.img('images/shared/sex/undress/kotovpre\'+rand(11, 14)+\'.mp4');
-    if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
+    ((st as any).slyQW = (st as any).slyQW ?? {})['Sly_sex_daystart'] = ((st as any).daystart ?? 0);
+    ((st as any).slyQW = (st as any).slyQW ?? {})['virgin'] = 3;
+    scene.img('images/shared/sex/undress/kotovpre' + (Math.floor(Math.random() * 4) + 11) + '.mp4');
+    if (((st as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
     } else {
       scene.text('You slowly and seductively start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
     }
     scene.text('"Would you like my cherry, Master?"');
     scene.text('He practically lunges for you, clothes flying everywhere, in his eagerness.');
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    qspCall(st, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   } },
         ]);
       } else {
         scene.actions([
           { label: 'Offer virginity (Lie)', handler: (st: GameState) => {
-    ((s as any).slyQW = (s as any).slyQW ?? {})['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
-    ((s as any).slyQW = (s as any).slyQW ?? {})['virgin'] = 3;
-    scene.img('images/shared/sex/undress/kotovpre\'+rand(11, 14)+\'.mp4');
-    if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
+    ((st as any).slyQW = (st as any).slyQW ?? {})['Sly_sex_daystart'] = ((st as any).daystart ?? 0);
+    ((st as any).slyQW = (st as any).slyQW ?? {})['virgin'] = 3;
+    scene.img('images/shared/sex/undress/kotovpre' + (Math.floor(Math.random() * 4) + 11) + '.mp4');
+    if (((st as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
     } else {
       scene.text('You slowly and seductively start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
     }
     scene.text('"Would you like my cherry, Master?"');
     scene.text('He practically lunges for you, clothes flying everywhere, in his eagerness.');
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    qspCall(st, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   } },
         ]);
       }
     }
     scene.actions([
       { label: 'Offer yourself', handler: (st: GameState) => {
-    ((s as any).slyQW = (s as any).slyQW ?? {})['Sly_sex_daystart'] = ((s as any).daystart ?? 0);
-    scene.img('images/shared/sex/undress/kotovpre\'+rand(11, 14)+\'.mp4');
-    if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
+    ((st as any).slyQW = (st as any).slyQW ?? {})['Sly_sex_daystart'] = ((st as any).daystart ?? 0);
+    scene.img('images/shared/sex/undress/kotovpre' + (Math.floor(Math.random() * 4) + 11) + '.mp4');
+    if (((st as any).christinaQW ?? 0)?.['fight'] === -1) {
       scene.text('You start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
     } else {
       scene.text('You slowly and seductively start stripping your clothes off in front of him. The bored look on his face is quickly replaced by a hungry look.');
     }
     scene.text('He stands up, sheds his own clothes, and starts towards you.');
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    qspCall(st, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
   } },
     ]);
   }

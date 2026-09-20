@@ -7,9 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sd_font_pct ?? 0) <= 0) {
-    (s as any).sd_font_pct = 100;
-  }
   scene.build();
 }
 
@@ -201,8 +198,8 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   ((s as any).progressbar = (s as any).progressbar ?? {})['max_value'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).progressbar = (s as any).progressbar ?? {})['phantom_raw'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).progressbar = (s as any).progressbar ?? {})['overlay'] = Math.min(Math.max(0, ((s as any).locArgs?.[4] ?? 0)), 100);
-  ((s as any).progressbar = (s as any).progressbar ?? {})['overlay_gradient'] = ((((s as any).locArgs?.[5] ?? 0) === '') ? ('accent') : (((s as any).locArgs?.[5] ?? 0)));
-  ((s as any).progressbar = (s as any).progressbar ?? {})['label_pos'] = ((((s as any).locArgs?.[6] ?? 0) === '') ? ('auto') : (((s as any).locArgs?.[6] ?? 0)));
+  ((s as any).progressbar = (s as any).progressbar ?? {})['overlay_gradient'] = ((Number((s as any).locArgs?.[5] ?? 0) === '') ? ('accent') : (((s as any).locArgs?.[5] ?? 0)));
+  ((s as any).progressbar = (s as any).progressbar ?? {})['label_pos'] = ((Number((s as any).locArgs?.[6] ?? 0) === '') ? ('auto') : (((s as any).locArgs?.[6] ?? 0)));
   ((s as any).progressbar = (s as any).progressbar ?? {})['thresholds'] = ((s as any).locArgs?.[7] ?? 0);
   ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_val'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200));
   ((s as any).progressbar = (s as any).progressbar ?? {})['bar_width_css'] = String(((s as any).progressbar ?? 0)?.['bar_width_val']) + 'px';
@@ -219,7 +216,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).progressbar = (s as any).progressbar ?? {})['label_raw'] = ((s as any).progressbar ?? 0)?.['label'];
   if (((s as any).progressbar ?? 0)?.['label_raw'] !== ''  &&  ((s as any).sd_font_pct ?? 0) !== 100) {
-    ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = '<span style="font-size:' + qspUntranslated(s, "str(sd_font_pct)", { location: "progressbar" }) + '%;">' + ((s as any).progressbar ?? 0)?.['label_raw'] + '</span>';
+    ((s as any).progressbar = (s as any).progressbar ?? {})['label'] = '<span style="font-size:' + String(((s as any).sd_font_pct ?? 0)) + '%;">' + ((s as any).progressbar ?? 0)?.['label_raw'] + '</span>';
   }
   if (((s as any).stat_cfg ?? 0)?.['font_size'] > 0) {
     ((s as any).progressbar = (s as any).progressbar ?? {})['label_px'] = (String(((s as any).progressbar ?? 0)?.['label']).length) * ((((s as any).stat_cfg ?? {})?.['font_size'] ?? 0) + 2);
@@ -265,7 +262,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).progressbar ?? 0)?.['label_pos'] === 'bar'  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'phantom') {
-    (s as any).pb_lc_hex = qspUntranslated(s, "ucase(iif(progressbar['label_pos'] = 'bar', progressbar['bar_color'], progressbar['phantom_color']))", { location: "progressbar" });
+    (s as any).pb_lc_hex = (String(((((s as any).progressbar ?? 0)?.['label_pos'] === 'bar') ? (((s as any).progressbar ?? 0)?.['bar_color']) : (((s as any).progressbar ?? 0)?.['phantom_color']))).toUpperCase());
     (s as any).pb_lc_bar_r = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((2)-1, ((2)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((3)-1, ((3)-1)+(1)))))) + 1);
     (s as any).pb_lc_bar_g = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((4)-1, ((4)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((5)-1, ((5)-1)+(1)))))) + 1);
     (s as any).pb_lc_bar_b = ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((6)-1, ((6)-1)+(1)))))) + 1) * 16 + ((String('123456789ABCDEF').indexOf(String((String(((s as any).pb_lc_hex ?? 0)).slice((7)-1, ((7)-1)+(1)))))) + 1);
@@ -307,7 +304,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'pb_lc_bg_hex'
     // TODO-QSP: killvar 'pb_lc_result'
   }
-  ((s as any).progressbar = (s as any).progressbar ?? {})['mode'] = ((((s as any).locArgs?.[8] ?? 0) > 0) ? (((s as any).locArgs?.[8] ?? 0) - 1) : (0));
+  ((s as any).progressbar = (s as any).progressbar ?? {})['mode'] = ((Number((s as any).locArgs?.[8] ?? 0) > 0) ? (((s as any).locArgs?.[8] ?? 0) - 1) : (0));
   if (((s as any).progressbar ?? 0)?.['mode'] === 2) {
     if (((s as any).progressbar ?? 0)?.['bar_color'] !== '') {
       (s as any).result = '<font color=' + ((s as any).progressbar ?? 0)?.['bar_color'] + '><b>' + ((s as any).progressbar ?? 0)?.['label'] + '</b></font>';
@@ -430,6 +427,9 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).sd_font_pct ?? 0) <= 0) {
+    (s as any).sd_font_pct = 100;
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'color':

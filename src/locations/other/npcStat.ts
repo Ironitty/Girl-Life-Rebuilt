@@ -7,18 +7,18 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if ((((s as any).locArgs?.[0] ?? 0) === ''  &&  ((s as any).locArgs?.[0] ?? 0) > 0)  ||  ((s as any).locArgs?.[0] ?? 0) !== ''  &&  !isNaN(((s as any).locArgs?.[0] ?? 0)) && ((s as any).locArgs?.[0] ?? 0) !== '') {
-    (s as any).npclastcalledn = ((((s as any).locArgs?.[0] ?? 0) !== ''  &&  !isNaN(((s as any).locArgs?.[0] ?? 0)) && ((s as any).locArgs?.[0] ?? 0) !== '') ? (parseFloat(((s as any).locArgs?.[0] ?? 0))) : (((s as any).locArgs?.[0] ?? 0)));
+  if ((Number((s as any).locArgs?.[0] ?? 0) === ''  &&  Number((s as any).locArgs?.[0] ?? 0) > 0)  ||  Number((s as any).locArgs?.[0] ?? 0) !== ''  &&  !isNaN(Number((s as any).locArgs?.[0] ?? 0)) && Number((s as any).locArgs?.[0] ?? 0) !== '') {
+    (s as any).npclastcalledn = ((Number((s as any).locArgs?.[0] ?? 0) !== ''  &&  !isNaN(Number((s as any).locArgs?.[0] ?? 0)) && Number((s as any).locArgs?.[0] ?? 0) !== '') ? (parseFloat(((s as any).locArgs?.[0] ?? 0))) : (((s as any).locArgs?.[0] ?? 0)));
     ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['tempID'] = 'A' + ((s as any).npclastcalledn ?? 0);
   } else {
     if ((String(((s as any).locArgs?.[0] ?? 0)).length) > 1  &&  !isNaN((String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
-      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['tempID'] = qspUntranslated(s, "ucase(ARGS[0])", { location: "npcStat" });
+      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['tempID'] = (String(((s as any).locArgs?.[0] ?? 0)).toUpperCase());
     } else {
-      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['tempID'] = 'D' + Math.floor(Math.random() * 8) + 0;
+      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['tempID'] = 'D' + (Math.floor(Math.random() * 8) + 0);
     }
   }
   (s as any).npclastcalled = ((s as any).npcStatVars ?? 0)?.['tempID'];
-  (s as any).npclastcalledn = parseFloat(qspUntranslated(s, "mid(npcStatVars['tempID'], 2)", { location: "npcStat" }));
+  (s as any).npclastcalledn = parseFloat((String(((s as any).npcStatVars ?? 0)?.['tempID']).slice((2)-1)));
   if (((String('ABCDM').indexOf(String((String(((s as any).npcStatVars ?? 0)?.['tempID']).slice((1)-1, ((1)-1)+(1)))))) + 1) > 0) {
     if (!isNaN(((s as any).npc_usedname ?? 0)?.[String((s as any).npclastcalled ?? 0)]) && ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastcalled ?? 0)] !== ''  ||  ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastcalled ?? 0)] === '') {
       // TODO-QSP: $npc_usedname[$npclastcalled] = $npc_firstname[$npclastcalled]
@@ -57,63 +57,63 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a tiny sized';
       ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 5;
       ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 8;
-      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = Math.floor(Math.random() * 21) + 10;
-      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 7501) + 4000;
-      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 41) + 5;
+      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = (Math.floor(Math.random() * 21) + 10);
+      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 7501) + 4000);
+      ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 41) + 5);
     } else {
       if (((s as any).npclastcalledn ?? 0) === 1) {
         ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a small sized';
         ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 10;
         ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 9;
-        ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = Math.floor(Math.random() * 26) + 15;
-        ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 6501) + 6000;
-        ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 41) + 15;
+        ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = (Math.floor(Math.random() * 26) + 15);
+        ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 6501) + 6000);
+        ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 41) + 15);
       } else {
         if (((s as any).npclastcalledn ?? 0) === 2) {
           ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a medium sized';
           ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 15;
           ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 10;
-          ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 6001) + 7500;
-          ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 42) + 22;
+          ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 6001) + 7500);
+          ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 42) + 22);
         } else {
           if (((s as any).npclastcalledn ?? 0) === 3) {
             ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a large sized';
             ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 20;
             ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 11;
-            ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = Math.floor(Math.random() * 36) + 25;
-            ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 6001) + 8500;
-            ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 42) + 27;
+            ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = (Math.floor(Math.random() * 36) + 25);
+            ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 6001) + 8500);
+            ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 42) + 27);
           } else {
             if (((s as any).npclastcalledn ?? 0) === 4) {
               ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a huge sized';
               ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 25;
               ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 12;
-              ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = Math.floor(Math.random() * 41) + 30;
-              ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 6001) + 8500;
-              ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 42) + 27;
+              ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = (Math.floor(Math.random() * 41) + 30);
+              ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 6001) + 8500);
+              ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 42) + 27);
             } else {
               if (((s as any).npclastcalledn ?? 0) === 5) {
                 ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a giant sized';
                 ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 30;
                 ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 13;
-                ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = Math.floor(Math.random() * 56) + 25;
-                ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 6001) + 9000;
-                ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 41) + 30;
+                ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = (Math.floor(Math.random() * 56) + 25);
+                ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 6001) + 9000);
+                ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 41) + 30);
               } else {
                 if (((s as any).npclastcalledn ?? 0) === 6) {
                   ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a humongous sized';
                   ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 35;
                   ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 14;
-                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = Math.floor(Math.random() * 71) + 20;
-                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 6001) + 9000;
-                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 41) + 30;
+                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = (Math.floor(Math.random() * 71) + 20);
+                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 6001) + 9000);
+                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 41) + 30);
                 } else {
                   ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['name'] = 'a horse sized';
                   ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_length'] = 40;
                   ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['dick_girth'] = 15;
-                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = Math.floor(Math.random() * 86) + 15;
-                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = Math.floor(Math.random() * 6001) + 9500;
-                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = Math.floor(Math.random() * 42) + 32;
+                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['sexskill'] = (Math.floor(Math.random() * 86) + 15);
+                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermpot'] = (Math.floor(Math.random() * 6001) + 9500);
+                  ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (Math.floor(Math.random() * 42) + 32);
                 }
               }
             }
@@ -121,13 +121,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['height'] = Math.floor(Math.random() * 21) + 160;
-    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['weight'] = Math.floor(Math.random() * 46) + 45;
-    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['haircol'] = Math.floor(Math.random() * 4) + 0;
-    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['eyecol'] = Math.floor(Math.random() * 4) + 0;
+    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['height'] = (Math.floor(Math.random() * 21) + 160);
+    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['weight'] = (Math.floor(Math.random() * 46) + 45);
+    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['haircol'] = (Math.floor(Math.random() * 4) + 0);
+    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['eyecol'] = (Math.floor(Math.random() * 4) + 0);
     ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['occupation'] = '';
     ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['relation'] = 'stranger';
-    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['age'] = Math.floor(Math.random() * 18) + 18;
+    ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['age'] = (Math.floor(Math.random() * 18) + 18);
     ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['apprnc'] = (Math.floor(Math.random() * 101) + 0) + (Math.floor(Math.random() * 101) + 0);
     ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['hotcat'] = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', ((s as any).npcStatVars ?? 0)?.['apprnc']);
     ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['attraction'] = ((s as any).pcs_apprnc ?? 0);
@@ -152,7 +152,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['spermvol'] = (-1);
     }
   }
-  if (((String(';none;normal;extra thin;ribbed;broken;sabotaged;sabotaged_other;').indexOf(String(';' + ((s as any).locArgs?.[2] ?? 0) + ';'))) + 1) > 0) {
+  if (((String(';none;normal;extra thin;ribbed;broken;sabotaged;sabotaged_other;').indexOf(String(';' + Number((s as any).locArgs?.[2] ?? 0) + ';'))) + 1) > 0) {
     ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['condom'] = ((s as any).locArgs?.[2] ?? 0);
   } else {
     if (((s as any).preziktype ?? 0) === 0  &&  (((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['normal_condoms']) > 0) {
@@ -285,7 +285,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcStatVars ?? 0)?.['outfit'] === '') {
-    (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
+    (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
       ((s as any).npcStatVars = (s as any).npcStatVars ?? {})['outfit'] = 'a tracksuit';
     } else {
@@ -608,7 +608,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).npcStat_i = ((String('abcdefghijklmnopqrstuvwxyz').indexOf(String(((s as any).locArgs?.[1] ?? 0)))) + 1);
-  if (((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((s as any).npcStat_i ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((s as any).npcStat_i ?? 0) > 0) {
     // TODO-QSP: dynamic "
     // TODO-QSP: npcStatCalled<<npcStat_i>>    = daystart
     // TODO-QSP: $npcID<<npcStat_i>>        = $npclastcalled
@@ -664,7 +664,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $personc<<npcStat_i>>      = $npcStatVars['personc']
     // TODO-QSP: "
   } else {
-    (s as any).npcStat_i = ((((s as any).locArgs?.[1] ?? 0) !== ''  &&  !isNaN(((s as any).locArgs?.[1] ?? 0)) && ((s as any).locArgs?.[1] ?? 0) !== '') ? (parseFloat(((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
+    (s as any).npcStat_i = ((Number((s as any).locArgs?.[1] ?? 0) !== ''  &&  !isNaN(Number((s as any).locArgs?.[1] ?? 0)) && Number((s as any).locArgs?.[1] ?? 0) !== '') ? (parseFloat(((s as any).locArgs?.[1] ?? 0))) : (((s as any).locArgs?.[1] ?? 0)));
     ((s as any).npcStatcalled = (s as any).npcStatcalled ?? {})[String((s as any).npcStat_i ?? 0)] = ((s as any).daystart ?? 0);
     // TODO-QSP: $npcID[npcStat_i]      = $npclastcalled
     ((s as any).npcInanimate = (s as any).npcInanimate ?? {})[String((s as any).npcStat_i ?? 0)] = ((s as any).npcStatVars ?? 0)?.['inanimate'];

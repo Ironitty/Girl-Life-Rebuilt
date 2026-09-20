@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -94,8 +92,8 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :_hc_relloop
   if (((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)] !== '') {
     (s as any)._hc_p1 = ((String(((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)]).indexOf(String('|'))) + 1);
-    (s as any)._hc_reltype = (String(qspUntranslated(s, "$\u00000\u0000", { location: "help_characters" })).slice((1)-1, ((1)-1)+(((s as any)._hc_p1 ?? 0) - 1)));
-    (s as any)._hc_rest = (String(qspUntranslated(s, "$\u00000\u0000", { location: "help_characters" })).slice((((s as any)._hc_p1 ?? 0) + 1)-1));
+    (s as any)._hc_reltype = (String(((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)]).slice((1)-1, ((1)-1)+(((s as any)._hc_p1 ?? 0) - 1)));
+    (s as any)._hc_rest = (String(((s as any)._hc_rel ?? 0)?.[String((s as any)._hc_i ?? 0)]).slice((((s as any)._hc_p1 ?? 0) + 1)-1));
     (s as any)._hc_p2 = ((String(((s as any)._hc_rest ?? 0)).indexOf(String('|'))) + 1);
     (s as any)._hc_relkey = (String(((s as any)._hc_rest ?? 0)).slice((1)-1, ((1)-1)+(((s as any)._hc_p2 ?? 0) - 1)));
     (s as any)._hc_relnpc = (String(((s as any)._hc_rest ?? 0)).slice((((s as any)._hc_p2 ?? 0) + 1)-1));
@@ -127,7 +125,7 @@ function enterBuild(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any)._hc_bio ?? 0) === '') {
     if (qspFunc(s, 'npc_notes', ((s as any)._hc_npcid ?? 0)) !== '') {
-      (s as any)._hc_bio = '<p>' + qspFunc(s, 'npc_notes', '$_hc_npcid') + '</p>';
+      (s as any)._hc_bio = '<p>' + qspFunc(s, 'npc_notes', ((s as any)._hc_npcid ?? 0)) + '</p>';
     }
   }
   (s as any).help_page_content = '<table cellspacing="0" cellpadding="0" style="margin:4px 0 8px 0;width:100%"><tr>';

@@ -25,13 +25,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You can now create a character!');
       scene.actions([
         { label: 'Create a character', handler: (st: GameState) => {
-    (s as any).KGOLname = 0;
-    if (((s as any).KGOLname ?? 0) === '') {
+    (st as any).KGOLname = 0;
+    if (((st as any).KGOLname ?? 0) === '') {
       // TODO-QSP: msg 'Please enter a valid name!'
-      qspGoto(s, 'KGstart', '');
+      qspGoto(st, 'KGstart', '');
     }
-    // TODO-QSP: dynamic text: Your character's name is: <<$KGOLname>>
-    scene.text(`Your character's name is: ${((s as any).KGOLname || '')}`);
+    // TODO-QSP: dynamic text: Your character''s name is: <<$KGOLname>>
+    scene.text(`Your character's name is: ${((st as any).KGOLname || '')}`);
     scene.text('Please select a player race:');
     scene.actions([
       { label: 'Human', handler: (st: GameState) => {
@@ -50,24 +50,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay for more days', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 1000, 'bank');
-      (s as any).KFOnLineReaga = ((s as any).KFOnLineReaga ?? 0) + (30);
-      qspGoto(s, 'KGstart', '');
+      qspCall(st, 'money', 'pay', 1000, 'bank');
+      (st as any).KFOnLineReaga = ((st as any).KFOnLineReaga ?? 0) + (30);
+      qspGoto(st, 'KGstart', '');
     }
   } },
       { label: 'Buy game coins', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).KGOLdonat = 0;
-      if (((s as any).KGOLdonat ?? 0) <= 0  ||  qspFunc(s, 'money', 'can_afford', ((s as any).KGOLdonat ?? 0), 'bank') === 0) {
+      (st as any).KGOLdonat = 0;
+      if (((st as any).KGOLdonat ?? 0) <= 0  ||  qspFunc(s, 'money', 'can_afford', ((st as any).KGOLdonat ?? 0), 'bank') === 0) {
       } else {
-        qspCall(s, 'money', 'pay', ((s as any).KGOLdonat ?? 0), 'bank');
-        (s as any).KGOLmoney = ((s as any).KGOLmoney ?? 0) + (((s as any).KGOLdonat ?? 0));
+        qspCall(st, 'money', 'pay', ((st as any).KGOLdonat ?? 0), 'bank');
+        (st as any).KGOLmoney = ((st as any).KGOLmoney ?? 0) + (((st as any).KGOLdonat ?? 0));
       }
-      qspGoto(s, 'KGstart', '');
+      qspGoto(st, 'KGstart', '');
     }
   } },
     ]);
@@ -78,11 +78,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay for access', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'bank') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 1000, 'bank');
-      (s as any).KFOnLineReaga = ((s as any).KFOnLineReaga ?? 0) + (30);
-      qspGoto(s, 'KGstart', '');
+      qspCall(st, 'money', 'pay', 1000, 'bank');
+      (st as any).KFOnLineReaga = ((st as any).KFOnLineReaga ?? 0) + (30);
+      qspGoto(st, 'KGstart', '');
     }
   } },
     ]);

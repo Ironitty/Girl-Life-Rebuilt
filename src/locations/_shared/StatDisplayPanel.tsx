@@ -126,8 +126,9 @@ export default function StatDisplayPanel({ onOpenSave, onOpenSettings }: { onOpe
   const tempColor = getTempColor(s.temper);
   const statusIcons = getStatusIcons(s);
 
-  const hour = Math.floor((s.totminut % 1440) / 60);
-  const min = s.totminut % 60;
+  const totalMin = Math.floor(s.totminut);
+  const hour = Math.floor((totalMin % 1440) / 60);
+  const min = totalMin % 60;
   const timeStr = `${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`;
 
   const dv = toDate(s.daystart);

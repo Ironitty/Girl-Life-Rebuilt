@@ -64,15 +64,15 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     scene.actions([
       { label: 'Hug his arm', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
     scene.text('You lean against him and hold his arm, taking his hand in yours. He leans over and kisses you in response. The two of you sit there holding hands for the entire movie.');
-    qspGoto(s, 'kinoM', 'b');
+    qspGoto(st, 'kinoM', 'b');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Hug his arm', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
     scene.text('You lean against him and hug his arm, taking his hand in yours. He leans over and kisses you. Once the lights go out and the theatre gets dark, his hand breaks free from yours and begins to rub your knee. A few minutes later the hand works its way up your thighs, sliding between them to your crotch. He rubs your pussy with his fingers and leans over to whisper, "Baby, I want you right here, right now."');
     scene.actions([
       { label: 'Shush him and remove his hand, so you can watch the movie', handler: (st: GameState) => {
@@ -88,10 +88,10 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Watch the movie', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
-    qspCall(s, 'exp_gain', 'intel', 1);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-1));
+    qspCall(st, 'exp_gain', 'intel', 1);
     scene.text('The movie proves interesting and you sit through the whole thing without interruption.');
-    qspGoto(s, 'kinoM', 'b');
+    qspGoto(st, 'kinoM', 'b');
   } },
   ]);
   scene.build();

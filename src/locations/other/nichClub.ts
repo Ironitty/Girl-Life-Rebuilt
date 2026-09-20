@@ -4,11 +4,14 @@ import { qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).nichGentleclubVisits ?? 0))) {
+    qspGoto(s, 'nichClub', 'firstVisit');
+  }
   scene.build();
 }
 
-function enterStart(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichGentleclubVisits ?? 0))) {
     qspGoto(s, 'nichClub', 'firstVisit');
   }
@@ -20,7 +23,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/nicholas/gentleclub/entry1.jpg');
     scene.text('The drive to the club takes about half an hour.');
     scene.text('Sitting next to you, Nicholas is wearing one of his finest suits.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don't happen what will happen next. The only thing necessa...
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don''t happen what will happen next. The only thing necess...
     scene.text(`"${((s as any).pcs_nickname || '')}, I don't happen what will happen next. The only thing necessary is that you play with the customs of this place. Don't embarrass me. I don't have to tell you again how important it is for me to get into good graces with Mister Fetisov and his associates.`);
     scene.text('"Yes, Master Nicholas, of course."');
     scene.text('To your surprise, the journey ends in an underground parking garage under a recently constructed mall. The driver of Nicholas steps out and opens the door for his employer first, then he opens your door. Afterwards, he returns to his driver\'s seat. Apparently, he will wait there until you return.');
@@ -28,8 +31,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.text('"Come on, follow me." Nicholas leads the way.');
     scene.actions([
       { label: 'Follow him', handler: (st: GameState) => {
-    (s as any).nichClubStage = 1;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 1;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
     ]);
   } else {
@@ -46,8 +49,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
       scene.text('"Very well. Just a few seconds, please, Mister \'+$npc_lastname[\'A52\']+\'".');
       scene.actions([
         { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichClubStage = 2;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 2;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
       ]);
     } else {
@@ -58,12 +61,12 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
         scene.text('"Mister \'+$npc_lastname[\'A52\']+\' is at the entry… yes… yes… no… one second." he seems to get instructions through his ear plug.');
         scene.text('He takes out what appears to be a flashlight. It emits a violet light, which he aims at the back of Nicholas\' business card. Apparently, there is a picture of a swan invisible in normal light.');
         scene.text('"Swan… yes… of course." he gives the card back to Nicholas.');
-        // TODO-QSP: dynamic text: "Welcome to the Gentleman's Club, Mister '+$npc_lastname['A52']+'! We are happy ...
+        // TODO-QSP: dynamic text: "Welcome to the Gentleman''s Club, Mister '+$npc_lastname['A52']+'! We are happy...
         scene.text('"Welcome to the Gentleman\'s Club, Mister \'+$npc_lastname[\'A52\']+\'! We are happy to welcome you. A guide will arrive shortly to show you around."');
         scene.actions([
           { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichClubStage = 3;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 3;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
         ]);
       } else {
@@ -81,8 +84,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
           scene.text('The door closes, and you and the other woman drive to an even lower level.');
           scene.actions([
             { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichClubStage = 4;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 4;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
           ]);
         } else {
@@ -96,8 +99,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
             scene.text('"I said. Strip and sit down. We have to do a physical examination first. No, get going. I won\'t repeat myself a second time."');
             scene.actions([
               { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichClubStage = 5;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 5;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
             ]);
           } else {
@@ -110,8 +113,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
               scene.text('You want to protest, but she pushes some kind of gag into your mouth, effectively making your complaints unintelligible.');
               scene.actions([
                 { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichClubStage = 6;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 6;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
               ]);
             } else {
@@ -124,8 +127,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                 scene.text('She plugs in the electric cable of this device, and it begins to hum.');
                 scene.actions([
                   { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichClubStage = 7;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 7;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
                 ]);
               } else {
@@ -142,8 +145,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                   scene.text('This time the pain is too much. Everything goes black as you pass out.');
                   scene.actions([
                     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).nichClubStage = 8;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 8;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
                   ]);
                 } else {
@@ -157,8 +160,8 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                     scene.text('Then your hands wander to the collar around your neck. To your surprise, you can\'t find an opening mechanism.');
                     scene.actions([
                       { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichClubStage = 9;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 9;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
                     ]);
                   } else {
@@ -177,12 +180,12 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
                       scene.text('I really like to see them try, though. So if you want to run, you can try." she points at the door.');
                       scene.actions([
                         { label: 'Run away', handler: (st: GameState) => {
-    (s as any).nichClubStage = 10;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 10;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
                         { label: 'Stay', handler: (st: GameState) => {
-    (s as any).nichClubStage = 20;
-    qspGoto(s, 'nichClub', 'firstVisit');
+    (st as any).nichClubStage = 20;
+    qspGoto(st, 'nichClub', 'firstVisit');
   } },
                       ]);
                     } else {

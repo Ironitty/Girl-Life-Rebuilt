@@ -7,48 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (Object.keys((s as any).painParts ?? {}).length < 40  ||  Object.keys((s as any).painMod ?? {}).length < 40) {
-    // TODO-QSP: $painParts[0]  = 'ankles'    & painMod['ankles']    = 2
-    // TODO-QSP: $painParts[1]  = 'armL'    & painMod['armL']    = 2
-    // TODO-QSP: $painParts[2]  = 'armR'    & painMod['armR']    = 2
-    // TODO-QSP: $painParts[3]  = 'asscheeks'  & painMod['asscheeks']  = 2
-    // TODO-QSP: $painParts[4]  = 'asshole'    & painMod['asshole']  = 9
-    // TODO-QSP: $painParts[5]  = 'back'    & painMod['back']    = 5
-    // TODO-QSP: $painParts[6]  = 'breasts'    & painMod['breasts']  = 8
-    // TODO-QSP: $painParts[7]  = 'cervix'    & painMod['cervix']    = 8
-    // TODO-QSP: $painParts[8]  = 'cheeks'    & painMod['cheeks']    = 3
-    // TODO-QSP: $painParts[9]  = 'chest'    & painMod['chest']    = 7
-    // TODO-QSP: $painParts[10]  = 'clitoris'  & painMod['clitoris']  = 10
-    // TODO-QSP: $painParts[11]  = 'ears'    & painMod['ears']    = 6
-    // TODO-QSP: $painParts[12]  = 'eyebrows'  & painMod['eyebrows']  = 6
-    // TODO-QSP: $painParts[13]  = 'eyes'    & painMod['eyes']    = 8
-    // TODO-QSP: $painParts[14]  = 'feet'    & painMod['feet']    = 2
-    // TODO-QSP: $painParts[15]  = 'fingers'    & painMod['fingers']  = 4
-    // TODO-QSP: $painParts[16]  = 'hair'    & painMod['hair']    = 1
-    // TODO-QSP: $painParts[17]  = 'hands'    & painMod['hands']    = 3
-    // TODO-QSP: $painParts[18]  = 'head'    & painMod['head']    = 6
-    // TODO-QSP: $painParts[19]  = 'hips'    & painMod['hips']    = 5
-    // TODO-QSP: $painParts[20]  = 'jaw'      & painMod['jaw']    = 4
-    // TODO-QSP: $painParts[21]  = 'labia'    & painMod['labia']    = 8
-    // TODO-QSP: $painParts[22]  = 'legL'    & painMod['legL']    = 3
-    // TODO-QSP: $painParts[23]  = 'legR'    & painMod['legR']    = 3
-    // TODO-QSP: $painParts[24]  = 'lips'    & painMod['lips']    = 6
-    // TODO-QSP: $painParts[25]  = 'mouth'    & painMod['mouth']    = 4
-    // TODO-QSP: $painParts[26]  = 'neck'    & painMod['neck']    = 7
-    // TODO-QSP: $painParts[27]  = 'nipples'    & painMod['nipples']  = 9
-    // TODO-QSP: $painParts[28]  = 'nose'    & painMod['nose']    = 5
-    // TODO-QSP: $painParts[29]  = 'pubic'    & painMod['pubic']    = 6
-    // TODO-QSP: $painParts[30]  = 'ribs'    & painMod['ribs']    = 5
-    // TODO-QSP: $painParts[31]  = 'shoulders'  & painMod['shoulders']  = 2
-    // TODO-QSP: $painParts[32]  = 'thighs'    & painMod['thighs']    = 4
-    // TODO-QSP: $painParts[33]  = 'throat'    & painMod['throat']    = 6
-    // TODO-QSP: $painParts[34]  = 'toes'    & painMod['toes']    = 4
-    // TODO-QSP: $painParts[35]  = 'tongue'    & painMod['tongue']    = 7
-    // TODO-QSP: $painParts[36]  = 'tummy'    & painMod['tummy']    = 6
-    // TODO-QSP: $painParts[37]  = 'urethra'    & painMod['urethra']  = 6
-    // TODO-QSP: $painParts[38]  = 'vaginal'    & painMod['vaginal']  = 8
-    // TODO-QSP: $painParts[39]  = 'wrists'    & painMod['wrists']    = 2
-  }
   scene.build();
 }
 
@@ -333,6 +291,48 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (Object.keys((s as any).painParts ?? {}).length < 40  ||  Object.keys((s as any).painMod ?? {}).length < 40) {
+    // TODO-QSP: $painParts[0]  = 'ankles'    & painMod['ankles']    = 2
+    // TODO-QSP: $painParts[1]  = 'armL'    & painMod['armL']    = 2
+    // TODO-QSP: $painParts[2]  = 'armR'    & painMod['armR']    = 2
+    // TODO-QSP: $painParts[3]  = 'asscheeks'  & painMod['asscheeks']  = 2
+    // TODO-QSP: $painParts[4]  = 'asshole'    & painMod['asshole']  = 9
+    // TODO-QSP: $painParts[5]  = 'back'    & painMod['back']    = 5
+    // TODO-QSP: $painParts[6]  = 'breasts'    & painMod['breasts']  = 8
+    // TODO-QSP: $painParts[7]  = 'cervix'    & painMod['cervix']    = 8
+    // TODO-QSP: $painParts[8]  = 'cheeks'    & painMod['cheeks']    = 3
+    // TODO-QSP: $painParts[9]  = 'chest'    & painMod['chest']    = 7
+    // TODO-QSP: $painParts[10]  = 'clitoris'  & painMod['clitoris']  = 10
+    // TODO-QSP: $painParts[11]  = 'ears'    & painMod['ears']    = 6
+    // TODO-QSP: $painParts[12]  = 'eyebrows'  & painMod['eyebrows']  = 6
+    // TODO-QSP: $painParts[13]  = 'eyes'    & painMod['eyes']    = 8
+    // TODO-QSP: $painParts[14]  = 'feet'    & painMod['feet']    = 2
+    // TODO-QSP: $painParts[15]  = 'fingers'    & painMod['fingers']  = 4
+    // TODO-QSP: $painParts[16]  = 'hair'    & painMod['hair']    = 1
+    // TODO-QSP: $painParts[17]  = 'hands'    & painMod['hands']    = 3
+    // TODO-QSP: $painParts[18]  = 'head'    & painMod['head']    = 6
+    // TODO-QSP: $painParts[19]  = 'hips'    & painMod['hips']    = 5
+    // TODO-QSP: $painParts[20]  = 'jaw'      & painMod['jaw']    = 4
+    // TODO-QSP: $painParts[21]  = 'labia'    & painMod['labia']    = 8
+    // TODO-QSP: $painParts[22]  = 'legL'    & painMod['legL']    = 3
+    // TODO-QSP: $painParts[23]  = 'legR'    & painMod['legR']    = 3
+    // TODO-QSP: $painParts[24]  = 'lips'    & painMod['lips']    = 6
+    // TODO-QSP: $painParts[25]  = 'mouth'    & painMod['mouth']    = 4
+    // TODO-QSP: $painParts[26]  = 'neck'    & painMod['neck']    = 7
+    // TODO-QSP: $painParts[27]  = 'nipples'    & painMod['nipples']  = 9
+    // TODO-QSP: $painParts[28]  = 'nose'    & painMod['nose']    = 5
+    // TODO-QSP: $painParts[29]  = 'pubic'    & painMod['pubic']    = 6
+    // TODO-QSP: $painParts[30]  = 'ribs'    & painMod['ribs']    = 5
+    // TODO-QSP: $painParts[31]  = 'shoulders'  & painMod['shoulders']  = 2
+    // TODO-QSP: $painParts[32]  = 'thighs'    & painMod['thighs']    = 4
+    // TODO-QSP: $painParts[33]  = 'throat'    & painMod['throat']    = 6
+    // TODO-QSP: $painParts[34]  = 'toes'    & painMod['toes']    = 4
+    // TODO-QSP: $painParts[35]  = 'tongue'    & painMod['tongue']    = 7
+    // TODO-QSP: $painParts[36]  = 'tummy'    & painMod['tummy']    = 6
+    // TODO-QSP: $painParts[37]  = 'urethra'    & painMod['urethra']  = 6
+    // TODO-QSP: $painParts[38]  = 'vaginal'    & painMod['vaginal']  = 8
+    // TODO-QSP: $painParts[39]  = 'wrists'    & painMod['wrists']    = 2
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'calc':

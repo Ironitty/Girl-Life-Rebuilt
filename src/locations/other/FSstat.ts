@@ -230,7 +230,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FSHP ?? 0) > 100) {
     (s as any).FSHP = 100;
   }
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027FSstart\\u0027, \\u0027\\u0027); return false;">Get out of the game</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027FSstart/u0027, /u0027/u0027); return false;">Get out of the game</a>');
   // TODO-QSP: dynamic text: Day <<FSday>>, h <<FShour>>
   scene.text(`Day ${((s as any).FSday || '')}, h ${((s as any).FShour || '')}`);
   // TODO-QSP: dynamic text: <<FSgem>> of coins. Food enough for <<FSsup>> days

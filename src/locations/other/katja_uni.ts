@@ -36,15 +36,15 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
         if (((s as any).katjaQW ?? 0)?.['annoyed'] === 1) {
           scene.text('"I suppose I\'ll just have to forgive you," she says playfully, giving your breasts another gentle squeeze.');
           // TODO-QSP: dynamic text: "Have you seen all the hot guys around? You think we can find '+iif(katjaQW['par...
-          scene.text('"Have you seen all the hot guys around? You think we can find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'"');
+          scene.text('"Have you seen all the hot guys around? You think we can find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
         } else {
           if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
             scene.text('"I suppose I\'ll just have to forgive you," she says, her tone softening to playful and giving your breasts a much more gentle squeeze.');
             // TODO-QSP: dynamic text: "Have you seen all the hot guys around? You think we can find '+iif(katjaQW['par...
-            scene.text('"Have you seen all the hot guys around? You think we can find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'"');
+            scene.text('"Have you seen all the hot guys around? You think we can find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
           } else {
             // TODO-QSP: dynamic text: "Have you seen all the hot guys around?" she asks excitedly, giving your breasts...
-            scene.text('"Have you seen all the hot guys around?" she asks excitedly, giving your breasts another playful fondle. "You think we can find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'"');
+            scene.text('"Have you seen all the hot guys around?" she asks excitedly, giving your breasts another playful fondle. "You think we can find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
           }
         }
         scene.text('"Of course," you reply. "Who could say no to two hot chicks like us?"');
@@ -54,17 +54,17 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
         if (((s as any).katjaQW ?? 0)?.['QWstage'] === 6  ||  ((s as any).katjaQW ?? 0)?.['anal_quest'] >= 3) {
           if (((s as any).katjaQW ?? 0)?.['annoyed'] === 1) {
             scene.text('"I suppose I\'ll just have to forgive you," she says playfully, giving your breasts another gentle squeeze. "Have you seen all the hot guys around?');
-            // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', ')+iif(katjaQW['marcus_pussy'...
-            scene.text('Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' aren\'t around, maybe we can find someone to join us sometime?"');
+            // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
+            scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' aren\'t around, maybe we can find someone to join us sometime?"');
           } else {
             if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
               scene.text('"I suppose I\'ll just have to forgive you," she says, tone softening to playful and giving your breasts a much more gentle squeeze. "Have you seen all the hot guys around?');
-              // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', ')+iif(katjaQW['marcus_pussy'...
-              scene.text('Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' aren\'t around, maybe we can find someone to join us sometime?"');
+              // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
+              scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' aren\'t around, maybe we can find someone to join us sometime?"');
             } else {
               scene.text('"Have you seen all the hot guys around?" she asks excitedly, giving your breasts another playful fondle.');
-              // TODO-QSP: dynamic text: "Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', ')+iif(katjaQW['marcus_pussy...
-              scene.text('"Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' aren\'t around, maybe we can find someone to join us sometime?"');
+              // TODO-QSP: dynamic text: "Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_puss...
+              scene.text('"Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' aren\'t around, maybe we can find someone to join us sometime?"');
             }
           }
           scene.text('"Of course," you reply. "Who could say no to two hot chicks like us?"');
@@ -85,7 +85,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) {
             ((s as any).katjaQW = (s as any).katjaQW ?? {})['annoyed'] = 1;
             qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
-            // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," Katja whispers in your ear. "Why haven't I seen you sin...
+            // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," Katja whispers in your ear. "Why haven''t I seen you si...
             scene.text(`"Hey ${((s as any).pcs_nickname || '')}," Katja whispers in your ear. "Why haven't I seen you since we graduated? And why didn't you tell me you were starting the teaching program?" She sounds vaguely disappointed.`);
             scene.text('"Sorry, I didn\'t think it was worth mentioning," you say. "You didn\'t tell me were in this program either!"');
           } else {
@@ -104,16 +104,16 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['annoyed'] === 1) {
             scene.text('"I guess I can find it in myself to forgive you," she says, playfully nuzzling her head against yours. "But more importantly, have you seen all the hot guys around?');
             // TODO-QSP: dynamic text: You think we can maybe find '+iif(katjaQW['park_sex'] < 3, 'one or maybe two guy...
-            scene.text('You think we can maybe find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'"');
+            scene.text('You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
           } else {
             if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
-              // TODO-QSP: dynamic text: "Well you're here now, so I suppose I'll forgive you," she says, pulling you tig...
+              // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, pulling you t...
               scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, pulling you tighter, pressing her breasts further into your back. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
               // TODO-QSP: dynamic text: You think we can maybe find '+iif(katjaQW['park_sex'] < 3, 'one or maybe two guy...
-              scene.text('You think we can maybe find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'"');
+              scene.text('You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
             } else {
               // TODO-QSP: dynamic text: "Have you seen all the hot guys around? You think we can maybe find '+iif(katjaQ...
-              scene.text('"Have you seen all the hot guys around? You think we can maybe find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'" Katja asks, pressing her breasts further into your back while still hugging you.');
+              scene.text('"Have you seen all the hot guys around? You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '" Katja asks, pressing her breasts further into your back while still hugging you.');
             }
           }
           scene.text('"Of course," you reply. "Who could say no to two hot chicks like us?"');
@@ -121,17 +121,17 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['QWstage'] === 6  ||  ((s as any).katjaQW ?? 0)?.['anal_quest'] >= 3) {
             if (((s as any).katjaQW ?? 0)?.['annoyed'] === 1) {
               scene.text('"I guess I can find it in myself to forgive you," she says, playfully nuzzling her head against yours. "But more importantly, have you seen all the hot guys around?');
-              // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', ')+iif(katjaQW['marcus_pussy'...
-              scene.text('Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' ain\'t around, maybe we can find someone to join us sometime?"');
+              // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
+              scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?"');
             } else {
               if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
-                // TODO-QSP: dynamic text: "Well you're here now, so I suppose I'll forgive you," she says, pulling you tig...
+                // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, pulling you t...
                 scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, pulling you tighter, pressing her breasts further into your back. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
-                // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', ')+iif(katjaQW['marcus_pussy'...
-                scene.text('Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' ain\'t around, maybe we can find someone to join us sometime?"');
+                // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
+                scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?"');
               } else {
                 // TODO-QSP: dynamic text: "Have you seen all the hot guys around? Since '+iif(katjaQW['marcus_pussy'] = 1,...
-                scene.text('"Have you seen all the hot guys around? Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' ain\'t around, maybe we can find someone to join us sometime?" Katja asks, pressing her breasts further into your back while still hugging you.');
+                scene.text('"Have you seen all the hot guys around? Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?" Katja asks, pressing her breasts further into your back while still hugging you.');
               }
             }
             scene.text('"Of course," you reply. "Who could say no to two hot chicks like us?"');
@@ -149,7 +149,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) {
             qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
             scene.text('As you\'re walking into the lecture hall, a pair of arms suddenly wrap themselves around you. You turn in surprise and find Katja holding you, an expression on her face that seems caught between a smile and a glare.');
-            // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Why haven't I seen you since we graduated? And why didn'...
+            // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Why haven''t I seen you since we graduated? And why didn...
             scene.text(`"Hey ${((s as any).pcs_nickname || '')}! Why haven't I seen you since we graduated? And why didn't you tell me you were starting the teaching program?" Her lips twist a little more towards a frown than a smile.`);
             scene.text('"Sorry, I didn\'t think it was worth mentioning," you say. "You didn\'t tell me were in this program either!"');
           } else {
@@ -169,35 +169,35 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['annoyed'] === 1) {
             scene.text('"I guess I can find it in myself to forgive you," she says, letting her smile come back. "But more importantly, have you seen all the hot guys around?');
             // TODO-QSP: dynamic text: You think we can maybe find '+iif(katjaQW['park_sex'] < 3, 'one or maybe two guy...
-            scene.text('You think we can maybe find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'"');
+            scene.text('You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
           } else {
             if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
-              // TODO-QSP: dynamic text: "Well you're here now, so I suppose I'll forgive you," she says, letting her fro...
+              // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, letting her f...
               scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, letting her frown fade away into a rueful smile. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
               // TODO-QSP: dynamic text: You think we can maybe find '+iif(katjaQW['park_sex'] < 3, 'one or maybe two guy...
-              scene.text('You think we can maybe find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'"');
+              scene.text('You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
             } else {
               // TODO-QSP: dynamic text: "Have you seen all the hot guys around?" she asks. "You think we can maybe find ...
-              scene.text('"Have you seen all the hot guys around?" she asks. "You think we can maybe find \'+iif(katjaQW[\'park_sex\'] < 3, \'one or maybe two guys who might have fun with us?\', \'enough to satisfy our needs?\')+\'".');
+              scene.text('"Have you seen all the hot guys around?" she asks. "You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '".');
             }
           }
         } else {
           if (((s as any).katjaQW ?? 0)?.['QWstage'] === 6  ||  ((s as any).katjaQW ?? 0)?.['anal_quest'] >= 3) {
             if (((s as any).katjaQW ?? 0)?.['annoyed'] === 1) {
               scene.text('"I guess I can find it in myself to forgive you," she says, letting her smile come back. "But more importantly, have you seen all the hot guys around?');
-              // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', ')+iif(katjaQW['marcus_pussy'...
-              scene.text('Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' ain\'t around, maybe we can find someone to join us sometime?"');
+              // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
+              scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?"');
               scene.text('"Of course," you reply "Who could say no to two hot chicks like us?"');
             } else {
               if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
-                // TODO-QSP: dynamic text: "Well you're here now, so I suppose I'll forgive you," she says, letting her fro...
+                // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, letting her f...
                 scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, letting her frown fade away into a rueful smile. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
-                // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', ')+iif(katjaQW['marcus_pussy'...
-                scene.text('Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' ain\'t around, maybe we can find someone to join us sometime?"');
+                // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
+                scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?"');
                 scene.text('"Of course," you reply "Who could say no to two hot chicks like us?"');
               } else {
                 // TODO-QSP: dynamic text: "Have you seen all the hot guys around?" she asks. "Since '+iif(katjaQW['marcus_...
-                scene.text('"Have you seen all the hot guys around?" she asks. "Since \'+iif(katjaQW[\'marcus_pussy\'] = 1, \'Marcus\', \')+iif(katjaQW[\'marcus_pussy\'] + katjaQW[\'ivan_anal\'] = 2, \'and\', \')+iif(katjaQW[\'ivan_anal\'] = 1, \'Ivan\', \')+\' ain\'t around, maybe we can find someone to join us sometime?"');
+                scene.text('"Have you seen all the hot guys around?" she asks. "Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?"');
                 scene.text('"Of course," you reply "Who could say no to two hot chicks like us?"');
               }
             }
@@ -219,7 +219,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           ((s as any).katjaQW = (s as any).katjaQW ?? {})['annoyed'] = 1;
           qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
           scene.text('As you\'re walking into the lecture hall, somebody suddenly pokes you on your shoulder. You turn around and see a somewhat annoyed-looking Katja.');
-          // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she says flatly. "Why haven't I seen you since we gradu...
+          // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she says flatly. "Why haven''t I seen you since we grad...
           scene.text(`"Hey ${((s as any).pcs_nickname || '')}," she says flatly. "Why haven't I seen you since we graduated? I had no idea that you were in this program!"`);
           scene.text('"Sorry, I didn\'t think it was worth mentioning," you say. "Besides, you didn\'t tell me were in this program either!"');
         } else {
@@ -265,8 +265,8 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
             scene.text('As you enter the lecture hall, you hear a voice behind you. "So are you actually going to study this time around, or are you just here for the sex?" You turn round and see your old classmate, Katja Meynold, with a smile on her face.');
             scene.text('"You could learn a thing or two from me," you say. "It\'s going to get awfully boring around here if all you do is study for five years."');
-            // TODO-QSP: dynamic text: Katja shrugs. "I don't think it's going to be boring, and '+iif(katjaQW['know_go...
-            scene.text('Katja shrugs. "I don\'t think it\'s going to be boring, and \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I don\'t really think you do either since you are here.\', \'that wasn\'t what you told me earlier when you said you were going to study to become a teacher.\')+\'"');
+            // TODO-QSP: dynamic text: Katja shrugs. "I don''t think it''s going to be boring, and '+iif(katjaQW['know_...
+            scene.text('Katja shrugs. "I don\'t think it\'s going to be boring, and ' + ((((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) ? ('I don\'t really think you do either since you are here.') : ('that wasn\'t what you told me earlier when you said you were going to study to become a teacher.')) + '"');
             scene.text('"Well, there\'s plenty of good-looking boys here," you say while glancing around and grinning. "I think I\'ll have plenty of ways to have fun."');
             scene.text('"You\'re incorrigible," Katja says with a smile. "But we could chat about the classes and —if you\'re serious about becoming a teacher— do some studying together." She then turns around to find a place to sit.');
           } else {
@@ -274,8 +274,8 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: iif(katjaQW['know_going_to_teaching_degree'] = 0, '"Oh, I didn''t know that my school''s biggest slu...
               scene.text('As you look around, you see former classmate Katja talking to a girl you don\'t recognize. When she sees that you\'ve noticed her, she promptly drags the other girl away from you. Seems you have some work to do if you want to repair your relationship with her.');
             } else {
-              // TODO-QSP: dynamic text: As you're walking into the lecture hall, you suddenly come face to face with you...
-              scene.text(`As you're walking into the lecture hall, you suddenly come face to face with your old classmate, Katja. "Oh, hey ${((s as any).pcs_nickname || '')}," she says a little hesitantly. "'+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I didn't know that you'd be starting in the teaching program.' , 'I wasn't sure if you were joking when you said that you would be studying to become a teacher.')+' You do know that a teacher has to be a role model for the kids, so maybe you should try to act like an adult," she says, coming off a little sterner than she looks.`);
+              // TODO-QSP: dynamic text: As you''re walking into the lecture hall, you suddenly come face to face with yo...
+              scene.text('As you\'re walking into the lecture hall, you suddenly come face to face with your old classmate, Katja. "Oh, hey ' + ((s as any).pcs_nickname || '') + '," she says a little hesitantly. "\'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know that you\'d be starting in the teaching program.\' , \'I wasn\'t sure if you were joking when you said that you would be studying to become a teacher.\')+\' You do know that a teacher has to be a role model for the kids, so maybe you should try to act like an adult," she says, coming off a little sterner than she looks.');
               scene.text('"I am acting like an adult," you reply. "Sex is a very adult thing to partake in. I\'m sure your life would also be much better if you tried being more like me."');
               scene.text('Katja\'s face turns very red, and she just says "bye" before turning around to find a seat furthest away from you. You can\'t help but get the feeling that she might be more interested in the things you do than she lets on.');
             }
@@ -284,20 +284,20 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
             if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
               // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I d...
-              scene.text(`"Hi, ${((s as any).pcs_nickname || '')}. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I didn't know you had decided to study to become a teacher,', 'I see that you've made your way to our first class,')+'" you hear somebody say from behind. When you turn around, you see your former classmate Katja standing there with a smile on her face.`);
-              // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn't know you were going to take thes...
-              scene.text('"\'+iif(katjaQW[\'know_katja_uni\'] = 0, \'I didn\'t know you were going to take these classes,\', \'Yes, it\'s important to be here for the first class,\')+\'" you reply.');
+              scene.text('"Hi, ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you\'ve made your way to our first class,\')+\'" you hear somebody say from behind. When you turn around, you see your former classmate Katja standing there with a smile on her face.');
+              // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
+              scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
               scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have friends in the class. We can talk about classes later and maybe study together," she says before saying goodbye and going off to find a place to sit.');
             } else {
               if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
                 scene.text('You see a redheaded girl trying to avoid you and recognize her as your old classmate Katja. You decide to approach her. "Hi Katja!"');
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she replies, not looking particularly happy. "You know, ...
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}," she replies, not looking particularly happy. "You know, you could try to be nicer and not just look down on others since you think you're'+iif(grupTipe = 1, ' so cool', ' good at sports')+', that way others might like you more," she says before turning around and finding a place to sit.`);
+                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '," she replies, not looking particularly happy. "You know, you could try to be nicer and not just look down on others since you think you\'re\'+iif(grupTipe = 1, \' so cool\', \' good at sports\')+\', that way others might like you more," she says before turning around and finding a place to sit.');
               } else {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I didn't know you had decided to study to become a teacher,', 'I see that you've made you way to our first class,')+'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.`);
-                // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn't know you were going to take thes...
-                scene.text('"\'+iif(katjaQW[\'know_katja_uni\'] = 0, \'I didn\'t know you were going to take these classes,\', \'Yes, it\'s important to be here for the first class,\')+\'" you reply.');
+                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you\'ve made you way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.');
+                // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
+                scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
                 scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have somebody you already know in the class. Maybe we can talk about classes later," she says before saying goodbye and finding a place to sit.');
               }
             }
@@ -305,30 +305,30 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
             if (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).grupTipe ?? 0) === 4) {
               if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}, '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I didn't know you had decided to study to become a teacher,', 'I see that you have made your way to our first class,')+'" you hear someone say behind you. When you turn around, you see your former classmate Katja standing there with a smile on her face.`);
-                // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn't know you were going to take thes...
-                scene.text('"\'+iif(katjaQW[\'know_katja_uni\'] = 0, \'I didn\'t know you were going to take these classes,\', \'Yes, it\'s important to be here for the first class,\')+\'" you reply.');
-                // TODO-QSP: dynamic text: "I think it's going to be so fun and exciting. It's nice to already have somebod...
-                scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to already have somebody you know in the class. I always envied that you \'+iif(grupTipe = 3, \'and your group could actually talk about classes and such during breaks, not just empty gossip like with mine.\', \'were so free to not just follow social norms. What a complete waste it was that you just used it to bully everyone else and be the biggest jerks around.\')+\' At least now, nobody will look down on us talking together. We can hang out after class and talk or maybe do some studying together," she says before saying goodbye and finding a place to sit.');
+                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + ', \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have made your way to our first class,\')+\'" you hear someone say behind you. When you turn around, you see your former classmate Katja standing there with a smile on her face.');
+                // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
+                scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
+                // TODO-QSP: dynamic text: "I think it''s going to be so fun and exciting. It''s nice to already have someb...
+                scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to already have somebody you know in the class. I always envied that you ' + ((((s as any).grupTipe ?? 0) === 3) ? ('and your group could actually talk about classes and such during breaks, not just empty gossip like with mine.') : ('were so free to not just follow social norms. What a complete waste it was that you just used it to bully everyone else and be the biggest jerks around.')) + ' At least now, nobody will look down on us talking together. We can hang out after class and talk or maybe do some studying together," she says before saying goodbye and finding a place to sit.');
               } else {
                 if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
                   scene.text('You see a redheaded girl trying to avoid you, and recognize her as your old classmate Katja. You decide to approach her. "Hi Katja," you say.');
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she replies, not looking particularly happy. "You know, ...
-                  scene.text(`"Hi ${((s as any).pcs_nickname || '')}," she replies, not looking particularly happy. "You know, you could try to be nicer and'+iif(grupTipe = 1 or grupTipe = 3, ' not just look down on others since you think you're so much smarter than the rest of us,', ' not be such a bully,')+' that way others might like you more," she says before turning around and finding a place to sit.`);
+                  scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '," she replies, not looking particularly happy. "You know, you could try to be nicer and\'+iif(grupTipe = 1 or grupTipe = 3, \' not just look down on others since you think you\'re so much smarter than the rest of us,\', \' not be such a bully,\')+\' that way others might like you more," she says before turning around and finding a place to sit.');
                 } else {
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                  scene.text(`"Hi ${((s as any).pcs_nickname || '')}. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I didn't know you had decided to study to become a teacher.', 'I see that you've made your way to our first class,')+'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.`);
-                  // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn't know you were going to take thes...
-                  scene.text('"\'+iif(katjaQW[\'know_katja_uni\'] = 0, \'I didn\'t know you were going to take these classes,\', \'Yes, it is important to be here for the first class,\')+\'" you reply.');
+                  scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher.\', \'I see that you\'ve made your way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.');
+                  // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
+                  scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it is important to be here for the first class,')) + '" you reply.');
                   scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have somebody you already know in the class, especially now that nobody\'s going to judge us for talking simply because we belonged to some stupid cliques in school. Maybe we can talk about classes later?" she says before saying goodbye and finding a place to sit.');
                 }
               }
             } else {
               if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I didn't know you had decided to study to become a teacher,', 'I see that you have made your way to our first class,')+'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there with a smile on her face.`);
-                // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn't know you were going to take thes...
-                scene.text('"\'+iif(katjaQW[\'know_katja_uni\'] = 0, \'I didn\'t know you were going to take these classes,\', \'Yes, it\'s important to be here for the first class,\')+\'" you reply.');
+                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have made your way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there with a smile on her face.');
+                // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
+                scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
                 scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have somebody you know in the class. Now hopefully nobody will shun you just because some of the worst people in our old school decided that you were toxic. We can hang out after class and talk or maybe do some studying together," she says before saying goodbye and finding a place to sit.');
               } else {
                 if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
@@ -336,9 +336,9 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
                   scene.text('"Don\'t talk to me; you are disgusting!" she says before turning around and finding a place to sit far away from you.');
                 } else {
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                  scene.text(`"Hi ${((s as any).pcs_nickname || '')}. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I didn't know you had decided to study to become a teacher,', 'I see that you have also made your way to our first class,')+'" you hear somebody say from behind you. When you turn around, you see your former classmate Katja standing there.`);
-                  // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn't know you were going to take thes...
-                  scene.text('"\'+iif(katjaQW[\'know_katja_uni\'] = 0, \'I didn\'t know you were going to take these classes,\', \'Yes, it\'s important to be here for the first class,\')+\'" you reply.');
+                  scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have also made your way to our first class,\')+\'" you hear somebody say from behind you. When you turn around, you see your former classmate Katja standing there.');
+                  // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
+                  scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
                   scene.text('"I think it\'s going to be so fun and exciting. It was really terrible the way the others treated you in school, just because some people at school decided that you were toxic. I, for one, am glad to put all that behind us and think it\'s nice to have somebody you already know in the class. Maybe we can talk about classes later?" she says before saying goodbye and finding a place to sit.');
                 }
               }
@@ -368,9 +368,9 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
     if (((s as any).PCloSkirt ?? 0) < 3) {
       scene.img('images/characters/shared/headshots_main/big14.jpg');
       // TODO-QSP: dynamic text: "Why are you wearing '+iif( PCloSkirt = 0, 'pants', 'such a long skirt')+'?" Kat...
-      scene.text('"Why are you wearing \'+iif( PCloSkirt = 0, \'pants\', \'such a long skirt\')+\'?" Katja asks. "I can\'t check to see if you\'re wearing panties or not!"');
-      // TODO-QSP: dynamic text: "I am '+iif($pantyworntype = 'none', 'of course not ', ')+'wearing panties," you...
-      scene.text('"I am \'+iif($pantyworntype = \'none\', \'of course not \', \')+\'wearing panties," you say.');
+      scene.text('"Why are you wearing ' + (((!((s as any).PCloSkirt ?? 0))) ? ('pants') : ('such a long skirt')) + '?" Katja asks. "I can\'t check to see if you\'re wearing panties or not!"');
+      // TODO-QSP: dynamic text: "I am '+iif($pantyworntype = 'none', 'of course not ', '')+'wearing panties," yo...
+      scene.text('"I am ' + ((((s as any).pantyworntype ?? 0) === 'none') ? ('of course not ') : ('')) + 'wearing panties," you say.');
       if (((s as any).pantyworntype ?? 0) === 'none') {
         scene.text('"What\'s the point of not wearing panties when there\'s no chance that anyone can get a glimpse of your bare pussy? You can\'t even feel the draft," she says. She looks at the clock and starts dragging you toward the toilets. "We have time before class for me to check if you\'re lying."');
       } else {
@@ -386,11 +386,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Resist Katja', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'hate');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'hate');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (2);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No. Not now," you tell Katja as you free yourself from her grip. She looks a little shocked, standing there not knowing what to do. You leave her pondering upon her actions.');
     scene.actions([
@@ -403,7 +403,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Follow Katja to the toilets', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
     // TODO-QSP: gt 'katja_uni', 'bathroom_panty_check', $ARGS[1]
   } },
       ]);
@@ -424,10 +424,10 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Remove Katja\'s hand', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'foreplay', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'foreplay', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
+    qspCall(st, 'arousal', 'end');
     scene.text('"Stop it! Not here," you tell Katja as you remove her hand from under your skirt. She grins at you and moves away to find a place to sit.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
@@ -447,13 +447,13 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Return Katja\'s touch', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'love');
-    qspCall(s, 'willpower', 'foreplay', 'self', 'easy');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'vaginal_finger', 2);
-    qspCall(s, 'arousal', 'vaginal_finger_give', (-2));
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (20);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'love');
+    qspCall(st, 'willpower', 'foreplay', 'self', 'easy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'vaginal_finger', 2);
+    qspCall(st, 'arousal', 'vaginal_finger_give', (-2));
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/double_panty_check.jpg');
     scene.text('You move one of your hands under Katja\'s skirt to find her bare and completely smooth pussy and gently start rubbing her pussy lips. "I\'m not the only good girl around, it seems," you say. You continue rubbing each other\'s pussies and you can feel that she is starting to get wet.');
     scene.text('Suddenly, you are disturbed by loud voices very close by, and you remember that you\'re standing in the classroom with classes about to start. You both quickly withdraw your hands and Katja turns to you saying with a grin and wink in her eye, "This is going to be really fun." She then licks her fingers and leaves to find a place to sit, and you are left wondering what kind of monster you have created.');
@@ -467,11 +467,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Enjoy her touch', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'arousal', 'vaginal_finger', 2);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'arousal', 'vaginal_finger', 2);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/panty_check.jpg');
     scene.text('You just stand there, surprised about how bold Katja has gotten. She continues rubbing your pussy, making it harder for you to keep your voice down.');
     scene.text('Suddenly, you are disturbed by loud voices close by, and she remembers that you\'re standing in the classroom with classes about to start. She quickly withdraws her hand and turns to you, saying with a grin and wink in her eye, "This is going to be really fun." She then licks her fingers and leaves to find a place to sit as you are left wondering what kind of monster you have created.');
@@ -495,11 +495,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Resist Katja', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'hate');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'hate');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (2);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No! Not now," you tell Katja as you free yourself from her grip. She looks a little shocked, standing there not knowing what to do. You leave her pondering her actions.');
     scene.actions([
@@ -512,7 +512,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Follow Katja to the toilet', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
     // TODO-QSP: gt 'katja_uni', 'bathroom_panty_check', $ARGS[1]
   } },
           ]);
@@ -534,11 +534,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Return Katja\'s touch', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 1);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/double_panty_check.jpg');
     scene.text('You move one of your hands under Katja\'s skirt and find her bare, completely smooth pussy and gently touch it before removing your hand. "I can feel that I\'m not the only good girl around here," you say.');
     scene.text('Katja turns to you and grins. "This is going to be real fun. See you later."');
@@ -553,8 +553,8 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Act surprised', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/panty_check.jpg');
     scene.text('You just stand there, surprised about how bold Katja has become. She turns to you and grins. "This is going to be real fun. See you later." She turns around and leaves to find a place to sit.');
     scene.actions([
@@ -577,11 +577,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Resist Katja', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'hate');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'hate');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (2);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No! Not now," you tell Katja as you free yourself from her grip. She looks a little shocked, standing there not knowing what to do. You leave her pondering her actions.');
     scene.actions([
@@ -594,7 +594,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Follow Katja to the toilet', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
     // TODO-QSP: gt 'katja_uni', 'bathroom_panty_check', $ARGS[1]
   } },
             ]);
@@ -624,11 +624,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Resist Katja', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'hate');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (5);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'hate');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (5);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (2);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No! Not now," you tell Katja as you free yourself from her grip. She looks a little shocked, standing there not knowing what to do. You leave her pondering her actions.');
     scene.actions([
@@ -641,7 +641,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Follow Katja to the toilet', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (2);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (2);
     // TODO-QSP: gt 'katja_uni', 'bathroom_panty_check', $ARGS[1]
   } },
             ]);
@@ -655,13 +655,13 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask if she\'s wearing panties', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
-    if (((s as any).pantyworntype ?? 0) === 'none') {
+    if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('"So, I\'m still not wearing panties. Are you?" you ask.');
       scene.text('"Yes, of course, I am! Why should\'t I?" she answers.');
       scene.text('"Because life is more fun without panties," you say.');
       scene.text('Looking at the clock, you see that there\'s still enough time before class starts to go to the toilet and have her take off her panties.');
-      qspCall(s, 'willpower', 'exhib', 'force', 'medium');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'exhib', 'force', 'medium');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Drag her to the toilet', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -670,11 +670,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Drag her to the toilet', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (5);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (2);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"We\'re going to do something about this. Come with me," you tell her before grabbing her arm.');
     scene.text('"No, class is starting!" she answers meekly.');
@@ -689,7 +689,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Just find a place to sit', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
   } },
       ]);
@@ -699,8 +699,8 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yes, but that\'s not the point. I thought I had taught you not to wear panties to school," you say.');
       scene.text('"That is totally the point," she says "If you can wear panties, then so can I."');
       scene.text('You can\'t fault her logic. Looking at the clock, you see that there\'s still enough time before class starts to go to the toilet and have her take off her panties.');
-      qspCall(s, 'willpower', 'exhib', 'force', 'medium');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'exhib', 'force', 'medium');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Drag her to the toilet', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -709,11 +709,11 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Drag her to the toilet', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (5);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (2);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"I think we both need to do something about this. Come with me," you tell her and grab her arm.');
     scene.text('"No, class is starting!" she answers meekly.');
@@ -728,7 +728,7 @@ function enterPantyCheck(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Just find a place to sit', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
   } },
       ]);
@@ -747,7 +747,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) === 'none') {
     scene.text('"So, show me that you\'re not wearing panties," Katja says.');
     // TODO-QSP: dynamic text: You slowly '+iif(PCloSkirt = 0, 'unzip your pants and pull them down ', 'hike up...
-    scene.text('You slowly \'+iif(PCloSkirt = 0, \'unzip your pants and pull them down \', \'hike up your skirt \')+\' so Katja can see your exposed pussy. "See. Are you satisfied?" you ask.');
+    scene.text('You slowly ' + (((!((s as any).PCloSkirt ?? 0))) ? ('unzip your pants and pull them down ') : ('hike up your skirt ')) + ' so Katja can see your exposed pussy. "See. Are you satisfied?" you ask.');
     if (((s as any).katjaQW ?? 0)?.['slut'] >= 100) {
       ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
       scene.text('"Well, let me really check it first," she says with a devilish wink as she moves closer and puts her hand on your pussy and gently starts to rub it. "Yeah, that does feel like a naked pussy. Remember to wear something appropriate so that we don\'t need to go to the bathroom to check in the future," she says, continuing to rub your pussy.');
@@ -762,10 +762,10 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Remove Katja\'s hand', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'foreplay', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'foreplay', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Stop it! Not now. We need to go back so we\'re not late for class," you tell her as you remove her hand from your pussy. She grins at you, then heads back to the lecture hall.');
     scene.actions([
@@ -786,18 +786,18 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Return Katja\'s touch', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'love');
-    qspCall(s, 'willpower', 'foreplay', 'self', 'easy');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'vaginal_finger', 2);
-    qspCall(s, 'arousal', 'vaginal_finger_give', (-2));
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (20);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'love');
+    qspCall(st, 'willpower', 'foreplay', 'self', 'easy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'vaginal_finger', 2);
+    qspCall(st, 'arousal', 'vaginal_finger_give', (-2));
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/bathroom_double_fingering.jpg');
     scene.text('You move one of your hands under Katja\'s skirt and find her bare, completely smooth pussy and gently start rubbing her pussy lips. You continue rubbing each other and you can feel that she\'s starting to get wet.');
     scene.text('Katja starts moaning softly before she suddenly stops and pulls herself away from you, "Class is starting!" she says in an alarmed voice and runs back to the lecture hall.');
     // TODO-QSP: dynamic text: You quickly '+iif(PCloSkirt = 0, 'zip up your pants ', 'straighten your skirt ')...
-    scene.text('You quickly \'+iif(PCloSkirt = 0, \'zip up your pants \', \'straighten your skirt \')+\'and while rushing back to class, wonder what sort of monster you have created.');
+    scene.text('You quickly ' + (((!((st as any).PCloSkirt ?? 0))) ? ('zip up your pants ') : ('straighten your skirt ')) + 'and while rushing back to class, wonder what sort of monster you have created.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -808,15 +808,15 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Enjoy her touch', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'arousal', 'vaginal_finger', 2);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'arousal', 'vaginal_finger', 2);
+    qspCall(st, 'arousal', 'end');
     scene.text('You just stand there, surprised about how bold Katja has become. She continues rubbing your pussy, making it harder for you to keep your voice down.');
     scene.text('After a little while, she stops and says with a grin and wink, "This will do for now as class is starting soon, so we have to postpone the rest. This is going to be real fun." She then licks her fingers and heads back to the lecture hall.');
     // TODO-QSP: dynamic text: You quickly '+iif(PCloSkirt = 0, 'zip up your pants ', 'straighten your skirt ')...
-    scene.text('You quickly \'+iif(PCloSkirt = 0, \'zip up your pants \', \'straighten your skirt \')+\'and while rushing back to class, wonder what sort of monster you have created.');
+    scene.text('You quickly ' + (((!((st as any).PCloSkirt ?? 0))) ? ('zip up your pants ') : ('straighten your skirt ')) + 'and while rushing back to class, wonder what sort of monster you have created.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -838,16 +838,16 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Return Katja\'s touch', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 1);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/bathroom_double_fingering.jpg');
     scene.text('You move one of your hands under Katja\'s skirt and find her bare, completely smooth pussy and gently touch it before removing your hand. "I can feel that I\'m not the only good girl around here," you say.');
     scene.text('"This is going to be real fun, but class is starting soon so we have to run. See you later," she says and hurries back to the lecture room.');
     // TODO-QSP: dynamic text: You quickly '+iif(PCloSkirt = 0, 'zip up your pants ', 'straighten your skirt ')...
-    scene.text('You quickly \'+iif(PCloSkirt = 0, \'zip up your pants \', \'straighten your skirt \')+\'and rush back to class.');
+    scene.text('You quickly ' + (((!((st as any).PCloSkirt ?? 0))) ? ('zip up your pants ') : ('straighten your skirt ')) + 'and rush back to class.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -858,11 +858,11 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Act surprised', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    qspCall(st, 'arousal', 'end');
     scene.text('You just stand there, surprised about how bold Katja has become. "This is going to be real fun, but class is starting soon so we have to run. See you later," she says and hurries back to the lecture room.');
     // TODO-QSP: dynamic text: You quickly '+iif(PCloSkirt = 0, 'zip up your pants ', 'straighten your skirt ')...
-    scene.text('You quickly \'+iif(PCloSkirt = 0, \'zip up your pants \', \'straighten your skirt \')+\'and rush back to class.');
+    scene.text('You quickly ' + (((!((st as any).PCloSkirt ?? 0))) ? ('zip up your pants ') : ('straighten your skirt ')) + 'and rush back to class.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -877,7 +877,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/katja_lick.jpg');
       // TODO-QSP: dynamic text: Katja gets in close and squats down in front of you. She then '+iif(PCloSkirt = ...
-      scene.text('Katja gets in close and squats down in front of you. She then \'+iif(PCloSkirt = 0, \'unzips your pants and pulls them down, getting you to step out of them. Next, she grabs your panties and they also come off. \', \'lifts your skirt and pulls your panties off. \')+\'Instead of getting up, she moves her face closer to your pussy and starts gently licking it.');
+      scene.text('Katja gets in close and squats down in front of you. She then ' + (((!((s as any).PCloSkirt ?? 0))) ? ('unzips your pants and pulls them down, getting you to step out of them. Next, she grabs your panties and they also come off. ') : ('lifts your skirt and pulls your panties off. ')) + 'Instead of getting up, she moves her face closer to your pussy and starts gently licking it.');
       qspCall(s, 'arousal', 'cuni', 1);
       qspCall(s, 'willpower', 'foreplay', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -889,10 +889,10 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Remove Katja\'s head', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'foreplay', 'resist', 'medium');
-    qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'foreplay', 'resist', 'medium');
+    qspCall(st, 'willpower', 'pay', 'self');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You push Katja\'s face away, "Stop it! Not now. We need to go back so we\'re not late for class!"');
     scene.text('She gets up while grinning at you. "Well, I\'ll have to continue this later. Remember, no panties in class!" She then turns around and heads back to the lecture hall.');
@@ -907,17 +907,17 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Enjoy her tongue', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'arousal', 'cuni', 2);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (20);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'arousal', 'cuni', 2);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/katja_lick.jpg');
     scene.text('You just stand there, surprised about how bold Katja has become. She continues licking your pussy, making it harder for you to keep your voice down.');
     scene.text('After a little while, she stops and gets up and wipes her lips.');
     scene.text('"This will do for now but class is starting soon, so we have to postpone the rest. Remember to not wear panties in class," she winks. "This is going to be real fun. Later."');
     // TODO-QSP: dynamic text: She turns around and leaves you in the toilet. You quickly '+iif(PCloSkirt = 0, ...
-    scene.text('She turns around and leaves you in the toilet. You quickly \'+iif(PCloSkirt = 0, \'zip up your pants. \', \'straighten your skirt. \')+\'As you rush back to class, you wonder what sort of monster you have created.');
+    scene.text('She turns around and leaves you in the toilet. You quickly ' + (((!((st as any).PCloSkirt ?? 0))) ? ('zip up your pants. ') : ('straighten your skirt. ')) + 'As you rush back to class, you wonder what sort of monster you have created.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -931,7 +931,7 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'vaginal_finger', 1);
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: Katja gets in close and squats down in front of you. She then '+iif(PCloSkirt = ...
-      scene.text('Katja gets in close and squats down in front of you. She then \'+iif(PCloSkirt = 0, \'unzips your pants and pulls them down, pulling your panties with them, both sets from your ankles. \', \'lifts your skirt and tugs your panties down. \')+\'Instead of getting up, she takes the opportunity to slip a finger inside your pussy.');
+      scene.text('Katja gets in close and squats down in front of you. She then ' + (((!((s as any).PCloSkirt ?? 0))) ? ('unzips your pants and pulls them down, pulling your panties with them, both sets from your ankles. ') : ('lifts your skirt and tugs your panties down. ')) + 'Instead of getting up, she takes the opportunity to slip a finger inside your pussy.');
       scene.text('"<i>Now</i> you\'re a good girl," she murmurs.');
       qspCall(s, 'willpower', 'foreplay', 'self', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -943,17 +943,17 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Return Katja\'s touch', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 1);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/bathroom_double_fingering.jpg');
     scene.text('You slip a hand under Katja\'s skirt and find a smooth, naked pussy yourself.');
     scene.text('"It seems I\'m not the only good girl around here," you say.');
     scene.text('"Remember not to wear panties in the future," Katja grins. She stuffs your panties into your purse with a wink. "This is going to be real fun, but class is starting soon so we have to run. See you later," she says and hurries back to the lecture room.');
     // TODO-QSP: dynamic text: You quickly '+iif(PCloSkirt = 0, 'You zip up your pants ', 'You straighten your ...
-    scene.text('You quickly \'+iif(PCloSkirt = 0, \'You zip up your pants \', \'You straighten your skirt\')+\'and rush back to class.');
+    scene.text('You quickly ' + (((!((st as any).PCloSkirt ?? 0))) ? ('You zip up your pants ') : ('You straighten your skirt')) + 'and rush back to class.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -964,11 +964,11 @@ function enterBathroomPantyCheck(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Act surprised', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    qspCall(st, 'arousal', 'end');
     scene.text('You just stand there, surprised about how bold Katja has become. "This is going to be real fun, but class is starting soon so we have to run. See you later," she says and hurries back to the lecture room.');
     // TODO-QSP: dynamic text: You quickly '+iif(PCloSkirt = 0, 'zip up your pants ', 'straighten your skirt ')...
-    scene.text('You quickly \'+iif(PCloSkirt = 0, \'zip up your pants \', \'straighten your skirt \')+\'and rush back to class.');
+    scene.text('You quickly ' + (((!((st as any).PCloSkirt ?? 0))) ? ('zip up your pants ') : ('straighten your skirt ')) + 'and rush back to class.');
     scene.actions([
       { label: 'Find a place to sit', handler: (st: GameState) => {
     // TODO-QSP: gt 'uni_lessons1', $ARGS[1]
@@ -991,8 +991,8 @@ function enterBathroomKatjaPantyRemove(s: GameState, scene: SceneBuilder): void 
   scene.text('You drag Katja out of the lecture hall and hurry over to the girl\'s room. Once you get inside, you quickly check to see they are empty save for the two of you.');
   if (((s as any).pantyworntype ?? 0) === 'none') {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/taking_panties_of.mp4');
-    // TODO-QSP: dynamic text: Confirming you're alone, you '+iif(PCloSkirt > 0, 'pull up your skirt', 'pull do...
-    scene.text('Confirming you\'re alone, you \'+iif(PCloSkirt > 0, \'pull up your skirt\', \'pull down your pants\')+\', showing Katja your bare pussy. "Now it\'s your turn."');
+    // TODO-QSP: dynamic text: Confirming you''re alone, you '+iif(PCloSkirt > 0, 'pull up your skirt', 'pull d...
+    scene.text('Confirming you\'re alone, you ' + ((((s as any).PCloSkirt ?? 0) > 0) ? ('pull up your skirt') : ('pull down your pants')) + ', showing Katja your bare pussy. "Now it\'s your turn."');
     scene.text('Katja looks around a little hesitantly, but then reaches under her skirt and quickly pulls down her panties. "Satisfied?" she says with a grin, holding up her skirt to show her bare pussy.');
     scene.text('"Very satisfied!" you answer. "Now remember to not wear panties to class from now on."');
     // TODO-QSP: iif(PCloSkirt > 3, '"Yes ma''am," Katja says mockingly. ', '"Only if you also wear short skirts," Ka...
@@ -1068,7 +1068,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
               scene.text('"Why are you disturbing me?" she scowls. "Leave me alone. Some of us actually take our studies seriously."');
             } else {
-              // TODO-QSP: dynamic text: "What are you doing here <<$pcs_nickname>>?" she says. "I'm trying to study, so ...
+              // TODO-QSP: dynamic text: "What are you doing here <<$pcs_nickname>>?" she says. "I''m trying to study, so...
               scene.text(`"What are you doing here ${((s as any).pcs_nickname || '')}?" she says. "I'm trying to study, so I would like some peace and quiet!" she says, waiting to see your reaction.`);
             }
           }
@@ -1087,7 +1087,7 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            // TODO-QSP: dynamic text: You don't need to study any more this week for your <<$class_list_name[i]>> clas...
+            // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
             scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
           }
         }
@@ -1148,7 +1148,7 @@ function enterLibrary2(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          // TODO-QSP: dynamic text: You don't need to study any more this week for your <<$class_list_name[i]>> clas...
+          // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
           scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
         }
       }
@@ -1191,8 +1191,8 @@ function enterStudyingAsk(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).week ?? 0) < 6  ||  ((s as any).hour ?? 0) < 23)  &&  ((s as any).hour ?? 0) > 7) {
       scene.actions([
         { label: 'Return to entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_library', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_library', 'start');
   } },
         { label: 'Wander around', goto: ['uni_library', 'wander'] },
       ]);
@@ -1201,8 +1201,8 @@ function enterStudyingAsk(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'uni_grounds', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'uni_grounds', '');
   } },
     ]);
   } else {
@@ -1249,8 +1249,8 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Say goodbye to Katja and return to the library entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_library', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_library', 'start');
   } },
         ]);
       } else {
@@ -1259,8 +1259,8 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Say goodbye to Katja and leave the library', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'uni_grounds', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'uni_grounds', '');
   } },
       ]);
     }
@@ -1277,8 +1277,8 @@ function enterStudyingExamAsk(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).week ?? 0) < 6  ||  ((s as any).hour ?? 0) < 23)  &&  ((s as any).hour ?? 0) > 7) {
       scene.actions([
         { label: 'Return to entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_library', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_library', 'start');
   } },
         { label: 'Wander around', goto: ['uni_library', 'wander'] },
       ]);
@@ -1287,8 +1287,8 @@ function enterStudyingExamAsk(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'uni_grounds', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'uni_grounds', '');
   } },
     ]);
   } else {
@@ -1307,7 +1307,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like', 3, 'studying_exam');
   scene.text('<center><b>The University Library</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/studying_together.jpg');
-  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0));
   // TODO-QSP: gs 'mood', 'raise', (trait_vars['academic']*5 -10)
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   // TODO-QSP: dynamic text: You and Katja start studying for the <<$ARGS[2]>> exam. The library is mostly qu...
@@ -1414,8 +1414,8 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Say goodbye to Katja and return to the library entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_library', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_library', 'start');
   } },
     ]);
   } else {
@@ -1428,8 +1428,8 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'uni_grounds', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'uni_grounds', '');
   } },
     ]);
   }
@@ -1449,7 +1449,7 @@ function enterStudySelect(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        // TODO-QSP: dynamic text: You don't need to study any more this week for your <<$class_list_name[i]>> clas...
+        // TODO-QSP: dynamic text: You don''t need to study any more this week for your <<$class_list_name[i]>> cla...
         scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
       }
     }
@@ -1489,23 +1489,23 @@ function enterStudyWatch(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue to watch her', handler: (st: GameState) => {
-    if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((s as any).pcs_hotcat ?? 0) > (Math.floor(Math.random() * 16) + 5)) {
-      qspGoto(s, 'katja_uni_sex', 'library_threesome1');
+    if (((st as any).katjaQW ?? 0)?.['QWstage'] >= 6  &&  ((st as any).pcs_hotcat ?? 0) > (Math.floor(Math.random() * 16) + 5)) {
+      qspGoto(st, 'katja_uni_sex', 'library_threesome1');
     } else {
-      if (((s as any).npc_had_sex ?? 0)?.['A14']  &&  Math.min(((s as any).pcs_horny ?? 0), 100) >= (Math.floor(Math.random() * 101) + 50)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
-        qspGoto(s, 'katja_uni_sex', 'library_licking1');
+      if (((st as any).npc_had_sex ?? 0)?.['A14']  &&  Math.min(((st as any).pcs_horny ?? 0), 100) >= (Math.floor(Math.random() * 101) + 50)  &&  ((st as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
+        qspGoto(st, 'katja_uni_sex', 'library_licking1');
       } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        qspCall(s, 'stat', '');
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
+        qspCall(st, 'stat', '');
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/studying_alone.jpg');
         scene.text('She finishes her studying and gets ready to move on.');
-        if ((((s as any).week ?? 0) < 6  ||  ((s as any).hour ?? 0) < 23)  &&  ((s as any).hour ?? 0) > 7) {
+        if ((((st as any).week ?? 0) < 6  ||  ((st as any).hour ?? 0) < 23)  &&  ((st as any).hour ?? 0) > 7) {
           scene.text('"Well, I have to get going now," Katja says, starting to pack up her stuff. "But it was nice having you here."');
           scene.text('She leaves the library, giving you a wave and a smile on the way out.');
           scene.actions([
             { label: 'Say goodbye to Katja and return to the library entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspGoto(s, 'uni_library', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspGoto(st, 'uni_library', 'start');
   } },
           ]);
         } else {
@@ -1514,8 +1514,8 @@ function enterStudyWatch(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Say goodbye to Katja and leave the library', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'uni_grounds', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'uni_grounds', '');
   } },
         ]);
       }
@@ -1534,7 +1534,7 @@ function enterDormRoomInvite(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go with Katja', goto: ['katja_uni', 'dorm_room_walk'] },
     { label: 'You don\'t have time', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'dislike');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You tell Katja that you don\'t have time right now. She looks a little sad.');
     scene.text('"Okay, another time then…"');
@@ -1560,8 +1560,8 @@ function enterDormRoomWalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk up the stairs', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'voyeur', 3, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 3, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/Stair_case_voyeur.jpg');
     scene.text('You head up the stairs together and as you get to the second landing, Katja suddenly grabs you by the arm and yanks you backward, stopping you from going any higher. You turn to look at her in confusion and see her eyes are wide.');
     scene.text('Following her gaze up the staircase, you are greeted with the sight of two girls kissing, pressed up against the door. One of them has her hand up the other\'s blouse, fondling her breast. In return, the second girl\'s hand is under the first\'s skirt, and from this angle you can see she\'s knuckle-deep in her pussy. Both of them seem to be trying to see who can get the other\'s tongue deeper down the other\'s throat.');
@@ -1574,23 +1574,23 @@ function enterDormRoomWalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s go to your room," you say, eyeing Katja. She just nods, her face practically as red as her hair.');
     scene.actions([
       { label: 'Go to Katja\'s room', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 2;
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['knows_dorm_room_number'] = 1;
-    qspCall(s, 'arousal', 'voyeur', 3, 'lesbian');
-    qspCall(s, 'arousal', 'end');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 70;
-    qspCall(s, 'stat', '');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['QWstage'] = 2;
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['knows_dorm_room_number'] = 1;
+    qspCall(st, 'arousal', 'voyeur', 3, 'lesbian');
+    qspCall(st, 'arousal', 'end');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = 70;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dorm_room.jpg');
     scene.text('You continue up the stairs and into Katja\'s room in complete silence. Her side of the room is a lot less feminine than you would expect from a girl like her. The walls are plastered with posters and notes, and her shelves are lined with books. Her roommate\'s side looks barren by comparison.');
     scene.text('After you have taken in the look of her room, you turn to look at Katja. She hasn\'t said anything since before the staircase and her blush hasn\'t faded in the slightest. Just as you\'re about to say something, she breaks the silence instead.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> have you ever done that? I mean kissed a girl and…" Her voice...
-    scene.text(`"${((s as any).pcs_nickname || '')} have you ever done that? I mean kissed a girl and…" Her voice falters at the end, but she's now looking at you with her big beautiful eyes.`);
-    if (((s as any).stat ?? 0)?.['female_sexual_partners'] > 0) {
+    scene.text(`"${((st as any).pcs_nickname || '')} have you ever done that? I mean kissed a girl and…" Her voice falters at the end, but she's now looking at you with her big beautiful eyes.`);
+    if (((st as any).stat ?? 0)?.['female_sexual_partners'] > 0) {
       scene.actions([
         { label: 'Tell Katja you have kissed a girl and gone further', goto: ['katja_uni', 'experienced_tell'] },
       ]);
     } else {
-      if (((s as any).stat ?? 0)?.['women_kissed'] > 0) {
+      if (((st as any).stat ?? 0)?.['women_kissed'] > 0) {
         scene.actions([
           { label: 'Tell Katja you have kissed a girl but not gone further', goto: ['katja_uni', 'inexperienced_tell'] },
         ]);
@@ -1599,8 +1599,8 @@ function enterDormRoomWalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell Katja that you have not kissed a girl', goto: ['katja_uni', 'no_experienced_tell'] },
       { label: 'Tell Katja that you don\'t want to discuss such things', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'loathe');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'loathe');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You tell that you don\'t want to talk about these things, and she looks heartbroken. You quickly change the conversation and ask her to show you the clothes she mentioned.');
     scene.actions([
@@ -1624,17 +1624,17 @@ function enterExperiencedTell(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   // TODO-QSP: dynamic text: You tell Katja that you have '+iif(girl > 5 or (stat['cuni_give'] + stat['vagina...
-  scene.text('You tell Katja that you have \'+iif(girl > 5 or (stat[\'cuni_give\'] + stat[\'vaginal_finger_give\'] + stat[\'vaginal_fist_give\'] + stat[\'vaginal_dildo_give\'] + stat[\'vaginal_strap_give\'] + stat[\'vaginal_vibe_give\']) > 10, \'a lot\', \'some\')+\'experience having sex with girls.');
+  scene.text('You tell Katja that you have ' + ((((s as any).girl ?? 0) > 5  ||  (((s as any).stat ?? 0)?.['cuni_give'] + ((s as any).stat ?? 0)?.['vaginal_finger_give'] + ((s as any).stat ?? 0)?.['vaginal_fist_give'] + ((s as any).stat ?? 0)?.['vaginal_dildo_give'] + ((s as any).stat ?? 0)?.['vaginal_strap_give'] + ((s as any).stat ?? 0)?.['vaginal_vibe_give']) > 10) ? ('a lot') : ('some')) + 'experience having sex with girls.');
   scene.text('She bites her lip hesitantly.');
   scene.text('"Would you like to kiss me?" she asks, looking at you with her big eyes.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss Katja', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 3;
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
-    qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'stat', '');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['QWstage'] = 3;
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (20);
+    qspCall(st, 'arousal', 'kiss', 3, 'lesbian');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/katja_kiss.jpg');
     scene.text('You move closer to Katja and slowly put your lips to hers. Your tongue slips into her mouth and finds hers, carefully but eagerly pressing back against yours. You push it further, and you spend the next few minutes playing a full game of tonsil hockey.');
     scene.actions([
@@ -1647,7 +1647,7 @@ function enterExperiencedTell(s: GameState, scene: SceneBuilder): void {
     scene.text('Her voice trails off and she places her hand gently on your thigh.');
     scene.actions([
       { label: 'Say no', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No, that\'s all for today," you tell her. She doesn\'t seem completely satisfied with your decision, but doesn\'t complain. "Besides, you wanted to show me some clothes, didn\'t you?"');
     scene.text('"Oh! Yes!" she squeaks, clearly having forgotten after all the excitement. "Just give me a second!"');
@@ -1676,11 +1676,11 @@ function enterInexperiencedTell(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss Katja', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 3;
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
-    qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'stat', '');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['QWstage'] = 3;
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (20);
+    qspCall(st, 'arousal', 'kiss', 3, 'lesbian');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/katja_kiss.jpg');
     scene.text('You move closer to Katja and slowly put your lips to hers. Your tongue slips into her mouth and finds hers. She recoils on instinct but you chase after her, making sure her lips never leave yours. You push it further and end up spending the next few minutes playing a full game of tonsil hockey.');
     scene.text('Eventually, the two of you break apart, a thin trail of saliva trailing between her lips and yours.');
@@ -1690,7 +1690,7 @@ function enterInexperiencedTell(s: GameState, scene: SceneBuilder): void {
     scene.text('She trails off, barely breathing, as if fearing the answer to your question either way.');
     scene.actions([
       { label: 'Say no', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No, I think that\'s enough for today," you tell her. You watch her visibly deflate, but she doesn\'t speak up or complain. "Besides, you wanted to show me some clothes, didn\'t you?"');
     scene.text('"Oh! Yes!" she squeaks, clearly having forgotten after all the excitement. "Just give me a second!"');
@@ -1717,11 +1717,11 @@ function enterNoExperiencedTell(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss Katja', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['QWstage'] = 3;
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (20);
-    qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
-    qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-    qspCall(s, 'stat', '');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['QWstage'] = 3;
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (20);
+    qspCall(st, 'arousal', 'kiss', 3, 'lesbian');
+    qspCall(st, 'npc_relationship', 'modify', 'A14', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/katja_kiss.jpg');
     scene.text('You move closer to Katja and slowly put your lips to hers. The two of you awkwardly bump together, feeling the heat of your blushes radiating off each other\'s cheeks. Very, very carefully, you experimentally push your tongue into her mouth. As soon as it touches her lips, she flinches but settles into it and clumsily tries to reciprocate, letting her tongue brush against your own.');
     scene.text('Eventually, the two of you break apart, a thin trail of saliva trailing between her lips and yours.');
@@ -1731,7 +1731,7 @@ function enterNoExperiencedTell(s: GameState, scene: SceneBuilder): void {
     scene.text('She trails off, barely breathing, as if fearing the answer to your question either way.');
     scene.actions([
       { label: 'Say no', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"No, I think that\'s enough for today," you tell her. You watch her visibly deflate, but she doesn\'t speak up or complain. "Besides, you wanted to show me some clothes, didn\'t you?"');
     scene.text('"Oh! Yes!" she squeaks, sitting up, clearly having forgotten after your little \'experience\'. "Just give me a second!"');
@@ -1758,26 +1758,26 @@ function enterTryClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'See the dress', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/showing_clothes2.jpg');
     scene.text('Katja takes her time putting the dress on and is almost teasing you when she finishes slipping on the dress that fits her curves wonderfully. It looks fantastic on her, and you are about to say something when the door opens and a girl steps in.');
     scene.text('"Hi Katja, Maxim had a meeting with one of the professors, so I- Oh! You have a guest."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    ((s as any).sofiaQW = (s as any).sofiaQW ?? {})['know'] = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    ((st as any).sofiaQW = (st as any).sofiaQW ?? {})['know'] = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big260.jpg');
     scene.text('Katja moves over quickly to introduce you.');
     // TODO-QSP: dynamic text: "Sofia! This is <<$pcs_nickname>> my '+iif($university['enrolled_in'] = 'teachin...
-    scene.text(`"Sofia! This is ${((s as any).pcs_nickname || '')} my '+iif($university['enrolled_in'] = 'teaching studies', 'classmate', 'friend from my hometown')+'. I was just showing her the clothes I bought yesterday." She then turns to you. "${((s as any).pcs_nickname || '')}, this is Sofia, my roommate."`);
-    // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>! It's so nice to meet Katja's friends since she doesn't se...
-    scene.text(`"Hi ${((s as any).pcs_nickname || '')}! It's so nice to meet Katja's friends since she doesn't seem to have a lot of them," Sofia says, which clearly makes Katja blush. "So '+iif( $university['enrolled_in'] = 'teaching_studies', 'you're also studying to become a teacher like Katja', 'what are you studying')+'?" she asks. '+iif( $university['enrolled_in'] = 'teaching_studies', '"yes"', '"I'm '+iif(university['student'] = 1, 'in the ' + $func('uni_programs', 'get_program_name') + ' program', 'not studying at the university')+'" ')+' you answer.`);
-    // TODO-QSP: dynamic text: "Cool. I'm '+iif($university['enrolled_in'] = 'nursing', 'also studying to becom...
-    scene.text('"Cool. I\'m \'+iif($university[\'enrolled_in\'] = \'nursing\', \'also studying to become a nurse. Now that I think about it, I do think I\'ve seen you in class.\', \'studying to become a nurse.\')+\' So Katja is showing you her new clothes? She has such a great sense of fashion. Next time I have money to go shopping, I should bring her. Did you finish the show or was I disturbing?"');
-    // TODO-QSP: dynamic text: "No we've finished, and <<$pcs_nickname>> was about to leave," Katja says, looki...
-    scene.text(`"No we've finished, and ${((s as any).pcs_nickname || '')} was about to leave," Katja says, looking at you as if trying to say she is sorry.`);
+    scene.text('"Sofia! This is ' + ((st as any).pcs_nickname || '') + ' my \'+iif($university[\'enrolled_in\'] = \'teaching studies\', \'classmate\', \'friend from my hometown\')+\'. I was just showing her the clothes I bought yesterday." She then turns to you. "' + ((st as any).pcs_nickname || '') + ', this is Sofia, my roommate."');
+    // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>! It''s so nice to meet Katja''s friends since she doesn''t...
+    scene.text('"Hi ' + ((st as any).pcs_nickname || '') + '! It\'s so nice to meet Katja\'s friends since she doesn\'t seem to have a lot of them," Sofia says, which clearly makes Katja blush. "So \'+iif( $university[\'enrolled_in\'] = \'teaching_studies\', \'you\'re also studying to become a teacher like Katja\', \'what are you studying\')+\'?" she asks. \'+iif( $university[\'enrolled_in\'] = \'teaching_studies\', \'"yes"\', \'"I\'m \'+iif(university[\'student\'] = 1, \'in the \' + $func(\'uni_programs\', \'get_program_name\') + \' program\', \'not studying at the university\')+\'" \')+\' you answer.');
+    // TODO-QSP: dynamic text: "Cool. I''m '+iif($university['enrolled_in'] = 'nursing', 'also studying to beco...
+    scene.text('"Cool. I\'m ' + ((((st as any).university ?? 0)?.['enrolled_in'] === 'nursing') ? ('also studying to become a nurse. Now that I think about it, I do think I\'ve seen you in class.') : ('studying to become a nurse.')) + ' So Katja is showing you her new clothes? She has such a great sense of fashion. Next time I have money to go shopping, I should bring her. Did you finish the show or was I disturbing?"');
+    // TODO-QSP: dynamic text: "No we''ve finished, and <<$pcs_nickname>> was about to leave," Katja says, look...
+    scene.text(`"No we've finished, and ${((st as any).pcs_nickname || '')} was about to leave," Katja says, looking at you as if trying to say she is sorry.`);
     scene.text('"That\'s right, I will be leaving now," you say.');
     scene.text('"Nice meeting you," Sofia says. "I wish we had more time to chat since I barely know anybody here, just Katja and my boyfriend Maxim. See you again soon. I\'m sure we\'ll become great friends," she continues.');
     scene.text('You say goodbye to Katja and as you leave the room, you can hear Sofia continuing to talk the ear off Katja.');
@@ -1813,7 +1813,7 @@ function enterKatjaLazarCafe(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Talk to him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/lazar_cafe_uni.jpg');
-    if (((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  (((s as any).katjaQW ?? 0)?.['slut'] > 50  ||  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 4)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
+    if (((st as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  (((st as any).katjaQW ?? 0)?.['slut'] > 50  ||  ((st as any).katjaQW ?? 0)?.['QWstage'] >= 4)  &&  ((st as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
       scene.text('You smile at Lazar. "Things are going well. How are you finding college life?"');
       scene.text('He nods with a friendly smile. "Good to hear. College life is amazing! I thought secondary school was a blast, but this blows that away. By the way, you girls are looking nice today, especially you Katja. You know the three of us should totally hang out some night and have some fun…"');
       scene.text('Katja grins at his comment and obvious interest. His body language and the way he says things leave no doubt in your mind what he means. The three of you talk well past having finished your lunch; Lazar is charming, friendly and flirty the whole time. Katja seems to respond in kind, which only encourages him more. It\'s soon time for you to leave and you all get up from the table.');
@@ -1831,7 +1831,7 @@ function enterKatjaLazarCafe(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Be flirty', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/lazar_cafe_uni.jpg');
-    if (((s as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  (((s as any).katjaQW ?? 0)?.['slut'] > 50  ||  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 4)  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
+    if (((st as any).katjaQW ?? 0)?.['boy_block'] === 0  &&  (((st as any).katjaQW ?? 0)?.['slut'] > 50  ||  ((st as any).katjaQW ?? 0)?.['QWstage'] >= 4)  &&  ((st as any).katjaQW ?? 0)?.['sex_clossedness'] === 0) {
       scene.text('You smile at Lazar. "Things are going well, even better now that you\' re here. So, are you finding college life as exciting as I am?"');
       scene.text('He nods with a friendly smile. "Damn, glad things are going so well for you," he says with a wink. "College life is amazing! I thought secondary school was a blast, but this blows that away. By the way, you girls are looking nice today, especially you Katja. You know the three of us should totally hang out some night and have some fun…"');
       scene.text('Katja grins at his comment and obvious interest. His body language and the way he says things leave no doubt in your mind what he means. The three of you talk well past having finished your lunch; Lazar is charming, friendly and flirty the whole time and Katja seems to respond in kind, which only encourages him more. It\'s soon time for you to leave and you all get up from the table.');

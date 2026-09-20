@@ -13,7 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'rasputin_host', 'start');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
     scene.text('Nadia waits with a warm smile.');
     // TODO-QSP: dynamic text: "Is there anything else I can help you with <<$pcs_firstname>>?"
@@ -33,15 +33,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
     scene.actions([
       { label: 'Ask her about this place', handler: (st: GameState) => {
-    ((s as any).rasputin = (s as any).rasputin ?? {})['hostEv'] = 1;
+    ((st as any).rasputin = (st as any).rasputin ?? {})['hostEv'] = 1;
     scene.text('<center>Unknown Woman</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_2.jpg');
     scene.text('You ask the woman after you introduce yourself. "Excuse me, would you mind tell me a little bit about this place?"');
     scene.text('The woman\'s eyes light up and she takes few steps closer to you.');
     scene.text('She smiles then answers your question.');
     // TODO-QSP: dynamic text: Of course, <<$pcs_firstname>>. I am Nadia Titova but you can call me Nadia. What...
-    scene.text(`Of course, ${((s as any).pcs_firstname || '')}. I am Nadia Titova but you can call me Nadia. What would you like to know?`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`Of course, ${((st as any).pcs_firstname || '')}. I am Nadia Titova but you can call me Nadia. What would you like to know?`);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Nothing', handler: (st: GameState) => {
     scene.text('<center>Nadia Titova</center>');
@@ -50,8 +50,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('She chuckles and patiently waits for you to decide what to do next.');
     scene.actions([
       { label: 'Return to entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'rasputin_entrance', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'rasputin_entrance', '');
   } },
     ]);
   } },
@@ -64,8 +64,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Apologize for the intrusion and return to the entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'rasputin_entrance', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'rasputin_entrance', '');
   } },
   ]);
   scene.build();
@@ -75,8 +75,8 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'About the shows', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('<center>Nadia Titova</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_2.jpg');
     scene.text('You ask Nadia about the shows Rasputin offers.');
@@ -87,44 +87,44 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('She finishes with a wink. You found yourself blushing pink for a moment.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'rasputin_host', 'start', '1');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'rasputin_host', 'start', '1');
   } },
     ]);
   } },
     { label: 'About buying a ticket', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center>Nadia Titova</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia that you want to purchase ticket for a show.');
     scene.text('"Oh really? Of course, what shows would you be interested to see?"');
     // TODO-QSP: dynamic text: "' + $func('money', 'string_price', 3000) + ' for the burlesque show and ' + $fu...
     scene.text('"3000₽ for the burlesque show and 4000₽ for the exotic variety show"');
-    if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
+    if (((st as any).rasputin ?? 0)?.['burlesque_ticket'] === 0) {
       scene.actions([
         { label: 'For the burlesque show, please', handler: (st: GameState) => {
     scene.text('<center>Nadia Titova</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia that you would like to buy a ticket for a burlesque show.');
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       scene.text('You realize that you don\'t have enough money to buy any ticket.');
       scene.text('Nadia nods and tell you that Rasputin isn\'t going any where before flash you another smile.');
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
       scene.actions([
         { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
       ]);
     } else {
       scene.actions([
         { label: 'Buy ticket ( [3000₽]...]', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You buy the ticket for the burlesque show.');
     // TODO-QSP: dynamic text: "Sure, the shows starts at ' + func('time', 'get_time_string', 18, 30) + ' but w...
     scene.text('"Sure, the shows starts at 18:30 but we start to admit customers at 17:30."');
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'money', 'pay', 3000);
-    ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'money', 'pay', 3000);
+    ((st as any).rasputin = (st as any).rasputin ?? {})['burlesque_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -134,15 +134,15 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).rasputin ?? 0)?.['variety_ticket'] === 0) {
+    if (((st as any).rasputin ?? 0)?.['variety_ticket'] === 0) {
       scene.actions([
         { label: 'For the variety show, please', handler: (st: GameState) => {
     scene.text('<center>Nadia Titova</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia that you would like to buy a ticket for an exotic variety show.');
     if (qspFunc(s, 'money', 'can_afford', 4000) === 0) {
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspCall(st, 'stat', '');
       scene.text('You realize that you don\'t have enough money to buy any ticket.');
       scene.text('Nadia nods and tell you that Rasputin isn\'t going any where before flash you another smile.');
       scene.actions([
@@ -151,14 +151,14 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Buy ticket ( [4000₽]...]', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You buy the ticket for the variety show.');
     // TODO-QSP: dynamic text: "Sure, the shows starts at ' + func('time', 'get_time_string', 22, 30) + ' but w...
     scene.text('"Sure, the shows starts at 22:30 but we start to admit customers at 21:30."');
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'money', 'pay', 4000);
-    ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'money', 'pay', 4000);
+    ((st as any).rasputin = (st as any).rasputin ?? {})['variety_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -168,32 +168,32 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).rasputin ?? 0)?.['burlesque_ticket'] === 0  &&  ((s as any).rasputin ?? 0)?.['variety_ticket'] === 0) {
+    if (((st as any).rasputin ?? 0)?.['burlesque_ticket'] === 0  &&  ((st as any).rasputin ?? 0)?.['variety_ticket'] === 0) {
       scene.actions([
         { label: 'For both shows, please', handler: (st: GameState) => {
     scene.text('<center>Nadia Titova</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia that you would like to buy tickets for both shows.');
     if (qspFunc(s, 'money', 'can_afford', 7000) === 0) {
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       scene.text('You realize that you don\'t have enough money to buy any ticket.');
       scene.text('Nadia nods and tell you that Rasputin isn\'t going any where before flash you another smile.');
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
       scene.actions([
         { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
       ]);
     } else {
       scene.actions([
         { label: 'Buy tickets ( [7000₽]...]', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You buy tickets for both shows.');
     // TODO-QSP: dynamic text: "Sure, the first show starts at ' + func('time', 'get_time_string', 18, 30) + ' ...
     scene.text('"Sure, the first show starts at 18:30 but we start to admit customers at 17:30."');
     scene.text('"Thank you!" Nadia smiles back as she hands you the ticket.');
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'money', 'pay', 7000);
-    ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 1;
-    ((s as any).rasputin = (s as any).rasputin ?? {})['variety_ticket'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'money', 'pay', 7000);
+    ((st as any).rasputin = (st as any).rasputin ?? {})['burlesque_ticket'] = 1;
+    ((st as any).rasputin = (st as any).rasputin ?? {})['variety_ticket'] = 1;
     scene.actions([
       { label: 'Smile back and walk back to the entrance', goto: ['rasputin_entrance', ''] },
     ]);
@@ -208,8 +208,8 @@ function enterOptions(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>Nadia Titova</center>');
     scene.img('images/locations/pushkin/rasputin/nadia_3.jpg');
     scene.text('You tell Nadia you will think on it more, she shrugs off and waits for your response.');
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'rasputin_host', 'start', '1');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'rasputin_host', 'start', '1');
   } },
     ]);
   } },

@@ -19,10 +19,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', goto: ['dina', 'brodila'] },
     { label: 'Make a delicious rabbit pie and sell it to the local cafe', handler: (st: GameState) => {
-    (s as any).krolik = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'money', 'earn', 200);
-    qspGoto(s, 'dina', 'brodila');
+    (st as any).krolik = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'money', 'earn', 200);
+    qspGoto(st, 'dina', 'brodila');
   } },
   ]);
   scene.build();

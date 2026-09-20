@@ -79,10 +79,10 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['grab_drinks'] === 0) {
       scene.actions([
         { label: 'Get some drinks', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('You prowl through your fridge looking for things to drink.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -90,7 +90,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get some snacks', handler: (st: GameState) => {
     scene.text('You prowl through your cupboards looking for things to snack on.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -111,12 +111,12 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).date_ev ?? 0)?.['grab_drinks'] === 0) {
       scene.actions([
         { label: 'Get some drinks', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('<center>$npc_apt_kitchen[$npcID]</center>');
-    // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>'s fridge looking for things to drink.
-    scene.text(`You prowl through ${((s as any).npcdesc || '')}'s fridge looking for things to drink.`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>''s fridge looking for things to drink.
+    scene.text(`You prowl through ${((st as any).npcdesc || '')}'s fridge looking for things to drink.`);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -124,9 +124,9 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get some snacks', handler: (st: GameState) => {
     scene.text('<center>$npc_apt_kitchen[$npcID]</center>');
-    // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>'s cupboards looking for things to snack on.
-    scene.text(`You prowl through ${((s as any).npcdesc || '')}'s cupboards looking for things to snack on.`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>''s cupboards looking for things to snack on.
+    scene.text(`You prowl through ${((st as any).npcdesc || '')}'s cupboards looking for things to snack on.`);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -139,11 +139,11 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['his_drink'] === 0) {
     scene.actions([
       { label: 'Ask if he wants something', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Want me to get you something while I'm here?" you call back to <<$npcdesc>>.
-    scene.text(`"Want me to get you something while I'm here?" you call back to ${((s as any).npcdesc || '')}.`);
+    // TODO-QSP: dynamic text: "Want me to get you something while I''m here?" you call back to <<$npcdesc>>.
+    scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc || '')}.`);
     scene.text('"Could you grab me a soda?"');
     scene.text('"Sure thing," you say, taking cold can out of the fridge.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -154,15 +154,15 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Grab a soda', handler: (st: GameState) => {
     scene.text('You grab a soda and shut the fridge.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Grab a beer', handler: (st: GameState) => {
     scene.text('You grab a beer and shut the fridge.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Grab some vodka', handler: (st: GameState) => {
     scene.text('You grab some vodka and shut the fridge.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -173,11 +173,11 @@ function enterDrinkMenuEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['his_drink'] === 0) {
     scene.actions([
       { label: 'Ask if he wants something', handler: (st: GameState) => {
-    // TODO-QSP: dynamic text: "Want me to get you something while I'm here?" you call back to <<$npcdesc>>.
-    scene.text(`"Want me to get you something while I'm here?" you call back to ${((s as any).npcdesc || '')}.`);
+    // TODO-QSP: dynamic text: "Want me to get you something while I''m here?" you call back to <<$npcdesc>>.
+    scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc || '')}.`);
     scene.text('"Could you grab me a soda?"');
     scene.text('"Sure thing," you say, taking cold can out of the fridge.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -195,11 +195,11 @@ function enterGetDrinks(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['grab_snacks'] === 0) {
     scene.actions([
       { label: 'Get something to drink while you\'re here', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'date_ev', 'kitchen_img');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
+    qspCall(st, 'date_ev', 'kitchen_img');
     scene.text('You\'re already in the kitchen, might as well grab something to drink while you\'re here.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -215,11 +215,11 @@ function enterSnackMenu(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Make some popcorn', handler: (st: GameState) => {
     scene.text('You make some popcorn in the microwave.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenuEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Make some sandwiches', handler: (st: GameState) => {
     scene.text('You slice some kolbasa and put it on top of bread.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenuEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenuEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -238,11 +238,11 @@ function enterGetSnacks(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['grab_snacks'] === 0) {
     scene.actions([
       { label: 'Get some snacks while you\'re here', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'date_ev', 'kitchen_img');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
+    qspCall(st, 'date_ev', 'kitchen_img');
     scene.text('You\'re already in the kitchen, might as well grab some snacks while you\'re here.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnackMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -260,10 +260,10 @@ function enterSettleDown1(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
-      // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>'s bed
+      // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>''s bed
       scene.text(`You settle down on ${((s as any).npcdesc || '')}'s bed`);
     } else {
-      // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>'s couch.
+      // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>''s couch.
       scene.text(`You settle down on ${((s as any).npcdesc || '')}'s couch.`);
     }
   }
@@ -309,7 +309,7 @@ function enterIntermission1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hey, can you suck my dick?"');
       scene.actions([
         { label: 'No (annoyed)', handler: (st: GameState) => {
-    qspCall(s, 'date_funcs', 'date_rate', 'dislike');
+    qspCall(st, 'date_funcs', 'date_rate', 'dislike');
     scene.text('"No, I\'m trying to watch!" you scowl.');
     scene.actions([
       { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
@@ -318,11 +318,11 @@ function enterIntermission1(s: GameState, scene: SceneBuilder): void {
         { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/shared/sex/blowjob/television1.jpg');
     // TODO-QSP: dynamic text: "Sure," you grin, eagerly unzipping his pants and popping his <<$npc_dick_desc[$...
-    scene.text(`"Sure," you grin, eagerly unzipping his pants and popping his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} cock into your mouth.`);
+    scene.text(`"Sure," you grin, eagerly unzipping his pants and popping his ${((st as any).npc_dick_desc ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} cock into your mouth.`);
     scene.actions([
       { label: 'You were getting bored', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <i>This was getting boring anyways</i> you think to yourself as your lips start ...
-    scene.text(`<i>This was getting boring anyways</i> you think to yourself as your lips start sliding down ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s length.`);
+    scene.text(`<i>This was getting boring anyways</i> you think to yourself as your lips start sliding down ${((st as any).npc_usedname ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''}'s length.`);
     scene.actions([
       { label: 'Blow him', goto: ['date_chill', 'chill_bj1'] },
     ]);
@@ -345,15 +345,15 @@ function enterIntermission1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Not today', handler: (st: GameState) => {
-    qspCall(s, 'date_funcs', 'date_rate', 'dislike');
+    qspCall(st, 'date_funcs', 'date_rate', 'dislike');
     scene.text('"No, not today," you say.');
     scene.actions([
       { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
     ]);
   } },
         { label: 'Wait until later', handler: (st: GameState) => {
-    ((s as any).date_ev = (s as any).date_ev ?? {})['bj_later'] = 1;
-    qspCall(s, 'date_funcs', 'date_rate', 'dislike');
+    ((st as any).date_ev = (st as any).date_ev ?? {})['bj_later'] = 1;
+    qspCall(st, 'date_funcs', 'date_rate', 'dislike');
     scene.text('"Can this wait until later?" you say distractedly, still watching what\'s on the screen.');
     scene.actions([
       { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
@@ -405,7 +405,7 @@ function enterUnzipPants(s: GameState, scene: SceneBuilder): void {
       { label: 'A blowjob? Duh?', handler: (st: GameState) => {
     scene.text('"What\'s it look like I\'m doing?" you ask back. "I\'m giving you a blowjob."');
     // TODO-QSP: dynamic text: And then you wrap your lips around his <<$npc_dick_desc[$npcID]>> cock.
-    scene.text(`And then you wrap your lips around his ${((s as any).npc_dick_desc ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} cock.`);
+    scene.text(`And then you wrap your lips around his ${((st as any).npc_dick_desc ?? 0)?.[String((st as any).npcID ?? 0)] ?? ''} cock.`);
     scene.actions([
       { label: 'Blow him', goto: ['date_chill', 'chill_bj1'] },
       { label: 'Blow him (but keep watching)', goto: ['date_chill', 'chill_bj_watch1'] },
@@ -421,12 +421,12 @@ function enterChillHj1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Seriously jerk him', handler: (st: GameState) => {
-    ((s as any).date_ev = (s as any).date_ev ?? {})['sex_pos'] = 'handjob';
-    qspCall(s, 'arousal', 'hj', 10);
-    qspCall(s, 'stat', '');
+    ((st as any).date_ev = (st as any).date_ev ?? {})['sex_pos'] = 'handjob';
+    qspCall(st, 'arousal', 'hj', 10);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/handjob/kotovhj.jpg');
-    // TODO-QSP: dynamic text: All attention turns to <<$npcdesc>>'s cock as you seriously jerk him off. What y...
-    scene.text(`All attention turns to ${((s as any).npcdesc || '')}'s cock as you seriously jerk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
+    // TODO-QSP: dynamic text: All attention turns to <<$npcdesc>>''s cock as you seriously jerk him off. What ...
+    scene.text(`All attention turns to ${((st as any).npcdesc || '')}'s cock as you seriously jerk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
     scene.actions([
       { label: 'Try to make him cum', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'chill_cum');
@@ -443,7 +443,7 @@ function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 10);
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/handjob/television1.mp4');
-  // TODO-QSP: dynamic text: You gently jerk <<$npcdesc>>'s cock while you both continue watching the show.
+  // TODO-QSP: dynamic text: You gently jerk <<$npcdesc>>''s cock while you both continue watching the show.
   scene.text(`You gently jerk ${((s as any).npcdesc || '')}'s cock while you both continue watching the show.`);
   if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([
@@ -467,7 +467,7 @@ function enterChillBj1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/bj45.mp4');
   // TODO-QSP: dynamic text: You blow <<$npc_usedname[$npcID]>> seriously.
   scene.text(`You blow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} seriously.`);
-  // TODO-QSP: dynamic text: All attention turns to <<$npcdesc>>'s cock as you seriously loudly and noisily s...
+  // TODO-QSP: dynamic text: All attention turns to <<$npcdesc>>''s cock as you seriously loudly and noisily ...
   scene.text(`All attention turns to ${((s as any).npcdesc || '')}'s cock as you seriously loudly and noisily scuk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
   // TODO-QSP: end
   scene.actions([
@@ -500,24 +500,24 @@ function enterChillCum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish him with your hand', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'hand', ((s as any).boy ?? 0), 1);
-    qspCall(s, 'stat', '');
-    (s as any).cumspclnt = 9;
-    qspCall(s, 'cum_cleanup', '');
+    qspCall(st, 'cum_call', 'hand', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'stat', '');
+    (st as any).cumspclnt = 9;
+    qspCall(st, 'cum_cleanup', '');
     scene.img('images/shared/sex/cum/handjob/hand1.jpg');
     scene.text('You finish him with your hand.');
     scene.actions([
       { label: 'Clean your hand with a tissue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    qspCall(s, 'date_ev', 'living_room_img');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'date_ev', 'living_room_img');
     scene.text('You get a tissue and wipe yourself up.');
     scene.actions([
       { label: 'Continue', goto: ['date_chill', 'finish_watch'] },
     ]);
   } },
       { label: 'Lick your fingers clean', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/lick_fingers.jpg');
     scene.text('You lick your fingers clean of the cum and swallow it.');
     scene.actions([
@@ -528,8 +528,8 @@ function enterChillCum(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Finish him with your mouth', handler: (st: GameState) => {
     scene.text('You make him cum in your mouth.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumSpitMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumSwallowMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumSpitMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCumSwallowMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -566,7 +566,7 @@ function enterCumSwallowNonch(s: GameState, scene: SceneBuilder): void {
 
 function enterCumSwallowHappy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/mouth/swallow4.mp4');
-  // TODO-QSP: dynamic text: You happily gulp down <<$npc_usedname[$npcID]>>'s cum, sucking every last drop o...
+  // TODO-QSP: dynamic text: You happily gulp down <<$npc_usedname[$npcID]>>''s cum, sucking every last drop ...
   scene.text(`You happily gulp down ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''}'s cum, sucking every last drop out of his cock.`);
   // TODO-QSP: end
   scene.actions([
@@ -656,7 +656,7 @@ function enterCumSpitFloor(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'What else am I supposed to do?', handler: (st: GameState) => {
     scene.text('"What else am I supposed to do with it?" you shrug.');
-    if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).npcID ?? 0)] === 'mouth') {
+    if (((st as any).npc_cum_pref ?? 0)?.[String((st as any).npcID ?? 0)] === 'mouth') {
       scene.text('"Swallow it?"');
       scene.actions([
         { label: 'Oh. Right.', handler: (st: GameState) => {

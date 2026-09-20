@@ -29,13 +29,13 @@ function enterFuckornot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
-    if (((s as any).view_location ?? 0) === 'school') {
-      qspGoto(s, 'gschool_lessons', 'short_break');
+    if (((st as any).view_location ?? 0) === 'school') {
+      qspGoto(st, 'gschool_lessons', 'short_break');
     } else {
-      if (((s as any).view_location ?? 0) === 'school_lesson') {
-        qspGoto(s, 'gschool_lessons2', 'computer');
+      if (((st as any).view_location ?? 0) === 'school_lesson') {
+        qspGoto(st, 'gschool_lessons2', 'computer');
       } else {
-        qspGoto(s, 'komp', 'browse');
+        qspGoto(st, 'komp', 'browse');
       }
     }
   } },
@@ -64,13 +64,13 @@ function enterHotornot(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the site', handler: (st: GameState) => {
-    if (((s as any).view_location ?? 0) === 'school') {
-      qspGoto(s, 'gschool_lessons', 'short_break');
+    if (((st as any).view_location ?? 0) === 'school') {
+      qspGoto(st, 'gschool_lessons', 'short_break');
     } else {
-      if (((s as any).view_location ?? 0) === 'school_lesson') {
-        qspGoto(s, 'gschool_lessons2', 'computer');
+      if (((st as any).view_location ?? 0) === 'school_lesson') {
+        qspGoto(st, 'gschool_lessons2', 'computer');
       } else {
-        qspGoto(s, 'komp', 'browse');
+        qspGoto(st, 'komp', 'browse');
       }
     }
   } },

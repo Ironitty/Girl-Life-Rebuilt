@@ -19,17 +19,17 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why don\'t you work for me at my stall on the weekends? You do a good job and I will pay you enough to live like a queen!" Arthur offers, looking at you intently.');
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if ((!((s as any).arturQW ?? 0))) {
-      (s as any).arturQW = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    if ((!((st as any).arturQW ?? 0))) {
+      (st as any).arturQW = 1;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_1.jpg');
     scene.text('"Well, if you\'re really going to pay that well, then I can hardly refuse." You say smiling at the handsome Armenian.');
     scene.text('My beauty, I will not only pay you that well, but I will treat you like the treasure you are." He assures you.');
     scene.text('Excitedly Arthur comes over and gives your ass a hard squeeze, his fingers sinking into your plump flesh. You moan lightly, feeling him taking a sense of ownership over your body as he grips your butt cheek. "Now that the business is settled, let\'s go eat barbecue, drink Chacha brandy!" He declares happily.');
-    qspCall(s, 'willpower', 'sex', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -38,10 +38,10 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'sex', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }
@@ -50,13 +50,13 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Refuse', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_2.jpg');
     scene.text('You smile sadly at him. "Thank you for the tempting offer, but I have so much to do. School work, dancing, volleyball, and I simply don\'t have any free time as it is.');
     scene.text('"As you like beautiful." He responds somewhat sadly before adding. "Ah forget it, now let\'s go eat barbecue, drink Chacha brandy." He says as he grabs you by your ass and gives it a squeeze, his fingers sinking into your soft flesh. You moan lightly, feeling him taking a sense of ownership over your body as he grips your butt cheek.');
-    qspCall(s, 'willpower', 'sex', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -65,10 +65,10 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'sex', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }
@@ -90,10 +90,10 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'sex', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }
@@ -119,16 +119,16 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).arturQW ?? 0) === 1) {
-      (s as any).arturQW = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    if (((st as any).arturQW ?? 0) === 1) {
+      (st as any).arturQW = 2;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_5.jpg');
     scene.text('You smile at him, a mix of joy and lust. "Well, Arthur, that changes everything, I would love to keep the books for you."');
     scene.text('"Yes! I knew you would." The Armenian exclaims happily. "Come my beauty, let\'s go eat barbecue and drink Chaha brandy." He says as he roughly grabs your ass, palming your soft cheeks with his thick, muscular hands.');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -137,10 +137,10 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }
@@ -149,13 +149,13 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Refuse', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_2.jpg');
     scene.text('"Thank you for the tempting offer, but I have so much to do. School work, dancing, volleyball, and I don\'t have any free time as it is. It\'s just too much." You say, sad to have to turn down such a generous opportunity.');
     scene.text('"As you like beautiful." He said somewhat sadly before adding. "Ah forget it, now let\'s go eat barbecue, drink Chacha brandy." He says as he grabs you by your ass and gives it a squeeze.');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -164,10 +164,10 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }

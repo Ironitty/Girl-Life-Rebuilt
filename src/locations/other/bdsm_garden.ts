@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'private';
   scene.build();
 }
 
@@ -24,7 +23,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckGardenEvents(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rand = Math.floor(Math.random() * 100) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_rand ?? 0) < 5) {
     if (((s as any).bdsmclub ?? 0)?.['role'] === 'sub'  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       qspGoto(s, 'bdsm_garden', 'gEV1');
@@ -109,8 +108,8 @@ function enterGEV1(s: GameState, scene: SceneBuilder): void {
     scene.text('This isn\'t exactly the BDSM you come here for, but it is not breaking any rules and you have the choice.');
     scene.actions([
       { label: 'Strip and go meet the older men', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'strip_all');
-    qspGoto(s, 'bdsm_garden', 'gEV2');
+    qspCall(st, 'outfit', 'strip_all');
+    qspGoto(st, 'bdsm_garden', 'gEV2');
   } },
     ]);
   } else {
@@ -140,12 +139,12 @@ function enterGEV2(s: GameState, scene: SceneBuilder): void {
 
 function enterGEV3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', Math.floor(Math.random() * 21) + 55);
+  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   (s as any).sexpartkno = 1;
   (s as any).cumprecheck = 1;
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  (s as any).dick = Math.floor(Math.random() * 10) + 12;
+  (s as any).dick = (Math.floor(Math.random() * 10) + 12);
   scene.img('images/locations/city/suburb/bdsm_club/sex/grup2.mp4');
   scene.text('Half of the men are already naked and probably asked the sub who spoke to you. You leave them no doubt as to your intentions and lead one of the men onto the table.');
   scene.text('You crawl on top of him and already aroused in anticipation, you quickly take him inside and start to grind.');
@@ -216,27 +215,27 @@ function enterGEV8(s: GameState, scene: SceneBuilder): void {
   scene.text('As you reveal in your successful work, you realize for the first time that there were 7 men there.');
   // TODO-QSP: dynamic text: You get up, still naked and your face covered in cum. The men have had their fun...
   scene.text(`You get up, still naked and your face covered in cum. The men have had their fun and are leaving. You find ${qspFunc(s, 'money', 'string_profit', 2000)} on the table.`);
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', Math.floor(Math.random() * 21) + 55);
+  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', Math.floor(Math.random() * 21) + 55);
+  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', Math.floor(Math.random() * 21) + 55);
+  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', Math.floor(Math.random() * 21) + 55);
+  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', Math.floor(Math.random() * 21) + 55);
+  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
-  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', Math.floor(Math.random() * 21) + 55);
+  qspCall(s, 'npcgeneratec', '', 0, 'Old Man', (Math.floor(Math.random() * 21) + 55));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'arousal', 'hj', 2, 'sub', 'group');
   qspCall(s, 'cum_call', 'face', 'Old Man');
@@ -263,6 +262,7 @@ function enterGarage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
   const arg = s.locArg;
   switch (arg) {
     case 'garden':

@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text(`You pick up the phone and a female voice answers, "Hello ${((s as any).pcs_nickname || '')}, this is Margaret. Let's meet up in the cafe."`);
   scene.actions([
     { label: 'No today', handler: (st: GameState) => {
-    (s as any).qwdogiventday = ((s as any).daystart ?? 0);
+    (st as any).qwdogiventday = ((st as any).daystart ?? 0);
     scene.text('"Sorry, I have a lot of things on today, Maybe another time.');
     scene.text('"Okay. I\'ll call next week.');
     scene.actions([
@@ -19,8 +19,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Sure.', handler: (st: GameState) => {
-    (s as any).QWdogReiq = 3;
-    (s as any).qwdogiventday = ((s as any).daystart ?? 0);
+    (st as any).QWdogReiq = 3;
+    (st as any).qwdogiventday = ((st as any).daystart ?? 0);
     scene.text('"Sounds good."');
     scene.text('"Wonderful. I\'ll be waiting in the cafe."');
     scene.actions([

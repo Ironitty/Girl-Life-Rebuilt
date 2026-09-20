@@ -41,41 +41,41 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Set relationships', goto: ['intro_character_custom', 'modrel'] },
       { label: 'Confirm these options', handler: (st: GameState) => {
     // TODO-QSP: dynamic 'grupvalue[<<grupTipe>>] = 600'
-    if (((s as any).soc_grup ?? 0) === 'nerd') {
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = 350;
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic'] = 2;
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['nerd_learn_home'] = 5;
+    if (((st as any).soc_grup ?? 0) === 'nerd') {
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['academic_exp'] = 350;
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['academic'] = 2;
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['nerd_learn_home'] = 5;
     } else {
-      if (((s as any).soc_grup ?? 0) === 'gopnik') {
-        ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_exp'] = (-20);
+      if (((st as any).soc_grup ?? 0) === 'gopnik') {
+        ((st as any).trait_vars = (st as any).trait_vars ?? {})['academic_exp'] = (-20);
       }
     }
-    if (((s as any).pcs_inhib ?? 0) < 10) {
-      (s as any).pcs_inhib = 10;
+    if (((st as any).pcs_inhib ?? 0) < 10) {
+      (st as any).pcs_inhib = 10;
     }
-    if (((s as any).pcs_inhib ?? 0) > 50) {
-      qspCall(s, 'clothing', 'wear', 'gm_school', 6);
+    if (((st as any).pcs_inhib ?? 0) > 50) {
+      qspCall(st, 'clothing', 'wear', 'gm_school', 6);
     }
-    if (((s as any).bag ?? 0) === 1) {
-      qspCall(s, 'purses', 'add_item', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0));
-      qspCall(s, 'obj_din', 'old');
+    if (((st as any).bag ?? 0) === 1) {
+      qspCall(st, 'purses', 'add_item', ((st as any).currentpursetype ?? 0), ((st as any).currentpursenumber ?? 0));
+      qspCall(st, 'obj_din', 'old');
     }
-    qspCall(s, 'intro_functions', 'reset_school');
-    if (((s as any).loc ?? 0) === 'intro_tg_teen_start') {
-      dynamicGoto(s, 'prevLoc', 'prevArg');
+    qspCall(st, 'intro_functions', 'reset_school');
+    if (((st as any).loc ?? 0) === 'intro_tg_teen_start') {
+      dynamicGoto(st, 'prevLoc', 'prevArg');
     } else {
-      qspGoto(s, 'intro_character_creation', 'appearance_hub');
+      qspGoto(st, 'intro_character_creation', 'appearance_hub');
     }
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Confirm these options', handler: (st: GameState) => {
-    if (((s as any).bag ?? 0) === 1) {
-      qspCall(s, 'purses', 'add_item', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0));
-      qspCall(s, 'obj_din', 'old');
+    if (((st as any).bag ?? 0) === 1) {
+      qspCall(st, 'purses', 'add_item', ((st as any).currentpursetype ?? 0), ((st as any).currentpursenumber ?? 0));
+      qspCall(st, 'obj_din', 'old');
     }
-    qspGoto(s, 'intro_character_creation', 'appearance_hub');
+    qspGoto(st, 'intro_character_creation', 'appearance_hub');
   } },
     ]);
   }
@@ -88,8 +88,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Set items', goto: ['intro_character_custom', 'modite'] },
     { label: 'Set clothes', goto: ['intro_character_custom', 'modclo_menu'] },
     { label: '', labelFn: (s: GameState) => 'Set money (' + String(qspFunc(s, 'money', 'format', ((s as any).money || '')) ?? '') + ')', handler: (st: GameState) => {
-    (s as any).money = 0;
-    qspGoto(s, 'intro_character_custom', 'start');
+    (st as any).money = 0;
+    qspGoto(st, 'intro_character_custom', 'start');
   } },
   ]);
   scene.build();
@@ -129,32 +129,32 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).money = ((s as any).intro_custom ?? 0)?.['money'];
-    ((s as any).intro_custom = (s as any).intro_custom ?? {})['money'] = (-1);
-    (s as any).loc = ((s as any).intro_custom ?? 0)?.['loc'];
-    (s as any).loc_arg = ((s as any).intro_custom ?? 0)?.['loc_arg'];
-    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc'] = '';
-    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_arg'] = '';
-    (s as any).menu_loc = ((s as any).intro_custom ?? 0)?.['menu_loc'];
-    (s as any).menu_arg = ((s as any).intro_custom ?? 0)?.['menu_arg'];
-    ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_loc'] = '';
-    ((s as any).intro_custom = (s as any).intro_custom ?? {})['menu_arg'] = '';
-    (s as any).loc_s = ((s as any).intro_custom ?? 0)?.['loc_s'];
-    (s as any).args_s = ((s as any).intro_custom ?? 0)?.['args_s'];
-    ((s as any).intro_custom = (s as any).intro_custom ?? {})['loc_s'] = '';
-    ((s as any).intro_custom = (s as any).intro_custom ?? {})['args_s'] = '';
-    (s as any).intro_custom_shop_return = 0;
-    qspGoto(s, 'intro_character_custom', 'start');
+    (st as any).money = ((st as any).intro_custom ?? 0)?.['money'];
+    ((st as any).intro_custom = (st as any).intro_custom ?? {})['money'] = (-1);
+    (st as any).loc = ((st as any).intro_custom ?? 0)?.['loc'];
+    (st as any).loc_arg = ((st as any).intro_custom ?? 0)?.['loc_arg'];
+    ((st as any).intro_custom = (st as any).intro_custom ?? {})['loc'] = '';
+    ((st as any).intro_custom = (st as any).intro_custom ?? {})['loc_arg'] = '';
+    (st as any).menu_loc = ((st as any).intro_custom ?? 0)?.['menu_loc'];
+    (st as any).menu_arg = ((st as any).intro_custom ?? 0)?.['menu_arg'];
+    ((st as any).intro_custom = (st as any).intro_custom ?? {})['menu_loc'] = '';
+    ((st as any).intro_custom = (st as any).intro_custom ?? {})['menu_arg'] = '';
+    (st as any).loc_s = ((st as any).intro_custom ?? 0)?.['loc_s'];
+    (st as any).args_s = ((st as any).intro_custom ?? 0)?.['args_s'];
+    ((st as any).intro_custom = (st as any).intro_custom ?? {})['loc_s'] = '';
+    ((st as any).intro_custom = (st as any).intro_custom ?? {})['args_s'] = '';
+    (st as any).intro_custom_shop_return = 0;
+    qspGoto(st, 'intro_character_custom', 'start');
   } },
     { label: 'Browse', handler: (st: GameState) => {
-    (s as any).menu_name = '';
-    qspGoto(s, 'intro_character_custom', 'modclo');
+    (st as any).menu_name = '';
+    qspGoto(st, 'intro_character_custom', 'modclo');
   } },
     { label: 'Open wardrobe', handler: (st: GameState) => {
-    qspGoto(s, 'wardrobe', 'main');
+    qspGoto(st, 'wardrobe', 'main');
   } },
     { label: 'View looks', handler: (st: GameState) => {
-    dynamicGoto(s, 'menu_looks');
+    dynamicGoto(st, 'menu_looks');
   } },
   ]);
   scene.build();
@@ -1048,8 +1048,8 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$temp_label>> - Currently set
     scene.text(`${((s as any).temp_label || '')} - Currently set`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec:pcs_mass['bust_gen'] = <<temp_val>> & gt 'intro_character_custom',...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})\\u0027bust_gen\\u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(\\u0027intro_character_custom\\u0027, \\u0027modapp\\u0027); return false;">${((s as any).temp_label || '')}</a>`);
+    // TODO-QSP: dynamic text: <a href="exec:pcs_mass[''bust_gen''] = <<temp_val>> & gt ''intro_character_custo...
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027bust_gen/u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label || '')}</a>`);
   }
   (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
   if (((s as any).temp_idx ?? 0) < 9) {
@@ -1098,8 +1098,8 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$temp_label>> - Currently set
     scene.text(`${((s as any).temp_label || '')} - Currently set`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec:pcs_mass['butt_gen'] = <<temp_val>> & gt 'intro_character_custom',...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})\\u0027butt_gen\\u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(\\u0027intro_character_custom\\u0027, \\u0027modapp\\u0027); return false;">${((s as any).temp_label || '')}</a>`);
+    // TODO-QSP: dynamic text: <a href="exec:pcs_mass[''butt_gen''] = <<temp_val>> & gt ''intro_character_custo...
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027butt_gen/u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label || '')}</a>`);
   }
   (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
   if (((s as any).temp_idx ?? 0) < 9) {
@@ -1140,20 +1140,20 @@ function enterModite(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Fake passport (' + String(((s as any).fakepassport || '') ?? '') + '/1)', handler: (st: GameState) => {
-    if ((!((s as any).fakepassport ?? 0))) {
-      (s as any).fakepassport = 1;
+    if ((!((st as any).fakepassport ?? 0))) {
+      (st as any).fakepassport = 1;
     } else {
-      (s as any).fakepassport = 0;
+      (st as any).fakepassport = 0;
     }
-    qspGoto(s, 'intro_character_custom', 'modite');
+    qspGoto(st, 'intro_character_custom', 'modite');
   } },
     { label: '', labelFn: (s: GameState) => 'Computer (' + String(((s as any).mc_inventory ?? 0)?.['tech_computer'] ?? '' ?? '') + '/1)', handler: (st: GameState) => {
-    if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_computer'] = 1;
+    if (((st as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['tech_computer'] = 1;
     } else {
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['tech_computer'] = 0;
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['tech_computer'] = 0;
     }
-    qspGoto(s, 'intro_character_custom', 'modite');
+    qspGoto(st, 'intro_character_custom', 'modite');
   } },
     { label: 'Cosmetic items', goto: ['intro_character_custom', 'modite_cos'] },
     { label: 'Pharmacy items', goto: ['intro_character_custom', 'modite_pha'] },
@@ -1251,7 +1251,7 @@ function enterModiteMis(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModpur(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
     (s as any).currentpursetype = ((s as any).locArgs?.[1] ?? 0);
     (s as any).currentpursenumber = ((s as any).locArgs?.[2] ?? 0);
   }
@@ -1267,103 +1267,103 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'start');
+    qspGoto(st, 'intro_character_custom', 'start');
   } },
     { label: 'Get G&M', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/gm.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopgmpurses
-    scene.img(`images/pc/items/gm/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 20) {
+    scene.img(`images/pc/items/gm/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopgmpurses'
     }
   } },
     { label: 'Get Danilovich', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/sports.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopdanilovichpurses
-    scene.img(`images/pc/items/danilovich/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 60) {
+    scene.img(`images/pc/items/danilovich/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 60) {
       // TODO-QSP: jump 'loopdanilovichpurses'
     }
   } },
     { label: 'Get Dolls', handler: (st: GameState) => {
     scene.img('images/locations/city/island/dolls/shop_name.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopdollspurses
-    scene.img(`images/pc/items/dolls/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 40) {
+    scene.img(`images/pc/items/dolls/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopdollspurses'
     }
   } },
     { label: 'Get Bomba', handler: (st: GameState) => {
     scene.img('images/locations/pushkin/bomba/shop_name.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopbombapurses
-    scene.img(`images/pc/items/bomba/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 20) {
+    scene.img(`images/pc/items/bomba/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopbombapurses'
     }
   } },
     { label: 'Get Fashionista', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopfashionistapurses
-    scene.img(`images/pc/items/fashionista/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 40) {
+    scene.img(`images/pc/items/fashionista/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopfashionistapurses'
     }
   } },
     { label: 'Get Coco', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/coco/shop_name.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopcocopurses
-    scene.img(`images/pc/items/coco/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 60) {
+    scene.img(`images/pc/items/coco/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 60) {
       // TODO-QSP: jump 'loopcocopurses'
     }
   } },
     { label: 'Get Pussy_Cats', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pussycat.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopkatspurses
-    scene.img(`images/pc/items/cats/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 20) {
+    scene.img(`images/pc/items/cats/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopkatspurses'
     }
   } },
     { label: 'Get Flamingos', handler: (st: GameState) => {
     scene.img('images/locations/city/island/flamingos/shop_name.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopflamingospurses
-    scene.img(`images/pc/items/flamingos/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 20) {
+    scene.img(`images/pc/items/flamingos/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopflamingospurses'
     }
   } },
     { label: 'Get Mon Chéri', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/moncheri.png');
-    (s as any).i = 1;
+    (st as any).i = 1;
     // TODO-QSP: :loopmoncheripurses
-    scene.img(`images/pc/items/moncheri/purses/${((s as any).i || '')}.jpg`);
-    (s as any).i = ((s as any).i ?? 0) + (1);
-    if (((s as any).i ?? 0) <= 40) {
+    scene.img(`images/pc/items/moncheri/purses/${((st as any).i || '')}.jpg`);
+    (st as any).i = ((st as any).i ?? 0) + (1);
+    if (((st as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopmoncheripurses'
     }
   } },
     { label: 'I do not want a purse', handler: (st: GameState) => {
-    (s as any).bag = 0;
-    (s as any).currentpursetype = 'none';
-    (s as any).currentpursenumber = 0;
-    qspGoto(s, 'intro_character_custom', 'modpur');
+    (st as any).bag = 0;
+    (st as any).currentpursetype = 'none';
+    (st as any).currentpursenumber = 0;
+    qspGoto(st, 'intro_character_custom', 'modpur');
   } },
   ]);
   scene.build();
@@ -1481,7 +1481,7 @@ function enterModatt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'start');
+    qspGoto(st, 'intro_character_custom', 'start');
   } },
   ]);
   scene.build();
@@ -1517,7 +1517,7 @@ function enterModsklMen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'modskl');
+    qspGoto(st, 'intro_character_custom', 'modskl');
   } },
   ]);
   scene.build();
@@ -1542,7 +1542,7 @@ function enterModsklSpo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'modskl');
+    qspGoto(st, 'intro_character_custom', 'modskl');
   } },
   ]);
   scene.build();
@@ -1564,7 +1564,7 @@ function enterModsklCom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'modskl');
+    qspGoto(st, 'intro_character_custom', 'modskl');
   } },
   ]);
   scene.build();
@@ -1586,7 +1586,7 @@ function enterModsklBea(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'modskl');
+    qspGoto(st, 'intro_character_custom', 'modskl');
   } },
   ]);
   scene.build();
@@ -1608,7 +1608,7 @@ function enterModsklArt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'modskl');
+    qspGoto(st, 'intro_character_custom', 'modskl');
   } },
   ]);
   scene.build();
@@ -1632,7 +1632,7 @@ function enterModsklJob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'intro_character_custom', 'modskl');
+    qspGoto(st, 'intro_character_custom', 'modskl');
   } },
   ]);
   scene.build();
@@ -1650,59 +1650,59 @@ function enterModgrup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Nerd', handler: (st: GameState) => {
-    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'nerd';
-    (s as any).soc_grup = 'Nerd';
-    (s as any).grupTipe = 3;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 100;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 800;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 100;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 600;
-    qspGoto(s, 'intro_character_custom', 'modgrup');
+    ((st as any).start_type = (st as any).start_type ?? {})['group'] = 'nerd';
+    (st as any).soc_grup = 'Nerd';
+    (st as any).grupTipe = 3;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = 100;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = 800;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = 100;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[6] = 600;
+    qspGoto(st, 'intro_character_custom', 'modgrup');
   } },
     { label: 'Jock', handler: (st: GameState) => {
-    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'jock';
-    (s as any).soc_grup = 'Jock';
-    (s as any).grupTipe = 2;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 400;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 800;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 100;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 400;
-    qspGoto(s, 'intro_character_custom', 'modgrup');
+    ((st as any).start_type = (st as any).start_type ?? {})['group'] = 'jock';
+    (st as any).soc_grup = 'Jock';
+    (st as any).grupTipe = 2;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = 400;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = 800;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = 100;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[6] = 400;
+    qspGoto(st, 'intro_character_custom', 'modgrup');
   } },
     { label: 'Popular', handler: (st: GameState) => {
-    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'cool';
-    (s as any).soc_grup = 'Cool';
-    (s as any).grupTipe = 1;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 800;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 400;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 100;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 400;
-    qspGoto(s, 'intro_character_custom', 'modgrup');
+    ((st as any).start_type = (st as any).start_type ?? {})['group'] = 'cool';
+    (st as any).soc_grup = 'Cool';
+    (st as any).grupTipe = 1;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = 800;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = 400;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = 100;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[6] = 400;
+    qspGoto(st, 'intro_character_custom', 'modgrup');
   } },
     { label: 'Gopnik', handler: (st: GameState) => {
-    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'gopnik';
-    (s as any).soc_grup = 'Gopnik';
-    (s as any).grupTipe = 4;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 300;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 100;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 800;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 100;
-    qspGoto(s, 'intro_character_custom', 'modgrup');
+    ((st as any).start_type = (st as any).start_type ?? {})['group'] = 'gopnik';
+    (st as any).soc_grup = 'Gopnik';
+    (st as any).grupTipe = 4;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = 300;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = 100;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = 800;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[6] = 100;
+    qspGoto(st, 'intro_character_custom', 'modgrup');
   } },
     { label: 'Outcast', handler: (st: GameState) => {
-    ((s as any).start_type = (s as any).start_type ?? {})['group'] = 'outcast';
-    (s as any).soc_grup = 'Outcast';
-    (s as any).grupTipe = 5;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 200;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[6] = 200;
-    qspGoto(s, 'intro_character_custom', 'modgrup');
+    ((st as any).start_type = (st as any).start_type ?? {})['group'] = 'outcast';
+    (st as any).soc_grup = 'Outcast';
+    (st as any).grupTipe = 5;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = 200;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[6] = 200;
+    qspGoto(st, 'intro_character_custom', 'modgrup');
   } },
     { label: 'Return', goto: ['intro_character_custom', 'start'] },
   ]);
@@ -1760,14 +1760,14 @@ function enterModrelFam(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>Family relationship levels</b></center>');
   scene.text('<center><table border=0 cellspacing=0 cellpadding=25 bgcolor=#808080><th></th><th>Set to zero</th><th>Minus 10</th><th>Minus 5</th><th>Plus 5</th><th>Plus 10</th><th>Set to 100</th>');
-  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Stepfather: <<npc_rel['A28']>></td><td><a...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Stepfather: ${((s as any).npc_rel ?? 0)?.['A28'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A28\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A28\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A28\\u0027); return false;">100</a></td>`);
-  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Mother: <<npc_rel['A29']>></td><td><a hre...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Mother: ${((s as any).npc_rel ?? 0)?.['A29'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A29\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A29\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A29\\u0027); return false;">100</a></td>`);
-  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Sister: <<npc_rel['A33']>></td><td><a hre...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Sister: ${((s as any).npc_rel ?? 0)?.['A33'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A33\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A33\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A33\\u0027); return false;">100</a></td>`);
-  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme['table_bg']>>><td>Brother: <<npc_rel['A34']>></td><td><a hr...
-  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Brother: ${((s as any).npc_rel ?? 0)?.['A34'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A34\\u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027modify_exact\\u0027, \\u0027A34\\u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027npc_relationship\\u0027, \\u0027set\\u0027, \\u0027A34\\u0027); return false;">100</a></td>`);
+  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Stepfather: <<npc_rel[''A28'']>></td><t...
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Stepfather: ${((s as any).npc_rel ?? 0)?.['A28'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A28/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A28/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A28/u0027); return false;">100</a></td>`);
+  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Mother: <<npc_rel[''A29'']>></td><td><a...
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Mother: ${((s as any).npc_rel ?? 0)?.['A29'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A29/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A29/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A29/u0027); return false;">100</a></td>`);
+  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Sister: <<npc_rel[''A33'']>></td><td><a...
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Sister: ${((s as any).npc_rel ?? 0)?.['A33'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A33/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A33/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A33/u0027); return false;">100</a></td>`);
+  // TODO-QSP: dynamic text: <tr bgcolor=<<$theme[''table_bg'']>>><td>Brother: <<npc_rel[''A34'']>></td><td><...
+  scene.text(`<tr bgcolor=${((s as any).theme ?? 0)?.['table_bg'] ?? ''}><td>Brother: ${((s as any).npc_rel ?? 0)?.['A34'] ?? ''}</td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A34/u0027); return false;">zero</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">minus 10</a></td><td bgcolor=#ff9999><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">minus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">plus 5</a></td><td bgcolor=#99ff99><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027modify_exact/u0027, /u0027A34/u0027); return false;">plus 10</a></td><td><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027npc_relationship/u0027, /u0027set/u0027, /u0027A34/u0027); return false;">100</a></td>`);
   scene.text('</table></center>');
   // TODO-QSP: end
   scene.actions([
@@ -1777,11 +1777,11 @@ function enterModrelFam(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModrelSetup(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] < 0) {
-    ((s as any).npc_rel = (s as any).npc_rel ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = 0;
+  if (((s as any).npc_rel ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] < 0) {
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = 0;
   }
-  if (((s as any).npc_rel ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 100) {
-    ((s as any).npc_rel = (s as any).npc_rel ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = 100;
+  if (((s as any).npc_rel ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 100) {
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = 100;
   }
   // TODO-QSP: $table_display += '<tr bgcolor=<<$theme[''table_bg'']>>><td><<$npc_firstname[''<<$ARGS[1]>>'']>> <<$...
   // TODO-QSP: end
@@ -1953,8 +1953,8 @@ function enterModrelOth(s: GameState, scene: SceneBuilder): void {
 function enterPolGrupSet(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :pol_grup_set_loop
-  if (((s as any).npc_gender ?? 0)['A' + ((s as any).r ?? 0)] === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === ((s as any).locArgs?.[2] ?? 0)) {
-    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A' + String((s as any).r || '') + ''] = ((s as any).locArgs?.[3] ?? 0);
+  if (((s as any).npc_gender ?? 0)['A' + ((s as any).r ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === Number((s as any).locArgs?.[2] ?? 0)) {
+    ((s as any).npc_rel = (s as any).npc_rel ?? {})['A' + String(((s as any).r ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {

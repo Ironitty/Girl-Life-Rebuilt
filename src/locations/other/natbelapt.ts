@@ -32,7 +32,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'natbelEv', 'natmomhome');
   qspCall(s, 'natbelEv', 'nat_mother_state');
   if (((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
-    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherDoor'] = Math.floor(Math.random() * 2) + 0;
+    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherDoor'] = (Math.floor(Math.random() * 2) + 0);
   } else {
     ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MotherDoor'] = 0;
   }
@@ -119,16 +119,16 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['MetMother'] = 1;
               // TODO-QSP: dynamic text: Her mother stands there for a second before she seems to notice you. She looks <...
               scene.text(`Her mother stands there for a second before she seems to notice you. She looks ${((s as any).NatbelQW ?? 0)?.['MotherStateMsg'] ?? ''}.`);
-              // TODO-QSP: dynamic text: "Hi, I'm <<$pcs_nickname>>. I go to school with Natasha. Is she home?"
+              // TODO-QSP: dynamic text: "Hi, I''m <<$pcs_nickname>>. I go to school with Natasha. Is she home?"
               scene.text(`"Hi, I'm ${((s as any).pcs_nickname || '')}. I go to school with Natasha. Is she home?"`);
-              // TODO-QSP: dynamic text: "It's nice to meet a friend of Natasha's. I'm her mother <<$npc_firstname['A191'...
+              // TODO-QSP: dynamic text: "It''s nice to meet a friend of Natasha''s. I''m her mother <<$npc_firstname[''A...
               scene.text(`"It's nice to meet a friend of Natasha's. I'm her mother ${((s as any).npc_firstname ?? 0)?.['A191'] ?? ''}, but you can call me ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}."`);
             } else {
               // TODO-QSP: dynamic text: Her mother stands there for a second before she seems to notice you. She looks <...
               scene.text(`Her mother stands there for a second before she seems to notice you. She looks ${((s as any).NatbelQW ?? 0)?.['MotherStateMsg'] ?? ''}.`);
             }
             if (((s as any).NatashaLoc ?? 0) !== 0) {
-              // TODO-QSP: dynamic text: "Well now don't just stand there <<$pcs_nickname>>. Come on in!"
+              // TODO-QSP: dynamic text: "Well now don''t just stand there <<$pcs_nickname>>. Come on in!"
               scene.text(`"Well now don't just stand there ${((s as any).pcs_nickname || '')}. Come on in!"`);
               // TODO-QSP: dynamic text: "<<$NatashaLocMsg>>"
               scene.text(`"${((s as any).NatashaLocMsg || '')}"`);
@@ -222,7 +222,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
         { label: 'Bathroom', goto: ['natbelapt', 'bathroom'] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: Natasha is standing next to you, looking at you expectantly. "What's up, <<$pcs_...
+      // TODO-QSP: dynamic text: Natasha is standing next to you, looking at you expectantly. "What''s up, <<$pcs...
       scene.text(`Natasha is standing next to you, looking at you expectantly. "What's up, ${((s as any).pcs_nickname || '')}?"`);
       scene.actions([
         { label: '<b>Leave Natasha\'s apartment</b>', goto: ['natbelapt', 'leave_apartment'] },
@@ -247,7 +247,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Living room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/living.jpg');
   scene.text('Most of the living room is occupied by an old but comfortable looking couch. It\'s big enough to sleep in. In front of it stands an old tiny TV.');
-  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVshow'] = Math.floor(Math.random() * 9) + 0;
+  ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVshow'] = (Math.floor(Math.random() * 9) + 0);
   if (((s as any).NatbelQW ?? 0)?.['TVshow'] === 0) {
     ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['TVmsg'] = 'a nature show about wild animals in their natural habitat';
   } else {
@@ -326,15 +326,15 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).NatashaLoc ?? 0) === 4  &&  ((s as any).NatbelQW ?? 0)?.['NoTV'] === 0) {
-      // TODO-QSP: dynamic text: Natasha is sitting on the couch watching <<$NatbelQW['TVmsg']>>.
+      // TODO-QSP: dynamic text: Natasha is sitting on the couch watching <<$NatbelQW[''TVmsg'']>>.
       scene.text(`Natasha is sitting on the couch watching ${((s as any).NatbelQW ?? 0)?.['TVmsg'] ?? ''}.`);
       scene.actions([
         { label: 'Join her', handler: (st: GameState) => {
-    if (((s as any).NatbelQW ?? 0)?.['TVshow'] !== 8) {
+    if (((st as any).NatbelQW ?? 0)?.['TVshow'] !== 8) {
       scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/tvsnack.jpg');
       if ((!(Math.floor(Math.random() * 2) + 0))) {
-        (s as any).minut = ((s as any).minut ?? 0) + 60;
-        qspCall(s, 'stat', '');
+        (st as any).minut = ((st as any).minut ?? 0) + 60;
+        qspCall(st, 'stat', '');
         scene.text('You sit on the couch next to Natasha and watch TV with her. You and Natasha are both watching with interest while you pass the snacks around.');
         scene.text('When it ends you glance up at the clock and are startled to see that an hour has passed.');
         scene.actions([
@@ -343,8 +343,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   }, goto: ['natbelapt', 'natroom'] },
         ]);
       } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 15;
-        qspCall(s, 'stat', '');
+        (st as any).minut = ((st as any).minut ?? 0) + 15;
+        qspCall(st, 'stat', '');
         scene.text('You sit on the couch next to Natasha and watch TV with her. You soon get bored and start talking with Natasha, ignoring the TV completely.');
         scene.actions([
           { label: 'Let\'s go to your room', handler: (st: GameState) => {
@@ -354,10 +354,10 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/nattvporn.jpg');
-      if (((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
+      if (((st as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
         scene.text('"Aren\'t you afraid your mother would walk in on you watching that?" You ask her as you walk in the room.');
         // TODO-QSP: dynamic text: Natasha jumps visibly at hearing your voice. "Oh <<$pcs_nickname>>, I…" She star...
-        scene.text(`Natasha jumps visibly at hearing your voice. "Oh ${((s as any).pcs_nickname || '')}, I…" She starts, going red in the face. "It's alright Natasha, everyone watches it." You tell her quickly as you take a seat next to her.`);
+        scene.text(`Natasha jumps visibly at hearing your voice. "Oh ${((st as any).pcs_nickname || '')}, I…" She starts, going red in the face. "It's alright Natasha, everyone watches it." You tell her quickly as you take a seat next to her.`);
         scene.text('"Though I\'m not sure you should be watching it when your mother can walk in at any moment."');
         scene.actions([
           { label: 'Let\'s go to your room', handler: (st: GameState) => {
@@ -365,44 +365,44 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   }, goto: ['natbelapt', 'natroom'] },
         ]);
       } else {
-        if (((s as any).fame ?? 0)?.['city_porn'] > 250  &&  ((s as any).film ?? 0) > 0) {
-          (s as any).YourPorn = Math.floor(Math.random() * 10) + 0;
+        if (((st as any).fame ?? 0)?.['city_porn'] > 250  &&  ((st as any).film ?? 0) > 0) {
+          (st as any).YourPorn = (Math.floor(Math.random() * 10) + 0);
         } else {
-          if (((s as any).fame ?? 0)?.['city_porn'] > 200  &&  ((s as any).film ?? 0) > 0) {
-            (s as any).YourPorn = Math.floor(Math.random() * 20) + 0;
+          if (((st as any).fame ?? 0)?.['city_porn'] > 200  &&  ((st as any).film ?? 0) > 0) {
+            (st as any).YourPorn = (Math.floor(Math.random() * 20) + 0);
           } else {
-            if (((s as any).fame ?? 0)?.['city_porn'] > 150  &&  ((s as any).film ?? 0) > 0) {
-              (s as any).YourPorn = Math.floor(Math.random() * 30) + 0;
+            if (((st as any).fame ?? 0)?.['city_porn'] > 150  &&  ((st as any).film ?? 0) > 0) {
+              (st as any).YourPorn = (Math.floor(Math.random() * 30) + 0);
             } else {
-              if (((s as any).fame ?? 0)?.['city_porn'] > 100  &&  ((s as any).film ?? 0) > 0) {
-                (s as any).YourPorn = Math.floor(Math.random() * 40) + 0;
+              if (((st as any).fame ?? 0)?.['city_porn'] > 100  &&  ((st as any).film ?? 0) > 0) {
+                (st as any).YourPorn = (Math.floor(Math.random() * 40) + 0);
               } else {
-                if (((s as any).fame ?? 0)?.['city_porn'] > 50  &&  ((s as any).film ?? 0) > 0) {
-                  (s as any).YourPorn = Math.floor(Math.random() * 50) + 0;
+                if (((st as any).fame ?? 0)?.['city_porn'] > 50  &&  ((st as any).film ?? 0) > 0) {
+                  (st as any).YourPorn = (Math.floor(Math.random() * 50) + 0);
                 } else {
-                  (s as any).YourPorn = 0;
+                  (st as any).YourPorn = 0;
                 }
               }
             }
           }
         }
-        if (((s as any).YourPorn ?? 0) === 1) {
-          if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
+        if (((st as any).YourPorn ?? 0) === 1) {
+          if (((st as any).fame ?? 0)?.['pav_slut'] < 100) {
             scene.text('You are startled to see yourself on the screen, unsure how you feel about Natasha knowing. "Best to check the damage." You think to yourself as you approach the couch.');
           } else {
             scene.text('You see yourself on the screen. "It would have happened sooner or later." You smile to yourself as you approach the couch.');
           }
           scene.text('Natasha doesn\'t notice you until she feels the couch move as you sit down next to her. She jumps in surprise and quickly adjusts her skirt to hide her wet panties, completely red in the face from a mixture of arousal and embarrassment at being caught watching porn featuring you.');
-          if (((s as any).NatbelQW ?? 0)?.['WatchedYourPorn'] === 0) {
-            ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['WatchedYourPorn'] = 1;
+          if (((st as any).NatbelQW ?? 0)?.['WatchedYourPorn'] === 0) {
+            ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['WatchedYourPorn'] = 1;
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You… Is this how you get so much money?"
-            scene.text(`"${((s as any).pcs_nickname || '')}! You… Is this how you get so much money?"`);
+            scene.text(`"${((st as any).pcs_nickname || '')}! You… Is this how you get so much money?"`);
             scene.text('"It pays pretty well yeah."');
           } else {
             scene.text('"I see you\'re watching me again, you like it that much?" You ask her in a sultry voice.');
             scene.text('"I-It\'s… I-I\'m not sure how I feel about it. The fact that I know it\'s you is…" She starts stammering."');
           }
-          if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
+          if (((st as any).fame ?? 0)?.['pav_slut'] < 100) {
             scene.text('"Please don\'t tell anyone about it." You ask her feeling ashamed she knows about your porn career now.');
           } else {
             scene.text('"You can watch that all you like. I was so wet when we shot this one. It\'s amazing." You tell her proudly.');
@@ -410,8 +410,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
           scene.text('Natasha\'s eyes keep darting unbelieving glances at you while the two of you watch the rest of the scene. You pay more attention to her reactions than what you\'re doing on the screen, feeling amused each time you see her squirm.');
           scene.text('You start feeling aroused. More from watching Natasha than the porno. By the time it ends your pussy is wet.');
           scene.text('"That was pretty hot." She says at the end, her face completely red now. "Don\'t worry, I won\'t tell anyone.');
-          qspCall(s, 'arousal', 'porn', 20);
-          qspCall(s, 'arousal', 'end');
+          qspCall(st, 'arousal', 'porn', 20);
+          qspCall(st, 'arousal', 'end');
           scene.actions([
             { label: 'Let\'s go to your room', handler: (st: GameState) => {
     (st as any).NatashaLoc = 2;
@@ -422,8 +422,8 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
           scene.text('Placing a hand on her knee you tell her: "It\'s ok, I like watching a dirty movie myself from time to time."');
           scene.text('Natasha turns her attention back to the TV, and her eyes stay glued to the screen. You pay more attention to her reactions than what\'s happening on the screen, feeling amused each time you see her squirm.');
           scene.text('You start feeling aroused. More from watching Natasha than the porno. By the time it ends your pussy is wet.');
-          qspCall(s, 'arousal', 'porn', 20);
-          qspCall(s, 'arousal', 'end');
+          qspCall(st, 'arousal', 'porn', 20);
+          qspCall(st, 'arousal', 'end');
           scene.actions([
             { label: 'Let\'s go to your room', handler: (st: GameState) => {
     (st as any).NatashaLoc = 2;
@@ -476,14 +476,14 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Show me some skin', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natfridgeshow.jpg');
     // TODO-QSP: dynamic text: You grab her ass, making her jump and turn around. "Oh <<$pcs_nickname>>, you st...
-    scene.text(`You grab her ass, making her jump and turn around. "Oh ${((s as any).pcs_nickname || '')}, you startled me."`);
+    scene.text(`You grab her ass, making her jump and turn around. "Oh ${((st as any).pcs_nickname || '')}, you startled me."`);
     scene.text('"You were just begging for it with your ass sticking out like that. And now I want more. Show me some skin, Natasha." You tell her.');
-    if (((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
+    if (((st as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
       scene.text('Natasha glances at the doorway to check if her mother isn\'t around and then quickly bares her breasts and pulls her shorts down to reveal her panties.');
       scene.text('Stepping closer you run your hand over her panties for a moment, feeling her shiver from a simple touch. "Ok, cover up, we don\'t want your mom catching us here."');
     } else {
@@ -511,7 +511,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['momrobe'] = 1;
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: As you walk into the kitchen, you see <<$npc_nickname['A191']>> having a healthy...
+        // TODO-QSP: dynamic text: As you walk into the kitchen, you see <<$npc_nickname[''A191'']>> having a healt...
         scene.text(`As you walk into the kitchen, you see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} having a healthy snack, wearing only a thin robe.`);
         // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>." She greets you cheerfully without a hint of discomfo...
         scene.text(`"Hello, ${((s as any).pcs_nickname || '')}." She greets you cheerfully without a hint of discomfort about the amount of skin she's showing.`);
@@ -540,7 +540,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['cucumber'] === 0) {
     scene.actions([
       { label: 'Take a cucumber', handler: (st: GameState) => {
-    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['cucumber'] = 1;
+    ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['cucumber'] = 1;
     scene.text('You take a cucumber out of the fridge. This could come in handy.');
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'fridge'] },
@@ -564,7 +564,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/bathroom.jpg');
   scene.text('The bathroom is kept spotlessly clean. Everything here has a well cared for look to it.');
   scene.text('The toilet sits along the wall next to a small bathtub.');
-  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -575,18 +575,18 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the bathroom', goto: ['natbelapt', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
-    if (((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1  &&  (!(Math.floor(Math.random() * 5) + 0))) {
-      qspGoto(s, 'natbelEv', 'showerevent1');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
+    if (((st as any).NatbelQW ?? 0)?.['MotherHome'] === 1  &&  (!(Math.floor(Math.random() * 5) + 0))) {
+      qspGoto(st, 'natbelEv', 'showerevent1');
     } else {
       scene.text('<center><b>Bathroom</b></center>');
       scene.img('images/shared/home/bathroom/dush.mp4');
       scene.text('You take a quick shower.');
-      if (((s as any).deodorant_on ?? 0) === 1) {
-        qspCall(s, 'sweat', 'remove_deo');
+      if (((st as any).deodorant_on ?? 0) === 1) {
+        qspCall(st, 'sweat', 'remove_deo');
         scene.text('<br>Your deodorant gets washed away in the shower.');
       }
       scene.actions([
@@ -615,7 +615,7 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/natasha/natsleep5.jpg');
       scene.text('You look into the room and see that Natasha is sleeping snug under her covers. Not wanting to disturb her you close the door and leave.');
     } else {
-      scene.img(`images/characters/pavlovsk/school/girl/natasha/natsleep${Math.floor(Math.random() * 4) + 1}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/girl/natasha/natsleep${(Math.floor(Math.random() * 4) + 1)}.jpg`);
       scene.text('You look into the room and see that Natasha is sleeping soundly on her bed. Not wanting to disturb her you close the door and leave.');
     }
     qspCall(s, 'stat', '');
@@ -661,8 +661,8 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
         { label: 'Watch her get dressed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/natdressing1.jpg');
     scene.text('Natasha grabs some clean clothes out of her closet, drops the towel and quickly gets dressed.');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -679,50 +679,50 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
         scene.text('Natasha is sitting on the bed, looking at some fashion magazines.');
         scene.actions([
           { label: 'Let\'s go to the living room', handler: (st: GameState) => {
-    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['NoTV'] = 1;
-    (s as any).NatashaLoc = 4;
-    qspGoto(s, 'natbelapt', 'livingroom');
+    ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['NoTV'] = 1;
+    (st as any).NatashaLoc = 4;
+    qspGoto(st, 'natbelapt', 'livingroom');
   } },
         ]);
       }
       if (((s as any).NatbelQW ?? 0)?.['pregday'] > 0  &&  ((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday'] > 90  &&  ((s as any).NatbelQW ?? 0)?.['askedbaby'] !== ((s as any).daystart ?? 0)) {
         scene.actions([
           { label: 'Touch her belly', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['askedbaby'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/touch_belly\'+iif(npc_pregtalk[\'A16\'] = 1, \'_preg\', \')+\'.jpg');
-    if (((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday'] < 120) {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['askedbaby'] = ((st as any).daystart ?? 0);
+    qspCall(st, 'npc_relationship', 'modify', 'A16', 'like');
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/touch_belly' + ((((st as any).npc_pregtalk ?? 0)?.['A16'] === 1) ? ('_preg') : ('')) + '.jpg');
+    if (((st as any).daystart ?? 0)-((st as any).NatbelQW ?? 0)?.['pregday'] < 120) {
       scene.text('She looks at you with a strange smile.');
       scene.text('"Yes," she answers the question you didn\'t voice, "your little brother has actually knocked me up. I hope you are happy with that because I can\'t afford an abortion."');
       scene.text('Her tone is a lot less accusing than you\'d expected. In fact, she seems… happy.');
-      if (((s as any).npc_pregtalk ?? 0)?.['A16'] === 1) {
+      if (((st as any).npc_pregtalk ?? 0)?.['A16'] === 1) {
         scene.text('"It\'s really reassuring to know I won\'t be going through this alone though," she says softly and gives you a hug.');
       }
     } else {
-      if (((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday'] < 190) {
+      if (((st as any).daystart ?? 0)-((st as any).NatbelQW ?? 0)?.['pregday'] < 190) {
         scene.text('"I felt the baby kick earlier today!" she says with a big smile on her face, "keep your hands there for a bit, maybe it\'ll happen again."');
         if ((!(Math.floor(Math.random() * 21) + 0))) {
           scene.text('About a minute later you do indeed feel a tiny kick from inside Natasha\'s belly, making both of you jump a little.');
         }
-        if (((s as any).NatbelQW ?? 0)?.['KolkaSex'] > 20  &&  (Math.floor(Math.random() * 3) + 0) === 1) {
+        if (((st as any).NatbelQW ?? 0)?.['KolkaSex'] > 20  &&  (Math.floor(Math.random() * 3) + 0) === 1) {
           scene.text('With a beet-red face and a dreamy look in her eyes she adds "Don\'t tell Kolka, but every time we have our little… fun… it gets really active in there."');
         }
-        if (((s as any).npc_pregtalk ?? 0)?.['A16'] === 1) {
+        if (((st as any).npc_pregtalk ?? 0)?.['A16'] === 1) {
           scene.text('A few moments later she asks "What about yours, felt anything yet?"');
-          if (((s as any).pregtime ?? 0) < 120) {
+          if (((st as any).pregtime ?? 0) < 120) {
             scene.text('"I don\'t think so," you respond, slightly sad about the fact for some reason.');
             scene.text('Natasha quickly picks up on that and tries to cheer you up "Don\'t worry, you\'re just not far along yet. It\'ll make you so happy when it happens for the first time, you\'ll see!"');
           } else {
-            if (((s as any).pregtime ?? 0) < 190) {
+            if (((st as any).pregtime ?? 0) < 190) {
               scene.text('"Yep, I feel it kicking in the morning sometimes," which prompts Natasha to start rubbing your belly too.');
             } else {
               scene.text('"Oh yeah, it\'s gotten quite lively in there lately," which prompts Natasha to start rubbing your belly too.');
               if ((!(Math.floor(Math.random() * 8) + 0))) {
-                qspCall(s, 'din_bad', 'd_pregmovement');
+                qspCall(st, 'din_bad', 'd_pregmovement');
                 scene.text('"As if on queue…" you happily muse aloud.');
-                if (((s as any).wombthfathID ?? 0) === 'A34') {
+                if (((st as any).wombthfathID ?? 0) === 'A34') {
                   scene.text('With a tinge of wonder Natasha mumbles "Your little brother makes some energetic children, doesn\'t he?"');
                 }
               }
@@ -734,21 +734,21 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
         if ((!(Math.floor(Math.random() * 8) + 0))) {
           scene.text('Natasha has barely finished her joke, before you feel a kick coming from within.<br>"There we go again, see?"');
         }
-        if (((s as any).npc_pregtalk ?? 0)?.['A16'] === 1) {
+        if (((st as any).npc_pregtalk ?? 0)?.['A16'] === 1) {
           // TODO-QSP: dynamic text: She puts her hands on your belly a moment later and asks "How is your pregnancy ...
-          scene.text(`She puts her hands on your belly a moment later and asks "How is your pregnancy going ${((s as any).pcs_nickname || '')}?"`);
-          if (((s as any).pregtime ?? 0) < 120) {
+          scene.text(`She puts her hands on your belly a moment later and asks "How is your pregnancy going ${((st as any).pcs_nickname || '')}?"`);
+          if (((st as any).pregtime ?? 0) < 120) {
             // TODO-QSP: '"Oh, you know… I keep getting morning sickness, but it''s not as bad as I read it would be. And luc...
             scene.text('Natasha gives you a reassuring hug, telling you it\'s all going to be alright and that she\'s there for you.');
           } else {
-            if (((s as any).pregtime ?? 0) < 190) {
+            if (((st as any).pregtime ?? 0) < 190) {
               scene.text('"I feel the baby kicking in the morning sometimes," you say with a smile.');
             } else {
               scene.text('"Tell me about it, it\'s like there\'s a constant party going on in there."');
               if ((!(Math.floor(Math.random() * 8) + 0))) {
-                qspCall(s, 'din_bad', 'd_pregmovement');
+                qspCall(st, 'din_bad', 'd_pregmovement');
                 scene.text('"As if on queue…" you happily muse aloud.');
-                if (((s as any).wombthfathID ?? 0) === 'A34') {
+                if (((st as any).wombthfathID ?? 0) === 'A34') {
                   scene.text('You see Natasha blush slightly before she says with a wink "Just like their dad, huh?"');
                 }
               }
@@ -802,11 +802,11 @@ function enterSeethorughSurprise(s: GameState, scene: SceneBuilder): void {
     scene.text('It doesn\'t look like she\'s noticed you coming in, so you move over to the bed and lay your hand on her ass.');
     scene.text('The moment your hand touches her skin she lets out a yelp and rolls over to see who it is.');
     // TODO-QSP: dynamic text: "Jesus <<$pcs_nickname>> you nearly gave me a heart attack. For a second I thoug...
-    scene.text(`"Jesus ${((s as any).pcs_nickname || '')} you nearly gave me a heart attack. For a second I thought my mom walked in."`);
+    scene.text(`"Jesus ${((st as any).pcs_nickname || '')} you nearly gave me a heart attack. For a second I thought my mom walked in."`);
     scene.text('You enjoy looking at her breasts through the thin fabric as she needs a moment to calm down.');
-    qspCall(s, 'arousal', 'erotic', 3);
-    qspCall(s, 'arousal', 'end');
-    (s as any).natstayroom = 1;
+    qspCall(st, 'arousal', 'erotic', 3);
+    qspCall(st, 'arousal', 'end');
+    (st as any).natstayroom = 1;
     scene.actions([
       { label: 'Continue', goto: ['natbelapt', 'natroom'] },
     ]);
@@ -835,36 +835,36 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Don\'t peek', goto: ['natbelapt', 'hallway'] },
       { label: 'Look through the crack in the door', handler: (st: GameState) => {
-    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['SeenNatMomHitachi_day'] = ((s as any).daystart ?? 0);
-    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['SeenNatMomHitachi'] = ((s as any).NatbelQW['SeenNatMomHitachi'] ?? 0) + (1);
+    ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['SeenNatMomHitachi_day'] = ((st as any).daystart ?? 0);
+    ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['SeenNatMomHitachi'] = ((st as any).NatbelQW['SeenNatMomHitachi'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natmomhitachi11.jpg');
-    // TODO-QSP: dynamic text: You can see <<$npc_nickname['A191']>> sitting on her bed with her eyes closed, w...
-    scene.text(`You can see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} sitting on her bed with her eyes closed, wearing only her skirt which she has pulled up to expose her pussy.`);
-    // TODO-QSP: dynamic text: She is eagerly rubbing her <<$NatbelQW['NatMomVibName']>> on her pussy. Even tho...
-    scene.text(`She is eagerly rubbing her ${((s as any).NatbelQW ?? 0)?.['NatMomVibName'] ?? ''} on her pussy. Even though she's obviously trying to be quiet, her moans of pleasure keep getting louder and louder. You feel your own pussy getting wet in response.`);
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: You can see <<$npc_nickname[''A191'']>> sitting on her bed with her eyes closed,...
+    scene.text(`You can see ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''} sitting on her bed with her eyes closed, wearing only her skirt which she has pulled up to expose her pussy.`);
+    // TODO-QSP: dynamic text: She is eagerly rubbing her <<$NatbelQW[''NatMomVibName'']>> on her pussy. Even t...
+    scene.text(`She is eagerly rubbing her ${((st as any).NatbelQW ?? 0)?.['NatMomVibName'] ?? ''} on her pussy. Even though she's obviously trying to be quiet, her moans of pleasure keep getting louder and louder. You feel your own pussy getting wet in response.`);
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep looking', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natmomhitachi12.jpg');
-    // TODO-QSP: dynamic text: After a few more minutes you notice <<$npc_nickname['A191']>> pressing a button,...
-    scene.text(`After a few more minutes you notice ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} pressing a button, and the ${((s as any).NatbelQW ?? 0)?.['NatMomVibName'] ?? ''} starts buzzing more loudly. She starts to press it against her pussy even harder. It doesn't take long before you can clearly see her have an orgasm. She closes her legs around the ${((s as any).NatbelQW ?? 0)?.['NatMomVibName'] ?? ''} to keep it firmly on her pussy while she bucks and lets out gasping breaths.`);
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: After a few more minutes you notice <<$npc_nickname[''A191'']>> pressing a butto...
+    scene.text(`After a few more minutes you notice ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''} pressing a button, and the ${((st as any).NatbelQW ?? 0)?.['NatMomVibName'] ?? ''} starts buzzing more loudly. She starts to press it against her pussy even harder. It doesn't take long before you can clearly see her have an orgasm. She closes her legs around the ${((st as any).NatbelQW ?? 0)?.['NatMomVibName'] ?? ''} to keep it firmly on her pussy while she bucks and lets out gasping breaths.`);
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep looking', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natmomhitachi13.jpg');
     scene.text('Her eyes fly open, and you have no chance to leave unnoticed. You stand there frozen to the spot as she pulls down her skirt and tries to hide her breasts with her arm.');
-    if (((s as any).NatbelQW ?? 0)?.['SeenNatMomHitachi'] > 1) {
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, You shouldn't be spying on people in their bedrooms. Now go....
-      scene.text(`"${((s as any).pcs_nickname || '')}, You shouldn't be spying on people in their bedrooms. Now go. We'll talk about this later."`);
+    if (((st as any).NatbelQW ?? 0)?.['SeenNatMomHitachi'] > 1) {
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, You shouldn''t be spying on people in their bedrooms. Now go...
+      scene.text(`"${((st as any).pcs_nickname || '')}, You shouldn't be spying on people in their bedrooms. Now go. We'll talk about this later."`);
     } else {
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I should have known you'd come spying again. What is it that...
-      scene.text(`"${((s as any).pcs_nickname || '')}, I should have known you'd come spying again. What is it that makes you so curious about these things?"`);
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I should have known you''d come spying again. What is it tha...
+      scene.text(`"${((st as any).pcs_nickname || '')}, I should have known you'd come spying again. What is it that makes you so curious about these things?"`);
       scene.text('"I-I\'m not sure myself. I just am."');
       scene.text('"It\'s your age I guess, now would you kindly close the door so that I can get decent?"');
     }
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['natbelapt', 'hallway'] },
     ]);
@@ -878,17 +878,17 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) < 7  ||  ((s as any).hour ?? 0) > 22) {
       if (((s as any).month ?? 0) < 4  ||  ((s as any).month ?? 0) > 9) {
         scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep3.jpg');
-        // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>> sound asleep under t...
+        // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>> sound asleep under...
         scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} sound asleep under the covers. Not wanting to disturb her you close the door and leave.`);
       } else {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
           scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep1.jpg');
-          // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>>, sound asleep in her...
+          // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>>, sound asleep in h...
           scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}, sound asleep in her bra and panties. You can see part of her pussy from where you're standing. Not wanting to disturb her you close the door and leave.`);
           qspCall(s, 'arousal', 'voyeur', 2);
         } else {
           scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep2.jpg');
-          // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>>, tossing in her slee...
+          // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>>, tossing in her sl...
           scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}, tossing in her sleep in her bra and panties. As you're watching she rolls onto her back and puts her hand in her panties. "That must be one hell of an enjoyable dream." You think to yourself. Not wanting to disturb her you close the door and leave.`);
           qspCall(s, 'arousal', 'voyeur_sex', 4);
         }
@@ -896,27 +896,27 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).month ?? 0) < 4  ||  ((s as any).month ?? 0) > 9) {
         scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep3.jpg');
-        // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>> sound asleep under t...
+        // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>> sound asleep under...
         scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} sound asleep under the covers. Not wanting to disturb her you close the door and leave.`);
       }
       if ((Math.floor(Math.random() * 3) + 1) === 1) {
         scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep1.jpg');
-        // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>>, sound asleep in her...
+        // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>>, sound asleep in h...
         scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}, sound asleep in her bra and panties. You can see part of her pussy from where you're standing. Not wanting to disturb her you close the door and leave.`);
       } else {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
           scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep2.jpg');
-          // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>>, tossing in her slee...
+          // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>>, tossing in her sl...
           scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}, tossing in her sleep in her bra and panties. As you're watching she rolls onto her back and puts her hand in her panties. "That must be one hell of an enjoyable dream." You think to yourself. Not wanting to disturb her you close the door and leave.`);
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
         } else {
           if ((Math.floor(Math.random() * 2) + 1) === 1) {
             scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep1.jpg');
-            // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>>, sound asleep in her...
+            // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>>, sound asleep in h...
             scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}, sound asleep in her bra and panties. You can see part of her pussy from where you're standing. Not wanting to disturb her you close the door and leave.`);
           } else {
             scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natmomsleep2.jpg');
-            // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname['A191']>>, tossing in her slee...
+            // TODO-QSP: dynamic text: You look into the bedroom and see <<$npc_nickname[''A191'']>>, tossing in her sl...
             scene.text(`You look into the bedroom and see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}, tossing in her sleep in her bra and panties. As you're watching she rolls onto her back and puts her hand in her panties. "That must be one hell of an enjoyable dream." You think to yourself. Not wanting to disturb her you close the door and leave.`);
             (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
           }
@@ -952,26 +952,26 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Show me more', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A16');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npcStat', 'A16');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natdressing02.jpg');
     scene.text('"Now don\'t get shy on me. Such an outfit is made to draw attention, so stop covering up and give me a show."');
     scene.text('Natasha, noticing that you won\'t take no for an answer, takes her hands away from the skirt and starts to dance around seductively, slowly raising her top to reveal her breasts.');
     scene.text('"You can show those wonderful tits to me anytime." You praise her.');
-    qspCall(s, 'arousal', 'foreplay', 3, 'exhibitionism', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 3, 'exhibitionism', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep going', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/natdressing03.jpg');
     scene.text('"Keep going, I want to see more of your pretty body." You nudge her on.');
     scene.text('By now Natasha seems to be enjoying giving you a striptease. She pulls her top off completely and moves over to a chair and starts running her hands over her own body, occasionally lifting the short skirt to give you a good look at her panties.');
     scene.text('She starts focusing on rubbing her legs, occasionally running her hands over her panties, rubbing her pussy through the fabric. As a final act, she moves them to the side to show you her wet pussy.');
     scene.text('"Ok, we better stop before your mom catches us. And you might want to throw those panties in the laundry, they look wet."');
     scene.text('Natasha quickly strips out of the rest of the outfit and quickly puts on her own clothes, red in the face from arousal.');
-    qspCall(s, 'arousal', 'foreplay', 3, 'exhibitionism', 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 3, 'exhibitionism', 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Let\'s go to your room', handler: (st: GameState) => {
     (st as any).NatashaLoc = 2;
@@ -993,36 +993,36 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Leave', goto: ['natbelapt', 'hallway'] },
           { label: 'Look around', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.text('<center><b>Natasha\'s mother\'s room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/findhitachi.jpg');
     scene.text('You idly poke your head into her closet. Not much of interest there but a few dresses you wouldn\'t mind trying on. Moving on to her bedside you poke through her drawers. The top one is filled with bras and panties. Some look pretty sexy.');
     scene.text('When you open the next drawer, you find the jackpot. There\'s a bunch of sex toys in there. You pick up the biggest one in there.');
     scene.actions([
       { label: 'Play with it', handler: (st: GameState) => {
-    if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((s as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
+    if ((Math.floor(Math.random() * 5) + 0) === 0  &&  ((st as any).NatbelQW ?? 0)?.['MotherHome'] === 1) {
       scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natmomhitachi01.jpg');
-      if (((s as any).NatbelQW ?? 0)?.['SeenNatMomHitachi'] >= 1) {
-        // TODO-QSP: dynamic text: From when you saw <<$npc_nickname['A191']>> using it you have a pretty good idea...
-        scene.text(`From when you saw ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} using it you have a pretty good idea of how good a vibrator it is.`);
+      if (((st as any).NatbelQW ?? 0)?.['SeenNatMomHitachi'] >= 1) {
+        // TODO-QSP: dynamic text: From when you saw <<$npc_nickname[''A191'']>> using it you have a pretty good id...
+        scene.text(`From when you saw ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''} using it you have a pretty good idea of how good a vibrator it is.`);
       } else {
         scene.text('When you press the button on it, it starts to vibrate in your hand. "Oh, it\'s a vibrator." You think to yourself. "I have to give this a try."');
       }
       // TODO-QSP: dynamic text: You strip down quickly, wanting to get started. "I can just leave my bra on, it'...
-      scene.text(`You strip down quickly, wanting to get started. "I can just leave my bra on, it's not going to suck on my tits." You think as you relax on ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}'s bed.`);
+      scene.text(`You strip down quickly, wanting to get started. "I can just leave my bra on, it's not going to suck on my tits." You think as you relax on ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''}'s bed.`);
       scene.text('You turn the big vibrator on and start rubbing it on your pussy. The stimulation is pretty intense, even at a low setting. Experimentally you turn up the speed causing you to let out a moan of pleasure as you feel your pussy getting soaking wet.');
-      // TODO-QSP: dynamic text: Just as you're really getting into it, you notice that the door is open now and ...
-      scene.text(`Just as you're really getting into it, you notice that the door is open now and ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} is standing over you looking at your bare pussy with her toy rubbing it all over.`);
-      qspCall(s, 'arousal', 'vaginal_vibe', 10);
-      qspCall(s, 'stat', '');
+      // TODO-QSP: dynamic text: Just as you''re really getting into it, you notice that the door is open now and...
+      scene.text(`Just as you're really getting into it, you notice that the door is open now and ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''} is standing over you looking at your bare pussy with her toy rubbing it all over.`);
+      qspCall(st, 'arousal', 'vaginal_vibe', 10);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Say you\'re sorry', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natmomhitachi02.jpg');
-    if (((s as any).NatbelQW ?? 0)?.['CaughtByNatMomHitachi'] === 0) {
-      // TODO-QSP: dynamic text: "I-I…" You start, but she immediately cuts you off saying: "You shouldn't be goi...
-      scene.text(`"I-I…" You start, but she immediately cuts you off saying: "You shouldn't be going through other people's stuff ${((s as any).pcs_nickname || '')}. And you sure shouldn't use anything you find without asking."`);
+    if (((st as any).NatbelQW ?? 0)?.['CaughtByNatMomHitachi'] === 0) {
+      // TODO-QSP: dynamic text: "I-I…" You start, but she immediately cuts you off saying: "You shouldn''t be go...
+      scene.text(`"I-I…" You start, but she immediately cuts you off saying: "You shouldn't be going through other people's stuff ${((st as any).pcs_nickname || '')}. And you sure shouldn't use anything you find without asking."`);
       // TODO-QSP: dynamic text: "W-Without… asking? You mean…" You stammer. "Yes <<$pcs_nickname>>, I know girls...
-      scene.text(`"W-Without… asking? You mean…" You stammer. "Yes ${((s as any).pcs_nickname || '')}, I know girls your age are curious. And a Hitachi sure is a big temptation. It's pretty much my favorite toy." She admits.`);
+      scene.text(`"W-Without… asking? You mean…" You stammer. "Yes ${((st as any).pcs_nickname || '')}, I know girls your age are curious. And a Hitachi sure is a big temptation. It's pretty much my favorite toy." She admits.`);
       scene.text('"I can show you how good it is. Would you like that?" She adds, not quite able to hide her eagerness.');
     } else {
       scene.text('"I-I know I should have asked. I just couldn\'t resist. It felt so amazing the last time." You tell her apologetically. "Could we… do that again?"');
@@ -1030,17 +1030,17 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let her', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A16');
+    qspCall(st, 'npcStat', 'A16');
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/natmomhitachi03.jpg');
     scene.text('"Oh-Ok," You say, opening your legs and revealing your dripping pussy to her. She sits down next to you and takes the Hitachi.');
     scene.text('"Just lie back and enjoy it." She tells you as she starts rubbing it on top of your clit on a low setting. "First we\'ll warm you up a bit before we turn up the speed."');
     scene.text('After about a minute of this, she spreads your pussy with her hand and then presses the Hitachi against your exposed clit. You instantly let out a loud moan, hoping that nobody outside the room heard it. The direct stimulation is so intense that you start squirming under it. While you\'re still trying to adjust she starts turning up the speed.');
     scene.text('"Time to show you what it does on max speed. You\'ll want one of your own after this." She says with a grin, as she turns it up all the way');
-    (s as any).orgasm_txt = 'Within seconds you feel your orgasm crash down on you. You start convulsing hard, trying to close your legs to escape further stimulation but ' + ((s as any).npc_nickname ?? 0)?.['A191'] + ' holds your legs open and keeps rubbing your pussy with the Hitachi for a good minute or two. As she lets go, you immediately close your legs and roll onto your side, still shaking in the grip of your orgasm. It takes you a few minutes to get back to yourself. Once ' + ((s as any).npc_nickname ?? 0)?.['A191'] + ' sees that you\'re coherent again she asks: "I can clearly see that you liked it, but was I right that you\'d want one yourself now?" Still too out of breath for speech you just smile and nod.';
-    qspCall(s, 'arousal', 'vaginal_vibe', 10, 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_txt = 'Within seconds you feel your orgasm crash down on you. You start convulsing hard, trying to close your legs to escape further stimulation but ' + ((st as any).npc_nickname ?? 0)?.['A191'] + ' holds your legs open and keeps rubbing your pussy with the Hitachi for a good minute or two. As she lets go, you immediately close your legs and roll onto your side, still shaking in the grip of your orgasm. It takes you a few minutes to get back to yourself. Once ' + ((st as any).npc_nickname ?? 0)?.['A191'] + ' sees that you\'re coherent again she asks: "I can clearly see that you liked it, but was I right that you\'d want one yourself now?" Still too out of breath for speech you just smile and nod.';
+    qspCall(st, 'arousal', 'vaginal_vibe', 10, 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.text('You can\'t take it anymore and pull away. You mutter an excuse about needing to go, and then leave.');
-    ((s as any).NatbelQW = (s as any).NatbelQW ?? {})['CaughtByNatMomHitachi'] = ((s as any).NatbelQW['CaughtByNatMomHitachi'] ?? 0) + (1);
+    ((st as any).NatbelQW = (st as any).NatbelQW ?? {})['CaughtByNatMomHitachi'] = ((st as any).NatbelQW['CaughtByNatMomHitachi'] ?? 0) + (1);
     scene.actions([
       { label: 'Leave', goto: ['natbelapt', 'hallway'] },
     ]);
@@ -1050,29 +1050,29 @@ function enterNatMotherRoom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/hitachi01.jpg');
-      if (((s as any).NatbelQW ?? 0)?.['SeenNatMomHitachi'] >= 1) {
-        // TODO-QSP: dynamic text: From when you saw <<$npc_nickname['A191']>> using it you have a pretty good idea...
-        scene.text(`From when you saw ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} using it you have a pretty good idea of how good a vibrator it is.`);
+      if (((st as any).NatbelQW ?? 0)?.['SeenNatMomHitachi'] >= 1) {
+        // TODO-QSP: dynamic text: From when you saw <<$npc_nickname[''A191'']>> using it you have a pretty good id...
+        scene.text(`From when you saw ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''} using it you have a pretty good idea of how good a vibrator it is.`);
       } else {
         scene.text('When you press the button on it, it starts to vibrate in your hand. "Oh, it\'s a vibrator." You think to yourself. "I have to give this a try."');
       }
       // TODO-QSP: dynamic text: You strip down quickly, wanting to get started. "I can just leave my bra on, it'...
-      scene.text(`You strip down quickly, wanting to get started. "I can just leave my bra on, it's not going to suck on my tits." You think as you relax on ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}'s bed.`);
+      scene.text(`You strip down quickly, wanting to get started. "I can just leave my bra on, it's not going to suck on my tits." You think as you relax on ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''}'s bed.`);
       scene.text('You turn the big vibrator on and start rubbing it on your pussy. The stimulation is pretty intense, even at a low setting. Experimentally you turn up the speed causing you to let out a moan of pleasure as you feel your pussy getting soaking wet.');
       scene.text('With your other hand, you start playing with your pussy, putting a finger inside, pulling it open occasionally to apply the vibrations to your clit directly, causing you to moan even louder.');
-      qspCall(s, 'arousal', 'vaginal_vibe', 10);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'vaginal_vibe', 10);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/hitachi02.jpg');
     scene.text('The thought of doing this in someone else\'s bedroom just makes it even more exciting. You feel your orgasm approaching rapidly as you start fingering yourself faster and faster. All the while rubbing your clit with as much pressure as you can stand.');
-    (s as any).orgasm_txt = 'Within seconds you feel your orgasm crash down on you. You start convulsing hard, closing your legs and trapping the ' + ((s as any).NatbelQW ?? 0)?.['NatMomVibName'] + ' between them to hold it in place. After a few more seconds your orgasm starts to subside, and the vibrations start feeling uncomfortable, so you turn it off.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_vibe', 10);
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_txt = 'Within seconds you feel your orgasm crash down on you. You start convulsing hard, closing your legs and trapping the ' + ((st as any).NatbelQW ?? 0)?.['NatMomVibName'] + ' between them to hold it in place. After a few more seconds your orgasm starts to subside, and the vibrations start feeling uncomfortable, so you turn it off.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_vibe', 10);
+    qspCall(st, 'arousal', 'end');
     // TODO-QSP: dynamic text: Deciding not to push your luck any further, you get dressed quickly and straight...
-    scene.text(`Deciding not to push your luck any further, you get dressed quickly and straighten out the bedsheets, trying to hide what you just did, but there's no way to hide the wet spot on the sheets. You hope it won't be noticeable by the time ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} goes to her bedroom.`);
-    qspCall(s, 'stat', '');
+    scene.text(`Deciding not to push your luck any further, you get dressed quickly and straighten out the bedsheets, trying to hide what you just did, but there's no way to hide the wet spot on the sheets. You hope it won't be noticeable by the time ${((st as any).npc_nickname ?? 0)?.['A191'] ?? ''} goes to her bedroom.`);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['natbelapt', 'hallway'] },
     ]);

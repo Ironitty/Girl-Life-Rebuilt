@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'hourly');
   if (((s as any).obkvsdam ?? 0) > 0) {
-    (s as any).obkvsdam = Math.floor(Math.random() * 4) + 2;
+    (s as any).obkvsdam = (Math.floor(Math.random() * 4) + 2);
   }
   if (((s as any).scpopt ?? 0) > 1) {
     (s as any).scpopt = 0;
@@ -84,11 +84,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       ((s as any).pcs_mood_effects = (s as any).pcs_mood_effects ?? {})['faithredcheck'] = 0;
     }
     if (((s as any).pcs_stam ?? 0) <= 0) {
-      qspCall(s, 'mood', 'lower', Math.floor(Math.random() * 6) + 5);
-      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (Math.floor(Math.random() * 4) + 3);
+      qspCall(s, 'mood', 'lower', (Math.floor(Math.random() * 6) + 5));
+      (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - ((Math.floor(Math.random() * 4) + 3));
     } else {
       if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5  &&  ((s as any).stammax ?? 0) > 50) {
-        qspCall(s, 'mood', 'lower', Math.floor(Math.random() * 4) + 2);
+        qspCall(s, 'mood', 'lower', (Math.floor(Math.random() * 4) + 2));
       }
     }
     if (((s as any).pcs_energy ?? 0) > 20) {
@@ -183,10 +183,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'exp_deg', 'stren', 1);
         qspCall(s, 'exp_deg', 'vital', 1);
         qspCall(s, 'exp_deg', 'int', 1);
-        (s as any).alko = ((s as any).alko ?? 0) - (Math.floor(Math.random() * 2) + 0);
+        (s as any).alko = ((s as any).alko ?? 0) - ((Math.floor(Math.random() * 2) + 0));
       }
     }
-    (s as any).alko = ((s as any).alko ?? 0) - (Math.floor(Math.random() * 2) + 0);
+    (s as any).alko = ((s as any).alko ?? 0) - ((Math.floor(Math.random() * 2) + 0));
   } else {
     if (((s as any).alko ?? 0) < 0) {
       (s as any).alko = 0;
@@ -228,7 +228,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mosol ?? 0) > 0) {
     if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PCloPanties ?? 0) > 0) {
-      (s as any).mosol = ((s as any).mosol ?? 0) - (Math.floor(Math.random() * 2) + 0);
+      (s as any).mosol = ((s as any).mosol ?? 0) - ((Math.floor(Math.random() * 2) + 0));
     }
   }
   if (((s as any).pcs_lipbalm ?? 0) > 0) {
@@ -277,9 +277,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
   }
   if ((!((s as any).inSleep ?? 0))) {
-    qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 2) + 0);
+    qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * 2) + 0));
     if (((s as any).temper ?? 0) >= 20) {
-      qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 2) + 0);
+      qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * 2) + 0));
     }
   }
   if (((s as any).lashair ?? 0) === 1) {

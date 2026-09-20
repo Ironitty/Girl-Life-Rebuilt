@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shoes', 'reset_ShoVars');
-  if (hasLocation('$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_shoes')) {
+  if (hasLocation('$attributes_' + Number((s as any).locArgs?.[0] ?? 0) + '_shoes')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_shoes', ARGS[1]
   }
   if ((!((s as any).ShoQuality ?? 0))) {

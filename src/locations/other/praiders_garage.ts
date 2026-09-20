@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBandGarage(s: GameState, scene: SceneBuilder): void {
-  (s as any).hangout_rand = 'hangout' + Math.floor(Math.random() * 9) + 1 + '';
+  (s as any).hangout_rand = 'hangout' + (Math.floor(Math.random() * 9) + 1) + '';
   qspCall(s, 'core_library', 'setloc', 'praiders_garage', 'band_garage');
   (s as any).location_type = 'private';
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -36,11 +36,11 @@ function enterBandGarage(s: GameState, scene: SceneBuilder): void {
         { label: 'Grab a beer from the cooler', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/band_garage.jpg');
     scene.text('You reach into the ice-cold cooler and pull out a chilled bottle of beer. The glass sweats in your hand as you pop it open and take a sip. It\'s not great, but it gets the job done.');
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['beer_daystart'] = ((s as any).daystart ?? 0);
-    ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['beer_count'] = ((s as any).gopnikbandQW['beer_count'] ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['beer_daystart'] = ((st as any).daystart ?? 0);
+    ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['beer_count'] = ((st as any).gopnikbandQW['beer_count'] ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'go back', goto: ['praiders_garage', 'band_garage'] },
     ]);
@@ -50,11 +50,11 @@ function enterBandGarage(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_hydra ?? 0) < 100) {
       scene.actions([
         { label: 'Grab a bottle of water from the cooler', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/band_garage.jpg');
     scene.text('You dig past the beer to find a plastic bottle of water, crack it open, and take several gulps. Refreshing and much needed.');
-    qspCall(s, 'beverage', 'water_stats');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'beverage', 'water_stats');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'go back', goto: ['praiders_garage', 'band_garage'] },
     ]);
@@ -90,7 +90,7 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'praiders_garage', 'listen_practice');
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   qspCall(s, 'stat', '');
-  (s as any).practice_session = Math.floor(Math.random() * 5) + 1;
+  (s as any).practice_session = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).practice_session ?? 0) === 1) {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
     scene.text('They are playing fairly well before Radomir stops. "Stop, stop!" Once the music stops he turns towards Anushka. "What the fuck, Nush? You started the rift too soon! It\'s supposed to be after I start singing the next verse!"');
@@ -114,32 +114,32 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     scene.text('Radomir turns towards him. "No I didn\'t, I was waiting for you all to get your shit together and then you just stopped." They argue again as Arkadi tries to get them to start over and Valentin finally has enough. "Fuck it, I need a break!" With that, he puts his guitar in the stand, followed by Nush doing the same as Arkadi gets up from behind the drums and Radomir walks towards the couches.');
     scene.actions([
       { label: 'Tell them they were good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
     scene.text('They made a few mistakes but, you didn\'t think it was that bad. "Hey, you guys did really well."');
     scene.text('"That was shit! That\'s the kind shit you hear from amateurs! We\'ll never make it like that."');
     // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, but we can and usually are much better." Valentin rep...
-    scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, but we can and usually are much better." Valentin replies. With that, they all spread out and take seats, grabbing some beers as they do. Valentin sits on one end of the couch, Arkadi sits on an old box, Radomir sits on the only reclining chair and Anushka sits on the other end of the couch. After an awkward silence where they quietly drink their beers, they seem to start to loosen up and relax.`);
+    scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, but we can and usually are much better." Valentin replies. With that, they all spread out and take seats, grabbing some beers as they do. Valentin sits on one end of the couch, Arkadi sits on an old box, Radomir sits on the only reclining chair and Anushka sits on the other end of the couch. After an awkward silence where they quietly drink their beers, they seem to start to loosen up and relax.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Hang out', goto: ['praiders_garage', 'hangout'] },
     ]);
   } },
       { label: 'Tell Radomir he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('Radomir is really cute and is such a great singer. "Radomir, you were amazing." you tell him with a smile.');
     scene.text('He smiles back at you. "Yeah, I was wasn\'t I? Now if only these… if only the rest of them can get their shit together, we might have a chance." Anushka and Valentin flip him off while Arkadi shakes his head. Radomir just ignores them as he sits down on his recliner.');
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       // TODO-QSP: dynamic text: Once he sits down with a beer in hand, he pats the arm of the chair. "Hey <<$pcs...
-      scene.text(`Once he sits down with a beer in hand, he pats the arm of the chair. "Hey ${((s as any).pcs_nickname || '')}, come over here and take a seat."`);
+      scene.text(`Once he sits down with a beer in hand, he pats the arm of the chair. "Hey ${((st as any).pcs_nickname || '')}, come over here and take a seat."`);
     } else {
       scene.text('"Nice to have a fan that knows who the real star is." he says before taking a swig of his beer.');
     }
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.actions([
         { label: 'Sit with Radomir', goto: ['praiders_garage_chat', 'chat_radomir'] },
       ]);
@@ -150,12 +150,12 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Anushka she was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You think Anushka did great despite what happened. "You were great, Anushka." you tell her with a smile.');
     // TODO-QSP: dynamic text: She smiles back at you. "Thanks <<$pcs_nickname>>, but we need to do better if w...
-    scene.text(`She smiles back at you. "Thanks ${((s as any).pcs_nickname || '')}, but we need to do better if we want to make it."`);
+    scene.text(`She smiles back at you. "Thanks ${((st as any).pcs_nickname || '')}, but we need to do better if we want to make it."`);
     scene.text('"Yeah, if you would focus and stop screwing up." Radomir mutters, which causes her to flip him off. Radomir smirks as he grabs a beer. "Maybe later, but thanks for the offer."');
     scene.text('Anushka gives him a dirty look and sits on the other end of the couch from Valentin while Radomir sits down on his recliner and Arkadi takes a seat on an upturned box.');
     scene.actions([
@@ -164,12 +164,12 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Valentin he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('You think Valentin did great despite what happened. "You were great, Valentin." you tell him with a smile.');
     // TODO-QSP: dynamic text: He smiles back at you. "Thanks <<$pcs_nickname>>, but we still need to work out ...
-    scene.text(`He smiles back at you. "Thanks ${((s as any).pcs_nickname || '')}, but we still need to work out some kinks."`);
+    scene.text(`He smiles back at you. "Thanks ${((st as any).pcs_nickname || '')}, but we still need to work out some kinks."`);
     scene.text('"Yeah, if the rest of you would get your act together." Radomir mutters, which Valentin just ignores as he sits on the other end of the couch from Anushka while Radomir sits down on his recliner and Arkadi takes a seat on an upturned box.');
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -177,12 +177,12 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Arkadi he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('You think Arkadi did great despite what happened. "You were great, Arkadi." you tell him with a smile.');
-    // TODO-QSP: dynamic text: He nods at you. "Thanks <<$pcs_nickname>>, but we've still got a long way to go....
-    scene.text(`He nods at you. "Thanks ${((s as any).pcs_nickname || '')}, but we've still got a long way to go."`);
+    // TODO-QSP: dynamic text: He nods at you. "Thanks <<$pcs_nickname>>, but we''ve still got a long way to go...
+    scene.text(`He nods at you. "Thanks ${((st as any).pcs_nickname || '')}, but we've still got a long way to go."`);
     scene.text('"Yeah, you keep banging on your drums like an amateur…" Radomir mutters, which causes Arkadi to turn on him. "How about I bang on you with my fists?"');
     scene.text('Valentin grabs Arkadi by the arm. "Leave it man, you know how he gets."');
     scene.text('Radomir laughs as he grabs a beer and sits on his recliner, with the rest spreading out. ');
@@ -209,7 +209,7 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).practice_session ?? 0) <= 3) {
       if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
-        (s as any).track_loop = 'sound/pussyriot' + Math.floor(Math.random() * 3) + 1 + '.mp3';
+        (s as any).track_loop = 'sound/pussyriot' + (Math.floor(Math.random() * 3) + 1) + '.mp3';
         (s as any).volume = 100;
         (s as any).music_loop = 1;
       }
@@ -232,11 +232,11 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     scene.text('Nearing the end of their practice session, they finish with Anushka giving Radomir her guitar to play as she takes his place at the mic and sings several songs.');
     scene.actions([
       { label: 'Tell them they were good', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
+    (st as any).music_loop = 0;
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
     scene.text('They played really well, at least as good as a lot of the stuff you\'ve heard on the radio. "You guys were great!"');
     scene.text('Radomir replies with a smile. "Yeah I know, we fucking nailed it. We are so making it."');
@@ -247,17 +247,17 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Radomir he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('Radomir is really cute and is such a great singer. "You were amazing." you tell him with a smile.');
     scene.text('He smiles back at you. "Yeah, I was wasn\'t I? I just fucking nailed it, like always." The rest ignore him claiming all the credit as they grab some beer and crowd onto the couch with those who listened to them practice.');
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       // TODO-QSP: dynamic text: He sits down with a beer in hand and pats the arm of the chair. "Hey <<$pcs_nick...
-      scene.text(`He sits down with a beer in hand and pats the arm of the chair. "Hey ${((s as any).pcs_nickname || '')}, come over here and take a seat."`);
+      scene.text(`He sits down with a beer in hand and pats the arm of the chair. "Hey ${((st as any).pcs_nickname || '')}, come over here and take a seat."`);
     } else {
       scene.text('"Nice to have a fan that knows who the real star is." he says before taking a swig of his beer.');
     }
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.actions([
         { label: 'Sit with Radomir', goto: ['praiders_garage_chat', 'chat_radomir'] },
       ]);
@@ -268,32 +268,32 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Anushka she was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('The whole band was great, but you felt Anushka really did amazing. "You were amazing, Nush! The whole band did great."');
     // TODO-QSP: dynamic text: She smiles at you. "Thanks <<$pcs_nickname>>, we really did well tonight." Anush...
-    scene.text(`She smiles at you. "Thanks ${((s as any).pcs_nickname || '')}, we really did well tonight." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
+    scene.text(`She smiles at you. "Thanks ${((st as any).pcs_nickname || '')}, we really did well tonight." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Hang out', goto: ['praiders_garage', 'hangout'] },
     ]);
   } },
       { label: 'Tell Valentin he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('The whole band was great, but you felt Valentin really did amazing. "You were amazing, Valentin! The whole band did great."');
     // TODO-QSP: dynamic text: He smiles at you. "Thanks <<$pcs_nickname>>, we were just in the zone tonight. I...
-    scene.text(`He smiles at you. "Thanks ${((s as any).pcs_nickname || '')}, we were just in the zone tonight. It was great." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
+    scene.text(`He smiles at you. "Thanks ${((st as any).pcs_nickname || '')}, we were just in the zone tonight. It was great." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Hang out', goto: ['praiders_garage', 'hangout'] },
     ]);
   } },
       { label: 'Tell Arkadi he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('The whole band was great, but you felt Arkadi really did amazing. "You were amazing, Arkadi! That drum solo, just wow! The whole band did great."');
     scene.text('He nods at you. "Thanks. All of us being so in sync tonight was great." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.');
@@ -319,7 +319,7 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
-        (s as any).track_loop = 'sound/pussyriot' + Math.floor(Math.random() * 3) + 1 + '.mp3';
+        (s as any).track_loop = 'sound/pussyriot' + (Math.floor(Math.random() * 3) + 1) + '.mp3';
         (s as any).volume = 100;
         (s as any).music_loop = 1;
       }
@@ -342,33 +342,33 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     scene.text('Nearing the end of their practice session, they finish with Anushka giving Radomir her guitar to play while she takes his place at the mic and takes over singing for several songs.');
     scene.actions([
       { label: 'Tell them they were good', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
+    (st as any).music_loop = 0;
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/practice1.jpg');
     scene.text('They played really well, at least as good as a lot of the stuff you\'ve heard on the radio. "You guys were great!"');
     scene.text('Radomir replies with a smile. "Yeah I know right, we fucking nailed it, we are so making it."');
     // TODO-QSP: dynamic text: At the same time Valentin says, "Thanks <<$pcs_nickname>>." Followed by Anushka ...
-    scene.text(`At the same time Valentin says, "Thanks ${((s as any).pcs_nickname || '')}." Followed by Anushka saying thanks and Arkadi nodding to you. With that Anushka, Valentin and Arkadi crowd the couch, while, Radomir sits on the only reclining chair. They grab some beers, all smiling and laughing as they take a seat among those listening to them practice today.`);
+    scene.text(`At the same time Valentin says, "Thanks ${((st as any).pcs_nickname || '')}." Followed by Anushka saying thanks and Arkadi nodding to you. With that Anushka, Valentin and Arkadi crowd the couch, while, Radomir sits on the only reclining chair. They grab some beers, all smiling and laughing as they take a seat among those listening to them practice today.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Hang out', goto: ['praiders_garage', 'hangout'] },
     ]);
   } },
       { label: 'Tell Radomir he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('Radomir is really cute and is such a great singer. "You were amazing." you tell him with a smile.');
     scene.text('He smiles back at you. "Yeah, I was wasn\'t I? I just fucking nailed it, like always." The rest ignore him claiming all the credit as they grab some beer and crowd onto the couch with those who listened to them practice.');
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       // TODO-QSP: dynamic text: He sits down with a beer in hand and pats the arm of the chair. "Hey <<$pcs_nick...
-      scene.text(`He sits down with a beer in hand and pats the arm of the chair. "Hey ${((s as any).pcs_nickname || '')}, come over here and take a seat."`);
+      scene.text(`He sits down with a beer in hand and pats the arm of the chair. "Hey ${((st as any).pcs_nickname || '')}, come over here and take a seat."`);
     } else {
       scene.text('"Nice to have a fan that knows who the real star is." he says before taking a swig of his beer.');
     }
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.actions([
         { label: 'Sit with Radomir', goto: ['praiders_garage_chat', 'chat_radomir'] },
       ]);
@@ -379,32 +379,32 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell Anushka she was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('The whole band was great, but you felt Anushka really did amazing. "You were amazing, Nush! The whole band did great."');
     // TODO-QSP: dynamic text: She smiles at you. "Thanks <<$pcs_nickname>>, we really did well tonight." Anush...
-    scene.text(`She smiles at you. "Thanks ${((s as any).pcs_nickname || '')}, we really did well tonight." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
+    scene.text(`She smiles at you. "Thanks ${((st as any).pcs_nickname || '')}, we really did well tonight." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Hang out', goto: ['praiders_garage', 'hangout'] },
     ]);
   } },
       { label: 'Tell Valentin he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     scene.text('The whole band was great, but you felt Valentin really did amazing. "You were amazing, Valentin! The whole band did great."');
     // TODO-QSP: dynamic text: He smiles at you. "Thanks <<$pcs_nickname>>, we were just in the zone tonight. I...
-    scene.text(`He smiles at you. "Thanks ${((s as any).pcs_nickname || '')}, we were just in the zone tonight. It was great." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
+    scene.text(`He smiles at you. "Thanks ${((st as any).pcs_nickname || '')}, we were just in the zone tonight. It was great." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Hang out', goto: ['praiders_garage', 'hangout'] },
     ]);
   } },
       { label: 'Tell Arkadi he was good', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('The whole band was great, but you felt Arkadi really did amazing. "You were amazing, Arkadi! That drum solo, just wow! The whole band did great."');
     scene.text('He nods at you. "Thanks. All of us being so in sync tonight was great." Anushka, Valentin and Arkadi then crowd the couch while Radomir sits on the only reclining chair. They grab some beers, smiling and laughing as they take a seat among those who were listening to them practice.');
@@ -435,8 +435,8 @@ function enterListenPractice(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHangout(s: GameState, scene: SceneBuilder): void {
-  (s as any).hangout_rand = 'hangout' + Math.floor(Math.random() * 9) + 1 + '';
-  // TODO-QSP: gt 'praiders_garage', $hangout_rand
+  (s as any).hangout_rand = 'hangout' + (Math.floor(Math.random() * 9) + 1) + '';
+  qspGoto(s, 'praiders_garage', ((s as any).hangout_rand ?? ''));
   // TODO-QSP: end
   scene.build();
 }
@@ -449,7 +449,7 @@ function enterHangout1(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 0;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -460,12 +460,12 @@ function enterHangout1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout1'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout1'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -499,7 +499,7 @@ function enterHangout2(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 0;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -510,12 +510,12 @@ function enterHangout2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout2'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout2'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -549,7 +549,7 @@ function enterHangout3(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 0;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -560,12 +560,12 @@ function enterHangout3(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout3'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout3'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -599,7 +599,7 @@ function enterHangout4(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 0;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lavrenti, Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -610,12 +610,12 @@ function enterHangout4(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Just hang out', goto: ['praiders_garage', 'hangout4'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout4'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -650,7 +650,7 @@ function enterHangout5(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 0;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -661,12 +661,12 @@ function enterHangout5(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout5'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout5'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -701,7 +701,7 @@ function enterHangout6(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 1;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona and Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -712,12 +712,12 @@ function enterHangout6(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout6'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout6'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -753,7 +753,7 @@ function enterHangout7(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 1;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 1;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -764,12 +764,12 @@ function enterHangout7(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout7'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout7'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -805,7 +805,7 @@ function enterHangout8(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 1;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera and Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -816,12 +816,12 @@ function enterHangout8(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout8'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    if (((s as any).hour ?? 0) < 23) {
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout8'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -858,7 +858,7 @@ function enterHangout9(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 1;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 1;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 1;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera, Lavrenti and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -869,12 +869,12 @@ function enterHangout9(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout9'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    qspCall(s, 'stat', '');
-    if (((s as any).hour ?? 0) < 23) {
+    qspCall(st, 'stat', '');
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout9'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -912,7 +912,7 @@ function enterHangout10(s: GameState, scene: SceneBuilder): void {
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['lavrenti_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['roman_present'] = 0;
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['niko_present'] = 1;
-  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout\' + rand(1, 4) + \'.jpg');
+  scene.img('images/locations/pavlovsk/resident/apartment/garage/band/hangout' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera, Lavrenti and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
@@ -923,12 +923,12 @@ function enterHangout10(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout9'] },
       { label: 'Grab a beer', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/drinkbeer.jpg');
     scene.text('You grab one of the offered beers and take a long swig of it before joining in the banter going back and forth. Someone occasionally tells a funny or embarrassing story, which often gets a laugh from everyone. It doesn\'t take too long for you to finish off your beer.');
-    qspCall(s, 'stat', '');
-    if (((s as any).hour ?? 0) < 23) {
+    qspCall(st, 'stat', '');
+    if (((st as any).hour ?? 0) < 23) {
       scene.actions([
         { label: 'Keep hanging out', goto: ['praiders_garage', 'hangout9'] },
         { label: 'Leave', goto: ['pav_complex', 'garages'] },
@@ -955,7 +955,7 @@ function enterHangout10(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPartyOver(s: GameState, scene: SceneBuilder): void {
-  (s as any).temprand = Math.floor(Math.random() * 5) + 1;
+  (s as any).temprand = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).temprand ?? 0) === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
     qspGoto(s, 'praiders_garage_events', 'alyona_dad');
   } else {

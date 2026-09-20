@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pushkin/';
   scene.build();
 }
 
@@ -27,14 +26,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Welcome and Introduction</h1></center>');
   scene.img(`${((s as any).npc_img_path ?? 0)?.['A286'] ?? ''}/286.jpg`);
   scene.text('As you and your group enter the halls for the first time, you are greeted by a matronly-looking woman who will be your warden during your stay.');
-  // TODO-QSP: dynamic text: "Welcome, students, to your first night at these halls. I'm your warden, <<$npc_...
+  // TODO-QSP: dynamic text: "Welcome, students, to your first night at these halls. I''m your warden, <<$npc...
   scene.text(`"Welcome, students, to your first night at these halls. I'm your warden, ${((s as any).npc_firstname ?? 0)?.['A286'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}. If you have any problems or need assistance, you can find me in the room to the right." She gestures towards a door with a brass plaque that reads "Warden".`);
   scene.text('"I will go through the student roster, and you will respond each evening. You can also find a list of rules in your bedroom, which will be strictly enforced. We do not tolerate any behavior that brings this school into disrepute."');
   // TODO-QSP: dynamic text: With that, you and the other students answer in unison, "Yes, Ms. <<$npc_lastnam...
   scene.text(`With that, you and the other students answer in unison, "Yes, Ms. ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}."`);
   scene.text('"Very well. I suggest you read the rules in your bedroom. Ignorance will not be accepted as an excuse."');
   scene.text('"With that out of the way, I will now assign your rooms." She consults her clipboard and starts reading out student names, ticking them off as she allocates rooms.');
-  // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>?" "Here!" you reply, "You've been assigned...
+  // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>?" "Here!" you reply, "You''ve been assigne...
   scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}?" "Here!" you reply, "You've been assigned to room twelve, first floor to the right of the staircase. Do you have any questions? No? Good I will see you in the communal room once you've settled in."`);
   // TODO-QSP: end
   scene.actions([
@@ -61,7 +60,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) !== 7) {
       (s as any).ballet_day = ((s as any).week ?? 0);
     }
-    scene.text('You look around your room that will be the bedroom for the next week, and a small comfortable bed sits in the corner. You have a desk you can study on. In the corner, there\'s a full-size <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a> with a mirror on one of the doors.');
+    scene.text('You look around your room that will be the bedroom for the next week, and a small comfortable bed sits in the corner. You have a desk you can study on. In the corner, there\'s a full-size <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> with a mirror on one of the doors.');
     scene.text('You start to unpack your suitcase into the wardrobe and settle for the evening before preparing to meet your fellow students.');
     scene.text('On the wall beside the entrance are various instructions for fire evacuation. Alongside these instructions is a sheet of paper with the words <b>Accommodation Rules</b>.');
     scene.actions([
@@ -79,10 +78,10 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You enter your room and sit at your desk, wondering what to do next.');
     }
-    // TODO-QSP: dynamic text: In the corner is your <a href="exec:gt 'wardrobe', 'start'">wardrobe</a> contain...
-    scene.text(`In the corner is your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a> containing a <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027images/\\u0027 + \\u0027__qspDyn\\u0027 + \\u0027/ballet_residence/ballet_blanc.jpg\\u0027; return s; }); return false;">Ballet Blanc</a> for your upcoming assessment and your clothes for the week.`);
+    // TODO-QSP: dynamic text: In the corner is your <a href="exec:gt ''wardrobe'', ''start''">wardrobe</a> con...
+    scene.text(`In the corner is your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a> containing a <a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027images//u0027 + /u0027__qspDyn/u0027 + /u0027/ballet_residence/ballet_blanc.jpg/u0027; return s; }); return false;">Ballet Blanc</a> for your upcoming assessment and your clothes for the week.`);
     if (((s as any).komp ?? 0) === 1) {
-      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> is on your desk.');
+      scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> is on your desk.');
     }
     scene.text('<table><tr><td valign="top">');
     // TODO-QSP: func('alarmclock', 'base_alarmclock_text')
@@ -210,7 +209,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The hall is bustling with various students settling into their rooms. A few of t...
     scene.text(`The hall is bustling with various students settling into their rooms. A few of them wave or smile to greet you as you pass by. You see Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''} at the end of the hall, keeping an eye on the students and ready to provide assistance.`);
   } else {
-    (s as any).amb_event = Math.floor(Math.random() * 4) + 1;
+    (s as any).amb_event = (Math.floor(Math.random() * 4) + 1);
     if (((s as any).amb_event ?? 0) === 1) {
       scene.text('You enter the elegant hallway of your residence, and hear music coming from one of the rooms to the side of you.');
     } else {
@@ -244,7 +243,7 @@ function enterMayaRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
-  // TODO-QSP: dynamic text: <<$npc_firstname['A274']>>'s room closely resembles your own. Her wardrobe is op...
+  // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>>''s room closely resembles your own. Her wardrobe is...
   scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}'s room closely resembles your own. Her wardrobe is open, and you see her collection of tutus hanging from the rails. On her desk there are several books, including an open poetry book. A quick glance reveals the page title "Like a White Stone" by Akhmatova.`);
   scene.text('Next to it is an old picture of a woman in a park with a black ribbon in the corner.');
   // TODO-QSP: end
@@ -318,12 +317,12 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).hour ?? 0) > 4  &&  ((s as any).hour ?? 0) < 8)  &&  ((s as any).mayaqw ?? 0)?.['grave'] === 4  &&  ((s as any).sharedmeal ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Have breakfast with ' + String(((s as any).npc_firstname ?? 0)?.['A274'] ?? '' ?? ''), handler: (st: GameState) => {
-    (s as any).sharedmeal = ((s as any).daystart ?? 0);
-    qspCall(s, 'food', 'family_meals', 'breakfast');
-    qspCall(s, 'stat', '');
-    scene.img(`${((s as any).npc_img_path ?? 0)?.['A274'] ?? ''}/274-1.jpg`);
-    // TODO-QSP: dynamic text: You encounter <<$npc_firstname['A274']>> as she prepares her breakfast. You lend...
-    scene.text(`You encounter ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} as she prepares her breakfast. You lend a hand with the preparations and engage in a conversation about your upcoming lessons while enjoying your morning meal.`);
+    (st as any).sharedmeal = ((st as any).daystart ?? 0);
+    qspCall(st, 'food', 'family_meals', 'breakfast');
+    qspCall(st, 'stat', '');
+    scene.img(`${((st as any).npc_img_path ?? 0)?.['A274'] ?? ''}/274-1.jpg`);
+    // TODO-QSP: dynamic text: You encounter <<$npc_firstname[''A274'']>> as she prepares her breakfast. You le...
+    scene.text(`You encounter ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} as she prepares her breakfast. You lend a hand with the preparations and engage in a conversation about your upcoming lessons while enjoying your morning meal.`);
     scene.actions([
       { label: 'Finish breakfast', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'kitchen');
@@ -335,10 +334,10 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) > 4  &&  ((s as any).hour ?? 0) < 8) {
         scene.actions([
           { label: 'Eat breakfast', handler: (st: GameState) => {
-    scene.img('images/' + '' + ((s as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/breakfast.jpg');
-    qspCall(s, 'food', 'family_meals', 'breakfast');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'core_library', 'stage_title');
+    scene.img('images/' + '' + ((st as any).setloc ?? 0)?.['imagepath'] + 'ballet_residence/breakfast.jpg');
+    qspCall(st, 'food', 'family_meals', 'breakfast');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'core_library', 'stage_title');
     scene.text('You look in the fridge for some fruit and then make some porridge for breakfast.');
     scene.actions([
       { label: 'Finish breakfast', handler: (st: GameState) => {
@@ -369,7 +368,7 @@ function enterWardenRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
-  if (((s as any).locArgs?.[1] ?? 0) === 'reputation') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'reputation') {
     // TODO-QSP: "That Talk"
   }
   // TODO-QSP: end
@@ -473,11 +472,11 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
 
 function enterRadio(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 5) + 1);
-  (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (Math.floor(Math.random() * 10) + 1);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 5) + 1));
+  (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - ((Math.floor(Math.random() * 10) + 1));
   if (((s as any).ballet_day ?? 0) >= 1  &&  ((s as any).week ?? 0) !== 7) {
-    (s as any).instrmusic_exp = ((s as any).instrmusic_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 3) + 1);
+    (s as any).instrmusic_exp = ((s as any).instrmusic_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(s, 'exp_gain', 'perform', (Math.floor(Math.random() * 3) + 1));
     ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
     ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
   }
@@ -496,7 +495,7 @@ function enterRadio(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFeetcare(s: GameState, scene: SceneBuilder): void {
-  (s as any).mood = ((s as any).mood ?? 0) + (Math.floor(Math.random() * 10) + 1);
+  (s as any).mood = ((s as any).mood ?? 0) + ((Math.floor(Math.random() * 10) + 1));
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (15);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   (s as any).feet_track = ((s as any).daystart ?? 0);
@@ -519,7 +518,7 @@ function enterFeetcare(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStudy(s: GameState, scene: SceneBuilder): void {
-  (s as any).mood = ((s as any).mood ?? 0) - (Math.floor(Math.random() * 10) + 1);
+  (s as any).mood = ((s as any).mood ?? 0) - ((Math.floor(Math.random() * 10) + 1));
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
   ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
@@ -541,7 +540,7 @@ function enterMakeUp(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   ((s as any).ballet_homework = (s as any).ballet_homework ?? {})[String((s as any).week ?? 0)] = ((s as any).ballet_homework[String((s as any).week ?? 0)] ?? 0) + (1);
   ((s as any).ballet_grade_score = (s as any).ballet_grade_score ?? {})['homework'] = ((s as any).ballet_grade_score['homework'] ?? 0) + (((s as any).ballet_homework ?? 0)?.[String((s as any).week ?? 0)]);
-  qspCall(s, 'exp_gain', 'makupskl', Math.floor(Math.random() * 3) + 1);
+  qspCall(s, 'exp_gain', 'makupskl', (Math.floor(Math.random() * 3) + 1));
   if (((s as any).pcs_makupskl ?? 0) <= 30) {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cosmetics'] = ((s as any).mc_inventory['cosmetics'] ?? 0) - (9);
     (s as any).pcs_makeup = 0;
@@ -583,7 +582,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
     scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s icy voice through the intercom.`);
-    // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there's a few s...
+    // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
     scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, can I be let in please?", there's a few seconds pause.`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, you will see me in my office. Now." You c...
     scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, you will see me in my office. Now." You can swear the temperature around you just plummeted a few degrees and the door was buzzed open.`);
@@ -592,7 +591,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).hour ?? 0) >= 17  ||  ((s as any).hour ?? 0) < 21 )  &&  ((s as any).ballet_awol ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
       scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s voice through the intercom.`);
-      // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there's a few s...
+      // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
       scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, can I be let in please?", there's a few seconds pause and you hear the door being buzzed open.`);
       qspGoto(s, 'pushkin_ballet_res', 'hallway');
     } else {
@@ -602,7 +601,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
         }
         // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
         scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s voice through the intercom.`);
-        // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there's a few s...
+        // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
         scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, can I be let in please?", there's a few seconds pause.`);
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, where the hell have you been? Get in here...
         scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, where the hell have you been? Get in here. Now.", you gulp at her voice and with trepidation make your way to her office.`);
@@ -622,6 +621,7 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/pushkin/';
   const arg = s.locArg;
   switch (arg) {
     case 'check_start_evt':

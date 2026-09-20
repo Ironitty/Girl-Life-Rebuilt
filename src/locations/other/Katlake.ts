@@ -19,8 +19,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Approach her', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('You decide to walk up to the girl, and try to start a conversation with her.');
     scene.actions([
       { label: 'Greet', goto: ['Katlake', 'znakomstvo'] },
@@ -77,7 +77,7 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/kat.jpg');
   scene.text('Kat already noticed you walking towards her, and gives you a little wave as you approach her.');
-  // TODO-QSP: dynamic text: She smiles: "Hi <<$pcs_nickname>>, how's it going?"
+  // TODO-QSP: dynamic text: She smiles: "Hi <<$pcs_nickname>>, how''s it going?"
   scene.text(`She smiles: "Hi ${((s as any).pcs_nickname || '')}, how's it going?"`);
   // TODO-QSP: end
   scene.actions([
@@ -85,10 +85,10 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
     { label: 'Suggest playing volleyball', goto: ['Katlake', 'voleybol'] },
     { label: 'Suggest going for a walk', goto: ['Katlake', 'walk'] },
     { label: 'Chat with Kat', handler: (st: GameState) => {
-    (s as any).katday = ((s as any).daystart ?? 0);
-    qspCall(s, 'npc_relationship', 'modify', 'A219', 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'small');
+    (st as any).katday = ((st as any).daystart ?? 0);
+    qspCall(st, 'npc_relationship', 'modify', 'A219', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'mood', 'raise', 'small');
     scene.text('Time flies when you lie on the beach with Kat, exchanging stories with her. She is an excellent conversationalist, and you enjoy talking with her.');
     scene.actions([
       { label: 'Leave', goto: ['Nudelake', ''] },
@@ -126,7 +126,7 @@ function enterWalk(s: GameState, scene: SceneBuilder): void {
   scene.text('The warm rays of sun on your naked body feel nice, but at the same time… you have nothing to do! You get bored just lying there and try to kill time by looking around you, examining the other beach-goers.');
   scene.text('After a few minutes, a beautiful girl lies down near you. She\'s truly gorgeous, and you can\'t help but stare in her direction every once in a while.');
   scene.text('You and Kat walk along the beach for a half hour, chatting merrily about all kinds of topics.');
-  (s as any).kwalrand = Math.floor(Math.random() * 101) + 0;
+  (s as any).kwalrand = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).kwalrand ?? 0) >= 80  &&  ((s as any).kwalrand ?? 0) < 90  &&  ((s as any).npc_rel ?? 0)?.['A219'] > 20) {
     qspGoto(s, 'Kwlake1', '');
   }
@@ -148,7 +148,7 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/sun.jpg');
   scene.text('While you\'re sunbathing, you suddenly feel very dizzy and nauseated. You try to stand up and get help, but faint before you get very far.');
   scene.text('');
-  // TODO-QSP: dynamic text: "Take it easy, <<$pcs_nickname>>!" you hear Kat's voice in the darkness. "You're...
+  // TODO-QSP: dynamic text: "Take it easy, <<$pcs_nickname>>!" you hear Kat''s voice in the darkness. "You''...
   scene.text(`"Take it easy, ${((s as any).pcs_nickname || '')}!" you hear Kat's voice in the darkness. "You're safe, just relax!"`);
   scene.text('You slowly try to open your eyes, and are staring right into Kat\'s concerned face when you finally manage.');
   scene.text('"Easy now…", she gives you a reassuring smile. You notice you have a damp towel on your head, and that you\'re in the shade under a large tree at the edge of the beach. Kat must\'ve carried you here.');
@@ -164,7 +164,7 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
     // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
     // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
-    qspGoto(s, 'kathouse0', '');
+    qspGoto(st, 'kathouse0', '');
   } },
   ]);
   scene.build();

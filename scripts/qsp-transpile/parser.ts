@@ -292,10 +292,16 @@ interface ParseResult {
       if (!stopAtEnd) {
         return { nodes, endIdx: i };
       }
-      const firstVal = sceneMultiMatch[1];
+      const allValues: string[] = [];
+      const valRe = /\$ARGS\[0\]\s*=\s*'([^']*)'/g;
+      let vm: RegExpExecArray | null;
+      while ((vm = valRe.exec(trimmed)) !== null) {
+        allValues.push(vm[1]);
+      }
       const inner = parseBlock(lines, i + 1, unsupported, false);
-      const scene: QspScene = { kind: 'scene', arg: firstVal === '' ? '' : firstVal, body: inner.nodes };
-      nodes.push(scene);
+      for (const val of allValues) {
+        nodes.push({ kind: 'scene', arg: val, body: inner.nodes });
+      }
       i = inner.endIdx;
       continue;
     }
@@ -340,9 +346,9 @@ interface ParseResult {
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
           if (gtMatch) {
-            act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+            act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
           } else {
             const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
             if (gtVarArgMatch) {
@@ -374,9 +380,9 @@ interface ParseResult {
       if (gtDynTargetMatch) {
         act.inlineGoto = { target: gtDynTargetMatch[2], arg: gtDynTargetMatch[3] || '', arg2: gtDynTargetMatch[4] };
       } else {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
         if (gtMatch) {
-          act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+          act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
         } else {
           const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
           if (gtVarArgMatch) {
@@ -480,7 +486,7 @@ interface ParseResult {
         }
       }
       const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
-      nodes.push({ kind: 'text', content: unescapeQsp(inner), dynamic });
+      nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
       i++;
       continue;
     }
@@ -492,9 +498,17 @@ interface ParseResult {
       i++;
       continue;
     }
-    const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+    const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
     if (gtMatch) {
-      nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
+      const rawA1 = gtMatch[2];
+      const rawA2 = gtMatch[3];
+      let a1 = rawA1;
+      let a2 = rawA2;
+      const a1Quoted = !!(rawA1 && rawA1.startsWith("'") && rawA1.endsWith("'"));
+      const a2Quoted = !!(rawA2 && rawA2.startsWith("'") && rawA2.endsWith("'"));
+      if (a1Quoted) a1 = a1.slice(1, -1);
+      if (a2Quoted) a2 = a2.slice(1, -1);
+      nodes.push({ kind: 'goto', target: gtMatch[1], arg: a1 || '', arg2: a2, argQuoted: a1Quoted, arg2Quoted: a2Quoted });
       i++;
       continue;
     }
@@ -641,10 +655,10 @@ interface ParseResult {
       continue;
     }
 
-    // Goto with variable: gt $var or xgt $var
-    const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+|\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
+    // Goto with variable: gt $var or xgt $var (including dict access)
+    const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+(\['[^']*'\])?|\w+)\s*(?:,\s*(\$\w+(\['[^']*'\])?|'[^']*'))?\s*$/);
     if (gtVarMatch && !trimmed.startsWith("gt '") && !trimmed.startsWith("xgt '")) {
-      nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[2] || '').replace(/^'|'$/g, '') });
+      nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[3] || '').replace(/^'|'$/g, '') });
       i++;
       continue;
     }
@@ -835,9 +849,9 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
       if (gt4Match) {
         act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
       } else {
-        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+        const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
         if (gtMatch) {
-          act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+          act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
         } else {
           const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
           if (gtVarArgMatch) {
@@ -869,9 +883,9 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
           if (gtMatch) {
-            act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+            act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
           } else {
             const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
             if (gtVarArgMatch) {
@@ -969,7 +983,7 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
       }
     }
     const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
-    nodes.push({ kind: 'text', content: unescapeQsp(inner), dynamic });
+    nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
     return { nodes, nextIdx: idx + 1 };
   }
 
@@ -979,9 +993,17 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
     return { nodes, nextIdx: idx + 1 };
   }
-  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
   if (gtMatch) {
-    nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
+    const rawA1 = gtMatch[2];
+    const rawA2 = gtMatch[3];
+    const a1Quoted = !!(rawA1 && rawA1.startsWith("'") && rawA1.endsWith("'"));
+    const a2Quoted = !!(rawA2 && rawA2.startsWith("'") && rawA2.endsWith("'"));
+    let a1 = rawA1;
+    let a2 = rawA2;
+    if (a1Quoted) a1 = a1.slice(1, -1);
+    if (a2Quoted) a2 = a2.slice(1, -1);
+    nodes.push({ kind: 'goto', target: gtMatch[1], arg: a1 || '', arg2: a2, argQuoted: a1Quoted, arg2Quoted: a2Quoted });
     return { nodes, nextIdx: idx + 1 };
   }
 
@@ -1116,10 +1138,10 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     return { nodes, nextIdx: idx + 1 };
   }
 
-  // Goto with variable: gt $var or xgt $var
-  const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+|\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
+  // Goto with variable: gt $var or xgt $var (including dict access)
+  const gtVarMatch = trimmed.match(/^(?:gt|xgt)\s+(\$\w+(\['[^']*'\])?|\w+)\s*(?:,\s*(\$\w+(\['[^']*'\])?|'[^']*'))?\s*$/);
   if (gtVarMatch && !trimmed.startsWith("gt '") && !trimmed.startsWith("xgt '")) {
-    nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[2] || '').replace(/^'|'$/g, '') });
+    nodes.push({ kind: 'goto', target: gtVarMatch[1], arg: (gtVarMatch[3] || '').replace(/^'|'$/g, '') });
     return { nodes, nextIdx: idx + 1 };
   }
 
@@ -1224,9 +1246,9 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
         if (gt4Match) {
           act.inlineGoto = { target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] };
         } else {
-          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+          const gtMatch = rest.match(/^gt\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
           if (gtMatch) {
-            act.inlineGoto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+            act.inlineGoto = { target: gtMatch[1], arg: (gtMatch[2] && gtMatch[2].startsWith("'") && gtMatch[2].endsWith("'") ? gtMatch[2].slice(1, -1) : gtMatch[2]) || '', arg2: (gtMatch[3] && gtMatch[3].startsWith("'") && gtMatch[3].endsWith("'") ? gtMatch[3].slice(1, -1) : gtMatch[3]) };
           } else {
             const gtVarArgMatch = rest.match(/^gt\s+'([^']+)'\s*,\s*(\$\w+|\w+)\s*$/);
             if (gtVarArgMatch) {
@@ -1246,9 +1268,17 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
     nodes.push({ kind: 'goto', target: gt4Match[1], arg: gt4Match[2], arg2: gt4Match[3].replace(/^\$/, ''), arg3: gt4Match[4] });
     return nodes;
   }
-  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*('[^']*'|\w+))?$/);
+  const gtMatch = trimmed.match(/^(?:gt|xgt)\s+'([^']+)'\s*(?:,\s*('[^']*'|\$\w+|\w+))?\s*(?:,\s*('[^']*'|\$\w+|\w+))?$/);
   if (gtMatch) {
-    nodes.push({ kind: 'goto', target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] });
+    const rawA1 = gtMatch[2];
+    const rawA2 = gtMatch[3];
+    const a1Quoted = !!(rawA1 && rawA1.startsWith("'") && rawA1.endsWith("'"));
+    const a2Quoted = !!(rawA2 && rawA2.startsWith("'") && rawA2.endsWith("'"));
+    let a1 = rawA1;
+    let a2 = rawA2;
+    if (a1Quoted) a1 = a1.slice(1, -1);
+    if (a2Quoted) a2 = a2.slice(1, -1);
+    nodes.push({ kind: 'goto', target: gtMatch[1], arg: a1 || '', arg2: a2, argQuoted: a1Quoted, arg2Quoted: a2Quoted });
     return nodes;
   }
 
@@ -1306,14 +1336,15 @@ function parseInlineStatement(stmt: string, unsupported: string[]): QspNode[] {
   if (trimmed.startsWith("'") && trimmed.endsWith("'")) {
     const inner = trimmed.slice(1, -1);
     const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
-    nodes.push({ kind: 'text', content: unescapeQsp(inner), dynamic });
+    nodes.push({ kind: 'text', content: dynamic ? inner : unescapeQsp(inner), dynamic });
     return nodes;
   }
 
   const pMatch = trimmed.match(/^\*p\s+'((?:[^']|'')*)'$/);
   if (pMatch) {
-    const inner = unescapeQsp(pMatch[1]);
-    const dynamic = inner.includes('<<') || inner.includes("iif(") || inner.includes('+');
+    const rawInner = pMatch[1];
+    const dynamic = rawInner.includes('<<') || rawInner.includes("iif(") || rawInner.includes('+');
+    const inner = dynamic ? rawInner : unescapeQsp(rawInner);
     nodes.push({ kind: 'text', content: inner, dynamic });
     return nodes;
   }

@@ -31,8 +31,8 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '"Grigory?"', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big221.jpg');
     scene.text('"Grigory? Grigory Chekov?" You ask, a smile blossoming on your face, "It\'s been a long time. I thought you had moved to the city?"');
     scene.text('Grigory gives you an authentic smile, "Yes and no. There\'s a big corporate farm to the southeast of Saint Petersburg. I worked there for a couple of years, but," Grimacing, "It just wasn\'t a good fit for me so I came home," He gestures at the area around him.');
@@ -43,8 +43,8 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
     scene.text('"I had a little money saved up, barely enough to make a downpayment on the farm up the road," Ha half smiles, "I\'ll be paying on it the rest of my life, but it\'s mine."');
     scene.actions([
       { label: '"That\'s great!"', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big221.jpg');
     scene.text('"That\'s great!" You say, authentically happy for him.');
     scene.text('"Besides, your grandparents were always good to me growing up, letting me do yard work and helping with the animals. By being back here I can help keep an eye on them," He suddenly looks self conscious, "They might not be blood, but they treated me better than my own parents, and that makes them family if you ask me."');
@@ -58,8 +58,8 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile, "School, family, trying to save up a few dollars."');
     scene.text('The two of you end up talking for maybe half an hour about old times and what you\'ve each been doing over the last couple of years.');
     scene.text('Finally, the two of you drift into a comfortable silence. Eventually he sighs, "I really need to get back to work my little Kotenok," He gives a wistful smile, his eyes drifting over your body for a moment before meeting your eyes again, "You really have grown into an exceptional young woman. I hope you return for another visit soon."');
-    qspCall(s, 'willpower', 'misc', 'self', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'self', 'easy');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Hug him goodbye', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -68,10 +68,10 @@ function enterMeet(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Hug him goodbye', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'misc', 'self', 'easy');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'misc', 'self', 'easy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big221.jpg');
     scene.text('He seems surprised when you reach out, putting your arms around his powerful frame. Your arms barely reach all the way around his middle.');
     scene.text('"Whoa," Grigory says in surprise, then bends down slightly as he wraps his own big arms around you.');
@@ -119,18 +119,18 @@ function enterBarn(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Flirt', handler: (st: GameState) => {
-    ((s as any).npc_qw = (s as any).npc_qw ?? {})['A221'] = 2;
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'misc', 'self', 'easy');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    ((st as any).npc_qw = (st as any).npc_qw ?? {})['A221'] = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'misc', 'self', 'easy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big221.jpg');
     scene.text('"Hi," You say, playfully biting your lip when you see him look your way.');
     scene.text('You can see a hint of a smile touch his lips, "Well you\'re a sight for sore eyes there Kotenok," He replies, reaching into his back pocket before taking a sip, "You wouldn\'t be trying to distract me with your feminine wiles would you?"');
     scene.text('You put a hand to your chest in mock offence, unable to keep a smile off your face, "Would I do something like that?"');
     scene.text('He laughs softly, shaking his head then starting to walk towards you. He stops just a couple of steps short of where you are, leaning against a piece of farm equipment.');
-    qspCall(s, 'willpower', 'misc', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move closer to him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -139,10 +139,10 @@ function enterBarn(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move closer to him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'grigory', 'barn_closer');
+    qspCall(st, 'willpower', 'misc', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'grigory', 'barn_closer');
   } },
       ]);
     }
@@ -156,8 +156,8 @@ function enterBarn(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave him be', goto: ['gad_gpbarn', ''] },
     { label: 'Say hi', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big221.jpg');
     scene.text('"Hi!" You call out.');
     scene.text('"Hey there Kotenok!" He replies with a smile and a little wave, "Any chance you\'d be willing to help look for their shovel?"');
@@ -184,10 +184,10 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Resist his advances', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big221.jpg');
     scene.text('"Whoa," You say, putting a hand on his chest and pushing lightly. Grigory is far too big of a man to be pushed away, but he takes a hint and steps back anyway.');
     scene.text('With a slight grimace, he reaches for his flask and takes a sip.');
@@ -200,35 +200,35 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'boystat', 'A221');
-    qspCall(s, 'stat', '');
-    if (((s as any).stat ?? 0)?.['vaginal'] === 0) {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'boystat', 'A221');
+    qspCall(st, 'stat', '');
+    if (((st as any).stat ?? 0)?.['vaginal'] === 0) {
       scene.text('You let the kiss linger and within moments his hands are roaming over your body as he begins to undress you. There\'s something animalistic in his movements, like a stud animal that can smell a mate.');
       scene.text('Once naked, he pushes you onto a pile of hay, the motion only somewhat playful. Within seconds, his own clothing joins yours on the ground at his feet.');
       scene.text('Moving towards you, he pauses, both affection and need clear in his expression. "I do care about you Kotenok," His expression becomes self conscious, "And I\'ve wanted this for a long time now."');
       scene.text('You can\'t quite suppress a smile, and when he sees your smile he returns it with one of his own.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.text('Without a further word, he takes hold of your hips, flipping you over onto your hands and knees. You feel his calused hand reach between your legs to fondle your pussy, testing its wetness.');
     scene.text('He almost immediately removes his hand and takes hold of both of your hips. You can feel the tip of his cock brush the inside of your thigh, finding your slit he thrusts forward, sinking his entire length into you in one rough shove. You cry out in pain at the sudden loss of your virginity. Grigory freezes in place, concern in his features. When he looks down at where your bodies meet, his expression turns to surprise, "You?" He stammers, starting to withdraw.');
     scene.text('Reaching out, you put your arms around him, holding him to you so that he can\'t fully pull out of you, "It\'s ok," You say softly, forcing a smile through the discomfort, "I wanted you to be my first."');
     scene.text('For several seconds, he just looks down at you a blank expression on his face like he\'s still trying to make sense of what you just said. His cock throbs once inside of you as a smile starts to touch his lips.');
     scene.text('Suddenly, he\'s kissing you again, his lips pressed firmly against your own as his hips begin to buck against you. At first it\'s uncomfortable, but eventually it begins to feel good.');
-    qspCall(s, 'arousal', 'vaginal', 10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).npc_qw = (s as any).npc_qw ?? {})['A221'] = 3;
+    ((st as any).npc_qw = (st as any).npc_qw ?? {})['A221'] = 3;
     scene.text('For several minutes he fucks you with rapid thrusts that fill the air with the sounds of your bodies meeting.');
     scene.text('It\'s not long before you can feel his pace become irregular, then with one sudden lunge and a grunt, he presses deep before unloading his seed deep inside of you.');
     scene.text('Withdrawing, you can feel some of his cum, mingled with your virgin blood, drip from your freshly used pussy. He gives your ass a playful slap, then reaches for his clothes.');
     scene.text('With his clothes in hand, he stops to look at you, "I want nothing more than to stay here with you, but I need to get back to work," Grigory says, you can still hear that he\'s still short of breath, "See you later Kishka."');
     scene.text('Without another word, he exits the barn. After he is gone, you can\'t help but think about how happy he looked before leaving.');
-    qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
-    qspCall(s, 'arousal', 'vaginal', 10);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'arousal', 'vaginal', 10);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['gad_gpbarn', ''] },
     ]);
@@ -237,7 +237,7 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).npc_had_sex ?? 0)?.['A221']) {
+      if (((st as any).npc_had_sex ?? 0)?.['A221']) {
         scene.text('You let the kiss linger and within moments his hands are roaming over your body as he begins to undress you. There\'s something animalistic in his movements, like a stud animal that can smell a mate.');
         scene.text('Once naked, he pushes you onto a pile of hay, the motion only somewhat playful. Within seconds, his own clothing joins yours on the ground at his feet.');
         scene.text('Moving towards you, he smiles, both affection and need clear in his expression. Without a word, he takes hold of your hips, flipping you over onto your hands and knees. You feel his calused hand reach between your legs to fondle your pussy, testing its wetness.');
@@ -246,14 +246,14 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
         scene.text('Withdrawing, you can feel some of his cum drip from your freshly used pussy. He gives your ass a playful slap, then reaches for his clothes.');
         scene.text('"I need to get back to work," Grigory says, you can still hear that he\'s still short of breath, "See you later little lady."');
         scene.text('Without another word, he exits the barn.');
-        qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
-        qspCall(s, 'arousal', 'vaginal', 10);
-        qspCall(s, 'arousal', 'end');
+        qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+        qspCall(st, 'arousal', 'vaginal', 10);
+        qspCall(st, 'arousal', 'end');
         scene.actions([
           { label: 'Continue', goto: ['gad_gpbarn', ''] },
         ]);
       } else {
-        ((s as any).npc_qw = (s as any).npc_qw ?? {})['A221'] = 3;
+        ((st as any).npc_qw = (st as any).npc_qw ?? {})['A221'] = 3;
         scene.text('You let the kiss linger and within moments his hands are roaming over your body as he begins to undress you. There\'s something animalistic in his movements, like a stud animal that can smell a mate.');
         scene.text('Once naked, he pushes you onto a pile of hay, the motion only somewhat playful. Within seconds, his own clothing joins yours on the ground at his feet.');
         scene.text('Moving towards you, he pauses, both affection and need clear in his expression. "I do care about you Kotenok," His expression becomes self conscious, "And I\'ve wanted this for a long time now."');
@@ -264,9 +264,9 @@ function enterBarnCloser(s: GameState, scene: SceneBuilder): void {
         scene.text('Withdrawing, you can feel some of his cum drip from your freshly used pussy. He gives your ass a playful slap, then reaches for his clothes.');
         scene.text('"I need to get back to work," Grigory says, you can still hear that he\'s still short of breath, "See you later little lady."');
         scene.text('Without another word, he exits the barn.');
-        qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
-        qspCall(s, 'arousal', 'vaginal', 10);
-        qspCall(s, 'arousal', 'end');
+        qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+        qspCall(st, 'arousal', 'vaginal', 10);
+        qspCall(st, 'arousal', 'end');
         scene.actions([
           { label: 'Continue', goto: ['gad_gpbarn', ''] },
         ]);
@@ -379,9 +379,9 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.actions([
                     { label: 'Tease him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'self', 'easy');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'self', 'easy');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.text('Smiling to yourself, you stretch a little, making sure to push your chest out in the direction of your voyeur.');
     scene.text('When you return to working, you kneel with your back to him, pushing your bottom in his general direction, wiggling it playfully as you do so.');
     scene.text('A short while later you glance back at him, it\'s clear that he is still watching, but the bushes are too thick for you to make out much more than that.');
@@ -475,8 +475,8 @@ function enterFlower1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Well that\'s kind of creepy', handler: (st: GameState) => {
-    if ((!((s as any).grigory_flower ?? 0))) {
-      (s as any).grigory_flower = 1;
+    if ((!((st as any).grigory_flower ?? 0))) {
+      (st as any).grigory_flower = 1;
       scene.text('Shuddering slightly, you grimly realize that you might have a stalker. You\'re going to have to be careful in case whoever it is proves dangerous.');
     } else {
       scene.text('Unhappy and just a little unsettled, you wonder for a moment how best to approach this situation. You can tell someone about it, but everyone would probably just tell you that you\'re overreacting. You could try to ignore it but it might just encourage whoever is doing it. Or you could try to find out who\'s doing it, but that could prove dangerous.');
@@ -487,7 +487,7 @@ function enterFlower1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'That\'s actually kind of cute', handler: (st: GameState) => {
-    (s as any).grigory_flower = 2;
+    (st as any).grigory_flower = 2;
     if ((!(Math.floor(Math.random() * 3) + 0))) {
       scene.text('Your heart flutters momentarily, a smile plastered across your face as you hold the flower close to your heart before smelling it.');
     } else {
@@ -527,11 +527,11 @@ function enterFlower2(s: GameState, scene: SceneBuilder): void {
       scene.text('You feel your hymen break as Mitka penetrates you. Mitka looks down at you in surprise and says, "Wow, how were you still a virgin? If I had known, I would have savoured this moment longer!"');
     }
     scene.text('Breathing heavily, Mitka gets off of you and says, "Nice fuck!"');
-    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A63'] = ((s as any).npc_QW['A63'] ?? 0) + (1);
-    qspCall(s, 'boyStat', 'A63');
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A63'] = 1;
-    qspCall(s, 'arousal', 'vaginal', 10, 'sub');
-    qspCall(s, 'arousal', 'end');
+    ((st as any).npc_QW = (st as any).npc_QW ?? {})['A63'] = ((st as any).npc_QW['A63'] ?? 0) + (1);
+    qspCall(st, 'boyStat', 'A63');
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A63'] = 1;
+    qspCall(st, 'arousal', 'vaginal', 10, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['grigory', 'dummy'] },
     ]);
@@ -604,8 +604,8 @@ function enterFlower5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).grigory_flower ?? 0) === 1) {
     scene.actions([
       { label: 'Creepy', handler: (st: GameState) => {
-    (s as any).grigory_flower = 10;
-    (s as any).flowerday = ((s as any).daystart ?? 0);
+    (st as any).grigory_flower = 10;
+    (st as any).flowerday = ((st as any).daystart ?? 0);
     scene.text('You can feel my blood run cold as you look at the flowers. There is a deep sinking feeling in the pit of your stomach. Grigory, Grigory is the one who is leaving the flowers.');
     scene.text('Opening the passenger side door of the truck, you open the bag further, revealing that it is indeed full of the little purple flowers.');
     scene.text('Glancing at Grigory in the field again, you quickly leave, trying to make sense of it all.');
@@ -618,13 +618,13 @@ function enterFlower5(s: GameState, scene: SceneBuilder): void {
     if (((s as any).grigory_flower ?? 0) === 2) {
       scene.actions([
         { label: 'Cute', handler: (st: GameState) => {
-    (s as any).grigory_flower = 11;
-    (s as any).flowerday = ((s as any).daystart ?? 0);
+    (st as any).grigory_flower = 11;
+    (st as any).flowerday = ((st as any).daystart ?? 0);
     scene.text('Your heart races at the sight of the flowers. Excitement filling you.');
     scene.text('You glance at Grigory still in the field, then back at the bag of flowers.');
     scene.text('Grigory has a crush on me! You think with a sudden realization.');
     scene.text('You don\'t know how long you stand there, trying to make sense of the jumble of feelings inside of you.');
-    if (((s as any).npc_qw ?? 0)?.['A221'] < 3) {
+    if (((st as any).npc_qw ?? 0)?.['A221'] < 3) {
       scene.text('Do I share those feelings? You wonder, confused.');
       scene.text('Glancing at Grigory in the field one more time, you wander off, confused and unertain of what to do.');
     } else {
@@ -892,8 +892,8 @@ function enterFieldTease(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Brush it off', handler: (st: GameState) => {
     scene.text('"It\'s ok, I won\'t say anything to anyone," You say, not wanting to further embarrass him.');
-    if ((!((s as any).grig_caught ?? 0))) {
-      (s as any).grig_caught = 1;
+    if ((!((st as any).grig_caught ?? 0))) {
+      (st as any).grig_caught = 1;
       scene.text('"Does that really turn you on?" You ask curiously.');
       scene.text('Grigory doesn\'t look up from where he seems to be pondering his feet, but he nods his head.');
       scene.text('Reaching for his flask, he takes a sip, but doesn\'t put it away like he usually does.');
@@ -948,7 +948,7 @@ function enterFieldWatch(s: GameState, scene: SceneBuilder): void {
     { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('Aroused by the sight, one of your hands goes to your crotch, starting to rub yourself through your clothing. You\'re barely aware of the fact that your motions are almost perfectly timed with Grigory\'s own movements.');
     scene.text('You\'re so caught up in what you\'re doing that you don\'t even realize that he finished and is now openly staring at you. When your body shudders with release, you open your eyes and see him looking straight at you with a hungry look in his eyes.');
-    if (((s as any).npc_qw ?? 0)?.['A221'] < 3) {
+    if (((st as any).npc_qw ?? 0)?.['A221'] < 3) {
       scene.text('"Oh my God," You blurt, blushing bright red.');
       scene.text('You see him take a slow sip from his flask, "It\'s OK, I didn\'t mind."');
       scene.text('He swallows visibly, seeming to snap out of a trance as he looks away.');
@@ -975,7 +975,7 @@ function enterFieldWatch(s: GameState, scene: SceneBuilder): void {
     { label: 'Move closer', handler: (st: GameState) => {
     scene.text('Without wanting to draw attention, you move closer to Grigory, your gaze alternating between him and the bull in the field');
     scene.text('Not as sneaky as you had intended, he quickly notices your approach.');
-    if (((s as any).npc_qw ?? 0)?.['A221'] < 3) {
+    if (((st as any).npc_qw ?? 0)?.['A221'] < 3) {
       scene.text('"I, uh," He sputters, looking for a way to explain himself, "Well shit." He finally blurts.');
       scene.text('"Don\'t stop on my account," You\'re surprised at the words that leave your mouth.');
       scene.text('Grigory looks at you, clearly surprised at the words as well.');
@@ -1171,7 +1171,7 @@ function enterRomanticEvent(s: GameState, scene: SceneBuilder): void {
     { label: 'Lets go', handler: (st: GameState) => {
     scene.text('"Where were you thinking?" You ask.');
     scene.text('"I can walk you back to your Grandparent\'s home, or you could come back to mine," He looks you in the eye, a hopeful look on his face.');
-    if (((s as any).grandmaQW ?? 0)?.['block'] === 0) {
+    if (((st as any).grandmaQW ?? 0)?.['block'] === 0) {
       scene.actions([
         { label: 'Grandparents Home', handler: (st: GameState) => {
     scene.text('"I should probably get back to my Grandparent\'s place," You say.');
@@ -1292,10 +1292,10 @@ function enterDrunkLate(s: GameState, scene: SceneBuilder): void {
     scene.text('Smiling to yourself, you close your eyes and drift off to sleep.');
     scene.actions([
       { label: 'Wake up', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (((33 - ((s as any).hour ?? 0)) * 60) - ((s as any).minut ?? 0));
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (100);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (100);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (((33 - ((st as any).hour ?? 0)) * 60) - ((st as any).minut ?? 0));
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (100);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (100);
+    qspCall(st, 'stat', '');
     scene.text('You\'re woken by the early morning sun peeking past the drapes of the bedroom. You start to shy away from the light, but then realize that you\'re alone in the bed.');
     scene.text('Looking around the room, you see that Grigory is nowhere to be seen. ');
     scene.text('"Grigory?" You call softly when you finally motivate yourself to crawl out of bed, "Grigory? Where\'d you get off to?"');
@@ -1356,7 +1356,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     scene.text('Then, faster than you ever imagined the big man could move, he closes the distance between you, picking you up in a crushing hug that makes your ribs hurt. His lips press against yours, and the taste of the alcohol on his tongue is enough to make your head swim.');
     scene.text('Before you even realize what is happening, Grigory lets go of you, shoving you to the ground roughly. ');
     scene.text('Your heart races as you start to get up, only reaching your hands and knees before his huge hands grab your hips. With a powerful pull and the sound of ripping clothing, you feel the cool night air on your suddenly exposed bottom.');
-    if (((s as any).stat ?? 0)?.['vaginal'] === 0) {
+    if (((st as any).stat ?? 0)?.['vaginal'] === 0) {
       scene.text('"Grigory, no! I\'m-" You cry in alarm, horrified at what he is about to do to you.');
       scene.text('One of his hands grabs the back of your neck, pushing your face into the dirt before you can protest further. A second later, you can feel his other hand brush between your legs as he searches for your slit.');
       scene.text('The moment his thick finger touches the folds of your pussy, you can hear him make a pleased sound. His finger probes deeper until he finds your opening, then shoves his finger forward, tearing through your hymen painfully.');
@@ -1374,7 +1374,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['gadukino', ''] },
       ]);
     } else {
-      if (((s as any).High_Arousal ?? 0)===1) {
+      if (((st as any).High_Arousal ?? 0)===1) {
         scene.text('"Grigory, don\'t!" You cry in alarm, horrified at what he is about to do to you.');
         scene.text('One of his hands grabs the back of your neck, pushing your face into the dirt before you can protest further. A second later, you can feel his other hand brush between your legs as he searches for your slit.');
         scene.text('The moment his thick finger touches the folds of your pussy, you can hear him make a pleased sound. His finger probes deeper until he finds your embarrassingly wet opening, then shoves his finger forward, filling you with a fullness that would be pleasant under different circumstances.');

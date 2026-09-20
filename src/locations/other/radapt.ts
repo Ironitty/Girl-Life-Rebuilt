@@ -108,7 +108,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).locat ?? 0)?.['A154'] === 20) {
                     qspCall(s, 'stat', '');
-                    (s as any).raddoor = Math.floor(Math.random() * 24) + 1;
+                    (s as any).raddoor = (Math.floor(Math.random() * 24) + 1);
                     scene.img('images/locations/pavlovsk/resident/apartment/radapt/anfisa.jpg');
                     scene.text('You stand outside the Popov household and wait for Radomir to open the door, but Anfisa answers instead.');
                     scene.text('She gives you a friendly smile. "Yes, dear?"');
@@ -119,19 +119,19 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).radomirQW ?? 0)?.['nush_visit'] >= 1) {
                         scene.actions([
                           { label: 'Enter', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'dislike');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and Anushka walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
-    if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_visit'] = 2;
-      qspCall(s, 'npc_relationship', 'modify', 'A144', 'hate');
+    if (((st as any).npc_rel ?? 0)?.['A154'] >= 60) {
+      ((st as any).radomirQW = (st as any).radomirQW ?? {})['nush_visit'] = 2;
+      qspCall(st, 'npc_relationship', 'modify', 'A144', 'hate');
       scene.text('She pauses when she sees you, her eyes narrowing slightly before she picks up her pace and brushes past you, slightly bumping her shoulder into you as she does.');
       scene.text('Radomir steps out before you can say anything and call out to Anushka. "Later, babe!"');
       scene.text('The only response he gets is her flipping him off without looking back.');
       scene.text('He just chuckles at that before turning to you and shrugging. "Fuck, that bitch is high strung sometimes."');
     } else {
-      if (((s as any).npc_rel ?? 0)?.['A154'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A154'] <= 20) {
         scene.text('She pauses when she sees you before giving you a look of disgust and brushing past you, slightly bumping into her shoulder into you as she does.');
         scene.text('Radomir steps out before you can say anything and calls out to Anushka. "Later, babe!"');
         scene.text('She just ignores him and he shrugs when she doesn\'t reply.');
@@ -153,27 +153,27 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                       } else {
                         scene.actions([
                           { label: 'Enter', handler: (st: GameState) => {
-    ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_visit'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
+    ((st as any).radomirQW = (st as any).radomirQW ?? {})['nush_visit'] = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'dislike');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and Anushka walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
-    if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_visit'] = 2;
-      qspCall(s, 'npc_relationship', 'modify', 'A144', 'hate');
+    if (((st as any).npc_rel ?? 0)?.['A154'] >= 60) {
+      ((st as any).radomirQW = (st as any).radomirQW ?? {})['nush_visit'] = 2;
+      qspCall(st, 'npc_relationship', 'modify', 'A144', 'hate');
       // TODO-QSP: dynamic text: She pauses when she sees you and looks surprised to see you. "What are you doing...
-      scene.text(`She pauses when she sees you and looks surprised to see you. "What are you doing here, ${((s as any).pcs_nickname || '')}?"`);
+      scene.text(`She pauses when she sees you and looks surprised to see you. "What are you doing here, ${((st as any).pcs_nickname || '')}?"`);
       scene.text('You know the thing between Rad and her is complicated, but there\'s not much you can do, since she caught you heading to his bedroom. "I just came to see Rad."');
       scene.text('Before she can say anything, Radomir steps out and smiles when he sees you. "What are you girls talking about?"');
       // TODO-QSP: dynamic text: Anushka gives him a sour look. "I was just asking <<$pcs_nickname>> why she was ...
-      scene.text(`Anushka gives him a sour look. "I was just asking ${((s as any).pcs_nickname || '')} why she was here."`);
+      scene.text(`Anushka gives him a sour look. "I was just asking ${((st as any).pcs_nickname || '')} why she was here."`);
       scene.text('Radomir grins and looks really smug. "Don\'t be jealous, babe. This is why we broke up."');
       scene.text('Anushka\'s eyes flash in anger. "We broke up because you\'re a fucking asshole!"');
       scene.text('Radomir says calmly looking as innocent as someone can look. "Babe, calm down!" he says calmly before he slaps her on the ass. "Best ass in Pavlovsk right there."');
       scene.text('Anushka turns and shoves him hard enough to make him stumble. "Fuck you, Rad!"');
       scene.text('She then turns to you, looking more pissed than you\'ve seen her before. "And fuck you too!" she snarls before she storms out of the apartment');
     } else {
-      if (((s as any).npc_rel ?? 0)?.['A154'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A154'] <= 20) {
         scene.text('She pauses when she sees you before she gives you a dirty look. You know she doesn\'t like you, but there seems to be a bit more extra venom in that look today.');
         scene.text('A moment later, Radomir steps out and smiles when he sees you before he slaps Anushka on the ass. "Best ass in Pavlovsk right there!"');
         scene.text('Anushka just gives him an annoyed look before she walks past you towards the exit. "Later, babe!" he says to her as she leaves. When you glance back at him, he\'s looking all smug.');
@@ -203,7 +203,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                           { label: 'Leave', goto: ['pav_complex', 'start'] },
                           { label: 'Enter', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big20.jpg');
-    if (((s as any).grupTipe ?? 0) === 1) {
+    if (((st as any).grupTipe ?? 0) === 1) {
       scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
       scene.text('Just as you arrive, the door opens and Lena walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
       scene.text('She pauses when she sees you. "Look at the princess coming to slum it. Those cool boys just don\'t know how to fuck your ass, right?" she smirks while patting you on the cheek in a mocking way.');
@@ -211,7 +211,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       scene.text('Lena smiles at him all coy before she walks past you and out of the apartment. When you glance back at Rad, he\'s looking all smug.');
       scene.text('He turns and heads back into his room, waving for you to follow. "Come on in."');
     } else {
-      if (((s as any).grupTipe ?? 0) === 2) {
+      if (((st as any).grupTipe ?? 0) === 2) {
         scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
         scene.text('Just as you arrive, the door opens and Lena walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
         scene.text('She pauses when she sees you. "Look at the jockette coming to slum it. Those jock boys just don\'t know how to fuck your ass, right?" she smirks while patting you on the cheek in a mocking way.');
@@ -219,7 +219,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         scene.text('Lena smiles at him all coy before she walks past you and out of the apartment. When you glance back at Rad, he\'s looking all smug.');
         scene.text('He turns and heads back into his room, waving for you to follow. "Come on in."');
       } else {
-        if (((s as any).grupTipe ?? 0) === 3) {
+        if (((st as any).grupTipe ?? 0) === 3) {
           scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
           scene.text('Just as you arrive, the door opens and Lena walks out of his room. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
           scene.text('She pauses when she sees you. "Look at the nerd coming to slum it, or are you just looking to finally lose your virginity?" she smirks while patting you on the cheek in a mocking way.');
@@ -250,7 +250,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                           scene.actions([
                             { label: 'Leave', goto: ['pav_complex', 'start'] },
                             { label: 'Enter', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_girls/rgirl\' + rand(1, 4) + \'.jpg');
+    scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_girls/rgirl' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and a girl with dyed hair and punk rock style clothing walks out of his room. She pauses when she sees you before smirking. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     scene.text('A moment later, Radomir steps out and smiles when he sees you. He then slaps the girl on the ass, which makes her giggle. "See you later, doll."');
@@ -268,7 +268,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                             scene.actions([
                               { label: 'Leave', goto: ['pav_complex', 'start'] },
                               { label: 'Enter', handler: (st: GameState) => {
-    scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_girls/girl\' + rand(1, 4) + \'.jpg');
+    scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_girls/girl' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
     scene.text('You thank her and enter the apartment. She closes the door and heads off to the kitchen while you head down the hallway to Radomir\'s room.');
     scene.text('Just as you arrive, the door opens and a girl you\'ve never seen before walks out of his room. She pauses when she sees you and blushes. By the state of her clothes, her messed up hair and her smeared makeup, it\'s not hard to guess what happened.');
     scene.text('A moment later, Radomir steps out and smiles when he sees you. He then slaps the girl on the ass, which makes her giggle. "See you later, doll."');
@@ -339,7 +339,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/bathroom.jpg');
   scene.text('The bathroom is spotless. The porcelain of the sink is so clean you can almost see your reflection in it. There\'s also a nice tub next to the sink, with a toilet across from it.');
-  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -350,12 +350,12 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the bathroom', goto: ['radapt', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
-    (s as any).temp = Math.floor(Math.random() * 7) + 0;
-    if (((s as any).temp ?? 0) === 0  &&  ((s as any).pcs_hotcat ?? 0) >= 6  &&  ((((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 16)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23))) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
+    (st as any).temp = (Math.floor(Math.random() * 7) + 0);
+    if (((st as any).temp ?? 0) === 0  &&  ((st as any).pcs_hotcat ?? 0) >= 6  &&  ((((st as any).hour ?? 0) >= 20  &&  ((st as any).hour ?? 0) < 23)  ||  (((st as any).week ?? 0) > 5  &&  ((st as any).hour ?? 0) >= 8  &&  ((st as any).hour ?? 0) < 16)  ||  (((st as any).week ?? 0) > 5  &&  ((st as any).hour ?? 0) >= 18  &&  ((st as any).hour ?? 0) < 23))) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (1);
       scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower1.jpg');
       scene.text('After a refreshing shower, you grab a towel and dry yourself off. As you look at the mirror, you see the reflection of Radomir\'s dad standing by the bathroom door watching you.');
       scene.actions([
@@ -393,8 +393,8 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower3.jpg');
     scene.text('Curiosity wins out and you decide to ask what he means. "What do you mean, \'she knows how the world works\'?"');
     scene.text('He gives you a predatory smile. "Women exist to serve the sexual needs of men, of course! We can\'t just be with one woman. That\'s how our species survived after all," he says as he grabs the top of your towel and starts to pull it away from you.');
-    qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'exhib', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -403,11 +403,11 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Resist', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower0.jpg');
     scene.text('You grab hold of the towel to hold it in place, but he pulls on it and exposes your breasts.');
-    if (((s as any).tits ?? 0) >= 4) {
+    if (((st as any).tits ?? 0) >= 4) {
       scene.text('You see him glancing down and smiling at the sight of your well endowed chest.');
     }
     scene.text('You fight his grip before he finally stops and lets go of your towel, allowing you to back up and create some space between the two of you as you pull your towel back up over your breasts. "Please leave. You\'re making me very uncomfortable."');
@@ -421,16 +421,16 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let him pull your towel away', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
-    qspCall(s, 'boyStat', 'A272');
-    qspCall(s, 'stat', '');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (1);
+    qspCall(st, 'boyStat', 'A272');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower4.jpg');
     scene.text('You don\'t resist and let him pull your tower away, allowing yourself to stand in front of him completely naked. He looks over every inch of your naked body with hungry eyes before looking up at you.');
-    // TODO-QSP: dynamic text: "Now look what you've done, " he says as he unzips his pants and pulls out his <...
-    scene.text(`"Now look what you've done, " he says as he unzips his pants and pulls out his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock.`);
+    // TODO-QSP: dynamic text: "Now look what you''ve done, " he says as he unzips his pants and pulls out his ...
+    scene.text(`"Now look what you've done, " he says as he unzips his pants and pulls out his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock.`);
     scene.text('As you look at it, he continues to talk. "Looks like you\'re going to have to suck it now."');
-    qspCall(s, 'willpower', 'bj', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'bj', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -439,8 +439,8 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Resist', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower0.jpg');
     scene.text('You grab your towel back from him and cover up. No way are you going to suck his dick! "Please leave. You\'re making me very uncomfortable."');
     scene.text('He keeps looking you over and for a moment you don\'t think he\'s going to leave. "Okay, okay… I\'m going."');
@@ -463,15 +463,15 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).temp ?? 0) <= 2  &&  ((s as any).pcs_hotcat ?? 0) >= 6) {
-        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
+      if (((st as any).temp ?? 0) <= 2  &&  ((st as any).pcs_hotcat ?? 0) >= 6) {
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (1);
         scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower1.jpg');
-        if (((s as any).pcs_hotcat ?? 0) === 10) {
-          if (((s as any).tits ?? 0) <= 2) {
+        if (((st as any).pcs_hotcat ?? 0) === 10) {
+          if (((st as any).tits ?? 0) <= 2) {
             scene.text('Just as you\'re about to finish showering, the curtain is yanked back, startling you. You look round and see Radislav, Radomir\'s older brother, standing there with a grin on his face.');
             scene.text('"Damn, you\'re as good looking as I thought! Shame about the tits, but I guess no one\'s perfect. What are you doing with my brother? You\'re way out of his league!" he says with a laugh as he looks at you like he\'s examining a prized pet.');
           } else {
-            if (((s as any).tits ?? 0) >= 5) {
+            if (((st as any).tits ?? 0) >= 5) {
               scene.text('Just as you\'re about to finish showering, the curtain is yanked back, startling you. You look round and see Radislav, Radomir\'s older brother, standing there with a grin on his face.');
               scene.text('"Damn, you\'re as good looking as I thought! With nice big tits like those, you\'re about as close to perfect as a girl can get. What are you doing with my brother? You\'re way out of his league!" he says with a laugh as he looks at you like he\'s examining a prized pet.');
             } else {
@@ -480,12 +480,12 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (((s as any).pcs_hotcat ?? 0) >= 8) {
-            if (((s as any).tits ?? 0) <= 2) {
+          if (((st as any).pcs_hotcat ?? 0) >= 8) {
+            if (((st as any).tits ?? 0) <= 2) {
               scene.text('Just as you\'re about to finish showering, the curtain is yanked back, startling you. You look round and see Radislav, Radomir\'s older brother, standing there with a grin on his face.');
               scene.text('"Pretty nice body, but the tits are a bit small. You\'re better than what my brother can typically land," he says with a laugh as he looks at you like he\'s examining a prized pet.');
             } else {
-              if (((s as any).tits ?? 0) >= 5) {
+              if (((st as any).tits ?? 0) >= 5) {
                 scene.text('Just as you\'re about to finish showering, the curtain is yanked back, startling you. You look round and see Radislav, Radomir\'s older brother, standing there with a grin on his face.');
                 scene.text('"Not bad looking, nice tits at least. You\'re better than my brother can typically land," he says with a laugh as he looks at you like he\'s examining a prized pet.');
               } else {
@@ -494,11 +494,11 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
               }
             }
           } else {
-            if (((s as any).tits ?? 0) <= 2) {
+            if (((st as any).tits ?? 0) <= 2) {
               scene.text('Just as you\'re about to finish showering, the curtain is yanked back, startling you. You look round and see Radislav, Radomir\'s older brother, standing there with a grin on his face.');
               scene.text('"Not bad looking, but the tits are a little small. About as well as I can expect Rad to do honestly," he says with a laugh as he looks at you like he\'s examining a prized pet.');
             } else {
-              if (((s as any).tits ?? 0) >= 5) {
+              if (((st as any).tits ?? 0) >= 5) {
                 scene.text('Just as you\'re about to finish showering, the curtain is yanked back, startling you. You look round and see Radislav, Radomir\'s older brother, standing there with a grin on his face.');
                 scene.text('"Not bad looking. Nice tits at least. About as well as I can expect Rad to do honestly," he says with a laugh as he looks at you like he\'s examining a prized pet.');
               } else {
@@ -508,8 +508,8 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
             }
           }
         }
-        qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        qspCall(st, 'willpower', 'exhib', 'resist', 'medium');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Cover up and tell him to leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -518,8 +518,8 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Cover up and tell him to leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower0.jpg');
     scene.text('You grab the towel off the towel rack and quickly use it to cover yourself up, followed by you point at the door. "Please leave, you are making me very uncomfortable."');
     scene.text('He gets a dark look in his eye, you can tell he is angry. "Bitch." With that he slowly turns and leaves, stopping to close the door very slowly.');
@@ -534,10 +534,10 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower2.jpg');
     scene.text('You just stand there naked with the water from the shower still pattering against your skin. He stares at your naked body for a long time before he suddenly grabs you and pulls you close to him. You nearly trip as he pulls you out of the tub and fall against him, but he catches you and you suddenly find your naked wet body pressed up against him.');
     scene.text('Before you can say anything, he suddenly kisses you. When he finally breaks the kiss, he looks you dead in the eyes. "Get on your knees and suck my dick, slut."');
-    qspCall(s, 'arousal', 'kiss', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'kiss', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse and cover up', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -546,8 +546,8 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse and cover up', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower0.jpg');
     scene.text('You pull away from him and grab a towel off the towel rack, quickly using it to cover yourself up. "Please leave. You\'re making me very uncomfortable."');
     scene.text('A dark look appears in his eye. "Fucking tease."');
@@ -569,14 +569,14 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
         scene.text('You take a quick shower.');
         scene.actions([
           { label: 'Take a selfie', handler: (st: GameState) => {
-    qspCall(s, 'telefon', 'Phone_selfie_image_bathing', 'shower');
+    qspCall(st, 'telefon', 'Phone_selfie_image_bathing', 'shower');
   } },
           { label: 'Get out of the shower', goto: ['radapt', 'bathroom'] },
         ]);
       }
     }
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
   } },
@@ -674,12 +674,12 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).radbeer_count ?? 0) > 0) {
     scene.actions([
       { label: 'Have a beer', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).radfood_day = ((s as any).daystart ?? 0);
-    (s as any).radbeer_count = ((s as any).radbeer_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer\'+rand(1, 3)+\'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).radfood_day = ((st as any).daystart ?? 0);
+    (st as any).radbeer_count = ((st as any).radbeer_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
     scene.text('You take a bottle of beer from the fridge and drink it, which quenches your thirst.');
     scene.actions([
       { label: 'Continue', goto: ['radapt', 'fridge'] },
@@ -690,26 +690,26 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).radvodka_count ?? 0) > 0) {
     scene.actions([
       { label: 'Drink some vodka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    (s as any).radfood_day = ((s as any).daystart ?? 0);
-    (s as any).radvodka_count = ((s as any).radvodka_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka\'+rand(1, 2)+\'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    (st as any).radfood_day = ((st as any).daystart ?? 0);
+    (st as any).radvodka_count = ((st as any).radvodka_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('You pour some vodka into a glass and drink it. You shiver as you feel the warm, burning sensation slowly slide down your gullet.');
     scene.actions([
       { label: 'Put the bottle back in the fridge', goto: ['radapt', 'fridge'] },
       { label: 'Drink more vodka', handler: (st: GameState) => {
-    if ((!((s as any).radvodka_count ?? 0))) {
+    if ((!((st as any).radvodka_count ?? 0))) {
       scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka0.jpg');
       scene.text('<font color = red>There\'s no vodka left. You drank it all!</font>');
     } else {
-      if (((s as any).radvodka_count ?? 0) > 0) {
-        (s as any).minut = ((s as any).minut ?? 0) + 1;
-        qspCall(s, 'drugs', 'alcohol', 'vodka');
-        (s as any).radvodka_count = ((s as any).radvodka_count ?? 0) - (1);
-        qspCall(s, 'stat', '');
-        scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka\'+rand(1, 2)+\'.jpg');
+      if (((st as any).radvodka_count ?? 0) > 0) {
+        (st as any).minut = ((st as any).minut ?? 0) + 1;
+        qspCall(st, 'drugs', 'alcohol', 'vodka');
+        (st as any).radvodka_count = ((st as any).radvodka_count ?? 0) - (1);
+        qspCall(st, 'stat', '');
+        scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
         scene.text('You pour yourself another glass and drain it in one gulp. Wow, that stuff is strong!');
       }
     }
@@ -724,23 +724,23 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).radsup_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).radfood_day = ((s as any).daystart ?? 0);
-    (s as any).radsup_count = ((s as any).radsup_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).radfood_day = ((st as any).daystart ?? 0);
+    (st as any).radsup_count = ((st as any).radsup_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/leftovers.jpg');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
     scene.text('It seems to be leftovers from a ready to make meal. You wonder if anyone here knows how to cook.');
     scene.actions([
       { label: 'Continue', goto: ['radapt', 'fridge'] },
@@ -811,8 +811,8 @@ function enterRadroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Radomir\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rads_room.jpg');
-  scene.text('The room is surprisingly clean, other than a few things lying on the floor as if they were recently tossed or dropped there. The walls are covered with pictures and posters of famous female models or bands with a few other decorations, while the room is skillfully decorated with a red and black theme to it. In the center of the room, near the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027bed\\u0027); return false;">bed</a>. On one side of the bed is a desk with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027computer\\u0027); return false;">laptop</a> on it.');
-  scene.text('On the other side of the bed is a sound system, with a speaker spaced about the room. Against the wall opposite the bed is a dresser with a flatscreen TV on it. On the last wall are several guitar stands with guitars in them, including an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027radapt\\u0027, \\u0027guitar\\u0027); return false;">acoustic guitar</a>. Right in front of that is an amp and a speaker, along with a black beanbag chair with a skull face on it.');
+  scene.text('The room is surprisingly clean, other than a few things lying on the floor as if they were recently tossed or dropped there. The walls are covered with pictures and posters of famous female models or bands with a few other decorations, while the room is skillfully decorated with a red and black theme to it. In the center of the room, near the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027radapt/u0027, /u0027bed/u0027); return false;">bed</a>. On one side of the bed is a desk with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027radapt/u0027, /u0027computer/u0027); return false;">laptop</a> on it.');
+  scene.text('On the other side of the bed is a sound system, with a speaker spaced about the room. Against the wall opposite the bed is a dresser with a flatscreen TV on it. On the last wall are several guitar stands with guitars in them, including an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027radapt/u0027, /u0027guitar/u0027); return false;">acoustic guitar</a>. Right in front of that is an amp and a speaker, along with a black beanbag chair with a skull face on it.');
   if (((s as any).locat ?? 0)?.['A154'] === 20) {
     scene.text('<br>Radomir is sitting on the beanbag, looking at you.');
     scene.actions([
@@ -874,8 +874,8 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a seat in front of the computer and decide to take a look at what kind of porn Radomir likes to watch.');
     scene.text('You start the computer up and it loads much faster than what you\'re used to, so it must be a pretty high-end laptop. Once it\'s done loading, you click on the internet browser and look through his browsing history plus bookmarks.');
     scene.text('You see that he\'s watched videos from all kinds of porn sites. It\'s almost exclusively boy-girl dominant sex where the guy is rough with the girl. A lot of it is hard anal sex, but there\'s also a little bit of lesbian sex. It would seem Radomir knows what he likes and sticks to it.');
-    qspCall(s, 'arousal', 'porn', 10);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'porn', 10);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Turn the computer off', goto: ['radapt', 'radroom'] },
     ]);
@@ -897,8 +897,8 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Look at something else', goto: ['radapt', 'radroom'] },
       { label: 'Ask how long it took to learn to play', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/guitar.jpg');
     scene.text('"How long did it take you to learn to play?" you ask.');
     scene.text('He smiles. "Not too long. I was pretty good right away, then Nush and I started hanging out and exchanged what we knew."');
@@ -914,9 +914,9 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).instrmusic_lvl ?? 0) < 5) {
       scene.actions([
         { label: 'Pretend to play', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/play_guitar.jpg');
     scene.text('You decide to live out one of your fantasies. You\'ve always wanted to play the guitar, so you grab hold of one and pretend to play, putting on a show as if you were a real rock star. After a while, you need to catch your breath. Playing it was a lot harder than you thought.');
     scene.actions([
@@ -929,12 +929,12 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
       { label: 'Look at something else', goto: ['radapt', 'radroom'] },
       { label: 'Try to play it', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/play_guitar.jpg');
-    if (((s as any).pcs_instrmusic ?? 0) < 20  ||  ((s as any).instrmusic_lvl ?? 0) < 10) {
-      qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 0);
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).minut = ((s as any).minut ?? 0) + 20;
-      qspCall(s, 'pain', '', 1, 'fingers', 'ache');
-      qspCall(s, 'stat', '');
+    if (((st as any).pcs_instrmusic ?? 0) < 20  ||  ((st as any).instrmusic_lvl ?? 0) < 10) {
+      qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 0));
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).minut = ((st as any).minut ?? 0) + 20;
+      qspCall(st, 'pain', '', 1, 'fingers', 'ache');
+      qspCall(st, 'stat', '');
       scene.text('You gently brush your fingers over the strings. The feeling of the coarse strings against your fingers is exhilarating. You come up with a song you want to try to play and start to work your magic…');
       scene.text('Unfortunately, playing the guitar is a lot harder than it looks. It takes you several tries to hit the right notes and several more to play even the tiny first fraction of the song without making a mistake. The strings cut into your tender, uncalloused fingertips and you eventually decide to stop.');
       scene.text('You realize now that learning how to play the guitar can be a frustrating, painful experience, yet you can\'t help but gently stroke the guitar once more before putting it back on its stand. You look forward to trying to play again.');
@@ -942,27 +942,27 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
         { label: 'Put the guitar back', goto: ['radapt', 'radroom'] },
       ]);
     } else {
-      if (((s as any).pcs_instrmusic ?? 0) < 40) {
-        qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 0);
-        qspCall(s, 'mood', 'raise', 'tiny');
-        (s as any).minut = ((s as any).minut ?? 0) + 20;
+      if (((st as any).pcs_instrmusic ?? 0) < 40) {
+        qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 0));
+        qspCall(st, 'mood', 'raise', 'tiny');
+        (st as any).minut = ((st as any).minut ?? 0) + 20;
         scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. Unfortunately, you still have a lot to learn - it takes you several tries to hit the right notes and several more to play even a tiny bit of the song without making a mistake. Still, you\'re better than you used to be, and after about twenty minutes, you decide to stop.');
         scene.actions([
           { label: 'Put the guitar back', goto: ['radapt', 'radroom'] },
         ]);
       } else {
-        if (((s as any).pcs_instrmusic ?? 0) < 60) {
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 4) + 0);
-          qspCall(s, 'mood', 'raise', 'tiny');
-          (s as any).minut = ((s as any).minut ?? 0) + 20;
+        if (((st as any).pcs_instrmusic ?? 0) < 60) {
+          qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 4) + 0));
+          qspCall(st, 'mood', 'raise', 'tiny');
+          (st as any).minut = ((st as any).minut ?? 0) + 20;
           scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. You keep making small mistakes here and there, but you\'re slowly but steadily getting the piece down. After about twenty minutes, you decide you\'ve messed around with the guitar enough.');
           scene.actions([
             { label: 'Put the guitar back', goto: ['radapt', 'radroom'] },
           ]);
         } else {
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 5) + 1);
-          qspCall(s, 'mood', 'raise', 'tiny');
-          (s as any).minut = ((s as any).minut ?? 0) + 20;
+          qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 5) + 1));
+          qspCall(st, 'mood', 'raise', 'tiny');
+          (st as any).minut = ((st as any).minut ?? 0) + 20;
           scene.text('You pick up the guitar, run your hand along the neck and play a few chords, then flick your hair back and start playing the latest song you\'ve learned before switching to another piece. Your fingers dance gracefully over the strings, and you spend about twenty minutes just having fun playing songs.');
           scene.actions([
             { label: 'Put the guitar back', goto: ['radapt', 'radroom'] },
@@ -1023,8 +1023,8 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Entrance hall</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/radislav.jpg');
     scene.text('There\'s a small coat rack with several coats hanging from it, a large mirror just down the hall and a few paintings hanging on the wall. Other than that, the hall is empty and very clean.');
@@ -1032,31 +1032,31 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     scene.text('Before you can ask anything, he lightly punches Radomir in the gut, enough to make him double over slightly.');
     scene.text('"Oh fuck, dude…" Radomir says as he catches his breath. "What the fuck was that for?!"');
     scene.text('As Radomir recovers from the gut punch, the other guy leans against the wall just in front of you, looking at you like you\'re a piece of meat.');
-    if (((s as any).pcs_hotcat ?? 0) >= 9) {
+    if (((st as any).pcs_hotcat ?? 0) >= 9) {
       scene.text('He looks at Radomir. "Damn bro, you did good for once. Credit to you for snagging a hottie like this!"');
       scene.text('He turns back to you and leans in close. "Hello. My name\'s Radislav and I\'m this loser\'s, stronger, better looking, bigger… in every way brother. What\'s your name?"');
-      // TODO-QSP: dynamic text: Radomir's older brother looks like an older, more masculine jock version of him....
-      scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname || '')}…" you reply.`);
+      // TODO-QSP: dynamic text: Radomir''s older brother looks like an older, more masculine jock version of him...
+      scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((st as any).pcs_nickname || '')}…" you reply.`);
       scene.text('He smiles. "What are you doing hanging out with a loser like my little bro here? You should be with a real man, like me."');
       scene.text('He oozes confidence, like he\'s never had a girl turn him down.');
       scene.text('Before you can answer, Radomir lunges at him. "Asshole!"');
       scene.text('They\'re soon wrestling in the hall before they end up going back through the doorway Radislav came from.');
     } else {
-      if (((s as any).pcs_hotcat ?? 0) >= 7) {
+      if (((st as any).pcs_hotcat ?? 0) >= 7) {
         scene.text('He looks at Radomir. "Not bad, bro. She\'s almost as hot as Nush… almost. Which is pretty good for you. I still don\'t know what Nush saw in your dumb ass."');
         scene.text('He turns back to you and leans in close. "Hello. My name\'s Radislav, this loser\'s, stronger, better looking, bigger… in every way brother. What\'s your name?"');
-        // TODO-QSP: dynamic text: Radomir's older brother looks like an older, more masculine jock version of him....
-        scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname || '')}…" you reply.`);
+        // TODO-QSP: dynamic text: Radomir''s older brother looks like an older, more masculine jock version of him...
+        scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((st as any).pcs_nickname || '')}…" you reply.`);
         scene.text('He smiles. "What are you doing hanging out with a loser like my little bro here? You should be with a real man, like me."');
         scene.text('He oozes confidence, like he\'s never had a girl turn him down.');
         scene.text('Before you can answer, Radomir lunges at him. "Asshole!"');
         scene.text('They\'re soon wrestling in the hall before they end up going back through the doorway Radislav came from.');
       } else {
-        if (((s as any).pcs_hotcat ?? 0) === 6) {
+        if (((st as any).pcs_hotcat ?? 0) === 6) {
           scene.text('He looks at Radomir. "I see you brought home another one of your so-called groupies. You should have thrown this one back and got yourself a good-looking one. Oh wait. I forgot this is the best you can get," he says with a laugh, mocking Radomir.');
           scene.text('He turns back to you and leans in close. "Hello. My name\'s Radislav, this loser\'s, stronger, better looking, bigger… in every way brother. What\'s your name?"');
-          // TODO-QSP: dynamic text: Radomir's older brother looks like an older, more masculine jock version of him....
-          scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname || '')}…" you reply.`);
+          // TODO-QSP: dynamic text: Radomir''s older brother looks like an older, more masculine jock version of him...
+          scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((st as any).pcs_nickname || '')}…" you reply.`);
           scene.text('He smiles. "I guess my little bro is the best you can do, huh?" He says it in such a condescending way, like you\'re completely beneath him.');
           scene.text('Before you can answer, Radomir lunges at him. "Asshole!"');
           scene.text('They\'re soon wrestling in the hall before they end up going back through the doorway Radislav came from.');
@@ -1070,8 +1070,8 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Follow them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Living room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/brothers_wrestle.jpg');
     scene.text('You follow them into the room, which seems to be the living room. It becomes clear pretty quickly that Radislav is bigger, heavier and more skilled as he seems to be toying with Radomir. A few seconds later, a middle-aged attractive woman enters the room.');
@@ -1079,8 +1079,8 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     scene.text('The boys keep going at it before a middle-aged man enters. He looks a lot like Radislav, or you should say Radislav looks like a younger version of him. It\'s obvious they\'re father and son. He looks over what\'s happening before he turns to the woman and shrugs. "Boys will be boys. They need to establish their alpha dominance. Besides, it\'s good for Rad. Builds character, Anfisa."');
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/anfisa.jpg');
     scene.text('She puts her hands on her slim hips as she looks at Rostislav. "Fine, but if they break something then you\'re buying me a new one."');
     scene.text('He sighs dramatically, then turns towards the boys again. "Enough!"');
@@ -1092,9 +1092,9 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     scene.text('Radomir rolls his eyes while his brother just laughs even more. Now that you\'ve see them all together, it\'s obvious that Radomir takes after his mother a lot more than his father, while his brother looks just like a younger version of his father.');
     scene.actions([
       { label: 'Watch it play out', handler: (st: GameState) => {
-    ((s as any).radomirQW = (s as any).radomirQW ?? {})['first_visit'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
+    ((st as any).radomirQW = (st as any).radomirQW ?? {})['first_visit'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rostislav.jpg');
     scene.text('The father looks at his wife. "Stop mothering him all the time! He needs to learn to establish his dominance." He then looks at the boys. "Now what was this all about?"');
     scene.text('Radislav is the first one to speak up. "I was just introducing myself to Rad\'s new girl and he jumped me. Likely afraid she would dump him once she seen a better man, like all the rest," he says with a smug smile. By the way he said it, it sounds like he\'s stolen a few of Radomir\'s girlfriends in the past.');
@@ -1106,22 +1106,22 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
     scene.text('She nods and her husband gives her a smack on the ass, which gets a small giggle out of her, but also a slightly disapproving glare. You think the glare is just for show, though.');
     scene.actions([
       { label: 'Keep waiting', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rostislav.jpg');
     scene.text('Once their mother is gone and out of earshot, he turns to look at the boys. "Now what have I always told you? Fuck all the bitches you can while you can, until one of them eventually gets her hooks into you and you start a family of your own."');
     scene.text('Radislav confidently answers, while Radomir just mutters more than anything before their father finally turns to acknowledge you for the first time. You had started to wonder if he\'d even noticed you were here.');
-    if (((s as any).pcs_hotcat ?? 0) >= 9) {
+    if (((st as any).pcs_hotcat ?? 0) >= 9) {
       scene.text('He looks back at Radomir. "Very nice, son. She sure is a looker."');
       scene.text('He turns back to you. "Hello. I\'m Rostislav, these knuckleheads\' father. What\'s your name?"');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-      scene.text(`"${((s as any).pcs_nickname || '')}," you reply.`);
+      scene.text(`"${((st as any).pcs_nickname || '')}," you reply.`);
       scene.text('He smiles. "It\'s a pleasure to meet you. You\'re welcome here any time."');
       scene.text('Is he flirting with you in front of his son? It sure feels like it…');
       scene.text('Before you can answer, Radomir walks over. "Come on, let\'s go."');
       scene.text('He leads you off down to his room, but you can hear his brother and father still talking. You can\'t make it out, but the tone of voice, you guess it\'s about you…');
     } else {
-      if (((s as any).pcs_hotcat ?? 0) >= 7) {
+      if (((st as any).pcs_hotcat ?? 0) >= 7) {
         scene.text('He looks back at Radomir. "Not bad, son. Not as good-looking as Nush is, but not bad." Then he pauses. "How come Nush almost never comes over any more?"');
         scene.text('Radomir sighs. "I told you. We broke up."');
         scene.text('His father just looks at him, as if he was waiting for him to say more. "So? You don\'t need to date a girl to get a little pussy off her."');
@@ -1131,17 +1131,17 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
         scene.text('Radomir doesn\'t answer, but you can tell he\'s very annoyed with his father and brother right now.');
         scene.text('His father turns back to you. "Hello. I\'m Rostislav, these knuckleheads\' father. What\'s your name?"');
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-        scene.text(`"${((s as any).pcs_nickname || '')}," you reply.`);
+        scene.text(`"${((st as any).pcs_nickname || '')}," you reply.`);
         scene.text('He smiles. "It\'s nice to meet you. You\'re welcome here any time."');
         scene.text('Is he flirting with you in front of his son? It sure feels like it…');
         scene.text('Before you can answer, Radomir walks over. "Come on, let\'s go."');
         scene.text('He leads you off down to his room, but you can hear his brother and father still talking. You can\'t make it out, but by the tone of voice, you guess it\'s about you…');
       } else {
-        if (((s as any).pcs_hotcat ?? 0) === 6) {
+        if (((st as any).pcs_hotcat ?? 0) === 6) {
           scene.text('He looks back at Radomir. "You could do worse I suppose. She isn\'t much of a looker, but she\'s cute enough. A warm wet hole is a warm wet hole after all."');
           scene.text('He turns back to you. "Hello. I\'m Rostislav, these knuckleheads\' father. What\'s your name?"');
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-          scene.text(`"${((s as any).pcs_nickname || '')}," you reply.`);
+          scene.text(`"${((st as any).pcs_nickname || '')}," you reply.`);
           scene.text('He smiles. "It\'s nice to meet you. You\'re welcome here any time."');
           scene.text('Is he flirting with you in front of his son? It sure feels like it…');
           scene.text('Before you can answer, Radomir walks over. "Come on, let\'s go."');

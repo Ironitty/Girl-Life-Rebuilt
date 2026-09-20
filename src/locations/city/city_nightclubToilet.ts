@@ -28,10 +28,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'exhib', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_nightclubToilet', 'clubtoilet_men');
+    qspCall(st, 'willpower', 'exhib', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_nightclubToilet', 'clubtoilet_men');
   } },
     ]);
   }
@@ -55,7 +55,7 @@ function enterClubtoiletMen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Men\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/mentoilet.jpg');
-  scene.text('You walk into the men\'s restroom, where you see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a>.');
+  scene.text('You walk into the men\'s restroom, where you see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
@@ -80,7 +80,7 @@ function enterClubtoiletWomen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Nightclub - Women\'s Room</b></center>');
   scene.img('images/locations/city/citycenter/nightclub/womentoilet.jpg');
-  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a>. You notice the last stall has its door wide open.');
+  scene.text('You walk in to the women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a>. You notice the last stall has its door wide open.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');

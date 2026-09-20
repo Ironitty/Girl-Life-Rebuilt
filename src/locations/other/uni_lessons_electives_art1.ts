@@ -9,8 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArt_101(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'agil', Math.floor(Math.random() * 2) + 0);
-  qspCall(s, 'exp_gain', 'artskls', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'agil', (Math.floor(Math.random() * 2) + 0));
+  qspCall(s, 'exp_gain', 'artskls', (Math.floor(Math.random() * 2) + 0));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
   if (((s as any).university ?? 0)?.['first_visit_art_101']) {
@@ -31,7 +31,7 @@ function enterArt_101(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArt_101Listen(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('Professor Ilyushin\'s lecture is fairly entertaining and you have an easy time paying attention to it.');
   // TODO-QSP: end
   scene.actions([
@@ -46,8 +46,8 @@ function enterArt_101Talk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ErmiasQW ?? 0)?.['meet'] === 0) {
     scene.actions([
       { label: 'The black guy', handler: (st: GameState) => {
-    ((s as any).ErmiasQW = (s as any).ErmiasQW ?? {})['meet'] = 1;
-    qspGoto(s, 'uni_lessons_electives_art1', 'art_101_talk_ermias_1');
+    ((st as any).ErmiasQW = (st as any).ErmiasQW ?? {})['meet'] = 1;
+    qspGoto(st, 'uni_lessons_electives_art1', 'art_101_talk_ermias_1');
   } },
     ]);
   } else {
@@ -65,8 +65,8 @@ function enterArt_101Talk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArt_102(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'agil', Math.floor(Math.random() * 2) + 0);
-  qspCall(s, 'exp_gain', 'artskls', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'agil', (Math.floor(Math.random() * 2) + 0));
+  qspCall(s, 'exp_gain', 'artskls', (Math.floor(Math.random() * 2) + 0));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
   scene.text('You walk into the classroom and see Professor Ilyushin standing by his desk as the rest of your classmates walk in one by one under his watchful eye. You notice his eyes linger a bit longer on some of the prettier girls that are dressed in revealing clothes.');
@@ -80,7 +80,7 @@ function enterArt_102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterArt_102Listen(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('Professor Ilyushin\'s lecture is fairly entertaining and you have an easy time paying attention.');
   // TODO-QSP: end
   scene.actions([
@@ -95,8 +95,8 @@ function enterArt_102Talk(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ErmiasQW ?? 0)?.['meet'] === 0) {
     scene.actions([
       { label: 'The black guy', handler: (st: GameState) => {
-    ((s as any).ErmiasQW = (s as any).ErmiasQW ?? {})['meet'] = 1;
-    qspGoto(s, 'uni_lessons_electives_art1', 'art_102_talk_ermias_1');
+    ((st as any).ErmiasQW = (st as any).ErmiasQW ?? {})['meet'] = 1;
+    qspGoto(st, 'uni_lessons_electives_art1', 'art_102_talk_ermias_1');
   } },
     ]);
   } else {
@@ -115,7 +115,7 @@ function enterArt_102Talk(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_101TalkIgor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -148,7 +148,7 @@ function enterArt_101TalkIgor(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_102TalkIgor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -181,7 +181,7 @@ function enterArt_102TalkIgor(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_101TalkFeofan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A152', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A152'] <= 20) {
@@ -202,7 +202,7 @@ function enterArt_101TalkFeofan(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_102TalkFeofan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A152', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A152'] <= 20) {
@@ -223,7 +223,7 @@ function enterArt_102TalkFeofan(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_101TalkNatasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).NatbelQW ?? 0)?.['Lover'] >= 2) {
@@ -260,7 +260,7 @@ function enterArt_101TalkNatasha(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_102TalkNatasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A16', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).NatbelQW ?? 0)?.['Lover'] >= 2) {
@@ -297,7 +297,7 @@ function enterArt_102TalkNatasha(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_101TalkErmias_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('You notice a black student sitting away from the others by himself and decide to sit with him, getting a few stares and whispers directed your way as you do.');
@@ -305,7 +305,7 @@ function enterArt_101TalkErmias_1(s: GameState, scene: SceneBuilder): void {
     scene.text('As you sit down, you suddenly recognise him as the black guy you saw having sex with Albina.');
   }
   scene.text('He looks up at you and smiles. "Hello there. I am Ermias Okeke. What is your name?"');
-  // TODO-QSP: dynamic text: You return his smile. "I'm <<$pcs_firstname>> <<$pcs_lastname>>, but my friends ...
+  // TODO-QSP: dynamic text: You return his smile. "I''m <<$pcs_firstname>> <<$pcs_lastname>>, but my friends...
   scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, but my friends just call me ${((s as any).pcs_nickname || '')}."`);
   // TODO-QSP: dynamic text: "It is nice to meet you, <<$pcs_nickname>>."
   scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname || '')}."`);
@@ -320,7 +320,7 @@ function enterArt_101TalkErmias_1(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_101TalkErmias_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).ErmiasQW ?? 0)?.['invite'] === 0) {
@@ -379,7 +379,7 @@ function enterArt_101TalkErmias_2(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_102TalkErmias_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   scene.text('You notice a black student sitting away from the others by himself and decide to sit with him, getting a few stares and whispers directed your way as you do.');
@@ -387,7 +387,7 @@ function enterArt_102TalkErmias_1(s: GameState, scene: SceneBuilder): void {
     scene.text('As you sit down, you suddenly recognise him as the black guy you saw having sex with Albina.');
   }
   scene.text('He looks up at you and smiles. "Hello there. I am Ermias Okeke. What is your name?"');
-  // TODO-QSP: dynamic text: You return his smile. "I'm <<$pcs_firstname>> <<$pcs_lastname>>, but my friends ...
+  // TODO-QSP: dynamic text: You return his smile. "I''m <<$pcs_firstname>> <<$pcs_lastname>>, but my friends...
   scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, but my friends just call me ${((s as any).pcs_nickname || '')}."`);
   // TODO-QSP: dynamic text: "It is nice to meet you, <<$pcs_nickname>>."
   scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname || '')}."`);
@@ -402,7 +402,7 @@ function enterArt_102TalkErmias_1(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_102TalkErmias_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A243', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).ErmiasQW ?? 0)?.['invite'] === 0) {
@@ -462,7 +462,7 @@ function enterArt_102TalkErmias_2(s: GameState, scene: SceneBuilder): void {
 function enterArt_101Model(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 5) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 5) + 0);
     if ((!((s as any).temprand ?? 0))) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('Today\'s lesson concerns the history of art and its impact on society throughout the ages. Professor Ilyushin focuses on one time period when \'art made a real difference in the world,\' as he puts it.');
@@ -480,7 +480,7 @@ function enterArt_101Model(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After the lecture, Professor Ilyushin slides a raised platform to the center of the room. Retrieving an everyday object from a cupboard, he places it on the platform and ensures everyone can see it. He makes a few observations about shadow and light before telling the class to begin drawing the object.');
@@ -536,7 +536,7 @@ function enterArt_101Model(s: GameState, scene: SceneBuilder): void {
 function enterArt_101ModelIgor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 5) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 5) + 0);
     if ((!((s as any).temprand ?? 0))) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('Today\'s lesson concerns the history of art and its impact on society throughout the ages. Professor Ilyushin focuses on one time period when \'art made a real difference in the world,\' as he puts it. The lecture goes by fairly quickly and Igor seems engrossed by it.');
@@ -553,7 +553,7 @@ function enterArt_101ModelIgor(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After the lecture, Professor Ilyushin slides a raised platform to the center of the room. Retrieving an everyday object from a cupboard, he places it on the platform and ensures everyone can see it. He makes a few observations about shadow and light before telling the class to begin drawing the object.');
@@ -609,7 +609,7 @@ function enterArt_101ModelIgor(s: GameState, scene: SceneBuilder): void {
 function enterArt_101ModelFeofan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 5) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 5) + 0);
     if ((!((s as any).temprand ?? 0))) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('Today\'s lesson concerns the history of art and its impact on society throughout the ages. Professor Ilyushin focuses on one time period when \'art made a real difference in the world,\' as he puts it.');
@@ -627,7 +627,7 @@ function enterArt_101ModelFeofan(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After the lecture, Professor Ilyushin slides a raised platform to the center of the room. Retrieving an everyday object from a cupboard, he places it on the platform and ensures everyone can see it. He makes a few observations about shadow and light before telling the class to start drawing the object. Feofan mutters something about he didn\'t take art class to draw a bowl of fruit as Professor Ilyushin walks around the class checking on each student, stopping to give pointers or answer questions as needed.');
@@ -685,7 +685,7 @@ function enterArt_101ModelFeofan(s: GameState, scene: SceneBuilder): void {
 function enterArt_101ModelNatasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 5) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 5) + 0);
     if ((!((s as any).temprand ?? 0))) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('Today\'s lesson concerns the history of art and its impact on society throughout the ages. Professor Ilyushin focuses on one time period when \'art made a real difference in the world,\' as he puts it. The lecture goes by fairly quickly.');
@@ -702,7 +702,7 @@ function enterArt_101ModelNatasha(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After the lecture, Professor Ilyushin slides a raised platform to the center of the room. Retrieving an everyday object from a cupboard, he places it on the platform and ensures everyone can see it. He makes a few observations about shadow and light before telling the class to begin drawing the object. He then walks around the class checking on each student, stopping to give pointers or answer questions as needed.');
@@ -758,7 +758,7 @@ function enterArt_101ModelNatasha(s: GameState, scene: SceneBuilder): void {
 function enterArt_101ModelErmias(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 5) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 5) + 0);
     if ((!((s as any).temprand ?? 0))) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('Today\'s lesson concerns the history of art and its impact on society throughout the ages. Professor Ilyushin focuses on one time period when \'art made a real difference in the world,\' as he puts it. The lecture goes by fairly quickly, but Ermias doesn\'t seem to be that interested by it.');
@@ -775,7 +775,7 @@ function enterArt_101ModelErmias(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After the lecture, Professor Ilyushin slides a raised platform to the center of the room. Retrieving an everyday object from a cupboard, he places it on the platform and ensures everyone can see it. He makes a few observations about shadow and light before telling the class to begin drawing the object.');
@@ -832,7 +832,7 @@ function enterArt_101ModelErmias(s: GameState, scene: SceneBuilder): void {
 function enterArt_102Model(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -881,7 +881,7 @@ function enterArt_102Model(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_art1', 'art_101_events'] },
     ]);
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -940,7 +940,7 @@ function enterArt_102Model(s: GameState, scene: SceneBuilder): void {
 function enterArt_102ModelIgor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -985,7 +985,7 @@ function enterArt_102ModelIgor(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -1044,7 +1044,7 @@ function enterArt_102ModelIgor(s: GameState, scene: SceneBuilder): void {
 function enterArt_102ModelFeofan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -1089,7 +1089,7 @@ function enterArt_102ModelFeofan(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -1147,7 +1147,7 @@ function enterArt_102ModelFeofan(s: GameState, scene: SceneBuilder): void {
 function enterArt_102ModelNatasha(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -1196,7 +1196,7 @@ function enterArt_102ModelNatasha(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -1254,7 +1254,7 @@ function enterArt_102ModelNatasha(s: GameState, scene: SceneBuilder): void {
 function enterArt_102ModelErmias(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).university ?? 0)?.['semester_week'] < 8) {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -1300,7 +1300,7 @@ function enterArt_102ModelErmias(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    (s as any).temprand = Math.floor(Math.random() * 7) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 7) + 0);
     if (((s as any).temprand ?? 0) < 2) {
       scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
       scene.text('After he finishes his lecture, Professor Ilyushin brings out a fairly mundane everyday object and places it on the raised platform. He slides the platform to the center of the room so it\'s easy for everyone to see, then asks everyone to draw the object from their vantage point.');
@@ -1357,7 +1357,7 @@ function enterArt_102ModelErmias(s: GameState, scene: SceneBuilder): void {
 
 function enterArt_101Events(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temprand = Math.floor(Math.random() * 10) + 1;
+  (s as any).temprand = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).temprand ?? 0) === 1  &&  ((s as any).university ?? 0)?.['alb_art_model'] === 1  &&  ((s as any).year ?? 0) > 2017  ||  (((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) > 9)) {
     ((s as any).university = (s as any).university ?? {})['alb_art_model'] = 0;
     scene.img('images/locations/city/island/university/classroom/electives/art/class.jpg');
@@ -1412,10 +1412,10 @@ function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
     scene.text('You start getting worried, so you head back into the empty classroom and notice the door to the office is slightly ajar as you approach. You can hear noises coming from inside.');
     scene.actions([
       { label: 'Peek', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/blowjob/africanblowjob4.mp4');
-    if (((s as any).ErmiasQW ?? 0)?.['meet'] === 0  ||  ((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] !== 2) {
+    if (((st as any).ErmiasQW ?? 0)?.['meet'] === 0  ||  ((st as any).AlbinaQW ?? 0)?.['know_ermias_sex'] !== 2) {
       scene.text('Curious, you peek your head through the gap in the door and are greeted by the sight of Albina on her knees, gagging and slurping as she passionately sucks a black guy\'s massive cock.');
       scene.text('You watch as she pops the drool covered dick out of her mouth and licks the shaft a few times before looking up at the guy. "Are you close yet? As much as I love doing this, I\'ve got places to be."');
       scene.text('The guy grins down at her. "Spread those sexy legs and you\'ll find out…"');
@@ -1433,16 +1433,16 @@ function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Keep watching', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'voyeur', 1);
-    qspCall(s, 'arousal', 'end');
-    (s as any).temp_name = (((((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((s as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('The black guy'));
-    (s as any).temp_name_lower = (((((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((s as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('the black guy'));
+    qspCall(st, 'arousal', 'voyeur', 1);
+    qspCall(st, 'arousal', 'end');
+    (st as any).temp_name = (((((st as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((st as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('The black guy'));
+    (st as any).temp_name_lower = (((((st as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((st as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('the black guy'));
     scene.img('images/shared/sex/vag/miss/africanmis1.mp4');
     // TODO-QSP: dynamic text: Your curiosity gets the better of you and you peek in further for a better view ...
-    scene.text(`Your curiosity gets the better of you and you peek in further for a better view as Albina gets on her back and grins as she spreads her legs. ${((s as any).temp_name || '')} steps between her legs and grinds the thick head of his cock between her wet pussy lips before he starts pushing it against her slit.`);
+    scene.text(`Your curiosity gets the better of you and you peek in further for a better view as Albina gets on her back and grins as she spreads her legs. ${((st as any).temp_name || '')} steps between her legs and grinds the thick head of his cock between her wet pussy lips before he starts pushing it against her slit.`);
     scene.text('Albina lets out some soft moans before his cock slides into her pussy, causing her to gasp before letting out a loud, pleasured moan.');
     // TODO-QSP: dynamic text: <<$temp_name>> grins. "You like how my black cock stretches your tight little wh...
-    scene.text(`${((s as any).temp_name || '')} grins. "You like how my black cock stretches your tight little white pussy? Beg me to fuck you, slut!"`);
+    scene.text(`${((st as any).temp_name || '')} grins. "You like how my black cock stretches your tight little white pussy? Beg me to fuck you, slut!"`);
     scene.text('"Please! Please fuck my little white pussy with your big black cock!" she squeals.');
     scene.text('"Good girl," he replies before he thrusts hard, shoving the entire length of his massive cock into her pussy, his balls slapping against her ass as he starts fucking her hard and fast.');
     scene.text('"Fuck, fuck, <i>FUUCKKK</i>!!!" Albina cries out as the pleasure overwhelms her and her legs grow weak.');
@@ -1457,17 +1457,17 @@ function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
       { label: 'Wait for her to finish', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/lecture_hall/lecture_hall.jpg');
     scene.text('You\'ve seen enough and decide to leave them to it, heading back out to the hallway to wait for Albina.');
-    // TODO-QSP: dynamic text: You're waiting for quite some time before she finally leaves the classroom with ...
-    scene.text(`You're waiting for quite some time before she finally leaves the classroom with ${((s as any).temp_name_lower || '')} in tow. She's clutching her stomach and winces a little in pain; you can guess why…`);
-    if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2  ||  ((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
+    // TODO-QSP: dynamic text: You''re waiting for quite some time before she finally leaves the classroom with...
+    scene.text(`You're waiting for quite some time before she finally leaves the classroom with ${((st as any).temp_name_lower || '')} in tow. She's clutching her stomach and winces a little in pain; you can guess why…`);
+    if (((st as any).AlbinaQW ?? 0)?.['Friends'] === 2  ||  ((st as any).npc_rel ?? 0)?.['A23'] >= 70) {
       // TODO-QSP: dynamic text: She seems surprised to see you. "Oh, <<$pcs_nickname>>. What are you doing here?...
-      scene.text(`She seems surprised to see you. "Oh, ${((s as any).pcs_nickname || '')}. What are you doing here?" she asks, looking a little flustered as ${((s as any).temp_name_lower || '')} grins.`);
+      scene.text(`She seems surprised to see you. "Oh, ${((st as any).pcs_nickname || '')}. What are you doing here?" she asks, looking a little flustered as ${((st as any).temp_name_lower || '')} grins.`);
       scene.text('"I was waiting for you," you reply. "I thought we could hang out or something?"');
       scene.text('She smiles. "I\'d love to, but I have places to be and things to do. We can hang out when I have some free time."');
-      if (((s as any).ErmiasQW ?? 0)?.['meet'] === 1) {
+      if (((st as any).ErmiasQW ?? 0)?.['meet'] === 1) {
         scene.text('"Okay, cool," you nod. "Hello Ermias."');
         // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>," he replies with a smile.
-        scene.text(`"Hello ${((s as any).pcs_nickname || '')}," he replies with a smile.`);
+        scene.text(`"Hello ${((st as any).pcs_nickname || '')}," he replies with a smile.`);
         scene.text('"Ermias was just… helping me clean up after the class," Albina says while blushing slightly. "Now if you\'ll both excuse me, I need to go before I\'m late."');
         scene.text('Ermias sends her on her way with a firm smack on the ass before he heads off in the opposite direction, leaving you alone in the hallway.');
       } else {
@@ -1476,26 +1476,26 @@ function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
         scene.text('The black guy sends her on her way with a firm smack on the ass before he heads off in the opposite direction, leaving you alone in the hallway.');
       }
     } else {
-      if (((s as any).npc_rel ?? 0)?.['A23'] > 20) {
+      if (((st as any).npc_rel ?? 0)?.['A23'] > 20) {
         // TODO-QSP: dynamic text: She seems surprised to see you. "<<$pcs_nickname>>? What are you doing here?"
-        scene.text(`She seems surprised to see you. "${((s as any).pcs_nickname || '')}? What are you doing here?"`);
+        scene.text(`She seems surprised to see you. "${((st as any).pcs_nickname || '')}? What are you doing here?"`);
         scene.text('"You were taking your time back there. I just wanted to make sure that you were okay," you reply.');
         scene.text('"Oh, that\'s… sweet of you, but I\'m fine. Now if you\'ll excuse me, I need to go before I\'m late."');
         // TODO-QSP: dynamic text: <<$temp_name>> sends her on her way with a firm smack on the ass, causing Albina...
-        scene.text(`${((s as any).temp_name || '')} sends her on her way with a firm smack on the ass, causing Albina to whip around and shake her head, but you see a small smile creep onto her lips before she turns and walks away. ${((s as any).temp_name || '')} then heads off in the opposite direction, leaving you alone in the hallway.`);
+        scene.text(`${((st as any).temp_name || '')} sends her on her way with a firm smack on the ass, causing Albina to whip around and shake her head, but you see a small smile creep onto her lips before she turns and walks away. ${((st as any).temp_name || '')} then heads off in the opposite direction, leaving you alone in the hallway.`);
       } else {
         scene.text('She coldly glares at you when she sees you. "What the fuck do you want?"');
         scene.text('"Oh… Uhm… Nothing I guess? I just wanted to make sure you were okay was all…" you reply.');
         scene.text('She rolls her eyes. "Whatever…"');
         // TODO-QSP: dynamic text: "Friend of yours?" <<$temp_name_lower>> asks.
-        scene.text(`"Friend of yours?" ${((s as any).temp_name_lower || '')} asks.`);
+        scene.text(`"Friend of yours?" ${((st as any).temp_name_lower || '')} asks.`);
         scene.text('"Hardly," she scoffs. "She was just leaving."');
         scene.text('Getting the hint, you turn and walk away, leaving the two of them behind.');
       }
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'uni_lessons', 'short_break');
+    qspGoto(st, 'uni_lessons', 'short_break');
   } },
     ]);
   } },

@@ -38,20 +38,20 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Remove her hands', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = Math.min(((s as any).katjaQW ?? 0)?.['horny'], 60);
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 60);
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You remove her hands and smile at Katja.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
     ]);
@@ -60,29 +60,29 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let her', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/tits.jpg');
     scene.text('She bares your breasts and touches them with her fingers before she bows her head and starts licking your nipple.');
-    qspCall(s, 'KatjaEvDin', 'sex');
+    qspCall(st, 'KatjaEvDin', 'sex');
   } },
     ]);
   } else {
     if (((s as any).npc_had_sex ?? 0)?.['A14']) {
       scene.actions([
         { label: 'Touch her chest', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay_give', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay_give', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/touch.jpg');
     scene.text('You touch Katja\'s tender breasts and she sighs deeply, biting her lip.');
-    if (((s as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 61) + 0)) {
+    if (((st as any).katjaQW ?? 0)?.['horny'] < (Math.floor(Math.random() * 61) + 0)) {
       scene.text('You play with her breasts a little before she moves away from you.');
-      // TODO-QSP: dynamic text: "I'm not in the mood right now, <<$pcs_nickname>>. Another time maybe?"
-      scene.text(`"I'm not in the mood right now, ${((s as any).pcs_nickname || '')}. Another time maybe?"`);
-      qspCall(s, 'willpower', 'sex', 'force', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      // TODO-QSP: dynamic text: "I''m not in the mood right now, <<$pcs_nickname>>. Another time maybe?"
+      scene.text(`"I'm not in the mood right now, ${((st as any).pcs_nickname || '')}. Another time maybe?"`);
+      qspCall(st, 'willpower', 'sex', 'force', 'hard');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Grab her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -91,21 +91,21 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Grab her', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay_give', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay_give', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/grab.jpg');
     scene.text('You grab Katja firmly so she can\'t back away.');
     scene.text('Katja freezes in your arms and you stroke her body and kiss her neck.');
     scene.actions([
       { label: 'Lick her breast', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay_give', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay_give', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/tits_katja_get.jpg');
     scene.text('You free Katja\'s small, firm breasts from under her clothes and begin to lick them, paying special attention to her nipples. Katja closes her eyes in pleasure and bites her lip.');
-    qspCall(s, 'KatjaEvDin', 'sex');
+    qspCall(st, 'KatjaEvDin', 'sex');
   } },
     ]);
   } },
@@ -113,11 +113,11 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Accept her decision', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
       ]);
@@ -125,18 +125,18 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       scene.text('Katja moves her hands to your breasts and gently touches them with her finger before she starts squeezing them and you feel her undoing your bra.');
       scene.actions([
         { label: 'Let her', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/tits.jpg');
     scene.text('Katja bares your breasts and touches them with her fingers before she bows her head and begins to lick your nipple.');
-    qspCall(s, 'KatjaEvDin', 'sex');
+    qspCall(st, 'KatjaEvDin', 'sex');
   } },
         { label: 'Ask her to stop', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/touch.jpg');
     scene.text('You ask Katja to stop, but she ignores you.');
-    qspCall(s, 'willpower', 'foreplay', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'foreplay', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Remove her hands', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -145,20 +145,20 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Remove her hands', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) - (10);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = Math.min(((s as any).katjaQW ?? 0)?.['horny'], 60);
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) - (1);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - (10);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 60);
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You remove her hands and smile at Katja.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
     ]);
@@ -167,13 +167,13 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Give in to her touch', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay', 3, 'lesbian');
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 3, 'lesbian');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/tits.jpg');
     scene.text('Katja bares your breasts and touches them with her fingers before she bows her head and begins to lick your nipple.');
-    qspCall(s, 'KatjaEvDin', 'sex');
+    qspCall(st, 'KatjaEvDin', 'sex');
   } },
     ]);
   } },
@@ -195,10 +195,10 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Talk about something else', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
       ]);
@@ -261,26 +261,26 @@ function enterStraponMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'katja_dorm') {
     scene.actions([
       { label: 'Get dressed and stop talking', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'katja_dorm', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'katja_dorm', 'start');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Smile and leave the room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'mey_home', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'mey_home', 'start');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Get dressed and talk about something else', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
   ]);
@@ -520,10 +520,10 @@ function enterStraponStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Strap it on', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'npcStat', 'A14');
-    qspCall(s, 'npcstat', 'D' + ((s as any).strapNumber ?? 0) + '', 'a');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'npcStat', 'A14');
+    qspCall(st, 'npcstat', 'D' + ((st as any).strapNumber ?? 0) + '', 'a');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/strapon.jpg');
     scene.text('You put the strap-on harness on and buckle it in place as Katja bites her lip watching you.');
     scene.actions([
@@ -550,84 +550,84 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Relax', handler: (st: GameState) => {
-    if (((s as any).pcs_horny ?? 0) < 50) {
-      (s as any).pcs_horny = 50;
+    if (((st as any).pcs_horny ?? 0) < 50) {
+      (st as any).pcs_horny = 50;
     }
-    qspCall(s, 'stat', '');
-    if (((s as any).katjaQW ?? 0)?.['slut'] >= 20) {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    qspCall(st, 'stat', '');
+    if (((st as any).katjaQW ?? 0)?.['slut'] >= 20) {
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
       scene.text('Katja puts her hand between your legs. You become aroused and your pussy becomes wet.');
-      qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian', 'dom');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'vaginal_finger', 5, 'lesbian', 'dom');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Spread your legs', goto: ['KatjaEvDin', 'kuni_p'] },
       ]);
     } else {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = Math.min(((s as any).katjaQW ?? 0)?.['horny'], 40);
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 40);
       scene.text('Katja is embarrassed and pulls her hand away from you.');
-      qspCall(s, 'arousal', 'end');
-      if (((s as any).loc ?? 0) === 'katja_dorm') {
+      qspCall(st, 'arousal', 'end');
+      if (((st as any).loc ?? 0) === 'katja_dorm') {
         scene.actions([
           { label: 'Stop talking', goto: ['katja_dorm', 'start'] },
         ]);
       } else {
         scene.actions([
           { label: 'Leave the room', handler: (st: GameState) => {
-    qspGoto(s, 'mey_home', 'start');
+    qspGoto(st, 'mey_home', 'start');
   } },
         ]);
       }
       scene.actions([
         { label: 'Talk about something else', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
       ]);
     }
   } },
     { label: 'Touch Katja between her legs', handler: (st: GameState) => {
-    if (((s as any).pcs_horny ?? 0) < 50) {
-      (s as any).pcs_horny = 50;
+    if (((st as any).pcs_horny ?? 0) < 50) {
+      (st as any).pcs_horny = 50;
     }
-    qspCall(s, 'stat', '');
-    if (((s as any).katjaQW ?? 0)?.['slut'] >= 20) {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
+    qspCall(st, 'stat', '');
+    if (((st as any).katjaQW ?? 0)?.['slut'] >= 20) {
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
       scene.text('You put your hand between her legs, feeling her wet pussy under her panties.');
-      qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'lesbian', 'dom');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'vaginal_finger_give', 5, 'lesbian', 'dom');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Lick Katja', goto: ['KatjaEvDin', 'kuni'] },
       ]);
     } else {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = Math.min(((s as any).katjaQW ?? 0)?.['horny'], 40);
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = Math.min(((st as any).katjaQW ?? 0)?.['horny'], 40);
       scene.text('Katja is embarrassed and removes your hand.');
-      if (((s as any).loc ?? 0) === 'katja_dorm') {
+      if (((st as any).loc ?? 0) === 'katja_dorm') {
         scene.actions([
           { label: 'Stop talking', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'katja_dorm', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'katja_dorm', 'start');
   } },
         ]);
       } else {
         scene.actions([
           { label: 'Leave the room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'mey_home', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'mey_home', 'start');
   } },
         ]);
       }
       scene.actions([
         { label: 'Talk about something else', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
       ]);
@@ -660,25 +660,25 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([
         { label: 'Stop talking', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'katja_dorm', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'katja_dorm', 'start');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Leave the room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'mey_home', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'mey_home', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Talk about something else', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
     ]);
@@ -715,25 +715,25 @@ function enterFisting(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([
         { label: 'Stop talking', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'katja_dorm', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'katja_dorm', 'start');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Leave the room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'mey_home', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'mey_home', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Talk about something else', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
     ]);
@@ -766,25 +766,25 @@ function enterKuniP(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([
         { label: 'Stop talking', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'katja_dorm', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'katja_dorm', 'start');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Leave the room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'mey_home', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'mey_home', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Talk about something else', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
     ]);
@@ -826,28 +826,28 @@ function enterKuniDom(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Say goodbye and go home', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'uni_dorm', 'second_floor');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'uni_dorm', 'second_floor');
     } else {
-      qspGoto(s, 'pav_residential', '');
+      qspGoto(st, 'pav_residential', '');
     }
   } },
         ]);
       }
       scene.actions([
         { label: 'Beg her to give you a turn', handler: (st: GameState) => {
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (1);
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['dom'] = ((st as any).katjaQW['dom'] ?? 0) + (1);
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/myturn.jpg');
     // TODO-QSP: dynamic text: You beg her to give you a turn, but she shakes her head. "Sorry <<$pcs_nickname>...
-    scene.text(`You beg her to give you a turn, but she shakes her head. "Sorry ${((s as any).pcs_nickname || '')}, I'm just not in the mood to go down on you. If you really want something, I've got this..."`);
+    scene.text(`You beg her to give you a turn, but she shakes her head. "Sorry ${((st as any).pcs_nickname || '')}, I'm just not in the mood to go down on you. If you really want something, I've got this..."`);
     scene.text('She pulls out a strap-on harness with a rather large dildo attached to it and gives you a wicked grin. You can tell she\'s just itching to use it on you.');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline and go home', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -856,37 +856,37 @@ function enterKuniDom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline and go home', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'uni_dorm', 'second_floor');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'uni_dorm', 'second_floor');
     } else {
-      qspGoto(s, 'pav_residential', '');
+      qspGoto(st, 'pav_residential', '');
     }
   } },
       ]);
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/katjanewtoy.jpg');
     scene.text('You bite your lower lip. You\'re turned on at the idea and nod your head before you start undressing as Katja grins and starts putting the harness on.');
-    // TODO-QSP: dynamic text: "This is going to be fun, <<$pcs_nickname>>. I can't wait to fuck you with this....
-    scene.text(`"This is going to be fun, ${((s as any).pcs_nickname || '')}. I can't wait to fuck you with this."`);
+    // TODO-QSP: dynamic text: "This is going to be fun, <<$pcs_nickname>>. I can''t wait to fuck you with this...
+    scene.text(`"This is going to be fun, ${((st as any).pcs_nickname || '')}. I can't wait to fuck you with this."`);
     scene.actions([
       { label: 'Blowjob', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/katstrapbj.mp4');
     scene.text('As you get naked, she makes sure the harness is securely in place before she looks over at you and grins, swinging her hips back and forth to make the dildo swing along with her, which makes her giggle. After she amuses herself, she looks at you with a wicked grin and walks over.');
     scene.text('She grabs you by the hair, not too hard but not very gently either, pulls you off the bed and gets you down in front of her on your knees. Once you\'re on your knees, she pushes the head of the dildo against your lips and slides it into your mouth. With a firm hold on your hair, she starts ramming the dildo down your throat.');
     scene.text('No matter how used to being throat fucked you are, she makes you gag. She buries it to the base in your throat and leaves it there until you start to gag before going back to roughly fucking your mouth. Each time she makes you gag, you hear her giggle, clearly enjoying herself.');
     scene.text('With tears running down your cheeks and saliva dripping from your mouth, she finally pulls you off the dildo. "I think we got this wet enough, don\'t you? Ready for round two?"');
-    qspCall(s, 'arousal', 'dildo_suck', 5, 'lesbian', 'sub', 'rough', 'deepthroat');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'vaginal', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'dildo_suck', 5, 'lesbian', 'sub', 'rough', 'deepthroat');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'vaginal', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline and go home', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -895,21 +895,21 @@ function enterKuniDom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline and go home', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'uni_dorm', 'second_floor');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'uni_dorm', 'second_floor');
     } else {
-      qspGoto(s, 'pav_residential', '');
+      qspGoto(st, 'pav_residential', '');
     }
   } },
       ]);
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (15);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/katstrapfuck.mp4');
     scene.text('You nod your head and Katja pulls you up to your feet by your hair. She grabs you on either side of the head and licks some of the saliva off your chin before slowly moving her tongue up to your mouth. You eagerly open your mouth and she gives you a passionate kiss, forcing her tongue into your mouth and then pushes you onto the bed. "That\'s my good little fuck slut, now get on your hands and knees like a good little slut!" You get on all fours as she kneels down behind you and gives your ass a hard smack.');
     scene.text('She holds the dildo with one hand and starts rubbing it against your pussy while using the other to grab your hair again and pull your head back before she slides the dildo into your wet pussy. She barely has the tip all the way in when she pulls back on your hair, forcing you to lean back as she thrusts her hips forward, shoving the dildo the full length of the dildo inside you.');
@@ -917,10 +917,10 @@ function enterKuniDom(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes, yes! Please fuck me. Use me!" you moan back and she doubles her efforts before she finally pulls out of you, keeping hold of your hair as she drags you off the bed and over to her desk, which she bends you over.');
     scene.text('"Reach back and pull those ass cheeks apart so I can fuck you in the ass!" she commands.');
     scene.text('You don\'t know if you can resist her, you don\'t know if you even want to...');
-    qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub', 'rough');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'anal', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'vaginal_strap', 5, 'lesbian', 'sub', 'rough');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'anal', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline and go home', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -929,40 +929,40 @@ function enterKuniDom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline and go home', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'uni_dorm', 'second_floor');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'uni_dorm', 'second_floor');
     } else {
-      qspGoto(s, 'pav_residential', '');
+      qspGoto(st, 'pav_residential', '');
     }
   } },
       ]);
     }
     scene.actions([
       { label: 'Surrender your ass', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/school/katstrapanal.jpg');
     scene.text('You grab your ass cheeks and pull them apart, feeling the head of the dildo pressing against your asshole almost at once. "That\'s my good little buttslut. We\'ll have you trained in no time."');
     scene.text('With only the lubrication from your pussy, she slides it into your ass. She is gentle at first, working it in slowly as she thrusts in and out at a steady pace, gradually working it deeper and deeper into your ass. Once she has pushed the full length into your ass, she starts to pick up the pace and fucks you harder as you moan in a mix of pleasure and pain.');
     scene.text('She keeps picking up speed and soon the sound of her hips slapping against your ass can be heard over your moaning. She seems to lose herself in the act and stops paying attention to you. You don\'t think she would even notice if you orgasmed. After a good few minutes of this, she starts panting as she gets tired.');
-    qspCall(s, 'arousal', 'anal_strap', 5, 'lesbian', 'sub', 'rough');
-    if (((s as any).pcs_horny ?? 0) >= 100) {
-      (s as any).orgasm_or = 'yes';
-      (s as any).orgasm_txt = 'It is then that your orgasm hits you. It is sudden and amazingly intense.';
-      qspCall(s, 'arousal', 'anal_strap', (-1), 'lesbian', 'sub', 'rough');
+    qspCall(st, 'arousal', 'anal_strap', 5, 'lesbian', 'sub', 'rough');
+    if (((st as any).pcs_horny ?? 0) >= 100) {
+      (st as any).orgasm_or = 'yes';
+      (st as any).orgasm_txt = 'It is then that your orgasm hits you. It is sudden and amazingly intense.';
+      qspCall(st, 'arousal', 'anal_strap', (-1), 'lesbian', 'sub', 'rough');
     }
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.text('Yet she doesn\'t slow down her furious pace. Finally unable to keep it up any more, she collapses on your back and you feel her sweat on your back and her heavy breathing in your ear as she rests against you with the dildo still firmly up your ass.');
     scene.text('You take the time to rest and relax yourself, coming down from the pounding you just received. A few minutes later, she kisses your neck before climbing off you and pulling the dildo out slowly. Getting up yourself, you see her taking the harness off and tossing it aside. You notice that her thighs are slick with sweat and her own juices before she grabs you by the neck and gives you a passionate, deep and very long kiss.');
-    // TODO-QSP: dynamic text: "My god <<$pcs_nickname>>, that was amazing! I hope I didn't hurt you too much a...
-    scene.text(`"My god ${((s as any).pcs_nickname || '')}, that was amazing! I hope I didn't hurt you too much and you enjoyed it as much as I did. No wonder boys fuck us like that, that was amazing!" she says upon breaking the kiss.`);
+    // TODO-QSP: dynamic text: "My god <<$pcs_nickname>>, that was amazing! I hope I didn''t hurt you too much ...
+    scene.text(`"My god ${((st as any).pcs_nickname || '')}, that was amazing! I hope I didn't hurt you too much and you enjoyed it as much as I did. No wonder boys fuck us like that, that was amazing!" she says upon breaking the kiss.`);
     scene.text('She falls back on her bed, still breathing hard and looking at you with a somewhat possessive look as you lie down next to her.');
     scene.text('"It was wonderful. I\'m glad you enjoyed it too, even if you were a little rough at times."');
     scene.text('She leans over and gives you another kiss. "Sorry, but that was beyond description. We\'re going to have to do that again sometime."');
     scene.text('The two of you then lay quietly for a while, basking in the aftermath. You know something in your relationship has changed and you think for the better. After a while, you get up and get dressed.');
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
       scene.actions([
         { label: 'Stop talking', goto: ['katja_dorm', 'start'] },
       ]);
@@ -973,10 +973,10 @@ function enterKuniDom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Talk about something else', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'katja_dorm') {
-      qspGoto(s, 'katja_dorm', 'talk');
+    if (((st as any).loc ?? 0) === 'katja_dorm') {
+      qspGoto(st, 'katja_dorm', 'talk');
     } else {
-      qspGoto(s, 'KatjaHomeTalk', '');
+      qspGoto(st, 'KatjaHomeTalk', '');
     }
   } },
     ]);
@@ -1088,8 +1088,8 @@ function enterMoron(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Sing a different tune', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/frenchkiss.jpg');
     scene.text('Looking at Ivan, then at this idiot, it seems that Ivan didn\'t notice him.');
     scene.text('You sigh. "Is that really necessary? She\'s my best friend and we want to kiss. You\'re just jealous!"');
@@ -1098,14 +1098,14 @@ function enterMoron(s: GameState, scene: SceneBuilder): void {
     scene.text('With those words, you stand on your tiptoes and, clasping Ivan\'s head in your hands, give him a long passionate kiss with lots of tongue.');
     scene.actions([
       { label: 'Kiss again', handler: (st: GameState) => {
-    if ((!((s as any).flag_KissEV ?? 0))) {
-      (s as any).flag_KissEV = 1;
+    if ((!((st as any).flag_KissEV ?? 0))) {
+      (st as any).flag_KissEV = 1;
     }
     scene.img('images/characters/pavlovsk/school/girl/katja/prohorov_3.jpg');
     scene.text('"And I can kiss all the boys," you say under the joyous hubbub of guys gathering near you. You begin to kiss all the boys in succession while carefully avoiding the one that called you a lesbian.');
     scene.text('Seeing this, he seems offended. "I bet the redhead doesn\'t like guys," he says with a smirk, hoping Katja will kiss him to prove him wrong.');
     scene.text('"Wrong again, loser!" Katja replies and just as you did, starts going around kissing the boys.');
-    if (((s as any).loc ?? 0) === 'pav_disco') {
+    if (((st as any).loc ?? 0) === 'pav_disco') {
       scene.text('After kissing the last boy, you turn back and make sure Katja kisses all of them too. You now realize the guys are hoping for more and quickly drag Katja away before you accidentally start an orgy.');
       scene.actions([
         { label: 'Return to dance', goto: ['pav_disco', ''] },
@@ -1132,10 +1132,10 @@ function enterMoron(s: GameState, scene: SceneBuilder): void {
     scene.text('Katja just nods, dumbfounded, and Ivan shrugs, looking a little embarrassed, but it\'s obvious he\'s pleased with himself.');
     scene.actions([
       { label: 'Thank Ivan', handler: (st: GameState) => {
-    if (((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] !== 1) {
-      if (((s as any).npc_had_sex ?? 0)?.['A3']  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).loc ?? 0) !== 'pav_disco'  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= 40  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 40) {
-        if (((s as any).katjaQW ?? 0)?.['school_kiss'] === 2) {
-          ((s as any).katjaQW = (s as any).katjaQW ?? {})['school_kiss'] = 3;
+    if (((st as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((st as any).katjaQW ?? 0)?.['boy_block'] !== 1) {
+      if (((st as any).npc_had_sex ?? 0)?.['A3']  &&  ((st as any).npc_had_sex ?? 0)?.['A14']  &&  ((st as any).loc ?? 0) !== 'pav_disco'  &&  ((st as any).katjaQW ?? 0)?.['slut'] >= 40  &&  ((st as any).katjaQW ?? 0)?.['horny'] >= 40) {
+        if (((st as any).katjaQW ?? 0)?.['school_kiss'] === 2) {
+          ((st as any).katjaQW = (st as any).katjaQW ?? {})['school_kiss'] = 3;
         }
         scene.img('images/characters/pavlovsk/school/girl/katja/whisper.jpg');
         scene.text('Approaching Ivan, you get up on your tiptoes and, clasping your arms around his neck, give him a kiss before whispering to him. "Like kissing girls?" Ivan replies with only a dumbfounded nod. "Well, then we can show you our appreciation, right Katja?"');
@@ -1148,12 +1148,12 @@ function enterMoron(s: GameState, scene: SceneBuilder): void {
         scene.text('"Thank you, Ivan," you smile before you make out with him.');
         scene.text('He responds by passionately kissing you back before quickly leaving.');
         scene.text('"Well, these athletes are hot..." Katja says with a sigh while looking at Ivan\'s ass as he walks away.');
-        if (((s as any).knowKatjaPreg ?? 0) === 1) {
+        if (((st as any).knowKatjaPreg ?? 0) === 1) {
           scene.text('You snort. "Just what you need when you already have one inside."');
         } else {
           scene.text('You snort, although Ivan does have a fine-looking ass...');
         }
-        if (((s as any).loc ?? 0) === 'pav_disco') {
+        if (((st as any).loc ?? 0) === 'pav_disco') {
           scene.actions([
             { label: 'Return to the dance', goto: ['pav_disco', ''] },
           ]);
@@ -1166,15 +1166,15 @@ function enterMoron(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You give Ivan a quick hug. "Thank you, Ivan"');
       scene.text('Katja also thanks him and gives him a hug.');
-      if (((s as any).katjaQW ?? 0)?.['boy_block'] !== 1) {
+      if (((st as any).katjaQW ?? 0)?.['boy_block'] !== 1) {
         scene.text('"Well, these athletes are hot..." Katja says with a sigh while looking at Ivan\'s ass as he walks away.');
-        if (((s as any).knowKatjaPreg ?? 0) === 1) {
+        if (((st as any).knowKatjaPreg ?? 0) === 1) {
           scene.text('You snort. "Just what you need when you already have one inside."');
         } else {
           scene.text('You snort, although Ivan does have a fine-looking ass...');
         }
       }
-      if (((s as any).loc ?? 0) === 'pav_disco') {
+      if (((st as any).loc ?? 0) === 'pav_disco') {
         scene.actions([
           { label: 'Return to the dance', goto: ['pav_disco', ''] },
         ]);
@@ -1199,20 +1199,20 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think I\'ll join you..." she blushes.');
     scene.actions([
       { label: 'Have a shower alone', handler: (st: GameState) => {
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).pcs_hairbsh = 1;
-    (s as any).pcs_makeup = 1;
-    if (((s as any).frost ?? 0) > 0) {
-      (s as any).frost = 0;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).pcs_hairbsh = 1;
+    (st as any).pcs_makeup = 1;
+    if (((st as any).frost ?? 0) > 0) {
+      (st as any).frost = 0;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You kick Katja out of the bathroom and close the door before you get into the shower and lather your body with a cloth.');
     scene.text('After washing off the soap, you wash your hair with shampoo. Once you rinse the shampoo off, you\'re completely clean.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
     scene.actions([
@@ -1220,26 +1220,26 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Shower together', handler: (st: GameState) => {
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).pcs_hairbsh = 1;
-    (s as any).pcs_makeup = 1;
-    if (((s as any).frost ?? 0) > 0) {
-      (s as any).frost = 0;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).pcs_hairbsh = 1;
+    (st as any).pcs_makeup = 1;
+    if (((st as any).frost ?? 0) > 0) {
+      (st as any).frost = 0;
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 15);
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 15);
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/shower.jpg');
     scene.text('You and Katja undress and climb into the shower together.');
-    if (((s as any).pcs_pubes ?? 0) <= 3) {
+    if (((st as any).pcs_pubes ?? 0) <= 3) {
       scene.text('Katja\'s eyes glance over your body, lingering a little on your breasts and pussy before she moves closer to you as you rinse yourself off.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/shower2.jpg');
     scene.text('Katja gently rubs shampoo into your hair before rinsing it out.');
-    if (((s as any).katjaQW ?? 0)?.['horny'] >= 80  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
+    if (((st as any).katjaQW ?? 0)?.['horny'] >= 80  &&  ((st as any).npc_had_sex ?? 0)?.['A14']) {
       scene.text('Katja washes your pussy and breasts with soap, gently stroking her palms against you. Her cheeks are flushed and her eyes are glistening.');
       scene.actions([
         { label: 'Continue', goto: ['KatjaHomeTalk', 'shower_kiss_home'] },
@@ -1250,39 +1250,39 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
         { label: 'Get out of the shower', goto: ['KatjaHomeTalk', ''] },
       ]);
     }
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
   } },
       ]);
     } else {
       scene.text('Katja eyes glance over your body, lingering a little on your breasts and pubic hair.');
-      // TODO-QSP: dynamic text: She then smiles at you. "You've got too much hair down there, <<$pcs_nickname>>!...
-      scene.text(`She then smiles at you. "You've got too much hair down there, ${((s as any).pcs_nickname || '')}! It's not fashionable! I'll shave it off."`);
+      // TODO-QSP: dynamic text: She then smiles at you. "You''ve got too much hair down there, <<$pcs_nickname>>...
+      scene.text(`She then smiles at you. "You've got too much hair down there, ${((st as any).pcs_nickname || '')}! It's not fashionable! I'll shave it off."`);
       scene.actions([
         { label: 'Get shaved', handler: (st: GameState) => {
-    (s as any).pcs_pubes = 0;
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (10);
+    (st as any).pcs_pubes = 0;
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (10);
     scene.img('images/characters/pavlovsk/school/girl/katja/lobok.jpg');
     scene.text('Katja sits in the bath as you lather yourself up with shaving gel. She then takes a razor and begins to gently shave the hair between your legs.');
-    if (((s as any).katjaQW ?? 0)?.['horny'] >= 80  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
-      qspCall(s, 'arousal', 'foreplay', 5);
-      qspCall(s, 'stat', '');
+    if (((st as any).katjaQW ?? 0)?.['horny'] >= 80  &&  ((st as any).npc_had_sex ?? 0)?.['A14']) {
+      qspCall(st, 'arousal', 'foreplay', 5);
+      qspCall(st, 'stat', '');
       scene.text('Katja washes your pussy and breasts with soap, gently stroking her palms against you. Her cheeks are flushed and her eyes are glistening.');
       scene.actions([
         { label: 'Continue', goto: ['KatjaHomeTalk', 'shower_kiss_home'] },
       ]);
     } else {
-      qspCall(s, 'arousal', 'massage', 5);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'massage', 5);
+      qspCall(st, 'stat', '');
       scene.text('Katja, having finally shaved all the hair between your legs, washes you off with soap.');
       scene.actions([
         { label: 'Get out of the shower', goto: ['KatjaHomeTalk', ''] },
       ]);
     }
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
   } },

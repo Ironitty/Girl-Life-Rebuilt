@@ -5,15 +5,14 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'event';
   scene.build();
 }
 
 function enterFacefuck(s: GameState, scene: SceneBuilder): void {
   (s as any).artfacefucktimes = ((s as any).artfacefucktimes ?? 0) + (1);
   (s as any).artbj = ((s as any).artbj ?? 0) + (1);
-  scene.img(`images/characters/pavlovsk/resident/arthur/sex/facefuck${Math.floor(Math.random() * 6) + 0}.jpg`);
-  // TODO-QSP: dynamic text: <<$artbef>> You feel Arthur's fingers lace tightly into your hair before he push...
+  scene.img(`images/characters/pavlovsk/resident/arthur/sex/facefuck${(Math.floor(Math.random() * 6) + 0)}.jpg`);
+  // TODO-QSP: dynamic text: <<$artbef>> You feel Arthur''s fingers lace tightly into your hair before he pus...
   scene.text(`${((s as any).artbef || '')} You feel Arthur's fingers lace tightly into your hair before he pushes his huge dick roughly into your mouth, stretching your lips.`);
   if (((s as any).pcs_throat ?? 0) < ((s as any).dick ?? 0)) {
     scene.text('You choke as his member presses into the back of your throat, causing it to burn like fire. You gag and twist, trying desperately to escape from the giant lump of meat, but his grip is too firm.');
@@ -56,8 +55,8 @@ function enterArtlick(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).artbef = '';
-    qspGoto(s, 'arturdin', 'facefuck');
+    (st as any).artbef = '';
+    qspGoto(st, 'arturdin', 'facefuck');
   } },
   ]);
   scene.build();
@@ -72,8 +71,8 @@ function enterArtchik(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).artbef = '';
-    qspGoto(s, 'arturdin', 'facefuck');
+    (st as any).artbef = '';
+    qspGoto(st, 'arturdin', 'facefuck');
   } },
   ]);
   scene.build();
@@ -85,7 +84,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5);
   qspCall(s, 'stat', '');
   if (((s as any).artfucktimes ?? 0) < 2) {
-    (s as any).artrand = Math.floor(Math.random() * 3) + 0;
+    (s as any).artrand = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).artrand ?? 0))) {
       scene.actions([
         { label: 'Continue', goto: ['arturdin', 'sexdog'] },
@@ -103,7 +102,7 @@ function enterBed(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).artfucktimes ?? 0) >= 2) {
-      (s as any).artrand = Math.floor(Math.random() * 3) + 0;
+      (s as any).artrand = (Math.floor(Math.random() * 3) + 0);
       if ((!((s as any).artrand ?? 0))) {
         scene.actions([
           { label: 'Continue', goto: ['arturdin', 'sexdog_cum'] },
@@ -253,15 +252,15 @@ function enterAnalCum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).lubonus = 0;
-    (s as any).spafinloc = 3;
+    (st as any).lubonus = 0;
+    (st as any).spafinloc = 3;
     scene.img('images/characters/pavlovsk/resident/arthur/sex/analcreampi.jpg');
     // TODO-QSP: dynamic text: After what feels like an eternity <<$boydesc>> groans and you feel your ass fill...
-    scene.text(`After what feels like an eternity ${((s as any).boydesc || '')} groans and you feel your ass fill with heat as he dumps a load deep inside you.`);
-    qspCall(s, 'arousal', 'anal', 5);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'anus', 'A73', 1);
-    qspCall(s, 'stat', '');
+    scene.text(`After what feels like an eternity ${((st as any).boydesc || '')} groans and you feel your ass fill with heat as he dumps a load deep inside you.`);
+    qspCall(st, 'arousal', 'anal', 5);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'anus', 'A73', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['arturend', ''] },
     ]);
@@ -280,24 +279,24 @@ function enterCum(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/sex/cum1.jpg');
     scene.text('You snap you eyes closed as another rope of sperm lands on your face.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).spafinloc = 12;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).spafinloc = 12;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/sex/cum2.jpg');
     scene.text('The next shot of cum covers your slightly parted lips as a bit drips into your mouth.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/characters/pavlovsk/resident/arthur/sex/cum3.jpg');
     scene.text('A final blast hits you as Arthur\'s orgasm subsides. Even with your eyes closed you can tell that your face is absolutely slathered in his jizz.');
     scene.text('"Ah, yes. A beautiful girl made even more gorgeous with my seed." Arthur says breathlessly, admiring his handiwork.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['arturend', ''] },
     ]);
@@ -340,6 +339,7 @@ function enterFist(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   const arg = s.locArg;
   switch (arg) {
     case 'facefuck':

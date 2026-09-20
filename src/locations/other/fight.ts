@@ -20,7 +20,7 @@ function enterInitFight(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'ClearAllyLoop'
   }
   // TODO-QSP: $pcs_name[0] = 'You'
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     // TODO-QSP: $pcs_image[0] = 'images/system/1_openings/1_tf/mikhail_1.jpg'
   } else {
     // TODO-QSP: $pcs_image[0] = $func('$face_image')
@@ -210,7 +210,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResultCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFindActiveTimer(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: gt 'fight', $fightTimType, fightTimNum
+  qspGoto(s, 'fight', ((s as any).fightTimType ?? ''), ((s as any).fightTimNum ?? ''));
   // TODO-QSP: end
   scene.build();
 }
@@ -345,7 +345,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
     ((s as any).fightAtk = (s as any).fightAtk ?? {})['DefenderName'] = ((s as any).opp_name ?? 0)?.[String((s as any).fightAtk_TargetNumber ?? 0)];
     ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = 'You';
     // TODO-QSP: gs 'exp_gain', $AttackSkill[fightAtk_Type], rand(1, 3)
-    qspCall(s, 'exp_gain', 'def', Math.floor(Math.random() * 3) + 0);
+    qspCall(s, 'exp_gain', 'def', (Math.floor(Math.random() * 3) + 0));
   } else {
     if (((s as any).fightAtk_TargetType ?? 0) === 'opp') {
       ((s as any).fightAtk = (s as any).fightAtk ?? {})['AttackerName'] = ((s as any).pcs_name ?? 0)?.[String((s as any).fightAtk_AttackerNumber ?? 0)];
@@ -921,7 +921,7 @@ function enterOpponent(s: GameState, scene: SceneBuilder): void {
 
 function enterPlayer(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStatDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
       scene.actions([
         { label: 'Cast a Spell', handler: (st: GameState) => {
@@ -962,7 +962,7 @@ function enterPlayer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBuildCasterSpellList(s: GameState, scene: SceneBuilder): void {
-  (s as any).tmpStr = qspUntranslated(s, "trim(ARGS[1])", { location: "fight" });
+  (s as any).tmpStr = (String(((s as any).locArgs?.[1] ?? 0)).trim());
   // TODO-QSP: :loop000001
   (s as any).i = ((String(((s as any).tmpStr ?? 0)).indexOf(String(','))) + 1);
   if (((s as any).i ?? 0) > 0) {

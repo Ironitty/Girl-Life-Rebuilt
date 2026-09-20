@@ -20,14 +20,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('You sit in the back seat of the black jeep, Gustav starts to drive while Tatiana sits next to you. Tatiana begins to feel you "Interesting. I understand you had an orgasm and during the orgasm, part of the male power from that amulet transferred to your female body."');
   scene.actions([
     { label: 'Investigate', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    qspCall(s, 'themes', 'indoors');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'themes', 'indoors');
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
     scene.text('"So I\'m a magician now?"');
     scene.text('"Sort of, but you\'re not the 100m gold medallist just because you have legs or a juggler because you have hands. You\'re full of magic but you have no concept of administering magic power, like a battery without an output.');
     scene.actions([
       { label: 'Seek help', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
     scene.text('"Can you teach me?"');
     scene.text('"Teach? I\'m still learning myself. Besides, I only have knowledge only of body magics. I can boost other\'s magic, shield people and modify organic life forms. My skill is innate I was only ever going to have this type of magic. I studied for many years to understand and use my gift.');
@@ -37,16 +37,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You get out, slam the door and go down a lane to a pair of large metal doors. They open, Gustav and Tatiana nudge you forward.');
     scene.actions([
       { label: 'Enter the door', handler: (st: GameState) => {
-    (s as any).pcs_health = ((s as any).pcs_vital ?? 0) * 10;
-    (s as any).pcs_mana = (((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0)) + ((s as any).pcs_vital ?? 0) * 5 + ((s as any).rikudo ?? 0);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_health = ((st as any).pcs_vital ?? 0) * 10;
+    (st as any).pcs_mana = (((st as any).pcs_intel ?? 0) * ((st as any).pcs_magik ?? 0)) + ((st as any).pcs_vital ?? 0) * 5 + ((st as any).rikudo ?? 0);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/lab/lab.jpg');
     scene.text('Before you is a massive laboratory with a wide variety of stands and equipment racks with different flasks and bottles.');
     scene.text('Tatiana dramatically spreads her arms. "Welcome to my lab, I live and do my research here. Undress and lie down on the couch, I need to do some tests."');
     scene.actions([
       { label: 'Lie on the couch', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
     scene.img('images/locations/city/citycenter/lab/event/main1.jpg');
     scene.text('You undress and lie down on the couch, Tatiana begins to examine you. She dabs you with charms and uses a variety strange looking devices, after half an hour of examination she sighs and tells you to get dressed.');
     scene.text('You get up from the couch and dress and ask Tatiana, "So? Did you learn anything else about me?"');
@@ -59,7 +59,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"We met Reinhold there, he represents the council of the highest order. They are the old ones and hold council on the highest matters of magic we must be careful not to upset them or attract the attention of demons."');
     scene.text('"Woah! Demons?');
     scene.text('"Demons, you know, creatures from other planes of existence. It\'s possible that Rikudo was a demon, but demons unlike him are beings with terrible force, blunt and aggressive. Something like beasts woven from pure magic. Much like the fae, they have different types and they possess different magics and skills, but these are not cute or friendly."');
-    if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
+    if (((st as any).start_type ?? 0)?.['magic'] === 'tg') {
       scene.text('"Got it. Hey, you can turn me back into a man?"');
       scene.text('"I can\'t. I drew the energy you were emitting from the amulet, I don\'t hold anything like the energy required and you have only access to the smallest hint of the potential of the amulet. It might be possible if your magical energies are much higher and you somehow pass me all your energy that I can reverse the spell, but this is unlikely and could put you back in the position you were in when we met. I\'m sorry."');
     }
@@ -67,14 +67,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"Now you should go, Gustav will drive you home."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
-      qspGoto(s, 'city_residential', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    if (((st as any).start_type ?? 0)?.['loc'] === 'city') {
+      qspGoto(st, 'city_residential', '');
     } else {
-      if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        qspGoto(s, 'city_island', '');
+      if (((st as any).start_type ?? 0)?.['loc'] === 'uni') {
+        qspGoto(st, 'city_island', '');
       } else {
-        qspGoto(s, 'pav_residential', '');
+        qspGoto(st, 'pav_residential', '');
       }
     }
   } },

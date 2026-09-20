@@ -46,8 +46,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).casting ?? 0) === 1) {
-    (s as any).acting_string1 = Math.floor(Math.random() * 190000000) + 10000000;
-    (s as any).acting_string2 = Math.floor(Math.random() * 190000000) + 10000000;
+    (s as any).acting_string1 = (Math.floor(Math.random() * 190000000) + 10000000);
+    (s as any).acting_string2 = (Math.floor(Math.random() * 190000000) + 10000000);
   }
   qspCall(s, 'dina', 'hypnoDaychange');
   (s as any).ringA = 0;
@@ -86,7 +86,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).streetevent_hour = (-2);
-  (s as any).Clothingstock = Math.floor(Math.random() * 120) + 0;
+  (s as any).Clothingstock = (Math.floor(Math.random() * 120) + 0);
   ((s as any).ciklVars = (s as any).ciklVars ?? {})['i'] = 1;
   // TODO-QSP: :loopprice
   // TODO-QSP: Clothingstock[ciklVars['i']] = rand(0, 100)
@@ -121,36 +121,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).exhibition_outdoors ?? 0) <= 5) {
-      qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 4) + 3);
+      qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 4) + 3));
     } else {
       if (((s as any).exhibition_outdoors ?? 0) <= 10) {
-        qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 5) + 5);
+        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 5) + 5));
       } else {
         if (((s as any).exhibition_outdoors ?? 0) <= 15) {
-          qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 6) + 7);
+          qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 6) + 7));
         } else {
           if (((s as any).exhibition_outdoors ?? 0) <= 20) {
-            qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 7) + 9);
+            qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 7) + 9));
           } else {
             if (((s as any).exhibition_outdoors ?? 0) <= 25) {
-              qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 9) + 12);
+              qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 9) + 12));
             } else {
               if (((s as any).exhibition_outdoors ?? 0) <= 30) {
-                qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 10) + 16);
+                qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 10) + 16));
               } else {
                 if (((s as any).exhibition_outdoors ?? 0) <= 35) {
-                  qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 11) + 20);
+                  qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 11) + 20));
                 } else {
                   if (((s as any).exhibition_outdoors ?? 0) <= 40) {
-                    qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 16) + 25);
+                    qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 16) + 25));
                   } else {
                     if (((s as any).exhibition_outdoors ?? 0) <= 50) {
-                      qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 16) + 35);
+                      qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 16) + 35));
                     } else {
                       if (((s as any).exhibition_outdoors ?? 0) <= 65) {
-                        qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 26) + 50);
+                        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 26) + 50));
                       } else {
-                        qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 31) + 70);
+                        qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 31) + 70));
                       }
                     }
                   }
@@ -204,7 +204,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).fat = ((s as any).fat ?? 0) + (15);
   }
   if (((s as any).mood_trauma ?? 0) > 0) {
-    (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) - (Math.floor(Math.random() * 2) + 0);
+    (s as any).mood_trauma = ((s as any).mood_trauma ?? 0) - ((Math.floor(Math.random() * 2) + 0));
   }
   if (((s as any).SifacOnce ?? 0) === 1) {
     (s as any).Sifilis = ((s as any).Sifilis ?? 0) + (1);

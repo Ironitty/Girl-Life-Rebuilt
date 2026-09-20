@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
-  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
   if (((s as any).university ?? 0)?.['first_visit_asian_studies_101']) {
@@ -40,10 +40,10 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Listen attentively to Professor Da', handler: (st: GameState) => {
-    if (((s as any).will_cost ?? 0) > 0) {
-      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    if (((st as any).will_cost ?? 0) > 0) {
+      qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
-    qspGoto(s, 'uni_lessons_electives_asian_studies1', 'asian_studies_101_listen');
+    qspGoto(st, 'uni_lessons_electives_asian_studies1', 'asian_studies_101_listen');
   } },
     ]);
   }
@@ -57,19 +57,19 @@ function enterAsianStudies_101(s: GameState, scene: SceneBuilder): void {
 
 function enterAsianStudies_101Listen(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 2) + 0) === 1) {
-    qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 0);
+    qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 0));
   } else {
-    qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
+    qspCall(s, 'exp_gain', 'humint', (Math.floor(Math.random() * 2) + 0));
   }
   ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Da for the duration of the class. She manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/question1.jpg');
     scene.text('Professor Da nods approvingly, happy to see her students engaged and trying their best. She happily spends some extra time explaining the topic again, and answers any additional questions you might have.');
     scene.text('You feel smarter, thoroughly understanding today\'s lesson.');
@@ -106,7 +106,7 @@ function enterAsianStudies_101Talk(s: GameState, scene: SceneBuilder): void {
 
 function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
-  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
   if (((s as any).university ?? 0)?.['first_visit_asian_studies_102']) {
@@ -136,10 +136,10 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Listen attentively to Professor Da', handler: (st: GameState) => {
-    if (((s as any).will_cost ?? 0) > 0) {
-      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    if (((st as any).will_cost ?? 0) > 0) {
+      qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
-    qspGoto(s, 'uni_lessons_electives_asian_studies1', 'asian_studies_102_listen');
+    qspGoto(st, 'uni_lessons_electives_asian_studies1', 'asian_studies_102_listen');
   } },
     ]);
   }
@@ -152,16 +152,16 @@ function enterAsianStudies_102(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAsianStudies_102Listen(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'compskl', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'compskl', (Math.floor(Math.random() * 2) + 0));
   ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Da for the duration of the class. She manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/question1.jpg');
     scene.text('Professor Da nods approvingly, happy to see her students engaged and trying their best. She happily spends some extra time explaining the topic again, and answers any additional questions you might have.');
     scene.text('You feel smarter, thoroughly understanding today\'s lesson.');
@@ -198,7 +198,7 @@ function enterAsianStudies_102Talk(s: GameState, scene: SceneBuilder): void {
 
 function enterAsianStudies_101TalkDimka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -228,7 +228,7 @@ function enterAsianStudies_101TalkDimka(s: GameState, scene: SceneBuilder): void
 
 function enterAsianStudies_102TalkDimka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A1', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -258,7 +258,7 @@ function enterAsianStudies_102TalkDimka(s: GameState, scene: SceneBuilder): void
 
 function enterAsianStudies_101TalkIgor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A4', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -291,7 +291,7 @@ function enterAsianStudies_101TalkIgor(s: GameState, scene: SceneBuilder): void 
 
 function enterAsianStudies_102TalkIgor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A4', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -324,7 +324,7 @@ function enterAsianStudies_102TalkIgor(s: GameState, scene: SceneBuilder): void 
 
 function enterAsianStudies_101TalkKatja(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   qspCall(s, 'stat', '');
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
@@ -349,7 +349,7 @@ function enterAsianStudies_101TalkKatja(s: GameState, scene: SceneBuilder): void
 
 function enterAsianStudies_102TalkKatja(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   qspCall(s, 'stat', '');
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
@@ -373,7 +373,7 @@ function enterAsianStudies_102TalkKatja(s: GameState, scene: SceneBuilder): void
 }
 
 function enterAsianStudies_101TalkLariska(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
@@ -406,7 +406,7 @@ function enterAsianStudies_101TalkLariska(s: GameState, scene: SceneBuilder): vo
 }
 
 function enterAsianStudies_102TalkLariska(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
@@ -441,7 +441,7 @@ function enterAsianStudies_102TalkLariska(s: GameState, scene: SceneBuilder): vo
 function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 37) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 37) + 0);
   if (((s as any).temp ?? 0) < 2) {
     scene.img('images/locations/city/island/university/classroom/electives/psychology/boy_sleeping.jpg');
     scene.text('As Professor Da continues her lecture, you notice a boy just ahead of you with his head down softly snoring. You watch as Professor Da walks over and slams her hand on his desk.');
@@ -491,10 +491,10 @@ function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
               }
               qspCall(s, 'arousal', 'erotic', 1);
               qspCall(s, 'arousal', 'end');
-              return;
               scene.actions([
-                { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
-              ]);
+{ label: 'Leave', goto: ['uni_lessons', 'short_break'] },
+]);
+              return;
             } else {
               if (((s as any).temp ?? 0) < 14) {
                 scene.img('images/locations/city/island/university/classroom/electives/asian_studies/gdom_asiang.jpg');
@@ -504,31 +504,31 @@ function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
                 scene.text('You\'re fairly sure what happens next, but not wanting to get caught peeping, you quickly leave the classroom.');
                 qspCall(s, 'arousal', 'erotic', 1);
                 qspCall(s, 'arousal', 'end');
-                return;
                 scene.actions([
-                  { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
-                ]);
+{ label: 'Leave', goto: ['uni_lessons', 'short_break'] },
+]);
+                return;
               } else {
                 if (((s as any).temp ?? 0) < 16) {
                   scene.img('images/locations/city/island/university/classroom/electives/asian_studies/classroom.jpg');
                   scene.text('Once Professor Da ends her lecture, most of the students get up and leaves, as does Professor Da, but you notice one Asian girl and several Russian boys stay behind.');
                   scene.text('You had noticed how the boys had been talking and flirting with her during class earlier.');
-                  return;
                   scene.actions([
-                    { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
-                    { label: 'Watch', handler: (st: GameState) => {
+{ label: 'Leave', goto: ['uni_lessons', 'short_break'] },,
+{ label: 'Watch', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/electives/asian_studies/naked_asiang.jpg');
     scene.text('They\'re talking softly to each other and she seems slightly embarrassed, but also seems to be loving the attention.');
     scene.text('She then nods and stands up before she slowly starts to strip out of her clothes in front of the boys. She strips down to just her knee socks, though her hairy pussy hides a lot.');
     scene.text('She then notices you still in the room and turns a bright red as she quickly starts to get dressed. The boys try to get her to stay, but once she\'s mostly dressed, she runs out of the room while blushing the whole time.');
     scene.text('Several of the boys grumble and give you dirty looks as they leave as well.');
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['uni_lessons', 'short_break'] },
     ]);
   } },
-                  ]);
+]);
+                  return;
                 } else {
                   if (((s as any).temp ?? 0) < 18) {
                     scene.img('images/locations/city/island/university/classroom/electives/asian_studies/nipslip_asian.jpg');

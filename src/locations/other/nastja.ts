@@ -45,19 +45,19 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go over to meet her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/nastja.jpg');
-    // TODO-QSP: dynamic text: You: "Hi, I'm <<$pcs_nickname>>. Do you mind if I take a seat?"
-    scene.text(`You: "Hi, I'm ${((s as any).pcs_nickname || '')}. Do you mind if I take a seat?"`);
+    // TODO-QSP: dynamic text: You: "Hi, I''m <<$pcs_nickname>>. Do you mind if I take a seat?"
+    scene.text(`You: "Hi, I'm ${((st as any).pcs_nickname || '')}. Do you mind if I take a seat?"`);
     scene.text('Girl: "Not at all! I\'m Anastasia, but you can call me Nastya."');
     scene.actions([
       { label: '"Do you mind if I ask why you\'re in this restaurant without a companion?"', handler: (st: GameState) => {
-    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A192'] = 1;
-    qspCall(s, 'telefon', 'AddContact', 'A192', 'icon_nastja', 0);
+    ((st as any).npc_QW = (st as any).npc_QW ?? {})['A192'] = 1;
+    qspCall(st, 'telefon', 'AddContact', 'A192', 'icon_nastja', 0);
     // TODO-QSP: gs 'telefon', 'SetOutCallSchedule', 'A192', "gs 'nastja', 'start'", "hour >= 8 and hour < 20"
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/nastja.jpg');
     scene.text('Nastya gives you a coquet smile: "I could ask you the same question."');
     scene.text('Your grin is no less sassy: "Well, I heard that the chef has a weakness for women who have been stood up by their dates - his chocolate cake is supposed to be better than sex."');
@@ -81,7 +81,7 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
   scene.text('You feel a little nervous for some reason as you dial the number the woman from the restaurant - Nastya - gave you. After four rings, a familiar voice answers.');
   scene.text('');
-  // TODO-QSP: dynamic text: You: "Nastya, hello. It's <<$pcs_nickname>>. We met at the restaurant?"
+  // TODO-QSP: dynamic text: You: "Nastya, hello. It''s <<$pcs_nickname>>. We met at the restaurant?"
   scene.text(`You: "Nastya, hello. It's ${((s as any).pcs_nickname || '')}. We met at the restaurant?"`);
   // TODO-QSP: dynamic text: Nastya: "Oh, hi, <<$pcs_nickname>>! Of course I remember! How are you?"
   scene.text(`Nastya: "Oh, hi, ${((s as any).pcs_nickname || '')}! Of course I remember! How are you?"`);
@@ -174,13 +174,13 @@ function enterPos8(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Nastya', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1turnik.jpg');
     scene.text('One of the bars is occupied by a teenage boy who probably lives somewhere around here. Nastya jokingly nudges him with her high heels so he falls off before she grabs the horizontal bar he just occupied and hangs so that her breasts are right in front of the poor boy who stares wide-eyed. Then she pulls herself up, apparently without effort, and kicks her leg up for a backflip - both you and the boy open your mouth at her strength, gymnastic skill… and her clearly visible panties.');
     scene.text('After a few more loops around it, she jumps off the bar, pats the boy\'s cheek and, giggling, takes you by the hand and pulls you into the taxi that just happened to pass by.');
     scene.text('If you needed any more clarification, you now know the center of what kind of attention she likes to be!');
-    qspCall(s, 'arousal', 'erotic', 60, 'exhibitionism');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 60, 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Say goodbye and go home', goto: ['city_residential', ''] },
     ]);
@@ -194,7 +194,7 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/nastja.jpg');
   scene.text('You two have a wonderful time. As you leave the cafe, Nastya insists that she pay the bill herself. You go out and wait for a taxi but you can tell that Anastasia is a little tense and she soon tells you why.');
-  // TODO-QSP: dynamic text: Nastya: "<<$pcs_nickname>>, I REALLY have to pee… I'll just go real quick by tha...
+  // TODO-QSP: dynamic text: Nastya: "<<$pcs_nickname>>, I REALLY have to pee… I''ll just go real quick by th...
   scene.text(`Nastya: "${((s as any).pcs_nickname || '')}, I REALLY have to pee… I'll just go real quick by that fence behind the building, and you have to stand guard, okay?"`);
   scene.text('You: "Why make it so complicated? We can just go back into the cafe, you know?"');
   scene.text('Nastya: "No, no, I can\'t. I really gotta go, right now!"');
@@ -202,21 +202,21 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No choice but to wait for Nastya…', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1shamp3.jpg');
     scene.text('As luck would have it, a tubby little man approached and from what you can tell, he is headed in the same general direction Nastya disappeared in.');
     scene.actions([
       { label: 'Warn Nastya', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('You do the only sensible thing: You hurry after Nastya to warn her; you both hide in a dark corner until the man has passed you, then Nastya quietly finishes her business.');
     // TODO-QSP: dynamic text: Nastya: "Thank you, <<$pcs_nickname>> - I feel much better now. If you have to p...
-    scene.text(`Nastya: "Thank you, ${((s as any).pcs_nickname || '')} - I feel much better now. If you have to pee, too, I can stand guard."`);
+    scene.text(`Nastya: "Thank you, ${((st as any).pcs_nickname || '')} - I feel much better now. If you have to pee, too, I can stand guard."`);
     scene.actions([
       { label: 'Go and pee out in the open too', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1shamp1.jpg');
     scene.text('You go to the same corner and start emptying your bladder when you suddenly hear loud, male voices… that are obviously addressing YOU.');
     scene.text('"Holy shit, what a beauty!"');
@@ -227,11 +227,11 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
     scene.text('You stammer: "Oh, oh, oh! Please, don\'t look!" And as you do, you clumsily try to pull your panties up. But your hands are shaking with… excitement and if you just bent over a little, you\'d be showing your crotch to these two men…');
     scene.actions([
       { label: 'Bend and lift your dress a little', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1shamp2.jpg');
     scene.text('The janitors inhale sharply as you show them a little bit more. They are so stunned by your boldness that you have no trouble pushing past them and getting out of there.');
-    qspCall(s, 'arousal', 'flash', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flash', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Run out and hop into a taxi with Nastya', goto: ['city_residential', ''] },
     ]);
@@ -241,14 +241,14 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Hide and see what happens next', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('Instead of warning Nastya, you skirt around the fence behind which Nastya hides. A minute passes without event. Then, suddenly:');
     scene.text('"Girl, you should be ashamed of yourself!", you hear the voice of man, though he sounds a little happier than seems appropriate for his scolding words.');
     scene.text('"Wha-? WHAT THE HELL?!", you hear Nastya yell, "Turn away! Look away!" Through a crack in the fence, you watch Nastya, her ass still bare as she frantically tries to pull up her panties.');
     scene.img('images/characters/city/anastasia/1shamp2.jpg');
     scene.text('You hurry back to where she left you. A minute later, she comes around the corner, red as a lobster but with a strange smile: "Some stranger just caught me with my ass bare, right out in the open. Can you believe it?');
-    qspCall(s, 'arousal', 'voyeur', 60, 'exhibitionism');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur', 60, 'exhibitionism');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get a cab and go home', goto: ['city_residential', ''] },
     ]);
@@ -270,14 +270,14 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'See what Anastasia does', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1avtostop.jpg');
     scene.text('You watch Nastya slip out of her dress and walk around on the lane in nothing but her string and high heels, giving you a perfect view of her gorgeous body and firm tits.');
     scene.text('She\'s crazy, you think to yourself in shock and admiration. Fortunately, nobody else seems to be out on this street right now, not even a car - this sight of her is all yours and remains that way because, after a while, the adrenaline seems to have worn off - or perhaps she\'s getting cold - and Anastasia puts her dress on again and gives you a happy, drunk smile.');
     scene.text('If you needed any more clarification, you now know the center of what kind of attention she likes to be!');
     scene.text('Only a short while later, a taxi comes by and you both take a seat inside, giggling in your secret knowledge of what happened minutes earlier.');
-    qspCall(s, 'arousal', 'erotic_nudity', 60, 'exhibitionism');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic_nudity', 60, 'exhibitionism');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Let the taxi take you home', goto: ['city_residential', ''] },
     ]);
@@ -293,36 +293,36 @@ function enterPos11(s: GameState, scene: SceneBuilder): void {
   scene.text('You tell Anastasia about your sexual experiences and you don\'t hold back either. Everything you\'ve done or had done to you that you\'ve enjoyed is brought up and shared with this woman you only recently met, holding back virtually nothing about your female sex life. When you start talking, you\'re half afraid you might scare her away but the topic is right up her alley. In fact, for every encounter you describe to her, she sees yours and raises you an equally or even more intimate and saucy detail about her sexual experiences with men.');
   scene.text('"And sometimes, I like to have fun with women, too", she says with a wink, biting her lower lip.');
   scene.text('You two have a wonderful time - maybe a little too much of it, because by the time you want to leave, you\'re both having trouble getting up from the table, let along walking out of the cafe. Nastya insists that she pay the bill herself and don\'t dare to protest, secretly grateful that you don\'t have to fumble with your purse in your state. You stagger outside, arm in arm, and don\'t break the embrace when you reach the street.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let's take a walk along the shore", Nastya suggests. You don...
+  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let''s take a walk along the shore", Nastya suggests. You do...
   scene.text(`"${((s as any).pcs_nickname || '')}, let's take a walk along the shore", Nastya suggests. You don't know if a walk is really in the cards for you but you wouldn't mind that walk either.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Head down to the river.', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1party3.jpg');
     scene.text('You walk down a set of stairs to reach the river bank and stroll unevenly along the waterfront, talking and laughing, until your friend stops.');
     scene.text('"Hey, how about we refresh ourselves a little bit? I haven\'t gone swimming at all this summer."');
     scene.text('"What? But the water\'s gotta be freezing right now!", you protest but Nastya is already knee-deep in the water, squealing as she goes.');
     scene.text('"Oh my god, it\'s so cold!" "Told you so!", you call out, but Nastya only sticks her tongue out at you and gestures for you to follow her as she pulls off her dress to keep it from getting wet, showing you her boobs in the process.');
     scene.text('You hesitate a little bit but you don\'t want to be left behind, just because she does something slightly crazy, so you take your clothes off and go after her, playing around with her in the water in your wet underwear.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
-    qspCall(s, 'arousal', 'foreplay', 10, 'exhibitionism');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 10, 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Splish splash', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1party4.jpg');
     scene.text('You don\'t pay attention to your surroundings but, evidently, Nastya does because after a while, she covers her breasts and points somewhere a little down the river and exclaims: "Hey, there\'s somebody watching us!"');
     scene.text('Instead of terrifying you, that thought only serves to excite you in your drunk state and you reply: "Then let\'s enjoy the attention!"');
     scene.text('With these words, you tear off your bra and whirl it around like a lasso, revealing your breasts to Nastya and your audience. It\'s all the encouragement she needs to drop her arm and give you and the world unrestricted access to her tits once again.');
-    qspCall(s, 'arousal', 'flash', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/anastasia/1party5.jpg');
     scene.text('As much as you enjoy this revealing experience, you both soon begin shaking from the cold and in a moment of clarity, you decide to leave before you catch a cold or your observer decides to come over.');
     scene.text('Cold, wet, but a little more sober than before, you get dressed again, walk back to the road and look for a cab.');
@@ -333,7 +333,7 @@ function enterPos11(s: GameState, scene: SceneBuilder): void {
     scene.text('…');
     scene.text('"Hey! Hey, get up, young lady, it\'s time to go home!", a male voice rouses you from you nap. Nastya and a man are standing next to you, a taxi standing right behind them. The situation wouldn\'t have been particularly noteworthy if it wasn\'t for the fact that you had apparently spread your legs wide open while you were asleep, giving the taxi driver and every passersby a perfect view of your soaked panties. Couldn\'t Nastya have put your legs together?!');
     scene.text('Red with shame, you scramble to your feet and get into the taxi with Nastya, avoiding the driver\'s gaze in the inside mirror.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Let the taxi take you home', goto: ['city_residential', ''] },
     ]);
@@ -358,7 +358,7 @@ function enterPos12(s: GameState, scene: SceneBuilder): void {
   scene.text('It rings two, three, four times before Anastasia picks up.');
   scene.text('');
   scene.text('You: "Hello Nastya! How are you?"');
-  // TODO-QSP: dynamic text: Nastya: "Hi <<$pcs_nickname>>! I'm great, thanks for asking." There is a short, ...
+  // TODO-QSP: dynamic text: Nastya: "Hi <<$pcs_nickname>>! I''m great, thanks for asking." There is a short,...
   scene.text(`Nastya: "Hi ${((s as any).pcs_nickname || '')}! I'm great, thanks for asking." There is a short, awkward pause before she continues with audible excitement: "Last Saturday was AMAZING. I couldn't think of anything else since."`);
   scene.text('You sigh with relief and laugh: "Me neither. I loved it. We should go out again."');
   scene.text('Nastya: "How about today? I was going to go down to the beach, sunbathe, swim, show off my new bikini… Do you want to come?"');
@@ -381,7 +381,7 @@ function enterPos13(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/anastasia/tel_talk.jpg');
   scene.text('After a few rings, Anastasia answers the phone.');
   scene.text('');
-  // TODO-QSP: dynamic text: You: "Nastya, hi, it's <<$pcs_nickname>>! What's new?"
+  // TODO-QSP: dynamic text: You: "Nastya, hi, it''s <<$pcs_nickname>>! What''s new?"
   scene.text(`You: "Nastya, hi, it's ${((s as any).pcs_nickname || '')}! What's new?"`);
   // TODO-QSP: dynamic text: Nastya: "Hello <<$pcs_nickname>>! Oh, nothing much. I was just about to…"
   scene.text(`Nastya: "Hello ${((s as any).pcs_nickname || '')}! Oh, nothing much. I was just about to…"`);
@@ -404,7 +404,7 @@ function enterPos14(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/2hello.jpg');
   scene.text('You recognize Nastya as soon as you walk onto the lake\'s beach: After two meetings, you start to doubt that she even has any dress that isn\'t cut revealingly short and you wonder how she can just keep going out without feeling self-conscious - and you secretly admire her for that.');
-  // TODO-QSP: dynamic text: Nastya greets you with feigned impatience. "Finally, I'm tired of waiting alread...
+  // TODO-QSP: dynamic text: Nastya greets you with feigned impatience. "Finally, I''m tired of waiting alrea...
   scene.text(`Nastya greets you with feigned impatience. "Finally, I'm tired of waiting already! Come on, ${((s as any).pcs_nickname || '')}, let's put on those swimsuits."`);
   // TODO-QSP: end
   scene.actions([
@@ -502,7 +502,7 @@ function enterPos19(s: GameState, scene: SceneBuilder): void {
 function enterPos20(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'mood', 'raise', 'medium');
-  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 5) + 1);
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 5) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/2bvolley.jpg');
   scene.text('Ants seem to be crawling all over your skin and your fingers feel numb as you undo the top of your swimsuit. It takes you unusually long, perhaps because there\'s already so much attention on you because of Nastya, but you finally win the fight and the next moment, you are topless, just like your friend.');
@@ -549,7 +549,7 @@ function enterPos22(s: GameState, scene: SceneBuilder): void {
   scene.text('You: "Nastya, hi! How is it going? Are you alright?"');
   scene.text('Nastya: "Oh, hi! Yeah, I\'m okay. Just some trouble at work, is all."');
   scene.text('You: "Must be pretty big trouble if it gets you down like that. Do you want to come over? We\'ll open a bottle of wine and you tell me everything about it."');
-  // TODO-QSP: dynamic text: Nastya: "That's so sweet of you, <<$pcs_nickname>>. Yeah, of course I'll come. S...
+  // TODO-QSP: dynamic text: Nastya: "That''s so sweet of you, <<$pcs_nickname>>. Yeah, of course I''ll come....
   scene.text(`Nastya: "That's so sweet of you, ${((s as any).pcs_nickname || '')}. Yeah, of course I'll come. See you in a bit!"`);
   // TODO-QSP: end
   scene.actions([
@@ -588,7 +588,7 @@ function enterPos24(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = 20;
   qspCall(s, 'mood', 'raise', 'tiny');
   qspCall(s, 'drugs', 'alcohol', 'wine');
-  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 21) + 10);
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 21) + 10));
   qspCall(s, 'stat', '');
   scene.img('images/shared/drinks/redwine.jpg');
   scene.text('About two hours later…');
@@ -597,7 +597,7 @@ function enterPos24(s: GameState, scene: SceneBuilder): void {
   scene.text('Anastasia agrees, laughing as her stomach rumbles, and you call to order a large pizza that should be there in about half an hour.');
   scene.text('');
   scene.text('As you hang up, you see that twinkle in Nastya\'s eyes again and already half-know what she\'s thinking about.');
-  // TODO-QSP: dynamic text: Nastya: "<<$pcs_nickname>>, I just had a fun idea. I 've seen this on the intern...
+  // TODO-QSP: dynamic text: Nastya: "<<$pcs_nickname>>, I just had a fun idea. I ''ve seen this on the inter...
   scene.text(`Nastya: "${((s as any).pcs_nickname || '')}, I just had a fun idea. I 've seen this on the internet: A girl orders a pizza and then wraps up her naked body in a towel, like she just came out of the shower, and answers the door. And when she's paid and is about to close the door, she 'accidentally' drops the towel. I've been fantasizing about this for such a long time but if I did that at my place, I could get into really big trouble because of my father. But… you aren't scared like me, are you?"`);
   if (((s as any).pcs_inhib ?? 0) >= 50) {
     scene.actions([
@@ -618,7 +618,7 @@ function enterPos25(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'pay', 100);
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/anastasia/nast_home.jpg');
-  // TODO-QSP: dynamic text: Nastya: "Awww… You're such a buzzkill, <<$pcs_nickname>>." She sounds genuinely ...
+  // TODO-QSP: dynamic text: Nastya: "Awww… You''re such a buzzkill, <<$pcs_nickname>>." She sounds genuinely...
   scene.text(`Nastya: "Awww… You're such a buzzkill, ${((s as any).pcs_nickname || '')}." She sounds genuinely disappointed but she's too cheerful a person to let it keep her down for long.`);
   scene.text('You pass the half hour, chattering as if nothing happened, eat the pizza once it gets delivered - Nastya kept hoping you\'d flash the delivery guy, to no avail - and after giving your meal a little time to settle in your stomachs, Nastya calls a taxi and goes home.');
   // TODO-QSP: end
@@ -705,7 +705,7 @@ function enterPos30(s: GameState, scene: SceneBuilder): void {
   if (((s as any).exhibi ?? 0) === 1) {
     scene.text('You: "And I filmed it all on your phone!"');
   } else {
-    // TODO-QSP: dynamic text: Nastya: "And I filmed everything. Don't worry, <<$pcs_nickname>>, I didn't catch...
+    // TODO-QSP: dynamic text: Nastya: "And I filmed everything. Don''t worry, <<$pcs_nickname>>, I didn''t cat...
     scene.text(`Nastya: "And I filmed everything. Don't worry, ${((s as any).pcs_nickname || '')}, I didn't catch your face."`);
   }
   scene.text('You talk about this experience and watch the video over and over again. You are so caught up in your exhibitionism that your stomachs have to rumble again before you remember to eat.');
@@ -736,7 +736,7 @@ function enterPos31(s: GameState, scene: SceneBuilder): void {
   scene.text('Do: "… me too."');
   scene.text('Nastya: "Well, then maybe we should make more pictures and videos like that."');
   scene.text('You: "Are you serious?"');
-  // TODO-QSP: dynamic text: Nastya: "Maybe I am, maybe I'm not. Who knows? We'll talk about it next time. Go...
+  // TODO-QSP: dynamic text: Nastya: "Maybe I am, maybe I''m not. Who knows? We''ll talk about it next time. ...
   scene.text(`Nastya: "Maybe I am, maybe I'm not. Who knows? We'll talk about it next time. Gotta run now, ${((s as any).pcs_nickname || '')}. Talk to you soon."`);
   // TODO-QSP: end
   scene.actions([

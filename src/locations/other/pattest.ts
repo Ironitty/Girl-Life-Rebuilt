@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) !== 1  &&  ((s as any).pattest ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 1  &&  ((s as any).pattest ?? 0) > 0) {
     (s as any).j = 0;
     // TODO-QSP: p ''
     if (((s as any).kid ?? 0) > 0  &&  (Array.isArray((s as any).surefather) ? ((s as any).surefather as any[]).indexOf('0') : -1) !== ((s as any).kid ?? 0)) {
@@ -31,13 +31,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) !== 1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) !== 1) {
       qspCall(s, 'stat', '');
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     // TODO-QSP: testresDay[ARGS[0]] = 2147483647
-    if (((s as any).ChildFath ?? 0)[((s as any).locArgs?.[0] ?? 0)] === ((s as any).papa ?? 0)) {
+    if (((s as any).ChildFath ?? 0)[Number((s as any).locArgs?.[0] ?? 0)] === ((s as any).papa ?? 0)) {
       // TODO-QSP: testresRes[ARGS[0]] = 1 else testresRes[ARGS[0]] = 0
     }
     // TODO-QSP: $testresPotfath[ARGS[0]] = $papa
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).kidid = (s as any).kidid ?? {})[String((s as any).j ?? 0)] = ((s as any).j ?? 0);
   if (((s as any).patpack ?? 0)?.[String((s as any).j ?? 0)] === 1) {
     // TODO-QSP: dynamic text:     <a href="exec: testresDay[kidid[j]] = daystart+rand(5,7) & patpack[kidid[j]]...
-    scene.text('    <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: testresDay[kidid[j]] = daystart+rand(5,7) */ /* TODO-QSP: patpack[kidid[j]] = 0 */ s.used_pattest -=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027money\\u0027, \\u0027pay\\u0027, String(window.__gameStore.getState().20000 ?? \\u0027\\u0027)); return false;">$kidname[j]</a>');
+    scene.text('    <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: testresDay[kidid[j]] = daystart+rand(5,7) */ /* TODO-QSP: patpack[kidid[j]] = 0 */ s.used_pattest -=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().20000 ?? /u0027/u0027)); return false;">$kidname[j]</a>');
   }
   if (((s as any).j ?? 0) < ((s as any).kid ?? 0) - 1) {
     (s as any).j = ((s as any).j ?? 0) + (1);

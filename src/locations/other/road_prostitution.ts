@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'public_outdoors';
   scene.build();
 }
 
@@ -52,19 +51,19 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Look for a client (0:30)', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'prostitution_car_negotiation', 'look_client');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'prostitution_car_negotiation', 'look_client');
   } },
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['makeup_wipes'] > 0  &&  (((s as any).prostitute ?? 0)?.['cum_dressed'] === 1  ||  ((s as any).prostitute ?? 0)?.['cum_undressed'] === 1  ||  ((s as any).prostitute ?? 0)?.['cum_vaginal_mod'] === 1  ||  ((s as any).prostitute ?? 0)?.['cum_anal_mod'] === 1)) {
     scene.actions([
       { label: 'Remove the cum from your body (0:02)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
-    (s as any).cumspclnt = 20;
-    qspCall(s, 'cum_cleanup', '');
-    qspGoto(s, 'road_prostitution', 'work');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['makeup_wipes'] = ((st as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
+    (st as any).cumspclnt = 20;
+    qspCall(st, 'cum_cleanup', '');
+    qspGoto(st, 'road_prostitution', 'work');
   } },
     ]);
   } else {
@@ -165,6 +164,7 @@ function enterRoadSegment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_outdoors';
   const arg = s.locArg;
   switch (arg) {
     case 'work':

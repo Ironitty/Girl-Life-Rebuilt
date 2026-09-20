@@ -62,10 +62,10 @@ function enterKsenyaMallEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk to Ksenya', handler: (st: GameState) => {
-    (s as any).KsenyaQW = 1;
+    (st as any).KsenyaQW = 1;
     scene.img('images/characters/pushkin/ksenya/mall5.jpg');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, What brings you to the city?" she asks leaning on the ...
-    scene.text(`"Hello ${((s as any).pcs_nickname || '')}, What brings you to the city?" she asks leaning on the windshield.`);
+    scene.text(`"Hello ${((st as any).pcs_nickname || '')}, What brings you to the city?" she asks leaning on the windshield.`);
     scene.text('"Oh you know, shopping" you reply. "What about you?"');
     scene.text('"My mother is getting her hair done and I\'m waiting for her to finish," she admits. "Stick around long enough and you can meet her if you want" she offers.');
     scene.actions([
@@ -84,12 +84,12 @@ function enterKsenyaMallEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('You and Ksenya wait around talking about your shared passion when a woman in a white dress walks up to the car. For a moment you could swear this was her sister but when Ksenya walked up to her and hugged her, you understood that this was her mother. "You look good, mom" She says to the other woman.');
     scene.text('"Who\'s your friend?" she asks leaning on the hood of the car.');
     // TODO-QSP: dynamic text: "Mom, This is <<$pcs_firstname>>. She is a friend that I share an interest with ...
-    scene.text(`"Mom, This is ${((s as any).pcs_firstname || '')}. She is a friend that I share an interest with and she is also a customer of mine" Ksenya says. "${((s as any).pcs_nickname || '')}, This is my mother, Makoto." she says and her mother hugs you. "Any friend of my daughters is a friend of mine."`);
+    scene.text(`"Mom, This is ${((st as any).pcs_firstname || '')}. She is a friend that I share an interest with and she is also a customer of mine" Ksenya says. "${((st as any).pcs_nickname || '')}, This is my mother, Makoto." she says and her mother hugs you. "Any friend of my daughters is a friend of mine."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pushkin/ksenya/mall2.jpg');
     // TODO-QSP: dynamic text: Makoto gets into the driver seat and starts up the car. "Come on Ksenya, we need...
-    scene.text(`Makoto gets into the driver seat and starts up the car. "Come on Ksenya, we need to make a stop at the bank before we head back" she says and looks at you as Ksenya goes to the other side of the car. "Nice to have met you, ${((s as any).pcs_firstname || '')}. I hope to see you around" she says and they drive off, leaving you alone in the parking lot.`);
+    scene.text(`Makoto gets into the driver seat and starts up the car. "Come on Ksenya, we need to make a stop at the bank before we head back" she says and looks at you as Ksenya goes to the other side of the car. "Nice to have met you, ${((st as any).pcs_firstname || '')}. I hope to see you around" she says and they drive off, leaving you alone in the parking lot.`);
     scene.actions([
       { label: 'Enter the mall', goto: ['city_mall', ''] },
     ]);
@@ -101,8 +101,8 @@ function enterKsenyaMallEvent(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Say you don\'t have time right now and enter the mall', handler: (st: GameState) => {
-    (s as any).Kignore = ((s as any).daystart ?? 0);
-    qspGoto(s, 'city_mall', '');
+    (st as any).Kignore = ((st as any).daystart ?? 0);
+    qspGoto(st, 'city_mall', '');
   } },
   ]);
   scene.build();

@@ -16,7 +16,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/activities/music/guitarpractice_1.jpg');
   if (((s as any).ml_guitarlesson ?? 0)?.['lessoncount'] === 0  &&  ((s as any).ml_guitar ?? 0)?.['chordbook'] === 1  &&  ((s as any).instrmusic_lvl ?? 0) <= 10) {
-    qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);
+    qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 1));
     qspCall(s, 'pain', '', 1, 'fingers', 'ache');
     qspCall(s, 'stat', '');
     scene.text('You open the book you got from Jimmy and start to practice the chords and basic techniques on the guitar.');
@@ -25,20 +25,20 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).ml_guitarlesson ?? 0)?.['lessoncount'] === 0  &&  ((s as any).ml_guitar ?? 0)?.['chordbook'] === 1  &&  ((s as any).instrmusic_lvl ?? 0) > 15  &&  ((s as any).access ?? 0) === 'denied') {
       scene.text('You open the chordbook you got from Jimmy and start to practice, but you feel that you don\'t really improve that much.');
-      qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 1);
+      qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 1));
     } else {
       if (((s as any).ml_guitarlesson ?? 0)?.['lessoncount'] === 0  &&  ((s as any).ml_guitar ?? 0)?.['chordbook'] === 1  &&  ((s as any).instrmusic ?? 0) > 15  &&  ((s as any).access ?? 0) !== 'denied') {
         scene.img('images/pc/activities/music/onlineguitarlesson.mp4');
         scene.text('You look at the book you got from Jimmy, then decide to turn to the internet for new lessons.');
-        qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);
+        qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 1));
       } else {
         if (((s as any).ml_guitarlesson ?? 0)?.['lessoncount'] > 0  &&  ((s as any).instrmusic_lvl ?? 0) >= 15  &&  ((s as any).access ?? 0) !== 'denied') {
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 2);
+          qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 2));
           scene.img('images/pc/activities/music/onlineguitarlesson.mp4');
           scene.text('You work through the practices from your guitarlesson then turn to the internet to learn some more new songs.');
         } else {
           scene.text('You pick up you guitar and the lessons from the guitar teacher and start to practice.');
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 2);
+          qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 2));
         }
       }
     }
@@ -83,10 +83,10 @@ function enterRehearse(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).ml_performance ?? 0)?.['set_quality'] < 85) {
-    qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 3) + 1);
+    qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 1));
+    qspCall(s, 'exp_gain', 'vokal', (Math.floor(Math.random() * 3) + 1));
     if (((s as any).perform_lvl ?? 0) < 35) {
-      qspCall(s, 'exp_gain', 'perform', Math.floor(Math.random() * 3) + 1);
+      qspCall(s, 'exp_gain', 'perform', (Math.floor(Math.random() * 3) + 1));
     }
   }
   ((s as any).ml_performance = (s as any).ml_performance ?? {})['set_quality'] = ((s as any).ml_performance['set_quality'] ?? 0) + (((s as any).rand ?? 0)(1, (((s as any).pcs_instrmusic ?? 0) + ((s as any).pcs_vokal ?? 0) + ((s as any).pcs_perform ?? 0))/10));

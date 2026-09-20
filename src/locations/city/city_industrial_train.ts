@@ -27,11 +27,11 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: In the parking lot is <a href="exec:gs 'carF', 'start'">your <<$car['name']>></a...
-    scene.text(`In the parking lot is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a>.`);
+    // TODO-QSP: dynamic text: In the parking lot is <a href="exec:gs ''carF'', ''start''">your <<$car[''name''...
+    scene.text(`In the parking lot is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a>.`);
   }
   // TODO-QSP: dynamic text: There is a path leading off in to the distance, in the direction of the <a href=...
-  scene.text('There is a path leading off in to the distance, in the direction of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027start\\u0027); return false;">lake</a>.');
+  scene.text('There is a path leading off in to the distance, in the direction of the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027start/u0027); return false;">lake</a>.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the City Industrial Region', handler: (st: GameState) => {
@@ -80,8 +80,8 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_industrial_train', 'toilet'] },
     { label: 'Look at the train schedule', handler: (st: GameState) => {
     scene.text('<center><h1>Train schedule</h1></center>');
-    qspCall(s, 'transport_functions', 'display_train_schedule');
-    qspCall(s, 'transport_functions', 'display_train_schedule', 'pc');
+    qspCall(st, 'transport_functions', 'display_train_schedule');
+    qspCall(st, 'transport_functions', 'display_train_schedule', 'pc');
     scene.actions([
       { label: 'Stop looking at the schedule', goto: ['city_industrial_train', 'inside'] },
     ]);
@@ -112,8 +112,8 @@ function enterTicket(s: GameState, scene: SceneBuilder): void {
   }, goto: ['city_industrial_train', 'inside'] },
     { label: 'Look at the train schedule', handler: (st: GameState) => {
     scene.text('<center><h1>Train schedule</h1></center>');
-    qspCall(s, 'transport_functions', 'display_train_schedule');
-    qspCall(s, 'transport_functions', 'display_train_schedule', 'pc');
+    qspCall(st, 'transport_functions', 'display_train_schedule');
+    qspCall(st, 'transport_functions', 'display_train_schedule', 'pc');
     scene.actions([
       { label: 'Stop looking at the schedule', goto: ['city_industrial_train', 'ticket'] },
     ]);

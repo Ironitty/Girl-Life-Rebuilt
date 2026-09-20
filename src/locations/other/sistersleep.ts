@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSisterSleep(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/characters/pavlovsk/resident/anya/home/sleep0${Math.floor(Math.random() * 7) + 1}.jpg`);
+  scene.img(`images/characters/pavlovsk/resident/anya/home/sleep0${(Math.floor(Math.random() * 7) + 1)}.jpg`);
   scene.text('Anya is sleeping face down on her bed, with her covers tossed aside, exposing her panty-clad ass. She has a really nice ass, but you never see her work out, leaving you wondering how she keeps so fit.');
   if (((s as any).sisterLesb ?? 0) >= 7  ||  ((s as any).sisterLesb ?? 0) === -1) {
     scene.text('You want to touch her again, but stop yourself from doing it. You agreed to not wake her up like this any more, so you sigh and move away.');
@@ -105,7 +105,7 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You continue to explore your sister\'s hot body when your fingers accidentally slip between her legs. Her panties are wet. You gently pull them, exposing her wet pussy. Sensations of heat and moisture overwhelm you. Is she having a sexual dream, or is this her response to your touch?');
   scene.text('You\'re caught up in a fantasy and start lowering your face down to her pussy with your tongue out when she suddenly stirs…');
   scene.text('She sleepily rolls over and looks up at you as you hastily remove your hand and hide it behind your back.');
-  // TODO-QSP: dynamic text: "What… What's going on? <<$pcs_nickname>>? What are you doing?" she asks as she ...
+  // TODO-QSP: dynamic text: "What… What''s going on? <<$pcs_nickname>>? What are you doing?" she asks as she...
   scene.text(`"What… What's going on? ${((s as any).pcs_nickname || '')}? What are you doing?" she asks as she sleepily sits up.`);
   scene.text('You sit in front of your sister on her bed, caught off guard and not knowing what to do.');
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
@@ -133,18 +133,18 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Act innocent', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A33', (-10));
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A33', (-10));
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_20.jpg');
     scene.text('You decide to do nothing and quietly move away from your sleepy sister. Maybe she\'ll forget it all in the morning…');
     scene.text('As you step away from her bed, she calls out to you.');
-    if (((s as any).sisterLesb ?? 0) === 3) {
-      (s as any).sisterLesb = 4;
+    if (((st as any).sisterLesb ?? 0) === 3) {
+      (st as any).sisterLesb = 4;
       scene.text('"I don\'t want to know what you did to me while I was asleep, but don\'t do it again."');
     } else {
       scene.text('"I told you last time I don\'t want to do stuff with you, so stop!" she says and rolls over angrily.');
     }
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['bedrPar', ''] },
     ]);
@@ -167,9 +167,9 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les1.jpg');
     scene.text('"I want to make you feel good, I want to make you orgasm," you tell her and kiss her. She stiffens at the kiss, but then relents and lets you kiss her.');
     scene.text('She\'s clearly trying to fight her desires, and manages to break the kiss and pull away from you. "No, it\'s wrong! We\'re sisters!" She only sounds half convinced.');
-    if (((s as any).sisterLesb ?? 0) === 5) {
-      qspCall(s, 'willpower', 'sex', 'force');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((st as any).sisterLesb ?? 0) === 5) {
+      qspCall(st, 'willpower', 'sex', 'force');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Convince her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -193,7 +193,7 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull away from her. "Sorry, I didn\'t think it was a big deal just comforting each other…" you say softly.');
     scene.text('She sighs. "It\'s fine. Just don\'t do it again, okay? It\'s wrong and I\'m into guys anyway."');
     scene.text('She rolls over and soon goes back to sleep.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['bedrPar', ''] },
     ]);
@@ -208,18 +208,18 @@ function enterSisterSleep_2Kiss(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les3.jpg');
     scene.text('You smile at her. "Shh… You looked stressed earlier, and I thought I would help you out," you tell her as you slip a finger inside her soaking wet pussy. She grabs your wrist, intent on stopping you until her breath catches and you see how turned on she is.');
     scene.text('She slowly lets go of your wrist and just lies back, spreading her legs and enjoying you fingering her. You pull her panties off and toss them aside before going back to fingering her pussy as she starts to moan in pleasure.');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'lesbian', 'incest');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 5, 'lesbian', 'incest');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep fingering her', handler: (st: GameState) => {
-    if (((s as any).sisterLesb ?? 0) < 5) {
-      (s as any).sisterLesb = 5;
+    if (((st as any).sisterLesb ?? 0) < 5) {
+      (st as any).sisterLesb = 5;
     }
     scene.img('images/characters/pavlovsk/resident/anya/sex/les4.jpg');
     scene.text('You slip another finger in her while your thumb rubs her clit. Anya lies back and starts to moan louder, so you lean forward and start kissing and sucking on her nipple as you keep finger banging her soaking wet pussy. Her pussy then gently convulses as she orgasms and she looks at you with a sleepy but pleased look on her face.');
     scene.text('"Well, aren\'t you just the sweetest little sister? Now go to sleep," she says as she grabs her panties, slides them back on and rolls over, nuzzling into her pillow and falling asleep. You\'re a little upset not to receive your own release, but you\'re satisfied for now.');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'lesbian', 'incest');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 5, 'lesbian', 'incest');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['bedrPar', ''] },
     ]);
@@ -253,47 +253,47 @@ function enterSisterSleep_3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Mmmm… No! We need to stop!" she moans.');
     scene.text('You keep fingering her and rubbing her clit. "Do you really want me to stop?"');
     scene.text('She moans louder. "Yes… No…"');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 5, 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go down on her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les5.jpg');
     scene.text('You move around, lie down between her legs and start licking and sucking on her clit as your fingers keep plunging in and out of her pussy.');
-    if (((s as any).sisterLesb ?? 0) === 5) {
+    if (((st as any).sisterLesb ?? 0) === 5) {
       scene.text('She finally lies back and starts caressing her breasts, no longer resisting or even pretending to not enjoy it anymore.');
     } else {
       scene.text('She lies back and starts caressing her breasts and moaning passionately, having fully given in to your love making.');
     }
-    qspCall(s, 'arousal', 'cuni_give', 5, 'incest', 'lesbian');
-    qspCall(s, 'arousal', 'vaginal_finger_give', (-5), 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 5, 'incest', 'lesbian');
+    qspCall(st, 'arousal', 'vaginal_finger_give', (-5), 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Have her return the favor', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les6.jpg');
-    if (((s as any).sisterLesb ?? 0) === 5) {
+    if (((st as any).sisterLesb ?? 0) === 5) {
       scene.text('You get up and strip down before lying down near her head. She watches you with lust in her eyes, but you can still see a bit of resistance. Not wanting to give her time to recover, you reach over and pull her head between your legs. She resists for only a moment before she starts licking your pussy in return.');
     } else {
       scene.text('You get up and strip down before lying down near her head. Without even needing to prod her, she rolls over, places her face between your legs and starts licking your pussy and clit.');
     }
-    (s as any).orgasm_txt = '"Aaaaaaaaaaaah!!!" You catch a wave of pure bliss as you violently cum.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni', 5, 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = '"Aaaaaaaaaaaah!!!" You catch a wave of pure bliss as you violently cum.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni', 5, 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: '69', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les7.jpg');
     scene.text('Still wanting more, Anya gets up and climbs on top of you before placing her pussy above your face. You start licking her again as she positions her face over your pussy and starts licking it again as well. The two of you lap away at each other in complete bliss until Anya\'s body starts to convulse and she has an orgasm on your face. She grinds her pussy against you, riding out her orgasm.');
-    (s as any).orgasm_txt = '"Aaaaaaaaahhh!!!" You catch a wave of pure bliss as you violently cum.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni_give', (-5), 'lesbian', 'incest');
-    qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'incest');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_txt = '"Aaaaaaaaahhh!!!" You catch a wave of pure bliss as you violently cum.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni_give', (-5), 'lesbian', 'incest');
+    qspCall(st, 'arousal', 'cuni', 5, 'lesbian', 'incest');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Aftermath', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les8.jpg');
     scene.text('Once her orgasm has fully passed, she climbs off you, gets up on her knees and blushes deeply. "Look, I had fun, but let\'s forget this ever happened, okay?"');
-    if (((s as any).sisterLesb ?? 0) === 5) {
-      (s as any).sisterLesb = 6;
+    if (((st as any).sisterLesb ?? 0) === 5) {
+      (st as any).sisterLesb = 6;
       scene.text('You respond by getting up on your knees and kissing her. "Sure sis, nothing happened," you reply in a slightly teasing tone when you pull away.');
       scene.text('She shakes her head. "I need to get some sleep. You need to go back to your bed and go to sleep too." She lies back down and rolls over, facing away from you, and tries to go back to sleep.');
       scene.actions([
@@ -303,28 +303,28 @@ function enterSisterSleep_3(s: GameState, scene: SceneBuilder): void {
       scene.text('She gives you a stern look. "I\'m serious! We can\'t do this anymore! This is the last time."');
       scene.actions([
         { label: 'Accept her decision', handler: (st: GameState) => {
-    (s as any).sisterLesb = (-1);
+    (st as any).sisterLesb = (-1);
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_20.jpg');
     scene.text('You put your best little sister pout on, but knowing she\'s already made her mind up, you shrug and accept that you won\'t be having any more \'fun\' with her as she rolls over and goes to sleep.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['bedrPar', ''] },
     ]);
   } },
         { label: 'Convince her', handler: (st: GameState) => {
-    (s as any).sisterLesb = 7;
-    qspCall(s, 'npc_relationship', 'modify', 'A33', 'adore');
+    (st as any).sisterLesb = 7;
+    qspCall(st, 'npc_relationship', 'modify', 'A33', 'adore');
     scene.img('images/characters/pavlovsk/resident/anya/sex/les8.jpg');
     scene.text('"Anya, you don\'t have to be a lesbian to enjoy a special release that only another woman knows how to give you," you say as you begin lightly caressing her thigh. What if we agreed that we\'ll help each other out when we REALLLLYYYYY need it, but depend on our boyfriends most of the time, hmmm?" Her breathing gets faster as your fingertips glide to the center of her legs.');
     scene.text('"Well… When you put it that way. I\'m still not a lesbian, but helping each other out when we <i> really</i> need… Mmmmmhhmmmm… Help might be okay… Mmmmm…" she moans as she leans in and kisses you.');
-    (s as any).orgasm_txt = 'You both start feeling the heat and lie down before kissing, fondling and licking each other into orgasm.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'kiss', 10, 'incest', 'lesbian');
-    qspCall(s, 'arousal', 'vaginal_finger', (-10), 'incest', 'lesbian');
-    qspCall(s, 'arousal', 'cuni', (-10), 'incest', 'lesbian');
+    (st as any).orgasm_txt = 'You both start feeling the heat and lie down before kissing, fondling and licking each other into orgasm.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'kiss', 10, 'incest', 'lesbian');
+    qspCall(st, 'arousal', 'vaginal_finger', (-10), 'incest', 'lesbian');
+    qspCall(st, 'arousal', 'cuni', (-10), 'incest', 'lesbian');
     scene.text('She eventually breaks the kiss. "Okay, but seriously. No more waking me up like this. We can, when we really need it, just tell the other one, okay?"');
     scene.text('You nod and agree to not wake her up anymore. Besides, her being into it from the start would be better anyway. She rolls over and goes back to sleep, so you return to your own bed.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['bedrPar', ''] },
     ]);
@@ -374,22 +374,22 @@ function enterSisterLesbian(s: GameState, scene: SceneBuilder): void {
     { label: 'Spread her legs ', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les2.jpg');
     scene.text('You finally pull her panties off and place your hands on her knees, spreading her legs wide apart. You can see the gleam of her wetness, showing she\'s already turned on.');
-    qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finger her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les3.jpg');
     scene.text('You slip one finger in her already wet pussy and start thrusting it in and out of her, causing her to moan in pleasure. After a few minutes, you add a second finger as well.');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 5, 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go down on her', goto: ['sistersleep', 'sister_lesbian_cuni'] },
       { label: 'Keep fingering her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les4.jpg');
     scene.text('She lies back as you keep fingering her, using one hand to kneed her breasts before lowering your mouth to suck on her nipple. She moans and writhes in pleasure as your fingers slide in and out of her and you keep sucking on her nipple.');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 5, 'incest', 'lesbian');
-    qspCall(s, 'arousal', 'foreplay', (-5), 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 5, 'incest', 'lesbian');
+    qspCall(st, 'arousal', 'foreplay', (-5), 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go down on her', goto: ['sistersleep', 'sister_lesbian_cuni'] },
     ]);
@@ -413,25 +413,25 @@ function enterSisterLesbianCuni(s: GameState, scene: SceneBuilder): void {
     { label: 'Have her return the favor', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les6.jpg');
     scene.text('You stop licking and fingering her and lie on your back and spread your legs as she rolls over, crawls up between your legs and starts to lick and nuzzle at your pussy. For someone that keeps telling you she isn\'t into girls, she really knows how to eat pussy.');
-    qspCall(s, 'arousal', 'cuni', 5, 'lesbian', 'incest');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 5, 'lesbian', 'incest');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: '69', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les7.jpg');
     scene.text('After several minutes of her eating you out, she apparently isn\'t content with just that. While still licking your pussy, she slowly spins her body around and climbs on top of you until her pussy is directly above your face. You start licking her as the two of you enter a sixty-nine. Several minutes pass until she cries out and her whole body quivers as an orgasm shoots through it. Her juices flow out of her pussy, coating your face.');
-    (s as any).orgasm_txt = 'With her orgasming above you and your face getting covered in her juices, you feel your own orgasm wrack your body. You cry out as the waves of pleasure rock your body until it slowly fades.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian', 'incest');
-    qspCall(s, 'arousal', 'cuni', (-5), 'lesbian', 'incest');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'With her orgasming above you and your face getting covered in her juices, you feel your own orgasm wrack your body. You cry out as the waves of pleasure rock your body until it slowly fades.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian', 'incest');
+    qspCall(st, 'arousal', 'cuni', (-5), 'lesbian', 'incest');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Aftermath', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les8.jpg');
     scene.text('Once the orgasm passes, she rolls off you and the two of you lie side by side, panting and basking in the afterglow before she gets up onto her knees and you do the same. You share a brief kiss and squeeze her ass before she breaks away from you, pushing you slightly away. "That was fun, but we shouldn\'t do that… At least not too often," she says with a slight blush.');
     scene.text('You grin at her. "Whatever you say, sis."');
     scene.text('She starts getting cleaned up and getting ready to go to sleep as you move away.');
-    qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['bedrPar', ''] },
     ]);
@@ -461,7 +461,7 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A33', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A33', 'dislike');
     scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
     scene.text('You shake your head. "No way, I don\'t want to get fucked, I just want to make love to you."');
     scene.text('She frowns and drops the strapon back in the drawer. "Well I don\'t want to do that. I\'ve told you before that I\'m not into girls!"');
@@ -474,29 +474,29 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
     { label: 'Help her put it on', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap2.jpg');
     scene.text('When you don\'t disagree, she takes it as consent and starts slipping the harness on. You help her get it into place and pull all the straps nice and tight. While she\'s on her knees with the dildo pointing at you, you take it in your hand and stroke it, testing if the harness is securely in place. She gives you a lustful stare. "Well? Start sucking my dick."');
-    qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck her dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap3.jpg');
-    if (((s as any).sisterQW ?? 0)?.['strapon'] === 0) {
-      ((s as any).sisterQW = (s as any).sisterQW ?? {})['strapon'] = 1;
+    if (((st as any).sisterQW ?? 0)?.['strapon'] === 0) {
+      ((st as any).sisterQW = (st as any).sisterQW ?? {})['strapon'] = 1;
       scene.text('Anya monitors your actions and talks you through how to suck a cock. You lick the shaft from the base upwards and then suck the head. It isn\'t too big, maybe a bit above average size. Anya then grabs you by the hair and abruptly shoves the dildo down your throat, causing you to choke and thrash your arms in panic. She quickly pulls it out of you, ropes of your drool sticking to the shaft from your mouth as your eyes water.');
       scene.text('You cough and splutter. "What… What are you doing? You could have… killed me!"');
-      // TODO-QSP: dynamic text: "Don't be so dramatic, <<$pcs_nickname>>! I would never hurt you. You see guys l...
-      scene.text(`"Don't be so dramatic, ${((s as any).pcs_nickname || '')}! I would never hurt you. You see guys like this. It's called 'deepthroating.' I'm just helping you train your mouth and throat so you know how to give boys proper blowjobs."`);
+      // TODO-QSP: dynamic text: "Don''t be so dramatic, <<$pcs_nickname>>! I would never hurt you. You see guys ...
+      scene.text(`"Don't be so dramatic, ${((st as any).pcs_nickname || '')}! I would never hurt you. You see guys like this. It's called 'deepthroating.' I'm just helping you train your mouth and throat so you know how to give boys proper blowjobs."`);
       scene.text('Without another word, she shoves the dildo back in your mouth and teaches you the finer arts of how to suck a cock, not to mention what to expect from the boys.');
     } else {
       scene.text('Anya monitors your actions and talks you through how to suck a cock. You lick the shaft from the base upwards and then suck the head. Anya then grabs you by the hair and abruptly shoves the dildo down your throat. This time, you expect it and are a bit more ready for it, but you still feel your mouth filling with drool and your eyes watering as she fucks your throat. She continues to teach you how to give blowjobs.');
     }
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.text('After she fucks your mouth for a while, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside your pussy. "Oh, you\'re still a virgin. Mom will be happy, but luckily, you have another hole I can use," she says as she pushes you down on the bed to lie on your side. She slides in behind you and starts rubbing the head of the dildo against your anus.');
-      qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'bj', 5, 'incest', 'lesbian');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get butt fucked', goto: ['sistersleep', 'sister_strapon_anal'] },
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A33', (-1));
+    qspCall(st, 'npc_relationship', 'modify', 'A33', (-1));
     scene.img('images/characters/pavlovsk/resident/anya/sex/les8.jpg');
     scene.text('You shake your head. "No way, I don\'t want to get fucked in the butt!"');
     scene.text('She frowns and backs away from you. "Okay, suit yourself, but I\'m not taking your virginity and I\'m tired of fucking your mouth." She starts taking the harness off, and feeling a bit disappointed, you help her remove it. Once done, she cleans it up and drops it back on her nightstand.');
@@ -507,18 +507,18 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).sisterQW ?? 0)?.['knownotvirgin'] === 0) {
-        ((s as any).sisterQW = (s as any).sisterQW ?? {})['knownotvirgin'] = 1;
+      if (((st as any).sisterQW ?? 0)?.['knownotvirgin'] === 0) {
+        ((st as any).sisterQW = (st as any).sisterQW ?? {})['knownotvirgin'] = 1;
         scene.text('After she fucks your mouth with the dildo, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside of your vagina. "Oh, you\'re no longer a virgin. Mom won\'t be happy!" she says as she lies down on her back with the dildo pointing straight up. "Mount up and show me what you\'ve learned, cowgirl."');
-        qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
-        qspCall(s, 'stat', '');
+        qspCall(st, 'arousal', 'bj', 5, 'incest', 'lesbian');
+        qspCall(st, 'stat', '');
         scene.actions([
           { label: 'Get fucked', goto: ['sistersleep', 'sister_strapon_vaginal'] },
         ]);
       } else {
         scene.text('After she fucks your mouth with the dildo, she stops and starts stripping you. Once you\'re fully naked, she slips her hands between your legs and slides a finger inside your pussy. "I see you\'re already wet. Good, that will make this more fun," she says as she lies down on her back with the dildo pointing straight up. "Mount up and show me what you\'ve learned, cowgirl."');
-        qspCall(s, 'arousal', 'bj', 5, 'incest', 'lesbian');
-        qspCall(s, 'stat', '');
+        qspCall(st, 'arousal', 'bj', 5, 'incest', 'lesbian');
+        qspCall(st, 'stat', '');
         scene.actions([
           { label: 'Get fucked', goto: ['sistersleep', 'sister_strapon_vaginal'] },
         ]);
@@ -543,14 +543,14 @@ function enterSisterStraponVaginal(s: GameState, scene: SceneBuilder): void {
     { label: 'Stand up', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap5.jpg');
     scene.text('You stand up on the bed and face the wall as Anya gets up and stands behind you. She grabs the dildo and lines it up, rubbing the tip against your wet slit a few times before sliding it in. She quickly thrusts its balls deep into your hole, completely filling you up and quickly starts fucking you hard and fast, her hips bouncing against your ass, causing you to place your hands on the wall to keep your balance as she pounds you. After a few minutes, she starts to pant, clearly starting to wear herself out. She slaps your ass again. "Lie down so I can fuck that little ass of yours."');
-    (s as any).orgasm_txt = 'You spasm and have an intense orgasm with the dildo buried deep in your pussy. You almost can\'t keep yourself upright as your legs threaten to give out.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_strap', 5, 'lesbian', 'incest');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'You spasm and have an intense orgasm with the dildo buried deep in your pussy. You almost can\'t keep yourself upright as your legs threaten to give out.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_strap', 5, 'lesbian', 'incest');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get butt fucked', goto: ['sistersleep', 'sister_strapon_anal'] },
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A33', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A33', 'dislike');
     scene.img('images/characters/pavlovsk/resident/anya/sex/les8.jpg');
     scene.text('You shake your head. "No way, I don\'t want to get fucked in the butt!"');
     scene.text('She frowns and backs away, pulling the strapon out of you. "Okay, suit yourself, but I\'m too tired to do this anymore." She starts taking the harness off, and feeling a bit disappointed, you help her remove it. Once done, she cleans it up and drops it back in her nightstand.');
@@ -585,18 +585,18 @@ function enterSisterStraponAnal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/anya/sex/strap7.jpg');
     scene.text('With Anya lifting your leg as she thrusts the dildo deep into your ass, you start roughly rubbing your clit.');
     scene.text('"Aaahh… Yeah… Mmmhmmm… Fuck me… Yeah, fuck me good!" you cry out as it starts to feel really good.');
-    (s as any).orgasm_txt = 'You spasm and have an intense orgasm with the dildo in your ass, your sister holding onto you to keep you from flopping off during your orgasm.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'anal_strap', 5, 'incest', 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'You spasm and have an intense orgasm with the dildo in your ass, your sister holding onto you to keep you from flopping off during your orgasm.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'anal_strap', 5, 'incest', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Aftermath', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/les8.jpg');
     scene.text('Finally, she stops fucking you and rolls onto her back, causing the dildo to pop out of your ass. She\'s sweating slightly and panting, clearly spent from fucking you. The two of you lie side by side panting and basking in the afterglow before she eventually gets up onto her knees and you do the same. You help her take off the harness and share a brief kiss and squeeze her ass before she breaks away from you. "That was a lot of fun, little sis. I think we\'re going to have to do that again sometime," she says with a slight blush.');
     scene.text('You grin at her. "I enjoyed it as well."');
     scene.text('She starts getting cleaned up and getting ready to go to sleep as you move away.');
-    qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['bedrPar', ''] },
     ]);

@@ -50,7 +50,7 @@ function enterInvitation(s: GameState, scene: SceneBuilder): void {
   scene.text('After a short time, a male voice answers: "Who is this?"');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you spoke to me at the Havana Gym."
   scene.text(`"${((s as any).pcs_nickname || '')}, you spoke to me at the Havana Gym."`);
-  // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>, I knew you were smart. I'm glad you called."
+  // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>, I knew you were smart. I''m glad you called."
   scene.text(`"Ah, ${((s as any).pcs_nickname || '')}, I knew you were smart. I'm glad you called."`);
   scene.text('"You said we could talk, and I have some questions."');
   scene.text('"Sure, but not on the phone, sweetie. I have an office in the industrial area. You can usually find me there between noon and 5 pm. Why don\'t you just come by and we can talk quietly, okay?"');

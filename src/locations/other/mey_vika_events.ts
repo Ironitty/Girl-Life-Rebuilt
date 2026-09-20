@@ -18,9 +18,9 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Vicky\'s room</b></center>');
   scene.img('images/locations/pavlovsk/resident/meynolds/vika_qw_30.jpg');
   scene.text('As soon as you walk in the room, Vicky throws herself onto Vanya. Wraps her legs around his waist and hugs him around the neck. They start making out. Vanya holds Vicky\'s ass and starts squeezing it. While you watch them, you start feeling aroused. They finally stop…');
-  // TODO-QSP: dynamic text: "I suppose we surprised you a bit there?" Vicky giggles. "Don't be shy, <<$pcs_n...
+  // TODO-QSP: dynamic text: "I suppose we surprised you a bit there?" Vicky giggles. "Don''t be shy, <<$pcs_...
   scene.text(`"I suppose we surprised you a bit there?" Vicky giggles. "Don't be shy, ${((s as any).pcs_nickname || '')}!"`);
-  // TODO-QSP: dynamic text: "Yeah, don't worry, <<$pcs_nickname>>!" Says Vanya. "This is all natural, you ne...
+  // TODO-QSP: dynamic text: "Yeah, don''t worry, <<$pcs_nickname>>!" Says Vanya. "This is all natural, you n...
   scene.text(`"Yeah, don't worry, ${((s as any).pcs_nickname || '')}!" Says Vanya. "This is all natural, you need some foreplay to reach orgasm!" He adds grinning.`);
   scene.text('"Why are you standing!" Asks Vicky. "Make yourself comfortable! Relax!" She drags Vanya and you down onto the enormous bed.');
   scene.text('The three of you mess around for a bit, laughing, squealing and growling. Vicky and Vanya put on a show where Vanya plays a bear growling and chasing Vicky around the bed. The neatly laid bed turns into a complete mess after a few seconds. All of a sudden the growling stops and you see Vicky pulling up her T-shirt, revealing hers small perky breasts. She\'s not wearing a bra and she\'s slowly pulling the shirt off, teasing both you and Vanya.');
@@ -30,12 +30,12 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
-    (s as any).alko = 2;
+    (st as any).alko = 2;
     scene.text('<center><b>Vicky\'s room</b></center>');
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_qw_35.jpg');
     scene.text('Finally removing the t-shirt, she says…');
-    // TODO-QSP: dynamic text: "Hold on a second I'll put a bra on so <<$pcs_nickname>> doesn't get too turned ...
-    scene.text(`"Hold on a second I'll put a bra on so ${((s as any).pcs_nickname || '')} doesn't get too turned on."`);
+    // TODO-QSP: dynamic text: "Hold on a second I''ll put a bra on so <<$pcs_nickname>> doesn''t get too turne...
+    scene.text(`"Hold on a second I'll put a bra on so ${((st as any).pcs_nickname || '')} doesn't get too turned on."`);
     scene.text('She jumps away from the bed, opens the dresser drawer and bends over, revealing her tight round ass. After finding a bra, she turns her back to you, and all of a sudden, throws a shirt over Vanyas head, quickly puts on a bra, and once again puts her t-shirt on. But not before she lets you notice that the bra is funny looking. It is bright orange and has Mickey Mouse prints on it.');
     scene.text('"Let\'s drink and play cards!!!" Vicky proclaims.');
     scene.text('She rummages through the wardrobe and pulls out a bottle of champagne.');
@@ -43,11 +43,11 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t worry, my mother is okay with it." Says Vicky. "She lets me do whatever, just to please me. So yeah, lets have something to drink!"');
     scene.text('She runs out of the room and brings back some glasses. Vanya opens a bottle and pours the bubbly liquid. It\'s a French champagne, with a delicate aroma, sparkling in myriads of tiny bubbles. You toast and take a sip from your glass. It tastes like wine and sparkling soda. The three of you talk and drink. Vanya is telling funny stories about some encounters he\'s had in his life. While he\'s telling his stories Vicky moves over to him placing her legs over his. Vanya places his hand onto her thigh.');
     scene.text('You start feeling a bit buzzed, getting that good and fun feeling.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, come and join us here on the bed, we're about to start." Vic...
-    scene.text(`"${((s as any).pcs_nickname || '')}, come and join us here on the bed, we're about to start." Vicky calls you over.`);
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, come and join us here on the bed, we''re about to start." Vi...
+    scene.text(`"${((st as any).pcs_nickname || '')}, come and join us here on the bed, we're about to start." Vicky calls you over.`);
     scene.text('You jump onto the bed and wait for Vanya to shuffle the cards.');
-    qspCall(s, 'arousal', 'foreplay', 10, 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 10, 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Start playing', goto: ['mey_vika_events', 'play_game'] },
     ]);
@@ -164,21 +164,21 @@ function enterPlayGameWish0(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A165');
-    qspCall(s, 'npcStat', 'A15', 'a');
+    qspCall(st, 'npcStat', 'A165');
+    qspCall(st, 'npcStat', 'A15', 'a');
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_game1.jpg');
     scene.text('The touching stops and is replaced by someone\'s luscious lips, skillfully kissing your pussy lips through the panties. You gasp in excitement, eagerly responding to the kisses. The person\'s hands are now moving up your body under your clothes. As the lips move on to your breasts you gasp as you\'re yearning for more.');
     scene.text('You are so turned on now. You can feel your pussy dripping, pulsating with eagerness.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'cuni', 5, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game2.mp4');
     scene.text('Opening your eyes, you are astonished to see that it\'s Vicky who\'s been teasing you! She smiles at you while removing your panties. She eagerly begins licking you, sending shivers all over your body. You start panting, edging, ready to cum. Vicky noticing you nearing the edge intensifies her tongue movements. All of a sudden you feel her tongue moving more erratically, somewhat disturbing the pleasant feeling. You look up and see Vanya, moving in from behind, pushing his cock into Vicky. Vicky can\'t keep on licking you and instead she starts moaning loudly, clearly enjoying Vanya\'s cock. Not wanting to lose your orgasm you grab her by the head and drag her face towards your pulsating pussy. She comes to her senses again and starts licking you. Vicky\'s tongue is so skillful you cum like a fountain all over her face.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni', 5, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game3.mp4');
@@ -186,13 +186,13 @@ function enterPlayGameWish0(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you kiss, while Vicky is caressing Vanyas cock. Vicky pushes your head down towards Vanyas cock, making you go down on him. You suck on his head while Vicky sucks on his balls. Vanya panting a bit starts touching Vicky between her legs, getting her ready for his cock again. She starts moaning loudly, already edging. Vanya moves in and enters her wet pussy while you move over to the front playing with her nipples…');
     scene.text('Vanya, enjoying himself starts pounding Vicky harder and harder while she moans louder and louder. All of a sudden Vanya stops and pulls out of her and lustfully stares at you, saying it\'s your turn now. You let out a moan as he enters you. His cock is stretching your insides, making you even hornier. You hear him panting louder, his cock growing and throbbing. All of a sudden you feel something warm jetting inside you.');
     scene.text('As soon as Vanya pulls out Vicky begins licking you once again while you gush out his spunk. She swallows it all, licking you clean. Once she\'s done the two of you start kissing, mixing your bodily fluids.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0));
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0));
-    qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1);
-    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'cum_cleanup', '', 3);
-    qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0));
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0));
+    qspCall(st, 'cum_call', '', '', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'arousal', 'cuni', 5, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'cum_cleanup', '', 3);
+    qspCall(st, 'arousal', 'kiss', 5, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game4.mp4');
@@ -228,7 +228,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).zz_stage ?? 0) < 16) {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip0.mp4');
-    // TODO-QSP: dynamic text: "You've won, <<$pcs_nickname>>. Pick your prize." Says Vicky.
+    // TODO-QSP: dynamic text: "You''ve won, <<$pcs_nickname>>. Pick your prize." Says Vicky.
     scene.text(`"You've won, ${((s as any).pcs_nickname || '')}. Pick your prize." Says Vicky.`);
     scene.text('You start thinking…');
     scene.text('"Hmm… Can I pick anything? Anything I want?"');
@@ -245,9 +245,9 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).zz_stage ?? 0) === 27) {
       } else {
         if (((s as any).zz_stage ?? 0) === 16  ||  ((s as any).zz_stage ?? 0) === 22  ||  ((s as any).zz_stage ?? 0) === 25  ||  (((s as any).zz_stage ?? 0) >= 28  &&  ((s as any).zz_stage ?? 0) < 31)) {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip\' + zz_stage + \'.mp4');
+          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage || '') + '.mp4');
         } else {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip\' + zz_stage + \'.jpg');
+          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage || '') + '.jpg');
         }
       }
       if (((s as any).zz_stage ?? 0) === 16) {
@@ -378,7 +378,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Still panting, tired but happy, you relax. Lying on the messy bed, the three of you hug each other carefully, gently stroking each other, slowly cooling down.');
-      // TODO-QSP: dynamic text: "That was amazing, <<$pcs_nickname>>!" Whispers Vicky. "I hope you're not mad at...
+      // TODO-QSP: dynamic text: "That was amazing, <<$pcs_nickname>>!" Whispers Vicky. "I hope you''re not mad a...
       scene.text(`"That was amazing, ${((s as any).pcs_nickname || '')}!" Whispers Vicky. "I hope you're not mad at us, Vanya and I wanted to have a threesome for the longest time. We had a feeling you would be up for it, but we didn't dare to ask you. We didn't know how you would react."`);
       scene.text('You respond by gently kissing them both.');
       scene.text('You forget about the time while lying there all together, intertwined in an intricate tangle, slowly cooling off.');
@@ -416,7 +416,7 @@ function enterPlayGameWish2(s: GameState, scene: SceneBuilder): void {
     scene.text('You start getting excited and you are already passionately responding on your own initiative, feeling up her ass.');
     scene.text('You kiss enthusiastically, forgetting about time, about Vanya sitting next to you, completely surrendering to each other.');
     // TODO-QSP: dynamic text: "Wow! Well, who would have thought you were a good kisser, <<$pcs_nickname>>! I ...
-    scene.text(`"Wow! Well, who would have thought you were a good kisser, ${((s as any).pcs_nickname || '')}! I never thought you were cool enough to know how to kiss" Says a delightedly flushed Vicky.`);
+    scene.text(`"Wow! Well, who would have thought you were a good kisser, ${((st as any).pcs_nickname || '')}! I never thought you were cool enough to know how to kiss" Says a delightedly flushed Vicky.`);
     scene.actions([
       { label: 'Next game', goto: ['mey_vika_events', 'play_game'] },
       { label: 'Go', goto: ['mey_vika_events', 'end_game'] },
@@ -448,15 +448,15 @@ function enterPlayGameWish3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPlayGameSub(s: GameState, scene: SceneBuilder): void {
-  ((s as any).win = (s as any).win ?? {})[0] = Math.floor(Math.random() * 3) + 0;
+  ((s as any).win = (s as any).win ?? {})[0] = (Math.floor(Math.random() * 3) + 0);
   if (((s as any).win ?? 0)[0] === 0) {
-    ((s as any).win = (s as any).win ?? {})[1] = Math.floor(Math.random() * 2) + 1;
+    ((s as any).win = (s as any).win ?? {})[1] = (Math.floor(Math.random() * 2) + 1);
   } else {
     if (((s as any).win ?? 0)[0] === 1) {
       ((s as any).win = (s as any).win ?? {})[1] = (((Math.floor(Math.random() * 11) + 0) > 5) ? (0) : (2));
     } else {
       if (((s as any).win ?? 0)[0] === 2) {
-        ((s as any).win = (s as any).win ?? {})[1] = Math.floor(Math.random() * 2) + 0;
+        ((s as any).win = (s as any).win ?? {})[1] = (Math.floor(Math.random() * 2) + 0);
       }
     }
   }
@@ -476,7 +476,7 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hmm, where they are heading? Vicky\'s house is on the opposite side of the city, Vanya\'s too…" You think for yourself. In the corner of your eye you see Vicky\'s twin sister Katja and decided to ask her.');
       scene.text('"Katja, do you know where they\'re heading?" You ask, nodding towards the couple?');
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
-        // TODO-QSP: dynamic text: "There's not much to say, <<$pcs_nickname>>." Says Katja smiling.
+        // TODO-QSP: dynamic text: "There''s not much to say, <<$pcs_nickname>>." Says Katja smiling.
         scene.text(`"There's not much to say, ${((s as any).pcs_nickname || '')}." Says Katja smiling.`);
         scene.text('"As far as I know they go for a walk in the park. Though they walk on the off-beat tracks, attempting to stay hidden, away from all the prying eyes." Katja continues.');
         ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 1;
@@ -542,7 +542,7 @@ function enterBeachStalk(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hmm, where they are heading? Vicky\'s house is in the opposite direction, Vanya\'s too…" You think for yourself. In the corner of your eye you see Vicky\'s twin sister Katja sunbathing on a towel and decided to ask her.');
   scene.text('<br>"Katja, do you know where they\'re heading?" You ask, nodding towards the couple?');
   if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
-    // TODO-QSP: dynamic text: "There's not much to say, <<$pcs_nickname>>." Says Katja smiling.
+    // TODO-QSP: dynamic text: "There''s not much to say, <<$pcs_nickname>>." Says Katja smiling.
     scene.text(`"There's not much to say, ${((s as any).pcs_nickname || '')}." Says Katja smiling.`);
     scene.text('"As far as I know they go for a walk in the park. Though they walk on the off-beat tracks, attempting to stay hidden, away from all the prying eyes." Katja continues.');
     scene.text('You say your thanks and after a brief chat with Katja, you decide to follow the couple. She said they go to the park so you start heading there to see if you can find them.');
@@ -567,7 +567,7 @@ function enterBeachStalk(s: GameState, scene: SceneBuilder): void {
 
 function enterParkMeet(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event';
-  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 10);
+  (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 11) + 10));
   qspCall(s, 'stat', '');
   if (((s as any).sunWeather ?? 0) === 0  ||  ((s as any).temper ?? 0) < 5) {
     if (((s as any).month ?? 0) === 3  ||  ((s as any).month ?? 0) === 4  ||  ((s as any).month ?? 0) === 5) {
@@ -622,7 +622,7 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).mey_vika ?? 0)?.['mey_vika_park_action'] === 1) {
         scene.text('<center><h2>Pavlovsk Park</h2></center>');
-        scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_park_kiss_\' + iif(month > 10 or month < 4, \'winter\', \'summer\') + \'.jpg');
+        scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_park_kiss_' + ((((s as any).month ?? 0) > 10  ||  ((s as any).month ?? 0) < 4) ? ('winter') : ('summer')) + '.jpg');
       } else {
         if (((s as any).mey_vika ?? 0)?.['mey_vika_park_action'] === 2) {
           scene.text('<center><h2>Pavlovsk Park</h2></center>');
@@ -651,10 +651,10 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('As you\'re leaving, you notice Vicky whispering something to Vanya. You notice Vanya\'s hand stroking and squeezing Vicky\'s butt, as they stare at you with lust in their eyes…');
       if (((s as any).npc_rel ?? 0)?.['A15'] < 80) {
-        return;
         scene.actions([
-          { label: 'Finish your walk', goto: ['pav_park', 'start'] },
-        ]);
+{ label: 'Finish your walk', goto: ['pav_park', 'start'] },
+]);
+        return;
       } else {
         if (((s as any).npc_rel ?? 0)?.['A15'] >= 80  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 18) {
           if ((((s as any).month ?? 0) >= 5  &&  ((s as any).month ?? 0) <= 10)  &&  (((s as any).hour ?? 0) <= 20  &&  ((s as any).hour ?? 0) >= 8)) {
@@ -662,7 +662,7 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
             if ((!((s as any).mesec ?? 0))) {
               scene.actions([
                 { label: 'Go with them to the beach', handler: (st: GameState) => {
-    qspGoto(s, 'mey_vika_events', 'beach_event0');
+    qspGoto(st, 'mey_vika_events', 'beach_event0');
   } },
                 { label: 'Decline', handler: (st: GameState) => {
     scene.text('You\'re in in a hurry, so you decide to thank Vicky for the invite but that you have something elsewhere that you need to attend.');
@@ -687,7 +687,7 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
               if ((!((s as any).mesec ?? 0))) {
                 scene.actions([
                   { label: 'Go with them to the sauna', handler: (st: GameState) => {
-    qspGoto(s, 'mey_vika_events', 'sauna_event');
+    qspGoto(st, 'mey_vika_events', 'sauna_event');
   } },
                   { label: 'Decline', handler: (st: GameState) => {
     scene.text('You\'re in in a hurry, so you decide to thank Vicky for the invite but that you have something elsewhere that you need to attend.');
@@ -712,7 +712,7 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
                 if (qspFunc(s, 'money', 'can_afford', 300) === 1) {
                   scene.actions([
                     { label: 'Visit the cafe', handler: (st: GameState) => {
-    qspGoto(s, 'mey_vika_events', 'cafe_repeat_qw');
+    qspGoto(st, 'mey_vika_events', 'cafe_repeat_qw');
   } },
                     { label: 'Decline', handler: (st: GameState) => {
     scene.text('You\'re in in a hurry, so you decide to thank Vicky for the invite but that you have something elsewhere that you need to attend.');
@@ -742,8 +742,8 @@ function enterParkMeet(s: GameState, scene: SceneBuilder): void {
             if (qspFunc(s, 'money', 'can_afford', 300) === 1) {
               scene.actions([
                 { label: 'Visit the cafe', handler: (st: GameState) => {
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 15;
-    qspGoto(s, 'mey_vika_events', 'cafe_qw');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 15;
+    qspGoto(st, 'mey_vika_events', 'cafe_qw');
   } },
                 { label: 'Decline', handler: (st: GameState) => {
     scene.text('You\'re in in a hurry, so you decide to thank Vicky for the invite but that you have something elsewhere that you need to attend.');
@@ -833,36 +833,36 @@ function enterCafeQw(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hmm…', handler: (st: GameState) => {
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (20);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (10);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (20);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (10);
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/cafe_qw1.jpg');
     scene.text('You "accidentally" drop a fork and bend down to pick it up. As you look under the table, you see Vicky with her legs spread wide while Vanya fingers her pussy and fondles her inner thighs, teasing the swollen clit, rubbing her lips, occasionally pushing his finger into her. As the fingers enter Vicky, she starts moving around trying to make herself cum.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'voyeur_sex', 10);
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'voyeur_sex', 10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/cafe_qw2.jpg');
     scene.text('So that\'s why she was arching! You\'re so mesmerized, you don\'t even notice the pussy juice flowing down your own legs. You knees tremble, but the excitement is still growing. You start to panic a bit and just a few more minutes later you know you must get away or else they\'ll see you orgasm.');
-    qspCall(s, 'arousal', 'voyeur_sex', (-100));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', (-100));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Say goodbye', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A15', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A165', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A15', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A165', 'like');
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/cafe_org.jpg');
     scene.text('You hastily say goodbye, wanting to get away. Vicky tries to say goodbye but she only manages to let out some quiet moans while Vanya begins speeding up. Seeing this you leave as quickly as you can. You turn around seeing them still at it, and right at the exit of the café a powerful orgasm hits you, making your legs tremble, barely keeping on your feet. You have to grab the patio wall of the café, just so you won\'t fall over.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'voyeur_sex', 2, 'unknown');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'voyeur_sex', 2, 'unknown');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go outside', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 18;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'cafe_parco', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 18;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'cafe_parco', 'start');
   } },
     ]);
   } },
@@ -910,7 +910,7 @@ function enterParkQw(s: GameState, scene: SceneBuilder): void {
     { label: 'Decline', handler: (st: GameState) => {
     scene.text('"I\'m sorry, but I can\'t tonight."');
     scene.text('"That\'s a shame…" Vicky answers disappointedly. "Well, some other time then."');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.actions([
       { label: 'Return', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -918,27 +918,27 @@ function enterParkQw(s: GameState, scene: SceneBuilder): void {
     { label: 'Agree', handler: (st: GameState) => {
     scene.text('You walk for an hour in the Park and spend a wonderful time with them. You walk in between them. Vicky, cheerfully chatting, holds you by the waist with one of her hands.');
     scene.text('You, of course, respond to her advances. You gently touch her back, continuing to walk arm in arm.');
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'End the walk', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A165');
-    qspCall(s, 'npcStat', 'A15', 'a');
-    qspCall(s, 'npc_relationship', 'modify', 'A15', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A165', 'like');
+    qspCall(st, 'npcStat', 'A165');
+    qspCall(st, 'npcStat', 'A15', 'a');
+    qspCall(st, 'npc_relationship', 'modify', 'A15', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A165', 'like');
     scene.text('"What a wonderful walk, Vanya! We need to do this again some time."<br> Vanya suddenly grabs you both with his arms and twirls around. The two of you start laughing and playfully try to escape from his grip. When saying goodbye Vicky leans towards you… and gives you a kiss on the lips. This kiss feels extraordinary and surprises you a bit… Vanya also kisses you and you, once again, start getting turned on just like at the café.');
-    qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'kiss', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] < 19) {
-      ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    if (((st as any).mey_vika ?? 0)?.['mey_vika_qw'] < 19) {
+      ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = ((st as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
     }
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_residential', '');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_residential', '');
   } },
     ]);
   } },
@@ -964,15 +964,15 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'mood', 'raise', 'tiny');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'mood', 'raise', 'tiny');
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_1.jpg');
     // TODO-QSP: dynamic text: Entering the sauna by yourselves, you quickly get changed and head towards the r...
-    scene.text(`Entering the sauna by yourselves, you quickly get changed and head towards the rocks to splash some water over them. Steam fills the room as you sit down on the bench next to Vicky, who is watching you with a smile on her face. "Hey ${((s as any).pcs_nickname || '')}, there are better ways we could turn the heat up in here, make it even steamier since Vanya is gone," she says mischievously.`);
+    scene.text(`Entering the sauna by yourselves, you quickly get changed and head towards the rocks to splash some water over them. Steam fills the room as you sit down on the bench next to Vicky, who is watching you with a smile on her face. "Hey ${((st as any).pcs_nickname || '')}, there are better ways we could turn the heat up in here, make it even steamier since Vanya is gone," she says mischievously.`);
     scene.text('"What do you mean?" you ask, looking around for something you might have missed.');
     scene.text('Both Vanya and myself have been seeing you around in the park and at school, and we have talked about asking if you would be interested in a threesome together at some point…" Vicky says as she reaches over and puts a soft hand over your thigh. "… and I like you, maybe even more than a friend."');
     scene.text('By this time, her face is very close to yours and you can feel your cheeks getting really red, and not from the heat rocks. "I don\'t know… I…"');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Kiss her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_2.jpg');
@@ -980,33 +980,33 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('Feeling turned on, you kiss her harder and part her lips with your tongue. Your own hands reach up and return the fondling, one hand slipping behind her bikini top and pushing it to the side, while you feel your own top being similarly moved aside for Vicky\'s hand.');
     scene.text('With a gasp of air, Vicky pulls back from your kiss and bites her lip in pleasure, moaning at your touch, and reaches over and rolls an exposed nipple between her fingers while she slowly pushes you backwards.');
     scene.text('Sliding down, she nibbles on your other nipple and gives it a parting sensuous lick, before sliding down even further.');
-    qspCall(s, 'arousal', 'kiss', 3, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 3, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_3.jpg');
     scene.text('While removing more of each other\'s clothing, you watch as Vicky places kisses down your chest, across your tummy, then spreads your legs with her hands while she pecks the area around your labia with her velvety lips. "I have been wanting to do this to you for a while. Mmm", she says sensually, before licking the crevasse from the bottom up while staring into your eyes.');
     scene.text('You arch your back as you feel her tongue part your nether lips and you drop your top to the floor next to Vicky\'s discarded clothing.');
     scene.text('Reaching down, you run a hand through her hair, while your other hand plays with one of your breasts. You lose track of time during your bliss when she stands up over you and turns around.');
-    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 3, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: '69', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_4.jpg');
     scene.text('Placing one leg to either side of you, she eases herself down once again and licks you between the legs from the other direction, and places her own cunny over your head.');
     scene.text('Taking the opportunity, you reach up with both hands and run them over her plump ass. You give each cheek a pleasurable squeeze, before pulling her down over your lips and slipping your own tongue between her folds. Feeling Vicky\'s tongue in yours quicken its momentum, you dive deeper into her folds and lap at her clit and inner walls with more gusto. You were just starting to feel a rise in pleasure being taken over by your orgasmic activities, when the door of the sauna opens.');
-    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'arousal', 'cuni_give', (-3), ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 3, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'arousal', 'cuni_give', (-3), ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Who is it?', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_5.jpg');
     scene.text('Vanya enters with a huge grin and takes in the scene in front of him. "Oh… I see you two are busy. Maybe I should come back later?" he asks and feigns turning around to leave.');
     scene.text('Vicky lifts her head from your pussy long enough to glare at him playfully, "Don\'t you dare! Get your ass over here and give me your cock!"');
     scene.text('Vanya turns back towards you and lets his towel fall, showing off his larger than average hard cock and swinging it left and right. "That\'s no way to ask, Vicky! Say \'please\'."');
-    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'arousal', 'cuni_give', (-3), ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 3, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'arousal', 'cuni_give', (-3), ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Vicky rides your face', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_6.jpg');
@@ -1014,50 +1014,50 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('With no other choice, you increase the tempo of your tongue in her folds, while she grinds your face in pleasure.');
     scene.text('Vanya saunters over and places his rod in front of Vicky, who swallows it to the base in one gulp with practiced ease. Her happy bobbing up and down his shaft as he guides her head with his hands, causes her to press down even more and grind your face.');
     scene.text('Her wetness drips down your chin as she finally lifts up off of you, with a resounding pop of Vanya\'s cock sliding out of her lips. She urges you to sit up on the next bench and spread your legs as she changes position, once again.');
-    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 3, ((st as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get eaten out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_7.jpg');
     scene.text('Vicky gets down on all fours, and places her lips over your crotch again. She sucks on your clit while she slides a couple fingers inside, which only goes faster as Vanya comes up behind her and presses the head of his dick into her pussy and slides himself into her.');
     scene.text('Fucking Vicky doggy style, Vanya grabs her hips and pulls Vicky back into him, ramming her hard. She responds by moaning into your sex, sending vibrations through your body and bringing you back into mindless bliss.');
     scene.text('You slowly start to feel yourself climax, and something in your face must have given it away, because Vanya gives Vicky a hearty smack on her ass and pulls her away from you, and flips her over onto her back.');
-    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 3, ((st as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Ride her face', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_8.jpg');
     scene.text('Laying on her back, Vicky spreads her legs, while Vanya gets back into position and rams into her. Vicky screams out with each thrust, and not wanting to let every jogger in the park know what\'s going on in the sauna, you decide to place yourself over her head and lower yourself down and ride her face as hard as she rode yours.');
     scene.text('Grinding yourself over her face, you quickly feel yourself edging closer and closer to orgasm. Vicky\'s moans and screams in your slit, as Vanya picks up speed, only heightens the sensation.');
-    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 3, ((st as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Orgasm', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_9.jpg');
     scene.text('By this time, all three of you are moaning loudly and Vicky is the first to climax. Her body shakes and spasms underneath you, and the force of her orgasmic scream in your folds is enough to make you release your juices all over the girl\'s face. You reach out and grasp both of her breasts and squeeze them, just to keep yourself steady.');
     scene.text('Vanya continues to plunge into Vicky for only a few more seconds, just enough to send her into a second convulsion, before sliding out of her and spraying her used slit and stomach with his seed with a deep moan and heavy breathing. He catches his breath and rolls over to lay back on a bench, "Oh, now that was fun."');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni', 3, ((st as any).npcID1 ?? 0), 'group', 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Aftercare', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_10.jpg');
     // TODO-QSP: dynamic text: "Yes, it was… we should definitely do this again. What do you think, <<$pcs_nick...
-    scene.text(`"Yes, it was… we should definitely do this again. What do you think, ${((s as any).pcs_nickname || '')}? Is this arrangement to your liking? Maybe even Vanya can have some fun with you too, but we can work that out later," Vicky says to you, while you slide up behind her and run your hands over her body once more.`);
+    scene.text(`"Yes, it was… we should definitely do this again. What do you think, ${((st as any).pcs_nickname || '')}? Is this arrangement to your liking? Maybe even Vanya can have some fun with you too, but we can work that out later," Vicky says to you, while you slide up behind her and run your hands over her body once more.`);
     scene.text('"Yeah, I\'d be up for this again. And I\'ll think about Vanya\'s involvement," you say, sticking your tongue out at him playfully before giving Vicky one last passionate kiss.');
     scene.text('"I promise I won\'t bite… unless you ask nicely," he responds with a playful wink in kind.');
     scene.text('You spend the next few minutes getting cleaned up and dressed, before leaving the sauna.');
     scene.text('Tired, but satisfied, the three of you walk back. Vicky is following you home, and just as you\'re about to part ways, she sweetly kisses you on the lips.');
     scene.text('"We should hang out at my place sometime. I\'ll introduce you to my mother. I\'m sure she\'ll be delighted to get to know you."');
     scene.text('You answer that you\'ll definitely think about it and thank her for the invitation.');
-    // TODO-QSP: dynamic text: "Don't forget about it now, <<$pcs_nickname>>!" Vicky presses on.
-    scene.text(`"Don't forget about it now, ${((s as any).pcs_nickname || '')}!" Vicky presses on.`);
+    // TODO-QSP: dynamic text: "Don''t forget about it now, <<$pcs_nickname>>!" Vicky presses on.
+    scene.text(`"Don't forget about it now, ${((st as any).pcs_nickname || '')}!" Vicky presses on.`);
     scene.text('"Of course I won\'t, Vicky!" you sincerely reply.');
-    qspCall(s, 'arousal', 'kiss', 3, 'lesbian');
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 20;
-    qspCall(s, 'stat', '');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBeachEnder(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'arousal', 'kiss', 3, 'lesbian');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 20;
+    qspCall(st, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1103,15 +1103,15 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) < 20) {
       scene.actions([
         { label: 'Swim', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_beach3.jpg');
     scene.text('You laugh and squeal as you\'re running towards the water to go swimming. When the water gets to your thighs you dive and after coming up again start splashing each other in the shallow water.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
@@ -1119,11 +1119,11 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Tan', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_beach4.jpg');
     scene.text('Vicky reaches into her bag and pulls out a bottle of suntan lotion…');
     scene.text('"Vanya, could you help me out? I always get burned like a pig because of my pale skin…"');
@@ -1142,26 +1142,26 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.text('"Do you enjoy the view?"');
     scene.text('Her catching you red-handed is turning you on. You feel a bit wet. You also notice that Vanya has a boner, his cock is clearly sticking out.');
     scene.text('"I need to go and cool off." He says, and goes for a swim.');
-    qspCall(s, 'arousal', 'voyeur', 5, 'group');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-      (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 60);
+    qspCall(st, 'arousal', 'voyeur', 5, 'group');
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 31) + 60));
       scene.text('Being a virgin you don\'t know how to deal with something sexual like this and just go quiet and hope it blows over.');
       scene.text('You meet some others from school and spend an hour or so at the beach before getting ready to head back into town.');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBeachEnder(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(s, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_beach6.jpg');
     scene.text('Vicky turns toward you…');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you also need to use suntan lotion. The sun is scorching hot...
-    scene.text(`"${((s as any).pcs_nickname || '')}, you also need to use suntan lotion. The sun is scorching hot!"`);
-    if (((s as any).pcs_tan ?? 0) <= 10) {
+    scene.text(`"${((st as any).pcs_nickname || '')}, you also need to use suntan lotion. The sun is scorching hot!"`);
+    if (((st as any).pcs_tan ?? 0) <= 10) {
       scene.text('"We\'re both really pale. You will get a sunburn for sure."');
     } else {
-      if (((s as any).pcs_tan ?? 0) <= 25) {
+      if (((st as any).pcs_tan ?? 0) <= 25) {
         scene.text('"Even though you\'re not as pale as me you can still get a sunburn easily."');
       } else {
-        if (((s as any).pcs_tan ?? 0) <= 50) {
+        if (((st as any).pcs_tan ?? 0) <= 50) {
           scene.text('"Even though you\'ve got a pretty tan you can still get a sunburn if you\'re not careful."');
         }
       }
@@ -1170,25 +1170,25 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.text('You start making excuses, but Vicky is determined…');
     scene.text('"Don\'t be silly! I\'ll smear you in and don\'t worry, I won\'t use my nails unless you want me to."');
     scene.text('"Remove your top!" She resolutely tells you.');
-    if (((s as any).pcs_tan ?? 0) <= 10) {
+    if (((st as any).pcs_tan ?? 0) <= 10) {
       scene.text('"The both of us are going to get a beautiful tan."');
     } else {
-      if (((s as any).pcs_tan ?? 0) <= 25) {
+      if (((st as any).pcs_tan ?? 0) <= 25) {
         scene.text('"I\'ll get a beautiful tan and you might even get an exotic air if your skin gets a shade darker."');
       }
     }
     scene.text('"Don\'t worry we\'re all alone here." and in one motion Vicky drops her bikini bottom…');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, could you apply lotion on my butt, I don't want to look like...
-    scene.text(`"${((s as any).pcs_nickname || '')}, could you apply lotion on my butt, I don't want to look like a red-assed baboon."`);
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, could you apply lotion on my butt, I don''t want to look lik...
+    scene.text(`"${((st as any).pcs_nickname || '')}, could you apply lotion on my butt, I don't want to look like a red-assed baboon."`);
     scene.text('"What if Vanya sees us?"');
     scene.text('Vicky starts laughing…');
     scene.text('"It\'s not like he hasn\'t seen it before."');
-    qspCall(s, 'arousal', 'voyeur', 5, 'lesbian');
+    qspCall(st, 'arousal', 'voyeur', 5, 'lesbian');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A165');
-    qspCall(s, 'npcStat', 'A15', 'a');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npcStat', 'A165');
+    qspCall(st, 'npcStat', 'A15', 'a');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_beach7.jpg');
     scene.text('You take off your bikini top too. Your nipples stiffen just from knowing that Vanya is also here. You\'re not alone here.');
     scene.text('Vicky lies down on her stomach, comically sticking out her round ass. You start smearing the lotion on her milky-white buttocks. You unintentionally slip your finger into her crotch, and you notice that Vicky is as wet as the Niagara falls, she\'s really horny. Vicky moans and buries her head in her towel, biting her lip.');
@@ -1196,14 +1196,14 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re also getting turned on, you feel your bikini bottom getting wet.');
     scene.text('"Lets switch. Lie on your back." Vicky grabs the bottle from you.');
     scene.text('She sits on top of you and generously covers your body with lotion. Her pussy, which is literally stuck to the bottom of your stomach, is so wet that it seems you could just smear it all over your body, no lotion needed. Her hands stroke and massage your breasts, playing with your nipples. Both of you are panting heavily. Suddenly she reaches into your crotch, your wide-open pussy is ready, dripping your juice all over her fingers. She leans in for a long and juicy kiss. She start pulling off your bottom and to help her out you lift your butt and with one hand, help her to pull them off you. You kiss passionately, unable to break away from each other, petting, stroking and caressing each other, forgetting about Vanya who\'s still swimming.');
-    qspCall(s, 'arousal', 'massage', 5, 'lesbian');
-    qspCall(s, 'arousal', 'kiss', (-5), 'lesbian');
+    qspCall(st, 'arousal', 'massage', 5, 'lesbian');
+    qspCall(st, 'arousal', 'kiss', (-5), 'lesbian');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_beach8.jpg');
     scene.text('Suddenly Vicky begins moaning loudly, biting your lower lip while you kiss. She starts pinching your nipples. It\'s very painful, as if she\'s determined to tear them apart. You can hear her rhythmically panting. The pain almost brings you back from the heights of ecstasy down to earth. Opening your eyes, you realize that Vanya has snuck up from behind and is licking Vicky excitedly, making her act like a wild animal.');
-    qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'lesbian');
-    qspCall(s, 'arousal', 'voyeur', (-5), 'group');
+    qspCall(st, 'arousal', 'kiss', 5, ((st as any).npcID1 ?? 0), 'lesbian');
+    qspCall(st, 'arousal', 'voyeur', (-5), 'group');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_beach9.jpg');
@@ -1212,29 +1212,29 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.text('"Vanya, not yet…"');
     scene.text('Vanya comes from behind Vicky and starts teasing you with his cock, pressing against your pussy lips. Vicky grabs Vanya\'s shaft, begins licking it and signals you to come over and join her. ');
     scene.text('You enthusiastically move over to Vanya licking his shaft, teasing him and finally having your lips envelop Vanya\'s hard cock. While you\'re pleasuring her boyfriend Vicky continues petting you edging you once more, stopping just before you orgasm as if she wants you to suffer.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'vaginal_finger', 20, ((s as any).npcID1 ?? 0), 'group', 'lube', 'lesbian');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'group');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'vaginal_finger', 20, ((st as any).npcID1 ?? 0), 'group', 'lube', 'lesbian');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0), 'group');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_beach10.jpg');
     scene.text('The couple look at each other as they\'ve come to a silent agreement that it\'s time to finally make you orgasm. Vanya brusquely thrusts his cock inside of you. You gasp as he enters you and not before long you\'re yelling loudly unable to hold back anymore, you orgasm violently just like a fountain, your knees buckling from the pressure. Vicky forces herself onto Vanya\'s cock, sucking him until he erupts in her mouth…');
     scene.text('Exhausted, and still shivering, you lie between Vanya and Vicky. They hug you, kissing and caressing your body.');
-    // TODO-QSP: dynamic text: "That was wonderful, <<$pcs_nickname>>." whispers Vicky. "I hope you're not mad ...
-    scene.text(`"That was wonderful, ${((s as any).pcs_nickname || '')}." whispers Vicky. "I hope you're not mad at us? Vanya and I have for the longest time wanted to experience a threesome. We really got fond of you, but we did not dare to ask you. We didn't know how you would react."`);
+    // TODO-QSP: dynamic text: "That was wonderful, <<$pcs_nickname>>." whispers Vicky. "I hope you''re not mad...
+    scene.text(`"That was wonderful, ${((st as any).pcs_nickname || '')}." whispers Vicky. "I hope you're not mad at us? Vanya and I have for the longest time wanted to experience a threesome. We really got fond of you, but we did not dare to ask you. We didn't know how you would react."`);
     scene.text('Your only response is you gently kissing them both.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', 10, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'kiss', (-2), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'kiss', (-3), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'kiss', (-2), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'kiss', (-3), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 20;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 20;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/vika_beach11.jpg');
-    if (((s as any).kanikuli ?? 0) > 0) {
+    if (((st as any).kanikuli ?? 0) > 0) {
       scene.text('Tired, but satisfied, the three of you walk back. Vicky is following you home, and just as you\'re about to part ways she sweetly kisses you on the lips.');
       scene.text('"We should go to my place. I\'ll introduce you to my mother. I\'m sure she\'ll be delighted to get to know you."');
       scene.text('"Vicky won\'t accept a no, so you are coming with us." Vanya says, as he places his arm around your shoulders and guides you out towards the residential area.');
@@ -1246,10 +1246,10 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
       scene.text('Tired, but satisfied, the three of you walk back. Vicky is following you home, and just as you\'re about to part ways she sweetly kisses you on the lips.');
       scene.text('"We should hang out at my place sometime. I\'ll introduce you to my mother. I\'m sure she\'ll be delighted to get to know you."');
       scene.text('You answer that you\'ll definitely think about it and thank her for the invitation.');
-      // TODO-QSP: dynamic text: "Don't forget about it now, <<$pcs_nickname>>!" Vicky presses on.
-      scene.text(`"Don't forget about it now, ${((s as any).pcs_nickname || '')}!" Vicky presses on.`);
+      // TODO-QSP: dynamic text: "Don''t forget about it now, <<$pcs_nickname>>!" Vicky presses on.
+      scene.text(`"Don't forget about it now, ${((st as any).pcs_nickname || '')}!" Vicky presses on.`);
       scene.text('"Of course I won\'t, Vicky!" You sincerely reply.');
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBeachEnder(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(s, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -1278,10 +1278,10 @@ function enterBeachEnder(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go', handler: (st: GameState) => {
-    if ((((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PSwim ?? 0) === 1)) {
-      qspCall(s, 'clothing', 'wear', ((s as any).lastwornclothingtype ?? 0), ((s as any).lastwornclothingnumber ?? 0));
+    if ((((st as any).clothingworntype ?? 0) === 'nude'  ||  ((st as any).PSwim ?? 0) === 1)) {
+      qspCall(st, 'clothing', 'wear', ((st as any).lastwornclothingtype ?? 0), ((st as any).lastwornclothingnumber ?? 0));
     }
-    qspGoto(s, 'pav_residential', '');
+    qspGoto(st, 'pav_residential', '');
   } },
   ]);
   scene.build();
@@ -1319,7 +1319,7 @@ function enterBeachEvent1(s: GameState, scene: SceneBuilder): void {
     scene.text('"How about we head over to the remote beach instead?!"');
     scene.actions([
       { label: 'Go to the remote beach', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterBeachEvent0(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 1]; enterBeachEvent0(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1413,8 +1413,8 @@ function enterCaseGift(s: GameState, scene: SceneBuilder): void {
     scene.text('Vicky looks at you, not wanting to waste any time, she embraces the plush toy, slides the dildo up and down her pussy lips, lubing it up, and then thrusts it deep into her pussy.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).pcs_horny = 100;
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (st as any).pcs_horny = 100;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/case_gift14.jpg');
     scene.text('You knees are tremble as you approach an orgasm, but then all of a sudden you hear footsteps coming up the stairs, Tamara was apparently still awake, watching TV. You hastily retreat to avoid getting caught at the crime scene.');
     scene.actions([
@@ -1480,13 +1480,13 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning2.jpg');
     scene.text('You see Vanya fucking Vicky\'s ass. They\'re really going at it. Vicky is fingering her clitoris and moaning loudly.');
     scene.text('Your jaw drops and you instantly get wet between the legs. You slide your hand inside your panties and begin rubbing your swollen clit. You begin fingering yourself fast and hard and almost immediately a violent orgasm overcomes you.');
-    if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 34) {
+    if (((st as any).mey_vika ?? 0)?.['mey_vika_qw'] === 34) {
       scene.text('The convulsions are so strong you start shaking. As you try to calm down you accidentally try to rest your hand on the door and tumble into the room, revealing yourself and what you\'ve been doing.');
       scene.actions([
         { label: 'Further', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'lower', ((((s as any).pcs_mood ?? 0) > 50) ? (30) : (((((s as any).pcs_mood ?? 0) > 20) ? (20) : (0)))));
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'mood', 'lower', ((((st as any).pcs_mood ?? 0) > 50) ? (30) : (((((st as any).pcs_mood ?? 0) > 20) ? (20) : (0)))));
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning3.jpg');
     scene.text('A hot wave of shame sweeps over you and you try to leave the room. But you only get entangled in your clothes and fall down again hurting your knees. Your eyes tear up from the pain and shame. As you\'re sitting on the floor, awkwardly trying to straighten your clothes, you feel ashamed, and feel pain in your knees.');
     scene.actions([
@@ -1494,8 +1494,8 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/meynolds/guestroom.jpg');
     scene.text('Having escaped from the room like a speeding bullet, you\'re now in "your" room. You slam the door shut, dive on your bed and cover your head with a blanket, curling up, feeling ashamed from the incident.');
     scene.text('Half an hour later you hear a gentle knock on the door and the soft voice of Tamara.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, dear, will you let me in if it's okay?"
-    scene.text(`"${((s as any).pcs_nickname || '')}, dear, will you let me in if it's okay?"`);
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, dear, will you let me in if it''s okay?"
+    scene.text(`"${((st as any).pcs_nickname || '')}, dear, will you let me in if it's okay?"`);
     scene.text('You nod, realizing that since aunt Tamara is standing behind a closed door she can\'t seeing you nod.');
     scene.text('"Of course. I\'ll open the door…" You answer in a husky voice.');
     scene.text('Aunt Tamara is still wearing the same robe as before. You can\'t believe that her warm and endearing smile was completely different just a few minutes ago. Like a superior mistress.');
@@ -1505,8 +1505,8 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.text('"Wipe your tears, girl, and come on down. You seem ready for this conversation."');
     scene.actions([
       { label: 'Go into the hall', handler: (st: GameState) => {
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 35;
-    qspCall(s, 'homes_properties', 'give_access', 'meynold_household');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 35;
+    qspCall(st, 'homes_properties', 'give_access', 'meynold_household');
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning4.jpg');
     scene.text('You sniff and unassumingly, still wiping your wet eyes, you follow aunt Tamara, mentally preparing for the worst.');
     scene.text('As soon as you enter the room, Vicky stands up and hugs you. She makes you sit next to her.');
@@ -1529,22 +1529,22 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.text('After a while Tamara speaks up…');
     scene.text('"If you are serious about wanting to learn, you should come here after school. The more time you spend with me the more progress you will make."');
     scene.text('"What about my parents? Won\'t they wonder why I\'m always here?" You ask Tamara.');
-    // TODO-QSP: dynamic text: "I have a solution for that, I'll give you a job as an au pair. You will get a r...
+    // TODO-QSP: dynamic text: "I have a solution for that, I''ll give you a job as an au pair. You will get a ...
     scene.text(`"I have a solution for that, I'll give you a job as an au pair. You will get a room here and we'll say you're helping around the house. Now let's talk about your pay, my first offer is ${qspFunc(s, 'money', 'string_profit', 10000)} a month, it might not sound like much, but you're still in school. We generally do everything ourselves around the house, so your "focus" will solely be on your studies. Well, if you want to help, we would appreciate it, but it's not necessary."`);
     scene.actions([
       { label: 'Go to your room', goto: ['mey_home', 'guest_bedroom'] },
     ]);
   } },
       { label: 'Cry from shame and resentment', handler: (st: GameState) => {
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 35;
-    qspCall(s, 'homes_properties', 'give_access', 'meynold_household');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 35;
+    qspCall(st, 'homes_properties', 'give_access', 'meynold_household');
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/learning4.jpg');
     scene.text('As Tamara gets up you break out in tears again.');
     scene.text('"B-But… They\'ll be mad at me!…" You start sobbing again. "I can\'t face them after this."');
     scene.text('"Don\'t worry, sweetheart." Tamara says gently as she sits down again. "It\'s not like this is the first time you\'ve seen them enjoy themselves like that. I know my daughter. She\'s been teasing you for a while now, hasn\'t she? Don\'t think for a second that they mind."');
     scene.text('"I\'ve seen a lot and been through a lot in my life. And I don\'t want my children to go through the same mishaps as I did. Sex is an integral part of our lives and if you know how to properly make use of this knowledge, you will find many doors opening. There are many wrong choices you can make in life. And who would I be, if I didn\'t prepare my children for the adult life?"');
-    // TODO-QSP: dynamic text: "Y-You teach them these things?" you ask. "My <<$npc_nickname['A29']>> would loc...
-    scene.text(`"Y-You teach them these things?" you ask. "My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} would lock me in my room if she even thought I'd consider such things."`);
+    // TODO-QSP: dynamic text: "Y-You teach them these things?" you ask. "My <<$npc_nickname[''A29'']>> would l...
+    scene.text(`"Y-You teach them these things?" you ask. "My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} would lock me in my room if she even thought I'd consider such things."`);
     scene.text('"Oh sweety, your mother isn\'t exactly making things easier on you by forcing you to find everything out on yourself. Things can be a lot easier when you have someone to teach you."');
     scene.text('Tamara Meynold sighs…');
     scene.text('"If only I could make Katja understand…"');
@@ -1561,7 +1561,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.text('After a while Tamara speaks up…');
     scene.text('"If you are serious about wanting to learn, you should come here after school. The more time you spend with me the more progress you will make."');
     scene.text('"What about my parents? Won\'t they wonder why I\'m always here?" You ask Tamara.');
-    // TODO-QSP: dynamic text: "I have a solution for that, I'll give you a job as an au pair. You will get a r...
+    // TODO-QSP: dynamic text: "I have a solution for that, I''ll give you a job as an au pair. You will get a ...
     scene.text(`"I have a solution for that, I'll give you a job as an au pair. You will get a room here and we'll say you're helping around the house. Now let's talk about your pay, my first offer is ${qspFunc(s, 'money', 'string_profit', 10000)} a month, it might not sound like much, but you're still in school. We generally do everything ourselves around the house, so your "focus" will solely be on your studies. Well, if you want to help, we would appreciate it, but it's not necessary."`);
     scene.actions([
       { label: 'Go to your room', goto: ['mey_home', 'guest_bedroom'] },
@@ -1573,7 +1573,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = ((s as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
+      ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = ((st as any).mey_vika['mey_vika_qw'] ?? 0) + (1);
       scene.actions([
         { label: 'Return to your room', goto: ['mey_home', 'guest_bedroom'] },
       ]);
@@ -1594,7 +1594,7 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['gym_day'] = ((s as any).daystart ?? 0);
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['gym_day'] = ((st as any).daystart ?? 0);
     scene.text('"I\'m sorry, Vicky. I just came back from a run."Sure, no problem…" Vicky replies irritated, slamming the door.');
     scene.actions([
       { label: 'Continue on', goto: ['mey_home', 'start'] },
@@ -1606,7 +1606,7 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/gym3.jpg');
-    if (((s as any).pcs_danc ?? 0) > 50  ||  ((s as any).pcs_dancero ?? 0) > 50  ||  ((s as any).pcs_dancero ?? 0) > 50) {
+    if (((st as any).pcs_danc ?? 0) > 50  ||  ((st as any).pcs_dancero ?? 0) > 50  ||  ((st as any).pcs_dancero ?? 0) > 50) {
       scene.text('At first you manage to keep up with Vicky, probably thanks to learning how to dance, but soon she starts bending in ways you just can\'t manage. She\'s flexible like a cat.');
     } else {
       scene.text('You try to keep up with Vicky, but she\'s flexible like a cat, and you are struggling as you are not as flexible.');
@@ -1627,8 +1627,8 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why are you jumping around?" You ask her taken aback a bit.');
     scene.text('"Look at my breast jiggling as I jump around." Says Vicky, turning her back to you.');
     scene.text('She bends over and pulls off her pants. Then she strips off her socks as well.');
-    // TODO-QSP: dynamic text: "You should take your clothes off too, <<$pcs_nickname>>. You'll feel much more ...
-    scene.text(`"You should take your clothes off too, ${((s as any).pcs_nickname || '')}. You'll feel much more free!"`);
+    // TODO-QSP: dynamic text: "You should take your clothes off too, <<$pcs_nickname>>. You''ll feel much more...
+    scene.text(`"You should take your clothes off too, ${((st as any).pcs_nickname || '')}. You'll feel much more free!"`);
     scene.text('You too, strip and you start jumping, laughing together with Vicky.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -1644,27 +1644,27 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
     scene.text('Finally the main program is completed and you start doing some relaxation exercises.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).fat = ((s as any).fat ?? 0) - (10);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (30);
-    qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'sweat', 'add', 3);
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['gym_day'] = ((s as any).daystart ?? 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).fat = ((st as any).fat ?? 0) - (10);
+    (st as any).pcs_stam = ((st as any).pcs_stam ?? 0) - (30);
+    qspCall(st, 'exp_gain', 'react', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'sweat', 'add', 3);
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['gym_day'] = ((st as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/gym10.jpg');
     scene.text('Vicky makes you do a few yoga poses, as you\'re about to finish she says…');
-    // TODO-QSP: dynamic text: "Time to hit the shower! Won't you join me, <<$pcs_nickname>>?"
-    scene.text(`"Time to hit the shower! Won't you join me, ${((s as any).pcs_nickname || '')}?"`);
-    if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((s as any).mey_vika ?? 0)?.['bath_qw'] === 1  &&  ((s as any).mey_vika ?? 0)?.['bath_qw_day'] !== ((s as any).daystart ?? 0)) {
+    // TODO-QSP: dynamic text: "Time to hit the shower! Won''t you join me, <<$pcs_nickname>>?"
+    scene.text(`"Time to hit the shower! Won't you join me, ${((st as any).pcs_nickname || '')}?"`);
+    if (((st as any).mesec ?? 0) === 0  &&  ((st as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((st as any).mey_vika ?? 0)?.['bath_qw'] === 1  &&  ((st as any).mey_vika ?? 0)?.['bath_qw_day'] !== ((st as any).daystart ?? 0)) {
     }
     scene.actions([
       { label: 'Take a shower by yourself', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
     scene.img('images/characters/pavlovsk/school/girl/vicky/after_bath0.jpg');
     scene.text('It takes you about fifteen minutes to take a shower.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
     scene.actions([
@@ -1736,12 +1736,12 @@ function enterGym1(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s right, gymnasts are not allowed to be naked!" You think to yourself, tightly clutching your knees, trying to stop a familiar itch that\'s happening in the crotch area.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 11) + 10);
-    qspCall(s, 'stat', '');
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['gym_day'] = ((s as any).daystart ?? 0);
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 11) + 10));
+    qspCall(st, 'stat', '');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['gym_day'] = ((st as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/gym26.jpg');
     scene.text('Vicky is almost done and is now finishing by doing some relaxation exercises. As soon as she\'s finished, she runs down, picks up her clothes, and quickly runs back to her room.');
-    qspCall(s, 'arousal', 'voyeur', (-20), 'lesbian');
+    qspCall(st, 'arousal', 'voyeur', (-20), 'lesbian');
     scene.actions([
       { label: 'Well, that was interesting…', goto: ['mey_home', 'start'] },
     ]);
@@ -1777,9 +1777,9 @@ function enterBathQw0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
     scene.actions([
       { label: 'Take a bath', handler: (st: GameState) => {
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['bath_qw'] = 1;
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['bath_qw_day'] = ((s as any).daystart ?? 0);
-    qspGoto(s, 'mey_vika_events', 'bath_common', '1');
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['bath_qw'] = 1;
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['bath_qw_day'] = ((st as any).daystart ?? 0);
+    qspGoto(st, 'mey_vika_events', 'bath_common', '1');
   } },
     ]);
   }
@@ -1801,12 +1801,12 @@ function enterBathQw1(s: GameState, scene: SceneBuilder): void {
   ((s as any).mey_vika = (s as any).mey_vika ?? {})['bath_qw_day'] = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   scene.text('Standing in the hallway in her shorts and a short top Vicky confronts you, pointing at the stairs.');
-  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! No excuses you're taking a bath now! Come with me!"
+  // TODO-QSP: dynamic text: "<<$pcs_nickname>>! No excuses you''re taking a bath now! Come with me!"
   scene.text(`"${((s as any).pcs_nickname || '')}! No excuses you're taking a bath now! Come with me!"`);
   if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
     scene.actions([
       { label: 'Take a bath', handler: (st: GameState) => {
-    qspGoto(s, 'mey_vika_events', 'bath_common', '1');
+    qspGoto(st, 'mey_vika_events', 'bath_common', '1');
   } },
     ]);
   }
@@ -1835,54 +1835,54 @@ function enterBathCommon(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw3.jpg');
     scene.text('Vicky pours a great deal of shampoo in the water stirring lots of foam. She starts laughing as the foam expands.');
     scene.text('Raising a foam mountain, Vicky jumps in it, splashing water all over you. You sit on the edge of the bath. Vicky now standing up, grabs a handful of foam and begins to smear it all over your body.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the bath.');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw4.jpg');
     scene.text('The teasing quickly turns into gentle caressing. Vicky leans into you and begins kissing you, playing with your tongue, biting your lower lip. Resisting her is futile. You don\'t mind as you want the same thing as her. Vicky is her usual self, very spontaneous, passionate and flirty, and you can\'t avoid getting excited by being with her.');
-    qspCall(s, 'arousal', 'foreplay', Math.floor(Math.random() * 6) + 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', (Math.floor(Math.random() * 6) + 5), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw5.jpg');
     scene.text('Grabbing the showerhead, she washes off the foam, directing the water jets on your pussy making your body shiver.');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw6.jpg');
     scene.text('Vicky lets go of the showerhead, teasing and playing with your pussy lips, running her fingers slowly up and down, carefully avoiding sliding them inside your pussy. She spreads your legs wider, leaning in, sucking on your clit. You purr like a cat when Vicky begins licking your pussy.');
-    qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw7.jpg');
     scene.text('Vicky stops, stands up and reaches for something in the cabinet. You don\'t notice it at first but as she moves over to you once more you see she\'s holding a pink dildo. She slides down on her knees, and begins licking you again, inserting the dildo into your wide spread pussy. You let a loud sensual moan escape from your mouth and you begin helping her out by slowly moving up and down.');
-    qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_dildo', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw8.jpg');
     scene.text('Vicky makes you turn around and without any hesitation she shoves the dildo in your relaxed anus. The dildo slides right in, causing you a new wave of pleasure. As she pulls the dildo out she begins licking your ass while she\'s touching your pussy with her hand.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'anal_dildo', 5, 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'anal_dildo', 5, 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw9.jpg');
     scene.text('Wanting to repay the favor, you sit before her, taking the initiative. Vicky begins to moan from the pleasure of the dildo. At the same time you gently caress her wet, red pubes. Vicky is not a fan of shaving her private area, claiming that when having a stub, the pussy area feels like sandpaper. But you know the truth, she\'s just too lazy to shave.');
-    qspCall(s, 'arousal', 'vaginal_dildo_give', Math.floor(Math.random() * 6) + 5);
+    qspCall(st, 'arousal', 'vaginal_dildo_give', (Math.floor(Math.random() * 6) + 5));
     scene.text('Rolling her eyes, Vicky begins to moan loudly, rubbing your clit as you\'re relentlessly thrusting the dildo inside of her. She finally explodes, shaking, almost raising a small tsunami, screaming as she orgasms. Her drained body falls into the water, half of water is already on the floor thanks to your little games.');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/vicky/sex/bath_qw10.jpg');
     scene.text('Satisfied, you quickly rinse and get out of the bath.');
     scene.text('"That was amazing!" Vicky screams. "We\'ll definitely do this again!"');
@@ -1973,31 +1973,31 @@ function enterBangKatya2(s: GameState, scene: SceneBuilder): void {
     scene.text('You grab his cock and stroke his head up and down Katja\'s pussy, which is now dripping wet.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 6) + 15);
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 21) + 10);
-    ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_bang_qw'] = 1;
-    ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = 0;
-    ((s as any).Katjastat = (s as any).Katjastat ?? {})['vaginal'] = ((s as any).Katjastat['vaginal'] ?? 0) + (1);
-    if (((s as any).katjaQW ?? 0)?.['slut'] < 20) {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 6) + 15));
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 21) + 10));
+    ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_bang_qw'] = 1;
+    ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = 0;
+    ((st as any).Katjastat = (st as any).Katjastat ?? {})['vaginal'] = ((st as any).Katjastat['vaginal'] ?? 0) + (1);
+    if (((st as any).katjaQW ?? 0)?.['slut'] < 20) {
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = 0;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/sex/home/bang_katya8.jpg');
     scene.text('Katja, all of a suddenly rolls on her side, turning her back on Vanya and without any hesitation he enters her to his full length and begins moving in and out her wet pussy. Not to interfere with Vanya, you move over to the side and begin caressing her clit with your tongue, while Vanya\'s cock is moving slowly in front of your face. Katja, clinging to her sister, kisses her passionately, breathing heavily, panting, moves around so you can taste the wonderful juices off Vanya\'s cock with your tongue.');
     scene.text('Finally Katja screams loudly, exploding, locking her whole body as she\'s convulsing, Vanya barely has time to pull out of her, groans, and cums all over the bed and falls back exhausted.');
     scene.text('Katja wakes up and looks around shocked.');
     scene.text('"What… What… are you doing… So it wasn\'t a dream?"');
-    if (((s as any).katjaQW ?? 0)?.['Slut'] < 20) {
+    if (((st as any).katjaQW ?? 0)?.['Slut'] < 20) {
       scene.text('"I hate you, you fucking bitch! Get the fuck out!" Katja yells. "How could you? I know it was your idea, bitch!" She yells, frantically trying to cover herself with the blanket.');
       scene.text('"Don\'t lie, I know you liked it!" Vicky wisely jumps off the bed, away from her sister as she\'s throwing a tantrum. You and Vanya also move away not wanting to get caught in the crossfire.');
       scene.text('"Get out! So I don\'t have to watch your pathetic little face!" Katja growls furiously.');
     } else {
-      if (((s as any).katjaQW ?? 0)?.['Slut'] < 40) {
+      if (((st as any).katjaQW ?? 0)?.['Slut'] < 40) {
         scene.text('Kate hesitate and blushes, trying to cover her face with the blanket.');
         scene.text('"To be honest… it was the best sleep I\'ve ever had in my life…"');
         scene.text('Vicky doesn\'t even bat an eye. This girl doesn\'t know what shame is, there is no way to embarrass her.');
-        // TODO-QSP: dynamic text: "What are you worrying about? We're at home! And the only ones knowing about it ...
-        scene.text(`"What are you worrying about? We're at home! And the only ones knowing about it is us! You don't have to worry about ${((s as any).pcs_nickname || '')} or Vanya saying anything I got them wrapped around my finger. And don't be such a prude. They did a damn good job at pleasing you and you still complain."`);
+        // TODO-QSP: dynamic text: "What are you worrying about? We''re at home! And the only ones knowing about it...
+        scene.text(`"What are you worrying about? We're at home! And the only ones knowing about it is us! You don't have to worry about ${((st as any).pcs_nickname || '')} or Vanya saying anything I got them wrapped around my finger. And don't be such a prude. They did a damn good job at pleasing you and you still complain."`);
       } else {
         scene.text('Katja blushes even more, although you think it\'s impossible, she turns even more red just like a strawberry.');
         scene.text('She licks her lips.');

@@ -9,34 +9,34 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'add_types') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('ears'))) + 1)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'add_types') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('ears'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'ears');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nose'))) + 1)) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nose'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'nose');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('brow'))) + 1)) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('brow'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'brow');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('lip'))) + 1)) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('lip'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'lip');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('tongue'))) + 1)) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('tongue'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'tongue');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('navel'))) + 1)) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('navel'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'navel');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nipples'))) + 1)) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nipples'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'nipples');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('pussy'))) + 1)) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('pussy'))) + 1)) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'pussy');
     }
     return;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'set_exceptions') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'set_exceptions') {
     return;
   }
   return;
@@ -45,7 +45,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'add') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'add') {
     // TODO-QSP: gs 'piercing_attributes', $ARGS[2], ARGS[3]
     if ((!((s as any).PirQuality ?? 0))) {
       // TODO-QSP: exit
@@ -61,16 +61,16 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplay(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'grid_shop') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'header') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'grid_shop') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'header') {
       return;
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'main') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'main') {
       // TODO-QSP: gs 'piercing_attributes', $ARGS[4], ARGS[5]
-      scene.img(`${qspFunc(s, 'piercing_management', '$ARGS[4] + \'_image', ((s as any).locArgs?.[5] ?? ''))}`);
+      scene.img(`${qspFunc(s, 'piercing_management', ((s as any).locArgs?.[4] ?? '') + '_image', ((s as any).locArgs?.[5] ?? ''))}`);
       return;
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'footer') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'footer') {
       return;
     }
     return;
@@ -86,29 +86,29 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['number'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount'] = ((s as any).locArgs?.[4] ?? 0);
   // TODO-QSP: gs 'piercing_attributes', $shop_utils_view['type'], shop_utils_view['number']
-  scene.img(`${qspFunc(s, '\'piercing_management\'', '$shop_utils_view[\'type\'] + \'_image\'', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
+  scene.img(`${qspFunc(s, 'piercing_management', ((s as any).shop_utils_view ?? 0)?.['type'] ?? '' + '_image', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop') {
     qspGoto(s, 'piercing_view', 'view_item_shop');
   }
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Return', handler: (st: GameState) => {
+{ label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'piercing_management', 'is_owned', ((s as any).shop_utils_view ?? 0)?.['type'], ((s as any).shop_utils_view ?? 0)?.['number'])) {
     scene.text('You already own this piercing.');
-    return;
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
+{ label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+]);
+    return;
   }
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['discount_total'] = (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0) + qspFunc(s, 'shop_utils', 'get_discount', ((s as any).shop_utils_view ?? 0)?.['type'] + '_piercings', ((s as any).shop_utils_view ?? 0)?.['number']);
   ((s as any).shop_utils_view = (s as any).shop_utils_view ?? {})['base_price'] = ((s as any).PirPrice ?? 0);
@@ -125,19 +125,19 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: 'Price: ' + $shop_utils_view['price_string']
     if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['price']) === 0) {
-      // TODO-QSP: dynamic text: You cannot afford to get your <<$shop_utils_view['type']>> pierced with this pie...
+      // TODO-QSP: dynamic text: You cannot afford to get your <<$shop_utils_view[''type'']>> pierced with this p...
       scene.text(`You cannot afford to get your ${((s as any).shop_utils_view ?? 0)?.['type'] ?? ''} pierced with this piercing.`);
     } else {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Get your ' + String(((s as any).shop_utils_view ?? 0)?.['type'] ?? '' ?? '') + ' pierced and buy this piercing (0:05, ' + String(((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '' ?? '') + ')', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    scene.img(`${qspFunc(s, '\'piercing_management\'', '$shop_utils_view[\'type\'] + \'_image\'', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
-    // TODO-QSP: dynamic text: The tattooist disinfects the area, pierces your <<$shop_utils_view['type']>> and...
-    scene.text(`The tattooist disinfects the area, pierces your ${((s as any).shop_utils_view ?? 0)?.['type'] ?? ''} and inserts your chosen piercing.`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    scene.img(`${qspFunc(s, 'piercing_management', ((st as any).shop_utils_view ?? 0)?.['type'] ?? '' + '_image', ((st as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
+    // TODO-QSP: dynamic text: The tattooist disinfects the area, pierces your <<$shop_utils_view[''type'']>> a...
+    scene.text(`The tattooist disinfects the area, pierces your ${((st as any).shop_utils_view ?? 0)?.['type'] ?? ''} and inserts your chosen piercing.`);
     // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
     // TODO-QSP: gs 'piercing_management', 'add', $shop_utils_view['type'], shop_utils_view['number']
-    qspCall(s, 'piercing_management', 'count');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'piercing_management', 'count');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -161,20 +161,20 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
         { label: '', labelFn: (s: GameState) => 'Buy (' + String(((s as any).shop_utils_view ?? 0)?.['price_string'] ?? '' ?? '') + ')', handler: (st: GameState) => {
     // TODO-QSP: gs 'money', 'pay', shop_utils_view['price']
     // TODO-QSP: gs 'piercing_management', 'add', $shop_utils_view['type'], shop_utils_view['number']
-    qspCall(s, 'piercing_management', 'count');
-    qspCall(s, 'stat', '');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    qspCall(st, 'piercing_management', 'count');
+    qspCall(st, 'stat', '');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       ]);
     }
   }
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Return', handler: (st: GameState) => {
+{ label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 

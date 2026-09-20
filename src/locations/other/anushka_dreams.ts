@@ -22,17 +22,17 @@ function enterDreams(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('A little surprised by her reaction, it makes you curious. "What was the dream about?"');
     scene.text('She shrugs a bit. "It was weird, I have been having a lot of weird dreams lately." Then she pauses a moment as if to consider why she might be having a lot of weird dreams.');
-    if (((s as any).anushkaQW ?? 0)?.['dreams'] === 0) {
+    if (((st as any).anushkaQW ?? 0)?.['dreams'] === 0) {
       scene.actions([
         { label: 'Listen to her dream', goto: ['anushka_dreams', 'dream1'] },
       ]);
     } else {
-      if (((s as any).anushkaQW ?? 0)?.['dreams'] === 1) {
+      if (((st as any).anushkaQW ?? 0)?.['dreams'] === 1) {
         scene.actions([
           { label: 'Listen to her next dream', goto: ['anushka_dreams', 'dream2'] },
         ]);
       } else {
-        if (((s as any).anushkaQW ?? 0)?.['dreams'] === 2) {
+        if (((st as any).anushkaQW ?? 0)?.['dreams'] === 2) {
           scene.actions([
             { label: 'Listen to her third dream', goto: ['anushka_dreams', 'dream3'] },
           ]);
@@ -44,7 +44,7 @@ function enterDreams(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('Even though she seems kinda excited about her dream, you really don\'t care and have no real desire to know what other people dream about. "Oh, yeah I get weird dreams sometimes too." Then you change the subject to something you saw online, she either wasn\'t that interested in talking about her dream or she gets that you have no interest and doesn\'t mention it again.');
-    if (((s as any).region ?? 0) === 'pav') {
+    if (((st as any).region ?? 0) === 'pav') {
       scene.actions([
         { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
         { label: 'Stop talking', goto: ['anush_bedroom', 'anushroom'] },
@@ -70,27 +70,27 @@ function enterDream1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Listen', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/2_lost.jpg');
     scene.text('"So I pulled out my phone to pull up a map and maybe see if we could find out where we was but I had no signal and then you tired and the same thing. After a bit of a discussion we decided to try and turn around and head back, only to end up right back where we was when we got lost. We walked for hours and started to hear noises in the woods around us but we could never see what was making the noise." She tells you, but you can tell by how animated she is, there is a lot more to the story than just getting lost.');
     scene.actions([
       { label: 'Then what?', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/3_night.jpg');
     scene.text('"Then what?" You ask her, as you start to get into the story a bit.');
     scene.text('She smiles, maybe appreciating that you seem to actually be interested. "After awhile the noises got worse and even worse than that the sun started to set. By that point we was both getting a bit scared, especially once you said you heard from your Grandma there there is wolves in these woods."');
     scene.actions([
       { label: 'What happened next?', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/4_shelter.jpg');
     scene.text('"What happened next?" you ask her.');
     scene.text('"We decided to build a shelter for the night until morning so we didn\'t end up trying to wander around in the middle of the dark. We found a fallen try and used it with it limbs as a base for our shelter. Breaking off other branches to make a tree limb tent thingy, anyways once we finished we was exhausted. We crawled inside of our shelter, ate the last of our snacks and drank the last of our water we had, before going to bed.');
     scene.actions([
       { label: 'What happened the next morning?', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/5_alone.jpg');
     scene.text('"What happened the next morning?" you ask her.');
@@ -122,7 +122,7 @@ function enterDream1Two(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Listen', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/7_found.jpg');
     scene.text('Not wanting to interrupt her this time you just stay silent as she tells you about her dream. "I found you tied to a try naked, gagged with rope and one leg tied to another tree keeping it off the ground with your legs spread."');
@@ -131,31 +131,31 @@ function enterDream1Two(s: GameState, scene: SceneBuilder): void {
     scene.text('You close your mouth and let her go back to tell you about her weird sex dream.');
     scene.actions([
       { label: 'Stop talking and let her keep going', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/8_man.jpg');
     scene.text('You decide not to ask more questions or comments but can\'t help but grin a bit in amusement as she continues.');
     scene.text('"I was stunned, I mean of all the things that was not what I was expecting to find. I was thinking something had killed you or the wolves got you or something. Just as I was about to come out of the bushes and free you, I hear the noise again. So I waited to see if I could find out what it was. Just then a man walked out of the woods right up to you, you struggled but was unable to do much. The big man came up behind you at first and started to fondle you, then he pulled out his dick and started to fuck you. I must have gasped or something, because he suddenly stopped and looked right at me. He started towards me, I freaked out." She tells you.');
     scene.actions([
       { label: 'Listen', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/9_run.jpg');
     scene.text('"So I started running away, I mean he was twice my size. No way I would be able to fight him, plus something about him was just scary, I don\'t know why but I was scared of him. So I ran away as fast as I could. I could hear him right behind me, I kept stumbling and unable to run flat out as he kept getting closer." You have had dreams like that, where the scary thing chases you but you can\'t outrun it, as something always happens to slow you down, but you keep listening to her talk.');
     scene.actions([
       { label: 'Keep listening', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/10_caught.jpg');
     scene.text('"Suddenly he grabbed me from behind and threw me down on the ground hard, hard enough it knocked the air out of me and hurt a lot. I was dazed laying there trying to catch my breath, before he grabbed me rolling me onto my back. I tried to push him away, but he grabbed both my hands, putting them over my head and easily pinned them to the ground with one hand. With his other he started to choke me, I couldn\'t breath and no matter what how much I struggled I couldn\'t get free, slowly I started to pass out, unable to breath." Now her dream sounds more like a scary dream than a sex dream, maybe you misjudged her dream, as you start to get into it again. Her telling making it sound scary and all to real.');
     scene.actions([
       { label: 'Say nothing as she continues', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/11_stripped.jpg');
     scene.text('"He stops suddenly just before I pass out. I am fading on the edge of consciousness, when I realize he is stripping my clothes off like he did to you. He had also let go of my hands, maybe he though I was out, so I started fighting against him. He just laughs as I struggle to push him off, and keep him from stripping me. Then he roughly shoves his fingers in my pussy, I scream. He covers my mouth and nose with one hand while his other one keeps fingering me. I struggle but again I am unable to breath and slowly things get dark as I pass out."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What did you do?', goto: ['anushka_dreams', 'dream1_three'] },
     ]);
@@ -185,24 +185,24 @@ function enterDream1Three(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/13_approached.jpg');
     scene.text('"I started struggling really hard then, knowing he was on his way back to me. Before I could get free walks up above my head, stopped with one foot on each side of my head. I look up at him and then notice his face is all messed up kinda like a monster. I scream and try once more to pull the stakes free, he only laughs then walks over and stomps on the only one I had got a little free driving it deeper into the ground. He circles around me stomping on each of the stakes driving them deep into the ground, I know way to deep now for me to ever get them free."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Weird but ok', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/14_violated.jpg');
     scene.text('"Once he stomps the last one deep into the ground, he circles around me to my side, putting one knee down between my legs. Suddenly he plunges his fingers back in me, I scream and he covers my mouth again. Then he calls me a slut and comments how wet I am, he pulls out his dick and then fucks me… which oddly felt good… in a fucked up scary way." She just shrugs at the look you give her.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What happened next?', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_one/15_choked.jpg');
     scene.text('"After he finishes fucking me he puts one kneed on my chest, reaching up with both hands and starts choking me. I struggle for all I am worth as I am unable to breath until the world slowly fades to black, the last thing I see his his monstrous face staring at me, laughing." She shakes her head a bit. "I really felt like I was dying at that moment, anyways."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep listening', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
@@ -330,8 +330,8 @@ function enterDream2Three(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/darkness_run10.jpg');
     scene.text('"He growled in a lot tone trying to sound scary again, but I couldn\'t stop laughing. So you want to play do you? Then he snapped his fingers and suddenly I was laying on the table in my shoes and just panties, otherwise I was naked, with him leering at me in a different way. I was mostly confused how I was suddenly almost completely naked to be worried." She explains.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What happened next?', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
@@ -339,8 +339,8 @@ function enterDream2Three(s: GameState, scene: SceneBuilder): void {
     scene.text('"Then he pushes me over until I am laying on my stomach, he walks around up to my head and pulls me partially off the table. While I am still coming to grips with how I moved and lost my clothes without actually taking them off, he pulls out his dick and shoves it in my mouth. Then he starts sounding like a typical guy, saying oh you think it is small now, blah blah blah. For some reason, I don\'t know why I start sucking his dick while he goes on and on." She explains.');
     scene.text('You smirks. "Maybe cause you like sucking dicks?"');
     scene.text('She flips you off as she continues telling you about her dream.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What did you do?', goto: ['anushka_dreams', 'dream2_four'] },
     ]);
@@ -366,7 +366,7 @@ function enterDream2Four(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_bj3.jpg');
     scene.text('"Like every guy he holds my head and starts shoving his dick down my throat making me gag, even guys in my dreams like to do that." She tells you, you can\'t tell if she is annoyed or amused by that or likely a bit of both.');
-    if (((s as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
+    if (((st as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
       scene.text('You smile a knowing smile. "Because it feels fucking amazing."');
       scene.text('She gives you a puzzled look. "How would you know how it feels to shove a dick down some girls throat?"');
       scene.text('You start to respond then snap your mouth shut as you realize she doesn\'t know that you can gives yourself a dick with magic. "Oh… well that is what the guys all say and I have read about it, supposedly it really feels amazing…" You awkwardly trail off, hoping she just accepts it.');
@@ -374,36 +374,36 @@ function enterDream2Four(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You nod in agreement, it certainly seems they all are that way. "I am use to it so it\'s didn\'t really bother me, just you know…"');
     }
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Listen to her tell you about her porn dream', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_strip.jpg');
     scene.text('"After a bit he pulls his dick out of my mouth and walks to my side, taking his clown clothes off. He then takes off my shoes, followed by sliding my panties down my legs, as he slowly slips them off. He rolls me over and pulls my butt to the edge of the table and steps up between my legs." You know where this is going, you wonder briefly if she ever has any dreams that doesn\'t eventually turn into a sex dream.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'You know what comes next', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_fuck1.jpg');
     scene.text('"He steps between my legs and slips his dick into my soaking wet pussy. He starts acting like this is unpleasant for me, like he is punishing me, but the more he fucks me the harder I moan." She explains.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What happened next?', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_fuck2.jpg');
     scene.text('"Then he starts getting mad again and looks at me and tells me, stop enjoying this. You arn\'t suppose to enjoy this, as he keeps fucking me. I just smile at him and tell him to fuck me harder." She says with a giggle.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What happened next?', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_fuck3.jpg');
     scene.text('"Then he snarls as he pulls out and flips me over and drives his dick in my pussy and starts trying to pound me as hard and fast as he can. I start screaming for him to fuck me harder and he just gets madder and madder at the situation." She seems pleased and amused about her dream clown was getting mad.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What did he do next?', goto: ['anushka_dreams', 'dream2_five'] },
     ]);
@@ -433,22 +433,22 @@ function enterDream2Five(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_anal2.jpg');
     scene.text('"Then I looked back at him over my shoulder and tell him. Yes fuck my ass, pound it like a pussy. He just gives me this look of disbelief, like he is just shocked, I have to start rocking back into him to keep him fucking me. Then he says. Are you fucking kidding me? Which I respond with, yes fuck my little ass harder, please."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Then what?', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_anal3.jpg');
     scene.text('"Then he just gets this look of annoyance on his face as he says. Fine what ever, I give up. So he fucks my ass for me until I have a orgasm that rocks my whole body. As I shakily drop to the ground before my legs give out, as I sit on the ground he comes over and starts jerking off over my face." She says shaking her head.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What happened next?', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_two/clown_cum.jpg');
     scene.text('"He tells me to open my mouth and he starts cumming in my mouth, on my tongue and on my face. His cum is sweet like candy. I swallow it all down and lick it off my face. I tell him I want more, then he starts getting dressed and complaining, saying. Fuck this, I\'m done with this shit. Why isn\'t anyone scared anymore and he went on and on about how messed up the world is now." She says shaking her head.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'So he just left?', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
@@ -525,8 +525,8 @@ function enterDream3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Not really', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'loathe');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'loathe');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You shake your head no. "No not really, I can tell this is just going to be another sex dream."');
@@ -596,8 +596,8 @@ function enterDream3Two(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Not really', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'loathe');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'loathe');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You shake your head no. "No not really, I\'m just not that interested in hearing about sex dreams."');
@@ -635,29 +635,29 @@ function enterDream3Three(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck2.jpg');
     scene.text('"Next another one of the minions grabs my head and pulls my mouth away from the first one and then shoves his dick in my mouth, while the first one pulls up my hand to jerk him off. The rest all pull out their cocks as well. The more I suck dick the sweeter the dicks start to taste. Each of the minion eventually shoves their cocks in my mouth and make me suck them."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Listen to her tell you about her porn dream', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck3.jpg');
     scene.text('"Then the owner says. Stop. The minions who\'s dick is in my mouth suddenly pulls his dick out of my mouth. I turn and look around at that point and see the owners cock hanging out of his pants, when he see\'s me look he says. That\'s right, now suck my dick little girl. The minions start shoving my head towards his dick, I have no choice but to obey and soon his dick is in my mouth as I jerk off the minions. His cock taste different, more… well like every other guys dick normally tastes."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Just listen', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck4.jpg');
     scene.text('"After a couple of minutes of sucking the owners dick, he pulls his cock out of my mouth. Then pulls me up until I am standing again, as he starts pushing my head back down just as quick. This time the minions are holding my legs and hips, so I can\'t squat back down, so the owner forces me to bend over all the way until my hands are touching the ground as I stand. The minions let go of me, as he owner pulled my red dress up, as one of the minions grabbed my panties and slipped them off. The owner kneeled down next to me as he said. Lets see if that tight little pussy of yours can calm them down. Just as he said that, I felt one of the minions slip is fat cock in my pussy as he started to fuck me."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Listen to the Willy Wonka porn parody dream', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck5.jpg');
     scene.text('"As the minion fucked me, the owner got up. The other three minions crowded around me, one of them stuck his dick in my mouth with the other two grabbed my hands and made me jerk them off. After a couple of minutes they all stopped and switched positions until all four of them got a turn fucking me."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What happened next?', goto: ['anushka_dreams', 'dream3_four'] },
     ]);
@@ -685,30 +685,30 @@ function enterDream3Four(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck7.jpg');
     scene.text('"He suddenly pulls his dick out of my pussy and pulls me up. Making the minions dick slip out of my mouth as he stands me up again. Before I can even react he grabs my dress and pulls it up over my head and tosses it aside. Leaving me completely naked now other than my knee socks." She says like the thought of wearing little white knee socks just annoys her. "He grabs me and shoves me over the top of a over sized donut."');
     scene.text('"My hips are on the center of the donut as he forces me over until my face is against the ground. He takes off his clothes as he walks around and puts his foot on the side of my head to pin my head against the floor, I feel my legs get kicked apart as he says to his minions. Go on my Oompa-Loompas explore her chocolate factory uninvited like she explored ours. Then he laughed that high pitched maniacal laugh. As he did I felt the first dick slide between my butt checks and into my butthole, as the first of the Oompa-Loompa starts fucking my ass."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Listen to her anal fantasies', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck8.jpg');
     scene.text('"After a few minutes of this the first Oompa-Loompa pulls his dick out of my butt, as the owner removes his foot from the side of my head. They lift me back to standing as the first Oompa-Loompa sits down on a couch that wasn\'t there, they bend me over in front of him as he shoves his dick in my mouth." She looks like the thought of sucking a dick that was just in her ass is going to make her vomit. "But it doesn\'t taste nasty like you would think, it taste just like actually chocolate." She notices your look to this. "Yeah yeah I know, disgusting but like I said at the start it was a weird fucking up dream. Anyways as I am sucking his dick that taste like chocolate, the next Oompa-Loompa shoves his dick up my ass and starts fucking me."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'You know what comes next', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck9.jpg');
     scene.text('"After each of the Oompa-Loompas have taken a turn fucking my ass, the make me straddle the one sitting on the couch and ride his dick with my pussy, while another shoves hid dick in my mouth, a third starts fucking my ass again, while I jerk off the fourth one. All the while the owner is laughing in his high pitched maniacal laugh. Yes yes! Fuck all her holes my Oompa-Loompas, just like she deserves. Again after a bit they rotate until each one has taken a turn fucking each of my holes."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep listening', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_fuck10.jpg');
     scene.text('"After I don\'t know how long the owner sits down naked on the couch as well, the two Oompa-Loompas by my head move away. Once my mouth is free of cock the owner grabs me by the hair and makes me start sucking his dick, while two of the Oompa-Loompas double penetrate me. The Oompa-Loompas take turns, one fucking my pussy while the other my ass, then they switch till each of the four has fucked both my holes again. The whole time the owner is making me suck his dick while he laughs tell me stuff like. That\'s it get it nice and wet with your slobber your going to need it."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'What happened next?', goto: ['anushka_dreams', 'dream3_five'] },
     ]);
@@ -736,25 +736,25 @@ function enterDream3Five(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_cum.jpg');
     scene.text('"I couldn\'t take it anymore and just then he pulls his dick out of my ass. He steps away from me. Turn around, he says in that deep demonic voice. As I do I see this demon or maybe the devil standing there with this huge cock swinging between his legs, I mean like horse dick sized cock. Now kneel and open your mouth, he says. So I kneel and open my mouth in front of him. He starts to laugh as he says. Maybe next time you will be a good little girl and do as you are told, unless you like being fucked like a slut. As he does his voice changes back to the high pitched happy voice as his body changes back to the owner. He walks up and starts jerking off, just as he does he starts cumming, he cums on my tits, on my face and fills my mouth completely up, like a impossible amount of cum. It is not sweet though, it is dark and bitter tasting."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep listening', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/dream_three/candy_cum_hat.jpg');
     scene.text('"Swallow it like a good little girl. He says. So I swallow down the bitter cum, as I close my eyes to force it down. When I open my eyes he is gone, everything is gone. No owner, no Oompa-Loompas, no couch, no candy, hell my clothes where all gone other than my stupid knee socks. Just me and the empty white room I saw when I first opened the door. For a moment I was unsure if any of it was real or not, but then I realized I was wearing the owners hat, still covered in his cum, followed by hearing his faint high pitched maniacal laughter."');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'So he just left?', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Dream</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/wakeup1.jpg');
     scene.text('"Then suddenly I woke up in my bed right here. I was soaking wet, I was so turned on." Then she shakes her head as if unsure what to think of her own dream. "So what do you make of it? What do you think it means or was it just a weird sex dream?" She asks you. You think about it for a bit It could be her subconscious warning her she is becoming a slut and you could tell her this, you don\'t think she would take it well. Maybe she is just really horny for some cock, maybe she hasn\'t gotten enough lately, you could tell her that. Or… or you don\'t really know. I mean what do dreams really mean if anything? You could tell her that.');
     scene.actions([
       { label: 'Tell her you have no clue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You shrug your shoulder, you really have no clue why she has such crazy sex dreams. "I don\'t know, maybe you are eating something that is messing with you?" She gives you a doubtful look and you shrug again. "I really have no clue, I suppose you could maybe look it up on the internet or something and see what you can find if you are really curious." You tell her.');
@@ -765,9 +765,9 @@ function enterDream3Five(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell her it is a warning', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'loathe');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'loathe');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You think for a moment and notice all of her sex dreams are also partially scary dreams or partial nightmares. "Well considering they are at least partially nightmares or about being punished. I think it is your subconscious telling you, that you are going to far with all the sex and you need to cut back on it."');
@@ -778,28 +778,28 @@ function enterDream3Five(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tell her she is just horny for cock', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You giggle slightly as you say. "I think you just love cock and want your holes fucked by cock twenty four seven."');
     scene.text('She gives a amused snort and shakes her head slightly. "Yeah maybe, I do love cock in my holes." She says in a tongue and cheek tone of voice.');
-    if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((s as any).strapNumber ?? 0) > 0  &&  ((s as any).strapNumber ?? 0) < 6  &&  ((s as any).npc_had_sex ?? 0)?.['A144'] > 0  &&  ((s as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
+    if (((st as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((st as any).strapNumber ?? 0) > 0  &&  ((st as any).strapNumber ?? 0) < 6  &&  ((st as any).npc_had_sex ?? 0)?.['A144'] > 0  &&  ((st as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
       scene.text('You have your strapon in your pack, you know the spell to make it real. If she is so horny maybe you can fuck her with your magical dick. You are sure she would love it.');
       scene.actions([
         { label: 'Keep talking', goto: ['anushkachat', 'chat'] },
         { label: 'Stop talking', goto: ['anush_bedroom', 'anushroom'] },
         { label: 'Tell her you will be right back', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'castSpell', 'penisenvy');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'castSpell', 'penisenvy');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('You get up off the bed telling her. "I\'ll be right back, need to use the bathroom real quick."');
     scene.text('She nods slightly. "Alright, don\'t get lost." She says with a smirk.');
     scene.text('You take your pack with you and go into the bathroom, you put the strapon on under your clothes and then focus your mind and begin casting the spell to make the strapon into a real dick for you.');
-    if ((!((s as any).penisEnvyVariable ?? 0))) {
+    if ((!((st as any).penisEnvyVariable ?? 0))) {
       scene.text('You focus the magic, you feel it pouring through you and into the dildo and strapon harness. You feel the harness melding into your skin, moments later you feel the dildo start to twitch. Slowly you can feel the weight of the balls and cock hanging from you, as they become real. You look down and grin at your magically real dick, before putting it away and heading back to Anushka\'s room, so you can fuck her.');
       scene.actions([
         { label: 'Go show her your surprise', goto: ['anushka_dreams', 'dream3_fuck'] },
@@ -891,17 +891,17 @@ function enterDream3Fuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy1.jpg');
     scene.text('She puts her phone on her nightstand and slides off her bed onto her feet. She starts to walk towards you but you put up a hand and she stops. "Not yet, you got to earn it. I need you to tease me, get me aroused first before I am ready to go." She rolls her eyes at your comment likely thinking you are taking the roll playing a bit to far, but little does she knows. Now just like a guy you got to get aroused enough first for your dick to get hard. "Why don\'t you take off that top and show me those firm little titties." You tell her.');
-    qspCall(s, 'arousal', 'flash', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Watch her take off her top', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy2.jpg');
     scene.text('She shakes her head and rolls her eyes even more, but does as you ask. You undoes her top, until her firm little titties are hanging free, she slowly removes her top in a seductive way, until she is naked from the waste up. You can feel your dick stirring a bit, but it needs more. "Nice, now how about you lose those little shorts of yours." You tell her.');
-    qspCall(s, 'arousal', 'flash', 1);
-    qspCall(s, 'arousal', 'voyeur', (-1));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 1);
+    qspCall(st, 'arousal', 'voyeur', (-1));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Watch her remove her shorts', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -910,17 +910,17 @@ function enterDream3Fuck(s: GameState, scene: SceneBuilder): void {
     scene.text('Your magical dick certainly liked it, you can feel it twitching to live and starting to get hard, right now it is still only semi hard but it is getting there. "Yeah very nice, cute pink panties." You say in a slightly teasing tone about the color, not something she typically wears.');
     scene.text('She flips you the bird as she says. "Fuck you bitch."');
     scene.text('You grin to her. "That\'s the plan, but I\'m not the bitch that\'s going to get fucked. Now lose the panties." You tell her.');
-    qspCall(s, 'arousal', 'flash', 1);
-    qspCall(s, 'arousal', 'voyeur', (-1));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 1);
+    qspCall(st, 'arousal', 'voyeur', (-1));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Watch her slip off her panties', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy4.jpg');
     scene.text('Again she makes a big show of slowly seductively removing her panties, stopping with them about half way down her thighs to play with her own clit for a bit, watching as your magically dick slowly gets hard, rising up slowly, just as her panties go down slowly. Once your dick is fully hard she lets her panties drop all the way to the floor stepping out of them after she does. "Now get over here and suck my dick!" You command her.');
-    qspCall(s, 'arousal', 'flash', 1);
-    qspCall(s, 'arousal', 'voyeur', (-1));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 1);
+    qspCall(st, 'arousal', 'voyeur', (-1));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Watch her suck your dick', goto: ['anushka_dreams', 'dream3_fuck1'] },
     ]);
@@ -948,15 +948,15 @@ function enterDream3Fuck1(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy6.jpg');
     scene.text('You can\'t help but moan as she keeps sucking on your dick, each time you look down she is staring up at you as she sucks your cock. "Fuck you are such a good little cock sucker, you know that." You tell her as she keeps sucking your dick.');
-    qspCall(s, 'arousal', 'magicd_bj', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_bj', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let her keep sucking', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy7.jpg');
     scene.text('After a bit she closes her eyes and really starts getting into bobbing her head in rhythm as she sucks your cock. The heat and wetness of her mouth feels so amazing, her lips gripped tightly along your shaft as she bobs her head back and forth, you think about just letting her suck you off, but you did promise her cock. So you suppose you really should fuck her, you could fuck her pussy first or maybe you can just go straight to her ass. Either way she needs to move, you pull your dick out of her mouth, as you do she looks back up at you. "Get up and get on the bed on all fours, so I can fuck you." You tell her, she grins in response and moves over to the bed to get on all fours, with her ass facing towards you.');
-    qspCall(s, 'arousal', 'magicd_bj', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_bj', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fuck her pussy', goto: ['anushka_dreams', 'dream3_fuck2'] },
       { label: 'Fuck her ass', goto: ['anushka_dreams', 'dream3_fuck3'] },
@@ -995,10 +995,10 @@ function enterDream3Fuck2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Keep fucking her', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy9.jpg');
-    if (((s as any).strapNumber ?? 0) > 3) {
+    if (((st as any).strapNumber ?? 0) > 3) {
       scene.text('As she gets use to your huge cock, she stops trying to pull away and settles into enjoying the doggy style fucking you are giving her. "Oh fuck… your cock is so big… it\'s stretching me out… but it feels so good!" She says between moans of pleasure.');
       scene.text('You give her ass a slap as you thrust deeper into her pussy, feeling it tightly grip your cock, the sensation is amazing. "Tell me you love my huge cock." You tell her.');
       scene.text('She gasps then moans, before looking back at you. "I love… your huge cock… I love it… when you… tear up… my pussy." She says between moans, each moan getting louder and longer than the last.');
@@ -1007,16 +1007,16 @@ function enterDream3Fuck2(s: GameState, scene: SceneBuilder): void {
       scene.text('You give her ass a slap as you thrust deeper into her pussy, feeling it tightly grip your cock, the sensation is amazing. "Tell me you love taking my cock." You tell her.');
       scene.text('She gasps then moans, before looking back at you. "I love… taking your… cock in… my pussy." She says between moans, each moan getting louder and longer than the last.');
     }
-    qspCall(s, 'arousal', 'magicd_vaginal', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_vaginal', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fuck her a little harder', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy10.jpg');
     scene.text('Her pussy starts feeling amazing around your dick, you start fucking her even harder now, slapping your balls against her clit with each full stroke. She moans louder and louder until she suddenly pulls forward, your dick slipping out of her, as she starts shaking uncontrollably as she has a orgasm. You stroke your dick, you could likely go a bit more if you wanted. Maybe fucking her ass next, but you really feel like busting a nut.');
-    qspCall(s, 'arousal', 'magicd_vaginal', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_vaginal', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fuck her ass', goto: ['anushka_dreams', 'dream3_fuck3'] },
       { label: 'Cum in her mouth', goto: ['anushka_dreams', 'dream3_fuck4'] },
@@ -1056,10 +1056,10 @@ function enterDream3Fuck3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go a little deeper', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy12.jpg');
-    if (((s as any).strapNumber ?? 0) > 3) {
+    if (((st as any).strapNumber ?? 0) > 3) {
       scene.text('As she gets use to your huge cock stretching out her ass, she stops trying to pull away as much, you can hear her taking deep breaths to relax, in between grunts and little squeals. "Oh fuck… your cock is so big!" She says between groans of pain and moans of pleasure.');
       scene.text('You give her ass a slap as you thrust deeper into her butt, feeling it tightly grip your cock, the sensation is amazing. "Tell me you love my huge cock in your ass." You tell her.');
       scene.text('She groans in pain a bit but it turns into a moan of pleasure. "It\'s… to big… for… my ass."');
@@ -1069,15 +1069,15 @@ function enterDream3Fuck3(s: GameState, scene: SceneBuilder): void {
       scene.text('She settles into enjoying the butt fucking you are giving her. "Oh fuck… your cock feels so good in my ass!" She says between moans of pleasure.');
       scene.text('You give her ass a slap as you thrust a little deeper into her in her ass, her butthole grips your cock tightly, milking it as you fuck her. You slowly thrust deeper up her butt, making it just half way down the length of your dick, the sensation is amazing. "Your ass feels amazing, it\'s so tight." You tell her. She doesn\'t respond and just moans as you fuck her, each moan getting louder and longer than the last.');
     }
-    qspCall(s, 'arousal', 'magicd_anal', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_anal', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go balls deep', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy13.jpg');
     scene.text('You work your way balls deep in her butt and starting pounding her tight little ass, feeling your balls slap against her wet slit.');
-    if (((s as any).strapNumber ?? 0) > 3) {
+    if (((st as any).strapNumber ?? 0) > 3) {
       scene.text('Now that she is use to how big your dick is, she is just moaning, with the occasionally squeal. "OH FUCK!… OH FUCK!… Your dick… is so… BIG!… OH YES!… Fuck my ass…!"');
       scene.text('You give her ass a slap as you thrust balls deep in her butt, feeling her tight little asshole grip your cock, milking it with each stroke, the sensation is amazing. "Tell me how much you love taking my huge cock in your ass." You tell her.');
       scene.text('She gasps then moans, before looking back at you. "I love… taking your… huge cock… up my… ass." She says between moans and groans, each moan getting louder and longer than the last. Until she falls forward shaking uncontrollably as she has a orgasm, as she falls forward your dick slips out of her butt.');
@@ -1085,8 +1085,8 @@ function enterDream3Fuck3(s: GameState, scene: SceneBuilder): void {
       scene.text('She is really getting into the anal fuck you are giving her. "OH YES!… YES!… Pound my… tight little… ass… balls deep… YES!" She says between cries of pleasure.');
       scene.text('You give her ass a slap as you thrust balls deeper into her in her ass, her butthole grips your cock tightly, milking your cock as you fuck her. You pick up the pace and start really pounding her ass balls deep, the sensation is amazing. "You are such a butt slut." You tell her. She doesn\'t respond and just moans as you fuck her, each moan getting louder and longer than the last. Until she falls forward shaking uncontrollably as she has a orgasm, as she falls forward your dick slips out of her butt.');
     }
-    qspCall(s, 'arousal', 'magicd_anal', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_anal', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cum in her mouth', goto: ['anushka_dreams', 'dream3_fuck6'] },
     ]);
@@ -1114,12 +1114,12 @@ function enterDream3Fuck4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Climb off her', goto: ['anushka_dreams', 'dream3_fuck7'] },
     { label: 'Stick your dick back in her mouth', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy15.jpg');
     scene.text('As she finishes talking and before she closes her mouth, you use your hand to point your dick back at her mouth. Pushing forward with your hips you slide your magical dick back in her mouth. "You like the way my cum taste? Then suck every drop of cum out of my dick and while you at it, suck my dick clean of cum and your pussy juices." You moan as she starts sucking your dick again, milking the last few drops of cum out of your cock into her mouth, and sucking her own pussy juices off your dick. Once you feel your dick start to twitch again, you decide to call it a end.');
-    qspCall(s, 'arousal', 'magicd_bj', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_bj', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Climb off her', goto: ['anushka_dreams', 'dream3_fuck7'] },
     ]);
@@ -1143,7 +1143,7 @@ function enterDream3Fuck5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Pull your dick out of her mouth', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/dreams/sex/d3_penis_envy/penis_envy14.jpg');
     scene.text('Once you stop cumming in her mouth, you pull your dick out of her mouth. "Open your mouth and show me, how full of my cum it is." You tell her.');

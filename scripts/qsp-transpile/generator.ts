@@ -37,12 +37,10 @@ export function generateTs(loc: QspLocation): GenResult {
   let sceneList: { kind: 'scene'; arg: string; body: import('./ast').QspNode[] }[];
   if (loc.scenes.length > 0) {
     const defaultIdx = loc.scenes.findIndex(s => s.arg === '');
-    if (defaultIdx >= 0 && loc.topLevel.length > 0) {
-      sceneList = loc.scenes.map((s, i) => i === defaultIdx ? { ...s, body: [...loc.topLevel, ...s.body] } : s);
-    } else if (defaultIdx >= 0) {
+    if (defaultIdx >= 0) {
       sceneList = loc.scenes;
     } else {
-      sceneList = [{ kind: 'scene' as const, arg: '', body: loc.topLevel }, ...loc.scenes];
+      sceneList = [{ kind: 'scene' as const, arg: '', body: [] }, ...loc.scenes];
     }
   } else {
     sceneList = [{ kind: 'scene' as const, arg: '', body: loc.topLevel }];
@@ -69,6 +67,9 @@ export function generateTs(loc: QspLocation): GenResult {
       nameMap.set(si, fn);
       argToFunc[scene.arg] = fn;
     }
+    const topLevelBody = loc.topLevel.length > 0
+      ? generateSceneBody(loc.topLevel, todos, unsupported, stateWrites, stateReads, gsCalls, targets, loc.name, argToFunc)
+      : [];
     for (let si = 0; si < sceneList.length; si++) {
       const scene = sceneList[si];
       const funcName = nameMap.get(si)!;
@@ -81,6 +82,7 @@ export function generateTs(loc: QspLocation): GenResult {
     }
 
     lines.push(`function enter(s: GameState, scene: SceneBuilder): void {`);
+    for (const bl of topLevelBody) lines.push(`  ${bl}`);
     lines.push(`  const arg = s.locArg;`);
     lines.push(`  switch (arg) {`);
     for (let si = 0; si < sceneList.length; si++) {
@@ -242,18 +244,29 @@ function generateSceneBody(
       case 'goto': {
         if (node.target.startsWith('$')) {
           let t = node.target.replace(/^\$/, '');
-          if (t === 'loc') t = 'prevLoc';
-          let argPart = '';
-          if (node.arg.startsWith('$')) {
-            let av = node.arg.replace(/^\$/, '');
-            if (av === 'loc_arg') av = 'prevArg';
-            argPart = `, '${av}'`;
+          const dictMatch = t.match(/^(\w+)\['([^']+)'\]$/);
+          const argDictMatch = node.arg ? node.arg.replace(/^\$/, '').match(/^(\w+)\['([^']+)'\]$/) : null;
+          if (dictMatch) {
+            const tgtExpr = `(((s as any).${dictMatch[1]} ?? {}))['${dictMatch[2]}']`;
+            const argExpr = argDictMatch
+              ? `(((s as any).${argDictMatch[1]} ?? {}))['${argDictMatch[2]}']`
+              : (node.arg.startsWith('$') ? `'${node.arg.replace(/^\$/, '')}'` : `'${node.arg}'`);
+            out.push(`dynamicGoto(s, ${tgtExpr}, ${argExpr});`);
+          } else {
+            if (t === 'loc') t = 'prevLoc';
+            let argPart = '';
+            if (node.arg.startsWith('$')) {
+              let av = node.arg.replace(/^\$/, '');
+              if (av === 'loc_arg') av = 'prevArg';
+              argPart = `, '${av}'`;
+            }
+            out.push(`dynamicGoto(s, '${t}'${argPart});`);
           }
-          out.push(`dynamicGoto(s, '${t}'${argPart});`);
         } else {
           targets.add(node.target);
-          const argVal = translateValue(`'${node.arg}'`, stateReads, todos);
-          const arg2Val = node.arg2 ? translateValue(`'${node.arg2}'`, stateReads, todos) : null;
+          const isVarRef = (v: string) => v !== '' && !/^\d+$/.test(v) && /^[a-zA-Z_$]\w*$/.test(v);
+          const argVal = (node.argQuoted || !isVarRef(node.arg)) ? translateValue(`'${node.arg}'`, stateReads, todos) : `((s as any).${node.arg.replace(/^\$/, '')} ?? '')`;
+          const arg2Val = node.arg2 ? ((node.arg2Quoted || !isVarRef(node.arg2)) ? translateValue(`'${node.arg2}'`, stateReads, todos) : `((s as any).${node.arg2.replace(/^\$/, '')} ?? '')`) : null;
           const arg3Val = node.arg3 ? translateValue(`'${node.arg3}'`, stateReads, todos) : null;
           const arg2Part = arg2Val ? `, ${arg2Val}` : '';
           const arg3Part = arg3Val ? `, ${arg3Val}` : '';
@@ -281,13 +294,19 @@ function generateSceneBody(
         }
         const backimgMatch = node.raw.match(/^\$backimage\s*=\s*'(.*)'$/);
         if (backimgMatch) {
-          out.push(`scene.img('${backimgMatch[1]}');`);
+          const bsrc = backimgMatch[1];
+          if (bsrc.includes('<<') || bsrc.match(/'\s*\+\s*\w+/)) {
+            const dynVal = translateValue(`'${bsrc}'`, stateReads, todos);
+            out.push(`scene.img(${dynVal});`);
+          } else {
+            out.push(`scene.img('${bsrc}');`);
+          }
           break;
         }
         const plImgMatch = node.raw.match(/^\*pl\s+'<center><img\s+<<\$set_imgh>>\s+src="([^"]+)"><\/center>'$/);
         if (plImgMatch) {
           const src = plImgMatch[1];
-          if (src.includes('<<')) {
+          if (src.includes('<<') || src.match(/'\s*\+\s*\w+/)) {
             const dynVal = translateValue(`'${src}'`, stateReads, todos);
             out.push(`scene.img(${dynVal});`);
           } else {
@@ -309,6 +328,10 @@ function generateSceneBody(
         break;
       }
       case 'exit': {
+        if (actions.length > 0) {
+          out.push(`scene.actions([\n${actions.join(',\n')}\n]);`);
+          actions.length = 0;
+        }
         out.push(`return;`);
         break;
       }
@@ -357,6 +380,16 @@ function generateAct(
 ): string {
   if (node.inlineGoto) {
     targets.add(node.inlineGoto.target);
+    const isVarArg = node.inlineGoto.arg.startsWith('$');
+    const isVarArg2 = node.inlineGoto.arg2?.startsWith('$');
+    const isVarArg3 = node.inlineGoto.arg3?.startsWith('$');
+    if (isVarArg || isVarArg2 || isVarArg3) {
+      const argExpr = isVarArg ? `((st as any).${node.inlineGoto.arg.replace(/^\$/, '')} ?? '')` : translateValue(`'${node.inlineGoto.arg}'`, stateReads, todos);
+      const arg2Expr = node.inlineGoto.arg2 ? (isVarArg2 ? `((st as any).${node.inlineGoto.arg2.replace(/^\$/, '')} ?? '')` : translateValue(`'${node.inlineGoto.arg2}'`, stateReads, todos)) : null;
+      const arg3Expr = node.inlineGoto.arg3 ? (isVarArg3 ? `((st as any).${node.inlineGoto.arg3.replace(/^\$/, '')} ?? '')` : translateValue(`'${node.inlineGoto.arg3}'`, stateReads, todos)) : null;
+      const handlerArgs = [argExpr, arg2Expr, arg3Expr].filter(Boolean).join(', ');
+      return `{ ${generateLabelCode(node.label, stateReads, todos)}, handler: (st: GameState) => { qspGoto(st, '${node.inlineGoto.target}', ${handlerArgs}); } },`;
+    }
     const argVal = translateValue(`'${node.inlineGoto.arg}'`, stateReads, todos);
     const arg2Part = node.inlineGoto.arg2 ? `, ${translateValue(`'${node.inlineGoto.arg2}'`, stateReads, todos)}` : '';
     const arg3Part = node.inlineGoto.arg3 ? `, ${translateValue(`'${node.inlineGoto.arg3}'`, stateReads, todos)}` : '';
@@ -398,9 +431,16 @@ function generateAct(
     return `{ ${generateLabelCode(node.label, stateReads, todos)}, ${gotoCode} },`;
   }
 
+  const handlerLines = bodyLines.map(l =>
+    l.replace(/\(s as any\)/g, '(st as any)')
+     .replace(/qspCall\(s,/g, 'qspCall(st,')
+     .replace(/qspGoto\(s,/g, 'qspGoto(st,')
+     .replace(/dynamicGoto\(s,/g, 'dynamicGoto(st,')
+  );
+
   const parts: string[] = [];
-  if (bodyLines.length > 0) {
-    parts.push(`handler: (st: GameState) => {\n${bodyLines.map(l => `    ${l}`).join('\n')}\n  }`);
+  if (handlerLines.length > 0) {
+    parts.push(`handler: (st: GameState) => {\n${handlerLines.map(l => `    ${l}`).join('\n')}\n  }`);
   }
   if (gotoCode) parts.push(gotoCode);
   return `{ ${generateLabelCode(node.label, stateReads, todos)}, ${parts.join(', ')} },`;
@@ -428,8 +468,23 @@ function translateInlineAct(
     }
     const gtMatch = part.match(/^gt\s+'([^']+)'\s*(?:,\s*'([^']*)')?\s*(?:,\s*'([^']*)')?$/);
     if (gtMatch) {
-      goto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
-      targets.add(gtMatch[1]);
+      if (gtMatch[1].startsWith('$')) {
+        let t = gtMatch[1].replace(/^\$/, '');
+        if (t === 'loc') t = 'prevLoc';
+        let argPart = '';
+        const arg = gtMatch[2] || '';
+        if (arg.startsWith('$')) {
+          let av = arg.replace(/^\$/, '');
+          if (av === 'loc_arg') av = 'prevArg';
+          argPart = `, '${av}'`;
+        } else if (arg) {
+          argPart = `, '${esc(arg)}'`;
+        }
+        handlerBits.push(`dynamicGoto(st, '${t}'${argPart});`);
+      } else {
+        goto = { target: gtMatch[1], arg: gtMatch[2] || '', arg2: gtMatch[3] };
+        targets.add(gtMatch[1]);
+      }
       continue;
     }
     const gtDynMatch = part.match(/^gt\s+(\$\w+)\s*(?:,\s*(\$\w+|'[^']*'))?\s*$/);
@@ -770,6 +825,12 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
     }
     c = out;
   }
+  // QSP dynamic variable name with ARGS[N]: WORD<<$ARGS[N]>> -> dynamic property access
+  c = c.replace(/([a-zA-Z_]\w*)<<\$?ARGS\[(\d+)\]>>/g, (_, prefix, idx) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    phs.push([ph, `((${stateVar} as any)['${prefix}' + String((${stateVar} as any).locArgs?.[${idx}] ?? '')] ?? 0)`]);
+    return ph;
+  });
   // Handle <<expr>> inline in conditions
   c = c.replace(/<<(.+?)>>/g, (_, expr) => {
     const ph = `\u0000${phs.length}\u0000`;
@@ -830,7 +891,7 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
   });
   c = c.replace(/(?:\$)?ARGS\[(\d+)\]/g, (_, idx) => {
     const ph = `\u0000${phs.length}\u0000`;
-    phs.push([ph, `((${stateVar} as any).locArgs?.[${idx}] ?? 0)`]);
+    phs.push([ph, `Number((${stateVar} as any).locArgs?.[${idx}] ?? 0)`]);
     return ph;
   });
   c = c.replace(/\bisnum\s*\(([^)]+)\)/g, (_, arg) => {
@@ -968,12 +1029,7 @@ function translateAssignLhs(varName: string, stateReads: string[], stateVar: str
     const key = arr[2];
     stateReads.push(obj);
     if (key.includes('<<')) {
-      const parts = key.split(/<<|>>/);
-      const keyExpr = parts
-        .map((p, i) => i % 2 === 1
-           ? `String((${stateVar} as any).${p.trim()} || '')`
-          : `'${p.replace(/''/g, "'").replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`)
-        .join(' + ');
+      const keyExpr = buildKeyExpr(key, stateReads, [], stateVar);
       return `${obj}[${keyExpr}]`;
     }
     return `${obj}['${key.replace(/''/g, "'")}']`;
@@ -1084,7 +1140,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     }
   }
   const hasArith = /[+\-*/%]/.test(v) || /\bmod\b/.test(v);
-  if (!hasArith) {
+  if (!hasArith && !/^\$?iif\(/.test(v)) {
     v = unescapeDoubled(v);
     v = v.replace(/''([^']+?)''/g, "'$1'");
     v = v.replace(/""<<(.+?)>>""/g, '<<$1>>');
@@ -1142,7 +1198,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
   if (v === '' || v === "''" || v === '""') return "''";
   if (v.startsWith("'") && v.endsWith("'") && !v.includes('<<')) return `'${esc(v.slice(1, -1))}'`;
   if (v.startsWith('"') && v.endsWith('"') && !v.includes('<<')) return `'${esc(v.slice(1, -1))}'`;
-  // QSP $ARGS[N] in value context
+  // QSP $ARGS[N] in value context ($ARGS[0]=first arg=locArgs[0])
   const argsMatch = v.match(/^(?:\$)?ARGS\[(\d+)\]$/);
   if (argsMatch) {
     return textContext
@@ -1180,7 +1236,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       const start = m[0].length - 1;
       for (let j = start; j < v.length; j++) {
         const ch = v[j];
-        if (inStr) { if (ch === strCh) inStr = false; continue; }
+      if (inStr) { if (ch === strCh) { if (strCh === "'" && v[j + 1] === "'") { j++; } else inStr = false; } continue; }
         if (ch === "'" || ch === '"') { inStr = true; strCh = ch; continue; }
         if (ch === '[') depth++;
         else if (ch === ']') { depth--; if (depth === 0) { end = j; break; } }
@@ -1200,7 +1256,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
   if (rangeMatch) {
     const a = parseInt(rangeMatch[1]);
     const b = parseInt(rangeMatch[2]);
-    return `Math.floor(Math.random() * ${b - a + 1}) + ${a}`;
+    return `(Math.floor(Math.random() * ${b - a + 1}) + ${a})`;
   }
   // QSP "N: comment" pattern (e.g. "1: Stripper shoes")
   const colonComment = v.match(/^(-?\d+(?:\.\d+)?)\s*:\s*\w/);
@@ -1498,10 +1554,24 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     } else {
       const inner = v.slice(openIdx + 1, end);
       const args = splitTopLevel(inner).map(a => a.trim()).filter(a => a !== '');
-      const mod = args[0] ? args[0].replace(/^['"]|['"]$/g, '') : '';
-      const fn = args[1] ? args[1].replace(/^['"]|['"]$/g, '') : '';
-      const rest = args.slice(2).map(a => translateValue(a, stateReads, todos, stateVar, textContext));
-      return `qspFunc(${stateVar}, '${esc(mod)}', '${esc(fn)}'${rest.length ? ', ' + rest.join(', ') : ''})`;
+      const mod = args[0] ? args[0].replace(/''/g, "'").replace(/^['"]|['"]$/g, '') : '';
+      let fn = '';
+      let restArgs: string[];
+      if (mod.startsWith('$')) {
+        restArgs = args.slice(1);
+      } else {
+        const rawFn = args[1] || '';
+        const unescapedFn = rawFn.replace(/''/g, "'");
+        if (/^['"].*['"]$/.test(unescapedFn)) {
+          fn = unescapedFn.replace(/^['"]|['"]$/g, '');
+        } else {
+          fn = translateValue(unescapedFn, stateReads, todos, stateVar, textContext);
+        }
+        restArgs = args.slice(2);
+      }
+      const rest = restArgs.map(a => translateValue(a, stateReads, todos, stateVar, textContext));
+      const fnArg = (fn.startsWith('(') || fn.startsWith('String') || fn.includes('as any')) ? fn : `'${esc(fn)}'`;
+      return `qspFunc(${stateVar}, '${esc(mod)}', ${fnArg}${rest.length ? ', ' + rest.join(', ') : ''})`;
     }
   }
   if (/^(rand|random)\(/i.test(v)) {
@@ -1510,9 +1580,9 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
       const a = parseInt(m[1]);
       if (m[2] !== undefined) {
         const b = parseInt(m[2]);
-        return `Math.floor(Math.random() * ${b - a + 1}) + ${a}`;
+        return `(Math.floor(Math.random() * ${b - a + 1}) + ${a})`;
       }
-      return `Math.floor(Math.random() * ${a})`;
+      return `(Math.floor(Math.random() * ${a}))`;
     }
   }
   if (/^randInt\(/i.test(v)) {
@@ -1520,7 +1590,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     if (m) {
       const a = parseInt(m[1]);
       const b = parseInt(m[2]);
-      return `Math.floor(Math.random() * ${b - a + 1}) + ${a}`;
+      return `(Math.floor(Math.random() * ${b - a + 1}) + ${a})`;
     }
   }
   if (/^(?:\$)?ARGS\[(\d+)\]$/.test(v)) {
@@ -1534,9 +1604,9 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     return `(${stateVar} as any).locat?.['${key}'] ?? 0`;
   }
   if (TS_KEYWORDS.has(v)) return v;
-  const builtinCall = v.match(/^(\w+)\s*\(/);
-  if (builtinCall && BUILTIN_FUNCS[builtinCall[1]]) {
-    const fnName = builtinCall[1];
+  const builtinCall = v.match(/^(\$?)(\w+)\s*\(/);
+  if (builtinCall && BUILTIN_FUNCS[builtinCall[2]]) {
+    const fnName = builtinCall[2];
     const openIdx = v.indexOf('(', builtinCall[0].length - 1);
     let depth = 0, end = -1, inStr = false, strCh = '';
     for (let j = openIdx; j < v.length; j++) {
@@ -1819,7 +1889,7 @@ function extractDescription(nodes: QspNode[]): string | null {
 }
 
 function esc(s: string): string {
-  return s.replace(/''/g, '\u0000').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\u0000/g, "\\'").replace(/\n/g, '\\n');
+  return s.replace(/''/g, '\u0000').replace(/\\/g, '/').replace(/'/g, "\\'").replace(/\u0000/g, "\\'").replace(/\n/g, '\\n');
 }
 
 function translateFragment(frag: string, stateReads: string[], todos: string[], stateVar: string, textContext: boolean): string {
@@ -2026,16 +2096,33 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
   const funcMatch = s.match(/^\s*\$func\((.*)\)\s*$/);
   if (funcMatch) {
     const args = splitTopLevel(funcMatch[1]).map(a => a.trim());
-    const mod = (args[0] || '').replace(/^['"]|['"]$/g, '');
-    const fn = (args[1] || '').replace(/^['"]|['"]$/g, '');
-    const rest = args.slice(2).map(a => {
+    const mod = (args[0] || '').replace(/''/g, "'").replace(/^['"]|['"]$/g, '');
+    let fn = '';
+    let restArgs: string[];
+    if (mod.startsWith('$')) {
+      restArgs = args.slice(1);
+    } else {
+      const rawFn = args[1] || '';
+      const unescapedFn = rawFn.replace(/''/g, "'");
+      if (/^['"].*['"]$/.test(unescapedFn)) {
+        fn = unescapedFn.replace(/^['"]|['"]$/g, '');
+      } else {
+        fn = translateValue(unescapedFn, stateReads, todos, stateVar, true);
+      }
+      restArgs = args.slice(2);
+    }
+    const rest = restArgs.map(a => {
       if (/^['"].*['"]$/.test(a)) return `'${a.slice(1, -1).replace(/''/g, "\\'")}'`;
       return translateValue(a, stateReads, todos, stateVar, true);
     });
-    return `qspFunc(${stateVar}, '${esc(mod)}', '${esc(fn)}'${rest.length ? ', ' + rest.join(', ') : ''})`;
+    const fnArg = (fn.startsWith('(') || fn.startsWith('String') || fn.includes('as any')) ? fn : `'${esc(fn)}'`;
+    return `qspFunc(${stateVar}, '${esc(mod)}', ${fnArg}${rest.length ? ', ' + rest.join(', ') : ''})`;
   }
   const bareVar = s.match(/^\$(\w+)$/);
   if (bareVar) return `String((${stateVar} as any).${bareVar[1]} ?? '')`;
+  if (s.match(/'\s*\+\s*\w+/)) {
+    return translateValue(`'${s}'`, stateReads, todos, stateVar, true);
+  }
   if (!s.includes('<<')) return `'${esc(convertExecLinks(s))}'`;
   s = convertExecLinks(s);
   // Segment IR: split into text / expr segments, then emit ONE template literal.
@@ -2046,7 +2133,7 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
     const closeIdx = rest.indexOf('>>', idx + 2);
     if (closeIdx === -1) break;
     if (idx > 0) segs.push({ type: 'text', value: rest.slice(0, idx) });
-    const expr = rest.slice(idx + 2, closeIdx);
+    const expr = rest.slice(idx + 2, closeIdx).replace(/''/g, "'");
     segs.push({ type: 'expr', value: translateValue(expr.trim(), stateReads, todos, stateVar, true) });
     rest = rest.slice(closeIdx + 2);
   }
@@ -2056,7 +2143,7 @@ function qspStringToJs(s: string, stateReads: string[], todos: string[], stateVa
   for (const seg of segs) {
     if (seg.type === 'text') {
       let t = seg.value.replace(/''/g, "'");
-      t = t.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
+      t = t.replace(/\\/g, '/').replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
       out += t;
     } else {
       out += '${' + seg.value + '}';
@@ -2389,18 +2476,25 @@ function replaceFuncCalls(c: string, stateReads: string[], todos: string[], stat
     }
     const inner = c.slice(openIdx + 1, end);
     const args = splitTopLevel(inner).map(a => a.trim()).filter(a => a !== '');
-    const mod = args[0] ? args[0].replace(/^['"]|['"]$/g, '') : '';
+    const mod = args[0] ? args[0].replace(/''/g, "'").replace(/^['"]|['"]$/g, '') : '';
     let fn: string;
-    if (args[1] && /^['"].*['"]$/.test(args[1])) {
-      fn = args[1].replace(/^['"]|['"]$/g, '');
-    } else if (args[1]) {
-      fn = translateValue(args[1], stateReads, todos, stateVar);
-    } else {
+    let restArgs: string[];
+    if (mod.startsWith('$')) {
       fn = '';
+      restArgs = args.slice(1);
+    } else {
+      if (args[1] && /^['"].*['"]$/.test(args[1])) {
+        fn = args[1].replace(/''/g, "'").replace(/^['"]|['"]$/g, '');
+      } else if (args[1]) {
+        fn = translateValue(args[1], stateReads, todos, stateVar);
+      } else {
+        fn = '';
+      }
+      restArgs = args.slice(2);
     }
-    const rest = args.slice(2).map(a => translateValue(a, stateReads, todos, stateVar, textContext));
+    const rest = restArgs.map(a => translateValue(a, stateReads, todos, stateVar, textContext));
     const ph = `\u0000${phs.length}\u0000`;
-    const fnArg = /^['"].*['"]$/.test(args[1] ?? '') ? `'${fn}'` : fn;
+    const fnArg = mod.startsWith('$') ? `'${fn}'` : (/^['"].*['"]$/.test(args[1] ?? '') ? `'${fn}'` : fn);
     phs.push([ph, `qspFunc(${stateVar}, '${mod}', ${fnArg}${rest.length ? ', ' + rest.join(', ') : ''})`]);
     out += ph;
     i = end + 1;

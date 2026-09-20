@@ -58,7 +58,7 @@ function enterLesson(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGossip(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
@@ -183,11 +183,11 @@ function enterGossip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMixed(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
-  (s as any).chat_rand = Math.floor(Math.random() * 95) + 1;
+  (s as any).chat_rand = (Math.floor(Math.random() * 95) + 1);
   if (((s as any).chat_rand ?? 0) === 1) {
     scene.text('"Man, this town is so boring! We really need to graduate soon, so we can go live in the city!"');
     scene.text('His friend heartily agrees. "Absolutely, I hear they have parties in the university dorm every day of the week!"');
@@ -199,7 +199,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
         scene.text('"I heard some of the older kids have a party every week. It\'s all drinking and sex."');
       } else {
         if (((s as any).chat_rand ?? 0) === 4) {
-          // TODO-QSP: dynamic text: "I swear there's a porn star who looks just like <<$pcs_firstname>>!"
+          // TODO-QSP: dynamic text: "I swear there''s a porn star who looks just like <<$pcs_firstname>>!"
           scene.text(`"I swear there's a porn star who looks just like ${((s as any).pcs_firstname || '')}!"`);
         } else {
           if (((s as any).chat_rand ?? 0) === 5) {
@@ -372,9 +372,9 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
                                                                                                       scene.text('"She\'s been wearing the same clothes for the last few years and always brings a lunch from home."');
                                                                                                     } else {
                                                                                                       scene.text('"Natasha\'s mom must be super poor. Until recently, she was wearing the same school uniform she had last year."');
-                                                                                                      // TODO-QSP: dynamic text: "Yeah, I hear she's been hanging out with <<$pcs_nickname>> recently. I think I ...
+                                                                                                      // TODO-QSP: dynamic text: "Yeah, I hear she''s been hanging out with <<$pcs_nickname>> recently. I think I...
                                                                                                       scene.text(`"Yeah, I hear she's been hanging out with ${((s as any).pcs_nickname || '')} recently. I think I saw them holding hands in the park a while back."`);
-                                                                                                      // TODO-QSP: dynamic text: "I guess <<$pcs_nickname>>'s been buying stuff for her then. Think they're lesbi...
+                                                                                                      // TODO-QSP: dynamic text: "I guess <<$pcs_nickname>>''s been buying stuff for her then. Think they''re les...
                                                                                                       scene.text(`"I guess ${((s as any).pcs_nickname || '')}'s been buying stuff for her then. Think they're lesbians?"`);
                                                                                                       scene.text('I don\'t know. I guess so, but there were rumors a while back that she was hanging around with Lazar too."');
                                                                                                     }
@@ -387,7 +387,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
                                                                                                         scene.text(`"Not according to Lizaveta. She said that ${((s as any).pcs_nickname || '')} paid her debt for her, and she's rarely wrong."`);
                                                                                                         scene.text('"I doubt this changes anything, though. She\'ll be asking for money again within a week or two."');
                                                                                                       } else {
-                                                                                                        // TODO-QSP: dynamic text: "Whatever you do, don't loan money to Natasha. She'll never pay you back. I lent...
+                                                                                                        // TODO-QSP: dynamic text: "Whatever you do, don''t loan money to Natasha. She''ll never pay you back. I le...
                                                                                                         scene.text(`"Whatever you do, don't loan money to Natasha. She'll never pay you back. I lent her ${qspFunc(s, 'money', 'format', 50)} and I doubt I'll ever see it again."`);
                                                                                                         scene.text('"I heard one of the guys threatened her and told her to get his money or she better start blowing him, so she dropped right to her knees and sucked him off."');
                                                                                                         scene.text('"Seriously? Hmmm… Maybe I better ask her for my money again…"');
@@ -538,7 +538,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                         scene.text('"I know, right? I almost felt a little sorry for the little nerd."');
                                                                                                                                                       } else {
                                                                                                                                                         if (((s as any).chat_rand ?? 0) === 76  &&  ((s as any).IgorQW ?? 0)?.['kdwalk'] >= 3) {
-                                                                                                                                                          // TODO-QSP: dynamic text: "I saw <<$pcs_nickname>> walking through the park with some girl I've never seen...
+                                                                                                                                                          // TODO-QSP: dynamic text: "I saw <<$pcs_nickname>> walking through the park with some girl I''ve never see...
                                                                                                                                                           scene.text(`"I saw ${((s as any).pcs_nickname || '')} walking through the park with some girl I've never seen. She was really pretty."`);
                                                                                                                                                           scene.text('"Was she a girl from our school?"');
                                                                                                                                                           scene.text('"I couldn\'t get a good look at her face, but they were being really friendly with each other. Maybe a bit too friendly…"');
@@ -570,7 +570,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                   scene.text('"Pfft, obviously! I mean they\'re both gopniks, so of course all they do is drink, be loud and do drugs."');
                                                                                                                                                                 } else {
                                                                                                                                                                   if (((s as any).chat_rand ?? 0) === 81  &&  ((s as any).npc_rel ?? 0)?.['A11'] <= 25  &&  ((s as any).grupTipe ?? 0) !== 4) {
-                                                                                                                                                                    // TODO-QSP: dynamic text: "Aren't <<$pcs_nickname>> and Vasily childhood friends?"
+                                                                                                                                                                    // TODO-QSP: dynamic text: "Aren''t <<$pcs_nickname>> and Vasily childhood friends?"
                                                                                                                                                                     scene.text(`"Aren't ${((s as any).pcs_nickname || '')} and Vasily childhood friends?"`);
                                                                                                                                                                     scene.text('"More like were. They\'re not close anymore."');
                                                                                                                                                                     scene.text('"Aww… When you think about it, it\'s kind of sad."');
@@ -638,7 +638,7 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                                                           // TODO-QSP: dynamic text: "So I heard <<$pcs_nickname>> joined the cheerleading squad."
                                                                                                                                                                                           scene.text(`"So I heard ${((s as any).pcs_nickname || '')} joined the cheerleading squad."`);
                                                                                                                                                                                           // TODO-QSP: dynamic text: "Well yeah, she is one of them. You know, '+iif(grupTipe = 1, 'popular', 'sporty...
-                                                                                                                                                                                          scene.text('"Well yeah, she is one of them. You know, \'+iif(grupTipe = 1, \'popular\', \'sporty\')+\' enough to pass their judgemental selection process?"');
+                                                                                                                                                                                          scene.text('"Well yeah, she is one of them. You know, ' + ((((s as any).grupTipe ?? 0) === 1) ? ('popular') : ('sporty')) + ' enough to pass their judgemental selection process?"');
                                                                                                                                                                                           scene.text('"It\'s pretty harsh I know. I can only imagine Anushka on the team if they allowed it, running around the field flashing everyone during a game."');
                                                                                                                                                                                         } else {
                                                                                                                                                                                           if (((s as any).chat_rand ?? 0) === 93  &&  ((s as any).cheerleadingQW ?? 0)?.['quest_stage'] === 2) {
@@ -758,11 +758,11 @@ function enterMixed(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoys(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
-  (s as any).chat_rand = Math.floor(Math.random() * 45) + 1;
+  (s as any).chat_rand = (Math.floor(Math.random() * 45) + 1);
   if (((s as any).chat_rand ?? 0) === 1) {
     scene.text('"Dude, you should\'ve seen me in League of Legends yesterday. I totally carried my crappy team to victory!"');
     scene.text('His friend doesn\'t seem impressed. "I\'ve seen you play before," he scoffs. "You couldn\'t carry a paper bag to the litter bin if your life depended on it!"');
@@ -807,7 +807,7 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
                           if (((s as any).chat_rand ?? 0) === 13  &&  ((s as any).katjaQW ?? 0)?.['school_kiss'] > 2) {
                             scene.text('"Did you see the picture of Katja kissing another girl?"');
                             scene.text('"Katja\'s a lesbian? And no, let me see the picture." They look at the image on a phone. "Who\'s she kissing?"');
-                            // TODO-QSP: dynamic text: "I don't know. I heard it was <<$pcs_firstname>>."
+                            // TODO-QSP: dynamic text: "I don''t know. I heard it was <<$pcs_firstname>>."
                             scene.text(`"I don't know. I heard it was ${((s as any).pcs_firstname || '')}."`);
                             scene.text('"Fuck, they\'re both lesbians? That sucks."');
                             scene.text('"Well I heard Ivan fucked them both, so I think they\'re both bi."');
@@ -1014,13 +1014,13 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
                                                                                           scene.text('"If you can even feel anything. She must be so stretched out by now."');
                                                                                           (s as any).SchoolGossip = ((s as any).SchoolGossip ?? 0) + (1);
                                                                                         } else {
-                                                                                          // TODO-QSP: dynamic text: "<<$pcs_nickname>> is such a washed up whore. She'll do anything for money nowad...
+                                                                                          // TODO-QSP: dynamic text: "<<$pcs_nickname>> is such a washed up whore. She''ll do anything for money nowa...
                                                                                           scene.text(`"${((s as any).pcs_nickname || '')} is such a washed up whore. She'll do anything for money nowadays."`);
                                                                                           scene.text('"Yeah, it\'s sad. She used to be such a nice girl."');
-                                                                                          // TODO-QSP: dynamic text: "Totally. Very sad. So, can you loan me <<$func('money', 'format', 200)>>?"
+                                                                                          // TODO-QSP: dynamic text: "Totally. Very sad. So, can you loan me <<$func(''money'', ''format'', 200)>>?"
                                                                                           scene.text(`"Totally. Very sad. So, can you loan me ${qspFunc(s, 'money', 'format', 200)}?"`);
                                                                                           scene.text('"Dude, seriously!? Why would you even want to touch her at all? You\'d just boldly go where every man has gone before!"');
-                                                                                          // TODO-QSP: dynamic text: "Come on man, I'm in a bit of a dry spell. Please? I'll try to negotiate you in ...
+                                                                                          // TODO-QSP: dynamic text: "Come on man, I''m in a bit of a dry spell. Please? I''ll try to negotiate you i...
                                                                                           scene.text(`"Come on man, I'm in a bit of a dry spell. Please? I'll try to negotiate you in on the deal. Surely ${qspFunc(s, 'money', 'format', 200)} is enough for two."`);
                                                                                           scene.text('"That\'s sick, but I like it. Alright, I\'m in."');
                                                                                           (s as any).SchoolGossip = ((s as any).SchoolGossip ?? 0) + (1);
@@ -1122,11 +1122,11 @@ function enterBoys(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGirls(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/girls_gossip1.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
-  (s as any).chat_rand = Math.floor(Math.random() * 43) + 1;
+  (s as any).chat_rand = (Math.floor(Math.random() * 43) + 1);
   if (((s as any).chat_rand ?? 0) === 1) {
     scene.text('"I quit volleyball."');
     scene.text('"Why?"');
@@ -1321,7 +1321,7 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
                                                                         scene.text('"Because she could never afford it! Why would she even bother asking? Does she not realize her mom is dirt poor?"');
                                                                       } else {
                                                                         scene.text('"Where did Natasha get that new uniform? Isn\'t her mom dirt poor?"');
-                                                                        // TODO-QSP: dynamic text: "She's been hanging around a lot with <<$pcs_nickname>> recently. Maybe she's bu...
+                                                                        // TODO-QSP: dynamic text: "She''s been hanging around a lot with <<$pcs_nickname>> recently. Maybe she''s ...
                                                                         scene.text(`"She's been hanging around a lot with ${((s as any).pcs_nickname || '')} recently. Maybe she's buying stuff for her?"`);
                                                                         scene.text('"I guess so. I wonder if they\'re more than friends?"');
                                                                         scene.text('"If you find out, then let me know."');
@@ -1434,11 +1434,11 @@ function enterGirls(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLizaveta(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/girls_gossip2.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
-  (s as any).chat_rand = Math.floor(Math.random() * 48) + 1;
+  (s as any).chat_rand = (Math.floor(Math.random() * 48) + 1);
   if (((s as any).chat_rand ?? 0) === 1) {
     scene.text('"I heard Andrey cheats on Stasya!"');
   } else {
@@ -1577,7 +1577,7 @@ function enterLizaveta(s: GameState, scene: SceneBuilder): void {
                                                                                       } else {
                                                                                         if (((s as any).chat_rand ?? 0) === 44) {
                                                                                           if (((s as any).NatbelQW ?? 0)?.['FriendLover'] < 7) {
-                                                                                            // TODO-QSP: dynamic text: "Whatever you do, don't loan money to Natasha. She'll never pay you back. I lent...
+                                                                                            // TODO-QSP: dynamic text: "Whatever you do, don''t loan money to Natasha. She''ll never pay you back. I le...
                                                                                             scene.text(`"Whatever you do, don't loan money to Natasha. She'll never pay you back. I lent her ${qspFunc(s, 'money', 'format', 50)} and I doubt I'll ever see it again."`);
                                                                                           } else {
                                                                                             scene.text('"Natasha actually repaid me! I was starting to think she never would!"');
@@ -1707,7 +1707,7 @@ function enterSoniaDiscoGossip(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSvetaDykeRumors(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'picture') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'picture') {
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
     scene.text('Walking down the halls, you barely notice the poor state of the school anymore, having grown used to it. Approaching your locker, you see several of your classmates who you wave to. As you do, you overhear some of them talking about a variety of things, including some juicy gossip.');
   }
@@ -1737,7 +1737,7 @@ function enterSvetaDykeRumors(s: GameState, scene: SceneBuilder): void {
           scene.text('Eventually, you walk far enough way to no longer be able to hear them as you head on your way.');
         } else {
           if (((s as any).sveta_dyke_rumor ?? 0) === 6) {
-            // TODO-QSP: dynamic text: Two boys are chatting in the hallway as you walk past. "<<$pcs_nickname>>'s been...
+            // TODO-QSP: dynamic text: Two boys are chatting in the hallway as you walk past. "<<$pcs_nickname>>''s bee...
             scene.text(`Two boys are chatting in the hallway as you walk past. "${((s as any).pcs_nickname || '')}'s been at it again. She was caught checking out several of the other girls."`);
             scene.text('"Damn, I guess she really is a muff diver."');
             scene.text('Eventually, you walk far enough way to no longer be able to hear them as you head on your way.');

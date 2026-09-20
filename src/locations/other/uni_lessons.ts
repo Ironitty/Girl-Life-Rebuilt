@@ -119,11 +119,11 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
   scene.text('Walking down the halls, you\'re amazed at how well maintained the buildings are compared to your old school.');
   qspCall(s, 'katja_pantyquest', 'uni');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
+  scene.actions([
+{ label: 'Go to the university plaza', goto: ['uni_grounds', ''] },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'Go to the university plaza', goto: ['uni_grounds', ''] },
-  ]);
   scene.build();
 }
 

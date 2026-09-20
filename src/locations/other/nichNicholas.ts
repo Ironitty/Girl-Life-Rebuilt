@@ -4,10 +4,6 @@ import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/01.jpg');
   (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
@@ -21,8 +17,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('Nicholas is sitting at his computer doing his correspondence. When he is finished he might have time for you.');
         scene.actions([
           { label: 'Wait', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'nichNicholas', 'approach');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'nichNicholas', 'approach');
   } },
         ]);
       } else {
@@ -42,7 +38,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   scene.text('Nicholas is sitting on the couch. You could approach him now.');
                   scene.actions([
                     { label: 'Approach', handler: (st: GameState) => {
-    qspGoto(s, 'nichNicholas', 'approach');
+    qspGoto(st, 'nichNicholas', 'approach');
   } },
                   ]);
                 } else {
@@ -69,7 +65,74 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.img('images/characters/city/nicholas/01.jpg');
+  (s as any).nichTemp = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
+  if (((s as any).nichTemp ?? 0) === 'sleep') {
+    scene.text('Nicholas is sleeping. It would be a bad idea to wake him up now.');
+  } else {
+    if (((s as any).nichTemp ?? 0) === 'bathMorning'  ||  ((s as any).nichTemp ?? 0) === 'bathEvening'  ||  ((s as any).nichTemp ?? 0) === 'bathClub') {
+      scene.text('Nicholas is currently brushing his teeth. It\'s not the right time to talk to him now.');
+    } else {
+      if (((s as any).nichTemp ?? 0) === 'study') {
+        scene.text('Nicholas is sitting at his computer doing his correspondence. When he is finished he might have time for you.');
+        scene.actions([
+          { label: 'Wait', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'nichNicholas', 'approach');
+  } },
+        ]);
+      } else {
+        if (((s as any).nichTemp ?? 0) === 'breakfast') {
+          scene.text('Nicholas is currently enjoying his breakfast.');
+        } else {
+          if (((s as any).nichTemp ?? 0) === 'leaveWork'  ||  ((s as any).nichTemp ?? 0) === 'leaveShopping'  ||  ((s as any).nichTemp ?? 0) === 'leaveClub') {
+            scene.text('Nicholas is putting on his shoes. Apparently he has no time to speak to you now.');
+          } else {
+            if (((s as any).nichTemp ?? 0) === 'returnWork') {
+              scene.text('Nicholas just returned from work. You should give him some time before speaking to him.');
+            } else {
+              if (((s as any).nichTemp ?? 0) === 'returnShopping') {
+                scene.text('Nicholas just returned from a shopping trip. You should give him some time before speaking to him.');
+              } else {
+                if (((s as any).nichTemp ?? 0) === 'living') {
+                  scene.text('Nicholas is sitting on the couch. You could approach him now.');
+                  scene.actions([
+                    { label: 'Approach', handler: (st: GameState) => {
+    qspGoto(st, 'nichNicholas', 'approach');
+  } },
+                  ]);
+                } else {
+                  if (((s as any).nichTemp ?? 0) === 'dinner') {
+                    scene.text('Nicholas is eating dinner.');
+                  } else {
+                    if (((s as any).nichTemp ?? 0) === 'gala') {
+                    } else {
+                      if (((s as any).nichTemp ?? 0) === 'tanya') {
+                      } else {
+                        if (((s as any).nichTemp ?? 0) === 'returnClub') {
+                          scene.text('Nicholas just returned from his club. You should give him some time before speaking to him.');
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Back', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -83,18 +146,18 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichEvaluationLast ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).nichWork ?? 0) === 2) {
     scene.actions([
       { label: 'Evaluation', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) < 12) {
+    if (((st as any).hour ?? 0) < 12) {
       scene.text('"It\'s not even noon. Are you sure you are done for today?"');
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
-    qspGoto(s, 'nichNicholas', 'evaluation');
+    qspGoto(st, 'nichNicholas', 'evaluation');
   } },
         { label: 'No', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
-      qspGoto(s, 'nichNicholas', 'evaluation');
+      qspGoto(st, 'nichNicholas', 'evaluation');
     }
   } },
     ]);
@@ -104,13 +167,13 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichSex ?? 0) < 10  &&  ((s as any).nichSex ?? 0) >= 0  &&  ((s as any).nichFlirtLast ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Flirt', handler: (st: GameState) => {
-    if (((s as any).nichGalaPresent ?? 0) === 1) {
+    if (((st as any).nichGalaPresent ?? 0) === 1) {
       scene.text('<font color = red>It would be a big mistake to flirt with Nicholas while Gala is in the same room.</font>');
     } else {
-      if (((s as any).nichTanyPresent ?? 0) === 1) {
+      if (((st as any).nichTanyPresent ?? 0) === 1) {
         scene.text('<font color = red>You shouldn\'t flirt with Nicholas while Tanya is in the same room.</font>');
       } else {
-        qspGoto(s, 'nichNicholas', 'flirt');
+        qspGoto(st, 'nichNicholas', 'flirt');
       }
     }
   } },
@@ -119,13 +182,13 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichSex ?? 0) >= 10) {
       scene.actions([
         { label: 'Seduce', handler: (st: GameState) => {
-    if (((s as any).nichGalaPresent ?? 0) === 1) {
+    if (((st as any).nichGalaPresent ?? 0) === 1) {
       scene.text('<font color = red>It would be a big mistake to seduce Nicholas while Gala is in the same room.</font>');
     } else {
-      if (((s as any).nichTanyPresent ?? 0) === 1) {
+      if (((st as any).nichTanyPresent ?? 0) === 1) {
         scene.text('<font color = red>You shouldn\'t seduce Nicholas while Tanya is in the same room.</font>');
       } else {
-        qspGoto(s, 'nichNicholas', 'seduce');
+        qspGoto(st, 'nichNicholas', 'seduce');
       }
     }
   } },
@@ -135,32 +198,32 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichWorkState ?? 0) === 1  &&  ((s as any).nichWork ?? 0) === 2) {
     scene.actions([
       { label: 'Quit', handler: (st: GameState) => {
-    qspGoto(s, 'nichUtil', 'quit');
+    qspGoto(st, 'nichUtil', 'quit');
   } },
     ]);
   }
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
 }
 
 function enterSex(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'start') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'start') {
     qspCall(s, 'boyStat', 'A52');
     scene.img('images/characters/city/nicholas/sex/undress.jpg');
     scene.text('You slowly undress for Nicholas.');
     (s as any).nichSexTemp = 1;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'bj') {
-      scene.img('images/characters/city/nicholas/sex/bj/bj\'+rand(0, 10)+\'.jpg');
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'bj') {
+      scene.img('images/characters/city/nicholas/sex/bj/bj' + (Math.floor(Math.random() * 11) + 0) + '.jpg');
       qspCall(s, 'arousal', 'bj', 1);
       (s as any).nichSexTemp = ((s as any).nichSexTemp ?? 0) + (1);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'anal') {
-        scene.img('images/characters/city/nicholas/sex/anal/anal\'+rand(0, 7)+\'.jpg');
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'anal') {
+        scene.img('images/characters/city/nicholas/sex/anal/anal' + (Math.floor(Math.random() * 8) + 0) + '.jpg');
         qspCall(s, 'arousal', 'anal', 1);
         (s as any).nichSexTemp = ((s as any).nichSexTemp ?? 0) + (1);
       }
@@ -173,18 +236,18 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Blowjob', handler: (st: GameState) => {
-    qspGoto(s, 'nichNicholas', 'sex', 'bj');
+    qspGoto(st, 'nichNicholas', 'sex', 'bj');
   } },
       { label: 'Anal', handler: (st: GameState) => {
-    qspGoto(s, 'nichNicholas', 'sex', 'anal');
+    qspGoto(st, 'nichNicholas', 'sex', 'anal');
   } },
     ]);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'bj') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'bj') {
       scene.text('He groans loudly, and you feel his hard cock erupting in your mouth. You swallow it obediently, figuring that is what he wants you to do.');
       qspCall(s, 'cum_call', 'mouth_swallow', 'A52', 1);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'anal') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'anal') {
         scene.text('He groans loudly, spraying his seed deep inside your ass.');
         qspCall(s, 'cum_call', 'anus', 'A52', 1);
       }
@@ -192,7 +255,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   }
@@ -209,7 +272,7 @@ function enterSeduce(s: GameState, scene: SceneBuilder): void {
   scene.text('"Actually there is something you could help me with." he says while unzipping his pants.');
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
-    qspGoto(s, 'nichNicholas', 'sex');
+    qspGoto(st, 'nichNicholas', 'sex');
   } },
   ]);
   scene.build();
@@ -242,36 +305,36 @@ function enterFlirt(s: GameState, scene: SceneBuilder): void {
             scene.text('"Yet it feels so right."');
             scene.text('Just before his hand reaches your wrist he stops his movement.');
             scene.text('"Am I going too far? Did I get the signals wrong? Please tell me if you don\'t want this too."');
-            return;
             scene.actions([
-              { label: 'I want this', handler: (st: GameState) => {
-    (s as any).nichSex = 10;
+{ label: 'I want this', handler: (st: GameState) => {
+    (st as any).nichSex = 10;
     scene.text('"Yes, Master Nicholas. I want this."');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    qspGoto(s, 'nichNicholas', 'sex');
+    qspGoto(st, 'nichNicholas', 'sex');
   } },
     ]);
-  } },
-              { label: 'This is going too far', handler: (st: GameState) => {
-    (s as any).nichSex = (-1);
+  } },,
+{ label: 'This is going too far', handler: (st: GameState) => {
+    (st as any).nichSex = (-1);
     scene.text('"I am sorry, master Nicholas. But I can\'t do that."');
     scene.text('He looks disappointed.');
     scene.text('"I understand. Of course I have to ask you that you tell nobody about this incident."');
     scene.text('"Of course, Master Nicholas."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
-            ]);
+]);
+            return;
           } else {
-            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don't think this would be appropriate. I suggest you get b...
+            // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don''t think this would be appropriate. I suggest you get ...
             scene.text(`"${((s as any).pcs_nickname || '')}, I don't think this would be appropriate. I suggest you get back to your work."`);
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
             ]);
           }
@@ -283,7 +346,7 @@ function enterFlirt(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -351,7 +414,7 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Back', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
   ]);
   scene.build();
@@ -707,13 +770,13 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).nichPerformance = ((s as any).nichPerformance ?? 0) + (((s as any).nichTempEval ?? 0));
   (s as any).nichPerformance = Math.min(100, Math.max(0, ((s as any).nichPerformance ?? 0)));
-  if (((s as any).locArgs?.[1] ?? 0) === 'silent') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'silent') {
   } else {
     if ((!((s as any).nichPerformance ?? 0))) {
       scene.text('I had it with your laziness. Pack your stuff, you are fired!');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichUtil', 'fired');
+    qspGoto(st, 'nichUtil', 'fired');
   } },
       ]);
     } else {
@@ -743,7 +806,7 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
       (s as any).nichEvaluationLast = ((s as any).daystart ?? 0);
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     }
@@ -786,5 +849,6 @@ export const nichNicholas: LocationDef = {
   name: 'nichNicholas',
   title: 'Nicholas is sleeping. It would be a bad idea to wake him up ',
   region: 'other',
+  description: ['Nicholas is sleeping. It would be a bad idea to wake him up now.'],
   enter: enter,
 };

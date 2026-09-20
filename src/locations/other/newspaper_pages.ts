@@ -60,9 +60,9 @@ function enterAddEventPages(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: $randname += ' ' + $func('npcrnamefile', 'rusSur')
     ((s as any).NewspaperVars = (s as any).NewspaperVars ?? {})['gad_missing_name'] = ((s as any).randname ?? 0);
-    ((s as any).NewspaperVars = (s as any).NewspaperVars ?? {})['gad_missing_age'] = Math.floor(Math.random() * 61) + 9;
+    ((s as any).NewspaperVars = (s as any).NewspaperVars ?? {})['gad_missing_age'] = (Math.floor(Math.random() * 61) + 9);
     if (((s as any).NewspaperVars ?? 0)?.['gad_missing_counter'] === 0) {
-      ((s as any).NewspaperVars = (s as any).NewspaperVars ?? {})['gad_missing_counter'] = Math.floor(Math.random() * 5) + 12;
+      ((s as any).NewspaperVars = (s as any).NewspaperVars ?? {})['gad_missing_counter'] = (Math.floor(Math.random() * 5) + 12);
       ((s as any).NewspaperVars = (s as any).NewspaperVars ?? {})['gad_missing_counter'] = ((s as any).daystart ?? 0) / 35;
     }
     ((s as any).NewspaperVars = (s as any).NewspaperVars ?? {})['gad_missing_counter'] = ((s as any).NewspaperVars['gad_missing_counter'] ?? 0) + (1);
@@ -102,7 +102,7 @@ function enterAddGenericFrontpage(s: GameState, scene: SceneBuilder): void {
 function enterAddGenericPage(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_newspaper_i = 0;
   // TODO-QSP: :add_generic_page_loop
-  (s as any).temp_page_chosen = 'gs \'newspaper_pages\', \'generic_' + Math.floor(Math.random() * 22) + 0 + '\' ';
+  (s as any).temp_page_chosen = 'gs \'newspaper_pages\', \'generic_' + (Math.floor(Math.random() * 22) + 0) + '\' ';
   (s as any).temp_newspaper_i = ((s as any).temp_newspaper_i ?? 0) + (1);
   if ((Array.isArray((s as any).np_pages) ? ((s as any).np_pages as any[]).indexOf(((s as any).temp_page_chosen ?? 0)) : -1) >= 0  &&  ((s as any).temp_newspaper_i ?? 0) < 100) {
     // TODO-QSP: jump 'add_generic_page_loop'
@@ -444,7 +444,7 @@ function enterAdvert_(s: GameState, scene: SceneBuilder): void {
 
 function enterGadMissing(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>More missing people in Gadukino</center>');
-  // TODO-QSP: dynamic text: <<$NewspaperVars['gad_missing_name']>>, <<NewspaperVars['gad_missing_age']>>, ha...
+  // TODO-QSP: dynamic text: <<$NewspaperVars[''gad_missing_name'']>>, <<NewspaperVars[''gad_missing_age'']>>...
   scene.text(`${((s as any).NewspaperVars ?? 0)?.['gad_missing_name'] ?? ''}, ${((s as any).NewspaperVars ?? 0)?.['gad_missing_age'] ?? ''}, has been reported missing in Gadukino. Last seen four days ago while foraging in the forest, they are the ${((s as any).NewspaperVars ?? 0)?.['gad_missing_counter'] ?? ''} person who has disappeared from the village in recent months and authorities are at a loss in trying to locate them.`);
   // TODO-QSP: end
   scene.build();
@@ -517,7 +517,7 @@ function enterStarletsReport_4(s: GameState, scene: SceneBuilder): void {
 function enterBalletPass(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center>Ballerina <<$pcs_firstname>> <<$pcs_lastname>> aiming for stardom?</cent...
   scene.text(`<center>Ballerina ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} aiming for stardom?</center>`);
-  // TODO-QSP: dynamic text: Pushkin Ballet school has announced this years intake with Pavlovks's own <<$pcs...
+  // TODO-QSP: dynamic text: Pushkin Ballet school has announced this years intake with Pavlovks''s own <<$pc...
   scene.text(`Pushkin Ballet school has announced this years intake with Pavlovks's own ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} being selected as one of the regions up and coming ballerinas.`);
   scene.text('Read the full article on page 9.');
   // TODO-QSP: end

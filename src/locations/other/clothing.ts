@@ -11,124 +11,124 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetTotal(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'allure_bikinis') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'allure_bikinis') {
     (s as any).result = 140;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'nerdvana_bikinis') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana_bikinis') {
       (s as any).result = 30;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'scandalicious_bikinis') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'scandalicious_bikinis') {
         (s as any).result = 70;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'allure_swimsuit') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'allure_swimsuit') {
           (s as any).result = 100;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'danilovich_swimsuit') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'danilovich_swimsuit') {
             (s as any).result = 31;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'nerdvana_swimsuit') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana_swimsuit') {
               (s as any).result = 30;
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'scandalicious_swimsuit') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'scandalicious_swimsuit') {
                 (s as any).result = 40;
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 'fancy_burlesque') {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 'fancy_burlesque') {
                   (s as any).result = 40;
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 'nerdvana_cosplay') {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana_cosplay') {
                     (s as any).result = 160;
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 'moncheri_gown') {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 'moncheri_gown') {
                       (s as any).result = 100;
                     } else {
-                      if (((s as any).locArgs?.[1] ?? 0) === 'gm_maid') {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 'gm_maid') {
                         (s as any).result = 40;
                       } else {
-                        if (((s as any).locArgs?.[1] ?? 0) === 'gm_office') {
+                        if (Number((s as any).locArgs?.[1] ?? 0) === 'gm_office') {
                           (s as any).result = 41;
                         } else {
-                          if (((s as any).locArgs?.[1] ?? 0) === 'gm_school') {
+                          if (Number((s as any).locArgs?.[1] ?? 0) === 'gm_school') {
                             (s as any).result = 62;
                           } else {
-                            if (((s as any).locArgs?.[1] ?? 0) === 'gm_server') {
+                            if (Number((s as any).locArgs?.[1] ?? 0) === 'gm_server') {
                               (s as any).result = 30;
                             } else {
-                              if (((s as any).locArgs?.[1] ?? 0) === 'eroto_strip') {
+                              if (Number((s as any).locArgs?.[1] ?? 0) === 'eroto_strip') {
                                 (s as any).result = 30;
                               } else {
-                                if (((s as any).locArgs?.[1] ?? 0) === 'bomba_dress') {
+                                if (Number((s as any).locArgs?.[1] ?? 0) === 'bomba_dress') {
                                   (s as any).result = 100;
                                 } else {
-                                  if (((s as any).locArgs?.[1] ?? 0) === 'cats_dress') {
+                                  if (Number((s as any).locArgs?.[1] ?? 0) === 'cats_dress') {
                                     (s as any).result = 221;
                                   } else {
-                                    if (((s as any).locArgs?.[1] ?? 0) === 'coco_dress') {
+                                    if (Number((s as any).locArgs?.[1] ?? 0) === 'coco_dress') {
                                       (s as any).result = 300;
                                     } else {
-                                      if (((s as any).locArgs?.[1] ?? 0) === 'dolls_dress') {
+                                      if (Number((s as any).locArgs?.[1] ?? 0) === 'dolls_dress') {
                                         (s as any).result = 140;
                                       } else {
-                                        if (((s as any).locArgs?.[1] ?? 0) === 'eroto_dress') {
+                                        if (Number((s as any).locArgs?.[1] ?? 0) === 'eroto_dress') {
                                           (s as any).result = 140;
                                         } else {
-                                          if (((s as any).locArgs?.[1] ?? 0) === 'fashionista_dress') {
+                                          if (Number((s as any).locArgs?.[1] ?? 0) === 'fashionista_dress') {
                                             (s as any).result = 200;
                                           } else {
-                                            if (((s as any).locArgs?.[1] ?? 0) === 'flamingos_dress') {
+                                            if (Number((s as any).locArgs?.[1] ?? 0) === 'flamingos_dress') {
                                               (s as any).result = 180;
                                             } else {
-                                              if (((s as any).locArgs?.[1] ?? 0) === 'materinstvo_dress') {
+                                              if (Number((s as any).locArgs?.[1] ?? 0) === 'materinstvo_dress') {
                                                 (s as any).result = 10;
                                               } else {
-                                                if (((s as any).locArgs?.[1] ?? 0) === 'moncheri_dress') {
+                                                if (Number((s as any).locArgs?.[1] ?? 0) === 'moncheri_dress') {
                                                   (s as any).result = 100;
                                                 } else {
-                                                  if (((s as any).locArgs?.[1] ?? 0) === 'gm_dress') {
+                                                  if (Number((s as any).locArgs?.[1] ?? 0) === 'gm_dress') {
                                                     (s as any).result = 300;
                                                   } else {
-                                                    if (((s as any).locArgs?.[1] ?? 0) === 'scandalicious_dress') {
+                                                    if (Number((s as any).locArgs?.[1] ?? 0) === 'scandalicious_dress') {
                                                       (s as any).result = 150;
                                                     } else {
-                                                      if (((s as any).locArgs?.[1] ?? 0) === 'salacious_dress') {
+                                                      if (Number((s as any).locArgs?.[1] ?? 0) === 'salacious_dress') {
                                                         (s as any).result = 61;
                                                       } else {
-                                                        if (((s as any).locArgs?.[1] ?? 0) === 'bomba_outfits') {
+                                                        if (Number((s as any).locArgs?.[1] ?? 0) === 'bomba_outfits') {
                                                           (s as any).result = 100;
                                                         } else {
-                                                          if (((s as any).locArgs?.[1] ?? 0) === 'cats_outfits') {
+                                                          if (Number((s as any).locArgs?.[1] ?? 0) === 'cats_outfits') {
                                                             (s as any).result = 200;
                                                           } else {
-                                                            if (((s as any).locArgs?.[1] ?? 0) === 'coco_outfits') {
+                                                            if (Number((s as any).locArgs?.[1] ?? 0) === 'coco_outfits') {
                                                               (s as any).result = 160;
                                                             } else {
-                                                              if (((s as any).locArgs?.[1] ?? 0) === 'dolls_outfits') {
+                                                              if (Number((s as any).locArgs?.[1] ?? 0) === 'dolls_outfits') {
                                                                 (s as any).result = 93;
                                                               } else {
-                                                                if (((s as any).locArgs?.[1] ?? 0) === 'danilovich_outfits') {
+                                                                if (Number((s as any).locArgs?.[1] ?? 0) === 'danilovich_outfits') {
                                                                   (s as any).result = 162;
                                                                 } else {
-                                                                  if (((s as any).locArgs?.[1] ?? 0) === 'eroto_outfits') {
+                                                                  if (Number((s as any).locArgs?.[1] ?? 0) === 'eroto_outfits') {
                                                                     (s as any).result = 100;
                                                                   } else {
-                                                                    if (((s as any).locArgs?.[1] ?? 0) === 'fashionista_outfits') {
+                                                                    if (Number((s as any).locArgs?.[1] ?? 0) === 'fashionista_outfits') {
                                                                       (s as any).result = 20;
                                                                     } else {
-                                                                      if (((s as any).locArgs?.[1] ?? 0) === 'flamingos_outfits') {
+                                                                      if (Number((s as any).locArgs?.[1] ?? 0) === 'flamingos_outfits') {
                                                                         (s as any).result = 160;
                                                                       } else {
-                                                                        if (((s as any).locArgs?.[1] ?? 0) === 'gm_outfits') {
+                                                                        if (Number((s as any).locArgs?.[1] ?? 0) === 'gm_outfits') {
                                                                           (s as any).result = 200;
                                                                         } else {
-                                                                          if (((s as any).locArgs?.[1] ?? 0) === 'nerdvana_outfits') {
+                                                                          if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana_outfits') {
                                                                             (s as any).result = 90;
                                                                           } else {
-                                                                            if (((s as any).locArgs?.[1] ?? 0) === 'scandalicious_outfits') {
+                                                                            if (Number((s as any).locArgs?.[1] ?? 0) === 'scandalicious_outfits') {
                                                                               (s as any).result = 30;
                                                                             } else {
-                                                                              if (((s as any).locArgs?.[1] ?? 0) === 'market_outfits') {
+                                                                              if (Number((s as any).locArgs?.[1] ?? 0) === 'market_outfits') {
                                                                                 (s as any).result = 40;
                                                                               } else {
-                                                                                if (((s as any).locArgs?.[1] ?? 0) === 'salacious_outfits') {
+                                                                                if (Number((s as any).locArgs?.[1] ?? 0) === 'salacious_outfits') {
                                                                                   (s as any).result = 20;
                                                                                 }
                                                                               }
@@ -209,7 +209,7 @@ function enterGetSwimsuitCount(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetPrice(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[3] ?? 0) === 0  &&  ((s as any).locArgs?.[3] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 0  &&  Number((s as any).locArgs?.[3] ?? 0) === '') {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
   }
   (s as any).result = (((s as any).CloPrice ?? 0) * ((5 * ((s as any).CloQuality ?? 0)) + 100) / 100) * 1000 / (1250 - ((s as any).Clothingstock ?? 0)[((s as any).locArgs?.[2] ?? 0)]) * 3 / 2;
@@ -253,7 +253,7 @@ function enterNotWearReason(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 'low_inhib';
     return;
   }
-  if (((s as any).CloStyle2 ?? 0) !== 6  &&  ((s as any).CloStyle ?? 0) !== 5  &&  ((s as any).locArgs?.[1] ?? 0) !== 'nude') {
+  if (((s as any).CloStyle2 ?? 0) !== 6  &&  ((s as any).CloStyle ?? 0) !== 5  &&  Number((s as any).locArgs?.[1] ?? 0) !== 'nude') {
     if (qspFunc(s, 'clothing', 'is_clothes_too_small', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
       (s as any).result = 'too_small';
       return;
@@ -310,7 +310,7 @@ function enterIsLost(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).result = 0;
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
-    (s as any).result = ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(((s as any).locArgs?.[2] ?? 0)) : -1) >= 0);
+    (s as any).result = ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(Number((s as any).locArgs?.[2] ?? 0)) : -1) >= 0);
   }
   return;
   // TODO-QSP: end
@@ -434,7 +434,7 @@ function enterIsHypnoApproved(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hypnoClothes ?? 0) <= 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'salacious_outfits'  ||  ((s as any).locArgs?.[1] ?? 0) === 'salacious_dress') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'salacious_outfits'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'salacious_dress') {
     // TODO-QSP: exit
   }
   if (((s as any).CloThinness ?? 0) >= 6) {
@@ -443,7 +443,7 @@ function enterIsHypnoApproved(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).CloStyle2 ?? 0) === 6  ||  ((s as any).CloSport ?? 0) === 1)  &&  ((s as any).CloThinness ?? 0) >= 5) {
     // TODO-QSP: exit
   }
-  if ((((s as any).locArgs?.[1] ?? 0) === 'eroto_outfits'  ||  ((s as any).locArgs?.[1] ?? 0) === 'eroto_dress'  ||  ((s as any).locArgs?.[1] ?? 0) === 'eroto_strip')  &&  ((s as any).CloThinness ?? 0) >= 3) {
+  if ((Number((s as any).locArgs?.[1] ?? 0) === 'eroto_outfits'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'eroto_dress'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'eroto_strip')  &&  ((s as any).CloThinness ?? 0) >= 3) {
     // TODO-QSP: exit
   }
   if (((s as any).CloStyle2 ?? 0) === 4  &&  ((s as any).CloThinness ?? 0) >= 4) {
@@ -463,7 +463,7 @@ function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).clothingworntype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).clothingwornnumber ?? 0) === ((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).clothingworntype ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).clothingwornnumber ?? 0) === Number((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -476,18 +476,18 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).ARGS ?? {}).length === 2) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'gm_outfits'  &&  ((s as any).locArgs?.[2] ?? 0) === 3);
+  (s as any).result = (Number((s as any).locArgs?.[1] ?? 0) === 'gm_outfits'  &&  Number((s as any).locArgs?.[2] ?? 0) === 3);
   if (((s as any).result ?? 0)) {
     // TODO-QSP: exit
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
-    (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'gm_school'  &&  ((s as any).locArgs?.[2] ?? 0) === 6);
+    (s as any).result = (Number((s as any).locArgs?.[1] ?? 0) === 'gm_school'  &&  Number((s as any).locArgs?.[2] ?? 0) === 6);
     if (((s as any).result ?? 0)) {
       // TODO-QSP: exit
     }
   }
   if (((s as any).misc_outfits ?? 0)[1]) {
-    (s as any).result = (((s as any).locArgs?.[1] ?? 0) === 'misc_outfits'  &&  ((s as any).locArgs?.[2] ?? 0) === 1);
+    (s as any).result = (Number((s as any).locArgs?.[1] ?? 0) === 'misc_outfits'  &&  Number((s as any).locArgs?.[2] ?? 0) === 1);
   }
   return;
   // TODO-QSP: end
@@ -560,10 +560,10 @@ function enterDoClothesFit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
@@ -583,13 +583,13 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'nude') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'nude') {
     // TODO-QSP: exit
   }
   // TODO-QSP: dynamic "
@@ -599,7 +599,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] = 0
   // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
-  if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).lastwornclothingtype = 'nude';
     (s as any).lastwornclothingnumber = 0;
@@ -640,10 +640,10 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -655,10 +655,10 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -670,10 +670,10 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -685,10 +685,10 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResizeClothes(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -699,10 +699,10 @@ function enterResizeClothes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQuickBuy(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   if (Object.keys((s as any).ARGS ?? {}).length === 3) {
@@ -718,7 +718,7 @@ function enterQuickBuy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLostClothesHere(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).CloLosDay ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 0  &&  ((s as any).CloLosDay ?? 0)[((s as any).locArgs?.[1] ?? 0)] <= ((s as any).daystart ?? 0)) {
+  if (((s as any).CloLosDay ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0  &&  ((s as any).CloLosDay ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] <= ((s as any).daystart ?? 0)) {
     (s as any).result = 1;
   } else {
     (s as any).result = 0;
@@ -757,12 +757,12 @@ function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGadSwampClothes(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).swamp_clothes = 1;
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'misc_outfits', 1]; enterAddItem(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'misc_outfits', 1]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).misc_outfits = (s as any).misc_outfits ?? {})[1] = 0;
     (s as any).swamp_clothes = 0;
   }
@@ -905,10 +905,10 @@ function enterReset_PCloVars(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWear(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'nude';
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
     if (((s as any).lastwornclothingtype ?? 0) === '') {
       (s as any).lastwornclothingtype = 'nude';
       (s as any).lastwornclothingnumber = 0;
@@ -916,7 +916,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $ARGS[1] = $lastwornclothingtype
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).lastwornclothingnumber ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'nude') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'nude') {
     // TODO-QSP: exit
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -1087,19 +1087,19 @@ function enterDecreaseCurDirt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] += <<ARGS[3]>>
-    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
       (s as any).PCloDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_dirt[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
@@ -1110,22 +1110,22 @@ function enterIncreaseDirt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDecreaseDirt(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] -= <<ARGS[3]>>
-    if (((s as any).locArgs?.[1] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[2] ?? 0)] < 0) {
+    if (Number((s as any).locArgs?.[1] ?? 0)((s as any)._dirt ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] < 0) {
       // TODO-QSP: <<$ARGS[1]>>_dirt[<<ARGS[2]>>] = 0
     }
-    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
       (s as any).PCloDirt = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_dirt[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
@@ -1150,19 +1150,19 @@ function enterIncreaseCurStrength(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] -= <<ARGS[3]>>
-    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
       (s as any).PCloStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_h[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
@@ -1173,20 +1173,20 @@ function enterDecreaseStrength(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).clothingworntype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).clothingwornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[3] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[3] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[3] = 1;
   }
   if (qspFunc(s, 'clothing', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
     // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
     // TODO-QSP: dynamic "
     // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] = min(<<$ARGS[1]>>_h[<<ARGS[2]>>] + <<ARGS[3]>>, <<CloMaxStrength>>)
-    if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
       (s as any).PCloStrength = qspUntranslated(s, "((s as any).locArgs?.[1] ?? 0)_h[((s as any).locArgs?.[2] ?? 0)]", { location: "clothing" });
     }
     // TODO-QSP: "
@@ -1197,8 +1197,8 @@ function enterIncreaseStrength(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_preP = ((((s as any).locArgs?.[2] ?? 0) === 'wearing') ? ('P') : (''));
-  (s as any).temp_CloSkirt = ((((s as any).locArgs?.[2] ?? 0) === 'wearing') ? ('PCloSkirt') : ('CloSkirtShortness'));
+  (s as any).temp_preP = ((Number((s as any).locArgs?.[2] ?? 0) === 'wearing') ? ('P') : (''));
+  (s as any).temp_CloSkirt = ((Number((s as any).locArgs?.[2] ?? 0) === 'wearing') ? ('PCloSkirt') : ('CloSkirtShortness'));
   if ((0 as any)) {
     ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['cool'] = (-1);
     ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['jock'] = (-1);
@@ -1238,7 +1238,7 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_school_check ?? 0)?.['approve'] !== '') {
             ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);
           }
-          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', '$temp_school_check[\'wrap\']', ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', ((s as any).temp_school_check ?? 0)?.['wrap'], ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
           ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is ' + ((s as any).temp_school_check ?? 0)?.['style'] + ' style, but still follows the school regulation on skirt length.');
         } else {
           if ((0 as any)) {
@@ -1286,7 +1286,7 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_school_check ?? 0)?.['approve'] !== '') {
             ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);
           }
-          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', '$temp_school_check[\'wrap\']', ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
+          ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['wardrobe_text'] = qspFunc(s, 'wrap', ((s as any).temp_school_check ?? 0)?.['wrap'], ((s as any).temp_school_check ?? 0)?.['wardrobe_text']);
           ((s as any).temp_school_check = (s as any).temp_school_check ?? {})['change_text'] = qspFunc(s, 'wrap', 'accent', 'This uniform is ' + ((s as any).temp_school_check ?? 0)?.['style'] + ' style uniform slightly breaches the school regulations on skirt length.');
         } else {
           if ((0 as any)) {
@@ -1319,7 +1319,7 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'apply') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'apply') {
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (((s as any).temp_school_check ?? 0)?.['cool']);
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (((s as any).temp_school_check ?? 0)?.['jock']);
     ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) + (((s as any).temp_school_check ?? 0)?.['nerd']);
@@ -1330,7 +1330,7 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'fame', 'pav', 'sex', temp_school_check['fame']
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'check'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'check'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     }
   }
   // TODO-QSP: end
@@ -1441,11 +1441,11 @@ function enterClothwidth(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Set image size for this view', handler: (st: GameState) => {
-    (s as any).Enable_clothwidth = 0;
-    if (((s as any).Enable_clothwidth ?? 0) !== 0) {
-      (s as any).Enable_clothwidth = Math.min(Math.max(50, ((s as any).Enable_clothwidth ?? 0)), 500);
+    (st as any).Enable_clothwidth = 0;
+    if (((st as any).Enable_clothwidth ?? 0) !== 0) {
+      (st as any).Enable_clothwidth = Math.min(Math.max(50, ((st as any).Enable_clothwidth ?? 0)), 500);
     }
-    qspGoto(s, 'clothing', 'clothing_list', qspUntranslated(s, "'<<ward_list_store>>'", { location: "clothing" }));
+    qspGoto(st, 'clothing', 'clothing_list', '' + ((st as any).ward_list_store ?? 0) + '');
   } },
   ]);
   scene.build();
@@ -1536,7 +1536,7 @@ function enterViewClothingItem(s: GameState, scene: SceneBuilder): void {
 function enterViewClothingItemBuy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'clothing', 'add_item', $ARGS[2], ARGS[3]
   qspCall(s, 'stat', '');
-  if (((s as any).locArgs?.[1] ?? 0) !== 'skip') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 'skip') {
     // TODO-QSP: gt $loc, $loc_arg
   }
   // TODO-QSP: end

@@ -11,23 +11,23 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Arthur leads you inside a container that is used as a warehouse for his products. He immediately unbuttons his pants and pulls out his fat cock. "Come girl, get to working that mouth before the customers notice we\'re gone."');
   scene.actions([
     { label: 'Kneel down', handler: (st: GameState) => {
-    (s as any).arturTimes = ((s as any).arturTimes ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).arturTimes = ((st as any).arturTimes ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/sex/cocksucer.jpg');
     scene.text('You kneel down in front of Arthur and take his massive member into your mouth. You feel your lips stretch around the thick dick and you began to suck his dick in earnest, attempting to take it into your throat. As you continue furiously working his member, you slide your hand down your belly and begin rubbing your pussy, looking up into Arthur\'s eyes.');
-    qspCall(s, 'arousal', 'bj', 5, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth_swallow', 'Artur');
-    qspCall(s, 'money', 'earn', 500);
-    (s as any).arturblowday = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'Artur');
+    qspCall(st, 'money', 'earn', 500);
+    (st as any).arturblowday = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/sex/cocksuckercum.jpg');
-    // TODO-QSP: dynamic text: After a few minutes Arthur's breathing grows rapid and he begins to cum in your ...
+    // TODO-QSP: dynamic text: After a few minutes Arthur''s breathing grows rapid and he begins to cum in your...
     scene.text(`After a few minutes Arthur's breathing grows rapid and he begins to cum in your mouth. You immediately begin swallowing sperm while continuing to slide your mouth up and down his cock. After Arthur has finished, he pulls his cock from your greedy mouth with a wet "pop" sound. He grins at you as he tucks his spent penis back in his trousers and says. "You always know how to make my day. Here, from Uncle Arturik, Buy something nice." He hands to you ${qspFunc(s, 'money', 'string_profit', 500)} before striding out of the container, back towards the kiosk.`);
-    qspCall(s, 'arousal', 'bj', 10, 'sub');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 10, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['pav_train_market', 'start'] },
     ]);

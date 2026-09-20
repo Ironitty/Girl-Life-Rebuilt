@@ -42,7 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 1  ||  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10)) {
-      scene.text('In the yard there are several <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gpyard\\u0027, \\u0027chickens\\u0027); return false;">chickens</a> running around.');
+      scene.text('In the yard there are several <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_gpyard/u0027, /u0027chickens/u0027); return false;">chickens</a> running around.');
     }
     if (qspFunc(s, 'homes_properties', 'is_current_home')  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).rex ?? 0)?.['owned'] === 1) {
       if (((s as any).status ?? 0)?.['dog'] === '') {
@@ -52,13 +52,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ((s as any).rex = (s as any).rex ?? {})['relationship'] = ((s as any).rex['relationship'] ?? 0) + (2);
           ((s as any).rex = (s as any).rex ?? {})['gadukino_day'] = ((s as any).daystart ?? 0);
         }
-        // TODO-QSP: dynamic text: <br><a href="exec: gt 'pet_dog', 'gadukino'"><<$rex['name']>></a> is running aro...
-        scene.text(`<br><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pet_dog\\u0027, \\u0027gadukino\\u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is running around in the garden.`);
+        // TODO-QSP: dynamic text: <br><a href="exec: gt ''pet_dog'', ''gadukino''"><<$rex[''name'']>></a> is runni...
+        scene.text(`<br><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pet_dog/u0027, /u0027gadukino/u0027); return false;">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is running around in the garden.`);
       }
     }
   }
   if (((s as any).MiraVars ?? 0)?.['guest'] === 1  ||  qspFunc(s, 'miroslava_schedule', 'is_here')) {
-    scene.text('Your friend <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027miroslava\\u0027, \\u0027start\\u0027); return false;">Mira</a> stands next to you.');
+    scene.text('Your friend <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027miroslava/u0027, /u0027start/u0027); return false;">Mira</a> stands next to you.');
   }
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'yard');
   if (((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 1  ||  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10)) {
@@ -70,7 +70,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'miroslava', 'miraclothes');
     scene.text('You went out into the yard and noticed Mira standing there.');
-    // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, hi. I hope you don't mind me visiting. I was bored being...
+    // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, hi. I hope you don''t mind me visiting. I was bored bein...
     scene.text(`"Oh, ${((s as any).pcs_nickname || '')}, hi. I hope you don't mind me visiting. I was bored being home alone," she said, smiling.`);
     ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0);
     ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 1;
@@ -83,17 +83,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
-    qspCall(s, 'clothing', 'recover_lost_clothes', 'gad_gpyard', 1);
-    qspCall(s, 'underwear', 'wear');
-    qspGoto(s, 'gad_gpyard', 'start');
+    qspCall(st, 'clothing', 'recover_lost_clothes', 'gad_gpyard', 1);
+    qspCall(st, 'underwear', 'wear');
+    qspGoto(st, 'gad_gpyard', 'start');
   } },
       ]);
     } else {
       scene.actions([
         { label: 'Pick up your clothes', handler: (st: GameState) => {
-    qspCall(s, 'clothing', 'recover_lost_clothes', 'gad_gpyard');
+    qspCall(st, 'clothing', 'recover_lost_clothes', 'gad_gpyard');
     scene.text('You picked up your clothes.');
-    qspGoto(s, 'gad_gpyard', 'start');
+    qspGoto(st, 'gad_gpyard', 'start');
   } },
       ]);
     }
@@ -101,11 +101,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '<b>Leave and go into the village</b>', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) !== 'nude') {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspGoto(s, 'gadukino', '');
+    if (((st as any).clothingworntype ?? 0) !== 'nude') {
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspGoto(st, 'gadukino', '');
     } else {
-      qspGoto(s, 'gad_gpyard', 'start');
+      qspGoto(st, 'gad_gpyard', 'start');
     }
   } },
     { label: 'Enter your grandparents\' house', handler: (st: GameState) => {
@@ -197,36 +197,36 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).boletus ?? 0) > 0) {
       scene.actions([
         { label: 'Store 1 kg of raw mushrooms', handler: (st: GameState) => {
-    (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) + (1);
-    (s as any).boletus = ((s as any).boletus ?? 0) - (1);
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + (1);
+    (st as any).boletus = ((st as any).boletus ?? 0) - (1);
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
       ]);
     }
     if (((s as any).bilberry ?? 0) > 0) {
       scene.actions([
         { label: 'Store 1 kg of raw berries', handler: (st: GameState) => {
-    (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) + (1);
-    (s as any).bilberry = ((s as any).bilberry ?? 0) - (1);
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + (1);
+    (st as any).bilberry = ((st as any).bilberry ?? 0) - (1);
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
       ]);
     }
     scene.actions([
       { label: 'Store as many raw mushrooms and berries that will fit (Max 20 kgs):', handler: (st: GameState) => {
     // TODO-QSP: :store_bb_loop
-    if (((s as any).boletus ?? 0) > 0  &&  ((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) < 20) {
-      (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) + (1);
-      (s as any).boletus = ((s as any).boletus ?? 0) - (1);
+    if (((st as any).boletus ?? 0) > 0  &&  ((st as any).boletus_stored ?? 0) + ((st as any).bilberry_stored ?? 0) < 20) {
+      (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + (1);
+      (st as any).boletus = ((st as any).boletus ?? 0) - (1);
     }
-    if (((s as any).bilberry ?? 0) > 0  &&  ((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) < 20) {
-      (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) + (1);
-      (s as any).bilberry = ((s as any).bilberry ?? 0) - (1);
+    if (((st as any).bilberry ?? 0) > 0  &&  ((st as any).boletus_stored ?? 0) + ((st as any).bilberry_stored ?? 0) < 20) {
+      (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + (1);
+      (st as any).bilberry = ((st as any).bilberry ?? 0) - (1);
     }
-    if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) < 20  &&  ((s as any).boletus ?? 0) + ((s as any).bilberry ?? 0) > 0) {
+    if (((st as any).boletus_stored ?? 0) + ((st as any).bilberry_stored ?? 0) < 20  &&  ((st as any).boletus ?? 0) + ((st as any).bilberry ?? 0) > 0) {
       // TODO-QSP: jump 'store_bb_loop'
     }
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
     ]);
   }
@@ -234,18 +234,18 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['mushrooms'] > 0  &&  ((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) <= 10) {
       scene.actions([
         { label: 'Store 10 kg of bought mushrooms', handler: (st: GameState) => {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mushrooms'] = ((s as any).mc_inventory['mushrooms'] ?? 0) - (1);
-    (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) + (10);
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['mushrooms'] = ((st as any).mc_inventory['mushrooms'] ?? 0) - (1);
+    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) + (10);
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
       ]);
     }
     if (((s as any).mc_inventory ?? 0)?.['berries'] > 0  &&  ((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) <= 10) {
       scene.actions([
         { label: 'Store 10 kg of bought berries', handler: (st: GameState) => {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['berries'] = ((s as any).mc_inventory['berries'] ?? 0) - (1);
-    (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) + (10);
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['berries'] = ((st as any).mc_inventory['berries'] ?? 0) - (1);
+    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) + (10);
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
       ]);
     }
@@ -254,39 +254,39 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).boletus_stored ?? 0) > 0  &&  ((s as any).grandmaQW ?? 0)?.['chore_can_mushrooms'] !== 1)  ||  (((s as any).boletus_stored ?? 0) > 5  &&  ((s as any).grandmaQW ?? 0)?.['chore_can_mushrooms'] === 1)) {
       scene.actions([
         { label: 'Retrieve 1 kg of raw mushrooms', handler: (st: GameState) => {
-    (s as any).boletus = ((s as any).boletus ?? 0) + (1);
-    (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) - (1);
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    (st as any).boletus = ((st as any).boletus ?? 0) + (1);
+    (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) - (1);
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
       ]);
     }
     if ((((s as any).bilberry_stored ?? 0) > 0  &&  ((s as any).grandmaQW ?? 0)?.['chore_can_berries'] !== 1)  ||  (((s as any).bilberry_stored ?? 0) > 5  &&  ((s as any).grandmaQW ?? 0)?.['chore_can_berries'] === 1)) {
       scene.actions([
         { label: 'Retrieve 1 kg of raw berries', handler: (st: GameState) => {
-    (s as any).bilberry = ((s as any).bilberry ?? 0) + (1);
-    (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) - (1);
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    (st as any).bilberry = ((st as any).bilberry ?? 0) + (1);
+    (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) - (1);
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
       ]);
     }
     scene.actions([
       { label: 'Retrieve as many raw mushrooms and berries as you can carry (Max 5 kgs)', handler: (st: GameState) => {
     // TODO-QSP: :retrieve_bb_loop
-    if (((s as any).boletus_stored ?? 0) > 0) {
-      (s as any).boletus = ((s as any).boletus ?? 0) + (1);
-      (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) - (1);
-      if (((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
+    if (((st as any).boletus_stored ?? 0) > 0) {
+      (st as any).boletus = ((st as any).boletus ?? 0) + (1);
+      (st as any).boletus_stored = ((st as any).boletus_stored ?? 0) - (1);
+      if (((st as any).boletus ?? 0) + ((st as any).boletus_cooked ?? 0) + ((st as any).bilberry ?? 0) < 5) {
         // TODO-QSP: jump 'retrieve_bb_loop'
       }
     }
-    if (((s as any).bilberry_stored ?? 0) > 0) {
-      (s as any).bilberry = ((s as any).bilberry ?? 0) + (1);
-      (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) - (1);
-      if (((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
+    if (((st as any).bilberry_stored ?? 0) > 0) {
+      (st as any).bilberry = ((st as any).bilberry ?? 0) + (1);
+      (st as any).bilberry_stored = ((st as any).bilberry_stored ?? 0) - (1);
+      if (((st as any).boletus ?? 0) + ((st as any).boletus_cooked ?? 0) + ((st as any).bilberry ?? 0) < 5) {
         // TODO-QSP: jump 'retrieve_bb_loop'
       }
     }
-    qspGoto(s, 'gad_gpyard', 'root_cellar');
+    qspGoto(st, 'gad_gpyard', 'root_cellar');
   } },
     ]);
   }
@@ -333,7 +333,7 @@ function enterGarden(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A large vegetable garden that your grandparents are very proud of.');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-    scene.text('There is also a small land plot is dedicated to growing <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gpyard\\u0027, \\u0027strawberry\\u0027); return false;">strawberries</a> and a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gad_gpyard\\u0027, \\u0027fruit_garden\\u0027); return false;">fruit tree orchard</a>.');
+    scene.text('There is also a small land plot is dedicated to growing <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_gpyard/u0027, /u0027strawberry/u0027); return false;">strawberries</a> and a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gad_gpyard/u0027, /u0027fruit_garden/u0027); return false;">fruit tree orchard</a>.');
   } else {
     scene.text('There is also a small plot of land dedicated to growing strawberries and a small fruit tree orchard, but they are not in season right now.');
   }
@@ -372,15 +372,15 @@ function enterStrawberry(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 7  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).strawberriesday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Eat some strawberries (1:00)', handler: (st: GameState) => {
-    (s as any).strawberriesday = ((s as any).daystart ?? 0);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (15);
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    qspCall(s, 'stat', '');
+    (st as any).strawberriesday = ((st as any).daystart ?? 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (15);
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/village/eat_strawberries.jpg');
     scene.text('You spend some time wandering through the plot searching for ripe strawberries. You walk along, picking off the ones that you find and popping them in your mouth.');
     scene.actions([
@@ -412,15 +412,15 @@ function enterFruitGarden(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 7  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).fruitday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Eat the fruit (1:00)', handler: (st: GameState) => {
-    (s as any).fruitday = ((s as any).daystart ?? 0);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (30);
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    qspCall(s, 'stat', '');
+    (st as any).fruitday = ((st as any).daystart ?? 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (30);
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/village/eat_fruit.jpg');
     scene.text('You spend some time wandering around the orchard munching on the ripe fruit.');
     scene.actions([
@@ -446,10 +446,10 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gadstay ?? 0) === 1  &&  (!((s as any).lost_girl ?? 0))) {
     if (((s as any).daystart ?? 0) > (((s as any).grandmaQW ?? 0)?.['last_day_helped'] + 3)  &&  ((s as any).daystart ?? 0) > (((s as any).grandpaQW ?? 0)?.['last_day_helped'] + 3)) {
       if ((((s as any).daystart ?? 0) - ((s as any).grandmaQW ?? 0)?.['last_day_helped']) <= (((s as any).daystart ?? 0) - ((s as any).grandpaQW ?? 0)?.['last_day_helped'])) {
-        // TODO-QSP: dynamic text: You haven't helped your grandparents with any chores in <<daystart - grandmaQW['...
+        // TODO-QSP: dynamic text: You haven''t helped your grandparents with any chores in <<daystart - grandmaQW[...
         scene.text(`You haven't helped your grandparents with any chores in ${((s as any).daystart ?? '') - (((s as any).grandmaQW ?? {})?.['last_day_helped'] ?? 0)} days. You should help out more often to stay on your grandparents' good side.`);
       } else {
-        // TODO-QSP: dynamic text: You haven't helped your grandparents with any chores in <<daystart - grandpaQW['...
+        // TODO-QSP: dynamic text: You haven''t helped your grandparents with any chores in <<daystart - grandpaQW[...
         scene.text(`You haven't helped your grandparents with any chores in ${((s as any).daystart ?? '') - (((s as any).grandpaQW ?? {})?.['last_day_helped'] ?? 0)} days. You should help out more often to stay on your grandparents' good side.`);
       }
       ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['help_amount'] = ((s as any).grandmaQW['help_amount'] ?? 0) - (1);
@@ -637,10 +637,10 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).boletus_stored ?? 0) > 0) {
-    (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) - (Math.floor(Math.random() * 2) + 0);
+    (s as any).boletus_stored = ((s as any).boletus_stored ?? 0) - ((Math.floor(Math.random() * 2) + 0));
   }
   if (((s as any).bilberry_stored ?? 0) > 0) {
-    (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) - (Math.floor(Math.random() * 2) + 0);
+    (s as any).bilberry_stored = ((s as any).bilberry_stored ?? 0) - ((Math.floor(Math.random() * 2) + 0));
   }
   if (((s as any).boletus_stored ?? 0) < 0) {
     (s as any).boletus_stored = 0;

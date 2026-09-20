@@ -5,29 +5,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).loc_arg = '';
-  (s as any).loc = 'nichLivingroom';
-  (s as any).menu_loc = 'nichLivingroom';
-  (s as any).nichLoc = 'living';
-  (s as any).menu_arg = '';
-  (s as any).locclass = 'livingr';
-  qspCall(s, 'stat', '');
-  (s as any).sexpartkno = 1;
-  qspCall(s, 'boyStat', 'A52');
-  qspCall(s, 'boyStat', 'A161', 'a');
-  if (((s as any).nichWork ?? 0) === 2) {
-    if (((s as any).nichLastWorkDay ?? 0) !== ((s as any).daystart ?? 0)) {
-      qspCall(s, 'nichUtil', 'startWorkday');
-    }
-    qspCall(s, 'nichUtil', 'checkOutfit');
-  }
   (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
   (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
   (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
   (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
-  if (((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+  if (Number((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
     dynamicGoto(s, 'prevLoc');
   }
   scene.text('<center><b>Nicholas\' Living Room</b></center>');
@@ -71,26 +55,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichNichAct ?? 0) === 'living') {
     if (((s as any).nichGalaAct ?? 0) === 'living') {
       if (((s as any).nichTanyAct ?? 0) === 'living') {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichNicholas\\u0027, \\u0027\\u0027); return false;">Nicholas</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichGala\\u0027, \\u0027\\u0027); return false;">Gala</a> and Tanya are sitting on the couch watching TV together.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> and Tanya are sitting on the couch watching TV together.');
       } else {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichNicholas\\u0027, \\u0027\\u0027); return false;">Nicholas</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichGala\\u0027, \\u0027\\u0027); return false;">Gala</a> are sitting on the couch watching TV together.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> are sitting on the couch watching TV together.');
       }
     } else {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichNicholas\\u0027, \\u0027\\u0027); return false;">Nicholas</a> is sitting on the couch reading a book.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a> is sitting on the couch reading a book.');
     }
   } else {
     if (((s as any).nichGalaAct ?? 0) === 'living') {
       if (((s as any).nichTanyAct ?? 0) === 'living') {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichGala\\u0027, \\u0027\\u0027); return false;">Gala</a> and Tanya are sitting on the couch chatting with each other.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> and Tanya are sitting on the couch chatting with each other.');
       } else {
-        (s as any).nichRand = Math.floor(Math.random() * 3) + 0;
+        (s as any).nichRand = (Math.floor(Math.random() * 3) + 0);
         if ((!((s as any).nichRand ?? 0))) {
-          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichGala\\u0027, \\u0027\\u0027); return false;">Gala</a> is sitting on the couch reading a book.');
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch reading a book.');
         } else {
           if (((s as any).nichRand ?? 0) === 1) {
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichGala\\u0027, \\u0027\\u0027); return false;">Gala</a> is sitting on the couch reading a magazine.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch reading a magazine.');
           } else {
-            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichGala\\u0027, \\u0027\\u0027); return false;">Gala</a> is sitting on the couch watching tv.');
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch watching tv.');
           }
         }
       }
@@ -110,7 +94,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text(`Gala takes a quick look at you. "${((s as any).pcs_nickname || '')}, you really have to wear your maid uniform here. That's part of your job."`);
       } else {
         if (((s as any).nichTanyPresent ?? 0) === 1) {
-          // TODO-QSP: dynamic text: Tanya notices that you are not wearing your uniform. "<<$pcs_nickname>>, I don't...
+          // TODO-QSP: dynamic text: Tanya notices that you are not wearing your uniform. "<<$pcs_nickname>>, I don''...
           scene.text(`Tanya notices that you are not wearing your uniform. "${((s as any).pcs_nickname || '')}, I don't mind if you walk around the house like this. But Nicholas does. You should better put your uniform on before he anybody else sees you."`);
         } else {
           scene.text('You realize that you are not wearing your uniform. If Nicholas saw you now he would be displeased. You should better change into your maid outfit before walking around the apartment.');
@@ -127,12 +111,248 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'nichApartment', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichApartment', '');
   } },
     { label: 'Go to the kitchen', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'nichKitchen', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichKitchen', '');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
+  (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
+  (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
+  (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
+  (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
+  (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
+  if (Number((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+    dynamicGoto(s, 'prevLoc');
+  }
+  scene.text('<center><b>Nicholas\' Living Room</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/living.jpg');
+  scene.text('The living room is furnished with finest leather couches of modern design, a fireplace, a large TV on the wall, several side tables and a cabinet and fridge for various expensive alcoholic beverages.');
+  scene.text('Just like every other room in the apartment, it serves to convey to anybody who enters that Nicholas and his family are doing really well financially.');
+  (s as any).nichCleanAppropriate = 1;
+  if (((s as any).nichNichAct ?? 0) === 'breakfast') {
+    if (((s as any).nichGalaAct ?? 0) === 'breakfast') {
+      if (((s as any).nichTanyAct ?? 0) === 'breakfast') {
+        scene.text('The family is sitting together at the dining table eating breakfast.');
+      } else {
+        scene.text('Nicholas and Gala are sitting together at the dining table eating breakfast.');
+      }
+    } else {
+      if (((s as any).nichTanyAct ?? 0) === 'breakfast') {
+        scene.text('Nicholas and Tanya are sitting together at the dining table eating breakfast.');
+      } else {
+        scene.text('Nicholas is sitting at the dining table eating breakfast.');
+      }
+    }
+    (s as any).nichCleanAppropriate = 0;
+  } else {
+    if (((s as any).nichNichAct ?? 0) === 'dinner') {
+      if (((s as any).nichGalaAct ?? 0) === 'dinner') {
+        if (((s as any).nichTanyAct ?? 0) === 'dinner') {
+          scene.text('The family is sitting together at the dining table eating dinner.');
+        } else {
+          scene.text('Nicholas and Gala are sitting together at the dining table eating dinner.');
+        }
+      } else {
+        if (((s as any).nichTanyAct ?? 0) === 'dinner') {
+          scene.text('Nicholas and Tanya are sitting together at the dining table eating dinner.');
+        } else {
+          scene.text('Nicholas is sitting at the dining table eating dinner.');
+        }
+      }
+      (s as any).nichCleanAppropriate = 0;
+    }
+  }
+  if (((s as any).nichNichAct ?? 0) === 'living') {
+    if (((s as any).nichGalaAct ?? 0) === 'living') {
+      if (((s as any).nichTanyAct ?? 0) === 'living') {
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> and Tanya are sitting on the couch watching TV together.');
+      } else {
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> are sitting on the couch watching TV together.');
+      }
+    } else {
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a> is sitting on the couch reading a book.');
+    }
+  } else {
+    if (((s as any).nichGalaAct ?? 0) === 'living') {
+      if (((s as any).nichTanyAct ?? 0) === 'living') {
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> and Tanya are sitting on the couch chatting with each other.');
+      } else {
+        (s as any).nichRand = (Math.floor(Math.random() * 3) + 0);
+        if ((!((s as any).nichRand ?? 0))) {
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch reading a book.');
+        } else {
+          if (((s as any).nichRand ?? 0) === 1) {
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch reading a magazine.');
+          } else {
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch watching tv.');
+          }
+        }
+      }
+    } else {
+      if (((s as any).nichTanyAct ?? 0) === 'living') {
+        scene.text('Tanya is sitting on the couch watching TV.');
+      }
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2  &&  (!((s as any).nichOutfitState ?? 0))) {
+    if (((s as any).nichNichPresent ?? 0) === 1) {
+      // TODO-QSP: dynamic text: Nicholas looks at you with a displeased expression. "<<$pcs_nickname>>, I though...
+      scene.text(`Nicholas looks at you with a displeased expression. "${((s as any).pcs_nickname || '')}, I thought I made it clear that you have to wear your uniform here. Go back to your room and put it on."`);
+    } else {
+      if (((s as any).nichGalaPresent ?? 0) === 1) {
+        // TODO-QSP: dynamic text: Gala takes a quick look at you. "<<$pcs_nickname>>, you really have to wear your...
+        scene.text(`Gala takes a quick look at you. "${((s as any).pcs_nickname || '')}, you really have to wear your maid uniform here. That's part of your job."`);
+      } else {
+        if (((s as any).nichTanyPresent ?? 0) === 1) {
+          // TODO-QSP: dynamic text: Tanya notices that you are not wearing your uniform. "<<$pcs_nickname>>, I don''...
+          scene.text(`Tanya notices that you are not wearing your uniform. "${((s as any).pcs_nickname || '')}, I don't mind if you walk around the house like this. But Nicholas does. You should better put your uniform on before he anybody else sees you."`);
+        } else {
+          scene.text('You realize that you are not wearing your uniform. If Nicholas saw you now he would be displeased. You should better change into your maid outfit before walking around the apartment.');
+        }
+      }
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    if ((!((s as any).nichCleanAppropriate ?? 0))) {
+      scene.text('It wouldn\'t be appropriate to clean this room now.');
+    } else {
+      qspCall(s, 'nichChore', 'inspect', 'living');
+    }
+  }
+  scene.actions([
+    { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichApartment', '');
+  } },
+    { label: 'Go to the kitchen', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichKitchen', '');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReturn(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
+  (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
+  (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
+  (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'living');
+  (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'living');
+  (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'living');
+  if (Number((s as any).locArgs?.[0] ?? 0) !== 'return'  &&  ((s as any).nichGalaPresent ?? 0) === 1  &&  ((s as any).nichNichPresent ?? 0) === 0  &&  ((s as any).nichTanyPresent ?? 0) === 0  &&  ((s as any).nichEvtGalaTele1 ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) === 1) {
+    dynamicGoto(s, 'prevLoc');
+  }
+  scene.text('<center><b>Nicholas\' Living Room</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/living.jpg');
+  scene.text('The living room is furnished with finest leather couches of modern design, a fireplace, a large TV on the wall, several side tables and a cabinet and fridge for various expensive alcoholic beverages.');
+  scene.text('Just like every other room in the apartment, it serves to convey to anybody who enters that Nicholas and his family are doing really well financially.');
+  (s as any).nichCleanAppropriate = 1;
+  if (((s as any).nichNichAct ?? 0) === 'breakfast') {
+    if (((s as any).nichGalaAct ?? 0) === 'breakfast') {
+      if (((s as any).nichTanyAct ?? 0) === 'breakfast') {
+        scene.text('The family is sitting together at the dining table eating breakfast.');
+      } else {
+        scene.text('Nicholas and Gala are sitting together at the dining table eating breakfast.');
+      }
+    } else {
+      if (((s as any).nichTanyAct ?? 0) === 'breakfast') {
+        scene.text('Nicholas and Tanya are sitting together at the dining table eating breakfast.');
+      } else {
+        scene.text('Nicholas is sitting at the dining table eating breakfast.');
+      }
+    }
+    (s as any).nichCleanAppropriate = 0;
+  } else {
+    if (((s as any).nichNichAct ?? 0) === 'dinner') {
+      if (((s as any).nichGalaAct ?? 0) === 'dinner') {
+        if (((s as any).nichTanyAct ?? 0) === 'dinner') {
+          scene.text('The family is sitting together at the dining table eating dinner.');
+        } else {
+          scene.text('Nicholas and Gala are sitting together at the dining table eating dinner.');
+        }
+      } else {
+        if (((s as any).nichTanyAct ?? 0) === 'dinner') {
+          scene.text('Nicholas and Tanya are sitting together at the dining table eating dinner.');
+        } else {
+          scene.text('Nicholas is sitting at the dining table eating dinner.');
+        }
+      }
+      (s as any).nichCleanAppropriate = 0;
+    }
+  }
+  if (((s as any).nichNichAct ?? 0) === 'living') {
+    if (((s as any).nichGalaAct ?? 0) === 'living') {
+      if (((s as any).nichTanyAct ?? 0) === 'living') {
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a>, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> and Tanya are sitting on the couch watching TV together.');
+      } else {
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> are sitting on the couch watching TV together.');
+      }
+    } else {
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027/u0027); return false;">Nicholas</a> is sitting on the couch reading a book.');
+    }
+  } else {
+    if (((s as any).nichGalaAct ?? 0) === 'living') {
+      if (((s as any).nichTanyAct ?? 0) === 'living') {
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> and Tanya are sitting on the couch chatting with each other.');
+      } else {
+        (s as any).nichRand = (Math.floor(Math.random() * 3) + 0);
+        if ((!((s as any).nichRand ?? 0))) {
+          scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch reading a book.');
+        } else {
+          if (((s as any).nichRand ?? 0) === 1) {
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch reading a magazine.');
+          } else {
+            scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichGala/u0027, /u0027/u0027); return false;">Gala</a> is sitting on the couch watching tv.');
+          }
+        }
+      }
+    } else {
+      if (((s as any).nichTanyAct ?? 0) === 'living') {
+        scene.text('Tanya is sitting on the couch watching TV.');
+      }
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2  &&  (!((s as any).nichOutfitState ?? 0))) {
+    if (((s as any).nichNichPresent ?? 0) === 1) {
+      // TODO-QSP: dynamic text: Nicholas looks at you with a displeased expression. "<<$pcs_nickname>>, I though...
+      scene.text(`Nicholas looks at you with a displeased expression. "${((s as any).pcs_nickname || '')}, I thought I made it clear that you have to wear your uniform here. Go back to your room and put it on."`);
+    } else {
+      if (((s as any).nichGalaPresent ?? 0) === 1) {
+        // TODO-QSP: dynamic text: Gala takes a quick look at you. "<<$pcs_nickname>>, you really have to wear your...
+        scene.text(`Gala takes a quick look at you. "${((s as any).pcs_nickname || '')}, you really have to wear your maid uniform here. That's part of your job."`);
+      } else {
+        if (((s as any).nichTanyPresent ?? 0) === 1) {
+          // TODO-QSP: dynamic text: Tanya notices that you are not wearing your uniform. "<<$pcs_nickname>>, I don''...
+          scene.text(`Tanya notices that you are not wearing your uniform. "${((s as any).pcs_nickname || '')}, I don't mind if you walk around the house like this. But Nicholas does. You should better put your uniform on before he anybody else sees you."`);
+        } else {
+          scene.text('You realize that you are not wearing your uniform. If Nicholas saw you now he would be displeased. You should better change into your maid outfit before walking around the apartment.');
+        }
+      }
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    if ((!((s as any).nichCleanAppropriate ?? 0))) {
+      scene.text('It wouldn\'t be appropriate to clean this room now.');
+    } else {
+      qspCall(s, 'nichChore', 'inspect', 'living');
+    }
+  }
+  scene.actions([
+    { label: '<b>Return to the hallway</b>', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichApartment', '');
+  } },
+    { label: 'Go to the kitchen', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichKitchen', '');
   } },
   ]);
   scene.build();
@@ -146,15 +366,15 @@ function enterEvtGalaTele1(s: GameState, scene: SceneBuilder): void {
     dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Eavesdrop', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.text('You hear Gala talking about her hobbies, the dress she bought last week and how she despises the wife of one of Nicholas\' employees. Nothing of this is of any interest to you.');
     scene.text('Just before you are about to stop eavesdropping you hear something interesting.');
     scene.text('"By the way: we have a new maid… Yes, another young girl."');
     scene.text('…');
-    if (((s as any).nichGalaOpinion ?? 0) === 1) {
+    if (((st as any).nichGalaOpinion ?? 0) === 1) {
       scene.text('"No, it\'s the same type we had before. You wouldn\'t believe what kind of uniform she wears around the house. I feel like living in a brothel."');
       scene.text('…');
-      if (((s as any).nichHireMode ?? 0) === 2) {
+      if (((st as any).nichHireMode ?? 0) === 2) {
         scene.text('"Tanya is more than ok with that! It was actually her who brought this slut into our house. They met at the gym or something like that."');
       } else {
         scene.text('"Tanya doesn\'t seem to mind at all."');
@@ -170,7 +390,7 @@ function enterEvtGalaTele1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I\'m not sure. She looks quite nice. But so far I have no reason to assume that she is after Nicholas."');
       scene.text('…');
-      if (((s as any).nichHireMode ?? 0) === 2) {
+      if (((st as any).nichHireMode ?? 0) === 2) {
         scene.text('"Tanya likes her. It was actually her who introduced us to the new girl. They met at the gym or something like this."');
         scene.text('…');
         scene.text('"No, I don\'t think so. If she wanted to steal something she would have done so already. Tanya told me that she had her over several times already."');
@@ -204,7 +424,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) > 5) {
     (s as any).nichTemp = 8;
   }
-  scene.img('images/locations/city/citycenter/nichApartment/breakfast\'+rand(0, 5)+\'.jpg');
+  scene.img('images/locations/city/citycenter/nichApartment/breakfast' + (Math.floor(Math.random() * 6) + 0) + '.jpg');
   if (((s as any).hour ?? 0) < ((s as any).nichTemp ?? 0)  ||  (((s as any).hour ?? 0) === ((s as any).nichTemp ?? 0)  &&  ((s as any).minut ?? 0) <= 15)) {
     scene.text('You have enough time to prepare breakfast. You make coffee, collect the newspaper from the mailbox and place everything on the dinner table.');
     scene.text('When the family members arrive one by one the breakfast table is prepared perfectly and you stand ready to fulfill additional requests.');
@@ -230,9 +450,9 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).nichRand = Math.floor(Math.random() * 100) + 1;
+  (s as any).nichRand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).nichGalaTarasPlan ?? 0) === 10) {
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you seen my wife lately? She wasn't home this night. Th...
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you seen my wife lately? She wasn''t home this night. T...
     scene.text(`"${((s as any).pcs_nickname || '')}, have you seen my wife lately? She wasn't home this night. That's quite unusual."`);
     scene.text('"I am sorry, Master Nicholas, but I don\'t know anything about that."');
     scene.text('Tanya looks annoyed.');
@@ -351,38 +571,38 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Clean up', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + ((((s as any).nichTemp ?? 0) + 1) * 60 + 40 - (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)));
-    if (((s as any).nichAfterBFEvent ?? 0) === 1) {
+    (st as any).minut = ((st as any).minut ?? 0) + ((((st as any).nichTemp ?? 0) + 1) * 60 + 40 - (((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0)));
+    if (((st as any).nichAfterBFEvent ?? 0) === 1) {
       scene.img('images/characters/city/nicholas/01.jpg');
       scene.text('After you are done cleaning up the table you go to Nicholas as requested.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I am sure you heard what I said to Tanya earlier. I want her...
-      scene.text(`"${((s as any).pcs_nickname || '')}, I am sure you heard what I said to Tanya earlier. I want her to become successful in life, to accomplish something on her own. But it seems as if she lacks the ambition to do so."`);
+      scene.text(`"${((st as any).pcs_nickname || '')}, I am sure you heard what I said to Tanya earlier. I want her to become successful in life, to accomplish something on her own. But it seems as if she lacks the ambition to do so."`);
       scene.text('"The two of you seem to get along quite well. Maybe you could speak some sense into her?"');
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).nichTanya = (s as any).nichTanya ?? {})['Uni'] = 11;
+    ((st as any).nichTanya = (st as any).nichTanya ?? {})['Uni'] = 11;
     scene.text('"I will try, Master Nicholas."');
     scene.text('He nods. "I won\'t expect more from you than that."');
     scene.text('He nods again, signaling you that you are dismissed for now.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichLivingroom', '');
+    qspGoto(st, 'nichLivingroom', '');
   } },
     ]);
   } },
       ]);
     } else {
-      if (((s as any).nichAfterBFEvent ?? 0) === 10) {
+      if (((st as any).nichAfterBFEvent ?? 0) === 10) {
         scene.img('images/characters/city/gala/02.jpg');
         scene.text('After you are done cleaning up the table you go to Gala as requested.');
-        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, don't think you can fool me. I know what's going on between ...
-        scene.text(`"${((s as any).pcs_nickname || '')}, don't think you can fool me. I know what's going on between you and my daughter."`);
+        // TODO-QSP: dynamic text: "<<$pcs_nickname>>, don''t think you can fool me. I know what''s going on betwee...
+        scene.text(`"${((st as any).pcs_nickname || '')}, don't think you can fool me. I know what's going on between you and my daughter."`);
         scene.text('"Don\'t get me wrong. I understand the appeal of another woman."');
-        if (((s as any).nichGalaOpinion ?? 0) === 1) {
+        if (((st as any).nichGalaOpinion ?? 0) === 1) {
           scene.text('"As a matter of fact I am quite relieved. I thought you might be after my husband. But now that I know… never mind."');
         }
         scene.text('"The thing is, that I want Tanya to have an happy life. And that includes marrying a suitable husband. And now she is in the age where she has to start looking for one."');
-        if (((s as any).pcs_apprnc ?? 0) >= 120) {
+        if (((st as any).pcs_apprnc ?? 0) >= 120) {
           scene.text('"Sadly that means that she must not be distracted by her maid. No matter how attractive the maid might be."');
         } else {
           scene.text('"Sadly that means that she must not be distracted by her maid."');
@@ -393,29 +613,29 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
         scene.text('There is only one possible answer.');
         scene.actions([
           { label: 'Yes, Mistress Gala', handler: (st: GameState) => {
-    (s as any).nichGalaKnowsPT = 10;
+    (st as any).nichGalaKnowsPT = 10;
     scene.text('"Yes, Mistress Gala."');
     scene.text('You wonder what Tanya will say. Maybe you could just continue like before and be more careful?');
     scene.text('"Good. You can go now."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichLivingroom', '');
+    qspGoto(st, 'nichLivingroom', '');
   } },
     ]);
   } },
         ]);
       } else {
-        if (((s as any).nichAfterBFEvent ?? 0) === 11) {
+        if (((st as any).nichAfterBFEvent ?? 0) === 11) {
           scene.img('images/characters/city/gala/02.jpg');
           scene.text('After you are done cleaning up the table you go to Gala as requested.');
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>, did you do what I told you to do? Regarding my little Tanya?...
-          scene.text(`"${((s as any).pcs_nickname || '')}, did you do what I told you to do? Regarding my little Tanya?"`);
-          if (((s as any).nichGalaKnowsPT ?? 0) === 11) {
+          scene.text(`"${((st as any).pcs_nickname || '')}, did you do what I told you to do? Regarding my little Tanya?"`);
+          if (((st as any).nichGalaKnowsPT ?? 0) === 11) {
             scene.actions([
               { label: 'Yes', handler: (st: GameState) => {
-    (s as any).nichGalaKnowsPT = 20;
-    (s as any).nichGalaOpinion = 20;
-    (s as any).nichGalaTraining = 1;
+    (st as any).nichGalaKnowsPT = 20;
+    (st as any).nichGalaOpinion = 20;
+    (st as any).nichGalaTraining = 1;
     scene.text('"Yes, Mistress Gala."');
     scene.text('"I thought so. Tanya appeared to be upset by something. You did the right thing, it\'s the best for everybody."');
     scene.text('You just nod.');
@@ -424,18 +644,18 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good. You can go for now."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichLivingroom', '');
+    qspGoto(st, 'nichLivingroom', '');
   } },
     ]);
   } },
             ]);
           } else {
-            if (((s as any).nichGalaKnowsPT ?? 0) === 12  ||  ((s as any).nichGalaKnowsPT ?? 0) === 13) {
+            if (((st as any).nichGalaKnowsPT ?? 0) === 12  ||  ((st as any).nichGalaKnowsPT ?? 0) === 13) {
               scene.actions([
                 { label: 'Yes (lie)', handler: (st: GameState) => {
-    (s as any).nichGalaKnowsPT = 20;
-    (s as any).nichGalaOpinion = 20;
-    (s as any).nichGalaTraining = 1;
+    (st as any).nichGalaKnowsPT = 20;
+    (st as any).nichGalaOpinion = 20;
+    (st as any).nichGalaTraining = 1;
     scene.text('"Yes, Mistress Gala."');
     scene.text('"Really? Tanya seems to be better at hiding her feelings than I thought. Or she doesn\'t mind you breaking up with her."');
     scene.text('You just nod.');
@@ -444,20 +664,20 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good. You can go for now."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichLivingroom', '');
+    qspGoto(st, 'nichLivingroom', '');
   } },
     ]);
   } },
               ]);
             } else {
-              if (((s as any).nichGalaKnowsPT ?? 0) === 14) {
+              if (((st as any).nichGalaKnowsPT ?? 0) === 14) {
                 scene.actions([
                   { label: 'No', handler: (st: GameState) => {
-    (s as any).nichGalaKnowsPT = 15;
-    (s as any).nichGalaOpinion = 30;
-    if (((s as any).nichGalaOpponent ?? 0) < 10) {
-      (s as any).nichGalaOpponent = 10;
-      (s as any).nichGalaOpponentDay = ((s as any).daystart ?? 0);
+    (st as any).nichGalaKnowsPT = 15;
+    (st as any).nichGalaOpinion = 30;
+    if (((st as any).nichGalaOpponent ?? 0) < 10) {
+      (st as any).nichGalaOpponent = 10;
+      (st as any).nichGalaOpponentDay = ((st as any).daystart ?? 0);
     }
     scene.text('"No, Mistress Gala, I did not."');
     scene.text('She stares at you angrily. "I thought I made myself clear. I gave you a direct order."');
@@ -465,7 +685,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
     scene.text('"Shut up! I don\'t want to hear about this nonsense! Get lost now, before I forget myself!"');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichLivingroom', '');
+    qspGoto(st, 'nichLivingroom', '');
   } },
     ]);
   } },
@@ -474,53 +694,53 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (((s as any).nichAfterBFEvent ?? 0) === 90) {
+          if (((st as any).nichAfterBFEvent ?? 0) === 90) {
             scene.img('images/characters/city/nicholas/01.jpg');
             scene.text('After you are done cleaning up the table you go to Nicholas as requested.');
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I noticed something about you lately. Something about you ch...
-            scene.text(`"${((s as any).pcs_nickname || '')}, I noticed something about you lately. Something about you changed. Then I realized it. You are obviously pregnant."`);
-            if (((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0) {
+            scene.text(`"${((st as any).pcs_nickname || '')}, I noticed something about you lately. Something about you changed. Then I realized it. You are obviously pregnant."`);
+            if (((st as any).thinkpreg ?? 0) > 0  ||  ((st as any).knowpreg ?? 0) > 0) {
               scene.text('You are shocked. He figured out your little secret.');
             } else {
               scene.text('You are shocked. He can\'t be serious! There is no way you are pregnant.');
             }
             scene.text('"Of course I can\'t allow you to stay my maid. A kid is an huge responsibility and it is not compatible with living here."');
             scene.text('He waits a second before he continues.');
-            if (((s as any).nichPerformance ?? 0) <= 40) {
+            if (((st as any).nichPerformance ?? 0) <= 40) {
               scene.text('"Even though you were a less than mediocre maid I will make sure you won\'t end up without shelter. I transferred your next payment and a little extra to your bank account."');
-              (s as any).nichTemp = ((s as any).nichSalaryNext ?? 0) + 5000;
+              (st as any).nichTemp = ((st as any).nichSalaryNext ?? 0) + 5000;
             } else {
-              if (((s as any).nichPerformance ?? 0) >= 80) {
+              if (((st as any).nichPerformance ?? 0) >= 80) {
                 scene.text('"You were an exceptional maid and I hate to have to do this. But I see no other option. Of course I will make sure you won\'t end up without shelter. I transferred your next payment and a little bit extra to your bank account."');
-                (s as any).nichTemp = ((s as any).nichSalaryNext ?? 0) + 20000;
+                (st as any).nichTemp = ((st as any).nichSalaryNext ?? 0) + 20000;
               } else {
                 scene.text('"You were a decent maid and I hate to have to do this. But I see no other option. Of course I will make sure you won\'t end up without shelter. I transferred your next payment and a little bit extra to your bank account."');
-                (s as any).nichTemp = ((s as any).nichSalaryNext ?? 0) + 10000;
+                (st as any).nichTemp = ((st as any).nichSalaryNext ?? 0) + 10000;
               }
             }
             scene.text('Nicholas leads you to the entrance. Your stuff has already been packed by one of Nicholas\' employees.');
             scene.text('"Good luck in your future."');
             scene.text('');
             // TODO-QSP: dynamic text: You got <b><<nichTemp>></b> transferred to your bank account.
-            scene.text(`You got <b>${((s as any).nichTemp || '')}</b> transferred to your bank account.`);
+            scene.text(`You got <b>${((st as any).nichTemp || '')}</b> transferred to your bank account.`);
             scene.actions([
               { label: 'Get fired', handler: (st: GameState) => {
-    qspGoto(s, 'nichUtil', 'fired');
+    qspGoto(st, 'nichUtil', 'fired');
   } },
             ]);
           } else {
-            if (((s as any).nichAfterBFEvent ?? 0) === 100) {
+            if (((st as any).nichAfterBFEvent ?? 0) === 100) {
               scene.text('After you are done cleaning up the table Nicholas summons the whole family.');
               scene.text('"Well then, lets look for this missing necklace."');
-              if (((s as any).nichGalaOpponent ?? 0) === 21) {
+              if (((st as any).nichGalaOpponent ?? 0) === 21) {
                 scene.text('Nicholas leads the small group of you through the whole apartment, inspecting every place where a necklace could be hidden.');
                 scene.text('The last room to be inspected is you private bedroom. Nicholas opens your drawer and pulls out the missing necklace.');
-                // TODO-QSP: dynamic text: "<<$pcs_nickname>>… I can't believe what I am seeing. I never took you for a thi...
-                scene.text(`"${((s as any).pcs_nickname || '')}… I can't believe what I am seeing. I never took you for a thief. Under these circumstances I have to fire you. Be glad I don't call the police!"`);
+                // TODO-QSP: dynamic text: "<<$pcs_nickname>>… I can''t believe what I am seeing. I never took you for a th...
+                scene.text(`"${((st as any).pcs_nickname || '')}… I can't believe what I am seeing. I never took you for a thief. Under these circumstances I have to fire you. Be glad I don't call the police!"`);
                 scene.text('Gala has a triumphant smile on her face.');
                 scene.actions([
                   { label: 'Get fired', handler: (st: GameState) => {
-    qspGoto(s, 'nichUtil', 'fired');
+    qspGoto(st, 'nichUtil', 'fired');
   } },
                 ]);
               } else {
@@ -528,32 +748,32 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
                 scene.text('He carefully opens the jewelry box of Gala and presents the missing necklace.');
                 scene.text('"Just as I thought. I hope you think twice before blaming somebody else for stealing your jewelry, dear wife."');
                 scene.text('Gala looks as if she is foaming with anger. This clearly isn\'t over yet.');
-                (s as any).nichGalaOpponent = 30;
+                (st as any).nichGalaOpponent = 30;
                 scene.actions([
                   { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichLivingroom', '');
+    qspGoto(st, 'nichLivingroom', '');
   } },
                 ]);
               }
             } else {
-              if (((s as any).nichAfterBFEvent ?? 0) === 200) {
+              if (((st as any).nichAfterBFEvent ?? 0) === 200) {
                 scene.text('After you are done cleaning up the table you go to Gala as requested.');
                 scene.text('"Slave, it is time you serve your owner."');
                 scene.actions([
                   { label: 'Continue', goto: ['nichGala', 'slaveGeneric'] },
                 ]);
               } else {
-                if (((s as any).nichAfterBFEvent ?? 0) === 210) {
+                if (((st as any).nichAfterBFEvent ?? 0) === 210) {
                   scene.text('After you are done cleaning up the table you go to Gala as requested.');
                   scene.text('"Slave, today we make a little trip. There is somebody I want you to meet."');
                   scene.actions([
                     { label: 'Continue', goto: ['nichGala', 'slaveDoc', '1'] },
                   ]);
                 } else {
-                  if (((s as any).nichAfterBFEvent ?? 0) === 220) {
-                    qspGoto(s, 'nichGala', 'slaveImplant');
+                  if (((st as any).nichAfterBFEvent ?? 0) === 220) {
+                    qspGoto(st, 'nichGala', 'slaveImplant');
                   } else {
-                    if (((s as any).nichAfterBFEvent ?? 0) === 5000) {
+                    if (((st as any).nichAfterBFEvent ?? 0) === 5000) {
                       scene.img('images/characters/city/gala/events/police.jpg');
                       scene.text('While you clean up you hear the doorbell ringing. To your surprise the police actually showed up.');
                       scene.text('The policemen tell you that they really found the girl Katinka, the previous maid of the family, and that they have proof that Gala and Taras conspired to kidnap her. She spent the last month in some basement.');
@@ -562,31 +782,31 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
                       scene.text('');
                       scene.text('Nicholas takes you to the side once they are gone.');
                       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I hope you know what this means. My wife… she is a criminal....
-                      scene.text(`"${((s as any).pcs_nickname || '')}, I hope you know what this means. My wife… she is a criminal. You can't tell anybody about this. Just keep the silence. I will use my connections with the mayor to prevent the police from further investigation. If we are lucky nobody else will find out about this. It could ruin my reputation. Of course I would have to pay the poor girl Katinka… but let me worry about that."`);
+                      scene.text(`"${((st as any).pcs_nickname || '')}, I hope you know what this means. My wife… she is a criminal. You can't tell anybody about this. Just keep the silence. I will use my connections with the mayor to prevent the police from further investigation. If we are lucky nobody else will find out about this. It could ruin my reputation. Of course I would have to pay the poor girl Katinka… but let me worry about that."`);
                       scene.text('You wonder whether it was Taras plan all along to let Katinka surface to prevent Nicholas from searching for Gala.');
                       scene.text('"And about Tanya… this is very difficult for her. We should give her some time to process these events."');
                       scene.text('"Of course, Master Nicholas."');
                       scene.text('"Thank you. I also believe that you might need some time yourself. My wife and you had a close connection as far as I know. You can take today and tomorrow off to sort your thoughts."');
-                      (s as any).nichGalaTarasPlan = 20;
-                      (s as any).minut = ((s as any).minut ?? 0) + 180;
-                      qspCall(s, 'nichUtil', 'freeDay', 2);
-                      qspCall(s, 'stat', '');
+                      (st as any).nichGalaTarasPlan = 20;
+                      (st as any).minut = ((st as any).minut ?? 0) + 180;
+                      qspCall(st, 'nichUtil', 'freeDay', 2);
+                      qspCall(st, 'stat', '');
                       scene.actions([
                         { label: 'Continue', goto: ['nichLivingroom', ''] },
                       ]);
                     } else {
-                      if (((s as any).nichAfterBFEvent ?? 0) === 5010) {
+                      if (((st as any).nichAfterBFEvent ?? 0) === 5010) {
                         scene.img('images/characters/city/gala/02.jpg');
                         scene.text('After you are done cleaning up the table you go to Gala as requested.');
                         scene.text('"I have bad news, slave. The men I told to take care of Taras… well, one of them is in hospital. He got shot in the shoulder. And Taras vanished."');
                         scene.text('She hesitates for a second.');
                         scene.text('"We should both be on the lookout. He is out there somewhere. And he has nothing to lose."');
-                        (s as any).nichGalaTarasPlan = 110;
+                        (st as any).nichGalaTarasPlan = 110;
                         scene.actions([
                           { label: 'Continue', goto: ['nichLivingroom', ''] },
                         ]);
                       } else {
-                        qspGoto(s, 'nichLivingroom', '');
+                        qspGoto(st, 'nichLivingroom', '');
                       }
                     }
                   }
@@ -603,8 +823,30 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'nichLivingroom';
+  (s as any).menu_loc = 'nichLivingroom';
+  (s as any).nichLoc = 'living';
+  (s as any).menu_arg = '';
+  (s as any).locclass = 'livingr';
+  qspCall(s, 'stat', '');
+  (s as any).sexpartkno = 1;
+  qspCall(s, 'boyStat', 'A52');
+  qspCall(s, 'boyStat', 'A161', 'a');
+  if (((s as any).nichWork ?? 0) === 2) {
+    if (((s as any).nichLastWorkDay ?? 0) !== ((s as any).daystart ?? 0)) {
+      qspCall(s, 'nichUtil', 'startWorkday');
+    }
+    qspCall(s, 'nichUtil', 'checkOutfit');
+  }
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'return':
+      enterReturn(s, scene);
+      break;
     case 'evtGalaTele1':
       enterEvtGalaTele1(s, scene);
       break;

@@ -21,7 +21,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_dining', 'event_' + Math.floor(Math.random() * 10) + 1 + '');
+  qspGoto(s, 'bdsm_dining', 'event_' + (Math.floor(Math.random() * 10) + 1) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -121,7 +121,7 @@ function enterEvent_8(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/suburb/bdsm_club/sex/girltable${Math.floor(Math.random() * 5) + 1}.jpg`);
+  scene.img(`images/locations/city/suburb/bdsm_club/sex/girltable${(Math.floor(Math.random() * 5) + 1)}.jpg`);
   scene.text('A woman is on all fours between two men sitting in chairs talking. There is a serving tray on her back with drinks and snacks on it.');
   // TODO-QSP: end
   scene.actions([
@@ -147,7 +147,7 @@ function enterEvent_10(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/suburb/bdsm_club/sex/spank\'+rand(1, 8)+\'.jpg');
+  scene.img('images/locations/city/suburb/bdsm_club/sex/spank' + (Math.floor(Math.random() * 8) + 1) + '.jpg');
   scene.text('A well dressed man has a young woman bent over his knees with her bare ass exposed, giving her a spanking. The sound from the flesh on flesh slaps carry some distance.');
   // TODO-QSP: end
   scene.actions([

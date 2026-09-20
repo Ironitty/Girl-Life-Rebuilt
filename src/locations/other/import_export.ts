@@ -14,8 +14,8 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: showstat 0
-    (s as any).usehtml = 0;
-    (s as any).export_str = 'cfg_vars[\'disable_autosave\'] = ' + ((s as any).cfg_vars ?? 0)?.['disable_autosave'] + '';
+    (st as any).usehtml = 0;
+    (st as any).export_str = 'cfg_vars[\'disable_autosave\'] = ' + ((st as any).cfg_vars ?? 0)?.['disable_autosave'] + '';
     // TODO-QSP: $export_str += ' & ' + "cheatVars['gameover'] = <<cheatVars['gameover']>>"
     // TODO-QSP: $export_str += ' & ' + "sound_settings['music_off'] = <<sound_settings['music_off']>>"
     // TODO-QSP: $export_str += ' & ' + "sound_settings['environment_off'] = <<sound_settings['environment_off']>>"
@@ -302,7 +302,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $export_str += ' & ' + "$rel_group_order[7] = '<<$rel_group_order[7]>>'"
     // TODO-QSP: $export_str += ' & ' + "$rel_group_order[8] = '<<$rel_group_order[8]>>'"
     // TODO-QSP: dynamic text: $export_str
-    scene.text(String((s as any).export_str ?? ''));
+    scene.text(String((st as any).export_str ?? ''));
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).usehtml = 1;
@@ -321,31 +321,31 @@ function enterImport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).initext = String(((s as any).usrtxt ?? 0));
+    (st as any).initext = String(((st as any).usrtxt ?? 0));
     // TODO-QSP: cmdclear
     // TODO-QSP: showinput 0
-    if (((s as any).initext ?? 0) === '') {
+    if (((st as any).initext ?? 0) === '') {
       // TODO-QSP: exit
     }
-    if (((s as any).calendar_show ?? 0)?.['disco_party'] === 1) {
-      qspCall(s, 'calendar', 'add', 'disco_party');
+    if (((st as any).calendar_show ?? 0)?.['disco_party'] === 1) {
+      qspCall(st, 'calendar', 'add', 'disco_party');
     } else {
-      qspCall(s, 'calendar', 'remove', 'disco_party');
+      qspCall(st, 'calendar', 'remove', 'disco_party');
     }
-    if (((s as any).calendar_show ?? 0)?.['church'] === 1) {
-      qspCall(s, 'calendar', 'pack', 'add', 'church');
+    if (((st as any).calendar_show ?? 0)?.['church'] === 1) {
+      qspCall(st, 'calendar', 'pack', 'add', 'church');
     } else {
-      qspCall(s, 'calendar', 'pack', 'remove', 'church');
+      qspCall(st, 'calendar', 'pack', 'remove', 'church');
     }
-    if (((s as any).calendar_show ?? 0)?.['intercity_trains'] === 1) {
-      qspCall(s, 'calendar', 'pack', 'add', 'intercity_trains');
+    if (((st as any).calendar_show ?? 0)?.['intercity_trains'] === 1) {
+      qspCall(st, 'calendar', 'pack', 'add', 'intercity_trains');
     } else {
-      qspCall(s, 'calendar', 'pack', 'remove', 'intercity_trains');
+      qspCall(st, 'calendar', 'pack', 'remove', 'intercity_trains');
     }
-    qspCall(s, 'calendar', 'cycle_rebuild', 1);
+    qspCall(st, 'calendar', 'cycle_rebuild', 1);
     // TODO-QSP: showobjs cfg_vars['debug']
-    qspCall(s, 'stat', '');
-    dynamicGoto(s, 'menu_settings');
+    qspCall(st, 'stat', '');
+    dynamicGoto(st, 'menu_settings');
   } },
   ]);
   scene.build();

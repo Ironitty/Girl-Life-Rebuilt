@@ -43,30 +43,30 @@ function enterSnkayf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'underwear', 'remove');
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   qspCall(s, 'stat', '');
-  (s as any).snkz = Math.floor(Math.random() * 6) + 1;
+  (s as any).snkz = (Math.floor(Math.random() * 6) + 1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel4.jpg');
-  // TODO-QSP: dynamic text: As you wake up, it feels like you've been hit by a hammer. You realise '+iif(snk...
-  scene.text('As you wake up, it feels like you\'ve been hit by a hammer. You realise \'+iif(snkz = 6, \'that you are naked.\', \'that your underwear is missing.\')+\' Unsure of where you are and what has happened, you try to get your bearings.');
+  // TODO-QSP: dynamic text: As you wake up, it feels like you''ve been hit by a hammer. You realise '+iif(sn...
+  scene.text('As you wake up, it feels like you\'ve been hit by a hammer. You realise ' + ((((s as any).snkz ?? 0) === 6) ? ('that you are naked.') : ('that your underwear is missing.')) + ' Unsure of where you are and what has happened, you try to get your bearings.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Look around', handler: (st: GameState) => {
-    if (((s as any).snkz ?? 0) === 1) {
-      qspGoto(s, 'pav_commcenter', '');
+    if (((st as any).snkz ?? 0) === 1) {
+      qspGoto(st, 'pav_commcenter', '');
     } else {
-      if (((s as any).snkz ?? 0) === 2) {
-        qspGoto(s, 'pav_park', 'start');
+      if (((st as any).snkz ?? 0) === 2) {
+        qspGoto(st, 'pav_park', 'start');
       } else {
-        if (((s as any).snkz ?? 0) === 3) {
-          qspGoto(s, 'bedrPar', '');
+        if (((st as any).snkz ?? 0) === 3) {
+          qspGoto(st, 'bedrPar', '');
         } else {
-          if (((s as any).snkz ?? 0) === 4) {
-            qspGoto(s, 'gopskver', '');
+          if (((st as any).snkz ?? 0) === 4) {
+            qspGoto(st, 'gopskver', '');
           } else {
-            if (((s as any).snkz ?? 0) === 5) {
-              qspGoto(s, 'pav_train_hall', 'female');
+            if (((st as any).snkz ?? 0) === 5) {
+              qspGoto(st, 'pav_train_hall', 'female');
             } else {
-              qspCall(s, 'clothing', 'strip');
-              qspGoto(s, 'pav_lake', '');
+              qspCall(st, 'clothing', 'strip');
+              qspGoto(st, 'pav_lake', '');
             }
           }
         }
@@ -85,7 +85,7 @@ function enterAskPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    ((s as any).drugVars = (s as any).drugVars ?? {})['pav_dropoff'] = 1;
+    ((st as any).drugVars = (st as any).drugVars ?? {})['pav_dropoff'] = 1;
     scene.text('<center><b>Shooting galleries</b></center>');
     scene.img('images/locations/city/residential/den/narkopriton.jpg');
     scene.text('You gulp and stammer "I assure you there will be no problems"');
@@ -113,12 +113,12 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 560, 'cash') === 1) {
     scene.actions([
       { label: 'Buy and use heroin ( [560₽])...]', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 560, 'cash');
-    if (((s as any).drugVars ?? 0)?.['heroin_inject'] < 1) {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      (s as any).drugUser = 1;
-      qspCall(s, 'drugs', 'heroin');
-      qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'pay', 560, 'cash');
+    if (((st as any).drugVars ?? 0)?.['heroin_inject'] < 1) {
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      (st as any).drugUser = 1;
+      qspCall(st, 'drugs', 'heroin');
+      qspCall(st, 'stat', '');
       scene.text('<center><b>Pavlovsk train station</b></center>');
       scene.img('images/locations/city/residential/den/chase_dragon.jpg');
       scene.text('You pour the heroin onto some foil, heat it up and then using a straw you quickly inhale the steam.');
@@ -127,10 +127,10 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
         { label: 'You lay there briefly rolling, before leaving', goto: ['events', 'pav_drug_dropoff'] },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      (s as any).drugUser = 1;
-      qspCall(s, 'drugs', 'heroin');
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      (st as any).drugUser = 1;
+      qspCall(st, 'drugs', 'heroin');
+      qspCall(st, 'stat', '');
       scene.text('<center><b>Pavlovsk train station</b></center>');
       scene.img('images/locations/pavlovsk/trainstation/event/usingheroin.jpg');
       scene.text('You buy some heroin and find a quiet place behind the platform to use it, and without thinking twice you shoot up.');
@@ -147,10 +147,10 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 2100, 'cash') === 1) {
     scene.actions([
       { label: 'Buy enough cocaine for 5 lines ( [2100₽]...]', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 2100, 'cash');
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) + (5);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'events', 'pav_drug_dropoff');
+    qspCall(st, 'money', 'pay', 2100, 'cash');
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['cocaine'] = ((st as any).mc_inventory['cocaine'] ?? 0) + (5);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'events', 'pav_drug_dropoff');
   } },
     ]);
   } else {
@@ -159,9 +159,9 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 600, 'cash') === 1) {
     scene.actions([
       { label: 'Buy 5 Amphetamine ( [600₽])...]', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 600, 'cash');
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) + (5);
-    qspGoto(s, 'events', 'pav_drug_dropoff');
+    qspCall(st, 'money', 'pay', 600, 'cash');
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['amphetamine'] = ((st as any).mc_inventory['amphetamine'] ?? 0) + (5);
+    qspGoto(st, 'events', 'pav_drug_dropoff');
   } },
     ]);
   } else {
@@ -170,11 +170,11 @@ function enterPavDrugDropoff(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 1) {
     scene.actions([
       { label: 'Buy enough weed for 5 joints ( [300₽])...]', handler: (st: GameState) => {
-    qspCall(s, 'money', 'pay', 300, 'cash');
-    (s as any).drugUser = 1;
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (5);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'events', 'pav_drug_dropoff');
+    qspCall(st, 'money', 'pay', 300, 'cash');
+    (st as any).drugUser = 1;
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['joints'] = ((st as any).mc_inventory['joints'] ?? 0) + (5);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'events', 'pav_drug_dropoff');
   } },
     ]);
   } else {
@@ -191,28 +191,28 @@ function enterSnkayf1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'underwear', 'remove');
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   qspCall(s, 'stat', '');
-  (s as any).snkz = Math.floor(Math.random() * 6) + 1;
+  (s as any).snkz = (Math.floor(Math.random() * 6) + 1);
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pohmel4.jpg');
   scene.text('As you wake up, it feels like you\'ve been hit by a hammer. You realise that your underwear is missing. Unsure of where you are and what has happened, you try to get your bearings.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Look around', handler: (st: GameState) => {
-    if (((s as any).snkz ?? 0) === 1) {
-      qspGoto(s, 'city_park', 'start');
+    if (((st as any).snkz ?? 0) === 1) {
+      qspGoto(st, 'city_park', 'start');
     } else {
-      if (((s as any).snkz ?? 0) === 2) {
-        qspGoto(s, 'city_center', '');
+      if (((st as any).snkz ?? 0) === 2) {
+        qspGoto(st, 'city_center', '');
       } else {
-        if (((s as any).snkz ?? 0) === 3) {
-          qspGoto(s, 'city_industrial', '');
+        if (((st as any).snkz ?? 0) === 3) {
+          qspGoto(st, 'city_industrial', '');
         } else {
-          if (((s as any).snkz ?? 0) === 4) {
-            qspGoto(s, 'city_residential', '');
+          if (((st as any).snkz ?? 0) === 4) {
+            qspGoto(st, 'city_residential', '');
           } else {
-            if (((s as any).snkz ?? 0) === 5) {
-              qspGoto(s, 'dachi', '');
+            if (((st as any).snkz ?? 0) === 5) {
+              qspGoto(st, 'dachi', '');
             } else {
-              qspGoto(s, 'city_lake', 'start');
+              qspGoto(st, 'city_lake', 'start');
             }
           }
         }

@@ -19,7 +19,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0);
       ((s as any).soniaQW = (s as any).soniaQW ?? {})['slutdays'] = ((s as any).daystart ?? 0);
       ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A25'] = 5;
-      ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_outcast_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
+      ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
     }
   }
   // TODO-QSP: end
@@ -52,15 +52,15 @@ function enterDisco0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Keep watching', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/soniadance.jpg');
     scene.text('You\'ve heard the rumors that Sonia has started hanging around the gopniks lately; drinking, partying and generally cutting loose. Watching her now though, you can see that she\'s getting totally wasted and is starting to really grind on any and everyone that comes up to dance with her.');
     scene.text('After a while, she\'s barely able to stand up on her own and is hanging onto the guys she\'s grinding into to keep her balance.');
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] < 3) {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWatchorhelp(s, scene); (s as any).locArgs = __savedLocArgs; }
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] < 3) {
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWatchorhelp(s, scene); (st as any).locArgs = __savedLocArgs; }
     } else {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSoniashowsboobs(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSoniashowsboobs(s, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -74,8 +74,8 @@ function enterWatchorhelp(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Just watch', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/soniadance.jpg');
     scene.text('The boys are getting quite frisky with Sonia, who\'s hardly putting up any resistance. Their hands roam all over her as she just stumbles around, too drunk to care what\'s happening.');
     scene.text('Several minutes later, Katja walks up to Sonia and tries to get her to leave the dance floor, but she jerks away and says something that leaves Katja just shaking her head before walking away.');
@@ -85,8 +85,8 @@ function enterWatchorhelp(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Help Sonia', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/soniadance.jpg');
     scene.text('The boys are getting quite frisky with Sonia, who\'s hardly putting up any resistance. Their hands roam all over her as she just stumbles around, too drunk to care what\'s happening.');
     scene.text('You shake your head in disbelief. If she isn\'t careful, some guy is going to drag her away and take advantage of her.');
@@ -95,8 +95,8 @@ function enterWatchorhelp(s: GameState, scene: SceneBuilder): void {
     scene.text('With that, she starts grinding her ass on some guy\'s crotch, who looks more than happy to oblige.');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/soniadance.jpg');
     scene.text('You just shake your head and leave Sonia, who continues dancing around and grinding on boys. She looks like she\'s having fun, but you can see others watching and whispering about her acting like a slut.');
     scene.text('Several minutes later, Katja walks up to Sonia and tries to get her to leave the dance floor, but she jerks away and says something that leaves Katja just shaking her head before walking away.');
@@ -106,17 +106,17 @@ function enterWatchorhelp(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Convince her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (2);
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You stand in front of her and grab hold of her arms to keep her still. "Look around, Sonia! You\'re totally wasted and grinding on these guys like you plan to fuck them all!"');
     scene.text('She resists for a moment, but then your words seem to sink in and she drunkenly blinks a few times before looking around. She blushes and seems to sober up a little, the realization of just how wasted she was suddenly hitting her.');
     scene.text('She gives you a grateful nod and awkwardly tries to leave the dance floor, but the guys try to keep her around. You have to intervene on her behalf and make them let go of her. The two of you finally make it to the door and leave the dance hall.');
     // TODO-QSP: dynamic text: Once outside, she smiles at you. "Thanks, <<$pcs_nickname>>. I guess I got a lit...
-    scene.text(`Once outside, she smiles at you. "Thanks, ${((s as any).pcs_nickname || '')}. I guess I got a little carried away."`);
+    scene.text(`Once outside, she smiles at you. "Thanks, ${((st as any).pcs_nickname || '')}. I guess I got a little carried away."`);
     scene.text('"Maybe you should go home. You\'re pretty drunk," you reply.');
     scene.text('She nods and starts to head out, but you notice she can barely walk. When you start to help her, she pulls away. "I can handle it myself!"');
     scene.text('You sigh. "Just be careful."');
@@ -136,18 +136,18 @@ function enterSoniashowsboobs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Boobs', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) > 19) {
-      ((s as any).discobloc = (s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
+    if (((st as any).hour ?? 0) > 19) {
+      ((st as any).discobloc = (st as any).discobloc ?? {})['A25'] = ((st as any).daystart ?? 0);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/titflash.jpg');
     scene.text('The boys are getting quite frisky with Sonia, who looks to be reveling in the attention. She keeps dancing, not seeming to care about them feeling her up.');
     scene.text('She then grabs the top of her dress and exposes her bare breasts for everyone to see. The guys, and even a few of the girls, start to cheer and whistle, but you notice others shaking their heads and whispering. You know Sonia is starting to earn a bad reputation at school.');
     scene.actions([
       { label: 'Just watch', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/titflash.jpg');
     scene.text('Sonia continues to dance, perhaps more energetically than before as her breasts bounce around freely. ');
     scene.text('Several minutes later, Katja walks up to Sonia and tries to get her to leave the dance floor, but she jerks away and says something that leaves Katja just shaking her head before walking away.');
@@ -157,9 +157,9 @@ function enterSoniashowsboobs(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Help Sonia', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'dislike');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'dislike');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/titflash.jpg');
     scene.text('Sonia continues to dance, perhaps more energetically than before as her breasts bounce around freely. ');
     scene.text('You shake your head in disbelief and decide you need to do something before she completely ruins her reputation.');
@@ -168,8 +168,8 @@ function enterSoniashowsboobs(s: GameState, scene: SceneBuilder): void {
     scene.text('With that, she starts grinding her ass on some guy\'s crotch, who looks more than happy to oblige.');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/titflash.jpg');
     scene.text('You just shake your head and leave Sonia, who continues dancing around and grinding on boys with her breasts out. She looks like she\'s having fun, but you can see others watching and whispering about her acting like a slut.');
     scene.text('Several minutes later, Katja walks up to Sonia and tries to get her to leave the dance floor, but she jerks away and says something that leaves Katja just shaking her head before walking away.');
@@ -179,19 +179,19 @@ function enterSoniashowsboobs(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Convince her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (2);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (2);
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (2);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (2);
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'like');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You stand in front of her and grab hold of her arms to keep her still. "Look around, Sonia! You\'re totally wasted and flashing your tits at everybody! People are going to talk about this!"');
     scene.text('She resists for a moment, but then your words seem to sink in and she drunkenly blinks a few times before looking around. She blushes and seems to sober up a little, the realization of just how wasted she was suddenly hitting her.');
     scene.text('She gives you a grateful nod and starts to pull her dress back up; the guys start giving you dirty looks. When you try to the leave the dance floor, the guys try to stop her. You have to intervene on her behalf and make them let go of her. The two of you finally make it to the door and leave the dance hall.');
     // TODO-QSP: dynamic text: Once outside, she smiles at you. "Thanks, <<$pcs_nickname>>. I guess I got a lit...
-    scene.text(`Once outside, she smiles at you. "Thanks, ${((s as any).pcs_nickname || '')}. I guess I got a little carried away."`);
+    scene.text(`Once outside, she smiles at you. "Thanks, ${((st as any).pcs_nickname || '')}. I guess I got a little carried away."`);
     scene.text('"Maybe you should go home. You\'re pretty drunk," you reply.');
     // TODO-QSP: dynamic text: She nods. "Yeah, I guess I should. Thanks again, <<$pcs_nickname>>."
-    scene.text(`She nods. "Yeah, I guess I should. Thanks again, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`She nods. "Yeah, I guess I should. Thanks again, ${((st as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Let her go', goto: ['pav_disco', ''] },
       { label: 'Offer to walk her home', handler: (st: GameState) => {
@@ -236,10 +236,10 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
     scene.text('He lets go of your arms. "Good girl. Now go have fun." He gives your ass a slap before he turns to follow the rest of the gopniks outside.');
     scene.actions([
       { label: 'Watch them leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -258,17 +258,17 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance', 'declineinvite');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance', 'declineinvite');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1', 'declineinvite');
+      qspGoto(st, 'soniadisco', 'dance1', 'declineinvite');
     }
   } },
         ]);
@@ -282,10 +282,10 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
         scene.text('A few seconds later, they all head out. Vasily glances back at you and shakes his head, letting you know not to follow them.');
         scene.actions([
           { label: 'Watch them leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
         ]);
@@ -295,10 +295,10 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
           scene.text('A few seconds later, they all head out. Vasily glances back at you and shakes his head, letting you know not to follow them.');
           scene.actions([
             { label: 'Watch them leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
           ]);
@@ -308,10 +308,10 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
             scene.text('A few seconds later, they all head out. Vasily glances back at you and shakes his head, letting you know not to follow them.');
             scene.actions([
               { label: 'Watch them leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
             ]);
@@ -328,19 +328,19 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance', 'declineinvite');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance', 'declineinvite');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1', 'declineinvite');
+      qspGoto(st, 'soniadisco', 'dance1', 'declineinvite');
     }
   } },
               ]);
@@ -381,34 +381,34 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Decline drink', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    qspCall(s, 'stat', '');
-    (s as any).soniadisco_peerpressuretrigger = 'declinedrink';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'willpower', 'pay', 'resist');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    qspCall(st, 'stat', '');
+    (st as any).soniadisco_peerpressuretrigger = 'declinedrink';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Have a drink with them', handler: (st: GameState) => {
-    qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'like');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'drugs', 'alcohol', 'vodka', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopdrinking.jpg');
     scene.text('You enjoy their company, only slowly sipping the vodka and alternating it with lemonade. Sonia just slams down shot after shot. When the cups are empty, Vasily offers everyone a refill.');
-    qspCall(s, 'willpower', 'drink', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'drink', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -417,45 +417,45 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    qspCall(s, 'stat', '');
-    (s as any).soniadisco_peerpressuretrigger = 'declinedrink';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'willpower', 'pay', 'resist');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    qspCall(st, 'stat', '');
+    (st as any).soniadisco_peerpressuretrigger = 'declinedrink';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
       scene.actions([
         { label: 'Encourage her', goto: ['soniadisco', 'soniadrinkmore'] },
       ]);
     }
     scene.actions([
       { label: 'Take another drink', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'stat', '');
-    (s as any).soniadisco_peerpressuretrigger = 'takedrink';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'drugs', 'alcohol', 'vodka', 1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'stat', '');
+    (st as any).soniadisco_peerpressuretrigger = 'takedrink';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Caution Sonia', handler: (st: GameState) => {
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['help'] = ((s as any).soniaQW['help'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'dislike');
-    qspCall(s, 'stat', '');
-    (s as any).soniadisco_peerpressuretrigger = 'cautionsonia';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['help'] = ((st as any).soniaQW['help'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'dislike');
+    qspCall(st, 'stat', '');
+    (st as any).soniadisco_peerpressuretrigger = 'cautionsonia';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -480,8 +480,8 @@ function enterSoniadrinkmore(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Take another drink', handler: (st: GameState) => {
-    (s as any).soniadisco_peerpressuretrigger = 'soniadrinkmore';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPeerpressure(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).soniadisco_peerpressuretrigger = 'soniadrinkmore';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPeerpressure(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -492,11 +492,11 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 19) {
     ((s as any).discobloc = (s as any).discobloc ?? {})['A25'] = ((s as any).daystart ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
     scene.text('You don\'t really want to drink alcohol right now, so you just shake your head. "Thanks for the invite, but I think I\'d rather stay here right now. You guys have fun!"');
     scene.text('A few minutes later, you see them coming back to the disco. Vitek occasionally steadies Sonia when she nearly falls over; you can tell she\'s totally hammered.');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
       scene.text('You go back to the disco with the rest of the group, where ');
     } else {
       scene.text('Not wanting to stick around, you return to the dance. A while later, the rest of the group returns, and ');
@@ -509,8 +509,8 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Just watch', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/1.jpg');
     scene.text('Sonia dances around while grinding on boys. She looks like she\'s having fun, but you can see others watching and whispering about her acting like a slut.');
     scene.text('Several minutes later, Katja walks up to Sonia and tries to get her to leave the dance floor, but she jerks away and says something that leaves Katja just shaking her head before walking away.');
@@ -520,38 +520,38 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Approach Sonia', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/1.jpg');
     scene.text('Sonia dances around while grinding on boys. She looks like she\'s having fun, but you can see others watching and whispering about her acting like a slut.');
     scene.text('You shake your head in disbelief. Maybe you should do something?');
     scene.actions([
       { label: 'Help her out', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (5);
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (5);
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'like');
     scene.img('images/characters/pavlovsk/school/girl/sonia/0.jpg');
     scene.text('You stand in front of her to block most of the stares. You can\'t think of a way to tactfully say what you need to over the loud, thumping music, so you sigh and yell in her ear. "Sonia! Your boob is hanging out! You should cover up!"');
     scene.text('Sonia smiles drunkenly at you, but after a few seconds she finally gets what you\'re trying to tell her. She gives you a grateful nod and awkwardly tries to fix herself in the middle of the dance floor.');
     scene.text('She manages to cover herself and looks around. Only now starting to realize what\'s going on, she blushes a bit.');
     scene.text('"Maybe you should go home? You\'re pretty wasted."');
     scene.text('She nods and starts to head out, but you notice she can barely walk, so you help her outside. With the fresh air, she seems a little more stable. You could walk her home or go back to the disco.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back to dance', goto: ['pav_disco', ''] },
       { label: 'Walk her home', goto: ['soniadisco', 'walkhome'] },
     ]);
   } },
       { label: 'Pull the other strap down too', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (2);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) - (5);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (2);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) - (5);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) - (2);
     scene.img('images/characters/pavlovsk/school/girl/sonia/2.jpg');
     scene.text('"You have a nice set of tits, Sonia. I can see why you\'d be so willing to show them off to the world."');
     scene.text('She looks at you with a slightly puzzled look on her face, but never stops dancing. "Wha- What are you talking about?"');
     scene.text('With a grin, you put your hand on her other shoulder and slide that strap down too, fully exposing her breasts to everyone looking her way. She barely notices and doesn\'t understand why you\'re staring at her so intently.');
     scene.text('Once you walk away, she dances with both her breasts bouncing freely for several minutes before some guys pawing at her exposed breasts finally make her notice. She blushes, but also laughs about it as she puts everything back in place.');
-    qspCall(s, 'arousal', 'erotic_nudity', 10);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic_nudity', 10);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['pav_disco', ''] },
     ]);
@@ -600,7 +600,7 @@ function enterPeerpressure(s: GameState, scene: SceneBuilder): void {
         scene.text('You move over to sit next to Sonia, turning down the drink. "Slow down, Sonia! You don\'t want to get wasted."');
         scene.text('She turns and gives you a sour look.');
         if (((s as any).soniaQW ?? 0)?.['help'] > 0) {
-          // TODO-QSP: dynamic text: "We've already been over this, <<$pcs_nickname>>! You aren't my mother, so how a...
+          // TODO-QSP: dynamic text: "We''ve already been over this, <<$pcs_nickname>>! You aren''t my mother, so how...
           scene.text(`"We've already been over this, ${((s as any).pcs_nickname || '')}! You aren't my mother, so how about you chill out and enjoy it like the rest of us?"`);
           scene.text('She grabs the bottle and chugs down a quarter of it as the gopniks all encourage her to keep going.');
         } else {
@@ -676,9 +676,9 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     scene.text('"Now show us the front!" Vasily grins as the boys all cheer.');
     scene.text('With a huge grin, Sonia turns to face everyone and pulls up her dress again, but seems to realize that maybe she\'s going too far and starts to blush.');
     scene.text('"I want to go dancing! Let\'s go back to the disco!" she yells with a slight slur in her voice.');
-    qspCall(s, 'arousal', 'erotic', 5);
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).soniadisco_peerpressuretrigger ?? 0) !== 'cautionsonia'  &&  ((s as any).soniadisco_peerpressuretrigger ?? 0) !== 'soniadrinkmore') {
+    qspCall(st, 'arousal', 'erotic', 5);
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).soniadisco_peerpressuretrigger ?? 0) !== 'cautionsonia'  &&  ((st as any).soniadisco_peerpressuretrigger ?? 0) !== 'soniadrinkmore') {
       scene.actions([
         { label: 'Encourage her', goto: ['soniadisco', 'soniadrinkmore'] },
       ]);
@@ -694,13 +694,13 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/panties2.jpg');
     scene.text('"Now show us the front!" Vasily grins as the boys all cheer.');
     scene.text('With a huge grin, Sonia turns to face everyone and pulls up her dress again.');
-    // TODO-QSP: dynamic text: When Sonia's done flashing everyone her panties, Dan looks at you. "Now show us ...
-    scene.text(`When Sonia's done flashing everyone her panties, Dan looks at you. "Now show us your panties, ${((s as any).pcs_nickname || '')}!"`);
+    // TODO-QSP: dynamic text: When Sonia''s done flashing everyone her panties, Dan looks at you. "Now show us...
+    scene.text(`When Sonia's done flashing everyone her panties, Dan looks at you. "Now show us your panties, ${((st as any).pcs_nickname || '')}!"`);
     scene.text('You feel everyone\'s eyes shift towards you. Even with everyone encouraging you, you don\'t know what to do. Pauline continues to record Sonia with her phone.');
-    qspCall(s, 'arousal', 'erotic', 5);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'erotic', 5);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -709,41 +709,41 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['soniafall_block'] = ((st as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopdrinking.jpg');
     scene.text('You shake your head. "I\'m not going to do that."');
     scene.text('Vitek gets visibly angry. "Then why are you here? We give you free drinks and this is how you repay us? Fuck you then, get out!"');
     scene.text('Dan gets up and forces you to leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
     ]);
   } },
       ]);
     }
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.actions([
         { label: 'Show your panties', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'fame', 'pav', 'sex', 5);
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'fame', 'pav', 'sex', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/panties.jpg');
     scene.text('Pauline starts to record you as you pull your clothes aside and quickly flash your panties.');
     scene.text('When you cover back up, Sonia yells out with a slight slur in her voice. "I want to go dancing! Let\'s go back to the disco!"');
-    qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flashlite', 5, 'inhibition');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
@@ -752,13 +752,13 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Not wearing panties', handler: (st: GameState) => {
-    qspCall(s, 'fame', 'pav', 'sex', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'fame', 'pav', 'sex', 1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopdrinking.jpg');
     scene.text('You blush a little. "I\'m not wearing any…"');
     scene.text('"Then show us your pussy, slut!"');
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -767,24 +767,24 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['soniafall_block'] = ((st as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopdrinking.jpg');
     scene.text('You shake your head. "I\'m not going to do that!"');
     scene.text('Vitek gets visibly angry. "Then why are you here? We give you free drinks and this is how you repay us? Fuck you then, get out and don\'t come back!"');
     scene.text('Dan gets up and forces you to leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -793,14 +793,14 @@ function enterPressuredforpanties(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show your pussy', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'fame', 'pav', 'sex', 20);
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'fame', 'pav', 'sex', 20);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/pussy.jpg');
     scene.text('Pauline starts to record you as you pull your clothes aside and quickly flash your pussy.');
     scene.text('When you cover back up, Sonia yells out with a slight slur in her voice. "I want to go dancing! Let\'s go back to the disco!"');
-    qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flashlite', 5, 'inhibition');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
@@ -832,9 +832,9 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/butt.jpg');
     scene.text('With a huge grin, Sonia stands up and turns around. She pulls up the back of her dress and pulls down her panties, showing off her bare ass to everyone. She seems to realize that maybe she\'s going too far and starts to blush.');
     scene.text('"I want to go dancing! Let\'s go back to the disco!" she yells with a slight slur in her voice.');
-    qspCall(s, 'arousal', 'erotic_nudity', 5);
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).soniadisco_peerpressuretrigger ?? 0) !== 'cautionsonia'  &&  ((s as any).soniadisco_peerpressuretrigger ?? 0) !== 'soniadrinkmore') {
+    qspCall(st, 'arousal', 'erotic_nudity', 5);
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).soniadisco_peerpressuretrigger ?? 0) !== 'cautionsonia'  &&  ((st as any).soniadisco_peerpressuretrigger ?? 0) !== 'soniadrinkmore') {
       scene.actions([
         { label: 'Encourage her', goto: ['soniadisco', 'soniadrinkmore'] },
       ]);
@@ -849,13 +849,13 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/butt.jpg');
     scene.text('Sonia stands up, a little unsteady on her feet, and pulls up the back of her dress before pulling down her panties, showing off her bare ass to everyone. She then seems to realize that maybe she\'s going too far and starts to blush.');
-    // TODO-QSP: dynamic text: Just as Sonia's dress falls back in place, Dan looks at you. "Show us your tits ...
-    scene.text(`Just as Sonia's dress falls back in place, Dan looks at you. "Show us your tits now, ${((s as any).pcs_nickname || '')}!"`);
+    // TODO-QSP: dynamic text: Just as Sonia''s dress falls back in place, Dan looks at you. "Show us your tits...
+    scene.text(`Just as Sonia's dress falls back in place, Dan looks at you. "Show us your tits now, ${((st as any).pcs_nickname || '')}!"`);
     scene.text('You feel everyone\'s eyes shift towards you. Even with everyone encouraging you, you don\'t know what to do as Pauline continues to record Sonia with her phone.');
-    qspCall(s, 'arousal', 'erotic', 5);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'erotic', 5);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -864,24 +864,24 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['soniafall_block'] = ((st as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopdrinking.jpg');
     scene.text('You shake your head. "I\'m not going to do that."');
     scene.text('Vitek gets visibly angry. "Then why are you here? We give you free drinks and this is how you repay us? Fuck you then, get out!"');
     scene.text('Dan gets up and forces you to leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -890,14 +890,14 @@ function enterPressuredfortits(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show your breasts', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'fame', 'pav', 'sex', 10);
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'fame', 'pav', 'sex', 10);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/tits.jpg');
     scene.text('Pauline starts to record you as you pull your clothes aside and quickly flash your breasts.');
     scene.text('"I want to go dancing! Let\'s go back to the disco!" Sonia yells out with a slight slur in her voice as you cover back up.');
-    qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flashlite', 5, 'inhibition');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
@@ -923,12 +923,12 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_hotcat ?? 0) < 6  ||  ((s as any).grupTipe ?? 0) === 4) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).soniarushout = 1;
+    (st as any).soniarushout = 1;
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/fullfront.jpg');
     scene.text('Sonia pulls down her dress to expose her breasts, putting everything on full display for all to see. Her grin starts to fade when she seems to realize that maybe she went too far, and starts to blush and cover herself back up.');
     scene.text('"I… I need to go!" she stammers before getting up and running off.');
-    qspCall(s, 'arousal', 'erotic_nudity', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'erotic_nudity', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go after her', goto: ['soniadisco', 'chasesonia'] },
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
@@ -940,13 +940,13 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/fullfront.jpg');
     scene.text('Sonia pulls down her dress to expose her breasts, putting everything on full display for all to see. Her grin starts to fade when she seems to realize that maybe she went too far, and starts to blush and cover herself back up.');
-    // TODO-QSP: dynamic text: Just as Sonia's dress falls back in place, Dan looks at you. "Show us your pussy...
-    scene.text(`Just as Sonia's dress falls back in place, Dan looks at you. "Show us your pussy now, ${((s as any).pcs_nickname || '')}!"`);
+    // TODO-QSP: dynamic text: Just as Sonia''s dress falls back in place, Dan looks at you. "Show us your puss...
+    scene.text(`Just as Sonia's dress falls back in place, Dan looks at you. "Show us your pussy now, ${((st as any).pcs_nickname || '')}!"`);
     scene.text('You feel everyone\'s eyes shift towards you. Even with everyone encouraging you, you don\'t know what to do as Pauline continues to record Sonia with her phone.');
-    qspCall(s, 'arousal', 'erotic', 5);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'erotic', 5);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -955,24 +955,24 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['soniafall_block'] = ((st as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopdrinking.jpg');
     scene.text('You shake your head. "I\'m not going to do that."');
     scene.text('Vitek gets visibly angry. "Then why are you here? We give you free drinks and this is how you repay us? Fuck you then, get out!"');
     scene.text('Dan gets up and forces you to leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      qspGoto(s, 'soniadisco', 'dance');
+    if (((st as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
+      qspGoto(st, 'soniadisco', 'dance');
     } else {
-      qspGoto(s, 'soniadisco', 'dance1');
+      qspGoto(st, 'soniadisco', 'dance1');
     }
   } },
     ]);
@@ -981,14 +981,14 @@ function enterPressuredforpussy(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show your pussy', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'fame', 'pav', 'sex', 20);
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'fame', 'pav', 'sex', 20);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/pussy.jpg');
     scene.text('Pauline starts to record you as you pull your clothes aside and quickly flash your pussy.');
     scene.text('"I want to go dancing! Let\'s go back to the disco!" Sonia yells out with a slight slur in her voice as you cover back up.');
-    qspCall(s, 'arousal', 'flashlite', 5, 'inhibition');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flashlite', 5, 'inhibition');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
@@ -1025,8 +1025,8 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('Meanwhile, Dan and Vasily are looking at the two of them with their mouths open while somewhat awkwardly hiding their erections.');
     scene.text('Once the popsicle is mostly gone, Dan clears his throat. "Open your mouth and shows us your tongue."');
     scene.text('She opens her mouth, showing off her red-stained tongue.');
-    qspCall(s, 'arousal', 'erotic', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance'] },
       { label: 'Keep watching', handler: (st: GameState) => {
@@ -1035,10 +1035,10 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('"I gave you a treat, so now it\'s your turn to give me one," he says with a lecherous smile. The rest of the group agree with him and encourages her to do it. Pauline places her hand on the back of Sonia\'s head, preventing her from pulling away.');
     scene.text('Sonia hesitates for a moment before she starts sucking and Pauline steps back and starts filming.');
     scene.text('You don\'t know what to do. If you try to intervene, you\'ll be going against the whole group, but maybe Sonia will realize what she\'s gotten herself into.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'misc', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'misc', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Physically intervene', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1047,14 +1047,14 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Physically intervene', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (20);
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (5);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'loathe');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (20);
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['soniafall_block'] = ((st as any).soniaQW['soniafall_block'] ?? 0) + (5);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'loathe');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/bj2.jpg');
     scene.text('"For fuck sake, Sonia! Stop before you go too far!" you yell out before trying to push Pauline away.');
     scene.text('Your actions don\'t penetrate the girl\'s alcohol-soaked brain. She looks unsure for just a moment before she goes right back to sucking Vitek\'s cock.');
@@ -1063,7 +1063,7 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('Dan roughly grabs you by the arm and jerks you up, but Vasily grabs your other arm.');
     scene.text('"I got her," he assures Dan, who gives you a dirty look before letting go.');
     // TODO-QSP: dynamic text: Vasily walks you around the corner. "What the fuck were you thinking, <<$pcs_nic...
-    scene.text(`Vasily walks you around the corner. "What the fuck were you thinking, ${((s as any).pcs_nickname || '')}? You should be glad Vitek didn't beat the shit out of you! Get out of here and don't come back!"`);
+    scene.text(`Vasily walks you around the corner. "What the fuck were you thinking, ${((st as any).pcs_nickname || '')}? You should be glad Vitek didn't beat the shit out of you! Get out of here and don't come back!"`);
     scene.text('He shoves you towards the door before going back to the others.');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance'] },
@@ -1074,21 +1074,21 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance'] },
       { label: 'Keep watching', handler: (st: GameState) => {
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['vitek_bj_watched'] = 1;
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['vitek_bj_watched'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/bj2.jpg');
     scene.text('Sonia bobs her head up and down on Vitek\'s cock, working her mouth down until she starts to gag. She has her lips tightly wrapped around the shaft, and just like the popsicle, she sucks on his dick with no hands.');
     scene.text('Pauline continues to record as the guys cheer Sonia on. You get the feeling that the guys want to join in, but one look from Vitek shuts them down.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/bj3.jpg');
     scene.text('Sonia starts getting into a rhythm and Vitek seems content to let her work at her own pace, though he gives her occasional encouragement.');
     scene.text('Pauline offers her a few pointers, which Sonia listens to and does her best to follow, making Vitek moan even louder.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
-    if (((s as any).pcs_hotcat ?? 0) < 6  ||  ((s as any).grupTipe ?? 0) === 4) {
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
+    if (((st as any).pcs_hotcat ?? 0) < 6  ||  ((st as any).grupTipe ?? 0) === 4) {
       scene.actions([
         { label: 'Watch them finish', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/bj4.jpg');
@@ -1098,8 +1098,8 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('He grins at her. "That\'s a good girl. Now swallow."');
     scene.text('She gulps down his load before standing up. Pauline motions towards the cum on her cheek, which Sonia wipes up and sucks off her fingers. She suddenly blushes, possibly realizing she might have gone too far.');
     scene.text('"I want to go dancing! Let\'s go back to the disco!" she says with a slight slur in her voice and a cheeky grin on her face.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
@@ -1114,19 +1114,19 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('She knows what he wants and opens her mouth to show her cum-filled mouth. It\'s so full that a little leaks out from the corner onto her cheek.');
     scene.text('He grins at her. "That\'s a good girl. Now swallow."');
     scene.text('She gulps down his load before standing up. Pauline motions towards the cum on her cheek, which Sonia wipes up and sucks off her fingers before she suddenly blushes, possibly realizing she might have gone too far.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance'] },
       { label: 'See what happens next', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/gopnik/dan_dick.jpg');
-    // TODO-QSP: dynamic text: Dan stands up and walks over to you, his crotch at face level. "Now it's your tu...
-    scene.text(`Dan stands up and walks over to you, his crotch at face level. "Now it's your turn to suck my dick, ${((s as any).pcs_nickname || '')}!"`);
+    // TODO-QSP: dynamic text: Dan stands up and walks over to you, his crotch at face level. "Now it''s your t...
+    scene.text(`Dan stands up and walks over to you, his crotch at face level. "Now it's your turn to suck my dick, ${((st as any).pcs_nickname || '')}!"`);
     scene.text('You feel everyone\'s eyes shift towards you. Even with everyone encouraging you, you don\'t know what to do as Pauline starts to record you with her phone.');
-    qspCall(s, 'arousal', 'erotic', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'erotic', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1135,14 +1135,14 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Decline', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'dislike');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (1);
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['soniafall_block'] = ((st as any).soniaQW['soniafall_block'] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'dislike');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/dan_dick.jpg');
     scene.text('You shake your head and pull away from him so his dick isn\'t directly in your face. "I\'m not sucking your dick, Dan!"');
     scene.text('Dan gets visibly angry. "Then why are you here? We show you a good time, you drink our beer and then tell us to fuck off?!"');
@@ -1156,31 +1156,31 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'adore');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'like');
-    qspCall(s, 'fame', 'pav', 'sex', 30);
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'adore');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'like');
+    qspCall(st, 'fame', 'pav', 'sex', 30);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/disco/gopnik/sex/dan_bj1.jpg');
     scene.text('You look at the others, then up at him before opening your mouth. Pauline records as he quickly sticks his dick in your mouth. The other guys cheer Dan on while also calling you a slut and other derogatory names.');
-    qspCall(s, 'arousal', 'bj', 2, 'inhibition', 'humiliation');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'inhibition', 'humiliation');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep sucking his dick', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/gopnik/sex/dan_bj2.jpg');
     scene.text('Dan moans a little. "Yeah, that\'s it, you fucking slut. You suck dick like a pro."');
     scene.text('Pauline laughs as she keeps recording. "Yeah, I bet she\'s sucked off most of the guys in school already. What a fucking slut!"');
     scene.text('The rest of them just laugh as they watch, though Sonia looks a little uncomfortable listening to them. You feel Dan\'s hands grab the back of your head.');
-    qspCall(s, 'arousal', 'bj', 2, 'inhibition', 'humiliation');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'inhibition', 'humiliation');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Deepthroat', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/gopnik/sex/dan_bj3.jpg');
     scene.text('With his hands firmly on the back of your head, he thrusts his dick completely into your mouth. You gag a little when his cock goes down your throat and your nose is smashed against his stomach. He starts moaning louder as he deeply fucks your mouth, causing you to constantly gag on his dick.');
-    qspCall(s, 'arousal', 'bj', 2, 'inhibition', 'deepthroat', 'humiliation');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'inhibition', 'deepthroat', 'humiliation');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Swallow his cum', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/disco/gopnik/sex/dan_bj_cum.jpg');
@@ -1189,8 +1189,8 @@ function enterPressuredforblowjob(s: GameState, scene: SceneBuilder): void {
     scene.text('Pauline moves in closer with her phone. "Swallow it, slut!"');
     scene.text('Glancing around, you do as you\'re told and swallow Dan\'s cum before quickly wiping the cum off your lips.');
     scene.text('"I want to go dancing! Let\'s go back to the disco!" Sonia says with a slight slur in her voice and a cheeky grin on her face.');
-    qspCall(s, 'cum_call', 'mouth', 'A10', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'mouth', 'A10', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance', 'staytoend'] },
     ]);
@@ -1237,10 +1237,10 @@ function enterPressuredforgangbang(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/gangbang1.jpg');
     scene.text('Vitek pushes his dick into her awaiting mouth as everyone cheers them on. Sonia starts to enthusiastically suck as Dan and Vasily look at each other before standing up, intent on joining in this time.');
     scene.text('You don\'t know what to do. If you try to intervene, you\'ll be going against the whole group, but maybe Sonia will realize what she\'s gotten herself into.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'misc', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'misc', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Physically intervene', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1249,14 +1249,14 @@ function enterPressuredforgangbang(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Physically intervene', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (20);
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['soniafall_block'] = ((s as any).soniaQW['soniafall_block'] ?? 0) + (5);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'loathe');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (20);
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['soniafall_block'] = ((st as any).soniaQW['soniafall_block'] ?? 0) + (5);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'loathe');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/bj2.jpg');
     scene.text('"For fuck sake, Sonia! Don\'t you realize they\'re going to tell everyone about this?!" you yell out before trying to push Pauline away.');
     scene.text('Sonia stops for a moment, but Vitek grabs her by the hair and starts skull fucking her. Dan rushes over towards you and shoves you back, causing you to fall.');
@@ -1264,7 +1264,7 @@ function enterPressuredforgangbang(s: GameState, scene: SceneBuilder): void {
     scene.text('Vasily grabs you by the arm. "I got her," he tells Dan.');
     scene.text('Dan gives you a dirty look before he walks over towards Sonia and pulls out his dick.');
     // TODO-QSP: dynamic text: Vasily walks you around the corner. "What the fuck were you thinking, <<$pcs_nic...
-    scene.text(`Vasily walks you around the corner. "What the fuck were you thinking, ${((s as any).pcs_nickname || '')}? You should be glad Dan didn't kick the shit out of you! Get lost and don't think about coming back!"`);
+    scene.text(`Vasily walks you around the corner. "What the fuck were you thinking, ${((st as any).pcs_nickname || '')}? You should be glad Dan didn't kick the shit out of you! Get lost and don't think about coming back!"`);
     scene.text('He shoves you towards the door, before going back to the others.');
     scene.actions([
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance1'] },
@@ -1293,9 +1293,9 @@ function enterWalkhome(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Warn her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'hate');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'hate');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/disco/walkhome2.jpg');
     scene.text('Once at her door, you warn her to take it easy next time. "Just be careful with the drinking next time. You really went overboard tonight."');
     scene.text('She rolls her eyes. "Stop trying to mother me! I get enough of that at home. It was just a little harmless fun! No one cares."');
@@ -1305,38 +1305,38 @@ function enterWalkhome(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask if she\'ll be okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    if (((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).npc_rel ?? 0)?.['A25'] >= 60) {
-      qspCall(s, 'npcStat', 'A25');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    if (((st as any).pcs_hotcat ?? 0) >= 5  &&  ((st as any).npc_rel ?? 0)?.['A25'] >= 60) {
+      qspCall(st, 'npcStat', 'A25');
       scene.img('images/characters/pavlovsk/school/girl/sonia/walkhomekiss.jpg');
       scene.text('You walk her to the doorway and decide to check on her before you head out. "You sure you\'re okay? Don\'t need me to walk you in?"');
       scene.text('She starts to say something before she stops. The next thing you know, she\'s kissing you!');
-      qspCall(s, 'arousal', 'foreplay', 2, 'lesbian');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'foreplay', 2, 'lesbian');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Pull away', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'dislike');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You pull away from her, breaking the kiss.');
     scene.text('She blushes when you do. "I\'m sorry!" she mumbles. "I don\'t know what came over me!"');
     scene.text('Before you can even get a word in, she opens the door and hurries into her house, closing the door behind her. Not knowing what else to do, you leave.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
     ]);
   } },
         { label: 'Return the kiss', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'like');
     scene.img('images/characters/pavlovsk/school/girl/sonia/walkhomekiss.jpg');
     scene.text('After a moment of surprise, you return the kiss just as passionately as she\'s giving it. Your hands go down to hold her hips as you kiss for several wonderful minutes.');
     // TODO-QSP: dynamic text: She eventually breaks the kiss and bites her lower lip. "Would you like to come ...
-    scene.text(`She eventually breaks the kiss and bites her lower lip. "Would you like to come inside, ${((s as any).pcs_nickname || '')}?"`);
-    qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    scene.text(`She eventually breaks the kiss and bites her lower lip. "Would you like to come inside, ${((st as any).pcs_nickname || '')}?"`);
+    qspCall(st, 'arousal', 'foreplay', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'No', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'dislike');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'dislike');
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You shake your head. "Maybe next time. It\'s getting late and I should get going."');
     scene.text('She nods in understanding, but you also notice her frowns a little. "Sure, no problem. Talk to you later."');
@@ -1350,7 +1350,7 @@ function enterWalkhome(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       scene.img('images/characters/shared/headshots_main/big25.jpg');
       scene.text('You walk her to the doorway and decide to check on her before you head out. "You sure you\'re okay? Don\'t need me to walk you in?"');
       scene.text('She shakes her head and smiles. "Thanks, but I\'m fine. Really. I can make it the rest of the way. Thank you for walking me home, though."');
@@ -1374,9 +1374,9 @@ function enterChasesonia(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'loathe');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'loathe');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You nod slightly. "What were you thinking? You know people will talk and what that could mean," you chastise her.');
     scene.text('She shakes her head. "Whatever! They won\'t say anything, so stop trying to be my mother! I\'m old enough to make up my own mind, so stay out of my business!" she says angrily and storms off.');
@@ -1386,16 +1386,16 @@ function enterChasesonia(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'No', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You shake your head. "No, I just wanted to make sure you were okay."');
     scene.text('She sighs. "Sorry, I didn\'t mean to snap. I just got carried away. I think I should go home."');
     scene.actions([
       { label: 'Walk home with her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You smile at her. "I was going to head home myself. How about we walk together?"');
     scene.text('She pauses for a moment before she nods. "Yeah, okay."');
@@ -1404,8 +1404,8 @@ function enterChasesonia(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Agree', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big25.jpg');
     scene.text('You nod in agreement. "Yeah, that\'s likely for the best. Be careful walking home."');
     scene.text('She rolls her eyes slightly. "Yes, mom."');
@@ -1430,12 +1430,12 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
   ((s as any).soniaQW = (s as any).soniaQW ?? {})['fallday'] = ((s as any).daystart ?? 0);
   ((s as any).soniaQW = (s as any).soniaQW ?? {})['slutdays'] = ((s as any).daystart ?? 0);
   ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A25'] = 5;
-  ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_outcast_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
+  ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A25'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A25'] + '</a>';
   scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/cumwalk.jpg');
-  if (((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'staytoend') {
     scene.text('Vitek drags a drunken Sonia around like she\'s a trophy on display. She\'s all smiles and looks pretty happy and completely wasted. You follow them inside and stop near the door.');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'declineinvite') {
       scene.text('You don\'t really want to drink alcohol right now, so you just shake your head. "Thanks for the invite, but I think I\'d rather stay here right now. You guys have fun!"');
       scene.text('Half an hour later, you see the boys return, quite rowdy and pleased with themselves. ');
     } else {
@@ -1467,14 +1467,14 @@ function enterSoniabang(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to stop her', handler: (st: GameState) => {
-    ((s as any).soniaQW = (s as any).soniaQW ?? {})['help'] = ((s as any).soniaQW['help'] ?? 0) + (1);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (10);
-    qspCall(s, 'npc_relationship', 'modify', 'A9', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A10', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A11', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A24', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
-    qspCall(s, 'stat', '');
+    ((st as any).soniaQW = (st as any).soniaQW ?? {})['help'] = ((st as any).soniaQW['help'] ?? 0) + (1);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (10);
+    qspCall(st, 'npc_relationship', 'modify', 'A9', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A10', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A11', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A24', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/gangbang2.jpg');
     scene.text('You can\'t just watch her like this. "Sonia! Think about what you\'re doing!"');
     scene.text('All the guys turn to give you a dirty look as Sonia pauses.');
@@ -1490,8 +1490,8 @@ function enterSoniabang(s: GameState, scene: SceneBuilder): void {
     scene.text('Sonia stares at the erection in front of her face before she slowly extends her hand and pokes the cock with her finger. It twitches and some precum leaks from the head, making her giggle with glee. Fascinated by it, she hesitantly closes her slender fingers around the head and jerks it off carefully.');
     scene.text('Vitek groans, maybe not expecting his plan to actually get this far. "Now have a taste… I bet you\'ll love it!"');
     scene.text('She pauses and you watch as she perhaps makes one of the biggest decisions of her life.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Her fate', goto: ['soniadisco', 'soniafall'] },
       { label: 'Go back to the disco', goto: ['soniadisco', 'dance1'] },
@@ -1513,15 +1513,15 @@ function enterSoniafall(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/gangbang4.jpg');
     scene.text('They trade positions, two of the others now fucking both of Sonia\'s holes as Pauline records it. Vitek stands near her head and shoves his dick back in her mouth. Now with every hole on her body filled, she seems to be getting into it. You think she\'s too drunk to realize what\'s going on.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/gangbang5.jpg');
     scene.text('Each guy takes a turn with her and Sonia doesn\'t seem to mind - in fact, she seems to be loving it as Pauline records the whole thing. The guys are not remotely gentle, but it doesn\'t seem to matter. Sonia moans and writhes in pleasure as they all take turns fucking her before one of them pops his load right in her mouth.');
     scene.text('She swallows most of it, but some leaks out as she switches to a new cock. Several of the other guys seem to be getting close to blowing their loads as well.');
-    qspCall(s, 'arousal', 'voyeur_sex', 10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Facial', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/disco/gangbang6.jpg');
@@ -1530,8 +1530,8 @@ function enterSoniafall(s: GameState, scene: SceneBuilder): void {
     scene.text('Sonia does as she\'s told and when she\'s done, the guys help her up, pull her dress over the top of her head and start leading her back to the disco.');
     scene.text('"Come on, Sonia. Let\'s go dance," Dan says with a laugh.');
     scene.text('Sonia gets excited, apparently too drunk to notice that her hair and face are covered in cum.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Follow them', goto: ['soniadisco', 'dance1', 'staytoend'] },
     ]);
@@ -1555,20 +1555,20 @@ function enterFollowsonia(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Approach her', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/soniasad.jpg');
-    if (((s as any).soniaQW ?? 0)?.['help'] > ((s as any).soniaQW ?? 0)?.['encourage']) {
+    if (((st as any).soniaQW ?? 0)?.['help'] > ((st as any).soniaQW ?? 0)?.['encourage']) {
       scene.text('You walk up to her. "Are you okay?"');
       scene.text('She gives you a look of disbelief. "No, I\'m not okay! You saw what happened! Everyone is going to think I\'m a slut! Hell, I <i>am</i> a slut!" she replies between sobs.');
       scene.text('You nod. "I know. I tried to help you and I wish I could have done more."');
       scene.text('She nods in return. "I know. God, I was so stupid!" she says before she starts sobbing harder.');
     } else {
-      if (((s as any).soniaQW ?? 0)?.['encourage'] > 0  &&  ((s as any).npc_rel ?? 0)?.['A25'] >= 50) {
-        qspCall(s, 'npc_relationship', 'modify', 'A25', '-10');
+      if (((st as any).soniaQW ?? 0)?.['encourage'] > 0  &&  ((st as any).npc_rel ?? 0)?.['A25'] >= 50) {
+        qspCall(st, 'npc_relationship', 'modify', 'A25', '-10');
         scene.text('She turns to you as you approach. "I thought you were my friend! Why would you do that to me?"');
       } else {
-        if (((s as any).soniaQW ?? 0)?.['encourage'] > 0) {
-          qspCall(s, 'npc_relationship', 'modify', 'A25', 'loathe');
+        if (((st as any).soniaQW ?? 0)?.['encourage'] > 0) {
+          qspCall(st, 'npc_relationship', 'modify', 'A25', 'loathe');
           scene.text('She turns to you as you approach. "What do you want? Come to gloat and make fun of me too?"');
         } else {
           scene.text('You walk up to her. "Are you okay?"');
@@ -1576,14 +1576,14 @@ function enterFollowsonia(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (((s as any).soniaQW ?? 0)?.['help'] > ((s as any).soniaQW ?? 0)?.['encourage']  ||  ((s as any).soniaQW ?? 0)?.['encourage'] === 0) {
+    if (((st as any).soniaQW ?? 0)?.['help'] > ((st as any).soniaQW ?? 0)?.['encourage']  ||  ((st as any).soniaQW ?? 0)?.['encourage'] === 0) {
       scene.actions([
         { label: 'Comfort her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'adore');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'adore');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/soniasad.jpg');
-    if (((s as any).soniaQW ?? 0)?.['help'] > 0) {
+    if (((st as any).soniaQW ?? 0)?.['help'] > 0) {
       scene.text('You put your arm around her shoulder and hug her. "I\'m so sorry this happened to you. I tried to help, but I should have done more."');
       scene.text('She shakes her head. "No, you tried to warn me. God, I\'m so stupid! My life is over!" she cries and starts sobbing even harder.');
       scene.text('You try wiping the cum off her face and out of her hair as best you can, holding her as she sobs against your shoulder.');
@@ -1597,9 +1597,9 @@ function enterFollowsonia(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
       { label: 'Help her home', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'love');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'love');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/soniasad.jpg');
     scene.text('"At least let me walk you home. It\'s the least I can do," you tell her.');
     scene.text('She merely nods and leans against you as the two of you walk home, the noise of the night interrupted by her sniffles and sobs.');
@@ -1617,8 +1617,8 @@ function enterFollowsonia(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Apologize', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A25', 'like');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A25', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/soniasad.jpg');
     scene.text('"I\'m sorry. I shouldn\'t have encouraged you. I didn\'t think it would go that far, and I didn\'t know the guys would do that to you. It wasn\'t right and I\'m sorry."');
     scene.text('She nods slightly. "No matter what you said, it would have happened anyway. I wanted to party, to be the bad girl. Guess I got what I wanted. I\'m so stupid!" she says before starting to sob again.');
@@ -1633,24 +1633,24 @@ function enterFollowsonia(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Tell her it\'s her own fault', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/soniasad.jpg');
-    if (((s as any).soniaQW ?? 0)?.['help'] > ((s as any).soniaQW ?? 0)?.['encourage']) {
+    if (((st as any).soniaQW ?? 0)?.['help'] > ((st as any).soniaQW ?? 0)?.['encourage']) {
       scene.text('"I tried to help you, but you wouldn\'t listen! This is your own fault," you bluntly tell her.');
       scene.text('"I know!" she cries before she takes off running.');
       scene.text('Maybe you should have been nicer, even if it was her own fault.');
     } else {
-      if (((s as any).soniaQW ?? 0)?.['encourage'] > 0  &&  ((s as any).npc_rel ?? 0)?.['A25'] >= 50) {
-        qspCall(s, 'npc_relationship', 'modify', 'A25', '-20');
-        ((s as any).soniaQW = (s as any).soniaQW ?? {})['hate'] = 1;
+      if (((st as any).soniaQW ?? 0)?.['encourage'] > 0  &&  ((st as any).npc_rel ?? 0)?.['A25'] >= 50) {
+        qspCall(st, 'npc_relationship', 'modify', 'A25', '-20');
+        ((st as any).soniaQW = (st as any).soniaQW ?? {})['hate'] = 1;
         scene.text('You shake your head. She was all happy before and now she\'s crying about it. "What did you expect? You were acting like a slut! You wanted to have fun and walk on the wild side and you did. You have no one to blame but yourself."');
         scene.text('She cries even harder. "I thought you were my friend! You encouraged me! Why would you do that?"');
         scene.text('"Come on, we both know nothing I was going to say would have gotten you to stop. You wanted to know what it was like to be a bad girl, so I helped you do what you wanted. That\'s not my fault, it\'s yours."');
         scene.text('"Stay away from me!" she screams before she takes off running.');
         scene.text('Maybe you should have been nicer, even if it was her own fault.');
       } else {
-        if (((s as any).soniaQW ?? 0)?.['encourage'] > 0) {
-          qspCall(s, 'npc_relationship', 'modify', 'A25', '-10');
+        if (((st as any).soniaQW ?? 0)?.['encourage'] > 0) {
+          qspCall(st, 'npc_relationship', 'modify', 'A25', '-10');
           scene.text('You shake your head. She was all happy before and now she\'s crying about it. "What did you expect? You were acting like a slut! You wanted to have fun and walk on the wild side and you did. You have no one to blame but yourself."');
           scene.text('"I know!" she cries before she takes off running.');
           scene.text('Maybe you should have been nicer, even if it was her own fault.');

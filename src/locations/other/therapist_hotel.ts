@@ -5,9 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 1;
-  }
   scene.build();
 }
 
@@ -35,8 +32,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_willpwr ?? 0) >= ((s as any).will_cost ?? 0)) {
     scene.actions([
       { label: 'RUN!!!', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'medium');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_hotel']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'willpower', 'pay', 'medium');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_hotel']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -87,20 +84,20 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
     scene.text('"Every Saturday, you will show up here and we will do some more training. You can still meet me at the clinic but here?"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/naked.jpg');
     // TODO-QSP: dynamic text: After you shower, you walk out of the bathroom and stand naked before him. "Good...
     scene.text(`After you shower, you walk out of the bathroom and stand naked before him. "Good, a clean wife makes a happy husband" he says and walks up to you and kisses you while fondling your chest. ${qspFunc(s, 'wrap', 'hypno', '"Now, your first order, while you are in this room you will respond to Wife, not Cunt is that understood Wife?"')}`);
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'No, Master', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -109,9 +106,9 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No, Master', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'willpower', 'pay', 'medium');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'willpower', 'pay', 'medium');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/clinic/therapist/pavlov.jpg');
     scene.text('"Then get out of here until you do"');
     scene.text('He guides you out of the door and closes it behind you.');
@@ -142,30 +139,30 @@ function enterEvent1PostShower(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/sex.jpg');
     scene.text('You spend most of the day here, getting cum in your mouth and throat while he works. Once he pulls his cock from your mouth, and then pulls you from under the desk, you can see its already night time. "Get on the bed, on your back, I want to breed you as a reward tonight before we sleep"');
-    qspCall(s, 'arousal', 'bj', 120, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 120, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Thank you, Master', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     scene.text('You stand up and move to the bed and looking up at your therapist as he climbs on top of you and pushes himself inside you. He has his way with your body, fondling your chest, sucking your nipples, kissing and sucking on your neck. He enjoys your body until he cums deep inside you. Unlike back in the clinic, he stays inside you as he pulls a blanket over you and himself before falling asleep.');
-    qspCall(s, 'arousal', 'vaginal', 20, 'sub');
-    qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 20, 'sub');
+    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_visits'] = 1;
-    qspCall(s, 'sleep_simple', 'simple');
-    if (((s as any).hour ?? 0) < 7) {
-      qspCall(s, 'sleep_simple', 'forced', 7, 0);
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_visits'] = 1;
+    qspCall(st, 'sleep_simple', 'simple');
+    if (((st as any).hour ?? 0) < 7) {
+      qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
-    qspGoto(s, 'therapist_hotel', 'event1_morning');
+    qspGoto(st, 'therapist_hotel', 'event1_morning');
   } },
     ]);
   } },
@@ -199,12 +196,12 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_shower_fondle.mp4');
     scene.text('"Today is an important day for you"');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: '"No" - (rebel)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -213,9 +210,9 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: '"No" - (rebel)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'willpower', 'pay', 'medium');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'willpower', 'pay', 'medium');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
     scene.text('"Then come back when you are ready to take that step" He says and walks you to the door. You wake up in the hallway, standing outside a hotel room, unable to remember why you were there in the first place.');
     scene.actions([
@@ -228,11 +225,11 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: '"Yes" - (continue)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('"Wonderful, now remember, a clean wife is a happy wife. I will join you this time, to make sure you are completely clean." He says and takes your hand and pulls you into the bathroom and helps you get undressed, feeling you up each chance he gets. "Your young body is incredible".');
     scene.actions([
       { label: 'Go take a shower', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_big', 'body_tits_huge')) {
       scene.text('He spends a lot of time fondling your breasts in a gentle manner. "These will make feeding our children a wonderful sight" he says and pulls you into the shower.');
     } else {
@@ -266,11 +263,11 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Bite down hard', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['escaped'] = 1;
-    qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['escaped'] = 1;
+    qspCall(st, 'calendar', 'remove', 'therapist_hotel_visit');
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
     scene.img('images/system/image_needed.png');
     scene.text('You don\'t know why, but you feel this isn\'t right. You can\'t put your finger on why but this man isn\'t your lover. As soon as you bite down hard on his cock, he screams out in pain. This wakes you up from your dreamlike state. Not sticking around, you grab a nearby robe and run out of the hotel room and into the night.');
     scene.actions([
@@ -284,30 +281,30 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Give Blowjob', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 30, 'sub');
-    qspCall(s, 'cum_call', 'mouth', 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 30, 'sub');
+    qspCall(st, 'cum_call', 'mouth', 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'stat', '');
     scene.img('images/system/image_needed.png');
     scene.text('Your eyes are clear but you are in a haze. You feel a cock in your mouth and you start sucking. It tastes delicious to you and you want to keep doing it. You move your mouth over the long shaft. As you lick and kiss, suck and fondle, you enjoy this man\'s meat. You feel his hands touch the back of your head and this man cums in your throat, drinking up every last drop. "Holy hell gi.. Wife" he says, slipping on his training. "You\'re going to be a fantastic lover when I\'m done with your training." He says and takes your hand and pulls you into the hotel room.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 20, 'sub');
-    qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 20, 'sub');
+    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     scene.text('He places you on the bed and quickly pushes you back into his body. You moan as you feel everything happening to you. Your mind is still foggy but you are aware of the sensations. His actions make you moan and groan on the bed. You squirm over the covers as he takes you relentlessly. His lips on your breasts, his hands on your hips, he gives you a fuck you won\'t forget. It\'s not long before you hear him groan and feel your body warming up with his seed. "Fuck, Wife, I\'ll never tire of you, now sleep" he says and your mind returns back to the black room as you feel him start up again, realizing he will fuck you in your sleep.');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_visits'] = 2;
-    qspCall(s, 'sleep_simple', 'simple');
-    if (((s as any).hour ?? 0) < 7) {
-      qspCall(s, 'sleep_simple', 'forced', 7, 0);
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_visits'] = 2;
+    qspCall(st, 'sleep_simple', 'simple');
+    if (((st as any).hour ?? 0) < 7) {
+      qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/vagcreampie/after1.jpg');
     scene.text('You wake up the next morning feeling like a million dollars. You sit up and feel something squirt out of your pussy. You were filled up by whomever you slept. Your subconscious mind makes your body want to keep it inside you. You get up, shower, dress and head back to town.');
     scene.actions([
@@ -333,32 +330,32 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Yes Sir', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'outfit', 'strip_all');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'outfit', 'strip_all');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_clean.jpg');
     scene.text('"Good" he says and snaps his fingers again and you come out of your trance. "My dear, thank you for coming over, I really hope you had a good day" he says and gives you a kiss, which you return. "Sorry about being a bad host. This place is a mess, I\'ve not had time to clean up" he says and your mind triggers and you remove your clothes, fold them up nicely, place then on the bed, then begin to clean up the hotel room.');
     if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_tits_big', 'body_tits_huge')) {
       scene.text('You sense his eyes on you the whole time. "I love watching your body move" he says and this compliment makes you feel happy. You feel like you might love this man, and he\'s helped you so much with all your issues. "Thank you, I like to keep my body in healthy shape, I want you to be happy when looking at me" You tell him.');
     } else {
       scene.text('You feel his eyes on you the entire time. "So, I have a friend in St. Petersberg, works in a clinic, that sells a cream that can make your breasts grow larger. I want you to go there and buy some and use it" he suggests. "It will help you relax and help you with that issue you told me about while you were under hypnosis a few weeks back" he lies and you nod your head. "If you think it will help." You tell him.');
-      if (((s as any).experimentQW ?? 0)?.['discovered'] < 2) {
-        ((s as any).experimentQW = (s as any).experimentQW ?? {})['discovered'] = 10;
+      if (((st as any).experimentQW ?? 0)?.['discovered'] < 2) {
+        ((st as any).experimentQW = (st as any).experimentQW ?? {})['discovered'] = 10;
       }
-      if (((s as any).experimentQW ?? 0)?.['times_participated_1'] > 0) {
-        ((s as any).therapistQW = (s as any).therapistQW ?? {})['breast_cream'] = 3;
+      if (((st as any).experimentQW ?? 0)?.['times_participated_1'] > 0) {
+        ((st as any).therapistQW = (st as any).therapistQW ?? {})['breast_cream'] = 3;
       } else {
-        ((s as any).therapistQW = (s as any).therapistQW ?? {})['breast_cream'] = 1;
+        ((st as any).therapistQW = (st as any).therapistQW ?? {})['breast_cream'] = 1;
       }
     }
     scene.actions([
       { label: 'Finish cleaning the room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'cuni', 35, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 35, 'sub');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/kuni/kuni.jpg');
     scene.text('You finish cleaning up the hotel room and when you pick something up, you feel his hands on your bottom. He feels up your rear. This is what you want him to do, but you don\'t move. It\'s not long before he kneels down behind you and you feel his lips on your pussy and starts to make out with your lower hole. This causes you to moan out softly as he eats you out. This lasts for a few minutes before he pulls back and pushes you onto the bed and is quickly on top of you again.');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -367,10 +364,10 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Resist', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 60, 'sub', 'rape');
-    qspCall(s, 'willpower', 'pay', 'medium');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 60, 'sub', 'rape');
+    qspCall(st, 'willpower', 'pay', 'medium');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.img('images/system/image_needed.png');
     scene.text('Something inside you is wanting to rebel, when you are pushed onto the bed. You feel as if something is wrong and when he pushes inside you, you moan out, "No…" softly as he starts pumping in and out of you. He is larger than you so you can\'t really do much about this and when he grunts and cums inside you, you see a chance to do something. He pulls out and lays on the bed. "Mmm, that was good," he says and when you see him drift off to sleep, you grab your clothes and place the key card on the table and run out of the door and head home.');
     scene.actions([
@@ -383,22 +380,22 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Submit', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 60, 'sub');
-    qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 60, 'sub');
+    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'stat', '');
     scene.img('images/system/image_needed.png');
     scene.text('You moan when he pushes his entire size inside you. You really want this. You push back and help him push deeper inside you. He grabs a hold of your waist and starts to push in and pull out of you. This carries on for several minutes before you feel him cum inside you and he holds you tight to his own body. "Mmmm, dear, your pussy is so perfect" he says giving you another compliment. He holds you on his cock and falls to his side and stays inside you as he pulls the blanket over you and spoons you as you both fall asleep.');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_visits'] = 3;
-    qspCall(s, 'sleep_simple', 'simple');
-    if (((s as any).hour ?? 0) < 7) {
-      qspCall(s, 'sleep_simple', 'forced', 7, 0);
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_visits'] = 3;
+    qspCall(st, 'sleep_simple', 'simple');
+    if (((st as any).hour ?? 0) < 7) {
+      qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
     scene.img('images/system/image_needed.png');
     scene.text('You wake up the next morning to hands fondling your breasts and the therapist groaning in his sleep. You slowly and gently free yourself from his hold, get dressed and head out with a smile on your face. While your mind and heart feel this is right, something in the back of your mind is bothering you, but you just can\'t place it.');
     scene.actions([
@@ -426,20 +423,20 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_arrive4.jpg');
     // TODO-QSP: dynamic text: "Ah, my wife, how are you today." He says while getting up and walking over to k...
     scene.text(`"Ah, my wife, how are you today." He says while getting up and walking over to kiss you on the lips. You return the kiss as if it was natural. "There is something I want you to do for me today" he says and snaps his fingers. ${qspFunc(s, 'wrap', 'hypno', 'You will stay in here naked  &&  ready for me. I\'m leaving to go get us something to eat.')} He whispers and snaps his fingers again and you wake up. "I'll be back in a few minutes," he explains and pulls your towel off as he leaves the room, leaving you naked and alone.`);
-    if (((s as any).pcs_intel ?? 0) >= 90) {
+    if (((st as any).pcs_intel ?? 0) >= 90) {
       scene.actions([
         { label: 'Look around the room', handler: (st: GameState) => {
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_hypno_study'] = ((s as any).therapistQW['hotel_hypno_study'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_hypno_study'] = ((st as any).therapistQW['hotel_hypno_study'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_wait_tv.jpg');
     scene.text('There are a lot of items in the room, including his computer, books, files, and notes. You see a book on his table next to a file with your name on it. The book is called "The Theory of Hypnosis". You look at the back cover and read it: "Does mind control fascinate you? Are you interested in understanding the human mind? Do you want to learn how to influence others and bend them to your will? Imagine winning almost any argument, turning people to your way of thinking or controlling situations to your own advantage. This is all while ensuring others do not hold the same power over you. You should know that most of our choices are generated and managed through specific methods of covert manipulation. Reading this book you\'ll uncover the most powerful principles in the world of Dark Psychology." You open the book and thumb through it. Sitting down on a chair near you, you read and gain a deeper understanding of Hypnotherapy. You spend a good hour learning a few things before hearing the door click. Putting the book down, you stand up and watch as the therapist returns with a bag of food.');
-    if (((s as any).therapistQW ?? 0)?.['hotel_hypno_study'] >= 4) {
+    if (((st as any).therapistQW ?? 0)?.['hotel_hypno_study'] >= 4) {
       scene.text('This is the end of this path, more to come!');
       scene.actions([
         { label: 'Continue', goto: ['therapist_hotel', 'event4_post_wait'] },
@@ -452,8 +449,8 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -462,15 +459,15 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_left'] = ((s as any).therapistQW['hotel_left'] ?? 0) + (1);
-    qspCall(s, 'willpower', 'pay', 'medium');
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
-    scene.img(`images/pc/activities/misc/dress_${Math.floor(Math.random() * 2) + 1}.mp4`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_left'] = ((st as any).therapistQW['hotel_left'] ?? 0) + (1);
+    qspCall(st, 'willpower', 'pay', 'medium');
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
+    scene.img(`images/pc/activities/misc/dress_${(Math.floor(Math.random() * 2) + 1)}.mp4`);
     scene.text('As you stand there naked, you slowly come to and, seeing yourself naked, you quickly get dressed. You are not sure why you are here and decide to leave.');
-    if (((s as any).therapistQW ?? 0)?.['hotel_left'] >= 1) {
+    if (((st as any).therapistQW ?? 0)?.['hotel_left'] >= 1) {
       scene.text('This is the end of this path, more to come!');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -489,9 +486,9 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Submit', handler: (st: GameState) => {
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_submit'] = ((s as any).therapistQW['hotel_submit'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_submit'] = ((st as any).therapistQW['hotel_submit'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_wait_tv.jpg');
     scene.text('You obey his orders and sit on the bed naked and watch whatever he was watching until he returns holding a bag of food.');
     scene.actions([
@@ -512,15 +509,15 @@ function enterEvent4PostWait(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sleep', handler: (st: GameState) => {
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_visits'] = ((s as any).therapistQW['hotel_visits'] ?? 0) + (1);
-    qspCall(s, 'sleep_simple', 'simple');
-    if (((s as any).hour ?? 0) < 7) {
-      qspCall(s, 'sleep_simple', 'forced', 7, 0);
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_visits'] = ((st as any).therapistQW['hotel_visits'] ?? 0) + (1);
+    qspCall(st, 'sleep_simple', 'simple');
+    if (((st as any).hour ?? 0) < 7) {
+      qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
     scene.text('The next morning, you wake up in the therapist\'s arms. You slowly remove yourself from his hold, dress, and leave the room.');
     scene.actions([
@@ -548,61 +545,61 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_submit'] = 10;
-    qspCall(s, 'arousal', 'vaginal_finger', 15, 'sub');
-    qspCall(s, 'stat', '');
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_submit'] = 10;
+    qspCall(st, 'arousal', 'vaginal_finger', 15, 'sub');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_undressed_knee.jpg');
     scene.text('You come to and look at the therapist and when you feel his hand between your legs, you open them for him. "Good girl, tell me what you think about me," he says, as he slips a finger into your honeypot.');
     scene.text('"I think I am falling for you. From the dreams I\'ve had about you, to kissing you after our sessions, I want to offer myself to you, but I don\'t know just yet," you tell him and then moan out when he kisses your neck.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'cuni', 35, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 35, 'sub');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/kuni/kuni.jpg');
     scene.text('"Take your time, I\'ll just use your body and you feel like you want me to," he replies and lays you back on the bed and suckles on your neck while fingering you. "Mmm, you taste so delicious" he says over you, before moving down your body, suckling on your breasts for a bit before moving further down between your legs and starts to eat you out.');
     scene.text('"Sir?!" You moan out as he ravishes your pussy with his mouth and tongue.');
-    // TODO-QSP: dynamic text: <<$func('wrap', 'hypno', '"You will be mine, your body will not deny me, you onl...
+    // TODO-QSP: dynamic text: <<$func(''wrap'', ''hypno'', ''"You will be mine, your body will not deny me, yo...
     scene.text(`${qspFunc(s, 'wrap', 'hypno', '"You will be mine, your body will not deny me, you only have to say yes to me. My dear, tell me to fuck you."')} He exclaims and the trigger clicks in your mind.`);
     scene.actions([
       { label: '"Sir, please, fuck me"', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 60, 'sub');
-    qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 60, 'sub');
+    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     // TODO-QSP: dynamic text: You say and he climbs on top of you and pushes inside you again. "Anything for y...
     scene.text(`You say and he climbs on top of you and pushes inside you again. "Anything for you," he says and starts to have sex with you. This continues for the night. ${qspFunc(s, 'wrap', 'hypno', '"My dear, you want my cum inside you, right? You love my cum in your body,"')} he explains.`);
     scene.text('"Yes, I love your cum inside me, I love how it feels inside me." and with that he cums hard inside you.');
-    // TODO-QSP: dynamic text: <<$func('wrap', 'hypno', """Good Girl, I'll keep cumming inside you until you ar...
+    // TODO-QSP: dynamic text: <<$func(''wrap'', ''hypno'', """Good Girl, I''ll keep cumming inside you until y...
     scene.text(`${0} he says and you say nothing. ${qspFunc(s, 'wrap', 'hypno', '"My Dear, tell me, You want my babies inside you, correct?"')}`);
     scene.text('"Yes, Sir" you say and he kisses you again.');
     scene.text('"Good, but for now, let\'s sleep. In the morning we will have more of this before you leave," he says and your eyes close and you fall into a deep sleep.');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    qspCall(s, 'sleep_simple', 'simple');
-    qspCall(s, 'stat', '');
-    if (((s as any).hour ?? 0) < 7) {
-      qspCall(s, 'sleep_simple', 'forced', 7, 0);
+    qspCall(st, 'sleep_simple', 'simple');
+    qspCall(st, 'stat', '');
+    if (((st as any).hour ?? 0) < 7) {
+      qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
-    qspCall(s, 'arousal', 'vaginal', 60, 'sub');
-    qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 60, 'sub');
+    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/vagcreampie/doggy5.mp4');
     scene.text('You wake up the next morning to the therapist pumping in and out of you. "Mmm, good morning my dear, you love me waking you up like this," he says and you nod in agreement with him. "Now be a good girl and just lay there and enjoy it." He says and spends an hour pumping more and more cum inside you.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    scene.img(`images/pc/activities/misc/dress_${Math.floor(Math.random() * 2) + 1}.mp4`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    scene.img(`images/pc/activities/misc/dress_${(Math.floor(Math.random() * 2) + 1)}.mp4`);
     scene.text('He stops and kisses you and then pulls out of you and slowly gets dressed. "My dear, get up, clean up, then return the same time next week," he says, leaving you alone to get dressed and cleaned up before leaving.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['hotel_visits'] = ((s as any).therapistQW['hotel_visits'] ?? 0) + (1);
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['hotel_visits'] = ((st as any).therapistQW['hotel_visits'] ?? 0) + (1);
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -615,23 +612,23 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Break free', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).therapistQW = (s as any).therapistQW ?? {})['escaped'] = 2;
-    qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).therapistQW = (st as any).therapistQW ?? {})['escaped'] = 2;
+    qspCall(st, 'calendar', 'remove', 'therapist_hotel_visit');
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You come to and see that you are naked. "WHAT THE HELL?" you yell and slap the t...
     scene.text(`You come to and see that you are naked. "WHAT THE HELL?" you yell and slap the therapist. You quickly get up and grab your clothes and rush out of the hotel room to the front desk to ask them to call the police. After explaining everything, they send a single officer to the hotel room to find it empty. You are slapped with a ${qspFunc(s, 'money', 'string_price', 500)} fine for public indecency, told not to waste their time, and sent on your way.`);
-    qspCall(s, 'money', 'pay', 500);
-    if (((s as any).money ?? 0) < 0) {
-      (s as any).money = 0;
+    qspCall(st, 'money', 'pay', 500);
+    if (((st as any).money ?? 0) < 0) {
+      (st as any).money = 0;
     }
     scene.text(' ***Therapist is no longer an option for now*** ');
     scene.actions([
       { label: 'Get dressed and leave', handler: (st: GameState) => {
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -652,33 +649,33 @@ function enterEvent6Submit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.text('You see your husband working on something at his desk. You kneel before him and wait for him to notice you. After some time, he turns to look at you.');
     scene.text('"Wife, you look as beautiful as ever. I have something I want you to sign. You are my wife in all but name. Let\'s make it official" he says and hands you a pen and a clip board.');
     scene.text('You look at it. Giving a quick read you see it\'s a marriage certificate. "You will sign it now, won\'t you My Dear?" he commands. You look down again at the packet before you.');
     scene.text('If you sign this, you will be his wife, any boyfriends, girlfriends, lovers, husbands, anything where you live with them will be null and void. From this point on, the therapist is your husband and he WILL NOT divorce you.');
     scene.actions([
       { label: 'Sign the paper', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'bj', 30, 'sub');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'bj', 30, 'sub');
+    qspCall(st, 'stat', '');
     scene.text('You give the paper a signature and he smiles. "Good, I\'ll take this to the city offices on Monday." He says and pulls out his cock and moves your head to it.');
     scene.text('You start sucking on it without question. "Now that we are married, this means you are to live with me. You will head home tonight, tell your family you are moving out, and you will live here with me until we find a place of our own, Do you understand?" he asks.');
     scene.actions([
       { label: '"Yes Sir"', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'bj', 15, 'sub');
-    qspCall(s, 'cum_call', 'mouth', 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'bj', 15, 'sub');
+    qspCall(st, 'cum_call', 'mouth', 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'stat', '');
     scene.text('"Good, Now finish up with your current task so you can tell your parents or loved ones the news. Tell them whatever you want, but tell them you are moving out."');
     scene.text('He says and cums into your mouth. You drink and swallow every drop. He lets you up and you get dressed. Without saying anything, you leave the motel and head home.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'therapist_hotel', 'event6_submit2');
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'therapist_hotel', 'event6_submit2');
   } },
     ]);
   } },
@@ -688,11 +685,11 @@ function enterEvent6Submit(s: GameState, scene: SceneBuilder): void {
     scene.text('He helps you to your feet and tells you to get dressed and leave. "I expect you to sign it the next time I see you" he says. You dress and leave.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'underwear', 'wear');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'stat', '');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'underwear', 'wear');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -715,10 +712,10 @@ function enterEvent6Submit2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, make sure you come back from time to time" she says and gives you a hug before you head to the living room to tell your parents about the news.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: You enter the living room with your suitcase and just say, "<<$npc_nickname['A29...
-    scene.text(`You enter the living room with your suitcase and just say, "${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Dad, Im moving out. I have found a place to stay and I will be living there" you say and your mother stands up looking confused. "What are you talking about?" she says.`);
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
+    // TODO-QSP: dynamic text: You enter the living room with your suitcase and just say, "<<$npc_nickname[''A2...
+    scene.text(`You enter the living room with your suitcase and just say, "${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Dad, Im moving out. I have found a place to stay and I will be living there" you say and your mother stands up looking confused. "What are you talking about?" she says.`);
     scene.text('"I\'m moving out" you repeat.');
     scene.text('"I heard that, but why?" she asks as Valdimer walks up behind her to keep her back.');
     scene.text('"Dear, stop, she\'s out of school and she\'s old enough to live on her own now." He walks up to you and gives you a hug. "Just make sure you come home from time to time" he says and you can see your mother starting to cry.');
@@ -768,22 +765,22 @@ function enterEvent6Submit3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 90;
-    qspCall(s, 'arousal', 'vaginal', 90, 'sub');
-    qspCall(s, 'cum_call', '', '', 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 90;
+    qspCall(st, 'arousal', 'vaginal', 90, 'sub');
+    qspCall(st, 'cum_call', '', '', 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/miss/old1.mp4');
     scene.text('You spend the next hour or two, naked on the bed, watching TV before he comes to bed. He pushes you on your back and before you know it, he is inside you having sex with you.');
     scene.text('You were already wet from being in his presence. He moves your hands above your head and spends the next few hours pumping in and out of you before you both pass out.');
     scene.actions([
       { label: 'Sleep', handler: (st: GameState) => {
-    qspCall(s, 'sleep_simple', 'simple');
-    if (((s as any).hour ?? 0) < 7) {
-      qspCall(s, 'sleep_simple', 'forced', 7, 0);
+    qspCall(st, 'sleep_simple', 'simple');
+    if (((st as any).hour ?? 0) < 7) {
+      qspCall(st, 'sleep_simple', 'forced', 7, 0);
     }
-    qspCall(s, 'arousal', 'vaginal', (-90), 'sub');
-    qspCall(s, 'cum_call', '', '', 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', (-90), 'sub');
+    qspCall(st, 'cum_call', '', '', 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/vag/miss/old2.mp4');
     scene.text('You wake up the next morning and your legs are on his shoulders and he is still having sex with you.');
     scene.text('He says nothing and you just lay there looking up at him. It takes him a bit and he cums deep inside you again. He stays inside you and looks down at you.');
@@ -794,8 +791,8 @@ function enterEvent6Submit3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Good, now stay there for a bit and let my cum find your eggs" he says and gets off the bed');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/naked1.jpg');
     scene.text('You lay there naked on the bed as he goes to get cleaned up. You lay there for a bit and when he exits the shower, you get up and go take one yourself. You wash up and return to him. "Now to make sure no one sees anything wrong with our pairing, you are free to leave and do whatever you want. But you will return here every night.');
     scene.text('This is your home now. You will have all the same freedoms you did in any place you lived before, only the difference is that you will be naked at all times while in this room. At night, we will have sex and you will allow it, even if you are not in the mood, isn\'t that right my dear?" he says.');
@@ -829,6 +826,9 @@ function enterEvent6Submit4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 1;
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'leave':

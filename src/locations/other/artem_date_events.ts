@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
-  scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
+  scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
   scene.text('You enjoy a pleasant walk in the park while making small talk with Artem.');
   scene.text('After a while, you end up near the movie theater. Artem\'s eyes light up when he sees it. "Hey, let\'s go see a movie!"');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -18,17 +18,17 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Sounds like fun', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
-    scene.img(`images/locations/shared/cinema/kino_${Math.floor(Math.random() * 3) + 1}.jpg`);
+    qspCall(st, 'npc_relationship', 'modify', 'A2', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
+    scene.img(`images/locations/shared/cinema/kino_${(Math.floor(Math.random() * 3) + 1)}.jpg`);
     scene.text('You enter the movie theater with Artem. After he buys the tickets and some popcorn, candy and soda for the two of you, you head into the dark theater and find some seats in the back row to watch the movie.');
     scene.actions([
       { label: 'Leave the theater', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
-    if ((Math.floor(Math.random() * 5) + 1) === 1  &&  ((s as any).hour ?? 0) >= 20) {
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
+    if ((Math.floor(Math.random() * 5) + 1) === 1  &&  ((st as any).hour ?? 0) >= 20) {
       scene.text('When the movie ends, you and Artem leave the theater and he offers to walk you home. The two of you head back through the park, but see a group of older gopniks hanging out around a bench just up ahead. They\'re drinking and are a little rowdy.');
       scene.actions([
         { label: 'Just walk past them', goto: ['artem_date_events', 'artemGopSkver'] },
@@ -36,7 +36,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('When the movie ends, you and Artem leave the theater and he offers to walk you home.');
       // TODO-QSP: dynamic text: Arriving outside your apartment door, Artem stops and looks at you. "I had fun, ...
-      scene.text(`Arriving outside your apartment door, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname || '')}."`);
+      scene.text(`Arriving outside your apartment door, Artem stops and looks at you. "I had fun, ${((st as any).pcs_nickname || '')}."`);
       scene.text('You smile at him. "Me too."');
       scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
       scene.text('You nod. "Maybe. We\'ll see."');
@@ -50,19 +50,19 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Just keep walking', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
-    scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
+    scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You don\'t really feel like going to the cinema. "Let\'s just enjoy the walk we\'re on."');
-    if ((Math.floor(Math.random() * 5) + 1) === 1  &&  ((s as any).hour ?? 0) >= 20) {
+    if ((Math.floor(Math.random() * 5) + 1) === 1  &&  ((st as any).hour ?? 0) >= 20) {
       scene.text('Artem is happy enough to just spend time with you, regardless of what the two of you are doing. He nods as you continue on your walk, talking about everyday things. After walking for a while, you see a group of older gopniks hanging out around a bench just up ahead. They\'re drinking and are a little rowdy.');
       scene.actions([
         { label: 'Just walk past them', goto: ['artem_date_events', 'artemGopSkver'] },
       ]);
     } else {
       scene.text('Artem is happy enough to just spend time with you, regardless of what the two of you are doing. He nods as you continue on your walk, talking about everyday things. After a while, he checks his watch. "We should be getting back. I\'ll walk you to your door."');
-      // TODO-QSP: dynamic text: Once you're outside your apartment door, Artem stops and looks at you. "I had fu...
-      scene.text(`Once you're outside your apartment door, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname || '')}."`);
+      // TODO-QSP: dynamic text: Once you''re outside your apartment door, Artem stops and looks at you. "I had f...
+      scene.text(`Once you're outside your apartment door, Artem stops and looks at you. "I had fun, ${((st as any).pcs_nickname || '')}."`);
       scene.text('You smile at him. "Me too."');
       scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
       scene.text('You nod. "Maybe. We\'ll see."');
@@ -92,15 +92,15 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
     scene.text(`Somehow, one of them knows your name. They look at you with disdain and the leader of their group says "${((s as any).pcs_nickname || '')}? What are you doing with this bitch?"`);
     scene.actions([
       { label: 'Tell them to mind their own business', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', 'A2', 1);
     scene.img('images/pc/reactions/fuckoff1.jpg');
     scene.text('You give them a look of disdain showing you\'re not impressed. "Mind your own fucking business," you reply and Artem tenses up beside you.');
     scene.text('The leader laughs. "Come on, don\'t be like that. Dump this loser and have some fun with us, girl."');
     scene.text('You push your way past him and flip them the bird. Fortunately, other than throwing a few taunting remarks at you, they leave you alone. Once you make it away from them, Artem relaxes a little and walks you home.');
     // TODO-QSP: dynamic text: Arriving at your apartment, Artem smiles. "I had fun <<$pcs_nickname>>, you know...
-    scene.text(`Arriving at your apartment, Artem smiles. "I had fun ${((s as any).pcs_nickname || '')}, you know other than when we ran into those gopniks. I can't believe you said that!"`);
+    scene.text(`Arriving at your apartment, Artem smiles. "I had fun ${((st as any).pcs_nickname || '')}, you know other than when we ran into those gopniks. I can't believe you said that!"`);
     scene.text('You smile back at him. "They respect strength and attitude. Don\'t take their shit and they will respect you for it, just be willing to back it up if you have to. Anyway, I had fun too."');
     scene.text('He smiles widely. "Great! I\'m glad you had fun, maybe we can do it again some time?"');
     scene.text('You nod. "Maybe. We\'ll see."');
@@ -113,17 +113,17 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('Just as you\'re about to make it past them, several of the gopniks get in your way, making a circle around you and Artem.');
-    // TODO-QSP: dynamic text: You don't recognize them, yet one of them knows your name. They look at you with...
+    // TODO-QSP: dynamic text: You don''t recognize them, yet one of them knows your name. They look at you wit...
     scene.text(`You don't recognize them, yet one of them knows your name. They look at you with disdain and the leader of their group says "${((s as any).pcs_nickname || '')}? What are you doing with this bitch?"`);
     scene.actions([
       { label: 'Ignore them and keep walking', handler: (st: GameState) => {
-    (s as any).gopniktrouble = Math.floor(Math.random() * 2) + 1;
-    if (((s as any).gopniktrouble ?? 0) === 1) {
+    (st as any).gopniktrouble = (Math.floor(Math.random() * 2) + 1);
+    if (((st as any).gopniktrouble ?? 0) === 1) {
       scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/walkgop.jpg');
       scene.text('The leader steps directly in front of Artem and the others close in, giving you nowhere to go as the leader speaks to Artem. "This is our part of the park and you owe us a toll for using it. Pay it and your girl can pass, bitch."');
       scene.text('You can tell Artem is scared and will likely do what they ask. You don\'t want him to lose all his money, but saying something could make things worse.');
-      qspCall(s, 'willpower', 'misc', 'self', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'misc', 'self', 'hard');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stand up to them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -132,8 +132,8 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Stand up to them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'artem_date_events', 'stand_up');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'artem_date_events', 'stand_up');
   } },
         ]);
       }
@@ -142,7 +142,7 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/walkgop.jpg');
     scene.text('Artem glances at you, then reaches into his pocket and pulls out his wallet. The leader snatches it away and pulls out all the money before throwing the empty wallet back at Artem\'s face. "God, what a bitch. Come on guys, drinks are on this loser!" he says with a laugh and they all walk away. Artem blushes and picks up his wallet before he walks you back to your apartment. He doesn\'t say anything until you reach your door.');
     // TODO-QSP: dynamic text: "I had fun <<$pcs_nickname>>, you know other than when we ran into those gopniks...
-    scene.text(`"I had fun ${((s as any).pcs_nickname || '')}, you know other than when we ran into those gopniks."`);
+    scene.text(`"I had fun ${((st as any).pcs_nickname || '')}, you know other than when we ran into those gopniks."`);
     scene.text('You smile at him. "Yeah, it was a little scary. Sorry they took all your money, but I had fun too."');
     scene.text('He smiles. "Don\'t worry about it. I keep most of my money in the bank, so they didn\'t get much. I\'m glad you had fun though. Maybe we can do it again some time?"');
     scene.text('You nod. "Maybe. We\'ll see."');
@@ -154,10 +154,10 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
+      scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
       scene.text('You hold Artem\'s hand tightly and pick up the pace, pretending you didn\'t hear the gopniks as you quickly walk away from them. Fortunately, other throwing a few taunting remarks at you, they leave you alone. Once you make it away from them, Artem relaxes a little and walks you home.');
       // TODO-QSP: dynamic text: Arriving at your apartment, Artem smiles. "I had fun <<$pcs_nickname>>, you know...
-      scene.text(`Arriving at your apartment, Artem smiles. "I had fun ${((s as any).pcs_nickname || '')}, you know other than when we ran into those gopniks."`);
+      scene.text(`Arriving at your apartment, Artem smiles. "I had fun ${((st as any).pcs_nickname || '')}, you know other than when we ran into those gopniks."`);
       scene.text('You smile back at him. "Yeah, it was a little scary. I had fun too though."');
       scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
       scene.text('You nod. "Maybe. We\'ll see."');
@@ -180,8 +180,8 @@ function enterArtemGopSkver(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Stand up to them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'artem_date_events', 'stand_up');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'artem_date_events', 'stand_up');
   } },
     ]);
   }
@@ -203,25 +203,25 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Get between them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'set', 0);
-    qspCall(s, 'npc_relationship', 'modify', 'A2', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'set', 0);
+    qspCall(st, 'npc_relationship', 'modify', 'A2', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/walkgop_knee.jpg');
     scene.text('You quickly get in between Artem and the gopnik, shielding him with your body. "Don\'t touch him or I\'ll call the police!" you say in your most threatening manner.');
-    // TODO-QSP: dynamic text: The gopnik isn't impressed. He pulls out a knife and puts it against your throat...
-    scene.text(`The gopnik isn't impressed. He pulls out a knife and puts it against your throat. "Why are you wasting your time with this loser, ${((s as any).pcs_nickname || '')}?"`);
+    // TODO-QSP: dynamic text: The gopnik isn''t impressed. He pulls out a knife and puts it against your throa...
+    scene.text(`The gopnik isn't impressed. He pulls out a knife and puts it against your throat. "Why are you wasting your time with this loser, ${((st as any).pcs_nickname || '')}?"`);
     scene.text('You can see his friends slowly encroaching around you. There\'s no way you can run away now.');
     scene.text('You look into his eyes and sigh. "Come on, just let us leave. Please? You can take my money."');
     scene.text('The gopnik is satisfied with that prospect, and lowers the knife. After you give him all your money, he lets you and Artem leave. You feel bad for getting robbed like that, but you still feel you did the right thing. Who knows what they would\'ve done to Artem if you didn\'t get involved?');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    scene.img(`images/locations/shared/park/walk_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('Once you make it away from them, Artem relaxes a little. Artem walks you back home.');
     // TODO-QSP: dynamic text: Arriving at your apartment, Artem smiles. "I had fun <<$pcs_nickname>>, you know...
-    scene.text(`Arriving at your apartment, Artem smiles. "I had fun ${((s as any).pcs_nickname || '')}, you know other than when we ran into those gopniks."`);
+    scene.text(`Arriving at your apartment, Artem smiles. "I had fun ${((st as any).pcs_nickname || '')}, you know other than when we ran into those gopniks."`);
     scene.text('You smile back at him. "Yeah, it was a little scary, but I had fun too."');
     scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
     scene.text('You nod. "Maybe. We\'ll see."');
@@ -242,13 +242,13 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m not a bitch…", Artem says quietly.');
     scene.text('The gopnik grins. "We\'ll see about that!"');
     scene.text('He hits Artem hard in the stomach, causing him to buckle over and fall to his knees. The gopnik and his friends laugh while Artem lies groaning on the ground.');
-    // TODO-QSP: dynamic text: He then turns to you. "Everyone can see he's a bitch, <<$pcs_nickname>>. What do...
-    scene.text(`He then turns to you. "Everyone can see he's a bitch, ${((s as any).pcs_nickname || '')}. What do you even see in him? Seriously…" An evil smirk then appears on his face. "So… you really like him? Enough to help him out of this mess he talked himself into?"`);
+    // TODO-QSP: dynamic text: He then turns to you. "Everyone can see he''s a bitch, <<$pcs_nickname>>. What d...
+    scene.text(`He then turns to you. "Everyone can see he's a bitch, ${((st as any).pcs_nickname || '')}. What do you even see in him? Seriously…" An evil smirk then appears on his face. "So… you really like him? Enough to help him out of this mess he talked himself into?"`);
     scene.text('He places a hand on your shoulder. "There is something you can do… A striptease! If it\'s a good one, we\'ll leave him alone. Someone play some music." The other gopniks all laugh.');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'humiliation', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'humiliation', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -257,8 +257,8 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'npc_relationship', 'modify', 'A2', 1);
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'npc_relationship', 'modify', 'A2', 1);
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/walkgop_udar2.jpg');
     scene.text('"Wait, what!?" you answer. "No way, you perverts! Just leave us alone!"');
     scene.text('The gopnik walks back over to Artem and kicks him in the face. A few seconds later, one of his friends also kicks Artem in the back and they\'re all soon kicking him. You can\'t take it anymore and quickly throw yourself on top of Artem so they can\'t continue.');
@@ -266,9 +266,9 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     scene.text('The gopniks leave you alone and go deeper into the park as you carefully help Artem to his feet.');
     scene.text('He wipes the blood from his face, deeply embarrassed that you had to see him like this. You walk in silence as you help him get home.');
     // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, but you can go now." Not sure what to say, you do as ...
-    scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, but you can go now." Not sure what to say, you do as he asks and leave.`);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, but you can go now." Not sure what to say, you do as he asks and leave.`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
     ]);
@@ -277,37 +277,37 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Dance for them', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/strip1.jpg');
     // TODO-QSP: dynamic text: You start awkwardly dancing to the music and are immediately chastised. "We said...
-    scene.text(`You start awkwardly dancing to the music and are immediately chastised. "We said striptease, ${((s as any).pcs_nickname || '')}! Not dance!"`);
+    scene.text(`You start awkwardly dancing to the music and are immediately chastised. "We said striptease, ${((st as any).pcs_nickname || '')}! Not dance!"`);
     scene.text('You nod and slowly start slowly undressing to the music while trying to avoid their greedy looks.');
-    // TODO-QSP: dynamic text: Artem notices what's happening. "<<$pcs_nickname>>, stop! You don't have to do t...
-    scene.text(`Artem notices what's happening. "${((s as any).pcs_nickname || '')}, stop! You don't have to do this!"`);
+    // TODO-QSP: dynamic text: Artem notices what''s happening. "<<$pcs_nickname>>, stop! You don''t have to do...
+    scene.text(`Artem notices what's happening. "${((st as any).pcs_nickname || '')}, stop! You don't have to do this!"`);
     scene.text('The gopnik kicks him in the ribs. "Shut up, bitch! She\'s saving your ass, so show some respect!"');
     scene.text('Artem is too afraid to argue with them as you awkwardly remove your top, showing off your breasts which finally gets them hooting, hollering and laughing.');
     scene.actions([
       { label: 'Strip naked', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'fame', 'pav', 'sex', 3);
-    qspCall(s, 'mood', 'lower', 'medium');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'fame', 'pav', 'sex', 3);
+    qspCall(st, 'mood', 'lower', 'medium');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/strip2.jpg');
-    if (((s as any).pcs_hotcat ?? 0) <= 4) {
+    if (((st as any).pcs_hotcat ?? 0) <= 4) {
       scene.text('You slowly remove all of your clothes until you\'re completely naked in front of them and they turn off the music. The leader walks up to you with a scowl. "Fuck, you\'re even uglier naked. I didn\'t think that was even possible. Put some clothes on before I throw up." The others all burst out laughing before they all walk away laughing. You quickly get dressed as Artem struggles to his feet and wipes the blood from his face, deeply embarrassed you had to see him like this. You walk in silence as you help him get home.');
       scene.text('Once you get him home, you help him to bed. "You didn\'t have to do that."');
       scene.text('You smile at him. "I couldn\'t let them hurt you like that."');
       scene.text('He frowns. "I would have healed! Anyway, I could use some rest, so see you later okay?" He rolls over, obviously not wanting to talk anymore, so you get up and leave.');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
       ]);
     } else {
-      // TODO-QSP: dynamic text: You slowly remove all of your clothes until you're completely naked in front of ...
-      scene.text(`You slowly remove all of your clothes until you're completely naked in front of them and they turn off the music. They all gather round you as the leader grins. "Not bad, ${((s as any).pcs_nickname || '')}. You've got nice tits, just a shame that you're wasting them on him. Now you're going to suck all us off. If you do a good job, we'll let you go."`);
+      // TODO-QSP: dynamic text: You slowly remove all of your clothes until you''re completely naked in front of...
+      scene.text(`You slowly remove all of your clothes until you're completely naked in front of them and they turn off the music. They all gather round you as the leader grins. "Not bad, ${((st as any).pcs_nickname || '')}. You've got nice tits, just a shame that you're wasting them on him. Now you're going to suck all us off. If you do a good job, we'll let you go."`);
       scene.text('Trying to fight them all would most likely result in you getting the shit beat out of you and raped. Maybe you can make a run for it if you distract them first?');
-      qspCall(s, 'willpower', 'misc', 'self', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'misc', 'self', 'hard');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Fight them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -316,14 +316,14 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Fight them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'artem_date_events', 'fight_gang');
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'artem_date_events', 'fight_gang');
   } },
         ]);
       }
-      qspCall(s, 'willpower', 'group', 'resist');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'group', 'resist');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Run away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -332,34 +332,34 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Run away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'group', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    (s as any).escape = ((s as any).pcs_stren ?? 0) + ((s as any).pcs_run ?? 0);
-    if (((s as any).escape ?? 0) < 50) {
-      (s as any).artemRand = Math.floor(Math.random() * 10) + 1;
+    qspCall(st, 'willpower', 'group', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    (st as any).escape = ((st as any).pcs_stren ?? 0) + ((st as any).pcs_run ?? 0);
+    if (((st as any).escape ?? 0) < 50) {
+      (st as any).artemRand = (Math.floor(Math.random() * 10) + 1);
     } else {
-      if (((s as any).escape ?? 0) >= 50  &&  ((s as any).escape ?? 0) < 100) {
-        (s as any).artemRand = Math.floor(Math.random() * 5) + 1;
+      if (((st as any).escape ?? 0) >= 50  &&  ((st as any).escape ?? 0) < 100) {
+        (st as any).artemRand = (Math.floor(Math.random() * 5) + 1);
       } else {
-        if (((s as any).escape ?? 0) >= 100  &&  ((s as any).escape ?? 0) < 150) {
-          (s as any).artemRand = Math.floor(Math.random() * 2) + 1;
+        if (((st as any).escape ?? 0) >= 100  &&  ((st as any).escape ?? 0) < 150) {
+          (st as any).artemRand = (Math.floor(Math.random() * 2) + 1);
         } else {
-          (s as any).artemRand = 1;
+          (st as any).artemRand = 1;
         }
       }
     }
-    if (((s as any).artemRand ?? 0) === 1) {
-      qspCall(s, 'stat', '');
+    if (((st as any).artemRand ?? 0) === 1) {
+      qspCall(st, 'stat', '');
       scene.img('images/characters/pavlovsk/school/boy/artem/walk_save.jpg');
       scene.text('You look around and suddenly shout in a random direction. "Dad, I\'m over here!"');
       scene.text('As the gopniks turn to see who you\'re shouting at, you quickly grab Artem by the arm and start running. When you\'re sure the gopniks are no longer following you, you find a quiet area and put your clothes back on as Artem wipes the blood from his face, deeply embarrassed you had to see him like this. You walk in silence as you help him get home.');
       scene.text('Once you get him home, you help him to bed. "You didn\'t have to do that," he remarks.');
       scene.text('You smile at him. "I couldn\'t let them hurt you like that."');
       scene.text('He frowns. "I would have healed! Anyway, I could use some rest, so see you later okay?" He rolls over, obviously not wanting to talk anymore, so you get up and leave.');
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
       ]);
@@ -368,20 +368,20 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
       scene.text('You look around you and suddenly shout "Dad, I\'m over here!"');
       scene.text('As the gopniks turn to see who you\'re shouting at, you quickly grab Artem by the arm and start running. Unfortunately, one of the gopniks wasn\'t fooled by your diversion, and grabs Artem before shoving him hard to the ground.');
       // TODO-QSP: dynamic text: "Run, <<$pcs_nickname>>!" Artem shouts behind you. You hear them beating Artem a...
-      scene.text(`"Run, ${((s as any).pcs_nickname || '')}!" Artem shouts behind you. You hear them beating Artem as someone chases you.`);
+      scene.text(`"Run, ${((st as any).pcs_nickname || '')}!" Artem shouts behind you. You hear them beating Artem as someone chases you.`);
       scene.actions([
         { label: 'Try to escape', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if ((Math.floor(Math.random() * (100 + ((s as any).pcs_run ?? 0) - 1 + 1)) + (1)) < 80) {
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
-      qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
+    if ((Math.floor(Math.random() * (100 + ((st as any).pcs_run ?? 0) - 1 + 1)) + (1)) < 80) {
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
+      qspCall(st, 'stat', '');
       scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/caught.jpg');
       scene.text('You\'re not in great shape and aren\'t good at running, so you don\'t make it very far when one of them tackles you to the ground, knocking the wind out of you.');
-      // TODO-QSP: dynamic text: By now, the other gopniks have caught up and you're surrounded again. The leader...
-      scene.text(`By now, the other gopniks have caught up and you're surrounded again. The leader drops to his knees and grabs you by the hair while you lie flat on your stomach. "We warned you, ${((s as any).pcs_nickname || '')}. Since you made us work for it, we're just going to take what we want."`);
+      // TODO-QSP: dynamic text: By now, the other gopniks have caught up and you''re surrounded again. The leade...
+      scene.text(`By now, the other gopniks have caught up and you're surrounded again. The leader drops to his knees and grabs you by the hair while you lie flat on your stomach. "We warned you, ${((st as any).pcs_nickname || '')}. Since you made us work for it, we're just going to take what we want."`);
       scene.text('You could try and fight them off, but you\'re likely to just be beaten and raped anyway…');
-      qspCall(s, 'willpower', 'misc', 'self', 'hard');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'misc', 'self', 'hard');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Fight them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -390,8 +390,8 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Fight them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'artem_date_events', 'fight_gang');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'artem_date_events', 'fight_gang');
   } },
         ]);
       }
@@ -399,13 +399,13 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
         { label: 'Get raped', goto: ['artem_date_events', 'gang_rape'] },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
       scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/run.jpg');
       scene.text('Thanks to your natural aptitude and practice at running, you manage to get away. After what seems like forever, you suddenly hear nothing behind you. You glance back and see no one, stopping long enough to put your clothes on before you jog to the edge of the park where several people give you funny looks. You stop and catch your breath while looking back for Artem.');
       scene.actions([
         { label: 'Run home', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/run.jpg');
     scene.text('After catching your breath and not seeing Artem anywhere, you run the rest of the way home. You don\'t stop for anyone or anything until you\'re safely inside your apartment.');
     scene.actions([
@@ -413,13 +413,13 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Wait for Artem', handler: (st: GameState) => {
-    ((s as any).artemQW = (s as any).artemQW ?? {})['waited'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    ((st as any).artemQW = (st as any).artemQW ?? {})['waited'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/walk_save.jpg');
     scene.text('After a while, you finally see Artem limping towards you. He smiles through busted bloody lips when he sees you. You rush over to him and help him walk, putting one of his arms over your shoulder as he wipes the blood from his face, deeply embarrassed you had to see him like this. "I\'m glad you got away. They said they were going to rape you if they caught you," he says as he hugs you. He seems genuinely glad you\'re safe as you walk in silence helping him home.');
     // TODO-QSP: dynamic text: Once you get him home, you help him to bed and tend to him as best as you can. "...
-    scene.text(`Once you get him home, you help him to bed and tend to him as best as you can. "Thank you ${((s as any).pcs_nickname || '')}. For everything. For helping me home, for going out with me and for helping me now. I just wish it could have been a better date."`);
+    scene.text(`Once you get him home, you help him to bed and tend to him as best as you can. "Thank you ${((st as any).pcs_nickname || '')}. For everything. For helping me home, for going out with me and for helping me now. I just wish it could have been a better date."`);
     scene.text('You smile at him and place a finger on his lips. "Shhh, it\'s fine. I\'m just sorry you got hurt."');
     scene.text('He smiles. "Yeah? Well maybe our next date won\'t be so exciting. The pain meds are kicking in and I could really use some sleep, so I\'ll see you later, okay?" You get up and leave him to rest.');
     scene.actions([
@@ -427,9 +427,9 @@ function enterStandUp(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Call the police', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    ((s as any).artemQW = (s as any).artemQW ?? {})['called_police'] = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    ((st as any).artemQW = (st as any).artemQW ?? {})['called_police'] = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/police/patrol.jpg');
     scene.text('Once you\'re safe, you pull out your phone and call the police, telling them that the gopniks are assaulting Artem and tried to attack you as well. After you give them all the details you can, you hang up. Almost half an hour later, a police car pulls up at the entrance of the park and two officers get out. You hurry over to them and try and get them to hurry, but they write down your information and ask you several questions. They won\'t be hurried and each time you try, they just tell you to calm down and answer their questions. In frustration, you finally answer all their questions while they write it all down.');
     scene.text('By the time they finish, you see Artem limping towards you. He smiles through busted bloody lips when he sees you. You rush over to him and help him walk, putting one of his arms over your shoulder as he wipes the blood from his face, deeply embarrassed you have to see him like this. "I\'m glad you got away. They said they were going to rape you if they caught you."');
@@ -475,68 +475,68 @@ function enterBlowBang(s: GameState, scene: SceneBuilder): void {
     { label: 'Get face fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggbj2.jpg');
     scene.text('You try giving the first guy a blowjob, but it\'s quite obvious they don\'t need your cooperation. Another guy roughly grabs you by the hair and pulls your head towards his dick, roughly shoving it down your throat before he starts roughly fucking your mouth. They take turns filming as they pass you around.');
-    qspCall(s, 'pain', '', 3, 'hair', 'pull');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'pain', '', 6, 'throat', 'stretch');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID3 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 3, 'hair', 'pull');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID3 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Swallow it', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggcum1.jpg');
     scene.text('After a while, you suddenly feel cum splashing against the back of your mouth, but he doesn\'t stop face fucking you until he stops. You don\'t have time to catch your breath because as soon as he pulls his dick out, another is shoved in your mouth.');
-    qspCall(s, 'pain', '', 3, 'hair', 'pull');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'pain', '', 6, 'throat', 'stretch');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 3, 'hair', 'pull');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID2 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep swallowing', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggcum2.jpg');
     scene.text('As soon as one guy finishes, the next one takes over. After what feels like forever, the third guy finally finishes, and the two that went to keep watch have come over and have their their dicks out.');
-    qspCall(s, 'pain', '', 3, 'hair', 'pull');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'pain', '', 6, 'throat', 'stretch');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID2 ?? 0));
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID3 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 3, 'hair', 'pull');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID2 ?? 0));
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID3 ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Blowbang', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggbj3.jpg');
     scene.text('The fourth and fifth guy take their turns with you, leaving your throat feeling sore.');
-    qspCall(s, 'pain', '', 3, 'hair', 'pull');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'pain', '', 6, 'throat', 'stretch');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID5 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID6 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID4 ?? 0));
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID5 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 3, 'hair', 'pull');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID5 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID6 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID4 ?? 0));
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID5 ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Last one', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/ggcum3.jpg');
     scene.text('With just one left, you can finally stop giving handjobs, your hands having cramped up. The last one, unlike his friends, pulls his dick out just as he starts to cum and spurts his cum all over your face. As it drips down onto your chin, the one currently filming gets a close up of you as the gopniks all gather round for one last laugh before they leave you and Artem be.');
-    qspCall(s, 'pain', '', 3, 'hair', 'pull');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'pain', '', 6, 'throat', 'stretch');
-    qspCall(s, 'pain', '', 5, 'fingers', 'cramp');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID6 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 3, 'hair', 'pull');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'pain', '', 5, 'fingers', 'cramp');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID4 ?? 0), 'gangbang', 'sub', 'exhibitionism', 'rough');
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID6 ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/walk_save.jpg');
     scene.text('As the gopniks leave you put your clothes back on, Artem slowly gets up and wipes the blood from his face, deeply embarrassed you have to see him like this. You walk in silence as you help him get home.');
-    // TODO-QSP: dynamic text: Once you get him home, you help him to bed. "You shouldn't have done that, <<$pc...
-    scene.text(`Once you get him home, you help him to bed. "You shouldn't have done that, ${((s as any).pcs_nickname || '')}. It was disgusting."`);
+    // TODO-QSP: dynamic text: Once you get him home, you help him to bed. "You shouldn''t have done that, <<$p...
+    scene.text(`Once you get him home, you help him to bed. "You shouldn't have done that, ${((st as any).pcs_nickname || '')}. It was disgusting."`);
     scene.text('You smile at him. "I couldn\'t let them hurt you like that."');
     scene.text('He frowns. "I would have healed! Anyway, I could use some rest, so can you please leave?" He rolls over, obviously not wanting to talk anymore, so you get up and leave.');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pod_ezd', 'etaj_1'] },
     ]);
@@ -572,7 +572,7 @@ function enterFightGang(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/fail.jpg');
-    // TODO-QSP: dynamic text: You do your best, but there's too many of them. The blows start coming and never...
+    // TODO-QSP: dynamic text: You do your best, but there''s too many of them. The blows start coming and neve...
     scene.text(`You do your best, but there's too many of them. The blows start coming and never stop, and you're soon dazed and unable to fight anymore. The fight over, you find yourself laying naked on the ground, flat on your stomach as the leader drops to his knees and grabs you by the hair. "We warned you, ${((s as any).pcs_nickname || '')}. You're all ours now."`);
     scene.text('Several of them start taking off their pants. "Open up whore, or we\'ll be spilling your guts all over the ground!" one of them threatens.');
     scene.text('Two of them stand watch while the others gather round you. There\'s nothing you can do but hope that someone will come by and save you as you start to cry.');
@@ -608,93 +608,93 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/bound.jpg');
     scene.text('The leader holds you down and puts a knee on your head as another gopnik ties your hands tightly behind your back. By this point, you\'re too tired to resist and just let them have their way with you.');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'arousal', 'BDSM', 5, ((s as any).npcID1 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'arousal', 'BDSM', 5, ((st as any).npcID1 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'The nightmare begins', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape1.jpg');
     scene.text('Two of them hold you down while one pulls his dick out, shoves it in your pussy and starts hammering away, not caring if you enjoy it or not. The more you struggle or cry out, the more they seem to enjoy it.');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape2.jpg');
     scene.text('The one watching takes his turn and forces his dick inside you while the first one just watches as he jerks off.');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID2 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID2 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape3.jpg');
     scene.text('"Alright, my turn," the leader says. "Roll her over onto her hands and knees." You\'re roughly forced into a kneeling position on the nasty old mattress, with your face forced against it. You feel someone spit on your asshole before a dick is shoved inside, causing you to cry out in pain as he starts pounding you balls deep. "Much tighter than that gaping pussy after you guys ripped it up!" He laughs and the others join in.');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Two at a time', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape4.jpg');
     scene.text('The leader pulls out of your ass and lies in front of you on his side as someone else starts roughly fucking your ass. Once he\'s next to your head, the leader shoves his dick in your mouth and makes you suck his dick as the other three take turns fucking your ass. You soon feel one of them cumming in your ass as another speaks up. "Come on, she has other holes! I\'m tired of waiting!"');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'cum_call', 'anus', ((s as any).npcID1 ?? 0));
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'cum_call', 'anus', ((st as any).npcID1 ?? 0));
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape5.jpg');
     scene.text('With that, one of them lies down on the mattress and they force you to straddle and mount him, his cock sliding into your battered pussy as another cock is shoved into your mouth and a third back in your ass. The ones who were on watch come over to take their turns as you feel one of them cumming in your pussy.');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'arousal', 'anal', 10, ((s as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID5 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'arousal', 'bj', (-10), ((s as any).npcID6 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'cum_call', 'vagina', ((s as any).npcID2 ?? 0));
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'arousal', 'anal', 10, ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID5 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'arousal', 'bj', (-10), ((st as any).npcID6 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'cum_call', 'vagina', ((st as any).npcID2 ?? 0));
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rapecum1.jpg');
     scene.text('The remaining ones take turns fucking all three of your holes so much that you lose count as two of them cum inside you. When they pull out, you feel the cum leaking out of both of your holes as one of the other guys cums in your mouth.');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'arousal', 'anal', 10, ((s as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'arousal', 'bj', (-10), ((s as any).npcID5 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'cum_call', 'vagina', ((s as any).npcID3 ?? 0));
-    qspCall(s, 'cum_call', 'anus', ((s as any).npcID4 ?? 0));
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID5 ?? 0));
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'arousal', 'anal', 10, ((st as any).npcID3 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'arousal', 'bj', (-10), ((st as any).npcID5 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'cum_call', 'vagina', ((st as any).npcID3 ?? 0));
+    qspCall(st, 'cum_call', 'anus', ((st as any).npcID4 ?? 0));
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID5 ?? 0));
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Last one', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rapecum2.jpg');
     scene.text('The last one starts fucking your throat. Before too long, he starts cumming as well, holding your mouth open with one hand as he jerks off with the other, milking every last drop of cum into your mouth.');
-    qspCall(s, 'pain', '', 2, 'wrists', 'bind');
-    qspCall(s, 'pain', '', 6, 'jaw', 'ache');
-    qspCall(s, 'pain', '', 6, 'throat', 'stretch');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID6 ?? 0));
-    (s as any).pcs_horny = 0;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 2, 'wrists', 'bind');
+    qspCall(st, 'pain', '', 6, 'jaw', 'ache');
+    qspCall(st, 'pain', '', 6, 'throat', 'stretch');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID4 ?? 0), 'gangbang', 'rape', 'rough', 'bound');
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID6 ?? 0));
+    (st as any).pcs_horny = 0;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Aftermath', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/park/aftermath.jpg');
     // TODO-QSP: dynamic text: They laugh as they get dressed again, and their leader grins wickedly. "Go home ...
-    scene.text(`They laugh as they get dressed again, and their leader grins wickedly. "Go home and get cleaned up. We have nothing against you, but remember this lesson, ${((s as any).pcs_nickname || '')}… It's better to know your place and do what you're told, than to try and be something you're not. All that does is piss people off and make them teach you a lesson."`);
+    scene.text(`They laugh as they get dressed again, and their leader grins wickedly. "Go home and get cleaned up. We have nothing against you, but remember this lesson, ${((st as any).pcs_nickname || '')}… It's better to know your place and do what you're told, than to try and be something you're not. All that does is piss people off and make them teach you a lesson."`);
     scene.text('You lay naked on the dirty mattress for several minutes crying in pain before you feel someone grabbing your hands. You scream and try to scoot away, only to turn and see Artem untying your hands. He takes off his jacket and gives it to you to wear before he quietly walks you home. Every step sends a spike of agony through your body, but you keep going, wanting to get away from the place where it happened.');
     scene.text('When you get to just outside the apartment complex, he stops. "Maybe we should call the police?" he asks, but you shake your head. You know they wouldn\'t care and would just blame you, then everyone would know. He sighs. "At least go to the hospital?" he asks in a pleading voice.');
     scene.text('You shake your head again. You don\'t want anyone to know, you just want to go to your room and curl up in your bed. "Just take me home, Artem!"');
     // TODO-QSP: dynamic text: He sighs and nods before walking you inside and up the stairs to your door. When...
-    scene.text(`He sighs and nods before walking you inside and up the stairs to your door. When you get there, he finally says something. "${((s as any).pcs_nickname || '')}, I'm so sorry. I know what you did for me and… I owe you. Big time. I don't know what I can do to repay you, but if you ever need anything… please. I'm there for you."`);
+    scene.text(`He sighs and nods before walking you inside and up the stairs to your door. When you get there, he finally says something. "${((st as any).pcs_nickname || '')}, I'm so sorry. I know what you did for me and… I owe you. Big time. I don't know what I can do to repay you, but if you ever need anything… please. I'm there for you."`);
     scene.text('You don\'t know what to say, so you just nod and go into your apartment.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Home', goto: ['korrPar', ''] },
     ]);
@@ -720,17 +720,17 @@ function enterGangRape(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneratgopniks(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 1', Math.floor(Math.random() * 8) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 1', (Math.floor(Math.random() * 8) + 18));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 2', Math.floor(Math.random() * 8) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 2', (Math.floor(Math.random() * 8) + 18));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 3', Math.floor(Math.random() * 8) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 3', (Math.floor(Math.random() * 8) + 18));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 4', Math.floor(Math.random() * 8) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 4', (Math.floor(Math.random() * 8) + 18));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'd');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 5', Math.floor(Math.random() * 8) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 5', (Math.floor(Math.random() * 8) + 18));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'e');
-  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 6', Math.floor(Math.random() * 8) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Gopnik rapist 6', (Math.floor(Math.random() * 8) + 18));
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'f');
   // TODO-QSP: end
   scene.build();

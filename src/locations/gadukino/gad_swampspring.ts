@@ -13,25 +13,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'gadukino_event', 'sound');
   scene.text('<center><b>Spring</b></center>');
   if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10) {
-    scene.img('images/locations/gadukino/hunters/\'+iif(DayStage < 4, \'swampspring.jpg\', \'swampspring_night.jpg\')+\'');
+    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('swampspring.jpg') : ('swampspring_night.jpg')) + '');
   } else {
-    scene.img('images/locations/gadukino/hunters/\'+iif(DayStage < 4, \'swampspring_winter.jpg\', \'swampspring_winter_night.jpg\')+\'');
+    scene.img('images/locations/gadukino/hunters/' + ((((s as any).DayStage ?? 0) < 4) ? ('swampspring_winter.jpg') : ('swampspring_winter_night.jpg')) + '');
   }
   scene.text('You come across a natural spring with pure natural water.');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_hydra ?? 0) < 150) {
     scene.actions([
       { label: 'Drink the water', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_breath = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_breath = 0;
     scene.img('images/locations/gadukino/hunters/hands.jpg');
     scene.text('You take a sip of the spring water.');
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (25);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (25);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['gad_swampspring', ''] },
     ]);
@@ -43,9 +43,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Collect water in a bucket', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/hunters/vedro.jpg');
     scene.text('You fill the bucket with water.');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).bucket = ((s as any).bucket ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    (st as any).bucket = ((st as any).bucket ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['gad_swampspring', ''] },
     ]);

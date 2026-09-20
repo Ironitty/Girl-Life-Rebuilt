@@ -41,8 +41,8 @@ function enterMinorDebtPayoff(s: GameState, scene: SceneBuilder): void {
       scene.text('The brutes take everything that you have then explain your situation. In short, you have a debt of \' + $func(\'money\', \'string_debt\', workDolg) + \'. Your debt has grown by \' + $func(\'money\', \'string_debt_addition\', 10000) + \', and since you cannot pay it off. As your job obviously doesn\'t pay well enough, they decide they\'ll help you out with that. The brutes drag you to the street and throw you into the back seat of their car. They get in, one of them sitting next to you and the other in the driver\'s seat. He starts the car and drives away. They refuse to answer any of your questions. You have no choice but to sit quietly and see where they take you.');
       scene.actions([
         { label: 'Out of the car', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.text('You are at the sauna. The brutes drag you into a room and start to explain. "You\'re going to live here and work until you have cleared your debt. Got it? Try to contact the authorities or escape, we\'ll put a bullet in your head and bury you in the woods, understand?"');
     scene.text('You become frightened as they\'re convincing, so you just nod.');
     scene.actions([
@@ -76,13 +76,13 @@ function enterMinorDidntDeliverDisk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'earn', 5000, 'cash');
     scene.text('You give him the envelope. He warns you that such delays in the future may be harmful to your business relationships.');
   }
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', handler: (st: GameState) => {
+{ label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 
@@ -96,11 +96,11 @@ function enterMinorTatianaUnlockMagic(s: GameState, scene: SceneBuilder): void {
     scene.text('Tatiana and Gustav approach you. Tatiana adjusts her glasses and looks around, while Gustav seems to be distracted, glancing here and there with a strange look on his face as his tattoos are not visible.');
   }
   scene.text('Tatiana looks at you closely, "I felt a burst of energy. Were you attacked by a magician?"');
+  scene.actions([
+{ label: 'No', goto: ['mainQW', ''] },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'No', goto: ['mainQW', ''] },
-  ]);
   scene.build();
 }
 

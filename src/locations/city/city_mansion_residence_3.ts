@@ -60,39 +60,39 @@ function enterYpool(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
     scene.actions([
       { label: 'Swim (1:00)', handler: (st: GameState) => {
-    (s as any).pcs_makeup = 1;
-    (s as any).cumspclnt = 10;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    qspCall(s, 'mood', 'raise', 'large');
-    if (((s as any).pcs_sweat ?? 0) > 10) {
-      (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
+    (st as any).pcs_makeup = 1;
+    (st as any).cumspclnt = 10;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'exercise', 'tier1', 60, 'stren', 'vital');
+    qspCall(st, 'mood', 'raise', 'large');
+    if (((st as any).pcs_sweat ?? 0) > 10) {
+      (st as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     if (qspFunc(s, 'body_din', 'pregnancyVisibility') === 0) {
-      if (((s as any).clothingworntype ?? 0) === 'nude') {
-        scene.img(`images/pc/activities/swim/pool/swim_nude_${Math.floor(Math.random() * 10) + 1}.jpg`);
-        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 2);
+      if (((st as any).clothingworntype ?? 0) === 'nude') {
+        scene.img(`images/pc/activities/swim/pool/swim_nude_${(Math.floor(Math.random() * 10) + 1)}.jpg`);
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 2));
       } else {
-        scene.img(`images/pc/activities/swim/pool/swim_bikini_${Math.floor(Math.random() * 8) + 1}.jpg`);
-        if (((s as any).pcs_inhib ?? 0) < 50) {
-          (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 2);
+        scene.img(`images/pc/activities/swim/pool/swim_bikini_${(Math.floor(Math.random() * 8) + 1)}.jpg`);
+        if (((st as any).pcs_inhib ?? 0) < 50) {
+          (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 2));
         }
       }
     } else {
-      if (((s as any).clothingworntype ?? 0) === 'nude') {
-        scene.img(`images/pc/activities/swim/pool/swim_nude_preg_${Math.floor(Math.random() * 2) + 1}.jpg`);
-        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 2);
+      if (((st as any).clothingworntype ?? 0) === 'nude') {
+        scene.img(`images/pc/activities/swim/pool/swim_nude_preg_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 2));
       } else {
-        scene.img(`images/pc/activities/swim/pool/swim_bikini_preg_${Math.floor(Math.random() * 4) + 1}.jpg`);
-        if (((s as any).pcs_inhib ?? 0) < 50) {
-          (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 2);
+        scene.img(`images/pc/activities/swim/pool/swim_bikini_preg_${(Math.floor(Math.random() * 4) + 1)}.jpg`);
+        if (((st as any).pcs_inhib ?? 0) < 50) {
+          (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 2));
         }
       }
     }
     scene.text('You swim in your pool. The water refreshes and invigorates you.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
@@ -137,25 +137,25 @@ function enterYsauna(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['city_mansion_residence_3', 'ypool'] },
     { label: 'Use the sauna (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'mood', 'raise', 'medium');
-    if (((s as any).sauna_daystart ?? 0) !== ((s as any).daystart ?? 0)) {
-      (s as any).sauna_daystart = ((s as any).daystart ?? 0);
-      qspCall(s, 'mood', 'raise', 'small');
-      (s as any).fat = ((s as any).fat ?? 0) - (5);
-      (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 5) + 4);
-      (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (6);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'mood', 'raise', 'medium');
+    if (((st as any).sauna_daystart ?? 0) !== ((st as any).daystart ?? 0)) {
+      (st as any).sauna_daystart = ((st as any).daystart ?? 0);
+      qspCall(st, 'mood', 'raise', 'small');
+      (st as any).fat = ((st as any).fat ?? 0) - (5);
+      (st as any).pcs_skin = ((st as any).pcs_skin ?? 0) + ((Math.floor(Math.random() * 5) + 4));
+      (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (6);
     }
-    qspCall(s, 'stat', '');
-    if (((s as any).PSwim ?? 0) === 1) {
+    qspCall(st, 'stat', '');
+    if (((st as any).PSwim ?? 0) === 1) {
       scene.img('images/locations/pavlovsk/lake/secluded_beach/sauna/saunabikini.jpg');
-      if (((s as any).pcs_inhib ?? 0) < 40) {
-        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+      if (((st as any).pcs_inhib ?? 0) < 40) {
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
       }
     } else {
       scene.img('images/locations/city/shared/sauna/sau.jpg');
-      if (((s as any).pcs_inhib ?? 0) < 60) {
-        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 2);
+      if (((st as any).pcs_inhib ?? 0) < 60) {
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 2));
       }
     }
     scene.text('You spend an hour relaxing in the heat of the sauna. You feel revitalised.');

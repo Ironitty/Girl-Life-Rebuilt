@@ -166,34 +166,34 @@ function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Run to the bathroom', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/home/bathroom/vomit.jpg');
     scene.text('Clamping your hand over your mouth, you scramble from your bed and tear your way to the bathroom. You barely manage to lift the lid up in time and violently hurl into the toilet bowl.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 7) + 2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 7) + 2));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/home/bathroom/vomit_after.jpg');
     scene.text('After several minutes of retching, your stomach finally seems to be empty, and you just lay there, panting over the toilet bowl. You groan, headache pounding in your skull with the kind of throb that makes you think it\'s going to be there for the rest of the day.');
-    if (((s as any).vomit ?? 0)?.['hangover'] === 1) {
+    if (((st as any).vomit ?? 0)?.['hangover'] === 1) {
       scene.text('<i>Ugh, maybe I had too much to drink last night...</i> you think to yourself as you lay there on the floor.');
     } else {
-      if (((s as any).vomit ?? 0)?.['morning_sick'] === 1) {
-        if (((s as any).knowpreg ?? 0) === 1) {
-          if ((!((s as any).morning_sickness ?? 0))) {
-            (s as any).morning_sickness = 1;
+      if (((st as any).vomit ?? 0)?.['morning_sick'] === 1) {
+        if (((st as any).knowpreg ?? 0) === 1) {
+          if ((!((st as any).morning_sickness ?? 0))) {
+            (st as any).morning_sickness = 1;
             scene.text('<i>Ugh, is this what morning sickness feels like?</i> you think to yourself as you lay there on the floor.');
           } else {
             scene.text('<i>Ugh! Why does pregnancy have to come with so many side effects...</i> you think to yourself as you lay there on the floor.');
           }
         } else {
-          if (((s as any).thinkpreg ?? 0) === 1) {
-            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterThinkPregReact(s, scene); (s as any).locArgs = __savedLocArgs; }
+          if (((st as any).thinkpreg ?? 0) === 1) {
+            { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterThinkPregReact(s, scene); (st as any).locArgs = __savedLocArgs; }
           } else {
-            if ((!((s as any).knowpreg ?? 0))) {
-              if (((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 35  &&  (Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_intel ?? 0)) {
-                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPregScare(s, scene); (s as any).locArgs = __savedLocArgs; }
+            if ((!((st as any).knowpreg ?? 0))) {
+              if (((st as any).daystart ?? 0) - ((st as any).daylastperiod ?? 0) > 35  &&  (Math.floor(Math.random() * 100) + 1) < ((st as any).pcs_intel ?? 0)) {
+                { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterPregScare(s, scene); (st as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('<i>Ugh, I feel awful! I wonder if I should see a doctor?</i> you think to yourself as you lay there on the floor.');
               }
@@ -201,12 +201,12 @@ function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (((s as any).vomit ?? 0)?.['unlucky'] === 1) {
+        if (((st as any).vomit ?? 0)?.['unlucky'] === 1) {
           scene.text('<i>Ugh, I feel awful! I wonder if I should see a doctor?</i> you think to yourself as you lay there on the floor.');
         }
       }
     }
-    if (((s as any).loc ?? 0) === 'mey_home') {
+    if (((st as any).loc ?? 0) === 'mey_home') {
       scene.actions([
         { label: 'Continue', goto: ['mey_home', 'mey_morning_vomit'] },
       ]);
@@ -374,7 +374,7 @@ function enterPregScareReact(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'This is wonderful!', handler: (st: GameState) => {
     // TODO-QSP: $home_activity['vomit_bathroom']
-    if ((!((s as any).kid ?? 0))) {
+    if ((!((st as any).kid ?? 0))) {
       scene.text('<i>I\'m going to be a mom!</i> you think, smiling to yourself. <i>This is the best day of my life!</i>');
     } else {
       scene.text('<i>I\'m going to have another baby!</i> you think, smiling to yourself. <i>This is wonderful!</i>');

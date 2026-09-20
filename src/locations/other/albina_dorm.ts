@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text(`"Sorry ${((s as any).pcs_nickname || '')}, but I have to go to work."`);
       scene.text('She opens her wardrobe and pulls out a skimpy looking outfit that she places in a bag before slinging it over her shoulder.');
       scene.text('"Maybe I\'ll come with you," you reply with a smile and she laughs.');
-      // TODO-QSP: dynamic text: "You're not getting a friends discount. Not even at the bar," she jokes as you b...
+      // TODO-QSP: dynamic text: "You''re not getting a friends discount. Not even at the bar," she jokes as you ...
       scene.text(`"You're not getting a friends discount. Not even at the bar," she jokes as you both head out of her room. "See you around, ${((s as any).pcs_nickname || '')}," she says before heading to the elevator.`);
       scene.actions([
         { label: 'Leave', goto: ['uni_dorm', 'seventh_floor'] },
@@ -79,8 +79,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           scene.text('"Oh? Who with?" you ask.');
           scene.text('"I\'m not giving names, but there\'s a chance that they live in this very dorm, but also that they don\'t…" she teases.');
           if (((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 1) {
-            // TODO-QSP: dynamic text: You haven't asked her about it yet, but you wonder if she's hooking up with '+ii...
-            scene.text('You haven\'t asked her about it yet, but you wonder if she\'s hooking up with \'+iif(ErmiasQW[\'meet\'] = 1, \'Ermias\', \'that black guy you saw her with\')+\' again.');
+            // TODO-QSP: dynamic text: You haven''t asked her about it yet, but you wonder if she''s hooking up with '+...
+            scene.text('You haven\'t asked her about it yet, but you wonder if she\'s hooking up with ' + ((((s as any).ErmiasQW ?? 0)?.['meet'] === 1) ? ('Ermias') : ('that black guy you saw her with')) + ' again.');
             scene.text('Deciding now isn\'t the time to ask, you just laugh and give her a hug before heading for the door. As you leave, you hear her phone ping and see her taking a very provocative selfie with her tongue hanging out in response. It seems she\'s sexting before she heads out.');
           } else {
             scene.text('You just laugh and give her a hug before heading for the door. As you leave, you hear her phone ping and see her taking a very provocative selfie with her tongue hanging out in response. It seems she\'s sexting before she heads out.');
@@ -93,7 +93,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hour ?? 0) >= 22) {
           qspCall(s, 'stat', '');
           scene.img('images/locations/city/island/university/dorm/albinaroom/room.jpg');
-          // TODO-QSP: dynamic text: Albina glances at her phone and notices the time. "It's getting late, <<$pcs_nic...
+          // TODO-QSP: dynamic text: Albina glances at her phone and notices the time. "It''s getting late, <<$pcs_ni...
           scene.text(`Albina glances at her phone and notices the time. "It's getting late, ${((s as any).pcs_nickname || '')}. Time for you to go."`);
           scene.text('You nod your head. "Sure. We\'ll talk some other time."');
           scene.text('She walks you to the door and closes it behind you.');
@@ -165,9 +165,9 @@ function enterDressing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try on some clothes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/dressing.jpg');
     scene.text('The two of you end up spending half an hour trying on various different outfits.');
     scene.actions([
@@ -219,8 +219,8 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     scene.text('You shake your head. "Not right now, thanks. I just noticed them is all. Maybe some other time."');
     scene.text('She shrugs. "Sure. If you ever want to play, all you have to do is ask."');
@@ -229,14 +229,14 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'react', (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'npc_relationship', 'modify', 'A23', 1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/game.jpg');
-    if (((s as any).AlbinaQW ?? 0)?.['gamebet'] === 0) {
+    if (((st as any).AlbinaQW ?? 0)?.['gamebet'] === 0) {
       scene.text('You and Albina sit in front of the TV after picking one of the games. You play while chatting about various things and trash-talking each other. However, neither of you are giving your full attention to the game. Instead, you\'re just having fun together.');
       scene.actions([
         { label: 'Finish playing', goto: ['albina_dorm', 'start'] },
@@ -245,8 +245,8 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You and Albina sit in front of the TV after picking one of the games. She turns towards you and gives you a grin.');
       scene.text('"Feel like putting your ass on the line and betting again?"');
-      qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse the bet', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -255,21 +255,21 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Refuse', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'npc_relationship', 'modify', 'A23', (-1));
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'react', (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'npc_relationship', 'modify', 'A23', (-1));
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('You shake your head. "Not this time."');
     scene.text('She\'s clearly a little disappointed, but turns her attention back to the game. "You\'re so going to lose!" she laughs.');
     scene.text('You play some games for a while, although things are a little awkward between you. Eventually, Albina stops. "Well, I had fun, but there\'s some stuff I need to take care of," she says as she turns the console off.');
     scene.text('Getting the hint, you get up as well. "Yeah, I should probably get going myself." You exchange a brief hug before you leave.');
     scene.actions([
       { label: 'Say goodbye and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'uni_dorm', 'seventh_floor');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'uni_dorm', 'seventh_floor');
   } },
     ]);
   } },
@@ -287,8 +287,8 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
 function enterPlaygame(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'small');
-  qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 0);
-  qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'react', (Math.floor(Math.random() * 2) + 0));
+  qspCall(s, 'exp_gain', 'gaming', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/albinahome/game.jpg');
@@ -316,13 +316,13 @@ function enterPlaygame(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse the bet', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'npc_relationship', 'modify', 'A23', (-2));
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'mood', 'raise', 'small');
+    qspCall(st, 'exp_gain', 'react', (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'npc_relationship', 'modify', 'A23', (-2));
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('You shake your head. "Uhhh… I\'m really not interested in doing that."');
     scene.text('Albina puts the strapon away, and you can tell she\'s a little disappointed as she comes back over and sits down beside you again. "You\'re so going to lose!" she laughs.');
     scene.text('You continue to play games for a while, although things are awkward between you. Eventually, Albina stops. "Well, I had fun, but there\'s some stuff I need to take care of," she says as she turns the console off.');
@@ -330,8 +330,8 @@ function enterPlaygame(s: GameState, scene: SceneBuilder): void {
     scene.text('You exchange a brief hug before you leave.');
     scene.actions([
       { label: 'Say goodbye and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'uni_dorm', 'seventh_floor');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'uni_dorm', 'seventh_floor');
   } },
     ]);
   } },
@@ -349,8 +349,8 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
   ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['gamebet'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'mood', 'raise', 'small');
-  qspCall(s, 'exp_gain', 'react', Math.floor(Math.random() * 2) + 0);
-  qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'react', (Math.floor(Math.random() * 2) + 0));
+  qspCall(s, 'exp_gain', 'gaming', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A23', 1);
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/albinahome/game.jpg');
@@ -360,48 +360,48 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Play until someone wins', handler: (st: GameState) => {
-    (s as any).gameresult = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_gaming ?? 0);
-    if (((s as any).gameresult ?? 0) >= 150) {
-      (s as any).albplay = 3;
+    (st as any).gameresult = (Math.floor(Math.random() * 100) + 1) + ((st as any).pcs_gaming ?? 0);
+    if (((st as any).gameresult ?? 0) >= 150) {
+      (st as any).albplay = 3;
     } else {
-      if (((s as any).gameresult ?? 0) >= 100) {
-        (s as any).albplay = 2;
+      if (((st as any).gameresult ?? 0) >= 100) {
+        (st as any).albplay = 2;
       } else {
-        if (((s as any).gameresult ?? 0) >= 75) {
-          (s as any).albplay = 1;
+        if (((st as any).gameresult ?? 0) >= 75) {
+          (st as any).albplay = 1;
         } else {
-          (s as any).albplay = 0;
+          (st as any).albplay = 0;
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/game.jpg');
-    if (((s as any).albplay ?? 0) === 3) {
+    if (((st as any).albplay ?? 0) === 3) {
       scene.text('She doesn\'t even come close to beating you. Before the game can end, she lets out an exacerbated sigh and tosses her controller down in defeat, knowing she has no chance.');
       scene.text('You give her a gloating smirk as you both undress and grin as you slide the harness on.');
       scene.actions([
         { label: 'Continue', goto: ['albina_sex_scenes', 'wear_strapon'] },
       ]);
     } else {
-      if (((s as any).albplay ?? 0) === 2) {
+      if (((st as any).albplay ?? 0) === 2) {
         scene.text('It\'s close, but in the end, you just manage to win the game.');
         scene.text('"Yes!" you exclaim triumphantly before you both undress, grinning as you slide the harness on.');
         scene.actions([
           { label: 'Continue', goto: ['albina_sex_scenes', 'wear_strapon'] },
         ]);
       } else {
-        if (((s as any).albplay ?? 0) === 1) {
+        if (((st as any).albplay ?? 0) === 1) {
           scene.text('Although you try your best, Albina proves a worthy opponent and barely defeats you.');
-          // TODO-QSP: dynamic text: "You're my bitch now, <<$pcs_nickname>>!" she laughs as you both undress and Alb...
-          scene.text(`"You're my bitch now, ${((s as any).pcs_nickname || '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
+          // TODO-QSP: dynamic text: "You''re my bitch now, <<$pcs_nickname>>!" she laughs as you both undress and Al...
+          scene.text(`"You're my bitch now, ${((st as any).pcs_nickname || '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
           scene.actions([
             { label: 'Get fucked with the strapon', goto: ['albina_sex_scenes', 'receive_strapon'] },
           ]);
         } else {
-          if ((!((s as any).albplay ?? 0))) {
+          if ((!((st as any).albplay ?? 0))) {
             scene.text('Although you try your best, Albina simply outplays you at every turn. You stand no chance, and she easily beats you.');
-            // TODO-QSP: dynamic text: "You're my bitch now, <<$pcs_nickname>>!" she laughs as you both undress and Alb...
-            scene.text(`"You're my bitch now, ${((s as any).pcs_nickname || '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
+            // TODO-QSP: dynamic text: "You''re my bitch now, <<$pcs_nickname>>!" she laughs as you both undress and Al...
+            scene.text(`"You're my bitch now, ${((st as any).pcs_nickname || '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
             scene.actions([
               { label: 'Get fucked with the strapon', goto: ['albina_sex_scenes', 'receive_strapon'] },
             ]);
@@ -411,11 +411,11 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Throw the game', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/game.jpg');
     scene.text('You\'re not sure why, but part of you <i>wants</i> her to use the strap-on on you, so you purposefully lose the game.');
-    // TODO-QSP: dynamic text: Albina looks at you suspiciously with a raised brow before smiling. "You're my b...
-    scene.text(`Albina looks at you suspiciously with a raised brow before smiling. "You're my bitch now, ${((s as any).pcs_nickname || '')}!"`);
+    // TODO-QSP: dynamic text: Albina looks at you suspiciously with a raised brow before smiling. "You''re my ...
+    scene.text(`Albina looks at you suspiciously with a raised brow before smiling. "You're my bitch now, ${((st as any).pcs_nickname || '')}!"`);
     scene.text('You both undress and Albina slides the harness on with a smirk on her face.');
     scene.actions([
       { label: 'Get fucked with the strapon', goto: ['albina_sex_scenes', 'receive_strapon'] },
@@ -471,7 +471,7 @@ function enterAlbinaNotHereErmias_SMS(s: GameState, scene: SceneBuilder): void {
 function enterAlbinaNotHereErmias_SMSResponse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'telefon', 'ClearInSMSSchedule', 'A23');
   qspCall(s, 'SMStext_builder', 'start');
-  (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
   if (((s as any).temp_rand ?? 0) === 0  &&  ((s as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2) {
     qspCall(s, 'SMStext_builder', 'receive', 'Bit busy right now');
     qspCall(s, 'SMStext_builder', 'send', 'Doing what?');

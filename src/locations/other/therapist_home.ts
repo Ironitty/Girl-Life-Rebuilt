@@ -7,9 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
-    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 1;
-  }
   scene.build();
 }
 
@@ -99,9 +96,9 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
   } },
     { label: 'Continue studying (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'exp_gain', 'intel', 2);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'exp_gain', 'intel', 2);
+    qspCall(st, 'stat', '');
     scene.text('You spend another hour studying before you feel like you need a break.');
     scene.actions([
       { label: 'Take a break', handler: (st: GameState) => {
@@ -116,7 +113,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 function enterWardrobe(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'therapist_home';
   (s as any).loc_arg = 'wardrobe';
-  if (((s as any).locArgs?.[1] ?? 0) === 'start') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'start') {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wardrobe', 'start']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
@@ -158,11 +155,11 @@ function enterCook(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Eat cooked food', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'food', 'medium_meal_stats');
-    qspCall(s, 'food', 'medium_meal_text');
-    qspCall(s, 'arousal', 'foreplay', 10, 'sub');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'food', 'medium_meal_stats');
+    qspCall(st, 'food', 'medium_meal_text');
+    qspCall(st, 'arousal', 'foreplay', 10, 'sub');
+    qspCall(st, 'stat', '');
     scene.text('You give him his plate and he gives your boob a squeeze before he eats and you sit on the bed behind him and eat yourself.');
     scene.actions([
       { label: 'Finish eating', handler: (st: GameState) => {
@@ -190,10 +187,10 @@ function enterPreSleep2(s: GameState, scene: SceneBuilder): void {
   scene.text('Your husband is taking you while you sleep, as is his right as your man.');
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+    if (((st as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['sensitivity_override'] = 0;
     }
-    qspCall(s, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', 'event_end');
   } },
   ]);
   scene.build();
@@ -230,33 +227,33 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay', 10, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 10, 'sub');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/sex.jpg');
     scene.text('Your husband walks over to the bed and lays next to you and starts to rub a hand over your breasts and gives them a squeeze.');
     scene.text('He leans in and sucks on your nipples making you moan softly. He spends a few minutes nursing on your breasts and squeezing them before he gets between your legs and pushes into you.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 20, 'sub');
-    qspCall(s, 'arousal', 'foreplay', (-20), 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 20, 'sub');
+    qspCall(st, 'arousal', 'foreplay', (-20), 'sub');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     scene.text('Its not long before he\'s making love to you, moaning your name all the while fondling you.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub');
-    qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub');
+    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'end');
     scene.img('images/shared/sex/cum/vagcreampie/after1.jpg');
     scene.text('He groans and you feel his seed enter your womb and then he lays his head on your breasts and starts to snore a little.');
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+    if (((st as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['sensitivity_override'] = 0;
     }
-    qspCall(s, 'shortgs', 'autosave');
-    qspGoto(s, 'pre_sleep', 'start');
+    qspCall(st, 'shortgs', 'autosave');
+    qspGoto(st, 'pre_sleep', 'start');
   } },
     ]);
   } },
@@ -275,32 +272,32 @@ function enterFirstNight(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'kiss', 10, 'sub');
-    qspCall(s, 'arousal', 'foreplay', (-10), 'sub');
-    qspCall(s, 'arousal', 'vaginal', (-5), 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 10, 'sub');
+    qspCall(st, 'arousal', 'foreplay', (-10), 'sub');
+    qspCall(st, 'arousal', 'vaginal', (-5), 'sub');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/therapist/sex.jpg');
     scene.text('He starts to kiss your lips and neck while his hands move to your breasts. You return any kiss that is placed on your lips. It\'s not long after starting that he is on top of you, his cock inside you, pumping away as if his life depends on it.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 15, 'sub');
-    qspCall(s, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 15, 'sub');
+    qspCall(st, 'cum_call', '', 0, 'A186', 2, 0, 15000, 60);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/resident/therapist/sex2.jpg');
     scene.text('You know deep down something is wrong but you only know that you are able to get off with him and accept his form of love. With each thrust inside you, you have a small orgasm. After a few minutes, you feel him dump a large load inside you and holds you close to him, not pulling out.');
-    // TODO-QSP: dynamic text: <<$func('wrap', 'hypno', '"We will be doing this every night, of every day, unti...
+    // TODO-QSP: dynamic text: <<$func(''wrap'', ''hypno'', ''"We will be doing this every night, of every day,...
     scene.text(`${qspFunc(s, 'wrap', 'hypno', '"We will be doing this every night, of every day, until one of us drops dead"')} he says more of a joke than anything. ${qspFunc(s, 'wrap', 'hypno', qspUntranslated(s, "'\"You will be unable to sleep unless I am with you. You belong to me  &", { location: "therapist_home" }))} He orders. ${qspFunc(s, 'wrap', 'hypno', '"You will be in my bed every night. If you are not, you will be punished in whatever way I see fitting"')}`);
     scene.actions([
       { label: 'Yes, sir', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/vagcreampie/after1.jpg');
-    // TODO-QSP: dynamic text: <<$func('wrap', 'hypno', '"Good, now rest, for tomorrow, you will start your lif...
+    // TODO-QSP: dynamic text: <<$func(''wrap'', ''hypno'', ''"Good, now rest, for tomorrow, you will start you...
     scene.text(`${qspFunc(s, 'wrap', 'hypno', '"Good, now rest, for tomorrow, you will start your life as my wife"')} He says holding you to his chest and pulling a blanket over you two and you drift off to sleep.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
-      ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 0;
+    if (((st as any).trait_vars ?? 0)?.['sensitivity_override'] === 1) {
+      ((st as any).trait_vars = (st as any).trait_vars ?? {})['sensitivity_override'] = 0;
     }
-    qspCall(s, 'pre_sleep_events', 'event_end');
+    qspCall(st, 'pre_sleep_events', 'event_end');
   } },
     ]);
   } },
@@ -318,7 +315,7 @@ function enterFirstMorning(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = 100;
   scene.img('images/characters/pavlovsk/resident/therapist/naked1.jpg');
   scene.text('You wake up and see your husband already awake and working on something on his laptop. "Good Morning, Dear. How about you make us some breakfast?" he says and you slide out of bed and move over to the kitchenette and start to make him breakfast. While you hand him his plate of food, you hear a snap and you go blank.');
-  // TODO-QSP: dynamic text: <<$func('wrap', 'hypno', '"My Wife, every morning you will wake up and make brea...
+  // TODO-QSP: dynamic text: <<$func(''wrap'', ''hypno'', ''"My Wife, every morning you will wake up and make...
   scene.text(`${qspFunc(s, 'wrap', 'hypno', '"My Wife, every morning you will wake up  &&  make breakfast for Me  &&  our children. I can handle lunch on my own, dinner too, but when we move to a larger place, you will be responsible for dinner too, Understand?"')} he says and you say in a monotone voice "Yes, Sir"`);
   scene.text('The snap is heard again and you blink for a moment. "You ok, wife?" he asks');
   scene.text('You nod. "Yes, just drifted off" you reply');
@@ -327,16 +324,16 @@ function enterFirstMorning(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Take a Shower', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/therapist/hotel_shower1.mp4');
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
     scene.text('You stand in the shower and let the water pour over you. You think about your life.');
     scene.text('You are still a teenager and now you are married. You can\'t recall how it all happened but you feel a bit worried but also happy. As if it\'s just first-time jitters.');
     scene.text('You finish up and get dressed. When you walk into the hotel room, you see that your husband has already left for the day, so you head out yourself.');
     scene.actions([
       { label: 'Leave the Hotel', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'wakeup_events', 'exit');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'wakeup_events', 'exit');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -345,6 +342,9 @@ function enterFirstMorning(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).trait_vars ?? 0)?.['sensitivity'] <= -2) {
+    ((s as any).trait_vars = (s as any).trait_vars ?? {})['sensitivity_override'] = 1;
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'leave':

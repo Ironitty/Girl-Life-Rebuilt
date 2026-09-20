@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: 'You''ve enrolled in the preparatory classes. You '+iif(month = 8, 'can attend them by going to the ...
               if (((s as any).pcs_intel ?? 0) + ((s as any).university ?? 0)?.['prep_counter'] >= 80  &&  ((s as any).month ?? 0) === 8  &&  ((s as any).university ?? 0)?.['entrance_exam_passed'] === 0) {
                 // TODO-QSP: dynamic text: You think you can pass the entrance exam, '+iif(pcs_intel + university['prep_cou...
-                scene.text('You think you can pass the entrance exam, \'+iif(pcs_intel + university[\'prep_counter\'] >= 100, \'and get a perfect score.\', \'but not get a perfect score.\')+\' This is also done in the administration building.');
+                scene.text('You think you can pass the entrance exam, ' + ((((s as any).pcs_intel ?? 0) + ((s as any).university ?? 0)?.['prep_counter'] >= 100) ? ('and get a perfect score.') : ('but not get a perfect score.')) + ' This is also done in the administration building.');
               }
             } else {
               if (((s as any).university ?? 0)?.['entrance_exam_passed'] === 1) {
@@ -277,7 +277,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).lesbiQW ?? 0) >= 13) {
           if (((s as any).mistressqwest ?? 0) >= 1) {
-            // TODO-QSP: dynamic text: Mistress won't see me again until I've serviced twelve men through the gloryhole...
+            // TODO-QSP: dynamic text: Mistress won''t see me again until I''ve serviced twelve men through the gloryho...
             scene.text(`Mistress won't see me again until I've serviced twelve men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? '') - 1} so far.`);
           } else {
             scene.text('I belong to Natalya now. I should keep visiting her whenever I have the time.');
@@ -294,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).lesbiQW ?? 0) === 11) {
               if (((s as any).mistressqwest ?? 0) >= 1) {
-                // TODO-QSP: dynamic text: Natalya won't let me back into her apartment until I've serviced twenty men thro...
+                // TODO-QSP: dynamic text: Natalya won''t let me back into her apartment until I''ve serviced twenty men th...
                 scene.text(`Natalya won't let me back into her apartment until I've serviced twenty men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? '') - 1} so far.`);
               } else {
                 scene.text('I should go back and see Natalya again.');
@@ -936,7 +936,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).katjaQW ?? 0)?.['strapon_vag'] + ((s as any).katjaQW ?? 0)?.['strapon_ass'] + ((s as any).katjaQW ?? 0)?.['strapon_bj'] < 3) {
                     // TODO-QSP: dynamic text: You should' +iif(katjaQW['strapon_bj'] = 0, '; make Katja give your strap-on a b...
-                    scene.text('You should\' +iif(katjaQW[\'strapon_bj\'] = 0, \'; make Katja give your strap-on a blowjob\', \')+ iif( katjaQW[\'strapon_vag\'] = 0, \'; fuck Katja\'s pussy with your strap-on\', \')+ iif(katjaQW[\'strapon_ass\'] = 0, \'; fuck Katja in the ass with your strap-on\', \')+\'.');
+                    scene.text('You should' + ((((s as any).katjaQW ?? 0)?.['strapon_bj'] === 0) ? ('; make Katja give your strap-on a blowjob') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_vag'] === 0) ? ('; fuck Katja\'s pussy with your strap-on') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_ass'] === 0) ? ('; fuck Katja in the ass with your strap-on') : ('')) + '.');
                   }
                 }
               }
@@ -1093,13 +1093,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).katjaQW ?? 0)?.['strapon_vag'] + ((s as any).katjaQW ?? 0)?.['strapon_ass'] + ((s as any).katjaQW ?? 0)?.['strapon_bj'] < 3) {
                   // TODO-QSP: dynamic text: You should' +iif(katjaQW['strapon_bj'] = 0, '; make Katja give your strap-on a b...
-                  scene.text('You should\' +iif(katjaQW[\'strapon_bj\'] = 0, \'; make Katja give your strap-on a blowjob\', \')+ iif( katjaQW[\'strapon_vag\'] = 0, \'; fuck Katja\'s pussy with your strap-on\', \')+ iif(katjaQW[\'strapon_ass\'] = 0, \'; fuck Katja in the ass with your strap-on\', \')+\'.');
+                  scene.text('You should' + ((((s as any).katjaQW ?? 0)?.['strapon_bj'] === 0) ? ('; make Katja give your strap-on a blowjob') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_vag'] === 0) ? ('; fuck Katja\'s pussy with your strap-on') : ('')) + ((((s as any).katjaQW ?? 0)?.['strapon_ass'] === 0) ? ('; fuck Katja in the ass with your strap-on') : ('')) + '.');
                 }
               }
             }
             if (((s as any).katjaQW ?? 0)?.['relationship_count_start'] + 350/(1+ ((s as any).katjaQW ?? 0)?.['boy_block']) < ((s as any).daystart ?? 0)  &&  ((s as any).katjaQW ?? 0)?.['relationship_talk'] === 0  &&  ((s as any).katjaQW ?? 0)?.['relationship_count_start'] > 0) {
               // TODO-QSP: dynamic text: You should try to see a movie with Katja '+iif(university['semester_week'] + uni...
-              scene.text('You should try to see a movie with Katja \'+iif(university[\'semester_week\'] + university[\'exam_week\'] > 0, \'Thursday\', \'Tuesday to Thursday\')+\' night at her dorm room. She might see something that will advance your relationship.');
+              scene.text('You should try to see a movie with Katja ' + ((((s as any).university ?? 0)?.['semester_week'] + ((s as any).university ?? 0)?.['exam_week'] > 0) ? ('Thursday') : ('Tuesday to Thursday')) + ' night at her dorm room. She might see something that will advance your relationship.');
             } else {
               scene.text('You relationship needs time to progress');
             }

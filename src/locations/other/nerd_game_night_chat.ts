@@ -12,10 +12,10 @@ function enterSetLeaveAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'city_coffee_hole') {
-      qspGoto(s, 'city_coffee_hole', 'inner');
+    if (((st as any).loc ?? 0) === 'city_coffee_hole') {
+      qspGoto(st, 'city_coffee_hole', 'inner');
     } else {
-      qspGoto(s, 'pav_commcenter', '');
+      qspGoto(st, 'pav_commcenter', '');
     }
   } },
   ]);
@@ -40,7 +40,7 @@ function enterNerdChat(s: GameState, scene: SceneBuilder): void {
 
 function enterArtem(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A2', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -52,8 +52,8 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
       scene.text('You look over and see Anushka clearing away a table and wonder if Artem might want to hang around and wait for her to get off work.');
       scene.actions([
         { label: 'Wait for Anushka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.max(0, (23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0)));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (Math.max(0, (23-((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0)));
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
     scene.text('You stop him before he makes it to the door. "Let\'s wait for Anushka to get off work."');
     scene.text('He stops and looks over at her, then at you. "If you want. I can hang out for a bit."');
@@ -127,7 +127,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
 
 function enterPetka(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A6', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big6.jpg');
@@ -177,7 +177,7 @@ function enterPetka(s: GameState, scene: SceneBuilder): void {
 
 function enterJulia(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big12.jpg');
@@ -226,7 +226,7 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
 
 function enterFeofan(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A152', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big152.jpg');
@@ -275,7 +275,7 @@ function enterFeofan(s: GameState, scene: SceneBuilder): void {
 
 function enterGerasim(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A153', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big153.jpg');
@@ -325,7 +325,7 @@ function enterGerasim(s: GameState, scene: SceneBuilder): void {
 
 function enterZinaida(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'npc_relationship', 'modify', 'A142', 'like');
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big142.jpg');

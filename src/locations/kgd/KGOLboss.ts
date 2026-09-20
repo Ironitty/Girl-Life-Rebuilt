@@ -14,8 +14,8 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLintelV = 10;
   (s as any).KGHPV = ((s as any).KGOLvitalV ?? 0) * 10;
   (s as any).KGManaV = ((s as any).KGOLintelV ?? 0) * 10;
-  (s as any).KGOLPrizeExp = Math.floor(Math.random() * 26) + 25;
-  (s as any).KGOLPrizeM = Math.floor(Math.random() * 201) + 150;
+  (s as any).KGOLPrizeExp = (Math.floor(Math.random() * 26) + 25);
+  (s as any).KGOLPrizeM = (Math.floor(Math.random() * 201) + 150);
   (s as any).KGOLennumBoss = 1;
   (s as any).KGOLbronaV = 0;
   (s as any).KGOLneedDist = 3;

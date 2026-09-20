@@ -32,7 +32,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1  &&  ((s as any).locat ?? 0)?.['Anya_check_Gad'] === 0) {
     ((s as any).locat = (s as any).locat ?? {})['Anya_check_Gad'] = 1;
-    ((s as any).locat = (s as any).locat ?? {})['Anya_Gad'] = Math.floor(Math.random() * 2) + 0;
+    ((s as any).locat = (s as any).locat ?? {})['Anya_Gad'] = (Math.floor(Math.random() * 2) + 0);
   }
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
     ((s as any).locat = (s as any).locat ?? {})['Anya_check_Gad'] = 0;
@@ -265,7 +265,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Mom_cafesex_daystart'] !== ((s as any).daystart ?? 0)) {
     ((s as any).locat = (s as any).locat ?? {})['Mom_cafesex_daystart'] = ((s as any).daystart ?? 0);
-    ((s as any).locat = (s as any).locat ?? {})['Mom_cafe_sex'] = Math.floor(Math.random() * 2) + 0;
+    ((s as any).locat = (s as any).locat ?? {})['Mom_cafe_sex'] = (Math.floor(Math.random() * 2) + 0);
   }
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
     if (((s as any).week ?? 0) <= 5) {
@@ -427,9 +427,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).locat ?? 0)?.['Mother_clean1_daystart'] !== ((s as any).daystart ?? 0)) {
                   ((s as any).locat = (s as any).locat ?? {})['Mother_clean1_daystart'] = ((s as any).daystart ?? 0);
                   if (((s as any).week ?? 0) === 6) {
-                    ((s as any).locat = (s as any).locat ?? {})['Mother_clean1'] = Math.floor(Math.random() * 4) + 23;
+                    ((s as any).locat = (s as any).locat ?? {})['Mother_clean1'] = (Math.floor(Math.random() * 4) + 23);
                   } else {
-                    ((s as any).locat = (s as any).locat ?? {})['Mother_clean1'] = Math.floor(Math.random() * 2) + 23;
+                    ((s as any).locat = (s as any).locat ?? {})['Mother_clean1'] = (Math.floor(Math.random() * 2) + 23);
                   }
                 }
                 ((s as any).locat = (s as any).locat ?? {})['Mother'] = ((s as any).locat ?? 0)?.['Mother_clean1'];
@@ -462,7 +462,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         ((s as any).locat = (s as any).locat ?? {})['Mom_athome'] = 0;
                       } else {
                         if (((s as any).hour ?? 0) < 17) {
-                          ((s as any).locat = (s as any).locat ?? {})['Mother'] = Math.floor(Math.random() * 2) + 14;
+                          ((s as any).locat = (s as any).locat ?? {})['Mother'] = (Math.floor(Math.random() * 2) + 14);
                           ((s as any).locat = (s as any).locat ?? {})['Mom_athome'] = 0;
                         } else {
                           if (((s as any).hour ?? 0) < 18) {

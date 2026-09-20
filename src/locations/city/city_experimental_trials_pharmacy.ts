@@ -11,11 +11,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterCounter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Experimental Pharmacy</b></center>');
   if ((!(Math.floor(Math.random() * 2) + 0))) {
-    scene.img('images\\locations\\city\\residential\\clinic\\experiments\\pharmacist1.jpg');
+    scene.img('images/locations/city/residential/clinic/experiments/pharmacist1.jpg');
     scene.text('You approach the pharmacy front desk. The older pharmacist behind the counter looks up at you and gives you a smile.');
     scene.text('"How can I help you?"');
   } else {
-    scene.img('images\\locations\\city\\residential\\clinic\\experiments\\pharmacist2.jpg');
+    scene.img('images/locations/city/residential/clinic/experiments/pharmacist2.jpg');
     scene.text('You approach the pharmacy front desk. The middle aged pharmacist behind the counter looks up at you and smiles.');
     scene.text('"How can I help you".');
   }

@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGeneralEducation(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/classroom/general_education/banana.jpg');
     scene.text('As Professor Kovalyov continues his lecture, you can\'t help but notice how attractive he is. He has a mesmerizing smile while he talks and this seems to have an effect on the other girls, even the shy Katja. You remember she used to be quite the shy girl in school, always resisting any charm. But now… She\'s half finished eating her banana while listening to Professor Kovalyov and is almost deepthroating it. Her mind is likely wandering somewhere else…');
@@ -25,8 +25,8 @@ function enterGeneralEducation(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pantyworntype ?? 0) === 'none') {
             scene.actions([
               { label: 'Spread your legs', handler: (st: GameState) => {
-    qspCall(s, 'flash', 'pussy', 'inside', (-5), 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'flash', 'pussy', 'inside', (-5), 1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/general_education/no_panties.jpg');
     scene.text('You turn your lower body to face the boys and lift up your skirt a little. Spreading your legs, you let the boys take a good look at your pussy, feeling a thrill of excitement from the act.');
     scene.actions([
@@ -37,8 +37,8 @@ function enterGeneralEducation(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Show your pussy', handler: (st: GameState) => {
-    qspCall(s, 'flash', 'pussy', 'inside', (-5), 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'flash', 'pussy', 'inside', (-5), 1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/general_education/panties.jpg');
     scene.text('You turn your lower body to face the boys and lift up your skirt a little. Spreading your legs, you pull your underwear to the side, flashing your pussy at the boys.');
     scene.actions([
@@ -64,7 +64,7 @@ function enterGeneralEducation(s: GameState, scene: SceneBuilder): void {
             scene.text('When a teacher leaves a classroom at school, chaos strikes and everybody starts to act like a child. It seems university is no different. As soon as Professor Kovalyov leaves the classroom, you see different students talking to each other and taking selfies. However, Maya and Dasha are on top of their desks, one kneeling before the other. Dasha takes the lead and starts to shove her imaginary dick down Maya\'s throat.');
             scene.text('This goes on for nearly a minute before the door opens and Professor Kovalyov returns. Everyone quickly returns to their seats and the class quietens down.');
           } else {
-            scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+            scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
             scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
           }
         }
@@ -80,7 +80,7 @@ function enterGeneralEducation(s: GameState, scene: SceneBuilder): void {
 
 function enterTeachingMethods(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/classroom/teaching_methods/girl_goofing.jpg');
     scene.text('Professor Pasternak\'s lecture is rather boring with his strict tone of teaching. In your boredom, you look around to see if anything exciting is happening, but all you see is one of your classmates making a funny face at you.');
@@ -117,7 +117,7 @@ function enterTeachingMethods(s: GameState, scene: SceneBuilder): void {
               }
             }
           } else {
-            scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+            scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
             scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
           }
         }
@@ -133,7 +133,7 @@ function enterTeachingMethods(s: GameState, scene: SceneBuilder): void {
 
 function enterLearningTheories(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/classroom/learning_theories/girls_goofing.jpg');
     scene.text('Professor Kovalchuk\'s lessons are usually pretty interesting as she often interrupts herself and goes off topic talking about sci-fi or superhero movies. Sometimes a little spark of this is enough to lead the whole lecture into a discussion about her interests and everything nerdy or geeky in general. Today is no different and she speaks with a few students about the latest movie and how it could be connected to the subject. You\'re free to do as you wish and a group of girls are doing just that, goofing around like they\'re in high school.');
@@ -156,7 +156,7 @@ function enterLearningTheories(s: GameState, scene: SceneBuilder): void {
             scene.text('"May I use the bathroom, Professor Kovalchuk?" you hear a girl ask and glance up to see Liliya walking towards the door to leave the classroom. Several eyes are fixated on her and she clearly enjoys the attention. With a wink and a huge smile on her face, she then lets out an innocent sounding "Oops, what\'s that?"');
             scene.text('She stops and acts like she dropped something before getting down on all fours and crawling under Professor Kovalchuk\'s desk, clearly exposing her naked ass and pussy as she does. Everybody in the classroom goes crazy and the boys start to whistle and holler. Professor Kovalchuk has no clue what\'s going on as Liliya climbs out, fixes her dress and leaves the classroom with an even bigger smile on her face.');
           } else {
-            scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+            scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
             scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
           }
         }
@@ -172,7 +172,7 @@ function enterLearningTheories(s: GameState, scene: SceneBuilder): void {
 
 function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/classroom/learning_theories/girls_goofing.jpg');
     scene.text('Professor Kovalchuk\'s lessons are usually pretty interesting as she often interrupts herself and goes off topic talking about sci-fi or superhero movies. Sometimes a little spark of this is enough to lead the whole lecture into a discussion about her interests and everything nerdy or geeky in general. Today is no different and she speaks with a few students about the latest movie and how it could be connected to the subject. You\'re free to do as you wish and a group of girls are doing just that, goofing around like they\'re in high school.');
@@ -195,7 +195,7 @@ function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void 
             scene.text('"May I use the bathroom, Professor Kovalchuk?" you hear a girl ask and glance up to see Liliya walking towards the door to leave the classroom. Several eyes are fixated on her and she clearly enjoys the attention. With a wink and a huge smile on her face, she then lets out an innocent sounding "Oops, what\'s that?" She stops and acts like she dropped something before getting down on all fours and crawling under Professor Kovalchuk\'s desk, clearly exposing her naked ass and pussy as she does.');
             scene.text('Everybody in the classroom goes crazy and the boys start to whistle and holler. Professor Kovalchuk has no clue what\'s going on as Liliya climbs out, fixes her dress and leaves the classroom with an even bigger smile on her face.');
           } else {
-            scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+            scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
             scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
           }
         }
@@ -211,7 +211,7 @@ function enterPsychologyOfAStudent_101(s: GameState, scene: SceneBuilder): void 
 
 function enterPatientCare(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/classroom/teaching_methods/sleeping.jpg');
     scene.text('It\'s hard to stay awake during the class and you\'re not alone with this thought. You see someone has already fallen asleep on their desk.');
@@ -235,7 +235,7 @@ function enterPatientCare(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/city/island/university/classroom/learning_theories/girls_kissing.jpg');
             scene.text('During the break, most of the students just relax, but a few quietly fool around so as not to draw too much attention. A pair of girls, perhaps feeling extra brave and cheeky, start slowly but passionately kissing near the front of the class and a number of girls enjoy the show. They keep kissing until Professor Kudelina walks up to them and tells them to knock it off as she starts the second part of the class.');
           } else {
-            scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+            scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
             scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
           }
         }
@@ -251,7 +251,7 @@ function enterPatientCare(s: GameState, scene: SceneBuilder): void {
 
 function enterAnatomyAndPhysiology(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
     scene.img('images/locations/city/island/university/classroom/learning_theories/girls_goofing.jpg');
     scene.text('Professor Marinova often goes off topic and starts gossiping during her lectures. Today is no different and she speaks with a few students about the latest rumors and tidbits. You\'re free to do as you wish and a group of girls are doing just that, goofing around like they\'re in high school.');
@@ -274,7 +274,7 @@ function enterAnatomyAndPhysiology(s: GameState, scene: SceneBuilder): void {
             scene.img('images/locations/city/island/university/classroom/teaching_methods/sleeping.jpg');
             scene.text('It\'s hard to stay awake during the class and you\'re not alone with this thought. You see someone has already fallen asleep on their desk.');
           } else {
-            scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+            scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
             scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
           }
         }
@@ -290,9 +290,9 @@ function enterAnatomyAndPhysiology(s: GameState, scene: SceneBuilder): void {
 
 function enterExaminationAndTreatment(s: GameState, scene: SceneBuilder): void {
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 10) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 10) + 0);
   if ((!((s as any).temp ?? 0))) {
-    scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+    scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
     scene.text('As per usual, Professor Borisov drones on and on in excessive detail and you see the majority of the class struggling to pay any attention to him as he faces away from you and writes things down on his board. He continues his dry and extremely boring lecture for what feels like an eternity, making no effort to engage the class with what he\'s teaching.');
   } else {
     if (((s as any).temp ?? 0) === 1) {
@@ -319,7 +319,7 @@ function enterExaminationAndTreatment(s: GameState, scene: SceneBuilder): void {
             scene.text('"Yeah, I wear black panties with white stripes, she wears white panties with black stripes. Want to see?" the other adds and they both start laughing, as do some of the class.');
             scene.text('Professor Borisov\'s face turns bright red and he clears his throat before quickly walking back to the front of the class. The twins high five each other and giggle as they take their seats.');
           } else {
-            scene.img(`images/locations/city/island/university/classroom/lecture${Math.floor(Math.random() * 5) + 1}.jpg`);
+            scene.img(`images/locations/city/island/university/classroom/lecture${(Math.floor(Math.random() * 5) + 1)}.jpg`);
             scene.text('As you sit listening to the lesson, you look around hoping something interesting will happen, but nothing does.');
           }
         }

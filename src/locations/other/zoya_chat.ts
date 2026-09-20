@@ -67,15 +67,15 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I should get going," you say as you stand up from the table. "It was nice chatting with you!"');
     // TODO-QSP: dynamic text: "The pleaure was mine, <<$pcs_firstname>>," she smiles. "Feel free to stop and c...
-    scene.text(`"The pleaure was mine, ${((s as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
+    scene.text(`"The pleaure was mine, ${((st as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
     scene.text('You smile and nod before walking away.');
     scene.actions([
       { label: 'Leave', goto: ['albinahome', 'kitchen'] },
     ]);
   } },
     { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You make small talk with Zoya, chatting with her about various topics.');
     scene.actions([
@@ -89,8 +89,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('She lights up at your question. "I love it! Ever since I was a teenager, I wanted to help people with mental health struggles. It\'s a very neglected form of healthcare, so I do what I can to ensure that my patients get the help they need."');
     scene.actions([
       { label: 'What made you want to do it?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What made you decide to become a psychiatrist, if you don\'t mind me asking?"');
     scene.text('"My grandparents died before I was born and I was raised by my mother and father alone. Despite that, it was a happy and loving life until my mother was killed in a car accident when I was 16."');
@@ -106,8 +106,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'You\'re not from here?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('Something she said caught your attention. "You moved here? So you\'re not from here?"');
     scene.text('"Oh, no. I was born and raised on the outskirts of Kursk. I was always told that both of my grandfathers took part in the big battle that happened there during the Patriotic War."');
@@ -119,7 +119,7 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You stand up from the table. "It was nice chatting with you, but I should get going."');
     // TODO-QSP: dynamic text: "The pleaure was mine, <<$pcs_firstname>>," she smiles. "Feel free to stop and c...
-    scene.text(`"The pleaure was mine, ${((s as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
+    scene.text(`"The pleaure was mine, ${((st as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
     scene.text('You smile and nod before walking away.');
     scene.actions([
       { label: 'Leave', goto: ['albinahome', 'kitchen'] },
@@ -130,8 +130,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask for career advice', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What advice would you give to someone who was looking for a job like yours?" you ask politely.');
     scene.text('"You want to be like Albina and study nursing at the university?" she smiles.');
@@ -139,8 +139,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Then you should take your studies seriously," she states. "Lives will be in your hands, so you must know <i>exactly</i> what to do and <i>when</i>. A hospital is no place to slack off or second guess yourself."');
     scene.actions([
       { label: 'Talk about Albina going to university', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"You must be proud of Albina wanting to follow in your footsteps," you say with a small smile.');
     scene.text('Zoya beams with pride. "I am. I know she likes to put up a tough exterior, but it turns out she has a real passion for wanting to help children, so I\'ll make sure she gets a top spot working at the hospital\'s pediatric unit when she completes her studies."');
@@ -153,8 +153,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Talk about Albina working with children', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I know what you mean about her putting on a tough girl face," you reply. "I didn\'t expect her to be so passionate about working with children, though."');
     scene.text('Oh? And why is that?" Zoya asks.');
@@ -184,8 +184,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'How did you meet?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"How did the two of you meet?" you ask.');
     scene.text('She sighs. "I was young and stupid. I don\'t know if Albina has told you this, but I paid for my university studies by posing as an erotic model for the Aphrodite studio."');
@@ -195,8 +195,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('The mood turns rather somber as she takes another sip of her coffee.');
     scene.actions([
       { label: 'Talk about Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Albina was really excited when she told me you were coming back. It\'s the happiest I\'ve ever seen her, in fact," you smile.');
     scene.text('"She\'s my pride and joy, probably the best thing that\'s ever happened to me, but I wish she had been born to a better father, one that actually cared about her being his child."');
@@ -226,8 +226,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'What was he like?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What… What was he like?" you ask.');
     scene.text('She snorts. "A prick. And a cheating, abusive prick at that. What he done to me was bad enough, but the way he treated Albina simply because he didn\'t want her as his child? That was when he showed his true colors."');
@@ -235,12 +235,12 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('She nods. "It\'s a very touchy subject for her, but it\'s one I\'ll discuss with her only when she\'s ready to do so. You should do the same."');
     scene.actions([
       { label: 'He cheated on you?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"He cheated on you?" you ask. "But you\'re one of the prettiest people I\'ve ever seen! I can only imagine how you looked when you were younger."');
     // TODO-QSP: dynamic text: She smiles at your compliment. "Thank you <<$pcs_firstname>>, but sadly having a...
-    scene.text(`She smiles at your compliment. "Thank you ${((s as any).pcs_firstname || '')}, but sadly having a trophy wife wasn't good enough for him. He would regularly seduce other young women for sex and even hire escorts, and he was just as abusive to them as he was towards to me."`);
+    scene.text(`She smiles at your compliment. "Thank you ${((st as any).pcs_firstname || '')}, but sadly having a trophy wife wasn't good enough for him. He would regularly seduce other young women for sex and even hire escorts, and he was just as abusive to them as he was towards to me."`);
     scene.text('"He was violent?" you ask, a flash of concern appearing on your face.');
     scene.text('"Not to me at least," she says solemnly. "I can\'t speak for the other women in his life, but while he was very much verbally abusive, he never laid a finger on me. Maybe because I was his \'prized good\' so to speak? God, I can only hope the same can be said for Albina…"');
     scene.actions([
@@ -263,8 +263,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Is that why you left?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Was it him acting the way he did that made you decide to leave him?" you ask.');
     scene.text('Her look turns serious. "… Yes… But he made me choose between my future career… and Albina. Leaving my daughter in his clutches is something that I\'ll never forgive myself for doing. Even if I did make a life for myself and was eventually able to reunite with her, I\'ll take the shame of what I done to get here to my grave."');
@@ -289,8 +289,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Talk about Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Albina mentioned how he… took his frustration about you… out on her…" you meekly state.');
     scene.text('She snorts. "He done that well before I left. He had nothing but disdain for her the moment she was born. Even being at the hospital for her birth was something he only done to keep up appearances."');
@@ -326,18 +326,18 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I did, for a while," she replies. "Only to pay for my university studies, though. I never intended to make a career out of it. Why? Are you interested in such a career?"');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Yes," you reply. "Modelling is something that has always interested me."');
     scene.text('"I don\'t doubt that you have what it takes, just be careful if you do go through with it," she says. "The modelling industry is infamous for taking advantage of the girls who work for them."');
-    if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+    if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       scene.text('Unsure how she would react, you decide to leave out the fact that you already are a model.');
     }
     scene.actions([
       { label: 'Ask what kind of modelling she done', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What kind of modelling did you do, if you don\'t mind me asking?"');
     scene.text('"Like I said, I never intended for it be my career, but… I was a rather exceptional erotic model. The best of the best at the studio during the time, in fact."');
@@ -350,12 +350,12 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Compliment her appearance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can see why you chose to be a model," you state. "You\'re one of the most beautiful looking women I\'ve ever seen."');
-    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You're ...
-    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((s as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
+    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You''re...
+    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((st as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
     scene.text('"Maybe," you reply. "But any man would be lucky to be dating a woman like you, never mind call you his wife!"');
     scene.text('She just smiles at you again, and you wonder if it\'s because your compliments are making her feel young again.');
     scene.actions([
@@ -366,10 +366,10 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'No', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
-    if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+    if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       scene.text('Unsure how she would react, you decide not to tell her that you actually are a model.');
     }
     scene.text('"Oh, no. I was just curious was all," you reply. "I could never imagine myself being a model."');
@@ -378,8 +378,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No," she firmly states. "I never wanted to be that kind of model to begin with. Even though it turned out to be a case of very bad judgement on my part, marrying Boris was the perfect excuse for leaving and never looking back."');
     scene.actions([
       { label: 'Ask what kind of modelling she done', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What kind of modelling did you do, if you don\'t mind me asking?"');
     scene.text('"Like I said, I never intended for it be my career, but… I was a rather exceptional erotic model. The best of the best at the studio during the time, in fact."');
@@ -392,12 +392,12 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Compliment her appearance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can see why you chose to be a model," you state. "You\'re one of the most beautiful looking women I\'ve ever seen."');
-    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You're ...
-    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((s as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
+    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You''re...
+    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((st as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
     scene.text('"Maybe," you reply. "But any man would be lucky to be dating a woman like you, never mind call you his wife!"');
     scene.text('She just smiles at you again, and you wonder if it\'s because your compliments are making her feel young again.');
     scene.actions([
@@ -415,14 +415,14 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"That depends on what you want to know," she sternly replies.');
     scene.actions([
       { label: 'What was she like when she was younger?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What was she was she like when she was younger?" you ask.');
     scene.text('Zoya smiles, as if recounting a happy memory. "A very happy little girl who had her sights set on becoming the best dancer the world had ever seen, but she lost that innocence when I left."');
     scene.text('You nod. "She definitely had a bit of a mean streak at school when we were growing up!"');
     scene.text('"She still does," Zoya replies. "But she\'s a lot happier now than when I first returned, and I think she has you to thank for that. Being there for her as <i>more</i> than just her best friend, showing her that she\'s not alone anymore… You really have helped her get out of that dark place she was trapped in all these years."');
-    if (((s as any).npc_had_sex ?? 0)?.['A23']) {
+    if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.text('Your heart skips a beat. Does she know that you and Albina have been fooling around with each other?');
     }
     scene.text('"Oh I don\'t know about that…" you reply as you feel yourself blushing. "I might have been here for her, but I think most of the credit goes to you. You\'re her beloved Mama after all!"');
@@ -433,16 +433,16 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Do you worry about her?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
-    // TODO-QSP: dynamic text: "My <<$npc_nickname['A29']>> is always nagging at me about being safe and doing ...
-    scene.text(`"My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
+    // TODO-QSP: dynamic text: "My <<$npc_nickname[''A29'']>> is always nagging at me about being safe and doin...
+    scene.text(`"My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
     scene.text('"All the time," she replies. "It\'s why I\'m happy that she\'s going to the university so she can eventually get herself a good job and make a better life for herself away from the bad influences she\'s been exposed to here. I don\'t want her getting pregnant and having to put her life on hold to raise a baby."');
     scene.actions([
       { label: 'Like you did?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Like you had to do?" you ask.');
     scene.text('She glares at you. "When you put it so bluntly, yes. Children might be in her future, but <i>not</i> before she makes a career for herself first."');
@@ -453,21 +453,21 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'She doesn\'t seem like the mother type', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"No offense, but from what I know, she very much isn\'t interested in having children," you reply. "She\'s always practicing safe sex."');
     scene.text('"Not safe enough. The birth control shot she\'s on might protect her from getting pregnant, but it won\'t stop STIs!" she sighs. "I wish she would use the condoms I give her. I\'m worried that she might be allergic to the latex, but is too embarrassed to tell me."');
     scene.text('She then turns to you. "I hope you\'re practicing safe sex as well, young lady? You can never be too careful with these things."');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((s as any).stat ?? 0)?.['vaginal'] === 0) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((st as any).stat ?? 0)?.['vaginal'] === 0) {
       scene.actions([
         { label: 'I\'m still a virgin', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You feel yourself blushing. "Oh. Uhhh… I\'m… I\'m still a virgin…"');
-    // TODO-QSP: dynamic text: "Oh. Oh, I'm sorry for putting you on the spot like that, <<$pcs_firstname>>!" s...
-    scene.text(`"Oh. Oh, I'm sorry for putting you on the spot like that, ${((s as any).pcs_firstname || '')}!" she replies. "My advice in that case would be to make sure you're using both condoms <i>and</i> birth control once you're active."`);
+    // TODO-QSP: dynamic text: "Oh. Oh, I''m sorry for putting you on the spot like that, <<$pcs_firstname>>!" ...
+    scene.text(`"Oh. Oh, I'm sorry for putting you on the spot like that, ${((st as any).pcs_firstname || '')}!" she replies. "My advice in that case would be to make sure you're using both condoms <i>and</i> birth control once you're active."`);
     scene.actions([
       { label: 'Talk about something else', goto: ['zoya_chat', 'breakfast_chat1'] },
       { label: 'Leave', goto: ['albinahome', 'kitchen'] },
@@ -477,8 +477,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I use condoms and birth control', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I use both," you reply. "You can never be too safe when it comes to this kind of thing."');
     scene.text('She smiles and nods. "I\'m glad you see it that way. I just wish that Albina did too. Pregnancy is one thing, but catching an STI would be even worse."');
@@ -490,8 +490,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I use birth control, but not condoms', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I\'m in the same boat as Albina," you reply. "I\'m on birth control, but I don\'t use condoms."');
     scene.text('She shakes her head. "You should be using both. Like I said, birth control won\'t stop you from being infected with an STI. Get yourself a pack or two of condoms next time you\'re topping up your birth control."');
@@ -502,8 +502,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I use condoms, not birth control', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I use condoms, but not birth control," you reply.');
     scene.text('She shakes her head. "You should be using both. Condoms aren\'t 100% effective and all it takes is a single sperm from a broken condom. Pick up some pills next time you\'re topping up your condoms."');
@@ -514,12 +514,12 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I don\'t use protection', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I, uhh… I don\'t use protection," you sheepishly reply. "I just rely on the pullout method."');
-    // TODO-QSP: dynamic text: "The pull-" she gasps. "<<$pcs_firstname>>! He doesn't have to 'finish' inside y...
-    scene.text(`"The pull-" she gasps. "${((s as any).pcs_firstname || '')}! He doesn't have to 'finish' inside you for his sperm to get into your vagina! Not to mention the risk of catching an STI!"`);
+    // TODO-QSP: dynamic text: "The pull-" she gasps. "<<$pcs_firstname>>! He doesn''t have to ''finish'' insid...
+    scene.text(`"The pull-" she gasps. "${((st as any).pcs_firstname || '')}! He doesn't have to 'finish' inside you for his sperm to get into your vagina! Not to mention the risk of catching an STI!"`);
     scene.text('She shakes her head. "You can\'t be so reckless when it comes to pregnancy, especially at your age. Get yourself down to the pharmacy and buy some condoms and birth control pills!"');
     scene.text('You just nod your head. You know she means well, but you get enough badgering from your own mother.');
     scene.actions([
@@ -531,24 +531,24 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'She\'s a smart girl', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"She\'s a smart girl," you reply. "A lot smarter than she lets on, actually. I can\'t imagine her doing something stupid like that and disappointing you."');
     scene.text('She\'s smart, but very much stubborn," she replies. "It\'s good that she sticks to her own opinions, but I worry that her stubborn nature will cause her harm some day."');
     scene.actions([
       { label: 'I can watch out for her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can watch out for her for you," you reply. "She does listen to me… Sometimes."');
-    // TODO-QSP: dynamic text: She smiles. "I appreciate that, <<$pcs_firstname>>, but I don't want her to feel...
-    scene.text(`She smiles. "I appreciate that, ${((s as any).pcs_firstname || '')}, but I don't want her to feel like she's being manipulated, so don't overstep your bounds as her friend. ' + iif(npc_had_sex['A23'], 'Or whatever your relationship with her might be.', ') + '"`);
-    if (((s as any).npc_had_sex ?? 0)?.['A23']) {
+    // TODO-QSP: dynamic text: She smiles. "I appreciate that, <<$pcs_firstname>>, but I don''t want her to fee...
+    scene.text('She smiles. "I appreciate that, ' + ((st as any).pcs_firstname || '') + ', but I don\'t want her to feel like she\'s being manipulated, so don\'t overstep your bounds as her friend. \' + iif(npc_had_sex[\'A23\'], \'Or whatever your relationship with her might be.\', \') + \'"');
+    if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.actions([
         { label: 'My relationship with her?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"My… Relationship with her?" you ask.');
     scene.text('Does she know that you and Albina have been fooling around?');
@@ -566,8 +566,8 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I\'ll be careful', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I\'m not saying I would manipulate her," you say. "Just… Make sure she doesn\'t stray <i>too far</i> from the path she wants to go down."');
     scene.text('"That\'s all we can do, isn\'t it?" she sighs. "I\'m confident she can find her own way in life without needing us to guide her, though."');
@@ -583,16 +583,16 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Were you excited to be a mother?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Were you excited when you found out you were pregnant with her?" you ask.');
     scene.text('"Not at first, no," she replies. "I was 21 and thought I would have years of university studying ahead of me at the time. Don\'t get wrong, I planned on having children eventually, but only once I had a career in place and was ready to settle down."');
     scene.text('She smiles. "In the end, Albina was a bundle of joy that I never knew I needed. Being a young mother, I was always scared that I would screw it up or have to give her up for adoption, but to my surprise, I settled into motherhood quite easily, despite her largely absent father."');
     scene.actions([
       { label: 'Did you name her after someone?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Is Albina named after anyone in particular, if you don\'t mind me asking? I know a lot of first time parents like to name their children after someone special."');
     scene.text('She smiles. "She is indeed. When I first saw her in my arms when she was born, I saw my mother\'s eyes looking right back at me. Of course, Boris didn\'t even remotely care, so I named her after my mother right there on the spot."');
@@ -604,12 +604,12 @@ function enterBreakfastChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Do you want grandchildren?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Do you want to have grandchildren?" you ask.');
-    // TODO-QSP: dynamic text: "I'm still a bit young for that, <<$pcs_firstname>>!" she laughs. "Yes, I would,...
-    scene.text(`"I'm still a bit young for that, ${((s as any).pcs_firstname || '')}!" she laughs. "Yes, I would, but like I said, I want Albina to live her life first and get a good job before she has children. I don't want her being tied down with a child at such a young age."`);
+    // TODO-QSP: dynamic text: "I''m still a bit young for that, <<$pcs_firstname>>!" she laughs. "Yes, I would...
+    scene.text(`"I'm still a bit young for that, ${((st as any).pcs_firstname || '')}!" she laughs. "Yes, I would, but like I said, I want Albina to live her life first and get a good job before she has children. I don't want her being tied down with a child at such a young age."`);
     scene.text('"I know she doesn\'t feel like it yet, but I think Albina would make an amazing mother," you reply.');
     scene.text('"That may be so, but I\'m not going to force her into it, especially if she\'s not with a man who would make a suitable father. My grandchild will <i>not</i> have someone like Boris as their father."');
     scene.text('You can see the tension on her face as she tries to mask her feelings.');
@@ -634,15 +634,15 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I should get going," you say as you stand up from the edge of the pool. "It was nice chatting with you!"');
     // TODO-QSP: dynamic text: "The pleaure was mine, <<$pcs_firstname>>," she smiles. "Feel free to stop and c...
-    scene.text(`"The pleaure was mine, ${((s as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
+    scene.text(`"The pleaure was mine, ${((st as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
     scene.text('You smile and nod before walking away.');
     scene.actions([
       { label: 'Leave', goto: ['albinahome', 'pool_side'] },
     ]);
   } },
     { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You make small talk with Zoya, chatting with her about various topics.');
     scene.actions([
@@ -656,8 +656,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('She lights up at your question. "I love it! Ever since I was a teenager, I wanted to help people with mental health struggles. It\'s a very neglected form of healthcare, so I do what I can to ensure that my patients get the help they need."');
     scene.actions([
       { label: 'What made you want to do it?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What made you decide to become a psychiatrist, if you don\'t mind me asking?"');
     scene.text('"My grandparents died before I was born and I was raised by my mother and father alone. Despite that, it was a happy and loving life until my mother was killed in a car accident when I was 16."');
@@ -673,8 +673,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'You\'re not from here?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('Something she said caught your attention. "You moved here? So you\'re not from here?"');
     scene.text('"Oh, no. I was born and raised on the outskirts of Kursk. I was always told that both of my grandfathers took part in the big battle that happened there during the Patriotic War."');
@@ -686,7 +686,7 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You stand up from the edge of the pool. "It was nice chatting with you, but I should get going."');
     // TODO-QSP: dynamic text: "The pleaure was mine, <<$pcs_firstname>>," she smiles. "Feel free to stop and c...
-    scene.text(`"The pleaure was mine, ${((s as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
+    scene.text(`"The pleaure was mine, ${((st as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
     scene.text('You smile and nod before walking away.');
     scene.actions([
       { label: 'Leave', goto: ['albinahome', 'pool_side'] },
@@ -697,8 +697,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask for career advice', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What advice would you give to someone who was looking for a job like yours?" you ask politely.');
     scene.text('"You want to be like Albina and study nursing at the university?" she smiles.');
@@ -706,8 +706,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Then you should take your studies seriously," she states. "Lives will be in your hands, so you must know <i>exactly</i> what to do and <i>when</i>. A hospital is no place to slack off or second guess yourself."');
     scene.actions([
       { label: 'Talk about Albina going to university', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"You must be proud of Albina wanting to follow in your footsteps," you say with a small smile.');
     scene.text('Zoya beams with pride. "I am. I know she likes to put up a tough exterior, but it turns out she has a real passion for wanting to help children, so I\'ll make sure she gets a top spot working at the hospital\'s pediatric unit when she completes her studies."');
@@ -720,8 +720,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Talk about Albina working with children', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I know what you mean about her putting on a tough girl face," you reply. "I didn\'t expect her to be so passionate about working with children, though."');
     scene.text('Oh? And why is that?" Zoya asks.');
@@ -751,8 +751,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'How did you meet?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"How did the two of you meet?" you ask.');
     scene.text('She sighs. "I was young and stupid. I don\'t know if Albina has told you this, but I paid for my university studies by posing as an erotic model for the Aphrodite studio."');
@@ -762,8 +762,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('The mood turns rather somber as she seemingly takes a minute to compose herself.');
     scene.actions([
       { label: 'Talk about Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Albina was really excited when she told me you were coming back. It\'s the happiest I\'ve ever seen her, in fact," you smile.');
     scene.text('"She\'s my pride and joy, probably the best thing that\'s ever happened to me, but I wish she had been born to a better father, one that actually cared about her being his child."');
@@ -793,8 +793,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'What was he like?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What… What was he like?" you ask.');
     scene.text('She snorts. "A prick. And a cheating, abusive prick at that. What he done to me was bad enough, but the way he treated Albina simply because he didn\'t want her as his child? That was when he showed his true colors."');
@@ -802,12 +802,12 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('She nods. "It\'s a very touchy subject for her, but it\'s one I\'ll discuss with her only when she\'s ready to do so. You should do the same."');
     scene.actions([
       { label: 'He cheated on you?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"He cheated on you?" you ask. "But you\'re one of the prettiest people I\'ve ever seen! I can only imagine how you looked when you were younger."');
     // TODO-QSP: dynamic text: She smiles at your compliment. "Thank you <<$pcs_firstname>>, but sadly having a...
-    scene.text(`She smiles at your compliment. "Thank you ${((s as any).pcs_firstname || '')}, but sadly having a trophy wife wasn't good enough for him. He would regularly seduce other young women for sex and even hire escorts, and he was just as abusive to them as he was towards to me."`);
+    scene.text(`She smiles at your compliment. "Thank you ${((st as any).pcs_firstname || '')}, but sadly having a trophy wife wasn't good enough for him. He would regularly seduce other young women for sex and even hire escorts, and he was just as abusive to them as he was towards to me."`);
     scene.text('"He was violent?" you ask, a flash of concern appearing on your face.');
     scene.text('"Not to me at least," she says solemnly. "I can\'t speak for the other women in his life, but while he was very much verbally abusive, he never laid a finger on me. Maybe because I was his \'prized good\' so to speak? God, I can only hope the same can be said for Albina…"');
     scene.actions([
@@ -830,8 +830,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Is that why you left?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Was it him acting the way he did that made you decide to leave him?" you ask.');
     scene.text('Her look turns serious. "… Yes… But he made me choose between my future career… and Albina. Leaving my daughter in his clutches is something that I\'ll never forgive myself for doing. Even if I did make a life for myself and was eventually able to reunite with her, I\'ll take the shame of what I done to get here to my grave."');
@@ -856,8 +856,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Talk about Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Albina mentioned how he… took his frustration about you… out on her…" you meekly state.');
     scene.text('She snorts. "He done that well before I left. He had nothing but disdain for her the moment she was born. Even being at the hospital for her birth was something he only done to keep up appearances."');
@@ -893,18 +893,18 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I did, for a while," she replies. "Only to pay for my university studies, though. I never intended to make a career out of it. Why? Are you interested in such a career?"');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Yes," you reply. "Modelling is something that has always interested me."');
     scene.text('"I don\'t doubt that you have what it takes, just be careful if you do go through with it," she says. "The modelling industry is infamous for taking advantage of the girls who work for them."');
-    if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+    if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       scene.text('Unsure how she would react, you decide to leave out the fact that you already are a model.');
     }
     scene.actions([
       { label: 'Ask what kind of modelling she done', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What kind of modelling did you do, if you don\'t mind me asking?"');
     scene.text('"Like I said, I never intended for it be my career, but… I was a rather exceptional erotic model. The best of the best at the studio during the time, in fact."');
@@ -917,24 +917,24 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Compliment her appearance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can see why you chose to be a model," you state. "You\'re one of the most beautiful looking women I\'ve ever seen."');
-    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You're ...
-    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((s as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
+    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You''re...
+    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((st as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
     scene.text('"Any man would be lucky to be dating a woman like you, never mind call you his wife!" you reply. "If you don\'t mind me saying, your… Uhh… Your breasts are incredible!"');
-    if (((s as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
-      // TODO-QSP: dynamic text: "I believe we've had this conversation about looking at my breasts before, <<$pc...
-      scene.text(`"I believe we've had this conversation about looking at my breasts before, ${((s as any).pcs_firstname || '')}…"`);
+    if (((st as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
+      // TODO-QSP: dynamic text: "I believe we''ve had this conversation about looking at my breasts before, <<$p...
+      scene.text(`"I believe we've had this conversation about looking at my breasts before, ${((st as any).pcs_firstname || '')}…"`);
     } else {
-      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
-      // TODO-QSP: dynamic text: "I appreciate your attempt at a compliment <<$pcs_firstname>>, but it's rude to ...
-      scene.text(`"I appreciate your attempt at a compliment ${((s as any).pcs_firstname || '')}, but it's rude to look at a person's breasts like that, even if they are exposed."`);
+      ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['check_out_zoya'] = ((st as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+      // TODO-QSP: dynamic text: "I appreciate your attempt at a compliment <<$pcs_firstname>>, but it''s rude to...
+      scene.text(`"I appreciate your attempt at a compliment ${((st as any).pcs_firstname || '')}, but it's rude to look at a person's breasts like that, even if they are exposed."`);
     }
     scene.text('"Sorry!" you squeak. "I just wanted you to know that I think your breasts are… nice!"');
     scene.text('She can\'t help but smile at you. "Thanks to genetics, large breasts run in the family. My mother, my grandmother and even my great grandmother were all as well endowed as I am. Just don\'t let Albina know that. I know she\'s very insecure about her own breasts, especially compared to some of the other girls."');
-    if (((s as any).tits ?? 0) >= 4) {
+    if (((st as any).tits ?? 0) >= 4) {
       scene.text('"I\'m aware," you reply. "I try not to make a big deal about it when I see her staring or asking questions, but I know she wants to have breasts that are as big as mine."');
     }
     scene.text('She sighs. "Why do girls these days have to make such a big deal about their breast size? I swear that pornography and social media have made the youth of today overly self-conscious about their bodies. It\'s disgusting."');
@@ -946,10 +946,10 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'No', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
-    if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+    if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       scene.text('Unsure how she would react, you decide not to tell her that you actually are a model.');
     }
     scene.text('"Oh, no. I was just curious was all," you reply. "I could never imagine myself being a model."');
@@ -958,8 +958,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No," she firmly states. "I never wanted to be that kind of model to begin with. Even though it turned out to be a case of very bad judgement on my part, marrying Boris was the perfect excuse for leaving and never looking back."');
     scene.actions([
       { label: 'Ask what kind of modelling she done', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What kind of modelling did you do, if you don\'t mind me asking?"');
     scene.text('"Like I said, I never intended for it be my career, but… I was a rather exceptional erotic model. The best of the best at the studio during the time, in fact."');
@@ -972,24 +972,24 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Compliment her appearance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can see why you chose to be a model," you state. "You\'re one of the most beautiful looking women I\'ve ever seen."');
-    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You're ...
-    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((s as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
+    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You''re...
+    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((st as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
     scene.text('"Any man would be lucky to be dating a woman like you, never mind call you his wife!" you reply. "If you don\'t mind me saying, your… Uhh… Your breasts are incredible!"');
-    if (((s as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
-      // TODO-QSP: dynamic text: "I believe we've had this conversation about looking at my breasts before, <<$pc...
-      scene.text(`"I believe we've had this conversation about looking at my breasts before, ${((s as any).pcs_firstname || '')}…"`);
+    if (((st as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
+      // TODO-QSP: dynamic text: "I believe we''ve had this conversation about looking at my breasts before, <<$p...
+      scene.text(`"I believe we've had this conversation about looking at my breasts before, ${((st as any).pcs_firstname || '')}…"`);
     } else {
-      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
-      // TODO-QSP: dynamic text: "I appreciate your attempt at a compliment <<$pcs_firstname>>, but it's rude to ...
-      scene.text(`"I appreciate your attempt at a compliment ${((s as any).pcs_firstname || '')}, but it's rude to look at a person's breasts like that, even if they are exposed."`);
+      ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['check_out_zoya'] = ((st as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+      // TODO-QSP: dynamic text: "I appreciate your attempt at a compliment <<$pcs_firstname>>, but it''s rude to...
+      scene.text(`"I appreciate your attempt at a compliment ${((st as any).pcs_firstname || '')}, but it's rude to look at a person's breasts like that, even if they are exposed."`);
     }
     scene.text('"Sorry!" you squeak. "I just wanted you to know that I think your breasts are… nice!"');
     scene.text('She can\'t help but smile at you. "Thanks to genetics, large breasts run in the family. My mother, my grandmother and my great grandmother were all as well endowed as I am. Just don\'t let Albina know that. I know she\'s very insecure about her own breasts, especially compared to some of the other girls."');
-    if (((s as any).tits ?? 0) >= 4) {
+    if (((st as any).tits ?? 0) >= 4) {
       scene.text('"I\'m aware," you reply. "I try not to make a big deal about it when I see her staring or asking questions, but I know she wants to have breasts that are as big as mine."');
     }
     scene.text('She sighs. "Why do girls these days have to make such a big deal about their breast size? I swear that pornography and social media have made the youth of today overly self-conscious about their bodies. It\'s disgusting."');
@@ -1008,14 +1008,14 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"That depends on what you want to know," she sternly replies.');
     scene.actions([
       { label: 'What was she like when she was younger?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What was she was she like when she was younger?" you ask.');
     scene.text('Zoya smiles, as if recounting a happy memory. "A very happy little girl who had her sights set on becoming the best dancer the world had ever seen, but she lost that innocence when I left."');
     scene.text('You nod. "She definitely had a bit of a mean streak at school when we were growing up!"');
     scene.text('"She still does," Zoya replies. "But she\'s a lot happier now than when I first returned, and I think she has you to thank for that. Being there for her as <i>more</i> than just her best friend, showing her that she\'s not alone anymore… You really have helped her get out of that dark place she was trapped in all these years."');
-    if (((s as any).npc_had_sex ?? 0)?.['A23']) {
+    if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.text('Your heart skips a beat. Does she know that you and Albina have been fooling around with each other?');
     }
     scene.text('"Oh I don\'t know about that…" you reply as you feel yourself blushing. "I might have been here for her, but I think most of the credit goes to you. You\'re her beloved Mama after all!"');
@@ -1026,16 +1026,16 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Do you worry about her?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
-    // TODO-QSP: dynamic text: "My <<$npc_nickname['A29']>> is always nagging at me about being safe and doing ...
-    scene.text(`"My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
+    // TODO-QSP: dynamic text: "My <<$npc_nickname[''A29'']>> is always nagging at me about being safe and doin...
+    scene.text(`"My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
     scene.text('"All the time," she replies. "It\'s why I\'m happy that she\'s going to the university so she can eventually get herself a good job and make a better life for herself away from the bad influences she\'s been exposed to here. I don\'t want her getting pregnant and having to put her life on hold to raise a baby."');
     scene.actions([
       { label: 'Like you did?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Like you had to do?" you ask.');
     scene.text('She glares at you. "When you put it so bluntly, yes. Children might be in her future, but <i>not</i> before she makes a career for herself first."');
@@ -1046,21 +1046,21 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'She doesn\'t seem like the mother type', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"No offense, but from what I know, she very much isn\'t interested in having children," you reply. "She\'s always practicing safe sex."');
     scene.text('"Not safe enough. The birth control shot she\'s on might protect her from getting pregnant, but it won\'t stop STIs!" she sighs. "I wish she would use the condoms I give her. I\'m worried that she might be allergic to the latex, but is too embarrassed to tell me."');
     scene.text('She then turns to you. "I hope you\'re practicing safe sex as well, young lady? You can never be too careful with these things."');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((s as any).stat ?? 0)?.['vaginal'] === 0) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((st as any).stat ?? 0)?.['vaginal'] === 0) {
       scene.actions([
         { label: 'I\'m still a virgin', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You feel yourself blushing. "Oh. Uhhh… I\'m… I\'m still a virgin…"');
-    // TODO-QSP: dynamic text: "Oh. Oh, I'm sorry for putting you on the spot like that, <<$pcs_firstname>>!" s...
-    scene.text(`"Oh. Oh, I'm sorry for putting you on the spot like that, ${((s as any).pcs_firstname || '')}!" she replies. "My advice in that case would be to make sure you're using both condoms <i>and</i> birth control once you're active."`);
+    // TODO-QSP: dynamic text: "Oh. Oh, I''m sorry for putting you on the spot like that, <<$pcs_firstname>>!" ...
+    scene.text(`"Oh. Oh, I'm sorry for putting you on the spot like that, ${((st as any).pcs_firstname || '')}!" she replies. "My advice in that case would be to make sure you're using both condoms <i>and</i> birth control once you're active."`);
     scene.actions([
       { label: 'Talk about something else', goto: ['zoya_chat', 'pool_chat1'] },
       { label: 'Leave', goto: ['albinahome', 'pool_side'] },
@@ -1070,8 +1070,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I use condoms and birth control', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I use both," you reply. "You can never be too safe when it comes to this kind of thing."');
     scene.text('She smiles and nods. "I\'m glad you see it that way. I just wish that Albina did too. Pregnancy is one thing, but catching an STI would be even worse."');
@@ -1083,8 +1083,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I use birth control, but not condoms', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I\'m in the same boat as Albina," you reply. "I\'m on birth control, but I don\'t use condoms."');
     scene.text('She shakes her head. "You should be using both. Like I said, birth control won\'t stop you from being infected with an STI. Get yourself a pack or two of condoms next time you\'re topping up your birth control."');
@@ -1095,8 +1095,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I use condoms, not birth control', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I use condoms, but not birth control," you reply.');
     scene.text('She shakes her head. "You should be using both. Condoms aren\'t 100% effective and all it takes is a single sperm from a broken condom. Pick up some pills next time you\'re topping up your condoms."');
@@ -1107,12 +1107,12 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I don\'t use protection', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I, uhh… I don\'t use protection," you sheepishly reply. "I just rely on the pullout method."');
-    // TODO-QSP: dynamic text: "The pull-" she gasps. "<<$pcs_firstname>>! He doesn't have to 'finish' inside y...
-    scene.text(`"The pull-" she gasps. "${((s as any).pcs_firstname || '')}! He doesn't have to 'finish' inside you for his sperm to get into your vagina! Not to mention the risk of catching an STI!"`);
+    // TODO-QSP: dynamic text: "The pull-" she gasps. "<<$pcs_firstname>>! He doesn''t have to ''finish'' insid...
+    scene.text(`"The pull-" she gasps. "${((st as any).pcs_firstname || '')}! He doesn't have to 'finish' inside you for his sperm to get into your vagina! Not to mention the risk of catching an STI!"`);
     scene.text('She shakes her head. "You can\'t be so reckless when it comes to pregnancy, especially at your age. Get yourself down to the pharmacy and buy some condoms and birth control pills!"');
     scene.text('You just nod your head. You know she means well, but you get enough badgering from your own mother.');
     scene.actions([
@@ -1124,24 +1124,24 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'She\'s a smart girl', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"She\'s a smart girl," you reply. "A lot smarter than she lets on, actually. I can\'t imagine her doing something stupid like that and disappointing you."');
     scene.text('She\'s smart, but very much stubborn," she replies. "It\'s good that she sticks to her own opinions, but I worry that her stubborn nature will cause her harm some day."');
     scene.actions([
       { label: 'I can watch out for her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can watch out for her for you," you reply. "She does listen to me… Sometimes."');
-    // TODO-QSP: dynamic text: She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don't want her to fee...
-    scene.text(`She smiles.  "I appreciate that, ${((s as any).pcs_firstname || '')}, but I don't want her to feel like she's being manipulated, so don't overstep your bounds as her friend. ' + iif(npc_had_sex['A23'], 'Or whatever your relationship with her might be.', ') + '"`);
-    if (((s as any).npc_had_sex ?? 0)?.['A23']) {
+    // TODO-QSP: dynamic text: She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don''t want her to fe...
+    scene.text('She smiles.  "I appreciate that, ' + ((st as any).pcs_firstname || '') + ', but I don\'t want her to feel like she\'s being manipulated, so don\'t overstep your bounds as her friend. \' + iif(npc_had_sex[\'A23\'], \'Or whatever your relationship with her might be.\', \') + \'"');
+    if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.actions([
         { label: 'My relationship with her?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"My… Relationship with her?" you ask.');
     scene.text('Does she know that you and Albina have been fooling around?');
@@ -1159,8 +1159,8 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I\'ll be careful', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I\'m not saying I would manipulate her," you say. "Just… Make sure she doesn\'t stray <i>too far</i> from the path she wants to go down."');
     scene.text('"That\'s all we can do, isn\'t it?" she sighs. "I\'m confident she can find her own way in life without needing us to guide her, though."');
@@ -1176,16 +1176,16 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Were you excited to be a mother?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Were you excited when you found out you were pregnant with her?" you ask.');
     scene.text('"Not at first, no," she replies. "I was 21 and thought I would have years of university studying ahead of me at the time. Don\'t get wrong, I planned on having children eventually, but only once I had a career in place and was ready to settle down."');
     scene.text('She smiles. "In the end, Albina was a bundle of joy that I never knew I needed. Being a young mother, I was always scared that I would screw it up or have to give her up for adoption, but to my surprise, I settled into motherhood quite easily, despite her largely absent father."');
     scene.actions([
       { label: 'Did you name her after someone?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Is Albina named after anyone in particular, if you don\'t mind me asking? I know a lot of first time parents like to name their children after someone special."');
     scene.text('She smiles. "She is indeed. When I first saw her in my arms when she was born, I saw my mother\'s eyes looking right back at me. Of course, Boris didn\'t even remotely care, so I named her after my mother right there on the spot."');
@@ -1197,12 +1197,12 @@ function enterPoolChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Do you want grandchildren?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Do you want to have grandchildren?" you ask.');
-    // TODO-QSP: dynamic text: "I'm still a bit young for that, <<$pcs_firstname>>!" she laughs. "Yes, I would,...
-    scene.text(`"I'm still a bit young for that, ${((s as any).pcs_firstname || '')}!" she laughs. "Yes, I would, but like I said, I want Albina to live her life first and get a good job before she has children. I don't want her being tied down with a child at such a young age."`);
+    // TODO-QSP: dynamic text: "I''m still a bit young for that, <<$pcs_firstname>>!" she laughs. "Yes, I would...
+    scene.text(`"I'm still a bit young for that, ${((st as any).pcs_firstname || '')}!" she laughs. "Yes, I would, but like I said, I want Albina to live her life first and get a good job before she has children. I don't want her being tied down with a child at such a young age."`);
     scene.text('"I know she doesn\'t feel like it yet, but I think Albina would make an amazing mother," you reply.');
     scene.text('"That may be so, but I\'m not going to force her into it, especially if she\'s not with a man who would make a suitable father. My grandchild will <i>not</i> have someone like Boris as their father."');
     scene.text('You can see the tension on her face as she tries to mask her feelings.');
@@ -1228,15 +1228,15 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I should get going," you say as you stand up. "It was nice chatting with you!"');
     // TODO-QSP: dynamic text: "The pleaure was mine, <<$pcs_firstname>>," she smiles. "Feel free to stop and c...
-    scene.text(`"The pleaure was mine, ${((s as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
+    scene.text(`"The pleaure was mine, ${((st as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
     scene.text('You smile and nod before walking away.');
     scene.actions([
       { label: 'Leave', goto: ['albinahome', 'living_room'] },
     ]);
   } },
     { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You make small talk with Zoya, chatting with her about various topics.');
     scene.actions([
@@ -1250,8 +1250,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('She lights up at your question. "I love it! Ever since I was a teenager, I wanted to help people with mental health struggles. It\'s a very neglected form of healthcare, so I do what I can to ensure that my patients get the help they need."');
     scene.actions([
       { label: 'What made you want to do it?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What made you decide to become a psychiatrist, if you don\'t mind me asking?"');
     scene.text('"My grandparents died before I was born and I was raised by my mother and father alone. Despite that, it was a happy and loving life until my mother was killed in a car accident when I was 16."');
@@ -1267,8 +1267,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'You\'re not from here?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('Something she said caught your attention. "You moved here? So you\'re not from here?"');
     scene.text('"Oh, no. I was born and raised on the outskirts of Kursk. I was always told that both of my grandfathers took part in the big battle that happened there during the Patriotic War."');
@@ -1280,7 +1280,7 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You stand up. "It was nice chatting with you, but I should get going."');
     // TODO-QSP: dynamic text: "The pleaure was mine, <<$pcs_firstname>>," she smiles. "Feel free to stop and c...
-    scene.text(`"The pleaure was mine, ${((s as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
+    scene.text(`"The pleaure was mine, ${((st as any).pcs_firstname || '')}," she smiles. "Feel free to stop and chat whenever you wish."`);
     scene.text('You smile and nod before walking away.');
     scene.actions([
       { label: 'Leave', goto: ['albinahome', 'living_room'] },
@@ -1291,8 +1291,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask for career advice', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What advice would you give to someone who was looking for a job like yours?" you ask politely.');
     scene.text('"You want to be like Albina and study nursing at the university?" she smiles.');
@@ -1300,8 +1300,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Then you should take your studies seriously," she states. "Lives will be in your hands, so you must know <i>exactly</i> what to do and <i>when</i>. A hospital is no place to slack off or second guess yourself."');
     scene.actions([
       { label: 'Talk about Albina going to university', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"You must be proud of Albina wanting to follow in your footsteps," you say with a small smile.');
     scene.text('Zoya beams with pride. "I am. I know she likes to put up a tough exterior, but it turns out she has a real passion for wanting to help children, so I\'ll make sure she gets a top spot working at the hospital\'s pediatric unit when she completes her studies."');
@@ -1314,8 +1314,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Talk about Albina working with children', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I know what you mean about her putting on a tough girl face," you reply. "I didn\'t expect her to be so passionate about working with children, though."');
     scene.text('Oh? And why is that?" Zoya asks.');
@@ -1345,8 +1345,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'How did you meet?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"How did the two of you meet?" you ask.');
     scene.text('She sighs. "I was young and stupid. I don\'t know if Albina has told you this, but I paid for my university studies by posing as an erotic model for the Aphrodite studio."');
@@ -1356,8 +1356,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('The mood turns rather somber as she takes another sip of her wine.');
     scene.actions([
       { label: 'Talk about Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Albina was really excited when she told me you were coming back. It\'s the happiest I\'ve ever seen her, in fact," you smile.');
     scene.text('"She\'s my pride and joy, probably the best thing that\'s ever happened to me, but I wish she had been born to a better father, one that actually cared about her being his child."');
@@ -1387,8 +1387,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'What was he like?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What… What was he like?" you ask.');
     scene.text('She snorts. "A prick. And a cheating, abusive prick at that. What he done to me was bad enough, but the way he treated Albina simply because he didn\'t want her as his child? That was when he showed his true colors."');
@@ -1396,12 +1396,12 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('She nods. "It\'s a very touchy subject for her, but it\'s one I\'ll discuss with her only when she\'s ready to do so. You should do the same."');
     scene.actions([
       { label: 'He cheated on you?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"He cheated on you?" you ask. "But you\'re one of the prettiest people I\'ve ever seen! I can only imagine how you looked when you were younger."');
     // TODO-QSP: dynamic text: She smiles at your compliment. "Thank you <<$pcs_firstname>>, but sadly having a...
-    scene.text(`She smiles at your compliment. "Thank you ${((s as any).pcs_firstname || '')}, but sadly having a trophy wife wasn't good enough for him. He would regularly seduce other young women for sex and even hire escorts, and he was just as abusive to them as he was towards to me."`);
+    scene.text(`She smiles at your compliment. "Thank you ${((st as any).pcs_firstname || '')}, but sadly having a trophy wife wasn't good enough for him. He would regularly seduce other young women for sex and even hire escorts, and he was just as abusive to them as he was towards to me."`);
     scene.text('"He was violent?" you ask, a flash of concern appearing on your face.');
     scene.text('"Not to me at least," she says solemnly. "I can\'t speak for the other women in his life, but while he was very much verbally abusive, he never laid a finger on me. Maybe because I was his \'prized good\' so to speak? God, I can only hope the same can be said for Albina…"');
     scene.actions([
@@ -1424,8 +1424,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Is that why you left?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Was it him acting the way he did that made you decide to leave him?" you ask.');
     scene.text('Her look turns serious. "… Yes… But he made me choose between my future career… and Albina. Leaving my daughter in his clutches is something that I\'ll never forgive myself for doing. Even if I did make a life for myself and was eventually able to reunite with her, I\'ll take the shame of what I done to get here to my grave."');
@@ -1450,8 +1450,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Talk about Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Albina mentioned how he… took his frustration about you… out on her…" you meekly state.');
     scene.text('She snorts. "He done that well before I left. He had nothing but disdain for her the moment she was born. Even being at the hospital for her birth was something he only done to keep up appearances."');
@@ -1487,18 +1487,18 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I did, for a while," she replies. "Only to pay for my university studies, though. I never intended to make a career out of it. Why? Are you interested in such a career?"');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Yes," you reply. "Modelling is something that has always interested me."');
     scene.text('"I don\'t doubt that you have what it takes, just be careful if you do go through with it," she says. "The modelling industry is infamous for taking advantage of the girls who work for them."');
-    if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+    if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       scene.text('Unsure how she would react, you decide to leave out the fact that you already are a model.');
     }
     scene.actions([
       { label: 'Ask what kind of modelling she done', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What kind of modelling did you do, if you don\'t mind me asking?"');
     scene.text('"Like I said, I never intended for it be my career, but… I was a rather exceptional erotic model. The best of the best at the studio during the time, in fact."');
@@ -1511,12 +1511,12 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Compliment her appearance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can see why you chose to be a model," you state. "You\'re one of the most beautiful looking women I\'ve ever seen."');
-    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You're ...
-    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((s as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
+    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You''re...
+    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((st as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
     scene.text('"Maybe," you reply. "But any man would be lucky to be dating a woman like you, never mind call you his wife!"');
     scene.text('She just smiles at you again, and you wonder if it\'s because your compliments are making her feel young again.');
     scene.actions([
@@ -1527,10 +1527,10 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'No', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
-    if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+    if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       scene.text('Unsure how she would react, you decide not to tell her that you actually are a model.');
     }
     scene.text('"Oh, no. I was just curious was all," you reply. "I could never imagine myself being a model."');
@@ -1539,8 +1539,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"No," she firmly states. "I never wanted to be that kind of model to begin with. Even though it turned out to be a case of very bad judgement on my part, marrying Boris was the perfect excuse for leaving and never looking back."');
     scene.actions([
       { label: 'Ask what kind of modelling she done', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What kind of modelling did you do, if you don\'t mind me asking?"');
     scene.text('"Like I said, I never intended for it be my career, but… I was a rather exceptional erotic model. The best of the best at the studio during the time, in fact."');
@@ -1553,12 +1553,12 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Compliment her appearance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can see why you chose to be a model," you state. "You\'re one of the most beautiful looking women I\'ve ever seen."');
-    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You're ...
-    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((s as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
+    // TODO-QSP: dynamic text: She smiles at your compliment, and you think she even blushes a little. "You''re...
+    scene.text(`She smiles at your compliment, and you think she even blushes a little. "You're too kind ${((st as any).pcs_firstname || '')}, but I can assure you that I'm well past my modelling years. I'll be 40 before I know it!"`);
     scene.text('"Maybe," you reply. "But any man would be lucky to be dating a woman like you, never mind call you his wife!"');
     scene.text('She just smiles at you again, and you wonder if it\'s because your compliments are making her feel young again.');
     scene.actions([
@@ -1576,14 +1576,14 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"That depends on what you want to know," she sternly replies.');
     scene.actions([
       { label: 'What was she like when she was younger?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"What was she was she like when she was younger?" you ask.');
     scene.text('Zoya smiles, as if recounting a happy memory. "A very happy little girl who had her sights set on becoming the best dancer the world had ever seen, but she lost that innocence when I left."');
     scene.text('You nod. "She definitely had a bit of a mean streak at school when we were growing up!"');
     scene.text('"She still does," Zoya replies. "But she\'s a lot happier now than when I first returned, and I think she has you to thank for that. Being there for her as <i>more</i> than just her best friend, showing her that she\'s not alone anymore… You really have helped her get out of that dark place she was trapped in all these years."');
-    if (((s as any).npc_had_sex ?? 0)?.['A23']) {
+    if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.text('Your heart skips a beat. Does she know that you and Albina have been fooling around with each other?');
     }
     scene.text('"Oh I don\'t know about that…" you reply as you feel yourself blushing. "I might have been here for her, but I think most of the credit goes to you. You\'re her beloved Mama after all!"');
@@ -1594,16 +1594,16 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Do you worry about her?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
-    // TODO-QSP: dynamic text: "My <<$npc_nickname['A29']>> is always nagging at me about being safe and doing ...
-    scene.text(`"My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
+    // TODO-QSP: dynamic text: "My <<$npc_nickname[''A29'']>> is always nagging at me about being safe and doin...
+    scene.text(`"My ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is always nagging at me about being safe and doing something with my life. Do you ever worry about Albina and what choices she makes?"`);
     scene.text('"All the time," she replies. "It\'s why I\'m happy that she\'s going to the university so she can eventually get herself a good job and make a better life for herself away from the bad influences she\'s been exposed to here. I don\'t want her getting pregnant and having to put her life on hold to raise a baby."');
     scene.actions([
       { label: 'Like you did?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Like you had to do?" you ask.');
     scene.text('She glares at you. "When you put it so bluntly, yes. Children might be in her future, but <i>not</i> before she makes a career for herself first."');
@@ -1614,21 +1614,21 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'She doesn\'t seem like the mother type', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"No offense, but from what I know, she very much isn\'t interested in having children," you reply. "She\'s always practicing safe sex."');
     scene.text('"Not safe enough. The birth control shot she\'s on might protect her from getting pregnant, but it won\'t stop STIs!" she sighs. "I wish she would use the condoms I give her. I\'m worried that she might be allergic to the latex, but is too embarrassed to tell me."');
     scene.text('She then turns to you. "I hope you\'re practicing safe sex as well, young lady? You can never be too careful with these things."');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((s as any).stat ?? 0)?.['vaginal'] === 0) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1  ||  ((st as any).stat ?? 0)?.['vaginal'] === 0) {
       scene.actions([
         { label: 'I\'m still a virgin', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('You feel yourself blushing. "Oh. Uhhh… I\'m… I\'m still a virgin…"');
-    // TODO-QSP: dynamic text: "Oh. Oh, I'm sorry for putting you on the spot like that, <<$pcs_firstname>>!" s...
-    scene.text(`"Oh. Oh, I'm sorry for putting you on the spot like that, ${((s as any).pcs_firstname || '')}!" she replies. "My advice in that case would be to make sure you're using both condoms <i>and</i> birth control once you're active."`);
+    // TODO-QSP: dynamic text: "Oh. Oh, I''m sorry for putting you on the spot like that, <<$pcs_firstname>>!" ...
+    scene.text(`"Oh. Oh, I'm sorry for putting you on the spot like that, ${((st as any).pcs_firstname || '')}!" she replies. "My advice in that case would be to make sure you're using both condoms <i>and</i> birth control once you're active."`);
     scene.actions([
       { label: 'Talk about something else', goto: ['zoya_chat', 'lounge_chat1'] },
       { label: 'Leave', goto: ['albinahome', 'living_room'] },
@@ -1638,8 +1638,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'I use condoms and birth control', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I use both," you reply. "You can never be too safe when it comes to this kind of thing."');
     scene.text('She smiles and nods. "I\'m glad you see it that way. I just wish that Albina did too. Pregnancy is one thing, but catching an STI would be even worse."');
@@ -1651,8 +1651,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I use birth control, but not condoms', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I\'m in the same boat as Albina," you reply. "I\'m on birth control, but I don\'t use condoms."');
     scene.text('She shakes her head. "You should be using both. Like I said, birth control won\'t stop you from being infected with an STI. Get yourself a pack or two of condoms next time you\'re topping up your birth control."');
@@ -1663,8 +1663,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I use condoms, not birth control', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I use condoms, but not birth control," you reply.');
     scene.text('She shakes her head. "You should be using both. Condoms aren\'t 100% effective and all it takes is a single sperm from a broken condom. Pick up some pills next time you\'re topping up your condoms."');
@@ -1675,12 +1675,12 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'I don\'t use protection', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I, uhh… I don\'t use protection," you sheepishly reply. "I just rely on the pullout method."');
-    // TODO-QSP: dynamic text: "The pull-" she gasps. "<<$pcs_firstname>>! He doesn't have to 'finish' inside y...
-    scene.text(`"The pull-" she gasps. "${((s as any).pcs_firstname || '')}! He doesn't have to 'finish' inside you for his sperm to get into your vagina! Not to mention the risk of catching an STI!"`);
+    // TODO-QSP: dynamic text: "The pull-" she gasps. "<<$pcs_firstname>>! He doesn''t have to ''finish'' insid...
+    scene.text(`"The pull-" she gasps. "${((st as any).pcs_firstname || '')}! He doesn't have to 'finish' inside you for his sperm to get into your vagina! Not to mention the risk of catching an STI!"`);
     scene.text('She shakes her head. "You can\'t be so reckless when it comes to pregnancy, especially at your age. Get yourself down to the pharmacy and buy some condoms and birth control pills!"');
     scene.text('You just nod your head. You know she means well, but you get enough badgering from your own mother.');
     scene.actions([
@@ -1692,24 +1692,24 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'She\'s a smart girl', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"She\'s a smart girl," you reply. "A lot smarter than she lets on, actually. I can\'t imagine her doing something stupid like that and disappointing you."');
     scene.text('She\'s smart, but very much stubborn," she replies. "It\'s good that she sticks to her own opinions, but I worry that her stubborn nature will cause her harm some day."');
     scene.actions([
       { label: 'I can watch out for her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I can watch out for her for you," you reply. "She does listen to me… Sometimes."');
-    // TODO-QSP: dynamic text: She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don't want her to fee...
-    scene.text(`She smiles.  "I appreciate that, ${((s as any).pcs_firstname || '')}, but I don't want her to feel like she's being manipulated, so don't overstep your bounds as her friend. ' + iif(npc_had_sex['A23'], 'Or whatever your relationship with her might be.', ') + '"`);
-    if (((s as any).npc_had_sex ?? 0)?.['A23']) {
+    // TODO-QSP: dynamic text: She smiles.  "I appreciate that, <<$pcs_firstname>>, but I don''t want her to fe...
+    scene.text('She smiles.  "I appreciate that, ' + ((st as any).pcs_firstname || '') + ', but I don\'t want her to feel like she\'s being manipulated, so don\'t overstep your bounds as her friend. \' + iif(npc_had_sex[\'A23\'], \'Or whatever your relationship with her might be.\', \') + \'"');
+    if (((st as any).npc_had_sex ?? 0)?.['A23']) {
       scene.actions([
         { label: 'My relationship with her?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"My… Relationship with her?" you ask.');
     scene.text('Does she know that you and Albina have been fooling around?');
@@ -1727,8 +1727,8 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I\'ll be careful', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"I\'m not saying I would manipulate her," you say. "Just… Make sure she doesn\'t stray <i>too far</i> from the path she wants to go down."');
     scene.text('"That\'s all we can do, isn\'t it?" she sighs. "I\'m confident she can find her own way in life without needing us to guide her, though."');
@@ -1744,16 +1744,16 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Were you excited to be a mother?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Were you excited when you found out you were pregnant with her?" you ask.');
     scene.text('"Not at first, no," she replies. "I was 21 and thought I would have years of university studying ahead of me at the time. Don\'t get wrong, I planned on having children eventually, but only once I had a career in place and was ready to settle down."');
     scene.text('She smiles. "In the end, Albina was a bundle of joy that I never knew I needed. Being a young mother, I was always scared that I would screw it up or have to give her up for adoption, but to my surprise, I settled into motherhood quite easily, despite her largely absent father."');
     scene.actions([
       { label: 'Did you name her after someone?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Is Albina named after anyone in particular, if you don\'t mind me asking? I know a lot of first time parents like to name their children after someone special."');
     scene.text('She smiles. "She is indeed. When I first saw her in my arms when she was born, I saw my mother\'s eyes looking right back at me. Of course, Boris didn\'t even remotely care, so I named her after my mother right there on the spot."');
@@ -1765,12 +1765,12 @@ function enterLoungeChat1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Do you want grandchildren?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/albinahome/zoya.jpg');
     scene.text('"Do you want to have grandchildren?" you ask.');
-    // TODO-QSP: dynamic text: "I'm still a bit young for that, <<$pcs_firstname>>!" she laughs. "Yes, I would,...
-    scene.text(`"I'm still a bit young for that, ${((s as any).pcs_firstname || '')}!" she laughs. "Yes, I would, but like I said, I want Albina to live her life first and get a good job before she has children. I don't want her being tied down with a child at such a young age."`);
+    // TODO-QSP: dynamic text: "I''m still a bit young for that, <<$pcs_firstname>>!" she laughs. "Yes, I would...
+    scene.text(`"I'm still a bit young for that, ${((st as any).pcs_firstname || '')}!" she laughs. "Yes, I would, but like I said, I want Albina to live her life first and get a good job before she has children. I don't want her being tied down with a child at such a young age."`);
     scene.text('"I know she doesn\'t feel like it yet, but I think Albina would make an amazing mother," you reply.');
     scene.text('"That may be so, but I\'m not going to force her into it, especially if she\'s not with a man who would make a suitable father. My grandchild will <i>not</i> have someone like Boris as their father."');
     scene.text('You can see the tension on her face as she tries to mask her feelings.');

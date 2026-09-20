@@ -4,7 +4,7 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'ballet_pushkin_center', ((s as any).locArgs?.[0] ?? 0));
   (s as any).region = 'puskin';
   ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Pushkin Residential School';
@@ -20,6 +20,36 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Back to street', goto: ['pushkin', ''] },
   ]);
   scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'ballet_pushkin_center', ((s as any).locArgs?.[0] ?? 0));
+  (s as any).region = 'puskin';
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Pushkin Residential School';
+  scene.img('images/' + 'locations/pushkin/ballet_residence/residence.jpg');
+  if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+  }
+  qspCall(s, 'stat', '');
+  qspCall(s, 'core_library', 'stage_title');
+  scene.text('You can see the apartment block that\'s been converted into a residential accommodation for the school. The street always seems to be packed with cars but there is few people on the street at this time.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Press the buzzer', goto: ['pushkin_ballet_res', 'warden'] },
+    { label: 'Back to street', goto: ['pushkin', ''] },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const pushkin_ballet_center: LocationDef = {

@@ -33,7 +33,7 @@ function enterAbdCustomerGateBuyout(s: GameState, scene: SceneBuilder): void {
 function enterAbdCustomerGo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 3) + 1;
+  (s as any).i = (Math.floor(Math.random() * 3) + 1);
   scene.img(`images/locations/shared/abduction/sex/ledonfour${((s as any).i || '')}.mp4`);
   scene.text('Your master removes your regular chain and attaches a leash to your collar.');
   scene.text('You are led up the stairs into the house above your cellar.');
@@ -56,8 +56,8 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
   (s as any).charTypeRand = 3;
   (s as any).bodyTypeRand = 3;
   (s as any).heightTypeRand = 3;
-  (s as any).customerAge = Math.floor(Math.random() * 76) + 15;
-  (s as any).raceRand = Math.floor(Math.random() * 3) + 0;
+  (s as any).customerAge = (Math.floor(Math.random() * 76) + 15);
+  (s as any).raceRand = (Math.floor(Math.random() * 3) + 0);
   if ((!((s as any).raceRand ?? 0))) {
     (s as any).raceType = 'white';
     (s as any).dickChance = 30;
@@ -68,9 +68,9 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).raceRand ?? 0) === 1) {
       (s as any).raceType = 'black';
       (s as any).dickChance = 40;
-      (s as any).charTypeRand = ((s as any).charTypeRand ?? 0) + (Math.floor(Math.random() * 3) + 0);
-      (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + (Math.floor(Math.random() * 7) + 0);
-      (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + (Math.floor(Math.random() * 7) + 0);
+      (s as any).charTypeRand = ((s as any).charTypeRand ?? 0) + ((Math.floor(Math.random() * 3) + 0));
+      (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * 7) + 0));
+      (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * 7) + 0));
     } else {
       if (((s as any).raceRand ?? 0) === 2) {
         (s as any).raceType = 'asian';
@@ -87,14 +87,14 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).buyout ?? 0) === 1) {
       (s as any).dick = 24;
     } else {
-      (s as any).dickRand = Math.floor(Math.random() * 100) + 1;
+      (s as any).dickRand = (Math.floor(Math.random() * 100) + 1);
       if (((s as any).dickRand ?? 0) <= ((s as any).dickChance ?? 0)) {
-        (s as any).dick = Math.floor(Math.random() * 26) + 15;
+        (s as any).dick = (Math.floor(Math.random() * 26) + 15);
       } else {
         if (((s as any).dickRand ?? 0) <= (((s as any).dickChance ?? 0) * 2)) {
-          (s as any).dick = Math.floor(Math.random() * 15) + 10;
+          (s as any).dick = (Math.floor(Math.random() * 15) + 10);
         } else {
-          (s as any).dick = Math.floor(Math.random() * 10) + 5;
+          (s as any).dick = (Math.floor(Math.random() * 10) + 5);
         }
       }
     }
@@ -104,29 +104,29 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
   (s as any).throatDMG = (((s as any).dick ?? 0) - ((s as any).pcs_throat ?? 0)) * 2;
   if (((s as any).dick ?? 0) >= 30) {
     (s as any).dick_girth = 'monstrous';
-    (s as any).cumVol = Math.floor(Math.random() * 2) + 4;
+    (s as any).cumVol = (Math.floor(Math.random() * 2) + 4);
   } else {
     if (((s as any).dick ?? 0) >= 25) {
       (s as any).dick_girth = 'huge';
       (s as any).cumVol = ((s as any).cumVol ?? 0) + (1);
-      (s as any).cumVol = Math.floor(Math.random() * 3) + 3;
+      (s as any).cumVol = (Math.floor(Math.random() * 3) + 3);
     } else {
       if (((s as any).dick ?? 0) >= 20) {
         (s as any).dick_girth = 'very big';
-        (s as any).cumVol = Math.floor(Math.random() * 4) + 2;
+        (s as any).cumVol = (Math.floor(Math.random() * 4) + 2);
       } else {
         if (((s as any).dick ?? 0) >= 15) {
           (s as any).dick_girth = 'big';
-          (s as any).cumVol = Math.floor(Math.random() * 3) + 2;
+          (s as any).cumVol = (Math.floor(Math.random() * 3) + 2);
         } else {
           if (((s as any).dick ?? 0) >= 10) {
             (s as any).dick_girth = 'regular';
             (s as any).cumVol = ((s as any).cumVol ?? 0) - (1);
-            (s as any).cumVol = Math.floor(Math.random() * 4) + 1;
+            (s as any).cumVol = (Math.floor(Math.random() * 4) + 1);
           } else {
             (s as any).dick_girth = 'tiny';
             (s as any).cumVol = ((s as any).cumVol ?? 0) - (2);
-            (s as any).cumVol = Math.floor(Math.random() * 3) + 1;
+            (s as any).cumVol = (Math.floor(Math.random() * 3) + 1);
           }
         }
       }
@@ -228,7 +228,7 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
     scene.text(`The customer is a ${((s as any).heightType || '')} ${((s as any).bodyType || '')} ${((s as any).raceType || '')}.`);
     // TODO-QSP: dynamic text: Kneeling in front of him, you look up and see the <<$charType>> look in his eyes...
     scene.text(`Kneeling in front of him, you look up and see the ${((s as any).charType || '')} look in his eyes.`);
-    // TODO-QSP: dynamic text: You then look down and see his crotch directly in front of you. It's obvious tha...
+    // TODO-QSP: dynamic text: You then look down and see his crotch directly in front of you. It''s obvious th...
     scene.text(`You then look down and see his crotch directly in front of you. It's obvious that he has something ${((s as any).dick_girth || '')} in his pants.`);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
@@ -237,7 +237,7 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
     scene.text('"No, she definitely is not! How many has it been so far? Four, five?"');
     scene.text('"In your establishment, I have paid for six virgins in total. This one is the seventh.');
     if (((s as any).age ?? 0) < 17) {
-      // TODO-QSP: dynamic text: "Good number. Good slut, too. She's only <<age>> years old, so her pussy will be...
+      // TODO-QSP: dynamic text: "Good number. Good slut, too. She''s only <<age>> years old, so her pussy will b...
       scene.text(`"Good number. Good slut, too. She's only ${((s as any).age || '')} years old, so her pussy will be especially tight."`);
       scene.text('"That\'s how I like it."');
     } else {
@@ -264,17 +264,17 @@ function enterAbdCustomerBuyout1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/leonid/leonid.jpg');
   scene.text('As you look up at his face, a chill runs down your spine - you know him!');
-  // TODO-QSP: dynamic text: You remember this man from one of the parent-school conferences. It's Dimka's da...
+  // TODO-QSP: dynamic text: You remember this man from one of the parent-school conferences. It''s Dimka''s ...
   scene.text(`You remember this man from one of the parent-school conferences. It's Dimka's dad, ${((s as any).bName || '')}!`);
-  // TODO-QSP: dynamic text: He recognizes you too. "Oh… what the? Who do we have here? Aren't you that missi...
+  // TODO-QSP: dynamic text: He recognizes you too. "Oh… what the? Who do we have here? Aren''t you that miss...
   scene.text(`He recognizes you too. "Oh… what the? Who do we have here? Aren't you that missing girl, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}?`);
-  // TODO-QSP: dynamic text: With a trembling voice, only a few words leave your mouth. "Th… that's me mister...
+  // TODO-QSP: dynamic text: With a trembling voice, only a few words leave your mouth. "Th… that''s me miste...
   scene.text(`With a trembling voice, only a few words leave your mouth. "Th… that's me mister ${((s as any).bSurname || '')}…"`);
   scene.text('"You do realize that the police have already given up searching for you. As if they made any effort though…"');
   scene.text('"I-I don\'t even know how long I\'ve been here. The only thing I remember is being a plaything for these perverts…"');
   scene.text('There is a short period of silence, but despite the unexpected situation, you keep kneeling with your back straight and breasts jutting forward, as you have been trained to do.');
   scene.img('images/locations/shared/abduction/sex/slavewhorekneel2.jpg');
-  // TODO-QSP: dynamic text: The look on <<$bName>>'s face then changes from surprised to something else.
+  // TODO-QSP: dynamic text: The look on <<$bName>>''s face then changes from surprised to something else.
   scene.text(`The look on ${((s as any).bName || '')}'s face then changes from surprised to something else.`);
   scene.text('He approaches you and gently caresses your face. "Plaything, you say? And do you like it?"');
   scene.text('Surprised by such a question, you consider how to reply:');
@@ -288,9 +288,9 @@ function enterAbdCustomerBuyout1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Admit you like to be dominated, but this is too much', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'self', 'hard');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-buyout2');
+    qspCall(st, 'willpower', 'misc', 'self', 'hard');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-buyout2');
   } },
     ]);
   }
@@ -308,7 +308,7 @@ function enterAbdCustomerBuyout2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'d rather you didn\'t let her know how I ended up…" you meekly reply.');
   scene.text('"This establishment really gets the job done. I must commend the owner."');
   scene.text('He leaves the room and you can hear the echo of a discussion between him and your master.');
-  // TODO-QSP: dynamic text: After a while, <<$bName>> returns. "Let's go <<$pcs_firstname>>." He grabs your ...
+  // TODO-QSP: dynamic text: After a while, <<$bName>> returns. "Let''s go <<$pcs_firstname>>." He grabs your...
   scene.text(`After a while, ${((s as any).bName || '')} returns. "Let's go ${((s as any).pcs_firstname || '')}." He grabs your leash and leads you outside the room into the hallway.`);
   scene.text('"B-but… where are you taking me? I\'ve never been in this part of the house before."');
   scene.text('"You still don\'t understand, do you slut? I own you now. I\'ve just bought you and you are now my property. You are… my slave."');
@@ -341,9 +341,9 @@ function enterAbdCustomerBuyout3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Do nothing', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-fuckAnalRough');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-fuckAnalRough');
   } },
     ]);
   }
@@ -357,7 +357,7 @@ function enterAbdCustomerBuyout3(s: GameState, scene: SceneBuilder): void {
 function enterAbdCustomerBuyout4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/abduction/sex/slavewhorefuckanalroughleonid2.jpg');
-  // TODO-QSP: dynamic text: You are left lying on the floor with <<$bName>>'s cum still flowing out of your ...
+  // TODO-QSP: dynamic text: You are left lying on the floor with <<$bName>>''s cum still flowing out of your...
   scene.text(`You are left lying on the floor with ${((s as any).bName || '')}'s cum still flowing out of your gaping asshole.`);
   scene.text('You can hear the echo of his and your master\'s voices discussing something you can\'t make out.');
   // TODO-QSP: dynamic text: A few minutes later, <<$bName>> comes back into the room. "I really like you <<$...
@@ -583,13 +583,13 @@ function enterAbdCustomerUnzip(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).dick ?? 0) < 15  &&  ((s as any).pcs_throat ?? 0) > ((s as any).dick ?? 0)) {
         scene.img('images/locations/shared/abduction/sex/unzip3.mp4');
-        // TODO-QSP: dynamic text: You look at his <<$dick_girth>> cock in relief, thinking that it's nothing you c...
+        // TODO-QSP: dynamic text: You look at his <<$dick_girth>> cock in relief, thinking that it''s nothing you ...
         scene.text(`You look at his ${((s as any).dick_girth || '')} cock in relief, thinking that it's nothing you can't handle.`);
       }
     }
   }
   if (((s as any).pcs_throat ?? 0) < ((s as any).dick ?? 0)) {
-    // TODO-QSP: dynamic text: It's obvious that his <<$dick_girth>> dick is above your skill level and you kno...
+    // TODO-QSP: dynamic text: It''s obvious that his <<$dick_girth>> dick is above your skill level and you kn...
     scene.text(`It's obvious that his ${((s as any).dick_girth || '')} dick is above your skill level and you know you can't safely swallow it whole.`);
     qspCall(s, 'willpower', 'bj', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -601,10 +601,10 @@ function enterAbdCustomerUnzip(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Force yourself on his cock', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-suckForceself');
+    qspCall(st, 'willpower', 'bj', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-suckForceself');
   } },
       ]);
     }
@@ -624,10 +624,10 @@ function enterAbdCustomerUnzip(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Deepthroat his cock', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-suckDeep');
+    qspCall(st, 'willpower', 'bj', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-suckDeep');
   } },
       ]);
     }
@@ -641,7 +641,7 @@ function enterAbdCustomerUnzip(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdCustomerShow(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhoretease${((s as any).i || '')}.mp4`);
   scene.text('You decide to tease the customer by jiggling and squeezing your breasts.');
   scene.text('After a few minutes, it\'s obvious that he wants something more.');
@@ -655,12 +655,12 @@ function enterAbdCustomerShow(s: GameState, scene: SceneBuilder): void {
 function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 15, 'sub');
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobtip${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: You try your best to suck the head of his <<dick>> cm sized <<$dick_girth>> dick...
   scene.text(`You try your best to suck the head of his ${((s as any).dick || '')} cm sized ${((s as any).dick_girth || '')} dick.`);
   if (((s as any).pcs_throat ?? 0) < ((s as any).dick ?? 0)) {
-    // TODO-QSP: dynamic text: It's obvious that his <<$dick_girth>> dick is above your skill level and you kno...
+    // TODO-QSP: dynamic text: It''s obvious that his <<$dick_girth>> dick is above your skill level and you kn...
     scene.text(`It's obvious that his ${((s as any).dick_girth || '')} dick is above your skill level and you know you can't safely swallow it whole.`);
   } else {
     // TODO-QSP: dynamic text: Even though his dick is <<$dick_girth>>, you know you could take it all the way ...
@@ -668,7 +668,7 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).charType ?? 0) === 'sadistic') {
     if (((s as any).buyout ?? 0) === 1) {
-      // TODO-QSP: dynamic text: <<$bName>> is starting to get annoyed. He's obviously not happy that all you can...
+      // TODO-QSP: dynamic text: <<$bName>> is starting to get annoyed. He''s obviously not happy that all you ca...
       scene.text(`${((s as any).bName || '')} is starting to get annoyed. He's obviously not happy that all you can do is suck the tip of his cock.`);
     } else {
       scene.text('Your customer is starting to get annoyed. He\'s obviously not happy that all you can do is suck the tip of his cock.');
@@ -685,7 +685,7 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).charType ?? 0) === 'neutral') {
       scene.text('Your customer seems displeased by your performance. You\'re starting to worry about what he\'ll do if you don\'t satisfy him well enough…');
-      (s as any).forceChance = Math.floor(Math.random() * 100) + 1;
+      (s as any).forceChance = (Math.floor(Math.random() * 100) + 1);
       if (((s as any).forceChance ?? 0) <= 70) {
         scene.actions([
           { label: 'Continue sucking the tip', goto: ['abductionCustomer', 'abdCustomer-suckForced'] },
@@ -706,10 +706,10 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Force yourself on his cock', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-suckForceself');
+    qspCall(st, 'willpower', 'bj', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-suckForceself');
   } },
           ]);
         }
@@ -724,10 +724,10 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Deepthroat his cock', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-suckDeep');
+    qspCall(st, 'willpower', 'bj', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-suckDeep');
   } },
           ]);
         }
@@ -750,7 +750,7 @@ function enterAbdCustomerSuckForceself(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   ((s as any).pain = (s as any).pain ?? {})['throat'] = ((s as any).pain['throat'] ?? 0) + (((s as any).throatDMG ?? 0));
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 3) + 1;
+  (s as any).i = (Math.floor(Math.random() * 3) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobselfforced${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: Despite knowing you will probably hurt yourself, you force yourself on his <<dic...
   scene.text(`Despite knowing you will probably hurt yourself, you force yourself on his ${((s as any).dick || '')} cm long cock all the way down to the base.`);
@@ -769,7 +769,7 @@ function enterAbdCustomerSuckForced(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'rough', 'deepthroat', 'humiliation');
   qspCall(s, 'stat', '');
   (s as any).endPunishment = 1;
-  (s as any).i = Math.floor(Math.random() * 6) + 1;
+  (s as any).i = (Math.floor(Math.random() * 6) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobforced${((s as any).i || '')}.mp4`);
   if (((s as any).buyout ?? 0) === 1) {
     // TODO-QSP: dynamic text: <<$bName>> growls and suddenly pulls his cock out of your mouth.
@@ -804,7 +804,7 @@ function enterAbdCustomerSuckDeep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 6) + 1;
+  (s as any).i = (Math.floor(Math.random() * 6) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjob${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: You swallow his <<$dick_girth>> cock all the way down to his balls.
   scene.text(`You swallow his ${((s as any).dick_girth || '')} cock all the way down to his balls.`);
@@ -855,10 +855,10 @@ function enterAbdCustomerFuck(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Beg him to be kind', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-beg');
+    qspCall(st, 'willpower', 'sex', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-beg');
   } },
       ]);
     }
@@ -912,7 +912,7 @@ function enterAbdCustomerBeg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dick ?? 0) >= 15) {
     scene.text('"I\'m scared of your dick, sir!"');
   }
-  (s as any).bekindChance = Math.floor(Math.random() * 100) + 1;
+  (s as any).bekindChance = (Math.floor(Math.random() * 100) + 1);
   (s as any).endPunishment = 0;
   if (((s as any).charType ?? 0) === 'neutral'  ||  ((s as any).charType ?? 0) === 'kind') {
     scene.text('"Alright girl, you\'re lucky that I\'m feeling generous today."');
@@ -930,7 +930,7 @@ function enterAbdCustomerBeg(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).endPunishment = 1;
     scene.text('"A slave has no right to ask what will happen to it!"');
-    (s as any).hardChance = Math.floor(Math.random() * 100) + 1;
+    (s as any).hardChance = (Math.floor(Math.random() * 100) + 1);
     scene.text('"I\'ll fuck you however I want, so shut up bitch!"');
     if (((s as any).hardChance ?? 0) <= 50) {
       if ((!((s as any).vagOrAss ?? 0))) {
@@ -961,7 +961,7 @@ function enterAbdCustomerBeg(s: GameState, scene: SceneBuilder): void {
 function enterAbdCustomerFuckAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanal${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: The customer puts some lubricant on his <<$dick_girth>> cock and penetrates your...
   scene.text(`The customer puts some lubricant on his ${((s as any).dick_girth || '')} cock and penetrates your ass.`);
@@ -991,11 +991,11 @@ function enterAbdCustomerFuckAnalRough(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
   qspCall(s, 'arousal', 'anal', 30, 'sub', 'rough', 'bound');
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanalrough${((s as any).i || '')}.mp4`);
   if (((s as any).buyout ?? 0) === 1) {
     scene.img('images/locations/shared/abduction/sex/slavewhorefuckanalroughleonid1.jpg');
-    // TODO-QSP: dynamic text: <<$bName>> takes you by your leash and positions your body as if it's just meat ...
+    // TODO-QSP: dynamic text: <<$bName>> takes you by your leash and positions your body as if it''s just meat...
     scene.text(`${((s as any).bName || '')} takes you by your leash and positions your body as if it's just meat to be used.`);
   } else {
     scene.text('The man takes you by your leash and positions your body as if it\'s just meat to be used.');
@@ -1048,7 +1048,7 @@ function enterAbdCustomerFuckAnalDeep(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 1) + 1;
+  (s as any).i = (Math.floor(Math.random() * 1) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanaldeep${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: His member is <<$dick_girth>> and your ass is unable to accommodate it.
   scene.text(`His member is ${((s as any).dick_girth || '')} and your ass is unable to accommodate it.`);
@@ -1088,7 +1088,7 @@ function enterAbdCustomerFuckAnalDeep(s: GameState, scene: SceneBuilder): void {
 function enterAbdCustomerFuckNormal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorefucknormal${((s as any).i || '')}.mp4`);
   scene.text('The customer penetrates your pussy and fucks you.');
   if (((s as any).vagDMG ?? 0) <= 0) {
@@ -1129,7 +1129,7 @@ function enterAbdCustomerFuckNormal(s: GameState, scene: SceneBuilder): void {
 function enterAbdCustomerFuckRough(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 2);
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorefuckrough${((s as any).i || '')}.mp4`);
   scene.text('The man takes you by your leash and positions your body as if it\'s just meat to be used.');
   scene.text('What comes next is an excruciatingly rough fuck that clearly shows he has no regard for all the pain you have to endure.');
@@ -1178,7 +1178,7 @@ function enterAbdCustomerFuckDeep(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'stat', '');
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorefuckdeep${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: His member is <<$dick_girth>> and your vagina is unable to accommodate it.
   scene.text(`His member is ${((s as any).dick_girth || '')} and your vagina is unable to accommodate it.`);
@@ -1228,10 +1228,10 @@ function enterAbdCustomerCumGate(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Inside your pussy', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cum_inside', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-cumPussy');
+    qspCall(st, 'willpower', 'cum_inside', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-cumPussy');
   } },
         ]);
       }
@@ -1245,10 +1245,10 @@ function enterAbdCustomerCumGate(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Inside your ass', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cum_inside_anal', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-cumAss');
+    qspCall(st, 'willpower', 'cum_inside_anal', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-cumAss');
   } },
         ]);
       }
@@ -1262,10 +1262,10 @@ function enterAbdCustomerCumGate(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'In your mouth', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'swallow', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abductionCustomer', 'abdCustomer-cumMouth');
+    qspCall(st, 'willpower', 'swallow', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abductionCustomer', 'abdCustomer-cumMouth');
   } },
         ]);
       }
@@ -1280,7 +1280,7 @@ function enterAbdCustomerCumGate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdCustomerCum(s: GameState, scene: SceneBuilder): void {
-  (s as any).cumRand = Math.floor(Math.random() * 100) + 1;
+  (s as any).cumRand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).cumRand ?? 0) > 75  &&  ((s as any).cumRand ?? 0) <= 100) {
     scene.text('He decides to cum inside your pussy.');
     scene.actions([
@@ -1311,7 +1311,7 @@ function enterAbdCustomerCum(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdCustomerCumPussy(s: GameState, scene: SceneBuilder): void {
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorecumpussy${((s as any).i || '')}.mp4`);
   if (((s as any).vagDMG ?? 0) > 0) {
     // TODO-QSP: dynamic text: As he pumps his cum into your vagina, you feel the tip of his <<$dick_girth>> co...
@@ -1355,7 +1355,7 @@ function enterAbdCustomerCumPussy(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorecumass${((s as any).i || '')}.mp4`);
   if (((s as any).assDMG ?? 0) > 0) {
     // TODO-QSP: dynamic text: You can feel his <<$dick_girth>> cock slamming against your intestinal wall as h...
@@ -1388,10 +1388,10 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).cumVol ?? 0) >= 5) {
         if (((s as any).buyout ?? 0) === 1) {
-          // TODO-QSP: dynamic text: <<$bName>>'s <<$dick_girth>> member is buried <<dick>> centimeters deep inside y...
+          // TODO-QSP: dynamic text: <<$bName>>''s <<$dick_girth>> member is buried <<dick>> centimeters deep inside ...
           scene.text(`${((s as any).bName || '')}'s ${((s as any).dick_girth || '')} member is buried ${((s as any).dick || '')} centimeters deep inside your intestines, with each thrust forcefully hitting your intestinal walls.`);
         } else {
-          // TODO-QSP: dynamic text: The customer's <<$dick_girth>> member is buried <<dick>> centimeters deep inside...
+          // TODO-QSP: dynamic text: The customer''s <<$dick_girth>> member is buried <<dick>> centimeters deep insid...
           scene.text(`The customer's ${((s as any).dick_girth || '')} member is buried ${((s as any).dick || '')} centimeters deep inside your intestines, with each thrust forcefully hitting your intestinal walls.`);
         }
         scene.text('You feel an increasing amount of pressure and stretching pain as he pumps your intestines full of cum.');
@@ -1409,10 +1409,10 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).buyout ?? 0) === 1) {
-    qspCall(s, 'npcgeneratec', '', 0, ((s as any).bName ?? 0), Math.floor(Math.random() * 17) + 18);
+    qspCall(s, 'npcgeneratec', '', 0, ((s as any).bName ?? 0), (Math.floor(Math.random() * 17) + 18));
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   } else {
-    qspCall(s, 'npcgeneratec', '', 0, 'customer', Math.floor(Math.random() * 17) + 18);
+    qspCall(s, 'npcgeneratec', '', 0, 'customer', (Math.floor(Math.random() * 17) + 18));
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   }
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
@@ -1434,7 +1434,7 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdCustomerCumMouth(s: GameState, scene: SceneBuilder): void {
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorecummouth${((s as any).i || '')}.mp4`);
   if (((s as any).throatDMG ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your aching throat is penetrated again as he buries his <<$dick_girth>> cock to ...
@@ -1475,7 +1475,7 @@ function enterAbdCustomerCumMouth(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdCustomerCumFace(s: GameState, scene: SceneBuilder): void {
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/slavewhorecumface${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: He takes his <<$dick_girth>> dick and points it towards your face.
   scene.text(`He takes his ${((s as any).dick_girth || '')} dick and points it towards your face.`);

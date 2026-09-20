@@ -29,14 +29,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Return to what you were doing', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/Sad.jpg');
     scene.text('');
     scene.text('You feel bad about missing your appointment, but you have other things to do now. You tell yourself that you\'ll see him again as soon as possible.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReturn(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReturn(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -45,8 +45,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Return to what you were doing', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/Sad.jpg');
     scene.text('');
     scene.text('You feel bad about missing your appointment, but you have other things to do now. You tell yourself that you\'ll see him again as soon as possible.');
@@ -60,8 +60,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go see your therapist', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMoveToTherapist(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMoveToTherapist(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/clinic/therapist/schoolWalk.mp4');
     scene.text('You walk to your therapist\'s office.');
     scene.actions([
@@ -76,8 +76,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('… But you realize you are much to far away, there\'s no way you can make it on time.');
     scene.actions([
       { label: 'Return to what you were doing', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterIgnoreCost(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/Sad.jpg');
     scene.text('');
     scene.text('You feel terrible about missing your appointment. You tell yourself that you\'ll see him again as soon as possible.');

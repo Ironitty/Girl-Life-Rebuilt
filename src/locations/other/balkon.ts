@@ -61,9 +61,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     scene.actions([
       { label: 'Smoke a joint', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'drugs', 'joint');
-    qspGoto(s, 'balkon', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'drugs', 'joint');
+    qspGoto(st, 'balkon', 'start');
   } },
     ]);
   }
@@ -75,10 +75,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the living room', handler: (st: GameState) => {
-    if (((s as any).loc ?? 0) === 'sitr') {
-      qspGoto(s, 'sitr', '');
+    if (((st as any).loc ?? 0) === 'sitr') {
+      qspGoto(st, 'sitr', '');
     } else {
-      qspGoto(s, 'sitr2x', '');
+      qspGoto(st, 'sitr2x', '');
     }
   } },
     { label: 'Approach the railing', goto: ['balkon2', 'niz'] },

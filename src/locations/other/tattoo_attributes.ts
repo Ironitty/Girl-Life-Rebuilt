@@ -7,7 +7,7 @@ import type { SceneBuilder } from '../../core/scene';
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).TatQuality = 0;
   (s as any).TatPrice = 0;
-  if (hasLocation('$attributes_tattoo_' + ((s as any).locArgs?.[0] ?? 0))) {
+  if (hasLocation('$attributes_tattoo_' + Number((s as any).locArgs?.[0] ?? 0))) {
     // TODO-QSP: gs '$attributes_tattoo_<<$ARGS[0]>>', ARGS[1]
   }
   if ((!((s as any).TatQuality ?? 0))) {

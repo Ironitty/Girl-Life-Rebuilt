@@ -16,7 +16,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['rad_date'] >= 1) {
     scene.actions([
       { label: 'Ask about him dating Anushka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You decide to ask him about Anushka to get his side of the story. "So you and Nush used to date, right?"');
@@ -28,7 +28,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('Now he sounds more like the Radomir you know, all smug and proud of himself.');
     scene.actions([
       { label: 'So what happened?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You roll your eyes slightly at him bragging. "So what happened? Why did you break up?"');
@@ -43,9 +43,9 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He shakes his head. "No, but it should have been. I should have broke up with her then." He shrugs. "But I didn\'t. I wanted to eat my cake and have it too. Sleep with all the girls I could, while having an amazing girlfriend at the same time."');
     scene.actions([
       { label: 'So she caught you cheating?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    if (((s as any).anushkaQW ?? 0)?.['rad_date'] < 2) {
-      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['rad_date'] = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    if (((st as any).anushkaQW ?? 0)?.['rad_date'] < 2) {
+      ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['rad_date'] = 2;
     }
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
@@ -62,7 +62,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He sighs. "No. She was starting to get really clingy and would get pissed if a girl so much as looked at me or talked to one. It was making us fight all the time and I was getting tired of it."');
     scene.actions([
       { label: 'Can you blame her?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You snort a laugh. "Can you blame her? You proved she couldn\'t trust you around other girls."');
@@ -71,7 +71,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He nods. "Yeah, pretty much."');
     scene.actions([
       { label: 'Do you regret it?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('This was really not what you were expecting from him since he typically acts so cocky and uncaring. "Do you regret it?"');
@@ -97,10 +97,10 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['radspy'] === 1  ||  ((s as any).radomirQW ?? 0)?.['nush_sex'] === 1) {
     scene.actions([
       { label: 'Ask about him still hooking up with Anushka', handler: (st: GameState) => {
-    if (((s as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
-      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['rad_date'] = 1;
+    if (((st as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
+      ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['rad_date'] = 1;
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You decide to ask about him and Anushka still hooking up. "So even though you and Nush broke up, you still hook up?"');
@@ -120,7 +120,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['valspy'] === 1) {
     scene.actions([
       { label: 'Ask if he knows about Anushka and Valentin hooking up', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You wonder if you should even bring this up, but your curiosity is more than you can handle. "Are you aware Val and Nush are smashing?"');
@@ -138,8 +138,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['marspy'] === 1) {
     scene.actions([
       { label: 'Ask if he knows about Anushka and Marcus hooking up', handler: (st: GameState) => {
-    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['marspyknow'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['marspyknow'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You wonder if you should even bring this up, but your curiosity is more than you can handle. "Are you aware Marcus and Nush are smashing?"');
@@ -159,10 +159,10 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).radomirQW ?? 0)?.['had_sex'] === 1) {
     scene.actions([
       { label: 'Ask about threesome with Anushka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
-    if (((s as any).radomirQW ?? 0)?.['nush3some'] === 0) {
+    if (((st as any).radomirQW ?? 0)?.['nush3some'] === 0) {
       scene.text('You glance over at him. "Do you think Nush would be up for a threesome?"');
       scene.text('Radomir laughs. "Do you even have to ask? That girl loves to fuck. I\'ll ask her next time I see her, but I\'m sure she would down for it."');
     } else {
@@ -181,8 +181,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Stop talking', goto: ['radapt', 'radroom'] },
     { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('The two of you chat about a variety of things, mostly school, music, him and what\'s been going on in Pavlovsk lately.');
@@ -192,17 +192,17 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about the band', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['practice_invite'] = 1;
-    qspCall(s, 'calendar', 'add', 'band_practice_event');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['practice_invite'] = 1;
+    qspCall(st, 'calendar', 'add', 'band_practice_event');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So how are things going with the band?" you ask.');
     scene.text('He grins. "Great, fantastic. Things could hardly be better with us still in school."');
     scene.text('"So no problems?"');
     scene.text('He shakes his head. "No problems. Everything\'s going great."');
-    if (((s as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
+    if (((st as any).gopnikbandQW ?? 0)?.['practice_invite'] === 0) {
       scene.text('"You should stop by and listen to us practice. We typically hang out, and have a little mini party afterwards, every Wednesday evening in one of the garages," he says before telling you which garage they practice in.');
     }
     scene.text('Not sure what more to ask, you decide to change the subject.');
@@ -212,7 +212,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about Valentin', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So how are things going with you and Val?" you ask.');
@@ -223,15 +223,15 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop talking', goto: ['radapt', 'radroom'] },
       { label: 'Keep talking', goto: ['radchat', 'chat'] },
       { label: 'Valentin has the hots for Anushka?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"I didn\'t know that Val had the hots for Nush…" you reply curiously.');
     scene.text('"Yeah, but he\'s too much of a pussy to admit it. I told him he could fuck her brains out all he wants, but we need her to be single. Too many of our fans, mostly guys but some of the bitches as well, want to fuck her brains out. They need to believe they have a shot." He smirks and shakes his head. "Hell with how big of slut she is, I imagine most of them do."');
     scene.actions([
       { label: 'Just let him talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You don\'t feel like getting into it with him, so you just let him keep going. He\'s soon talking about one of the after parties they had.');
     scene.actions([
@@ -240,8 +240,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Anushka is a slut?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So you think Nush is just a big slut? I\'m surprised you hang out with her then. I mean sluts are outcasts after all," you point out to him.');
     scene.text('He frowns. "Hey, I didn\'t say she was some worthless slut that won\'t stand up for herself. Who can respect someone like that? No, Nush loves to get fucked, but she won\'t just let any guy smash her and she\'ll knock a guy on his ass if he gets too hands on with her when she isn\'t in the mood. She decides who, when and where she fucks. Well other than me, of course. She\'s my personal fuck toy that I can use anytime, anywhere."');
@@ -256,7 +256,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about Arkadi', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So what do you think of Arkadi?" you ask.');
@@ -272,9 +272,9 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about Anushka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).radomirQW = (s as any).radomirQW ?? {})['nush_sex'] = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).radomirQW = (st as any).radomirQW ?? {})['nush_sex'] = 1;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So what do you think of Nush?" you ask.');
@@ -282,11 +282,11 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He says it in such a way that you actually believe he means every word of it.');
     scene.text('You think about it for a moment. "I guess, probably, yeah…"');
     scene.text('He shakes his head. "She has one of the finest asses I\'ve ever seen. No matter how many times I tear it up, it\'s always super tight." He glances at you. "Honestly, she\'s one of the best fucks I\'ve ever had, even if she does bitch about not using enough lube all the time."');
-    if (((s as any).anushkaQW ?? 0)?.['rad_date'] >= 1) {
+    if (((st as any).anushkaQW ?? 0)?.['rad_date'] >= 1) {
       scene.actions([
         { label: 'I heard you guys used to date', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('"I heard you guys used to date. When did all of this happen?" you curiously ask.');
     scene.text('"A few years ago. She used to run around when we started the band and before long I had her wrapped around my finger and we hooked up. She fell head over heels for me." He starts grinning. "She\'s probably still in love with me, but she became too clingy, so I had to dump her ass. Besides, it\'s better for the band if the two hottest members are single."');
@@ -294,8 +294,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He shakes his head. "Why would you feel bad for her? She still gets a good fucking now and again and it\'s great for the band."');
     scene.actions([
       { label: 'Is that so?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('He looks around to make sure nobody can overhear what\'s being said. "She\'s well aware of the rules. We\'re still fuck buddies and I keep her on a short leash because I can use her whenever I want."');
     scene.text('"You\'re terrible, Rad!" you say dismissively.');
@@ -315,8 +315,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop talking', goto: ['radapt', 'radroom'] },
       { label: 'Keep talking', goto: ['radchat', 'chat'] },
       { label: 'So you guys hook up?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('He nods as if it couldn\'t be any more obvious. "Yeah, I plow that ass on a pretty regular basis."');
     scene.text('"I didn\'t know you guys were an item?" you reply.');
@@ -326,8 +326,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop talking', goto: ['radapt', 'radroom'] },
       { label: 'Keep talking', goto: ['radchat', 'chat'] },
       { label: 'Just let him talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('You don\'t feel like getting into it with him, so you just let him keep going. He\'s soon talking about one of the after parties they had.');
     scene.actions([
@@ -336,8 +336,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Anushka is a slut?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('"So you think Nush is just a big slut? I\'m surprised you hang out with her then. I mean sluts are outcasts after all," you point out to him.');
     scene.text('He frowns. "Hey, I didn\'t say she was some worthless slut that won\'t stand up for herself. Who can respect someone like that? No, Nush loves to get fucked, but she won\'t just let any guy bang her and she\'ll knock a guy on his ass if he gets too hands on with her when she isn\'t in the mood. She decides who, when and where she fucks. Well other than me of course. She\'s my personal fuck toy that I can use anytime, anywhere."');
@@ -352,8 +352,8 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about the future', handler: (st: GameState) => {
-    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['Gerasim'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['Gerasim'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So what are your plans for the future?" you ask.');
@@ -366,47 +366,47 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He shakes his head. "No. Nush suggested we ask him, so we did and he agreed."');
     scene.text('You\'ve heard there was something going on with those two, but no one seems to know what. "Oh," you reply.');
     scene.text('Before you can say something else, he turns the question on you. "What about you?"');
-    if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0)  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
-      if (((s as any).rex_love ?? 0) === 1) {
+    if (((st as any).rex_love ?? 0) === 1  ||  ((st as any).artemQW ?? 0)?.['bf'] === 1  ||  ((st as any).kotovLoveQW ?? 0) === 1  ||  ((st as any).fedorKozlovQW ?? 0)  ||  ((st as any).NikoVolkovQW ?? 0) >= 5  ||  ((st as any).stat ?? 0)?.['boyfriends_current'] > 0) {
+      if (((st as any).rex_love ?? 0) === 1) {
         scene.actions([
           { label: 'Get married to Rex', goto: ['radchat', 'telling_marrige_dreams', 'Rex'] },
         ]);
       }
-      if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
+      if (((st as any).artemQW ?? 0)?.['bf'] === 1) {
         scene.actions([
           { label: 'Get married to Artem', goto: ['radchat', 'telling_marrige_dreams', 'Artem'] },
         ]);
       }
-      if (((s as any).kotovLoveQW ?? 0) === 1) {
+      if (((st as any).kotovLoveQW ?? 0) === 1) {
         scene.actions([
           { label: 'Get married to Vitek', goto: ['radchat', 'telling_marrige_dreams', 'Vitek'] },
         ]);
       }
-      if (((s as any).fedorKozlovQW ?? 0) >= 5) {
+      if (((st as any).fedorKozlovQW ?? 0) >= 5) {
         scene.actions([
           { label: 'Get married to Fedor', goto: ['radchat', 'telling_marrige_dreams', 'Fedor'] },
         ]);
       }
-      if (((s as any).NikoVolkovQW ?? 0) >= 5) {
+      if (((st as any).NikoVolkovQW ?? 0) >= 5) {
         scene.actions([
           { label: 'Get married to Niko', goto: ['radchat', 'telling_marrige_dreams', 'Niko'] },
         ]);
       }
-      (s as any).i = 0;
+      (st as any).i = 0;
       // TODO-QSP: :marrid_looop
-      if (((s as any).i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
-        (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).i ?? 0)];
-        if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_npcid ?? 0)] === 'boyfriend') {
+      if (((st as any).i ?? 0) < Object.keys((st as any).lover ?? {}).length) {
+        (st as any).temp_npcid = ((st as any).lover ?? 0)?.[String((st as any).i ?? 0)];
+        if (((st as any).npc_rel_type ?? 0)?.[String((st as any).temp_npcid ?? 0)] === 'boyfriend') {
           // TODO-QSP: dynamic 'act ''Get married to <<npc_usedname["<<$temp_npcid>>"]>>'': gt ''radchat'', ''telling_marri...
         }
-        (s as any).i = ((s as any).i ?? 0) + (1);
+        (st as any).i = ((st as any).i ?? 0) + (1);
         // TODO-QSP: jump 'marrid_looop'
       }
     } else {
       scene.actions([
         { label: 'Get married', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"I want to find the perfect guy, get married and have kids," you excitedly tell him.');
@@ -421,7 +421,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I don\'t know', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You shake your head. "Honestly? I don\'t know yet. I guess I really havn\'t given it that much thought yet."');
@@ -432,7 +432,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Go to the university', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You nod your head. "I plan to go to the university and get a degree. Not sure what one yet, but something."');
@@ -445,7 +445,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about his brother', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So what\'s the deal with your brother?" you ask.');
@@ -458,7 +458,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Stop talking', goto: ['radapt', 'radroom'] },
       { label: 'Keep talking', goto: ['radchat', 'chat'] },
       { label: 'Did he fuck all your girls?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('He shakes his head. "Not from lack of trying, I admit he got a few of them, asshole. But once Nush really started to blossom, he tried so hard. She would tease him, then shut him down hard, some of the funniest shit I\'ve seen. He\'s still bitter about that, so don\'t be surprised if he tries to fuck you just because I brought you over."');
@@ -472,7 +472,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about his mother', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So what about your mother?" you ask.');
@@ -486,7 +486,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask about his father', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('"So what was that all about? How your dad talked about girls?" you ask.');
@@ -504,23 +504,23 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Ask if he has a girlfriend', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You know he\'s hooking up with a lot of girls and you\'re not sure if you should even ask, even if you\'re curious. "Do you have a girlfriend?"');
     scene.text('He shakes her head. "Why would I? Bitches just throw themselves at me and once we make it big, even more will be dropping their panties for me. No, I plan to bang as many bitches as I can right now." He pauses for a second and gives you a smirk. "Why? Were you hoping I was single and looking?"');
-    if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0)  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
+    if (((st as any).rex_love ?? 0) === 1  ||  ((st as any).artemQW ?? 0)?.['bf'] === 1  ||  ((st as any).kotovLoveQW ?? 0) === 1  ||  ((st as any).fedorKozlovQW ?? 0)  ||  ((st as any).NikoVolkovQW ?? 0) >= 5  ||  ((st as any).stat ?? 0)?.['boyfriends_current'] > 0) {
       scene.actions([
         { label: 'I have a boyfriend', goto: ['radchat', 'boyfriend_chat'] },
       ]);
     }
     scene.actions([
       { label: 'Maybe', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.text('You feel put on the spot since that\'s not what you meant. Or maybe subconsciously you did mean it, which is why you asked. Either way, a part of you would really like to be Radomir\'s girlfriend. "I guess… I\'ve been thinking about it a little…"');
       scene.text('He looks smug. "Who could blame you? I\'m the complete package after all. Sorry, but I\'m flying solo for now."');
       scene.text('He gets up and walks over to sit next to you on the bed.');
@@ -539,7 +539,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'No', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
     scene.text('You shake your head. This conversation really went off the rails and is not at all what you meant. "No, I was just curious is all."');
@@ -575,7 +575,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fedorKozlovQW ?? 0) >= 5) {
     scene.actions([
       { label: 'Fedor', handler: (st: GameState) => {
-    if (((s as any).npc_grupTipe ?? 0)?.['A5'] === 5) {
+    if (((st as any).npc_grupTipe ?? 0)?.['A5'] === 5) {
       scene.text('"Fedor," you tell him.');
       scene.text('"Fedor? Are you serious? After he sucked Vasily\'s dick in front of the whole school?"');
       scene.text('You frown at him, though you\'re not surprised. "He didn\'t have a choice! Those criminals were going to take everything from his family since he couldn\'t pay them. He\'s not gay!"');
@@ -615,7 +615,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
     scene.actions([
       { label: 'Artem', handler: (st: GameState) => {
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.text('"Artem," you tell him.');
       scene.text('He busts out laughing. "Artem? The nerd?"');
       scene.text('You shake your head at his comment. "He\'s sweet and really nice to me."');

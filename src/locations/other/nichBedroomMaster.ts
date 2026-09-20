@@ -5,18 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).loc_arg = '';
-  (s as any).loc = 'nichBedroomMaster';
-  (s as any).sexloc = 'nichBedroomMaster';
-  (s as any).location_type = 'private';
-  (s as any).locclass = 'bedr';
-  (s as any).menu_loc = 'nichBedroomMaster';
-  (s as any).nichLoc = 'masterBedroom';
-  (s as any).menu_arg = '';
-  qspCall(s, 'stat', '');
-  (s as any).sexpartkno = 1;
-  qspCall(s, 'boyStat', 'A52');
-  qspCall(s, 'boyStat', 'A161', 'a');
   (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
   (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
   (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
@@ -49,7 +37,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('With Nicholas being present it wouldn\'t be appropriate to clean this room now.');
       scene.actions([
         { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
@@ -57,7 +45,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('With Gala being present it wouldn\'t be appropriate to clean this room now.');
         scene.actions([
           { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
         ]);
       } else {
@@ -65,7 +53,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('With Tanya being present it wouldn\'t be appropriate to clean this room now.');
           scene.actions([
             { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
           ]);
         } else {
@@ -76,12 +64,154 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Return to the hallway', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'nichApartment', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichApartment', '');
   } },
     { label: 'Go to the master bathroom', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'nichBathMaster', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichBathMaster', '');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
+  (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
+  (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
+  (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'masterBedroom');
+  (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'masterBedroom');
+  (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'masterBedroom');
+  if (((s as any).nichGalaAct ?? 0) === 'snooze'  &&  (!((s as any).evtGalaMast1 ?? 0))) {
+    dynamicGoto(s, 'prevLoc');
+  }
+  scene.text('<center><b>Nicholas\' Master Bedroom</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/bedroomMaster.jpg');
+  scene.text('');
+  scene.text('This is where Nicholas and his wife sleep. There\'s a king-sized bed with matching bedside tables and lamps, a make-up table covered with bottles of expensive perfume, make-up and jewelry, a wall mirror with filigree gold ornaments and an entire wall is dominated by several solid wood wardrobes that look like they must have cost a fortune. Another small door leads to another walk-in wardrobe.');
+  if (((s as any).nichNichAct ?? 0) === 'sleep') {
+    if (((s as any).nichGalaAct ?? 0) === 'sleep') {
+      scene.text('Nicholas and Gala are sleeping in their bed.');
+    } else {
+      scene.text('Nicholas is sleeping in his bed.');
+    }
+  }
+  if (((s as any).nichGalaAct ?? 0) === 'sleep'  &&  ((s as any).nichNichAct ?? 0) !== 'sleep') {
+    scene.text('Gala is sleeping in her bed.');
+  } else {
+    if (((s as any).nichGalaAct ?? 0) === 'snooze') {
+      scene.text('Gala lies on her bed. Her eyes are open but she still looks sleepy. Apparently she wants to get some extra minutes of relaxation before she has to stand up.');
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    if (((s as any).nichNichPresent ?? 0) === 1) {
+      scene.text('With Nicholas being present it wouldn\'t be appropriate to clean this room now.');
+      scene.actions([
+        { label: 'Don\'t clean', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+      ]);
+    } else {
+      if (((s as any).nichGalaPresent ?? 0) === 1) {
+        scene.text('With Gala being present it wouldn\'t be appropriate to clean this room now.');
+        scene.actions([
+          { label: 'Don\'t clean', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+        ]);
+      } else {
+        if (((s as any).nichTanyPresent ?? 0) === 1) {
+          scene.text('With Tanya being present it wouldn\'t be appropriate to clean this room now.');
+          scene.actions([
+            { label: 'Don\'t clean', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+          ]);
+        } else {
+          qspCall(s, 'nichChore', 'inspect', 'master');
+        }
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Return to the hallway', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichApartment', '');
+  } },
+    { label: 'Go to the master bathroom', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichBathMaster', '');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReturn(s: GameState, scene: SceneBuilder): void {
+  (s as any).nichGalaAct = qspFunc(s, 'nichUtil', 'npcActivity', 'gala');
+  (s as any).nichNichAct = qspFunc(s, 'nichUtil', 'npcActivity', 'nicholas');
+  (s as any).nichTanyAct = qspFunc(s, 'nichUtil', 'npcActivity', 'tanya');
+  (s as any).nichGalaPresent = qspFunc(s, 'nichUtil', 'isPresent', 'gala', 'masterBedroom');
+  (s as any).nichNichPresent = qspFunc(s, 'nichUtil', 'isPresent', 'nicholas', 'masterBedroom');
+  (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'masterBedroom');
+  if (((s as any).nichGalaAct ?? 0) === 'snooze'  &&  (!((s as any).evtGalaMast1 ?? 0))) {
+    dynamicGoto(s, 'prevLoc');
+  }
+  scene.text('<center><b>Nicholas\' Master Bedroom</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/bedroomMaster.jpg');
+  scene.text('');
+  scene.text('This is where Nicholas and his wife sleep. There\'s a king-sized bed with matching bedside tables and lamps, a make-up table covered with bottles of expensive perfume, make-up and jewelry, a wall mirror with filigree gold ornaments and an entire wall is dominated by several solid wood wardrobes that look like they must have cost a fortune. Another small door leads to another walk-in wardrobe.');
+  if (((s as any).nichNichAct ?? 0) === 'sleep') {
+    if (((s as any).nichGalaAct ?? 0) === 'sleep') {
+      scene.text('Nicholas and Gala are sleeping in their bed.');
+    } else {
+      scene.text('Nicholas is sleeping in his bed.');
+    }
+  }
+  if (((s as any).nichGalaAct ?? 0) === 'sleep'  &&  ((s as any).nichNichAct ?? 0) !== 'sleep') {
+    scene.text('Gala is sleeping in her bed.');
+  } else {
+    if (((s as any).nichGalaAct ?? 0) === 'snooze') {
+      scene.text('Gala lies on her bed. Her eyes are open but she still looks sleepy. Apparently she wants to get some extra minutes of relaxation before she has to stand up.');
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    if (((s as any).nichNichPresent ?? 0) === 1) {
+      scene.text('With Nicholas being present it wouldn\'t be appropriate to clean this room now.');
+      scene.actions([
+        { label: 'Don\'t clean', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+      ]);
+    } else {
+      if (((s as any).nichGalaPresent ?? 0) === 1) {
+        scene.text('With Gala being present it wouldn\'t be appropriate to clean this room now.');
+        scene.actions([
+          { label: 'Don\'t clean', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+        ]);
+      } else {
+        if (((s as any).nichTanyPresent ?? 0) === 1) {
+          scene.text('With Tanya being present it wouldn\'t be appropriate to clean this room now.');
+          scene.actions([
+            { label: 'Don\'t clean', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc');
+  } },
+          ]);
+        } else {
+          qspCall(s, 'nichChore', 'inspect', 'master');
+        }
+      }
+    }
+  }
+  scene.actions([
+    { label: 'Return to the hallway', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichApartment', '');
+  } },
+    { label: 'Go to the master bathroom', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichBathMaster', '');
   } },
   ]);
   scene.build();
@@ -92,11 +222,11 @@ function enterEvtGalaMast1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichApartment', '');
+    qspGoto(st, 'nichApartment', '');
   } },
     { label: 'Spy', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/masturbation/mast1.jpg');
-    (s as any).evtGalaMast1 = 1;
+    (st as any).evtGalaMast1 = 1;
     scene.actions([
       { label: 'Continue spying', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/masturbation/mast0.jpg');
@@ -115,32 +245,32 @@ function enterEvtGalaMast1(s: GameState, scene: SceneBuilder): void {
     scene.text('Gala opens her eyes and briefly looks in your direction. It only lasts for a split second but you feel as if she might know that you watched her masturbating.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichApartment', 'return');
+    qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichApartment', 'return');
+    qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichApartment', 'return');
+    qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichApartment', 'return');
+    qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichApartment', 'return');
+    qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
   } },
       { label: 'Leave', handler: (st: GameState) => {
-    qspGoto(s, 'nichApartment', 'return');
+    qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
   } },
@@ -149,8 +279,26 @@ function enterEvtGalaMast1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc_arg = '';
+  (s as any).loc = 'nichBedroomMaster';
+  (s as any).sexloc = 'nichBedroomMaster';
+  (s as any).location_type = 'private';
+  (s as any).locclass = 'bedr';
+  (s as any).menu_loc = 'nichBedroomMaster';
+  (s as any).nichLoc = 'masterBedroom';
+  (s as any).menu_arg = '';
+  qspCall(s, 'stat', '');
+  (s as any).sexpartkno = 1;
+  qspCall(s, 'boyStat', 'A52');
+  qspCall(s, 'boyStat', 'A161', 'a');
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'return':
+      enterReturn(s, scene);
+      break;
     case 'evtGalaMast1':
       enterEvtGalaMast1(s, scene);
       break;

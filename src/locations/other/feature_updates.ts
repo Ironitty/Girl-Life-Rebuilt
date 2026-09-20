@@ -21,9 +21,9 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('Disposition can be shown as a fully separate status bar (or text, in text mode), or as an overlay on top of the mood bar. Toggle this in the status window tab of the settings page.');
     scene.text('<center><table cellpadding="10"><tr>');
     // TODO-QSP: dynamic text: <td valign="top" align="center"><b>Separate bars</b><br><table cellpadding="1" c...
-    scene.text(`<td valign="top" align="center"><b>Separate bars</b><br><table cellpadding="1" cellspacing="0">${qspFunc(s, 'stat_display', 'helper_bar', 'smooth_positive', 'Mood', 75)}${qspFunc(s, 'stat_display', 'helper_bar', 'smooth_positive', '', 35)}</table></td>`);
+    scene.text(`<td valign="top" align="center"><b>Separate bars</b><br><table cellpadding="1" cellspacing="0">${qspFunc(s, 'stat_display', 'helper_bar', 'smooth_positive', 'Mood', 75)}${0}</table></td>`);
     // TODO-QSP: dynamic text: <td valign="top" align="center"><b>Overlay mode</b><br><table cellpadding="1" ce...
-    scene.text(`<td valign="top" align="center"><b>Overlay mode</b><br><table cellpadding="1" cellspacing="0">${qspFunc(s, 'stat_display', 'helper_bar', 'smooth_positive', '', 75, 0, 0, 35, 'accent')}</table></td>`);
+    scene.text(`<td valign="top" align="center"><b>Overlay mode</b><br><table cellpadding="1" cellspacing="0">${0}</table></td>`);
     scene.text('</tr></table></center>');
     scene.text('<center><b>Calendar</b></center>');
     scene.text('The calendar has been completely rewritten and overhauled, and now acts as a general calendar system, tracking job shifts, holidays, quest events, and more. Some events are optional and can be toggled from the settings menu, for example the Pavlovsk disco parties or church events.');
@@ -119,13 +119,13 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('<li>Street muggers and rapists may sometimes retaliate against the player if they choose to struggle and fight.</li>');
     scene.text('</ul>');
   }
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Exit', handler: (st: GameState) => {
+{ label: 'Exit', handler: (st: GameState) => {
     // TODO-QSP: gt $ARGS[1]
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 

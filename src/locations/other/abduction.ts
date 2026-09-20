@@ -5,14 +5,11 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'private';
-  (s as any).loc_arg = 'start';
-  (s as any).loc = 'abduction';
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).i = Math.floor(Math.random() * 2) + 1;
+  (s as any).i = (Math.floor(Math.random() * 2) + 1);
   scene.img(`images/locations/shared/abduction/girltocar${((s as any).i || '')}.jpg`);
   scene.text('You suddenly hear what sounds like someone rushing up behind you, but before you can turn and look, you feel something hit your head hard. You stumble as your vision goes black…');
   // TODO-QSP: end
@@ -46,7 +43,7 @@ function enterAbdRoomFirstEntry(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdRoomFirstChaining(s: GameState, scene: SceneBuilder): void {
-  (s as any).i = Math.floor(Math.random() * 5) + 1;
+  (s as any).i = (Math.floor(Math.random() * 5) + 1);
   scene.img(`images/locations/shared/abduction/sex/shackled${((s as any).i || '')}.jpg`);
   scene.text('You\'re thrown onto a dirty bed. The man forcibly undresses you before shackling your wrists and ankles. He then slaps a collar around your neck before chaining you to the wall.');
   scene.text('"You must have really pissed the wrong person off girl," he says.');
@@ -80,7 +77,7 @@ function enterAbdRoomFirstChaining(s: GameState, scene: SceneBuilder): void {
     (s as any).bag = 0;
     (s as any).bagtaken = 1;
   }
-  (s as any).tabletkishot = Math.floor(Math.random() * 8) + 84;
+  (s as any).tabletkishot = (Math.floor(Math.random() * 8) + 84);
   (s as any).shotdays = 93;
   (s as any).tabletkicheck = 2;
   (s as any).pillcon = 40000;
@@ -106,7 +103,7 @@ function enterAbdRoom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/basement1.jpg');
   scene.text('You\'re in a dark basement that has only one window and some lights. You\'re chained to the wall like a dog, a collar wrapped tightly around your neck while cold metal shackles dig painfully into your wrists and ankles.');
   scene.text('You can only move a few meters from the wall to reach several things left for you by your captors.');
-  (s as any).eventChance = Math.floor(Math.random() * 100) + 1;
+  (s as any).eventChance = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).pcs_sleep ?? 0) > 30  &&  ((s as any).eventChance ?? 0) <= 60) {
     scene.actions([
       { label: 'Take a nap (4:00)', goto: ['abduction', 'abdSomeoneComing'] },
@@ -158,10 +155,10 @@ function enterAbdSomeoneComing(s: GameState, scene: SceneBuilder): void {
     (s as any).buyoutChance = (((s as any).broken ?? 0) + ((s as any).tortureCount ?? 0) + ((s as any).rapeCount ?? 0) + ((s as any).abdCustomerCount ?? 0)) - 20;
     (s as any).saleChance = (((s as any).broken ?? 0) + ((s as any).tortureCount ?? 0) + ((s as any).rapeCount ?? 0) + ((s as any).abdCustomerCount ?? 0)) - 10;
     if (((s as any).broken ?? 0) > 0) {
-      (s as any).saleChanceRand = Math.floor(Math.random() * 100) + 1;
-      (s as any).customerChance = Math.floor(Math.random() * 100) + 1;
-      (s as any).painkillerChance = Math.floor(Math.random() * 100) + 1;
-      (s as any).buyoutChanceRand = Math.floor(Math.random() * 100) + 1;
+      (s as any).saleChanceRand = (Math.floor(Math.random() * 100) + 1);
+      (s as any).customerChance = (Math.floor(Math.random() * 100) + 1);
+      (s as any).painkillerChance = (Math.floor(Math.random() * 100) + 1);
+      (s as any).buyoutChanceRand = (Math.floor(Math.random() * 100) + 1);
       if (((s as any).broken ?? 0) < 10) {
         scene.actions([
           { label: 'Welcome back, Master', goto: ['abduction', 'abdBrokenAsk'] },
@@ -225,10 +222,10 @@ function enterAbdExamStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Resist', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abduction', 'abdExamResist');
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abduction', 'abdExamResist');
   } },
     ]);
   }
@@ -270,7 +267,7 @@ function enterAbdExam1(s: GameState, scene: SceneBuilder): void {
   scene.text('A man enters the room dressed like a doctor, wearing a lab coat and suit with a stethoscope around his neck. He walks as if he\'s unconcerned about you.');
   scene.text('Obviously, he doesn\'t speak to you, but rather to the man sitting in the chair. "Wow, a nice catch indeed." the doctor exclaims.');
   scene.text('The doctor puts on a pair of rubber gloves and sits down on a small chair in front of you. He looks at your spread legs and what\'s between them.');
-  // TODO-QSP: dynamic text: He continues to speak to the man. "She's about <<age>> years old."
+  // TODO-QSP: dynamic text: He continues to speak to the man. "She''s about <<age>> years old."
   scene.text(`He continues to speak to the man. "She's about ${((s as any).age || '')} years old."`);
   if (((s as any).age ?? 0) < 18) {
     scene.text('"Geez, you like them young, don\'t you?"');
@@ -350,7 +347,7 @@ function enterAbdBreak1(s: GameState, scene: SceneBuilder): void {
   scene.text('"You\'ll be sold to someone as their slave. If you won\'t accept that, then you will be utilized for the more perverted needs of our customers. Those girls usually don\'t survive for long.');
   scene.text('A sense of dread washes over you as your mind races to think of what horrors might await you.');
   scene.text('"Now, show me what a good slave you are."');
-  (s as any).tortureType = Math.floor(Math.random() * 3) + 1;
+  (s as any).tortureType = (Math.floor(Math.random() * 3) + 1);
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -361,10 +358,10 @@ function enterAbdBreak1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Spit in his face', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abduction', 'abdTorture');
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abduction', 'abdTorture');
   } },
     ]);
   }
@@ -412,10 +409,10 @@ function enterAbdBrokenGivePainkiller(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse and keep your mouth shut', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'resist', 'easy');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'abduction', 'abdBrokenGivePainkillerNo');
+    qspCall(st, 'willpower', 'misc', 'resist', 'easy');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'abduction', 'abdBrokenGivePainkillerNo');
   } },
     ]);
   }
@@ -430,7 +427,7 @@ function enterAbdBrokenGivePainkillerYes(s: GameState, scene: SceneBuilder): voi
   scene.img('images/locations/shared/abduction/pill2.jpg');
   scene.text('You happily take the pill and swallow it immediately.');
   qspCall(s, 'stat', '');
-  (s as any).painkillerGive = Math.floor(Math.random() * 100) + 1;
+  (s as any).painkillerGive = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).painkillerGive ?? 0) > 20  &&  ((s as any).broken ?? 0) >= 10) {
     scene.text('Your master nods in approval and hands you a small pack of painkillers.');
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) + (6);
@@ -596,7 +593,7 @@ function enterAbdEscapeWindow1(s: GameState, scene: SceneBuilder): void {
   scene.text('You try to loosen the screws locking the window in place.');
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   qspCall(s, 'stat', '');
-  (s as any).breakChance = Math.floor(Math.random() * 100) + 1;
+  (s as any).breakChance = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).breakChance ?? 0) <= 50) {
     scene.text('You hear someone slam a door nearby. Maybe it\'s your master returning?');
     scene.text('You\'re close to unscrewing the window! You decide to…');
@@ -619,7 +616,7 @@ function enterAbdEscapeWindow2(s: GameState, scene: SceneBuilder): void {
   scene.text('You continue in your attempts to break the window.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  (s as any).breakChance = Math.floor(Math.random() * 100) + 1;
+  (s as any).breakChance = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).breakChance ?? 0) <= 90) {
     scene.text('You desperately try to unscrew it, but you run out of time… and luck.');
     scene.text('Your master comes into the basement and catches you running around unleashed. This won\'t end well for you…');
@@ -649,7 +646,7 @@ function enterAbdEscapeWindow3(s: GameState, scene: SceneBuilder): void {
     (s as any).bag = 1;
     (s as any).bagtaken = 0;
   }
-  (s as any).i = Math.floor(Math.random() * 3) + 1;
+  (s as any).i = (Math.floor(Math.random() * 3) + 1);
   qspCall(s, 'underwear', 'wear');
   qspCall(s, 'underwear', 'dispose');
   qspCall(s, 'clothing', 'wear_last_worn');
@@ -704,14 +701,14 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
   scene.text('A half broken, dirty mirror provides some means to inspect your appearance.');
   scene.text('In the corner is something remotely similar to a shower. It only has cold water though.');
   if (((s as any).pcs_energy ?? 0) >= 10) {
-    scene.text('There\'s enough space to do some basic <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027abduction\\u0027, \\u0027abdexercise\\u0027); return false;">exercise</a>.');
+    scene.text('There\'s enough space to do some basic <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027abduction/u0027, /u0027abdexercise/u0027); return false;">exercise</a>.');
   } else {
     scene.text('There\'s enough space to do some basic exercise but you are too hungry to do them.');
   }
-  (s as any).chainChance = Math.floor(Math.random() * 100) + 1;
+  (s as any).chainChance = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).chainChance ?? 0) <= 20  &&  (((s as any).rapeCount ?? 0) > 5  ||  ((s as any).tortureCount ?? 0) > 5)) {
     scene.text('You spot a loose link on your chain. You try to manipulate it, and manage to free yourself from the wall.');
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027abduction\\u0027, \\u0027abdEscape\\u0027); return false;">Run to the window.</a>');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027abduction/u0027, /u0027abdEscape/u0027); return false;">Run to the window.</a>');
   }
   if (((s as any).abdTools ?? 0) === 1) {
     if (((s as any).mc_inventory ?? 0)?.['breast_pump'] > 0  &&  ((s as any).bp_unbox ?? 0) >= 1) {
@@ -728,7 +725,7 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['painkillers']) {
       (s as any).pluralS = '';
     }
-    // TODO-QSP: dynamic text: You have <b><<mc_inventory['painkillers']>></b> painkiller<<$pluralS>>.
+    // TODO-QSP: dynamic text: You have <b><<mc_inventory[''painkillers'']>></b> painkiller<<$pluralS>>.
     scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['painkillers'] ?? ''}</b> painkiller${((s as any).pluralS || '')}.`);
     if (((s as any).pain ?? 0)?.['total'] > 0) {
       // TODO-QSP: act $func('drugs', 'painkiller_act_str'):
@@ -754,21 +751,21 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Eat dried food (0:10)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).frost = 0;
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (25);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    (st as any).frost = 0;
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (25);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) - (10);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (20);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) - (20);
     }
-    (s as any).pcs_breath = 0;
-    (s as any).fat = ((s as any).fat ?? 0) + (4);
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    (st as any).pcs_breath = 0;
+    (st as any).fat = ((st as any).fat ?? 0) + (4);
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/abduction/driedbread1.jpg');
     scene.text('You eat the dried meat and bread. It causes your throat to become dry, so some water could come in handy.');
     scene.actions([
@@ -776,18 +773,18 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Drink water (0:05)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).frost = 1;
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'tiny');
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (50);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).frost = 1;
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'tiny');
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (50);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (100);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (100);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/waterbottle1.jpg');
     scene.text('You drank the whole bottle.');
     scene.actions([
@@ -796,15 +793,15 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },
     { label: 'Take a cold shower (0:15)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (1);
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/abduction/shower1.jpg');
     scene.text('The shower is cold and you don\'t have any shampoo, but at least you get clean again…');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
     scene.actions([
@@ -826,11 +823,11 @@ function enterAbdexercise(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'exercise', 'tier2', 30, 'vital');
+    qspCall(st, 'exercise', 'tier2', 30, 'vital');
     scene.img('images/pc/activities/exercises/abdominal_nude.mp4');
     // TODO-QSP: dynamic text: You do a series of abdominal exercises for <<$timestring>> minutes, improving yo...
-    scene.text(`You do a series of abdominal exercises for ${((s as any).timestring || '')} minutes, improving your endurance.`);
-    qspCall(s, 'stat', '');
+    scene.text(`You do a series of abdominal exercises for ${((st as any).timestring || '')} minutes, improving your endurance.`);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['abduction', 'abdFood'] },
     ]);
@@ -842,7 +839,7 @@ function enterAbdexercise(s: GameState, scene: SceneBuilder): void {
 function enterAbdRape(s: GameState, scene: SceneBuilder): void {
   (s as any).rapeCount = ((s as any).rapeCount ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-  (s as any).rapeType = Math.floor(Math.random() * 5) + 1;
+  (s as any).rapeType = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).broken ?? 0) < 10) {
     qspCall(s, 'mood', 'lower', 'min');
   }
@@ -850,8 +847,8 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
     ((s as any).pain = (s as any).pain ?? {})['mouth'] = ((s as any).pain['mouth'] ?? 0) + (3);
     (s as any).cumnostd = 1;
     qspCall(s, 'cum_call', 'mouth', 'Master');
-    (s as any).i = Math.floor(Math.random() * 4) + 1;
-    (s as any).gifornot = Math.floor(Math.random() * 100) + 1;
+    (s as any).i = (Math.floor(Math.random() * 4) + 1);
+    (s as any).gifornot = (Math.floor(Math.random() * 100) + 1);
     if (((s as any).gifornot ?? 0) > 50) {
       scene.img(`images/locations/shared/abduction/sex/mouthgagblow${((s as any).i || '')}.jpg`);
     } else {
@@ -869,7 +866,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
       ((s as any).pain = (s as any).pain ?? {})['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
       (s as any).cumnostd = 1;
       qspCall(s, 'cum_call', '', '', 'Master');
-      (s as any).i = Math.floor(Math.random() * 5) + 1;
+      (s as any).i = (Math.floor(Math.random() * 5) + 1);
       scene.img(`images/locations/shared/abduction/sex/fucktiedpussy${((s as any).i || '')}.jpg`);
       scene.text('Your hands are tied, and you\'re bent over the bed.');
       scene.text('The guy starts to penetrate your pussy without warning. A sharp pain shoots through your abdomen because your pussy isn\'t wet enough to receive a dick.');
@@ -885,7 +882,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'anus', 'Master');
         (s as any).gifornot = 0;
         if (((s as any).gifornot ?? 0) > 50) {
-          scene.img('images/locations/shared/abduction/sex/fucktiedanal\'+rand(1, 4)+\'.jpg');
+          scene.img('images/locations/shared/abduction/sex/fucktiedanal' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
         } else {
           scene.img('images/locations/shared/abduction/sex/fucktiedanal1.mp4');
         }
@@ -900,7 +897,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
         if (((s as any).rapeType ?? 0) === 4) {
           ((s as any).pain = (s as any).pain ?? {})['asshole'] = ((s as any).pain['asshole'] ?? 0) + (8);
           qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
-          scene.img('images/locations/shared/abduction/sex/fistanal\'+rand(1, 5)+\'.jpg');
+          scene.img('images/locations/shared/abduction/sex/fistanal' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
           scene.text('Your hands and feet are bound as you hang upside down with your ass in the air.');
           scene.text('The guy starts trying to push his thick fist inside your anus. At least he used a bit of lubricant…');
           scene.text('When your sphincter fails to resist anymore, you hear a loud pop as his fist quickly penetrates you.');
@@ -916,7 +913,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
             ((s as any).pain = (s as any).pain ?? {})['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (5);
             ((s as any).pain = (s as any).pain ?? {})['cervix'] = ((s as any).pain['cervix'] ?? 0) + (10);
             qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-            scene.img('images/locations/shared/abduction/sex/fistvaginal\'+rand(1, 5)+\'.jpg');
+            scene.img('images/locations/shared/abduction/sex/fistvaginal' + (Math.floor(Math.random() * 5) + 1) + '.jpg');
             scene.text('Your hands and feet are tied with your ass raised higher than your head.');
             scene.text('The guy starts pushing his thick fist deep inside your pussy. At least he used a bit of lubricant…');
             scene.text('Suddenly, you feel his fingers touch your cervix. He\'s doing it on purpose!');
@@ -933,7 +930,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
             ((s as any).pain = (s as any).pain ?? {})['mouth'] = ((s as any).pain['mouth'] ?? 0) + (5);
             (s as any).cumnostd = 1;
             qspCall(s, 'cum_call', 'mouth', 'Master');
-            (s as any).i = Math.floor(Math.random() * 4) + 1;
+            (s as any).i = (Math.floor(Math.random() * 4) + 1);
             (s as any).gifornot = 0;
             if (((s as any).gifornot ?? 0) > 50) {
               scene.img(`images/locations/shared/abduction/sex/mouthgagblow${((s as any).i || '')}.jpg`);
@@ -957,7 +954,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAbdTorture(s: GameState, scene: SceneBuilder): void {
-  (s as any).tortureType = Math.floor(Math.random() * 4) + 1;
+  (s as any).tortureType = (Math.floor(Math.random() * 4) + 1);
   (s as any).tortureCount = ((s as any).tortureCount ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).tortureType ?? 0) === 1) {
@@ -1326,7 +1323,7 @@ function enterAbdFailedCustomer3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'min');
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'bound', 'maso', 'humiliation');
   qspCall(s, 'stat', '');
-  (s as any).endRand = Math.floor(Math.random() * 3) + 1;
+  (s as any).endRand = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).endRand ?? 0) === 1) {
     scene.actions([
       { label: 'Continue', goto: ['abduction', 'abdFailedCustomerElectro1'] },
@@ -2173,6 +2170,9 @@ function enterAbdTrainDildosMouthHorseUse(s: GameState, scene: SceneBuilder): vo
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
+  (s as any).loc_arg = 'start';
+  (s as any).loc = 'abduction';
   const arg = s.locArg;
   switch (arg) {
     case 'start':

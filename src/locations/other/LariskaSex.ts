@@ -49,15 +49,15 @@ function enterUndressed2(s: GameState, scene: SceneBuilder): void {
     { label: 'Lick her pussy', goto: ['LariskaSex', 'lick1'] },
     { label: 'Get eaten out', goto: ['LariskaSex', 'lick2'] },
     { label: 'Get dressed', handler: (st: GameState) => {
-    if (((s as any).analPlugOut ?? 0) === 1) {
-      qspCall(s, 'dinsex', 'after_anal');
+    if (((st as any).analPlugOut ?? 0) === 1) {
+      qspCall(st, 'dinsex', 'after_anal');
     }
-    if (((s as any).vibratorOUT ?? 0) === 1) {
-      (s as any).vibratorIN = 1;
-      (s as any).vibratorOUT = 0;
+    if (((st as any).vibratorOUT ?? 0) === 1) {
+      (st as any).vibratorIN = 1;
+      (st as any).vibratorOUT = 0;
     }
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'LariskaHome', 'lariska_bedroom');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'LariskaHome', 'lariska_bedroom');
   } },
   ]);
   scene.build();
@@ -125,12 +125,12 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
       { label: 'Let her pop your cherry', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/dildo_1.mp4');
     scene.text('You gasp as she works the dildo in, feeling something break inside you. You know you aren\'t a virgin anymore. Trying to push the pain aside, you focus on your own end as you work the tip deeper inside her honeypot. Before long the both of you are fucking each other with the dildos, the sounds of moans and gasps filling the air. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
-    (s as any).orgasm_txt = 'As the waves of your impending orgasm builds, you gasp out "More! Harder!" Lariska, taking the hint, starts slamming the dildo deeper into your muff. The wave breaks over you, forcing your head back and your body to buck, held only in one place by Lariska\'s light frame on top of you. Feeling your orgasm beneath her overwhelms her own senses and soon you are both hanging on to each other, bodies jerking around while trying not to stop pleasing the other.';
-    (s as any).orgasm_or = 'custom';
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
-    qspCall(s, 'arousal', 'vaginal_dildo', 10, 'lesbian');
-    qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'As the waves of your impending orgasm builds, you gasp out "More! Harder!" Lariska, taking the hint, starts slamming the dildo deeper into your muff. The wave breaks over you, forcing your head back and your body to buck, held only in one place by Lariska\'s light frame on top of you. Feeling your orgasm beneath her overwhelms her own senses and soon you are both hanging on to each other, bodies jerking around while trying not to stop pleasing the other.';
+    (st as any).orgasm_or = 'custom';
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (15);
+    qspCall(st, 'arousal', 'vaginal_dildo', 10, 'lesbian');
+    qspCall(st, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.text('As the roaring in your ears slowly subsides, Lariska pushes herself around and starts kissing you passionately, eager to show how happy you just made her.');
     scene.actions([
       { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
@@ -139,12 +139,12 @@ function enterDildo1(s: GameState, scene: SceneBuilder): void {
       { label: 'Stay a virgin', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/dildo_1.mp4');
     scene.text('She smiles sweetly and says "Don\'t worry, I won\'t take that from you." Instead of sliding it in, she rubs the tip around your labia while licking your clit gently. You work the tip deeper inside her honeypot trying hard to concentrate with the heavenly feeling she is producing between your legs. The sounds of moans and gasps fill the air as you grind against each other, lost in your passions. Lariska doesn\'t seem to have any issues taking a dildo this big, so you begin to pump it in and out, faster and deeper each time.');
-    (s as any).orgasm_txt = 'As the waves of your impending orgasm builds, you gasp out "More!" Lariska, taking the hint, starts licking your clit faster. The wave breaks over you, forcing your head back and your body to buck, held only in one place by Lariska\'s light frame on top of you. Feeling your orgasm beneath her overwhelms her own senses and soon you are both hanging on to each other, bodies jerking around while trying not to stop pleasing the other.';
-    (s as any).orgasm_or = 'custom';
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
-    qspCall(s, 'arousal', 'vaginal_vibe', 10, 'lesbian');
-    qspCall(s, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'As the waves of your impending orgasm builds, you gasp out "More!" Lariska, taking the hint, starts licking your clit faster. The wave breaks over you, forcing your head back and your body to buck, held only in one place by Lariska\'s light frame on top of you. Feeling your orgasm beneath her overwhelms her own senses and soon you are both hanging on to each other, bodies jerking around while trying not to stop pleasing the other.';
+    (st as any).orgasm_or = 'custom';
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (15);
+    qspCall(st, 'arousal', 'vaginal_vibe', 10, 'lesbian');
+    qspCall(st, 'arousal', 'vaginal_dildo_give', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.text('As the roaring in your ears slowly subsides, Lariska pushes herself around and starts kissing you passionately, eager to show how happy you just made her.');
     scene.actions([
       { label: 'Cuddle', goto: ['LariskaSex', 'undressed2'] },
@@ -340,13 +340,13 @@ function enterBj_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'Get your cherry popped', handler: (st: GameState) => {
-    (s as any).temp = 0;
-    if (((s as any).temp ?? 0) === 1) {
+    (st as any).temp = 0;
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      if (((s as any).temp ?? 0) === 2) {
+      if (((st as any).temp ?? 0) === 2) {
         scene.actions([
           { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
         ]);
@@ -403,13 +403,13 @@ function enterMiss_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'Get your cherry popped', handler: (st: GameState) => {
-    (s as any).temp = 0;
-    if (((s as any).temp ?? 0) === 1) {
+    (st as any).temp = 0;
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      if (((s as any).temp ?? 0) === 2) {
+      if (((st as any).temp ?? 0) === 2) {
         scene.actions([
           { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
         ]);
@@ -465,13 +465,13 @@ function enterCow_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'Get your cherry popped', handler: (st: GameState) => {
-    (s as any).temp = 0;
-    if (((s as any).temp ?? 0) === 1) {
+    (st as any).temp = 0;
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      if (((s as any).temp ?? 0) === 2) {
+      if (((st as any).temp ?? 0) === 2) {
         scene.actions([
           { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
         ]);
@@ -527,13 +527,13 @@ function enterDog_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'Get your cherry popped', handler: (st: GameState) => {
-    (s as any).temp = 0;
-    if (((s as any).temp ?? 0) === 1) {
+    (st as any).temp = 0;
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      if (((s as any).temp ?? 0) === 2) {
+      if (((st as any).temp ?? 0) === 2) {
         scene.actions([
           { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
         ]);
@@ -592,13 +592,13 @@ function enterAnalMiss_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'Get your cherry popped', handler: (st: GameState) => {
-    (s as any).temp = 0;
-    if (((s as any).temp ?? 0) === 1) {
+    (st as any).temp = 0;
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      if (((s as any).temp ?? 0) === 2) {
+      if (((st as any).temp ?? 0) === 2) {
         scene.actions([
           { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
         ]);
@@ -656,13 +656,13 @@ function enterAnalCow_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'Get your cherry popped', handler: (st: GameState) => {
-    (s as any).temp = 0;
-    if (((s as any).temp ?? 0) === 1) {
+    (st as any).temp = 0;
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      if (((s as any).temp ?? 0) === 2) {
+      if (((st as any).temp ?? 0) === 2) {
         scene.actions([
           { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
         ]);
@@ -722,13 +722,13 @@ function enterAnalDog_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.actions([
       { label: 'Get your cherry popped', handler: (st: GameState) => {
-    (s as any).temp = 0;
-    if (((s as any).temp ?? 0) === 1) {
+    (st as any).temp = 0;
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Missionary', goto: ['LariskaSex', 'miss_1'] },
       ]);
     } else {
-      if (((s as any).temp ?? 0) === 2) {
+      if (((st as any).temp ?? 0) === 2) {
         scene.actions([
           { label: 'Cowgirl', goto: ['LariskaSex', 'cow_1'] },
         ]);
@@ -758,7 +758,7 @@ function enterAnalDog_1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyfriendSex(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Lev', Math.floor(Math.random() * 2) + 17, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'Lev', (Math.floor(Math.random() * 2) + 17), 1);
   // TODO-QSP: $npc_firstname[$npclastgenerated] = 'Lev'
   // TODO-QSP: $npc_usedname[$npclastgenerated] = 'Lev'
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 0, 'normal');
@@ -774,99 +774,99 @@ function enterBoyfriendSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_2.jpg');
     scene.text('The two of you start licking, pausing every now and then to kiss each other, before you start taking turns sucking and licking his balls.');
     scene.text('Once his dick is glistening with your saliva, Lariska stands up and faces you.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'lesbian', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lariska Starts', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_3.jpg');
     scene.text('Leaning into her, you start making out with Lariska as Lev slides his cock into her from behind. She moans into your mouth but doesn\'t break the kiss, thrusting her tongue into your mouth each time Lev thrusts into her pussy.');
     scene.text('Reaching between her legs, you start rubbing her clit, drawing gasps from her as she easily reaches an orgasm. She throws her head back as her hips shake wildly.');
     scene.text('After the shaking stops she slides off, giving you access.');
-    qspCall(s, 'arousal', 'kiss', 5, ((s as any).npcID1 ?? 0), 'lesbian', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 5, ((st as any).npcID1 ?? 0), 'lesbian', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Your Turn', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_4.jpg');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-      if (((s as any).analPlugIn ?? 0) === 1) {
-        if (((s as any).pcs_ass ?? 0) < 16) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
+      if (((st as any).analPlugIn ?? 0) === 1) {
+        if (((st as any).pcs_ass ?? 0) < 16) {
           scene.text('Lariska slides the butt plug out of your narrow and tight ass, opening the way for Lev.');
         } else {
           scene.text('Lariska slides the butt plug out of your ass, opening the way for Lev.');
         }
-        (s as any).analPlugOut = 1;
-        (s as any).analPlugIn = 0;
+        (st as any).analPlugOut = 1;
+        (st as any).analPlugIn = 0;
       }
-      if (((s as any).anal_slip ?? 0) < 4) {
-        qspCall(s, 'arousal', 'auto_lube', 'anal');
+      if (((st as any).anal_slip ?? 0) < 4) {
+        qspCall(st, 'arousal', 'auto_lube', 'anal');
       }
       scene.text('"I\'m a virgin," you say, reaching back and spreading your buttcheeks. Taking the hint, he lines his cock up with your anus and pushes his way in.');
       scene.text('Thankfully, his dick was lubed enough that it slid right in. Lariska tries to distract you from any pain by tweaking your nipples and kissing them.');
       scene.text('Lev starts thrusting in and out of your asshole, as the sounds of your buttcheeks slapping against his hips fills the room. He is barely able to contain his excitement as he watches you and Lariska continue to kiss.');
       scene.text('The sensations of the pounding he is giving you and making out with Lariska is overwhelming your senses. She moves her hands between your legs, and returns the favor from earlier by rubbing your clit.');
-      qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(st, 'stat', '');
     } else {
-      if (((s as any).vibratorIN ?? 0) === 1) {
-        (s as any).vibratorIN = 0;
-        (s as any).vibratorOUT = 1;
+      if (((st as any).vibratorIN ?? 0) === 1) {
+        (st as any).vibratorIN = 0;
+        (st as any).vibratorOUT = 1;
         scene.text('Lariska slides the vibrator out of your pussy, Giving Lev access to your pussy. You feel somewhat empty now, though that\'s about to change.');
       }
-      if (((s as any).vaginal_slip ?? 0) < 4) {
-        qspCall(s, 'arousal', 'auto_lube', 'vag');
+      if (((st as any).vaginal_slip ?? 0) < 4) {
+        qspCall(st, 'arousal', 'auto_lube', 'vag');
       }
       scene.text('His dick, already lubed, slides right into your pussy, draws gasps from your mouth as Lariska starts tweaking your nipples and kissing them.');
       scene.text('Lev starts thrusting in and out of your slit, as the sounds of your buttcheeks slapping against his hips fills the room. He is barely able to contain his excitement as he watches you and Lariska continue to kiss.');
       scene.text('The sensations of the pounding he is giving you and making out with Lariska is overwhelming your senses. She moves her hands between your legs, and returns the favor from earlier by rubbing your clit.');
-      qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(st, 'stat', '');
     }
     scene.actions([
       { label: 'Cowgirl', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_5.jpg');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.text('Deciding to switch things up, or maybe because he was winded, Lev pulls out and sits down, stretching out and pulling you down on top. Feeling more in control now, you slide his dick back into your ass and start grinding your hips against his.');
       scene.text('Lariska wastes no time and climbs onto his face, leaning in to keep rubbing your clitoris while Lev spreads her cheeks and licks her pussy. The sounds of moaning fills the room, and you know your going to cum soon from the dual sensations of Lev\'s cock in your butt and Lariska\'s rubbing.');
-      qspCall(s, 'mood', 'raise', 'small');
-      (s as any).orgasm_or = 'yes';
-      (s as any).orgasm_txt = 'A wave of pleasure overwhelms your senses, leaving you shaking out of control. Lariska holding you is the only thing keeping you upright, doing her best to keep you stable while Lev continues to eat her pussy.';
-      qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'mood', 'raise', 'small');
+      (st as any).orgasm_or = 'yes';
+      (st as any).orgasm_txt = 'A wave of pleasure overwhelms your senses, leaving you shaking out of control. Lariska holding you is the only thing keeping you upright, doing her best to keep you stable while Lev continues to eat her pussy.';
+      qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(st, 'stat', '');
     } else {
       scene.text('Deciding to switch things up, or maybe because he was winded, Lev pulls out and sits down, stretching out and pulling you down on top. Feeling more in control now, you slide his dick back into your pussy and start grinding your hips against his.');
       scene.text('Lariska wastes no time and climbs onto his face, leaning in to keep rubbing your clitoris while Lev spreads her cheeks and licks her pussy. The sounds of moaning fills the room, and you know your going to cum soon from the dual sensations of Lev\'s cock inside you and Lariska\'s rubbing.');
-      qspCall(s, 'mood', 'raise', 'small');
-      (s as any).orgasm_or = 'yes';
-      (s as any).orgasm_txt = 'A wave of pleasure overwhelms your senses, leaving you shaking out of control. Lariska holding you is the only thing keeping you upright, doing her best to keep you stable while Lev continues to eat her pussy.';
-      qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'mood', 'raise', 'small');
+      (st as any).orgasm_or = 'yes';
+      (st as any).orgasm_txt = 'A wave of pleasure overwhelms your senses, leaving you shaking out of control. Lariska holding you is the only thing keeping you upright, doing her best to keep you stable while Lev continues to eat her pussy.';
+      qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0), 'lesbian', 'group');
+      qspCall(st, 'stat', '');
     }
     scene.actions([
       { label: 'Lariska\'s Turn Again', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_6.jpg');
     scene.text('Once you have caught your breath you climb off, making room for Lariska to mount him. His toungue already had her close to a second orgasm, so it doesn\'t take very long of her grinding against him to set her off again.');
     scene.text('Burying her face into his chest, she rides the orgasm out as you watch.');
-    qspCall(s, 'arousal', 'erotic_nudity', 5, 'lesbian', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 5, 'lesbian', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lariska Finishes Him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/lariska/boyfriend/bf_7.jpg');
     scene.text('Eventually she climbs off and Lev stands up, facing the two of you. You both go back to where it started, taking turns sucking him and licking his balls, until Lariska, sensing he\'s about to cum, jams his cock down her throat as much as she can.');
     scene.text('Lev tosses his head back and his hips start twitching as he shoots his cum into Lariska\'s throat. She gags a little, but gamely swallows, milking every drop from him until he is empty. She then leans into kiss you, and you can taste the saltiness of his cum on her tongue.');
     scene.text('Exhausted, the three of you sit and collect your breath for a bit, until Lev stands back up and gets dressed again. Thanking you both for a good time, Lev kisses Lariska before heading home, as the two of you cuddle for a bit.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'lesbian', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'lesbian', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
-    if (((s as any).analPlugOut ?? 0) === 1) {
-      qspCall(s, 'dinsex', 'after_anal');
+    if (((st as any).analPlugOut ?? 0) === 1) {
+      qspCall(st, 'dinsex', 'after_anal');
     }
-    if (((s as any).vibratorOUT ?? 0) === 1) {
-      (s as any).vibratorIN = 1;
-      (s as any).vibratorOUT = 0;
+    if (((st as any).vibratorOUT ?? 0) === 1) {
+      (st as any).vibratorIN = 1;
+      (st as any).vibratorOUT = 0;
     }
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'LariskaHome', 'lariska_bedroom');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'LariskaHome', 'lariska_bedroom');
   } },
     ]);
   } },

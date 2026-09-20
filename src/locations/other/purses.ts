@@ -172,7 +172,7 @@ function enterIsWearingAny(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterIsWearing(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((s as any).currentpursetype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).currentpursenumber ?? 0) === ((s as any).locArgs?.[2] ?? 0));
+  (s as any).result = (((s as any).currentpursetype ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).currentpursenumber ?? 0) === Number((s as any).locArgs?.[2] ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -186,10 +186,10 @@ function enterIsImmutable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddItem(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   // TODO-QSP: gs 'purse_attributes', $ARGS[1], ARGS[2]
@@ -205,19 +205,19 @@ function enterAddItem(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
   // TODO-QSP: dynamic "
   // TODO-QSP: <<$ARGS[1]>>_purses[<<ARGS[2]>>] = 0
   // TODO-QSP: "
-  if (((s as any).locArgs?.[1] ?? 0) === ((s as any).currentpursetype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).currentpursenumber ?? 0)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ((s as any).currentpursetype ?? 0)  &&  Number((s as any).locArgs?.[2] ?? 0) === ((s as any).currentpursenumber ?? 0)) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'outfit', 'set_derived_vars');
     (s as any).lastwornpursetype = 'none';
@@ -242,10 +242,10 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -257,10 +257,10 @@ function enterMoveToWardrobe(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -272,10 +272,10 @@ function enterMoveToStorage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).currentpursetype ?? 0);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).currentpursenumber ?? 0);
   }
   if (qspFunc(s, 'purses', 'is_owned', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0))) {
@@ -336,7 +336,7 @@ function enterReset_PPurseVars(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWear(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'last_worn') {
     if (((s as any).purselastworntype ?? 0) === '') {
       (s as any).purselastworntype = 'none';
       (s as any).purselastwornnumber = 0;
@@ -344,7 +344,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $ARGS[1] = $purselastworntype
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((s as any).purselastwornnumber ?? 0);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -375,34 +375,34 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDescriptions(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'dolls') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'dolls') {
     scene.text('Let your freak flag fly with this perfect purse for the hot, independent girl that lives the alt lifestyle.');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'bomba') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'bomba') {
       scene.text('Yeah you have attitude and with this bag everyone knows it.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'coco') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'coco') {
         scene.text('A trendy bag for a young adult.');
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'flamingos') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'flamingos') {
           scene.text('You look like the girl about town with this bag.');
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'danilovich') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'danilovich') {
             scene.text('A sports bag for all your junk. Practical and durable but not fashionable');
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'fashionista') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'fashionista') {
               scene.text('A stylish handbag for any fashion-forward female!');
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'nerdvana') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana') {
                 scene.text('For the geek inside you.');
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 'gm') {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 'gm') {
                   scene.text('A functional, if not too fashionable, handbag for carrying all of the essentials.');
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 'cats') {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 'cats') {
                     scene.text('Is it a bag? Is it a pet? Is it a toy? Who cares you stand out and look cute.');
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 'moncheri') {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 'moncheri') {
                       scene.text('A high-fashion handbag for ladies with discerning tastes. Show how classy you are with this expensive accessory.');
                     }
                   }

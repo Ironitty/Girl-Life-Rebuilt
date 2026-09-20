@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['time_hidden'] = 0;
   scene.build();
 }
 
@@ -29,8 +28,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('You try to wiggle yourself out of your metal bounds. It\'s no use. The metal doesn\'t move a tiny bit and your wrists and ankles can\'t fit through the openings. There is no way you could possibly get free.');
   } },
       { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 10;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 10;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
     ]);
   } else {
@@ -45,8 +44,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_sleep ?? 0) <= 40  ||  ((s as any).cheatVars ?? 0)?.['sleep'] !== 0) {
         scene.actions([
           { label: 'Try to sleep', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 20;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 20;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
         ]);
       }
@@ -55,8 +54,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('You scream for help as loud as you possibly can. Nothing happens. Did anybody hear you at all?');
   } },
         { label: 'Wait', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 21;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 21;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
       ]);
     } else {
@@ -80,8 +79,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('Just as you open your mouth you feel the whip once more. Taras obviously doesn\'t want you to speak right now.');
   } },
           { label: 'Listen', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 30;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 30;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
         ]);
       } else {
@@ -103,13 +102,13 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
           scene.text('"Shut up, slut! I am sure you have a lot of questions right now. But there are only a few things you need to know."');
           scene.actions([
             { label: 'Object', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 5, 'pubic', 'hit');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 5, 'pubic', 'hit');
+    qspCall(st, 'stat', '');
     scene.text('Just as you open your mouth you feel the whip once more. Taras obviously doesn\'t want you to speak right now.');
   } },
             { label: 'Listen', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 30;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 30;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
           ]);
         } else {
@@ -129,12 +128,12 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
             scene.text('"Do you understand?"');
             scene.actions([
               { label: 'Yes sir', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 40;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 40;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
               { label: 'No way!', handler: (st: GameState) => {
-    qspCall(s, 'pain', '', 6, 'nipples', 'twist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 6, 'nipples', 'twist');
+    qspCall(st, 'stat', '');
     scene.text('"No! You can\'t…" you are interrupted by him painfully twisting your nipples.');
     scene.text('"I\'m asking again: do you understand?"');
   } },
@@ -154,8 +153,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
               scene.text('He unbottons his pants and pulls them down along with his underpants. He clearly wants you to see his erect penis. Does he really expect you to suck it?');
               scene.actions([
                 { label: 'Further', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 50;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 50;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
               ]);
             } else {
@@ -172,8 +171,8 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
                 scene.text('Once she is done Taras kicks her into the belly. "Get up, lazy slut!"');
                 scene.actions([
                   { label: 'Further', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 60;
-    qspGoto(s, 'nichTaras', 'abdIntro');
+    (st as any).nichAbdStage = 60;
+    qspGoto(st, 'nichTaras', 'abdIntro');
   } },
                 ]);
               } else {
@@ -191,10 +190,10 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
                   scene.text('Taras nods and leaves the basement. You hear an heavy door closing and three locks being closed.');
                   scene.actions([
                     { label: 'Further', handler: (st: GameState) => {
-    (s as any).nichAbdStage = 100;
-    (s as any).nichTarasLeave = ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) + 20;
-    (s as any).nichTarasReturn = Math.floor(Math.random() * 5) + 19;
-    qspGoto(s, 'nichTaras', 'katinka', 'wash');
+    (st as any).nichAbdStage = 100;
+    (st as any).nichTarasLeave = ((st as any).hour ?? 0) * 60 + ((st as any).minut ?? 0) + 20;
+    (st as any).nichTarasReturn = (Math.floor(Math.random() * 5) + 19);
+    qspGoto(st, 'nichTaras', 'katinka', 'wash');
   } },
                   ]);
                 }
@@ -209,42 +208,42 @@ function enterAbdIntro(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKatinka(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'desc') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'desc') {
     scene.img('images/characters/city/taras/katinka1.jpg');
     scene.actions([
       { label: 'Talk', handler: (st: GameState) => {
-    if (((s as any).nichKatinkaTopics ?? 0) === 0  &&  ((s as any).nichKatinkaTopic ?? 0)[1] === 0) {
+    if (((st as any).nichKatinkaTopics ?? 0) === 0  &&  ((st as any).nichKatinkaTopic ?? 0)[1] === 0) {
       scene.actions([
         { label: 'Who are you?', handler: (st: GameState) => {
-    (s as any).nichKatinkaTopics = ((s as any).nichKatinkaTopics ?? 0) + (1);
-    ((s as any).nichKatinkaTopic = (s as any).nichKatinkaTopic ?? {})[1] = 1;
+    (st as any).nichKatinkaTopics = ((st as any).nichKatinkaTopics ?? 0) + (1);
+    ((st as any).nichKatinkaTopic = (st as any).nichKatinkaTopic ?? {})[1] = 1;
     scene.text('"Excuse me?"');
     scene.text('"Psssst. Please talk quietly. Master will be mad when he finds out you were talking to me." she looks and sounds terrified.');
     scene.text('"Who are you? Why are you here?"');
     scene.text('"I… I… I am nothing but my Masters little slut. I am here to serve him." a tear rolls down her cheek as she says these lines which are obviously not her own thoughts.');
     scene.text('<i>She doesn\'t seem to be ready to talk about this topic. Maybe you should ask her again at another time.</i>');
-    qspGoto(s, 'nichTaras', 'katinka', 'talkEnd');
+    qspGoto(st, 'nichTaras', 'katinka', 'talkEnd');
   } },
       ]);
     }
   } },
       { label: 'Back', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
     ]);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'talkEnd') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'talkEnd') {
       scene.text('As you think about what you could say next you hear Taras returning from upstairs. He is dressed for his job.');
       // TODO-QSP: dynamic text: "Time to get you back to your own room." he grabs <<$nichKatinkaName>> by her ha...
       scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName || '')} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
       (s as any).nichKatinkaPresent = 0;
       scene.actions([
         { label: 'Alone', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
       ]);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'wash') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'wash') {
         scene.img('images/characters/city/taras/washing1.jpg');
         // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> takes a bottle of shower gel and covers you in it. Being ...
         scene.text(`${((s as any).nichKatinkaNameUC || '')} takes a bottle of shower gel and covers you in it. Being all tied up there is nothing you can do to prevent it. Her touch feels soft on your skin. Then she uses a hose to clean you. The water is ice cold. She gently dries you with a towel before combing your hair.`);
@@ -258,7 +257,7 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         scene.actions([
           { label: 'Finished', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
         ]);
       }
@@ -274,7 +273,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName || '')} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
     (s as any).nichKatinkaPresent = 0;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     qspCall(s, 'stat', '');
     if (((s as any).nichTarasReturn ?? 0) <= ((s as any).hour ?? 0)) {
       scene.text('You hear the locks of the door upstairs being opened again. Then heavy steps. Taras has returned.');
@@ -282,35 +281,35 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
       scene.text('He comes over to you and grabs you by the hair.');
       scene.actions([
         { label: 'Get dragged', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'session');
+    qspGoto(st, 'nichTaras', 'session');
   } },
       ]);
     } else {
       scene.text('<center><b>Basement</b></center>');
       scene.img('images/characters/city/taras/dungeon.jpg');
       scene.text('You are in a basement. There are several metal objects bolted to the ground and to the walls. They are used for chaining up prisoners. There is also a hose for cleaning.');
-      // TODO-QSP: dynamic text: In one corner of the room stands an <a href="exec:minut += 10&gt 'nichTaras', 'd...
-      scene.text('In one corner of the room stands an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027dungeon\\u0027, \\u0027bed\\u0027); return false;">old bed</a> with a dirty mattress on it.');
-      scene.text('There is also a bucket with water and another one with some kind of bad tasting food. You could <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027dungeon\\u0027, \\u0027eat\\u0027); return false;">eat and drink</a> from them.');
+      // TODO-QSP: dynamic text: In one corner of the room stands an <a href="exec:minut += 10&gt ''nichTaras'', ...
+      scene.text('In one corner of the room stands an <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027nichTaras/u0027, /u0027dungeon/u0027, /u0027bed/u0027); return false;">old bed</a> with a dirty mattress on it.');
+      scene.text('There is also a bucket with water and another one with some kind of bad tasting food. You could <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTaras/u0027, /u0027dungeon/u0027, /u0027eat/u0027); return false;">eat and drink</a> from them.');
       if ((!((s as any).nichTarasMirror ?? 0))) {
-        scene.text('In another corner of the room is an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027dungeon\\u0027, \\u0027mirror\\u0027); return false;">old mirror</a>.');
+        scene.text('In another corner of the room is an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTaras/u0027, /u0027dungeon/u0027, /u0027mirror/u0027); return false;">old mirror</a>.');
       } else {
         scene.text('The mirror you threw over lies in one corner of the room.');
       }
       if (((s as any).nichKatinkaPresent ?? 0) === 1) {
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichTaras\\u0027, \\u0027katinka\\u0027, \\u0027desc\\u0027); return false;">The other girl</a> Taras owns is also here cleaning the floor and refilling your food.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichTaras/u0027, /u0027katinka/u0027, /u0027desc/u0027); return false;">The other girl</a> Taras owns is also here cleaning the floor and refilling your food.');
       }
       scene.actions([
         { label: 'Wait', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspGoto(s, 'nichTaras', 'dungeon');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
       ]);
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'bed') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'bed') {
       qspCall(s, 'stat', '');
-      if (((s as any).locArgs?.[2] ?? 0) === '') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === '') {
         scene.img('images/characters/city/taras/dungeonBed.jpg');
         scene.text('You crawl over to the bed. Being tied up you have a hard time climbing on the mattress. It isn\'t very comfortable but still better than the cold ground.');
         if (((s as any).pcs_sleep ?? 0) < 80  ||  ((s as any).cheatVars ?? 0)?.['sleep'] !== 0) {
@@ -322,11 +321,11 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
         ]);
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'sleep') {
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'sleep') {
           scene.text('The bed is extremely uncomfortable and smells of old sweat. You try to get into a comfortable position but your bondage would\'t allow that.');
           scene.text('Giving up you decide to try to sleep like this. It takes a while but finally you manage to fall asleep.');
           if (((s as any).hour ?? 0) + 4 >= ((s as any).nichTarasReturn ?? 0)) {
@@ -336,7 +335,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
             scene.text('He grabs your hair and pulls you up.');
             scene.actions([
               { label: 'Get dragged', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'session');
+    qspGoto(st, 'nichTaras', 'session');
   } },
             ]);
           } else {
@@ -351,14 +350,14 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
             }
             scene.actions([
               { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
             ]);
           }
         }
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'eat') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'eat') {
         (s as any).minut = ((s as any).minut ?? 0) + 10;
         (s as any).pcs_hydra = Math.max(((s as any).pcs_hydra ?? 0), 80);
         (s as any).pcs_energy = Math.max(((s as any).pcs_energy ?? 0), 80);
@@ -367,22 +366,22 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
         scene.text('You force yourself to eat a little bit of the distgusting tasting food in the bucket. At least the water is tastless.');
         scene.actions([
           { label: 'Return', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
         ]);
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'mirror') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'mirror') {
           scene.img('images/characters/city/taras/mirror.jpg');
           scene.text('This is a dirty old mirror standing on the ground.');
           if ((!((s as any).nichTarasMirror ?? 0))) {
             scene.actions([
               { label: 'Throw over', handler: (st: GameState) => {
-    (s as any).nichTarasMirror = 1;
-    (s as any).nichTarasMirrorCount = ((s as any).nichTarasMirrorCount ?? 0) + (1);
+    (st as any).nichTarasMirror = 1;
+    (st as any).nichTarasMirrorCount = ((st as any).nichTarasMirrorCount ?? 0) + (1);
     scene.text('It takes quit some effort by finally you manage to use your shoulder to throw the mirror over. The frame took some damage but the glass seems to be still intact.');
     scene.actions([
       { label: 'Back', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
     ]);
   } },
@@ -394,7 +393,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
     scene.text('You see the reflection of your bound self in the mirror.');
   } },
             { label: 'Back', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'dungeon');
+    qspGoto(st, 'nichTaras', 'dungeon');
   } },
           ]);
         }
@@ -451,20 +450,20 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.text('Focussing on the mirror gets harder with each stroke. You really want to close your eyes but what if you got punished even worse then?');
     scene.actions([
       { label: 'Close eyes', handler: (st: GameState) => {
-    (s as any).nichTarasSessionStage = 10;
-    qspGoto(s, 'nichTaras', 'session');
+    (st as any).nichTarasSessionStage = 10;
+    qspGoto(st, 'nichTaras', 'session');
   } },
       { label: 'Focus', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/mirrorEvent1e.jpg');
     scene.text('Taras has spared your most sensitive parts for the finish. Your pussy feels like being on fire as the whip hits it mercilessly several times.');
     scene.actions([
       { label: 'Close eyes', handler: (st: GameState) => {
-    (s as any).nichTarasSessionStage = 10;
-    qspGoto(s, 'nichTaras', 'session');
+    (st as any).nichTarasSessionStage = 10;
+    qspGoto(st, 'nichTaras', 'session');
   } },
       { label: 'Focus', handler: (st: GameState) => {
-    (s as any).nichTarasSessionStage = 20;
-    qspGoto(s, 'nichTaras', 'session');
+    (st as any).nichTarasSessionStage = 20;
+    qspGoto(st, 'nichTaras', 'session');
   } },
     ]);
   } },
@@ -489,8 +488,8 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_sleep ?? 0) < 80  ||  ((s as any).cheatVars ?? 0)?.['sleep'] !== 0) {
           scene.actions([
             { label: 'Sleep', handler: (st: GameState) => {
-    (s as any).nichTarasSessionStage = 11;
-    qspGoto(s, 'nichTaras', 'session');
+    (st as any).nichTarasSessionStage = 11;
+    qspGoto(st, 'nichTaras', 'session');
   } },
           ]);
         }
@@ -499,18 +498,18 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull on your restraints the best you can, but they don\'t give in. You are tightly locked.');
   } },
           { label: 'Wait', handler: (st: GameState) => {
-    if (((s as any).pcs_sleep ?? 0) <= 20  ||  (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) <= 6)) {
+    if (((st as any).pcs_sleep ?? 0) <= 20  ||  (((st as any).hour ?? 0) >= 4  &&  ((st as any).hour ?? 0) <= 6)) {
       scene.img('images/characters/city/taras/mirrorEvent1d.jpg');
       scene.text('You are too tired to stay awake any longer.');
       scene.actions([
         { label: 'Fall asleep', handler: (st: GameState) => {
-    (s as any).nichTarasSessionStage = 11;
-    qspGoto(s, 'nichTaras', 'session');
+    (st as any).nichTarasSessionStage = 11;
+    qspGoto(st, 'nichTaras', 'session');
   } },
       ]);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
   } },
         ]);
       } else {
@@ -525,7 +524,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
           (s as any).nichKatinkaPresent = 1;
           scene.actions([
             { label: 'Get washed', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'katinka', 'wash');
+    qspGoto(st, 'nichTaras', 'katinka', 'wash');
   } },
           ]);
         } else {
@@ -549,11 +548,11 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/mirrorEvent1g.jpg');
     scene.text('You lie on the ground. Being restrained like this there is not much you can do.');
-    if (((s as any).pcs_sleep ?? 0) < 80  ||  ((s as any).cheatVars ?? 0)?.['sleep'] !== 0) {
+    if (((st as any).pcs_sleep ?? 0) < 80  ||  ((st as any).cheatVars ?? 0)?.['sleep'] !== 0) {
       scene.actions([
         { label: 'Sleep', handler: (st: GameState) => {
-    (s as any).nichTarasSessionStage = 21;
-    qspGoto(s, 'nichTaras', 'session');
+    (st as any).nichTarasSessionStage = 21;
+    qspGoto(st, 'nichTaras', 'session');
   } },
       ]);
     }
@@ -562,18 +561,18 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull on your restraints the best you can, but they don\'t give in. You are tightly locked.');
   } },
       { label: 'Wait', handler: (st: GameState) => {
-    if (((s as any).pcs_sleep ?? 0) <= 20  ||  (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) <= 6)) {
+    if (((st as any).pcs_sleep ?? 0) <= 20  ||  (((st as any).hour ?? 0) >= 4  &&  ((st as any).hour ?? 0) <= 6)) {
       scene.img('images/characters/city/taras/mirrorEvent1g.jpg');
       scene.text('You are too tired to stay awake any longer.');
       scene.actions([
         { label: 'Fall asleep', handler: (st: GameState) => {
-    (s as any).nichTarasSessionStage = 21;
-    qspGoto(s, 'nichTaras', 'session');
+    (st as any).nichTarasSessionStage = 21;
+    qspGoto(st, 'nichTaras', 'session');
   } },
       ]);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
   } },
     ]);
   } },
@@ -592,7 +591,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
               (s as any).nichKatinkaPresent = 1;
               scene.actions([
                 { label: 'Get washed', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'katinka', 'wash');
+    qspGoto(st, 'nichTaras', 'katinka', 'wash');
   } },
               ]);
             }
@@ -624,16 +623,16 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       { label: 'Don\'t move', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/rope1a.jpg');
     // TODO-QSP: dynamic text: You notice that <<$nichKatinkaName>> started to move forward. But you have no in...
-    scene.text(`You notice that ${((s as any).nichKatinkaName || '')} started to move forward. But you have no interest in participating in this humiliating race.`);
+    scene.text(`You notice that ${((st as any).nichKatinkaName || '')} started to move forward. But you have no interest in participating in this humiliating race.`);
     // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> has advanced two knots when Taras comes over to you.
-    scene.text(`${((s as any).nichKatinkaNameUC || '')} has advanced two knots when Taras comes over to you.`);
+    scene.text(`${((st as any).nichKatinkaNameUC || '')} has advanced two knots when Taras comes over to you.`);
     scene.text('"You don\'t want to get me angry, slut. Get moving or you will regret it."');
     scene.actions([
       { label: 'Move forward' }, // TODO-QSP: empty action body
       { label: 'Stand still', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/rope1a.jpg');
-    // TODO-QSP: dynamic text: You decide that you won't let his threat impress you. You watch as <<$nichKatink...
-    scene.text(`You decide that you won't let his threat impress you. You watch as ${((s as any).nichKatinkaName || '')} slowly approaches the end of her rope knot by knot.`);
+    // TODO-QSP: dynamic text: You decide that you won''t let his threat impress you. You watch as <<$nichKatin...
+    scene.text(`You decide that you won't let his threat impress you. You watch as ${((st as any).nichKatinkaName || '')} slowly approaches the end of her rope knot by knot.`);
     scene.text('When she reaches the end Taras pets her head. "Well done, slut. Too bad your competitor didn\'t show the same ambition. Just stay here while I lecture her the importance of good sportsmanship."');
     scene.text('He grabs the bucket where you usually have to drink from. He opens his pants and starts urinating in the bucket.');
     scene.text('Afterwards he unties you, only to push you inside a crate which is barely big enough for you to fit in. At the end is a hole where your head fits through.');
@@ -642,20 +641,20 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/taras/punishment1a.jpg');
     scene.text('Taras tightly ties you in the crate, then he pushes it on a small metal podium and turns it so your head faces downward.');
     scene.text('Then he places the bucket under your face. You can smell the urine. It\'s distgusting.');
-    // TODO-QSP: dynamic text: But Taras isn't done yet. From the corner of your eyes you see that he is draggi...
-    scene.text(`But Taras isn't done yet. From the corner of your eyes you see that he is dragging ${((s as any).nichKatinkaName || '')} over to you.`);
+    // TODO-QSP: dynamic text: But Taras isn''t done yet. From the corner of your eyes you see that he is dragg...
+    scene.text(`But Taras isn't done yet. From the corner of your eyes you see that he is dragging ${((st as any).nichKatinkaName || '')} over to you.`);
     scene.text('"Piss!" he commands. Nothing happens. Does she hesitate to follow his order? "I said piss!". It only take a few moments longer before you feel a warm liquid on the back of your head, slowly running down your hair and into your face. She is actually pissing on your head!');
     scene.text('When she is done the bucket is almost have full and the urine is even closer to your face now. But Taras is not satisfied yet. He returns with the water hose and while holding you back by your hair he fills the bucket with water until it reaches your chin.');
     scene.text('When he lets go your face drops into the foul smelling liquid. In order to breath you have to pull it back and hold it in an awkward position.');
     scene.text('"That\'s what happens to bad sportsmen. You better keep your head up while I reward this little skank here."');
-    qspCall(s, 'arousal', 'pee', (-5), 'sub', 'humiliation', 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'pee', (-5), 'sub', 'humiliation', 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/punishment1b.jpg');
     scene.text('You try to keep your head up the best you can. But it is just too exhausting. So you limit yourself on taking a deep breath every few seconds, let your head drop into the liquid and to surface a few seconds later.');
-    // TODO-QSP: dynamic text: While you're busy not drowning you hear the reward Taras was speaking of. It sou...
-    scene.text(`While you're busy not drowning you hear the reward Taras was speaking of. It sounds like a mixture of spanking, rape and whipping. Even being in a dire situation you can't tell for sure if ${((s as any).nichKatinkaName || '')} is better of right now.`);
+    // TODO-QSP: dynamic text: While you''re busy not drowning you hear the reward Taras was speaking of. It so...
+    scene.text(`While you're busy not drowning you hear the reward Taras was speaking of. It sounds like a mixture of spanking, rape and whipping. Even being in a dire situation you can't tell for sure if ${((st as any).nichKatinkaName || '')} is better of right now.`);
     scene.text('After what appears to be an eternity you hear Taras stepping next to your bucket again.');
     scene.text('"It looks like you are having fun. I think I will leave you like this for the night."');
     scene.text('"Oh, and before I forget: if you drink a little water you can drop your head without drowning."');
@@ -666,46 +665,46 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.text('You can\'t believe what you just heard. How can he expect you to drink this revolting smelling liquid?');
     scene.actions([
       { label: 'Drink', handler: (st: GameState) => {
-    if (((s as any).nichTarasSessionStage ?? 0) < 201) {
+    if (((st as any).nichTarasSessionStage ?? 0) < 201) {
       scene.text('You have to bring up all your willpower to force this distgusting liquid down your throat.');
       scene.text('You feel your stomach revolting and press your lips together. Barfing would only make matters way worse right now.');
       scene.text('Just as you are about to finish drinking you realize, that you can\'t drop your head safely yet. You are only halfway done.');
-      (s as any).nichTarasSessionStage = 201;
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (Math.floor(Math.random() * 21) + 80);
-      qspCall(s, 'stat', '');
+      (st as any).nichTarasSessionStage = 201;
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (Math.floor(Math.random() * 21) + 80);
+      qspCall(st, 'stat', '');
     } else {
-      if (((s as any).nichTarasSessionStage ?? 0) === 201) {
+      if (((st as any).nichTarasSessionStage ?? 0) === 201) {
         scene.text('Again you convince yourself to drink the liquid. It didn\'t become easier since last time and your stomach already feels like bursting from all the liquid you forced into it.');
-        (s as any).nichTarasSessionStage = 202;
-        (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (Math.floor(Math.random() * 21) + 80);
-        qspCall(s, 'stat', '');
+        (st as any).nichTarasSessionStage = 202;
+        (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (Math.floor(Math.random() * 21) + 80);
+        qspCall(st, 'stat', '');
       } else {
         scene.text('There is no reason to drink any more liquid.');
       }
     }
   } },
       { label: 'Wait', handler: (st: GameState) => {
-    if (((s as any).nichTarasSessionStage ?? 0) < 202) {
+    if (((st as any).nichTarasSessionStage ?? 0) < 202) {
       scene.text('You wait for a few minutes. There is no way you will make it through the night like this.');
     } else {
       scene.text('You wait for a few minutes. You still have an uneasy feeling in your stomach, but at least you could sleep now.');
     }
   } },
       { label: 'Sleep', handler: (st: GameState) => {
-    if (((s as any).nichTarasSessionStage ?? 0) < 202) {
+    if (((st as any).nichTarasSessionStage ?? 0) < 202) {
       scene.text('If you would fall asleep right now you would drown for sure.');
     } else {
       scene.img('images/characters/city/taras/punishment1a.jpg');
       scene.text('Being placed in this crate and all most of your weight resting on your shoulders while foul smelling urine is slowly drying on your head is a bad position to sleep in. But your need for sleep is too strong and so you fall asleep soon.');
-      qspCall(s, 'sleep_simple', 'sleep_until', 6, 0);
+      qspCall(st, 'sleep_simple', 'sleep_until', 6, 0);
       scene.text('You don\'t know for how long you slept when a dash of cold water pulls you out of your dreams.');
       scene.text('You immediately realize that you are no longer tied in the create. Instead you have already bound in an hogite again.');
       // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> is the one washing you. Taras is nowhere to be seen for n...
-      scene.text(`${((s as any).nichKatinkaNameUC || '')} is the one washing you. Taras is nowhere to be seen for now.`);
-      (s as any).nichKatinkaPresent = 1;
+      scene.text(`${((st as any).nichKatinkaNameUC || '')} is the one washing you. Taras is nowhere to be seen for now.`);
+      (st as any).nichKatinkaPresent = 1;
       scene.actions([
         { label: 'Get washed', handler: (st: GameState) => {
-    qspGoto(s, 'nichTaras', 'katinka', 'wash');
+    qspGoto(st, 'nichTaras', 'katinka', 'wash');
   } },
       ]);
     }
@@ -737,10 +736,10 @@ function enterVan(s: GameState, scene: SceneBuilder): void {
   (s as any).nichGalaTarasPlan = ((s as any).nichGalaTarasPlan ?? 0) + (1);
   scene.actions([
     { label: 'Walk past it', handler: (st: GameState) => {
-    if (((s as any).nichGalaTarasPlan ?? 0) >= 113) {
-      qspGoto(s, 'nichTaras', 'vanAbduct');
+    if (((st as any).nichGalaTarasPlan ?? 0) >= 113) {
+      qspGoto(st, 'nichTaras', 'vanAbduct');
     }
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     { label: 'Avoid it (10 minutes)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -751,7 +750,7 @@ function enterVan(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.img('images/characters/city/taras/abduction.jpg');
     scene.text('As you pass the van the back door is suddenly opened. You have no time to react before a piece of cloth is pressed against your face.');
     scene.text('It smells sweetish… and you begin to black out.');
@@ -760,7 +759,7 @@ function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['nichTaras', 'vanAbduct', '1'] },
     ]);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
       scene.img('images/characters/city/taras/abductionVan.jpg');
       scene.text('You slowly come back to your senses. The first thing you realize is that you are completely tied up. You can\'t move at all.');
       scene.text('You open your eyes in panic. You are in the back area of the van and it is moving. You try to scream, but your mouth is taped shut.');
@@ -776,6 +775,7 @@ function enterVanAbduct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  ((s as any).stat_cfg = (s as any).stat_cfg ?? {})['time_hidden'] = 0;
   const arg = s.locArg;
   switch (arg) {
     case 'abdIntro':

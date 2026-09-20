@@ -7,14 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).lutH_max ?? 0))) {
-    (s as any).lutH_max = Math.floor(Math.random() * 49) + 312;
-    // TODO-QSP: !! 13-15 days including ovulation
-  }
-  if ((!((s as any).focH_max ?? 0))) {
-    (s as any).focH_max = Math.floor(Math.random() * 49) + 312;
-    // TODO-QSP: !! 13-15 days including menstruation
-  }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFemcycErrhdl(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).rcntorgzm ?? 0) === 1) {
     if (((s as any).rcntorgzmtmp ?? 0) === 1) {
@@ -308,7 +300,7 @@ function enterCyc0(s: GameState, scene: SceneBuilder): void {
     (s as any).cycle = 1;
     (s as any).mesec = 0;
     if ((Math.floor(Math.random() * 1001) + 0) === 1000) {
-      (s as any).EggRH = Math.floor(Math.random() * 61) + 20;
+      (s as any).EggRH = (Math.floor(Math.random() * 61) + 20);
     } else {
       (s as any).EggRH = 0;
     }
@@ -342,14 +334,14 @@ function enterCyc1(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    (s as any).lutH_max = Math.floor(Math.random() * 49) + 312;
+    (s as any).lutH_max = (Math.floor(Math.random() * 49) + 312);
     // TODO-QSP: !{If you are ready to ovulate, it creates a chance to double ovulate. That chance is increased by yo...
-    (s as any).temprand = Math.floor(Math.random() * 21) + 0;
+    (s as any).temprand = (Math.floor(Math.random() * 21) + 0);
     (s as any).temprand = ((s as any).temprand ?? 0) + (((s as any).age ?? 0) / 15);
     (s as any).temprand = ((s as any).temprand ?? 0) - (((s as any).pillcon ?? 0) / 1000);
     if (((s as any).temprand ?? 0) > 20) {
       (s as any).EggRH = ((s as any).EggRH ?? 0) + (205);
-      (s as any).temprand = Math.floor(Math.random() * 21) + 0;
+      (s as any).temprand = (Math.floor(Math.random() * 21) + 0);
       (s as any).temprand = ((s as any).temprand ?? 0) + (((s as any).age ?? 0) / 15);
       if (((s as any).temprand ?? 0) > 20) {
         (s as any).EggRH = ((s as any).EggRH ?? 0) + (410);
@@ -430,7 +422,7 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: :FertLoop
     if (((s as any).egg_idx ?? 0) < ((s as any).egg_sz ?? 0)) {
-      (s as any).fert_thresh = Math.floor(Math.random() * 250000) + 1;
+      (s as any).fert_thresh = (Math.floor(Math.random() * 250000) + 1);
       if (((s as any).pillcon ?? 0) < 0) {
         (s as any).pillcon = 0;
       }
@@ -454,7 +446,7 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
         (s as any).UnfertEgg = ((s as any).UnfertEgg ?? 0) - (1);
         (s as any).FertEgg = ((s as any).FertEgg ?? 0) + (1);
         (s as any).nextBaby = 0;
-        ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 2) + 0;
+        ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 2) + 0);
         // TODO-QSP: $kidname[nextBaby] = 'unborn'
         ((s as any).kidage = (s as any).kidage ?? {})[String((s as any).nextBaby ?? 0)] = 0;
         ((s as any).daykid = (s as any).daykid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
@@ -462,8 +454,8 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
         ((s as any).yearkid = (s as any).yearkid ?? {})[String((s as any).nextBaby ?? 0)] = 0;
         ((s as any).Babyptype = (s as any).Babyptype ?? {})[String((s as any).nextBaby ?? 0)] = 0;
         // TODO-QSP: $ChildFath[nextBaby] = $cumfathlotto[lotto_idx]
-        ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
-        ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = Math.floor(Math.random() * 4) + 0;
+        ((s as any).hairkid = (s as any).hairkid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
+        ((s as any).eyeskid = (s as any).eyeskid ?? {})[String((s as any).nextBaby ?? 0)] = (Math.floor(Math.random() * 4) + 0);
         ((s as any).ChildConType = (s as any).ChildConType ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).cumarrcon ?? 0)?.[String((s as any).nextBaby ?? 0)];
         if (((s as any).FertEgg ?? 0) > 1) {
           // TODO-QSP: $childtype[nextBaby] = 'fraternal twin'
@@ -552,7 +544,7 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :implant_loop
   if (((s as any).implant_idx ?? 0) < ((s as any).implant_sz ?? 0)) {
     if (((s as any).Babyptype ?? 0)?.[String((s as any).implant_idx ?? 0)] === 0  &&  ((s as any).ChildFath ?? 0)?.[String((s as any).implant_idx ?? 0)] !== '') {
-      (s as any).imp_rand = Math.floor(Math.random() * 120001) + 0;
+      (s as any).imp_rand = (Math.floor(Math.random() * 120001) + 0);
       if (((s as any).ferteggage ?? 0) < 120  &&  ((s as any).broodcurse ?? 0) <= 0) {
         (s as any).imp_rand = ((s as any).imp_rand ?? 0) + (170);
         (s as any).imp_rand = ((s as any).imp_rand ?? 0) - (((s as any).age ?? 0) * 10);
@@ -563,7 +555,7 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
           ((s as any).Babyptype = (s as any).Babyptype ?? {})[String((s as any).implant_idx ?? 0)] = 2;
           (s as any).FertEgg = ((s as any).FertEgg ?? 0) - (1);
           (s as any).babyembryo = ((s as any).babyembryo ?? 0) + (1);
-          (s as any).pregChem = Math.floor(Math.random() * 21) + 10;
+          (s as any).pregChem = (Math.floor(Math.random() * 21) + 10);
           (s as any).pregChemFrac = 0;
           if ((!((s as any).preg ?? 0))) {
             (s as any).preg = 1;
@@ -581,7 +573,7 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
           ((s as any).Babyptype = (s as any).Babyptype ?? {})[String((s as any).implant_idx ?? 0)] = 1;
           (s as any).FertEgg = ((s as any).FertEgg ?? 0) - (1);
           (s as any).babyembryo = ((s as any).babyembryo ?? 0) + (1);
-          (s as any).pregChem = Math.floor(Math.random() * 21) + 10;
+          (s as any).pregChem = (Math.floor(Math.random() * 21) + 10);
           (s as any).pregChemFrac = 0;
           if ((!((s as any).preg ?? 0))) {
             (s as any).preg = 1;
@@ -613,8 +605,8 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
       if (((s as any).menoage ?? 0) <= ((s as any).age ?? 0)) {
         (s as any).cycle = 6;
       } else {
-        (s as any).focH_max = Math.floor(Math.random() * 49) + 312;
-        (s as any).temprand = Math.floor(Math.random() * 11) + 0;
+        (s as any).focH_max = (Math.floor(Math.random() * 49) + 312);
+        (s as any).temprand = (Math.floor(Math.random() * 11) + 0);
         if (((s as any).pillcon ?? 0) >= 38000  ||  (((s as any).pillcon ?? 0) > 0  &&  (Math.floor(Math.random() * 24) + 1) === 1)) {
           (s as any).EggRH = 0;
           (s as any).cycle = 1;
@@ -625,17 +617,17 @@ function enterCyc3(s: GameState, scene: SceneBuilder): void {
             (s as any).daylastperiod = ((s as any).daystart ?? 0);
           }
           (s as any).firstmens = ((s as any).daystart ?? 0);
-          (s as any).temprand = Math.floor(Math.random() * 11) + 0;
+          (s as any).temprand = (Math.floor(Math.random() * 11) + 0);
           if (((s as any).temprand ?? 0) === 0  &&  ((s as any).pillcon ?? 0) < 10000) {
-            (s as any).mesec = Math.floor(Math.random() * 33) + 104;
+            (s as any).mesec = (Math.floor(Math.random() * 33) + 104);
           } else {
             if (((s as any).temprand ?? 0) < 9  &&  ((s as any).pillcon ?? 0) < 15000) {
-              (s as any).mesec = Math.floor(Math.random() * 29) + 76;
+              (s as any).mesec = (Math.floor(Math.random() * 29) + 76);
             } else {
               if (((s as any).pillcon ?? 0) < 20000) {
-                (s as any).mesec = Math.floor(Math.random() * 25) + 52;
+                (s as any).mesec = (Math.floor(Math.random() * 25) + 52);
               } else {
-                (s as any).mesec = Math.floor(Math.random() * 9) + 44;
+                (s as any).mesec = (Math.floor(Math.random() * 9) + 44);
               }
             }
           }
@@ -664,7 +656,7 @@ function enterCyc4(s: GameState, scene: SceneBuilder): void {
       (s as any).knowpregrecover = 0;
     }
     if ((Math.floor(Math.random() * 1001) + 0) === 1000) {
-      (s as any).EggRH = Math.floor(Math.random() * 61) + 20;
+      (s as any).EggRH = (Math.floor(Math.random() * 61) + 20);
     } else {
       (s as any).EggRH = 0;
     }
@@ -683,7 +675,7 @@ function enterPreg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).FertEgg ?? 0) === 1  &&  ((s as any).ferteggage ?? 0) < 330) {
     if ((!(Math.floor(Math.random() * ((2000 - ((s as any).age ?? 0) * 20 - 0 + 1)) + (0))))) {
       (s as any).babyembryo = ((s as any).babyembryo ?? 0) + (1);
-      (s as any).pregChem = ((s as any).pregChem ?? 0) + (Math.floor(Math.random() * 21) + 10);
+      (s as any).pregChem = ((s as any).pregChem ?? 0) + ((Math.floor(Math.random() * 21) + 10));
       (s as any).nextBaby = 0;
       ((s as any).polkid = (s as any).polkid ?? {})[String((s as any).nextBaby ?? 0)] = ((s as any).polkid ?? 0)[((s as any).nextBaby ?? 0)-1];
       // TODO-QSP: $kidname[nextBaby] = 'unborn'
@@ -800,6 +792,14 @@ function enterFemcycErrhdl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if ((!((s as any).lutH_max ?? 0))) {
+    (s as any).lutH_max = (Math.floor(Math.random() * 49) + 312);
+    // TODO-QSP: !! 13-15 days including ovulation
+  }
+  if ((!((s as any).focH_max ?? 0))) {
+    (s as any).focH_max = (Math.floor(Math.random() * 49) + 312);
+    // TODO-QSP: !! 13-15 days including menstruation
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'cyc0':

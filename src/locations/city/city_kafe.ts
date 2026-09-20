@@ -160,7 +160,7 @@ function enterFabi(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/fabi/FAB-001.jpg');
   scene.text('As you approach the owner, he looks up from his papers and gives you a tired smile. "Hello. I\'m Fabiyan Pankratov, owner of the Roadhouse, but everyone just calls me Fabi. I don\'t think I\'ve seen you around here before. What can I do for you?"');
-  // TODO-QSP: dynamic text: "I'm <<$pcs_firstname>> <<$pcs_lastname>>," you tell him. "I was wondering if yo...
+  // TODO-QSP: dynamic text: "I''m <<$pcs_firstname>> <<$pcs_lastname>>," you tell him. "I was wondering if y...
   scene.text(`"I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}," you tell him. "I was wondering if you have any waitress jobs available?"`);
   scene.text('His smile broadens and he looks a little less tired. "Ah, so you want to work here? Well why wouldn\'t you? Rockabilly music, the greaser subculture, Cadillacs, motorcycles and hamburgers! I love this period of American culture, it\'s so vibrant and exciting! I\'ve put every ruble I have into making this place the perfect recreation of an American diner from 1958. Who doesn\'t love that?"');
   scene.text('A glance around the place shows you that the diner is barely half full, and most of those dining are eating Russian food rather than American. Fabi is still raving about America in the 1950s, talking about Elvis Presley, someone called Carl Perkins, and cheeseburgers and French fries. His enthusiasm is honest and infectious, but you came here for a reason, so you clear your throat. "Fabi? About the job?"');
@@ -170,14 +170,14 @@ function enterFabi(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Yes', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_cafe_waitress') === 1) {
-      qspCall(s, 'jobs', 'set_employed', 'city_cafe_waitress');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'jobs', 'set_employed', 'city_cafe_waitress');
+      qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: "Good! Now remember, you have to be here between '+func('time', 'get_time_string...
       scene.text('"Good! Now remember, you have to be here between 11:00 and noon, Tuesday through Saturday."');
     } else {
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       scene.text('Unfortunately, the shift times conflict with your existing schedule.');
     }
     scene.actions([
@@ -194,10 +194,10 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).job_last_work_day ?? 0)?.['city_cafe_waitress'] === ((s as any).daystart ?? 0)) {
     scene.text('You have already worked your shift today.');
-    return;
     scene.actions([
-      { label: 'Return to the diner', goto: ['city_kafe', 'start'] },
-    ]);
+{ label: 'Return to the diner', goto: ['city_kafe', 'start'] },
+]);
+    return;
   } else {
     qspCall(s, 'jobs', 'clock', 'city_cafe_waitress');
   }
@@ -360,8 +360,8 @@ function enterLunch(s: GameState, scene: SceneBuilder): void {
 
 function enterLunchAlone(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEatLunch(s, scene); (s as any).locArgs = __savedLocArgs; }
-  scene.img('images/shared/food/food_\'+rand(1, 4)+\'.jpg');
-  // TODO-QSP: dynamic text: You take your time eating your meal and playing on your phone. It's just a light...
+  scene.img('images/shared/food/food_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  // TODO-QSP: dynamic text: You take your time eating your meal and playing on your phone. It''s just a ligh...
   scene.text(`You take your time eating your meal and playing on your phone. It's just a light lunch, but it's quite tasty and${((s as any).mtxt || '')}`);
   // TODO-QSP: end
   scene.actions([
@@ -731,7 +731,7 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/kafe.jpg');
   scene.text('With your shift finally over, you sit at one of the tables and count out your tips for the day.');
-  // TODO-QSP: dynamic text: You made <<$func('money', 'string_profit', workKafe['tips_total'])>> in tips.
+  // TODO-QSP: dynamic text: You made <<$func(''money'', ''string_profit'', workKafe[''tips_total''])>> in ti...
   scene.text(`You made ${qspFunc(s, 'money', 'string_profit', ((s as any).workKafe ?? 0)?.['tips_total'] ?? '')} in tips.`);
   scene.text('Fabi switches the lights off in the kitchen and ushers you out with a smile so he can finish closing up.');
   if ((!(Math.floor(Math.random() * 4) + 0))) {

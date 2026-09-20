@@ -36,7 +36,7 @@ function enterStairwellChat(s: GameState, scene: SceneBuilder): void {
                 scene.text('Tryndin and you chat about life, computers and other things, cracking jokes and enjoying each other\'s company.');
               } else {
                 if (((s as any).tryndinQW ?? 0)?.['stairwell_chat'] >= 8) {
-                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, we've been chatting here many times so I hope you don't mind...
+                  // TODO-QSP: dynamic text: "<<$pcs_nickname>>, we''ve been chatting here many times so I hope you don''t mi...
                   scene.text(`"${((s as any).pcs_nickname || '')}, we've been chatting here many times so I hope you don't mind me asking but there is something that has been bugging me; where do I recognize you from? I swear I have seen you somewhere else that I can't just put my finger on."`);
                   scene.text('You smile at the question and contemplate on just what you will tell him…');
                   if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
@@ -88,7 +88,7 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
       scene.text('The two of you are having a great conversation before he suddenly notices semen on your clothes. As he comes to the realization, his eyes noticeably widen. "What\'s that? Cum?" he asks suspiciously.');
       scene.actions([
         { label: 'Make an excuse', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You begin making excuses, claiming that this is all a misunderstanding and that you\'re absolutely innocent. But Tryndin doesn\'t believe you and only half pays attention to your explanation.');
     scene.actions([
       { label: 'Get out of the car', goto: ['metro', 'start'] },
@@ -101,7 +101,7 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
         scene.text(`He looks at your face puzzled. "${((s as any).pcs_nickname || '')}, your face is smeared with something." He stares at you, and after a moment, he realizes that's cum on your face. "What's that? Cum?" he asks suspiciously.`);
         scene.actions([
           { label: 'Make an excuse', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You begin making excuses, claiming that this is all a misunderstanding and that you\'re absolutely innocent. But Tryndin doesn\'t believe you and only half pays attention to your explanation.');
     scene.actions([
       { label: 'Get out of the car', goto: ['metro', 'start'] },
@@ -185,11 +185,11 @@ function enterA77_AptInvEv_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + (0);
   qspCall(s, 'stat', '');
   if (((s as any).tryndinQW ?? 0)?.['Invite_Friend'] === 1) {
-    scene.img(`images/characters/city/tryndin/tim3talk${Math.floor(Math.random() * 6) + 1}.jpg`);
+    scene.img(`images/characters/city/tryndin/tim3talk${(Math.floor(Math.random() * 6) + 1)}.jpg`);
   } else {
-    scene.img(`images/characters/city/tryndin/timtalk${Math.floor(Math.random() * 8) + 1}.jpg`);
+    scene.img(`images/characters/city/tryndin/timtalk${(Math.floor(Math.random() * 8) + 1)}.jpg`);
   }
-  (s as any).try_rand = Math.floor(Math.random() * 8) + 1;
+  (s as any).try_rand = (Math.floor(Math.random() * 8) + 1);
   if (((s as any).try_rand ?? 0) === 1) {
     scene.text('You and Tryndin have a nice time together; you have a nice drink and talk about the other people in the building you have seen or met. It\'s nice getting closer to each other.');
   } else {

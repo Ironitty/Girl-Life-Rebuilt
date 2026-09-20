@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -43,11 +42,11 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go to the VIP room', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       scene.text('<center><b>Babel</b></center>');
       scene.img('images/locations/city/citycenter/expensiverest/maitredvip.jpg');
-      // TODO-QSP: dynamic text: The maître d' informs you that there will be a VIP charge of <<$func('money', 's...
+      // TODO-QSP: dynamic text: The maître d'' informs you that there will be a VIP charge of <<$func(''money'',...
       scene.text(`The maître d' informs you that there will be a VIP charge of ${qspFunc(s, 'money', 'string_price', 5000)}`);
       scene.actions([
         { label: 'Follow the maître d\' ', handler: (st: GameState) => {
@@ -105,9 +104,9 @@ function enterZal(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Smile at her', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'nastja', 'pos1');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'nastja', 'pos1');
   } },
       ]);
     }
@@ -178,6 +177,7 @@ function enterViptable(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
   const arg = s.locArg;
   switch (arg) {
     case 'start':

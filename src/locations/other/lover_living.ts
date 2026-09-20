@@ -5,9 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).husID ?? 0) === ''  &&  (((s as any).wifID ?? 0) === ''  ||  1)) {
-    // TODO-QSP: exit
-  }
   scene.build();
 }
 
@@ -29,7 +26,7 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Your <<$npcRelat>>, seeing you naked, says - "You are very beautiful."
       scene.text(`Your ${((s as any).npcRelat || '')}, seeing you naked, says - "You are very beautiful."`);
     } else {
-      // TODO-QSP: dynamic text: Your <<$npcRelat>> smiles, "It's always nice to see you in your underwear honey....
+      // TODO-QSP: dynamic text: Your <<$npcRelat>> smiles, "It''s always nice to see you in your underwear honey...
       scene.text(`Your ${((s as any).npcRelat || '')} smiles, "It's always nice to see you in your underwear honey."`);
     }
   }
@@ -172,8 +169,8 @@ function enterBedr(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).spouseVars ?? 0)?.['drunk_day'] !== ((s as any).daystart ?? 0)) {
     if (((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 7) {
-      // TODO-QSP: dynamic text: Your <a href="exec: gt 'lover_living', 'talk'"><<$npcRelat>></a> is sleeping on ...
-      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lover_living\\u0027, \\u0027talk\\u0027); return false;">${((s as any).npcRelat || '')}</a> is sleeping on the bed.`);
+      // TODO-QSP: dynamic text: Your <a href="exec: gt ''lover_living'', ''talk''"><<$npcRelat>></a> is sleeping...
+      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_living/u0027, /u0027talk/u0027); return false;">${((s as any).npcRelat || '')}</a> is sleeping on the bed.`);
     }
     qspCall(s, 'music_actions', 'no_music');
   }
@@ -187,8 +184,8 @@ function enterBedr(s: GameState, scene: SceneBuilder): void {
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['drink'] !== 10) {
     if (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 17) {
-      // TODO-QSP: dynamic text: <a href="exec:gt 'lover_living', 'talk'">Your <<$npcRelat>> is eating at the tab...
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lover_living\\u0027, \\u0027talk\\u0027); return false;">Your ${((s as any).npcRelat || '')} is eating at the table.</a>`);
+      // TODO-QSP: dynamic text: <a href="exec:gt ''lover_living'', ''talk''">Your <<$npcRelat>> is eating at the...
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_living/u0027, /u0027talk/u0027); return false;">Your ${((s as any).npcRelat || '')} is eating at the table.</a>`);
     }
   }
   if (((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['eat_day']) {
@@ -197,15 +194,15 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Cook a meal for your ' + String(((s as any).npcRelat || '') ?? '') + ' and yourself (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).husID ?? 0), 5);
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_basic'] = ((s as any).mc_inventory['food_basic'] ?? 0) - (2);
-    ((s as any).spouseVars = (s as any).spouseVars ?? {})['eat_day'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'mood', 'lower', 'large');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).husID ?? 0), 5);
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['food_basic'] = ((st as any).mc_inventory['food_basic'] ?? 0) - (2);
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['eat_day'] = ((st as any).daystart ?? 0);
+    qspCall(st, 'mood', 'lower', 'large');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/home/kitchen/cook.jpg');
     // TODO-QSP: dynamic text: You prepare a meal for your <<$npcRelat>> and yourself.
-    scene.text(`You prepare a meal for your ${((s as any).npcRelat || '')} and yourself.`);
+    scene.text(`You prepare a meal for your ${((st as any).npcRelat || '')} and yourself.`);
     scene.actions([
       { label: 'Leave the meal', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -222,8 +219,8 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  ((s as any).daystart ?? 0) > ((s as any).spouseVars ?? 0)?.['drunk_day']) {
     if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).hour ?? 0) > 17  &&  ((s as any).hour ?? 0) <= 22)) {
-      // TODO-QSP: dynamic text: Your <a href="exec:gt 'lover_living', 'talk'"><<$npcRelat>></a> is sitting on th...
-      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027lover_living\\u0027, \\u0027talk\\u0027); return false;">${((s as any).npcRelat || '')}</a> is sitting on the couch, watching television.`);
+      // TODO-QSP: dynamic text: Your <a href="exec:gt ''lover_living'', ''talk''"><<$npcRelat>></a> is sitting o...
+      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_living/u0027, /u0027talk/u0027); return false;">${((s as any).npcRelat || '')}</a> is sitting on the couch, watching television.`);
       qspCall(s, 'music_actions', 'not_alone');
     }
   }
@@ -269,7 +266,7 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
           scene.text(`You pull the plug out of you and shove it up ${((s as any).xyr || '')} ass.`);
         }
       }
-      // TODO-QSP: dynamic text: <<$boydesc>> moves, but he doesn't wake up.
+      // TODO-QSP: dynamic text: <<$boydesc>> moves, but he doesn''t wake up.
       scene.text(`${((s as any).boydesc || '')} moves, but he doesn't wake up.`);
       if (((s as any).mc_inventory ?? 0)?.['dildo_small'] > 0) {
         // TODO-QSP: act iif(rand(0, 1) = 0, 'Insert dildo', 'Insert a dildo into <<$xyr>> ass'):
@@ -277,7 +274,7 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
         scene.img('images/characters/city/husband/sex/h1.jpg');
         if ((!(Math.floor(Math.random() * 2) + 0))) {
-          // TODO-QSP: dynamic text: You pull out the plug and replace it with a dildo. <<$boydesc>> doesn't even bud...
+          // TODO-QSP: dynamic text: You pull out the plug and replace it with a dildo. <<$boydesc>> doesn''t even bu...
           scene.text(`You pull out the plug and replace it with a dildo. ${((s as any).boydesc || '')} doesn't even budge as you slowly move the dildo in and out, trying not to wake him up. You notice his cock starts to get rock-hard, and he starts to moan softly in his sleep. His dick starts to throb like he's going to cum. You take his dick in your mouth and don't need to suck on it for long. You swallow his cum before carefully putting his underpants back on.`);
         } else {
           // TODO-QSP: dynamic text: You pull out the plug and stick the dildo up his ass instead, <<$boydesc>> did n...
@@ -323,8 +320,8 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Lie', handler: (st: GameState) => {
-    ((s as any).spouseVars = (s as any).spouseVars ?? {})['hus_strapon'] = 0;
-    qspCall(s, 'stat', '');
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['hus_strapon'] = 0;
+    qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('"Not that I know of, though you were in the bathroom a lot," you say with an innocent look on your face before he shrugs his shoulders and walks away.');
     } else {
@@ -337,22 +334,22 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Confess', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
+    qspCall(st, 'stat', '');
+    if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
       if ((!(Math.floor(Math.random() * 2) + 0))) {
         scene.text('"You got so drunk yesterday that I decided to teach you a lesson and put a plug in your ass."');
       } else {
         scene.text('"Honey, you were so drunk last night that I decided to teach you a lesson and put a butt plug up your ass."');
       }
     } else {
-      if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
+      if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('"I wanted to give you a pleasant surprise and started to give you a blowjob, but you wouldn\'t cum no matter how much I tried, so I put a finger in your ass, but again you failed to cum. That\'s when I put the dildo in your ass and you shot your load. Forgive me, but I just wanted to get you off."');
         } else {
           scene.text('"I wanted to make you happy, so I started to give you a blowjob, but you didn\'t cum, so I inserted a finger into your asshole. When you still didn\'t cum, I took a small dildo and some lube and put in it your ass; I\'ve never seen you cum like that before. I even gave you a second blowjob. Forgive me, but you seemed to enjoy it so much that I could\'t stop. I just wanted to make you happy," you lie to him.');
         }
       } else {
-        if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
+        if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             scene.text('"I wanted to give you a pleasant surprise and started to give you a blowjob, but you wouldn\'t cum no matter how much I tried, so I put a finger in your ass, but again you failed to cum. That\'s when I put in a second finger and you started moving your ass up and down, fucking my fingers as you moaned in pleasure. Since you seemed to be liking it so much and asked for more, I put on my strap-on and fucked you with it while I was jerking you off. I just wanted you to be happy, even if you don\'t remember. Please forgive me!"');
           } else {
@@ -361,24 +358,24 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
+    if (((st as any).npc_gentle ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
+      if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
           scene.text('"I\'m sorry. I won\'t get that drunk again," he says before leaving the room.');
         } else {
           scene.text('"I\'m sorry. I won\'t get that drunk again," he says and leaves the room.');
         }
       } else {
-        if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
-          ((s as any).spouseVars = (s as any).spouseVars ?? {})['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
+        if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
+          ((st as any).spouseVars = (st as any).spouseVars ?? {})['pervert_add'] = ((st as any).spouseVars['pervert_add'] ?? 0) + (1);
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             scene.text('"You\'re such a caring woman. Instead of scolding me for being drunk, you suck me off. Thank you, dear," he says before leaving the room.');
           } else {
             scene.text('"You\'re so thoughtful. Instead of scolding me, you still wanted to make me happy. Thank you, dear," he says and leaves the room.');
           }
         } else {
-          if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
-            ((s as any).spouseVars = (s as any).spouseVars ?? {})['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
+          if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
+            ((st as any).spouseVars = (st as any).spouseVars ?? {})['pervert_add'] = ((st as any).spouseVars['pervert_add'] ?? 0) + (1);
             if ((!(Math.floor(Math.random() * 2) + 0))) {
               scene.text('"I really liked it?" he asks and you nod. "Well then, thank you dear, but ask for my consent next time," he says before leaving the room.');
             } else {
@@ -389,35 +386,35 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
+      if (((st as any).npc_rough ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
+        if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 1) {
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             scene.text('"Just don\'t do that anymore," is all he says before leaving the room.');
           } else {
             scene.text('"Don\'t do that again!" he snarls and storms off.');
           }
         } else {
-          if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
-            ((s as any).spouseVars = (s as any).spouseVars ?? {})['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
+          if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 2) {
+            ((st as any).spouseVars = (st as any).spouseVars ?? {})['pervert_add'] = ((st as any).spouseVars['pervert_add'] ?? 0) + (1);
             if ((!(Math.floor(Math.random() * 2) + 0))) {
               scene.text('"Don\'t ever do that again. I\'m a man and <i>I</i> do the fucking!" he says before leaving the room.');
             } else {
               scene.text('"Don\'t do that again! I\'m a man and I\'m not supposed to get fucked in the ass!" he snarls and storms off.');
             }
           } else {
-            if (((s as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
-              if (((s as any).pcs_intel ?? 0) > 40  ||  ((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-                ((s as any).spouseVars = (s as any).spouseVars ?? {})['gentle_add'] = ((s as any).spouseVars['gentle_add'] ?? 0) + (1);
+            if (((st as any).spouseVars ?? 0)?.['hus_strapon'] === 3) {
+              if (((st as any).pcs_intel ?? 0) > 40  ||  ((st as any).npc_pervert ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
+                ((st as any).spouseVars = (st as any).spouseVars ?? {})['gentle_add'] = ((st as any).spouseVars['gentle_add'] ?? 0) + (1);
                 if ((!(Math.floor(Math.random() * 2) + 0))) {
                   scene.text('"Are you really trying to tell me that I asked you to fuck me with a strap-on, bitch?" he bellows. When you start crying and lamenting that you only wanted to please him, he looks at you and exhales. "Fine, fine, I believe you. I believe you wanted to pleasure me and make me happy, but never do that again."');
                 } else {
                   scene.text('"Are you serious?! I\'m not some kind of bitch that wants to get fucked up the ass!" he yells at you. You start to cry and say that you only wanted to please him and he looks at you and sighs. "Don\'t cry, sweetie. I believe you, just don\'t do it again."');
                 }
               } else {
-                if (((s as any).pcs_intel ?? 0) <= 40) {
-                  qspCall(s, 'lover_love', 'divorce');
-                  (s as any).fingal = ((s as any).fingal ?? 0) + (1);
-                  (s as any).minut = ((s as any).minut ?? 0) + 120;
+                if (((st as any).pcs_intel ?? 0) <= 40) {
+                  qspCall(st, 'lover_love', 'divorce');
+                  (st as any).fingal = ((st as any).fingal ?? 0) + (1);
+                  (st as any).minut = ((st as any).minut ?? 0) + 120;
                   scene.text('The next thing you feel is a powerful slap to the face. When you come back to your senses, your husband and his things are gone. He left a note telling you he\'s going to file for divorce.');
                 }
               }
@@ -425,10 +422,10 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        qspCall(s, 'lover_love', 'divorce');
-        (s as any).fingal = ((s as any).fingal ?? 0) + (1);
-        (s as any).minut = ((s as any).minut ?? 0) + 120;
-        qspCall(s, 'stat', '');
+        qspCall(st, 'lover_love', 'divorce');
+        (st as any).fingal = ((st as any).fingal ?? 0) + (1);
+        (st as any).minut = ((st as any).minut ?? 0) + 120;
+        qspCall(st, 'stat', '');
         scene.text('The next thing you feel is a powerful slap to the face. When you come back to your senses, your husband and his things are gone. He left a note telling you he\'s going to file for divorce.');
       }
     }
@@ -453,10 +450,10 @@ function enterHusbandDrunk(s: GameState, scene: SceneBuilder): void {
 function enterSantehnik(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) === '') {
     scene.text('ERROR: "lover_living, santehnik" should not be able to trigger.');
-    return;
     scene.actions([
-      { label: 'Leave', goto: ['sitr', ''] },
-    ]);
+{ label: 'Leave', goto: ['sitr', ''] },
+]);
+    return;
   }
   (s as any).sexpartkno = 1;
   qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
@@ -468,27 +465,27 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
     scene.text('Your husband walks him to the kitchen and the two of you began to observe his actions, you are sick of hearing about how the plumber hates cheap Chinese fittings and what people pushed into the sink, and you decided to wait in the living room.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/apartment/sex/s8.jpg');
     scene.text('You go into the room and sit on the couch, soon your husband comes in and sits down beside you. With one hand on your breast, he runs his other hand down under your panties and begins to massage your clitoris.');
     scene.text('"What are you doing? What if the plumber comes in?"');
     scene.text('"He\'ll be another hour poking around." he answers, "Come on, quick blow job."');
     scene.text('"OK, lets." you say, now excited, it really looks like his hand has done its job.');
-    qspCall(s, 'arousal', 'foreplay', 10, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 10, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Start', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/s9.jpg');
     scene.text('The husband stands up and pulls from his unbuttoned pants his member, you drop to your knees and his cock is in your mouth, right then the plumber enters, "I\'m finished." he says and freezes, seeing this picture.');
-    qspCall(s, 'arousal', 'bj', 10, 'sub');
-    qspCall(s, 'stat', '');
-    if (((s as any).npc_pervert ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+    qspCall(st, 'arousal', 'bj', 10, 'sub');
+    qspCall(st, 'stat', '');
+    if (((st as any).npc_pervert ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('Your husband tries to remove his member from your mouth');
-      if (((s as any).pcs_horny ?? 0) < 80) {
+      if (((st as any).pcs_horny ?? 0) < 80) {
         scene.actions([
           { label: 'Stop', handler: (st: GameState) => {
     scene.text('Your husband quickly hides his dick in his pants and with the plumber goes out into the corridor');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['sitr', ''] },
     ]);
@@ -499,21 +496,21 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
         { label: 'Do not stop', handler: (st: GameState) => {
     scene.text('You grabbed your husbands hips and continued to work your mouth, he jerks a couple of times trying to free himself, but you can not stop and just swallow his cock even deeper. When he stops twitching you bring one hand to your crotch and with just a couple of motions bring yourself to orgasm.');
     scene.text('But the excitement does not recede, you want even more, and the watching plumber just arouses you. You can not control yourself.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'bj', 10, 'sub');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'bj', 10, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Ride your husband', handler: (st: GameState) => {
-    qspCall(s, 'cum_manage', '');
-    (s as any).suprdolg = ((s as any).suprdolg ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-    ((s as any).spouseVars = (s as any).spouseVars ?? {})['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
+    qspCall(st, 'cum_manage', '');
+    (st as any).suprdolg = ((st as any).suprdolg ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
+    ((st as any).spouseVars = (st as any).spouseVars ?? {})['pervert_add'] = ((st as any).spouseVars['pervert_add'] ?? 0) + (1);
     scene.img('images/locations/city/residential/apartment/sex/s12.jpg');
     scene.text('You release your husband\'s member from your mouth and quickly push him to sit on the couch, then jump on top of him, quickly planting his dick in your pussy. You ride it like crazy, ignoring the plumber, still stood in the doorway, watching you. When you are again close to orgasm you feel as sperm gushes into you');
     scene.text('It take a few movements from his twitching cock, but you also reach orgasm, uttering a cry you limp and fall from your husband. He leaves you still quaking, pulls up his pants and walks out with the plumber to the hallway.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', 10, 'sub');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', 10, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['sitr', ''] },
     ]);
@@ -523,16 +520,16 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Your husband did not even try to stop you');
-      if (((s as any).pcs_horny ?? 0) < 80) {
+      if (((st as any).pcs_horny ?? 0) < 80) {
         scene.actions([
           { label: 'Stop', handler: (st: GameState) => {
-    if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+    if (((st as any).npc_rough ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
       scene.text('You release your husband\'s member from your mouth and he quickly pulls up his pants and with the plumber goes out into the corridor');
       scene.actions([
         { label: 'Leave', goto: ['sitr', ''] },
       ]);
     } else {
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
       scene.text('You tried to spit the member from your mouth, but your husband grabs hold of your head and he starts to fuck you in the mouth, talking with shocked plumber, "We\'re a little busy, at the moment, it\'s her feeding time." he laughes, "How much do I owe you?" He continues.');
       scene.text('"Fifteen hundred." Manages the plumber.');
       scene.text('"Well, with those prices can agree that if you feed her too, we consider it paid?" He asks.');
@@ -550,23 +547,23 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Do not stop', handler: (st: GameState) => {
     scene.text('You continued to suck ignoring the watching plumber.');
-    if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
+    if (((st as any).npc_gentle ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       scene.text('Your husband tries not to look at the plumber, obviously embarrassed, but he does not hesitate to follow your every move.');
     } else {
-      if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
+      if (((st as any).npc_rough ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
         scene.text('Your husband stands savoring the process without paying attention to the plumber.');
       } else {
         scene.text('Your husband chats with the plumber does not hesitate to turn slightly so that it is easier for him to see.');
       }
     }
-    qspCall(s, 'arousal', 'bj', 10, 'sub');
-    qspCall(s, 'stat', '');
-    if (((s as any).pcs_horny ?? 0) > 70) {
+    qspCall(st, 'arousal', 'bj', 10, 'sub');
+    qspCall(st, 'stat', '');
+    if (((st as any).pcs_horny ?? 0) > 70) {
       scene.actions([
         { label: 'Suggest a threesome', handler: (st: GameState) => {
-    if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-      ((s as any).spouseVars = (s as any).spouseVars ?? {})['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 2);
+    if (((st as any).npc_gentle ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
+      ((st as any).spouseVars = (st as any).spouseVars ?? {})['houseslut'] = ((st as any).spouseVars['houseslut'] ?? 0) + (1);
+      qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 2);
       scene.img('images/locations/city/residential/apartment/sex/s11.jpg');
       scene.text('You break away from the penis, and a whisper to your husband if he wants to try a threesome.');
       scene.text('Your husband is a little shocked by the idea, what would convince him? In a loud voice you continue, "Let him lick me while I caress you."');
@@ -574,30 +571,30 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
       scene.text('At first your husband keeps glancing in his direction, but soon relaxes and finally when the guy starts to finger your hole with a vengeance, he says nothing, you decide that he is no longer against you sharing with others.');
       // TODO-QSP: gs 'arousal', 'cuni', 10, $npcID[1], 'sub', 'group'
       // TODO-QSP: gs 'arousal', 'vaginal_finger', -10, $npcID[0], 'sub', 'group'
-      qspCall(s, 'stat', '');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Serve both', handler: (st: GameState) => {
     (st as any).picrand = 43;
   }, goto: ['sexdvoe', 'var'] },
       ]);
     } else {
-      if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-5));
+      if (((st as any).npc_rough ?? 0)?.[String((st as any).npcID ?? 0)] === 0) {
+        qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-5));
         scene.text('You break away from the penis, and a whisper to your husband if he wants to try a threesome.');
         scene.text('"You think I should share you, my wife with the plumber? Cool that foolish pussy, you must think with your head." shouts your husband and returning his member to his pants goes out of the room with the plumber.');
         scene.actions([
           { label: 'Leave', goto: ['sitr', ''] },
         ]);
       } else {
-        ((s as any).spouseVars = (s as any).spouseVars ?? {})['houseslut'] = ((s as any).spouseVars['houseslut'] ?? 0) + (1);
-        qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 2);
+        ((st as any).spouseVars = (st as any).spouseVars ?? {})['houseslut'] = ((st as any).spouseVars['houseslut'] ?? 0) + (1);
+        qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 2);
         scene.img('images/locations/city/residential/apartment/sex/s10.jpg');
         scene.text('You break away from the penis, and a whisper to your husband if he wants to try a threesome.');
         scene.text('"It\'s not for nothing that they say all women are whores, hey man this whore wants to do both of us, but then the repair is free of charge." Says your husband. The plumber does need a second invite, he quickly approaches and pulls out his dick.');
         scene.text('Bringing it to your face, you cling to him and start to suck both cocks alternately, your husband stands carefully watching your actions "You like sucking fresh meat, but do not forget about me, and this boys and mine you swallow deeper and deeper."');
         // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[0], 'sub', 'group'
         // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[1], 'sub', 'group'
-        qspCall(s, 'stat', '');
+        qspCall(st, 'stat', '');
         scene.actions([
           { label: 'Serve both', handler: (st: GameState) => {
     (st as any).picrand = 43;
@@ -610,12 +607,12 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0), 1);
-    (s as any).suprdolg = ((s as any).suprdolg ?? 0) + (1);
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0), 1);
+    (st as any).suprdolg = ((st as any).suprdolg ?? 0) + (1);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     scene.text('You continue to blow your husband, and soon a stream of hot liquid squirts into your mouth, swallowing the sperm you lick the remnants of semen from his penis. Your husband puts his cleaned dick in his pants and walks out into the hallway with the plumber. And you are left sitting on the floor, exhausted from desire.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['sitr', ''] },
     ]);
@@ -634,6 +631,9 @@ function enterSantehnik(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).husID ?? 0) === ''  &&  (((s as any).wifID ?? 0) === ''  ||  1)) {
+    // TODO-QSP: exit
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'talk':

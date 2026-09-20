@@ -54,7 +54,7 @@ function enterShowTits(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowBody(s: GameState, scene: SceneBuilder): void {
-  (s as any).img_temp = qspFunc(s, '$body_image', 'body');
+  (s as any).img_temp = qspFunc(s, '$body_image', '', 'body');
   // TODO-QSP: view '<<$img_temp>>'
   // TODO-QSP: end
   scene.build();
@@ -100,8 +100,8 @@ function enterEmergency(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).mod_name ?? {}).length > 0) {
     scene.actions([
       { label: 'Disable all mods', handler: (st: GameState) => {
-    if (((s as any).input ?? 0)('Are you sure? ALL % will be disabled!<br>please input <b>qqq</b> to confirm') === 'qqq') {
-      qspCall(s, 'mod_system', 'delete_all_mods');
+    if (((st as any).input ?? 0)('Are you sure? ALL % will be disabled!<br>please input <b>qqq</b> to confirm') === 'qqq') {
+      qspCall(st, 'mod_system', 'delete_all_mods');
     }
   } },
     ]);
@@ -196,19 +196,19 @@ function enterOld(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).AddDebugVar ?? 0)") {
-    if (((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[0] ?? 0) === "((s as any).AddDebugVar ?? 0)") {
+    if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
       (s as any).i = 0;
       // TODO-QSP: $ObjDebugVars[i] = '<<$ARGS[1]>>'
     }
   }
-  if (((s as any).locArgs?.[0] ?? 0) === "((s as any).DeleteDebugVar ?? 0)") {
-    if (((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[0] ?? 0) === "((s as any).DeleteDebugVar ?? 0)") {
+    if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
       if (Object.keys((s as any).ObjDebugVars ?? {}).length > 0) {
         (s as any).i = 0;
         // TODO-QSP: :DeleteDebugVarLoop
         if (((s as any).i ?? 0) < Object.keys((s as any).ObjDebugVars ?? {}).length) {
-          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+          if (((s as any).ObjDebugVars ?? 0)?.[String((s as any).i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
             (s as any).i = 0;
           } else {
             (s as any).i = ((s as any).i ?? 0) + (1);

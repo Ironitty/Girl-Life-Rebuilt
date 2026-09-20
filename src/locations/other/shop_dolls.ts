@@ -20,7 +20,52 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('Inside the store, shelves and racks of gothic and punk clothes are crammed into every available space - anybody setting out to find an inch of wall would have their work cut out for them.');
   scene.text('The checkout counter is near the entrance.');
   if (((s as any).doll_staff_day ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).doll_staff = Math.floor(Math.random() * 2) + 0;
+    (s as any).doll_staff = (Math.floor(Math.random() * 2) + 0);
+    (s as any).doll_staff_day = ((s as any).daystart ?? 0);
+  }
+  if ((!((s as any).doll_staff ?? 0))) {
+    if (((s as any).know_Savva ?? 0) === 1) {
+      // TODO-QSP: dynamic text: As you walk in, Savva waves at you and smiles. "Hi <<$pcs_nickname>>, great to s...
+      scene.text(`As you walk in, Savva waves at you and smiles. "Hi ${((s as any).pcs_nickname || '')}, great to see you again! Let me know if I can help you with anything."`);
+    }
+    scene.actions([
+      { label: 'Go to the counter', goto: ['shop_dolls', 'savva'] },
+    ]);
+  } else {
+    if (((s as any).know_Viola ?? 0) === 1) {
+      scene.text('As you walk in, Viola winks at you.');
+    }
+    scene.actions([
+      { label: 'Go to the counter', goto: ['shop_dolls', 'viola'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Browse clothing', goto: ['shop_dolls', 'browse'] },
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  }, goto: ['city_island', ''] },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_dolls', 'start');
+  (s as any).location_type = 'public_indoors';
+  if (((s as any).anushkaQW ?? 0)?.['dolls'] === 0) {
+    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dolls'] = 1;
+  }
+  (s as any).minut = ((s as any).minut ?? 0) + 2;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Patch Work Dolls</b></center>');
+  scene.img('images/locations/city/island/dolls/dolls.jpg');
+  scene.text('');
+  scene.text('The store has a small front on a side street, but one glance is all you need to tell this is not your average clothing store.');
+  scene.text('Inside the store, shelves and racks of gothic and punk clothes are crammed into every available space - anybody setting out to find an inch of wall would have their work cut out for them.');
+  scene.text('The checkout counter is near the entrance.');
+  if (((s as any).doll_staff_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).doll_staff = (Math.floor(Math.random() * 2) + 0);
     (s as any).doll_staff_day = ((s as any).daystart ?? 0);
   }
   if ((!((s as any).doll_staff ?? 0))) {
@@ -99,9 +144,9 @@ function enterDress(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_dolls', 'browse');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_dolls', 'browse');
   } },
   ]);
   scene.build();
@@ -123,9 +168,9 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_dolls', 'browse');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_dolls', 'browse');
   } },
   ]);
   scene.build();
@@ -146,9 +191,9 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_dolls', 'browse');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_dolls', 'browse');
   } },
   ]);
   scene.build();
@@ -169,9 +214,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_dolls', 'browse');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_dolls', 'browse');
   } },
   ]);
   scene.build();
@@ -192,9 +237,9 @@ function enterCoats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_dolls', 'browse');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_dolls', 'browse');
   } },
   ]);
   scene.build();
@@ -212,7 +257,7 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     scene.actions([
       { label: 'Anushka sent me', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A204', 3);
+    qspCall(st, 'npc_relationship', 'modify', 'A204', 3);
     scene.img('images/characters/city/savva/savva.jpg');
     scene.text('"Anushka, a friend of mine, sent me," you tell him with a smile.');
     scene.text('He laughs. "You must lead a real interesting life if she\'s your friend. So you\'re from Pavlovsk too?"');
@@ -231,7 +276,7 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask him about the store', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A204', 2);
+    qspCall(st, 'npc_relationship', 'modify', 'A204', 2);
     scene.img('images/characters/city/savva/savva.jpg');
     scene.text('You ask him about the store and he tells you it opened a few years ago, mostly to cater to university students. They occasionally get hassled by the local gopniks or police, but he likes the job.');
     scene.text('He then asks if you need any help finding an outfit.');
@@ -248,11 +293,11 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Chat with him', handler: (st: GameState) => {
-    (s as any).know_Savva = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A204', 3);
+    (st as any).know_Savva = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A204', 3);
     scene.img('images/characters/city/savva/savva.jpg');
     scene.text('You decide to chat with him. He seems happy to talk with you, especially about fashion and music, and you spend some time chatting about a variety of topics.');
-    if (((s as any).npc_rel ?? 0)?.['A204'] > 50) {
+    if (((st as any).npc_rel ?? 0)?.['A204'] > 50) {
       scene.text('As you do, you eventually touch upon his latest date, some "cutest boy he\'s ever seen" that he met in the store some time ago. He seems to have been dying to tell somebody about it because he just gushes about how handsome the young man is and how great the sex was… Next week, he\'ll likely be talking about another one.');
     }
     scene.actions([
@@ -269,14 +314,14 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).know_Viola ?? 0))) {
     scene.text('You see a young woman at the counter who is about a year or two older than your sister. She\'s reading a magazine when you walk up, only glancing up at you as you stop at the counter. "How can I help you?"');
   } else {
-    // TODO-QSP: dynamic text: "What's up, <<$pcs_nickname>>? You here to do a little shopping or to kill some ...
+    // TODO-QSP: dynamic text: "What''s up, <<$pcs_nickname>>? You here to do a little shopping or to kill some...
     scene.text(`"What's up, ${((s as any).pcs_nickname || '')}? You here to do a little shopping or to kill some time?"`);
   }
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     scene.actions([
       { label: 'Anushka sent me', handler: (st: GameState) => {
-    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['dolls'] = 3;
-    qspCall(s, 'npc_relationship', 'modify', 'A205', 5);
+    ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['dolls'] = 3;
+    qspCall(st, 'npc_relationship', 'modify', 'A205', 5);
     scene.img('images/characters/shared/headshots_main/big205.jpg');
     scene.text('"Anushka, a friend of mine, sent me," you tell her with a smile.');
     scene.text('She perks up. "You\'re friends with Nush? Why didn\'t you say so? How is she doing? Raising hell and having fun if I know her!"');
@@ -301,7 +346,7 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Flirt with her', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A205', 3);
+    qspCall(st, 'npc_relationship', 'modify', 'A205', 3);
     scene.img('images/characters/shared/headshots_main/big205.jpg');
     scene.text('You start flirting and she returns the favor to a point, occasionally touching your hand or shoulder while laughing at some of the things you say, but she never fully commits to flirting back; she\'s either playing hard to get, trying to put you in a good mood to buy stuff, or is just messing with you - you\'re unsure which.');
     scene.actions([
@@ -309,8 +354,8 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Chat with her', handler: (st: GameState) => {
-    (s as any).know_Viola = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A205', 2);
+    (st as any).know_Viola = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A205', 2);
     scene.img('images/characters/shared/headshots_main/big205.jpg');
     scene.text('You decide to chat with her, and the two of you talk about a variety of topics. She seems happy to talk with you, especially about fashion, techniques for dying your hair, music, and the injustices of life. She mentions how the gopniks hassle some of the gay boys that shop here.');
     scene.text('Some time passes before you decide to do something else.');
@@ -326,6 +371,9 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'browse':
       enterBrowse(s, scene);
       break;

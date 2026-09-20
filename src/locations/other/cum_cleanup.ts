@@ -17,7 +17,7 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cum_cleanup_cleanloc_i = 0;
   // TODO-QSP: :cleanlocloop
   if (((s as any).temp_cum_cleanup_cleanloc_i ?? 0) < Object.keys((s as any).sparrnam ?? {}).length) {
-    if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
       if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 0  &&  ((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 3) {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
         // TODO-QSP: jump 'cleanlocloop'
@@ -42,17 +42,17 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
 
 function enterCleandeposit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: cumvol[sparrloc[ARGS[1]]] -= sparrvol[ARGS[1]]
-  if (((s as any).cumvol ?? 0)[((s as any).sparrloc ?? 0)[((s as any).locArgs?.[1] ?? 0)]] <= 0) {
+  if (((s as any).cumvol ?? 0)[((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]] <= 0) {
     // TODO-QSP: cumvol[sparrloc[ARGS[1]]] = 0
     // TODO-QSP: cumloc[sparrloc[ARGS[1]]] = 0
   }
   // TODO-QSP: cum_loc[$cum_names[ARGS[1]]] = cumloc[ARGS[1]]
   // TODO-QSP: cum_vol[$cum_names[ARGS[1]]] = cumvol[ARGS[1]]
   (s as any).cumsumbod = ((s as any).cumsumbod ?? 0) - (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_cleanup" }));
-  if (((s as any).sparrloc ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
+  if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
     (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) - (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_cleanup" }));
   } else {
-    if (((s as any).sparrloc ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 3) {
+    if (((s as any).sparrloc ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 3) {
       (s as any).cumsumass = ((s as any).cumsumass ?? 0) - (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_cleanup" }));
     }
   }
@@ -150,31 +150,31 @@ function enterHands(s: GameState, scene: SceneBuilder): void {
 
 function enterFace(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 11;
-  if (((s as any).locArgs?.[0] ?? 0) === 'face  &&  hair'  ||  ((s as any).locArgs?.[0] ?? 0) === 'face_hair') {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 'face  &&  hair'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'face_hair') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 12;
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 'head') {
+    if (Number((s as any).locArgs?.[0] ?? 0) === 'head') {
       ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 13;
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 'belly') {
+      if (Number((s as any).locArgs?.[0] ?? 0) === 'belly') {
         ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 14;
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'ass'  ||  ((s as any).locArgs?.[0] ?? 0) === 'pussy') {
+        if (Number((s as any).locArgs?.[0] ?? 0) === 'ass'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'pussy') {
           ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 15;
         } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 'breasts') {
+          if (Number((s as any).locArgs?.[0] ?? 0) === 'breasts') {
             ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 16;
           } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 'arms') {
+            if (Number((s as any).locArgs?.[0] ?? 0) === 'arms') {
               ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 17;
             } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 'therapist'  ||  ((s as any).locArgs?.[0] ?? 0) === 'hypno') {
+              if (Number((s as any).locArgs?.[0] ?? 0) === 'therapist'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'hypno') {
                 ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 18;
               } else {
-                if (((s as any).locArgs?.[0] ?? 0) === 'everything') {
+                if (Number((s as any).locArgs?.[0] ?? 0) === 'everything') {
                   ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 20;
                 } else {
-                  if (((s as any).locArgs?.[0] ?? 0) !== '') {
+                  if (Number((s as any).locArgs?.[0] ?? 0) !== '') {
                     return;
                   }
                 }
@@ -189,11 +189,11 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     ((s as any).ARGS = (s as any).ARGS ?? {})[0] = ((s as any).cumspclnt ?? 0);
   }
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
-    if (((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 10) {
+    if (Number((s as any).locArgs?.[0] ?? 0) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 10) {
       ((s as any).ARGS = (s as any).ARGS ?? {})[0] = 18;
     }
   }
-  if (((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 10) {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 10) {
     // TODO-QSP: !{full external clean !}
     if (((s as any).isprok ?? 0) === 0  &&  (!((s as any).vibratorIN ?? 0))) {
       // TODO-QSP: deresidue[] = 0
@@ -217,11 +217,11 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: toclean[] = 15
     // TODO-QSP: toclean[] = 16
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
       // TODO-QSP: !{teeth clean !}
       // TODO-QSP: toclean[] = 12
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
         // TODO-QSP: !{internal clean !}
         // TODO-QSP: toclean[] = 0
         // TODO-QSP: toclean[] = 3
@@ -230,7 +230,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           scene.text('You have no reason to, but you carefully avoid cleaning out your pussy and ass.');
         }
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
           // TODO-QSP: !{external body clean !}
           // TODO-QSP: toclean[] = 1
           // TODO-QSP: toclean[] = 4
@@ -243,48 +243,48 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: toclean[] = 15
           // TODO-QSP: toclean[] = 16
         } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
             // TODO-QSP: !{hair clean !}
             // TODO-QSP: toclean[] = 16
           } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
               // TODO-QSP: !{clothes clean !}
               // TODO-QSP: toclean[] = 2
               // TODO-QSP: toclean[] = 5
               // TODO-QSP: toclean[] = 6
               // TODO-QSP: toclean[] = 7
             } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
                 // TODO-QSP: !{enema !}
                 // TODO-QSP: toclean[] = 3
               } else {
-                if (((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
                   // TODO-QSP: !{blank !}
                 } else {
-                  if (((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
                     // TODO-QSP: !{wash hands !}
                     // TODO-QSP: toclean[] = 13
                   } else {
-                    if (((s as any).locArgs?.[0] ?? 0) === 11) {
+                    if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
                       // TODO-QSP: !{wash face !}
                       // TODO-QSP: toclean[] = 11
                     } else {
-                      if (((s as any).locArgs?.[0] ?? 0) === 12) {
+                      if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
                         // TODO-QSP: !{face and hair !}
                         // TODO-QSP: toclean[] = 11
                         // TODO-QSP: toclean[] = 16
                       } else {
-                        if (((s as any).locArgs?.[0] ?? 0) === 13) {
+                        if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
                           // TODO-QSP: !{head !}
                           // TODO-QSP: toclean[] = 11
                           // TODO-QSP: toclean[] = 12
                           // TODO-QSP: toclean[] = 16
                         } else {
-                          if (((s as any).locArgs?.[0] ?? 0) === 14) {
+                          if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
                             // TODO-QSP: !{belly !}
                             // TODO-QSP: toclean[] = 14
                           } else {
-                            if (((s as any).locArgs?.[0] ?? 0) === 15) {
+                            if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
                               // TODO-QSP: !{wipe ass/pussy !}
                               // TODO-QSP: toclean[] = 1
                               // TODO-QSP: toclean[] = 4
@@ -294,16 +294,16 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                                 scene.text('You have no reason to, but you carefully avoid cleaning out your pussy and ass.');
                               }
                             } else {
-                              if (((s as any).locArgs?.[0] ?? 0) === 16) {
+                              if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
                                 // TODO-QSP: !{Breasts !}
                                 // TODO-QSP: toclean[] = 15
                               } else {
-                                if (((s as any).locArgs?.[0] ?? 0) === 17) {
+                                if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
                                   // TODO-QSP: !{Arms/legs !}
                                   // TODO-QSP: toclean[] = 9
                                   // TODO-QSP: toclean[] = 10
                                 } else {
-                                  if (((s as any).locArgs?.[0] ?? 0) === 18) {
+                                  if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
                                     // TODO-QSP: !{full clean but skipping internal due to hypno !}
                                     // TODO-QSP: toclean[] = 1
                                     // TODO-QSP: toclean[] = 2
@@ -321,7 +321,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                                     // TODO-QSP: toclean[] = 15
                                     // TODO-QSP: toclean[] = 16
                                   } else {
-                                    if (((s as any).locArgs?.[0] ?? 0) === 20) {
+                                    if (Number((s as any).locArgs?.[0] ?? 0) === 20) {
                                       // TODO-QSP: !{Clean everything !}
                                     }
                                   }
@@ -348,7 +348,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_cum_cleanup_pos ?? 0) >= 0) {
       if (((s as any).temp_cum_cleanup_pos ?? 0) < Object.keys((s as any).deresidue ?? {}).length) {
         if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0) {
-          if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).locArgs?.[0] ?? 0) === 10  ||  ((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 3))))) {
+          if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (Number((s as any).locArgs?.[0] ?? 0) === 10  ||  Number((s as any).locArgs?.[0] ?? 0) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 3))))) {
             (s as any).isprok = 0;
             (s as any).vibratorIN = 0;
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -356,7 +356,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 3) {
-            if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 3) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).locArgs?.[0] ?? 0) === 10  ||  ((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 3))))) {
+            if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 3) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (Number((s as any).locArgs?.[0] ?? 0) === 10  ||  Number((s as any).locArgs?.[0] ?? 0) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 3))))) {
               (s as any).analPlugIn = 0;
               (s as any).analPlugOut = 0;
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -381,8 +381,8 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0) {
-          if (((s as any).cumsumvag ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 0  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).locArgs?.[0] ?? 0) === 10  ||  ((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 3))))) {
-            if (((s as any).locArgs?.[0] ?? 0) === 3) {
+          if (((s as any).cumsumvag ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 0)  &&  ((s as any).isprok ?? 0) === 0  &&  ((s as any).vibratorIN ?? 0) === 0  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (Number((s as any).locArgs?.[0] ?? 0) === 10  ||  Number((s as any).locArgs?.[0] ?? 0) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 3))))) {
+            if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
               (s as any).isprok = 0;
               (s as any).vibratorIN = 0;
             }
@@ -392,8 +392,8 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 3) {
-            if ((((s as any).cumsumass ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  ((s as any).analPlugIn ?? 0) === 0)  ||  ((s as any).locArgs?.[0] ?? 0) === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).locArgs?.[0] ?? 0) === 10  ||  ((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 3))))) {
-              if (((s as any).locArgs?.[0] ?? 0) === 3  ||  ((s as any).locArgs?.[0] ?? 0) === 7) {
+            if ((((s as any).cumsumass ?? 0) * (Math.floor(Math.random() * 4) + 6) / 6 >= qspFunc(s, 'cum_manage', 'get_inner_capacity', 3)  &&  ((s as any).analPlugIn ?? 0) === 0)  ||  Number((s as any).locArgs?.[0] ?? 0) === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (Number((s as any).locArgs?.[0] ?? 0) === 10  ||  Number((s as any).locArgs?.[0] ?? 0) === 1  ||  Number((s as any).locArgs?.[0] ?? 0) === 3))))) {
+              if (Number((s as any).locArgs?.[0] ?? 0) === 3  ||  Number((s as any).locArgs?.[0] ?? 0) === 7) {
                 (s as any).analPlugIn = 0;
                 (s as any).analPlugOut = 0;
               }

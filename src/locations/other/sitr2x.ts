@@ -16,10 +16,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/apartment/sitr2.jpg');
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
-    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> on it along with some papers and pens.';
+    (s as any).komp = ' with your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> on it along with some papers and pens.';
   }
-  scene.text('huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">TV</a>');
-  scene.text('luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027divan\\u0027, \\u0027start\\u0027); return false;">leather sofa</a>');
+  scene.text('huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>');
+  scene.text('luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a>');
   // TODO-QSP: 'modern <a href="exec:gt ''stol'',''start''">desk</a>' + iif($komp = '', '.', $komp)
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('Your hula hoop stands in a corner.');
@@ -58,7 +58,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) < 30) {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   }
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 5  ||  ((s as any).hour ?? 0) >= 17)) {
     qspGoto(s, 'husbsex', 'husb_mastr_vtor');

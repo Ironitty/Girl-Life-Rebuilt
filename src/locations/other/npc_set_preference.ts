@@ -14,10 +14,10 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $npc_preferences[$ARGS[1]] = ''
   // TODO-QSP: end
   if (!isNaN((String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
-    if (((s as any).locArgs?.[1] ?? 0) === '') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === '') {
       // TODO-QSP: exit
     }
-    if (((s as any).locArgs?.[2] ?? 0) === '') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === '') {
       ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['value'] = ((s as any).locArgs?.[2] ?? 0);
     } else {
       ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['value'] = qspFunc(s, 'npc_set_preference', 'get_value', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
@@ -27,7 +27,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
       if (Object.keys((s as any).npc_nsp_pref_traits ?? {}).length === 0) {
         ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['pref_string'] = qspUntranslated(s, "\"killvar 'npc_pref_traits'", { location: "npc_set_preference" });
         // TODO-QSP: $npc_pref_traits[] = '<<$ARGS[1]>>'
-        ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = ((s as any).temp_nsprefVars ?? 0)?.['value'];
+        ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).temp_nsprefVars ?? 0)?.['value'];
         // TODO-QSP: "
         // TODO-QSP: $npc_preferences[$ARGS[0]] = $replace($temp_nsprefVars['pref_string'], '  ', '')
       } else {
@@ -36,7 +36,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           // TODO-QSP: $temp_nsprefVars['pref_string'] = "$npc_pref_traits[] = '<<$ARGS[1]>>'
-          ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})['' + String((s as any).$ARGS[1] || '') + ''] = ((s as any).temp_nsprefVars ?? 0)?.['value'];
+          ((s as any).npc_pref_values = (s as any).npc_pref_values ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).temp_nsprefVars ?? 0)?.['value'];
           // TODO-QSP: "
           // TODO-QSP: $npc_preferences[$ARGS[0]] += $replace($temp_nsprefVars['pref_string'], '  ', '')
         }
@@ -71,7 +71,7 @@ function enterRebuildPreferences(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemovePreference(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
     // TODO-QSP: exit
   }
   ((s as any).temp_nsprefVars = (s as any).temp_nsprefVars ?? {})['index'] = qspUntranslated(s, "arrpos('npc_nsp_pref_traits', ARGS[2])", { location: "npc_set_preference" });
@@ -91,7 +91,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['disapprove'] = (-5);
   ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-10);
   ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-20);
-  if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_starving') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'body_bmi_starving') {
     ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 60;
     ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 40;
     ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 20;
@@ -99,7 +99,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-5);
     ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-10);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_underweight') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'body_bmi_underweight') {
       ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 10;
       ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 5;
       ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 3;
@@ -107,7 +107,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
       ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-25);
       ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-35);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_normal') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'body_bmi_normal') {
         ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 5;
         ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 2;
         ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 1;
@@ -115,7 +115,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
         ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-50);
         ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-70);
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_overweight') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'body_bmi_overweight') {
           ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 10;
           ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 5;
           ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 3;
@@ -123,7 +123,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
           ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-25);
           ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-35);
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'body_bmi_obese') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'body_bmi_obese') {
             ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 60;
             ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 40;
             ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 20;
@@ -131,7 +131,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
             ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-5);
             ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-10);
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'body_skin_bad') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'body_skin_bad') {
               ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 3;
               ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 2;
               ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 1;
@@ -139,7 +139,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
               ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-2);
               ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-3);
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'body_skin_normal') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'body_skin_normal') {
                 ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 3;
                 ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 2;
                 ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 1;
@@ -147,7 +147,7 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
                 ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['dislike'] = (-2);
                 ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['hate'] = (-3);
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 'body_skin_good') {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 'body_skin_good') {
                   ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['love'] = 3;
                   ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['like'] = 2;
                   ((s as any).temp_pref_values = (s as any).temp_pref_values ?? {})['approve'] = 1;
@@ -162,28 +162,28 @@ function enterGetValue(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
     (s as any).result = ((s as any).temp_pref_values ?? 0)?.[((s as any).locArgs?.[2] ?? 0)];
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === ((s as any).temp_pref_values ?? 0)?.['neutral']) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === ((s as any).temp_pref_values ?? 0)?.['neutral']) {
       (s as any).result = 'neutral';
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) < (((s as any).temp_pref_values ?? 0)?.['hate'] + ((s as any).temp_pref_values ?? 0)?.['dislike']) / 2) {
+      if (Number((s as any).locArgs?.[2] ?? 0) < (((s as any).temp_pref_values ?? 0)?.['hate'] + ((s as any).temp_pref_values ?? 0)?.['dislike']) / 2) {
         (s as any).result = 'hate';
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) > (((s as any).temp_pref_values ?? 0)?.['love'] + ((s as any).temp_pref_values ?? 0)?.['like']) / 2) {
+        if (Number((s as any).locArgs?.[2] ?? 0) > (((s as any).temp_pref_values ?? 0)?.['love'] + ((s as any).temp_pref_values ?? 0)?.['like']) / 2) {
           (s as any).result = 'love';
         } else {
-          if (((s as any).locArgs?.[2] ?? 0) < (((s as any).temp_pref_values ?? 0)?.['dislike'] + ((s as any).temp_pref_values ?? 0)?.['disaprove']) / 2) {
+          if (Number((s as any).locArgs?.[2] ?? 0) < (((s as any).temp_pref_values ?? 0)?.['dislike'] + ((s as any).temp_pref_values ?? 0)?.['disaprove']) / 2) {
             (s as any).result = 'dislike';
           } else {
-            if (((s as any).locArgs?.[2] ?? 0) > (((s as any).temp_pref_values ?? 0)?.['like'] + ((s as any).temp_pref_values ?? 0)?.['approve']) / 2) {
+            if (Number((s as any).locArgs?.[2] ?? 0) > (((s as any).temp_pref_values ?? 0)?.['like'] + ((s as any).temp_pref_values ?? 0)?.['approve']) / 2) {
               (s as any).result = 'like';
             } else {
-              if (((s as any).locArgs?.[2] ?? 0) < (((s as any).temp_pref_values ?? 0)?.['disaprove'] + ((s as any).temp_pref_values ?? 0)?.['neutral']) / 2) {
+              if (Number((s as any).locArgs?.[2] ?? 0) < (((s as any).temp_pref_values ?? 0)?.['disaprove'] + ((s as any).temp_pref_values ?? 0)?.['neutral']) / 2) {
                 (s as any).result = 'disaprove';
               } else {
-                if (((s as any).locArgs?.[2] ?? 0) > (((s as any).temp_pref_values ?? 0)?.['approve'] + ((s as any).temp_pref_values ?? 0)?.['neutral']) / 2) {
+                if (Number((s as any).locArgs?.[2] ?? 0) > (((s as any).temp_pref_values ?? 0)?.['approve'] + ((s as any).temp_pref_values ?? 0)?.['neutral']) / 2) {
                   (s as any).result = 'approve';
                 } else {
                   (s as any).result = 'neutral';

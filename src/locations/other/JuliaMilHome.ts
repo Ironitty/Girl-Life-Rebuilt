@@ -149,22 +149,22 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).julialefto_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat some left overs', handler: (st: GameState) => {
-    (s as any).juliafood_day = ((s as any).daystart ?? 0);
-    (s as any).julialefto_count = ((s as any).julialefto_count ?? 0) - (1);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).juliafood_day = ((st as any).daystart ?? 0);
+    (st as any).julialefto_count = ((st as any).julialefto_count ?? 0) - (1);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/leftovers.jpg');
     scene.text('It seems to be left overs from a last nights dinner, it looks very good even for left overs.');
     scene.actions([
@@ -176,22 +176,22 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     if (((s as any).juliatea_count ?? 0) >= 0) {
       scene.actions([
         { label: 'Have some tea', handler: (st: GameState) => {
-    (s as any).juliafood_day = ((s as any).daystart ?? 0);
-    (s as any).juliatea_count = ((s as any).juliatea_count ?? 0) - (1);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).juliafood_day = ((st as any).daystart ?? 0);
+    (st as any).juliatea_count = ((st as any).juliatea_count ?? 0) - (1);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/drinks/tea.jpg');
     scene.text('You find some tea and make it.');
     scene.actions([
@@ -203,22 +203,22 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
       if (((s as any).juliawater_count ?? 0) >= 0) {
         scene.actions([
           { label: 'Have some water', handler: (st: GameState) => {
-    (s as any).juliafood_day = ((s as any).daystart ?? 0);
-    (s as any).juliawater_count = ((s as any).juliawater_count ?? 0) - (1);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).juliafood_day = ((st as any).daystart ?? 0);
+    (st as any).juliawater_count = ((st as any).juliawater_count ?? 0) - (1);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/waterbottle1.jpg');
     scene.text('You drink some bottled water.');
     scene.actions([
@@ -230,22 +230,22 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
         if (((s as any).juliasup_count ?? 0) >= 0) {
           scene.actions([
             { label: 'Have some soup', handler: (st: GameState) => {
-    (s as any).juliafood_day = ((s as any).daystart ?? 0);
-    (s as any).juliasup_count = ((s as any).juliasup_count ?? 0) - (1);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).juliafood_day = ((st as any).daystart ?? 0);
+    (st as any).juliasup_count = ((st as any).juliasup_count ?? 0) - (1);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/soup.jpg');
     scene.text('You find some soup in the fridge, you spoon our a bowlful to eat.');
     scene.actions([
@@ -257,22 +257,22 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
           if (((s as any).juliasanw_count ?? 0) >= 0) {
             scene.actions([
               { label: 'Make a sandwich', handler: (st: GameState) => {
-    (s as any).juliafood_day = ((s as any).daystart ?? 0);
-    (s as any).juliasanw_count = ((s as any).juliasanw_count ?? 0) - (1);
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).juliafood_day = ((st as any).daystart ?? 0);
+    (st as any).juliasanw_count = ((st as any).juliasanw_count ?? 0) - (1);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/reuben.jpg');
     scene.text('You get all the stuff you need from the fridge then get some bread out of the cabinet and make yourself a sandwich.');
     scene.actions([
@@ -302,7 +302,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/juliahome/bathroom.jpg');
   scene.text('The bathroom is kept spotlessly clean. Everything here has a well cared for look to it.');
   scene.text('The toilet sits along the wall next to a small bathtub.');
-  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -313,15 +313,15 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the bathroom', goto: ['JuliaMilHome', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Bathroom</b></center>');
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You take a quick shower.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
     scene.actions([
@@ -352,17 +352,17 @@ function enterJuliaRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('Julia arranges her school books on a large desk and gets ready to do her homework, inviting you to join her.');
     scene.actions([
       { label: 'Do your homework with Julia', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (((s as any).lernHome ?? 0) > 1) {
-      qspCall(s, 'grades', 'homework', 'school', 'yes', 2, 1, 'A12');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    if (((st as any).lernHome ?? 0) > 1) {
+      qspCall(st, 'grades', 'homework', 'school', 'yes', 2, 1, 'A12');
     } else {
-      qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 1, 'A12');
+      qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 1, 'A12');
     }
-    ((s as any).juliaQW = (s as any).juliaQW ?? {})['homework_day'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'love');
-    (s as any).lern = ((s as any).lern ?? 0) + (Math.floor(Math.random() * 4) + 3);
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    ((st as any).juliaQW = (st as any).juliaQW ?? {})['homework_day'] = ((st as any).daystart ?? 0);
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'love');
+    (st as any).lern = ((st as any).lern ?? 0) + ((Math.floor(Math.random() * 4) + 3));
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You spend an hour doing your homework with Julia, and thanks to her you manage to learn quite a lot. She\'s a very clever girl, and good at explaining things.');
     scene.actions([
@@ -376,15 +376,15 @@ function enterJuliaRoom(s: GameState, scene: SceneBuilder): void {
       scene.text('Julia smiles at you and offers you something to eat.');
       scene.actions([
         { label: 'Have a meal with Julia', handler: (st: GameState) => {
-    ((s as any).juliaQW = (s as any).juliaQW ?? {})['eatJulMilDay'] = ((s as any).daystart ?? 0);
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (60);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (60);
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    ((st as any).juliaQW = (st as any).juliaQW ?? {})['eatJulMilDay'] = ((st as any).daystart ?? 0);
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (60);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (60);
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You follow her to the kitchen and have a meal together. When you\'re both finished, you return to her room.');
     scene.actions([
@@ -392,124 +392,124 @@ function enterJuliaRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'No thanks, you\'re not hungry', handler: (st: GameState) => {
-    ((s as any).juliaQW = (s as any).juliaQW ?? {})['eatJulMilDay'] = ((s as any).daystart ?? 0);
-    qspGoto(s, 'JuliaMilHome', 'julia_room');
+    ((st as any).juliaQW = (st as any).juliaQW ?? {})['eatJulMilDay'] = ((st as any).daystart ?? 0);
+    qspGoto(st, 'JuliaMilHome', 'julia_room');
   } },
       ]);
     } else {
       if (((s as any).mc_inventory ?? 0)?.['food_wine'] === 1) {
         scene.actions([
           { label: 'Drink your wine with Julia', handler: (st: GameState) => {
-    ((s as any).juliaQW = (s as any).juliaQW ?? {})['JulMilBestFrend'] = ((s as any).juliaQW['JulMilBestFrend'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['food_wine'] = 0;
-    qspCall(s, 'drugs', 'alcohol', 'wine', 2);
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
-    qspCall(s, 'stat', '');
+    ((st as any).juliaQW = (st as any).juliaQW ?? {})['JulMilBestFrend'] = ((st as any).juliaQW['JulMilBestFrend'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['food_wine'] = 0;
+    qspCall(st, 'drugs', 'alcohol', 'wine', 2);
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You offer Julia some wine and she happily accepts, leaving the room quickly to get a corkscrew and some glasses. When she finishes pouring the wine, you propose a toast to your friendship and both have a sip. For the next half hour, the two of you enjoy the wine while sharing some juicy gossip. When the bottle is drained you both feel more than a bit tipsy and giggle happily, lying against each other on her bed.');
-    if (((s as any).juliaQW ?? 0)?.['JulMilBestFrend'] >= 5) {
+    if (((st as any).juliaQW ?? 0)?.['JulMilBestFrend'] >= 5) {
       scene.actions([
         { label: 'Talk about sex', handler: (st: GameState) => {
-    if (((s as any).juliaQW ?? 0)?.['SexTalkJulia'] < 4) {
-      ((s as any).juliaQW = (s as any).juliaQW ?? {})['SexTalkJulia'] = ((s as any).juliaQW['SexTalkJulia'] ?? 0) + (1);
+    if (((st as any).juliaQW ?? 0)?.['SexTalkJulia'] < 4) {
+      ((st as any).juliaQW = (st as any).juliaQW ?? {})['SexTalkJulia'] = ((st as any).juliaQW['SexTalkJulia'] ?? 0) + (1);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You steer the conversation towards sexual topics.');
-    if (((s as any).juliaQW ?? 0)?.['SexTalkJulia'] === 1) {
+    if (((st as any).juliaQW ?? 0)?.['SexTalkJulia'] === 1) {
       scene.text('Julia is too embarrassed to share her sexual experiences with you, and it looks like you killed the mood.');
     } else {
-      if (((s as any).juliaQW ?? 0)?.['SexTalkJulia'] === 2) {
+      if (((st as any).juliaQW ?? 0)?.['SexTalkJulia'] === 2) {
         scene.text('Julia, trying to contribute to the conversation, boasts that she is no longer a virgin.');
         scene.actions([
           { label: '"Oh, really? Do tell!"', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'verbal_erotica', (-10));
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'love');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'verbal_erotica', (-10));
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'love');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/outdoor.jpg');
     scene.text('Julia smiles mysteriously and begins her story, "My parents send me to summer camp every year. Last year, I met a guy there… his name is Vovka. He was one of the youth councilors there, a fair bit older than me. After the day\'s regular events had concluded, we found ourselves alone in the forest."');
     scene.text('"We began to flirt a little, and then he kissed me… it was so nice to feel wanted! Then he laid me on my back, but the ground was all rough and rocky. I tried to get up, asking him if he would mind if I got down on my knees instead. He… misunderstood, and took off my skirt and panties before telling me to go down on all fours like he thought I had suggested. I didn\'t have the courage to say no, and he had been so nice to me… so I did."');
     scene.text('"Then he started to have sex with me. It was quite painful! No one ever told me about the hymen being a part of the female body, and that it tears during the first time. Honestly, the first time I had sex I just stayed bent over, hoping it would be over soon. Luckily Vovka did not last long, and he finished on the ground."');
     scene.actions([
       { label: 'Relax in Julia\'s room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'JuliaMilHome', 'julia_room');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'JuliaMilHome', 'julia_room');
   } },
     ]);
   } },
         ]);
       } else {
-        if (((s as any).juliaQW ?? 0)?.['SexTalkJulia'] === 3) {
+        if (((st as any).juliaQW ?? 0)?.['SexTalkJulia'] === 3) {
           scene.text('Julia shares more details about her adventures at summer camp.');
           scene.actions([
             { label: '"Go on, keep going!"', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'verbal_erotica', (-10));
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'love');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'verbal_erotica', (-10));
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'love');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/otrad.jpg');
     scene.text('Julia once again smiles mysteriously and continues her story where she left off, "Remember when I told you about Vovka last time? I slept with him again, before leaving the camp! One afternoon when no one else was in the cabin, I bumped into him there. Ever since that first time he had been pestering me, wanting more sex. He was cute though, and really treated me like I was special… so I let him."');
     scene.text('"I undressed and lay down on the bed, terribly afraid that it would hurt again. It felt a lot better though! In the beginning it was still a bit painful, but that quickly passed. He came inside me, that second time. I didn\'t really get stimulated myself, probably because I was too afraid about someone walking in. Still, it was nice to feel so close to him."');
     scene.text('"No one did enter, and he quickly left after we finished. After that, I saw him one or two more times at the camp but always with other people around, so nothing more happened between us. He lives in the city, actually. I still have his phone number somewhere, but I\'m not going to call him. He\'s not the one I fancy any more…" She has a dreamy look in her eyes when she says that.');
     scene.actions([
       { label: 'Relax in Julia\'s room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'JuliaMilHome', 'julia_room');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'JuliaMilHome', 'julia_room');
   } },
     ]);
   } },
           ]);
         } else {
-          if (((s as any).juliaQW ?? 0)?.['SexTalkJulia'] === 4) {
-            qspCall(s, 'npcStat', 'A12');
-            // TODO-QSP: dynamic text: Julia is embarrassed and says, "There's something unusual about you, <<$pcs_nick...
-            scene.text(`Julia is embarrassed and says, "There's something unusual about you, ${((s as any).pcs_nickname || '')}. I've never felt so much at ease around anyone else before, around you I can really be myself. I…", she doesn't finish her sentence, letting the silence linger in the air for a second. Then she suddenly moves her face to yours, intending to kiss you.`);
+          if (((st as any).juliaQW ?? 0)?.['SexTalkJulia'] === 4) {
+            qspCall(st, 'npcStat', 'A12');
+            // TODO-QSP: dynamic text: Julia is embarrassed and says, "There''s something unusual about you, <<$pcs_nic...
+            scene.text(`Julia is embarrassed and says, "There's something unusual about you, ${((st as any).pcs_nickname || '')}. I've never felt so much at ease around anyone else before, around you I can really be myself. I…", she doesn't finish her sentence, letting the silence linger in the air for a second. Then she suddenly moves her face to yours, intending to kiss you.`);
             scene.actions([
               { label: 'Kiss Julia', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/julkiss.jpg');
     scene.text('You kiss Julia, feeling her soft, sweet smelling lips on your lips as her nimble tongue explores inside your mouth. Her hands gently cup your boobs, and you moan softly as she begins to gently caress them.');
-    qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie back and let her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/jultit.jpg');
     scene.text('Julia bares your chest and slowly lowers her kisses, slowly trailing her way down to your chest. You do your best to stifle your moans when she takes your nipple in her mouth, gently biting it as her fingers rub the other one. Then her fingers find their way down between your legs, pulling your clothes to the side.');
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'adore');
-    qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'adore');
+    qspCall(st, 'arousal', 'foreplay', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Eat each other out', handler: (st: GameState) => {
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A12'] = 1;
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A12'] = 1;
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/julick.jpg');
     scene.text('You and Julia giddily take off your clothes and you lie back down on the bed. Julia, eager to taste you, throws her leg over your head and buries her face between your legs, grinding her pussy against your lips as she gets to work.');
     scene.text('Feeling her tongue lapping against your pussy like her life depended on it, you don\'t want to let her finish you without reciprocating. Equally enthusiastically you stick out your tongue and lick up her juices from her budding flower, and soon enough it feels like a contest as to which of you can get the other off first. Julia wins: even though you tried to fight it as long as you could, your body spasms against her tongue as you groan into her pussy in orgasm.');
-    qspCall(s, 'arousal', 'cuni_give', 15, 'lesbian');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni', 15, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 15, 'lesbian');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni', 15, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.text('This sends Julia over the edge as well. Her hips squirm against your mouth, and you feel a splash of warm liquid hit you as her pussy squirts her sweet nectar all over your face. You lick up some of it, and then give Julia another deep kiss. Quickly leaving the room to wash up, you return a minute later and cuddle for a while.');
     scene.actions([
       { label: 'Relax in Julia\'s room', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'JuliaMilHome', 'julia_room');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'JuliaMilHome', 'julia_room');
   } },
     ]);
   } },
     ]);
   } },
       { label: 'Ask her to please stop touching you', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'hate');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'JuliaMilHome', 'julia_room');
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'hate');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'JuliaMilHome', 'julia_room');
   } },
     ]);
   } },
               { label: 'Whoa! Tell her to stop right now!', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'loathe');
-    qspGoto(s, 'JuliaMilHome', 'julia_room');
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'loathe');
+    qspGoto(st, 'JuliaMilHome', 'julia_room');
   } },
             ]);
           }
@@ -557,24 +557,24 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     scene.text('You sigh slightly. "It\'s not that, I just don\'t want to be anyones girlfriend right now. Can\'t we just keep doing what we are? Be friends and stuff?"');
     scene.text('Tears start to roll down her cheeks, then she stands up. "I get it, you want to just date anyone, well I can\'t do that. I thought we had something special but I guess I was wrong. Please leave now and never come back!" You know there is nothing you can say and trying to explain will only make things worse, so you get up and head for the door.');
     scene.text('"I\'ll see you later ok?" You say but she turns away from you. Once you close the door you can hear her crying. Not sure what else to do, you just leave.');
-    qspCall(s, 'npc_relationship', 'modify', 'A12', (-25));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A12', (-25));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pod_ezd', 'etaj_3'] },
     ]);
   } },
       { label: 'Tell her yes', handler: (st: GameState) => {
-    ((s as any).juliaQW = (s as any).juliaQW ?? {})['date'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'adore');
-    qspCall(s, 'stat', '');
+    ((st as any).juliaQW = (st as any).juliaQW ?? {})['date'] = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'adore');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     // TODO-QSP: dynamic text: She gets a huge grin on her face, she pulls you up and into a tight fierce hug. ...
-    scene.text(`She gets a huge grin on her face, she pulls you up and into a tight fierce hug. She nuzzles your neck as the two of you hug. "You just made me the happiest girl in the world. I love you ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`She gets a huge grin on her face, she pulls you up and into a tight fierce hug. She nuzzles your neck as the two of you hug. "You just made me the happiest girl in the world. I love you ${((st as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Tell her you love her too', handler: (st: GameState) => {
-    ((s as any).juliaQW = (s as any).juliaQW ?? {})['Julialove'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'adore');
-    qspCall(s, 'stat', '');
+    ((st as any).juliaQW = (st as any).juliaQW ?? {})['Julialove'] = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'adore');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You kiss her, once you break the kiss you say. "I love you too Julia."');
     scene.text('You have never seen her look so happy, she looks at you like you are the most amazing thing in the world. She kisses you for a moment before shyly breaking away and putting a little space between you, but she holds your hand as you both sit on the bed.');
@@ -600,19 +600,19 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).juliaQW ?? 0)?.['date'] === 1) {
       scene.actions([
         { label: 'Break up with her', handler: (st: GameState) => {
-    ((s as any).juliaQW = (s as any).juliaQW ?? {})['date'] = (-1);
-    qspCall(s, 'npc_relationship', 'modify', 'A12', (-30));
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    ((st as any).juliaQW = (st as any).juliaQW ?? {})['date'] = (-1);
+    qspCall(st, 'npc_relationship', 'modify', 'A12', (-30));
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/julia/juliacry.jpg');
     scene.text('You quietly walk in and sit on the bed next to Julia.');
     // TODO-QSP: dynamic text: Julia looks at you questioningly, "<<$pcs_nickname>>…"
-    scene.text(`Julia looks at you questioningly, "${((s as any).pcs_nickname || '')}…"`);
+    scene.text(`Julia looks at you questioningly, "${((st as any).pcs_nickname || '')}…"`);
     scene.text('You frown as you look at her. "We need to talk."');
     scene.text('Julia asks. "Ok about what?"');
     scene.text('You sigh, "I think we should break up."');
     // TODO-QSP: dynamic text: Julia starts to cry, "Why <<$pcs_nickname>>? What did I do wrong?"
-    scene.text(`Julia starts to cry, "Why ${((s as any).pcs_nickname || '')}? What did I do wrong?"`);
+    scene.text(`Julia starts to cry, "Why ${((st as any).pcs_nickname || '')}? What did I do wrong?"`);
     scene.text('You get up to put a little space between you. "It\'s not you… I just don\'t love you anymore."');
     scene.text('Julia openly starts to cry. "Is it someone else?"');
     scene.text('You shake your head, "No, your a great, I just feel differently now is all." You try to comfort her and she begs and pleads you not to do this, but after some time you finally get up. "I\'m sorry but this is over. I\'m truly sorry." With that you turn and walk out, leaving Julia crying behind you.');
@@ -627,9 +627,9 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stop talking', goto: ['JuliaMilHome', 'julia_room'] },
       { label: 'Make small talk', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You talk with Julia about a variety of things, mostly about your common friends, school and some recent movies you have both seen.');
     scene.actions([
@@ -638,9 +638,9 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask about the future', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('"What do you plan to do after school?" you ask.');
     scene.text('She looks at you smiling; "I\'m going to the to the University in Saint Petersburg."');
@@ -657,8 +657,8 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Go to the University', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You get a bit excited. "I am planning to attend the University too. Now I will for sure know someone there."');
     scene.text('She grins. "That\'s great maybe we can hang out there as well."');
@@ -670,9 +670,9 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask what she\'s been up to', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A12', 'like');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A12', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You ask her, "So what have you been up to lately?"');
     scene.text('She gives you a smile. "Oh you know the normal studying, playing games, think about our DnD campaign."');
@@ -696,11 +696,11 @@ function enterJuliaGo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Julia', handler: (st: GameState) => {
-    if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 0) {
-      ((s as any).juliaQW = (s as any).juliaQW ?? {})['home_unlocked'] = 1;
+    if (((st as any).juliaQW ?? 0)?.['home_unlocked'] === 0) {
+      ((st as any).juliaQW = (st as any).juliaQW ?? {})['home_unlocked'] = 1;
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Julia Milova, your classmate</b></center>');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     scene.text('You go to Julia\'s apartment together, she lives just above you. During the 15 minute walk you chat about random things that happened at school that day.');

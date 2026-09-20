@@ -30,12 +30,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 23  &&  ((s as any).hour ?? 0) >= 7) {
     scene.actions([
       { label: 'Inspect garden', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).exhib ?? 0)?.['status'] < 16) {
-      qspGoto(s, 'dachaogr0', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    if (((st as any).exhib ?? 0)?.['status'] < 16) {
+      qspGoto(st, 'dachaogr0', '');
     }
-    if (((s as any).exhib ?? 0)?.['status'] === 16) {
-      qspGoto(s, 'dachaogr', '');
+    if (((st as any).exhib ?? 0)?.['status'] === 16) {
+      qspGoto(st, 'dachaogr', '');
     }
   } },
     ]);
@@ -47,8 +47,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Exit the alley', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspGoto(s, 'dachi', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspGoto(st, 'dachi', '');
   } },
     { label: 'Go into the house', goto: ['dachain', 'start'] },
   ]);

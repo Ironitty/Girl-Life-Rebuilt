@@ -28,8 +28,8 @@ function enterCalcStimtotal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStretch(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_amount = (((!((s as any).locArgs?.[2] ?? 0))) ? (1) : (((s as any).locArgs?.[2] ?? 0)));
-  if (((s as any).locArgs?.[1] ?? 0) === 'vaginal') {
+  (s as any).temp_amount = ((Number((s as any).locArgs?.[2] ?? 0) === 0) ? (1) : (((s as any).locArgs?.[2] ?? 0)));
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'vaginal') {
     if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 0  ||  (!(Math.floor(Math.random() * 4) + 0))) {
       (s as any).pcs_vag = ((s as any).pcs_vag ?? 0) + (((s as any).temp_amount ?? 0));
     }
@@ -37,7 +37,7 @@ function enterStretch(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_vag = ((s as any).pcs_vag ?? 0) + (((s as any).temp_amount ?? 0));
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'anal') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'anal') {
       if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 0  ||  (!(Math.floor(Math.random() * 4) + 0))) {
         (s as any).pcs_ass = ((s as any).pcs_ass ?? 0) + (((s as any).temp_amount ?? 0));
       }
@@ -45,7 +45,7 @@ function enterStretch(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_ass = ((s as any).pcs_ass ?? 0) + (((s as any).temp_amount ?? 0));
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'oral') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'oral') {
         if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 0  ||  (!(Math.floor(Math.random() * 4) + 0))) {
           (s as any).pcs_throat = ((s as any).pcs_throat ?? 0) + (((s as any).temp_amount ?? 0));
         }
@@ -166,7 +166,7 @@ function enterInVag(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vaginal']; enterStretch(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
     // TODO-QSP: gs 'cum_manage', 'cum_decay', ((dick_length11 + arousalVars['girth_range']) / 2) * max(1, stim['time...
   }
   // TODO-QSP: end
@@ -205,7 +205,7 @@ function enterInAnal(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'anal', 1]; enterStretch(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  ((s as any).cumvol ?? 0)[3] > (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  ((s as any).cumvol ?? 0)[3] > (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2))) {
     // TODO-QSP: gs 'cum_manage', 'cum_decay', ((dick_length11 + arousalVars['girth_range']) / 2) * max(1, stim['time...
   }
   // TODO-QSP: end
@@ -263,7 +263,7 @@ function enterSetVirginityStats(s: GameState, scene: SceneBuilder): void {
   ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['day_lost'] = ((s as any).daystart ?? 0);
   ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['age_lost'] = ((s as any).age ?? 0);
   ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['lost_cause'] = 'unknown';
-  if (((s as any).arousalVars ?? 0)?.['self']  ||  ((s as any).locArgs?.[1] ?? 0) === 'birth') {
+  if (((s as any).arousalVars ?? 0)?.['self']  ||  Number((s as any).locArgs?.[1] ?? 0) === 'birth') {
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['taker_ID'] = 'self';
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['virgin_taker'] = ((s as any).pcs_nickname ?? 0);
   } else {
@@ -276,7 +276,7 @@ function enterSetVirginityStats(s: GameState, scene: SceneBuilder): void {
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_width'] = 15;
     ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_girth'] = 'monstrous';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'birth') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'birth') {
       ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_desc'] = 'your child';
       ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_size'] = 25;
       ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['cock_width'] = 15;
@@ -297,7 +297,7 @@ function enterSetVirginityStats(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFeed(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     // TODO-QSP: exit
   }
   if ((!((s as any).succubusflag ?? 0))) {
@@ -330,7 +330,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterCount(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCount2(s, scene); (s as any).locArgs = __savedLocArgs; }
-  if (((s as any).count ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1  ||  ((s as any).count ?? 0)['hidden_' + ((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).count ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1  ||  ((s as any).count ?? 0)['hidden_' + Number((s as any).locArgs?.[1] ?? 0)] === 1) {
     ((s as any).count = (s as any).count ?? {})['flashlite'] = 0;
     ((s as any).count = (s as any).count ?? {})['flash'] = 0;
     ((s as any).count = (s as any).count ?? {})['voyeur'] = 0;
@@ -349,11 +349,11 @@ function enterCount(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCount2(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).count ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).count ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
     // TODO-QSP: count[$ARGS[1]] = 0
     // TODO-QSP: stat[$ARGS[1]] += 1
   }
-  if (((s as any).count ?? 0)['hidden_' + ((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).count ?? 0)['hidden_' + Number((s as any).locArgs?.[1] ?? 0)] === 1) {
     // TODO-QSP: count['hidden_' + $ARGS[1]] = 0
     // TODO-QSP: stat['hidden_' + $ARGS[1]] += 1
   }
@@ -362,9 +362,9 @@ function enterCount2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChecks(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).stim ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (((s as any).stim ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
     // TODO-QSP: stim[$ARGS[1]] = 0
-    if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0) {
+    if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0) {
       qspCall(s, 'fetish', 'add_exp', ((s as any).locArgs?.[1] ?? 0), 1);
     }
   }
@@ -373,7 +373,7 @@ function enterChecks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAutoLube(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'anal'  &&  ((s as any).auto_anal_lube ?? 0) === 1  &&  ((s as any).anal_slip ?? 0) < 8 + ((s as any).pain ?? 0)?.['asshole'] / 2 - ((s as any).pcs_ass ?? 0)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'anal'  &&  ((s as any).auto_anal_lube ?? 0) === 1  &&  ((s as any).anal_slip ?? 0) < 8 + ((s as any).pain ?? 0)?.['asshole'] / 2 - ((s as any).pcs_ass ?? 0)) {
     if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
       (s as any).ar_anal_lube = 1;
@@ -381,7 +381,7 @@ function enterAutoLube(s: GameState, scene: SceneBuilder): void {
       ((s as any).anslipVars = (s as any).anslipVars ?? {})['lube'] = 8;
       ((s as any).count = (s as any).count ?? {})['anal_finger'] = 1;
       ((s as any).count = (s as any).count ?? {})['vaginal_finger'] = 1;
-      if (((s as any).locArgs?.[2] ?? 0) !== 'custom') {
+      if (Number((s as any).locArgs?.[2] ?? 0) !== 'custom') {
         scene.text('You rub some lube in and around your anus.');
       } else {
         if (((s as any).lube_txt ?? 0) !== '') {
@@ -403,18 +403,18 @@ function enterAutoLube(s: GameState, scene: SceneBuilder): void {
       (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) + (((s as any).temp_stim ?? 0)?.['total']);
       ((s as any).stim = (s as any).stim ?? {})['event'] = ((s as any).stim['event'] ?? 0) + (((s as any).temp_stim ?? 0)?.['total']);
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) !== 'custom'  ||  (((s as any).locArgs?.[2] ?? 0) === 'custom'  &&  ((s as any).lube_txt ?? 0) !== '')) {
+      if (Number((s as any).locArgs?.[2] ?? 0) !== 'custom'  ||  (Number((s as any).locArgs?.[2] ?? 0) === 'custom'  &&  ((s as any).lube_txt ?? 0) !== '')) {
         scene.text('You do not have any lube left so cannot use it during this sex act.');
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'vag'  &&  ((s as any).auto_vag_lube ?? 0) === 1  &&  ((s as any).vaginal_slip ?? 0) < 8 + ((s as any).pain ?? 0)?.['vaginal'] / 2 - ((s as any).pcs_vag ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'vag'  &&  ((s as any).auto_vag_lube ?? 0) === 1  &&  ((s as any).vaginal_slip ?? 0) < 8 + ((s as any).pain ?? 0)?.['vaginal'] / 2 - ((s as any).pcs_vag ?? 0)) {
       if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
         (s as any).minut = ((s as any).minut ?? 0) + 1;
         (s as any).ar_vag_lube = 1;
         ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
         ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['lube'] = 8;
-        if (((s as any).locArgs?.[2] ?? 0) !== 'custom') {
+        if (Number((s as any).locArgs?.[2] ?? 0) !== 'custom') {
           scene.text('You rub some lube in and around your vagina.');
         } else {
           if (((s as any).lube_txt ?? 0) !== '') {
@@ -433,7 +433,7 @@ function enterAutoLube(s: GameState, scene: SceneBuilder): void {
         (s as any).orgasm_buildup = ((s as any).orgasm_buildup ?? 0) + (((s as any).temp_stim ?? 0)?.['total']);
         ((s as any).stim = (s as any).stim ?? {})['event'] = ((s as any).stim['event'] ?? 0) + (((s as any).temp_stim ?? 0)?.['total']);
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) !== 'custom'  ||  (((s as any).locArgs?.[2] ?? 0) === 'custom'  &&  ((s as any).lube_txt ?? 0) !== '')) {
+        if (Number((s as any).locArgs?.[2] ?? 0) !== 'custom'  ||  (Number((s as any).locArgs?.[2] ?? 0) === 'custom'  &&  ((s as any).lube_txt ?? 0) !== '')) {
           scene.text('You do not have any lube left so cannot use it during this sex act.');
         }
       }

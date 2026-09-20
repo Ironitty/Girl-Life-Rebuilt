@@ -12,12 +12,12 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $spellTimeName[spellCompSize] = $ARGS[1]
   // TODO-QSP: $spellCompExec[spellCompSize] = $ARGS[3]
   // TODO-QSP: $spellTickExec[spellCompSize] = $ARGS[4]
-  if ((!((s as any).locArgs?.[0] ?? 0))) {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 0) {
     (s as any).BeforeTime = ((s as any).prevtotmin ?? 0);
   } else {
     (s as any).BeforeTime = ((s as any).locArgs?.[0] ?? 0);
   }
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     (s as any).AfterTime = ((s as any).totminut ?? 0);
   } else {
     (s as any).AfterTime = ((s as any).locArgs?.[1] ?? 0);

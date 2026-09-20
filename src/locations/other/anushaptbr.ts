@@ -30,8 +30,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
     scene.text('He just rolls his eyes and ignores her. "Don\'t tell me… Is this one of the famous groupies that we\'ve heard so many stories about?" he asks while looking at you.');
     scene.actions([
       { label: 'Excuse me?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s brother\'s room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('"What do you mean?" you ask.');
@@ -40,8 +40,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, at least we can hope this groupie is better than Alyona." Maksim says.');
     scene.actions([
       { label: 'Why\'s that?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s brother\'s room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('"She\'s really mean to us! She always beats me up and won\'t play games with us," Maksim says as he looks at you sadly. Timofey nods in agreement.');
@@ -82,35 +82,35 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
       scene.text('The boys nod at each other. "This time will be different. We\'re sure we\'ll win!"');
       scene.actions([
         { label: 'What\'s this all about?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('"Oh don\'t worry. Sometimes I sit and play video games with them. I always beat their asses." Anushka explains.');
     scene.text('"Not this time!" Maksim looks at the two of you determined.');
     scene.actions([
       { label: 'Sit down and play', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 3) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
     scene.text('The brothers turn away from you and start whispering amongst themselves. They must be planning something.');
     scene.text('"Let\'s play!" Timofey says with a smile.');
     scene.text('The four of you play for several minutes. You really don\'t know what\'s happening because it\'s some shooter game you\'ve never played before. However, Anushka does her best to explain as you play.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
-    if (((s as any).pcs_gaming ?? 0) <= 20) {
-      ((s as any).maksimQW = (s as any).maksimQW ?? {})['nush_games_win'] = 1;
+    if (((st as any).pcs_gaming ?? 0) <= 20) {
+      ((st as any).maksimQW = (st as any).maksimQW ?? {})['nush_games_win'] = 1;
       scene.text('The game is pretty much over. Both of them are better players than you are. Anushka does what she can, but the brothers easily manage to win the first game, they have a big lead during the second game when Anushka uses her foot to push Maksim off the bed, he manages to get back up. It gives you a chance but Timofey manages to keep you from taking advantage of it, despite Anushka trying to cheat the brothers manage to win again.');
       scene.text('Both brothers jump up and do some weird little victory dance. "Haha, we win and you lose! Even if you did try and cheat, loser!" Maksim taunts.');
       scene.text('Anushka rolls her eyes at their antics. "You just got lucky is all."');
       scene.text('"You suck, you suck!" Maksim chants and Timofey quickly joins in. "Losers, losers!"');
       scene.text('Anushka gets up and shakes her head. "Come on, let\'s go. They\'re not going to stop acting like jackasses anytime soon." You get up and follow her out.');
     } else {
-      if (((s as any).pcs_gaming ?? 0) <= 40) {
-        ((s as any).maksimQW = (s as any).maksimQW ?? {})['nush_games_win'] = 2;
+      if (((st as any).pcs_gaming ?? 0) <= 40) {
+        ((st as any).maksimQW = (st as any).maksimQW ?? {})['nush_games_win'] = 2;
         scene.text('You start to get a handle on things, and for a while, the game is pretty much a draw with no team getting the upper hand. All of a sudden, however, you make a mistake, and the brothers are about to win. Just as they\'re about to grab their victory though, Anushka uses her foot to push Maksim off the bed. This allows her to secure the win while he\'s trying to recover.');
         scene.text('He immediately starts yelling. "You cheated! You always do this when you\'re about to lose!"');
         scene.text('"Yeah, Nush\'s a cheater!" Timofey chimes in.');
@@ -123,11 +123,11 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
         scene.text('"Well get to it!" he says to them, then turns to you and Anushka. "You two get out of their room and stop tormenting your brothers, Nush!" He holds the door open until you both leave, then pulls it shut hard.');
         scene.text('Anushka starts to respond, but Eduard interrupts her. "I don\'t care! Leave them alone so they can study. Take your friend to your room." With that, he turns and goes back to the living room.');
       } else {
-        ((s as any).maksimQW = (s as any).maksimQW ?? {})['nush_games_win'] = 3;
+        ((st as any).maksimQW = (st as any).maksimQW ?? {})['nush_games_win'] = 3;
         scene.text('While it\'s your first time playing, you manage to hold your own, and with Anushka\'s skill, it becomes clear you two have the upper hand. The brothers keep it close, but they fall a little short in both games.');
         scene.text('Maksim throws down his controller and turns on Timofey. "Why are you so bad? We could have beat them if you didn\'t suck so much!"');
-        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It's not my fault Nush and <<$pcs_nickname>> a...
-        scene.text(`Timofey tries to defend himself. "It's not my fault Nush and ${((s as any).pcs_nickname || '')} are too good!"`);
+        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It''s not my fault Nush and <<$pcs_nickname>> ...
+        scene.text(`Timofey tries to defend himself. "It's not my fault Nush and ${((st as any).pcs_nickname || '')} are too good!"`);
         scene.text('Before Maksim can respond, Anushka cuts him off. "It\'s not Timo\'s fault. I killed you three times when you kept trying to go through that courtyard. You\'re just mad because you got beat by a girl… Again!" she says teasingly and sticks her tongue out at him.');
         scene.text('Maksim\'s eyes flare at Anushka. "GO SUCK A DICK! THAT\'S ALL <i>YOU\'RE</i> GOOD AT, SLUT!" he screams at her.');
         scene.text('Anushka\'s eyes narrow. "Watch your mouth, you little shit! It\'s just a game!"');
@@ -140,8 +140,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
         scene.text('The door closes before you can hear any more, leaving you unable to make out anything beyond muffled sounds.');
       }
     }
-    if (((s as any).pcs_gaming ?? 0) > 20) {
-      qspCall(s, 'mood', 'raise', 'tiny');
+    if (((st as any).pcs_gaming ?? 0) > 20) {
+      qspCall(st, 'mood', 'raise', 'tiny');
     }
     scene.actions([
       { label: 'Go to Anushka\'s room', handler: (st: GameState) => {
@@ -156,7 +156,7 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).AnushkaLoc ?? 0) !== 3) {
-        (s as any).temp_brotherroom = Math.floor(Math.random() * 6) + 1;
+        (s as any).temp_brotherroom = (Math.floor(Math.random() * 6) + 1);
         if (((s as any).temp_brotherroom ?? 0) === 1  &&  ((s as any).maksimQW ?? 0)?.['QWstage'] === 1) {
           ((s as any).maksimQW = (s as any).maksimQW ?? {})['QWstage'] = 2;
           (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -164,8 +164,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
           scene.text('You open the door and look into the brothers\' room. You see the boys sitting and talking about something. Maksim is 13 or 14, the age when boys start paying attention to girls. Timofey is about a year or two younger.');
           scene.actions([
             { label: 'What are you up to?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/brothers.jpg');
     scene.text('"Nothing much really. We were just discussing what kind of band we were going to have when we\'re older," Maksim responds.');
     scene.text('"Oh? So you want to be like your big sister and be in a band too?" you ask.');
@@ -173,8 +173,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
     scene.text('Before you can respond, Timofey cuts in. "Arkadi is the best! Or maybe Valentin because they give us stuff."');
     scene.actions([
       { label: 'What does Valentin give you?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('"He\'s pretty cool. He gives us his old video games sometimes. He also has a bike like dad and spends a lot of time with him," Timofey answers.');
     scene.text('"Does he ever let you sit on his bike?" you ask.');
@@ -182,15 +182,15 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
     scene.text('"He doesn\'t let us drink though…" Maksim moans.');
     scene.actions([
       { label: 'Who lets you drink?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('"Arkadi!" they both shout. "Just don\'t tell our dad because he\'ll get mad."');
     scene.text('"Don\'t worry. I won\'t tell your dad," you reassure them.');
     scene.actions([
       { label: 'What about Radomir?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('"He\'s pretty cool. I want to be like him when I grow up!" Maksim confidently says.');
     scene.text('"Because he\'s a good musician?" you ask.');
@@ -216,8 +216,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
             scene.text('You open the door and look in the brothers\' room. You see them fighting on Maksim\'s bed. They immediately stop when they see you.');
             scene.actions([
               { label: 'What are you doing?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/browrestle.jpg');
     scene.text('"What are you boys up to?" you ask.');
     scene.text('Maksim blushes. "N-Nothing… G-get out of our room!"');
@@ -226,16 +226,16 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
     scene.text('"Shut up! You\'re just a little kid, so what do you know?!"');
     scene.actions([
       { label: 'Grab the magazine', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('You walk up to them and grab the magazine. Maksim tries his hardest to stop you, but you easily manage to push him away.');
     scene.text('"Give that back! It\'s mine!" he says dejectedly. "It\'s all your fault!" he says as he turns to his brother. "If you could only keep your mouth shut. I can\'t wait to get my own room."');
     scene.text('Timofey just keeps on sneering at his brother.');
     scene.actions([
       { label: 'Calm down', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('"It doesn\'t have to be all bad," you say. "I share a room with my sister."');
     scene.text('"Wow, two girls in one room? That\'s so hot!" Maksim says. "Our sister is the only one with her own room. That\'s so unfair!"');
@@ -260,8 +260,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
               scene.text('You open the door and look in the brothers\' room. You see Maksim in there alone, playing some first-person shooter on the PlayStation.');
               scene.actions([
                 { label: 'Ask where Timofey is', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim.jpg');
     scene.text('"Where\'s your brother?" you ask.');
     scene.text('Maksim gives you an annoyed look. "Why do you care? He\'s probably outside playing in the dirt like a stupid kid."');
@@ -270,12 +270,12 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['anushapt', 'hallway'] },
       { label: 'Ask if he wants to play', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
-    if (((s as any).maksimQW ?? 0)?.['blackmail_flash'] > 10) {
-      ((s as any).maksimQW = (s as any).maksimQW ?? {})['blackmail_flash'] = ((s as any).maksimQW['blackmail_flash'] ?? 0) + (1);
-      qspCall(s, 'fame', 'pav', 'sex', 1);
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
+    if (((st as any).maksimQW ?? 0)?.['blackmail_flash'] > 10) {
+      ((st as any).maksimQW = (st as any).maksimQW ?? {})['blackmail_flash'] = ((st as any).maksimQW['blackmail_flash'] ?? 0) + (1);
+      qspCall(st, 'fame', 'pav', 'sex', 1);
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
       scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksim_blackmail/naked_video_games.jpg');
       scene.text('You nod while trying not to laugh. "Oh, I see. Do you want to play a game with me then?"');
       scene.text('It looks like he\'s about to say no, but then he smiles. "Okay, but you have to play naked."');
@@ -284,8 +284,8 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
       scene.text('You sigh once more being blackmailed by a boy who is barely a teenager, how did you get yourself into this. "Fine!" With that, you strip out of your clothes and pick up one of the controllers. The two of you play a game but you easily beat him, as he spends the whole time staring at your naked body instead of paying attention to the game.');
       scene.text('With him still staring at your naked body you decided you had enough for now. Getting up you get dressed. "Hey you don\'t got to get dressed we can play another game." He says.');
       scene.text('You shake your head. "Maybe some other day." Once you finish getting dressed you leave.');
-      qspCall(s, 'arousal', 'flash', 15, 'humiliation', 'sub');
-      qspCall(s, 'arousal', 'end');
+      qspCall(st, 'arousal', 'flash', 15, 'humiliation', 'sub');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Leave', goto: ['anushapt', 'hallway'] },
       ]);
@@ -295,15 +295,15 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
       scene.text('It looks like he\'s about to say no, but then he smiles. "Okay, but only if we make it interesting."');
       scene.text('"Interesting how?" you ask.');
       scene.text('He grins. "If I win, you have to show me your boobs, but if you win, I\'ll tell you a secret about Nush that you don\'t know."');
-      if (((s as any).pcs_inhib ?? 0) > 30) {
+      if (((st as any).pcs_inhib ?? 0) > 30) {
         scene.actions([
           { label: 'Deal (Go easy on Maksim)', goto: ['anushaptbr', 'race_maksim_result', '1'] },
         ]);
       }
       scene.actions([
         { label: 'I don\'t think so', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('You shake your head. "No, I don\'t think so…" you tell him.');
     scene.text('He frowns. "Fine then! Get out of my room. Just get out!"');
@@ -341,7 +341,7 @@ function enterRaceMaksimResult(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exp_gain', 'gaming', (Math.floor(Math.random() * (3 - 2 * ((s as any).locArgs?.[1] ?? 0) - 1 - ((s as any).locArgs?.[1] ?? 0) + 1)) + (1 - ((s as any).locArgs?.[1] ?? 0))));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksimplay.jpg');
-  if (((s as any).pcs_gaming ?? 0) <= 40  ||  ((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (((s as any).pcs_gaming ?? 0) <= 40  ||  Number((s as any).locArgs?.[1] ?? 0) > 0) {
     scene.text('The two of you start playing, and it quickly becomes obvious he\'s played this game a lot and is very good at it. You try, but you\'re unable to keep up with him. You come close a few times, but you\'re mostly hopelessly outmatched. After a few matches, he pauses the game and looks at you with a lustful grin. "Haha you lost! Now show me your boobs."');
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -353,8 +353,8 @@ function enterRaceMaksimResult(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/broroom.jpg');
     scene.text('You shake your head. "No, I don\'t think so. You\'re too young anyways."');
     scene.text('His eyes flash in fury. "You promised!"');
@@ -369,8 +369,8 @@ function enterRaceMaksimResult(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Show him your boobs', handler: (st: GameState) => {
-    qspCall(s, 'flash', 'tits', 'indoors', 1, 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'flash', 'tits', 'indoors', 1, 1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksimshow.jpg');
     scene.text('"A bet\'s a bet," you shrug.');
     scene.text('You stand and pull your top up, his eyes growing wide as he stares at your breasts. Before either of you can say anything, you hear the front door slam. "Maksim… Maksim… Come see… Come see!" Timofey yells as he runs down the hall.');
@@ -445,30 +445,30 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Sit down and play', handler: (st: GameState) => {
-    ((s as any).maksimQW = (s as any).maksimQW ?? {})['nush_games'] = 2;
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'stat', '');
+    ((st as any).maksimQW = (st as any).maksimQW ?? {})['nush_games'] = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 3) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
     scene.text('The brothers turn away from you and start whispering. You\'re sure that they must be planning something.');
     scene.text('"Let\'s play!" Timofey says smiling.');
     scene.text('The four of you play for several minutes. It\'s the same shooter game as last time, and you\'re a little bit better than before.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
-    if (((s as any).pcs_gaming ?? 0) <= 20) {
-      ((s as any).maksimQW = (s as any).maksimQW ?? {})['nush_games_win'] = 1;
+    if (((st as any).pcs_gaming ?? 0) <= 20) {
+      ((st as any).maksimQW = (st as any).maksimQW ?? {})['nush_games_win'] = 1;
       scene.text('The game is pretty much over and both of them are still better players than you are. Anushka does what she can again, but the brothers easily manage to win back to back matches. Both brothers jump up and do some weird little victory dance. "Haha, we win and you lose!" Maksim taunts.');
       scene.text('Anushka rolls her eyes at their antics. "Yeah, yeah. You won." She reaches over and ruffles Timofey\'s hair, which he tries and fails to dodge. "Good job, kiddo."');
       scene.text('"Pfft, I won it! Timo almost caused us to lose, but I carried his sorry ass!" Maksim says.');
       scene.text('Timofey pulls away from his sister. "Nuh-uh, I almost scored as good you as you did!" This quickly turns into them arguing over who did better.');
       scene.text('Anushka gets up and shakes her head. "Come on, let\'s go. They\'re not going to stop acting like brats anytime soon." You get up and follow her out.');
     } else {
-      if (((s as any).pcs_gaming ?? 0) <= 40) {
-        ((s as any).maksimQW = (s as any).maksimQW ?? {})['nush_games_win'] = 2;
-        (s as any).minut = ((s as any).minut ?? 0) + 15;
+      if (((st as any).pcs_gaming ?? 0) <= 40) {
+        ((st as any).maksimQW = (st as any).maksimQW ?? {})['nush_games_win'] = 2;
+        (st as any).minut = ((st as any).minut ?? 0) + 15;
         scene.text('The game is pretty much a draw with no one getting the upper hand until Anushka starts to cheat again. She starts jabbing Maksim with her foot and covers Timofey\'s eyes with her hand at a critical moment. The brothers try to return the favor, and soon the three of them are more interested in wrestling and fighting than actually winning the game. With everyone else distracted, you take advantage and win the match.');
         scene.text('Realizing what happened, Maksim starts yelling. "Not fair! You cheated again!"');
         scene.text('"You were doing the same to me, so you were cheating too!" Anushka replies, teasing them with a smile on her face.');
@@ -480,11 +480,11 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
         scene.text('Anushka and Maksim start to wrestle. She quickly starts to get the upper hand because he just isn\'t big enough to beat his older sister yet. Once it becomes clear she\'s about to pin him down, Timofey jumps on her back and the three of them wrestle around. Anushka manages to pin one of them, but the other gets loose as she tries to pin them both. They come close a few times to pinning her down, but in the end, they all just give up, out of breath and lying in a heap.');
         scene.text('Finally, Anushka gets up and untangles herself from them. "Come on, let\'s go back to my room," she says to you. As you follow her out of the room, the brothers start to play another game. "We\'ll win next time!" you hear Maksim say as Anushka closes the door on them.');
       } else {
-        ((s as any).maksimQW = (s as any).maksimQW ?? {})['nush_games_win'] = 3;
+        ((st as any).maksimQW = (st as any).maksimQW ?? {})['nush_games_win'] = 3;
         scene.text('Before too long, it\'s pretty clear you and Anushka have the upper hand. The brothers keep it close, but they fall a little short in both matches.');
         scene.text('Maksim throws down his controller and turns on Timofey. "Why are you so bad? We could have beat them if you didn\'t suck so much!"');
-        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It's not my fault that Nush and <<$pcs_nicknam...
-        scene.text(`Timofey tries to defend himself. "It's not my fault that Nush and ${((s as any).pcs_nickname || '')} are just too good!"`);
+        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It''s not my fault that Nush and <<$pcs_nickna...
+        scene.text(`Timofey tries to defend himself. "It's not my fault that Nush and ${((st as any).pcs_nickname || '')} are just too good!"`);
         scene.text('Before Maksim can respond, Anushka cuts him off. "It\'s not Timo\'s fault, and you know it. When you fall behind, you get too aggressive like always, which makes it easier for me to kill you. You\'re just mad because you got beat by a girl… Again!" she says in a teasing tone, then sticks her tongue out at him.');
         scene.text('Maksim\'s eyes flare at Anushka and it looks like he\'s about to scream at her again until she interjects. "Calm down, we don\'t want Dad in here again." He shuts his mouth and glances at the door, then glares at Anushka.');
         scene.text('"Get out! Get out of our room!" he says as he tries to shove her off the bed.');
@@ -498,8 +498,8 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
         scene.text('As she closes the door and leaves, you can hear Maksim berating his brother for being a pussy and pleading with their sister to play games with them.');
       }
     }
-    if (((s as any).pcs_gaming ?? 0) > 20) {
-      qspCall(s, 'mood', 'raise', 'tiny');
+    if (((st as any).pcs_gaming ?? 0) > 20) {
+      qspCall(st, 'mood', 'raise', 'tiny');
     }
     scene.actions([
       { label: 'Go to Anushka\'s room', handler: (st: GameState) => {
@@ -560,9 +560,9 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Play', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 3) + 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 3) + 1));
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
     scene.text('"Come on guys, let\'s just have fun!" you tell them.');
     scene.text('"We\'ll win this time!" Maksim says as he looks at the two of you, determined.');
@@ -570,10 +570,10 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
     scene.text('The four of you play for several minutes. You\'ve gotten better since the last time you played. You learned a lot and are able to help out more than you did before.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
-    if (((s as any).pcs_gaming ?? 0) <= 20) {
+    if (((st as any).pcs_gaming ?? 0) <= 20) {
       scene.text('It\'s not enough, however, as all of them are still better players than you. Anushka does what she can again, but the brothers easily manage to win back-to-back matches. Both brothers jump up and do some weird little victory dance. "Haha, go suck a dick that\'s all your good at!" Maksim taunts as he looks directly at Anushka.');
       scene.text('Anushka reaches out and grabs him by the shirt. "Shut your fucking mouth, I am so sick of your fucking shit." She looks visibly angry this time.');
       scene.text('Maksim actually goes a little white, like he is actually afraid of her, while Timofey jumps up and grabs Anushka\'s arm. "Stop… stop fighting, he didn\'t mean it."');
@@ -587,20 +587,20 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
       scene.text('He looks at her like she is stupid. "All girls have cooties, I need to wash them off." Then he goes into the bathroom closing the door.');
       scene.text('Anushka just shakes her head and laughs. "God boys are so stupid, in a few years he will be chasing girls." Then the two of you go back to her room.');
     } else {
-      if (((s as any).pcs_gaming ?? 0) <= 40  &&  ((s as any).pcs_gaming ?? 0) > 20) {
+      if (((st as any).pcs_gaming ?? 0) <= 40  &&  ((st as any).pcs_gaming ?? 0) > 20) {
         scene.text('The two of you are slightly better than they are, and after some time, you come out on top. Maksim gets mad and throws his controller down. "Fuck!" He then turns on his brother. "Why are you so bad, if you didn\'t suck so much we would have won."');
         scene.text('Timofey shakes his head. "No, you suck and you\'re why we lost. You always have to try and be the hero and try and win on your own, instead of sticking with me."');
         scene.text('"I leave you because you suck and slow me down!" Maksim yells.');
         scene.text('Before you can even react, Anushka tells him. "You want dad to come back in here?"');
         scene.text('Maksim pushes Anushka. "Get out of my room. Get out!"');
         // TODO-QSP: dynamic text: Anushka just shakes her head and goes for the door. "Come on <<$pcs_nickname>>, ...
-        scene.text(`Anushka just shakes her head and goes for the door. "Come on ${((s as any).pcs_nickname || '')}, let's get out of here."`);
+        scene.text(`Anushka just shakes her head and goes for the door. "Come on ${((st as any).pcs_nickname || '')}, let's get out of here."`);
         scene.text('Maksim rushes across the room and pushes the two of you the rest of the way out before slamming the door closed. Anushka angrily goes back to her room.');
       } else {
         scene.text('Before too long, it\'s pretty clear you and Anushka have the upper hand. The brothers keep it close, but they fall a little short in both matches.');
         scene.text('Maksim throws down his controller. "Fuck!" He then turns on his brother. "Why are you so bad? We could have beat them if you didn\'t suck so much!"');
-        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It's not my fault. Nush and <<$pcs_nickname>> ...
-        scene.text(`Timofey tries to defend himself. "It's not my fault. Nush and ${((s as any).pcs_nickname || '')} are just too good."`);
+        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It''s not my fault. Nush and <<$pcs_nickname>>...
+        scene.text(`Timofey tries to defend himself. "It's not my fault. Nush and ${((st as any).pcs_nickname || '')} are just too good."`);
         scene.text('Before Maksim can respond, Anushka cuts him off. "It\'s not Timo\'s fault, and you know it. When you fall behind, you get too aggressive, and don\'t work with Timofey. You just try to win it on your own. Also, you\'re just mad because you got beat by a girl… again." she says in a teasing tone.');
         scene.text('Maksim\'s eyes flare at Anushka "Get out… Get out of our room!" he says as he tries to shove her off the bed.');
         scene.text('Anushka gets up. "Oh my God, you\'re such a baby! I don\'t even know why I bother playing with you."');
@@ -612,8 +612,8 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
         scene.text('As she closes the door and leaves, you can hear Maksim berating his brother for being a pussy and pleading with their sister to play games with them.');
       }
     }
-    if (((s as any).pcs_gaming ?? 0) > 20) {
-      qspCall(s, 'mood', 'raise', 'tiny');
+    if (((st as any).pcs_gaming ?? 0) > 20) {
+      qspCall(st, 'mood', 'raise', 'tiny');
     }
     scene.actions([
       { label: 'Go to Anushka\'s room', handler: (st: GameState) => {
@@ -635,16 +635,16 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
           scene.text('As you start playing it is obvious Timofey is pretty good at this game, likely his favorite game as he seems to know all just what to do.');
           scene.actions([
             { label: 'Play', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 3) + 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 3) + 1));
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/timo_play.jpg');
-    if (((s as any).pcs_gaming ?? 0) <= 20) {
+    if (((st as any).pcs_gaming ?? 0) <= 20) {
       scene.text('They are both way better at the game than you are, you are pretty sure Anushka is better than Timofey because each time he messes up. She suddenly messes up to and seems unable to get going again until he passes her. You quickly realize she is keeping it close but letting him win on purpose, but he doesn\'t seem to notice as he is into the game, getting excited as he wins. After playing a couple of times, he exclaims "I WIN!" Anushka just laughs as she gets up and ruffles his hair much to his annoyance. "Yeah you did, you are getting really good at it, but need to go." He suddenly looks crest fallen as she says you are going. "I will come play with your later, ok?"');
       scene.text('He smiles again and nods. "Ok but I won\'t take it easy on you."');
       scene.text('She for her part just smiles. "I know you won\'t." Then she turns to look at you. "Come on let\'s go back to my room."');
     } else {
-      if (((s as any).pcs_gaming ?? 0) <= 40  &&  ((s as any).pcs_gaming ?? 0) > 20) {
+      if (((st as any).pcs_gaming ?? 0) <= 40  &&  ((st as any).pcs_gaming ?? 0) > 20) {
         scene.text('You are about as good as Timofey, you think Anushka is better than you both though. You notice each time he makes a mistake and you get in the lead she gets by him too suddenly, not long after she always manages to crash into you, letting Timofey get back ahead of both of you. You quickly realize she is keeping it close but letting him win on purpose, but he doesn\'t seem to notice as he is into the game, getting excited as he wins. After playing a couple of times, he exclaims "I WIN!" Anushka just laughs as she gets up and ruffles his hair much to his annoyance. "Yeah you did, you are getting really good at it, but need to go." He suddenly looks crest fallen as she says you are going. "I will come play with your later, ok?"');
         scene.text('He smiles again and nods. "Ok but I won\'t take it easy on you."');
         scene.text('She for her part just smiles. "I know you won\'t." Then she turns to look at you. "Come on let\'s go back to my room."');
@@ -692,9 +692,9 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
           }
           scene.actions([
             { label: 'Play', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'gaming', Math.floor(Math.random() * 3) + 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'gaming', (Math.floor(Math.random() * 3) + 1));
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
     scene.text('"Come on guys, let\'s just have fun!" you tell them.');
     scene.text('"We\'ll win this time!" Maksim says as he looks at the two of you, determined.');
@@ -702,30 +702,30 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
     scene.text('The four of you play for several minutes. You\'ve gotten better since the last time you played. You learned a lot and are able to help out more than you did before.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/playgamebro.jpg');
-    if (((s as any).pcs_gaming ?? 0) <= 20) {
+    if (((st as any).pcs_gaming ?? 0) <= 20) {
       scene.text('It\'s not enough, however, as all of them are still better players than you. Anushka does what she can again, but the brothers easily manage to win back to back matches. Both brothers jump up and do some weird little victory dance. "Haha, see told you girls suck at video games!" Maksim taunts.');
       scene.text('Anushka rolls her eyes at their antics. "Yeah, yeah. You won." She reaches over and ruffles Timofey\'s hair, which he tries and fails to dodge. "Good job, kiddo."');
       scene.text('"Pfft, I won it! Timo almost caused us to lose, but I carried his sorry ass!" Maksim says.');
       scene.text('Timofey pulls away from his sister. "Nuh-uh, I almost scored as good you as you did!" It quickly turns into them arguing over who did better.');
       scene.text('Anushka gets up and shakes her head. "Come on, let\'s go. They\'re not going to stop acting like brats anytime soon." You get up and follow her out.');
     } else {
-      if (((s as any).pcs_gaming ?? 0) <= 40  &&  ((s as any).pcs_gaming ?? 0) > 20) {
+      if (((st as any).pcs_gaming ?? 0) <= 40  &&  ((st as any).pcs_gaming ?? 0) > 20) {
         scene.text('The two of you are slightly better than they are, and after some time, you come out on top. Maksim gets mad and throws his controller down. "Fuck!" He then turns on his brother. "It\'s your fault we lost! God, you\'re so stupid!"');
         scene.text('Timofey shakes his head. "No, you\'re stupid and you\'re why we lost. You always have to try and be the hero, so Nush tricks you every time."');
         // TODO-QSP: dynamic text: Maksim suddenly leaps on top of his brother. "Shut your mouth, you little shit! ...
-        scene.text(`Maksim suddenly leaps on top of his brother. "Shut your mouth, you little shit! She doesn't trick me!" he yells as he starts beating on him. Before you can even react, Anushka grabs Maksim by the back of his collar and yanks him off Timofey. "Leave him alone! He's right. I baited you out then ${((s as any).pcs_nickname || '')} killed you. It's not his fault."`);
+        scene.text(`Maksim suddenly leaps on top of his brother. "Shut your mouth, you little shit! She doesn't trick me!" he yells as he starts beating on him. Before you can even react, Anushka grabs Maksim by the back of his collar and yanks him off Timofey. "Leave him alone! He's right. I baited you out then ${((st as any).pcs_nickname || '')} killed you. It's not his fault."`);
         scene.text('Maksim gets back up and pushes Anushka. "Get out of my room. Get out or I\'ll tell Dad you\'re picking on us again!"');
         // TODO-QSP: dynamic text: Anushka just shakes her head and goes for the door. "Come on <<$pcs_nickname>>, ...
-        scene.text(`Anushka just shakes her head and goes for the door. "Come on ${((s as any).pcs_nickname || '')}, let's get out of here." Just as you start to leave, Anushka stops and looks back in. "Maksim, you better leave him alone or I'll come back in here and beat your ass."`);
+        scene.text(`Anushka just shakes her head and goes for the door. "Come on ${((st as any).pcs_nickname || '')}, let's get out of here." Just as you start to leave, Anushka stops and looks back in. "Maksim, you better leave him alone or I'll come back in here and beat your ass."`);
         scene.text('Maksim rushes across the room and pushes the two of you the rest of the way out before slamming the door closed. Anushka angrily goes back to her room.');
       } else {
         scene.text('Before too long, it\'s pretty clear you and Anushka have the upper hand. The brothers keep it close, but they fall a little short in both matches.');
         scene.text('Maksim throws down his controller. "Fuck!" He then turns on his brother. "Why are you so bad? We could have beat them if you didn\'t suck so much!"');
-        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It's not my fault. Nush and <<$pcs_nickname>> ...
-        scene.text(`Timofey tries to defend himself. "It's not my fault. Nush and ${((s as any).pcs_nickname || '')} are just too good."`);
+        // TODO-QSP: dynamic text: Timofey tries to defend himself. "It''s not my fault. Nush and <<$pcs_nickname>>...
+        scene.text(`Timofey tries to defend himself. "It's not my fault. Nush and ${((st as any).pcs_nickname || '')} are just too good."`);
         scene.text('Before Maksim can respond, Anushka cuts him off. "It\'s not Timo\'s fault, and you know it. When you fall behind, you get too aggressive, and don\'t work with Timofey. You just try to win it on your own. Also, you\'re just mad because you got beat by a girl… again." she says in a teasing tone.');
         scene.text('Maksim\'s eyes flare at Anushka "Get out… Get out of our room!" he says as he tries to shove her off the bed.');
         scene.text('Anushka gets up. "Oh my God, you\'re such a baby! I don\'t even know why I bother playing with you."');
@@ -737,8 +737,8 @@ function enterRematch(s: GameState, scene: SceneBuilder): void {
         scene.text('As she closes the door and leaves, you can hear Maksim berating his brother for being a pussy and pleading with their sister to play games with them.');
       }
     }
-    if (((s as any).pcs_gaming ?? 0) > 20) {
-      qspCall(s, 'mood', 'raise', 'tiny');
+    if (((st as any).pcs_gaming ?? 0) > 20) {
+      qspCall(st, 'mood', 'raise', 'tiny');
     }
     scene.actions([
       { label: 'Go to Anushka\'s room', handler: (st: GameState) => {

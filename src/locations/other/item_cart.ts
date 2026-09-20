@@ -61,17 +61,17 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
 function enterRemove(s: GameState, scene: SceneBuilder): void {
   ((s as any).ARGS = (s as any).ARGS ?? {})[2] = Math.min(((s as any).cart_curr_quantity ?? 0)?.[String(((s as any).locArgs?.[1] ?? 0))], ((s as any).locArgs?.[2] ?? 0));
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) - (((s as any).cost_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] * ((s as any).locArgs?.[2] ?? 0));
-  ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) - (((s as any).locArgs?.[2] ?? 0));
+  ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).cart_curr_quantity[String(((s as any).locArgs?.[1] ?? 0))] ?? 0) - (((s as any).locArgs?.[2] ?? 0));
   dynamicGoto(s, 'loc_s', 'args_s');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((((s as any).max_curr_aisle ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 0) ? (Math.min(((s as any).max_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] - (((s as any).cart_curr_quantity ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] + ((s as any).mc_inventory ?? 0)[((s as any).var_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '']]), ((s as any).locArgs?.[2] ?? 0))) : (((s as any).locArgs?.[2] ?? 0)));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((((s as any).max_curr_aisle ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 0) ? (Math.min(((s as any).max_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] - (((s as any).cart_curr_quantity ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] + ((s as any).mc_inventory ?? 0)[((s as any).var_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '']]), ((s as any).locArgs?.[2] ?? 0))) : (((s as any).locArgs?.[2] ?? 0)));
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] * ((s as any).locArgs?.[2] ?? 0));
-  ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
-  if (((s as any).event_curr_aisle ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
+  ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).cart_curr_quantity[String(((s as any).locArgs?.[1] ?? 0))] ?? 0) + (((s as any).locArgs?.[2] ?? 0));
+  if (((s as any).event_curr_aisle ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
     // TODO-QSP: dynamic "<<$event_curr_aisle['<<ARGS[1]>>']>>"
   }
   dynamicGoto(s, 'loc_s', 'args_s');
@@ -81,7 +81,7 @@ function enterAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterSimpleAdd(s: GameState, scene: SceneBuilder): void {
   (s as any).cart_tally = ((s as any).cart_tally ?? 0) + (((s as any).cost_curr_aisle ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + ''] * Math.max(1, ((s as any).locArgs?.[2] ?? 0)));
-  ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})['' + String((s as any).ARGS[1] || '') + ''] = ((s as any).cart_curr_quantity['' + String((s as any).ARGS[1] || '') + ''] ?? 0) + (1 * Math.max(1, ((s as any).locArgs?.[2] ?? 0)));
+  ((s as any).cart_curr_quantity = (s as any).cart_curr_quantity ?? {})[String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).cart_curr_quantity[String(((s as any).locArgs?.[1] ?? 0))] ?? 0) + (1 * Math.max(1, ((s as any).locArgs?.[2] ?? 0)));
   // TODO-QSP: end
   scene.build();
 }

@@ -21,10 +21,10 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     { label: 'Look', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttime2.jpg');
     scene.text('She finishes pulling her skirt up, and you see… a cock!? She looks at you questioningly, and you can tell she feels unsure and vulnerable. Part of you wants to reassure her, and part of you wants to run away, but you also feel the urge to just drop to your knees and suck her dick…');
-    qspCall(s, 'arousal', 'foreplay', 2);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', 2);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -33,13 +33,13 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', (-50));
-    (s as any).minut = ((s as any).minut ?? 0) + 7;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A89', (-50));
+    (st as any).minut = ((st as any).minut ?? 0) + 7;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/disgust.jpg');
     scene.text('You shake your head and turn away from her before hurrying out of the pantry. You dash out the door and don\'t stop until you\'re well away from the diner.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['city_industrial', ''] },
     ]);
@@ -48,21 +48,21 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Get on your knees', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
-    qspCall(s, 'boyStat', 'A89');
-    (s as any).LCEugenefirst = 1;
-    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A89'] = 2;
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 5);
+    qspCall(st, 'boyStat', 'A89');
+    (st as any).LCEugenefirst = 1;
+    ((st as any).npc_QW = (st as any).npc_QW ?? {})['A89'] = 2;
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})[String((st as any).boy ?? 0)] = 1;
     scene.img('images/characters/city/eugene/sex/firsttimebj1.jpg');
     scene.text('You smile as you walk over to her, and she bites her lip as you drop to your knees and start sucking her cock. You feel it rapidly growing and stiffening in your mouth as you suck on it, and it\'s soon rock-hard and completely filling your mouth.');
-    qspCall(s, 'arousal', 'bj', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttimebj2.jpg');
     scene.text('You look up and see her watching you with a smile as you keep sucking. Then, after a few minutes, she starts moaning in pleasure, looks down again, and says, "I want to fuck you."');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck her off', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttimebj3.jpg');
@@ -70,9 +70,9 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     scene.text('She nods and encourages you to deepthroat her as you take her cock back into your mouth. Several minutes go by before you feel her hand on the back of your head, and she groans as her dick twitches in your mouth. Her hand holds you down as her cum pours down your throat. When she finishes, she lets out a satisfied moan and pulls her cock into your mouth. You smile up at her as you swallow her cum. "Next time, I want to fuck you…"');
     scene.text('You grin at her as you stand up. "We\'ll see…" you reply before she kisses you passionately.');
     scene.text('"Okay, we better get back." She leads you back into the main area and returns to work.');
-    qspCall(s, 'arousal', 'bj', 5, 'deepthroat');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 5, 'deepthroat');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -82,24 +82,24 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     scene.text('You pop her cock out of your mouth and smile. "Okay…"');
     scene.text('She pulls you up to your feet, and you start stripping each other. Once you\'re both naked, she pulls you to some boxes and pushes you back on them. Then, she spreads your legs wide and steps in between them.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
-      (s as any).brokenhymen = 1;
+      (st as any).brokenhymen = 1;
       scene.text('She uses one hand to rub your clit while she rubs the tip of her dick against your slit. Once she\'s satisfied you\'re wet enough, she slowly slides her cock into your pussy, and you feel a sharp pain when she breaks your hymen. She goes slow and not too intensely at first, giving you time to adjust before you moan in pleasure. Several pleasurable minutes of her fucking your pussy pass before she speaks up. "I want to fuck your cute little ass."');
     } else {
       scene.text('She uses one hand to rub your clit while she rubs the tip of her dick against your slit. Once she\'s satisfied you\'re wet enough, she slowly slides her cock into your pussy. She goes slow and not too intensely at first, giving you time to get wetter and adjust. Finally, you start moaning, and several minutes of her fucking your pussy pass before she speaks up. "I want to fuck your cute little ass."');
     }
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'No anal', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttimevag2.jpg');
     scene.text('You shake your head. "Just keep fucking my pussy."');
     scene.text('She nods a little, then reaches down and picks you up. She carries you over to the couch and sets you down on your back before she starts fucking you again, harder and faster, which makes you moan even louder.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cumming', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttimevagcum.jpg');
-    if (((s as any).brokenhymen ?? 0) === 1) {
+    if (((st as any).brokenhymen ?? 0) === 1) {
       scene.text('Several minutes of blissful fucking pass by before she grunts and suddenly pulls out of you and starts jerking off. After a few strokes, ropes of her warm cum start landing on your stomach. Finally, after several more squirts, she squeezes out her last drops of cum onto your stomach before she notices the blood. "Is that blood!? Are you okay?"');
       scene.text('You smile and nod at her. "Yes, this was my first time…"');
       scene.text('She looks surprised and a little confused. "Oh, you could have said something. We didn\'t…"');
@@ -109,12 +109,12 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
       scene.text('Several minutes of blissful fucking go by before she grunts and suddenly pulls out of you and starts jerking off. After a few strokes, ropes of her warm cum start landing on your stomach. Finally, after several more squirts, she squeezes out her last drops of cum onto your stomach.');
       scene.text('Once she\'s finished, she gets up and walks over to a box, grabs a towel out of it and tosses it at you. She gets dressed as you clean up before getting dressed. She waits until you\'re finished before giving you a kiss. "That was amazing! We need to do this again, but we need to get back now." With that, she leads you back to the front of the cafe and returns to work.');
     }
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'cum_call', 'stomach', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
-    (s as any).cumspclnt = 14;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'cum_call', 'stomach', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
+    (st as any).cumspclnt = 14;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -126,17 +126,17 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod your head and bite your lip. "Yes, fuck my tight little ass with your big fat cock!"');
     scene.text('She grins, and you can tell that she\'s really aroused now. She pulls out of you and flips you over onto all fours on top of the box. As you get in place, she walks over to the desk and pulls out a bottle of lube. She walks back over, applies some to your asshole, and uses her fingers to work it inside you. She then applies some to her wet cock before tossing the bottle aside.');
     scene.text('The head of her dick presses against your asshole before it suddenly pops in, and you gasp as you feel her cock stretching your backdoor wide. Then, she starts fucking your ass, not going too fast or too deep, giving you plenty of time to adjust.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get butt fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttimeanal2.jpg');
     scene.text('As you start moaning in pleasure, she starts going a little deeper, and before long, she has worked herself balls-deep into you. You feel her balls slapping against your pussy as she pounds your ass. After a few minutes, she starts grunting and fucking you even harder before she cries out, shoves herself deep into your ass, and holds it there. You feel her cock twitching as she fills your ass with her warm cum.');
     scene.text('She pulls out of you, cum trickles out of your stretched hole. "What a beautiful sight. Your ass looks so cute with my cum leaking out of it."');
     scene.text('You giggle at her comment as you get up, and she pulls you into a kiss. Once the kiss is finished, the two of you start getting dressed. "That was amazing! We need to do this again, but we need to get back now." With that, she leads you back to the front of the cafe and returns to work.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -151,17 +151,17 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     scene.text('She grins. "I can do that." She pulls you up to your feet, and you start stripping each other. Once you\'re both naked, she pulls you to some boxes and turns you around to face them. She stands behind you, pushes you forward and lifts your leg to help you climb on the box and get on all fours.');
     scene.text('Once you are in place, she walks over to the desk and pulls out a bottle of lube. She walks back over, applies some to your asshole, and uses her fingers to work it inside you before applying some to her wet cock and tossing the bottle aside.');
     scene.text('The head of her dick presses against your asshole before it suddenly pops in, and you gasp as you feel her cock stretching your backdoor wide. Then, she starts fucking your ass, not going too fast or too deep, giving you plenty of time to adjust.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get butt fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/firsttimeanal2.jpg');
     scene.text('As you start moaning in pleasure, she starts going a little deeper, and before long, she has worked herself balls-deep into you. You feel her balls slapping against your pussy as she pounds your ass. After a few minutes, she starts grunting and fucking you even harder before she cries out, shoves herself deep into your ass, and holds it there. You feel her cock twitching as she fills your ass with her warm cum.');
     scene.text('She pulls out of you, cum trickles out of your stretched hole. "What a beautiful sight. Your ass looks so cute with my cum leaking out of it."');
     scene.text('You giggle at her comment as you get up, and she pulls you into a kiss. Once the kiss is finished, the two of you start getting dressed. "That was amazing! We need to do this again, but we need to get back now." With that, she leads you back to the front of the cafe and returns to work.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -173,13 +173,13 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'I don\'t know', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 1);
-    (s as any).minut = ((s as any).minut ?? 0) + 7;
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 7;
     scene.img('images/characters/city/eugene/sex/firsttime1.jpg');
     scene.text('You shake your head a little. "I… this wasn\'t what I expected. I just… I don\'t know."');
     scene.text('She nods, drops her skirt back into place, and then squats down to pull her panties back up. "I understand. If you change your mind, let me know."');
     scene.text('All you can do is nod as she walks over and gives you a hug. "We should get back." With that, she leads you out of the pantry, returning to work while you choose to leave, unsure of what to do.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['city_industrial', ''] },
     ]);
@@ -202,17 +202,17 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Get on your knees', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/sex2.jpg');
     scene.text('You get on your knees in front of her, and she holds you by the hair as she strokes her dick until it\'s hard. Once it is, she pushes it into your mouth, and you start sucking it, letting her control the action with her hand intertwined in your hair. "Oh yeah, you\'re such a good little cock sucker!" Several minutes go by before she speaks again. "I want to fuck you now."');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck her off', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/sex3.jpg');
     scene.text('You pop her cock out of your mouth to respond. "I want to suck you off if that\'s okay."');
     scene.text('She laughs. "Fine, have it your way, but you\'re going to swallow my load." You slide her cock back into your mouth and resume sucking it. She grunts a few minutes later and holds your head in place as she keeps the tip of her dick in your mouth and starts stroking it. Moments later, you feel and taste her salty cum shooting into your mouth. She keeps stroking it until she has milked every drop of cum into your mouth. She keeps hold of your hair as she pulls her dick out of your mouth. "Now swallow it."');
     scene.text('You swallow her cum, opening your mouth to show her, and she lets go of your hair. You get up, and she pulls you into a kiss. Once the kiss is finished, the two of you start getting dressed. "That was amazing! We need to do this again, but we need to get back now." With that, she leads you back to the front of the cafe and returns to work.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -220,31 +220,31 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Agree to fuck', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/sex4.jpg');
     scene.text('You nod your head in agreement, and she pulls you up and pushes you back into the desk. She moves in close and starts passionately kissing you while gently pushing you, which causes you to sit down on the desk. One of her hands fondles your breasts, then slides down your body to your clit. She rubs it for a few seconds before sliding a finger inside your wet pussy. She keeps kissing you while fingerbanging you until she finally breaks the kiss but keeps fingering you. "Feels like your pussy is soaking wet and just begging for my cock…" she teases as she tries to push you onto your back.');
-    qspCall(s, 'arousal', 'vaginal_finger', 5);
-    qspCall(s, 'arousal', 'kiss', (-5));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger', 5);
+    qspCall(st, 'arousal', 'kiss', (-5));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/sex5.jpg');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
-      (s as any).brokenhymen = 1;
+      (st as any).brokenhymen = 1;
       scene.text('You lay back on the desk and spread your legs. She moves in close and gently rubs the tip against your wet slit before sliding her cock inside you. You feel a sharp pain as she tears your hymen and moans in pleasure and pain as you feel her cock stretching your pussy. The more you moan, the faster she starts to fuck you. After a few minutes, she slaps you on the ass and pulls out before sliding you off the desk. She leads you to the couch and pushes you down on your hands and knees. "I\'m going to fuck your cute little ass now."');
     } else {
       scene.text('You lay back on the desk and spread your legs. She moves in close and gently rubs the tip against your wet slit before sliding her cock inside you. You moan in pleasure as you feel her cock stretching your pussy. The more you moan, the faster she starts to fuck you. After a few minutes, she slaps you on the ass and pulls out before sliding you off the desk. She leads you to the couch and pushes you down on your hands and knees. "I\'m going to fuck your cute little ass now."');
     }
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'No anal', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/sex6.jpg');
     scene.text('You look back over your shoulder at her. "Just fuck my pussy, please."');
     scene.text('She smiles at you and slaps your ass hard. "Okay, but next time I <i>am</i> fucking this cute little ass of yours." She then slides her cock back into your wet pussy and starts fucking you again. Again, your pleasure overrides your desire to respond to her comment as you blissfully take her cock doggy style.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cumming', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/sex7.jpg');
-    if (((s as any).brokenhymen ?? 0) === 1) {
+    if (((st as any).brokenhymen ?? 0) === 1) {
       scene.text('Several minutes of blissful fucking pass by before she grunts and suddenly pulls out of you and starts jerking off. After a few strokes, ropes of her warm cum start landing on your stomach. Finally, after several more squirts, she squeezes out her last drops of cum onto your stomach before she notices the blood. "Is that blood!? Are you okay?"');
       scene.text('You smile and nod at her. "Yes, this was my first time…"');
       scene.text('She looks surprised and a little confused. "Oh, you could have said something. We didn\'t…"');
@@ -254,9 +254,9 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       scene.text('Several minutes of blissful fucking go by before she grunts and suddenly pulls out of you and starts jerking off. After a few strokes, ropes of her warm cum start landing on your stomach. Finally, after several more squirts, she squeezes out her last drops of cum onto your stomach.');
       scene.text('Once she\'s finished, she gets up and walks over to a box, grabs a towel out of it and tosses it at you. She gets dressed as you clean up before getting dressed. She waits until you\'re finished before giving you a kiss. "That was amazing! We need to do this again, but we must get back now." With that, she leads you back to the front of the cafe and returns to work.');
     }
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'cum_call', 'tits', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'cum_call', 'tits', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -264,16 +264,16 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Let her', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A89');
+    qspCall(st, 'boyStat', 'A89');
     scene.img('images/characters/city/eugene/sex/sex7.jpg');
     // TODO-QSP: dynamic text: She squirts lube onto your asshole and works it inside you with her fingers befo...
-    scene.text(`She squirts lube onto your asshole and works it inside you with her fingers before applying some to her dick. Once it's lubed up, she gets on the couch behind you, and you feel her cock pressing against your backdoor until it pops in. You gasp when it enters you before she slides it in slowly, giving you time to adjust to her ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick stretching your asshole.`);
+    scene.text(`She squirts lube onto your asshole and works it inside you with her fingers before applying some to her dick. Once it's lubed up, she gets on the couch behind you, and you feel her cock pressing against your backdoor until it pops in. You gasp when it enters you before she slides it in slowly, giving you time to adjust to her ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick stretching your asshole.`);
     scene.text('As you start moaning in pleasure, she starts going a little deeper, and before long, she has worked herself balls-deep into you. You feel her balls slapping against your pussy as she pounds your ass. After a few minutes, she starts grunting and fucking you even harder before she cries out, shoves herself deep into your ass, and holds it there. You feel her cock twitching as she fills your ass with her warm cum.');
     scene.text('She pulls out of you, cum trickles out of your stretched hole. "What a beautiful sight. Your ass looks so cute with my cum leaking out of it."');
     scene.text('You giggle at her comment as you get up, and she pulls you into a kiss. Once the kiss is finished, the two of you start getting dressed. "That was amazing! We need to do this again, but we need to get back now." With that, she leads you back to the front of the cafe and returns to work.');
-    qspCall(s, 'arousal', 'anal', 10, 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 10, 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -283,17 +283,17 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Just my ass', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A89');
+    qspCall(st, 'boyStat', 'A89');
     scene.img('images/characters/city/eugene/sex/sex7.jpg');
     scene.text('You resist being pushed back. "I want you to fuck my ass…" Instead of forcing you back, she grabs your hand and pulls you off the desk before grabbing a bottle out of a drawer.');
     // TODO-QSP: dynamic text: She leads you to the couch and pushes you down on it on all fours. "Fine by me, ...
-    scene.text(`She leads you to the couch and pushes you down on it on all fours. "Fine by me, but I want to fuck it right." She squirts lube onto your asshole and works it inside you with her fingers before applying some to her dick. Once it's lubed up, she gets on the couch behind you, and you feel her cock pressing against your backdoor until it pops in. You gasp when it enters you, and she slides it in slowly, giving you time to adjust to her ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} stretching your asshole.`);
+    scene.text(`She leads you to the couch and pushes you down on it on all fours. "Fine by me, but I want to fuck it right." She squirts lube onto your asshole and works it inside you with her fingers before applying some to her dick. Once it's lubed up, she gets on the couch behind you, and you feel her cock pressing against your backdoor until it pops in. You gasp when it enters you, and she slides it in slowly, giving you time to adjust to her ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} stretching your asshole.`);
     scene.text('As you start moaning in pleasure, she starts going a little deeper, and before long, she has worked herself balls-deep into you. You feel her balls slapping against your pussy as she pounds your ass. After a few minutes, she starts grunting and fucking you harder before she cries out, shoves herself deep into your ass, and holds it there. You feel her cock twitching as she fills your ass with her warm cum.');
     scene.text('She pulls out of you, cum trickles out of your stretched hole. "What a beautiful sight. Your ass looks so cute with my cum leaking out of it."');
     scene.text('You giggle at her comment as you get up, and she pulls you into a kiss. Once the kiss is finished, the two of you start getting dressed. "That was amazing! We need to do this again, but we need to get back now." With that, she leads you back to the front of the cafe and returns to work.');
-    qspCall(s, 'arousal', 'anal', 15, 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 15, 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -312,51 +312,51 @@ function enterSexWork(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Open your mouth', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 1);
     scene.img('images/characters/city/eugene/sex/work2.jpg');
     scene.text('"Fuck, I\'m so horny!" she says as she sticks her cock in your mouth, grabs the back of your head with both hands, and starts face fucking you. You start gagging on her dick, and she pulls back to let you catch your breath before face fucking you again. Several minutes of this go by before she says, "I\'m going to fuck you now."');
-    qspCall(s, 'arousal', 'bj', 5, 'deepthroat');
-    qspCall(s, 'stat', '');
-    if (((s as any).stat ?? 0)?.['vaginal'] >= 1) {
+    qspCall(st, 'arousal', 'bj', 5, 'deepthroat');
+    qspCall(st, 'stat', '');
+    if (((st as any).stat ?? 0)?.['vaginal'] >= 1) {
       scene.actions([
         { label: 'Let her fuck you', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/work3.jpg');
     scene.text('When she pulls her dick out of your mouth, and you don\'t protest, she flips you over onto your back before grabbing you by the leg and spinning you around. You spread your legs wide for her, and within moments you feel the tip of her dick rubbing against your slit. Once you are wet enough, she slides her dick inside your pussy and starts slowly fucking you, causing you to moan.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck her again', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/work4.jpg');
     scene.text('She pulls you off the boxes without warning and pushes you to your knees. She then sticks her wet dick back in your mouth, and you can taste your pussy juices on her. After a few minutes, she places her hands on your head and starts ramming her dick down your throat, face fucking you.');
-    qspCall(s, 'arousal', 'bj', 5, 'deepthroat');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'deepthroat');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked again', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A89');
+    qspCall(st, 'boyStat', 'A89');
     scene.img('images/characters/city/eugene/sex/work5.jpg');
     // TODO-QSP: dynamic text: Pulling her dick out of your mouth again, she holds onto your hair and gently pu...
-    scene.text(`Pulling her dick out of your mouth again, she holds onto your hair and gently pulls you up before turning you to face the box and pushing you onto it. She then stands behind you and plunges her ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick back into your soaking wet pussy. This time she starts fucking you hard and rough, and you feel her balls slapping against your clit as she hammers away at your pussy. "Fuck yeah, this feels so good. I'm going to fuck your ass balls deep now!"`);
-    qspCall(s, 'arousal', 'vaginal', 5, 'rough');
-    qspCall(s, 'stat', '');
+    scene.text(`Pulling her dick out of your mouth again, she holds onto your hair and gently pulls you up before turning you to face the box and pushing you onto it. She then stands behind you and plunges her ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick back into your soaking wet pussy. This time she starts fucking you hard and rough, and you feel her balls slapping against your clit as she hammers away at your pussy. "Fuck yeah, this feels so good. I'm going to fuck your ass balls deep now!"`);
+    qspCall(st, 'arousal', 'vaginal', 5, 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'No anal', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/work6.jpg');
     scene.text('She pulls out of you, but you protest before she can stick it in your ass. "No! Just fuck my pussy, please."');
     scene.text('She grabs you and flips you over onto your back again. At first, you don\'t think she heard you. Then, she relents as she takes off the rest of her clothes. "Fine, but next time, I get to fuck that tight little ass of yours!"');
     scene.text('She strips you as well, and once you\'re both naked, she spreads your legs wide and plunges her dick back into your pussy before proceeding to fuck you hard and fast.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 5, 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Cumming', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/work9.jpg');
     scene.text('Several minutes go by before she grunts, encouraging her to go faster before she suddenly pulls out of you and starts jerking off. Within seconds, she starts shooting out streams of cum that splatter across your labia. She keeps jerking her cock until she squeezes the last few drops out, then wipes the tip of her dick on your thigh. "Sorry I was so rough this time, but I needed that. I was so horny I thought my balls were going to explode!" she laughs.');
     scene.text('You grin at her. "Glad I could help. I really needed this too." She tosses you a towel to wipe yourself off with before you both get dressed. Once you finish, she pulls you into a kiss before leading you back to the front of the cafe, where she returns to work.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'cum_call', 'labia', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
-    (s as any).cumspclnt = 15;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'cum_call', 'labia', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
+    (st as any).cumspclnt = 15;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -366,17 +366,17 @@ function enterSexWork(s: GameState, scene: SceneBuilder): void {
       { label: 'Let her', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/work7.jpg');
     scene.text('She pulls out of your pussy to walk over and grab a bottle out of the desk. She comes back and squirts some lube onto your butthole, working it into your ass with her fingers. You glance over your shoulder and watch her squirt some lube onto her dick. Once it is lubed up well, she tosses the bottle aside. Next, she lines her cock up and pushes it inside your asshole. "Fuck, your ass feels so tight." While saying that, she shoves her dick inside you until you feel her balls against your slit. You clench the box tightly as you bite your lower lip, as she starts just hammering away at your ass. Causing you to have a mixture of moans of pleasure and groans of pain.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get butt fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/work8.jpg');
     scene.text('She reaches up to grab you by the shoulder with one hand while wrapping her other hand in your hair to pull it back. The echoing of the slapping of flesh on flesh fills the room as she furiously fucks your butt. You feel her balls slapping against your pussy as she fucks your ass. Before too long, she starts grunting, and as she does, she starts fucking you hard and fast, hammering away at your little ass. Just then, she cries out, shoves herself deep in your ass, and holds it there. You feel her cock twitching inside of you as she feels your butt with hot cum.');
     scene.text('She pulls out of your gaping ass, and you feel a bit of her cum leaking out of it as she does. "What a beautiful sight to behold. Your ass is so cute with my cum leaking out of it."');
     scene.text('You giggle a bit at that comment as you get up. Then, she pulls you into a kiss. Once the kiss is finished, the two of you start getting dressed. Once you are both finished dressing, she says. "We need to do that again, but for now, we best get back." With that, she leads you back to the front of the cafe, where she returns to work.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -397,9 +397,9 @@ function enterSexWork(s: GameState, scene: SceneBuilder): void {
     scene.text('You cough a few times before responding when she finally let\'s go to change positions. "I would rather suck you off if that\'s okay."');
     scene.text('"Would you now?" Before you can respond, she shoves her dick back in your mouth and places her hands on the back of your head again. Her balls slap against your chin as she deepthroats you for some time before she starts to grunt, and you feel her dick twitching. Her cum starts filling your mouth, and she doesn\'t pull out until she\'s milked every drop onto your tongue. "I want you to swallow it all," she says with a slight laugh.');
     scene.text('You swallow her cum, then open your mouth to show her. With that done, the two of you smooth your clothes out and put your panties back on. Once you are standing, she pulls you into a kiss. After the kiss is finished, the two of you start getting dressed. Afterwards, you are both finished dressing, she says. "We need to do that again, but for now, we best get back." With that, she leads you back to the front of the cafe, where she returns to work.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['Lakecafe', 'main'] },
     ]);
@@ -408,17 +408,17 @@ function enterSexWork(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/eugene/sex/work7.jpg');
     scene.text('She pulls out of your mouth, letting you respond to her. "I want you… to fuck my ass…" you gasp through your breaths.');
     scene.text('She grins down at you and gives you a wink. "If that\'s what you want." She leaves you on all fours, on the box, as she walks over and grabs a bottle from the desk. She comes back and turns you around to squirt some lube onto your asshole, working it into your ass with her fingers. You glance over your shoulder and watch her squirt some lube onto her dick before tossing the bottle aside. She then lines her cock up and pushes it inside your asshole. "Fuck, your ass feels so tight!" You clench the box tightly and bite your lip as she slides balls deep into you and starts hammering away at your ass. You moan in a mixture of pleasure and pain.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get butt fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/work8.jpg');
     scene.text('She reaches up to grab you by the shoulder with one hand while wrapping her other hand in your hair to pull it back. The echoing of the slapping of flesh on flesh fills the room as she furiously fucks your backdoor. You feel her balls slapping against your pussy as she fucks your ass. Before too long, she starts grunting and fucking you harder and faster before she cries out, shoves herself deep in your ass, and holds it there. You feel her cock twitching as she fills your ass with her warm cum.');
     scene.text('She pulls out of you, cum trickles out of your stretched hole. "What a beautiful sight. Your ass looks so cute with my cum leaking out of it."');
     scene.text('You giggle at her comment as you get up, and she pulls you into a kiss. Once the kiss is finished, the two of you start getting dressed. "That was amazing! We need to do this again, but we need to get back now." With that, she leads you back to the front of the cafe and returns to work.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['Lakecafe', 'main'] },
     ]);
@@ -448,89 +448,89 @@ function enterPhotography(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat ?? 0)?.['vaginal'] >= 1) {
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A89', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/photography/foto/people/6.jpg');
     scene.text('You think about it before nodding. "Okay, sure. You can fuck me however you want after I get the photo I want. Now go put on something sexy for me." She laughs before trying on a few different outfits until she finds something she likes. She then starts posing for you, and you take a few photos until you\'re sure you have the one. With the photograph you want having been shot, you put the camera aside. "Okay, I\'ve got it."');
     scene.text('She smiles at you and beckons you over. "Well, get that sexy body of yours over here. I\'m going to do all sorts of things to it."');
-    qspCall(s, 'exp_gain', 'photoskl', Math.floor(Math.random() * 3) + 3);
-    ((s as any).portfolio_people = (s as any).portfolio_people ?? {})[6] = 1;
-    qspCall(s, 'arousal', 'erotic_nudity', 10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'photoskl', (Math.floor(Math.random() * 3) + 3));
+    ((st as any).portfolio_people = (st as any).portfolio_people ?? {})[6] = 1;
+    qspCall(st, 'arousal', 'erotic_nudity', 10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Kiss', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/eugene/sex/photo1.jpg');
     scene.text('You walk over and climb onto the bed next to her. She starts kissing you, and you both just make out for a few minutes.');
-    qspCall(s, 'arousal', 'kiss', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Undress', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/eugene/sex/photo2.jpg');
     scene.text('She breaks the kiss to start undressing you. First, she rubs your clit and sucks on your exposed nipples as she does. Then, after spending a few minutes playing around, she finishes stripping you and pushes you forward onto your knees.');
-    qspCall(s, 'arousal', 'foreplay', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get eaten', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/eugene/sex/photo3.jpg');
     scene.text('She moves in behind you and starts licking your pussy from behind. She gives your ass an occasional slap as she licks your slit. You moan, enjoying every minute of her tongue on your pussy.');
-    qspCall(s, 'arousal', 'cuni', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Give her a blowjob', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/eugene/sex/photo4.jpg');
     scene.text('She stops licking your pussy and undresses before sitting down on the bed next to you. She grabs hold of your head and pulls it towards her stiff dick. You open your mouth and start sucking it, the taste of her precum on your tongue arousing you even more. You keep your lips wrapped tightly around her dick as you bob your head up and down until she slaps your ass. "Okay, that\'s enough. Lie down so I can fuck that nice wet pussy of yours."');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let her fuck you', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/photo5.jpg');
     scene.text('You stop sucking her and roll over onto your back, spreading your legs wide. She moves between your legs, sliding the tip of her dick against your wet slit before pushing her cock into your pussy. She starts fucking you slowly at first but starts going faster as you moan at the sensation of her filling you.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked some more', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/photo6.jpg');
     scene.text('As you moan louder, she picks up the pace and starts fucking you harder and faster. Then, just as it\'s starting to feel good, she pulls out of you. "Roll over," she demands.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Roll over', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/photo7.jpg');
     scene.text('You roll over onto all fours, but instead of sliding back into your pussy, you feel her cock pressing against your asshole. "That\'s my ass!" you cry out.');
     // TODO-QSP: dynamic text: She thrusts forwards, causing her <<dick>>cm <<$dick_girth>> dick to pop into yo...
-    scene.text(`She thrusts forwards, causing her ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick to pop into your asshole. Even the natural lube from your pussy is enough to let it slide in easily, stretching your backdoor. You hiss in pain as she leans in and whispers in your ear. "I know…"`);
+    scene.text(`She thrusts forwards, causing her ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick to pop into your asshole. Even the natural lube from your pussy is enough to let it slide in easily, stretching your backdoor. You hiss in pain as she leans in and whispers in your ear. "I know…"`);
     scene.text('She stands behind you and shoves her cock balls deep into your ass. She starts fucking you deeply, but not too fast. You grit your teeth until it stops hurting and starts feeling good.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get butt fucked', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/photo8.jpg');
     scene.text('She grabs a bottle of lube from the bedside table, squirting it on her dick as it slides in and out of your ass. Then, with your ass slick, she starts hammering your backdoor hard, her hips smacking against your ass cheeks hard enough to force you forward until you\'re flat on your stomach.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Roll over', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/photo9.jpg');
     scene.text('After a few minutes, she pulls out of you again. "Roll over again."');
     scene.text('You do as she says and rolls over as she gets off the bed and drags you to the edge. She spreads your legs wide, slides her dick back into your gaping ass and starts fucking you hard and fast again.');
-    qspCall(s, 'arousal', 'anal', 5, 'lube');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'lube');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cumming', handler: (st: GameState) => {
     scene.img('images/characters/city/eugene/sex/photo10.jpg');
     scene.text('After a few minutes, she starts grunting and barely pulls out of you before streams of cum shoot out of her dick and splatter across your thighs. She jerks her cock a few times to squeeze out the last few drops before she wipes the tip against your thigh. She then glances over at the clock and jumps up.');
     scene.text('"Fuck, I need to get back to work! This was fun and all, but I\'m already late." With that, she starts getting dressed into her work clothes and your clothes at you. Grabbing some tissues, you clean her cum off you before quickly getting dressed.');
     scene.text('Once you\'re both dressed, she leads you out and locks the door before giving you a quick kiss. "I had a wonderful time. Come and see me again." Then, she jogs off back to work, leaving you outside her building.');
-    qspCall(s, 'cum_call', 'legs', 'A89', 1);
-    qspCall(s, 'arousal', 'end');
-    (s as any).cumspclnt = 17;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'legs', 'A89', 1);
+    qspCall(st, 'arousal', 'end');
+    (st as any).cumspclnt = 17;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['city_industrial', ''] },
     ]);
@@ -560,11 +560,11 @@ function enterPhotography(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A89', (-10));
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A89', (-10));
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/no.mp4');
-    if (((s as any).stat ?? 0)?.['vaginal'] === 0) {
+    if (((st as any).stat ?? 0)?.['vaginal'] === 0) {
       scene.text('You think about it before shaking your head. "Um, no, I\'m not going to trade sex for photos. Sorry."');
       scene.text('She frowns but nods. "I understand. I just don\'t want images of me out there. You never know how it might get out on the internet."');
       scene.text('With your hopes dashed, you pack up your stuff. "Okay, well, guess I\'ll see you around then…"');

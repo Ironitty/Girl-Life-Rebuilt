@@ -5,172 +5,39 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).sexloc = 'billiard';
-  (s as any).menu_loc = 'billiard';
-  (s as any).menu_arg = '';
-  (s as any).location_type = 'public_indoors';
-  qspCall(s, 'stat', '');
-  scene.text('<center><b>Pool</b></center>');
-  scene.img('images/locations/city/citycenter/mall/pool/bil.jpg');
-  scene.text('Quite a large billiard room, there are plenty of tables in the main hall, but there are some tables in individual cubicles.');
-  if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
-    scene.actions([
-      { label: 'Play (1:00)', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', 125) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-    } else {
-      qspCall(s, 'money', 'pay', 125);
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      (s as any).billvar = 0;
-      qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 4) + 0);
-      (s as any).billrand = Math.floor(Math.random() * 6) + 0;
-      qspCall(s, 'stat', '');
-      if ((!((s as any).billrand ?? 0))) {
-        scene.text('You play one of the guys here and he asks if you want to make it more interesting.');
-        if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1) {
-          qspGoto(s, 'billiard', 'randwin');
-          scene.actions([
-            { label: 'Play for his ass, sex if you lose', handler: (st: GameState) => {
-    (st as any).billvar = 1;
-  } },
-          ]);
-        }
-        qspCall(s, 'willpower', 'anal', 'resist');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-          scene.actions([
-            { label: 'Stick to practice games', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-          ]);
-        } else {
-          scene.actions([
-            { label: 'Stick to practice games', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'anal', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billiard', '');
-  } },
-          ]);
-        }
-        scene.actions([
-          { label: 'Bet on the game', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-    } else {
-      (s as any).billvar = 0;
-      qspGoto(s, 'billiard', 'randwin');
-    }
-  } },
-          { label: 'Let him have the table instead', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 125);
-    qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billiard', '');
-  } },
-        ]);
-      } else {
-        if (((s as any).billrand ?? 0) === 1) {
-          scene.text('You play a couple of the guys here and they ask if you want to make it more interesting.');
-          if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1) {
-            qspGoto(s, 'billiard', 'randwin');
-            scene.actions([
-              { label: 'Play for their asses, sex if you lose', handler: (st: GameState) => {
-    (st as any).billvar = 2;
-  } },
-            ]);
-          }
-          qspCall(s, 'willpower', 'anal', 'resist', 'hard');
-          if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-            scene.actions([
-              { label: 'Stick to practice games', handler: (st: GameState) => {
-    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
-  } },
-            ]);
-          } else {
-            scene.actions([
-              { label: 'Stick to practice games', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'anal', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billiard', '');
-  } },
-            ]);
-          }
-          scene.actions([
-            { label: 'Bet on the game', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-    } else {
-      (s as any).billvar = 0;
-      qspGoto(s, 'billiard', 'randwin');
-    }
-  } },
-            { label: 'Let him have the table instead', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 125);
-    qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billiard', '');
-  } },
-          ]);
-        } else {
-          if (((s as any).billrand ?? 0) >= 2) {
-            scene.text('You played billiards by yourself.');
-            scene.actions([
-              { label: 'Leave', goto: ['billiard', ''] },
-            ]);
-          }
-        }
-      }
-    }
-  } },
-      { label: 'Play for money', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', 250) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
-    } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      qspCall(s, 'exp_gain', 'pool', Math.floor(Math.random() * 2) + 0);
-      (s as any).billvar = 3;
-      qspGoto(s, 'billiard', 'randwin');
-    }
-  } },
-    ]);
-  }
-  scene.actions([
-    { label: 'Leave', goto: ['city_mall', ''] },
-  ]);
   scene.build();
 }
 
 function enterRandwin(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_pool ?? 0) < 10) {
-    (s as any).billwin = Math.floor(Math.random() * 11) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 11) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 10  &&  ((s as any).pcs_pool ?? 0) < 20) {
-    (s as any).billwin = Math.floor(Math.random() * 13) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 13) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 20  &&  ((s as any).pcs_pool ?? 0) < 30) {
-    (s as any).billwin = Math.floor(Math.random() * 15) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 15) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 30  &&  ((s as any).pcs_pool ?? 0) < 40) {
-    (s as any).billwin = Math.floor(Math.random() * 17) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 17) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 40  &&  ((s as any).pcs_pool ?? 0) < 50) {
-    (s as any).billwin = Math.floor(Math.random() * 19) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 19) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 50  &&  ((s as any).pcs_pool ?? 0) < 60) {
-    (s as any).billwin = Math.floor(Math.random() * 21) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 21) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 60  &&  ((s as any).pcs_pool ?? 0) < 70) {
-    (s as any).billwin = Math.floor(Math.random() * 23) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 23) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 70  &&  ((s as any).pcs_pool ?? 0) < 80) {
-    (s as any).billwin = Math.floor(Math.random() * 25) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 25) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 80  &&  ((s as any).pcs_pool ?? 0) < 90) {
-    (s as any).billwin = Math.floor(Math.random() * 27) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 27) + 0);
   }
   if (((s as any).pcs_pool ?? 0) >= 90) {
-    (s as any).billwin = Math.floor(Math.random() * 29) + 0;
+    (s as any).billwin = (Math.floor(Math.random() * 29) + 0);
   }
   if (((s as any).billwin ?? 0) > 10  &&  (!((s as any).billvar ?? 0))) {
     qspCall(s, 'money', 'earn', 1000, 'cash');
@@ -227,11 +94,11 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).billwin ?? 0) <= 10  &&  ((s as any).billvar ?? 0) === 2) {
                 scene.text('You lose, open those legs.');
-                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', Math.floor(Math.random() * 23) + 18);
+                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
                 qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', Math.floor(Math.random() * 23) + 18);
+                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
                 qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), '1');
-                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', Math.floor(Math.random() * 23) + 18);
+                qspCall(s, 'npcgeneratec', '', 0, 'Billiard Player', (Math.floor(Math.random() * 23) + 18));
                 qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), '2');
                 (s as any).picrand = 12;
                 scene.actions([
@@ -277,6 +144,139 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).sexloc = 'billiard';
+  (s as any).menu_loc = 'billiard';
+  (s as any).menu_arg = '';
+  (s as any).location_type = 'public_indoors';
+  qspCall(s, 'stat', '');
+  scene.text('<center><b>Pool</b></center>');
+  scene.img('images/locations/city/citycenter/mall/pool/bil.jpg');
+  scene.text('Quite a large billiard room, there are plenty of tables in the main hall, but there are some tables in individual cubicles.');
+  if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
+    scene.actions([
+      { label: 'Play (1:00)', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 125) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      qspCall(st, 'money', 'pay', 125);
+      (st as any).minut = ((st as any).minut ?? 0) + 60;
+      (st as any).billvar = 0;
+      qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 4) + 0));
+      (st as any).billrand = (Math.floor(Math.random() * 6) + 0);
+      qspCall(st, 'stat', '');
+      if ((!((st as any).billrand ?? 0))) {
+        scene.text('You play one of the guys here and he asks if you want to make it more interesting.');
+        if (((st as any).mc_inventory ?? 0)?.['strapon'] === 1) {
+          qspGoto(st, 'billiard', 'randwin');
+          scene.actions([
+            { label: 'Play for his ass, sex if you lose', handler: (st: GameState) => {
+    (st as any).billvar = 1;
+  } },
+          ]);
+        }
+        qspCall(st, 'willpower', 'anal', 'resist');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
+          scene.actions([
+            { label: 'Stick to practice games', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+          ]);
+        } else {
+          scene.actions([
+            { label: 'Stick to practice games', handler: (st: GameState) => {
+    qspCall(st, 'willpower', 'anal', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billiard', '');
+  } },
+          ]);
+        }
+        scene.actions([
+          { label: 'Bet on the game', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      (st as any).billvar = 0;
+      qspGoto(st, 'billiard', 'randwin');
+    }
+  } },
+          { label: 'Let him have the table instead', handler: (st: GameState) => {
+    qspCall(st, 'money', 'earn', 125);
+    qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billiard', '');
+  } },
+        ]);
+      } else {
+        if (((st as any).billrand ?? 0) === 1) {
+          scene.text('You play a couple of the guys here and they ask if you want to make it more interesting.');
+          if (((st as any).mc_inventory ?? 0)?.['strapon'] === 1) {
+            qspGoto(st, 'billiard', 'randwin');
+            scene.actions([
+              { label: 'Play for their asses, sex if you lose', handler: (st: GameState) => {
+    (st as any).billvar = 2;
+  } },
+            ]);
+          }
+          qspCall(st, 'willpower', 'anal', 'resist', 'hard');
+          if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
+            scene.actions([
+              { label: 'Stick to practice games', handler: (st: GameState) => {
+    st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
+  } },
+            ]);
+          } else {
+            scene.actions([
+              { label: 'Stick to practice games', handler: (st: GameState) => {
+    qspCall(st, 'willpower', 'anal', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billiard', '');
+  } },
+            ]);
+          }
+          scene.actions([
+            { label: 'Bet on the game', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      (st as any).billvar = 0;
+      qspGoto(st, 'billiard', 'randwin');
+    }
+  } },
+            { label: 'Let him have the table instead', handler: (st: GameState) => {
+    qspCall(st, 'money', 'earn', 125);
+    qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billiard', '');
+  } },
+          ]);
+        } else {
+          if (((st as any).billrand ?? 0) >= 2) {
+            scene.text('You played billiards by yourself.');
+            scene.actions([
+              { label: 'Leave', goto: ['billiard', ''] },
+            ]);
+          }
+        }
+      }
+    }
+  } },
+      { label: 'Play for money', handler: (st: GameState) => {
+    if (qspFunc(s, 'money', 'can_afford', 250) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
+    } else {
+      (st as any).minut = ((st as any).minut ?? 0) + 60;
+      qspCall(st, 'exp_gain', 'pool', (Math.floor(Math.random() * 2) + 0));
+      (st as any).billvar = 3;
+      qspGoto(st, 'billiard', 'randwin');
+    }
+  } },
+    ]);
+  }
+  scene.actions([
+    { label: 'Leave', goto: ['city_mall', ''] },
+  ]);
   const arg = s.locArg;
   switch (arg) {
     case 'randwin':
@@ -296,6 +296,5 @@ export const billiard: LocationDef = {
   title: '<center><b>Pool</b></center>',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['Quite a large billiard room, there are plenty of tables in the main hall, but there are some tables in individual cubicles.'],
   enter: enter,
 };

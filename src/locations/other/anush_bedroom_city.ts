@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).returnLoc = '_city';
   scene.build();
 }
 
@@ -18,8 +17,8 @@ function enterAnushroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom.jpg');
-  scene.text('The room is clean, even more so than her room back in Pavlovsk, it reminds you a lot of her old room, a few new posters, slightly bigger and looks a little more adult but otherwise pretty much the same. The walls are covered with pictures and posters of <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027the_pretty_reckless\\u0027); return false;">bands</a> or famous models, girls and guys, while the room is skillfully decorated with various strings of coloured lights. In the center of the room, beneath the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027bed\\u0027); return false;">bed</a> with a small <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027night_stand\\u0027); return false;">nightstand</a> beside it.');
-  scene.text('Against the opposite wall are a small computer desk, a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027computer\\u0027); return false;">laptop</a> and a chair. Next to the desk is a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027nushdresser\\u0027); return false;">dresser</a> with a decent sized flatscreen TV sitting on top of it. On the other side of the desk is a bookshelf with a relatively large collection of books. Hanging on the wall next to the shelves is an <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027guitar\\u0027); return false;">acoustic guitar</a> with an electric guitar right beside it. A skateboard is also leaning against one of the other walls next to the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027nushcloset\\u0027); return false;">closet door</a>, along with some rollerblades in the corner.');
+  scene.text('The room is clean, even more so than her room back in Pavlovsk, it reminds you a lot of her old room, a few new posters, slightly bigger and looks a little more adult but otherwise pretty much the same. The walls are covered with pictures and posters of <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027the_pretty_reckless/u0027); return false;">bands</a> or famous models, girls and guys, while the room is skillfully decorated with various strings of coloured lights. In the center of the room, beneath the window, is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027bed/u0027); return false;">bed</a> with a small <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027night_stand/u0027); return false;">nightstand</a> beside it.');
+  scene.text('Against the opposite wall are a small computer desk, a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027computer/u0027); return false;">laptop</a> and a chair. Next to the desk is a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027nushdresser/u0027); return false;">dresser</a> with a decent sized flatscreen TV sitting on top of it. On the other side of the desk is a bookshelf with a relatively large collection of books. Hanging on the wall next to the shelves is an <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027guitar/u0027); return false;">acoustic guitar</a> with an electric guitar right beside it. A skateboard is also leaning against one of the other walls next to the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027nushcloset/u0027); return false;">closet door</a>, along with some rollerblades in the corner.');
   if (((s as any).locat ?? 0)?.['A144'] === 2) {
     if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] === 1) {
       ((s as any).anushkaCityQW = (s as any).anushkaCityQW ?? {})['first_visit'] = 2;
@@ -43,7 +42,7 @@ function enterThePrettyReckless(s: GameState, scene: SceneBuilder): void {
   (s as any).locclass = 'bedr';
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/the_pretty_reckless_poster.jpg');
-  scene.text('You look over the bands\' posters; most posters are of bands with a few models, and the only band with more than one poster is The Pretty Reckless. The poster that seems to be most prominently displayed in her room is one of the lead singers for The Pretty Reckless, lying naked on a stone coffin. The poster right next to it is similar, but without the band name and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027anush_bedroom_city\\u0027, \\u0027taylor_momsen\\u0027); return false;">Taylor\'s</a> breasts on full display.');
+  scene.text('You look over the bands\' posters; most posters are of bands with a few models, and the only band with more than one poster is The Pretty Reckless. The poster that seems to be most prominently displayed in her room is one of the lead singers for The Pretty Reckless, lying naked on a stone coffin. The poster right next to it is similar, but without the band name and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027anush_bedroom_city/u0027, /u0027taylor_momsen/u0027); return false;">Taylor\'s</a> breasts on full display.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Find something else to look at', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -95,21 +94,21 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Find something else to look at', goto: ['anush_bedroom_city', 'anushroom'] },
       { label: 'Ask to try on some clothes', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/maksimspy1.jpg');
-    if (((s as any).pcs_bmi ?? 0) < 25) {
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
-      if (((s as any).pcs_bmi ?? 0) < 16) {
+    if (((st as any).pcs_bmi ?? 0) < 25) {
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
+      if (((st as any).pcs_bmi ?? 0) < 16) {
         scene.text('"Wow, you have so many outfits. Can I try some on?" you ask her.');
-        // TODO-QSP: dynamic text: Anushka smiles and nods. "Sure, let's do it." She gets up to join you at the clo...
-        scene.text(`Anushka smiles and nods. "Sure, let's do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Unfortunately, her clothes don't fit well at all. In fact, they hang off your body, Anushka is a petite girl, but you're so skinny that even her clothes just hang off you. "Jesus ${((s as any).pcs_nickname || '')}, you need to eat something! Do you have some sort of eating disorder or something?" she asks as you check yourself out in the mirror on the door.`);
+        // TODO-QSP: dynamic text: Anushka smiles and nods. "Sure, let''s do it." She gets up to join you at the cl...
+        scene.text(`Anushka smiles and nods. "Sure, let's do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Unfortunately, her clothes don't fit well at all. In fact, they hang off your body, Anushka is a petite girl, but you're so skinny that even her clothes just hang off you. "Jesus ${((st as any).pcs_nickname || '')}, you need to eat something! Do you have some sort of eating disorder or something?" she asks as you check yourself out in the mirror on the door.`);
         scene.text('You shake your head, but do you? You know Anushka is petite, some might say on the skinny side, yet her clothes are too big. Seeing your reflection in the mirror while standing side by side with her, your exceptionally skinny build really stands out. She has curves in all the right places while all you have are bones protruding from under your skin. You both quickly give up on trying on her clothes since they don\'t look good on you.');
         scene.actions([
           { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
         ]);
       } else {
-        if (((s as any).pcs_bmi ?? 0) < 19) {
+        if (((st as any).pcs_bmi ?? 0) < 19) {
           scene.text('"Wow, you have so many outfits. Can I try some on?" you ask her.');
           scene.text('Anushka smiles and nods. "Sure, let\'s do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Her clothes don\'t fit perfectly, just enough to give you an idea of what you might look like if you bought similar clothes in your size.');
           scene.text('"A little loose, and it doesn\'t help you\'re taller than me. You might want to add a couple of kilos; guys like girls with a little more curves," she says as you check yourself out in the mirror on the door. You look at your reflection next to hers, and she has a point. She has curves in all the right places while you look a little boyish standing next to her due to your skinny build. It\'s still fun trying on new clothes with her.');
@@ -120,41 +119,41 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
           scene.text('"Wow, you have so many outfits. Can I try some on?" you ask her.');
           scene.text('Anushka smiles and nods. "Sure, let\'s do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Her clothes don\'t fit perfectly since you\'re taller than her, but other than that, they fit you pretty well and look good on you.');
           // TODO-QSP: dynamic text: As you check yourself out in the mirror on the door, she steps up next to you, s...
-          scene.text(`As you check yourself out in the mirror on the door, she steps up next to you, showing both of your reflections. "Looking good, ${((s as any).pcs_nickname || '')}."`);
+          scene.text(`As you check yourself out in the mirror on the door, she steps up next to you, showing both of your reflections. "Looking good, ${((st as any).pcs_nickname || '')}."`);
           scene.actions([
             { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
           ]);
         }
       }
     } else {
-      if (((s as any).pcs_bmi ?? 0) < 30) {
-        if (((s as any).pcs_mood ?? 0) > 10) {
-          qspCall(s, 'mood', 'lower', 'small');
+      if (((st as any).pcs_bmi ?? 0) < 30) {
+        if (((st as any).pcs_mood ?? 0) > 10) {
+          qspCall(st, 'mood', 'lower', 'small');
         }
-        (s as any).minut = ((s as any).minut ?? 0) + 10;
-        qspCall(s, 'stat', '');
+        (st as any).minut = ((st as any).minut ?? 0) + 10;
+        qspCall(st, 'stat', '');
         scene.text('"Can we try on some of your clothes and see how we look in them?" you ask her.');
         scene.text('Anushka hesitates as she looks you over, then smiles faintly. "I\'m not sure I have anything that will fit you… I might have something you can squeeze into." You can tell by her tone of voice and body language she\'s trying to be kind, but the message is clear, despite her not saying it.');
         scene.text('She gets up and joins you at the closet. She starts pulling out different outfits, most of which she discards. Finally, she pulls out a couple of clothes, and you notice all of them are baggy style clothes you\'ve never seen her wearing. You take them and try to put them on, but unfortunately, even her most oversized clothes are too small for you. You can squeeze into some of them, but you struggle to zip them up, and you can see your skin rolling over the side of the clothes in spots that are just too tight for you.');
         scene.text('When you try on a pair of cargo shorts, one of the buttons pops off and bounces across the floor, causing you to blush heavily. "Sorry, I… I shouldn\'t have tried to wear these. I can buy you a new pair or get this button fixed."');
-        // TODO-QSP: dynamic text: She shakes her head and giggles slightly. "Don't worry about it. I didn't really...
-        scene.text(`She shakes her head and giggles slightly. "Don't worry about it. I didn't really like those shorts anyways." You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should lay off the sweets, ${((s as any).pcs_nickname || '')}," she says teasingly while poking you in the side.`);
+        // TODO-QSP: dynamic text: She shakes her head and giggles slightly. "Don''t worry about it. I didn''t real...
+        scene.text(`She shakes her head and giggles slightly. "Don't worry about it. I didn't really like those shorts anyways." You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should lay off the sweets, ${((st as any).pcs_nickname || '')}," she says teasingly while poking you in the side.`);
         scene.text('"Hey, just because I\'m not as skinny as a rail doesn\'t mean the boys don\'t come running. I got myself a nice bubble butt, unlike your flat ass!" you reply, teasing her back for being skinny. The two of you laugh and put her clothes back away as you talk about where she gets her clothes from.');
         scene.actions([
           { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
         ]);
       } else {
-        if (((s as any).pcs_mood ?? 0) > 10) {
-          qspCall(s, 'mood', 'lower', 'medium');
+        if (((st as any).pcs_mood ?? 0) > 10) {
+          qspCall(st, 'mood', 'lower', 'medium');
         }
-        (s as any).minut = ((s as any).minut ?? 0) + 10;
-        qspCall(s, 'stat', '');
+        (st as any).minut = ((st as any).minut ?? 0) + 10;
+        qspCall(st, 'stat', '');
         scene.text('"Can we try on some of your clothes and see how we look in them?" you ask her.');
         scene.text('Anushka looks like a deer in headlights. "Uhh…" You get the feeling she doesn\'t know what or how to say something, and she finally smiles slightly. "Sorry girl, but I don\'t think even my largest baggy clothes will fit your fat ass!" she says in a teasing tone, but her words still sting.');
         scene.text('She gets up and joins you at the closet. She starts pulling out different outfits, almost all of which she discards. Finally, she pulls out a summer dress you\'ve never seen her in, likely because it looks far too big for her. "Here, you can try this, but I don\'t think it\'ll fit. That thing hangs off me like a tent."');
         scene.text('You take the dress and change out of your clothes. You try and get the dress on, but it won\'t go over your breasts. After a bit of struggling, it\'s obvious the thing isn\'t going to fit, no matter how badly you want to try it on.');
-        // TODO-QSP: dynamic text: You sigh at the fact you're just too big to wear her clothes and put your own cl...
-        scene.text(`You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should try eating some veggies now and again and lay off the sweets, ${((s as any).pcs_nickname || '')}. The veggies won't kill you, I promise," she says teasingly.`);
+        // TODO-QSP: dynamic text: You sigh at the fact you''re just too big to wear her clothes and put your own c...
+        scene.text(`You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should try eating some veggies now and again and lay off the sweets, ${((st as any).pcs_nickname || '')}. The veggies won't kill you, I promise," she says teasingly.`);
         scene.text('"Hey, just because I\'m not as skinny as a rail…" You trail off and force a smile; you know she\'s not trying to be mean, but her words still hurt. Instead of trying on her clothes, you end up talking about where she gets them.');
         scene.actions([
           { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -169,40 +168,40 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
       { label: 'Find something else to look at', goto: ['anush_bedroom_city', 'anushroom'] },
       { label: 'Try on some clothes', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksimshow.jpg');
-    if (((s as any).pcs_bmi ?? 0) < 16) {
-      if (((s as any).pcs_mood ?? 0) > 10) {
-        qspCall(s, 'mood', 'lower', 'small');
+    if (((st as any).pcs_bmi ?? 0) < 16) {
+      if (((st as any).pcs_mood ?? 0) > 10) {
+        qspCall(st, 'mood', 'lower', 'small');
       }
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
       scene.text('You start trying on some of Anushka\'s clothes, but quickly realize that you\'re way too skinny to wear them. She\'s a pretty petite girl and her clothes just hang off you. You know Anushka is beautiful, but looking at yourself in the mirror with her clothes hanging off you, you wonder if you\'re too skinny. You sigh and start putting the clothes back where you found them.');
     } else {
-      if (((s as any).pcs_bmi ?? 0) < 19) {
-        qspCall(s, 'mood', 'raise', 'tiny');
-        (s as any).minut = ((s as any).minut ?? 0) + 30;
+      if (((st as any).pcs_bmi ?? 0) < 19) {
+        qspCall(st, 'mood', 'raise', 'tiny');
+        (st as any).minut = ((st as any).minut ?? 0) + 30;
         scene.text('You spend the next half hour trying on a variety of Anushka\'s clothes. Most of them fit well enough to give you a good idea of what you might look like if you bought similar clothes and you have a lot of fun trying them on, although you do wonder how she can afford them. Does the band really make this much money? Once you\'re done, you start putting the clothes back where you found them.');
       } else {
-        if (((s as any).pcs_bmi ?? 0) < 25) {
-          qspCall(s, 'mood', 'raise', 'tiny');
-          (s as any).minut = ((s as any).minut ?? 0) + 30;
+        if (((st as any).pcs_bmi ?? 0) < 25) {
+          qspCall(st, 'mood', 'raise', 'tiny');
+          (st as any).minut = ((st as any).minut ?? 0) + 30;
           scene.text('You spend the next half hour trying on a variety of Anushka\'s clothes. Most of them fit you pretty well and you have a lot of fun trying them on, although you do wonder how she can afford them. Does the band really make this much money? Once you\'re done, you start putting the clothes back where you found them.');
         } else {
-          if (((s as any).pcs_bmi ?? 0) < 30) {
-            if (((s as any).pcs_mood ?? 0) > 10) {
-              qspCall(s, 'mood', 'lower', 'small');
+          if (((st as any).pcs_bmi ?? 0) < 30) {
+            if (((st as any).pcs_mood ?? 0) > 10) {
+              qspCall(st, 'mood', 'lower', 'small');
             }
-            (s as any).minut = ((s as any).minut ?? 0) + 5;
+            (st as any).minut = ((st as any).minut ?? 0) + 5;
             scene.text('You look through her clothes and attempt to try on several outfits, but even her largest, loosest clothes are just too small for you to wear. You try on a pair of loose cargo shorts that you manage to get over your hips, but as you\'re trying to button them up, one of the buttons pops loose and goes rolling across the floor. You sigh, quickly take them off, and start putting the clothes back where you found them.');
           } else {
-            if (((s as any).pcs_mood ?? 0) > 10) {
-              qspCall(s, 'mood', 'lower', 'medium');
+            if (((st as any).pcs_mood ?? 0) > 10) {
+              qspCall(st, 'mood', 'lower', 'medium');
             }
-            (s as any).minut = ((s as any).minut ?? 0) + 5;
+            (st as any).minut = ((st as any).minut ?? 0) + 5;
             scene.text('You look through her clothes and attempt to try on several outfits, but even her largest, loosest clothes are just too small for you to wear. You try on a pair of loose cargo shorts, but you can\'t even get them past your knees. You sigh and start putting the clothes back where you found them.');
           }
         }
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Find something else to do', goto: ['anush_bedroom_city', 'anushroom'] },
     ]);
@@ -233,8 +232,8 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
       { label: 'Strap-on', goto: ['anushkaev1', 'strapon1'] },
       { label: 'Butt plug', goto: ['anushkaev3', 'buttplug'] },
       { label: 'Joint', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/take_joint.jpg');
     scene.text('You pull out one of the joints and hold it up. "Yeah, I like this…"');
     scene.text('She laughs. "Yeah, me too. Wanna get high?"');
@@ -242,8 +241,8 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
     scene.text('She flips you off for your snarky comeback. "Fuck you, bitch. Here, hand it over." You hand over the joint as she takes a lighter off the nightstand and lights it up, taking a long slow drag off it before handing it back to you.');
     scene.actions([
       { label: 'Take a drag', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'drugs', 'joint', 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'drugs', 'joint', 1);
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/get_high.jpg');
     scene.text('You take the joint from her and take a hit off it as you sit on the bed next to her. The two of you discuss various topics as you hand the joint back and forth, taking turns taking hits. Before too long, the joint is gone, and you feel pretty high.');
     scene.actions([
@@ -264,9 +263,9 @@ function enterNightStand(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Close the drawer', goto: ['anush_bedroom_city', 'anushroom'] },
       { label: 'Take joint', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['joints'] = ((st as any).mc_inventory['joints'] ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/take_joint.jpg');
     scene.text('You decide to take one of the joints. Surely she won\'t mind that you took just one? You take it out and look at it before placing it in your purse for later and closing the drawer.');
     scene.actions([
@@ -293,25 +292,25 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anushkaQW ?? 0)?.['model'] === 0) {
       scene.actions([
         { label: 'Ask about modeling', handler: (st: GameState) => {
-    ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model'] = 1;
+    ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['model'] = 1;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
-    if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
+    if (((st as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
       scene.text('You perk up at the mention of modeling to earn money towards a lovely laptop like she has. "I didn\'t know you modeled as well?"');
       scene.text('She nods. "Yeah it pays pretty well, so you model too?" You nod yes and soon the two of you are talking about the varies modeling gigs you have done and you have discovered you both work for the same modeling agency.');
       scene.actions([
         { label: 'Do something else', goto: ['anush_bedroom_city', 'anushroom'] },
       ]);
     } else {
-      ((s as any).anushkaQW = (s as any).anushkaQW ?? {})['model_referral'] = 1;
+      ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['model_referral'] = 1;
       scene.text('You perk up at the mention of modeling to earn money towards a lovely laptop like she has. "Does modeling really pay that well?"');
       scene.text('She nods. "Sort of… If you\'re willing to do nude modeling, you can make a lot in a short amount of time. Are you interested?" she asks while arching a shapely eyebrow.');
       scene.text('"Nude?" you silently ask yourself. Still, it might be worth considering if it pays that much. "I don\'t know… Maybe… How would I get started? Is there a modeling agency or something?"');
       scene.text('She grins at your reply. "Yes, it\'s located in the city center." She then explains precisely where it is and to let the photographer know she sent you.');
-      if (((s as any).fakepassport ?? 0) !== 1) {
+      if (((st as any).fakepassport ?? 0) !== 1) {
         scene.actions([
           { label: 'Underaged?', handler: (st: GameState) => {
-    (s as any).fakepassport = 2;
+    (st as any).fakepassport = 2;
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
     scene.text('A thought then occurs to you. You\'re underaged, and so is Anushka. It\'s not legal to model nude when you\'re under 18. "Wait a second, how did you get past the age check?"');
@@ -339,9 +338,9 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Agree to watch porn', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'anush_bedroom_city', 'agreeporn');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'anush_bedroom_city', 'agreeporn');
   } },
       ]);
     }
@@ -360,11 +359,11 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Admit it', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 1);
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 1);
     scene.text('Given how open she is about everything, you don\'t feel it\'s necessary to lie to her about it, so you nod in reply. "Yeah, I guess I am."');
     scene.text('Anushka\'s smile broadens, and lust flares up in her eyes. "If you want… We could watch some together?"');
-    qspCall(s, 'willpower', 'misc', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Agree to watch porn', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -373,9 +372,9 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Agree to watch porn', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'anush_bedroom_city', 'agreeporn');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'anush_bedroom_city', 'agreeporn');
   } },
       ]);
     }
@@ -404,23 +403,23 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a seat in front of the computer. "Maybe I should look at what kind of porn Anushka likes to watch? She won\'t mind, right?" you think to yourself.');
     scene.text('You start the computer up. It loads much faster than what you are used to, so it must be a pretty high-end laptop. Once it\'s done loading, you click on the internet browser and look through her browsing history and bookmarks.');
     scene.text('You see that she\'s watched videos from all kinds of porn sites. There\'s a lot of public exhibitionist porn featuring various sex acts. There is some boy-girl stuff, a lot of it rough sex and/or anal, and there is a fair bit of interracial porn and a lot of lesbian sex, especially with strap-ons. You feel yourself getting aroused as you keep browsing.');
-    qspCall(s, 'arousal', 'porn', 10);
-    if (((s as any).locat ?? 0)?.['A144'] === 0) {
+    qspCall(st, 'arousal', 'porn', 10);
+    if (((st as any).locat ?? 0)?.['A144'] === 0) {
       scene.actions([
         { label: 'Masturbate', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushcmast.mp4');
     scene.text('While browsing her vast list of pornos, you find one you like, lean back in the chair and start masturbating. Before long, you completely forget that you are in Anushka\'s bedroom, masturbating to porn on her laptop.');
-    qspCall(s, 'arousal', 'porn', 10);
+    qspCall(st, 'arousal', 'porn', 10);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushcmast.mp4');
     scene.text('You keep rubbing your clit… you can feel your climax building… building… You can feel yourself going higher and higher while riding the orgasmic wave of pleasure.');
     scene.text('You lean back in the chair and spread your legs wider apart as you feel your climax approaching. You turn and bury your mouth into your shoulder to stop yourself from screaming as your orgasm rocks your body. It takes you a few seconds to recover once it\'s over before you straighten everything up and wonder what you can do next to kill some time.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'clit_finger', 10, 'masturbate');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Find something else to do', goto: ['anush_bedroom_city', 'anushroom'] },
     ]);
@@ -466,16 +465,16 @@ function enterAgreeporn(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Masturbate as well', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (3);
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/dualmast.mp4');
     scene.text('"Fuck it," you think to yourself. The video has turned you on, and she clearly doesn\'t think it\'s a big deal to masturbate in front of you. With that thought, you start masturbating as well. You find it hard to get into it, knowing she\'s right next to you, but after a while, you start to relax and get more comfortable with the situation. You glance over at Anushka, who\'s looking at you with a massive grin on her face, clearly enjoying that the two of you are playing with yourselves together. At this point, neither of you is really watching the porno anymore. Instead, you just lay back on the bed side by side while looking at each other as you masturbate.');
     scene.text('Sometime later, you feel Anushka speed up next to you. Her soft moans suddenly get louder before she starts shuddering in orgasm. This is just enough to get you right to the edge, and you quicken your own pace as a result. Within seconds, a huge orgasm rocks your body that completely overwhelms your senses. By the time you fully recover, Anushka has already turned off the porno and is smiling at you with her pants back up. She nods towards the door. "I don\'t know about you, but I could use a snack. Come on, let\'s go raid the kitchen." She heads out of her room, waving for you to follow and acting like everything is completely normal. You get up to follow her out.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'clit_finger', 10, 'masturbate', 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'clit_finger', 10, 'masturbate', 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Follow her', goto: ['anushapt_city', 'snack'] },
     ]);
@@ -488,9 +487,9 @@ function enterAgreeporn(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Anushka\'s Room</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/watchporn.jpg');
     scene.text('As the two of you continue to watch the porno, you do your best to ignore that Anushka is masturbating right next to you. Long before the video is over, her breathing gets faster and she starts moaning - softly at first, then louder and louder until she arches her back in a shuddering orgasm. After giving herself a few seconds to come down from her little pleasure high, she pulls her pants back up, gets off the bed and turns the porno off. She then turns to look you in the eye. "I don\'t know about you, but I could use a snack. Come on, let\'s go raid the kitchen." She heads out of her room, waving for you to follow her. You\'re not sure what else to do, so you get up to follow along behind her.');
-    qspCall(s, 'arousal', 'porn', 10, 'lesbian');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'porn', 10, 'lesbian');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Follow her', goto: ['anushapt_city', 'snack'] },
     ]);
@@ -542,8 +541,8 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Look at something else', goto: ['anush_bedroom_city', 'anushroom'] },
       { label: 'Ask about the old guitar', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/guitar.jpg');
     scene.text('While the acoustic guitar is in great shape, it looks as old or older than Anushka herself and doesn\'t look all that expensive. It makes you wonder why she has it when the electric one is obviously new and more costly. "So what\'s up with this old guitar?" you ask.');
     scene.text('She smiles. "It\'s my dad\'s, or at least it was. When I was little, he used to play all the time, and that\'s where my love of music started. One day, I don\'t know why, he just stopped playing…" She shrugs slightly. "Anyway, when I got a little older, I took it and started teaching myself to play. He found me playing it and taught me a few things to help me with the basics. After I had stuck with it for a few months, he gave me his old guitar. I spent a lot of time playing it and teaching myself how to play."');
@@ -553,8 +552,8 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Ask how long it took to learn to play', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/guitar.jpg');
     scene.text('"How long did it take you to learn to play?" you ask.');
     scene.text('She shakes her head. "I still have a lot to learn, but it took me years to get as good as I am now. It\'s easy to learn the basics, but hard to master." The two of you talk about how much time she\'s practiced over the years.');
@@ -570,9 +569,9 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).instrmusic_lvl ?? 0) < 5) {
       scene.actions([
         { label: 'Pretend to play', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/play_guitar.jpg');
     scene.text('You decide to live out one of your fantasies. You\'ve always wanted to play the guitar, so you grab hold of the guitar and pretend to play, putting on a show as if you were a real rock star. After a while, you need to catch your breath. Playing was a lot harder than you thought.');
     scene.actions([
@@ -585,12 +584,12 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
       { label: 'Look at something else', goto: ['anush_bedroom_city', 'anushroom'] },
       { label: 'Try to play it', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/play_guitar.jpg');
-    if (((s as any).instrmusic_lvl ?? 0) < 20) {
-      qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 0);
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).minut = ((s as any).minut ?? 0) + 20;
-      qspCall(s, 'pain', '', 1, 'fingers', 'ache');
-      qspCall(s, 'stat', '');
+    if (((st as any).instrmusic_lvl ?? 0) < 20) {
+      qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 0));
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).minut = ((st as any).minut ?? 0) + 20;
+      qspCall(st, 'pain', '', 1, 'fingers', 'ache');
+      qspCall(st, 'stat', '');
       scene.text('You gently brush your fingers over the strings. The feeling of the coarse strings against them is exhilarating. You come up with a song you want to try to play and start to work your magic…');
       scene.text('Unfortunately, playing the guitar is a lot harder than it looks. It takes you several minutes to hit the right notes and several more to play even the tiny first fraction of the song without making a mistake. The strings cut into your tender, uncalloused fingertips and you eventually decide to stop.');
       scene.text('You realize now that learning how to play the guitar can be a frustrating, painful experience, yet you can\'t help but gently stroke the guitar once more before putting it back on its stand. You look forward to trying to play again.');
@@ -598,35 +597,35 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
         { label: 'Put the guitar back', goto: ['anush_bedroom_city', 'anushroom'] },
       ]);
     } else {
-      if (((s as any).instrmusic_lvl ?? 0) < 40) {
-        qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 0);
-        qspCall(s, 'mood', 'raise', 'tiny');
-        (s as any).minut = ((s as any).minut ?? 0) + 20;
+      if (((st as any).instrmusic_lvl ?? 0) < 40) {
+        qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 0));
+        qspCall(st, 'mood', 'raise', 'tiny');
+        (st as any).minut = ((st as any).minut ?? 0) + 20;
         scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. Unfortunately, you still have a lot to learn - it takes you several minutes to hit the right notes and several more to play even a tiny bit of the song without making a mistake. Still, you\'re better than you used to be, and after about twenty minutes, you decide to stop.');
         // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe Anushka will be willing to help me out and teach me ...
-        scene.text(`${((s as any).OpenInnerThought || '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((s as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
+        scene.text(`${((st as any).OpenInnerThought || '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
         scene.actions([
           { label: 'Put the guitar back', goto: ['anush_bedroom_city', 'anushroom'] },
         ]);
       } else {
-        if (((s as any).instrmusic_lvl ?? 0) < 60) {
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 4) + 0);
-          qspCall(s, 'mood', 'raise', 'tiny');
-          (s as any).minut = ((s as any).minut ?? 0) + 20;
+        if (((st as any).instrmusic_lvl ?? 0) < 60) {
+          qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 4) + 0));
+          qspCall(st, 'mood', 'raise', 'tiny');
+          (st as any).minut = ((st as any).minut ?? 0) + 20;
           scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. You keep making small mistakes here and there, but you\'re slowly but steadily getting the piece down. After about twenty minutes, you decide you\'ve messed around with the guitar enough.');
           // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe Anushka will be willing to help me out and teach me ...
-          scene.text(`${((s as any).OpenInnerThought || '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((s as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
+          scene.text(`${((st as any).OpenInnerThought || '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
           scene.actions([
             { label: 'Put the guitar back', goto: ['anush_bedroom_city', 'anushroom'] },
           ]);
         } else {
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 5) + 1);
-          qspCall(s, 'mood', 'raise', 'tiny');
-          (s as any).minut = ((s as any).minut ?? 0) + 20;
+          qspCall(st, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 5) + 1));
+          qspCall(st, 'mood', 'raise', 'tiny');
+          (st as any).minut = ((st as any).minut ?? 0) + 20;
           scene.text('You pick up the guitar, run your hand along the neck and play a few chords, then flick your hair back and start playing the latest song you\'ve learned before switching to another piece. Your fingers dance gracefully over the strings, and you spend about twenty minutes just having fun playing songs.');
-          if (((s as any).ml_guitar ?? 0)?.['hasguitar'] >= 1) {
+          if (((st as any).ml_guitar ?? 0)?.['hasguitar'] >= 1) {
             // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe I should come over with my guitar someday and see if...
-            scene.text(`${((s as any).OpenInnerThought || '')}"Maybe I should come over with my guitar someday and see if Nush wants to play together?"${((s as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
+            scene.text(`${((st as any).OpenInnerThought || '')}"Maybe I should come over with my guitar someday and see if Nush wants to play together?"${((st as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
           }
           scene.actions([
             { label: 'Put the guitar back', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -940,14 +939,14 @@ function enterNushGuitarTeach(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/nushbed.jpg');
     scene.text('You smile and nod your head. "Yes, I do. It\'s at home, though."');
     scene.text('She smiles back at you. "Okay, that\'s good. I can teach you with mine. So, how good are you so far?"');
-    if (((s as any).instrmusic_lvl ?? 0) < 20) {
+    if (((st as any).instrmusic_lvl ?? 0) < 20) {
       scene.text('You look down from her gaze while blushing. "Pretty bad. I don\'t really have any clue what I\'m doing."');
       scene.text('She laughs. "It\'s okay. We all need to start somewhere. I can teach you some basic things to get started, but you\'ll need to practice them at home," she says as she gets up and takes the acoustic guitar off the wall before returning to bed.');
       scene.actions([
         { label: 'Get a lesson', goto: ['anush_bedroom_city', 'guitar_lesson'] },
       ]);
     } else {
-      if (((s as any).instrmusic_lvl ?? 0) < 40) {
+      if (((st as any).instrmusic_lvl ?? 0) < 40) {
         scene.text('You blush under her gaze. "So-so. I know what I\'m doing, but I still make many mistakes."');
         scene.text('She laughs. "It\'s okay. It sounds like you know the basics, so I can show you how to play better, but you\'ll need to practice at home," she says as she gets up and takes the acoustic guitar off the wall before returning to bed.');
         scene.actions([
@@ -992,7 +991,7 @@ function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/anushroom/teach_guitar1.jpg');
   scene.text('She hands you the guitar and scoots around behind you. You sit with her legs on each side of your hips, and you can feel her inner thighs pressing against your hips. She leans close behind you, and you can feel her breasts against your back as she reaches around you to place her hands on yours. Leaning forward, her face is right next to yours, and you realize this is a very intimate feeling. You can feel the heat from her body against yours, and can smell lavender from the shampoo she uses on her hair.');
   if (((s as any).instrmusic_lvl ?? 0) < 20) {
-    qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 2);
+    qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 2));
     scene.text('You try and focus on what she\'s showing you and telling you, but her being this close is pretty distracting. You try to do what she says, but not to a significant effect. You can play a few notes, but stringing them together is more challenging than you thought. Her hands touch yours often, helping you with finger placement. Finally, after about half an hour, Anushka stops and slides away from you, the warmth from her body suddenly so noticeable. She takes the guitar from you. "Okay, that\'s enough for today. You need to practice a lot when you get home," she says as she takes the guitar back over and hangs it on the wall, after which she comes back to sit on the bed with you.');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1001,7 +1000,7 @@ function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).instrmusic_lvl ?? 0) < 40) {
-      qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 3);
+      qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 3));
       scene.text('You try and focus on what she\'s showing you and telling you, but her being this close is pretty distracting. You can play all the chords and string them together as long as there are no sudden changes. Those still trip you up, and she will correct your hand placement. Finally, after about half an hour, Anushka stops and slides away from you, her body\'s warmth suddenly so noticeable. She takes the guitar from you. "Okay, that\'s enough for today. Not bad, but you have a long way to go," she says as she takes the guitar back over and hangs it on the wall, after which she comes back to sit on the bed with you.');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1009,7 +1008,7 @@ function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
         { label: 'Chat to her', goto: ['anushkachat_city', 'chat'] },
       ]);
     } else {
-      qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 4);
+      qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 4));
       scene.text('You try and focus on what she\'s showing you and telling you, but her being this close is pretty distracting. You can play some somewhat complicated songs and rarely make a mistake. When you do, you quickly correct it yourself, and she mostly just sits close with her face close to yours - she even brushes your hair back behind your ear. After about half an hour, Anushka stops and slides away from you, her body\'s warmth suddenly so noticeable. She takes the guitar from you. "Okay, that\'s enough for today. You did really well." She kisses your cheek in a gentle, almost friendly way, yet it still feels pretty intimate. Pulling away from you, she takes the guitar back over and hangs it on the wall, after which she comes back over to sit on the bed with you.');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1031,7 +1030,7 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
   scene.text('She smiles. "Yeah, sure." She gets up and gets her guitar off the wall while you sit on the bed and get yours ready. When she comes back, she sits next to you, and you discuss what to play until you find a song you both know and start playing.');
   if (((s as any).instrmusic_lvl ?? 0) < 20) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 1);
+    qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 1));
     scene.text('You can\'t keep up with her and keep making mistakes, so she quickly stops playing and reaches over to stop you. "How can I put this nicely…" She pauses, then smiles at you. "You fucking suck. Do you even know how to play?"');
     scene.text('You don\'t know how to respond to that. "I\'m learning," you meekly reply.');
     scene.text('She shakes her head. "You\'ve got a long way to go then. You need to practice getting the basics down before trying to play something. When you get better, we can try again. I can show you a few things if you want?"');
@@ -1044,7 +1043,7 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).instrmusic_lvl ?? 0) < 40) {
       (s as any).minut = ((s as any).minut ?? 0) + 10;
-      qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 2);
+      qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 2) + 2));
       scene.text('You can\'t keep up with her and make a few mistakes. After a few minutes, she reaches over to stop you. "Stop, just stop. How can I put this nicely…" She pauses, then smiles at you. "You\'re not very good. You\'ve got most of the basics down, but you\'re a long way from being ready to jam."');
       scene.text('You sigh. You know you weren\'t playing that well, but you were still having fun. "I\'m getting better!"');
       scene.text('"You still need a lot of practice first. I can also show you a few things if you want?"');
@@ -1057,7 +1056,7 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).instrmusic_lvl ?? 0) < 60) {
         (s as any).minut = ((s as any).minut ?? 0) + 20;
-        qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 2);
+        qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 2));
         scene.text('You make the occasional mistake a few times and have a little trouble keeping up with her, but you play together for about twenty minutes before she stops. "Not bad. You still need a fair amount of polish, but you\'re getting there," she says with a smile.');
         scene.text('You return her smile. "Thanks. I\'ve been working on it a lot."');
         scene.text('"You still need a fair bit of practice. I can show you a few things if you want?"');
@@ -1070,7 +1069,7 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).instrmusic_lvl ?? 0) < 80) {
           (s as any).minut = ((s as any).minut ?? 0) + 30;
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 3);
+          qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 3));
           scene.text('You don\'t make any mistakes and don\'t have any trouble keeping up with her. She\'s still better than you, but you\'re not that far behind her in skill. You play together for about half an hour before she stops. "Pretty good. Before you know it, you\'ll be as good as I am," she says with a smile.');
           scene.text('You return her smile. "Thanks. I\'ve been working on it a lot."');
           scene.text('"It takes a lot of practice to get this good and stay good. I play for an hour almost every day, not counting when I practice with the boys. I had fun and would like to do it again if you want. There\'s not much I can teach you, but there is a few things if you\'re interested?"');
@@ -1082,8 +1081,8 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           (s as any).minut = ((s as any).minut ?? 0) + 60;
-          qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 3) + 4);
-          // TODO-QSP: dynamic text: You don't make any mistakes and don't have any trouble keeping up with her. In f...
+          qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 4));
+          // TODO-QSP: dynamic text: You don''t make any mistakes and don''t have any trouble keeping up with her. In...
           scene.text(`You don't make any mistakes and don't have any trouble keeping up with her. In fact, you feel confident that you outplayed her. You play together for about an hour before she stops. "Damn ${((s as any).pcs_nickname || '')}, I think you're better than I am!" she says with a smile.`);
           scene.text('You return her smile. "Thanks. I\'ve been working hard on trying to master it."');
           scene.text('"Well, it sounds like it was time well spent. I had fun and think we should totally do this again." The two of you talk about your different styles of practicing and any tips or tricks you learned along the way that might help each other.');
@@ -1101,6 +1100,7 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).returnLoc = '_city';
   const arg = s.locArg;
   switch (arg) {
     case 'anushroom':

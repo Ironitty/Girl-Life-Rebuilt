@@ -53,12 +53,12 @@ function enterFatherblow3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'He cums in your mouth', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A28', 1);
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim15.jpg');
-    // TODO-QSP: dynamic text: As he roughly fucks your throat, you can tell he's getting close. Suddenly, he p...
-    scene.text(`As he roughly fucks your throat, you can tell he's getting close. Suddenly, he pulls his cock out. "${((s as any).pcs_nickname || '')} baby, stick out your tongue" he orders, and mere seconds later you feel jets of cum hitting your face. Some land on your tongue, some end up in your mouth. You swallow it all willingly, licking your lips and gently sucking the tip of his cock for a while until he tells you to stop.`);
-    qspCall(s, 'arousal', 'end');
+    // TODO-QSP: dynamic text: As he roughly fucks your throat, you can tell he''s getting close. Suddenly, he ...
+    scene.text(`As he roughly fucks your throat, you can tell he's getting close. Suddenly, he pulls his cock out. "${((st as any).pcs_nickname || '')} baby, stick out your tongue" he orders, and mere seconds later you feel jets of cum hitting your face. Some land on your tongue, some end up in your mouth. You swallow it all willingly, licking your lips and gently sucking the tip of his cock for a while until he tells you to stop.`);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -146,29 +146,29 @@ function enterFathergotobedroom(s: GameState, scene: SceneBuilder): void {
     { label: 'Let him remove the plug and show him your gape', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim9.jpg');
     // TODO-QSP: dynamic text: Your stepfather is very much on board with this idea, and his tugging on the plu...
-    scene.text(`Your stepfather is very much on board with this idea, and his tugging on the plug increases. A few seconds later it comes out with a loud pop, and you feel the cool air of the room filling your rectum. Your stepfather is equally enthusiastic and intimidated by the size of your gape: "Wow ${((s as any).pcs_nickname || '')}! That is one hugely stretched hole… how did you even do that?"`);
+    scene.text(`Your stepfather is very much on board with this idea, and his tugging on the plug increases. A few seconds later it comes out with a loud pop, and you feel the cool air of the room filling your rectum. Your stepfather is equally enthusiastic and intimidated by the size of your gape: "Wow ${((st as any).pcs_nickname || '')}! That is one hugely stretched hole… how did you even do that?"`);
     scene.text('Knowing he is an ass man and probably has seen more than a few stretched sphincters in his days, you feel an odd sense of accomplishment. "I just want to make you feel good, Daddy…" you mutter, and he nods. "I know you do baby, and I know you will."');
     // TODO-QSP: dynamic text: He quickly takes off his clothes and scoots down next to you, his erect cock pok...
-    scene.text(`He quickly takes off his clothes and scoots down next to you, his erect cock poking up like a flag mast. "Go on ${((s as any).pcs_nickname || '')}, make Daddy feel good."`);
-    qspCall(s, 'arousal', 'anal_dildo', 10, 'sub', 'incest');
-    qspCall(s, 'stat', '');
+    scene.text(`He quickly takes off his clothes and scoots down next to you, his erect cock poking up like a flag mast. "Go on ${((st as any).pcs_nickname || '')}, make Daddy feel good."`);
+    qspCall(st, 'arousal', 'anal_dildo', 10, 'sub', 'incest');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
-    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 2);
+    qspCall(st, 'arousal_funcs', 'stretch', 'anal', 2);
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim9.jpg');
     scene.text('You\'re so excited that you immediately get on top of him and gently gyrate your hips against his cock. You spit some saliva onto your fingers before reaching back and rubbing it over his rod. Then you rub his cock against your fairly loose asshole. His cock is big though. With a loud shuddering moan you slowly lower yourself onto his erect cock, taking about half of it in before pausing. "Just taking a second to get used to the size Daddy, your cock is too big for me to just slam down on right away," you apologize. "That\'s okay sweetie, take your time", he replies, still not believing what\'s happening. You gently bob your ass a bit, stimulating his cock while you mentally prepare yourself to take the rest in.');
     scene.text('Your stepfather was not expecting this at all, when he gave you the initiative. Nevertheless, he is delighted by your eagerness to please him and he puts his hands behind his head, content to let you do all the work. Not wanting to disappoint him you continue, and lower yourself onto his cock further and further until you feel his balls resting against your ass cheeks. "One more break, Daddy… it just feels so good", you whisper. He has his eyes closed by now, fully focused on the pleasure you\'re giving him. After a few seconds you decide you\'re ready and soon the room is filled with the sound of your butt cheeks enthusiastically slapping against his thighs, combined with your high-pitched moans. Before too long your stepfather puts his hands on your hips trying to slow you down, saying he\'s ready to cum.');
-    (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
-    qspCall(s, 'arousal', 'anal', 10, 'sub', 'incest');
-    qspCall(s, 'stat', '');
+    (st as any).anal_slip = ((st as any).anal_slip ?? 0) + (4);
+    qspCall(st, 'arousal', 'anal', 10, 'sub', 'incest');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Cum on my ass cheeks', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', 'butt', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', 'butt', 'A28', 1);
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim5.jpg');
     // TODO-QSP: dynamic text: Respecting your wishes, your stepfather pulls his rod out of your sphincter and ...
-    scene.text(`Respecting your wishes, your stepfather pulls his rod out of your sphincter and shoots his load on your ass cheeks, moaning loudly. After a few moments, he regains his composure and slaps your ass playfully. "That was fun ${((s as any).pcs_nickname || '')}, we should do it again some time."`);
-    qspCall(s, 'arousal', 'end');
+    scene.text(`Respecting your wishes, your stepfather pulls his rod out of your sphincter and shoots his load on your ass cheeks, moaning loudly. After a few moments, he regains his composure and slaps your ass playfully. "That was fun ${((st as any).pcs_nickname || '')}, we should do it again some time."`);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -176,11 +176,11 @@ function enterFathergotobedroom(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Cum all over my face', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', 'face', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', 'face', 'A28', 1);
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim12.jpg');
     scene.text('Your request only excites him even further. After a few furious thrusts he pulls out, pushes you on your back and begins to jerk off over your face. You feel the warm strands of cum landing on your face and you stick out your tongue to catch some of it. He takes a second to admire his artwork and then goes to clean himself up, leaving you alone in the room.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -206,7 +206,7 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
   (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
   qspCall(s, 'arousal', 'anal', 10, 'sub', 'incest');
   qspCall(s, 'stat', '');
-  (s as any).fathercum = Math.floor(Math.random() * 2) + 1;
+  (s as any).fathercum = (Math.floor(Math.random() * 2) + 1);
   if (((s as any).fathercum ?? 0) === 1) {
     qspCall(s, 'boyStat', 'A28');
     qspCall(s, 'cum_call', 'anus', 'A28', 1);
@@ -224,63 +224,63 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I love you Daddy… Please I want your cock in my ass, fuck me harder than you fuck mom…"');
     scene.actions([
       { label: 'Daddy fill my ass!!!', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', 'anus', 'A28', 1);
-    scene.img(`images/locations/pavlovsk/clinic/therapist/sex/creampieA${Math.floor(Math.random() * 2) + 1}.mp4`);
-    qspCall(s, 'arousal', 'anal', 10, 'sub', 'incest');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', 'anus', 'A28', 1);
+    scene.img(`images/locations/pavlovsk/clinic/therapist/sex/creampieA${(Math.floor(Math.random() * 2) + 1)}.mp4`);
+    qspCall(st, 'arousal', 'anal', 10, 'sub', 'incest');
+    qspCall(st, 'stat', '');
     scene.text('From his increasingly intense and erratic thrusts, you can tell your stepfather is about to cum.');
     scene.text('You feel a pleasant warmth spreading. When he moves away from you and crashes down next to you on the bed, he tells you what a great buttslut you are with a satisfied grin on his face.');
     scene.actions([
       { label: 'Dad wants your front door…', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/cowgirl/cowgirl_rub.mp4');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.text('But daddy, I\'m still a virgin…');
     } else {
       scene.text('Pound me daddy, all my holes are yours…');
     }
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.actions([
         { label: 'Hard pounding vag', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/rought/dog2.mp4');
     scene.text('Your stepfather slams his cock in to you hard and deep, his unrelenting pounding making your tits bounce. Your moans coming out as half screams of pure pleasure. ');
     scene.actions([
       { label: 'Cum…', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/cumshot/cum_cowgirl.mp4');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'cuminsidereact', '');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'cuminsidereact', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'More… Cum together', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
-    if (((s as any).pcs_horny ?? 0) >= 100) {
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    if (((st as any).pcs_horny ?? 0) >= 100) {
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'cuminsidereact', '');
-      qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-      qspCall(s, 'arousal', 'end');
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'cuminsidereact', '');
+      qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         { label: 'Clean him up with your lips', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_2.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease his cock. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_3.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -291,76 +291,76 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'boyStat', 'A28');
-      qspCall(s, 'cum_call', '', '', 'A28', 1);
+      qspCall(st, 'boyStat', 'A28');
+      qspCall(st, 'cum_call', '', '', 'A28', 1);
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'cuminsidereact', '');
-      qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-      qspCall(s, 'stat', '');
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'cuminsidereact', '');
+      qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Clean him up with your lips', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_2.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease him. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_3.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'daddy wants more', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex6.mp4');
     scene.text('Your dad presses you against the wall and starts pounding your pussy, thrusting his throbbing cock deep inside you.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex7.mp4');
     scene.text('For several minutes he pounds your pussy, your pleasure mounting as you feel yourself close to climax…');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'fuck me dad…', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex9.mp4');
     scene.text('"Tell me I fuck better than mom…" you moan as you feel your pleasure building, you wrap your legs around him to pull him deeper inside. Suddenly he moans thrusting his cock deep inside you, holding it there as he begins filling you with his seed. ');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Climax', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
     scene.img('images/locations/city/residential/sauna/sex/cumvaginal1.mp4');
     // TODO-QSP: dynamic text: With his cock deep inside you and between his moans and cum pumping deep inside ...
-    scene.text(`With his cock deep inside you and between his moans and cum pumping deep inside you. your dad looks at you and says… "i love you ${((s as any).pcs_nickname || '')}."`);
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'cuminsidereact', '');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`With his cock deep inside you and between his moans and cum pumping deep inside you. your dad looks at you and says… "i love you ${((st as any).pcs_nickname || '')}."`);
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'cuminsidereact', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Clean him up with your mouth', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/rought/oral8.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease him. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/mouth/cum1,10.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -390,48 +390,48 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([
         { label: 'Hard pounding vag (virgin)', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/rought/dog2.mp4');
     scene.text('Your stepfather slams his cock in to you hard and deep, his unrelenting pounding making your tits bounce. Your moans coming out as half screams of pure pleasure. ');
     scene.actions([
       { label: 'Cum…', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/cumshot/cum_cowgirl.mp4');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'cuminsidereact', '');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'cuminsidereact', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'More… Cum together', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
-    if (((s as any).pcs_horny ?? 0) >= 100) {
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
+    if (((st as any).pcs_horny ?? 0) >= 100) {
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'cuminsidereact', '');
-      qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-      qspCall(s, 'arousal', 'end');
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'cuminsidereact', '');
+      qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
         { label: 'Clean him up with your lips', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_2.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease his cock. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_3.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -442,76 +442,76 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'boyStat', 'A28');
-      qspCall(s, 'cum_call', '', '', 'A28', 1);
+      qspCall(st, 'boyStat', 'A28');
+      qspCall(st, 'cum_call', '', '', 'A28', 1);
       scene.img('images/shared/sex/cum/vagcreampie/creampie2.mp4');
       scene.text('For several minutes he pounds your pussy. As your pleasure mounts, you feel yourself close to climax, wrapping your legs around him to pull him deeper inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'cuminsidereact', '');
-      qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-      qspCall(s, 'stat', '');
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'cuminsidereact', '');
+      qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Clean him up with your lips', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_2.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease him. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_3.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'daddy wants more', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex6.mp4');
     scene.text('Your dad presses you against the wall and starts pounding your pussy, thrusting his throbbing cock deep inside you.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex7.mp4');
     scene.text('For several minutes he pounds your pussy, your pleasure mounting as you feel yourself close to climax…');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'fuck me dad…', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/sex9.mp4');
     scene.text('"Tell me I fuck better than mom…" you moan as you feel your pleasure building, you wrap your legs around him to pull him deeper inside. Suddenly he moans thrusting his cock deep inside you, holding it there as he begins filling you with his seed. ');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Climax', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', '', '', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', '', '', 'A28', 1);
     scene.img('images/locations/city/residential/sauna/sex/cumvaginal1.mp4');
     // TODO-QSP: dynamic text: With his cock deep inside you and between his moans and cum pumping deep inside ...
-    scene.text(`With his cock deep inside you and between his moans and cum pumping deep inside you. your dad looks at you and says… "i love you ${((s as any).pcs_nickname || '')}."`);
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'cuminsidereact', '');
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`With his cock deep inside you and between his moans and cum pumping deep inside you. your dad looks at you and says… "i love you ${((st as any).pcs_nickname || '')}."`);
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'cuminsidereact', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
       { label: 'Clean him up with your mouth', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/event/rought/oral8.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease him. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/mouth/cum1,10.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -544,27 +544,27 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
     scene.text('To keep your virginity safe, your stepfather slams his cock back in to your asshole hard and deep, his unrelenting pounding making your tits bounce. Your moans coming out as half screams of pure pleasure. ');
     scene.actions([
       { label: 'Cum…', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', 'anus', 'A28', 1);
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', 'anus', 'A28', 1);
     scene.img('images/pc/body/cum/cumanal/cumanal9.jpg');
-    (s as any).orgasm_or = 'yes';
+    (st as any).orgasm_or = 'yes';
     scene.text('You suddenly feel an intense warmth spreading inside you. Your stepfather pulls out his cock, and a slow trail of his cum slowly drips out of you.');
     scene.text('Spreading your ass cheeks with your hands, you give him a nice view of his load in your sphincter. Your stepfather is fascinated and watches his cum slowly drip down, giving your ass a few more slaps for good measure.');
     scene.text('When you think your asshole is finally gonna have some rest, your stepfather shoves his dick back inside of you.');
-    // TODO-QSP: dynamic text: "Sorry, <<$pcs_nickname>>… but we're not done yet."
-    scene.text(`"Sorry, ${((s as any).pcs_nickname || '')}… but we're not done yet."`);
-    qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
-    qspCall(s, 'arousal', 'end');
+    // TODO-QSP: dynamic text: "Sorry, <<$pcs_nickname>>… but we''re not done yet."
+    scene.text(`"Sorry, ${((st as any).pcs_nickname || '')}… but we're not done yet."`);
+    qspCall(st, 'arousal', 'anal', 5, 'sub', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'More… Pounding', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', 'anus', 'A28', 1);
-    if (((s as any).pcs_horny ?? 0) >= 100) {
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', 'anus', 'A28', 1);
+    if (((st as any).pcs_horny ?? 0) >= 100) {
       scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim5.mp4');
       scene.text('For several minutes he pounds your ass. As your pleasure mounts, you feel yourself close to climax, clenching your sphincter around him to keep him deep inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
-      qspCall(s, 'arousal', 'end');
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'arousal', 'anal', 5, 'sub', 'rough');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -572,15 +572,15 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
         { label: 'Clean him up with your lips', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_2.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease his cock. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_3.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little and having in your tongue the taste of your own asshole. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little and having in your tongue the taste of your own asshole. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -591,27 +591,27 @@ function enterFatherSexAct1(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'boyStat', 'A28');
-      qspCall(s, 'cum_call', 'anus', 'A28', 1);
+      qspCall(st, 'boyStat', 'A28');
+      qspCall(st, 'cum_call', 'anus', 'A28', 1);
       scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim5.mp4');
       scene.text('For several minutes he pounds your asshole. As your pleasure mounts, you feel yourself close to climax, clenching your sphincter around him to keep him deep inside. Suddenly he moans and begins pumping his cum deep inside you groaning loudly as he fills you. ');
-      (s as any).orgasm_or = 'yes';
-      qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough');
-      qspCall(s, 'stat', '');
+      (st as any).orgasm_or = 'yes';
+      qspCall(st, 'arousal', 'anal', 5, 'sub', 'rough');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Clean him up with your lips', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_2.mp4');
     scene.text('Overcome with desire, you rub his cock against your lips, looking up at him as you tease him. "Let me clean that for you, Daddy" you say with a cute smile.');
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim4_3.mp4');
     // TODO-QSP: dynamic text: You feel so good that you take the tip of his cock in your mouth, and affectiona...
-    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((s as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
-    qspCall(s, 'arousal', 'bj', 2, 'sub');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`You feel so good that you take the tip of his cock in your mouth, and affectionately begin to suck on it while looking him in the eye, rolling your tongue around the head a little. The act of adoration renders your stepfather speechless. You give him a moment to recuperate while you gently suck on his cock. Eventually he manages to say: "Wow ${((st as any).pcs_nickname || '')}, that was amazing…", caressing your hair and watching as you slowly pull his cock from your mouth, smiling up at him. He then gathers his things and goes to the bathroom to clean up, leaving you alone in the room.`);
+    qspCall(st, 'arousal', 'bj', 2, 'sub');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -652,27 +652,27 @@ function enterFatherSexAct2(s: GameState, scene: SceneBuilder): void {
     { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim5.mp4');
     // TODO-QSP: dynamic text: Even though it was not part of his plan, your stepfather just grins and gives yo...
-    scene.text(`Even though it was not part of his plan, your stepfather just grins and gives your exposed ass a hard slap. "Alright ${((s as any).pcs_nickname || '')}, if that's the way you want to play it…".`);
+    scene.text(`Even though it was not part of his plan, your stepfather just grins and gives your exposed ass a hard slap. "Alright ${((st as any).pcs_nickname || '')}, if that's the way you want to play it…".`);
     // TODO-QSP: dynamic text: You see him taking position behind you when you look between your legs, and with...
-    scene.text(`You see him taking position behind you when you look between your legs, and within seconds you have two of his fingers thrust deep into your ass. Lucky for you, he had the decency to lubricate them first so it doesn't hurt, even though it does feel a bit uncomfortable at first. He then spits on your asshole a few times and you feel the saliva settling on it. "I'm not sure you did a good enough job for what I'm about to do, ${((s as any).pcs_nickname || '')}… consider this a bonus", he says before rubbing his hard rod against your anus, coating it with the mixture of his and your saliva.`);
+    scene.text(`You see him taking position behind you when you look between your legs, and within seconds you have two of his fingers thrust deep into your ass. Lucky for you, he had the decency to lubricate them first so it doesn't hurt, even though it does feel a bit uncomfortable at first. He then spits on your asshole a few times and you feel the saliva settling on it. "I'm not sure you did a good enough job for what I'm about to do, ${((st as any).pcs_nickname || '')}… consider this a bonus", he says before rubbing his hard rod against your anus, coating it with the mixture of his and your saliva.`);
     scene.text('Despite his tough talk, your stepfather really does try to make this an enjoyable experience for you too. After playing with your asshole a little longer, he puts the head of his penis against your sphincter. Trying to accommodate him, you relax your anus as much as possible, and before you know it he\'s all the way inside you. Your stepfather is in no rush, and slowly gyrates his hips a bit as he gives you time to get used to the size of his dick. Once he realizes you\'re okay, he focuses more on his own pleasure and increases the tempo more and more until he is roughly pounding you. You cast a slightly concerned look at the doorway, and second guess your decision to tease him in the hallway for a second, but then your arousal takes over and you focus on the pleasurable feelings his rough thrusting provides.');
-    (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
-    qspCall(s, 'arousal', 'anal_finger', 10, 'sub', 'incest');
-    qspCall(s, 'arousal', 'anal', (-10), 'sub', 'incest');
-    qspCall(s, 'stat', '');
-    (s as any).fathercum = Math.floor(Math.random() * 2) + 1;
-    if (((s as any).fathercum ?? 0) === 1) {
-      qspCall(s, 'boyStat', 'A28');
-      qspCall(s, 'cum_call', 'anus', 'A28', 1);
+    (st as any).anal_slip = ((st as any).anal_slip ?? 0) + (4);
+    qspCall(st, 'arousal', 'anal_finger', 10, 'sub', 'incest');
+    qspCall(st, 'arousal', 'anal', (-10), 'sub', 'incest');
+    qspCall(st, 'stat', '');
+    (st as any).fathercum = (Math.floor(Math.random() * 2) + 1);
+    if (((st as any).fathercum ?? 0) === 1) {
+      qspCall(st, 'boyStat', 'A28');
+      qspCall(st, 'cum_call', 'anus', 'A28', 1);
       // TODO-QSP: dynamic text: As your mind tries to process all the sensations, you suddenly feel an intense w...
-      scene.text(`As your mind tries to process all the sensations, you suddenly feel an intense warmth spreading inside you. Your stepfather pulls out his cock, and a slow trail of his cum slowly drips out of you and onto the carpet. Apparently the feelings of your tight ass milking his cock were too much for him to be able to hold out any longer. You slightly regret not getting to orgasm yourself, but then realize your teasing is what got him into this riled up state in the first place, and can't really blame him. You would feel awkward asking him to finish you off after he has already had his fun, and just suffer in silence. He gets back up on his feet and looks down at your sprawled position on the floor. Your legs are all wobbly when you try to stand up and he helps you, but then has another request in return: "Show me your asshole, ${((s as any).pcs_nickname || '')}."`);
+      scene.text(`As your mind tries to process all the sensations, you suddenly feel an intense warmth spreading inside you. Your stepfather pulls out his cock, and a slow trail of his cum slowly drips out of you and onto the carpet. Apparently the feelings of your tight ass milking his cock were too much for him to be able to hold out any longer. You slightly regret not getting to orgasm yourself, but then realize your teasing is what got him into this riled up state in the first place, and can't really blame him. You would feel awkward asking him to finish you off after he has already had his fun, and just suffer in silence. He gets back up on his feet and looks down at your sprawled position on the floor. Your legs are all wobbly when you try to stand up and he helps you, but then has another request in return: "Show me your asshole, ${((st as any).pcs_nickname || '')}."`);
       scene.actions([
         { label: 'You show him your used ass', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/pc/body/cum/cumanal/cumanal9.jpg');
     // TODO-QSP: dynamic text: Spreading your ass cheeks with your hands, you give him a nice view of his load ...
-    scene.text(`Spreading your ass cheeks with your hands, you give him a nice view of his load in your sphincter. Your stepfather is fascinated and watches his cum slowly drip down, giving your ass a few more slaps for good measure. "Very nice, ${((s as any).pcs_nickname || '')}… you can be my little slut any time you like", he chuckles as he goes to the bathroom to quickly clean up, leaving you to yourself.`);
-    qspCall(s, 'arousal', 'end');
+    scene.text(`Spreading your ass cheeks with your hands, you give him a nice view of his load in your sphincter. Your stepfather is fascinated and watches his cum slowly drip down, giving your ass a few more slaps for good measure. "Very nice, ${((st as any).pcs_nickname || '')}… you can be my little slut any time you like", he chuckles as he goes to the bathroom to quickly clean up, leaving you to yourself.`);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -684,12 +684,12 @@ function enterFatherSexAct2(s: GameState, scene: SceneBuilder): void {
       scene.text('From his increasingly intense and erratic thrusts, you can tell your stepfather is about to cum hard.');
       scene.actions([
         { label: 'Take his load on your face', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A28');
-    qspCall(s, 'cum_call', 'face', 'A28', 1);
-    (s as any).pcs_horny = 0;
+    qspCall(st, 'boyStat', 'A28');
+    qspCall(st, 'cum_call', 'face', 'A28', 1);
+    (st as any).pcs_horny = 0;
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim7.jpg');
     scene.text('You slide off of his cock and quickly grab it with your hand to finish him off. You place your other hand on your pussy and rub your clit furiously as you masturbate him. Right when you feel your own orgasm wash over you, jets of cum hit your face. After your orgasm, you fall down on the floor and need a bit to collect yourself. Your stepfather playfully squeezes your ass cheeks with a nod of approval and then goes to the bathroom to clean up, leaving you alone in the room.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Stand up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

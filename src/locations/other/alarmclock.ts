@@ -16,20 +16,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    (s as any).bud1 = 0;
-    (s as any).bud2 = 0;
-    (s as any).bud3 = 0;
-    (s as any).bud4 = 0;
-    (s as any).numbud = 0;
-    qspGoto(s, 'alarmclock', 'fin');
+    (st as any).bud1 = 0;
+    (st as any).bud2 = 0;
+    (st as any).bud3 = 0;
+    (st as any).bud4 = 0;
+    (st as any).numbud = 0;
+    qspGoto(st, 'alarmclock', 'fin');
   } },
     { label: 'Clear time display', handler: (st: GameState) => {
-    (s as any).bud1 = 0;
-    (s as any).bud2 = 0;
-    (s as any).bud3 = 0;
-    (s as any).bud4 = 0;
-    (s as any).numbud = 0;
-    qspGoto(s, 'alarmclock', 'start');
+    (st as any).bud1 = 0;
+    (st as any).bud2 = 0;
+    (st as any).bud3 = 0;
+    (st as any).bud4 = 0;
+    (st as any).numbud = 0;
+    qspGoto(st, 'alarmclock', 'start');
   } },
   ]);
   scene.build();
@@ -54,7 +54,7 @@ function enterGetWeekendDisplay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBaseAlarmclockText(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = 'Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027alarmclock\\u0027, \\u0027start\\u0027); return false;">alarm clock</a> is set to ' + qspFunc(s, 'alarmclock', 'get_week_display') + ' during the week and ' + qspFunc(s, 'alarmclock', 'get_weekend_display') + ' during the weekend. It is currently turned ' + ((((s as any).alarmVars ?? 0)?.['alarmOn'] === 0) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\\u0027alarmOn\\u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">OFF</a>.') : ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})\\u0027alarmOn\\u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">ON</a>.'));
+  (s as any).result = 'Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027alarmclock/u0027, /u0027start/u0027); return false;">alarm clock</a> is set to ' + qspFunc(s, 'alarmclock', 'get_week_display') + ' during the week and ' + qspFunc(s, 'alarmclock', 'get_weekend_display') + ' during the weekend. It is currently turned ' + ((((s as any).alarmVars ?? 0)?.['alarmOn'] === 0) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})/u0027alarmOn/u0027 = s.1; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">OFF</a>.') : ('<a href="#" onclick="window.__gameStore.setState((s) => { (s.alarmVars ??= {})/u0027alarmOn/u0027 = s.0; return s; }); window.__gameStore.getState().doGoto(window.__gameStore.getState().prevLoc, window.__gameStore.getState().prevArg); return false;">ON</a>.'));
   // TODO-QSP: end
   scene.build();
 }
@@ -359,7 +359,7 @@ function enterBuildTable(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).numbud ?? 0))) {
     (s as any).alarm_html = '<u>' + ((s as any).bud1 ?? 0) + '</u>' + ((s as any).bud2 ?? 0) + ' : ' + ((s as any).bud3 ?? 0) + '' + ((s as any).bud4 ?? 0) + '';
   }
-  (s as any).numbud_table = '<tr><td colspan=3 align="center"><b><font size="+2"><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027alarmclock\\u0027, \\u0027clear\\u0027); return false;">Clear</a></font></b></td></tr>';
+  (s as any).numbud_table = '<tr><td colspan=3 align="center"><b><font size="+2"><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027alarmclock/u0027, /u0027clear/u0027); return false;">Clear</a></font></b></td></tr>';
   // TODO-QSP: $numbud_table += '<tr><<$num_html>><a href="exec:gt ''alarmclock'', ''1''">1<<$html_num>>'
   // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''2''">2<<$html_num>>'
   // TODO-QSP: $numbud_table += '<<$num_html>><a href="exec:gt ''alarmclock'', ''3''">3<<$html_num>></tr>'

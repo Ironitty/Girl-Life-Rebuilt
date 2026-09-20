@@ -64,15 +64,15 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
       scene.actions([
         { label: 'Mail the payment for your legal fines [+$func(\'money\', \'get_debt_cost_string\', p...]', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).policeQW ?? 0)?.['legal_fine'], 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford_debt', ((st as any).policeQW ?? 0)?.['legal_fine'], 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
-      ((s as any).policeQW = (s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
-      ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = 0;
-      ((s as any).policeQW = (s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
+      ((st as any).policeQW = (st as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
+      ((st as any).policeQW = (st as any).policeQW ?? {})['fine_deadline'] = 0;
+      ((st as any).policeQW = (st as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspCall(st, 'stat', '');
       scene.text('You put the full amount of your outstanding fine/s in the envelope and seal it. No more than 5 minutes later you\'ve posted the letter and are back.');
       scene.actions([
         { label: 'Done', handler: (st: GameState) => {
@@ -99,10 +99,10 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_fine = 250 * (Math.floor(Math.random() * 6) + 5);
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
           if (((s as any).week ?? 0) < 6) {
-            // TODO-QSP: dynamic text: Going through the letter you read that you've failed to pay your fine. The court...
+            // TODO-QSP: dynamic text: Going through the letter you read that you''ve failed to pay your fine. The cour...
             scene.text('Going through the letter you read that you\'ve failed to pay your fine. The court given you another \' + $func(\'money\', \'string_price\', temp_fine) + \' fine and has graciously decided to give you a week to pay your fine in full.');
           } else {
-            // TODO-QSP: dynamic text: Going through the letter you read that you've failed to pay your fine. The court...
+            // TODO-QSP: dynamic text: Going through the letter you read that you''ve failed to pay your fine. The cour...
             scene.text('Going through the letter you read that you\'ve failed to pay your fine. The court given you another \' + $func(\'money\', \'string_price\', temp_fine) + \' fine and has graciously decided to give you until Monday, a week from now, to pay your fine in full.');
           }
           scene.text('<i>Failure to pay the fine in full with in a week from now, will have dire consequences for the accused.</i> Your heart drops as you read that line…');
@@ -124,15 +124,15 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
         scene.actions([
           { label: 'Mail the payment for your legal fine/s [+$func(\'money\', \'get_debt_cost_string\', p...]', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford_debt', ((s as any).policeQW ?? 0)?.['legal_fine'], 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford_debt', ((st as any).policeQW ?? 0)?.['legal_fine'], 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
-      ((s as any).policeQW = (s as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
-      ((s as any).policeQW = (s as any).policeQW ?? {})['fine_deadline'] = 0;
-      ((s as any).policeQW = (s as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'money', 'debt_pay', 'policeQW[\'legal_fine\']', 0, 'cash');
+      ((st as any).policeQW = (st as any).policeQW ?? {})['missed_fine_deadlines'] = 0;
+      ((st as any).policeQW = (st as any).policeQW ?? {})['fine_deadline'] = 0;
+      ((st as any).policeQW = (st as any).policeQW ?? {})['arrest_gameover_flag'] = 0;
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspCall(st, 'stat', '');
       scene.text('You put the full amount of your outstanding fine/s in the envelope and seal it. No more than 5 minutes later you\'ve posted the letter and are back.');
       scene.actions([
         { label: 'Done', handler: (st: GameState) => {
@@ -163,10 +163,10 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_fine = 500 * (Math.floor(Math.random() * 6) + 5);
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
           if (((s as any).week ?? 0) < 6) {
-            // TODO-QSP: dynamic text: Going through the letter you read that you've missed your court hearing. A new c...
+            // TODO-QSP: dynamic text: Going through the letter you read that you''ve missed your court hearing. A new ...
             scene.text('Going through the letter you read that you\'ve missed your court hearing. A new court hearing has been scheduled a week from now and you\'ve been fined \' + $func(\'money\', \'string_price\', temp_fine) + \'.');
           } else {
-            // TODO-QSP: dynamic text: Going through the letter you read that you've missed your court hearing. A new c...
+            // TODO-QSP: dynamic text: Going through the letter you read that you''ve missed your court hearing. A new ...
             scene.text('Going through the letter you read that you\'ve missed your court hearing. A new court hearing has been scheduled on Monday, a week from now and you\'ve been fined \' + $func(\'money\', \'string_price\', temp_fine) + \'.');
           }
           scene.text('<i>Failing to appear in court will have dire consequences for the accused.</i> Your heart drops as you read that line…');

@@ -231,10 +231,10 @@ function enterCoolkid(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head. "I like hanging out with you guys, but I don\'t think that\'s a good idea."');
     scene.text('Vicky frowns but nods. "Suit yourself then." With that, she turns and leaves. Andrey just shakes his head at you and does the same.');
     scene.text('Stasya gives you a once-over. "I told you guys she wasn\'t cool enough! What a loser!" With that, she follows the others, leaving you behind to wonder if you made the right choice.');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.floor(Math.random() * 51) + 600;
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cool kids', (-5)]; enterGroupRelChange(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = (Math.floor(Math.random() * 51) + 600);
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'cool kids', (-5)]; enterGroupRelChange(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -245,26 +245,26 @@ function enterCoolkid(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
     scene.text('You nod your head. "Yes, I would love to! I love hanging out with you guys!"');
     scene.text('Vicky gives you a hug. Once she lets go, Andrey wraps an arm around your shoulder and starts leading you to your next class. "From now on, you\'re one of us." Stasya gives you a friendly smile as the four of you walk to your next class.');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min(Math.floor(Math.random() * 51) + 675, qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min(Math.floor(Math.random() * 51) + 625, qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
-    if (((s as any).grupTipe ?? 0) === 2) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.floor(Math.random() * 101) + 500;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 675), qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 625), qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
+    if (((st as any).grupTipe ?? 0) === 2) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = (Math.floor(Math.random() * 101) + 500);
     }
-    if (((s as any).grupTipe ?? 0) === 3) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.floor(Math.random() * 101) + 500;
+    if (((st as any).grupTipe ?? 0) === 3) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = (Math.floor(Math.random() * 101) + 500);
     }
-    if (((s as any).grupTipe ?? 0) === 4) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 101) + 500;
+    if (((st as any).grupTipe ?? 0) === 4) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 101) + 500);
     }
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
-    (s as any).grupTipe = 1;
-    ((s as any).grupTipe = (s as any).grupTipe ?? {})['joined_cool'] = 1;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cool kids', 5]; enterGroupRelChange(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
+    (st as any).grupTipe = 1;
+    ((st as any).grupTipe = (st as any).grupTipe ?? {})['joined_cool'] = 1;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'cool kids', 5]; enterGroupRelChange(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -341,10 +341,10 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head. "I like hanging out with you guys, but I don\'t think that\'s a good idea."');
     scene.text('Lariska frowns, then nods. "Suit yourself." With that, she turns and leaves.');
     scene.text('Lina gives you a once-over. "Well, at least Christina will be happy." With that, she follows after Lariska, leaving you behind to wonder if you made the right choice.');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.floor(Math.random() * 51) + 600;
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'jocks', (-5)]; enterGroupRelChange(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = (Math.floor(Math.random() * 51) + 600);
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'jocks', (-5)]; enterGroupRelChange(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -355,26 +355,26 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/joinjock.jpg');
     scene.text('You nod your head. "Yes, I would love to! I love hanging out with you guys!"');
     scene.text('Lariska gives you a hug. "From now on, you are one of us." Lina gives you a friendly smile, and you all walk to your next class.');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min(Math.floor(Math.random() * 51) + 675, qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min(Math.floor(Math.random() * 51) + 650, qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
-    if (((s as any).grupTipe ?? 0) === 1) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.floor(Math.random() * 101) + 500;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 675), qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = Math.min((Math.floor(Math.random() * 51) + 650), qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
+    if (((st as any).grupTipe ?? 0) === 1) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = (Math.floor(Math.random() * 101) + 500);
     }
-    if (((s as any).grupTipe ?? 0) === 3) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.floor(Math.random() * 101) + 500;
+    if (((st as any).grupTipe ?? 0) === 3) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = (Math.floor(Math.random() * 101) + 500);
     }
-    if (((s as any).grupTipe ?? 0) === 4) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 101) + 500;
+    if (((st as any).grupTipe ?? 0) === 4) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 101) + 500);
     }
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
-    (s as any).grupTipe = 2;
-    ((s as any).grupTipe = (s as any).grupTipe ?? {})['joined_jock'] = 1;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'jocks', 5]; enterGroupRelChange(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
+    (st as any).grupTipe = 2;
+    ((st as any).grupTipe = (st as any).grupTipe ?? {})['joined_jock'] = 1;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'jocks', 5]; enterGroupRelChange(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -449,10 +449,10 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/nerdslut.jpg');
     scene.text('You shake your head. "I like hanging out with you guys, but I\'m just not interested in doing a game night. Sorry."');
     scene.text('Artem frowns and then nods. "Oh, okay. Well, maybe some other time then…" With that, he turns, and the rest follow, looking a little disappointed. Looks like they were hoping you would join them. It makes you feel a little bad and wonder if you made the right choice.');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.floor(Math.random() * 51) + 600;
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nerds', (-5)]; enterGroupRelChange(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = (Math.floor(Math.random() * 51) + 600);
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'nerds', (-5)]; enterGroupRelChange(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -463,32 +463,32 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/joinnerd.jpg');
     scene.text('You nod your head. "Yes, I would love to hang out with you guys! A game night sounds like a lot of fun."');
     // TODO-QSP: dynamic text: They all start speaking at once, excited about you joining them. Feofan then spe...
-    scene.text(`They all start speaking at once, excited about you joining them. Feofan then speaks up. "That's great, ${((s as any).pcs_nickname || '')}! Meet us at the community center library tonight at 20:00. See you then." Then, they all start leaving and going to class, saying they look forward to seeing you tonight.`);
-    if (((s as any).grupTipe ?? 0)?.['joined_nerds'] === 0) {
-      ((s as any).grupTipe = (s as any).grupTipe ?? {})['joined_nerds'] = 1;
+    scene.text(`They all start speaking at once, excited about you joining them. Feofan then speaks up. "That's great, ${((st as any).pcs_nickname || '')}! Meet us at the community center library tonight at 20:00. See you then." Then, they all start leaving and going to class, saying they look forward to seeing you tonight.`);
+    if (((st as any).grupTipe ?? 0)?.['joined_nerds'] === 0) {
+      ((st as any).grupTipe = (st as any).grupTipe ?? {})['joined_nerds'] = 1;
     }
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min(Math.floor(Math.random() * 1) + 625, qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
-    if (((s as any).grupTipe ?? 0) === 1) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.floor(Math.random() * 101) + 500;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 1) + 625), qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
+    if (((st as any).grupTipe ?? 0) === 1) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = (Math.floor(Math.random() * 101) + 500);
     }
-    if (((s as any).grupTipe ?? 0) === 2) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.floor(Math.random() * 101) + 500;
+    if (((st as any).grupTipe ?? 0) === 2) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = (Math.floor(Math.random() * 101) + 500);
     }
-    if (((s as any).grupTipe ?? 0) === 4) {
-      ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 101) + 500;
+    if (((st as any).grupTipe ?? 0) === 4) {
+      ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 101) + 500);
     }
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
-    (s as any).grupTipe = 3;
-    ((s as any).grupTipe = (s as any).grupTipe ?? {})['joined_nerd'] = 1;
-    ((s as any).nerd_game = (s as any).nerd_game ?? {})['invite_day'] = ((s as any).daystart ?? 0);
-    ((s as any).nerd_game = (s as any).nerd_game ?? {})['game_day'] = ((s as any).daystart ?? 0);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nerds', 5]; enterGroupRelChange(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
+    (st as any).grupTipe = 3;
+    ((st as any).grupTipe = (st as any).grupTipe ?? {})['joined_nerd'] = 1;
+    ((st as any).nerd_game = (st as any).nerd_game ?? {})['invite_day'] = ((st as any).daystart ?? 0);
+    ((st as any).nerd_game = (st as any).nerd_game ?? {})['game_day'] = ((st as any).daystart ?? 0);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'nerds', 5]; enterGroupRelChange(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -524,7 +524,7 @@ function enterNerdWarn2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
   scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up and giving you friendly smiles. "${((s as any).pcs_nickname || '')}, we talked about this, but you're still acting out," Artem says with disdain.`);
   scene.text('Before you can answer, Julia chimes in. "Yeah, we\'re all worried about you. What\'s wrong? Is there anything we can do to help? Please just ask."');
-  // TODO-QSP: dynamic text: You are again interrupted before you can speak. "<<$pcs_nickname>>, I don't know...
+  // TODO-QSP: dynamic text: You are again interrupted before you can speak. "<<$pcs_nickname>>, I don''t kno...
   scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname || '')}, I don't know what's wrong, but if you don't want to hang out with us, just say so. In any case, we hope things get better for you." Deofan says before the bell rings, and you all hurry to class. You can't help but worry. Your recent activity has made the other nerds question whether you belong in the group. You better fix things fast or risk being kicked out…`);
   // TODO-QSP: end
   scene.actions([
@@ -563,10 +563,10 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/nerdslut.jpg');
     scene.text('You shake your head. "I like hanging out with you guys, but I\'m just not in the partying mood tonight."');
     scene.text('Vitek\'s eyes darken. "What, are you too good for us all of a sudden? Well, fuck you then!" With that, he storms away. Lena looks at you with a derogatory stare before following her brother, leaving you behind to wonder if you made the right choice.');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 600;
-    ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gopniks', (-5)]; enterGroupRelChange(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 51) + 600);
+    ((st as any).old_grupvalue = (st as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'gopniks', (-5)]; enterGroupRelChange(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -578,10 +578,10 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod your head. "Yeah, that sounds great. I love hanging out and maybe getting a little wasted."');
     scene.text('Vitek smirks and glances at Lena, leaving you wondering what they mean. "Lena will let you know where and when." With that, he turns and walks off, but you can\'t help but feel you missed something, which makes you feel a little nervous.');
     scene.text('Lena leans over. "Meet Lera and me after school at the apartment garages at eight this evening." She smiles like she knows something you don\'t, but she briskly walks away without a further word or letting you ask anything.');
-    (s as any).gopnik_initiation = 1;
-    (s as any).gopnik_initiation_day = ((s as any).daystart ?? 0);
-    qspCall(s, 'calendar', 'add', 'gopnik_initiation_event');
-    qspCall(s, 'stat', '');
+    (st as any).gopnik_initiation = 1;
+    (st as any).gopnik_initiation_day = ((st as any).daystart ?? 0);
+    qspCall(st, 'calendar', 'add', 'gopnik_initiation_event');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).school_period = 0;
@@ -634,7 +634,7 @@ function enterGopnikSlutWarn(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Pauline, Lena, Lera and Dan. Dan stands uncomfortably close and wraps an arm around your hip before pulling you closer. "Hey, slut. Sucked any cocks today? I can give you another one…" he says with a laugh.');
   scene.text('Before you can answer, Lera chimes in. "Maybe she just wants to be a slut."');
   scene.text('You are again interrupted before you can speak. "We don\'t need another Nush. One slut is enough." Pauline says in reply.');
-  // TODO-QSP: dynamic text: Lera fires back. "Hey, she isn't a slut! She just likes to fuck. It's not like s...
+  // TODO-QSP: dynamic text: Lera fires back. "Hey, she isn''t a slut! She just likes to fuck. It''s not like...
   scene.text(`Lera fires back. "Hey, she isn't a slut! She just likes to fuck. It's not like she lets just anyone fuck her. Not like ${((s as any).pcs_nickname || '')} here." She gives Dan a pointed look, which makes him give Lera a sour look in return.`);
   scene.text('Pauline rolls her eyes. "Whatever. If you want to lick her ass so bad, go ahead and do it, you carpet muncher."');
   scene.text('Before Lera can reply, Lena steps between the girls. "That\'s enough. We\'re not here to bitch about this shit." She then turns to you. "And you, chill the fuck out and stop being the town bicycle, or you\'re out, got it?" They then turn and walk off, still chatting as the bell rings. You can\'t help but worry. Your recent activity has made the other Gopnik question whether you belong in the group. You better fix things fast, or you risk being kicked out…');
@@ -653,9 +653,9 @@ function enterCoolkidOutcast(s: GameState, scene: SceneBuilder): void {
   scene.text('"Now you\'re where you always belonged. With the other losers." he says before leaving as well. You hear the other students laughing as you look around. Having been publicly disavowed by your clique, the other students are ready to prey on your weakness and either start mocking you or actively look away. You grab your stuff and hurry to your next class.');
   scene.text('<font color = red>You have been kicked out of your social group and become an outcast.</font>');
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = 0;
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min(Math.floor(Math.random() * 51) + 650, qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min(Math.floor(Math.random() * 51) + 700, qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 650), qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min((Math.floor(Math.random() * 51) + 700), qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
@@ -681,10 +681,10 @@ function enterJockOutcast(s: GameState, scene: SceneBuilder): void {
     scene.text('Christina, Lariska and Lina walk up to you. Lariska and Lina look at you like you did something wrong while Christina smirks. She shoves you hard up against your locker. "What are you doing here bitch? You belong with the loser crowd now, so fuck off." She laughs, and Lariska and Lina join in openly mocking you. "Stay away from us, or I\'ll show you what happens to little bitches who don\'t know their place," Christina warns before they turn and walk away. Having been publicly disavowed by your clique, the other students are ready to prey on your weakness, and either start mocking you or actively look away. You grab your stuff and hurry to your next class.');
   }
   scene.text('<font color = red>You have been kicked out of your social group and become an outcast.</font>');
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = 0;
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min(Math.floor(Math.random() * 51) + 650, qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min(Math.floor(Math.random() * 51) + 675, qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 650), qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min((Math.floor(Math.random() * 51) + 675), qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
@@ -706,10 +706,10 @@ function enterNerdOutcast(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/events/outcast.jpg');
   scene.text('You try to find your friends, but most seem to be hiding or hurry off when you approach. You finally manage to catch up to Gerasim, but as you\'re about to say something, he turns to you. "Please go away. I can\'t be seen hanging out with you. I\'ve got enough problems without you making them worse. None of us wants to be around you anymore." He sighs when he sees the dejected look on your face. "I\'m sorry, I really am, but this is your fault. Please just leave me alone." The last part he says loudly enough for others to hear, which causes some of the other students to laugh at you as he wheels himself away from you decidedly. As you look around, most of the other students either start mocking you or actively look away. Finally, you grab your stuff and hurry to your next class.');
   scene.text('<font color = red>You have been kicked out of your social group and become an outcast.</font>');
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min(Math.floor(Math.random() * 51) + 650, qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 650), qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = 0;
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min(Math.floor(Math.random() * 51) + 625, qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.min((Math.floor(Math.random() * 51) + 625), qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" }));
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[3] = qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" });
@@ -731,9 +731,9 @@ function enterGopnikOutcast(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/events/outcast.jpg');
   scene.text('As you approach your locker, Pauline, Lera, and Lena walk up next to you. Pauline looks like she\'s preparing to beat you up, while Lera looks at you with disgust. Pauline shakes her head at you and finally speaks up. "I don\'t know what your problem is, but apparently, hanging out, partying and having a good time wasn\'t enough for you. Nooo, you had to become a spineless cunt afraid of her own shadow, so stay the fuck away from us, or I\'ll beat the shit out of you!" With that, Pauline shoves you against your locker and walks away. Lena gives you a final look of disgust and pushes you again while Lera gives you a few parting words before walking away. "You\'re so pathetic. Even the nerds will kick your ass now." Having been publicly disavowed by your clique, the other students are ready to prey on your weakness, and either start mocking you or actively look away. You grab your stuff and hurry to your next class.');
   scene.text('<font color = red>You have been kicked out of your social group and become an outcast.</font>');
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min(Math.floor(Math.random() * 51) + 625, qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min(Math.floor(Math.random() * 51) + 650, qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min(Math.floor(Math.random() * 51) + 600, qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = Math.min((Math.floor(Math.random() * 51) + 625), qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = Math.min((Math.floor(Math.random() * 51) + 650), qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" }));
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = Math.min((Math.floor(Math.random() * 51) + 600), qspUntranslated(s, "grupvalue[3]", { location: "gschool_socialchg" }));
   ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = 0;
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[1] = qspUntranslated(s, "grupvalue[1]", { location: "gschool_socialchg" });
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[2] = qspUntranslated(s, "grupvalue[2]", { location: "gschool_socialchg" });
@@ -758,7 +758,7 @@ function enterGopnikMiss(s: GameState, scene: SceneBuilder): void {
   scene.text('Just as you approach your locker, Lena shoves you against it. "Where the fuck were you bitch? We waited almost an hour for you!"');
   scene.text('You start to answer, but she shoves you again before you can even get a single word out. "It doesn\'t matter. We changed our mind about you. You\'re not welcome. So get lost." she snarls before storming off. If you try to earn their respect again, they will give you a second chance.');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = Math.floor(Math.random() * 51) + 675;
+  ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = (Math.floor(Math.random() * 51) + 675);
   ((s as any).old_grupvalue = (s as any).old_grupvalue ?? {})[4] = qspUntranslated(s, "grupvalue[4]", { location: "gschool_socialchg" });
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -772,25 +772,25 @@ function enterGopnikMiss(s: GameState, scene: SceneBuilder): void {
 
 function enterGroupRelChange(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = 0;
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = ((s as any).locArgs?.[1] ?? 0);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'cool kids') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'cool kids') {
       ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = 1;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'jocks') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'jocks') {
         ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = 2;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'nerds') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'nerds') {
           ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = 3;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'gopniks') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'gopniks') {
             ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = 4;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'outcasts') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'outcasts') {
               ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = 5;
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'teachers') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'teachers') {
                 ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['group'] = 6;
               }
             }
@@ -801,10 +801,10 @@ function enterGroupRelChange(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['change'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['gender'] = 0;
-  if (((s as any).locArgs?.[3] ?? 0) === 'male'  ||  ((s as any).locArgs?.[3] ?? 0) === 'boy') {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 'male'  ||  Number((s as any).locArgs?.[3] ?? 0) === 'boy') {
     ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['gender'] = 1;
   } else {
-    if (((s as any).locArgs?.[3] ?? 0) === 'female'  ||  ((s as any).locArgs?.[3] ?? 0) === 'girl') {
+    if (Number((s as any).locArgs?.[3] ?? 0) === 'female'  ||  Number((s as any).locArgs?.[3] ?? 0) === 'girl') {
       ((s as any).temp_gsc_grl = (s as any).temp_gsc_grl ?? {})['gender'] = 2;
     }
   }

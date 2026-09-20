@@ -42,7 +42,7 @@ function enterDemo1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPalec1(s: GameState, scene: SceneBuilder): void {
-  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 21) + 10);
+  (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 21) + 10));
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   (s as any).sosedBalDay = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
@@ -77,7 +77,7 @@ function enterNiz(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Enjoy the view', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 19) {
+    if (((st as any).hour ?? 0) >= 8  &&  ((st as any).hour ?? 0) <= 19) {
       scene.img('images/locations/city/residential/apartment/bal1.jpg');
     } else {
       scene.img('images/locations/city/residential/apartment/bal2.jpg');
@@ -115,10 +115,10 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Flip him off', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'exhib', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'balkon2', 'palec1');
+    qspCall(st, 'willpower', 'exhib', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'balkon2', 'palec1');
   } },
       ]);
     }
@@ -136,10 +136,10 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Show off your body', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'exhib', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'balkon2', 'demo1');
+    qspCall(st, 'willpower', 'exhib', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'balkon2', 'demo1');
   } },
       ]);
     }
@@ -153,42 +153,42 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
 
 function enterMasopt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) < 30) {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   }
   qspCall(s, 'mood', 'raise', 'small');
   scene.img('images/locations/city/residential/apartment/sex/balcony_dildo.jpg');
   if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1) {
     scene.actions([
       { label: 'Rub your clit with the dildo', handler: (st: GameState) => {
-    qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', Math.floor(Math.random() * 3) + 0);
-    scene.img(`images/locations/city/residential/apartment/sex/balcony_dildo${Math.floor(Math.random() * 2) + 1}.jpg`);
+    qspCall(st, 'arousal_funcs', 'stretch', 'vaginal', (Math.floor(Math.random() * 3) + 0));
+    scene.img(`images/locations/city/residential/apartment/sex/balcony_dildo${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You start rubbing yourself, gradually building up a wetness between your legs. Feeling aroused enough, you take out your dildo and start teasing your clit by gently rubbing it.');
     scene.text('You then slowly push the head inside your pussy and start slowly fucking yourself, gradually picking up the pace. The feeling of your pussy being stretched out is overwhelming and you let out a quiet whimper as you continue fucking yourself.');
-    (s as any).orgasm_or = 'yes';
-    (s as any).orgasm_txt = 'After pleasuring yourself intensely with the dildo for a few minutes, you try to keep your voice down as you reach orgasm.';
-    qspCall(s, 'arousal', 'vaginal_dildo', 10, 'exhibitionism');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    (st as any).orgasm_txt = 'After pleasuring yourself intensely with the dildo for a few minutes, you try to keep your voice down as you reach orgasm.';
+    qspCall(st, 'arousal', 'vaginal_dildo', 10, 'exhibitionism');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['balkon', 'start'] },
     ]);
   } },
       { label: 'Play with your ass', handler: (st: GameState) => {
-    qspCall(s, 'arousal_funcs', 'stretch', 'anal', Math.floor(Math.random() * 3) + 0);
+    qspCall(st, 'arousal_funcs', 'stretch', 'anal', (Math.floor(Math.random() * 3) + 0));
     scene.img('images/locations/city/residential/apartment/sex/balcony_anal1.mp4');
     scene.text('You start rubbing yourself, gradually building up a wetness between your legs. As you play with your clit, your horniness takes over and you start fantasizing about using a different hole today…');
     scene.text('You brush one of your wet fingers against your anus before you take a deep breath and insert it, probing your ass as a wave of pleasure flows through you.');
-    qspCall(s, 'arousal', 'anal_finger', 5, 'exhibitionism');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal_finger', 5, 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Use the dildo', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_anal2.mp4');
     scene.text('As you\'re pleasuring yourself with your finger, you grab your dildo and start sucking it, trying to lube it as much as you can.');
     scene.text('Not able to contain yourself, you remove your finger and slowly insert the dildo into your ass. You feel discomfort at first, but the pleasant feeling of the dildo penetrating you makes you forget all about it.');
     scene.text('As your anus relaxes, you start thrusting the dildo at a faster speed, gradually feeling your arousal growing.');
-    (s as any).orgasm_or = 'yes';
-    (s as any).orgasm_txt = 'Within seconds, an orgasm overwhelms you in an intense wave of pure pleasure.';
-    qspCall(s, 'arousal', 'anal_dildo', 5, 'exhibitionism');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    (st as any).orgasm_txt = 'Within seconds, an orgasm overwhelms you in an intense wave of pure pleasure.';
+    qspCall(st, 'arousal', 'anal_dildo', 5, 'exhibitionism');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Go back', goto: ['balkon', 'start'] },
     ]);
@@ -200,8 +200,8 @@ function enterMasopt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Masturbate', handler: (st: GameState) => {
-    qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', Math.floor(Math.random() * 2) + 0);
-    qspGoto(s, 'balkon2', 'finger');
+    qspCall(st, 'arousal_funcs', 'stretch', 'vaginal', (Math.floor(Math.random() * 2) + 0));
+    qspGoto(st, 'balkon2', 'finger');
   } },
   ]);
   scene.build();
@@ -217,32 +217,32 @@ function enterFinger(s: GameState, scene: SceneBuilder): void {
     { label: 'Rub your clit', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-2.jpg');
     scene.text('You run your wet fingers down your body and stop at your pussy lips. You slowly start rubbing your clit as you feel the first surge of pleasure consuming you.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'clit_finger', 3, 'masturbate', 'exhibitionism');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'clit_finger', 3, 'masturbate', 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Insert your fingers', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-3.jpg');
     scene.text('Your clit is now swelling with desire, and you can\'t ignore it any longer. You take your middle finger and insert it into your pussy.');
     scene.text('As you ease into it, you close your eyes as you speed up your movements.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'vaginal_finger', 5, 'masturbate', 'exhibitionism');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'vaginal_finger', 5, 'masturbate', 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Open your eyes', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-4.jpg');
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
-      qspCall(s, 'arousal', 'flash', 2);
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
+      qspCall(st, 'arousal', 'flash', 2);
       scene.text('When you open your eyes, you notice one of your neighbors peering out the window at you.');
       scene.actions([
         { label: 'Give him a show', goto: ['balkon2', 'finger_solo'] },
       ]);
     } else {
-      (s as any).orgasm_or = 'yes';
-      (s as any).orgasm_txt = 'Overtaken by the thrill of the risk of being caught in such a compromising act and the diligent work of your skilled fingers, you bring yourself to to an intense orgasm. You grip the railing for support as your juices squirt out of you.';
+      (st as any).orgasm_or = 'yes';
+      (st as any).orgasm_txt = 'Overtaken by the thrill of the risk of being caught in such a compromising act and the diligent work of your skilled fingers, you bring yourself to to an intense orgasm. You grip the railing for support as your juices squirt out of you.';
       scene.text('Your orgasm is so intense that you\'re seeing stars and it almost feels like you\'re going to pass out. You somehow manage to keep your composure before you quickly head back inside.');
-      qspCall(s, 'arousal', 'clit_finger', 2, 'masturbate');
-      qspCall(s, 'arousal', 'end');
+      qspCall(st, 'arousal', 'clit_finger', 2, 'masturbate');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Head back inside', handler: (st: GameState) => {
     qspCall(st, 'dina', 'brodils');
@@ -269,42 +269,42 @@ function enterFingerSolo(s: GameState, scene: SceneBuilder): void {
     { label: 'Keep it up', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-6.jpg');
     scene.text('Slowly pacing the speed at which your fingers enter your pussy, you feel your tight walls becoming wet and sticky with your own juices as they drip onto the ground.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Faster', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-7.jpg');
     scene.text('You pick up the pace as you fantasize about being taken like this in the open, your finger frantically sliding in and out of your soaking wet pussy with ease.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Faster', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-8.jpg');
     scene.text('You\'re way too horny to pace yourself now and insert another finger, expanding the pleasant feeling.');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Just a little more', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-9.jpg');
     scene.text('By now, you\'re loudly moaning, not caring if anyone hears you as your fingers hit your g-spot. You make one last effort and thrust your fingers deep inside you as you feel a…');
-    (s as any).orgasm_or = 'no';
-    qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'no';
+    qspCall(st, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Climax', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/apartment/sex/balcony_orgasm.jpg');
-    (s as any).orgasm_or = 'yes';
-    (s as any).orgasm_txt = 'Within seconds, your toes curl as you feel a wave of ecstasy sweeping all over your body, your legs and hands shaking in delight of a possibility that someone might have noticed you.';
+    (st as any).orgasm_or = 'yes';
+    (st as any).orgasm_txt = 'Within seconds, your toes curl as you feel a wave of ecstasy sweeping all over your body, your legs and hands shaking in delight of a possibility that someone might have noticed you.';
     scene.text('After a few seconds, you remove your fingers from your pussy, which is still pulsating from the intense orgasm.');
-    qspCall(s, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal_finger', 3, 'masturbate', 'exhibitionism');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/apartment/sex/balcony_mas1-10.jpg');
     scene.text('As you come to your senses, you can hear some of your neighbours applauding your performance. You decide giving them one last show as you stand up and slowly suck your juices from your fingers, savouring the memory.');
     scene.text('As you finish, you give everyone a playful wave as you get dressed.');

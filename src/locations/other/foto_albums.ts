@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -26,11 +24,11 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
   (s as any).model_i = 1;
   // TODO-QSP: :model_loop
   if (((s as any).model ?? 0)?.['rank'] === (11 - ((s as any).model_i ?? 0))) {
-    // TODO-QSP: dynamic text: <a href="exec:gt 'foto_albums', 'sveta'"><<model_i>>. <<$model['firstname']>> <<...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027foto_albums\\u0027, \\u0027sveta\\u0027); return false;">${((s as any).model_i || '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}.</a>`);
+    // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''sveta''"><<model_i>>. <<$model[''firstname''...
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027sveta/u0027); return false;">${((s as any).model_i || '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${(String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1)))}.</a>`);
   } else {
-    // TODO-QSP: dynamic text: <a href="exec:gt 'foto_albums', '<<$temp_base_ranking_link[model_i]>>'"><<model_...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027foto_albums\\u0027, \\u0027${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}\\u0027); return false;">${((s as any).model_i || '')}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}</a>`);
+    // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''<<$temp_base_ranking_link[model_i]>>''"><<mo...
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}/u0027); return false;">${((s as any).model_i || '')}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}</a>`);
   }
   (s as any).model_i = ((s as any).model_i ?? 0) + (1);
   if (((s as any).model_i ?? 0) < 11) {
@@ -44,46 +42,46 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetAlbumText(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) < 1  ||  ((s as any).locArgs?.[1] ?? 0) > 10) {
+  if (Number((s as any).locArgs?.[1] ?? 0) < 1  ||  Number((s as any).locArgs?.[1] ?? 0) > 10) {
     scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
     scene.text('As you step closer, you can see the albums are of models who work here. Rather than being arranged alphabetically, it looks like they are arranged by ranking.');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
       scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
       scene.text('Here is the shelf that has the albums of the top 10 models. You saw it before when you first joined the studio, but something has changed. You read the names from left to right and your heart stops when you see the final name.');
-      // TODO-QSP: dynamic text: "<<$model['firstname']>> <<$mid($model['lastname'], 1, 1)>>."
-      scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}."`);
+      // TODO-QSP: dynamic text: "<<$model[''firstname'']>> <<$mid($model[''lastname''], 1, 1)>>."
+      scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''} ${(String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1)))}."`);
       scene.text('That\'s your name! You\'re one of the top 10 models of the studio!');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
         scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
         scene.text('Here is the shelf that has the albums of the top 10 models. The albums names have changed yet again. Though the shock is not quite as dramatic as the first time, you take great pleasure in seeing your name has moved up the ranking again to the ninth spot. You\'re higher than Anushka now. You wonder if she\'ll be mad.');
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 3) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
           scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
           scene.text('Here is the shelf that has the albums of the top 10 models. You\'ve taken Mari\'s spot in the rankings. Your name now marks the eighth spot, Mari\'s in the ninth. You don\'t think she\'ll be upset or anything like that, she\'ll probably want to congratulate you if nothing else. She was never one to care about the rankings. You take a moment to be amazed with the two of you, how far a farm girl from Gadukino and a schoolgirl from Pavlovsky have come… ');
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 4) {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
             scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
             scene.text('Here is the shelf that has the albums of the top 10 models. Up the ranks again! Number 7 this time! Maybe your career as a model has more potential than you thought.');
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 5) {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
               scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
               scene.text('Here is the shelf that has the albums of the top 10 models. The albums have changed again and you find yourself taking Lily\'s sixth place seat. You are now more famous as a model than a porn star! Wait, is that a good thing?');
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 6) {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
                 scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                 scene.text('Here is the shelf that has the albums of the top 10 models. When you started modelling, you never imagined you\'d do this well. Not even in your dreams did you think you could become one of the top five models in St. Petersburg.');
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 7) {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 7) {
                   scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                   scene.text('Here is the shelf that has the albums of the top 10 models. Reading the album names, you find that yours has been shifted over yet again! This time to the fourth spot from the left. You\'ve done quite well all things considered. With your new ranking, you\'re pretty sure your career as a model is secure.');
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 8) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
                     scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                     scene.text('Here is the shelf that has the albums of the top 10 models. As you read from left to right, you see that your name is now third. You finally took Emily\'s spot! She isn\'t very happy about it, but who cares? You\'ve broken the barrier into being famous!');
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 9) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 9) {
                       scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
                       scene.text('Here is the shelf that has the albums of the top 10 models. You look and you see your name is second, right before Anastasia\'s. Are you really this close? Could you take the number one spot all for yourself?');
                     } else {
@@ -123,39 +121,39 @@ function enterSveta(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Workout', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/5.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 2) {
+    if (((st as any).model ?? 0)?.['rank'] >= 2) {
       scene.actions([
         { label: 'Cool Beauty', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/6.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 3) {
+    if (((st as any).model ?? 0)?.['rank'] >= 3) {
       scene.actions([
         { label: 'All Eyes On You', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/7.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 4) {
+    if (((st as any).model ?? 0)?.['rank'] >= 4) {
       scene.actions([
         { label: 'Glow', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/8.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 5) {
+    if (((st as any).model ?? 0)?.['rank'] >= 5) {
       scene.actions([
         { label: 'Simple and Clean', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/9.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 6) {
+    if (((st as any).model ?? 0)?.['rank'] >= 6) {
       scene.actions([
         { label: 'Pierce', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/10.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= ((s as any).Y ?? 0)) {
+    if (((st as any).model ?? 0)?.['rank'] >= ((st as any).Y ?? 0)) {
       scene.actions([
         { label: 'Yoko', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/11.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 8) {
+    if (((st as any).model ?? 0)?.['rank'] >= 8) {
       scene.actions([
         { label: 'Hay Fever', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/12.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 9) {
+    if (((st as any).model ?? 0)?.['rank'] >= 9) {
       scene.actions([
         { label: 'His Clothes', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/13.jpg');
-    if (((s as any).model ?? 0)?.['rank'] >= 10) {
+    if (((st as any).model ?? 0)?.['rank'] >= 10) {
       scene.actions([
         { label: 'Confidence', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/sveta_l/14.jpg');

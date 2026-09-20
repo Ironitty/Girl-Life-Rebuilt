@@ -120,16 +120,16 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 function enterEvent1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 5  &&  ((s as any).hour ?? 0) < 20) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
-    // TODO-QSP: dynamic text: It's past '+func('time', 'get_time_string', 5, 0)+', and too late to find any wo...
+    // TODO-QSP: dynamic text: It''s past '+func('time', 'get_time_string', 5, 0)+', and too late to find any w...
     scene.text('It\'s past 5:00, and too late to find any work now. You can try again after 20:00.');
     scene.actions([
       { label: 'Leave', goto: ['street_walker', 'end'] },
     ]);
   } else {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 4) + 3);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 4) + 3));
     if ((((s as any).prst_loc ?? 0) === 0  &&  (Math.floor(Math.random() * 3) + 1) > 1)  ||  (((s as any).prst_loc ?? 0) === 1  &&  (Math.floor(Math.random() * 5) + 1) > 1)  ||  (((s as any).prst_loc ?? 0) === 2  &&  (Math.floor(Math.random() * 8) + 1) > 1)) {
       (s as any).street_work = 1;
-      (s as any).streetworkevent = Math.floor(Math.random() * 8) + 1;
+      (s as any).streetworkevent = (Math.floor(Math.random() * 8) + 1);
       if (((s as any).streetworkevent ?? 0) === 3) {
         if (((s as any).prst_loc ?? 0) !== 1) {
           (s as any).streetworkevent = 5;
@@ -158,7 +158,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/workingw1.jpg');
       } else {
-        scene.img('images/locations/city/shared/streetwalker/working\' + rand(1, 4) + \'.jpg');
+        scene.img('images/locations/city/shared/streetwalker/working' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
       }
       scene.text('You walk along the street trying to entice the drivers of cars that pass by, but are unable to get anyone to stop.');
       scene.actions([
@@ -177,7 +177,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
   } else {
-    scene.img('images/locations/city/shared/streetwalker/hookers\' + rand(1, 4) + \'.jpg');
+    scene.img('images/locations/city/shared/streetwalker/hookers' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   }
   scene.text('As you walk along the street trying to entice one of the slower moving cars, you spot some other girls working the streets as well. It doesn\'t look like they\'re having any luck either.');
   // TODO-QSP: end
@@ -185,12 +185,12 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     { label: 'Stop working for the night', goto: ['street_walker', 'end'] },
     { label: 'Keep working the street', goto: ['street_walker', 'event1'] },
     { label: 'Walk over and talk to them', handler: (st: GameState) => {
-    if ((Math.floor(Math.random() * 2) + 0) === 0  &&  (!((s as any).ruslan_pimp ?? 0))) {
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
+    if ((Math.floor(Math.random() * 2) + 0) === 0  &&  (!((st as any).ruslan_pimp ?? 0))) {
+      (st as any).minut = ((st as any).minut ?? 0) + 15;
+      if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
       } else {
-        scene.img('images/locations/city/shared/streetwalker/hookers\' + rand(1, 4) + \'.jpg');
+        scene.img('images/locations/city/shared/streetwalker/hookers' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
       }
       scene.text('You walk over and smile at the other girls, but are met with dark and dangerous stares.');
       scene.text('"What the fuck do you want, bitch?" one of them asks.');
@@ -211,13 +211,13 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
+      (st as any).minut = ((st as any).minut ?? 0) + 15;
+      if (((st as any).month ?? 0) >= 11  ||  ((st as any).month ?? 0) <= 3) {
         scene.img('images/locations/city/shared/streetwalker/hookersw1.jpg');
       } else {
-        scene.img('images/locations/city/shared/streetwalker/hookers\' + rand(1, 4) + \'.jpg');
+        scene.img('images/locations/city/shared/streetwalker/hookers' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
       }
-      if (((s as any).ruslan_pimp ?? 0) === 2) {
+      if (((st as any).ruslan_pimp ?? 0) === 2) {
         scene.text('You walk over and introduce yourself to the other girls. One of them starts off bitchy, but the other one tells her you work for Ruslan too, which quickly calms her down.');
         scene.text('You make small talk with them, the more experienced girls sharing tips for the newer girls, ways to help encourage guys to stop and the type of guys to avoid.');
         scene.text('Occasionally, a car stops and picks up one of the other girls. Other times, one stops and drops a girl off. After a while, you all get back to work earning money for Ruslan.');
@@ -225,7 +225,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
           { label: 'Keep working the street', goto: ['street_walker', 'event1'] },
         ]);
       } else {
-        (s as any).ruslan_pimp = 1;
+        (st as any).ruslan_pimp = 1;
         scene.text('You walk over and introduce yourself to the other girls. "You one of Ruslan\'s new girls?" one of them asks.');
         scene.text('You shake your head. "No, I work for myself."');
         scene.text('The other girls exchange an uneasy look. "You should really change your mind. If you work for Ruslan, most of the guys know to pay up, and the gopniks know to leave you alone. Otherwise, you\'ll find yourself in a bad spot," one of them tells you.');
@@ -266,9 +266,9 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse his deal', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.text('You shake your head. "Thanks, but I\'m doing just fine by myself."');
     scene.text('He frowns, and his eyes take on a hard glint. For a moment, you think he might do something, but he just nods. "Very well. Have it your way, but don\'t say I didn\'t warn you. I\'ll check back on you some other time and see if you come to your senses."');
     scene.actions([
@@ -281,8 +281,8 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept his deal', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).ruslan_pimp = 2;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).ruslan_pimp = 2;
     scene.text('You nod your head in agreement. "Yeah. Having some protection would be a good thing."');
     scene.text('He smiles and pulls you up beside him as he wraps his arm around you. "Good, good. I knew you were a smart girl. I\'ll come by every Friday and collect my half of what you make. You better not hold out on me, because the other girls will tell me if you do. Now here is my number. If anyone refuses to pay or you have problems, you call." Once you add his number to your contact list, he slaps you on the ass. "Now get to work!"');
     scene.text('With that, he turns and walks away, leaving you to wonder if this was a good idea.');
@@ -349,7 +349,7 @@ function enterEvent5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).month ?? 0) >= 11  ||  ((s as any).month ?? 0) <= 3) {
     scene.img('images/locations/city/shared/streetwalker/barginw1.jpg');
   } else {
-    scene.img('images/locations/city/shared/streetwalker/bargin\' + rand(1, 3) + \'.jpg');
+    scene.img('images/locations/city/shared/streetwalker/bargin' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
   }
   scene.text('A car slows down and pulls up to the curb where you\'re walking, so you walk over to him. As you do, he rolls down his window. You bend over and practically lean into his window. "You looking to party, handsome?"');
   scene.text('He looks you over as best he can and licks his lips. "How much?"');
@@ -406,30 +406,30 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     { label: 'Unbutton his pants', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/bj1.jpg');
     scene.text('You lean over and unbutton his pants before opening his fly and pulling his underwear down, allowing his hard dick to spring free. You smile at him as you wrap your hand around his cock and start stroking it, causing him to moan softly.');
-    qspCall(s, 'arousal', 'hj', (-5), 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'hj', (-5), 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/bj2.jpg');
     scene.text('You can feel the head of his dick already getting slick with his precum as you slowly take his cock into your mouth, starting to suck his dick as you keep stroking it.');
     scene.text('You feel his hand roughly pull up your shirt and start pawing and squeezing at your breasts as you do.');
-    qspCall(s, 'arousal', 'bj', (-5), 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', (-5), 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/bj3.jpg');
     scene.text('Keeping your lips locked around his shaft, you bob your head up and down, slowly working him deeper into your mouth. You eventually remove your hand so you can take him as deeply as you can down your throat.');
-    qspCall(s, 'arousal', 'bj', (-5), 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', (-5), 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 500);
-    qspCall(s, 'cum_call', 'mouth', 'a prostitution client');
+    qspCall(st, 'money', 'earn', 500);
+    qspCall(st, 'cum_call', 'mouth', 'a prostitution client');
     scene.img('images/locations/city/shared/streetwalker/sex/bj4.jpg');
     scene.text('You soon feel the hot splash of cum hitting your throat as spurt after spurt fills your mouth. He moans loudly as he fills your mouth, and you keep sucking until he stops. You sit up and show him your cum coated tongue before swallowing it. He gives you a brief smile, then quickly puts his dick away and rebuttons his pants. Sliding the seat back forward, he pulls out a wad of cash and hands it to you.');
     scene.text('You take a few minutes to straighten up your clothes and check your makeup as he drives you back to the street corner he picked you up on. Pulling up to the curb, he seems impatient for you to get out as he looks around to see if anyone is watching. You sigh and climb out of the car before closing the door. He quickly pulls away and disappears into the night.');
-    qspCall(s, 'arousal', 'bj', (-5), 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', (-5), 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get back to work', goto: ['street_walker', 'work'] },
     ]);
@@ -463,24 +463,24 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
     scene.text('Between your mouth and hand, it doesn\'t take you too long to get him hard.');
     scene.text('"Yeah, that\'s it. Suck my cock, you dirty whore!"');
     scene.text('You keep sucking as he continues to verbally degrade you.');
-    qspCall(s, 'arousal', 'bj', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let him fuck you', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/fuck3.jpg');
     scene.text('After a few minutes, he pulls your head off his dick and you quickly undress and lie on your back, spreading your legs. As you do, you see him sliding a condom on before he moves over and climbs on top of you.');
     scene.text('He quickly and roughly shoves his dick inside your pussy and starts fucking you as hard and fast as he can, banging your head against the arm rest on the door.');
-    qspCall(s, 'arousal', 'vaginal', 10, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 10, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 1200);
-    qspCall(s, 'cum_call', 'breasts', 'a prostitution client');
+    qspCall(st, 'money', 'earn', 1200);
+    qspCall(st, 'cum_call', 'breasts', 'a prostitution client');
     scene.img('images/locations/city/shared/streetwalker/sex/fuck4.jpg');
     scene.text('He suddenly pulls out of you and tears the condom off. This is followed by him climbing on you as he starts jerking off. Within seconds, his cum starts splattering over your breasts as he moans loudly. Once he finishes, he climbs off you and starts to get dressed, stopping briefly to hand you a wad of cash.');
     scene.text('You spend a few minutes getting cleaned up and dressed. As you do, he gets back into the driver\'s seat and drives you back to the street corner he picked you up on. Pulling up to the curb, he seems impatient for you to get out as he looks around to see if anyone is watching. You sigh and climb out of the car before closing the door. He quickly pulls away and disappears into the night.');
-    qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get back to work', goto: ['street_walker', 'work'] },
     ]);
@@ -496,7 +496,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnal(s: GameState, scene: SceneBuilder): void {
-  (s as any).streetworkanal = Math.floor(Math.random() * 2) + 1;
+  (s as any).streetworkanal = (Math.floor(Math.random() * 2) + 1);
   if (((s as any).streetworkanal ?? 0) === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
@@ -513,39 +513,39 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/shared/streetwalker/sex/analo2.jpg');
     scene.text('He looks you over. "Can you undress?" When you start to do so, he quickly grabs your hand. "<i>Slowly</i>."');
     scene.text('You smile at him and make a show of slowly undressing for him. Once you\'re fully naked, you slowly unbutton his pants before pulling them and his underwear down.');
-    qspCall(s, 'arousal', 'flash', 2, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 2, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/analo3.jpg');
     scene.text('With his hard dick standing tall to get your attention, you take it into your mouth and start sucking while working the shaft or his balls with one of your hands as he leans back and moans softly.');
-    qspCall(s, 'arousal', 'bj', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/analo4.jpg');
     scene.text('After a few minutes, he speaks up. "Lie back, I want to fuck you."');
     scene.text('You sit up before lying back in the seat, spreading your legs as you do. He moves between your legs and rubs your clit a little before he slides his dick inside you and starts slowly fucking you. The wetter you get, the faster he fucks you.');
-    qspCall(s, 'arousal', 'vaginal', 10, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 10, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Take it in the ass', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/analo5.jpg');
     scene.text('When he pulls out, he uses his hands to help you reposition. "I want to fuck that pretty little ass of yours now."');
     scene.text('With his help, you quickly do as he says and get on all fours with your ass in the air. You feel him press his dick against your anus before he slides it in. When you tense up, he stops to let you get used to it before he slides it the rest of the way in.');
     scene.text('He slowly works his way balls deep into your ass. You moan loudly as he picks up the pace and starts fucking your ass harder.');
-    qspCall(s, 'arousal', 'anal', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 1500);
-    qspCall(s, 'cum_call', 'face', 'a prostitution client');
+    qspCall(st, 'money', 'earn', 1500);
+    qspCall(st, 'cum_call', 'face', 'a prostitution client');
     scene.img('images/locations/city/shared/streetwalker/sex/analo6.jpg');
     scene.text('"I\'m about to cum!" he grunts. As he pulls out of your ass, you turn around and start jerking him off with your hand, aiming his cock right at your face. Within seconds, cum starts splattering across your face. You keep jerking him until you\'ve milked him of every last drop.');
     scene.text('You spend a few minutes getting cleaned up and dressed. As you do, he gets back into the driver\'s seat. He waits for you to finish and put your seatbelt back on before he drives you back to the street corner he picked you up on. He pulls up to the curb and stops before he passes you a wad of cash.');
     scene.text('As you get out of the car, he opens his window. "I had a great time. Maybe I\'ll see you again." With that, he rolls up his window and drives away.');
-    qspCall(s, 'arousal', 'hj', 5, 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'hj', 5, 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get back to work', goto: ['street_walker', 'work'] },
     ]);
@@ -579,40 +579,40 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/shared/streetwalker/sex/analy2.jpg');
     scene.text('He looks you over. "Undress. I want to see what I\'m paying for."');
     scene.text('You smile at him and make a show of slowly undressing for him. Once you\'re fully naked, you slowly unbutton his pants before pulling them and his underwear down.');
-    qspCall(s, 'arousal', 'flash', 2, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 2, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/analy3.jpg');
     scene.text('With his hard dick standing tall to get your attention, you take it into your mouth and start sucking while working the shaft or his balls with one of your hands as he leans back and moans softly.');
     scene.text('You feel his hand slap you on the ass a few times before he slides a finger into your pussy to get it wet, then slides it into your ass and fingers you as you blow him.');
-    qspCall(s, 'arousal', 'bj', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/analy4.jpg');
     scene.text('After a few minutes, he speaks up. "Lie back, I want to fuck you."');
     scene.text('You sit up before lying back in the seat, spreading your legs as you do. He moves between your legs and rubs your clit a little before he slides his dick inside you.');
     scene.text('He slowly picks up his pace, fucking you faster before he pulls out and slaps you on the hip. "Roll over, bitch. I want to fuck your ass."');
-    qspCall(s, 'arousal', 'vaginal', 10, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 10, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Take it in the ass', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/analy5.jpg');
     scene.text('You roll over and get on all fours with your ass in the air. You feel him pressing his dick against your anus before he shoves it in. When you tense up, he grabs hold of your hips so you can\'t pull away and shoves it the rest of the way into your ass.');
     scene.text('He pounds his way balls deep into your ass, picking up the pace and fucking you harder as he slaps your ass.');
-    qspCall(s, 'arousal', 'anal', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish him', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 1500);
-    qspCall(s, 'cum_call', 'breasts', 'a prostitution client');
+    qspCall(st, 'money', 'earn', 1500);
+    qspCall(st, 'cum_call', 'breasts', 'a prostitution client');
     scene.img('images/locations/city/shared/streetwalker/sex/analy6.jpg');
     scene.text('"I\'m about to cum!" he grunts as he pulls out of your ass and roughly flips you over before straddling you and jerking off. His cum is soon splattering all over your breasts.');
     scene.text('You spend a few minutes getting cleaned up and dressed. Not even waiting for you to finish, he gets back into the driver\'s seat. During the drive back, he tosses a wad of cash back, most of it ending up on the floor.');
     scene.text('You quickly gather it all up as he stops at the same curb he picked you up from. You barely even close the door after you get out before he pulls away.');
-    qspCall(s, 'arousal', 'foreplay', 5, 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 5, 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get back to work', goto: ['street_walker', 'work'] },
     ]);
@@ -650,29 +650,29 @@ function enterPoliceblowjob(s: GameState, scene: SceneBuilder): void {
       { label: 'Unbutton his pants', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/bj1.jpg');
     scene.text('You lean over and unbutton his pants before opening his fly and pulling his underwear down, allowing his hard dick to spring free. You smile at him as you wrap your hand around his cock and start stroking it, causing him to moan softly.');
-    qspCall(s, 'arousal', 'hj', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'hj', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/bj2.jpg');
     scene.text('You can feel the head of his dick already getting slick with his precum. You slowly take his cock into your mouth, starting to suck his dick as you keep stroking it.');
     scene.text('You feel his hand roughly pull up your shirt and start pawing and squeezing at your breasts as you do.');
-    qspCall(s, 'arousal', 'bj', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {
     scene.img('images/locations/city/shared/streetwalker/sex/bj3.jpg');
     scene.text('Keeping your lips locked around his shaft, you bob your head up and down, slowly working him deeper into your mouth. You eventually remove your hand so you can take him as deeply as you can down your throat.');
-    qspCall(s, 'arousal', 'bj', 5, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'prostitution');
+    qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 10) + 1) > 2) {
       scene.actions([
         { label: 'Finish him', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth', 'a police officer');
+    qspCall(st, 'cum_call', 'mouth', 'a police officer');
     scene.img('images/locations/city/shared/streetwalker/sex/bj4.jpg');
     scene.text('You soon feel the hot splash of cum hitting your throat as spurt after spurt fills your mouth. He moans loudly as he fills your mouth, and you keep sucking until he stops. You sit up and show him your cum coated tongue before swallowing it. He gives you a brief smile, then quickly puts his dick away and rebuttons his pants.');
     scene.text('You take a few minutes to straighten up your clothes and check your makeup as he drives you back to the street corner he picked you up on. Pulling up to the curb, he seems impatient for you to get out as he looks around to see if anyone is watching. You sigh and climb out of the car before closing the door. He quickly pulls away and disappears into the night.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get back to work', goto: ['street_walker', 'work'] },
     ]);
@@ -681,14 +681,14 @@ function enterPoliceblowjob(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Finish him', handler: (st: GameState) => {
-    ((s as any).policeQW = (s as any).policeQW ?? {})['prostitution_bribe'] = 2;
-    qspCall(s, 'cum_call', 'mouth', 'a police officer');
+    ((st as any).policeQW = (st as any).policeQW ?? {})['prostitution_bribe'] = 2;
+    qspCall(st, 'cum_call', 'mouth', 'a police officer');
     scene.img('images/locations/city/shared/streetwalker/sex/bj4.jpg');
     scene.text('You soon feel the hot splash of cum hitting your throat as spurt after spurt fills your mouth. He moans loudly as he fills your mouth with sperm, and you keep sucking until he stops. You sit up and show him your cum coated tongue before swallowing it. He gives you a brief smile, then quickly puts his dick away and rebuttons his pants.');
     scene.text('You spend a few minutes straightening up your clothes and checking your makeup as he continues driving. You soon realize that he\'s going in the opposite direction of the street corner.');
     scene.text('"Where are you taking me?" you ask, feeling yourself start to panic slightly.');
     scene.text('"What? You thought that was enough? No, I\'m taking you to the station where you belong, whore," he mockingly answers as he quickly speeds down the road.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Drive to the police station', goto: ['police_station', 'entrance', 'prst'] },
     ]);
@@ -848,8 +848,8 @@ function enterBriberyreaction(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Agree', goto: ['street_walker', 'policesub1'] },
           { label: 'Refuse', handler: (st: GameState) => {
-    ((s as any).policeQW = (s as any).policeQW ?? {})['prostitution_bribe'] = 1;
-    qspCall(s, 'stat', '');
+    ((st as any).policeQW = (st as any).policeQW ?? {})['prostitution_bribe'] = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/police/arrested.jpg');
     scene.text('"No… No, I can\'t do that…" you tell him as you pull your hand back and pocket your money again. The officer looks disappointed, but doesn\'t seem to dwell on it. He probably has another girl like you he\'s forced into fucking him…');
     scene.text('"Fine by me, slut. Hands behind your back," he orders and you comply.');
@@ -891,10 +891,10 @@ function enterPolicesub1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m about to cum!" you hear him groan, and soon after, he\'s pressing balls deep inside you, his cock twitching as he fills the condom. He pulls out slow, and you\'re left feeling raw and numb.');
     scene.text('As you re-adjust your clothes, you see him tie up the used condom, but rather than toss it, he puts it back in the wrapper. He\'s not stupid enough to leave any DNA evidence behind.');
     scene.text('"Alright, a deal\'s a deal. You\'re free to go," he tells you as he zips up his pants. As you make your way back to the street, you think you hear him say the boys will enjoy playing with you…');
-    qspCall(s, 'pain', '', 5, 'vaginal', 'tear');
-    qspCall(s, 'arousal', 'vaginal_finger', 10, 'rough', 'sub', 'prostitute');
-    qspCall(s, 'arousal', 'vaginal', (-10), 'rough', 'sub', 'prostitute');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'pain', '', 5, 'vaginal', 'tear');
+    qspCall(st, 'arousal', 'vaginal_finger', 10, 'rough', 'sub', 'prostitute');
+    qspCall(st, 'arousal', 'vaginal', (-10), 'rough', 'sub', 'prostitute');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Run away', goto: ['street_walker', 'work'] },
     ]);

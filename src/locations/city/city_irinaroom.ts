@@ -21,11 +21,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'city_residential', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_residential', '');
   } },
     { label: 'Ring Ira\'s doorbell', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).IrinaQW ?? 0) !== 2) {
+    if (((st as any).hour ?? 0) >= 16  &&  ((st as any).hour ?? 0) <= 21  &&  ((st as any).week ?? 0) >= 6  &&  ((st as any).IrinaQW ?? 0) !== 2) {
       scene.text('You ring the doorbell, and hear light footsteps coming towards the door. Irina opens up the door and tells you to enter, delighted to see you.');
       scene.actions([
         { label: 'Enter apartment', goto: ['city_irinaroom', 'first'] },
@@ -34,8 +34,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('When you ring the doorbell, no one answers.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'city_residential', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_residential', '');
   } },
       ]);
     }
@@ -122,9 +122,9 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'city_residential', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'city_residential', '');
   } },
   ]);
   scene.build();
@@ -168,8 +168,8 @@ function enterFirst4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'city_residential', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_residential', '');
   } },
   ]);
   scene.build();
@@ -250,9 +250,9 @@ function enterFirst9(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'city_residential', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'city_residential', '');
   } },
   ]);
   scene.build();

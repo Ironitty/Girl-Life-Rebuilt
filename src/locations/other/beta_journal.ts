@@ -123,7 +123,7 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   (s as any).entry_counter_i = 1;
   (s as any).entry_counter_j = 1;
   (s as any).table_counter = 0;
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     (s as any).table_columns = 3;
   } else {
     (s as any).table_columns = ((s as any).locArgs?.[1] ?? 0);
@@ -171,24 +171,24 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
-    (s as any).jclose = 1;
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).jclose = 1;
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
 }
 
 function enterFailure(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'id') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'id') {
     ((s as any).debug = (s as any).debug ?? {})['journal'] = 'NPC ID not set, vcard not generated.';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'quest_body') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'quest_body') {
       ((s as any).debug = (s as any).debug ?? {})['journal'] = 'Quest body not set, quests details was not set.';
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'nav_forward') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'nav_forward') {
         ((s as any).debug = (s as any).debug ?? {})['journal'] = 'No forward navigation set - please ensure you have set the var in quest_data';
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'nav_back') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'nav_back') {
           ((s as any).debug = (s as any).debug ?? {})['journal'] = 'No back navigation set - please ensure you have set the var in quest_data';
         }
       }

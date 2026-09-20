@@ -47,13 +47,13 @@ function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScheduleSms(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_booty_call ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
+  if (((s as any).npc_booty_call ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
     // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $ARGS[1], "gs 'booty_call_sms', 'start', '<<$ARGS[1]>>'", "totminu...
   } else {
-    if (((s as any).week ?? 0) === ((s as any).npc_day_off ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).week ?? 0) === ((s as any).npc_day_off ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $ARGS[1], "gs 'booty_call_sms', 'start', '<<$ARGS[1]>>'", "totminu...
     } else {
-      if (((s as any).week ?? 0) !== ((s as any).npc_day_off ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+      if (((s as any).week ?? 0) !== ((s as any).npc_day_off ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
         // TODO-QSP: gs 'telefon', 'SetInSMSSchedule', $ARGS[1], "gs 'booty_call_sms', 'start', '<<$ARGS[1]>>'", "totminu...
       }
     }
@@ -69,9 +69,9 @@ function enterSetSugarDaddySchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBcNpcStatUpdate(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_start_free_time ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_day_off ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-      (s as any).temp_bc_rand = Math.floor(Math.random() * 3) + 1;
+  if (((s as any).npc_start_free_time ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0  ||  ((s as any).npc_day_off ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+    if (((s as any).npc_finance ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+      (s as any).temp_bc_rand = (Math.floor(Math.random() * 3) + 1);
       if (((s as any).temp_bc_rand ?? 0) === 1) {
         // TODO-QSP: npc_start_free_time[$ARGS[1]] = 9
         // TODO-QSP: npc_end_free_time[$ARGS[1]] = 12
@@ -85,7 +85,7 @@ function enterBcNpcStatUpdate(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
+      if (((s as any).npc_finance ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {
           // TODO-QSP: npc_start_free_time[$ARGS[1]] = 9
           // TODO-QSP: npc_end_free_time[$ARGS[1]] = 12
@@ -94,7 +94,7 @@ function enterBcNpcStatUpdate(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: npc_end_free_time[$ARGS[1]] = 23
         }
       } else {
-        if (((s as any).npc_finance ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 2) {
+        if (((s as any).npc_finance ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 2) {
           if ((Math.floor(Math.random() * 2) + 1) === 1) {
             // TODO-QSP: npc_start_free_time[$ARGS[1]] = 8
             // TODO-QSP: npc_end_free_time[$ARGS[1]] = 12
@@ -152,7 +152,7 @@ function enterBlockBootyCalls(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_residence ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)  &&  ((s as any).npc_residence ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== 'uni_grounds') {
+  if (((s as any).npc_residence ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)  &&  ((s as any).npc_residence ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== 'uni_grounds') {
     // TODO-QSP: dynamic(' ''<a href="exec: minut += 2 & gt ''''sex_ev_start'''', ''''initiate_pre'''', ''''<<$ARGS[1...
   }
   // TODO-QSP: end
@@ -175,7 +175,7 @@ function enterHotelLinks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).booty_call_hotel ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
+  if (((s as any).booty_call_hotel ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic(' ''<a href="exec: minut += 2 & gt ''''sex_ev_start'''', ''''initiate_pre'''', ''''<<$ARGS[1...
   }
   // TODO-QSP: end
@@ -193,17 +193,17 @@ function enterText(s: GameState, scene: SceneBuilder): void {
     { label: 'What about?', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
     scene.text('<b><font color="pink">what were you thinking about?</font></b>');
-    ((s as any).booty_call = (s as any).booty_call ?? {})['text'] = Math.floor(Math.random() * 3) + 1;
-    if (((s as any).booty_call ?? 0)?.['text'] === 1) {
+    ((st as any).booty_call = (st as any).booty_call ?? {})['text'] = (Math.floor(Math.random() * 3) + 1);
+    if (((st as any).booty_call ?? 0)?.['text'] === 1) {
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanted to know if you wanted to come over to my place')
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'have some fun?')
       scene.text('You think you know what kind of fun he wants.');
     } else {
-      if (((s as any).booty_call ?? 0)?.['text'] === 2) {
+      if (((st as any).booty_call ?? 0)?.['text'] === 2) {
         // TODO-QSP: '  ' + $func('wrap', 'accent b', 'your mouth around my cock')
         scene.text('You think you know what kind of fun he wants.');
       } else {
-        if (((s as any).booty_call ?? 0)?.['text'] === 3) {
+        if (((st as any).booty_call ?? 0)?.['text'] === 3) {
           // TODO-QSP: '  ' + $func('wrap', 'accent b', 'fucking you on my couch')
           scene.text('You think you know what kind of fun he wants.');
         }
@@ -246,21 +246,21 @@ function enterText1(s: GameState, scene: SceneBuilder): void {
     { label: 'What about?', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
     scene.text('<b><font color="pink">what were you thinking about?</font></b>');
-    ((s as any).booty_call = (s as any).booty_call ?? {})['text'] = Math.floor(Math.random() * 3) + 1;
-    if (((s as any).booty_call ?? 0)?.['text'] === 1) {
+    ((st as any).booty_call = (st as any).booty_call ?? {})['text'] = (Math.floor(Math.random() * 3) + 1);
+    if (((st as any).booty_call ?? 0)?.['text'] === 1) {
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanted to know if you wanted to come over to my place')
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'have some fun?')
       scene.text('You think you know what kind of fun he wants.');
     } else {
-      if (((s as any).booty_call ?? 0)?.['text'] === 2) {
+      if (((st as any).booty_call ?? 0)?.['text'] === 2) {
         // TODO-QSP: '  ' + $func('wrap', 'accent b', 'your mouth around my cock')
       } else {
-        if (((s as any).booty_call ?? 0)?.['text'] === 3) {
+        if (((st as any).booty_call ?? 0)?.['text'] === 3) {
           // TODO-QSP: '  ' + $func('wrap', 'accent b', 'fucking you on my bed')
         }
       }
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterText2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterText2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Me too', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
@@ -288,12 +288,12 @@ function enterText2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'I\'m on my way', handler: (st: GameState) => {
     scene.text('<b><font color="pink">ill come right now ;)</font></b>');
-    if (((s as any).npc_humor ?? 0)?.[String((s as any).boy ?? 0)] === 'perverted') {
+    if (((st as any).npc_humor ?? 0)?.[String((st as any).boy ?? 0)] === 'perverted') {
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'in the street?')
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'damn!')
       // TODO-QSP: '  ' + $func('wrap', 'accent b', 'keep it in your pants till you get here!')
     } else {
-      if (((s as any).npc_humor ?? 0)?.[String((s as any).boy ?? 0)] === 'intellectual') {
+      if (((st as any).npc_humor ?? 0)?.[String((st as any).boy ?? 0)] === 'intellectual') {
         // TODO-QSP: '  ' + $func('wrap', 'accent b', 'phrasing')
       } else {
         // TODO-QSP: '  ' + $func('wrap', 'accent b', 'my cock is waiting for you')
@@ -311,17 +311,17 @@ function enterText2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'when?')
     scene.actions([
       { label: 'Pick a time', handler: (st: GameState) => {
-    ((s as any).npc_meetday = (s as any).npc_meetday ?? {})[String((s as any).boy ?? 0)] = ((s as any).daystart ?? 0);
-    ((s as any).npc_meethour = (s as any).npc_meethour ?? {})[String((s as any).boy ?? 0)] = 0;
-    if (((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] <= ((s as any).hour ?? 0)  ||  ((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] > 23) {
-      ((s as any).npc_meethour = (s as any).npc_meethour ?? {})[String((s as any).boy ?? 0)] = 20;
+    ((st as any).npc_meetday = (st as any).npc_meetday ?? {})[String((st as any).boy ?? 0)] = ((st as any).daystart ?? 0);
+    ((st as any).npc_meethour = (st as any).npc_meethour ?? {})[String((st as any).boy ?? 0)] = 0;
+    if (((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] <= ((st as any).hour ?? 0)  ||  ((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] > 23) {
+      ((st as any).npc_meethour = (st as any).npc_meethour ?? {})[String((st as any).boy ?? 0)] = 20;
     }
     // TODO-QSP: dynamic text: <b><font color="pink">maybe around <<npc_meethour[$boy]>>:00?</font></b>
-    scene.text(`<b><font color="pink">maybe around ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:00?</font></b>`);
+    scene.text(`<b><font color="pink">maybe around ${((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}:00?</font></b>`);
     // TODO-QSP: dynamic text: "How about <<npc_meethour[$boy]>>:00?."
-    scene.text(`"How about ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:00?."`);
+    scene.text(`"How about ${((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}:00?."`);
     // TODO-QSP: dynamic text: <<$call4Date["CallerName"]>>, "Okay <<$call4Date["SvetaName"]>>, see you at <<np...
-    scene.text(`${((s as any).call4Date ?? 0)?.['CallerName'] ?? ''}, "Okay ${((s as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:00."`);
+    scene.text(`${((st as any).call4Date ?? 0)?.['CallerName'] ?? ''}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}:00."`);
     scene.actions([
       { label: 'Put away your phone', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -338,7 +338,7 @@ function enterInviteYourself1(s: GameState, scene: SceneBuilder): void {
   scene.text('You tap out a quick message on your and hit send.');
   scene.text('<b><font color="pink">hey</font></b>');
   scene.text('<b><font color="pink">doing anything right now?</font></b>');
-  (s as any).temp_bc_rand = Math.floor(Math.random() * 3) + 1;
+  (s as any).temp_bc_rand = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).temp_bc_rand ?? 0) === 1) {
     scene.text('You don\'t receive a response. He must be busy.');
     scene.actions([
@@ -366,14 +366,14 @@ function enterInviteYourself1(s: GameState, scene: SceneBuilder): void {
     scene.text('<b><font color="pink">this is a booty call</font></b>');
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'ill probably be free at ' + func('time', 'get_time_string', 19, 0)...
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanna come then?')
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInviteYourself2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInviteYourself2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I wanna fuck', handler: (st: GameState) => {
     scene.text('<b><font color="pink">i wanna fuck</font></b>');
     scene.text('<b><font color="pink">when do you get off?</font></b>');
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'ill probably be free at ' + func('time', 'get_time_string', 19, 0)...
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanna come then?')
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInviteYourself2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterInviteYourself2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -394,7 +394,7 @@ function enterInviteYourself1(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Can I come later?', handler: (st: GameState) => {
     // TODO-QSP: contMeetHour[call4Date["ContactIndex"]] = input ("When do you want to go over to his place? It is no...
-    if (((s as any).contMeetHour ?? 0)[((s as any).call4Date ?? 0)?.['ContactIndex']] <= ((s as any).hour ?? 0)  ||  ((s as any).contMeetHour ?? 0)[((s as any).call4Date ?? 0)?.['ContactIndex']] > 23) {
+    if (((st as any).contMeetHour ?? 0)[((st as any).call4Date ?? 0)?.['ContactIndex']] <= ((st as any).hour ?? 0)  ||  ((st as any).contMeetHour ?? 0)[((st as any).call4Date ?? 0)?.['ContactIndex']] > 23) {
       // TODO-QSP: contMeetHour[call4Date["ContactIndex"]] = 20
     }
     scene.text('<b><font color="pink">then we\'re on the same page</font></b>');

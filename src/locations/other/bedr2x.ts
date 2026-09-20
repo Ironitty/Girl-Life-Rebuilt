@@ -17,9 +17,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'tobiQW', 'start');
   }
   scene.text('A bright and beautiful bedroom, with modern and stylish furniture.');
-  scene.text('The room is dominated by <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bed\\u0027, \\u0027start\\u0027); return false;">full sized bed</a>');
-  scene.text('Near the entrance stands a modern <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027wardrobe\\u0027, \\u0027start\\u0027); return false;">wardrobe</a>.');
-  scene.text('Against the wall is a table with a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above it.');
+  scene.text('The room is dominated by <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bed/u0027, /u0027start/u0027); return false;">full sized bed</a>');
+  scene.text('Near the entrance stands a modern <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027start/u0027); return false;">wardrobe</a>.');
+  scene.text('Against the wall is a table with a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> above it.');
   if (((s as any).ml_guitar ?? 0)?.['location'] === ((s as any).loc ?? 0)) {
     scene.text('Your guitar rests on its stand next to your bed.');
   }
@@ -62,7 +62,7 @@ function enterSick(s: GameState, scene: SceneBuilder): void {
     (s as any).sick = 0;
   }
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/shared/apartment/event/sick/sick${Math.floor(Math.random() * 7) + 11}.jpg`);
+  scene.img(`images/locations/shared/apartment/event/sick/sick${(Math.floor(Math.random() * 7) + 11)}.jpg`);
   scene.text('You lie in bed, coughing, sneezing and blowing your nose.');
   // TODO-QSP: end
   scene.actions([

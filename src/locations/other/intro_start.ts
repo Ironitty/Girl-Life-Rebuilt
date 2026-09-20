@@ -62,11 +62,11 @@ function enterUniShared(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/uni_day.jpg');
   scene.text('The big day has finally arrived! Your family piled into your stepfather\'s Gazelle pickup and you all traveled from your hometown, Pavlovsk, to St. Petersburg. Today is the day you move into the university dorms to start this new phase of your life.');
   scene.text('As you approach the city, you think back to your school days and recall what type of student you were...');
+  scene.actions([
+{ label: 'Continue', goto: ['intro_character_creation', 'start'] },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'Continue', goto: ['intro_character_creation', 'start'] },
-  ]);
   scene.build();
 }
 
@@ -74,11 +74,11 @@ function enterCityShared(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/street.jpg');
   scene.text('The big day has finally arrived! Your family piled into your stepfather\'s Gazelle pickup and you all traveled from your hometown, Pavlovsk, to St. Petersburg. Today is the day you move into your own apartment and start this new phase of your life.');
   scene.text('You think back to your school days and what kind of student you were…');
+  scene.actions([
+{ label: 'Continue', goto: ['intro_character_creation', 'start'] },
+]);
   return;
   // TODO-QSP: end
-  scene.actions([
-    { label: 'Continue', goto: ['intro_character_creation', 'start'] },
-  ]);
   scene.build();
 }
 
@@ -87,10 +87,8 @@ function enterSgShared(s: GameState, scene: SceneBuilder): void {
   scene.text('You were born in the small town of Pavlovsk, near the city of St Petersburg.');
   scene.text('Your mother is Natasha, but you don\'t know much about your biological father since your mother never wants to talk about him, or why he left you and your older sister, Anya.');
   scene.text('Your mother met another man, Vladimir, not long after she and your biological father got divorced. Together, they had your little brother, Kolka. Even though he\'s not your real father, Vladimir has always treated you and Anya as if you were his own children.');
-  return;
-  // TODO-QSP: end
   scene.actions([
-    { label: 'Continue', handler: (st: GameState) => {
+{ label: 'Continue', handler: (st: GameState) => {
     scene.img('images/system/1_openings/shared/pre_6.jpg');
     scene.text('You had a pleasant, undisturbed childhood when you were young. Although you don\'t remember much from kindergarten, you do remember going to elementary school when you were 6 years old.');
     scene.actions([
@@ -105,12 +103,14 @@ function enterSgShared(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-  ]);
+]);
+  return;
+  // TODO-QSP: end
   scene.build();
 }
 
 function enterMagicShared(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.img('images/system/1_openings/shared/site_gadukino.jpg');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       scene.text('Having completed your second to last year of school, you went on summer break.');
@@ -146,7 +146,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
       scene.img('images/system/1_openings/shared/site_tunnel_2.jpg');
       scene.text('The tunnel goes on for what feels like miles. You start to worry that your phone battery will die.');
       scene.actions([
@@ -166,7 +166,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
         scene.img('images/system/1_openings/shared/site_working.jpg');
         scene.text('You follow the passage and find yourself in a construction site. There are several <b>KEEP OUT</b> signs visible from here. Shit.');
         scene.actions([
@@ -187,7 +187,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 3) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
           scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
           scene.text('"What the hell is going on?" you respond. You try to move your hands, but you\'re tied to the bed.');
           scene.text('"I\'ll start from the beginning," the girl says. "Magic exists and is real. Millennia ago, the world was not the same. The fae creatures who possess natural magic lived in balance, but the succubus were free to breed with whomever they wished."');
@@ -216,7 +216,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 4) {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
             scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
             scene.text('"What do you want from me?" you ask.');
             scene.text('"Well, the amulet, obviously," Tatiana replies. "When I looked for you, I was hoping to get that object of power to study, but the power transferred to you first. The amulet will now be pretty much useless."');
@@ -232,7 +232,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'So what should I do?', handler: (st: GameState) => {
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
+    if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
       scene.text('"Lay low for now. Get on with your life. We\'ll contact you if anything comes up. Gustav here will drop you off with your family."');
     } else {
       scene.text('"Lay low for now. Get on with your life. We\'ll contact you if anything comes up. Gustav here will drop you off at your apartment. Don\'t worry, I already let your parents and grandparents know you decided to head back to your apartment in Pavlovsk."');
@@ -245,7 +245,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
   } },
             ]);
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 5) {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
               if (((s as any).start_type ?? 0)?.['loc'] === 'uni'  ||  ((s as any).start_type ?? 0)?.['loc'] === 'city'  ||  (!((s as any).start_location ?? 0))) {
                 scene.img('images/system/1_openings/shared/site_pavlovsk.jpg');
                 if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
@@ -260,13 +260,13 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
               scene.text('You head inside and, feeling exhausted after the days events, you go to your room and collapse on the bed, quickly falling asleep.');
               scene.actions([
                 { label: 'Done', handler: (st: GameState) => {
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      qspGoto(s, 'intro_start', 'sg_shared');
+    if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
+      qspGoto(st, 'intro_start', 'sg_shared');
     } else {
-      if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        qspGoto(s, 'intro_start', 'uni_shared');
+      if (((st as any).start_type ?? 0)?.['loc'] === 'uni') {
+        qspGoto(st, 'intro_start', 'uni_shared');
       } else {
-        qspGoto(s, 'intro_start', 'city_shared');
+        qspGoto(st, 'intro_start', 'city_shared');
       }
     }
   } },
@@ -283,7 +283,7 @@ function enterMagicShared(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.text('<center><b>Apartment</b></center>');
     scene.img('images/system/1_openings/1_tf/1.jpg');
     scene.text('You wake up to the sound of your alarm clock and hear Luda, your wife, mumbling next to you. "Don\'t want to, it\'s too early." She pulls her blanket up and rolls over. You reach over and turn the clock off.');
@@ -347,7 +347,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
       (s as any).music_loop = 0;
       scene.img('images/system/1_openings/1_tf/4.jpg');
       scene.text('You leave the office and phone your wife in the car. You explain the situation to her and drive off to the construction site as soon as you hang up.');
@@ -427,7 +427,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
         scene.img('images/system/1_openings/1_tf/6.jpg');
         scene.text('Your trip to the hotel is quite uneventful compared to your tomb raiding adventure.');
         scene.text('You park your car and go to the receptionist to get a room. You swipe your company card and take your room key.');
@@ -483,16 +483,16 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
     scene.text('"It was some man in a navy cloak with ginger hair and a light beard. He didn\'t tell me his name. He already took the amulet," you answer.');
     scene.text('The girl\'s face drops. "Damn it!" She looks into your eyes. "Okay, we have to go somewhere else. There are too many people that might get hurt here. Gustav, come in here!" she calls out to the corridor and a tall man enters the room.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTgAdultSharedSetMikaelStats(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterTgAdultSharedSetMikaelStats(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Prepare to fight', handler: (st: GameState) => {
     scene.img('images/system/1_openings/shared/npc_gustav.jpg');
     scene.text('The man has a large tattoo across the left side of his face and also has red hair.');
-    (s as any).boy = 'Gustav';
-    qspCall(s, 'fight', 'initFight', 1);
-    qspCall(s, 'fight_npcdata', 'gustav');
-    (s as any).fightEnding = 1;
-    (s as any).no_exp_gain = 1;
+    (st as any).boy = 'Gustav';
+    qspCall(st, 'fight', 'initFight', 1);
+    qspCall(st, 'fight_npcdata', 'gustav');
+    (st as any).fightEnding = 1;
+    (st as any).no_exp_gain = 1;
     scene.actions([
       { label: 'Fight', goto: ['fight', 'start'] },
     ]);
@@ -517,7 +517,7 @@ function enterTgAdultShared(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 3) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTgAdultSharedResetMikaelStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
           scene.text('You wake up in an unfamiliar room. Standing near you is the same red-haired girl that entered your hotel room.');
@@ -655,7 +655,7 @@ function enterTgAdultSharedResetMikaelStats(s: GameState, scene: SceneBuilder): 
 }
 
 function enterSgTg(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.img('images/system/1_openings/shared/npc_ivan.jpg');
     scene.text('You are Mikhail Ivanov.');
     scene.text('Your parents died shortly after you were born and your only remaining relative, your great uncle Ivan (pictured), took you in. Your uncle has always made it clear that he took you in as a courtesy to your parents, not to become one himself. You never became close, resulting in a lonely childhood.');
@@ -691,7 +691,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
       if (((s as any).pcs_firstname ?? 0) === '') {
         qspCall(s, 'intro_functions', 'set_default', 'name');
       }
@@ -717,12 +717,12 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
         { label: 'Re-enter her name(s)', goto: ['intro_start', 'sg_tg', '1'] },
       ]);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
         scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
         scene.text('You found out about her mother Natasha, and how her biological father left when she was a baby. Her mother remarried shortly afterwards to a man called Vladimir.');
         scene.text('She had a sister named Anya who was a few years older than her. Anya chose to live at home instead of going to college, working at the local grocery during the day and partying at night.');
         scene.text('She also had a half-brother Kolka, who was a year younger than her and really into football.');
-        // TODO-QSP: dynamic text: Her mother's sister, Aunt Luda, lives on the top floor of the same building as h...
+        // TODO-QSP: dynamic text: Her mother''s sister, Aunt Luda, lives on the top floor of the same building as ...
         scene.text(`Her mother's sister, Aunt Luda, lives on the top floor of the same building as her. Her stepfather's best friend is called Uncle Misha, who lives across the hall. Her mother's old friend Sergey Shulgin lives on the floor above them, and ${((s as any).pcs_nickname || '')}'s old childhood friend Vasily is his son.`);
         scene.text('Her great grandparents live in a nearby village, where she occasionally spent a weekend. Apparently, her mother\'s parents are both dead.');
         scene.text('You listened to her complaining about her extended family and about how she and Vasily drifted apart, comforting her as best you could. Yet you can\'t help but feel a little jealous at how many caring relatives she has, given that your only relation is a great uncle who is about to kick you onto the streets for the sake of his own reputation.');
@@ -732,7 +732,7 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
           { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/system/1_openings/4_csb/6.jpg');
     // TODO-QSP: dynamic text: A few months passed. You and <<$pcs_nickname>> continued to talk, and you learne...
-    scene.text(`A few months passed. You and ${((s as any).pcs_nickname || '')} continued to talk, and you learned even more about her life. As summer break approaches, you bring up the idea of meeting up. ${((s as any).pcs_nickname || '')} was excited at the prospect and you agreed to meet at the café where her mother works.`);
+    scene.text(`A few months passed. You and ${((st as any).pcs_nickname || '')} continued to talk, and you learned even more about her life. As summer break approaches, you bring up the idea of meeting up. ${((st as any).pcs_nickname || '')} was excited at the prospect and you agreed to meet at the café where her mother works.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/system/1_openings/4_csb/7.jpg');
@@ -743,18 +743,18 @@ function enterSgTg(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/1_openings/4_csb/8.jpg');
     scene.text('The morning you agreed to meet her, you pack condoms and some spare cash into a backpack before heading off to the train station in the hopes of getting a girlfriend, or at least getting laid.');
     // TODO-QSP: dynamic text: On the train ride to Pavlovsk, you get a message from <<$pcs_nickname>>. Her par...
-    scene.text(`On the train ride to Pavlovsk, you get a message from ${((s as any).pcs_nickname || '')}. Her parents have taken her to spend time with her grandparents in Gadukino. She was unable to get out of the trip, since her mother has been upset at how she has been spending so much time on her phone and not with her family.`);
+    scene.text(`On the train ride to Pavlovsk, you get a message from ${((st as any).pcs_nickname || '')}. Her parents have taken her to spend time with her grandparents in Gadukino. She was unable to get out of the trip, since her mother has been upset at how she has been spending so much time on her phone and not with her family.`);
     scene.text('With no other choice, you buy a second ticket to meet her at Gadukino.');
     scene.actions([
       { label: 'Travel to Gadukino', handler: (st: GameState) => {
     scene.img('images/locations/shared/train/gadplat.jpg');
     // TODO-QSP: dynamic text: You get off the train next to a small road in the middle of nowhere. A dirt road...
-    scene.text(`You get off the train next to a small road in the middle of nowhere. A dirt road leads to a small village made up of rickety wooden houses and even more ruined ones. Unsure which house belongs to ${((s as any).pcs_nickname || '')}'s family, you pull out your phone to text her.`);
+    scene.text(`You get off the train next to a small road in the middle of nowhere. A dirt road leads to a small village made up of rickety wooden houses and even more ruined ones. Unsure which house belongs to ${((st as any).pcs_nickname || '')}'s family, you pull out your phone to text her.`);
     // TODO-QSP: dynamic text: A few minutes later, an excited teenage girl comes rushing down one of the dirt ...
-    scene.text(`A few minutes later, an excited teenage girl comes rushing down one of the dirt roads. You double-check a picture of ${((s as any).pcs_nickname || '')} on your phone, as this is the first time you've seen her with your own eyes.`);
+    scene.text(`A few minutes later, an excited teenage girl comes rushing down one of the dirt roads. You double-check a picture of ${((st as any).pcs_nickname || '')} on your phone, as this is the first time you've seen her with your own eyes.`);
     scene.actions([
       { label: 'Take a look at her picture (skip customization)', goto: ['intro_character_creation', 'start', 'appearance_hub'] },
-      { label: '', labelFn: (s: GameState) => 'Customise ' + String(((s as any).pcs_firstname || '') ?? ''), goto: ['intro_character_creation', 'start'] },
+      { label: '', labelFn: (s: GameState) => 'Customise ' + String(((st as any).pcs_firstname || '') ?? ''), goto: ['intro_character_creation', 'start'] },
     ]);
   } },
     ]);

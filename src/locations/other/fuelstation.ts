@@ -45,8 +45,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).kanistra ?? 0) < 5) {
       scene.actions([
         { label: 'Buy a canister and fill it with 5 liters of gasoline ( [150₽])...]', handler: (st: GameState) => {
-    (s as any).kanistra = ((s as any).kanistra ?? 0) + (1);
-    qspCall(s, 'money', 'pay', 150);
+    (st as any).kanistra = ((st as any).kanistra ?? 0) + (1);
+    qspCall(st, 'money', 'pay', 150);
     scene.text('You buy a canister of gasoline. (It will automatically be put in the trunk of your car)');
     scene.actions([
       { label: 'Disengage from the pump', goto: ['fuelstation', 'start'] },
@@ -55,20 +55,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (qspFunc(s, 'car_funcs', 'is_here')) {
-      // TODO-QSP: dynamic text: Your <a href="exec: gs 'carF', 'start'"><<$car['name']>></a> is parked here.
-      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
+      // TODO-QSP: dynamic text: Your <a href="exec: gs ''carF'', ''start''"><<$car[''name'']>></a> is parked her...
+      scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
       if (((s as any).car ?? 0)?.['fuel'] < ((s as any).car ?? 0)?.['tank']) {
         (s as any).zprbenz = ((((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0));
         (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
         scene.actions([
           { label: 'Fill the tank with petrol', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).zprpay ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).zprpay ?? 0)) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).zprbenz = (((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0);
-      (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
-      ((s as any).car = (s as any).car ?? {})['fuel'] = ((s as any).car ?? 0)?.['tank'];
-      qspCall(s, 'money', 'pay', ((s as any).zprpay ?? 0));
+      (st as any).zprbenz = (((st as any).car ?? {})?.['tank'] ?? 0) - (((st as any).car ?? {})?.['fuel'] ?? 0);
+      (st as any).zprpay = ((st as any).zprbenz ?? 0) * 30;
+      ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car ?? 0)?.['tank'];
+      qspCall(st, 'money', 'pay', ((st as any).zprpay ?? 0));
       scene.img('images/locations/shared/gas/zapr1.jpg');
       // TODO-QSP: dynamic text: You fill the tank and pay ' + $func('money', 'string_price', zprpay) + '.
       scene.text('You fill the tank and pay \' + $func(\'money\', \'string_price\', zprpay) + \'.');
@@ -84,13 +84,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).region ?? 0) === 'city') {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspGoto(s, 'city_industrial', '');
+    if (((st as any).region ?? 0) === 'city') {
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspGoto(st, 'city_industrial', '');
     } else {
-      if (((s as any).region ?? 0) === 'pav') {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        qspGoto(s, 'pav_commercial', '');
+      if (((st as any).region ?? 0) === 'pav') {
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
+        qspGoto(st, 'pav_commercial', '');
       }
     }
   } },
@@ -121,10 +121,10 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the restroom', handler: (st: GameState) => {
-    if (((s as any).clothingworntype ?? 0) !== 'nude') {
-      qspGoto(s, 'fuelstation', 'start');
+    if (((st as any).clothingworntype ?? 0) !== 'nude') {
+      qspGoto(st, 'fuelstation', 'start');
     } else {
-      qspGoto(s, 'fuelstation', 'toilet');
+      qspGoto(st, 'fuelstation', 'toilet');
     }
   } },
     { label: 'Look in the mirror', goto: ['mirror', 'start'] },

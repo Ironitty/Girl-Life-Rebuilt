@@ -22,7 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlowjob(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/prostitution/car/normal/sex/blowjob/bj_\'+rand(1, 27)+\'.mp4');
+  scene.img('images/shared/prostitution/car/normal/sex/blowjob/bj_' + (Math.floor(Math.random() * 27) + 1) + '.mp4');
   if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) {
     // TODO-QSP: 'At the sight of your naked body he wastes no time to undress and reveal his '+iif($prostitute['clie...
   }
@@ -51,7 +51,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You wrap your lips around his member'+iif($prostitute_client_condom = 'Yes', '; ...
-  scene.text('You wrap your lips around his member\'+iif($prostitute_client_condom = \'Yes\', \'; with those modern condom there\'s no real difference to bare skin. You suck and run\', \' sucking and running\')+\' your tongue along his shaft while your hands fondle his balls. "Don\'t be shy \'+iif(rand(1, 10) < 4, \'whore\', \'girl\')+\'," he murmurs before pushing his cock further into your mouth.');
+  scene.text('You wrap your lips around his member' + ((((s as any).prostitute_client_condom ?? 0) === 'Yes') ? ('; with those modern condom there\'s no real difference to bare skin. You suck and run') : (' sucking and running')) + ' your tongue along his shaft while your hands fondle his balls. "Don\'t be shy ' + (((Math.floor(Math.random() * 10) + 1) < 4) ? ('whore') : ('girl')) + '," he murmurs before pushing his cock further into your mouth.');
   qspCall(s, 'arousal', 'bj', ((((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) ? (6) : (12)), 'unknown', 'prostitution', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
   if (((s as any).prostitute ?? 0)?.['client_scene'] !== 'Blowjob') {
@@ -87,7 +87,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVaginal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/prostitution/car/normal/sex/vaginal/vaginal_\'+rand(1, 45)+\'.mp4');
+  scene.img('images/shared/prostitution/car/normal/sex/vaginal/vaginal_' + (Math.floor(Math.random() * 45) + 1) + '.mp4');
   if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) {
     if (((s as any).prostitute ?? 0)?.['blowjob_first'] === 0) {
       scene.text('Once you both are alone you quickly take of your clothes and present your pussy to him. At the sight of your pussy he wastes no time unzipping his pants to reveal his already hard cock.');
@@ -99,7 +99,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'auto_lube', 'vaginal');
     // TODO-QSP: dynamic text: You spread your legs and help guide his member to the right place. '+iif(pcs_hor...
-    scene.text('You spread your legs and help guide his member to the right place. \'+iif(pcs_horny > 40, \'You are getting wetter by the second, hoping to get some pleasure out of it, too. "You\'re already wet for me? Good girl,"\', \'He rubs his dick against your pussy and doesn\'t seem to care that your pussy is still dry. "Get ready, bitch,"\')+\' he says and pushes his cock eagerly inside.');
+    scene.text('You spread your legs and help guide his member to the right place. ' + ((((s as any).pcs_horny ?? 0) > 40) ? ('You are getting wetter by the second, hoping to get some pleasure out of it, too. "You\'re already wet for me? Good girl,"') : ('He rubs his dick against your pussy and doesn\'t seem to care that your pussy is still dry. "Get ready, bitch,"')) + ' he says and pushes his cock eagerly inside.');
   } else {
     if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1) {
       scene.text('He shows no signs of getting close as he fucks you as hard as in the beginning. "I could fuck you all day," he says.');
@@ -136,7 +136,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAnal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/prostitution/car/normal/sex/anal/anal_\'+rand(1, 19)+\'.mp4');
+  scene.img('images/shared/prostitution/car/normal/sex/anal/anal_' + (Math.floor(Math.random() * 19) + 1) + '.mp4');
   if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) {
     if (((s as any).prostitute ?? 0)?.['blowjob_first'] === 0) {
       scene.text('Once you both are alone you quickly take of your clothes and present your pussy to him. At the sight of your pussy he wastes no time unzipping his pants to reveal his already hard cock.');
@@ -224,13 +224,13 @@ function enterRimjobDecision(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 0;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['client_rimjob'] = 0;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: "Sorry, I don't do something like this," you '+iif($prostitute_fetish['rimjob'] ...
-    scene.text('"Sorry, I don\'t do something like this," you \'+iif($prostitute_fetish[\'rimjob\'] <> \'undecided\', \'lie\', \'say\')+iif(rand(0, 1), \', but he doesn\'t seem to care. "No problem, most girls don\'t do it," he tells you\', \'. He looks disappointed, but doesn\'t say anything\')+\', before you resume what you did before this short intermezzo.');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['payment'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['client_rimjob'] = 0;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    // TODO-QSP: dynamic text: "Sorry, I don''t do something like this," you '+iif($prostitute_fetish['rimjob']...
+    scene.text('"Sorry, I don\'t do something like this," you ' + ((((st as any).prostitute_fetish ?? 0)?.['rimjob'] !== 'undecided') ? ('lie') : ('say')) + (((Math.floor(Math.random() * 2) + 0)) ? (', but he doesn\'t seem to care. "No problem, most girls don\'t do it," he tells you') : ('. He looks disappointed, but doesn\'t say anything')) + ', before you resume what you did before this short intermezzo.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -242,16 +242,16 @@ function enterRimjobDecision(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['client_rimjob'] = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['client_rimjob'] = 1;
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "No problem, honey," you reply with a smile on your lips, "but money first." He ...
-    scene.text(`"No problem, honey," you reply with a smile on your lips, "but money first." He eagerly pulls out his wallet and hands you the agreed upon amount of ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['payment'] ?? '')}.`);
-    ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
-    if (((s as any).prostitute ?? 0)?.['payment_method'] === 1) {
+    scene.text(`"No problem, honey," you reply with a smile on your lips, "but money first." He eagerly pulls out his wallet and hands you the agreed upon amount of ${qspFunc(s, 'money', 'string_profit', ((st as any).prostitute ?? 0)?.['payment'] ?? '')}.`);
+    ((st as any).prostitute = (st as any).prostitute ?? {})['earnings_day'] = ((st as any).prostitute['earnings_day'] ?? 0) + (((st as any).prostitute ?? 0)?.['payment']);
+    if (((st as any).prostitute ?? 0)?.['payment_method'] === 1) {
       // TODO-QSP: gs 'money', 'earn', prostitute['payment'], 'cash'
     }
-    ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['payment'] = 0;
     scene.actions([
       { label: 'Dig in', goto: ['prostitution_car_sex', 'switch'] },
     ]);
@@ -280,7 +280,7 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
         qspGoto(s, 'prostitution_car_sex', 'cumshot', 'vaginal_creampie');
       } else {
         if (((s as any).prostitute_client_cumshot ?? 0) === 'Outside  ||  Condom'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
-          (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 5) + 0;
+          (s as any).prostitute_cumshot_rand = (Math.floor(Math.random() * 5) + 0);
           if (((s as any).prostitute_cumshot_rand ?? 0) < 3) {
             qspGoto(s, 'prostitution_car_sex', 'cumshot', 'stomach');
           } else {
@@ -295,35 +295,35 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
             scene.text('You can feel it, he is getting close.');
             scene.actions([
               { label: 'Trust him to pull out', handler: (st: GameState) => {
-    (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 100) + 1;
-    if (((s as any).prostitute_cumshot_rand ?? 0) <= 10) {
-      ((s as any).prostitute = (s as any).prostitute ?? {})['accident'] = 1;
-      qspGoto(s, 'prostitution_car_sex', 'cumshot', 'vaginal_creampie');
+    (st as any).prostitute_cumshot_rand = (Math.floor(Math.random() * 100) + 1);
+    if (((st as any).prostitute_cumshot_rand ?? 0) <= 10) {
+      ((st as any).prostitute = (st as any).prostitute ?? {})['accident'] = 1;
+      qspGoto(st, 'prostitution_car_sex', 'cumshot', 'vaginal_creampie');
     } else {
-      if (((s as any).prostitute_cumshot_rand ?? 0) > 10  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 60) {
-        qspGoto(s, 'prostitution_car_sex', 'cumshot', 'stomach');
+      if (((st as any).prostitute_cumshot_rand ?? 0) > 10  &&  ((st as any).prostitute_cumshot_rand ?? 0) <= 60) {
+        qspGoto(st, 'prostitution_car_sex', 'cumshot', 'stomach');
       } else {
-        if (((s as any).prostitute_cumshot_rand ?? 0) > 60  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 90) {
-          qspGoto(s, 'prostitution_car_sex', 'cumshot', 'butt');
+        if (((st as any).prostitute_cumshot_rand ?? 0) > 60  &&  ((st as any).prostitute_cumshot_rand ?? 0) <= 90) {
+          qspGoto(st, 'prostitution_car_sex', 'cumshot', 'butt');
         } else {
-          qspGoto(s, 'prostitution_car_sex', 'cumshot', 'facial');
+          qspGoto(st, 'prostitution_car_sex', 'cumshot', 'facial');
         }
       }
     }
   } },
               { label: 'Remind him to pull out', handler: (st: GameState) => {
-    (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 100) + 1;
-    if (((s as any).prostitute_cumshot_rand ?? 0) <= 5) {
-      ((s as any).prostitute = (s as any).prostitute ?? {})['accident'] = 1;
-      qspGoto(s, 'prostitution_car_sex', 'cumshot', 'vaginal_creampie');
+    (st as any).prostitute_cumshot_rand = (Math.floor(Math.random() * 100) + 1);
+    if (((st as any).prostitute_cumshot_rand ?? 0) <= 5) {
+      ((st as any).prostitute = (st as any).prostitute ?? {})['accident'] = 1;
+      qspGoto(st, 'prostitution_car_sex', 'cumshot', 'vaginal_creampie');
     } else {
-      if (((s as any).prostitute_cumshot_rand ?? 0) > 5  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 60) {
-        qspGoto(s, 'prostitution_car_sex', 'cumshot', 'stomach');
+      if (((st as any).prostitute_cumshot_rand ?? 0) > 5  &&  ((st as any).prostitute_cumshot_rand ?? 0) <= 60) {
+        qspGoto(st, 'prostitution_car_sex', 'cumshot', 'stomach');
       } else {
-        if (((s as any).prostitute_cumshot_rand ?? 0) > 60  &&  ((s as any).prostitute_cumshot_rand ?? 0) <= 90) {
-          qspGoto(s, 'prostitution_car_sex', 'cumshot', 'butt');
+        if (((st as any).prostitute_cumshot_rand ?? 0) > 60  &&  ((st as any).prostitute_cumshot_rand ?? 0) <= 90) {
+          qspGoto(st, 'prostitution_car_sex', 'cumshot', 'butt');
         } else {
-          qspGoto(s, 'prostitution_car_sex', 'cumshot', 'facial');
+          qspGoto(st, 'prostitution_car_sex', 'cumshot', 'facial');
         }
       }
     }
@@ -338,7 +338,7 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
           qspGoto(s, 'prostitution_car_sex', 'cumshot', 'anal_creampie');
         } else {
           if (((s as any).prostitute_client_cumshot ?? 0) === 'Outside  ||  Condom'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
-            (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 6) + 0;
+            (s as any).prostitute_cumshot_rand = (Math.floor(Math.random() * 6) + 0);
             if (((s as any).prostitute_cumshot_rand ?? 0) < 2) {
               qspGoto(s, 'prostitution_car_sex', 'cumshot', 'stomach');
             } else {
@@ -352,7 +352,7 @@ function enterSwitch(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).prostitute_client_cumshot ?? 0) === 'Outside'  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0) {
-              (s as any).prostitute_cumshot_rand = Math.floor(Math.random() * 100) + 1;
+              (s as any).prostitute_cumshot_rand = (Math.floor(Math.random() * 100) + 1);
               if (((s as any).prostitute_cumshot_rand ?? 0) <= 10) {
                 qspGoto(s, 'prostitution_car_sex', 'cumshot', 'anal_creampie');
               } else {
@@ -382,35 +382,35 @@ function enterCumshot(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'prostitution_functions', 'std_check');
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'rimjob') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'rimjob') {
     qspCall(s, 'prostitution_functions', 'std_check_oral', 'low');
     qspGoto(s, 'prostitution_car_sex', 'rimjob_end');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'mouth') {
-      scene.img('images/shared/prostitution/car/normal/sex/cum/mouth_\'+rand(1, 6)+\'.mp4');
-      // TODO-QSP: dynamic text: "'+iif(rand(1, 10) < 4, 'Bitch, ', ')+'I'm cumming." He says'+iif(prostitute['sc...
-      scene.text('"\'+iif(rand(1, 10) < 4, \'Bitch, \', \')+\'I\'m cumming." He says\'+iif(prostitute[\'scene_repeat\'] = 0, \', \' finally\')+iif($prostitute_client_condom = \'Yes\', \', pulls the condom off \', \' \')+\'and pushes his cock back inside your mouth and shoots his load down your throat.');
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'mouth') {
+      scene.img('images/shared/prostitution/car/normal/sex/cum/mouth_' + (Math.floor(Math.random() * 6) + 1) + '.mp4');
+      // TODO-QSP: dynamic text: "'+iif(rand(1, 10) < 4, 'Bitch, ', '')+'I''m cumming." He says'+iif(prostitute['...
+      scene.text('"' + (((Math.floor(Math.random() * 10) + 1) < 4) ? ('Bitch, ') : ('')) + 'I\'m cumming." He says' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? ('') : (' finally')) + ((((s as any).prostitute_client_condom ?? 0) === 'Yes') ? (', pulls the condom off ') : (' ')) + 'and pushes his cock back inside your mouth and shoots his load down your throat.');
       if (((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
         scene.text('"That wasn\'t what we agreed on," you say angrily after he pulls his dick out of your mouth.');
         scene.text('"Shut up, as if you don\'t do that every day. Do you really think I pull out and ruin the seat?" He replies annoyed. "Now get dressed, I have other things to do."');
       }
-      qspCall(s, 'npcgeneratec', '', 0, 'a client', Math.floor(Math.random() * 26) + 30);
+      qspCall(s, 'npcgeneratec', '', 0, 'a client', (Math.floor(Math.random() * 26) + 30));
       qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
       qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
       qspCall(s, 'stat', '');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'facial') {
-        scene.img('images/shared/prostitution/car/normal/sex/cum/face_\'+rand(1, 7)+\'.mp4');
-        // TODO-QSP: dynamic text: "'+iif(rand(1, 10) < 4, 'Bitch, ', ')+'I'm cumming." The man says'+iif(prostitut...
-        scene.text('"\'+iif(rand(1, 10) < 4, \'Bitch, \', \')+\'I\'m cumming." The man says\'+iif(prostitute[\'scene_repeat\'] = 0, \', \' finally\')+iif($prostitute_client_condom = \'Yes\', \', pulls off the condom \', \' \')+\'and shoots his cum all over your face.');
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'facial') {
+        scene.img('images/shared/prostitution/car/normal/sex/cum/face_' + (Math.floor(Math.random() * 7) + 1) + '.mp4');
+        // TODO-QSP: dynamic text: "'+iif(rand(1, 10) < 4, 'Bitch, ', '')+'I''m cumming." The man says'+iif(prostit...
+        scene.text('"' + (((Math.floor(Math.random() * 10) + 1) < 4) ? ('Bitch, ') : ('')) + 'I\'m cumming." The man says' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? ('') : (' finally')) + ((((s as any).prostitute_client_condom ?? 0) === 'Yes') ? (', pulls off the condom ') : (' ')) + 'and shoots his cum all over your face.');
         qspCall(s, 'cum_call', 'face', 'a client');
         (s as any).facial = ((s as any).facial ?? 0) + (1);
         if ((Math.floor(Math.random() * 100) + 1) > 95  &&  ((s as any).pcs_makeup ?? 0) > 1) {
           (s as any).pcs_makeup = 0;
         }
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'vaginal_creampie') {
-          scene.img('images/shared/prostitution/car/normal/sex/cum/pussy_\'+rand(1, 7)+\'.mp4');
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_creampie') {
+          scene.img('images/shared/prostitution/car/normal/sex/cum/pussy_' + (Math.floor(Math.random() * 7) + 1) + '.mp4');
           if (((s as any).prostitute ?? 0)?.['accident'] === 1  &&  ((s as any).prostitute ?? 0)?.['client_creampie'] === 0  &&  ((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
             ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (300);
             scene.text('He speeds up for a moment and then shoots his cum deep inside you.');
@@ -425,45 +425,45 @@ function enterCumshot(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).prostitute ?? 0)?.['client_creampie'] === 1  &&  ((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
               // TODO-QSP: dynamic text: He'+iif(prostitute['scene_repeat'] = 0, ' ', ' finally ')+' stops and pulls out,...
-              scene.text('He\'+iif(prostitute[\'scene_repeat\'] = 0, \' \', \' finally \')+\' stops and pulls out, but only for a little while. He pushes himself back in, but something feels different. He cums before you can say anything, cock still buried deep in your pussy and without a condom. He groans and shoots his cum deep inside you. "Take it, bitch!" He screams.');
+              scene.text('He' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? (' ') : (' finally ')) + ' stops and pulls out, but only for a little while. He pushes himself back in, but something feels different. He cums before you can say anything, cock still buried deep in your pussy and without a condom. He groans and shoots his cum deep inside you. "Take it, bitch!" He screams.');
               scene.text('"What\'s wrong with you?" You scream while he slips out of your pussy. "You stupid son of a…"');
               // TODO-QSP: iif($prostitute_brand['text_pubic'] = 'cumslut', '"Stop complaining cumslut," he taunts you with you...
             } else {
               // TODO-QSP: dynamic text: He'+iif(prostitute['scene_repeat'] = 0, ' ', ' finally ')+'moans and you feel th...
-              scene.text('He\'+iif(prostitute[\'scene_repeat\'] = 0, \' \', \' finally \')+\'moans and you feel the warmth of his cum filling your pussy. With one last moan, he shoots the rest of his load inside you. "Fuck, that was good\'+iif(rand(1, 10) < 4, \' whore\', \')+\'," he sighs while zipping up.');
+              scene.text('He' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? (' ') : (' finally ')) + 'moans and you feel the warmth of his cum filling your pussy. With one last moan, he shoots the rest of his load inside you. "Fuck, that was good' + (((Math.floor(Math.random() * 10) + 1) < 4) ? (' whore') : ('')) + '," he sighs while zipping up.');
             }
           }
           qspCall(s, 'cum_call', '', '', 'a client');
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'stomach') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'stomach') {
             if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
-              scene.img('images/shared/prostitution/car/normal/sex/cum/abelly_\'+rand(1, 10)+\'.mp4');
+              scene.img('images/shared/prostitution/car/normal/sex/cum/abelly_' + (Math.floor(Math.random() * 10) + 1) + '.mp4');
             } else {
-              scene.img('images/shared/prostitution/car/normal/sex/cum/pbelly_\'+rand(1, 10)+\'.mp4');
+              scene.img('images/shared/prostitution/car/normal/sex/cum/pbelly_' + (Math.floor(Math.random() * 10) + 1) + '.mp4');
             }
             // TODO-QSP: iif($prostitute_client_condom = 'Yes', 'The man'+iif(prostitute['scene_repeat'] = 0, ' ', ' finally ...
             qspCall(s, 'cum_call', 'stomach', 'a client');
             qspCall(s, 'cum_call', 'labia', 'a client');
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'butt') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'butt') {
               if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
-                scene.img('images/shared/prostitution/car/normal/sex/cum/abutt_\'+rand(1, 4)+\'.mp4');
+                scene.img('images/shared/prostitution/car/normal/sex/cum/abutt_' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
               } else {
-                scene.img('images/shared/prostitution/car/normal/sex/cum/pbutt_\'+rand(1, 4)+\'.mp4');
+                scene.img('images/shared/prostitution/car/normal/sex/cum/pbutt_' + (Math.floor(Math.random() * 4) + 1) + '.mp4');
               }
               // TODO-QSP: iif($prostitute_client_condom = 'Yes', 'The man'+iif(prostitute['scene_repeat'] = 0, ' ', ' finally ...
               qspCall(s, 'cum_call', 'butt', 'a client');
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'anal_creampie') {
-                scene.img('images/shared/prostitution/car/normal/sex/cum/anal_\'+rand(1, 2)+\'.mp4');
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'anal_creampie') {
+                scene.img('images/shared/prostitution/car/normal/sex/cum/anal_' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
                 if (((s as any).prostitute ?? 0)?.['client_creampie'] === 1  &&  ((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
                   // TODO-QSP: dynamic text: For several more minutes he pounds your ass until he finally stops'+iif($prostit...
-                  scene.text('For several more minutes he pounds your ass until he finally stops\'+iif($prostitute_client_condom = \'Yes\', \'and pulls out for a second before he pushes back inside.\', \', cock still buried deep in your ass.\')+\' He groans and you can feel spurts of warm cum fill you.');
+                  scene.text('For several more minutes he pounds your ass until he finally stops' + ((((s as any).prostitute_client_condom ?? 0) === 'Yes') ? ('and pulls out for a second before he pushes back inside.') : (', cock still buried deep in your ass.')) + ' He groans and you can feel spurts of warm cum fill you.');
                   scene.text('"What\'s wrong with you?" You scream while he slips out of your abused hole.');
                   // TODO-QSP: iif($prostitute_brand['text_pubic'] = 'cumslut', '"Stop complaining cumslut," he taunts you with you...
                 } else {
                   // TODO-QSP: dynamic text: He'+iif(prostitute['scene_repeat'] = 0, ' ', ' finally ')+'moans and you feel th...
-                  scene.text('He\'+iif(prostitute[\'scene_repeat\'] = 0, \' \', \' finally \')+\'moans and you feel the warmth of his cum filling your ass. With one last moan, he shoots the rest of his load deep inside your bowls. "God, yes take it\'+iif(rand(1, 10) < 5, \' whore\', \' bitch\')+\'," he sighs.');
+                  scene.text('He' + ((((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) ? (' ') : (' finally ')) + 'moans and you feel the warmth of his cum filling your ass. With one last moan, he shoots the rest of his load deep inside your bowls. "God, yes take it' + (((Math.floor(Math.random() * 10) + 1) < 5) ? (' whore') : (' bitch')) + '," he sighs.');
                   scene.text('"That was great, thanks for that," he adds.');
                   if (((s as any).prostitute_client_cumshot ?? 0) !== 'Inside') {
                     ((s as any).prostitute = (s as any).prostitute ?? {})['payment'] = ((s as any).prostitute['payment'] ?? 0) + (100);
@@ -481,7 +481,7 @@ function enterCumshot(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).prostitute ?? 0)?.['payment'] > 0) {
-    // TODO-QSP: dynamic text: He pulls out his wallet and hands you an additional <<$func('money', 'string_pro...
+    // TODO-QSP: dynamic text: He pulls out his wallet and hands you an additional <<$func(''money'', ''string_...
     scene.text(`He pulls out his wallet and hands you an additional ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['payment'] ?? '')}.`);
     ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (((s as any).prostitute ?? 0)?.['payment']);
     if (((s as any).prostitute_status ?? 0)?.['main'] === -1  ||  ((s as any).prostitute_georgiy ?? 0)?.['payment_method'] === 1) {
@@ -509,8 +509,8 @@ function enterCumshot(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
-  (s as any).prostitute_time = Math.floor(Math.random() * 2) + 3;
-  (s as any).prostitute_rand = Math.floor(Math.random() * 6) + 0;
+  (s as any).prostitute_time = (Math.floor(Math.random() * 2) + 3);
+  (s as any).prostitute_rand = (Math.floor(Math.random() * 6) + 0);
   if (((s as any).nroad ?? 0) >= 11) {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       qspCall(s, 'fame', 'pav', 'prostitute', 1);
@@ -537,9 +537,9 @@ function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
       if (((s as any).prostitute_status ?? 0)?.['main'] === -1  ||  ((s as any).prostitute_georgiy ?? 0)?.['payment_method'] === 1) {
         qspCall(s, 'money', 'earn', 200, 'cash');
       }
-      scene.img('images/shared/prostitution/car/normal/sex/rimjob/rimjob_s0_\'+rand(0, 2)+\'.mp4');
+      scene.img('images/shared/prostitution/car/normal/sex/rimjob/rimjob_s0_' + (Math.floor(Math.random() * 3) + 0) + '.mp4');
       // TODO-QSP: dynamic text: He kneels on the backseat and spreads his ass-cheeks with his hands to give you ...
-      scene.text('He kneels on the backseat and spreads his ass-cheeks with his hands to give you better access to his asshole.\'+iif($prostitute_fetish[\'rimjob\'] = \'yes\', \' Not even h\', \' H\')+\'esitating for a second you push your mouth in his ass-crack and coat the sensitive area in your saliva. "Fuck, yes," the man shouts. "This is so fucking hot," he continues, when you dance around his hole with your tongue, before sucking on it once. After a minute of constant licking he urges you to give him a handjob and stimulated by your tongue and hands he shoots his cum on the backseat within a minute.');
+      scene.text('He kneels on the backseat and spreads his ass-cheeks with his hands to give you better access to his asshole.' + ((((s as any).prostitute_fetish ?? 0)?.['rimjob'] === 'yes') ? (' Not even h') : (' H')) + 'esitating for a second you push your mouth in his ass-crack and coat the sensitive area in your saliva. "Fuck, yes," the man shouts. "This is so fucking hot," he continues, when you dance around his hole with your tongue, before sucking on it once. After a minute of constant licking he urges you to give him a handjob and stimulated by your tongue and hands he shoots his cum on the backseat within a minute.');
       // TODO-QSP: dynamic text: "Thanks, that was the best orgasm I had in a long time," he says sounding satisf...
       scene.text(`"Thanks, that was the best orgasm I had in a long time," he says sounding satisfied and pulls out another ${qspFunc(s, 'money', 'string_profit', 200)}. "Here take this for a job well done."`);
     } else {
@@ -549,10 +549,10 @@ function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
           ((s as any).prostitute_thought = (s as any).prostitute_thought ?? {})['rimjob'] = 1;
         }
         scene.img('images/shared/prostitution/car/normal/sex/rimjob/rimjob_s1.mp4');
-        // TODO-QSP: dynamic text: In contrast to most guys he's completely shaved. Not a single hair is left on hi...
-        scene.text('In contrast to most guys he\'s completely shaved. Not a single hair is left on his ass, balls and crotch which makes the whole experience a bit more enjoyable for you.\'+iif(prostitute_thought[\'rimjob\'] < 2, \' You give yourself a mental shake. It isn\'t as if you like giving guys a rimjob… or do you? You ask yourself, but immediately push the thought aside and concentrate on the task in front of you. \', \' \')+\'He also tastes like nothing, not even sweat as if he stepped right out of the shower. "That\'s great, keep doing that," he says with a blissful smile on his face, when you flick your tongue through the puckered meat of his hole.');
+        // TODO-QSP: dynamic text: In contrast to most guys he''s completely shaved. Not a single hair is left on h...
+        scene.text('In contrast to most guys he\'s completely shaved. Not a single hair is left on his ass, balls and crotch which makes the whole experience a bit more enjoyable for you.' + ((((s as any).prostitute_thought ?? 0)?.['rimjob'] < 2) ? (' You give yourself a mental shake. It isn\'t as if you like giving guys a rimjob… or do you? You ask yourself, but immediately push the thought aside and concentrate on the task in front of you. ') : (' ')) + 'He also tastes like nothing, not even sweat as if he stepped right out of the shower. "That\'s great, keep doing that," he says with a blissful smile on his face, when you flick your tongue through the puckered meat of his hole.');
         // TODO-QSP: dynamic text: You continue to tease his ass with your ' + iif(pcs_piercings['tongue'] > 0, 'pi...
-        scene.text('You continue to tease his ass with your \' + iif(pcs_piercings[\'tongue\'] > 0, \'piercing\', \'tongue\') + \' for the next few minutes and stroking his cock with your hands. "Damn, that\'s…," he stops talking as cum erupts from the tip of his cock coating your hand in it.');
+        scene.text('You continue to tease his ass with your ' + ((((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) ? ('piercing') : ('tongue')) + ' for the next few minutes and stroking his cock with your hands. "Damn, that\'s…," he stops talking as cum erupts from the tip of his cock coating your hand in it.');
       } else {
         if (((s as any).prostitute ?? 0)?.['rim_counter'] === 2  ||  (((s as any).prostitute ?? 0)?.['rim_counter'] === 6  &&  ((s as any).prostitute_rand ?? 0) === 2)) {
           scene.img('images/shared/prostitution/car/normal/sex/rimjob/rimjob_s2.mp4');
@@ -560,10 +560,10 @@ function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
           scene.text('"Yeah that\'s it, lick my asshole whore, suck on it," he says more to himself to turn him on than to you. Still, you do what he says and enclose your mouth around his hole and suck on it a few times. "Shit, I\'m coming," he hisses and erupts all over his hands.');
         } else {
           if (((s as any).prostitute ?? 0)?.['rim_counter'] === 3  ||  (((s as any).prostitute ?? 0)?.['rim_counter'] === 6  &&  ((s as any).prostitute_rand ?? 0) === 3)) {
-            scene.img('images/shared/prostitution/car/normal/sex/rimjob/rimjob_s3_\'+rand(0, 1)+\'.mp4');
+            scene.img('images/shared/prostitution/car/normal/sex/rimjob/rimjob_s3_' + (Math.floor(Math.random() * 2) + 0) + '.mp4');
             scene.text('"I…," his face turns red. "I know it\'s probably not something you enjoy," he says, "but could you at least fake it?"');
-            // TODO-QSP: dynamic text: "I don't have to fake it," you '+iif($prostitute_fetish['rimjob'] = 'yes', 'tell...
-            scene.text('"I don\'t have to fake it," you \'+iif($prostitute_fetish[\'rimjob\'] = \'yes\', \'tell him the truth\', \'lie to make him feel better\')+\'. "Really?" he asks surprised and happy at the same time. You nod and push him down on the backseat. "Of course, or I wouldn\'t do it," you tell him and wink at him, before pushing your face into his ass and run your tongue through his ass-crack and over his asshole without breaking eye contact with him. "Yummy," you grin.');
+            // TODO-QSP: dynamic text: "I don''t have to fake it," you '+iif($prostitute_fetish['rimjob'] = 'yes', 'tel...
+            scene.text('"I don\'t have to fake it," you ' + ((((s as any).prostitute_fetish ?? 0)?.['rimjob'] === 'yes') ? ('tell him the truth') : ('lie to make him feel better')) + '. "Really?" he asks surprised and happy at the same time. You nod and push him down on the backseat. "Of course, or I wouldn\'t do it," you tell him and wink at him, before pushing your face into his ass and run your tongue through his ass-crack and over his asshole without breaking eye contact with him. "Yummy," you grin.');
             scene.text('You give it all you got to give him a good time and make him believe that there is nothing more enjoyable for you than to have your face pushed against a guys ass. The whole time his gaze is fixed on you until he cums.');
           } else {
             if (((s as any).prostitute ?? 0)?.['rim_counter'] === 4  ||  (((s as any).prostitute ?? 0)?.['rim_counter'] === 6  &&  ((s as any).prostitute_rand ?? 0) === 4)) {
@@ -577,7 +577,7 @@ function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 // TODO-QSP: dynamic text: "Put it into your mouth," the man suddenly says, when he opens his eyes. '+iif($...
-                scene.text(`"Put it into your mouth," the man suddenly says, when he opens his eyes. '+iif($prostitute_fetish['atm'] = ', 'You move your mouth towards his cock to lick it clean, believing that's what he meant, but he shakes his head. "No, your finger," he explains more clearly. Your finger? What? Is he crazy? You lift it', 'You lift your finger')+' in front of your eyes. It looks clean. "You want me to put my finger into my mouth?" He nods eagerly. "Yeah, lick it clean'+iif($prostitute_fetish['atm'] = 'yes', '. ', '," he continues and when he sees the hesitation on your face he adds, "')+'I'll give you ${qspFunc(s, 'money', 'string_profit', 1000)}, when you do it."`);
+                scene.text('"Put it into your mouth," the man suddenly says, when he opens his eyes. \'+iif($prostitute_fetish[\'atm\'] = \', \'You move your mouth towards his cock to lick it clean, believing that\'s what he meant, but he shakes his head. "No, your finger," he explains more clearly. Your finger? What? Is he crazy? You lift it\', \'You lift your finger\')+\' in front of your eyes. It looks clean. "You want me to put my finger into my mouth?" He nods eagerly. "Yeah, lick it clean\'+iif($prostitute_fetish[\'atm\'] = \'yes\', \'. \', \'," he continues and when he sees the hesitation on your face he adds, "\')+\'I\'ll give you ' + qspFunc(s, 'money', 'string_profit', 1000) + ', when you do it."');
                 qspCall(s, 'prostitution_functions', 'will_atm', 'resist', ((((s as any).prostitute_fetish ?? 0)?.['atm'] === 'yes') ? ('hard') : ('easy')));
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
@@ -588,9 +588,9 @@ function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.actions([
                     { label: 'Don\'t do it', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     // TODO-QSP: 'You shake your head and lower your finger. "Sorry, that''s not something I do," you '+iif(prostitut...
     scene.actions([
       { label: 'Get dressed', goto: ['prostitution_car_sex', 'end'] },
@@ -612,20 +612,20 @@ function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
                 }
                 scene.actions([
                   { label: 'Lick your finger', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (1000);
-    if (((s as any).prostitute_status ?? 0)?.['main'] === -1  ||  ((s as any).prostitute_georgiy ?? 0)?.['payment_method'] === 1) {
-      qspCall(s, 'money', 'earn', 1000, 'cash');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['earnings_day'] = ((st as any).prostitute['earnings_day'] ?? 0) + (1000);
+    if (((st as any).prostitute_status ?? 0)?.['main'] === -1  ||  ((st as any).prostitute_georgiy ?? 0)?.['payment_method'] === 1) {
+      qspCall(st, 'money', 'earn', 1000, 'cash');
     }
-    if (((s as any).prostitute_thought ?? 0)?.['atm'] === 0) {
-      ((s as any).prostitute_thought = (s as any).prostitute_thought ?? {})['atm'] = 1;
+    if (((st as any).prostitute_thought ?? 0)?.['atm'] === 0) {
+      ((st as any).prostitute_thought = (st as any).prostitute_thought ?? {})['atm'] = 1;
     }
-    ((s as any).prostitute_stats = (s as any).prostitute_stats ?? {})['atm'] = ((s as any).prostitute_stats['atm'] ?? 0) + (1);
-    qspCall(s, 'prostitution_functions', 'std_check_oral', 'low');
-    qspCall(s, 'stat', '');
+    ((st as any).prostitute_stats = (st as any).prostitute_stats ?? {})['atm'] = ((st as any).prostitute_stats['atm'] ?? 0) + (1);
+    qspCall(st, 'prostitution_functions', 'std_check_oral', 'low');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/prostitution/car/normal/sex/rimjob/finger.jpg');
-    // TODO-QSP: dynamic text: "<<$func('money', 'string_profit', 1000)>>?" you ask making sure you heard him c...
-    scene.text(`"${qspFunc(s, 'money', 'string_profit', 1000)}?" you ask making sure you heard him correctly. "Yeah, ${qspFunc(s, 'money', 'string_profit', 1000)}. You only have to put that finger into your mouth," he encourages you. You '+iif($prostitute_fetish['atm'] = 'yes', 'shrug', 'sigh')+' and suck your finger into your mouth. His eyes grow wide, when you swirl your tongue around it, before pulling your finger lasciviously out of your mouth. "Damn, you're nasty," he says chuckling and hands you the promised ${qspFunc(s, 'money', 'string_profit', 1000)}.`);
+    // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', 1000)>>?" you ask making sure you heard h...
+    scene.text('"' + qspFunc(s, 'money', 'string_profit', 1000) + '?" you ask making sure you heard him correctly. "Yeah, ' + qspFunc(s, 'money', 'string_profit', 1000) + '. You only have to put that finger into your mouth," he encourages you. You \'+iif($prostitute_fetish[\'atm\'] = \'yes\', \'shrug\', \'sigh\')+\' and suck your finger into your mouth. His eyes grow wide, when you swirl your tongue around it, before pulling your finger lasciviously out of your mouth. "Damn, you\'re nasty," he says chuckling and hands you the promised ' + qspFunc(s, 'money', 'string_profit', 1000) + '.');
     scene.actions([
       { label: 'Get dressed', goto: ['prostitution_car_sex', 'end'] },
     ]);
@@ -645,14 +645,14 @@ function enterRimjobEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'face', 'a client');
   scene.img('images/shared/prostitution/car/normal/sex/rimjob/rimjob_s5.mp4');
   // TODO-QSP: dynamic text: "Just flick your tongue over it," the men tells you as he'+iif(prostitute['condo...
-  scene.text('"Just flick your tongue over it," the men tells you as he\'+iif(prostitute[\'condom\'] = 1, \' pulls the condom off and \', \' \')+\'takes his cock into his hand. You do as he wants \'+iif($prostitute_fetish[\'rimjob\'] = \'yes\', \'without hesitation\', \'after hesitating for a few seconds\')+\' and flick the tip of your tongue over the puckered flesh of his hole. "Look me in the eye bitch," he orders you and instinctively you look up into his \'+iif(rand(0, 1) = 1, \'brown\', \'blue\')+\' eyes. There is no respect or appreciation in them for what you\'re doing for him. You realize that it isn\'t about him wanting to get a rimjob, but about you doing such a degrading act for money. "Yeah, taste my ass," he says coldly while he continues to furiously stroke his cock. It turns him on so much to degrade you that it won\'t take long for him to cum. "That\'s what you\'re good for, licking a mans asshole… you fucking trash," he nearly screams the last words as suddenly moves backwards and upright to point his cock directly at you. Your eyes close, the only thing you have time for, before his cum lands all over your face.');
+  scene.text('"Just flick your tongue over it," the men tells you as he' + ((((s as any).prostitute ?? 0)?.['condom'] === 1) ? (' pulls the condom off and ') : (' ')) + 'takes his cock into his hand. You do as he wants ' + ((((s as any).prostitute_fetish ?? 0)?.['rimjob'] === 'yes') ? ('without hesitation') : ('after hesitating for a few seconds')) + ' and flick the tip of your tongue over the puckered flesh of his hole. "Look me in the eye bitch," he orders you and instinctively you look up into his ' + (((Math.floor(Math.random() * 2) + 0) === 1) ? ('brown') : ('blue')) + ' eyes. There is no respect or appreciation in them for what you\'re doing for him. You realize that it isn\'t about him wanting to get a rimjob, but about you doing such a degrading act for money. "Yeah, taste my ass," he says coldly while he continues to furiously stroke his cock. It turns him on so much to degrade you that it won\'t take long for him to cum. "That\'s what you\'re good for, licking a mans asshole… you fucking trash," he nearly screams the last words as suddenly moves backwards and upright to point his cock directly at you. Your eyes close, the only thing you have time for, before his cum lands all over your face.');
   if (((s as any).prostitute ?? 0)?.['rim_unfriendly'] === 0  ||  (Math.floor(Math.random() * 3) + 0) === 2) {
     ((s as any).prostitute = (s as any).prostitute ?? {})['earnings_day'] = ((s as any).prostitute['earnings_day'] ?? 0) + (500);
     if (((s as any).prostitute_status ?? 0)?.['main'] === -1  ||  ((s as any).prostitute_georgiy ?? 0)?.['payment_method'] === 1) {
       qspCall(s, 'money', 'earn', 500, 'cash');
     }
     ((s as any).prostitute = (s as any).prostitute ?? {})['rim_unfriendly'] = 1;
-    // TODO-QSP: dynamic text: "I'm sorry," he apologizes, his demeanor has completely changed, and pulls out <...
+    // TODO-QSP: dynamic text: "I''m sorry," he apologizes, his demeanor has completely changed, and pulls out ...
     scene.text(`"I'm sorry," he apologizes, his demeanor has completely changed, and pulls out ${qspFunc(s, 'money', 'string_profit', 500)}. "I can't stop myself from saying stuff like that." he explains. "It turns me on way too much."`);
     // TODO-QSP: '"Don''t worry about it," you answer taking the money from his hand'+iif(prostitute_thought['trash']...
   } else {
@@ -698,18 +698,18 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute ?? 0)?.['skip_end'] === 0) {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/prostitution/car/normal/negotiation/leave_walk.mp4');
-    // TODO-QSP: dynamic text: You had <<prostitute['customer_day']>> '+iif(prostitute['customer_day'] > 1, 'cl...
-    scene.text(`You had ${((s as any).prostitute ?? 0)?.['customer_day'] ?? ''} '+iif(prostitute['customer_day'] > 1, 'clients', 'client')+' and earned ${qspFunc(s, 'money', 'string_profit', ((s as any).prostitute ?? 0)?.['earnings_day'] ?? '')} today.`);
-    ((s as any).prostitute = (s as any).prostitute ?? {})['reminded'] = 0;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['accident'] = 0;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['condom'] = 0;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['blowjob_first'] = 0;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['scene_repeat'] = 0;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['client_rimjob'] = 0;
-    ((s as any).prostitute = (s as any).prostitute ?? {})['client_asshole'] = 0;
+    // TODO-QSP: dynamic text: You had <<prostitute[''customer_day'']>> '+iif(prostitute['customer_day'] > 1, '...
+    scene.text('You had ' + ((st as any).prostitute ?? 0)?.['customer_day'] ?? '' + ' \'+iif(prostitute[\'customer_day\'] > 1, \'clients\', \'client\')+\' and earned ' + qspFunc(s, 'money', 'string_profit', ((st as any).prostitute ?? 0)?.['earnings_day'] ?? '') + ' today.');
+    ((st as any).prostitute = (st as any).prostitute ?? {})['reminded'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['accident'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['condom'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['blowjob_first'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['scene_repeat'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['client_rimjob'] = 0;
+    ((st as any).prostitute = (st as any).prostitute ?? {})['client_asshole'] = 0;
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'work');
@@ -748,7 +748,7 @@ function enterRegularStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2, 'unknown', 'prostitution', 'no_orgasm_msg');
   qspCall(s, 'arousal', 'hj', 2, 'unknown', 'prostitution', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
-  (s as any).prostitute_scene_rand = Math.floor(Math.random() * 10) + 1;
+  (s as any).prostitute_scene_rand = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).prostitute ?? 0)?.['scene_reduction'] === 1) {
     if (((s as any).prostitute_scene_rand ?? 0) < 8) {
       if (((s as any).prostitute_scene_rand ?? 0) < 4) {
@@ -761,13 +761,13 @@ function enterRegularStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (((s as any).prostitute_scene_rand ?? 0) < 8) {
-      if (((s as any).prostitute_scene_rand ?? 0) < 4) {
-        (s as any).prostitute_scene_clit = 1;
+    if (((st as any).prostitute_scene_rand ?? 0) < 8) {
+      if (((st as any).prostitute_scene_rand ?? 0) < 4) {
+        (st as any).prostitute_scene_clit = 1;
       }
-      qspGoto(s, 'prostitution_car_sex', 'regular_start_bj');
+      qspGoto(st, 'prostitution_car_sex', 'regular_start_bj');
     } else {
-      qspGoto(s, 'prostitution_car_sex', 'regular_start_lick');
+      qspGoto(st, 'prostitution_car_sex', 'regular_start_lick');
     }
   } },
     ]);
@@ -781,24 +781,24 @@ function enterRegularStartBj(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/prostitution/car/regular/sex/start_blowjob_clit.mp4');
     qspCall(s, 'arousal', 'foreplay', (-4), 'unknown', 'prostitution', 'no_orgasm_msg');
   } else {
-    scene.img('images/shared/prostitution/car/regular/sex/start_blowjob\'+rand(0, 1)+\'.mp4');
+    scene.img('images/shared/prostitution/car/regular/sex/start_blowjob' + (Math.floor(Math.random() * 2) + 0) + '.mp4');
   }
   scene.text('"That\'s great, keep doing it like this," he tells you and you circle your tongue around the head of his cock again. "Yeah, like this," he responds and you can feel his cock growing harder in your mouth.');
   // TODO-QSP: iif(prostitute_scene_clit = 1, 'His hand moves to your pussy and carefully rubs your clit while', 'F...
   qspCall(s, 'arousal', 'bj', 4, 'unknown', 'prostitution', 'no_orgasm_msg');
   qspCall(s, 'stat', '');
-  (s as any).prostitute_scene_rand = Math.floor(Math.random() * 10) + 1;
+  (s as any).prostitute_scene_rand = (Math.floor(Math.random() * 10) + 1);
   if (((s as any).prostitute ?? 0)?.['scene_reduction'] === 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    if (((s as any).prostitute_scene_rand ?? 0) < 4) {
-      qspGoto(s, 'prostitution_car_sex', 'regular_start_lick');
+    if (((st as any).prostitute_scene_rand ?? 0) < 4) {
+      qspGoto(st, 'prostitution_car_sex', 'regular_start_lick');
     } else {
-      if (((s as any).prostitute_scene_rand ?? 0) >= 4  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
-        qspGoto(s, 'prostitution_car_sex', 'regular_vaginal');
+      if (((st as any).prostitute_scene_rand ?? 0) >= 4  &&  ((st as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
+        qspGoto(st, 'prostitution_car_sex', 'regular_vaginal');
       } else {
-        if (((s as any).prostitute_scene_rand ?? 0) >= 4  &&  ((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
-          qspGoto(s, 'prostitution_car_sex', 'regular_anal');
+        if (((st as any).prostitute_scene_rand ?? 0) >= 4  &&  ((st as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
+          qspGoto(st, 'prostitution_car_sex', 'regular_anal');
         }
       }
     }
@@ -817,11 +817,11 @@ function enterRegularStartBj(s: GameState, scene: SceneBuilder): void {
 
 function enterRegularStartLick(s: GameState, scene: SceneBuilder): void {
   (s as any).prostitute_scene_lick = 1;
-  (s as any).prostitute_pic_rand = Math.floor(Math.random() * 2) + 0;
+  (s as any).prostitute_pic_rand = (Math.floor(Math.random() * 2) + 0);
   scene.img(`images/shared/prostitution/car/regular/sex/start_lick'+'${((s as any).prostitute_pick_rand || '')}'+'.mp4`);
   scene.text('He hinges down the passenger seat. "Lay down, I want to taste you," he tells you. You eagerly obey and spread your legs.');
   // TODO-QSP: dynamic text: "Beautiful," he comments on your'+iif(pcs_horny < 40, ' dry ', ' wet ')+'pussy.
-  scene.text('"Beautiful," he comments on your\'+iif(pcs_horny < 40, \' dry \', \' wet \')+\'pussy.');
+  scene.text('"Beautiful," he comments on your' + ((((s as any).pcs_horny ?? 0) < 40) ? (' dry ') : (' wet ')) + 'pussy.');
   if ((!((s as any).prostitute_pic_rand ?? 0))) {
     scene.text('You grab on of your breasts and knead it. "Please," you moan. He smiles, but takes a moment to take in the view of you playing with yourself, then he moves his head between your legs and sucks your clit into his mouth.');
     qspCall(s, 'arousal', 'breasts', (-4), 'unknown', 'prostitution', 'no_orgasm_msg');
@@ -834,11 +834,11 @@ function enterRegularStartLick(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
-      qspGoto(s, 'prostitution_car_sex', 'regular_vaginal');
+    if (((st as any).prostitute ?? 0)?.['client_scene'] === 'Vaginal') {
+      qspGoto(st, 'prostitution_car_sex', 'regular_vaginal');
     } else {
-      if (((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
-        qspGoto(s, 'prostitution_car_sex', 'regular_anal');
+      if (((st as any).prostitute ?? 0)?.['client_scene'] === 'Anal') {
+        qspGoto(st, 'prostitution_car_sex', 'regular_anal');
       }
     }
   } },
@@ -855,7 +855,7 @@ function enterRegularVaginal(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'foreplay', (-6), 'unknown', 'prostitution', 'no_orgasm_msg');
     } else {
       if (((s as any).prostitute_scene_lick ?? 0) === 1) {
-        scene.img('images/shared/prostitution/car/regular/sex/main_pussy\'+rand(0, 2)+\'.mp4');
+        scene.img('images/shared/prostitution/car/regular/sex/main_pussy' + (Math.floor(Math.random() * 3) + 0) + '.mp4');
         qspCall(s, 'arousal', 'auto_lube', 'vaginal');
         scene.text('He moves out of his clothes and replaces his tongue with his dick. You spread your legs even further to give him easier access and he pushes inside.');
         scene.text('Starting slow he speeds up after a few thrusts and fucks you in earnest after a minute.');
@@ -863,7 +863,7 @@ function enterRegularVaginal(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1) {
-      (s as any).prostitute_pic_rand = Math.floor(Math.random() * 3) + 3;
+      (s as any).prostitute_pic_rand = (Math.floor(Math.random() * 3) + 3);
       scene.img(`images/shared/prostitution/car/regular/sex/main_pussy${((s as any).prostitute_pic_rand || '')}.mp4`);
       if (((s as any).prostitute_pic_rand ?? 0) < 5) {
         scene.text('After a few minutes you switch positions. He puts the passenger seat back and moves to the back of the car and pulls you with him. You get on top of him and he continues pushing inside you.');
@@ -898,7 +898,7 @@ function enterRegularVaginal(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRegularAnal(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/shared/prostitution/car/regular/sex/main_anal\'+rand(0, 4)+\'.mp4');
+  scene.img('images/shared/prostitution/car/regular/sex/main_anal' + (Math.floor(Math.random() * 5) + 0) + '.mp4');
   if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 0) {
     scene.text('He moves onto the backseat of the car and lies down on it. "Get on top of me."');
     qspCall(s, 'arousal', 'auto_lube', 'anal');
@@ -912,11 +912,11 @@ function enterRegularAnal(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You carefully lower yourself onto his cock and forcing him past your sphincter.');
     // TODO-QSP: dynamic text: "Take a moment," he suggests'+iif(pcs_horny >= 60, ', but you shake your head an...
-    scene.text('"Take a moment," he suggests\'+iif(pcs_horny >= 60, \', but you shake your head and\' , \' and you gladly take this opportunity to get used to his dick inside your body before you\')+\' start to fuck him.');
+    scene.text('"Take a moment," he suggests' + ((((s as any).pcs_horny ?? 0) >= 60) ? (', but you shake your head and') : (' and you gladly take this opportunity to get used to his dick inside your body before you')) + ' start to fuck him.');
   } else {
     if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1) {
       scene.text('You switch up your routine every minute or so. Sometimes you fuck him, sometimes he fucks you or you both try to coordinate your simultaneous movements. He is clearly annoying himself and tells you that frequently.');
-      (s as any).prostitute_scene_rand = Math.floor(Math.random() * 10) + 1;
+      (s as any).prostitute_scene_rand = (Math.floor(Math.random() * 10) + 1);
       if (((s as any).prostitute_scene_rand ?? 0) < 5) {
         // TODO-QSP: '"My wife never let me fuck her like this," he tells you clearly '+iif(prostitute_scene_rand < 3, 'a...
       } else {
@@ -979,28 +979,28 @@ function enterRegularSwitch(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRegularCumshot(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'a regular client', Math.floor(Math.random() * 26) + 30);
+  qspCall(s, 'npcgeneratec', '', 0, 'a regular client', (Math.floor(Math.random() * 26) + 30));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  if (((s as any).locArgs?.[1] ?? 0) === 'mouth') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'mouth') {
     scene.img('images/shared/prostitution/car/regular/sex/end_mouth.mp4');
     // TODO-QSP: dynamic text: He pulls out of your '+iif($prostitute['client_scene'] = 'Anal', 'ass', 'pussy')...
-    scene.text('He pulls out of your \'+iif($prostitute[\'client_scene\'] = \'Anal\', \'ass\', \'pussy\')+\' and take his cock into your mouth. It won\'t take much for him to cum.\'+iif($prostitute[\'client_scene\'] = \'Anal\', \' You try to ignore the taste of your own ass\', \' You can taste your own pussy on his dick\')+\' as you tease his head with your tongue. That takes him over the edge and he shoots his cum inside your mouth.');
+    scene.text('He pulls out of your ' + ((((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') ? ('ass') : ('pussy')) + ' and take his cock into your mouth. It won\'t take much for him to cum.' + ((((s as any).prostitute ?? 0)?.['client_scene'] === 'Anal') ? (' You try to ignore the taste of your own ass') : (' You can taste your own pussy on his dick')) + ' as you tease his head with your tongue. That takes him over the edge and he shoots his cum inside your mouth.');
     qspCall(s, 'arousal', 'bj', 2, 'unknown', 'prostitution', 'no_orgasm_msg');
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'vaginal_condom'  ||  ((s as any).locArgs?.[1] ?? 0) === 'vaginal_creampie') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_condom'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_creampie') {
       scene.img('images/shared/prostitution/car/regular/sex/end_pussy.mp4');
       // TODO-QSP: 'You carefully massage his balls as he pushes into you. "I''m cumming," he groans and shoots his cum...
       qspCall(s, 'arousal', 'vaginal', 2, 'unknown', 'prostitution', 'no_orgasm_msg');
-      if (((s as any).locArgs?.[1] ?? 0) === 'vaginal_creampie') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'vaginal_creampie') {
         qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0));
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'anal_condom'  ||  ((s as any).locArgs?.[1] ?? 0) === 'anal_creampie') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'anal_condom'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'anal_creampie') {
         scene.img('images/shared/prostitution/car/regular/sex/end_anal.mp4');
         // TODO-QSP: 'With one last push he shoves his cock into you and shoots his cum '+iif($ARGS[1] = 'anal_creampie',...
         qspCall(s, 'arousal', 'anal', 2, 'unknown', 'prostitution', 'no_orgasm_msg');
-        if (((s as any).locArgs?.[1] ?? 0) === 'anal_creampie') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'anal_creampie') {
           qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0));
         }
       }
@@ -1056,15 +1056,15 @@ function enterRegularEnd_0(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Say no', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/shared/prostitution/car/regular/negotiation/end_p3.mp4');
-    // TODO-QSP: dynamic text: "No, sorry sweetie, but I don't kiss anybody while im working. It has nothing to...
-    scene.text('"No, sorry sweetie, but I don\'t kiss anybody while im working. It has nothing to do with you, it\'s a rule I have," you \'+iif($prostitute[\'kiss\'] = \'yes\', \'lie\', \'say\')+\' to avoid upsetting him.');
+    // TODO-QSP: dynamic text: "No, sorry sweetie, but I don''t kiss anybody while im working. It has nothing t...
+    scene.text('"No, sorry sweetie, but I don\'t kiss anybody while im working. It has nothing to do with you, it\'s a rule I have," you ' + ((((st as any).prostitute ?? 0)?.['kiss'] === 'yes') ? ('lie') : ('say')) + ' to avoid upsetting him.');
     scene.text('He doesn\'t look too happy about it. "Fine, I guess I can understand that."');
     if ((Math.floor(Math.random() * 10) + 1) > 7) {
-      ((s as any).prostitute = (s as any).prostitute ?? {})['customer_total'] = ((s as any).prostitute['customer_total'] ?? 0) - (1);
+      ((st as any).prostitute = (st as any).prostitute ?? {})['customer_total'] = ((st as any).prostitute['customer_total'] ?? 0) - (1);
     }
     scene.actions([
       { label: 'Get out of the car', goto: ['prostitution_car_sex', 'regular_end_1'] },
@@ -1074,19 +1074,19 @@ function enterRegularEnd_0(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Kiss him', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'tiny');
-    ((s as any).prostitute = (s as any).prostitute ?? {})['kiss'] = 'yes';
+    qspCall(st, 'mood', 'raise', 'tiny');
+    ((st as any).prostitute = (st as any).prostitute ?? {})['kiss'] = 'yes';
     scene.img('images/shared/prostitution/car/regular/negotiation/end_p2.mp4');
     scene.text('… kiss him. It\'s a strangely sweet moment in a car next to a gas station after he has solicited you for sex.');
     // TODO-QSP: dynamic text: "Thanks <<$prostitute_names[$prostitution_location]>>," he says and he looks hap...
-    scene.text(`"Thanks ${((s as any).prostitute_names ?? 0)?.[String((s as any).prostitution_location ?? 0)] ?? ''}," he says and he looks happy not sexually satisfied but truly happy.`);
-    qspCall(s, 'arousal', 'kiss', 3, 'unknown');
-    qspCall(s, 'arousal', 'end');
+    scene.text(`"Thanks ${((st as any).prostitute_names ?? 0)?.[String((st as any).prostitution_location ?? 0)] ?? ''}," he says and he looks happy not sexually satisfied but truly happy.`);
+    qspCall(st, 'arousal', 'kiss', 3, 'unknown');
+    qspCall(st, 'arousal', 'end');
     if ((Math.floor(Math.random() * 10) + 1) < 5) {
-      // TODO-QSP: dynamic text: "Here, take this," he says and tries to hand you another <<$func('money', 'strin...
+      // TODO-QSP: dynamic text: "Here, take this," he says and tries to hand you another <<$func(''money'', ''st...
       scene.text(`"Here, take this," he says and tries to hand you another ${qspFunc(s, 'money', 'string_profit', 100)}.`);
-      qspCall(s, 'willpower', 'prostitution', 'resist', 'easy');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'prostitution', 'resist', 'easy');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1095,15 +1095,15 @@ function enterRegularEnd_0(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Refuse', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    ((s as any).prostitute = (s as any).prostitute ?? {})['customer_total'] = ((s as any).prostitute['customer_total'] ?? 0) + (1);
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    ((st as any).prostitute = (st as any).prostitute ?? {})['customer_total'] = ((st as any).prostitute['customer_total'] ?? 0) + (1);
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('"Oh no, I can\' take that," you say a little bit offended. It feels wrong to get paid for a kiss.');
     scene.text('"What? Why?" He asks surprised.');
     scene.text('You smile. "I don\'t want it, not for giving you a kiss."');
-    // TODO-QSP: dynamic text: He looks puzzled and sits there for a moment still holding the <<$func('money', ...
+    // TODO-QSP: dynamic text: He looks puzzled and sits there for a moment still holding the <<$func(''money''...
     scene.text(`He looks puzzled and sits there for a moment still holding the ${qspFunc(s, 'money', 'string_profit', 100)} in his hand. "Sorry, I misjudged you."`);
     scene.text('"It\'s fine, I guess it comes with the territory," you say.');
     scene.text('He takes back the money and you can see in his eyes that you have earned a little bit of respect with him. A rare sight in your profession.');
@@ -1115,13 +1115,13 @@ function enterRegularEnd_0(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Accept', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'mood', 'lower', 'small');
-    qspCall(s, 'money', 'earn', 100, 'cash');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'mood', 'lower', 'small');
+    qspCall(st, 'money', 'earn', 100, 'cash');
     // TODO-QSP: 'You take it and with that you change the kiss into a simple transaction.'+iif(prostitute_georgiy['p...
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     if ((Math.floor(Math.random() * 10) + 1) === 10) {
-      ((s as any).prostitute = (s as any).prostitute ?? {})['customer_total'] = ((s as any).prostitute['customer_total'] ?? 0) - (1);
+      ((st as any).prostitute = (st as any).prostitute ?? {})['customer_total'] = ((st as any).prostitute['customer_total'] ?? 0) - (1);
     }
     scene.actions([
       { label: 'Get out of the car', goto: ['prostitution_car_sex', 'regular_end_1'] },

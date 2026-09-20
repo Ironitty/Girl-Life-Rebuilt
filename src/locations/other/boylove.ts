@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterHair(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'hair_color');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     // TODO-QSP: dynamic text: <<$npcdesc>> says that you have beautiful hair.
     scene.text(`${((s as any).npcdesc || '')} says that you have beautiful hair.`);
   } else {
@@ -45,7 +45,7 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
 function enterFigure(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_bmi');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     // TODO-QSP: dynamic text: <<$npcdesc>> tells you that you have a perfect figure.
     scene.text(`${((s as any).npcdesc || '')} tells you that you have a perfect figure.`);
   } else {
@@ -79,7 +79,7 @@ function enterFigure(s: GameState, scene: SceneBuilder): void {
 function enterTits(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_get_preference', '', ((s as any).npcID ?? 0), 'randomPosIndNeg', 'body_tits');
   if (((s as any).ngpPrefResult ?? 0)?.['HasPos'] !== '') {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     // TODO-QSP: dynamic text: <<$npcdesc>> tells you that you have perfect breasts.
     scene.text(`${((s as any).npcdesc || '')} tells you that you have perfect breasts.`);
   } else {

@@ -38,11 +38,11 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: "
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Wash all your clothes (0:10, ' + String(((s as any).temp_washer_cost || '') ?? '') + ' <b>₽</b>)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
     // TODO-QSP: gs 'money', 'pay', <<washer_total_wash_cost>>
     // TODO-QSP: dynamic text: You wash all clothing for <<temp_washer_cost>> <b>₽</b>.
-    scene.text(`You wash all clothing for ${((s as any).temp_washer_cost || '')} <b>₽</b>.`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWashAll(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`You wash all clothing for ${((st as any).temp_washer_cost || '')} <b>₽</b>.`);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWashAll(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -55,19 +55,19 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   ((s as any).washer_funcs = (s as any).washer_funcs ?? {})['washing_count'] = qspUntranslated(s, "{", { location: "washer" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
+  if (Number((s as any).locArgs?.[0] ?? 0)?.[Number((s as any).locArgs?.[1] ?? 0)] === 1  &&  (Number((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] >= 480)) {
     (s as any).washer_total_wash_count = ((s as any).washer_total_wash_count ?? 0) + (1);
   }
   // TODO-QSP: "
   ((s as any).washer_funcs = (s as any).washer_funcs ?? {})['washing_cost'] = qspUntranslated(s, "{", { location: "washer" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] === 1  &&  (((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[((s as any).locArgs?.[1] ?? 0)] >= 480)) {
+  if (Number((s as any).locArgs?.[0] ?? 0)?.[Number((s as any).locArgs?.[1] ?? 0)] === 1  &&  (Number((s as any).locArgs?.[0] ?? 0)((s as any)._dirt ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] >= 480)) {
     (s as any).washer_total_wash_cost = ((s as any).washer_total_wash_cost ?? 0) + (10);
   }
   // TODO-QSP: "
   ((s as any).washer_funcs = (s as any).washer_funcs ?? {})['wash'] = qspUntranslated(s, "{", { location: "washer" });
   // TODO-QSP: dynamic "
-  if (((s as any).locArgs?.[0] ?? 0)?.[((s as any).locArgs?.[1] ?? 0)] === 1) {
+  if (Number((s as any).locArgs?.[0] ?? 0)?.[Number((s as any).locArgs?.[1] ?? 0)] === 1) {
     // TODO-QSP: <<$ARGS[0]>>_dirt[<<ARGS[1]>>] = 0
   }
   // TODO-QSP: "

@@ -7,21 +7,12 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) > 0) {
-    (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: :knownloop
-    ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
-    (s as any).knwn = ((s as any).knwn ?? 0) - (1);
-    if (((s as any).knwn ?? 0) > 0) {
-      // TODO-QSP: jump 'knownloop'
-    }
-  }
   scene.build();
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (2);
-  (s as any).picrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'sexdvoe', 'var');
   // TODO-QSP: end
   scene.build();
@@ -42,8 +33,8 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).BlowBan ?? 0))) {
     scene.actions([
       { label: 'Blow them', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = 0;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = 0;
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
     ]);
   }
@@ -51,24 +42,24 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).DoubleBan ?? 0))) {
       scene.actions([
         { label: 'Double penetration', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 1;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = (Math.floor(Math.random() * 2) + 1);
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
       ]);
     }
     if ((!((s as any).SpitVagBan ?? 0))) {
       scene.actions([
         { label: 'Spit roast (pussy)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 3;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = (Math.floor(Math.random() * 2) + 3);
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
       ]);
     }
     if ((!((s as any).SpitAssBan ?? 0))) {
       scene.actions([
         { label: 'Spit roast (ass)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 5;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = (Math.floor(Math.random() * 2) + 5);
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
       ]);
     }
@@ -76,36 +67,36 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).DoubleBan ?? 0))) {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'DP (' + String(qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" }) ?? '') + ' (' + String(qspUntranslated(s, "npcID[0]", { location: "sexdvoe" }) ?? '') + ') in pussy)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = 1;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = 1;
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
         { label: '', labelFn: (s: GameState) => 'DP (' + String(qspUntranslated(s, "npcdesc[1]", { location: "sexdvoe" }) ?? '') + ' (' + String(qspUntranslated(s, "npcID[1]", { location: "sexdvoe" }) ?? '') + ') in pussy)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = 2;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = 2;
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
       ]);
     }
     if ((!((s as any).SpitVagBan ?? 0))) {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Spit roast (' + String(qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" }) ?? '') + ' (' + String(qspUntranslated(s, "npcID[0]", { location: "sexdvoe" }) ?? '') + ') in pussy)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = 3;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = 3;
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
         { label: '', labelFn: (s: GameState) => 'Spit roast (' + String(qspUntranslated(s, "npcdesc[1]", { location: "sexdvoe" }) ?? '') + ' (' + String(qspUntranslated(s, "npcID[1]", { location: "sexdvoe" }) ?? '') + ') in pussy)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = 4;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = 4;
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
       ]);
     }
     if ((!((s as any).SpitAssBan ?? 0))) {
       scene.actions([
         { label: '', labelFn: (s: GameState) => 'Spit roast (' + String(qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" }) ?? '') + ' (' + String(qspUntranslated(s, "npcID[0]", { location: "sexdvoe" }) ?? '') + ') in ass)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = 5;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = 5;
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
         { label: '', labelFn: (s: GameState) => 'Spit roast (' + String(qspUntranslated(s, "npcdesc[1]", { location: "sexdvoe" }) ?? '') + ' (' + String(qspUntranslated(s, "npcID[1]", { location: "sexdvoe" }) ?? '') + ') in ass)', handler: (st: GameState) => {
-    (s as any).sexdvoeloc = 6;
-    qspGoto(s, 'sexdvoe', 'sex');
+    (st as any).sexdvoeloc = 6;
+    qspGoto(st, 'sexdvoe', 'sex');
   } },
       ]);
     }
@@ -113,29 +104,29 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let them choose', handler: (st: GameState) => {
-    if (((s as any).BlowBan ?? 0) === 1  &&  ((s as any).DoubleBan ?? 0) !== 1) {
-      (s as any).sexdvoe = Math.floor(Math.random() * 3) + 1;
+    if (((st as any).BlowBan ?? 0) === 1  &&  ((st as any).DoubleBan ?? 0) !== 1) {
+      (st as any).sexdvoe = (Math.floor(Math.random() * 3) + 1);
     } else {
-      if (((s as any).BlowBan ?? 0) === 1  &&  ((s as any).DoubleBan ?? 0) === 1) {
-        (s as any).sexdvoe = Math.floor(Math.random() * 2) + 2;
+      if (((st as any).BlowBan ?? 0) === 1  &&  ((st as any).DoubleBan ?? 0) === 1) {
+        (st as any).sexdvoe = (Math.floor(Math.random() * 2) + 2);
       } else {
-        (s as any).sexdvoe = Math.floor(Math.random() * 4) + 0;
+        (st as any).sexdvoe = (Math.floor(Math.random() * 4) + 0);
       }
     }
-    if ((!((s as any).sexdvoe ?? 0))) {
-      (s as any).sexdvoeloc = 0;
-      qspGoto(s, 'sexdvoe', 'sex');
+    if ((!((st as any).sexdvoe ?? 0))) {
+      (st as any).sexdvoeloc = 0;
+      qspGoto(st, 'sexdvoe', 'sex');
     } else {
-      if (((s as any).sexdvoe ?? 0) === 1) {
-        (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 3;
-        qspGoto(s, 'sexdvoe', 'sex');
+      if (((st as any).sexdvoe ?? 0) === 1) {
+        (st as any).sexdvoeloc = (Math.floor(Math.random() * 2) + 3);
+        qspGoto(st, 'sexdvoe', 'sex');
       } else {
-        if (((s as any).sexdvoe ?? 0) === 2) {
-          (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 5;
-          qspGoto(s, 'sexdvoe', 'sex');
+        if (((st as any).sexdvoe ?? 0) === 2) {
+          (st as any).sexdvoeloc = (Math.floor(Math.random() * 2) + 5);
+          qspGoto(st, 'sexdvoe', 'sex');
         } else {
-          (s as any).sexdvoeloc = Math.floor(Math.random() * 2) + 1;
-          qspGoto(s, 'sexdvoe', 'sex');
+          (st as any).sexdvoeloc = (Math.floor(Math.random() * 2) + 1);
+          qspGoto(st, 'sexdvoe', 'sex');
         }
       }
     }
@@ -149,7 +140,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     (s as any).sameboy = 1;
   }
   (s as any).sexstart = 1;
-  (s as any).sexvar = Math.floor(Math.random() * 4) + 3;
+  (s as any).sexvar = (Math.floor(Math.random() * 4) + 3);
   scene.img('images/locations/shared/sex/sexdvoe/kiss.jpg');
   scene.text('After some kissing, it is time to move on to the next stage.');
   qspGoto(s, 'sexdvoe', 'menu');
@@ -286,7 +277,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', 10);
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if ((!((s as any).sexdvoeloc ?? 0))) {
-    (s as any).temp = Math.floor(Math.random() * 6) + 0;
+    (s as any).temp = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp ?? 0))) {
       // TODO-QSP: gs 'cum_call', 'hair', $npcID[0], iif(knownboy[0] = 1, 1, 0)
     } else {
@@ -296,7 +287,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: gs 'cum_call', 'mouth', $npcID[0], iif(knownboy[0] = 1, 1, 0)
       }
     }
-    (s as any).temp = Math.floor(Math.random() * 6) + 0;
+    (s as any).temp = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp ?? 0))) {
       // TODO-QSP: gs 'cum_call', 'hair', $npcID[1], iif(knownboy[1] = 1, 1, 0)
     } else {
@@ -332,10 +323,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: gs 'cum_call', '', $npcID[0], iif(knownboy[0] = 1, 1, 0)
           // TODO-QSP: gs 'cum_call', 'mouth', $npcID[1], iif(knownboy[1] = 1, 1, 0)
           if (((s as any).sameboy ?? 0) === 1) {
-            // TODO-QSP: dynamic text: They groan, and you have to swallow one of the <<$npcdesc[0]>>'s seed while the ...
+            // TODO-QSP: dynamic text: They groan, and you have to swallow one of the <<$npcdesc[0]>>''s seed while the...
             scene.text(`They groan, and you have to swallow one of the ${qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" })}'s seed while the other pumps your pussy full of his own.`);
           } else {
-            // TODO-QSP: dynamic text: They both groan, and you have to swallow <<$npcdesc[1]>>'s seed while <<$npcdesc...
+            // TODO-QSP: dynamic text: They both groan, and you have to swallow <<$npcdesc[1]>>''s seed while <<$npcdes...
             scene.text(`They both groan, and you have to swallow ${qspUntranslated(s, "npcdesc[1]", { location: "sexdvoe" })}'s seed while ${qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" })} pumps your pussy full of his own.`);
           }
         } else {
@@ -343,10 +334,10 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: gs 'cum_call', '', $npcID[1], iif(knownboy[1] = 1, 1, 0)
             // TODO-QSP: gs 'cum_call', 'mouth', $npcID[0], iif(knownboy[0] = 1, 1, 0)
             if (((s as any).sameboy ?? 0) === 1) {
-              // TODO-QSP: dynamic text: They groan, and you have to swallow one of the <<$npcdesc[0]>>'s seed while the ...
+              // TODO-QSP: dynamic text: They groan, and you have to swallow one of the <<$npcdesc[0]>>''s seed while the...
               scene.text(`They groan, and you have to swallow one of the ${qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" })}'s seed while the other pumps your pussy full of his own.`);
             } else {
-              // TODO-QSP: dynamic text: They both groan, and you have to swallow <<$npcdesc[0]>>'s seed while <<$npcdesc...
+              // TODO-QSP: dynamic text: They both groan, and you have to swallow <<$npcdesc[0]>>''s seed while <<$npcdes...
               scene.text(`They both groan, and you have to swallow ${qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" })}'s seed while ${qspUntranslated(s, "npcdesc[1]", { location: "sexdvoe" })} pumps your pussy full of his own.`);
             }
           } else {
@@ -356,7 +347,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sameboy ?? 0) === 1) {
                 scene.text('They groan at the same time, and you feel the taste of one of the guys as he cums inside your mouth, while the other one pumps your ass full of his own semen.');
               } else {
-                // TODO-QSP: dynamic text: They groan at the same time, and you feel the taste of <<$npcdesc[1]>>'s seed as...
+                // TODO-QSP: dynamic text: They groan at the same time, and you feel the taste of <<$npcdesc[1]>>''s seed a...
                 scene.text(`They groan at the same time, and you feel the taste of ${qspUntranslated(s, "npcdesc[1]", { location: "sexdvoe" })}'s seed as he cums inside your mouth, while ${qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" })} pumps your ass full of his semen.`);
               }
             } else {
@@ -365,7 +356,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
               if (((s as any).sameboy ?? 0) === 1) {
                 scene.text('They groan at the same time, and you feel the taste of one of the guys as he cums inside your mouth, while the other one pumps your ass full of his own semen.');
               } else {
-                // TODO-QSP: dynamic text: They groan at the same time, and you feel the taste of <<$npcdesc[0]>>'s seed as...
+                // TODO-QSP: dynamic text: They groan at the same time, and you feel the taste of <<$npcdesc[0]>>''s seed a...
                 scene.text(`They groan at the same time, and you feel the taste of ${qspUntranslated(s, "npcdesc[0]", { location: "sexdvoe" })}'s seed as he cums inside your mouth, while ${qspUntranslated(s, "npcdesc[1]", { location: "sexdvoe" })} pumps your ass full of his semen.`);
               }
             }
@@ -388,35 +379,44 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).picrand ?? 0) >= 24  &&  ((s as any).picrand ?? 0) <= 26) {
-      qspGoto(s, 'office', 'work');
+    if (((st as any).picrand ?? 0) >= 24  &&  ((st as any).picrand ?? 0) <= 26) {
+      qspGoto(st, 'office', 'work');
     }
-    if (((s as any).picrand ?? 0) >= 30  &&  ((s as any).picrand ?? 0) <= 34) {
-      qspGoto(s, 'office', 'work');
+    if (((st as any).picrand ?? 0) >= 30  &&  ((st as any).picrand ?? 0) <= 34) {
+      qspGoto(st, 'office', 'work');
     }
-    if (((s as any).picrand ?? 0) >= 35  &&  ((s as any).picrand ?? 0) <= 37) {
-      qspGoto(s, 'nichApartment', '');
+    if (((st as any).picrand ?? 0) >= 35  &&  ((st as any).picrand ?? 0) <= 37) {
+      qspGoto(st, 'nichApartment', '');
     }
-    if (((s as any).picrand ?? 0) >= 40  &&  ((s as any).picrand ?? 0) <= 43) {
-      qspGoto(s, 'dina', 'brodila');
+    if (((st as any).picrand ?? 0) >= 40  &&  ((st as any).picrand ?? 0) <= 43) {
+      qspGoto(st, 'dina', 'brodila');
     }
-    if (((s as any).picrand ?? 0) === 38) {
-      qspGoto(s, 'bed_events', 'vorend');
+    if (((st as any).picrand ?? 0) === 38) {
+      qspGoto(st, 'bed_events', 'vorend');
     }
-    if (((s as any).picrand ?? 0) === 29  ||  ((s as any).picrand ?? 0) === 39) {
-      qspGoto(s, 'city_industrial', '');
+    if (((st as any).picrand ?? 0) === 29  ||  ((st as any).picrand ?? 0) === 39) {
+      qspGoto(st, 'city_industrial', '');
     }
-    if (((s as any).kafesexrand ?? 0) === 1) {
-      (s as any).kafesexrand = 0;
-      qspGoto(s, 'city_kafe', 'workPred');
+    if (((st as any).kafesexrand ?? 0) === 1) {
+      (st as any).kafesexrand = 0;
+      qspGoto(st, 'city_kafe', 'workPred');
     }
-    dynamicGoto(s, 'sexloc');
+    dynamicGoto(st, 'sexloc');
   } },
   ]);
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
+    (s as any).knwn = ((s as any).locArgs?.[1] ?? 0);
+    // TODO-QSP: :knownloop
+    ((s as any).knownboy = (s as any).knownboy ?? {})[String((s as any).knwn ?? 0)] = 1;
+    (s as any).knwn = ((s as any).knwn ?? 0) - (1);
+    if (((s as any).knwn ?? 0) > 0) {
+      // TODO-QSP: jump 'knownloop'
+    }
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'start':

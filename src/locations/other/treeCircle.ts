@@ -1,4 +1,4 @@
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -59,16 +59,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) >= 30  &&  ((s as any).pcs_horny ?? 0) > 60) {
     scene.actions([
       { label: 'Masturbate to clear your head', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/shared/park/tree_masturb.mp4');
     scene.text('It feels like it takes an age to masturbate out in the cold of the tree circle but the magical wards here keep you safe even when you would otherwise being putting on such a lewd show.');
     scene.text('About 5 minutes later your climax hits and you feel instantly connected the trees seeing glimpses of hundreds of years of history in this place.');
     scene.text('Just as suddenly you snap back to reality.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'clit_finger', 5, 'masturbate');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
-      { label: 'Head cleared', goto: ['treeCircle', 'EntryPoint'] },
+      { label: 'Head cleared', handler: (st: GameState) => { qspGoto(st, 'treeCircle', ((st as any).EntryPoint ?? '')); } },
     ]);
   } },
     ]);

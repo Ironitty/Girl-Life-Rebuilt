@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).npc_preferences ?? 0)[((s as any).locArgs?.[0] ?? 0)] === '') {
+  if (((s as any).npc_preferences ?? 0)[Number((s as any).locArgs?.[0] ?? 0)] === '') {
     if (! qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[0] ?? 0))) {
       // TODO-QSP: exit
     }
@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: npc_attraction[$ARGS[0]] = min(max(0, npc_attraction[$ARGS[0]]), 200)
   // TODO-QSP: npc_rel_hotcat[$ARGS[0]] = func('AppearanceSystem', 'ConvertToHotcat', npc_attraction[$ARGS[0]])
-  if (((s as any).locArgs?.[1] ?? 0) >= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) >= 0) {
     // TODO-QSP: npc_rel_hotcat[$ARGS[0]] = min(max(pcs_hotcat - ARGS[1], npc_rel_hotcat[$ARGS[0]]), pcs_hotcat + ARG...
   }
   scene.build();

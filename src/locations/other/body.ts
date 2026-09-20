@@ -77,7 +77,7 @@ function enterCalcBMI2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCalcOptBodyMass(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 225;
   }
   (s as any).result = ((((s as any).pcs_hgt ?? 0) * ((s as any).pcs_hgt ?? 0) * ((s as any).locArgs?.[1] ?? 0)) - 2820000 - 70000 * (((s as any).pcs_hgt ?? 0) - 165)) / (550 * (60 + (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0)));
@@ -198,7 +198,7 @@ function enterUpdate_Hair(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) + (1);
     } else {
       if (((s as any).trait_vars ?? 0)?.['hair_growth_rate'] === 1) {
-        (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) + (Math.floor(Math.random() * 2) + 1);
+        (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) + ((Math.floor(Math.random() * 2) + 1));
       } else {
         if (((s as any).trait_vars ?? 0)?.['hair_growth_rate'] === -1) {
           (s as any).pcs_hairlng = ((s as any).pcs_hairlng ?? 0) + ((((!(Math.floor(Math.random() * 3) + 0))) ? (0) : (1)));
@@ -702,7 +702,7 @@ function enterResetPregMass(s: GameState, scene: SceneBuilder): void {
 
 function enterSetMassDistributionUsingBody(s: GameState, scene: SceneBuilder): void {
   ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['body'] = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).locArgs?.[1] ?? 0) >= 50  &&  ((s as any).locArgs?.[1] ?? 0) <= 60) {
+  if (Number((s as any).locArgs?.[1] ?? 0) >= 50  &&  Number((s as any).locArgs?.[1] ?? 0) <= 60) {
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['bust'] = ((s as any).pcs_mass ?? 0)?.['bust_gen'];
     ((s as any).pcs_mass = (s as any).pcs_mass ?? {})['butt'] = ((s as any).pcs_mass ?? 0)?.['butt_gen'];
   } else {
@@ -752,11 +752,11 @@ function enterUpdateVhips(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSkinGain(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'CleanSelf'  &&  ((s as any).lastShowerSkinGain ?? 0) !== ((s as any).daystart ?? 0)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'CleanSelf'  &&  ((s as any).lastShowerSkinGain ?? 0) !== ((s as any).daystart ?? 0)) {
     (s as any).lastShowerSkinGain = ((s as any).daystart ?? 0);
     (s as any).skinDailyGain = ((s as any).skinDailyGain ?? 0) + (5);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'Moisturizer') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'Moisturizer') {
       (s as any).moisturizerDailyCount = ((s as any).moisturizerDailyCount ?? 0) + (1);
       if (((s as any).moisturizerDailyCount ?? 0) <= 2) {
         (s as any).skinDailyGain = ((s as any).skinDailyGain ?? 0) + (2);
@@ -769,11 +769,11 @@ function enterSkinGain(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSkinLoss(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'Smoke'  &&  ((s as any).bodyVars ?? 0)?.['smoke_skin_penalty_day'] !== ((s as any).daystart ?? 0)) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'Smoke'  &&  ((s as any).bodyVars ?? 0)?.['smoke_skin_penalty_day'] !== ((s as any).daystart ?? 0)) {
     ((s as any).bodyVars = (s as any).bodyVars ?? {})['smoke_skin_penalty_day'] = ((s as any).daystart ?? 0);
     (s as any).skinDailyPenalty = ((s as any).skinDailyPenalty ?? 0) + (1);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'MakeUpSleep') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'MakeUpSleep') {
       (s as any).skinDailyPenalty = ((s as any).skinDailyPenalty ?? 0) + (10);
     }
   }

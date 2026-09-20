@@ -43,12 +43,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           }
         }
         if (((s as any).nataliaQW ?? 0)?.['library_day'] === ((s as any).daystart ?? 0)) {
-          scene.text('You see your classmate <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027natalia_pavlova\\u0027, \\u0027library\\u0027); return false;">Natalia Pavlova</a> sitting alone at one of the tables.');
+          scene.text('You see your classmate <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027natalia_pavlova/u0027, /u0027library/u0027); return false;">Natalia Pavlova</a> sitting alone at one of the tables.');
         }
       }
     }
   }
-  scene.text('Between the bookshelves are some tables which can be used for studying. Some of them have <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027internet_mobile\\u0027, \\u0027get_access\\u0027, \\u0027free\\u0027); return false;">computers</a> for public use.');
+  scene.text('Between the bookshelves are some tables which can be used for studying. Some of them have <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027internet_mobile/u0027, /u0027get_access/u0027, /u0027free/u0027); return false;">computers</a> for public use.');
   if (((s as any).lernHome ?? 0) > 0) {
     scene.text('You could do your homework with the help of one of the computers.');
   }
@@ -70,18 +70,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Do your homework (1:00)', handler: (st: GameState) => {
-    if (((s as any).will_cost ?? 0) > 0) {
-      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    if (((st as any).will_cost ?? 0) > 0) {
+      qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
     // TODO-QSP: gs 'mood', 'raise', 5 * trait_vars['academic']
-    (s as any).lern = ((s as any).lern ?? 0) + (1);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 0, 0);
+    (st as any).lern = ((st as any).lern ?? 0) + (1);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 0, 0);
     scene.img('images/locations/pavlovsk/community/library/homework.jpg');
     scene.text('You sit down at one of the tables with a computer and use it to help you do your homework.');
-    // TODO-QSP: dynamic text: After an hour, you've ' + iif(lernHome = 0, 'completed', 'done a part of') + ' y...
-    scene.text('After an hour, you\'ve \' + iif(lernHome = 0, \'completed\', \'done a part of\') + \' your homework.');
+    // TODO-QSP: dynamic text: After an hour, you''ve ' + iif(lernHome = 0, 'completed', 'done a part of') + ' ...
+    scene.text('After an hour, you\'ve ' + (((!((st as any).lernHome ?? 0))) ? ('completed') : ('done a part of')) + ' your homework.');
     scene.actions([
       { label: 'Get up from the table', goto: ['pav_library', ''] },
     ]);

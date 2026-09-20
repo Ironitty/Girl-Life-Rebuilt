@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/park/parkus.jpg');
   scene.text('The gardens of the old palace have been sculpted over many years into a wonder landscape with a tranquil atmosphere.');
   scene.text('The Pushkin Park is a must-see for tourists and servers as the main attraction of Pushkin.');
-  scene.text('Wander deeper into the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pushkin_parks\\u0027, \\u0027lug\\u0027); return false;">park</a>.');
+  scene.text('Wander deeper into the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_parks/u0027, /u0027lug/u0027); return false;">park</a>.');
   qspCall(s, 'park_walkevents', 'run');
   if (((s as any).hour ?? 0) >= 20  ||  ((s as any).hour ?? 0) < 6) {
     if (qspFunc(s, 'homes_properties', 'has_access', 'old_town_apartment') === 0) {
@@ -33,9 +33,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     scene.actions([
       { label: 'Smoke a joint', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'drugs', 'joint');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'drugs', 'joint');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -50,12 +50,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
   }, goto: ['pushkin', ''] },
     { label: 'Walk around the park (1 hour)', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      qspGoto(s, 'kseniyaQW', 'event1', '1');
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((st as any).exhibitionQW ?? 0))) {
+      qspGoto(st, 'kseniyaQW', 'event1', '1');
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.text('You leisurely stroll through Pushkin Park, breathing in the fresh air, and reflecting on the vicissitudes of fate.');
     scene.actions([
       { label: 'Complete outing.', goto: ['pushkin_parks', 'start'] },
@@ -86,10 +86,10 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
       scene.text(`The guy introduces himself as ${((s as any).boydesc || '')} and asks for your telephone number.`);
       scene.actions([
         { label: 'Tell him your number', handler: (st: GameState) => {
-    qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
-    (s as any).stopboy = 0;
+    qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
+    (st as any).stopboy = 0;
     // TODO-QSP: dynamic text: <<$boydesc>> thanks you and leaves.
-    scene.text(`${((s as any).boydesc || '')} thanks you and leaves.`);
+    scene.text(`${((st as any).boydesc || '')} thanks you and leaves.`);
     scene.actions([
       { label: 'Complete outing', goto: ['pushkin_parks', 'lug'] },
     ]);
@@ -101,19 +101,19 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) >= 90) {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
       qspCall(s, 'stat', '');
-      scene.text('On the path stands a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pushkin_parks\\u0027, \\u0027pavserjil\\u0027); return false;">man</a> looking like he is waiting for someone.');
+      scene.text('On the path stands a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pushkin_parks/u0027, /u0027pavserjil/u0027); return false;">man</a> looking like he is waiting for someone.');
     }
   }
   qspCall(s, 'kseniyaQW', 'events');
   if (((s as any).pcs_inhib ?? 0) >= 35) {
     scene.actions([
       { label: 'Flash your tits', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      qspGoto(s, 'kseniyaQW', 'event1', '1');
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((st as any).exhibitionQW ?? 0))) {
+      qspGoto(st, 'kseniyaQW', 'event1', '1');
     }
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
-    qspCall(s, 'flash', 'tits', 'outdoors', 5);
-    qspCall(s, 'stat', '');
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
+    qspCall(st, 'flash', 'tits', 'outdoors', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['pushkin_parks', 'lug'] },
     ]);
@@ -123,11 +123,11 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0) {
     scene.actions([
       { label: 'Flash your pussy', handler: (st: GameState) => {
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((s as any).exhibitionQW ?? 0))) {
-      qspGoto(s, 'kseniyaQW', 'event1', '1');
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] > 0  &&  (!((st as any).exhibitionQW ?? 0))) {
+      qspGoto(st, 'kseniyaQW', 'event1', '1');
     }
-    qspCall(s, 'flash', 'pussy', 'outdoors', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'flash', 'pussy', 'outdoors', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['pushkin_parks', 'lug'] },
     ]);
@@ -138,14 +138,14 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Visit the pond', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pushkin_parks', 'prut');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pushkin_parks', 'prut');
   } },
     { label: 'Go toward the park entrance', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pushkin_parks', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pushkin_parks', 'start');
   } },
   ]);
   scene.build();
@@ -173,14 +173,14 @@ function enterPrut(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Explore the wooded area', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pushkin_parks', 'prut2');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pushkin_parks', 'prut2');
   } },
     { label: 'Return to the small meadow', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pushkin_parks', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pushkin_parks', 'start');
   } },
   ]);
   scene.build();
@@ -222,32 +222,32 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_inhib ?? 0) > 30) {
       scene.actions([
         { label: 'Strip off and skinny dip (0:30)', handler: (st: GameState) => {
-    (s as any).cumspclnt = 4;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    if (((s as any).pcs_sweat ?? 0) > 10) {
-      (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
+    (st as any).cumspclnt = 4;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    if (((st as any).pcs_sweat ?? 0) > 10) {
+      (st as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
     }
-    if (((s as any).pcs_stren ?? 0) < 30) {
-      qspCall(s, 'exp_gain', 'stren', 1);
+    if (((st as any).pcs_stren ?? 0) < 30) {
+      qspCall(st, 'exp_gain', 'stren', 1);
     }
-    if (((s as any).pcs_vital ?? 0) < 30) {
-      qspCall(s, 'exp_gain', 'vital', 1);
+    if (((st as any).pcs_vital ?? 0) < 30) {
+      qspCall(st, 'exp_gain', 'vital', 1);
     }
-    (s as any).fat = ((s as any).fat ?? 0) - (1);
-    (s as any).pcs_makeup = 1;
-    qspCall(s, 'arousal', 'flash', 10, 'exhibitionism');
-    qspCall(s, 'outfit', 'strip_all');
-    if (((s as any).pcs_inhib ?? 0) < 40) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (st as any).fat = ((st as any).fat ?? 0) - (1);
+    (st as any).pcs_makeup = 1;
+    qspCall(st, 'arousal', 'flash', 10, 'exhibitionism');
+    qspCall(st, 'outfit', 'strip_all');
+    if (((st as any).pcs_inhib ?? 0) < 40) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     }
-    if (((s as any).pcs_horny ?? 0) >= 80  &&  ((s as any).pcs_inhib ?? 0) >= 60  &&  ((s as any).PCloPanties ?? 0) === 1) {
+    if (((st as any).pcs_horny ?? 0) >= 80  &&  ((st as any).pcs_inhib ?? 0) >= 60  &&  ((st as any).PCloPanties ?? 0) === 1) {
       scene.img('images/locations/pavlovsk/lake/secluded_beach/self/wetpussypants3.jpg');
       scene.text('AS you strip off. A couple of passing men do a double-take and pause a moment to look at your sopping wet panties, probably thinking about what is making you so excited. You don\'t care about what they might say or think of you and carry on stripping.');
       scene.text('Once you are naked you play around and have fun in the pond, enjoying the feel of the warm water on your body. The clean pond water refreshes and invigorates you.');
     } else {
-      if (((s as any).pcs_inhib ?? 0) >= 60) {
+      if (((st as any).pcs_inhib ?? 0) >= 60) {
         scene.img('images/locations/pavlovsk/lake/secluded_beach/dress/undressnudebeach.jpg');
         scene.text('Not caring if anyone is looking at you, you slowly take off your clothes. You peel off each item like a stripper. Soon, you are completely naked.');
         scene.text('You play around and have fun in the pond, enjoying the feel of the warm water on your naked body. The clean pond water refreshes and invigorates you.');
@@ -257,15 +257,15 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
         scene.text('You play around and have fun in the pond, enjoying the feel of the warm water on your naked body. The clean pond water refreshes and invigorates you.');
       }
     }
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get out and dressed', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspGoto(s, 'pushkin_parks', 'prut2');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspGoto(st, 'pushkin_parks', 'prut2');
   } },
     ]);
   } },
@@ -277,14 +277,14 @@ function enterPrut2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the field', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pushkin_parks', 'luzhayka');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pushkin_parks', 'luzhayka');
   } },
     { label: 'Follow the pond back out of the woods', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pushkin_parks', 'prut');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pushkin_parks', 'prut');
   } },
   ]);
   scene.build();
@@ -298,9 +298,9 @@ function enterLuzhayka(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the woodland pond', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pushkin_parks', 'prut2');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pushkin_parks', 'prut2');
   } },
   ]);
   scene.build();

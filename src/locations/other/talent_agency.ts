@@ -29,6 +29,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'talent_agency', '');
+  (s as any).minut = ((s as any).minut ?? 0) + 5;
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Aurora Talent Agency</b></center>');
+  scene.img('images/locations/city/citycenter/aurora/front.jpg');
+  scene.text('"Hello, welcome to the Aurora Female Talent Agency! How may I help you?"');
+  if (((s as any).casting ?? 0) === 3  &&  ((s as any).hour ?? 0) <= 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0)) {
+    ((s as any).audition = (s as any).audition ?? {})['room'] = 3;
+    scene.text('"Oh? Are you here for the SMTV commercial? Please go to interview room 3. They\'re waiting for you inside.');
+  } else {
+    if (((s as any).casting ?? 0) === 3  &&  ((((s as any).hour ?? 0) > 11  &&  ((s as any).SMTV_commercial ?? 0) === ((s as any).daystart ?? 0))  ||  ((s as any).SMTV_commercial ?? 0) < ((s as any).daystart ?? 0))) {
+      scene.text('"You\'re here for the SMTV commercial? Sorry, you\'re late, and you\'ve just cost the production tons of money. You\'ve been fired. The first rule of showbiz, honey: show up on time.');
+      (s as any).casting = 0;
+    }
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave', goto: ['city_center', ''] },
+    { label: 'Go to the interview rooms', goto: ['talent_agency', 'hallway'] },
+  ]);
+  scene.build();
+}
+
 function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/aurora/auditions/hallway.jpg');
   // TODO-QSP: end
@@ -172,7 +197,7 @@ function enterSMTVIntro(s: GameState, scene: SceneBuilder): void {
   ((s as any).actresslife = (s as any).actresslife ?? {})['SMTV_commercial'] = 1;
   scene.img('images/locations/city/citycenter/aurora/auditions/room.jpg');
   scene.text('You enter the interview room, and someone is there waiting for you.');
-  // TODO-QSP: dynamic text: "Ahh! Hello! You must be Miss <<$pcs_lastname>>. I'm Artur Yanovich. But you can...
+  // TODO-QSP: dynamic text: "Ahh! Hello! You must be Miss <<$pcs_lastname>>. I''m Artur Yanovich. But you ca...
   scene.text(`"Ahh! Hello! You must be Miss ${((s as any).pcs_lastname || '')}. I'm Artur Yanovich. But you can call me Mr Yanovich," he says, holding his hand.`);
   // TODO-QSP: end
   scene.actions([
@@ -181,8 +206,8 @@ function enterSMTVIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes, that\'s right," he says. "Normally, we would use one of the film sets in the industrial area, but for this kind of thing, we need more of a crowd, so we\'re doing it in the city center."');
     scene.text('You nod understandingly.');
     scene.text('"Alright, time for you to undress."');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: '"Wait, what?"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -191,8 +216,8 @@ function enterSMTVIntro(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: '"Wait, what?"', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/aurora/auditions/room.jpg');
     scene.text('He frowns, seemingly puzzled. "I thought you were told what this shoot is about. So you need to get naked. Unless you wanted to do it in the street?"');
     scene.actions([
@@ -232,26 +257,26 @@ function enterSMTVShy(s: GameState, scene: SceneBuilder): void {
     { label: '"Wait! What are you-!"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/aurora/front.jpg');
     scene.text('He suddenly grabs you by the arm and leads you out of the room, leaving your clothes behind. He walks you straight through the populated lobby of the talent agency. You do your best to cover your face in embarrassment, but it\'s hard with only one hand. You blush furiously as Mr Yanovich pulls you right out the front door and into the back seat of a car.');
-    // TODO-QSP: dynamic text: Once inside the car, he gets on a radio and says, "Alright, we've got Miss <<$pc...
-    scene.text(`Once inside the car, he gets on a radio and says, "Alright, we've got Miss ${((s as any).pcs_lastname || '')} here, naked and ready in the car. Let's move out."`);
+    // TODO-QSP: dynamic text: Once inside the car, he gets on a radio and says, "Alright, we''ve got Miss <<$p...
+    scene.text(`Once inside the car, he gets on a radio and says, "Alright, we've got Miss ${((st as any).pcs_lastname || '')} here, naked and ready in the car. Let's move out."`);
     scene.actions([
       { label: '"Move out?"', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('"Move out?" you ask, trying to stay away from the windows as much as possible. "Where are we going?"');
     scene.text('Mr Yanovich starts the car and says to you, "This is not an ideal location to shoot. However, we have a particular street in mind, so we\'ll go there."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 45;
+    (st as any).minut = ((st as any).minut ?? 0) + 45;
     scene.img('images/locations/city/island/island.jpg');
     scene.text('After some driving, they park on a side street, and you see the camera crew get out of a van behind your car and begin to set up.');
     scene.text('Mr Yanovich stays in the car with you very professionally and efficiently directs you on where the cameras will be, what pace you should walk at, where you should look, and when. His professional demeanour is quite calming to you, helping you settle down and prepare for what\'s about to come next.');
-    // TODO-QSP: dynamic text: "Alright, <<$pcs_lastname>>. It's time."
-    scene.text(`"Alright, ${((s as any).pcs_lastname || '')}. It's time."`);
+    // TODO-QSP: dynamic text: "Alright, <<$pcs_lastname>>. It''s time."
+    scene.text(`"Alright, ${((st as any).pcs_lastname || '')}. It's time."`);
     scene.text('Your heart starts to pound inside your chest as nervousness takes hold again. You\'ll have to walk down the street naked, after all!');
     scene.actions([
       { label: 'Do it', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/locations/city/citycenter/aurora/commercial_bts1.mp4');
     scene.text('With a deep breath, you open the car door and step out. Gusts of wind blow, chilling your naked body. An aide quickly directs you to the marked spot, shuts the car door, and rushes out of the frame.');
     scene.text('The camera is directly in front of you. So you focus with all your might, concentrating on getting it right in one go.');
@@ -269,28 +294,28 @@ function enterSMTVShy(s: GameState, scene: SceneBuilder): void {
     scene.text('At last, you take the final step and make it past the checkpoint. Another aide is there, and you gratefully rush into the gloriously warm blanket she holds and wraps your naked body in.');
     scene.text('Mr Yanovich and others are huddled around a monitor, examining the footage.');
     // TODO-QSP: dynamic text: "Amazing!" he exclaims. "A true one-take-wonder! Excellent work here, Miss <<$pc...
-    scene.text(`"Amazing!" he exclaims. "A true one-take-wonder! Excellent work here, Miss ${((s as any).pcs_lastname || '')}! Excellent work! That's all we need from you today, we'll take you back to Aurora, and you can get changed into your clothes.`);
+    scene.text(`"Amazing!" he exclaims. "A true one-take-wonder! Excellent work here, Miss ${((st as any).pcs_lastname || '')}! Excellent work! That's all we need from you today, we'll take you back to Aurora, and you can get changed into your clothes.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
     scene.img('images/locations/city/citycenter/aurora/front.jpg');
     scene.text('You get in the car and head back to Aurora. When you get there, Mr Yanovich leads you back through the doors and into the interview room you met him in. On the way there, you don\'t feel as embarrassed as you did before. In fact, you feel pretty confident and strong. You just walked down a busy street completely nude! You should be proud of yourself! So what\'s walking through a lobby with other actresses?');
     scene.actions([
       { label: 'Dress', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/misc/dress_1.mp4');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    (s as any).actpayfin = ((4000 + (((s as any).pcs_mdlng ?? 0) * 25) + (((s as any).pcs_apprnc ?? 0) * 2) + (((s as any).pcs_inhib ?? 0) * 3)) * 3);
+    qspCall(st, 'outfit', 'wear_last_worn');
+    (st as any).actpayfin = ((4000 + (((st as any).pcs_mdlng ?? 0) * 25) + (((st as any).pcs_apprnc ?? 0) * 2) + (((st as any).pcs_inhib ?? 0) * 3)) * 3);
     scene.text('You change back into your clothes while Mr Yanovich does something at the desk.');
     // TODO-QSP: dynamic text: Before you finish dressing, Mr Yanovich says, "It was a pleasure working with yo...
-    scene.text(`Before you finish dressing, Mr Yanovich says, "It was a pleasure working with you, Miss ${((s as any).pcs_lastname || '')}. I hope I get another chance to do it again!" He smiles warmly and leaves the room.`);
+    scene.text(`Before you finish dressing, Mr Yanovich says, "It was a pleasure working with you, Miss ${((st as any).pcs_lastname || '')}. I hope I get another chance to do it again!" He smiles warmly and leaves the room.`);
     // TODO-QSP: dynamic text: Looking over at the desk, you see a wad of cash. You rush over, and when you fin...
-    scene.text(`Looking over at the desk, you see a wad of cash. You rush over, and when you finish counting, you realize that it's ${qspFunc(s, 'money', 'string_profit', ((s as any).actpayfin || ''))}!`);
+    scene.text(`Looking over at the desk, you see a wad of cash. You rush over, and when you finish counting, you realize that it's ${qspFunc(s, 'money', 'string_profit', ((st as any).actpayfin || ''))}!`);
     scene.text('<i>Holy crap! Acting is some serious money!</i>');
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (20);
-    (s as any).casting = 1;
-    ((s as any).audition = (s as any).audition ?? {})['room'] = 0;
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (20);
+    (st as any).casting = 1;
+    ((st as any).audition = (st as any).audition ?? {})['room'] = 0;
     scene.actions([
       { label: 'Leave', goto: ['talent_agency', 'end'] },
     ]);
@@ -332,25 +357,25 @@ function enterSMTVConfident(s: GameState, scene: SceneBuilder): void {
     { label: '"Leave"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/aurora/front.jpg');
     scene.text('He opens the door, and you follow him back through the lobby, leaving your clothes behind in the interview room. A few people whisper and glance at you as you walk past, but you don\'t mind. Mr Yanovich leads you right out the front door and into the back seat of a car.');
-    // TODO-QSP: dynamic text: Once inside the car, he gets on a radio and says, "Alright, we've got Miss <<$pc...
-    scene.text(`Once inside the car, he gets on a radio and says, "Alright, we've got Miss ${((s as any).pcs_lastname || '')} here, naked and ready in the car. Let's move out."`);
+    // TODO-QSP: dynamic text: Once inside the car, he gets on a radio and says, "Alright, we''ve got Miss <<$p...
+    scene.text(`Once inside the car, he gets on a radio and says, "Alright, we've got Miss ${((st as any).pcs_lastname || '')} here, naked and ready in the car. Let's move out."`);
     scene.actions([
       { label: '"Move out?"', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('"Move out?" you ask. "Where are we going?"');
     scene.text('Mr Yanovich starts the car and says to you, "This is not an ideal location to shoot. However, we have a particular street in mind, so we\'ll go there."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 45;
+    (st as any).minut = ((st as any).minut ?? 0) + 45;
     scene.img('images/locations/city/island/island.jpg');
     scene.text('After some driving, they park on a side street, and you see the camera crew get out of a van behind your car and begin to set up.');
     scene.text('Mr Yanovich stays in the car with you and very professionally and efficiently directs you on where the cameras will be, what pace you should walk at, where you should look, and when. You listen diligently and get ready for what\'s about to come next.');
-    // TODO-QSP: dynamic text: "Alright, <<$pcs_lastname>>. It's time."
-    scene.text(`"Alright, ${((s as any).pcs_lastname || '')}. It's time."`);
+    // TODO-QSP: dynamic text: "Alright, <<$pcs_lastname>>. It''s time."
+    scene.text(`"Alright, ${((st as any).pcs_lastname || '')}. It's time."`);
     scene.actions([
       { label: 'Do it', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/locations/city/citycenter/aurora/commercial_bts1.mp4');
     scene.text('With a deep breath, you open the car door and calmly step out. Gusts of wind blow, chilling your naked body. An aide quickly directs you to the marked spot, shuts the car door, and rushes out of the frame.');
     scene.text('The camera is directly in front of you. So you focus with all your might, concentrating on getting it right in one go.');
@@ -368,27 +393,27 @@ function enterSMTVConfident(s: GameState, scene: SceneBuilder): void {
     scene.text('At last, you take the final step and make it past the checkpoint. Another aide is there, and you step into the gloriously warm blanket she holds and wraps your naked body in.');
     scene.text('Mr Yanovich and others are huddled around a monitor, examining the footage.');
     // TODO-QSP: dynamic text: "Amazing!" he exclaims. "A true one-take-wonder! Excellent work here, Miss <<$pc...
-    scene.text(`"Amazing!" he exclaims. "A true one-take-wonder! Excellent work here, Miss ${((s as any).pcs_lastname || '')}! Excellent work! That's all we need from you today, we'll take you back to Aurora, and you can get changed back into your clothes."`);
+    scene.text(`"Amazing!" he exclaims. "A true one-take-wonder! Excellent work here, Miss ${((st as any).pcs_lastname || '')}! Excellent work! That's all we need from you today, we'll take you back to Aurora, and you can get changed back into your clothes."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
     scene.img('images/locations/city/citycenter/aurora/front.jpg');
     scene.text('You get in the car and head back to Aurora. When you get there, Mr Yanovich leads you back through the doors and into the interview room you met him in. You feel pretty proud of yourself, having done the shoot in a single take. You may be cut out to be an actress, after all!');
     scene.actions([
       { label: 'Dress', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/misc/dress_1.mp4');
-    qspCall(s, 'outfit', 'wear_last_worn');
-    (s as any).actpayfin = (4000 + (((s as any).pcs_mdlng ?? 0) * 25) + (((s as any).pcs_apprnc ?? 0) * 2) + (((s as any).pcs_inhib ?? 0) * 5)) * 3;
+    qspCall(st, 'outfit', 'wear_last_worn');
+    (st as any).actpayfin = (4000 + (((st as any).pcs_mdlng ?? 0) * 25) + (((st as any).pcs_apprnc ?? 0) * 2) + (((st as any).pcs_inhib ?? 0) * 5)) * 3;
     scene.text('You change back into your clothes while Mr Yanovich does something at the desk.');
     // TODO-QSP: dynamic text: Before you finish dressing, Mr Yanovich says, "It was a pleasure working with yo...
-    scene.text(`Before you finish dressing, Mr Yanovich says, "It was a pleasure working with you, Miss ${((s as any).pcs_lastname || '')}. I hope I get another chance to do it again!" He smiles warmly and leaves the room.`);
+    scene.text(`Before you finish dressing, Mr Yanovich says, "It was a pleasure working with you, Miss ${((st as any).pcs_lastname || '')}. I hope I get another chance to do it again!" He smiles warmly and leaves the room.`);
     // TODO-QSP: dynamic text: Looking over at the desk, you see a wad of cash. You rush over, and when you fin...
-    scene.text(`Looking over at the desk, you see a wad of cash. You rush over, and when you finish counting, you realize that it's ${qspFunc(s, 'money', 'string_profit', ((s as any).actpayfin || ''))}!`);
+    scene.text(`Looking over at the desk, you see a wad of cash. You rush over, and when you finish counting, you realize that it's ${qspFunc(s, 'money', 'string_profit', ((st as any).actpayfin || ''))}!`);
     scene.text('<i>Holy crap! Acting is some serious money!</i>');
-    (s as any).casting = 1;
-    ((s as any).audition = (s as any).audition ?? {})['room'] = 0;
+    (st as any).casting = 1;
+    ((st as any).audition = (st as any).audition ?? {})['room'] = 0;
     scene.actions([
       { label: 'Leave', goto: ['talent_agency', 'end'] },
     ]);
@@ -412,7 +437,7 @@ function enterSMTVConfident(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWrongRoom(s: GameState, scene: SceneBuilder): void {
-  (s as any).interview = Math.floor(Math.random() * 21) + 1;
+  (s as any).interview = (Math.floor(Math.random() * 21) + 1);
   if (((s as any).interview ?? 0) === 1) {
     scene.img('images/locations/city/citycenter/aurora/auditions/wrong/1.jpg');
     scene.text('You enter the room and see a girl conversing with a director or producer. You suddenly realize that you\'ve gone into the wrong room and back out, apologizing.');
@@ -597,6 +622,9 @@ function enterWrongRoom(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'hallway':
       enterHallway(s, scene);
       break;

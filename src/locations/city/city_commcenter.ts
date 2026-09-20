@@ -39,13 +39,13 @@ function enterLessons(s: GameState, scene: SceneBuilder): void {
   scene.text('Inside is a reception desk. Next to it is a large bulletin board with a list of currently available course.');
   scene.text('On the bulletin board, you can see they are currently offering:');
   // TODO-QSP: dynamic text: Driving lessons ' + $func('money', 'string_price', 30000) + '  for ten classes t...
-  scene.text('Driving lessons 30000₽  for ten classes to get your drivers license <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_commcenter\\u0027, \\u0027drivingschool\\u0027); return false;">Course in room 201</a>.');
+  scene.text('Driving lessons 30000₽  for ten classes to get your drivers license <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_commcenter/u0027, /u0027drivingschool/u0027); return false;">Course in room 201</a>.');
   // TODO-QSP: dynamic text: Massage therapist courses - ' + $func('money', 'string_price', 10000) + ' for te...
-  scene.text('Massage therapist courses - 10000₽ for ten classes to get your Masseuse certification <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_commcenter\\u0027, \\u0027masseuse\\u0027); return false;">Classes in room 203</a>.');
+  scene.text('Massage therapist courses - 10000₽ for ten classes to get your Masseuse certification <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_commcenter/u0027, /u0027masseuse/u0027); return false;">Classes in room 203</a>.');
   // TODO-QSP: dynamic text: Secretarial certification - ' + $func('money', 'string_price', 15000) + ' for te...
-  scene.text('Secretarial certification - 15000₽ for ten classes to get your Secretarial certification, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_commcenter\\u0027, \\u0027secretarialschool\\u0027); return false;">Classes in room 204</a>.');
+  scene.text('Secretarial certification - 15000₽ for ten classes to get your Secretarial certification, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_commcenter/u0027, /u0027secretarialschool/u0027); return false;">Classes in room 204</a>.');
   // TODO-QSP: dynamic text: Singing lessons - ' + $func('money', 'string_price', 500) + ' per class <a href=...
-  scene.text('Singing lessons - 500₽ per class <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027city_commcenter\\u0027, \\u0027singingtutor\\u0027); return false;">Classes in room 213. </a>');
+  scene.text('Singing lessons - 500₽ per class <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027city_commcenter/u0027, /u0027singingtutor/u0027); return false;">Classes in room 213. </a>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -75,12 +75,12 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
   scene.text('The driving school is government run and will check personal details against the state registration database. As such, a fake ID will not work. You need to be 18 or above.');
   if (((s as any).license ?? 0)?.['drive'] === 1) {
     scene.text('You\'ve already got your driving license!');
-    return;
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
+{ label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+]);
+    return;
   }
   if (((s as any).license ?? 0)?.['drive_enrolled'] === 0) {
     if (((s as any).age ?? 0) < 18) {
@@ -89,7 +89,7 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Book a driving course', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 30000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       scene.text('<center><b>The Vladimir Lenin community center</b></center>');
       scene.img('images/locations/city/industrial/community/reception.jpg');
@@ -97,7 +97,7 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
       scene.text('You pay her the money and she gives you a small information pack about the driving lessons. You quickly skim through them to see you can take a 2-hour driving lesson on each work day.');
       scene.actions([
         { label: 'Pay for the course', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['drive_enrolled'] = 1;
+    ((st as any).license = (st as any).license ?? {})['drive_enrolled'] = 1;
     // TODO-QSP: gt 'city_commcenter', 'payments', 'driving lessons', 30000
   } },
         { label: 'Return', handler: (st: GameState) => {
@@ -116,10 +116,10 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
         if (((s as any).license ?? 0)?.['drive_lessons'] < 11) {
           scene.actions([
             { label: 'Driving lesson', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['drive_lastday'] = ((s as any).daystart ?? 0);
-    ((s as any).license = (s as any).license ?? {})['drive_lessons'] = ((s as any).license['drive_lessons'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
+    ((st as any).license = (st as any).license ?? {})['drive_lastday'] = ((st as any).daystart ?? 0);
+    ((st as any).license = (st as any).license ?? {})['drive_lessons'] = ((st as any).license['drive_lessons'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>The Vladimir Lenin community center room 201</b></center>');
     scene.img('images/locations/city/industrial/community/driving_lessons.jpg');
     scene.text('You spend two hours following your driving instructor\'s orders and listening to suggestions on how to handle a car.');
@@ -135,10 +135,10 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
           if (((s as any).license ?? 0)?.['drive_lessons'] === 11) {
             scene.actions([
               { label: 'Driving theory', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['drive_lastday'] = ((s as any).daystart ?? 0);
-    ((s as any).license = (s as any).license ?? {})['drive_lessons'] = 12;
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
+    ((st as any).license = (st as any).license ?? {})['drive_lastday'] = ((st as any).daystart ?? 0);
+    ((st as any).license = (st as any).license ?? {})['drive_lessons'] = 12;
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>The Vladimir Lenin community center room 201</b></center>');
     scene.img('images/locations/city/industrial/community/driving_lessons.jpg');
     scene.text('You dedicate two hours to a boring, but necessary, lecture on traffic signs, regulations, scenarios and some information on how to keep a car in working order.');
@@ -153,11 +153,11 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
             if (((s as any).license ?? 0)?.['drive_lessons'] === 12) {
               scene.actions([
                 { label: 'Driving test', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    ((s as any).license = (s as any).license ?? {})['drive_lessons'] = 0;
-    ((s as any).license = (s as any).license ?? {})['drive_enrolled'] = 0;
-    ((s as any).license = (s as any).license ?? {})['drive'] = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    ((st as any).license = (st as any).license ?? {})['drive_lessons'] = 0;
+    ((st as any).license = (st as any).license ?? {})['drive_enrolled'] = 0;
+    ((st as any).license = (st as any).license ?? {})['drive'] = 1;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>The Vladimir Lenin community center driving course</b></center>');
     scene.img('images/locations/city/industrial/community/dk3.jpg');
     scene.text('You feel nervous as you enter this car for, hopefully, the last time. The instructor is a man who can look jovial at one moment and stern the next.');
@@ -191,12 +191,12 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/community/secretary_instructor.jpg');
   if (((s as any).license ?? 0)?.['secretary'] === 1) {
     scene.text('You\'ve already got your secretarial certification!');
-    return;
     scene.actions([
-      { label: 'Return', handler: (st: GameState) => {
+{ label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+]);
+    return;
   }
   if (((s as any).license ?? 0)?.['secretary_lastday'] === ((s as any).daystart ?? 0)) {
     scene.text('You\'ve had your lesson for today. Come back another day.');
@@ -213,7 +213,7 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
     scene.text('You pay the money for the course and fill out the application paper. You can now attend secretary training once a day for 2 hours. You need to complete 10 training lessons to earn a certification.');
     scene.actions([
       { label: 'Pay for the course', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['secretary_enrolled'] = 1;
+    ((st as any).license = (st as any).license ?? {})['secretary_enrolled'] = 1;
     // TODO-QSP: gt 'city_commcenter', 'payments', 'secretarial course', 15000
   } },
     ]);
@@ -226,14 +226,14 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
       if (((s as any).license ?? 0)?.['secretary_lessons'] >= 0  &&  ((s as any).license ?? 0)?.['secretary_lessons'] < 10) {
         scene.actions([
           { label: 'Secretarial class', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['secretary_lastday'] = ((s as any).daystart ?? 0);
-    ((s as any).license = (s as any).license ?? {})['secretary_lessons'] = ((s as any).license['secretary_lessons'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
+    ((st as any).license = (st as any).license ?? {})['secretary_lastday'] = ((st as any).daystart ?? 0);
+    ((st as any).license = (st as any).license ?? {})['secretary_lessons'] = ((st as any).license['secretary_lessons'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/community/secretary_class.jpg');
     scene.text('You head into a classroom with many computers. Unsurprisingly, most students in this course are women. The teacher, a woman in a sharp office dress, enters the class and starts lecturing you on the intricacies of secretarial work and the basics of computer programs used in offices today.');
-    if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)) {
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
+    if ((((st as any).cumloc ?? 0)[6] === 1  ||  ((st as any).cumloc ?? 0)[7] === 1)) {
+      (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
       scene.text('You nervously shift around on your chair, trying to hide the semen stains on your clothes, but anything you do to remove or cover them only seems to make them more obvious. By the end of the class, you\'ve earned pitying or disgusted looks from just about everybody in the room, including the teacher.');
     }
     scene.actions([
@@ -247,15 +247,15 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
         if (((s as any).license ?? 0)?.['secretary_lessons'] === 10) {
           scene.actions([
             { label: 'Secretarial certification', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['secretary_lastday'] = ((s as any).daystart ?? 0);
-    ((s as any).license = (s as any).license ?? {})['secretary_lessons'] = 0;
-    ((s as any).license = (s as any).license ?? {})['secretary_enrolled'] = 0;
-    ((s as any).license = (s as any).license ?? {})['secretary'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    ((st as any).license = (st as any).license ?? {})['secretary_lastday'] = ((st as any).daystart ?? 0);
+    ((st as any).license = (st as any).license ?? {})['secretary_lessons'] = 0;
+    ((st as any).license = (st as any).license ?? {})['secretary_enrolled'] = 0;
+    ((st as any).license = (st as any).license ?? {})['secretary'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/community/secretary_class.jpg');
-    // TODO-QSP: dynamic text: "Congratulations, <<$pcs_nickname>>. It seems that you've earned your certificat...
-    scene.text(`"Congratulations, ${((s as any).pcs_nickname || '')}. It seems that you've earned your certification," your instructor says.`);
+    // TODO-QSP: dynamic text: "Congratulations, <<$pcs_nickname>>. It seems that you''ve earned your certifica...
+    scene.text(`"Congratulations, ${((st as any).pcs_nickname || '')}. It seems that you've earned your certification," your instructor says.`);
     scene.text('She pulls a document out of her briefcase, fills in your name and signs it before sending you to reception with it.');
     scene.text('With the receptionist\'s signature and the community center\'s seal, you are now officially qualified for secretary work!');
     scene.actions([
@@ -291,7 +291,7 @@ function enterMasseuse(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'The basic course is 10 lessons, and the full set of courses costs ' + $func('money', 'string_price'...
       scene.actions([
         { label: 'Pay for the course', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['masseuse_enrolled'] = 1;
+    ((st as any).license = (st as any).license ?? {})['masseuse_enrolled'] = 1;
     // TODO-QSP: gt 'city_commcenter', 'payments', 'masseuse class', 10000
   } },
       ]);
@@ -305,15 +305,15 @@ function enterMasseuse(s: GameState, scene: SceneBuilder): void {
       if (((s as any).license ?? 0)?.['masseuse_lessons'] < 10) {
         scene.actions([
           { label: 'Masseuse class', handler: (st: GameState) => {
-    ((s as any).license = (s as any).license ?? {})['masseuse_lastday'] = ((s as any).daystart ?? 0);
-    ((s as any).license = (s as any).license ?? {})['masseuse_lessons'] = ((s as any).license['masseuse_lessons'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
+    ((st as any).license = (st as any).license ?? {})['masseuse_lastday'] = ((st as any).daystart ?? 0);
+    ((st as any).license = (st as any).license ?? {})['masseuse_lessons'] = ((st as any).license['masseuse_lessons'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/community/masseuse_training.jpg');
     scene.text('You enter the room and see the tables laid out for your lesson. The instructor welcomes you and takes down your name. The next two hours are dedicated to reading detailed guides to how to relieve pain or tension in certain muscles and to putting these guides into practice with partners attending the course and some local students looking for a freebie.');
-    if (((s as any).license ?? 0)?.['masseuse_lessons'] >= 10) {
-      ((s as any).license = (s as any).license ?? {})['masseuse_enrolled'] = 0;
-      ((s as any).license = (s as any).license ?? {})['masseuse'] = 1;
+    if (((st as any).license ?? 0)?.['masseuse_lessons'] >= 10) {
+      ((st as any).license = (st as any).license ?? {})['masseuse_enrolled'] = 0;
+      ((st as any).license = (st as any).license ?? {})['masseuse'] = 1;
       scene.text('"Congratulations, that was your final lesson! You\'ve completed the basic course and are issued a certificate that shows you are a certified masseuse. This is your first step in providing a wonderful service to your clients," your instructor tells you.');
     }
     scene.actions([
@@ -345,13 +345,13 @@ function enterSingingtutor(s: GameState, scene: SceneBuilder): void {
       scene.text('The center offers singing lessons with Alexei, an established local singer and musician who works with up and coming talent. Unlike the center\'s other classes, he only ever accepts cash for his lessons.');
       scene.actions([
         { label: 'Singing lessons ( [500₽])...]', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).alexeyQW = ((s as any).alexeyQW ?? 0) + (1);
-    qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 6) + 5);
-    ((s as any).license = (s as any).license ?? {})['singing_lastday'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'money', 'pay', 500, 'cash');
-    qspCall(s, 'stat', '');
-    if (((s as any).alexeyQW ?? 0) === 1) {
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).alexeyQW = ((st as any).alexeyQW ?? 0) + (1);
+    qspCall(st, 'exp_gain', 'vokal', (Math.floor(Math.random() * 6) + 5));
+    ((st as any).license = (st as any).license ?? {})['singing_lastday'] = ((st as any).daystart ?? 0);
+    qspCall(st, 'money', 'pay', 500, 'cash');
+    qspCall(st, 'stat', '');
+    if (((st as any).alexeyQW ?? 0) === 1) {
       scene.text('When you enter the office, you see a middle aged man with long hair that\'s been pulled back into a ponytail. He gives you a confident look. "Are you here to learn how to sing, Miss?" he asks in a particularly well-modulated voice.');
       // TODO-QSP: dynamic text: You nod and hand him ' + $func('money', 'string_price', 500) + '.
       scene.text('You nod and hand him 500₽.');
@@ -359,11 +359,11 @@ function enterSingingtutor(s: GameState, scene: SceneBuilder): void {
       scene.text('You tell him your name and he acknowledges your answer with little more than a nod before he immediately moves on to the lesson.');
       scene.text('Before you even notice, an hour has passed. You head out and the man politely wishes you goodbye.');
     } else {
-      if (((s as any).alexeyQW ?? 0) === 2) {
+      if (((st as any).alexeyQW ?? 0) === 2) {
         scene.text('You enter the small classroom eager to your lesson. Alexei is sitting at a piano and indicates you should sit on a chair next to it. He asks you to practice the scales as he plays each note on the piano. You quickly gain confidence and he touches your knee whenever you do well. ');
         scene.text('After an hour, you feel drained but feel that you have learned more about singing. "You have a good voice," Alexei says. "But you still need to practice breathing and control." He touches your breasts and throat as he says each word.');
-        qspCall(s, 'arousal', 'foreplay', 15);
-        qspCall(s, 'stat', '');
+        qspCall(st, 'arousal', 'foreplay', 15);
+        qspCall(st, 'stat', '');
       } else {
         scene.text('You enter the small classroom, eager to start your next lesson. Alexei is sitting at his normal place by the piano and waves a hand towards your chair.');
         scene.text('He asks you to practice the warm up scales as he plays the notes on the piano. You\'re fairly accomplished now and quickly finish the warm up.');

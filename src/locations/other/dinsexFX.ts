@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_horny = 0;
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-      // TODO-QSP: dynamic text: You bite your <<$pc_desc['lips']>> lips in pain and tears flow down your face, <...
+      // TODO-QSP: dynamic text: You bite your <<$pc_desc[''lips'']>> lips in pain and tears flow down your face,...
       scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips in pain and tears flow down your face, ${((s as any).boydesc || '')} has torn your hymen with his ${((s as any).dick || '')} centimeter dick. Your bloody pussy a reminder of your lost virginity.`);
     } else {
       if (((s as any).mesec ?? 0) > 0) {
@@ -169,7 +169,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).protect = 0;
     // TODO-QSP: dynamic text: <<$boydesc>> groans and you realize that he came in the condom.
     scene.text(`${((s as any).boydesc || '')} groans and you realize that he came in the condom.`);
-    (s as any).prezrand = Math.floor(Math.random() * 101) + 0;
+    (s as any).prezrand = (Math.floor(Math.random() * 101) + 0);
     if (((s as any).Sexcontra ?? 0) === 4) {
       // TODO-QSP: dynamic text: Pulling out of you and looking at his dick, <<$boydesc>> said "Hmm, condom burst...
       scene.text(`Pulling out of you and looking at his dick, ${((s as any).boydesc || '')} said "Hmm, condom burst"`);

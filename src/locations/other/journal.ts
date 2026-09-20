@@ -284,7 +284,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 3) {
             // TODO-QSP: 'Your school social group consists of nerds, geeks and good students.' + $journal_school_standing
             if (((s as any).nerd_game ?? 0)?.['game_day'] > ((s as any).daystart ?? 0)) {
-              // TODO-QSP: dynamic text: You have been invited to a games night on <<$weekName[(week + (nerd_game['game_d...
+              // TODO-QSP: dynamic text: You have been invited to a games night on <<$weekName[(week + (nerd_game[''game_...
               scene.text(`You have been invited to a games night on ${((s as any).weekName ?? 0)?.[(((s as any).week ?? '') + ((((s as any).nerd_game ?? {})?.['game_day'] ?? 0) - ((s as any).daystart ?? '')))]} at 20:00 in the community center library.`);
             }
             if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)) {
@@ -1050,7 +1050,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: jump 'loverjournalloop'
       }
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] === 'husband') {
-        // TODO-QSP: dynamic text: You have been married for <<daystart - spouseVars['marry_day']>> days. Your husb...
+        // TODO-QSP: dynamic text: You have been married for <<daystart - spouseVars[''marry_day'']>> days. Your hu...
         scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 || '')} is ${((s as any).npcheight10 || '')} and ${((s as any).npcbuild10 || '')} with ${((s as any).npchair10 || '')} hair. ${((s as any).npcdesc10 || '')} is usually wearing ${((s as any).npcClo10 || '')}. Member ${((s as any).dick_desc10 || '')} cock and ${((s as any).dick_girth10 || '')}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''}.`);
       } else {
         // TODO-QSP: dynamic text: Your <<$npcrelat10>> <<$npcdesc10>> is <<$npcheight10>> and <<$npcbuild10>> with...
@@ -1087,22 +1087,22 @@ function enterGeneraltab(s: GameState, scene: SceneBuilder): void {
       { label: 'View your photography portfolio', goto: ['journal_portfolio', ''] },
     ]);
   }
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027locations\\u0027); return false;">Locations</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027family\\u0027); return false;">Family</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027pav_res\\u0027); return false;">Pavlovsk Residents</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027gad_res\\u0027); return false;">Gadukino Residents</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027city_res\\u0027); return false;">City Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027locations/u0027); return false;">Locations</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027family/u0027); return false;">Family</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027pav_res/u0027); return false;">Pavlovsk Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027gad_res/u0027); return false;">Gadukino Residents</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027city_res/u0027); return false;">City Residents</a></center>');
   if (((s as any).ballet ?? 0)?.['blocker'] > 0  ||  ((s as any).balletqw ?? 0)?.['school'] > 0) {
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027ballet\\u0027); return false;">Ballet Career</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027ballet/u0027); return false;">Ballet Career</a></center>');
   }
   if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_school\\u0027, \\u0027school\\u0027); return false;">School</a></center>');
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_school\\u0027, \\u0027coursesinfo\\u0027); return false;">School Courses and Grades</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_school/u0027, /u0027school/u0027); return false;">School</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_school/u0027, /u0027coursesinfo/u0027); return false;">School Courses and Grades</a></center>');
   }
   if (((s as any).university ?? 0)?.['student'] === 1) {
-    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027uni\\u0027); return false;">University</a></center>');
+    scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027uni/u0027); return false;">University</a></center>');
   }
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027clothing\\u0027); return false;">Clothing information</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027clothing/u0027); return false;">Clothing information</a></center>');
   // TODO-QSP: end
   scene.build();
 }
@@ -1112,12 +1112,12 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Notes</h2></center>');
   scene.text('Create notes to keep track of any information you need.');
-  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $zapis[] = input(\\u0027What do you want to record?\\u0027) */ return s; }); window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027notestab\\u0027); return false;">Make a note</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $zapis[] = input(/u0027What do you want to record?/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027journal/u0027, /u0027notestab/u0027); return false;">Make a note</a>');
   (s as any).jur_temp = 0;
   // TODO-QSP: :jur_loop
   if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
-    // TODO-QSP: dynamic text: <<$zapis[jur_temp]>> <a href="exec: dynamic 'killvar''$zapis'',<<jur_temp>> & gt...
-    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic \\u0027killvar\\u0027$zapis\\u0027,${((s as any).jur_temp || '')} */ return s; }); window.__gameStore.getState().doGoto(\\u0027journal\\u0027, \\u0027notestab\\u0027); return false;">Delete</a>`);
+    // TODO-QSP: dynamic text: <<$zapis[jur_temp]>> <a href="exec: dynamic ''killvar''''$zapis'''',<<jur_temp>>...
+    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp || '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">Delete</a>`);
     (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
     // TODO-QSP: jump 'jur_loop'
   }
@@ -1200,7 +1200,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     scene.text('You are currently enrolled in the \' + $func(\'string\', \'parse_number\', university[\'enrolled_in_semester\'], \'ordinal\') + \' semester of the \' + $func(\'uni_programs\', \'get_program_name\') + \' degree at the University of St. Petersburg.');
   }
   if (((s as any).university ?? 0)?.['elective1'] !== ''  ||  ((s as any).university ?? 0)?.['elective2'] !== ''  ||  ((s as any).university ?? 0)?.['elective3'] !== '') {
-    // TODO-QSP: dynamic text: You are taking the following elective classes this semester: <<$university['elec...
+    // TODO-QSP: dynamic text: You are taking the following elective classes this semester: <<$university[''ele...
     scene.text(`You are taking the following elective classes this semester: ${((s as any).university ?? 0)?.['elective1'] ?? ''}, ${((s as any).university ?? 0)?.['elective2'] ?? ''}, ${((s as any).university ?? 0)?.['elective1'] ?? ''}.`);
   }
   (s as any).j = 1;
@@ -1212,7 +1212,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     (s as any).k = 0;
     // TODO-QSP: :class_loop
     if (((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).j ?? 0)) {
-      // TODO-QSP: dynamic text: <<$class_list_name[k]>>: <<$class_grade_desc['<<$class_list_institution[k]>>_<<$...
+      // TODO-QSP: dynamic text: <<$class_list_name[k]>>: <<$class_grade_desc[''<<$class_list_institution[k]>>_<<...
       scene.text(`${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? ''}: ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[k]", { location: "journal" })}_${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? ''}_grade']>>`);
     }
     (s as any).k = ((s as any).k ?? 0) + (1);
@@ -1257,7 +1257,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: :grade_loop
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
           if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] >= (3 * ((s as any).university ?? 0)?.['semester_week'] + 52)) {
-            // TODO-QSP: dynamic text: You think you're doing great in <<$class_list_name[j]>> and will probably pass w...
+            // TODO-QSP: dynamic text: You think you''re doing great in <<$class_list_name[j]>> and will probably pass ...
             scene.text(`You think you're doing great in ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} and will probably pass with a top grade if you keep this up.`);
             if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain'] + ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
               scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
@@ -1270,7 +1270,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] > (2 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
-              // TODO-QSP: dynamic text: You're following the <<$class_list_name[j]>> class well and will probably pass w...
+              // TODO-QSP: dynamic text: You''re following the <<$class_list_name[j]>> class well and will probably pass ...
               scene.text(`You're following the ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class well and will probably pass with a good grade if you keep this up, but to get the top mark you'll need to put in some more effort.`);
               if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain'] + ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
                 scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
@@ -1360,18 +1360,18 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
                   scene.text(`If your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam was today, then you would fail. Time to hit the books if you don't want to fail the semester.`);
                 } else {
                   if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 70) {
-                    // TODO-QSP: dynamic text: You think you've prepared enough to pass your <<$class_list_name[j]>> exam, but ...
+                    // TODO-QSP: dynamic text: You think you''ve prepared enough to pass your <<$class_list_name[j]>> exam, but...
                     scene.text(`You think you've prepared enough to pass your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam, but if you want a good grade, then you'll need to do some serious studying.`);
                   } else {
                     if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 90) {
-                      // TODO-QSP: dynamic text: You think that you've prepared pretty well for your <<$class_list_name[j]>> exam...
+                      // TODO-QSP: dynamic text: You think that you''ve prepared pretty well for your <<$class_list_name[j]>> exa...
                       scene.text(`You think that you've prepared pretty well for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably get a 4. With some more studying, you might get a 5.`);
                     } else {
                       if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 100) {
-                        // TODO-QSP: dynamic text: You think you're well prepared for your <<$class_list_name[j]>> exam and will pr...
+                        // TODO-QSP: dynamic text: You think you''re well prepared for your <<$class_list_name[j]>> exam and will p...
                         scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably pass with a 5, but a little more studying never hurts.`);
                       } else {
-                        // TODO-QSP: dynamic text: You think you're well prepared for your <<$class_list_name[j]>> exam and will pr...
+                        // TODO-QSP: dynamic text: You think you''re well prepared for your <<$class_list_name[j]>> exam and will p...
                         scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably pass with the highest mark possible.`);
                       }
                     }
@@ -1389,10 +1389,10 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.text('<center><h2>Students and Teachers</h2></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027professors\\u0027); return false;">Professors</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027pavlovsk_university_students\\u0027); return false;">University Students from Pavlovsk</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027university_students\\u0027); return false;">Other University Students</a></center>');
-  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027journal_uni\\u0027, \\u0027former_pavlovsk_students\\u0027); return false;">Former Pavlovsk Students</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027professors/u0027); return false;">Professors</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027pavlovsk_university_students/u0027); return false;">University Students from Pavlovsk</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027university_students/u0027); return false;">Other University Students</a></center>');
+  scene.text('<br><center><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027journal_uni/u0027, /u0027former_pavlovsk_students/u0027); return false;">Former Pavlovsk Students</a></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -1533,8 +1533,8 @@ function enterLeaveactions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Put your notebook down', handler: (st: GameState) => {
-    (s as any).jclose = 1;
-    dynamicGoto(s, 'menu_loc', 'menu_arg');
+    (st as any).jclose = 1;
+    dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
   ]);
   scene.build();

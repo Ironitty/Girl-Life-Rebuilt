@@ -14,24 +14,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/vanrpar.jpg');
   scene.text('The bathroom is very small and unimpressive. Nevertheless, it has everything you need.');
-  // TODO-QSP: dynamic text: There is a shower, toilet, sink, <a href="exec:gt 'mirror','start'">mirror</a> w...
-  scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair, and even a bathtub.');
+  // TODO-QSP: dynamic text: There is a shower, toilet, sink, <a href="exec:gt ''mirror'',''start''">mirror</...
+  scene.text('There is a shower, toilet, sink, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair, and even a bathtub.');
   if ((!((s as any).vanr_lock ?? 0))) {
-    scene.text('The door is not locked and does not close properly. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vanrPar\\u0027, \\u0027latch\\u0027); return false;">Latch the door</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vanrPar\\u0027, \\u0027perm_latch\\u0027); return false;">Always latch the door</a>.');
+    scene.text('The door is not locked and does not close properly. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vanrPar/u0027, /u0027latch/u0027); return false;">Latch the door</a> or <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vanrPar/u0027, /u0027perm_latch/u0027); return false;">Always latch the door</a>.');
   } else {
     if (((s as any).vanr_lock ?? 0) === 2) {
-      scene.text('The door is always securely locked, ensuring your privacy. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vanrPar\\u0027, \\u0027latch\\u0027); return false;">Remove automatic latching</a>.');
+      scene.text('The door is always securely locked, ensuring your privacy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vanrPar/u0027, /u0027latch/u0027); return false;">Remove automatic latching</a>.');
     } else {
-      scene.text('The door is securely locked, ensuring your privacy. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027vanrPar\\u0027, \\u0027unlatch\\u0027); return false;">Unlatch the door</a>.');
+      scene.text('The door is securely locked, ensuring your privacy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027vanrPar/u0027, /u0027unlatch/u0027); return false;">Unlatch the door</a>.');
     }
   }
   qspCall(s, 'selfplay', 'suction_dildo');
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  ((s as any).motherKnowDildo ?? 0) === 1) {
-    // TODO-QSP: dynamic text: <i>Huh? Where'd my dildos go? I thought I- oh shit! <<$npc_nickname['A29']>> pro...
+    // TODO-QSP: dynamic text: <i>Huh? Where''d my dildos go? I thought I- oh shit! <<$npc_nickname[''A29'']>> ...
     scene.text(`<i>Huh? Where'd my dildos go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} probably took them again…</i>`);
   } else {
     if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1  &&  ((s as any).motherKnowDildo ?? 0) === 1) {
-      // TODO-QSP: dynamic text: <i>Huh? Where'd my dildo go? I thought I- oh shit! <<$npc_nickname['A29']>> prob...
+      // TODO-QSP: dynamic text: <i>Huh? Where''d my dildo go? I thought I- oh shit! <<$npc_nickname[''A29'']>> p...
       scene.text(`<i>Huh? Where'd my dildo go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} probably took it again…</i>`);
     } else {
       if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  (!((s as any).vanrPar_suction_dildo ?? 0))) {
@@ -173,11 +173,11 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
           { label: 'Tell him that you\'re too busy to talk', goto: ['brother_voyeur', 'showertalkbusy'] },
         ]);
       }
-      return;
       scene.actions([
-        { label: 'Scream', goto: ['brother_voyeur', 'brother_go_away'] },
-        { label: 'Let him look', goto: ['brother_voyeur', 'brother_voyeur_ev1'] },
-      ]);
+{ label: 'Scream', goto: ['brother_voyeur', 'brother_go_away'] },,
+{ label: 'Let him look', goto: ['brother_voyeur', 'brother_voyeur_ev1'] },
+]);
+      return;
     }
   }
   // TODO-QSP: end
@@ -232,10 +232,10 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Can you put on a condom?', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cum_inside', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'vaginal', 5, 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'cum_inside', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'vaginal', 5, 'rough');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_9.mp4');
     scene.text('Thankfully, your mind is still clear enough to remember protection. You know you\'ll probably pay the price if your stepfather doesn\'t wear a condom.');
     scene.text('"Hey, can you put on a condom?" you ask, glancing at him anxiously.');
@@ -260,10 +260,10 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Don\'t cum inside me!', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cum_inside', 'resist', 'easy');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'vaginal', 10, 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'cum_inside', 'resist', 'easy');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'vaginal', 10, 'rough');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_7.mp4');
     scene.text('At this point, you\'re so horny that checking for protection is the last thing on your mind. Your stepfather is in a similar condition.');
     scene.text('"Just don\'t cum inside me, please," you breathe. It\'s your final moment of clarity before his hard, unprotected dick enters you and the sensation of skin-on-skin sweeps you away.');
@@ -278,9 +278,9 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fuck me!', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 5, 'gentle');
-    qspCall(s, 'cum_call', 'butt', 'A28', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'gentle');
+    qspCall(st, 'cum_call', 'butt', 'A28', 1);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_8.mp4');
     scene.text('At this point, you\'re so horny that you can\'t think straight. Your stepfather is obviously in a similar condition. Gone is the careful family man, replaced with a dog who sees a bitch in heat and wants to mount her.');
     scene.text('You wiggle your ass invitingly, and that\'s all it takes for him to step forward and guide himself inside you, slowly filling your pussy with his hot, hard dick.');
@@ -293,9 +293,9 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Fuck my ass!', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'anal', 5, 'gentle');
-    qspCall(s, 'cum_call', 'butt', 'A28', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'gentle');
+    qspCall(st, 'cum_call', 'butt', 'A28', 1);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_11.mp4');
     scene.text('At this point, you\'re so horny that you can\'t think straight. Your stepfather is obviously in a similar condition. Gone is the careful family man, replaced with a dog who sees a bitch in heat and wants to mount her.');
     scene.text('You spread your ass invitingly, and that\'s all it takes for him to step forward and guide himself inside you, slowly filling your ass with his hot, hard dick.');
@@ -332,10 +332,10 @@ function enterStepdadSexVag(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Climax', handler: (st: GameState) => {
-    if ((Math.floor(Math.random() * 6) + 0) < ((s as any).tempcpchance ?? 0)) {
-      qspGoto(s, 'vanrPar', 'stepdad_sex_creampie');
+    if ((Math.floor(Math.random() * 6) + 0) < ((st as any).tempcpchance ?? 0)) {
+      qspGoto(st, 'vanrPar', 'stepdad_sex_creampie');
     } else {
-      qspGoto(s, 'vanrPar', 'stepdad_sex_pullout');
+      qspGoto(st, 'vanrPar', 'stepdad_sex_pullout');
     }
   } },
   ]);
@@ -362,7 +362,7 @@ function enterStepdadSexCreampie(s: GameState, scene: SceneBuilder): void {
     scene.text('Your stepfather stumbles back and his dick slips free of your pussy, splattering cum onto the floor.');
     scene.text('He sheepishly scratches his head, but then flashes a cocky grin. "Sorry, Sunshine, I guess the devil made me do it. I\'m sure nothing will come of it, though."');
     scene.text('Furious, you push him out of the bathroom and toss his clothes out after him. Slamming the door closed, you look down at yourself with a troubled sigh as warm cum drips down your leg. You\'ll need to have another shower.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStepdadSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStepdadSexEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -376,7 +376,7 @@ function enterStepdadSexPullout(s: GameState, scene: SceneBuilder): void {
     scene.text('You can\'t help but smile, still basking in the glow of your powerful orgasm as your quivering legs barely hold you up.');
     scene.text('Your stepfather steps out of the shower and starts getting dressed, but it looks like you\'ll have to wash yourself again before you can do the same.');
   } else {
-    // TODO-QSP: dynamic text: "Ahh, my sweet <<$pcs_nickname>>! I've wanted to do that for quite a while," he ...
+    // TODO-QSP: dynamic text: "Ahh, my sweet <<$pcs_nickname>>! I''ve wanted to do that for quite a while," he...
     scene.text(`"Ahh, my sweet ${((s as any).pcs_nickname || '')}! I've wanted to do that for quite a while," he admits, giving you a soft smile as he wipes the sweat from his forehead.`);
     scene.text('He pinches your cheek fondly and gives you a slap on the ass before he steps out of the shower and gets dressed. He then leaves.');
     scene.text('Sweaty and covered in cum, it looks like you\'ll be needing another shower before you can leave too.');
@@ -411,11 +411,11 @@ function enterStepdadSexEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Wash again', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'vanrPar', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'vanrPar', '');
   } },
   ]);
   scene.build();

@@ -19,110 +19,110 @@ function enterInitFightVars(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGenerateOpponent(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'spar') {
-    qspCall(s, 'npcgeneratec', '', 1, 'sparring partner', Math.floor(Math.random() * 27) + 19);
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'spar') {
+    qspCall(s, 'npcgeneratec', '', 1, 'sparring partner', (Math.floor(Math.random() * 27) + 19));
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = Math.floor(Math.random() * 11) + 10;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = Math.floor(Math.random() * 11) + 10;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = Math.floor(Math.random() * 11) + 10;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = Math.floor(Math.random() * 11) + 10;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = Math.floor(Math.random() * 11) + 10;
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 10);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = (Math.floor(Math.random() * 11) + 10);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = (Math.floor(Math.random() * 11) + 10);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = (Math.floor(Math.random() * 11) + 10);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = (Math.floor(Math.random() * 11) + 10);
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_intel'] = 10;
     ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_will'] = 10;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = Math.floor(Math.random() * 16) + 5;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = Math.floor(Math.random() * 16) + 5;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = Math.floor(Math.random() * 16) + 5;
-    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = Math.floor(Math.random() * 16) + 5;
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = (Math.floor(Math.random() * 16) + 5);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = (Math.floor(Math.random() * 16) + 5);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 16) + 5);
+    ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 16) + 5);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'amateur_fight') {
-      if (((s as any).locArgs?.[2] ?? 0) <= 0) {
-        qspCall(s, 'npcgeneratec', '', 1, 'Useless rival', Math.floor(Math.random() * 27) + 19);
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'amateur_fight') {
+      if (Number((s as any).locArgs?.[2] ?? 0) <= 0) {
+        qspCall(s, 'npcgeneratec', '', 1, 'Useless rival', (Math.floor(Math.random() * 27) + 19));
         qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = Math.floor(Math.random() * 11) + 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = Math.floor(Math.random() * 11) + 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = Math.floor(Math.random() * 11) + 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = Math.floor(Math.random() * 11) + 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = Math.floor(Math.random() * 11) + 10;
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 10);
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = (Math.floor(Math.random() * 11) + 10);
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = (Math.floor(Math.random() * 11) + 10);
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = (Math.floor(Math.random() * 11) + 10);
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = (Math.floor(Math.random() * 11) + 10);
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_intel'] = 10;
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_will'] = 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = Math.floor(Math.random() * 21) + 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = Math.floor(Math.random() * 21) + 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = Math.floor(Math.random() * 21) + 10;
-        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = Math.floor(Math.random() * 21) + 10;
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = (Math.floor(Math.random() * 21) + 10);
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = (Math.floor(Math.random() * 21) + 10);
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 10);
+        ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 10);
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 1) {
-          qspCall(s, 'npcgeneratec', '', 1, '3rd class rival', Math.floor(Math.random() * 27) + 19);
+        if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
+          qspCall(s, 'npcgeneratec', '', 1, '3rd class rival', (Math.floor(Math.random() * 27) + 19));
           qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = Math.floor(Math.random() * 11) + 15;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = Math.floor(Math.random() * 11) + 15;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = Math.floor(Math.random() * 11) + 15;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = Math.floor(Math.random() * 11) + 15;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = Math.floor(Math.random() * 11) + 15;
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 15);
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = (Math.floor(Math.random() * 11) + 15);
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = (Math.floor(Math.random() * 11) + 15);
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = (Math.floor(Math.random() * 11) + 15);
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = (Math.floor(Math.random() * 11) + 15);
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_intel'] = 10;
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_will'] = 10;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = Math.floor(Math.random() * 21) + 15;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = Math.floor(Math.random() * 21) + 15;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = Math.floor(Math.random() * 21) + 15;
-          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = Math.floor(Math.random() * 21) + 15;
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = (Math.floor(Math.random() * 21) + 15);
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = (Math.floor(Math.random() * 21) + 15);
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 15);
+          ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 15);
         } else {
-          if (((s as any).locArgs?.[2] ?? 0) === 2) {
-            qspCall(s, 'npcgeneratec', '', 1, '2rd class rival', Math.floor(Math.random() * 27) + 19);
+          if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
+            qspCall(s, 'npcgeneratec', '', 1, '2rd class rival', (Math.floor(Math.random() * 27) + 19));
             qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = Math.floor(Math.random() * 11) + 20;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = Math.floor(Math.random() * 11) + 20;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = Math.floor(Math.random() * 11) + 20;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = Math.floor(Math.random() * 11) + 20;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = Math.floor(Math.random() * 11) + 20;
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 20);
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = (Math.floor(Math.random() * 11) + 20);
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = (Math.floor(Math.random() * 11) + 20);
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = (Math.floor(Math.random() * 11) + 20);
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = (Math.floor(Math.random() * 11) + 20);
             ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_intel'] = 10;
             ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_will'] = 10;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = Math.floor(Math.random() * 21) + 30;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = Math.floor(Math.random() * 21) + 30;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = Math.floor(Math.random() * 21) + 30;
-            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = Math.floor(Math.random() * 21) + 30;
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = (Math.floor(Math.random() * 21) + 30);
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = (Math.floor(Math.random() * 21) + 30);
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 30);
+            ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 30);
           } else {
-            if (((s as any).locArgs?.[2] ?? 0) === 3) {
-              qspCall(s, 'npcgeneratec', '', 1, '1st class rival', Math.floor(Math.random() * 27) + 19);
+            if (Number((s as any).locArgs?.[2] ?? 0) === 3) {
+              qspCall(s, 'npcgeneratec', '', 1, '1st class rival', (Math.floor(Math.random() * 27) + 19));
               qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = Math.floor(Math.random() * 11) + 30;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = Math.floor(Math.random() * 11) + 30;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = Math.floor(Math.random() * 11) + 30;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = Math.floor(Math.random() * 11) + 30;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = Math.floor(Math.random() * 11) + 30;
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 11) + 30);
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = (Math.floor(Math.random() * 11) + 30);
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = (Math.floor(Math.random() * 11) + 30);
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = (Math.floor(Math.random() * 11) + 30);
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = (Math.floor(Math.random() * 11) + 30);
               ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_intel'] = 10;
               ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_will'] = 10;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = Math.floor(Math.random() * 21) + 40;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = Math.floor(Math.random() * 21) + 40;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = Math.floor(Math.random() * 21) + 40;
-              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = Math.floor(Math.random() * 21) + 40;
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = (Math.floor(Math.random() * 21) + 40);
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = (Math.floor(Math.random() * 21) + 40);
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 40);
+              ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 40);
             } else {
-              if (((s as any).locArgs?.[2] ?? 0) === 4) {
-                qspCall(s, 'npcgeneratec', '', 1, 'Excellent rival', Math.floor(Math.random() * 27) + 19);
+              if (Number((s as any).locArgs?.[2] ?? 0) === 4) {
+                qspCall(s, 'npcgeneratec', '', 1, 'Excellent rival', (Math.floor(Math.random() * 27) + 19));
                 qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = Math.floor(Math.random() * 21) + 40;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = Math.floor(Math.random() * 21) + 40;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = Math.floor(Math.random() * 21) + 40;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = Math.floor(Math.random() * 21) + 40;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = Math.floor(Math.random() * 21) + 40;
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 21) + 40);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = (Math.floor(Math.random() * 21) + 40);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = (Math.floor(Math.random() * 21) + 40);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = (Math.floor(Math.random() * 21) + 40);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = (Math.floor(Math.random() * 21) + 40);
                 ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_intel'] = 10;
                 ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_will'] = 10;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = Math.floor(Math.random() * 21) + 60;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = Math.floor(Math.random() * 21) + 60;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = Math.floor(Math.random() * 21) + 60;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = Math.floor(Math.random() * 21) + 60;
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = (Math.floor(Math.random() * 21) + 60);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = (Math.floor(Math.random() * 21) + 60);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 21) + 60);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 21) + 60);
               } else {
-                qspCall(s, 'npcgeneratec', '', 1, 'Best rival in the gym', Math.floor(Math.random() * 27) + 19);
+                qspCall(s, 'npcgeneratec', '', 1, 'Best rival in the gym', (Math.floor(Math.random() * 27) + 19));
                 qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = Math.floor(Math.random() * 41) + 60;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = Math.floor(Math.random() * 41) + 60;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = Math.floor(Math.random() * 41) + 60;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = Math.floor(Math.random() * 41) + 60;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = Math.floor(Math.random() * 41) + 60;
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_stren'] = (Math.floor(Math.random() * 41) + 60);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_speed'] = (Math.floor(Math.random() * 41) + 60);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_agil'] = (Math.floor(Math.random() * 41) + 60);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_react'] = (Math.floor(Math.random() * 41) + 60);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_vital'] = (Math.floor(Math.random() * 41) + 60);
                 ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_intel'] = 10;
                 ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_will'] = 10;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = Math.floor(Math.random() * 31) + 80;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = Math.floor(Math.random() * 31) + 80;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = Math.floor(Math.random() * 31) + 80;
-                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = Math.floor(Math.random() * 31) + 80;
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_jab'] = (Math.floor(Math.random() * 31) + 80);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_punch'] = (Math.floor(Math.random() * 31) + 80);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_kick'] = (Math.floor(Math.random() * 31) + 80);
+                ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_def'] = (Math.floor(Math.random() * 31) + 80);
               }
             }
           }
@@ -175,16 +175,16 @@ function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAttack(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'player') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'jab') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'player') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'jab') {
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = (Math.floor(Math.random() * (((s as any).pcs_stren ?? 0) / 8 - ((s as any).pcs_stren ?? 0) / 12 + 1)) + (((s as any).pcs_stren ?? 0) / 12));
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_jab ?? 0)) * 2;
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'punch') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'punch') {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = ((s as any).pcs_stren ?? 0) + (Math.floor(Math.random() * (((s as any).pcs_stren ?? 0) / 5 - -((s as any).pcs_stren ?? 0) / 5 + 1)) + (-((s as any).pcs_stren ?? 0) / 5));
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_punch ?? 0));
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'kick') {
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'kick') {
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * ((s as any).pcs_stren ?? 0) + ((s as any).rand ?? 0)(-3 * (((s as any).pcs_stren ?? 0) / 5), 3 * (((s as any).pcs_stren ?? 0) / 5));
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_kick ?? 0)) / 2;
         }
@@ -218,16 +218,16 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'enemy') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'jab') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'enemy') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'jab') {
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = (Math.floor(Math.random() * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 8 - (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 12 + 1)) + ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 12));
       ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_jab'] ?? 0)) * 2;
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'punch') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'punch') {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) + (Math.floor(Math.random() * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5 - -(((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5 + 1)) + (-(((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5));
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_punch'] ?? 0));
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'kick') {
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'kick') {
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['damage'] = 3 * (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) + ((s as any).rand ?? 0)(-3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5), 3 * ((((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) / 5));
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['hit_mod'] = ((((s as any).temp_kickboxVars ?? {})?.['npc_speed'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_react'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_kick'] ?? 0)) / 2;
         }
@@ -315,7 +315,7 @@ function enterSashAdvancement(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayHeader(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: dynamic text: <b>= = = = = = = = = = = = = (ROUND <<temp_kickboxVars['round']>>) = = = = = = =...
+  // TODO-QSP: dynamic text: <b>= = = = = = = = = = = = = (ROUND <<temp_kickboxVars[''round'']>>) = = = = = =...
   scene.text(`<b>= = = = = = = = = = = = = (ROUND ${((s as any).temp_kickboxVars ?? 0)?.['round'] ?? ''}) = = = = = = = = = = = = =</b>`);
   if (((s as any).temp_kickboxVars ?? 0)?.['time'] === 0) {
     scene.text('<b>Start of the round</b>');
@@ -342,12 +342,12 @@ function enterDisplayHeader(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  // TODO-QSP: dynamic text: <b><<$boydesc>></b> health <b><font color="red"><<temp_kickboxVars['npc_health']...
+  // TODO-QSP: dynamic text: <b><<$boydesc>></b> health <b><font color="red"><<temp_kickboxVars[''npc_health'...
   scene.text(`<b>${((s as any).boydesc || '')}</b> health <b><font color="red">${((s as any).temp_kickboxVars ?? 0)?.['npc_health'] ?? ''}</font></b>, Stamina <b><font color="green">${((s as any).temp_kickboxVars ?? 0)?.['npc_stam'] ?? ''}</font></b>`);
   // TODO-QSP: dynamic text: Your health <b><font color="red"><<pcs_health>></font></b>, stamina <b><font col...
   scene.text(`Your health <b><font color="red">${((s as any).pcs_health || '')}</font></b>, stamina <b><font color="green">${((s as any).pcs_stam || '')}</font></b>`);
   scene.text('<b>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</b>');
-  // TODO-QSP: dynamic text: Your points: <<temp_kickboxVars['pcs_points']>> Opponent's points: <<temp_kickbo...
+  // TODO-QSP: dynamic text: Your points: <<temp_kickboxVars[''pcs_points'']>> Opponent''s points: <<temp_kic...
   scene.text(`Your points: ${((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] ?? ''} Opponent's points: ${((s as any).temp_kickboxVars ?? 0)?.['npc_points'] ?? ''}`);
   scene.text('<b>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</b>');
   // TODO-QSP: end

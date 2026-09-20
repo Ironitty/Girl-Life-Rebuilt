@@ -24,15 +24,15 @@ function enterShowerRostislav1(s: GameState, scene: SceneBuilder): void {
     scene.text('You bop your head back and forth sucking his cock, slowly taking him deeper into your mouth until you feel the tip hitting the back of your mouth.');
     scene.text('"Yeah that\'s it. Take it all, you little slut…" He starts thrusting his hips forward, fucking your mouth. "You\'re almost as good as my wife, but you have a lot of natural talent."');
     scene.text('You feel him grab the back of your head with his hands before he shoves his dick down your throat, causing you to gag.');
-    qspCall(s, 'arousal', 'bj', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get deepthroated', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower7.jpg');
     scene.text('He starts fucking your throat, causing you to gag as you feel his balls bouncing off your chin.');
     scene.text('"Oh fuck yeah, that feels so good! Such a tight little young throat…"');
-    qspCall(s, 'arousal', 'bj', 3, 'deepthroat');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 3, 'deepthroat');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'He cums', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower8.jpg');
@@ -40,11 +40,11 @@ function enterShowerRostislav1(s: GameState, scene: SceneBuilder): void {
     scene.text('You do as you\'re told and swallow the cum in your mouth before sucking his dick clean of any remaining cum and swallowing that as well.');
     scene.text('With that, he pulls his dick out of your mouth and tucks it back into his pants. "You\'re a fine little cock sucker. You\'re welcome over any time you want. Maybe next time I\'ll tear up that little teen pussy of yours instead."');
     scene.text('He then pats you on the head like you were a dog before he turns and walks out without another word. You slowly get up off your knees and glance at your reflection in the mirror, seeing your face covered in his cum. You quickly wipe it off.');
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A272', 1);
-    qspCall(s, 'cum_call', 'face', 'A272', 1);
-    (s as any).cumspclnt = 20;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A272', 1);
+    qspCall(st, 'cum_call', 'face', 'A272', 1);
+    (st as any).cumspclnt = 20;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', goto: ['radapt', 'bathroom'] },
     ]);
@@ -86,7 +86,7 @@ function enterShowerRadislav1(s: GameState, scene: SceneBuilder): void {
           { label: 'Get butt fucked', goto: ['radaptev1', 'shower_radislav1_anal'] },
         ]);
       } else {
-        (s as any).temp = Math.floor(Math.random() * 2) + 0;
+        (s as any).temp = (Math.floor(Math.random() * 2) + 0);
         if ((!((s as any).temp ?? 0))) {
           scene.text('He grins. "Damn, soaking wet already. I bet you\'re craving a big cock in your pussy, aren\'t you? It\'s your lucky day then as I feel like fucking you again," he says as he lifts you up and sits you on the sink.');
           scene.actions([
@@ -118,19 +118,19 @@ function enterShowerRadislav1Vag(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Keep getting fucked', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_vag2.jpg');
     // TODO-QSP: dynamic text: He reaches up to wrap both his hands behind your head and pull you closer as he ...
-    scene.text(`He reaches up to wrap both his hands behind your head and pull you closer as he shoves his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock balls deep inside your pussy before he starts hammering away at your pussy as hard, fast and deep as he can.`);
+    scene.text(`He reaches up to wrap both his hands behind your head and pull you closer as he shoves his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock balls deep inside your pussy before he starts hammering away at your pussy as hard, fast and deep as he can.`);
     scene.text('"Fuck yeah! Take it, slut! Take my cock!" he says, not caring in the slightest if you\'re enjoying it or not.');
-    qspCall(s, 'arousal', 'vaginal', 3, 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 3, 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Hard and deep', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_vag3.jpg');
     scene.text('You can feel his balls bouncing off your ass with each thrust as he bottoms out inside you. After a few minutes, he pulls out and lets go of you, causing you to almost slip off the sink.');
-    qspCall(s, 'arousal', 'vaginal', 3, 'rough');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 3, 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'He cums', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_vag_cum.jpg');
@@ -138,8 +138,8 @@ function enterShowerRadislav1Vag(s: GameState, scene: SceneBuilder): void {
     scene.text('You reach around your hip and grip his dick, stroking it until every last drop of cum has come out of it. Once you let go of his cock, he wipes the tip of it against your thigh.');
     scene.text('He grabs his clothes and starts to get dressed. "Quite a nice little pussy you have there. You should go have him eat you out now. I bet he\'ll like the taste of my cock. I know he loved it with his other sluts," he laughs as he finishes getting dressed. "Maybe next time, I\'ll fuck that little ass of yours."');
     scene.text('Once he\'s finished getting dressed, he doesn\'t say another word to you before he walks out, leaving you to clean yourself up.');
-    qspCall(s, 'cum_call', 'stomach', 'A273', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'stomach', 'A273', 1);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', goto: ['radapt', 'bathroom'] },
     ]);
@@ -169,8 +169,8 @@ function enterShowerRadislav1Anal(s: GameState, scene: SceneBuilder): void {
     scene.text('You grit your teeth in pain as he starts pounding your ass hard and fast.');
     scene.text('"Fuck yeah, you have a tight little asshole!"');
     scene.text('You reach back to try and keep him from going so fast or deep, but he just grabs your hand and holds it before he works himself balls deep into your asshole. All you can do is grin and bare it.');
-    qspCall(s, 'arousal', 'anal', 3, 'rough');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 3, 'rough');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Painal', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_anal3.jpg');
@@ -178,9 +178,9 @@ function enterShowerRadislav1Anal(s: GameState, scene: SceneBuilder): void {
     scene.text('To your relief, he finally pulls his dick out of your ass, but the burning sensation doesn\'t go away.');
     scene.text('He gives your ass a good slap. "Fine ass! I look forward to fucking it again."');
     scene.text('With that, he pulls his pants up and walks out, leaving you to clean yourself up.');
-    qspCall(s, 'arousal', 'anal', 3, 'rough');
-    qspCall(s, 'cum_call', 'anus', 'A273', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 3, 'rough');
+    qspCall(st, 'cum_call', 'anus', 'A273', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['radapt', 'bathroom'] },
     ]);

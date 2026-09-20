@@ -56,14 +56,14 @@ function enterNudeDebutShaveStart(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: "Just one thing. You need to shave that stubble off," he says, eyeing the fuzzy ...
           scene.text(`"Just one thing. You need to shave that stubble off," he says, eyeing the fuzzy patch between your legs. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
         } else {
-          // TODO-QSP: dynamic text: "You'll have to shave that stubble off," he says, eyeing the fuzzy patch between...
+          // TODO-QSP: dynamic text: "You''ll have to shave that stubble off," he says, eyeing the fuzzy patch betwee...
           scene.text(`"You'll have to shave that stubble off," he says, eyeing the fuzzy patch between your legs. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
         }
         scene.actions([
           { label: 'But I\'m growing it out', handler: (st: GameState) => {
     scene.text('"But I\'m growing it out," you protest.');
     scene.text('"Start again tomorrow," he shrugs. "It\'s your debut. All models must be clean-shaven for their nude debut. Even if I wanted to give you a pass, it\'s not up to me. Besides, stubble looks bad."');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebutShaveOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebutShaveOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -72,21 +72,21 @@ function enterNudeDebutShaveStart(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: "Just one thing. You need to shave that off first," he says, eyeing your pubic h...
             scene.text(`"Just one thing. You need to shave that off first," he says, eyeing your pubic hair. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
           } else {
-            // TODO-QSP: dynamic text: "You need to shave that off first," he says, eyeing your pubic hair. <<$temp['mo...
+            // TODO-QSP: dynamic text: "You need to shave that off first," he says, eyeing your pubic hair. <<$temp[''m...
             scene.text(`"You need to shave that off first," he says, eyeing your pubic hair. ${((s as any).temp ?? 0)?.['model_shave'] ?? ''}`);
           }
           scene.actions([
             { label: 'But I like it this way', handler: (st: GameState) => {
     scene.text('"But I like it this way," you protest.');
     scene.text('"Policy," he shrugs. "It\'s your debut. All models must be clean-shaven for their nude debut. Even if I wanted to give you a pass, it\'s not up to me. You can start growing it out again tomorrow."');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebutShaveOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebutShaveOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
       }
     } else {
-      // TODO-QSP: dynamic text: "Then let's get to work. Go ahead and meet us on set <<rand(11,30)>>."
-      scene.text(`"Then let's get to work. Go ahead and meet us on set ${Math.floor(Math.random() * 20) + 11}."`);
+      // TODO-QSP: dynamic text: "Then let''s get to work. Go ahead and meet us on set <<rand(11,30)>>."
+      scene.text(`"Then let's get to work. Go ahead and meet us on set ${(Math.floor(Math.random() * 20) + 11)}."`);
       scene.text('You nod and follow his instructions, heading off to the designated set.');
       scene.actions([
         { label: 'Continue', goto: ['foto_nude_debut', 'nude_debut1'] },
@@ -101,7 +101,7 @@ function enterNudeDebutShaveOptions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change your mind', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_shave_no'] = 1;
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_shave_no'] = 1;
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     scene.text('"If that\'s a requirement, then I\'m out," you say shaking your head.');
     scene.text('"Okay," he shrugs. "Come back if you change your mind. Did you want to do a different shoot today?"');
@@ -111,7 +111,7 @@ function enterNudeDebutShaveOptions(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Okay', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_shave_yes'] = 1;
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_shave_yes'] = 1;
     scene.text('"Okay," you nod. "I\'ll get it done."');
     scene.text('"Go to the showers and do it now," he says. "We\'ll arrange the set in the meantime."');
     scene.actions([
@@ -119,7 +119,7 @@ function enterNudeDebutShaveOptions(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Okay (hesitant)', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_shave_yes'] = 1;
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_shave_yes'] = 1;
     scene.text('"Okay…" you mumble. "I… I guess I could…"');
     scene.text('"Go to the showers and do it now," he says. "We\'ll arrange the set in the meantime."');
     scene.actions([
@@ -202,85 +202,85 @@ function enterNudeDebut2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling…');
-    if (((s as any).pcs_inhib ?? 0) > 50  ||  ((s as any).modelfoto ?? 0)?.['shoots'] >= 50) {
+    if (((st as any).pcs_inhib ?? 0) > 50  ||  ((st as any).modelfoto ?? 0)?.['shoots'] >= 50) {
       scene.actions([
         { label: 'Calm', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'calm';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'calm';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>calm</i>.');
-    if (((s as any).modelfoto ?? 0)?.['shoots'] >= 50) {
+    if (((st as any).modelfoto ?? 0)?.['shoots'] >= 50) {
       scene.text('It\'s not like you don\'t feel anything, but you\'re not scared either. You\'re not nervous. You don\'t feel jittery. You feel… ready. You\'ve done dozens of shoots before. This is hardly going to be any different.');
     } else {
       scene.text('It\'s not like you don\'t feel anything, but you\'re not scared either. You\'re not nervous. You don\'t feel jittery. You\'re not shy about your body. There\'s no reason to be. You feel… ready. ');
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Nervous (bad)', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_bad';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_bad';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>nervous</i>.');
-    if (((s as any).modelfoto ?? 0)?.['shoots'] >= 100) {
+    if (((st as any).modelfoto ?? 0)?.['shoots'] >= 100) {
       scene.text('Your stomach flutters and you swallow uncomfortably, trying to keep your breathing steady. Your skin feels cold and your hands tremble. What is <i>with</i> you? You\'ve literally done hundreds of shoots before. Why are you getting nervous now?');
       scene.text('<i>Because in this one I\'ll be naked</i> you admit to yourself.');
     } else {
-      if (((s as any).modelfoto ?? 0)?.['shoots'] >= 40) {
+      if (((st as any).modelfoto ?? 0)?.['shoots'] >= 40) {
         scene.text('Your stomach flutters and you swallow uncomfortably, trying to keep your breathing steady. Your skin feels cold and your hands tremble. You\'ve done dozens of shoots before but never anything like this. You can\'t deny that something about being <i>naked</i> changes the atmosphere');
       } else {
         scene.text('Your stomach flutters and you swallow uncomfortably, trying to keep your breathing steady. Your skin feels cold and your hands tremble. It\'s hard to keep steady and you feel pretty on edge.');
       }
     }
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Nervous (good)', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_good';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_good';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>nervous</i>.');
     scene.text('But in a good way. Your stomach flutters and it\'s difficult to breathe steadily, but you\'re… excited? There\'s a "trembling" inside you that you can\'t shake, looking forward to stepping in front of the camera and hearing that first shutter click.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Nervous (aroused)', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_aroused';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'nervous_aroused';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>aroused</i>.');
     scene.text('Your skin goes hot and you feel heat flush through your hips. Uncomfortably aware of a gathering wetness inside you, you take a hard swallow, trying to keep your breathing steady. At the same time, there is an incessant fluttering in your stomach and your hands won\'t stop trembling.');
     scene.text('Some part of you acknowledges that this must just be your body\'s reaction to stress, but it doesn\'t make it any less embarrassing and you hope nobody notices how stiff your nipples are.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Aroused', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'aroused';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'aroused';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>aroused</i>.');
     scene.text('Your skin goes hot and you feel heat flush through your hips. Deeply aware of a gathering wetness inside you, you take a hard swallow, trying to keep your breathing steady, trying not to pant as you feel your nipples swell.');
     scene.text('Some part of you is seriously turned on by the fact that full frontal images of your naked body are about to be put on display in public and your body is responding.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Excited', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'excited';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'excited';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>excited</i>.');
     scene.text('You <i>tremble</i> with excitement, already eager to get in front of the camera and start posing. Every minute passes with agonizing slowness.');
     scene.text('<i>Hurry up!</i> you mentally shout at the crew.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Scared', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'scared';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'scared';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>scared</i>.');
     scene.text('Already, you\'re beginning to regret your decision. A knot forms inside you, making you sick to your stomach. The cool air on your skin forms goosebumps of fear, suddenly making you startingly aware of your nakedness and you\'re not even on camera yet.');
     scene.text('<i>What have I gotten myself into…</i> you ask yourself.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Numb', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['first_nude_pre'] = 'numb';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['first_nude_pre'] = 'numb';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut2Desc(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You watch it all get set up feeling… <i>numb</i>.');
     scene.text('You don\'t feel anything. It\'s like you\'re having an out of body experience, looking at yourself from a bird\'s eye view, standing there naked as the crew positions the lighting around the camera.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNudeDebut3(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -584,28 +584,28 @@ function enterDebutAfterReaction(s: GameState, scene: SceneBuilder): void {
     scene.text('You stare over his shoulder as he scrolls through feeling…');
     scene.actions([
       { label: 'Amazed', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_after_reaction'] = 'amazed';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_after_reaction'] = 'amazed';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Mortified', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_after_reaction'] = 'mortified';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_after_reaction'] = 'mortified';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Proud', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_after_reaction'] = 'proud';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_after_reaction'] = 'proud';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Empty', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_after_reaction'] = 'empty';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_after_reaction'] = 'empty';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Regret', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_after_reaction'] = 'regret';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_after_reaction'] = 'regret';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Aroused', handler: (st: GameState) => {
-    ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_after_reaction'] = 'aroused';
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    ((st as any).modelfoto = (st as any).modelfoto ?? {})['nude_after_reaction'] = 'aroused';
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDebutAfter2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -875,7 +875,7 @@ function enterDebutEnding(s: GameState, scene: SceneBuilder): void {
   ((s as any).modelfoto = (s as any).modelfoto ?? {})['nude_debut'] = 1;
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('All the pictures taken, the staff begin striking the set and a manager comes out with your pay.');
-  // TODO-QSP: dynamic text: They hand you an envelope containing <<$func('money', 'string_profit', modelpayf...
+  // TODO-QSP: dynamic text: They hand you an envelope containing <<$func(''money'', ''string_profit'', model...
   scene.text(`They hand you an envelope containing ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))}, double the going rate for a standard nude shoot, as promised.`);
   scene.text('And with that, your nude debut shoot is concluded.');
   // TODO-QSP: end

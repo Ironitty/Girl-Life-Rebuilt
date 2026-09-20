@@ -5,48 +5,15 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).money ?? 0) >= 1000000000) {
-    (s as any).norm_temp = (((s as any).money ?? 0) - 950000000) / 1000000;
-    (s as any).money = ((s as any).money ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
-    (s as any).money_overflow = ((s as any).money_overflow ?? 0) + (((s as any).norm_temp ?? 0));
-  } else {
-    if (((s as any).money ?? 0) < 900000000  &&  ((s as any).money_overflow ?? 0) > 0) {
-      (s as any).norm_temp = Math.min(((s as any).money_overflow ?? 0), (950000000 - ((s as any).money ?? 0)) / 1000000);
-      (s as any).money = ((s as any).money ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
-      (s as any).money_overflow = ((s as any).money_overflow ?? 0) - (((s as any).norm_temp ?? 0));
-    }
-  }
-  if (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) >= 1000000000) {
-    (s as any).norm_temp = (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) - 950000000) / 1000000;
-    (s as any).karta = ((s as any).karta ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
-    (s as any).karta_overflow = ((s as any).karta_overflow ?? 0) + (((s as any).norm_temp ?? 0));
-  } else {
-    if (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) < 900000000  &&  ((s as any).karta_overflow ?? 0) > 0) {
-      (s as any).norm_temp = Math.min(((s as any).karta_overflow ?? 0), (950000000 - (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0))) / 1000000);
-      (s as any).karta = ((s as any).karta ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
-      (s as any).karta_overflow = ((s as any).karta_overflow ?? 0) - (((s as any).norm_temp ?? 0));
-    }
-  }
-  if (((s as any).stolmoney ?? 0) >= 1000000000) {
-    (s as any).norm_temp = (((s as any).stolmoney ?? 0) - 950000000) / 1000000;
-    (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
-    (s as any).stolmoney_overflow = ((s as any).stolmoney_overflow ?? 0) + (((s as any).norm_temp ?? 0));
-  } else {
-    if (((s as any).stolmoney ?? 0) < 900000000  &&  ((s as any).stolmoney_overflow ?? 0) > 0) {
-      (s as any).norm_temp = Math.min(((s as any).stolmoney_overflow ?? 0), (950000000 - ((s as any).stolmoney ?? 0)) / 1000000);
-      (s as any).stolmoney = ((s as any).stolmoney ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
-      (s as any).stolmoney_overflow = ((s as any).stolmoney_overflow ?? 0) - (((s as any).norm_temp ?? 0));
-    }
-  }
   scene.build();
 }
 
 function enterBankTransfer(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'to_bank') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'to_bank') {
     (s as any).money = ((s as any).money ?? 0) - (((s as any).locArgs?.[1] ?? 0));
     (s as any).karta = ((s as any).karta ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'to_cash') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'to_cash') {
       (s as any).karta = ((s as any).karta ?? 0) - (((s as any).locArgs?.[1] ?? 0));
       (s as any).money = ((s as any).money ?? 0) + (((s as any).locArgs?.[1] ?? 0));
     }
@@ -57,21 +24,21 @@ function enterBankTransfer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDeskTransfer(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'to_desk') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'to_desk') {
     (s as any).money = ((s as any).money ?? 0) - (((s as any).locArgs?.[1] ?? 0));
     (s as any).stolmoney = ((s as any).stolmoney ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'all_to_desk') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'all_to_desk') {
       (s as any).stolmoney = ((s as any).stolmoney ?? 0) + (((s as any).money ?? 0));
       (s as any).stolmoney_overflow = ((s as any).stolmoney_overflow ?? 0) + (((s as any).money_overflow ?? 0));
       (s as any).money = 0;
       (s as any).money_overflow = 0;
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'from_desk') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'from_desk') {
         (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).locArgs?.[1] ?? 0));
         (s as any).money = ((s as any).money ?? 0) + (((s as any).locArgs?.[1] ?? 0));
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'all_from_desk') {
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'all_from_desk') {
           (s as any).money = ((s as any).money ?? 0) + (((s as any).stolmoney ?? 0));
           (s as any).money_overflow = ((s as any).money_overflow ?? 0) + (((s as any).stolmoney_overflow ?? 0));
           (s as any).stolmoney = 0;
@@ -86,21 +53,21 @@ function enterDeskTransfer(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPay(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'price');
-  if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'cash') {
     if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'cash')) {
       // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'pay'
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'bank') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'bank') {
       if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'bank')) {
         // TODO-QSP: gs 'money', '_bank_payment', temp_moneyVars['amount'], 'pay'
       }
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'desk') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'desk') {
         if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).temp_moneyVars ?? 0)?.['amount'], 'cash')) {
           // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'pay'
         } else {
@@ -119,14 +86,14 @@ function enterPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEarn(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'profit');
-  if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'cash') {
     // TODO-QSP: gs 'money', '_cash_payment', temp_moneyVars['amount'], 'earn'
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'bank') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'bank') {
       // TODO-QSP: gs 'money', '_bank_payment', temp_moneyVars['amount'], 'earn'
     } else {
       // TODO-QSP: gs 'money', '_payment_method', temp_moneyVars['amount'], 'earn'
@@ -138,11 +105,11 @@ function enterEarn(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSet(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_modifier = ((((s as any).locArgs?.[3] ?? 0) === 'pay') ? ('price') : ('profit'));
-  if (((s as any).locArgs?.[2] ?? 0) === 'bank') {
+  (s as any).temp_modifier = ((Number((s as any).locArgs?.[3] ?? 0) === 'pay') ? ('price') : ('profit'));
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'bank') {
     (s as any).karta = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_modifier ?? 0)) + ((s as any).bankDebtLimit ?? 0);
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'desk') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'desk') {
       (s as any).stolmoney = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_modifier ?? 0));
     } else {
       (s as any).money = qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_modifier ?? 0));
@@ -189,16 +156,16 @@ function enterCanAfford(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetCostString(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 'both';
   }
-  if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'cash') {
     (s as any).temp_method = ' - Cash only';
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'bank') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'bank') {
       (s as any).temp_method = ' - Bank only';
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'desk') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'desk') {
         (s as any).temp_method = ' - Cash and desk only';
       } else {
         (s as any).temp_method = '';
@@ -215,23 +182,23 @@ function enterGetCostString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCanAffordInner(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
-    (s as any).result = ((((s as any).money ?? 0) >= ((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'cash') {
+    (s as any).result = ((((s as any).money ?? 0) >= Number((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'bank') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'bank') {
       if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1) {
-        (s as any).result = ((((s as any).karta ?? 0) >= ((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
+        (s as any).result = ((((s as any).karta ?? 0) >= Number((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
       } else {
-        (s as any).result = ((Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= ((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
+        (s as any).result = ((Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= Number((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
       }
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'desk') {
-        (s as any).result = (((((s as any).money ?? 0) + ((s as any).stolmoney ?? 0)) >= ((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'desk') {
+        (s as any).result = (((((s as any).money ?? 0) + ((s as any).stolmoney ?? 0)) >= Number((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
       } else {
         if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1) {
-          (s as any).result = (((((s as any).money ?? 0) + ((s as any).karta ?? 0)) >= ((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
+          (s as any).result = (((((s as any).money ?? 0) + ((s as any).karta ?? 0)) >= Number((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
         } else {
-          (s as any).result = (((((s as any).money ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0)) >= ((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
+          (s as any).result = (((((s as any).money ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0)) >= Number((s as any).locArgs?.[1] ?? 0)) ? (1) : (0));
         }
       }
     }
@@ -242,7 +209,7 @@ function enterCanAffordInner(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStringPrice(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     (s as any).result = 'Free';
   } else {
     (s as any).result = qspFunc(s, 'money', 'format', qspFunc(s, 'money', '_apply_modifiers', ((s as any).locArgs?.[1] ?? 0), 'price'), 0, 0);
@@ -260,19 +227,19 @@ function enterStringProfit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFormat(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[3] ?? 0)) {
+  if (Number((s as any).locArgs?.[3] ?? 0)) {
     (s as any).result = qspFunc(s, 'string', 'parse_number', ((s as any).locArgs?.[1] ?? 0));
-    if ((!((s as any).locArgs?.[2] ?? 0))) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
       // TODO-QSP: $result += ' Rouble' + iif(ARGS[1] <> 1, 's', '')
     }
   } else {
     (s as any).result = qspFunc(s, 'money', '_format_price_string', ((s as any).locArgs?.[1] ?? 0));
-    if ((!((s as any).locArgs?.[2] ?? 0))) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
       // TODO-QSP: $result += ' <b>₽</b>'
     }
   }
-  if (((s as any).locArgs?.[4] ?? 0)) {
-    if (((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[4] ?? 0)) {
+    if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
       (s as any).result = qspFunc(s, 'wrap', 'v_pos', ((s as any).result ?? 0));
     } else {
       (s as any).result = qspFunc(s, 'wrap', 'v_neg', ((s as any).result ?? 0));
@@ -284,15 +251,15 @@ function enterFormat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFormatBalance(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'cash') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'cash') {
     ((s as any).format_balance_temp = (s as any).format_balance_temp ?? {})['base'] = ((s as any).money ?? 0);
     ((s as any).format_balance_temp = (s as any).format_balance_temp ?? {})['overflow'] = ((s as any).money_overflow ?? 0);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'bank') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'bank') {
       ((s as any).format_balance_temp = (s as any).format_balance_temp ?? {})['base'] = ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0);
       ((s as any).format_balance_temp = (s as any).format_balance_temp ?? {})['overflow'] = ((s as any).karta_overflow ?? 0);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'desk') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'desk') {
         ((s as any).format_balance_temp = (s as any).format_balance_temp ?? {})['base'] = ((s as any).stolmoney ?? 0);
         ((s as any).format_balance_temp = (s as any).format_balance_temp ?? {})['overflow'] = ((s as any).stolmoney_overflow ?? 0);
       }
@@ -313,10 +280,10 @@ function enterFormatBalance(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).result = qspFunc(s, 'money', 'format', ((s as any).format_balance_temp ?? 0)?.['base'], 1);
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     // TODO-QSP: $result += ' <b>₽</b>'
   }
-  if (((s as any).locArgs?.[3] ?? 0)) {
+  if (Number((s as any).locArgs?.[3] ?? 0)) {
     if (((s as any).format_balance_temp ?? 0)?.['base'] > 0  ||  ((s as any).format_balance_temp ?? 0)?.['overflow'] > 0) {
       (s as any).result = qspFunc(s, 'wrap', 'v_pos', ((s as any).result ?? 0));
     } else {
@@ -355,7 +322,7 @@ function enterFormatPriceString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterApplyModifiers(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'price') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'price') {
     (s as any).result = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['neg_mult_opt'], ((s as any).locArgs?.[1] ?? 0), ((s as any).cfg_vars ?? 0)?.['neg_mult']);
   } else {
     (s as any).result = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['pos_mult_opt'], ((s as any).locArgs?.[1] ?? 0), ((s as any).cfg_vars ?? 0)?.['pos_mult']);
@@ -366,7 +333,7 @@ function enterApplyModifiers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemoveModifiers(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'price') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'price') {
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['fwd'] = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['neg_mult_opt'], 100, ((s as any).cfg_vars ?? 0)?.['neg_mult']);
   } else {
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['fwd'] = qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cfg_vars ?? 0)?.['pos_mult_opt'], 100, ((s as any).cfg_vars ?? 0)?.['pos_mult']);
@@ -382,7 +349,7 @@ function enterRemoveModifiers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPaymentMethod(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'pay') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'pay') {
     if (((s as any).cfg_vars ?? 0)?.['pay_opt'] === 0) {
       if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).locArgs?.[1] ?? 0), 'cash') === 1) {
         // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'pay'
@@ -425,7 +392,7 @@ function enterPaymentMethod(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'earn') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'earn') {
       if (((s as any).cfg_vars ?? 0)?.['income_opt'] === 0) {
         // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'earn'
       } else {
@@ -447,7 +414,7 @@ function enterPaymentMethod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCashPayment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'pay') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'pay') {
     (s as any).money = ((s as any).money ?? 0) - (((s as any).locArgs?.[1] ?? 0));
   } else {
     (s as any).money = ((s as any).money ?? 0) + (((s as any).locArgs?.[1] ?? 0));
@@ -458,7 +425,7 @@ function enterCashPayment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBankPayment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'pay') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'pay') {
     (s as any).karta = ((s as any).karta ?? 0) - (((s as any).locArgs?.[1] ?? 0));
   } else {
     (s as any).karta = ((s as any).karta ?? 0) + (((s as any).locArgs?.[1] ?? 0));
@@ -469,7 +436,7 @@ function enterBankPayment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDeskPayment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).money ?? 0) >= ((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).money ?? 0) >= Number((s as any).locArgs?.[1] ?? 0)) {
     // TODO-QSP: gs 'money', '_cash_payment', ARGS[1], 'pay'
   } else {
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['cash_portion'] = ((s as any).money ?? 0);
@@ -482,14 +449,14 @@ function enterDeskPayment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHybridPayment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).money ?? 0) >= ((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).money ?? 0) >= Number((s as any).locArgs?.[1] ?? 0)) {
     (s as any).money = ((s as any).money ?? 0) - (((s as any).locArgs?.[1] ?? 0));
   } else {
-    if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1  &&  ((s as any).money ?? 0) + ((s as any).karta ?? 0) >= ((s as any).locArgs?.[1] ?? 0)) {
+    if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1  &&  ((s as any).money ?? 0) + ((s as any).karta ?? 0) >= Number((s as any).locArgs?.[1] ?? 0)) {
       (s as any).karta = ((s as any).karta ?? 0) - (((s as any).locArgs?.[1] ?? 0) - ((s as any).money ?? 0));
       (s as any).money = 0;
     } else {
-      if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 0  &&  ((s as any).money ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= ((s as any).locArgs?.[1] ?? 0)) {
+      if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 0  &&  ((s as any).money ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= Number((s as any).locArgs?.[1] ?? 0)) {
         (s as any).karta = ((s as any).karta ?? 0) - (((s as any).locArgs?.[1] ?? 0) - ((s as any).money ?? 0));
         (s as any).money = 0;
       }
@@ -501,8 +468,8 @@ function enterHybridPayment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
-  ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['input_msg'] = 'How would you like to ' + ((((s as any).locArgs?.[2] ?? 0) === 'pay') ? ('pay') : ('get paid')) + '?<br>';
-  if (((s as any).locArgs?.[2] ?? 0) === 'pay') {
+  ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['input_msg'] = 'How would you like to ' + ((Number((s as any).locArgs?.[2] ?? 0) === 'pay') ? ('pay') : ('get paid')) + '?<br>';
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'pay') {
     if (qspFunc(s, 'money', '_can_afford_inner', ((s as any).locArgs?.[1] ?? 0), 'cash') === 1) {
       ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['cash'] = 1;
       ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['input_msg'] = ((s as any).cpm_temp_moneyVars['input_msg'] ?? 0) + ('Cash [Enter \'1\', Default]<br>');
@@ -519,7 +486,7 @@ function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cpm_temp_moneyVars ?? 0)?.['cash'] !== 1  &&  ((s as any).cpm_temp_moneyVars ?? 0)?.['bank'] !== 1  &&  ((s as any).cpm_temp_moneyVars ?? 0)?.['both'] !== 1) {
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'earn') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'earn') {
       ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['cash'] = 1;
       ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['input_msg'] = ((s as any).cpm_temp_moneyVars['input_msg'] ?? 0) + ('Cash [Enter \'1\', Default]<br>');
       if (((s as any).bankAccount ?? 0) === 1) {
@@ -533,7 +500,7 @@ function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
     ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['choice'] = parseFloat(((s as any).cpm_temp_moneyVars ?? 0)?.['input_result']);
   }
   if (((s as any).cpm_temp_moneyVars ?? 0)?.['choice'] < 1  ||  ((s as any).cpm_temp_moneyVars ?? 0)?.['choice'] >= 4) {
-    if (((s as any).cpm_temp_moneyVars ?? 0)?.['cash'] === 1  ||  ((s as any).locArgs?.[2] ?? 0) === 'earn') {
+    if (((s as any).cpm_temp_moneyVars ?? 0)?.['cash'] === 1  ||  Number((s as any).locArgs?.[2] ?? 0) === 'earn') {
       ((s as any).cpm_temp_moneyVars = (s as any).cpm_temp_moneyVars ?? {})['choice'] = 1;
     } else {
       if (((s as any).cpm_temp_moneyVars ?? 0)?.['bank'] === 1) {
@@ -562,7 +529,7 @@ function enterChoosePaymentMethod(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDebtAdd(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     // TODO-QSP: exit
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['amount'] = qspFunc(s, 'money', 'price', ((s as any).locArgs?.[2] ?? 0));
@@ -578,13 +545,13 @@ function enterDebtPay(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
     return;
   }
-  if (((s as any).locArgs?.[2] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[2] ?? 0) > 0) {
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['target'] = Math.min(((s as any).locArgs?.[2] ?? 0), ((s as any).temp_moneyVars ?? 0)?.['debt']);
   } else {
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['target'] = ((s as any).temp_moneyVars ?? 0)?.['debt'];
   }
   ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['paid'] = 0;
-  if (((s as any).locArgs?.[3] ?? 0) === 'none') {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 'none') {
     // TODO-QSP: dynamic "<<$ARGS[1]>> -= <<temp_moneyVars['target']>>"
     (s as any).result = ((s as any).temp_moneyVars ?? 0)?.['target'];
     return;
@@ -595,7 +562,7 @@ function enterDebtPay(s: GameState, scene: SceneBuilder): void {
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['paid'] = ((s as any).temp_moneyVars['paid'] ?? 0) + (((s as any).temp_moneyVars ?? 0)?.['from_cash']);
     ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['target'] = ((s as any).temp_moneyVars['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_cash']);
   }
-  if (((s as any).temp_moneyVars ?? 0)?.['target'] > 0  &&  (((s as any).locArgs?.[3] ?? 0) === 'desk'  ||  ((s as any).locArgs?.[3] ?? 0) === 'all')) {
+  if (((s as any).temp_moneyVars ?? 0)?.['target'] > 0  &&  (Number((s as any).locArgs?.[3] ?? 0) === 'desk'  ||  Number((s as any).locArgs?.[3] ?? 0) === 'all')) {
     if (((s as any).stolmoney ?? 0) > 0) {
       ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['from_desk'] = Math.min(((s as any).stolmoney ?? 0), ((s as any).temp_moneyVars ?? 0)?.['target']);
       (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_desk']);
@@ -603,7 +570,7 @@ function enterDebtPay(s: GameState, scene: SceneBuilder): void {
       ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['target'] = ((s as any).temp_moneyVars['target'] ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_desk']);
     }
   }
-  if (((s as any).temp_moneyVars ?? 0)?.['target'] > 0  &&  (((s as any).locArgs?.[3] ?? 0) === 'all'  ||  ((s as any).locArgs?.[3] ?? 0) === '')) {
+  if (((s as any).temp_moneyVars ?? 0)?.['target'] > 0  &&  (Number((s as any).locArgs?.[3] ?? 0) === 'all'  ||  Number((s as any).locArgs?.[3] ?? 0) === '')) {
     if ((((s as any).karta ?? 0) > 0  &&  (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1)  ||  Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= ((s as any).temp_moneyVars ?? 0)?.['target'])) {
       ((s as any).temp_moneyVars = (s as any).temp_moneyVars ?? {})['from_bank'] = Math.min(((s as any).karta ?? 0), ((s as any).temp_moneyVars ?? 0)?.['target']);
       (s as any).karta = ((s as any).karta ?? 0) - (((s as any).temp_moneyVars ?? 0)?.['from_bank']);
@@ -619,11 +586,11 @@ function enterDebtPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStringDebt(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     (s as any).result = '';
     return;
   }
-  if ((!((s as any).locArgs?.[3] ?? 0))) {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 0) {
     (s as any).result = qspFunc(s, 'money', 'format', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[2] ?? 0));
   } else {
     (s as any).result = qspFunc(s, 'wrap', 'v_neg', qspFunc(s, 'money', 'format', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[2] ?? 0)));
@@ -634,7 +601,7 @@ function enterStringDebt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStringDebtReduction(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     (s as any).result = '';
   } else {
     (s as any).result = qspFunc(s, 'money', 'format', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[2] ?? 0));
@@ -645,7 +612,7 @@ function enterStringDebtReduction(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStringDebtAddition(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     (s as any).result = '';
   } else {
     (s as any).result = qspFunc(s, 'money', 'string_price', ((s as any).locArgs?.[1] ?? 0), 0, ((s as any).locArgs?.[2] ?? 0));
@@ -656,30 +623,30 @@ function enterStringDebtAddition(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCanAffordDebt(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
-    (s as any).result = ((s as any).money ?? 0) >= ((s as any).locArgs?.[1] ?? 0);
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'cash') {
+    (s as any).result = ((s as any).money ?? 0) >= Number((s as any).locArgs?.[1] ?? 0);
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'bank') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'bank') {
       if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1) {
-        (s as any).result = ((s as any).karta ?? 0) >= ((s as any).locArgs?.[1] ?? 0);
+        (s as any).result = ((s as any).karta ?? 0) >= Number((s as any).locArgs?.[1] ?? 0);
       } else {
-        (s as any).result = Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= ((s as any).locArgs?.[1] ?? 0);
+        (s as any).result = Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0) >= Number((s as any).locArgs?.[1] ?? 0);
       }
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'desk') {
-        (s as any).result = (((s as any).money ?? 0) + ((s as any).stolmoney ?? 0)) >= ((s as any).locArgs?.[1] ?? 0);
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'desk') {
+        (s as any).result = (((s as any).money ?? 0) + ((s as any).stolmoney ?? 0)) >= Number((s as any).locArgs?.[1] ?? 0);
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'all') {
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'all') {
           if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1) {
-            (s as any).result = (((s as any).money ?? 0) + ((s as any).stolmoney ?? 0) + ((s as any).karta ?? 0)) >= ((s as any).locArgs?.[1] ?? 0);
+            (s as any).result = (((s as any).money ?? 0) + ((s as any).stolmoney ?? 0) + ((s as any).karta ?? 0)) >= Number((s as any).locArgs?.[1] ?? 0);
           } else {
-            (s as any).result = (((s as any).money ?? 0) + ((s as any).stolmoney ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0)) >= ((s as any).locArgs?.[1] ?? 0);
+            (s as any).result = (((s as any).money ?? 0) + ((s as any).stolmoney ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0)) >= Number((s as any).locArgs?.[1] ?? 0);
           }
         } else {
           if (((s as any).cfg_vars ?? 0)?.['allow_overdraft'] === 1) {
-            (s as any).result = (((s as any).money ?? 0) + ((s as any).karta ?? 0)) >= ((s as any).locArgs?.[1] ?? 0);
+            (s as any).result = (((s as any).money ?? 0) + ((s as any).karta ?? 0)) >= Number((s as any).locArgs?.[1] ?? 0);
           } else {
-            (s as any).result = (((s as any).money ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0)) >= ((s as any).locArgs?.[1] ?? 0);
+            (s as any).result = (((s as any).money ?? 0) + Math.max(((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0), 0)) >= Number((s as any).locArgs?.[1] ?? 0);
           }
         }
       }
@@ -691,16 +658,16 @@ function enterCanAffordDebt(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetDebtCostString(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) === 'cash') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'cash') {
     (s as any).temp_method = ' - Cash only';
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'bank') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'bank') {
       (s as any).temp_method = ' - Bank only';
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 'desk') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 'desk') {
         (s as any).temp_method = ' - Cash and desk only';
       } else {
-        if (((s as any).locArgs?.[2] ?? 0) === 'all') {
+        if (Number((s as any).locArgs?.[2] ?? 0) === 'all') {
           (s as any).temp_method = ' - Cash, bank, or desk';
         } else {
           (s as any).temp_method = '';
@@ -718,6 +685,39 @@ function enterGetDebtCostString(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).money ?? 0) >= 1000000000) {
+    (s as any).norm_temp = (((s as any).money ?? 0) - 950000000) / 1000000;
+    (s as any).money = ((s as any).money ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
+    (s as any).money_overflow = ((s as any).money_overflow ?? 0) + (((s as any).norm_temp ?? 0));
+  } else {
+    if (((s as any).money ?? 0) < 900000000  &&  ((s as any).money_overflow ?? 0) > 0) {
+      (s as any).norm_temp = Math.min(((s as any).money_overflow ?? 0), (950000000 - ((s as any).money ?? 0)) / 1000000);
+      (s as any).money = ((s as any).money ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
+      (s as any).money_overflow = ((s as any).money_overflow ?? 0) - (((s as any).norm_temp ?? 0));
+    }
+  }
+  if (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) >= 1000000000) {
+    (s as any).norm_temp = (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) - 950000000) / 1000000;
+    (s as any).karta = ((s as any).karta ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
+    (s as any).karta_overflow = ((s as any).karta_overflow ?? 0) + (((s as any).norm_temp ?? 0));
+  } else {
+    if (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) < 900000000  &&  ((s as any).karta_overflow ?? 0) > 0) {
+      (s as any).norm_temp = Math.min(((s as any).karta_overflow ?? 0), (950000000 - (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0))) / 1000000);
+      (s as any).karta = ((s as any).karta ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
+      (s as any).karta_overflow = ((s as any).karta_overflow ?? 0) - (((s as any).norm_temp ?? 0));
+    }
+  }
+  if (((s as any).stolmoney ?? 0) >= 1000000000) {
+    (s as any).norm_temp = (((s as any).stolmoney ?? 0) - 950000000) / 1000000;
+    (s as any).stolmoney = ((s as any).stolmoney ?? 0) - (((s as any).norm_temp ?? 0) * 1000000);
+    (s as any).stolmoney_overflow = ((s as any).stolmoney_overflow ?? 0) + (((s as any).norm_temp ?? 0));
+  } else {
+    if (((s as any).stolmoney ?? 0) < 900000000  &&  ((s as any).stolmoney_overflow ?? 0) > 0) {
+      (s as any).norm_temp = Math.min(((s as any).stolmoney_overflow ?? 0), (950000000 - ((s as any).stolmoney ?? 0)) / 1000000);
+      (s as any).stolmoney = ((s as any).stolmoney ?? 0) + (((s as any).norm_temp ?? 0) * 1000000);
+      (s as any).stolmoney_overflow = ((s as any).stolmoney_overflow ?? 0) - (((s as any).norm_temp ?? 0));
+    }
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'bank_transfer':

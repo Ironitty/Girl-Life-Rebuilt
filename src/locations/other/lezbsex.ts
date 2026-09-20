@@ -24,12 +24,12 @@ function enterStartloverhome(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her back and take her to the bedroom', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
-    qspGoto(s, 'lezbsex', 'start');
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
+    qspGoto(st, 'lezbsex', 'start');
   } },
     { label: 'Stop her and say goodbye', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-2));
-    qspGoto(s, 'homes_properties', 'go_straight_home');
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (-2));
+    qspGoto(st, 'homes_properties', 'go_straight_home');
   } },
   ]);
   scene.build();
@@ -39,7 +39,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).girl = ((s as any).girl ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   if (((s as any).lezbsexhome ?? 0) === 1) {
     (s as any).lezbsexname = ((s as any).npcdesc ?? 0);
   } else {
@@ -242,7 +242,7 @@ function enterDvag(s: GameState, scene: SceneBuilder): void {
 
 function enterDanal(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/shared/sex/lesbian/danal${((s as any).picrand || '')}.jpg`);
-  // TODO-QSP: dynamic text: You take a dildo, ensuring that she's watching you slowly lick it, trying to cov...
+  // TODO-QSP: dynamic text: You take a dildo, ensuring that she''s watching you slowly lick it, trying to co...
   scene.text(`You take a dildo, ensuring that she's watching you slowly lick it, trying to cover it with the maximum amount of your thick saliva, and gently insert it into ${((s as any).lezbsexname || '')}'s anus. At first, you ease it in slowly, getting her used to the invasion, then push it deeper, stroking it into her faster and faster.`);
   qspCall(s, 'arousal', 'anal_dildo_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
@@ -296,31 +296,31 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).gfsex ?? 0) === 1) {
-      // TODO-QSP: gt 'dateF', $dateFType
+    if (((st as any).gfsex ?? 0) === 1) {
+      qspGoto(st, 'dateF', ((st as any).dateFType ?? ''));
     }
-    if (((s as any).lezbsexhome ?? 0) === 1) {
-      qspGoto(s, 'homes_properties', 'go_straight_home');
+    if (((st as any).lezbsexhome ?? 0) === 1) {
+      qspGoto(st, 'homes_properties', 'go_straight_home');
     }
-    if (((s as any).sexloc ?? 0) === 'stwork') {
-      qspGoto(s, 'stwork', 'start');
+    if (((st as any).sexloc ?? 0) === 'stwork') {
+      qspGoto(st, 'stwork', 'start');
     }
-    if (((s as any).sexloc ?? 0) === 'uni_dorm') {
-      qspGoto(s, 'uni_dorm', 'dorm_room');
+    if (((st as any).sexloc ?? 0) === 'uni_dorm') {
+      qspGoto(st, 'uni_dorm', 'dorm_room');
     }
-    if (((s as any).sexloc ?? 0) === 'city_nightclub') {
-      qspGoto(s, 'city_nightclub', 'private_rooms');
+    if (((st as any).sexloc ?? 0) === 'city_nightclub') {
+      qspGoto(st, 'city_nightclub', 'private_rooms');
     }
-    if (((s as any).picrand ?? 0) === 22) {
-      qspGoto(s, 'city_center', '');
+    if (((st as any).picrand ?? 0) === 22) {
+      qspGoto(st, 'city_center', '');
     }
-    if (((s as any).picrand ?? 0) === 21) {
-      qspGoto(s, 'vann', 'start');
+    if (((st as any).picrand ?? 0) === 21) {
+      qspGoto(st, 'vann', 'start');
     }
-    if (((s as any).picrand ?? 0) === 19  ||  ((s as any).picrand ?? 0) === 20) {
-      qspGoto(s, 'office', 'work');
+    if (((st as any).picrand ?? 0) === 19  ||  ((st as any).picrand ?? 0) === 20) {
+      qspGoto(st, 'office', 'work');
     }
-    dynamicGoto(s, 'sexloc');
+    dynamicGoto(st, 'sexloc');
   } },
   ]);
   scene.build();

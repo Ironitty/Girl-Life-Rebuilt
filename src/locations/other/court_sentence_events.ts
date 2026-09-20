@@ -244,7 +244,7 @@ function enterPunishmentShoplift(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).temp_fine = 7500 + (9 * (((s as any).policeQW ?? {})?.['shoplift_value'] ?? 0) / 4);
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-          // TODO-QSP: dynamic text: "I see you've still got an attitude issue, so I hereby sentence you to pay a sum...
+          // TODO-QSP: dynamic text: "I see you''ve still got an attitude issue, so I hereby sentence you to pay a su...
           scene.text('"I see you\'ve still got an attitude issue, so I hereby sentence you to pay a sum of \' + $func(\'money\', \'string_price\', temp_fine) + \'. In addition, you will also serve 20 hours of community service at the Mercy Clinic."');
           scene.text('You nod and quickly make your way out of the courtroom.');
         }
@@ -300,20 +300,20 @@ function enterPunishmentShoplift(s: GameState, scene: SceneBuilder): void {
             if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'easy') {
               (s as any).temp_fine = 25000 + (3 * (((s as any).policeQW ?? {})?.['shoplift_value'] ?? 0) / 2);
               qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-              // TODO-QSP: dynamic text: "What a surprise! Miss <<$pcs_lastname>> stands in front of me again. You're sta...
+              // TODO-QSP: dynamic text: "What a surprise! Miss <<$pcs_lastname>> stands in front of me again. You''re st...
               scene.text(`"What a surprise! Miss ${((s as any).pcs_lastname || '')} stands in front of me again. You're starting to annoy me! Are you doing this on purpose? Pay this fine of ' + $func('money', 'string_price', temp_fine) + ' and enjoy your 40 hours of community service at the Mercy Clinic."`);
               scene.text('You nod and quickly make your way out of the courtroom.');
             } else {
               if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'norm') {
                 (s as any).temp_fine = 25000 + (3 * (((s as any).policeQW ?? {})?.['shoplift_value'] ?? 0));
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: "What a surprise! Miss <<$pcs_lastname>> stands in front of me again. You're sta...
+                // TODO-QSP: dynamic text: "What a surprise! Miss <<$pcs_lastname>> stands in front of me again. You''re st...
                 scene.text(`"What a surprise! Miss ${((s as any).pcs_lastname || '')} stands in front of me again. You're starting to annoy me! Are you doing this on purpose? Pay the fine of ' + $func('money', 'string_price', temp_fine) + ' and enjoy your 80 hours of community service at the Mercy Clinic."`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               } else {
                 (s as any).temp_fine = 25000 + (4 * (((s as any).policeQW ?? {})?.['shoplift_value'] ?? 0));
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: "What a surprise! Miss <<$pcs_lastname>> stands in front of me again. You're sta...
+                // TODO-QSP: dynamic text: "What a surprise! Miss <<$pcs_lastname>> stands in front of me again. You''re st...
                 scene.text(`"What a surprise! Miss ${((s as any).pcs_lastname || '')} stands in front of me again. You're starting to annoy me! Are you doing this on purpose? Pay the fine of ' + $func('money', 'string_price', temp_fine) + ' and enjoy your 120 hours of community service at the Mercy Clinic."`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               }
@@ -322,20 +322,20 @@ function enterPunishmentShoplift(s: GameState, scene: SceneBuilder): void {
             if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'easy') {
               (s as any).temp_fine = 50000 + (2 * (((s as any).policeQW ?? {})?.['shoplift_value'] ?? 0));
               qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-              // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I'm getting tired o...
+              // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I''m getting tired ...
               scene.text(`The judge sighs. "Here we are again, Miss ${((s as any).pcs_lastname || '')}. I'm getting tired of being lenient. The fine will be set to ' + $func('money', 'string_price', temp_fine) + ' and the community service at the Mercy Clinic to 80 hours."`);
               scene.text('You nod and quickly make your way out of the courtroom.');
             } else {
               if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'norm') {
                 (s as any).temp_fine = 50000 + (4 * (((s as any).policeQW ?? {})?.['shoplift_value'] ?? 0));
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I'm getting tired o...
+                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I''m getting tired ...
                 scene.text(`The judge sighs. "Here we are again, Miss ${((s as any).pcs_lastname || '')}. I'm getting tired of being lenient. The fine will be set to ' + $func('money', 'string_price', temp_fine) + ' and the community service at the Mercy Clinic to 120 hours."`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               } else {
                 (s as any).temp_fine = 50000 + (5 * (((s as any).policeQW ?? {})?.['shoplift_value'] ?? 0));
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I'm getting tired o...
+                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I''m getting tired ...
                 scene.text(`The judge sighs. "Here we are again, Miss ${((s as any).pcs_lastname || '')}. I'm getting tired of being lenient, so you're getting the maximum sentence. The fine will be set to ' + $func('money', 'string_price', temp_fine) + ' and the community service at the Mercy Clinic to 160 hours. I hope you'll think about your actions before stealing again!"`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               }
@@ -393,7 +393,7 @@ function enterPunishmentProstitution(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).temp_fine = 11500;
           qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-          // TODO-QSP: dynamic text: "I see you've still got an attitude problem, so I hereby sentence you to pay a f...
+          // TODO-QSP: dynamic text: "I see you''ve still got an attitude problem, so I hereby sentence you to pay a ...
           scene.text('"I see you\'ve still got an attitude problem, so I hereby sentence you to pay a fine of \' + $func(\'money\', \'string_price\', temp_fine) + \'. I\'ll also add 20 hours of community service at the Mercy Clinic. Hopefully this will help you reconsider your actions."');
           scene.text('You nod and quickly make your way out of the courtroom.');
         }
@@ -449,20 +449,20 @@ function enterPunishmentProstitution(s: GameState, scene: SceneBuilder): void {
             if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'easy') {
               (s as any).temp_fine = 28000;
               qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-              // TODO-QSP: dynamic text: "What a surprise! <<$pcs_lastname>> stands in front of me again. You're starting...
+              // TODO-QSP: dynamic text: "What a surprise! <<$pcs_lastname>> stands in front of me again. You''re startin...
               scene.text(`"What a surprise! ${((s as any).pcs_lastname || '')} stands in front of me again. You're starting to annoy me! Are you doing this on purpose? Pay this fine of ' + $func('money', 'string_price', temp_fine) + ' and enjoy your 40 hours of community service at the Mercy Clinic."`);
               scene.text('You nod and quickly make your way out of the courtroom.');
             } else {
               if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'norm') {
                 (s as any).temp_fine = 21000;
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: "What a surprise! <<$pcs_lastname>> stands in front of me again. You're starting...
+                // TODO-QSP: dynamic text: "What a surprise! <<$pcs_lastname>> stands in front of me again. You''re startin...
                 scene.text(`"What a surprise! ${((s as any).pcs_lastname || '')} stands in front of me again. You're starting to annoy me! Are you doing this on purpose? Pay this fine of ' + $func('money', 'string_price', temp_fine) + ' and enjoy your 80 hours of community service at the Mercy Clinic."`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               } else {
                 (s as any).temp_fine = 32000;
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: "What a surprise! <<$pcs_lastname>> stands in front of me again. You're starting...
+                // TODO-QSP: dynamic text: "What a surprise! <<$pcs_lastname>> stands in front of me again. You''re startin...
                 scene.text(`"What a surprise! ${((s as any).pcs_lastname || '')} stands in front of me again. You're starting to annoy me! Are you doing this on purpose? Pay this fine of ' + $func('money', 'string_price', temp_fine) + ' and enjoy your 120 hours of community service at the Mercy Clinic."`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               }
@@ -471,20 +471,20 @@ function enterPunishmentProstitution(s: GameState, scene: SceneBuilder): void {
             if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'easy') {
               (s as any).temp_fine = 55000;
               qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-              // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I'm getting tired o...
+              // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I''m getting tired ...
               scene.text(`The judge sighs. "Here we are again, Miss ${((s as any).pcs_lastname || '')}. I'm getting tired of being lenient. The fine will be set to ' + $func('money', 'string_price', temp_fine) + ' and the community service at the Mercy Clinic to 80 hours."`);
               scene.text('You nod and quickly make your way out of the courtroom.');
             } else {
               if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'norm') {
                 (s as any).temp_fine = 57500;
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I'm getting tired o...
+                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I''m getting tired ...
                 scene.text(`The judge sighs. "Here we are again, Miss ${((s as any).pcs_lastname || '')}. I'm getting tired of being lenient. The fine will be set to ' + $func('money', 'string_price', temp_fine) + ' and the community service at the Mercy Clinic to 120 hours."`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               } else {
                 (s as any).temp_fine = 60000;
                 qspCall(s, 'court_functions', 'add_fine', ((s as any).temp_fine ?? 0));
-                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I'm getting tired o...
+                // TODO-QSP: dynamic text: The judge sighs. "Here we are again, Miss <<$pcs_lastname>>. I''m getting tired ...
                 scene.text(`The judge sighs. "Here we are again, Miss ${((s as any).pcs_lastname || '')}. I'm getting tired of being lenient, so you're getting the maximum sentence. The fine will be set to ' + $func('money', 'string_price', temp_fine) + ' and the community service at the Mercy Clinic to 160 hours. I hope you'll think about your actions before stealing again!"`);
                 scene.text('You nod and quickly make your way out of the courtroom.');
               }

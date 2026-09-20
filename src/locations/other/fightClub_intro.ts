@@ -29,10 +29,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'That sounds more than suspicious', handler: (st: GameState) => {
-    ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['declined'] = 1;
+    ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['declined'] = 1;
     scene.text('"No, thanks," you politely decline and leave him standing there. He appears even sadder as before.');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['havana', 'dressing_room'] },
     ]);
@@ -62,8 +62,8 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why not?"');
     scene.text('"I heard, there was some dirty doping story. So you\'d better be careful with that."');
     scene.text('"Okay, thanks for the warning." You think about her words, but the story doesn\'t fit with the impression you had of Sultan Maskaev. He seemed sincere to you, and a little melancholy.');
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave the ring', goto: ['havana', 'dressing_room'] },
     ]);
@@ -141,7 +141,7 @@ function enterOffice4(s: GameState, scene: SceneBuilder): void {
   scene.text('"It\'s much more brutal."');
   scene.text('"Only for the losers, and you, sweetie, are a winner - I\'ll make sure of that."');
   scene.text('You stare at him questioningly.');
-  // TODO-QSP: dynamic text: "I didn't just approach you because you're talented, <<$pcs_nickname>>. You have...
+  // TODO-QSP: dynamic text: "I didn''t just approach you because you''re talented, <<$pcs_nickname>>. You ha...
   scene.text(`"I didn't just approach you because you're talented, ${((s as any).pcs_nickname || '')}. You have a pretty face and an amazing body. That's our capital, and I don't want to waste it. I'll build you up slowly, choose a few easy opponents first. You'll still be able to cash in big time. How does ${qspFunc(s, 'money', 'string_profit', 10000)} for your first fight sound?"`);
   scene.text('"10.000?"');
   scene.text('"And it\'ll be a walk in the park, I promise. So - shall we make this clear?"');
@@ -175,7 +175,7 @@ function enterOfficeSign(s: GameState, scene: SceneBuilder): void {
   scene.text('He presents you with a contract and gives you time to read it. It starts with a confidentiality agreement. Apart from that, it\'s not very long, but it contains a few interesting figures. Firstly, it mentions an absurdly high transfer fee if you wanted to change management, and secondly, it states the manager\'s share.');
   scene.text('"Twenty-five percent?" you ask, frowning. "I was thinking something like ten."');
   scene.text('"This proves that you have no idea about the business. You get 75 percent, that\'s actually pretty generous, sweetheart. I take thirty for most of my other fighters."');
-  // TODO-QSP: dynamic text: "So I don't get <<$func('money', 'string_profit', 10000)>> for my first fight, b...
+  // TODO-QSP: dynamic text: "So I don''t get <<$func(''money'', ''string_profit'', 10000)>> for my first fig...
   scene.text(`"So I don't get ${qspFunc(s, 'money', 'string_profit', 10000)} for my first fight, but only ${qspFunc(s, 'money', 'string_profit', 7500)}?"`);
   scene.text('"Like I said, it\'s going to be a walk in the park, and have you ever been paid that much for walking?"');
   scene.text('"No, I haven\'t." You stare at the paper. "What if I find out this is too hard for me, what when I\'ve had enough after one fight?"');
@@ -192,8 +192,8 @@ function enterOfficeSign(s: GameState, scene: SceneBuilder): void {
     scene.text('You arrange the first fight for next Sunday. He promises to pick you up and even get you the right clothes for the fight. He looks happy.');
     // TODO-QSP: dynamic text: <b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at ' +...
     scene.text('<b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at 19:00 (be inside)');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['city_industrial', 'start'] },
     ]);
@@ -273,9 +273,9 @@ function enterStarjersey(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '', labelFn: (s: GameState) => 'Choose a fight name (Default: ' + String(((s as any).fightClubQW ?? 0)?.['name'] ?? '' ?? '') + ')', handler: (st: GameState) => {
-    ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['name'] = 0;
-    if (((s as any).fightClubQW ?? 0)?.['name'] === '') {
-      ((s as any).fightClubQW = (s as any).fightClubQW ?? {})['name'] = 'Dark Star';
+    ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['name'] = 0;
+    if (((st as any).fightClubQW ?? 0)?.['name'] === '') {
+      ((st as any).fightClubQW = (st as any).fightClubQW ?? {})['name'] = 'Dark Star';
     }
   } },
     { label: 'Continue', goto: ['fightClub_intro', 'preparations'] },
@@ -336,8 +336,8 @@ function enterRound1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/shared/fightclub/femalefighters3.jpg');
     scene.text('She shakes, continues to attack. You dodge, gain space and land a hard kick on her hip. She roars with rage and attacks again. You dodge. She attacks, but you feel you\'re in control. Her actions are so predictable: Right swing, left swing and again.');
     scene.text('She doesn\'t even think about using her legs. You land a few more jabs to her face. She screams, spit blood and takes even more hits to her face. Suddenly the bell ends the first round.');
-    qspCall(s, 'exercise', 'tier4', 5, 'jab', 'punch', 'kick', 'def');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exercise', 'tier4', 5, 'jab', 'punch', 'kick', 'def');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'You go to your corner', goto: ['fightClub_intro', 'break'] },
     ]);
@@ -388,7 +388,7 @@ function enterKnockout(s: GameState, scene: SceneBuilder): void {
 
 function enterVictorylap(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/victorybypoints.jpg');
-  // TODO-QSP: dynamic text: The announcer roars "<<$fightClubQW['name']>>", the crowd cheers and laughs. Sul...
+  // TODO-QSP: dynamic text: The announcer roars "<<$fightClubQW[''name'']>>", the crowd cheers and laughs. S...
   scene.text(`The announcer roars "${((s as any).fightClubQW ?? 0)?.['name'] ?? ''}", the crowd cheers and laughs. Sultan climbs into the ring and raises your fists again.`);
   scene.text('"What did I promise," he whispers to you, "a walk in the park." You grin and enjoy the feeling of victory. And than it\'s over. The speaker comes to you with a broad fake smile. He shakes your hand and murmurs: "Hurry up, we have to set up the cage for the real fights."');
   qspCall(s, 'money', 'earn', 7500, 'cash');
@@ -521,9 +521,9 @@ function enterWardrobe(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'Your deodorant will last for <b><<mc_inventory[''deodorant'']>></b> more '+iif(mc_inventory['deodor...
     scene.actions([
       { label: 'Apply deodorant (0:01)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['deodorant'] = ((s as any).mc_inventory['deodorant'] ?? 0) - (1);
-    qspCall(s, 'sweat', 'deo');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['deodorant'] = ((st as any).mc_inventory['deodorant'] ?? 0) - (1);
+    qspCall(st, 'sweat', 'deo');
     // TODO-QSP: iif(func('body_din', 'pregnancyVisibility') = 1, '<center><img <<$set_imgh>> src="images/shared/home...
     scene.text('You apply deodorant to your armpits. It will keep you feeling fresh and clean for longer.');
     scene.actions([
@@ -548,10 +548,10 @@ function enterConclusion(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
   scene.text('As you\'re about to leave the changing room, Sultan intercepts you. "Hey Superstar, your performance really made an impression. A lot of people want to see you back in the ring soon."');
   scene.text('You feel tired and suddenly don\'t know what to make of the whole thing. "She really didn\'t stand a chance, did she?"');
-  // TODO-QSP: dynamic text: He looks surprised. "You feel sorry for her? That honors you, but it's uncalled ...
+  // TODO-QSP: dynamic text: He looks surprised. "You feel sorry for her? That honors you, but it''s uncalled...
   scene.text(`He looks surprised. "You feel sorry for her? That honors you, but it's uncalled for. After all, she's getting ${qspFunc(s, 'money', 'string_profit', 2000)} for that, and she really had no talent at all for our art."`);
   scene.text('"Yes, that may be."');
-  // TODO-QSP: dynamic text: Sultan misunderstands your thoughtfulness. "I know, <<$func('money', 'string_pro...
+  // TODO-QSP: dynamic text: Sultan misunderstands your thoughtfulness. "I know, <<$func(''money'', ''string_...
   scene.text(`Sultan misunderstands your thoughtfulness. "I know, ${qspFunc(s, 'money', 'string_profit', 7500)} isn't the world. But that was just the beginning! You can get rich here - but not with your first fight, of course.`);
   scene.text('It\'ll take a bit more work, but you\'re on the right track, okay? And you can take the next step as early as next Sunday. Give me a call or drop by the office. If I\'m not there, talk to Oleg, okay?"');
   scene.text('You nod. Sultan seems pretty excited. You\'d like to talk about a few things. I wonder if you\'ll have a chance to do that on the way back.');

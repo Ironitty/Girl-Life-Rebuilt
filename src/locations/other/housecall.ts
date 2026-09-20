@@ -17,19 +17,19 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let her help you back to bed', handler: (st: GameState) => {
-    (s as any).ninelmet = 1;
+    (st as any).ninelmet = 1;
     scene.text('Ninel sits on the edge of your bed and looks you over.');
     // TODO-QSP: dynamic text: "What are the symptoms, <<$pcs_nickname>>? Can I call you that?" she asks.
-    scene.text(`"What are the symptoms, ${((s as any).pcs_nickname || '')}? Can I call you that?" she asks.`);
+    scene.text(`"What are the symptoms, ${((st as any).pcs_nickname || '')}? Can I call you that?" she asks.`);
     scene.text('You smile weakly and nod. "Of course, Doctor. I think I have the flu. My coughs are just killing me, making my throat very sore, and I think I have a fever too."');
     scene.text('She feels your forehead. "Runny nose? Headaches? Aching body?"');
     scene.text('You nod. "Yes. And sneezing!"');
     scene.text('She nods. "I\'ll need to examine you. Please undress."');
     scene.actions([
       { label: 'Undress', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/nadom1.jpg');
     scene.text('Once you\'re undressed, Ninel listens to your lungs with a stethoscope, her hands feeling cool and gentle as they touch and caress your skin.');
     scene.text('"Yes, wheezing. Now open your mouth."');
@@ -43,18 +43,18 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/ninel04.jpg');
     scene.text('You keep your mouth open for the thermometer, but she shakes her head. "No, not orally. For a more accurate reading, we need to take your temperature rectally."');
     scene.text('Your eyes widen with surprise and you blush slightly. "Oh."');
-    // TODO-QSP: dynamic text: She smiles reassuringly at you. "Don't be embarrassed or afraid, <<$pcs_nickname...
-    scene.text(`She smiles reassuringly at you. "Don't be embarrassed or afraid, ${((s as any).pcs_nickname || '')}. It's not painful."`);
+    // TODO-QSP: dynamic text: She smiles reassuringly at you. "Don''t be embarrassed or afraid, <<$pcs_nicknam...
+    scene.text(`She smiles reassuringly at you. "Don't be embarrassed or afraid, ${((st as any).pcs_nickname || '')}. It's not painful."`);
     scene.text('You hesitate. "Well, if you\'re sure…"');
     scene.text('She pats your shoulder. "I\'m sure. Now lie down and roll over onto your stomach. I\'ll need you to use your hands to spread your buttocks."');
     scene.actions([
       { label: 'Do as the doctor asks', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/nadom2.jpg');
     scene.text('You obediently roll over and spread your ass cheeks as Ninel lubricates your anus thoroughly and deftly slides the thermometer into your ass. You flinch slightly, not from pain, but pleasure, as she slowly slides the thermometer in and out of your ass. As she does, you feel your excitement growing and your pussy getting wet.');
-    (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (8);
-    qspCall(s, 'arousal', 'anal', 10, 'sub', 'lesbian');
-    qspCall(s, 'stat', '');
-    if (((s as any).pcs_horny ?? 0) >= 50) {
+    (st as any).anal_slip = ((st as any).anal_slip ?? 0) + (8);
+    qspCall(st, 'arousal', 'anal', 10, 'sub', 'lesbian');
+    qspCall(st, 'stat', '');
+    if (((st as any).pcs_horny ?? 0) >= 50) {
       scene.actions([
         { label: 'Moan with pleasure', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/nadom3.jpg');
@@ -64,8 +64,8 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/nadom5.jpg');
     scene.text('You roll back over and she strokes and kneads your stomach and thighs. You\'re not so sure if this is an actual medical procedure since she seems to take too long and is too tender, but it feels very nice and you do not object.');
     scene.text('Your excitement is growing and you feel your pussy moisten as you moan sweetly.');
-    qspCall(s, 'arousal', 'massage', 15, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'massage', 15, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Blush with embarrassment', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/nadom6.jpg');
@@ -81,8 +81,8 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.text('"And what should I do in return?"');
     scene.text('"Nothing. I\'m doing this solely for my own satisfaction."');
     scene.text('Feeling your arousal mounting you find yourself nodding your head. "Then I agree."');
-    qspCall(s, 'arousal', 'vaginal_finger', 15, 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal_finger', 15, 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Agree', goto: ['housecall', 'ninel2'] },
     ]);
@@ -98,23 +98,23 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/nadom3.jpg');
     scene.text('You\'re starting to feel confused. "Doctor, what are you doing?"');
     scene.text('She slides the thermometer out of your ass. "Your temperature is 39.2. Very bad," she calmly replies.');
-    if (((s as any).sick ?? 0) < 48) {
+    if (((st as any).sick ?? 0) < 48) {
       scene.actions([
         { label: 'Doctor, what\'s wrong with me?', handler: (st: GameState) => {
     scene.text('Your voice shakes slightly with fear. "Doctor, what\'s wrong with me?"');
     scene.text('"You really do have the flu. Now I\'ll give you an injection of antibiotic and antipyretic which should make you feel better soon. Now roll back over so I can give you your shot."');
     scene.actions([
       { label: 'Lie on your stomach', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    (s as any).sick = ((s as any).sick ?? 0) - (2);
-    (s as any).lekar = ((s as any).lekar ?? 0) + (3);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    (st as any).sick = ((st as any).sick ?? 0) - (2);
+    (st as any).lekar = ((st as any).lekar ?? 0) + (3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/nadom4.jpg');
     scene.text('Once you roll back over, Ninel gives you an injection in the ass and you wince slightly in pain.');
     scene.text('She gives you a slight reassuring pat. "We\'re just about done with everything. I\'m prescribing you lots of bed rest, hot drinks, antibiotics, nose drops and a balanced diet. When your temperature drops, make an appointment at the clinic for a follow-up."');
     scene.text('You nod. "Thank you, Doctor."');
     // TODO-QSP: dynamic text: She gets up. "Goodbye, <<$pcs_nickname>>. Get lots of rest," she says before lea...
-    scene.text(`She gets up. "Goodbye, ${((s as any).pcs_nickname || '')}. Get lots of rest," she says before leaving.`);
+    scene.text(`She gets up. "Goodbye, ${((st as any).pcs_nickname || '')}. Get lots of rest," she says before leaving.`);
     scene.actions([
       { label: 'Back to bed', goto: ['bedr', ''] },
     ]);
@@ -123,12 +123,12 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).sick ?? 0) >= 48) {
+      if (((st as any).sick ?? 0) >= 48) {
         scene.actions([
           { label: 'Doctor, what\'s wrong with me?', handler: (st: GameState) => {
     scene.text('Your voice shakes slightly with fear. "Doctor, what\'s wrong with me?"');
-    // TODO-QSP: dynamic text: She shakes her head. "I'm afraid that you have angina, <<$pcs_nickname>>. I woul...
-    scene.text(`She shakes her head. "I'm afraid that you have angina, ${((s as any).pcs_nickname || '')}. I would advise you to check yourself in."`);
+    // TODO-QSP: dynamic text: She shakes her head. "I''m afraid that you have angina, <<$pcs_nickname>>. I wou...
+    scene.text(`She shakes her head. "I'm afraid that you have angina, ${((st as any).pcs_nickname || '')}. I would advise you to check yourself in."`);
     scene.text('"What, in the hospital or something?"');
     scene.text('She nods her head. "Yes."');
     scene.actions([
@@ -138,8 +138,8 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod. "Okay, if I need to go…"');
     scene.actions([
       { label: 'Go to hospital', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspGoto(s, 'city_clinic', 'drPP');
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspGoto(st, 'city_clinic', 'drPP');
   } },
     ]);
   } },
@@ -149,9 +149,9 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop crying and smile at her. "Oh, thank you, doctor!"');
     scene.actions([
       { label: 'Lie on your stomach', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    (st as any).pcs_horny = Math.max(100, ((st as any).pcs_horny ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/nadom9.jpg');
     scene.text('She gives you a few shots in the ass and you find yourself suddenly becoming incredibly aroused, your pussy growing wet and aching to be invaded as your breath quickens and your nipples grow hard with desire.');
     scene.text('"Doctor, what\'s happening?!" You practically moan out the words.');
@@ -202,7 +202,7 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Complain', handler: (st: GameState) => {
-    (s as any).ninelmet = 1;
+    (st as any).ninelmet = 1;
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel11.jpg');
     scene.text('You nod. "Of course, Doctor. I think I have the flu. My coughs are just killing me, making my throat very sore, and I think I have a fever too."');
     scene.text('She feels your forehead. "Runny nose? Headaches? Aching body?"');
@@ -212,9 +212,9 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
     scene.text('She looks at you. "Undress so I can examine you please."');
     scene.actions([
       { label: 'Undress', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel12.jpg');
     scene.text('Once you\'re undressed, Ninel listens to your lungs with a stethoscope, her hands feeling cool and gentle as they touch and caress your skin.');
     scene.text('"Yes, wheezing. Now open your mouth."');
@@ -228,8 +228,8 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/ninel04.jpg');
     scene.text('You keep your mouth open for the thermometer, but she shakes her head. "No, not orally. For a more accurate reading, we need to take your temperature rectally."');
     scene.text('Your eyes widen with surprise and you blush slightly. "Oh."');
-    // TODO-QSP: dynamic text: She smiles reassuringly at you. "Don't be embarrassed or afraid, <<$pcs_nickname...
-    scene.text(`She smiles reassuringly at you. "Don't be embarrassed or afraid, ${((s as any).pcs_nickname || '')}. It's not painful."`);
+    // TODO-QSP: dynamic text: She smiles reassuringly at you. "Don''t be embarrassed or afraid, <<$pcs_nicknam...
+    scene.text(`She smiles reassuringly at you. "Don't be embarrassed or afraid, ${((st as any).pcs_nickname || '')}. It's not painful."`);
     scene.text('You hesitate. "Well, if you\'re sure…"');
     scene.text('She pats your shoulder. "I\'m sure. Now lie down and roll over onto your stomach. I\'ll need you to use your hands to spread your buttocks."');
     scene.actions([
@@ -237,9 +237,9 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/rectaltemp.jpg');
     scene.text('You obediently roll over and spread your ass cheeks with your hands as Ninel lubricates your anus thoroughly and deftly slides the thermometer into your ass. You flinch slightly, not from pain, but pleasure, as she slowly slides the thermometer in and out of your ass. As she does, you feel your excitement growing and your pussy getting wet.');
     scene.text('Again, you swear that you feel power emanating from her fingers.');
-    (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (8);
-    qspCall(s, 'arousal', 'anal', 10, 'sub', 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).anal_slip = ((st as any).anal_slip ?? 0) + (8);
+    qspCall(st, 'arousal', 'anal', 10, 'sub', 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Doctor, what\'s happening?', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel13.jpg');
@@ -255,74 +255,74 @@ function enterNinel1(s: GameState, scene: SceneBuilder): void {
     scene.text('"And what should I do in return?"');
     scene.text('"Nothing. I\'m doing this solely for my own satisfaction."');
     scene.text('Feeling your arousal mounting, you find yourself nodding your head. "Then I agree."');
-    qspCall(s, 'arousal', 'kiss', 10, 'lesbian');
-    qspCall(s, 'arousal', 'foreplay', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 10, 'lesbian');
+    qspCall(st, 'arousal', 'foreplay', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel14.jpg');
     scene.text('Ninel opens her blouse, exposing her breasts, her nipples already hard. You realize she\'s just as aroused as you.');
     scene.text('She caresses your breasts with her hands, then lowers her mouth to your breast and starts sucking on your nipple. You moan softly as your arousal grows even stronger.');
     scene.text('Ninel slides her hand down your stomach and between your thighs, her fingers caressing your clitoris. After a few minutes, she slips her fingers inside your pussy as you moan in pleasure.');
-    qspCall(s, 'arousal', 'kiss', 10, 'lesbian');
-    qspCall(s, 'arousal', 'vaginal_finger', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 10, 'lesbian');
+    qspCall(st, 'arousal', 'vaginal_finger', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Enjoy', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel15.jpg');
     scene.text('You moan under the caressing sensation of her lips and fingers, she slides her body down alongside yours, her tongue trailing down your skin.');
     scene.text('As her head reaches your waist, she crawls between your legs and you feel her tongue lapping at your soaking wet pussy seconds later before her tongue starts exploring inside your wet depths.');
     scene.text('As your arousal peaks, you feel yourself screaming in ecstasy, your body trembling as wave after wave of pleasure rips through your body, your orgasms come so hard and fast you can barely catch your breath. "Ah, Ah, yes! More, more-oh-oh-oh! Oh god yes!"');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_finger', 10, 'lesbian');
-    qspCall(s, 'arousal', 'cuni', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_finger', 10, 'lesbian');
+    qspCall(st, 'arousal', 'cuni', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel16.jpg');
     scene.text('As your orgasm wracks your body, Ninel crawls forward and straddles your stomach as she leans forward and her fingers plunge back into your wet depths. You can feel her pussy juices flowing down her thighs and onto your stomach. You groan as your hands ecstatically squeeze her ass, holding onto her tightly.');
     scene.text('Her fingers frantically plunge in and out of your pussy, her own breath coming in short gasps now.');
     // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>!" she exhales. "I want to feel your fingers in me!
-    scene.text(`"Oh ${((s as any).pcs_nickname || '')}!" she exhales. "I want to feel your fingers in me!`);
-    qspCall(s, 'arousal', 'vaginal_finger', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    scene.text(`"Oh ${((st as any).pcs_nickname || '')}!" she exhales. "I want to feel your fingers in me!`);
+    qspCall(st, 'arousal', 'vaginal_finger', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Caress her', handler: (st: GameState) => {
-    (s as any).ninelsex = ((s as any).ninelsex ?? 0) + (1);
+    (st as any).ninelsex = ((st as any).ninelsex ?? 0) + (1);
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel17.jpg');
     scene.text('You crawl out from under her, leaving her on all fours. Your fingers seek out her wet pussy, rubbing her clit and lips before sliding inside her pussy. You start finger fucking her while your other hand slides up to her asshole, leaving a trail of wetness from your soaking-wet fingers. You then slide your finger into her ass.');
     scene.text('She screams in ecstasy, her muscles clenching and tightening around your fingers as you furiously finger fuck her, adding a third finger inside her pussy and a second inside her ass as she squirms under you.');
     scene.text('"Please don\'t stop! Yes! Oh yeah!"');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
-    qspCall(s, 'arousal', 'anal_finger_give', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
+    qspCall(st, 'arousal', 'anal_finger_give', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Orgasm', handler: (st: GameState) => {
-    if (((s as any).ninelsex ?? 0) === 1) {
-      (s as any).girl = ((s as any).girl ?? 0) + (1);
+    if (((st as any).ninelsex ?? 0) === 1) {
+      (st as any).girl = ((st as any).girl ?? 0) + (1);
     }
-    (s as any).sick = 0;
-    (s as any).pcs_health = ((s as any).pcs_vital ?? 0) * 10 + ((s as any).pcs_stren ?? 0) * 5 + 1000;
-    qspCall(s, 'stat', '');
+    (st as any).sick = 0;
+    (st as any).pcs_health = ((st as any).pcs_vital ?? 0) * 10 + ((st as any).pcs_stren ?? 0) * 5 + 1000;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel18.jpg');
     scene.text('You feel like you\'re about to explode again and Ninel seems to sense this, turning around and pushing you down on your back. She straddles your face as she leans forward to bury her face in your crotch again.');
     scene.text('Without hesitation, you plunge your fingers deep inside her again while Ninel uses her tongue to lap at your swollen clit before slipping it back inside your pussy, flicking her tongue around inside of you. Within seconds, her body shakes and spasms as her juices flow down her inner thighs and drip on your face while she buries her tongue as deeply inside you as it will go.');
     scene.text('You have a feeling of ecstasy so powerful it overwhelms you, leaving you stunned at the sheer intensity of your orgasm. You shout and wither against the almost unbearable pleasure and it goes on and on, seemingly without end. You feel like you\'re about to pass out when it almost mercifully passes.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
-    qspCall(s, 'arousal', 'cuni', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
+    qspCall(st, 'arousal', 'cuni', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie exhausted', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel19.jpg');
     scene.text('You lay panting, sweating and exhausted on your bed. Ninel snuggles as the two of you share a gentle kiss.');
     scene.text('She looks at you. "Well? How do you feel?"');
     scene.text('"Ooohh. Perfect…" you answer and only then do you realize just how well you do feel. The sickness seems to have passed and you feel perfectly healthy, not to mention the wonderful mood you\'re suddenly in. The sweet bouquet of sex drifts in the air and the exhaustion makes this an even more pleasant sensation.');
     scene.text('She smiles at you. "Well, It\'s magic, baby. Mm-m, you\'re just a miracle. I\'ve haven\'t received so much pleasure from my magic in a long time. If you get sick again, just call me. You can also look for me in the clinic if you just want to see me.');
     scene.text('You close your eyes and fall asleep as Ninel quietly gets dressed.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Sleep', goto: ['bed2', ''] },
     ]);
@@ -365,60 +365,60 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
     scene.text('Ninel opens her blouse, exposing her breasts, her nipples already hard. You realize she\'s just as aroused as you.');
     scene.text('She caresses your breasts with her hands, then lowers her mouth to your breast and starts sucking on your nipple. You moan softly as your arousal grows even stronger.');
     scene.text('Ninel slides her hand down your stomach and between your thighs, her fingers caressing your clitoris. After a few minutes, she slips her fingers inside your pussy as you moan in pleasure.');
-    qspCall(s, 'arousal', 'vaginal_finger', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Enjoy', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel15.jpg');
     scene.text('You moan under the caressing of her lips and fingers. "Oh god, that feels amazing!" She slides her body down alongside yours, her tongue trailing down your skin.');
     scene.text('As her head reaches your waist, she crawls between your legs and you feel her tongue lapping at your soaking wet pussy before it starts exploring inside your wet depths.');
     scene.text('As your arousal grows, you feel yourself screaming in ecstasy, your body trembling as wave after wave of pleasure rips through you, your orgasms coming so hard and fast that you can barely catch your breath. "Ah, ah, yes! More, more-oh-oh-oh! Oh god yes!"');
-    qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel16.jpg');
     scene.text('As an orgasm wracks your body, Ninel crawls forward and straddles your stomach. She leans forward and her hand slides down to your crotch as her fingers plunge back into your wet depths. You can feel her pussy juices flowing down her thighs onto your stomach. You groan as your hands ecstatically squeeze her ass, holding onto her tightly.');
     scene.text('Ninel fingers frantically plunge in and out of your pussy, her own breath coming in short gasps now.');
     // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>!" She exhales. "I want to feel your fingers in me!"
-    scene.text(`"Oh ${((s as any).pcs_nickname || '')}!" She exhales. "I want to feel your fingers in me!"`);
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_finger', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    scene.text(`"Oh ${((st as any).pcs_nickname || '')}!" She exhales. "I want to feel your fingers in me!"`);
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_finger', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Return the favor', handler: (st: GameState) => {
-    (s as any).ninelsex = ((s as any).ninelsex ?? 0) + (1);
+    (st as any).ninelsex = ((st as any).ninelsex ?? 0) + (1);
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel17.jpg');
     scene.text('You crawl out from under her, leaving her on all fours. Your fingers seek out her wet pussy, rubbing her clit and lips before sliding inside her pussy. You start finger fucking her while your other hand slides up to her asshole, leaving a trail of wetness from your soaking-wet fingers. You then slide your finger into her ass.');
     scene.text('She screams in ecstasy, her muscles clenching and tightening around your fingers as you furiously finger fuck her, adding a third finger inside her pussy and a second inside her ass as she squirms under you.');
-    qspCall(s, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
-    qspCall(s, 'arousal', 'anal_finger_give', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
+    qspCall(st, 'arousal', 'anal_finger_give', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Orgasm', handler: (st: GameState) => {
-    if (((s as any).ninelsex ?? 0) === 1) {
-      (s as any).girl = ((s as any).girl ?? 0) + (1);
+    if (((st as any).ninelsex ?? 0) === 1) {
+      (st as any).girl = ((st as any).girl ?? 0) + (1);
     }
-    (s as any).sick = 0;
-    (s as any).pcs_health = ((s as any).pcs_vital ?? 0) * 10 + ((s as any).pcs_stren ?? 0) * 5 + 1000;
+    (st as any).sick = 0;
+    (st as any).pcs_health = ((st as any).pcs_vital ?? 0) * 10 + ((st as any).pcs_stren ?? 0) * 5 + 1000;
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel18.jpg');
     scene.text('You feel like you\'re about to explode again and Ninel seems to sense this, turning around and pushing you down on your back. She straddles your face as she leans forward to bury her face in your crotch again.');
     scene.text('Without hesitation, you plunge your fingers deep inside her again while Ninel uses her tongue to lap at your swollen clit before slipping it back inside your pussy, flicking her tongue around inside of you. Within seconds, her body shakes and spasms as her juices flow down her inner thighs and drip on your face while she buries her tongue as deeply inside you as it will go.');
     scene.text('You have a feeling of ecstasy so powerful it overwhelms you, leaving you stunned at the sheer intensity of your orgasm. You shout and wither against the almost unbearable pleasure and it goes on and on, seemingly without end. You feel like you\'re about to pass out when it almost mercifully passes.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
-    qspCall(s, 'arousal', 'cuni', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_finger_give', 10, 'lesbian');
+    qspCall(st, 'arousal', 'cuni', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie exhausted', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel19.jpg');
     scene.text('You lay panting, sweating and exhausted on your bed. Ninel snuggles as the two of you share a gentle kiss.');
     scene.text('She looks at you. "Well? How do you feel?"');
     scene.text('"Ooohh. Perfect…" you answer and only then do you realize just how well you do feel. The sickness seems to have passed and you feel perfectly healthy, not to mention the wonderful mood you\'re suddenly in. The sweet bouquet of sex drifts in the air and the exhaustion makes this an even more pleasant sensation.');
     scene.text('She smiles at you. "Well, It\'s magic, baby. Mm-m, you\'re just a miracle. I\'ve haven\'t received so much pleasure from my magic in a long time. If you get sick again, just call me. You can also look for me in the clinic if you just want to see me.');
     scene.text('You close your eyes and fall asleep as Ninel quietly gets dressed.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Sleep', goto: ['bedr', ''] },
     ]);
@@ -448,7 +448,7 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel21.jpg');
     scene.text('When you hear the doorbell, you shout "It\'s open!" Your throat sore is wheezing as Ninel enters the room.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>. Sick again?"
-    scene.text(`"Hello ${((s as any).pcs_nickname || '')}. Sick again?"`);
+    scene.text(`"Hello ${((st as any).pcs_nickname || '')}. Sick again?"`);
     scene.text('You cough. "Yeah, can you use your magic again?"');
     scene.text('"Sure, baby. Undress and let me examine you."');
     scene.text('"Why? You\'re a magician."');
@@ -456,8 +456,8 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh. Okay…"');
     scene.actions([
       { label: 'Undress', handler: (st: GameState) => {
-    (s as any).pcs_horny = Math.max(75, ((s as any).pcs_horny ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = Math.max(75, ((st as any).pcs_horny ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel22.jpg');
     scene.text('You undress and Ninel listens to your lungs with her stethoscope. As usual, her hands are light and gentle while touching you. You feel your body flushing with heat.');
     scene.text('"You\'re wheezing again. Is your temperature high as well?"');
@@ -475,8 +475,8 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.text('She slowly pulls down your blanket.');
     scene.actions([
       { label: 'Unbutton her dress', handler: (st: GameState) => {
-    (s as any).pcs_horny = Math.max(100, ((s as any).pcs_horny ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = Math.max(100, ((st as any).pcs_horny ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel24.jpg');
     scene.text('You can no longer hold back. Feeling the blanket slide down your naked skin, you reach up and start unbuttoning her dress.');
     scene.text('Her skillful hands glide slowly over your body. "Caress me, I\'m burning up! I want you so much!" you breathless whisper.');
@@ -490,15 +490,15 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.text('As you beg and plead, Ninel finally takes pity on you and consents to your pleas. Leaning down and putting her face between your thighs, her tongue darts out and caresses your clit. You moan in pleasure as her tongue skillfully slips inside you.');
     scene.text('You shriek and moan as the heat waves of your sickness diverge from your body. Your pussy is overflowing as Ninel laps it up like a kitten with a bowl of milk.');
     scene.text('You feel yourself nearing climax when Ninel suddenly interrupts your blissful moment with a hard voice of command. "Now you will appease me!"');
-    qspCall(s, 'arousal', 'cuni', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Ninel takes control', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel26.jpg');
     scene.text('Ninel lays back on the bed as you crawl over to her and start licking her clit. She moans from your tongue lashing you\'re giving her clit, her pussy oozing out her juices as you eagerly lap away at it. She then suddenly grabs your hair with her hand and pushes your face into her crotch, your tongue darting inside her pussy as she grinds your face against her crotch, smearing her juices all over your face.');
     scene.text('"Good, A-ah! Good girl. I\'m cumming, ah!" she moans loudly.');
-    qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: '69', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel27.jpg');
@@ -506,30 +506,30 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re getting closer to your peak, and Ninel seems too as well, but then she stops again.');
     scene.text('"Please, please, go on!" you beg. "I\'m about to cum!" You caress her insistently, hoping she will relent, but she pulls herself away from you.');
     scene.text('"No! I want you to masturbate yourself."');
-    qspCall(s, 'arousal', 'cuni_give', 10, 'lesbian');
-    qspCall(s, 'arousal', 'cuni', (-10), 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 10, 'lesbian');
+    qspCall(st, 'arousal', 'cuni', (-10), 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Masturbate', handler: (st: GameState) => {
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel29.jpg');
     scene.text('She has you sit on her stomach. With a groan, you obey and start furiously and desperately rubbing your throbbing pussy. Ninel is doing the same thing underneath you. The room smells of your juices and lewd moans escape you as you furiously work your pussy, slowly bringing yourself to the peak of bliss again. You scream and squirm in orgasm at the same time as Ninel.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'clit_finger', 10, 'lesbian');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'clit_finger', 10, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lay exhausted', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 40;
-    (s as any).ninelsex = ((s as any).ninelsex ?? 0) + (1);
-    (s as any).sick = 0;
-    (s as any).pcs_health = ((s as any).pcs_vital ?? 0) * 10 + ((s as any).pcs_stren ?? 0) * 5 + 1000;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 40;
+    (st as any).ninelsex = ((st as any).ninelsex ?? 0) + (1);
+    (st as any).sick = 0;
+    (st as any).pcs_health = ((st as any).pcs_vital ?? 0) * 10 + ((st as any).pcs_stren ?? 0) * 5 + 1000;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/apartment/event/sick/sex/ninel28.jpg');
     scene.text('You lay back against her as her arms hold you tightly against her, her breath hot against the back of your neck as you pant from exhaustion.');
     scene.text('Your body slowly recovers from the crushing orgasm and you feel healthy but exhausted.');
     scene.text('"Thank you," you whisper.');
     scene.text('"You\'re welcome," she replies. "Come visit me in the clinic sometime."');
     scene.text('You promise to visit her and quickly fall asleep as Ninel quietly gets dressed.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Sleep', goto: ['bedr', ''] },
     ]);

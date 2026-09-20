@@ -15,6 +15,7 @@ GL QSP/
 debug-log.txt
 index.html
 opencode.json
+.opencode
 assets/
 debug-launch.sh
 visual-inspect.ts
@@ -28,6 +29,7 @@ plan-transpiler-fix.md
 prompts/
 state-access-report.md
 stubs.md
+TODO.md
 
 # Editor directories and files
 .vscode/*

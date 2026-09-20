@@ -32,7 +32,7 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
 function enterExit(s: GameState, scene: SceneBuilder): void {
   qspGoto(s, 'city_artisan_quarter', 'start');
   // TODO-QSP: end
-  if (((s as any).ARGS ?? 0) === 'hall'  ||  ((s as any).locArgs?.[0] ?? 0) === 'start') {
+  if (((s as any).ARGS ?? 0) === 'hall'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'start') {
     ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'Mariinsky Theatre Foyer';
     scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'mariinsky_hall');
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hall']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -57,11 +57,11 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'exhib', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    (s as any).marreturn = 'hall';
-    qspGoto(s, 'city_mariinsky', 'toilets_men');
+    qspCall(st, 'willpower', 'exhib', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    (st as any).marreturn = 'hall';
+    qspGoto(st, 'city_mariinsky', 'toilets_men');
   } },
         ]);
       }
@@ -115,7 +115,7 @@ function enterToiletsMen(s: GameState, scene: SceneBuilder): void {
   scene.text('WIP - no content. ');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_mariinsky', 'marreturn'] },
+    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'city_mariinsky', ((st as any).marreturn ?? '')); } },
   ]);
   scene.build();
 }
@@ -125,15 +125,15 @@ function enterToiletsWomen(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).location_type = 'restroom';
   (s as any).locclass = 'restroom';
-  // TODO-QSP: dynamic text: You walk into the opulent women's restroom. You see some sinks and <a href="exec...
-  scene.text('You walk into the opulent women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirrors</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027brush\\u0027); return false;">brush</a>\', \'brush\') + \' your hair.');
+  // TODO-QSP: dynamic text: You walk into the opulent women''s restroom. You see some sinks and <a href="exe...
+  scene.text('You walk into the opulent women\'s restroom. You see some sinks and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirrors</a> where you can ' + (((!((s as any).pcs_hairbsh ?? 0))) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a>') : ('brush')) + ' your hair.');
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'publicpan');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave', goto: ['city_mariinsky', 'marreturn'] },
+    { label: 'Leave', handler: (st: GameState) => { qspGoto(st, 'city_mariinsky', ((st as any).marreturn ?? '')); } },
   ]);
   scene.build();
 }
@@ -142,7 +142,7 @@ function enterStageDoor(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['rank'] >= 1) {
     scene.actions([
       { label: 'Enter', handler: (st: GameState) => {
-    qspGoto(s, 'city_mariinsky', 'changing_room');
+    qspGoto(st, 'city_mariinsky', 'changing_room');
   } },
       { label: 'Leave', goto: ['city_mariinsky', 'changing_room'] },
     ]);

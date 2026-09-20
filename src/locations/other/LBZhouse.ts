@@ -16,18 +16,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Let him lead', handler: (st: GameState) => {
     scene.img('images/shared/sex/blowjob/bimbo.knees3.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> continues kissing you as he begins unzipping his pants, revealing h...
-    scene.text(`${((s as any).boydesc || '')} continues kissing you as he begins unzipping his pants, revealing his bulge. He proceeds to run his hand across your body, feeling your breasts, all the way down to your ass. Looking down, you see his cock is rock-hard.`);
-    qspCall(s, 'arousal', 'foreplay', 5);
-    qspCall(s, 'stat', '');
+    scene.text(`${((st as any).boydesc || '')} continues kissing you as he begins unzipping his pants, revealing his bulge. He proceeds to run his hand across your body, feeling your breasts, all the way down to your ass. Looking down, you see his cock is rock-hard.`);
+    qspCall(st, 'arousal', 'foreplay', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Reach for his cock', handler: (st: GameState) => {
     scene.img('images/shared/sex/blowjob/bj19.jpg');
     scene.text('Feeling aroused, you allow your hands to wander down his waist, pulling down his pants. He makes no attempt to stop you as you gently pull out his cock, lightly stroking it.');
-    // TODO-QSP: dynamic text: <<$boydesc>> forces you down on your knees in front of him. You can't avert your...
-    scene.text(`${((s as any).boydesc || '')} forces you down on your knees in front of him. You can't avert your gaze from his cock as you slowly lean forward and lightly lick the tip of his penis. Looking up, you make sure to maintain eye contact with him, making him shiver in anticipation of you sucking his cock.`);
-    qspCall(s, 'arousal', 'foreplay', 5);
-    qspCall(s, 'arousal', 'foreplay_give', (-5));
-    qspCall(s, 'stat', '');
+    // TODO-QSP: dynamic text: <<$boydesc>> forces you down on your knees in front of him. You can''t avert you...
+    scene.text(`${((st as any).boydesc || '')} forces you down on your knees in front of him. You can't avert your gaze from his cock as you slowly lean forward and lightly lick the tip of his penis. Looking up, you make sure to maintain eye contact with him, making him shiver in anticipation of you sucking his cock.`);
+    qspCall(st, 'arousal', 'foreplay', 5);
+    qspCall(st, 'arousal', 'foreplay_give', (-5));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his cock', goto: ['LBZhouse', 'BJ'] },
     ]);
@@ -37,17 +37,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     { label: 'Keep on kissing him', handler: (st: GameState) => {
     scene.img('images/shared/sex/kiss/kiss_lips.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> continues kissing you as his hands wander over your body, slowly re...
-    scene.text(`${((s as any).boydesc || '')} continues kissing you as his hands wander over your body, slowly removing clothes while kissing you. Once naked, he starts teasing your nipples, sending tingles all through your body.`);
-    qspCall(s, 'arousal', 'kiss', 5);
-    qspCall(s, 'arousal', 'foreplay', (-5));
-    qspCall(s, 'stat', '');
+    scene.text(`${((st as any).boydesc || '')} continues kissing you as his hands wander over your body, slowly removing clothes while kissing you. Once naked, he starts teasing your nipples, sending tingles all through your body.`);
+    qspCall(st, 'arousal', 'kiss', 5);
+    qspCall(st, 'arousal', 'foreplay', (-5));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Jerk him off', handler: (st: GameState) => {
     scene.img('images/shared/sex/handjob/hj0.mp4');
     // TODO-QSP: dynamic text: You get on your knees in front of him and wrap your fingers around his hard shaf...
-    scene.text(`You get on your knees in front of him and wrap your fingers around his hard shaft. His cock starts throbbing as you stroke it, leaking precum. You continue stroking it as he groans. After a few seconds, ${((s as any).boydesc || '')} moves back, "${((s as any).pcs_nickname || '')}, slow down, I'm not about to blow my load already…"`);
-    qspCall(s, 'arousal', 'hj', 5, 'sub');
-    qspCall(s, 'stat', '');
+    scene.text(`You get on your knees in front of him and wrap your fingers around his hard shaft. His cock starts throbbing as you stroke it, leaking precum. You continue stroking it as he groans. After a few seconds, ${((st as any).boydesc || '')} moves back, "${((st as any).pcs_nickname || '')}, slow down, I'm not about to blow my load already…"`);
+    qspCall(st, 'arousal', 'hj', 5, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Vaginal', goto: ['LBZhouse', 'Vaginal'] },
       { label: 'Anal', goto: ['LBZhouse', 'Anal'] },
@@ -60,9 +60,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBJ(s: GameState, scene: SceneBuilder): void {
-  (s as any).VK = Math.floor(Math.random() * 11) + 0;
+  (s as any).VK = (Math.floor(Math.random() * 11) + 0);
   scene.img(`images/shared/sex/blowjob/bj${((s as any).VK || '')}.mp4`);
-  // TODO-QSP: dynamic text: You wrap your lips round <<$boydesc>>'s penis as he pushes it into your mouth. Y...
+  // TODO-QSP: dynamic text: You wrap your lips round <<$boydesc>>''s penis as he pushes it into your mouth. ...
   scene.text(`You wrap your lips round ${((s as any).boydesc || '')}'s penis as he pushes it into your mouth. You look up at him, seeing an adoring smile on his face; he's clearly enjoying himself. You lick and suck on his cock as you can feel him grow in your mouth, "Open wide, ${((s as any).pcs_nickname || '')}."`);
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'stat', '');
@@ -71,10 +71,10 @@ function enterBJ(s: GameState, scene: SceneBuilder): void {
     { label: 'Swallow', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/cumf60.mp4');
     // TODO-QSP: dynamic text: You keep his cock inside your mouth as <<$boydesc>> fills your mouth with his ho...
-    scene.text(`You keep his cock inside your mouth as ${((s as any).boydesc || '')} fills your mouth with his hot cum. You never break eye contact as you fully milk his cock until he's totally drained. "That was a great blowjob…" As he pulls out his cock you make sure to swallow every single drop.`);
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0));
-    qspCall(s, 'arousal', 'end');
+    scene.text(`You keep his cock inside your mouth as ${((st as any).boydesc || '')} fills your mouth with his hot cum. You never break eye contact as you fully milk his cock until he's totally drained. "That was a great blowjob…" As he pulls out his cock you make sure to swallow every single drop.`);
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Shower', goto: ['LBZhouse', 'Shower'] },
       { label: 'Finish', goto: ['LBZhouse', 'End'] },
@@ -95,10 +95,10 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum inside', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/vadim/sex/mitka2.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> throws you on the bed, spreads your legs, and enters you without he...
-    scene.text(`${((s as any).boydesc || '')} throws you on the bed, spreads your legs, and enters you without hesitation. Ignoring the sounds you make, he picks up the pace and fucks you hard, filling the room with wet slaps as he pounds your pussy. Out of the middle of nowhere he stops thrusting and cums inside, surprising you, but since you were going to let him cum inside you decide you aren't mad about it.`);
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 0);
-    qspCall(s, 'arousal', 'end');
+    scene.text(`${((st as any).boydesc || '')} throws you on the bed, spreads your legs, and enters you without hesitation. Ignoring the sounds you make, he picks up the pace and fucks you hard, filling the room with wet slaps as he pounds your pussy. Out of the middle of nowhere he stops thrusting and cums inside, surprising you, but since you were going to let him cum inside you decide you aren't mad about it.`);
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'cum_call', '', '', ((st as any).boy ?? 0), 0);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get dressed', goto: ['LBZhouse', 'End'] },
     ]);
@@ -108,11 +108,11 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pull out', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/analcreampie/cumanal2.mp4');
-    // TODO-QSP: dynamic text: In between your moans, you sense he's about to cum, and tell him to pull out. <<...
-    scene.text(`In between your moans, you sense he's about to cum, and tell him to pull out. ${((s as any).boydesc || '')} thrusts a couple more times and just manages to pull out as he cums all over your stomach, emptying his balls.`);
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0));
-    qspCall(s, 'arousal', 'end');
+    // TODO-QSP: dynamic text: In between your moans, you sense he''s about to cum, and tell him to pull out. <...
+    scene.text(`In between your moans, you sense he's about to cum, and tell him to pull out. ${((st as any).boydesc || '')} thrusts a couple more times and just manages to pull out as he cums all over your stomach, emptying his balls.`);
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'cum_call', 'stomach', ((st as any).boy ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Hop in the shower', goto: ['LBZhouse', 'Shower'] },
       { label: 'Leave without a shower', goto: ['LBZhouse', 'End'] },
@@ -136,10 +136,10 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     { label: 'Have him finish', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/analcreampie/cumanal2.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> is enjoying himself as he pounds your ass before ramming his dick c...
-    scene.text(`${((s as any).boydesc || '')} is enjoying himself as he pounds your ass before ramming his dick completely inside of your ass, filling you up. Even as he's emptied, you can still feel his cock throb inside of you. He slowly pulls out, giving you one last sensation as he leaves your ass.`);
-    qspCall(s, 'arousal', 'anal', 5);
-    qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0));
-    qspCall(s, 'arousal', 'end');
+    scene.text(`${((st as any).boydesc || '')} is enjoying himself as he pounds your ass before ramming his dick completely inside of your ass, filling you up. Even as he's emptied, you can still feel his cock throb inside of you. He slowly pulls out, giving you one last sensation as he leaves your ass.`);
+    qspCall(st, 'arousal', 'anal', 5);
+    qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Hop in the shower', goto: ['LBZhouse', 'Shower'] },
       { label: 'Leave without a shower', goto: ['LBZhouse', 'End'] },

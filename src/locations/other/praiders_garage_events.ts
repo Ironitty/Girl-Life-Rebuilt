@@ -29,11 +29,11 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try and make your way out', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A157', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'dislike');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (5);
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A157', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'dislike');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (5);
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight2.jpg');
     scene.text('Not wanting to get involved, you do your best to avoid them, just barely being missed by Arkadi wrestling a guy to the ground. Valentin ends up getting hit in the face, which causes him to join in as Roman gets on top of the guy he headbutted and starts beating him to a pulp. You get out the door, just in time to see Anushka jump on the back of some guy that was hitting Valentin. Once outside, the sounds of the fight continue, but nothing you need to worry about now.');
     scene.actions([
@@ -41,12 +41,12 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Just watch the fight', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A157', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'dislike');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (3);
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A157', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'dislike');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) - (3);
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight2.jpg');
-    if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('Not wanting to get involved, but wanting to see this, you stay seated and watch them fight. Valentin ends up getting hit in the face, which causes him join in as Roman gets on top of the guy he headbutted and starts beating him to a pulp. You see Radomir pulling some girl along and making it out, but have to leap out of your seat as Arkadi and some guy come crashing through before you turn to see Anushka grab two beer bottles and bust them on each side of a guy\'s head for hitting Valentin while Alyona grabs a hub cap off the wall and bashes the guy on the head as well, causing him to crumple to the ground.');
     } else {
       scene.text(' Not wanting to get involved, but wanting to see this, you stay seated and watch them fight. Valentin ends up getting hit in the face, which causes him join in as Roman gets on top of the guy he headbutted and starts beating him to a pulp. You see Radomir pulling some girl along and making it out, but have to leap out of your seat as Arkadi and some guy come crashing through before you turn to see Anushka grab two beer bottles and bust them on each side of a guy\'s head for hitting Valentin, which makes the guy stagger and lets Valentin easily get the upper hand and take the guy to the ground.');
@@ -54,7 +54,7 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Move out of the way', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight3.jpg');
-    if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('You move over near the homemade stage out of the way as the fight winds down. Roman is still beating one guy who seems to be unconscious on the floor, another is laying on the floor holding his head and bleeding where the beer bottles cut him. Anushka and Alyona are kicking him in the ribs as Valentin rushes over to help Arkadi, who seems to be winning on his own. Everyone then notices that Roman isn\'t stopping…');
     } else {
       scene.text('You move over near the homemade stage out of the way as the fight winds down. Roman is still beating one guy who seems to be unconscious on the floor, another is laying on the floor holding his head and bleeding where the beer bottles cut him as Anushka kicks him several times in the ribs and Valentin rushes over to help Arkadi, who seems to be winning on his own. Everyone then notices that Roman isn\'t stopping…');
@@ -67,13 +67,13 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Help Anushka', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A157', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A157', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfightbottle.jpg');
-    if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('Seeing Anushka and Alyona trying to move the band\'s instruments, speakers and other gear into a corner where it\'s semi safe, you jump up and help them start moving the stuff. Anushka gives you a thankful smile when she sees you helping. Once everything is pulled as far into the corner as you can get it, you turn back to watch the fight. Arkadi and one of the guys are wrestling on the couch trading blows, Roman is sitting on the chest of the guy he headbutted and is beating him to a pulp while Valentin is trading blows, but accidentally backs into the cooler and almost goes down. Dropping his guard, the other guy gets the upper hand.');
       scene.text('Anushka rushes over, grabbing a beer bottle in each hand before walking up behind the guy and smashing the bottles on each side of his head, which dazes him, allowing Alyona to grab a hub cap off the wall and smash him in the head with it, causing him to crash to the ground. Anushka just grins at Valentin before she and Alyona start kicking the guy in the ribs.');
     } else {
@@ -83,7 +83,7 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfightkick.jpg');
-    if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('You move back near the stage out of the way as the fight winds down. Roman is still beating one guy who seems to be unconscious on the floor, another is laying on the floor holding his head and bleeding where the beer bottles cut him. Anushka and Alyona are kicking him in the ribs as Valentin rushes over to help Arkadi, who seems to be winning on his own. Everyone then notices that Roman isn\'t stopping…');
     } else {
       scene.text('You move back near the stage out of the way as the fight winds down. Roman is still beating one guy who seems to be unconscious on the floor, another is laying on the floor holding his head and bleeding where the beer bottles cut him as Anushka kicks him several times in the ribs and Valentin rushes over to help Arkadi, who seems to be winning on his own. Everyone then notices that Roman isn\'t stopping…');
@@ -94,17 +94,17 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Join Anushka in kicking the guy', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A157', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A157', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfightkick.jpg');
-    if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('You join Anushka and Alyona and the three of you keep kicking the guy in the ribs, who just curls up in an effort to protect himself as the rest of the fight winds down. Roman is still beating one guy who seems to be unconscious on the floor. With you, Anushka and Alyona keeping this guy down, Valentin rushes over to help Arkadi, who seems to be winning on his own. Everyone then notices that Roman isn\'t stopping and Valentin and Arkadi both rush over and pull Roman off the guy. They wrestle with him a little until he finally calms down.');
     } else {
       scene.text('You join Anushka and take turns kicking him in the ribs as the rest of the fight winds down. Roman is still beating one guy who seems to be unconscious on the floor. With you and Anushka keeping this guy down, Valentin rushes over to help Arkadi, who seems to be winning on his own. Everyone then notices that Roman isn\'t stopping and Valentin and Arkadi both rush over and pull Roman off the guy. They wrestle with him a little until he finally calms down.');
     }
-    if (((s as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
       scene.text('As you\'re holding the guy down, you hear Niko hollering. "Good job ladies! Great show!"');
       scene.text('Anushka turns to him. "Yeah, thanks for the help… Asshole!" she sarcastically replies.');
       scene.text('Niko chuckles. "If I joined in, then it would have been too easy. That guy was a chump."');
@@ -119,7 +119,7 @@ function enterRomanFight(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfightafter.jpg');
     scene.text('After checking Valentin, Anushka then checks on Arkadi, who tries to pull away, but she grabs him by the chin to hold him still. Arkadi grumbles, but holds still while you help Valentin start cleaning the place up, which gets a nod and a smile from him. Anushka grabs a towel and starts cleaning the small cut next to Arkadi\'s eye, which elicits a small cry of pain from him.');
     scene.text('"Oh, stop being such a pussy!" Anushka says in response, which causes you and Valentin to smile.');
-    if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('Alyona grabs a beer and starts drinking again as she sits down on the couch to just watch what\'s going on.');
     }
     scene.text('Arkadi tries to pull away, but Anushka just keeps crowding him, working on the cut. "I would if you stopped trying to stick your finger in the cut! It\'s fine, just leave it alone!" he says.');
@@ -148,27 +148,27 @@ function enterRadnushLove(s: GameState, scene: SceneBuilder): void {
     { label: 'See what happens next', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/radnush1.jpg');
     scene.text('Radomir sits in the corner next to his guitar and a lot of mostly empty bottles before he pulls Anushka into his lap. She only half heartedly resists and giggles a little when she ends up in his lap; she has a smile on her face and looks genuinely happy as Radomir pulls over his guitar to strum on it, placing it between her legs and making her spread them. You can hear both Arkadi and Valentin complaining about what\'s happening.');
-    if (((s as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['alyona_present'] === 1) {
       scene.text('Alyona shakes her head, clearly not happy as she grabs a beer out of the cooler before walking out of the garage.');
     }
-    if (((s as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
       scene.text('Lavrenti, like you, is watching and he smiles. "They look happy. Pity it never lasts."');
     }
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Keep an eye on them', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/radnush2.jpg');
     scene.text('Most people stop paying attention to the love birds and go back to their own thing, but you and a few others occasionally glance their way to see them acting more and more lovey dovey together.');
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/radnush3.jpg');
     scene.text('You\'re enjoying yourself talking to others when you hear Valentin muttering. When you look at him, he\'s looking towards the stage and you turn to see Radomir and Anushka kissing and starting to get really frisky with each other, acting like a couple of love sick teenagers as Valentin gets up. "Alright, I\'ve had enough of this. See you guys later," he says to everyone collectively.');
-    if (((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['niko_present'] === 1  &&  ((s as any).NikoVolkovQW ?? 0)?.['lena_lara_flirt'] === 0) {
+    if (((st as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1  &&  ((st as any).gopnikbandQW ?? 0)?.['niko_present'] === 1  &&  ((st as any).NikoVolkovQW ?? 0)?.['lena_lara_flirt'] === 0) {
       scene.text('Lena grins while leaning over to Lera. "Looks like someone is getting some tonight. Wish it was me…"');
       scene.text('Niko smugly leans over. "Well I could make your wish come true."');
       scene.text('"You really think you could handle me?" Lena replies.');
@@ -180,37 +180,37 @@ function enterRadnushLove(s: GameState, scene: SceneBuilder): void {
       scene.text('Niko nods. "Right away."');
       scene.text('Lera grunts in disgust. "Don\'t call me that, I\'m not your fucking damsel in distress! Now get us those drinks before I get them myself!"');
       scene.text('Niko eagerly gets up then heads out to get beers for Lena and Lera, as they slouch back in their seat chatting.');
-      if (((s as any).NikoVolkovQW ?? 0) >= 5) {
+      if (((st as any).NikoVolkovQW ?? 0) >= 5) {
         scene.actions([
           { label: 'Confront Niko', goto: ['praiders_garage_events', 'niko_confront'] },
         ]);
       }
     } else {
-      if (((s as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1) {
+      if (((st as any).gopnikbandQW ?? 0)?.['lena_lara_present'] === 1) {
         scene.text('Lena grins a little. "Someone is going to get some tonight. Wish it was me."');
         scene.text('Lera looks at her. "You want Rad to fuck you?"');
         scene.text('Lena rolls her eyes. "I meant I wanted some dick, but…" She gives Radomir a lusty look. "If he wasn\'t already busy…"');
         scene.text('Lera just rolls her eyes. Not too long after this, the two of them get up and leave as well.');
       }
     }
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Watch some more', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/radnush4.jpg');
     scene.text('You try to go back to talking to others, but more and more people seem to be watching Radomir and Anushka. When you turn to watch some more yourself, you notice they\'ve gone beyond making out. Radomir is rubbing her breasts and crotch while pulling at her shirt, nearly showing off her breasts more than once. Eventually, one of his hands goes up her shirt to play with her breasts while the other slides down the front of her shorts, which causes Anushka to moan and arch her back. By now, most people are starting to leave, seemingly knowing what the couple is going to be doing soon.');
-    if (((s as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['lavrenti_present'] === 1) {
       scene.text('Lavrenti glances to you and smiles. "Well, I think this is my cue. See you later," he says as he gets up and leaves with a few people.');
     }
-    if (((s as any).gopnikbandQW ?? 0)?.['roman_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['roman_present'] === 1) {
       scene.text('Roman watches the couple for a moment until a younger girl gets up and heads for the door. He watches her with hungry eyes before he gets up and follows her out.');
     }
-    if (((s as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
       scene.text('With everyone now mostly leaving, Niko gets up and heads out as well.');
     }
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
       { label: 'Keep being a perv', handler: (st: GameState) => {
@@ -221,8 +221,8 @@ function enterRadnushLove(s: GameState, scene: SceneBuilder): void {
     scene.text('You look at him. "What, the two of them?"');
     scene.text('He nods. "Yeah. They\'ll be like that for the next few days, maybe a week tops, then they\'ll have a big fight like always and then the drama will fucking start all over again. I\'m so fucking sick of it!" He then sighs. "Anyway, I need to get going."');
     scene.text('He walks away, leaving you alone outside the garage as you hear a loud feminine moan coming from within. With nothing more to do, you head off as well.');
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
     ]);
@@ -247,7 +247,7 @@ function enterNikoConfront(s: GameState, scene: SceneBuilder): void {
   scene.text('His sincerity seems to be genuine, so you lower your shoulders. "Alright, but please don\'t just flirt with girls like that. You know I really value our relationship, right?"');
   scene.text('He places his hands on your hands, bringing them to his face before giving them a soft kiss. "I\'ll always be true to my princess. I\'m your noble knight and guardian who will always keep you safe from all threats. You\'re the only one for me."');
   scene.text('He then leans forward before gently placing his lips on yours, sharing a soft and loving kiss, which seems to make the moments fade away as his lips rub against yours and his arms wrap around you, embracing you firmly but gently.');
-  // TODO-QSP: dynamic text: After a few more seconds of kissing, he slowly releases you. "You're the perfect...
+  // TODO-QSP: dynamic text: After a few more seconds of kissing, he slowly releases you. "You''re the perfec...
   scene.text(`After a few more seconds of kissing, he slowly releases you. "You're the perfect girl, ${((s as any).pcs_firstname || '')} and I'm so lucky to have such a precious treasure in my life. I should get going. I need to plan out some things for us to do later. I'll see you then." He slowly backs away before walking out of the garage.`);
   qspCall(s, 'arousal', 'kiss', 1);
   qspCall(s, 'arousal', 'end');
@@ -274,20 +274,20 @@ function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
     scene.text('"You better get the fuck out of my face, you little piece of shit!" the man snarls before shoving Valentin hard enough to force him back, causing him to stumble a little.');
     scene.actions([
       { label: 'Go to Alyona', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A143', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A143', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/alyona_slapped.jpg');
     scene.text('You rush over to Alyona with Anushka and you both check if she\'s okay. Even in the dim light, you can see a bruise forming on her face and her mouth is bleeding from a split lip. This is the first time you\'ve ever seen Alyona afraid, but there\'s no mistake with how hard she\'s staring at the man. She doesn\'t seem to even register you or Anushka checking on her.');
     scene.text('While this is going on, Valentin starts blocking the man again and shoves him, though he barely flinches. "Bad move, punk!" he says and punches Valentin in the face, who partially blocks it and takes a swing at the man, catching him in the chin. The two are soon trading blows, but it\'s obvious the man is much stronger and tougher than Valentin. What he lacks in speed he more than makes up for with experience, as he quickly gets the upper hand. As you watch all this unfold, you notice the light in Edward\'s garage is on.');
     scene.actions([
       { label: 'Get Ed', goto: ['praiders_garage_events', 'edward_garage'] },
       { label: 'Try to stop him', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/zuykov.jpg');
     scene.text('The man gets Valentin on the ground and starts really pounding on him. Valentin does his best to cover up as Alyona finally seems to snap out of it. "Dad! Leave him alone!" She doesn\'t get off the ground though, even as Anushka jumps on her dad\'s back. He only pauses hitting Valentin long enough to grab Anushka and fling her off him, causing her to crash into the door of one of the garages before he goes back to beating on Valentin.');
     scene.text('You step in to try and help as well, but suffer the same fate. The man is very strong and easily tosses you aside. Before you can get back up, you see someone running up the alleyway.');
@@ -304,10 +304,10 @@ function enterAlyonaDad(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get Ed', goto: ['praiders_garage_events', 'edward_garage'] },
       { label: 'Try to stop him', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/zuykov.jpg');
     scene.text('The man gets Valentin on the ground and starts really pounding on him. Valentin does his best to cover up as Alyona finally seems to snap out of it. "Dad! Leave him alone!" She doesn\'t get off the ground though, even as Anushka jumps on her dad\'s back. He only pauses hitting Valentin long enough to grab Anushka and fling her off him, causing her to crash into the door of one of the garages before he goes back to beating on Valentin.');
     scene.text('You step in to try and help as well, but suffer the same fate. The man is very strong and easily tosses you aside. Before you can get back up, you see someone running up the alleyway.');
@@ -346,7 +346,7 @@ function enterEdwardGarage(s: GameState, scene: SceneBuilder): void {
     scene.text('Edward responds by punching him in the face. "What the fuck is wrong with you, Zoykov? Beating on fucking kids?" Alyona goes over to check on Anushka, who you guess tried to stop Zoykov and got tossed for it, but she doesn\'t look like she\'s hurt. Valentin sits up with his back to the garage, his face bloodied and bruised.');
     scene.actions([
       { label: 'Watch them fight', handler: (st: GameState) => {
-    ((s as any).alyonaQW = (s as any).alyonaQW ?? {})['meet_father'] = 1;
+    ((st as any).alyonaQW = (st as any).alyonaQW ?? {})['meet_father'] = 1;
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/ed_zuykov2.jpg');
     scene.text('Zoykov lunges at Edward and they both go down as you stand there and watch them fight. They trade a few blows, but it doesn\'t take long for Zoykov to end up pinned to the ground with Edward hitting him until he gives up fighting back. Once Edward is sure the fight is over, he gets off Zoykov and looks around at all of you before glaring again at Zoykov. "You touch one of these kids again and I\'ll beat you within an inch of your sorry life."');
     scene.text('He glances over at Anushka, who is checking on Valentin\'s injuries before looking back at Zoykov again. "If you ever so much as look at my daughter again, I swear they\'ll never find your body. We clear?" When Zoykov doesn\'t respond, Edward repeats himself. "I said \'are we clear\'?"');
@@ -367,8 +367,8 @@ function enterEdwardGarage(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Go to Valentin', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/ed_zuykov2.jpg');
     scene.text('Zoykov lunges at Edward and they both go down as you move over to Valentin and check on him. "You okay?" you ask.');
     scene.text('He winces a bit, but nods. You check him out and he doesn\'t seem to be badly injured, just bruised and a bit bloody. Anushka and Alyona also come over to check on him and he doesn\'t seem to mind all the attention he\'s getting. "I\'m fine, girls. It\'s nothing," he smiles, trying to act tough.');
@@ -423,8 +423,8 @@ function enterEdwardArrives(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Go to Valentin', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/ed_zuykov2.jpg');
     scene.text('Zoykov lunges at Edward and they both go down as you move over to Valentin and check on him. "You okay?" you ask.');
     scene.text('He winces a bit, but nods. You check him out and he doesn\'t seem to be badly injured, just bruised and a bit bloody. Anushka and Alyona also come over to check on him and he doesn\'t seem to mind all the attention he\'s getting. "I\'m fine, girls. It\'s nothing," he smiles, trying to act tough.');
@@ -469,19 +469,19 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Calm them down', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A155', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A144', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A155', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/band/event/rfight3.jpg');
     scene.text('"This is such a stupid thing to fight over," you gently interrupt. "Aren\'t you guys friends?"');
     scene.text('"Friends?!" Arkadi balks before throwing his head back and laughing. "That\'s fucking hilarious! We\'re not his friends, we keep him around for the money and drugs. Just ask Rad!"');
     scene.text('You look at Radomir, but he simply shrugs his shoulders and throws his hands up dismissively.');
     scene.text('"Fuck you!" Seeing the other boy distracted, Lavrenti swings at him and lands a sucker punch that sends Arkadi stumbling back. Without hesitation, Arkadi slams into Lavrenti, sending them both crashing onto the ground in a tangled mess. Lavrenti puts up a good fight, but it\'s not enough and eventually Arkadi wrestles him into a headlock, much to the enjoyment of everyone.');
-    if (((s as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
+    if (((st as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
       scene.text('After what seems like an eternity; they both become too tired to continue fighting, leaning against the wall. As they do, Anushka chirps up. "You girls done wrestling together? I think I seen you both copping a feel."');
       scene.text('"Fuck you, Nush!" they both reply in unison, along with other obscenities, but with the sounds of the others laughing, you can barely make out what they\'re saying. They both sit back down for a few seconds until Niko helps Lavrenti up as the others help Arkadi. Before too long, everyone seems relaxed and hanging out again, as if nothing happened.');
       scene.text('You notice by the end of the gathering that Arkadi and Lavrenti seem to be chatting and joking, as if they never fought in the first place.');
@@ -514,17 +514,17 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Defend Lavrenti', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A155', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A155', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'dislike');
     scene.img('images/characters/shared/headshots_main/big155.jpg');
     scene.text('"Lavrenti has a point," you say while moving to stand beside him. "It\'s not like you pay him for the stuff."');
     scene.text('Arkadi glances between him and you before breaking out into a grin. "Are you fucking kidding me? You need a girl to defend your sorry ass?!" he says with a snorted laugh of amusement.');
     scene.text('"Beggars can\'t be choosers. He doesn\'t owe you anything," you reply.');
-    if (((s as any).gopnikbandQW ?? 0)?.['niko_present'] === 1  &&  ((s as any).NikoVolkovQW ?? 0) >= 5) {
+    if (((st as any).gopnikbandQW ?? 0)?.['niko_present'] === 1  &&  ((st as any).NikoVolkovQW ?? 0) >= 5) {
       scene.text('Arkadi\'s amusement comes to an abrupt end. The way he composes himself so suddenly actually has you frightened. All it takes is one step for him to close the little bit of distance that was between the two of you. "Watch your mouth, bitch."');
       scene.text('He cocks his head slightly to look beside you where Lavrenti was standing, but he\'s not there. Instead, he\'s found his way over to Radomir, Valentin and Anushka, who are all watching but waiting to see what you do.');
-      qspCall(s, 'willpower', 'skill', 'sprt', 'resist', 'medium');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'skill', 'sprt', 'resist', 'medium');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stand your ground', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -533,8 +533,8 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Stand your ground', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
     scene.text('You return his deathly stare with a stare of your own when you suddenly feel an arm wrap around your shoulders. You turn to see Niko with a smile on his face. "Hey man, chill. You\'re not about to attack a girl, right? You have thicker skin than that."');
     scene.text('Arkadi continues his deathly stare. "I\'m not letting this little bitch talk shit to me!"');
@@ -543,7 +543,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko nods before guiding you out of the garage. When outside, he gives you a kiss on the cheek. "Careful with that one. He may be all brawn and no brains, but a bull is always dangerous."');
     scene.text('Grateful for Niko standing up for you, you wrap your arms around his waist. "Thank you Niko. I always feel so safe with you."');
     scene.text('Niko gently rubs the side of his head against yours. "And you always will be, because you\'re my girl, and I\'ll always look out for you. Now get yourself something to drink. I need to head back home. Yurik needs a hand with something, and I promised to help out."');
-    // TODO-QSP: dynamic text: He hands you <<$func('money', 'string_profit', 200)>>, then gently rubs your bac...
+    // TODO-QSP: dynamic text: He hands you <<$func(''money'', ''string_profit'', 200)>>, then gently rubs your...
     scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 200)}, then gently rubs your back before releasing you and walking away.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -563,7 +563,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('Niko nods before guiding you out of the garage. When outside, he gives you a kiss on the cheek. "Careful with that one. He may be all brawn and no brains, but a bull is always dangerous."');
     scene.text('Grateful for Niko standing up for you, you wrap your arms around his waist. "Thank you Niko. I always feel so safe with you."');
     scene.text('Niko gently rubs the side of his head against yours. "And you always will be, because you\'re my girl, and I\'ll always look out for you. Now get yourself something to drink. I need to head back home. Yurik needs a hand with something, and I promised to help out."');
-    // TODO-QSP: dynamic text: He hands you <<$func('money', 'string_profit', 200)>>, then gently rubs your bac...
+    // TODO-QSP: dynamic text: He hands you <<$func(''money'', ''string_profit'', 200)>>, then gently rubs your...
     scene.text(`He hands you ${qspFunc(s, 'money', 'string_profit', 200)}, then gently rubs your back before releasing you and walking away.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -575,8 +575,8 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Arkadi\'s amusement comes to an abrupt end. The way he composes himself so suddenly actually has you frightened. All it takes is one step for him to close the little bit of distance that was between the two of you. "Watch your mouth, bitch."');
       scene.text('He cocks his head slightly to look beside you where Lavrenti was standing, but he\'s not there. Instead, he\'s found his way over to Radomir, Valentin and Anushka, who are all watching but waiting to see what you do.');
-      qspCall(s, 'willpower', 'skill', 'sprt', 'resist', 'medium');
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      qspCall(st, 'willpower', 'skill', 'sprt', 'resist', 'medium');
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
           { label: 'Stand your ground', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -585,9 +585,9 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Stand your ground', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'loath');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'loath');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/pc/reactions/glare.jpg');
     scene.text('You don\'t back down from him. "Be pissed at him or me, it doesn\'t change the facts."');
     scene.text('"You got a smart mouth on you, bitch. Best keep it in check before someone smacks the shit out of you!" Arkadi says as he crowds you a little more. You think he might actually hit you.');
@@ -611,8 +611,8 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     }
   } },
     { label: 'Defend Arkadi', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A155', 'dislike');
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A155', 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('"Just admit you fucked up!" you say as you stand beside Arkadi. Lavrenti is surprised you\'re speaking up, but Arkadi is more than happy to see you on his side.');
     scene.text('"Haha! You see, Lavrenti?" Arkadi wraps an arm around your shoulder and pulls you close, hugging you from behind. You could mistake it as being affectionate, but you know he\'s just trying to rub it in. "Stop bitching. You\'ve got mommy and daddy\'s money to buy some more, so just give me the right stuff and I\'ll forget you wasted my fucking time!"');
@@ -620,7 +620,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('Anushka shakes her head. "It\'s not worth pissing him off, dude."');
     scene.text('Suddenly being put on the spot, Lavrenti reluctantly gives in. "Fine, fuck it." He reaches into his pocket and pulls out a new bag. "I hope you overdose on it!"');
     // TODO-QSP: dynamic text: With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks <<$pcs_nickn...
-    scene.text(`With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks ${((s as any).pcs_nickname || '')}," he says as he lets you go, but not before giving your ass a light squeeze as you walk away.`);
+    scene.text(`With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks ${((st as any).pcs_nickname || '')}," he says as he lets you go, but not before giving your ass a light squeeze as you walk away.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
     ]);

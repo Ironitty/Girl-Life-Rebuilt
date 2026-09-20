@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSelfie(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027phone_selfies_popup\\u0027, \\u0027show\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027); return false;"><img src="images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/' + ((s as any).locArgs?.[2] ?? 0) + '/' + qspUntranslated(s, "selfieFilePrefix[ARGS[3]]", { location: "phone_selfies_popup" }) + '' + ((s as any).locArgs?.[4] ?? 0) + '.jpg" style="horizontal-align:center; max-height:90%; max-width:90%"/></a>';
+  (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027phone_selfies_popup/u0027, /u0027show/u0027, /u0027' + ((s as any).locArgs?.[1] ?? 0) + '/u0027); return false;"><img src="images/pc/activities/phone/selfies/' + ((s as any).locArgs?.[1] ?? 0) + '/' + ((s as any).locArgs?.[2] ?? 0) + '/' + qspUntranslated(s, "selfieFilePrefix[ARGS[3]]", { location: "phone_selfies_popup" }) + '' + ((s as any).locArgs?.[4] ?? 0) + '.jpg" style="horizontal-align:center; max-height:90%; max-width:90%"/></a>';
   // TODO-QSP: end
   scene.build();
 }
@@ -32,7 +32,7 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetSelfie2(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027phone_selfies_popup\\u0027, \\u0027show2\\u0027, \\u0027' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027); return false;"><img height="150" src="' + ((s as any).locArgs?.[1] ?? 0) + '' + ((s as any).locArgs?.[2] ?? 0) + '.jpg" /></a>';
+  (s as any).result = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027phone_selfies_popup/u0027, /u0027show2/u0027, /u0027' + ((s as any).locArgs?.[1] ?? 0) + '/u0027); return false;"><img height="150" src="' + ((s as any).locArgs?.[1] ?? 0) + '' + ((s as any).locArgs?.[2] ?? 0) + '.jpg" /></a>';
   // TODO-QSP: end
   scene.build();
 }

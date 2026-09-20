@@ -37,29 +37,29 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Go to your MFC homepage', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'internet_mobile', 'use_internet', ((st as any).subs ?? 0), 5);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/pc/items/accessories/computer/camwhore3.jpg');
-    // TODO-QSP: dynamic text: You enter your own chatroom on the website. You currently have <<camGirl['MFC_Vi...
-    scene.text(`You enter your own chatroom on the website. You currently have ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers and ${((s as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers.`);
-    if (((s as any).totFollowersLost ?? 0) >= 1) {
-      // TODO-QSP: dynamic text: You've lost <<totFollowersLost>> due to inactivity
-      scene.text(`You've lost ${((s as any).totFollowersLost || '')} due to inactivity`);
+    // TODO-QSP: dynamic text: You enter your own chatroom on the website. You currently have <<camGirl[''MFC_V...
+    scene.text(`You enter your own chatroom on the website. You currently have ${((st as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers and ${((st as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers.`);
+    if (((st as any).totFollowersLost ?? 0) >= 1) {
+      // TODO-QSP: dynamic text: You''ve lost <<totFollowersLost>> due to inactivity
+      scene.text(`You've lost ${((st as any).totFollowersLost || '')} due to inactivity`);
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'start_camming', 'MFC');
-    qspGoto(s, 'komp_cam_MFC_main', 'startpage');
+    qspCall(st, 'komp_cam_functions', 'start_camming', 'MFC');
+    qspGoto(st, 'komp_cam_MFC_main', 'startpage');
   } },
     ]);
   } },
         { label: 'Leave this website', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'komp_cam_functions', 'stop_camming');
-    qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'komp', 'browse');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'komp_cam_functions', 'stop_camming');
+    qspCall(st, 'internet_mobile', 'use_internet', ((st as any).subs ?? 0), 5);
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'komp', 'browse');
   } },
       ]);
     }
@@ -77,8 +77,8 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
     scene.text('While you sit in your chair, you can\'t help but wince every time you move. You want to put up a show, but it hurts too much. And besides… you doubt your viewers would want to see you in your current state! You should heal up a bit before trying again.');
     scene.actions([
       { label: 'Collect your earnings and leave', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'stop_camming');
-    qspGoto(s, 'komp_cam_MFC_main', 'start');
+    qspCall(st, 'komp_cam_functions', 'stop_camming');
+    qspGoto(st, 'komp_cam_MFC_main', 'start');
   } },
     ]);
   } else {
@@ -87,14 +87,14 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
     if (((s as any).camGirl ?? 0)?.['MFC_Viewers'] === 0) {
       scene.text('You currently have no viewers. Once you turn on your webcam, things will probably get busier. ');
     } else {
-      // TODO-QSP: dynamic text: You casually chat with the <<camGirl['MFC_Viewers']>> viewers currently in your ...
+      // TODO-QSP: dynamic text: You casually chat with the <<camGirl[''MFC_Viewers'']>> viewers currently in you...
       scene.text(`You casually chat with the ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers currently in your chatroom. Once you turn on your webcam, things will probably get busier.`);
     }
     scene.actions([
       { label: 'Turn on your webcam', goto: ['komp_cam_MFC_main', 'waitclients', 'start'] },
       { label: 'Collect your earnings and leave', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'stop_camming');
-    qspGoto(s, 'komp_cam_MFC_main', 'start');
+    qspCall(st, 'komp_cam_functions', 'stop_camming');
+    qspGoto(st, 'komp_cam_MFC_main', 'start');
   } },
     ]);
   }
@@ -111,7 +111,7 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
       qspGoto(s, 'komp_cam_MFC_main', 'anya_interrupted');
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) !== 'start') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 'start') {
     qspCall(s, 'komp_cam_functions', 'camming', 5);
   }
   qspCall(s, 'stat', '');
@@ -127,20 +127,20 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) === 'none') {
     (s as any).img_source = ((s as any).img_source ?? 0) + (2);
   }
-  scene.img('images/pc/items/accessories/computer/camwhore\' + img_source + \'.jpg');
-  if (((s as any).locArgs?.[1] ?? 0) !== 'start') {
+  scene.img('images/pc/items/accessories/computer/camwhore' + ((s as any).img_source || '') + '.jpg');
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 'start') {
     qspCall(s, 'komp_cam_MFC_requests', '');
   }
   if (((s as any).camGirl ?? 0)?.['MFC_Viewers'] === 0) {
     scene.text('You take a moment of rest, unfortunately, you currently have no viewers.');
   } else {
-    // TODO-QSP: dynamic text: You take a moment of rest, and just chat casually with your <<camGirl['MFC_Viewe...
+    // TODO-QSP: dynamic text: You take a moment of rest, and just chat casually with your <<camGirl[''MFC_View...
     scene.text(`You take a moment of rest, and just chat casually with your ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers.`);
   }
-  // TODO-QSP: dynamic text: You have earned <<camGirl['MFC_tokens']>> tokens so far this session, which amou...
+  // TODO-QSP: dynamic text: You have earned <<camGirl[''MFC_tokens'']>> tokens so far this session, which am...
   scene.text(`You have earned ${((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? ''} tokens so far this session, which amounts to ${qspFunc(s, 'money', 'string_profit', qspFunc(s, 'komp_cam_functions', 'tokens_to_rub', ((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? ''))}.`);
   if (((s as any).camGirl ?? 0)?.['MFC_Followers'] > 1) {
-    // TODO-QSP: dynamic text: You have <<camGirl['MFC_Followers']>> followers
+    // TODO-QSP: dynamic text: You have <<camGirl[''MFC_Followers'']>> followers
     scene.text(`You have ${((s as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers`);
   }
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
@@ -219,7 +219,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.img('images/pc/items/accessories/computer/webcam/strip\' + video_source + \'.mp4');
+  scene.img('images/pc/items/accessories/computer/webcam/strip' + ((s as any).video_source || '') + '.mp4');
   scene.text('Turning on some music you dance erotically hoping to entice some viewers.');
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
     // TODO-QSP: $camGirl['MFC_donate_message']

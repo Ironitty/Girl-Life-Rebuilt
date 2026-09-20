@@ -1,4 +1,4 @@
-import { qspGoto } from '../_shared/qspBridge';
+import { dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -15,7 +15,7 @@ function enterGoHome(s: GameState, scene: SceneBuilder): void {
     if (((s as any).home ?? 0)?.['location'] === 'pav_complex') {
       qspGoto(s, 'pav_complex', 'start');
     } else {
-      // TODO-QSP: gt $home['location']
+      dynamicGoto(s, (((s as any).home ?? {}))['location'], '');
     }
   }
   // TODO-QSP: end
@@ -29,7 +29,7 @@ function enterGoStraightHome(s: GameState, scene: SceneBuilder): void {
     if (((s as any).home ?? 0)?.['current'] === 'university_dorm') {
       qspGoto(s, 'uni_dorm', 'dorm_room');
     } else {
-      // TODO-QSP: gt $home['entrance'], 'start'
+      dynamicGoto(s, (((s as any).home ?? {}))['entrance'], 'start');
     }
   }
   // TODO-QSP: end

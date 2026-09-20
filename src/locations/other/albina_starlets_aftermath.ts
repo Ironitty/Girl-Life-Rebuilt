@@ -14,24 +14,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get in', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/drive.jpg');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('You climb into the car next to Albina. She puts the car into gear and starts driving through town.');
-    if (((s as any).AlbinaQW ?? 0)?.['Chernov'] === 1) {
+    if (((st as any).AlbinaQW ?? 0)?.['Chernov'] === 1) {
       scene.text('"Is this your car? And since when could you drive?" you ask.');
       scene.text('She laughs in response. "No, this is one of my father\'s cars that I… borrowed. And before you ask, no, I don\'t have a licence, but the police around here don\'t give a shit."');
-      // TODO-QSP: dynamic text: She stops at a red light and turns to you, looking rather happy. "You don't know...
-      scene.text(`She stops at a red light and turns to you, looking rather happy. "You don't know what good you've done, ${((s as any).pcs_nickname || '')}. I didn't think Chernov would have acted this fast with those leads."`);
+      // TODO-QSP: dynamic text: She stops at a red light and turns to you, looking rather happy. "You don''t kno...
+      scene.text(`She stops at a red light and turns to you, looking rather happy. "You don't know what good you've done, ${((st as any).pcs_nickname || '')}. I didn't think Chernov would have acted this fast with those leads."`);
       scene.text('"Wait, <i>you</i> were his \'anonymous source\' that exposed the Starlets? Why?" you ask in surprise.');
       scene.text('"Me? No. Well, not exactly…"');
       scene.text('"Who then? What aren\'t you telling me here?" you ask, but she looks away meekly as the light turns green and she continues driving in silence.');
       scene.text('After driving for a while, you reach her house. She drives up the driveway and stops outside the front door before she tells you to follow her and exits the car.');
     }
-    if (((s as any).AlbinaQW ?? 0)?.['Chernov'] === 2) {
+    if (((st as any).AlbinaQW ?? 0)?.['Chernov'] === 2) {
       scene.text('"Is this your car? And since when could you drive?" you ask.');
       scene.text('She laughs in response. "No, this is one of my father\'s cars that I… borrowed. And before you ask, no, I don\'t have a licence, but the police around here don\'t give a shit."');
       // TODO-QSP: dynamic text: She stops at a red light and turns to you. "I really wish you had told that man ...
-      scene.text(`She stops at a red light and turns to you. "I really wish you had told that man everything he was asking for ${((s as any).pcs_nickname || '')}," she says It would have been very helpful to me."`);
+      scene.text(`She stops at a red light and turns to you. "I really wish you had told that man everything he was asking for ${((st as any).pcs_nickname || '')}," she says It would have been very helpful to me."`);
       scene.text('"What do you mean \'helpful to you?\' He was trying to get me to speak out against the Starlets!" you reply.');
       scene.text('Yeah, because he was given the evidence he needed."');
       scene.text('"What? How? By who?" you ask in confusion.');

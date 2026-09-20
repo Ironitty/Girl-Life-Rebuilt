@@ -14,14 +14,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('Fedor is thoroughly intimidated. "But… They started it…" he mutters.');
   scene.actions([
     { label: 'Listen', handler: (st: GameState) => {
-    (s as any).kotovVSkozlov = 2;
-    qspCall(s, 'stat', '');
+    (st as any).kotovVSkozlov = 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
-    // TODO-QSP: dynamic text: Vadim nods. "So you don't dispute it. Well kid, you'll learn that if you're rude...
+    // TODO-QSP: dynamic text: Vadim nods. "So you don''t dispute it. Well kid, you''ll learn that if you''re r...
     scene.text('Vadim nods. "So you don\'t dispute it. Well kid, you\'ll learn that if you\'re rude to the wrong people, you get trouble. I\'ll give you one chance to pay for your mistakes. 30000₽, tomorrow. If you don\'t pay up, you lose fingers, one for every day you\'re late. Understood?"');
     scene.text('Fedor\'s face pales and tears form in his eyes. Vadim Bely is quite notorious in your region, and this wouldn\'t be the first time he\'s actually taken fingers from someone for missing payments.');
     scene.text('"Please sir!" he exclaims. "I don\'t have that kind of money! I\'m just a kid going to school!"');
-    // TODO-QSP: dynamic text: Vadim shrugs. "You should've thought of that before you were disrespectful, 'kid...
+    // TODO-QSP: dynamic text: Vadim shrugs. "You should''ve thought of that before you were disrespectful, ''k...
     scene.text('Vadim shrugs. "You should\'ve thought of that before you were disrespectful, \'kid going to school\'. That\'s really not my problem. 30000₽, tomorrow."');
     scene.text('At this point, a number of other students have noticed the commotion and wandered a little closer to get a better look at what\'s going on.');
     scene.actions([
@@ -46,14 +46,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay the money for Fedor', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 30000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 30000, 'cash');
-      (s as any).strelaQW = (-1);
-      qspCall(s, 'npc_relationship', 'modify', 'A9', '-20');
-      (s as any).FedorLuv = 100;
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'money', 'pay', 30000, 'cash');
+      (st as any).strelaQW = (-1);
+      qspCall(st, 'npc_relationship', 'modify', 'A9', '-20');
+      (st as any).FedorLuv = 100;
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspCall(st, 'stat', '');
       scene.text(`<center><b>${'Vadim Bely'}</b></center>`);
       scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
       scene.text('You can\'t watch this anymore. "I\'ll give you the money!" you blurt out.');
@@ -64,7 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You watch the cars drive off before turning back to the guys. Vitek is clearly angry that his plan to get back at Fedor failed, but there\'s nothing he can do about it without getting on Vadim\'s bad side himself.');
       scene.text('He angrily turns to Dan and Vasily. "Come on guys, let\'s get out of here. I need a beer."');
       // TODO-QSP: dynamic text: As they leave, Fedor comes over to you. "Thank you, <<$pcs_firstname>>, thank yo...
-      scene.text(`As they leave, Fedor comes over to you. "Thank you, ${((s as any).pcs_firstname || '')}, thank you! Thank you so much, you saved me! I'll pay you back, I promise! I can't pay it all at once, but I'll try to save up."`);
+      scene.text(`As they leave, Fedor comes over to you. "Thank you, ${((st as any).pcs_firstname || '')}, thank you! Thank you so much, you saved me! I'll pay you back, I promise! I can't pay it all at once, but I'll try to save up."`);
       scene.text('You assure him that\'s not necessary and get ready to leave the school grounds.');
       scene.actions([
         { label: 'Leave the school courtyard', goto: ['pav_residential', ''] },
@@ -72,15 +72,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: 'Don\'t interfere', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'set', 'A5', 50);
-    ((s as any).npc_hotcat = (s as any).npc_hotcat ?? {})['A5'] = 6;
-    ((s as any).npc_grupTipe = (s as any).npc_grupTipe ?? {})['A5'] = 5;
-    (s as any).fedorKozlovQW = (-10);
-    (s as any).FedorKozHome = 0;
-    (s as any).fedormasha = 1;
-    (s as any).strelaQW = (-2);
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'set', 'A5', 50);
+    ((st as any).npc_hotcat = (st as any).npc_hotcat ?? {})['A5'] = 6;
+    ((st as any).npc_grupTipe = (st as any).npc_grupTipe ?? {})['A5'] = 5;
+    (st as any).fedorKozlovQW = (-10);
+    (st as any).FedorKozHome = 0;
+    (st as any).fedormasha = 1;
+    (st as any).strelaQW = (-2);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/sex/vasfed1.jpg');
     // TODO-QSP: iif(func('money', 'can_afford', 30000), 'Even though you have enough money to pay off Fedor''s debt,...
     scene.text('Vasily laughs. "Careful. If I feel any teeth, I\'ll knock them out."');
@@ -88,12 +88,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Vitek turns his head away in disgust while most of the students other than some of the gopniks have left by now. Dan pulls out his phone and starts filming, as do a few others. A few of the girls shout tips to Fedor on how to suck better.');
     scene.text('Vadim, observing all this with an amused face, grins and turns to his guys. "Alright lads, let\'s go. The boys can play with their toy in peace."');
     scene.text('Seconds later, the cars drive off while Fedor is still sucking Vasily\'s dick. Once Vadim has left, the students left approach closer. Some laugh, while others jeer or call Fedor a fag.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/sex/vasfed2.jpg');
     scene.text('Apparently not satisfied with how good a job Fedor is doing, Vasily grabs him by the back of the head and starts fucking his mouth, shoving his dick down Fedor\'s throat as he does. Several minutes go by before Vasily groans and begins to cum in Fedor\'s mouth. "Swallow it all, faggot. Don\'t miss a drop."');
     scene.text('Fedor does as he\'s told and keeps sucking Vasily\'s cock, swallowing his cum until Vasily finishes and pulls his dick out. "You suck cock better than most bitches, Fedor. You been sucking Ivan off all this time?" he asks with a laugh.');
@@ -102,8 +102,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Fedor nods again, his resolve broken before Vasily spits in his face. "What\'s your name, bitch?"');
     scene.text('"Masha… My name is Masha…" Fedor mumbles in reply.');
     scene.text('With that, everyone starts wandering off, Vitek, Vasily and Dan go to their usual spot in the park to have some beers. Fedor sits on the ground by himself, trying to take it all in. He knows his life won\'t be the same after what happened today.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the school courtyard', goto: ['pav_residential', ''] },
     ]);

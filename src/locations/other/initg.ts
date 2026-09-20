@@ -9,17 +9,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: cmdclear
   // TODO-QSP: showinput 0
   // TODO-QSP: :initg_loop
-  (s as any).t = (String(((s as any).initext ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).initext ?? 0)).indexOf(String('\\n'))) + 1) - 1)));
+  (s as any).t = (String(((s as any).initext ?? 0)).slice((1)-1, ((1)-1)+(((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) - 1)));
   // TODO-QSP: $inittext[] = $t
   // TODO-QSP: $t
-  (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('\\n'))) + 1) + 1)-1));
-  if (((String(((s as any).initext ?? 0)).indexOf(String('\\n'))) + 1) < 4) {
-    (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('\\n'))) + 1) + 1)-1));
+  (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) + 1)-1));
+  if (((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) < 4) {
+    (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) + 1)-1));
   }
-  if (((String(((s as any).initext ?? 0)).indexOf(String('\\r'))) + 1) < 4) {
-    (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('\\r'))) + 1) + 1)-1));
+  if (((String(((s as any).initext ?? 0)).indexOf(String('/r'))) + 1) < 4) {
+    (s as any).initext = (String(((s as any).initext ?? 0)).slice((((String(((s as any).initext ?? 0)).indexOf(String('/r'))) + 1) + 1)-1));
   }
-  if (((String(((s as any).initext ?? 0)).indexOf(String('\\n'))) + 1) > 0) {
+  if (((String(((s as any).initext ?? 0)).indexOf(String('/n'))) + 1) > 0) {
     // TODO-QSP: jump 'initg_loop'
   }
   (s as any).t = ((s as any).initext ?? 0);

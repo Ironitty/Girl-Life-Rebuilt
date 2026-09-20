@@ -13,7 +13,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   (s as any).hot_link = ((s as any).loc_id ?? 0);
   qspCall(s, 'beta_journal', 'nav_construct');
   if (((s as any).debug ?? 0)?.['journal'] !== '') {
-    // TODO-QSP: dynamic text: <h2><font color = "red">Error with:</font> <<$debug['journal']>></h2>
+    // TODO-QSP: dynamic text: <h2><font color = "red">Error with:</font> <<$debug[''journal'']>></h2>
     scene.text(`<h2><font color = "red">Error with:</font> ${((s as any).debug ?? 0)?.['journal'] ?? ''}</h2>`);
     ((s as any).debug = (s as any).debug ?? {})['journal'] = '';
   }

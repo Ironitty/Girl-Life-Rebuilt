@@ -7,16 +7,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).settingmode ?? 0) === 1) {
-    // TODO-QSP: exit
-  }
   scene.build();
 }
 
 function enterHelperBar(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_hb = (s as any).sd_hb ?? {})['rm'] = (((s as any).sd ?? {})?.['render_mode'] ?? 0) + 1;
   if (((s as any).sd ?? 0)?.['render_mode'] === 2) {
-    (s as any).result = ((s as any).locArgs?.[2] ?? 0) + ': ' + qspFunc(s, 'progressbar', '$ARGS[1]', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), ((s as any).sd_hb ?? 0)?.['rm']);
+    (s as any).result = ((s as any).locArgs?.[2] ?? 0) + ': ' + qspFunc(s, 'progressbar', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), ((s as any).sd_hb ?? 0)?.['rm']);
   } else {
     if (((s as any).sd ?? 0)?.['name_side'] === 1) {
       (s as any).result = '<tr><td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;\' + $ARGS[2] + \'&nbsp;</td><td>\' + $func(\'progressbar\', $ARGS[1], ARGS[3], ARGS[4], ARGS[5], ARGS[6], $ARGS[7], \', $ARGS[8], sd_hb[\'rm\']) + \'</td></tr>';
@@ -30,7 +27,7 @@ function enterHelperBar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperBarCell(s: GameState, scene: SceneBuilder): void {
-  ((s as any).sd_bc = (s as any).sd_bc ?? {})['bar'] = qspFunc(s, 'progressbar', '$ARGS[1]', ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), (((s as any).sd ?? {})?.['render_mode'] ?? 0) + 1);
+  ((s as any).sd_bc = (s as any).sd_bc ?? {})['bar'] = qspFunc(s, 'progressbar', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), ((s as any).locArgs?.[6] ?? 0), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), (((s as any).sd ?? {})?.['render_mode'] ?? 0) + 1);
   if (((s as any).sd ?? 0)?.['name_side'] === 1) {
     (s as any).result = '<td nowrap style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">&nbsp;\' + $ARGS[2] + \'&nbsp;</td><td>\' + $sd_bc[\'bar\'] + \'</td>';
   } else {
@@ -45,19 +42,19 @@ function enterHelperSkillEntry(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_se = (s as any).sd_se ?? {})['cols'] = ((s as any).sd ?? 0)?.['skills_columns'];
   ((s as any).sd_se = (s as any).sd_se ?? {})['name'] = ((s as any).locArgs?.[1] ?? 0);
   if (((s as any).stat_cfg ?? 0)?.['skills_mode'] > 0) {
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     // TODO-QSP: $result += $func('stat_display', 'helper_bar_cell', 'smooth_positive', $sd_se['name'], ARGS[2])
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   } else {
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     // TODO-QSP: $result += '<td style="font-size: <<sd_font_pct>>%;">' + $str(ARGS[2]) + ' ' + $sd_se['name'] + '</t...
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_se ?? 0)?.['cols'] === (((s as any).sd_se ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   }
@@ -74,15 +71,15 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
       ((s as any).sd_re = (s as any).sd_re ?? {})['color'] = qspFunc(s, 'progressbar', 'color', 'smooth_positive', ((s as any).locArgs?.[2] ?? 0), '10,35,60,80');
       ((s as any).sd_re = (s as any).sd_re ?? {})['dname'] = '<font color="' + ((s as any).sd_re ?? 0)?.['color'] + '">' + ((s as any).sd_re ?? 0)?.['dname'] + '</font>';
     }
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     // TODO-QSP: $result += $func('stat_display', 'helper_bar_cell', 'smooth_positive', $sd_re['dname'], ARGS[2])
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   } else {
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === 0) {
       (s as any).result = '<tr>';
     }
     if (((s as any).stat_cfg ?? 0)?.['rel_color_mode'] === 1) {
@@ -91,7 +88,7 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: $result += '<td style="font-size: <<sd_font_pct>>%;">' + $sd_re['dname'] + ': ' + $str(ARGS[2]) + '<...
     }
-    if (((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
+    if (Number((s as any).locArgs?.[3] ?? 0) % ((s as any).sd_re ?? 0)?.['cols'] === (((s as any).sd_re ?? 0)?.['cols'] - 1)) {
       // TODO-QSP: $result += '</tr>'
     }
   }
@@ -101,10 +98,10 @@ function enterHelperRelEntry(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperToggle(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).stat_hide ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 0) {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[\\u0027\\u0027 + $ARGS[1] + \\u0027\\u0027] = 1 */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_obnovit\\u0027, \\u0027\\u0027); return false;">▲' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
+  if (((s as any).stat_hide ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === 0) {
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[/u0027/u0027 + $ARGS[1] + /u0027/u0027] = 1 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_obnovit/u0027, /u0027/u0027); return false;">▲' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
   } else {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[\\u0027\\u0027 + $ARGS[1] + \\u0027\\u0027] = 0 */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_obnovit\\u0027, \\u0027\\u0027); return false;">▽' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide[/u0027/u0027 + $ARGS[1] + /u0027/u0027] = 0 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_obnovit/u0027, /u0027/u0027); return false;">▽' + ((s as any).locArgs?.[2] ?? 0) + '</a>';
   }
   return;
   // TODO-QSP: end
@@ -113,7 +110,7 @@ function enterHelperToggle(s: GameState, scene: SceneBuilder): void {
 
 function enterHelperRelName(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_hn = (s as any).sd_hn ?? {})['key'] = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
     ((s as any).sd_hn = (s as any).sd_hn ?? {})['npcid'] = ((s as any).locArgs?.[2] ?? 0);
   } else {
     ((s as any).sd_hn = (s as any).sd_hn ?? {})['npcid'] = ((s as any).sd_hn ?? 0)?.['key'];
@@ -182,15 +179,15 @@ function enterHelperResolveAlign(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperAlignWrap(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== '') {
     (s as any).temp_align = qspFunc(s, 'stat_display', 'helper_resolve_align', ((s as any).locArgs?.[1] ?? 0));
   } else {
     (s as any).temp_align = ((s as any).locArgs?.[1] ?? 0);
   }
-  if (((s as any).temp_align ?? 0) === 1  &&  ((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (((s as any).temp_align ?? 0) === 1  &&  Number((s as any).locArgs?.[2] ?? 0) !== '') {
     (s as any).result = '<center>' + ((s as any).locArgs?.[2] ?? 0) + '</center>';
   } else {
-    if (((s as any).temp_align ?? 0) === 2  &&  ((s as any).locArgs?.[2] ?? 0) !== '') {
+    if (((s as any).temp_align ?? 0) === 2  &&  Number((s as any).locArgs?.[2] ?? 0) !== '') {
       (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="right">' + ((s as any).locArgs?.[2] ?? 0) + '</td></tr></table>';
     } else {
       (s as any).result = ((s as any).locArgs?.[2] ?? 0);
@@ -202,7 +199,7 @@ function enterHelperAlignWrap(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperFontWrap(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).sd_font_pct ?? 0) !== 100  &&  ((s as any).locArgs?.[1] ?? 0) !== '') {
+  if (((s as any).sd_font_pct ?? 0) !== 100  &&  Number((s as any).locArgs?.[1] ?? 0) !== '') {
     (s as any).result = '<div style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">\' + $ARGS[1] + \'</div>';
   } else {
     (s as any).result = ((s as any).locArgs?.[1] ?? 0);
@@ -221,11 +218,11 @@ function enterHelperSectionHeader(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat_cfg ?? 0)?.['sec_headers'] === 2) {
       ((s as any).sd_sh = (s as any).sd_sh ?? {})['lbl'] = qspFunc(s, 'stat_display', 'helper_toggle', ((s as any).locArgs?.[1] ?? 0), '&nbsp;' + ((s as any).sd_dn ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]);
       (s as any).result = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).sd_sh ?? 0)?.['lbl']);
-      if (((s as any).locArgs?.[2] ?? 0) !== '') {
+      if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
         // TODO-QSP: $result += $temp_br + $ARGS[2]
       }
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === '') {
+      if (Number((s as any).locArgs?.[2] ?? 0) === '') {
         (s as any).result = '';
       } else {
         (s as any).result = qspFunc(s, 'stat_display', 'helper_font_wrap', '<b>' + qspUntranslated(s, "sd_dn[\u00000\u0000]", { location: "stat_display" }) + '</b>') + ((s as any).temp_br ?? 0) + ((s as any).locArgs?.[2] ?? 0);
@@ -245,10 +242,10 @@ function enterGetSeparator(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat_cfg ?? 0)?.['separator_style'] === 2) {
       (s as any).result = '<hr style="margin:12px 10px;">';
     } else {
-      if ((((s as any).locArgs?.[1] ?? 0) === 'bars'  ||  ((s as any).locArgs?.[1] ?? 0) === 'table')  &&  (((s as any).locArgs?.[2] ?? 0) === 'bars'  ||  ((s as any).locArgs?.[2] ?? 0) === 'table')) {
+      if ((Number((s as any).locArgs?.[1] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'table')  &&  (Number((s as any).locArgs?.[2] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[2] ?? 0) === 'table')) {
         (s as any).result = '<br style="font-size: ' + ((s as any).sd_font_pct ?? 0) + '%;">';
       } else {
-        if ((((s as any).locArgs?.[1] ?? 0) === 'bars'  ||  ((s as any).locArgs?.[1] ?? 0) === 'table')  ||  (((s as any).locArgs?.[2] ?? 0) === 'bars'  ||  ((s as any).locArgs?.[2] ?? 0) === 'table')) {
+        if ((Number((s as any).locArgs?.[1] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'table')  ||  (Number((s as any).locArgs?.[2] ?? 0) === 'bars'  ||  Number((s as any).locArgs?.[2] ?? 0) === 'table')) {
           (s as any).result = '<hr style="margin:' + ((s as any).sep_margin_px ?? 0) + 'px 10px;">';
         } else {
           (s as any).result = '<div style="margin:' + ((s as any).sep_margin_px ?? 0) + 'px 0;"></div>';
@@ -281,11 +278,11 @@ function enterSecWeather(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    ((s as any).sd_w = (s as any).sd_w ?? {})['safe_weather'] = qspUntranslated(s, "replace(weather, '\"', '&quot;')", { location: "stat_display" });
-    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg \\u0027' + qspUntranslated(s, "sd_w[\\u0027safe_weather\\u0027]", { location: "stat_display" }) + '\\u0027 */ return s; }); return false;">\' + $func(\'wrap\', $sd_w[\'theme\'], $mid($osadki, 1, len($osadki) - 1)) + \'</a>';
+    ((s as any).sd_w = (s as any).sd_w ?? {})['safe_weather'] = (String(((s as any).weather ?? 0)).split('"').join('&quot;'));
+    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027' + qspUntranslated(s, "sd_w[\\u0027safe_weather\\u0027]", { location: "stat_display" }) + '/u0027 */ return s; }); return false;">\' + $func(\'wrap\', $sd_w[\'theme\'], $mid($osadki, 1, len($osadki) - 1)) + \'</a>';
   } else {
-    ((s as any).sd_w = (s as any).sd_w ?? {})['safe_weather'] = qspUntranslated(s, "replace(weather, '\"', '&quot;')", { location: "stat_display" });
-    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg \\u0027' + qspUntranslated(s, "sd_w[\\u0027safe_weather\\u0027]", { location: "stat_display" }) + '\\u0027 */ return s; }); return false;">\' + $weatherImage + \'</a>';
+    ((s as any).sd_w = (s as any).sd_w ?? {})['safe_weather'] = (String(((s as any).weather ?? 0)).split('"').join('&quot;'));
+    ((s as any).sd_w = (s as any).sd_w ?? {})['visual'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027' + qspUntranslated(s, "sd_w[\\u0027safe_weather\\u0027]", { location: "stat_display" }) + '/u0027 */ return s; }); return false;">\' + $weatherImage + \'</a>';
   }
   ((s as any).sd_w = (s as any).sd_w ?? {})['center'] = qspFunc(s, 'stat_display', 'helper_resolve_align', 'weather');
   ((s as any).sd_w = (s as any).sd_w ?? {})['align_attr'] = ((((s as any).sd_w ?? 0)?.['center'] === 1) ? (' align="center"') : (((((s as any).sd_w ?? 0)?.['center'] === 2) ? (' align="right"') : (''))));
@@ -361,12 +358,12 @@ function enterSecMoney(s: GameState, scene: SceneBuilder): void {
 
 function enterSecLoadsave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_cfg ?? 0)?.['loadsave_mode'] === 1) {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \\u0027quicksave.sav\\u0027 */ /* TODO-QSP: pl\\u0027Quicksave Done\\u0027 */ return s; }); return false;">Quick Save</a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame /u0027quicksave.sav/u0027 */ /* TODO-QSP: pl/u0027Quicksave Done/u0027 */ return s; }); return false;">Quick Save</a>';
     // TODO-QSP: $result += '  <a href="exec: savegame">Save</a>'
     // TODO-QSP: $result += '  <a href="exec: opengame">Load</a>'
     // TODO-QSP: $result += '  <a href="exec: if input(''Input Anything to confirm Quick Load'') <> '''': opengame ''...
   } else {
-    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame \\u0027quicksave.sav\\u0027 */ /* TODO-QSP: pl\\u0027Quicksave Done\\u0027 */ return s; }); return false;"><img src="images/system/icons/stat_qsave.png" height="' + ((s as any).stat_cfg ?? 0)?.['menu_icon_height'] + '"></a>';
+    (s as any).result = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: savegame /u0027quicksave.sav/u0027 */ /* TODO-QSP: pl/u0027Quicksave Done/u0027 */ return s; }); return false;"><img src="images/system/icons/stat_qsave.png" height="' + ((s as any).stat_cfg ?? 0)?.['menu_icon_height'] + '"></a>';
     // TODO-QSP: $result += '  <a href="exec: savegame"><img src="images/system/icons/stat_save.png" height="<<stat_c...
     // TODO-QSP: $result += '  <a href="exec: opengame"><img src="images/system/icons/stat_load.png" height="<<stat_c...
     // TODO-QSP: $result += '  <a href="exec: if input(''Input Anything to confirm Quick Load'') <> '''': opengame ''...
@@ -446,7 +443,7 @@ function enterSecMenuBar(s: GameState, scene: SceneBuilder): void {
     } else {
       ((s as any).sd_mb = (s as any).sd_mb ?? {})['act'] = ((s as any).sd_mb ?? 0)?.[((s as any).sd_mb ?? 0)?.['key'] + '_url'];
     }
-    ((s as any).sd_mb = (s as any).sd_mb ?? {})['cell'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: \\u0027 + $sd_mb[\\u0027act\\u0027] + \\u0027 */ return s; }); return false;"><img title="' + ((s as any).sd_mb ?? 0)?.[((s as any).sd_mb ?? 0)?.['key'] + '_tip'] + '" ' + ((s as any).sd ?? 0)?.['micon'] + ((s as any).sd_mb ?? 0)?.[((s as any).sd_mb ?? 0)?.['key'] + '_ico'] + '"></a>';
+    ((s as any).sd_mb = (s as any).sd_mb ?? {})['cell'] = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: /u0027 + $sd_mb[/u0027act/u0027] + /u0027 */ return s; }); return false;"><img title="' + ((s as any).sd_mb ?? 0)?.[((s as any).sd_mb ?? 0)?.['key'] + '_tip'] + '" ' + ((s as any).sd ?? 0)?.['micon'] + ((s as any).sd_mb ?? 0)?.[((s as any).sd_mb ?? 0)?.['key'] + '_ico'] + '"></a>';
     ((s as any).sd_mb = (s as any).sd_mb ?? {})['cells'] = ((s as any).sd_mb['cells'] ?? 0) + ('<span style="display:inline-block; vertical-align:middle;">' + ((s as any).sd_mb ?? 0)?.['cell'] + '</span>');
   }
   ((s as any).sd_mb = (s as any).sd_mb ?? {})['i'] = ((s as any).sd_mb['i'] ?? 0) + (1);
@@ -740,7 +737,7 @@ function enterSecIcons(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_ic = (s as any).sd_ic ?? {})['rows'] = '';
   ((s as any).sd_ic = (s as any).sd_ic ?? {})['row'] = 1;
   // TODO-QSP: :sd_icon_row_loop
-  ((s as any).sd_ic = (s as any).sd_ic ?? {})['arr'] = '$sd_icons_' + qspUntranslated(s, "str(sd_ic['row'])", { location: "stat_display" });
+  ((s as any).sd_ic = (s as any).sd_ic ?? {})['arr'] = '$sd_icons_' + String(((s as any).sd_ic ?? 0)?.['row']);
   ((s as any).sd_ic = (s as any).sd_ic ?? {})['max'] = 0;
   if (((s as any).sd_ic ?? 0)?.['max'] > 0) {
     ((s as any).sd_ic = (s as any).sd_ic ?? {})['line'] = '';
@@ -887,7 +884,7 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_hide ?? 0)[((s as any).sd_sk ?? 0)?.['grp']] === 0) {
     ((s as any).sd_sk = (s as any).sd_sk ?? {})['si'] = 0;
     // TODO-QSP: :sd_skill_entry_loop
-    ((s as any).sd_sk = (s as any).sd_sk ?? {})['key'] = ((s as any).skill_grp ?? 0)?.[((s as any).sd_sk ?? 0)?.['grp'] + '_' + qspUntranslated(s, "str(sd_sk['si'])", { location: "stat_display" })];
+    ((s as any).sd_sk = (s as any).sd_sk ?? {})['key'] = ((s as any).skill_grp ?? 0)?.[((s as any).sd_sk ?? 0)?.['grp'] + '_' + String(((s as any).sd_sk ?? 0)?.['si'])];
     if (((s as any).sd_sk ?? 0)?.['key'] === '') {
       // TODO-QSP: jump 'sd_skill_entry_done'
     }
@@ -911,7 +908,7 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
             ((s as any).sd_sk = (s as any).sd_sk ?? {})['grp_rows'] = ((s as any).sd_sk['grp_rows'] ?? 0) + ('</tr>');
           }
           if (((s as any).sd_sk ?? 0)?.['rows'] !== '') {
-            ((s as any).sd_sk = (s as any).sd_sk ?? {})['rows'] = ((s as any).sd_sk['rows'] ?? 0) + ('<tr><td colspan="' + qspUntranslated(s, "str(sd_sk['td_cols'])", { location: "stat_display" }) + '" style="padding-top:6px;border:none;"></td></tr>');
+            ((s as any).sd_sk = (s as any).sd_sk ?? {})['rows'] = ((s as any).sd_sk['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_sk ?? 0)?.['td_cols']) + '" style="padding-top:6px;border:none;"></td></tr>');
           }
           ((s as any).sd_sk = (s as any).sd_sk ?? {})['rows'] = ((s as any).sd_sk['rows'] ?? 0) + (((s as any).sd_sk ?? 0)?.['grp_rows']);
         } else {
@@ -929,7 +926,7 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
               ((s as any).sd_sk = (s as any).sd_sk ?? {})['hdr_align'] = ' align="right"';
             }
           }
-          ((s as any).sd_sk = (s as any).sd_sk ?? {})['rows'] = ((s as any).sd_sk['rows'] ?? 0) + ('<tr><td colspan="' + qspUntranslated(s, "str(sd_sk['td_cols'])", { location: "stat_display" }) + '"' + ((s as any).sd_sk ?? 0)?.['hdr_align'] + ' style="' + ((s as any).sd_sk ?? 0)?.['hdr_style'] + '"><b>' + ((s as any).sd_dn ?? 0)?.[((s as any).sd_sk ?? 0)?.['grp']] + '</b></td></tr>' + ((s as any).sd_sk ?? 0)?.['grp_rows']);
+          ((s as any).sd_sk = (s as any).sd_sk ?? {})['rows'] = ((s as any).sd_sk['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_sk ?? 0)?.['td_cols']) + '"' + ((s as any).sd_sk ?? 0)?.['hdr_align'] + ' style="' + ((s as any).sd_sk ?? 0)?.['hdr_style'] + '"><b>' + ((s as any).sd_dn ?? 0)?.[((s as any).sd_sk ?? 0)?.['grp']] + '</b></td></tr>' + ((s as any).sd_sk ?? 0)?.['grp_rows']);
         }
       }
     }
@@ -1022,7 +1019,7 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
     } else {
       ((s as any).sd_rl = (s as any).sd_rl ?? {})['mi'] = 0;
       // TODO-QSP: :sd_rel_member_loop
-      ((s as any).sd_rl = (s as any).sd_rl ?? {})['key'] = ((s as any).rel_grp ?? 0)?.[((s as any).sd_rl ?? 0)?.['grp'] + '_' + qspUntranslated(s, "str(sd_rl['mi'])", { location: "stat_display" })];
+      ((s as any).sd_rl = (s as any).sd_rl ?? {})['key'] = ((s as any).rel_grp ?? 0)?.[((s as any).sd_rl ?? 0)?.['grp'] + '_' + String(((s as any).sd_rl ?? 0)?.['mi'])];
       if (((s as any).sd_rl ?? 0)?.['key'] === '') {
         // TODO-QSP: jump 'sd_rel_member_done'
       }
@@ -1048,7 +1045,7 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
             ((s as any).sd_rl = (s as any).sd_rl ?? {})['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + ('</tr>');
           }
           if (((s as any).sd_rl ?? 0)?.['rows'] !== '') {
-            ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + qspUntranslated(s, "str(sd_rl['td_cols'])", { location: "stat_display" }) + '" style="padding-top:6px;border:none;"></td></tr>');
+            ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_rl ?? 0)?.['td_cols']) + '" style="padding-top:6px;border:none;"></td></tr>');
           }
           ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + (((s as any).sd_rl ?? 0)?.['grp_rows']);
         } else {
@@ -1066,7 +1063,7 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
               ((s as any).sd_rl = (s as any).sd_rl ?? {})['hdr_align'] = ' align="right"';
             }
           }
-          ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + qspUntranslated(s, "str(sd_rl['td_cols'])", { location: "stat_display" }) + '"' + ((s as any).sd_rl ?? 0)?.['hdr_align'] + ' style="' + ((s as any).sd_rl ?? 0)?.['hdr_style'] + '"><b>' + ((s as any).sd_dn ?? 0)?.[((s as any).sd_rl ?? 0)?.['grp']] + '</b></td></tr>' + ((s as any).sd_rl ?? 0)?.['grp_rows']);
+          ((s as any).sd_rl = (s as any).sd_rl ?? {})['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_rl ?? 0)?.['td_cols']) + '"' + ((s as any).sd_rl ?? 0)?.['hdr_align'] + ' style="' + ((s as any).sd_rl ?? 0)?.['hdr_style'] + '"><b>' + ((s as any).sd_dn ?? 0)?.[((s as any).sd_rl ?? 0)?.['grp']] + '</b></td></tr>' + ((s as any).sd_rl ?? 0)?.['grp_rows']);
         }
       }
     }
@@ -1163,7 +1160,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     (s as any).result = '<div>';
     ((s as any).sd_si = (s as any).sd_si ?? {})['ci'] = 0;
     // TODO-QSP: :sd_si_wrap_loop
-    ((s as any).sd_si = (s as any).sd_si ?? {})['key'] = ((s as any).sd_img ?? 0)?.['order_' + qspUntranslated(s, "str(sd_si['ci'])", { location: "stat_display" })];
+    ((s as any).sd_si = (s as any).sd_si ?? {})['key'] = ((s as any).sd_img ?? 0)?.['order_' + String(((s as any).sd_si ?? 0)?.['ci'])];
     ((s as any).sd_si = (s as any).sd_si ?? {})['url'] = ((s as any).sd_img ?? 0)?.['url_' + ((s as any).sd_si ?? 0)?.['key']];
     ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = '';
     if (((s as any).stat_cfg ?? 0)?.['image_headers'] === 1) {
@@ -1171,7 +1168,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).stat_cfg ?? 0)?.['image_headers'] >= 2) {
         ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + ((s as any).sd_si ?? 0)?.['key']];
-        ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = qspUntranslated(s, "replace(sd_si['hdr'], 'number ', '#')", { location: "stat_display" });
+        ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).split('number ').join('#'));
         if ((String(((s as any).sd_si ?? 0)?.['hdr']).slice(((String(((s as any).sd_si ?? 0)?.['hdr']).length))-1, (((String(((s as any).sd_si ?? 0)?.['hdr']).length))-1)+(1))) === '.') {
           ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+((String(((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
         }
@@ -1200,7 +1197,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
       }
       ((s as any).sd_si = (s as any).sd_si ?? {})['ann'] = ((s as any).sd_si['ann'] ?? 0) + ('<small>' + ((s as any).sd_si ?? 0)?.['cond'] + '</small>');
     }
-    ((s as any).sd_si = (s as any).sd_si ?? {})['img'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;"><img ' + ((s as any).sd_si ?? 0)?.['size'] + ' src="' + ((s as any).sd_si ?? 0)?.['url'] + '"></a>';
+    ((s as any).sd_si = (s as any).sd_si ?? {})['img'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;"><img ' + ((s as any).sd_si ?? 0)?.['size'] + ' src="' + ((s as any).sd_si ?? 0)?.['url'] + '"></a>';
     ((s as any).sd_si = (s as any).sd_si ?? {})['cell'] = '<div style="display:inline-block; vertical-align:top; text-align:center; margin:' + ((s as any).sd_si ?? 0)?.['cellspacing'] + 'px;">';
     if (((s as any).sd_si ?? 0)?.['ann_pos'] === 0  &&  ((s as any).sd_si ?? 0)?.['ann'] !== '') {
       ((s as any).sd_si = (s as any).sd_si ?? {})['cell'] = ((s as any).sd_si['cell'] ?? 0) + (((s as any).sd_font_wrap_o ?? 0) + ((s as any).sd_si ?? 0)?.['ann'] + ((s as any).sd_font_wrap_c ?? 0) + '<br>');
@@ -1232,7 +1229,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_si = (s as any).sd_si ?? {})['ann_cells'] = '';
   ((s as any).sd_si = (s as any).sd_si ?? {})['has_ann'] = 0;
   // TODO-QSP: :sd_si_cell_loop
-  ((s as any).sd_si = (s as any).sd_si ?? {})['key'] = ((s as any).sd_img ?? 0)?.['order_' + qspUntranslated(s, "str(sd_si['ci'])", { location: "stat_display" })];
+  ((s as any).sd_si = (s as any).sd_si ?? {})['key'] = ((s as any).sd_img ?? 0)?.['order_' + String(((s as any).sd_si ?? 0)?.['ci'])];
   ((s as any).sd_si = (s as any).sd_si ?? {})['url'] = ((s as any).sd_img ?? 0)?.['url_' + ((s as any).sd_si ?? 0)?.['key']];
   ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = '';
   if (((s as any).stat_cfg ?? 0)?.['image_headers'] === 1) {
@@ -1240,7 +1237,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).stat_cfg ?? 0)?.['image_headers'] >= 2) {
       ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + ((s as any).sd_si ?? 0)?.['key']];
-      ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = qspUntranslated(s, "replace(sd_si['hdr'], 'number ', '#')", { location: "stat_display" });
+      ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).split('number ').join('#'));
       if ((String(((s as any).sd_si ?? 0)?.['hdr']).slice(((String(((s as any).sd_si ?? 0)?.['hdr']).length))-1, (((String(((s as any).sd_si ?? 0)?.['hdr']).length))-1)+(1))) === '.') {
         ((s as any).sd_si = (s as any).sd_si ?? {})['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+((String(((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
       }
@@ -1269,7 +1266,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     }
     ((s as any).sd_si = (s as any).sd_si ?? {})['ann'] = ((s as any).sd_si['ann'] ?? 0) + ('<small>' + ((s as any).sd_si ?? 0)?.['cond'] + '</small>');
   }
-  ((s as any).sd_si = (s as any).sd_si ?? {})['img'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = \\u0027__qspDyn\\u0027; return s; }); return false;"><img ' + ((s as any).sd_si ?? 0)?.['size'] + ' src="' + ((s as any).sd_si ?? 0)?.['url'] + '"></a>';
+  ((s as any).sd_si = (s as any).sd_si ?? {})['img'] = '<a href="#" onclick="window.__gameStore.setState((s) => { s.viewImage = /u0027__qspDyn/u0027; return s; }); return false;"><img ' + ((s as any).sd_si ?? 0)?.['size'] + ' src="' + ((s as any).sd_si ?? 0)?.['url'] + '"></a>';
   ((s as any).sd_si = (s as any).sd_si ?? {})['img_cells'] = ((s as any).sd_si['img_cells'] ?? 0) + ('<td valign="middle" align="center"' + ((s as any).sd_si ?? 0)?.['td_width'] + '>\' + $sd_si[\'img\'] + \'</td>');
   ((s as any).sd_si = (s as any).sd_si ?? {})['ann_cells'] = ((s as any).sd_si['ann_cells'] ?? 0) + ('<td valign="top"    align="center"' + ((s as any).sd_si ?? 0)?.['td_width'] + '>\' + $sd_font_wrap_o + $sd_si[\'ann\'] + $sd_font_wrap_c + \'</td>');
   if (((s as any).sd_si ?? 0)?.['ann'] !== '') {
@@ -1689,17 +1686,17 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sd_android += ' <a href="exec: savegame ''quicksave.sav'' && pl''Quicksave Done''">Q.S</a>  <a href...
     (s as any).sd_android = qspFunc(s, 'stat_display', 'helper_font_wrap', ((s as any).sd_android ?? 0));
   }
-  (s as any).stat_msg = qspUntranslated(s, "replace(stat_msg, '  ', ' ')", { location: "stat_display" });
-  (s as any).stat_msg = qspUntranslated(s, "replace(stat_msg, '<br> ', '<br>')", { location: "stat_display" });
-  (s as any).stat_msg = qspFunc(s, 'cleanHTML', '$stat_msg');
+  (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split('  ').join(' '));
+  (s as any).stat_msg = (String(((s as any).stat_msg ?? 0)).split('<br> ').join('<br>'));
+  (s as any).stat_msg = qspFunc(s, 'cleanHTML', ((s as any).stat_msg ?? 0));
   if (((s as any).stat_cfg ?? 0)?.['android']) {
-    (s as any).stat_msg = 'Android mode, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_obnovit\\u0027, \\u0027\\u0027); return false;">Refresh</a>' + ((s as any).stat_msg ?? 0);
+    (s as any).stat_msg = 'Android mode, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_obnovit/u0027, /u0027/u0027); return false;">Refresh</a>' + ((s as any).stat_msg ?? 0);
   } else {
     // TODO-QSP: pl $stat_msg
   }
   return;
   // TODO-QSP: end
-  if (((s as any).locArgs?.[0] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[0] ?? 0) !== '') {
     // TODO-QSP: exit
   }
   if (((s as any).debug ?? 0)?.['trace_shown'] === 1) {
@@ -1737,7 +1734,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).sd_font_wrap_o = ((((s as any).sd_font_pct ?? 0) !== 100) ? ('<span style="font-size:' + qspUntranslated(s, "str(sd_font_pct)", { location: "stat_display" }) + '%;">') : (''));
+  (s as any).sd_font_wrap_o = ((((s as any).sd_font_pct ?? 0) !== 100) ? ('<span style="font-size:' + String(((s as any).sd_font_pct ?? 0)) + '%;">') : (''));
   (s as any).sd_font_wrap_c = ((((s as any).sd_font_wrap_o ?? 0) !== '') ? ('</span>') : (''));
   (s as any).sep_margin_px = 8 * ((s as any).sd_font_pct ?? 0) / 100;
   (s as any).stat_msg = '';
@@ -1751,7 +1748,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
   ((s as any).sd_d = (s as any).sd_d ?? {})['sec'] = qspUntranslated(s, "stat_order[sd_d['i']]", { location: "stat_display" });
   ((s as any).sd_d = (s as any).sd_d ?? {})['res'] = '';
   if (((s as any).stat_hide ?? 0)[((s as any).sd_d ?? 0)?.['sec']] === 0) {
-    ((s as any).sd_d = (s as any).sd_d ?? {})['res'] = qspFunc(s, 'stat_display', 'sec_\' + $sd_d[\'sec\']');
+    ((s as any).sd_d = (s as any).sd_d ?? {})['res'] = qspFunc(s, 'stat_display', 'sec_' + ((s as any).sd_d ?? 0)?.['sec']);
   }
   if (((s as any).sd_d ?? 0)?.['sec'] !== 'weather'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'time'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'money'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'loadsave'  &&  ((s as any).sd_d ?? 0)?.['sec'] !== 'menu_bar') {
     if (((s as any).stat_hide ?? 0)[((s as any).sd_d ?? 0)?.['sec']] === 0  ||  ((s as any).stat_cfg ?? 0)?.['sec_headers'] === 2) {
@@ -1775,6 +1772,9 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).settingmode ?? 0) === 1) {
+    // TODO-QSP: exit
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'helper_bar':

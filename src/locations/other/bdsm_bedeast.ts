@@ -28,7 +28,7 @@ function enterCheckEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 70) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_bedeast', 'event_' + Math.floor(Math.random() * 10) + 1 + '');
+  qspGoto(s, 'bdsm_bedeast', 'event_' + (Math.floor(Math.random() * 10) + 1) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -65,15 +65,15 @@ function enterEvent_3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bdsmclub ?? 0)?.['role'] === 'sub') {
     scene.actions([
       { label: 'Join them', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'Dominant man from the Club', Math.floor(Math.random() * 28) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'Dominant man from the Club', (Math.floor(Math.random() * 28) + 18));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
     scene.img('images/locations/city/suburb/bdsm_club/sex/snowball.jpg');
     scene.text('Seeing you watching them, the couple beckons you over. You obey them and come over and kneel down next to the well dressed woman. She offers the cock to you and you dutifully suck it and soon the two of you are trading it back and forth.');
     scene.text('The man begins to grunt getting close, when he does the woman takes the cock completely to herself no longer sharing, after another minute or so the man cums in her mouth.');
     scene.text('She rises up a bit and pulls your head back, pulling your mouth open. Then she spits the man\'s cum into your mouth. Then they dismiss you and as you\'re leaving you swallow the cum.');
-    qspCall(s, 'arousal', 'bj', 5, 'sub', 'group');
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 5, 'sub', 'group');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
     ]);
@@ -95,14 +95,14 @@ function enterEvent_4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bdsmclub ?? 0)?.['role'] === 'sub') {
     scene.actions([
       { label: 'Join them', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/sex/bedmff.jpg');
     scene.text('As you watch the man notices you and motions you over. Obeying you walk over to him. While he keeps fucking the woman on the bed he says. "Straddle her face and look at me."');
     scene.text('You do as you are told and the woman\'s tongue plunges into your pussy at once as she starts tongue fucking you. The man pulls you forward and kisses you as he keeps fucking the other woman.');
     scene.text('You orgasm before he does and when he does, he does deep inside or her. Once finished they get dressed.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni', 5, 'sub', 'lesbian');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni', 5, 'sub', 'lesbian');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
     ]);
@@ -165,15 +165,15 @@ function enterEvent_8(s: GameState, scene: SceneBuilder): void {
     scene.text('Noticing you the domme turns and pulls out of her sub. "You come over here and show my worthless sub how to take it like a good whore."');
     scene.actions([
       { label: 'Obey', handler: (st: GameState) => {
-    qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal_funcs', 'stretch', 'anal', 1);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/sex/fffdomstrap.jpg');
     scene.text('You undress and walk over to her while she unties her sub. As you get to the bed she grabs you and pushes you down face first on the bed. She crawls up on top of you and rubs the strap-on against your asshole.');
     scene.text('With only the lube from her subs pussy juices she shoves it in your ass, sliding it balls deep in you. Then she starts to furiously fuck you as she tells her sub this is how she should take it.');
     scene.text('After a long time she beings to pant and sweat from her efforts in fucking you. Finally rolling off you to take a break, she looks at you. "You may go." You get up and get dressed leaving them in the room.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'anal_strap', 5, 'sub', 'lesbian', 'rough');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'anal_strap', 5, 'sub', 'lesbian', 'rough');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Return', goto: ['bdsm_bedeast', 'start'] },
     ]);

@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'event';
   scene.build();
 }
 
@@ -43,19 +42,19 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).prosti = 0;
   qspCall(s, 'stat', '');
   scene.img(`images/locations/shared/sex/car/sexcar${((s as any).picpRand || '')}.jpg`);
-  (s as any).prostRand = Math.floor(Math.random() * 100) + 1;
+  (s as any).prostRand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).prostRand ?? 0) <= 50) {
-    (s as any).picpRand = Math.floor(Math.random() * 7) + 3;
+    (s as any).picpRand = (Math.floor(Math.random() * 7) + 3);
     (s as any).pose = 1;
     scene.text('You lean against the car and expose your bare ass to the man. He\'s not wasting any time and immediately gets behind you, eagerly rubbing his cock against your vagina.');
   } else {
     if (((s as any).prostRand ?? 0) <= 75) {
-      (s as any).picpRand = Math.floor(Math.random() * 3) + 10;
+      (s as any).picpRand = (Math.floor(Math.random() * 3) + 10);
       (s as any).pose = 1;
       scene.text('You get down on your hands and knees like he wants, and brace yourself when you feel him pressing his cock against your pussy in a none too gentle fashion.');
     } else {
       (s as any).pose = 0;
-      (s as any).picpRand = Math.floor(Math.random() * 7) + 13;
+      (s as any).picpRand = (Math.floor(Math.random() * 7) + 13);
       scene.text('He groans in your ear: "Get on the hood, on your back!"');
       scene.text('You quickly do as he says, and let out a soft moan when he rubs his cock against your pussy lips.');
     }
@@ -74,6 +73,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event';
   const arg = s.locArg;
   switch (arg) {
     case '1':

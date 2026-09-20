@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBookingStart(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'shplft'  ||  ((s as any).locArgs?.[1] ?? 0) === 'shoplift') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'shplft'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'shoplift') {
     qspCall(s, 'court_functions', 'arrest_for', 'shoplift');
     (s as any).temp_tot_arrests = qspFunc(s, 'court_functions', 'get_total_arrests');
     if (((s as any).temp_tot_arrests ?? 0) === 1) {
@@ -26,7 +26,7 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'prst'  ||  ((s as any).locArgs?.[1] ?? 0) === 'prostitution') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'prst'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'prostitution') {
       qspCall(s, 'court_functions', 'arrest_for', 'prostitution');
       (s as any).temp_tot_arrests = qspFunc(s, 'court_functions', 'get_total_arrests');
       if (((s as any).temp_tot_arrests ?? 0) === 1) {
@@ -43,7 +43,7 @@ function enterBookingStart(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'pub_ind'  ||  ((s as any).locArgs?.[1] ?? 0) === 'public_indecency') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'pub_ind'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'public_indecency') {
         qspCall(s, 'court_functions', 'arrest_for', 'public_indecency');
         (s as any).temp_tot_arrests = qspFunc(s, 'court_functions', 'get_total_arrests');
         if (((s as any).temp_tot_arrests ?? 0) === 1) {
@@ -160,7 +160,7 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'pain', '', 2, 'armR', 'pinch');
   qspCall(s, 'stat', '');
-  (s as any).police_event = Math.floor(Math.random() * 5) + 1;
+  (s as any).police_event = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).police_event ?? 0) === 1) {
     scene.text('"Look who\'s back! She just couldn\'t stay out of trouble."');
     scene.text('The others smile and shake their heads as he leads you further inside the police station.');
@@ -174,7 +174,7 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
         scene.text('The others smile and shake their heads as he leads you further inside the police station.');
       } else {
         if (((s as any).police_event ?? 0) === 4) {
-          // TODO-QSP: dynamic text: "Time to book <<$pcs_lastname>> again. She just can't keep out of trouble."
+          // TODO-QSP: dynamic text: "Time to book <<$pcs_lastname>> again. She just can''t keep out of trouble."
           scene.text(`"Time to book ${((s as any).pcs_lastname || '')} again. She just can't keep out of trouble."`);
           scene.text('The others shake their heads as he leads you further inside the police station.');
         } else {
@@ -197,7 +197,7 @@ function enterMultiple(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'pain', '', 2, 'armR', 'pinch');
   qspCall(s, 'stat', '');
-  (s as any).police_event = Math.floor(Math.random() * 5) + 1;
+  (s as any).police_event = (Math.floor(Math.random() * 5) + 1);
   if (((s as any).police_event ?? 0) === 1) {
     scene.text('"You\'re getting a bit familiar with this place, aren\'t you?"');
     scene.text('The others shake their heads as he leads you further inside the police station.');
@@ -236,7 +236,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'pain', '', 2, 'armR', 'pinch');
   qspCall(s, 'stat', '');
-  (s as any).police_event = Math.floor(Math.random() * 8) + 1;
+  (s as any).police_event = (Math.floor(Math.random() * 8) + 1);
   if (((s as any).police_event ?? 0) === 1) {
     // TODO-QSP: dynamic text: The staff sitting at the reception desk glance your way as the arresting officer...
     scene.text(`The staff sitting at the reception desk glance your way as the arresting officer glares down at you. "I'm sick and tired of processing you, ${((s as any).pcs_lastname || '')}! I hope they lock you away for a long time!"`);
@@ -289,10 +289,10 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
 
 function enterInterrogationStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).policeQW ?? 0)?.['crime_flag'] === 'shoplift') {
-    if (((s as any).locArgs?.[1] ?? 0) === 'easy') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'easy') {
       qspGoto(s, 'court_arrest_events', 'shoplift_easy');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'norm') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'norm') {
         qspGoto(s, 'court_arrest_events', 'shoplift_norm');
       } else {
         qspGoto(s, 'court_arrest_events', 'shoplift_hard');
@@ -300,10 +300,10 @@ function enterInterrogationStart(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).policeQW ?? 0)?.['crime_flag'] === 'prostitution') {
-      if (((s as any).locArgs?.[1] ?? 0) === 'easy') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'easy') {
         qspGoto(s, 'court_arrest_events', 'prostitution_easy');
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'norm') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'norm') {
           qspGoto(s, 'court_arrest_events', 'prostitution_norm');
         } else {
           qspGoto(s, 'court_arrest_events', 'prostitution_hard');
@@ -328,7 +328,7 @@ function enterInterrogationEnd(s: GameState, scene: SceneBuilder): void {
 function enterShopliftEasy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 1;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 1);
   scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
   scene.text('He takes a seat at the table opposite of you. "So. Caught stealing, huh?"');
   scene.text('You nervously look around, trying to avoid eye contact.');
@@ -337,19 +337,19 @@ function enterShopliftEasy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 1;
-      (s as any).picrand = Math.floor(Math.random() * 2) + 1;
-      scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
+    qspCall(st, 'stat', '');
+    if (((st as any).policeQW ?? 0)?.['toldonguard'] === 2) {
+      ((st as any).policeQW = (st as any).policeQW ?? {})['toldonguard'] = 1;
+      (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
+      scene.img(`images/locations/shared/police/interrogation${((st as any).picrand || '')}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');
       scene.text('The detective looks up. "Sounds awful! I\'ll send some officers over to have a talk with him and we\'ll take actions against him. Assuming you\'re telling the truth, of course."');
       scene.text('You nod your head. "I am! I promise!" you quickly reply before continuing to admit to everything while the detective writes down some notes.');
-      // TODO-QSP: dynamic text: "Okay, here's the deal, <<$pcs_firstname>>. We have a civil court judge for thes...
-      scene.text(`"Okay, here's the deal, ${((s as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and as you've made my job easy by admitting everything, I can get you in front of him today. Don't worry, I'll put in a good word for you," he reassures gently.`);
+      // TODO-QSP: dynamic text: "Okay, here''s the deal, <<$pcs_firstname>>. We have a civil court judge for the...
+      scene.text(`"Okay, here's the deal, ${((st as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and as you've made my job easy by admitting everything, I can get you in front of him today. Don't worry, I'll put in a good word for you," he reassures gently.`);
     } else {
-      (s as any).picrand = Math.floor(Math.random() * 2) + 1;
-      scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
+      (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
+      scene.img(`images/locations/shared/police/interrogation${((st as any).picrand || '')}.jpg`);
       scene.text('As you finish, you see the detective write down one last thing before looking at you. "Good, that\'s everything I need."');
       scene.text('"What will happen to me?" you ask.');
       scene.text('"Don\'t worry. It was a petty crime and you\'ve been more than cooperative with me and the booking officer, so I\'ll put in a good word for you to the civil court judge," he reassures you.');
@@ -365,31 +365,31 @@ function enterShopliftEasy(s: GameState, scene: SceneBuilder): void {
 function enterShopliftNorm(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 1;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 1);
   scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
   scene.text('He takes a seat opposite of you. "So. Caught stealing, huh?"');
   scene.text('You nervously look around, trying to avoid eye contact.');
-  // TODO-QSP: dynamic text: "Look here, <<$pcs_firstname>>. I'm just trying to do my job, so let's make this...
+  // TODO-QSP: dynamic text: "Look here, <<$pcs_firstname>>. I''m just trying to do my job, so let''s make th...
   scene.text(`"Look here, ${((s as any).pcs_firstname || '')}. I'm just trying to do my job, so let's make this quick and easy: tell the truth and confess to everything."`);
   scene.text('You take a deep breath and begin to talk.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 1;
-      (s as any).picrand = Math.floor(Math.random() * 2) + 1;
-      scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
+    qspCall(st, 'stat', '');
+    if (((st as any).policeQW ?? 0)?.['toldonguard'] === 2) {
+      ((st as any).policeQW = (st as any).policeQW ?? {})['toldonguard'] = 1;
+      (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
+      scene.img(`images/locations/shared/police/interrogation${((st as any).picrand || '')}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');
       scene.text('The detective isn\'t really paying attention to you as he scribbles things down. "I\'ll see if there are any free officers to head over and interrogate the security guard about it."');
       scene.text('You nod your head before continuing the confession. The detective looks bored, but he continues writing everything down.');
-      // TODO-QSP: dynamic text: "Okay, here's the deal, <<$pcs_firstname>>. We have a civil court judge for thes...
-      scene.text(`"Okay, here's the deal, ${((s as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him and see how it goes," he says tiredly.`);
+      // TODO-QSP: dynamic text: "Okay, here''s the deal, <<$pcs_firstname>>. We have a civil court judge for the...
+      scene.text(`"Okay, here's the deal, ${((st as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him and see how it goes," he says tiredly.`);
     } else {
-      (s as any).picrand = Math.floor(Math.random() * 2) + 1;
-      scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
+      (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
+      scene.img(`images/locations/shared/police/interrogation${((st as any).picrand || '')}.jpg`);
       // TODO-QSP: dynamic text: As you finish, the detective looks at you with an unreadable expression. "Well, ...
-      scene.text(`As you finish, the detective looks at you with an unreadable expression. "Well, you've pretty much confessed to everything, ${((s as any).pcs_firstname || '')}. It's an open and shut case."`);
+      scene.text(`As you finish, the detective looks at you with an unreadable expression. "Well, you've pretty much confessed to everything, ${((st as any).pcs_firstname || '')}. It's an open and shut case."`);
       scene.text('"What will happen to me?" you ask.');
       scene.text('"Who knows? I\'m not the civil court judge," he shrugs.');
     }
@@ -404,28 +404,28 @@ function enterShopliftNorm(s: GameState, scene: SceneBuilder): void {
 function enterShopliftHard(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 1;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 1);
   scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
   scene.text('He takes a seat opposite of you. "So. Caught stealing, huh?"');
   scene.text('You shrug your shoulders nonchalantly, not really caring what might happen.');
-  // TODO-QSP: dynamic text: "Don't waste my time, <<$pcs_firstname>>!" he threatens. "If you won't take this...
+  // TODO-QSP: dynamic text: "Don''t waste my time, <<$pcs_firstname>>!" he threatens. "If you won''t take th...
   scene.text(`"Don't waste my time, ${((s as any).pcs_firstname || '')}!" he threatens. "If you won't take this seriously, then I won't put in the effort to give a shit what happens to you. Now stop fucking around and tell me everything you did."`);
   scene.text('You stutter as you begin confessing.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).policeQW ?? 0)?.['toldonguard'] === 2) {
-      ((s as any).policeQW = (s as any).policeQW ?? {})['toldonguard'] = 1;
-      (s as any).picrand = Math.floor(Math.random() * 2) + 1;
-      scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
+    qspCall(st, 'stat', '');
+    if (((st as any).policeQW ?? 0)?.['toldonguard'] === 2) {
+      ((st as any).policeQW = (st as any).policeQW ?? {})['toldonguard'] = 1;
+      (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
+      scene.img(`images/locations/shared/police/interrogation${((st as any).picrand || '')}.jpg`);
       scene.text('You tear up. "In the end, the security guard forced me to have sex with him…"');
       scene.text('The detective\'s scowl deepens as he glares at you. "You think you can just say shit like that and get away with everything? Stop lying or I\'ll throw you back in that cell with that crazy woman."');
       scene.text('You shake your head. "I\'m telling the truth! Why won\'t you believe me?!"');
       scene.text('The detective lets out a loud sigh. "Sticking to your lies, huh? Fine, but let me be clear: lying about a hard working security officer like this just to get away with stealing is going to make you an enemy to a lot of people around here, including the judge you\'re about to see. I\'m sure he\'ll love to hear your swan song."');
     } else {
-      (s as any).picrand = Math.floor(Math.random() * 2) + 1;
-      scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
+      (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
+      scene.img(`images/locations/shared/police/interrogation${((st as any).picrand || '')}.jpg`);
       scene.text('As you finish, the detective looks up at you. "Good, that\'s everything I need from you. Makes my job easier."');
       scene.text('"What will happen to me?" you ask.');
       scene.text('"Hopefully the civil court judge will give be going for a long and hard sentence. Criminals need to be taught a lesson," he says coldly.');
@@ -449,20 +449,20 @@ function enterProstitutionEasy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 2) {
+    qspCall(st, 'stat', '');
+    if (((st as any).policeQW ?? 0)?.['prostitution_bribe'] === 2) {
       scene.img('images/locations/shared/police/interrogationpro.jpg');
       scene.text('After listening to your story, the detective clears his throat. "And this was when you tried to offer the officer sex?"');
       scene.text('You stop and nod your head. "Yes, I… I thought it would get me off the hook…" You continue to confess while the detective writes down some notes.');
-      // TODO-QSP: dynamic text: "Okay, here's the deal, <<$pcs_firstname>>. We have a civil court judge for thes...
-      scene.text(`"Okay, here's the deal, ${((s as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him. I'll try to put in a good word for you," he says.`);
+      // TODO-QSP: dynamic text: "Okay, here''s the deal, <<$pcs_firstname>>. We have a civil court judge for the...
+      scene.text(`"Okay, here's the deal, ${((st as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him. I'll try to put in a good word for you," he says.`);
     } else {
-      if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
+      if (((st as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
         scene.img('images/locations/shared/police/interrogationpro.jpg');
         scene.text('After listening to your story, the detective clears his throat. "And this was when you tried to offer the officer money?"');
         scene.text('You stop and nod your head. "Yes, I… I thought it would get me off the hook…" You continue to confess while the detective writes down some notes.');
-        // TODO-QSP: dynamic text: "Okay, here's the deal, <<$pcs_firstname>>. We have a civil court judge for thes...
-        scene.text(`"Okay, here's the deal, ${((s as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him. I'll try to put in a good word for you," he says.`);
+        // TODO-QSP: dynamic text: "Okay, here''s the deal, <<$pcs_firstname>>. We have a civil court judge for the...
+        scene.text(`"Okay, here's the deal, ${((st as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him. I'll try to put in a good word for you," he says.`);
       } else {
         scene.img('images/locations/shared/police/interrogationpro.jpg');
         scene.text('As you finish, you see the detective write down one last thing before looking at you. "Good, that\'s everything I need."');
@@ -484,32 +484,32 @@ function enterProstitutionNorm(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/police/interrogationpro.jpg');
   scene.text('He takes a seat opposite of you, "So. Caught prostituting, huh?"');
   scene.text('You nervously look around, trying to avoid eye contact.');
-  // TODO-QSP: dynamic text: "Look here, <<$pcs_firstname>>. I'm just trying to do my job here, so how about ...
+  // TODO-QSP: dynamic text: "Look here, <<$pcs_firstname>>. I''m just trying to do my job here, so how about...
   scene.text(`"Look here, ${((s as any).pcs_firstname || '')}. I'm just trying to do my job here, so how about you confess and we'll take it from there?"`);
   scene.text('You take a deep breath and begin to talk.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 2) {
+    qspCall(st, 'stat', '');
+    if (((st as any).policeQW ?? 0)?.['prostitution_bribe'] === 2) {
       scene.img('images/locations/shared/police/interrogationpro.jpg');
       scene.text('You tear up. "And that\'s when I thought I could bribe the officer with sex…"');
       scene.text('The detective, not really paying attention, scribbles it down. "Attempted to bribe the officer with sex," he repeats.');
       scene.text('You nod your head before continuing to confess to the bored looking detective.');
       // TODO-QSP: dynamic text: "Okay <<$pcs_firstname>>, we have a civil court judge for these kind of cases an...
-      scene.text(`"Okay ${((s as any).pcs_firstname || '')}, we have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him and we'll see how it goes…" he says tiredly.`);
+      scene.text(`"Okay ${((st as any).pcs_firstname || '')}, we have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him and we'll see how it goes…" he says tiredly.`);
     } else {
-      if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
+      if (((st as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
         scene.img('images/locations/shared/police/interrogationpro.jpg');
         scene.text('You tear up. "And that\'s when I thought I could bribe the officer with money…"');
         scene.text('The detective, not really paying attention, scribbles it down. "Attempted to bribe the officer with money," he repeats.');
         scene.text('You nod your head before continuing to confess to the bored looking detective.');
-        // TODO-QSP: dynamic text: "Okay, here's the deal, <<$pcs_firstname>>. We have a civil court judge for thes...
-        scene.text(`"Okay, here's the deal, ${((s as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him and we'll see how it goes…" he says tiredly.`);
+        // TODO-QSP: dynamic text: "Okay, here''s the deal, <<$pcs_firstname>>. We have a civil court judge for the...
+        scene.text(`"Okay, here's the deal, ${((st as any).pcs_firstname || '')}. We have a civil court judge for these kind of cases and since you've already admitted to everything, we might as well take you in front of him and we'll see how it goes…" he says tiredly.`);
       } else {
         scene.img('images/locations/shared/police/interrogationpro.jpg');
         // TODO-QSP: dynamic text: As you finish, you see the detective write down one last thing before looking at...
-        scene.text(`As you finish, you see the detective write down one last thing before looking at you. "Well, you've pretty much confessed to everything, ${((s as any).pcs_firstname || '')}. It's an open and shut case."`);
+        scene.text(`As you finish, you see the detective write down one last thing before looking at you. "Well, you've pretty much confessed to everything, ${((st as any).pcs_firstname || '')}. It's an open and shut case."`);
         scene.text('"What will happen to me?" you ask.');
         scene.text('"Truth be told, I don\'t really know what kind of sentence the judge will be going for," he tells you.');
       }
@@ -528,28 +528,28 @@ function enterProstitutionHard(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/police/interrogationpro.jpg');
   scene.text('He takes a seat opposite of you, "So. Caught prostituting, huh?"');
   scene.text('You shrug your shoulders nonchalantly, not really caring what might happen.');
-  // TODO-QSP: dynamic text: "Don't waste my time, <<$pcs_firstname>>!" he threatens. "If you won't take this...
+  // TODO-QSP: dynamic text: "Don''t waste my time, <<$pcs_firstname>>!" he threatens. "If you won''t take th...
   scene.text(`"Don't waste my time, ${((s as any).pcs_firstname || '')}!" he threatens. "If you won't take this seriously, then I won't put in the effort to give a shit what happens to you. Now stop fucking around and tell me everything you did."`);
   scene.text('You stutter as you begin confessing.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 2) {
+    qspCall(st, 'stat', '');
+    if (((st as any).policeQW ?? 0)?.['prostitution_bribe'] === 2) {
       scene.img('images/locations/shared/police/interrogationpro.jpg');
       scene.text('You tear up. "And that\'s when I thought I could bribe the officer with sex…"');
       scene.text('The detective\'s face twists into a scowl. "You think you can get away with this by accusing someone of rape?!"');
       scene.text('You shake your head. "Not at all! I\'ve heard from the other girls that they\'ve gotten away by doing that, so I thought--"');
       // TODO-QSP: dynamic text: He slams his fist down on the table. "You think you can get away with telling th...
-      scene.text(`He slams his fist down on the table. "You think you can get away with telling these kind of lies against our fine police force?! You're in deep shit now, ${((s as any).pcs_firstname || '')}. I'm taking you to see the judge, and we'll see how he likes hearing you make a mockery of our justice system!"`);
+      scene.text(`He slams his fist down on the table. "You think you can get away with telling these kind of lies against our fine police force?! You're in deep shit now, ${((st as any).pcs_firstname || '')}. I'm taking you to see the judge, and we'll see how he likes hearing you make a mockery of our justice system!"`);
     } else {
-      if (((s as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
+      if (((st as any).policeQW ?? 0)?.['prostitution_bribe'] === 1) {
         scene.img('images/locations/shared/police/interrogationpro.jpg');
         scene.text('You tear up. "And that\'s when I thought I could bribe the officer with money…"');
         scene.text('The detective\'s face twists into a scowl. "You thought you could just buy your way out of this? That\'s not how the world works! Your actions have consequences!"');
         scene.text('You shake your head. "Not at all! I\'ve heard from the other girls that they\'ve gotten away by doing that, so I thought--"');
         // TODO-QSP: dynamic text: He slams his fist down on the table. "You think you can get away with telling th...
-        scene.text(`He slams his fist down on the table. "You think you can get away with telling these kind of lies against our fine police force?! You're in deep shit now, ${((s as any).pcs_firstname || '')}. I'm taking you to see the judge, and we'll see how he likes hearing you make a mockery of our justice system!"`);
+        scene.text(`He slams his fist down on the table. "You think you can get away with telling these kind of lies against our fine police force?! You're in deep shit now, ${((st as any).pcs_firstname || '')}. I'm taking you to see the judge, and we'll see how he likes hearing you make a mockery of our justice system!"`);
       } else {
         scene.img('images/locations/shared/police/interrogationpro.jpg');
         scene.text('As you finish, you see the detective looks at you. "Good, just what I was looking for. You\'ve confessed everything. Makes my job, and the prosecutor\'s, much easier."');
@@ -599,7 +599,7 @@ function enterFirstPublicIndecency(s: GameState, scene: SceneBuilder): void {
 function enterPublicIndecencyInterrogation(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 1;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 1);
   scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
   // TODO-QSP: dynamic text: "So,"' + ' the detective says, leaning back in his chair and looking you over wi...
   scene.text('"So,"\' + \' the detective says, leaning back in his chair and looking you over with unconcealed amusement. "Public indecency. In the park." He lets that hang in the air for a moment. "You want to explain that to me?"');
@@ -607,14 +607,14 @@ function enterPublicIndecencyInterrogation(s: GameState, scene: SceneBuilder): v
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    (s as any).picrand = Math.floor(Math.random() * 2) + 1;
-    scene.img(`images/locations/shared/police/interrogation${((s as any).picrand || '')}.jpg`);
-    // TODO-QSP: dynamic text: "I'm waiting,"' + ' he says. You take a breath and start talking. He writes thin...
+    qspCall(st, 'stat', '');
+    (st as any).picrand = (Math.floor(Math.random() * 2) + 1);
+    scene.img(`images/locations/shared/police/interrogation${((st as any).picrand || '')}.jpg`);
+    // TODO-QSP: dynamic text: "I''m waiting,"' + ' he says. You take a breath and start talking. He writes thi...
     scene.text('"I\'m waiting,"\' + \' he says. You take a breath and start talking. He writes things down, occasionally raising an eyebrow but saying nothing until you\'ve finished.');
-    // TODO-QSP: dynamic text: "Okay. That's all I need. You'll see the judge and he'll decide what to do with ...
-    scene.text(`"Okay. That's all I need. You'll see the judge and he'll decide what to do with you." He closes the folder and stands. "Don't make a habit of this, ${((s as any).pcs_firstname || '')}."`);
-    if (((s as any).flash_police_resist ?? 0) === 1) {
+    // TODO-QSP: dynamic text: "Okay. That''s all I need. You''ll see the judge and he''ll decide what to do wi...
+    scene.text(`"Okay. That's all I need. You'll see the judge and he'll decide what to do with you." He closes the folder and stands. "Don't make a habit of this, ${((st as any).pcs_firstname || '')}."`);
+    if (((st as any).flash_police_resist ?? 0) === 1) {
       scene.text('"Oh, and resisting arrest." He taps the folder. "The judge is going to enjoy that one."');
     }
     scene.actions([

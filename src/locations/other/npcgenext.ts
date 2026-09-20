@@ -7,10 +7,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRstd(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === ''  &&  ((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  &&  Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 'A' + ((s as any).locArgs?.[1] ?? 0) + '';
   }
   if (!isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== ''  &&  parseFloat((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) < 10) {
@@ -19,7 +19,7 @@ function enterRstd(s: GameState, scene: SceneBuilder): void {
     (s as any).tempvan1 = ((s as any).locArgs?.[1] ?? 0);
   }
   if ((Math.floor(Math.random() * 101) + 0) === 100) {
-    (s as any).tempvenerial = Math.floor(Math.random() * 4) + 1;
+    (s as any).tempvenerial = (Math.floor(Math.random() * 4) + 1);
     if (((s as any).tempvenerial ?? 0) === 1) {
       ((s as any).npc_herpes = (s as any).npc_herpes ?? {})[String((s as any).tempvan1 ?? 0)] = 1;
     } else {

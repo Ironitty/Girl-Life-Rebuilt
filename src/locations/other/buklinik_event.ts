@@ -143,7 +143,7 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
   scene.text('You and several other volunteers head out and scour the parks, trying to find the alcoholic Olga sent you to find.');
   scene.text('You get close to a makeshift camp as one of the volunteers shouts, "Why did you leave?! Come with us, we\'ll take you back to the shelter."');
   scene.text('He shouts back, "Fuck off! Why would I?! I\'m fine here; I see lovely ladies jog past here every day. I won\'t return unless you\'ve got hot girls at that shit place."');
-  // TODO-QSP: dynamic text: The volunteer turns to you, "We've been going back and forth with this old perve...
+  // TODO-QSP: dynamic text: The volunteer turns to you, "We''ve been going back and forth with this old perv...
   scene.text(`The volunteer turns to you, "We've been going back and forth with this old pervert for weeks. ${((s as any).pcs_nickname || '')}, do you have any idea how to lure him back?"`);
   scene.text('You notice the old man\'s eyes dart towards your hips and back; maybe someone could distract him with a panty flash, but they\'d have to be pretty horny to even consider it.');
   if (((s as any).pcs_horny ?? 0) > 50  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 1  &&  ((s as any).pcs_inhib ?? 0) > 20) {
@@ -188,7 +188,7 @@ function enterHall(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/city/industrial/mercyclinic/kor.jpg');
   if (((s as any).nanny_vika ?? 0) === 1) {
-    scene.text('The beautiful <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027vika\\u0027); return false;">Vika</a> is standing by the mirror.');
+    scene.text('The beautiful <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027vika/u0027); return false;">Vika</a> is standing by the mirror.');
     scene.actions([
       { label: 'Go', goto: ['city_industrial', ''] },
     ]);
@@ -210,11 +210,11 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nanny_clean_day ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Start cleaning', handler: (st: GameState) => {
-    (s as any).nanny_cleaning = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 45;
-    (s as any).nanny_clean_day = ((s as any).daystart ?? 0);
-    qspCall(s, 'mood', 'lower', 'small');
-    qspCall(s, 'stat', '');
+    (st as any).nanny_cleaning = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 45;
+    (st as any).nanny_clean_day = ((st as any).daystart ?? 0);
+    qspCall(st, 'mood', 'lower', 'small');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/mercyclinic/uborka.jpg');
     scene.text('You cleaned the apartment.');
     scene.actions([
@@ -225,7 +225,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027buklinik_event\\u0027, \\u0027misha\\u0027); return false;">Michael</a> lies in bed reading a book.');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027misha/u0027); return false;">Michael</a> lies in bed reading a book.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Out', goto: ['buklinik_event', 'hall'] },
@@ -243,9 +243,9 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nanny_cook_day ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Cook', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 45;
-    (s as any).nanny_cook_day = ((s as any).daystart ?? 0);
-    (s as any).nanny_food = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 45;
+    (st as any).nanny_cook_day = ((st as any).daystart ?? 0);
+    (st as any).nanny_food = 1;
     scene.img('images/locations/city/industrial/mercyclinic/gotovka.jpg');
     scene.text('You cook the food and feed Michael.');
     scene.actions([
@@ -271,7 +271,7 @@ function enterVika(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     // TODO-QSP: $zz_str[0] = 'You talk with Vika, laugh, and tell each other jokes. She is a very cheerful girl.'
     // TODO-QSP: $zz_str[1] = 'You ask Vika about the university. She says that she is studying medicine in her last ...
     // TODO-QSP: $zz_str[2] = 'You ask Vika about her boyfriend. She smiles and says, "Well, I have a boyfriend. Can ...
@@ -286,11 +286,11 @@ function enterVika(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'But don\'t be late?', handler: (st: GameState) => {
-    (s as any).nanny_vika = 0;
-    qspCall(s, 'stat', '');
+    (st as any).nanny_vika = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/vika/2.jpg');
     // TODO-QSP: dynamic text: - Oh, right! well I ran. While, <<$pcs_nickname>>.
-    scene.text(`- Oh, right! well I ran. While, ${((s as any).pcs_nickname || '')}.`);
+    scene.text(`- Oh, right! well I ran. While, ${((st as any).pcs_nickname || '')}.`);
     scene.text('- So Far, Vika.');
     scene.text('Well, I guess I gotta go to Michael, see you.');
     scene.actions([
@@ -312,7 +312,7 @@ function enterMisha(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     // TODO-QSP: $zz_str[0] = 'You were talking with Michael, and I learned that he was born in Pavlovo, just like yo...
     // TODO-QSP: $zz_str[1] = 'At an early age, he lost a sister, Anastasia, to pneumonia. Then, for several years, h...
     // TODO-QSP: $zz_str[2] = 'He explains that in his childhood, he loved to play with the neighborhood children… Bu...
@@ -353,7 +353,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
   (s as any).buklinik = 11;
   (s as any).buklinikDay = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  qspCall(s, 'exp_gain', 'medcn', Math.floor(Math.random() * 4) + 0);
+  qspCall(s, 'exp_gain', 'medcn', (Math.floor(Math.random() * 4) + 0));
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/vika/3.jpg');
   scene.text('You arrived at the address and knocked on the door. A young girl opened it and asked:');
@@ -376,7 +376,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
     scene.text('Once she rescued him, he greeted you:');
     scene.text('- Hello, my name is Michael.');
     // TODO-QSP: dynamic text: - Hello, I am <<$pcs_nickname>>. - you replied.
-    scene.text(`- Hello, I am ${((s as any).pcs_nickname || '')}. - you replied.`);
+    scene.text(`- Hello, I am ${((st as any).pcs_nickname || '')}. - you replied.`);
     scene.text('- Oh, I haven\'t even introduced myself. My name is Vika! - the girl interjected.');
     scene.text('- Do you have any experience? - Michael asked.');
     scene.text('- No, not really, - you simply answered.');
@@ -388,8 +388,8 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
     scene.text('- No, no, of course not! - you immediately said.');
     scene.text('- I hope you understand everything. If it were not for some personal stuff, we wouldn\'t need another nurse, - she said.');
     scene.text('- Understood, - you replied.');
-    // TODO-QSP: dynamic text: - Well, okay, then. I'll go now, Michael. - she kissed him on the forehead. - I'...
-    scene.text(`- Well, okay, then. I'll go now, Michael. - she kissed him on the forehead. - I'll be back, ${((s as any).pcs_firstname || '')}. - she waved goodbye and closed the door.`);
+    // TODO-QSP: dynamic text: - Well, okay, then. I''ll go now, Michael. - she kissed him on the forehead. - I...
+    scene.text(`- Well, okay, then. I'll go now, Michael. - she kissed him on the forehead. - I'll be back, ${((st as any).pcs_firstname || '')}. - she waved goodbye and closed the door.`);
     scene.text('- Here we are, all alone, - Michael said a little sadly.');
     scene.actions([
       { label: 'Don\'t worry; everything will be fine', goto: ['buklinik_event', 'hall'] },
@@ -409,8 +409,8 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   (s as any).buklinikDay = ((s as any).daystart ?? 0);
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
-  scene.img('images/characters/city/vika/\'+iif(ARGS[1]=0, 5, 3)+\'.jpg');
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  scene.img('images/characters/city/vika/' + ((Number((s as any).locArgs?.[1] ?? 0)===0) ? (5) : (3)) + '.jpg');
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.text('You arrive at the address and knock on the door. Vika opens it.');
     // TODO-QSP: dynamic text: - Oh, hey, <<$pcs_nickname>>! Do you mind if I call you that?
     scene.text(`- Oh, hey, ${((s as any).pcs_nickname || '')}! Do you mind if I call you that?`);
@@ -419,21 +419,21 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     scene.text('- I enjoyed conversing with him too.');
     scene.text('- Damn, I\'m getting jealous! - she chuckles. - Well, I\'ll run now. Let\'s talk next time. Look, don\'t misbehave while I\'m gone! - she says, playfully poking you in the ribs before walking away.');
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.text('As usual, when you arrive to see Michael, Vika opens the door.');
-    // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>. We've been waiting for you.
+    // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>. We''ve been waiting for you.
     scene.text(`- Hi, ${((s as any).pcs_nickname || '')}. We've been waiting for you.`);
     scene.text('- Well, here I am, - you respond.');
     scene.text('- Let\'s go then. I\'m off! - she says cheerfully.');
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 2  ||  ((s as any).locArgs?.[1] ?? 0) === 4) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 2  ||  Number((s as any).locArgs?.[1] ?? 0) === 4) {
     scene.text('You arrive at Michael\'s place, and Vika opens the door.');
     // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>.
     scene.text(`- Hi, ${((s as any).pcs_nickname || '')}.`);
     scene.text('- Hi, - you reply.');
     scene.text('- Come in already!');
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 3) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
     scene.text('You arrive at Michael\'s, and the door is already open for you by Vika.');
     // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>.
     scene.text(`- Hi, ${((s as any).pcs_nickname || '')}.`);
@@ -441,7 +441,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     scene.text('- How are you feeling today? - she asks.');
     scene.text('- Thanks, I\'m feeling pretty normal, - you answer with a smile.');
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 5) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
     if (((s as any).MishaLove ?? 0) === 1) {
       scene.text('You arrive at Michael\'s, and Vika opens the door for you.');
       // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>.
@@ -718,8 +718,8 @@ function enterEvent2NannyAct2(s: GameState, scene: SceneBuilder): void {
     scene.text('- I\'m sorry; I didn\'t mean to offend or insult you, just…');
     scene.text('- Just what? What do you take me for?');
     scene.text('- I\'m sorry again… I shouldn\'t have suggested that. Just forget it.');
-    qspCall(s, 'willpower', 'sex', 'resist', 'easy');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'easy');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Wait For Vika', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -728,10 +728,10 @@ function enterEvent2NannyAct2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Wait For Vika', handler: (st: GameState) => {
-    (s as any).bumtolik = 3000;
-    qspCall(s, 'willpower', 'sex', 'resist', 'easy');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).bumtolik = 3000;
+    qspCall(st, 'willpower', 'sex', 'resist', 'easy');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('Silently, without speaking to Michael, you waited for Vika, who looked at you sadly. As soon as she arrived, you prepared to leave. Vika was surprised that you didn\'t even say goodbye.');
     scene.text('<br><b>END of CURRENT STORY : REFUSE</b>');
     scene.actions([
@@ -742,8 +742,8 @@ function enterEvent2NannyAct2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Okay, I\'ll think about it!', handler: (st: GameState) => {
-    (s as any).nanny_vika = 1;
-    (s as any).bumtolik = 12;
+    (st as any).nanny_vika = 1;
+    (st as any).bumtolik = 12;
     scene.text('- Okay, I\'ll consider it, but no promises.');
     scene.text('- Really? - Michael asked, happy.');
     scene.text('- Yes, it\'s true.');
@@ -787,8 +787,8 @@ function enterEvent2NannyAct3(s: GameState, scene: SceneBuilder): void {
     scene.text('You felt sorry for him - surely he was right when he spoke about the inability to find a mate? Despite the fact that you were familiar not so long ago, he managed to please you. Would you meet him or be afraid? Suddenly, such a thought came to your mind. You would like to assure Michael that he and Victoria could do it, but at the same time, you were afraid to give false hope.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/mercyclinic/misha.jpg');
     scene.text('I don\'t know how to predict fate; I\'ll just help you prepare to meet the right woman so you could build a strong, healthy relationship, you said. - Let\'s talk about how everything will go, and what your body is capable of.');
     scene.text('- Suppose you have entered into a relationship with someone who you think is perfect for you. What do you feel?');
@@ -813,16 +813,16 @@ function enterEvent2NannyAct3(s: GameState, scene: SceneBuilder): void {
     scene.text('To my surprise, he refused. Finally, I removed the sleeve from his left hand and moved to the right.');
     scene.actions([
       { label: 'Remove his pants', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/mercyclinic/pants.mp4');
     scene.text('It\'s time to remove the pants. The left thigh was lifted and rolled to one side so that the bone was hanging, and the part of the left buttock was visible. He weighed seventy pounds and was light enough that I could pull down the elastic band of his pants and underwear, sliding them down to his knees without lifting him from the bed. I pulled the trouser legs down, revealing his fragile body entirely.');
     scene.text('- How are you feeling, Misha? Are you hot?');
     scene.text('"Yes," he replied quietly.');
     scene.actions([
       { label: 'Undress myself', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.text('It was my turn to undress. I took off all my clothes and put them on the chair. He watched.');
     scene.text('- I\'ve never seen a naked woman, he said, stammering.');
     scene.text('Despite his thin body, Michael had chubby cheeks, which were now covered with a pink blush.');
@@ -835,16 +835,16 @@ function enterEvent2NannyAct3(s: GameState, scene: SceneBuilder): void {
     scene.text('- Well, you said.');
     scene.actions([
       { label: 'Touch him', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.text('My hands began to explore it, starting with the toes and ending at the head, noting every feature: skin tone, temperature, freckles, scars. All you did was provide an opportunity to see which parts of his body respond better to touch. It is not only the genitals that can be a source of fun and excitement.');
     scene.text('- Tickled?');
     scene.text('- No, it\'s good.');
     scene.text('You slowly ran your palms over his thighs and continued on your way. Michael\'s cock was already hard, the scrotum swollen and suffused with a thick brownish-red. You gently took the cock in your hand and held the tip of your finger around it.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/mercyclinic/sex/cum.mp4');
     scene.text('When I let go of his hand and my fingers were already on Misha\'s stomach, he let out a light grunt and came. Frowning, he quietly swore. Then he said: "Sorry."');
     scene.text('- Don\'t worry, it\'s all right, you replied.');
@@ -857,8 +857,8 @@ function enterEvent2NannyAct3(s: GameState, scene: SceneBuilder): void {
     scene.text('Misha asked if he could kiss my breasts…');
     scene.actions([
       { label: 'Give your chest', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/mercyclinic/sex/nipple.mp4');
     scene.text('You brought your left breast to his lips.');
     scene.text('Now, the other one, you said with fake seriousness.');
@@ -866,7 +866,7 @@ function enterEvent2NannyAct3(s: GameState, scene: SceneBuilder): void {
     scene.text('I heard a short sob, and you realized that he needed air. You sat up on your elbows and handed him the Respirator. He took a few sips, and a smile played on his lips while he breathed.');
     scene.actions([
       { label: 'Well, on this, we\'re finished', handler: (st: GameState) => {
-    (s as any).nanny_vika = 1;
+    (st as any).nanny_vika = 1;
     scene.text('You put yourself and Michael got dressed, waiting for Vika, you said goodbye and left.');
     scene.actions([
       { label: 'Go', goto: ['buklinik', 'olga2'] },
@@ -926,7 +926,7 @@ function enterEvent2NannyAct4(s: GameState, scene: SceneBuilder): void {
     scene.text('You undressed.');
     scene.actions([
       { label: 'Lie down on the bed', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.text('When you were about to fall on the bed, Michael shouted: "My God, my God, my God," - cumshot.');
     scene.text('He is so very red that two huge red poppies blossomed on his cheeks.');
     scene.text('- All right, Mark, though, you lay down and put your arms around him, feeling the frequent beat of his heart. Remember the breathing exercises I showed you last time?');
@@ -957,7 +957,7 @@ function enterEvent2NannyAct4(s: GameState, scene: SceneBuilder): void {
     scene.text('You suddenly wanted him to make you a pussy.');
     scene.actions([
       { label: 'Want Cunnilingus', handler: (st: GameState) => {
-    ((s as any).stat = (s as any).stat ?? {})['cuni'] = ((s as any).stat['cuni'] ?? 0) + (1);
+    ((st as any).stat = (st as any).stat ?? {})['cuni'] = ((st as any).stat['cuni'] ?? 0) + (1);
     scene.img('images/locations/city/industrial/mercyclinic/sex/facesitting.mp4');
     scene.text('You told him about it. He immediately agreed. You sat on his face and began to slowly move your hips. Arousal gushed on, and you reached…');
     scene.actions([
@@ -971,10 +971,10 @@ function enterEvent2NannyAct4(s: GameState, scene: SceneBuilder): void {
     scene.text('After inhaling, he asked if we could have sex. You asked him to listen to your breath, reached into your purse for a condom, and quickly put it on.');
     scene.actions([
       { label: 'take the dick', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A185');
-    (s as any).spafinloc = 1;
-    qspCall(s, 'cum_manage', '');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'boyStat', 'A185');
+    (st as any).spafinloc = 1;
+    qspCall(st, 'cum_manage', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/mercyclinic/sex/cum2.mp4');
     scene.text('You slung it over his legs and sank down so that his penis touched your pubic hair. Before you could insert his cock, he came.');
     scene.text('- All right, all right, you.');
@@ -1007,18 +1007,18 @@ function enterEvent2NannyAct4(s: GameState, scene: SceneBuilder): void {
     scene.text('Finished Michael.');
     scene.actions([
       { label: 'that\'s fine', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/mercyclinic/sex/end.jpg');
     scene.text('- Misha, it was perfect. I want you to know how glad I am that we met and that we had a chance to help you.');
     scene.text('You ran a finger along his hip and down his leg. You felt an excitement not yet experienced all the time you were together. You took his face in your hands and kissed his forehead.');
     scene.actions([
       { label: 'Well, on this we\'re finished', handler: (st: GameState) => {
-    (s as any).nanny_vika = 1;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
+    (st as any).nanny_vika = 1;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
     scene.text('You take a quick shower and get dressed, then you say goodbye to Michael and you are ready to leave. Soon Vika arrives.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
     scene.actions([
@@ -1086,12 +1086,12 @@ function enterEvent2NannyAct5(s: GameState, scene: SceneBuilder): void {
     scene.text('I\'ll just put the tip in and see what happens.');
     scene.actions([
       { label: 'Insert the penis', handler: (st: GameState) => {
-    qspCall(s, 'cum_manage', '');
+    qspCall(st, 'cum_manage', '');
     scene.img('images/locations/city/industrial/mercyclinic/sex/sex.mp4');
     scene.text('You took his cock in your hand and placed the head at your pussy, asking him to rate his level of arousal. At first, you didn\'t move, then you lowered yourself down. After about a minute, he reached orgasm.');
-    (s as any).orgasm_or = 'No';
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'No';
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/misha.jpg');
@@ -1104,15 +1104,15 @@ function enterEvent2NannyAct5(s: GameState, scene: SceneBuilder): void {
     scene.text('This process began when he first touched your breast in the initial session, and now he had advanced much further. If you\'re lucky, this progress could be useful to him in a relationship with a future partner.');
     scene.actions([
       { label: 'Well, we will conclude here for today', handler: (st: GameState) => {
-    (s as any).nanny_vika = 1;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
+    (st as any).nanny_vika = 1;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
     scene.text('You take a quick shower and dress both yourself and Michael, then say goodbye to him and get ready to leave. Soon, Vika arrives.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go', goto: ['buklinik', 'olga2'] },
     ]);
@@ -1139,34 +1139,34 @@ function enterEvent2NannyAct6(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
     scene.text('You held his penis in your hands for a few minutes and he asked if he could kiss your vagina.');
-    qspCall(s, 'arousal', 'hj', 2);
+    qspCall(st, 'arousal', 'hj', 2);
     scene.actions([
       { label: 'Of course', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/sex/lick.mp4');
     scene.text('You leaned over his mouth. He gently kissed it, ran his tongue inside. He was licking your little lips, and his tongue penetrated even deeper, quickly touching your lips. He kissed the clitoris. A wonderful feeling. You were excited. He\'s really good, a talent! You decided to reciprocate his oral caress.');
-    qspCall(s, 'arousal', 'cuni', 2);
+    qspCall(st, 'arousal', 'cuni', 2);
     scene.actions([
       { label: 'Go down to the member', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/sex/dickplay.mp4');
     scene.text('You ran a finger across his cock, and he jerked slightly, which caused you to smile.');
-    qspCall(s, 'arousal', 'hj', 2);
+    qspCall(st, 'arousal', 'hj', 2);
     scene.actions([
       { label: 'Suck', handler: (st: GameState) => {
     scene.img('images/locations/city/industrial/mercyclinic/sex/suck.mp4');
     scene.text('You sucked his dick.');
-    qspCall(s, 'arousal', 'bj', 5);
+    qspCall(st, 'arousal', 'bj', 5);
     scene.actions([
       { label: 'Take the dick', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A185');
-    qspCall(s, 'cum_manage', '');
+    qspCall(st, 'boyStat', 'A185');
+    qspCall(st, 'cum_manage', '');
     scene.img('images/locations/city/industrial/mercyclinic/sex/anal.mp4');
     scene.text('You put on a condom and slid your finger on his back, easily tightening the member by hand. You slung your leg over to make sure his cock was inside you, and began to move, rocking. You felt your vagina swell. Together with him, you reached the highest point of arousal. You took a breath, but then stopped to ask Misha how he rated his arousal.');
     scene.text('- About eight, he said.');
     scene.text('You quickened the pace. Misha came. His excitement lasted longer than during any of your previous sessions.');
-    (s as any).orgasm_or = 'yes';
-    (s as any).orgasm_txt = 'Even after orgasm, his cock was still hard, so you made a few more movements up and down and came.';
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    (st as any).orgasm_txt = 'Even after orgasm, his cock was still hard, so you made a few more movements up and down and came.';
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'arousal', 'end');
     scene.text('He almost immediately asked if you had an orgasm. When you said you did, he beamed.');
     scene.actions([
       { label: 'You need oxygen?', handler: (st: GameState) => {
@@ -1184,20 +1184,20 @@ function enterEvent2NannyAct6(s: GameState, scene: SceneBuilder): void {
     scene.text('- Yeah, you\'re probably right.');
     scene.actions([
       { label: 'Wait for Vika', handler: (st: GameState) => {
-    (s as any).nanny_vika = 1;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
+    (st as any).nanny_vika = 1;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
     scene.text('You take a quick shower and dress yourself and Misha.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.<br>');
     }
     scene.text('Vika soon came, and quickly passed by you, saying: Oh, excuse me, I need the toilet!.');
     scene.text('- Well, it\'s time to say goodbye, Misha. - you said sadly.');
     scene.actions([
       { label: 'Kiss on the cheek', handler: (st: GameState) => {
-    (s as any).nanny_story = 1;
-    (s as any).bumtolik = 16;
+    (st as any).nanny_story = 1;
+    (st as any).bumtolik = 16;
     scene.img('images/locations/city/industrial/mercyclinic/kiss_cheek.jpg');
     scene.text('Goodbye, Misha.');
     scene.actions([
@@ -1205,9 +1205,9 @@ function enterEvent2NannyAct6(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Kiss on the lips', handler: (st: GameState) => {
-    (s as any).nanny_story = 1;
-    (s as any).bumtolik = 16;
-    (s as any).MishaLove = 1;
+    (st as any).nanny_story = 1;
+    (st as any).bumtolik = 16;
+    (st as any).MishaLove = 1;
     scene.img('images/shared/sex/kiss/kiss_lips.mp4');
     scene.text('Goodbye, Misha.');
     scene.actions([

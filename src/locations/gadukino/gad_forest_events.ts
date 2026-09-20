@@ -5,9 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'event_outdoors';
-  qspCall(s, 'stat', '');
-  (s as any).ReturnAdr = ((s as any).locArgs?.[1] ?? 0);
   scene.build();
 }
 
@@ -20,27 +17,27 @@ function enterFindMeadow(s: GameState, scene: SceneBuilder): void {
     { label: 'Follow the path to see where it goes', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/meadow/meadow_thicket.jpg');
     scene.text('You follow the path to see where it goes, but soon it becomes indistinguishable from the bushes and trees around you.');
-    (s as any).gad_meadow_found = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).gad_meadow_found = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Look around', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/meadow/meadow_trail.jpg');
     scene.text('You\'re about to return to the forest\'s edge, but you spot a small break in the thicket. From the looks of it, it\'s no more than an animal trail.');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Head down the trail', handler: (st: GameState) => {
-    scene.img(`images/locations/gadukino/meadow/meadow1_${Math.floor(Math.random() * 6) + 0}.jpg`);
+    scene.img(`images/locations/gadukino/meadow/meadow1_${(Math.floor(Math.random() * 6) + 0)}.jpg`);
     scene.text('A few minutes later, you reach a majestic meadow filled with wildflowers. Judging by its peaceful state, no one else uses it or has even been here in a long time.');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Claim the meadow as your own', handler: (st: GameState) => {
-    scene.img(`images/locations/gadukino/meadow/meadow1_${Math.floor(Math.random() * 6) + 0}.jpg`);
+    scene.img(`images/locations/gadukino/meadow/meadow1_${(Math.floor(Math.random() * 6) + 0)}.jpg`);
     scene.text('You spend some time exploring the meadow and its surroundings. You\'re positive no one visits this location. You proclaim the field to be your secret hideaway, all your own.');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['gad_meadow', 'start'] },
     ]);
@@ -136,28 +133,28 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Resist and keep your clothes on', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    if (((s as any).pcs_inhib ?? 0) < 50) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
+    if (((st as any).pcs_inhib ?? 0) < 50) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
-    qspCall(s, 'npc_relationship', 'modify', 'A60', (-3));
-    if (((s as any).pcs_inhib ?? 0) < 25) {
-      qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
+    qspCall(st, 'npc_relationship', 'modify', 'A60', (-3));
+    if (((st as any).pcs_inhib ?? 0) < 25) {
+      qspCall(st, 'willpower', 'exhib', 'resist', 'easy');
     } else {
-      if (((s as any).pcs_inhib ?? 0) > 25  &&  ((s as any).pcs_inhib ?? 0) < 50) {
-        qspCall(s, 'willpower', 'exhib', 'resist');
+      if (((st as any).pcs_inhib ?? 0) > 25  &&  ((st as any).pcs_inhib ?? 0) < 50) {
+        qspCall(st, 'willpower', 'exhib', 'resist');
       } else {
-        if (((s as any).pcs_inhib ?? 0) > 50) {
-          qspCall(s, 'willpower', 'exhib', 'resist', ' hard');
+        if (((st as any).pcs_inhib ?? 0) > 50) {
+          qspCall(st, 'willpower', 'exhib', 'resist', ' hard');
         }
       }
     }
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/miraforest2.jpg');
     // TODO-QSP: dynamic text: Mira pouts at you for refusing to undress for a moment, then she smiles again, "...
-    scene.text(`Mira pouts at you for refusing to undress for a moment, then she smiles again, "Alright then, ${((s as any).pcs_nickname || '')}, we can still just go for a normal walk instead."`);
+    scene.text(`Mira pouts at you for refusing to undress for a moment, then she smiles again, "Alright then, ${((st as any).pcs_nickname || '')}, we can still just go for a normal walk instead."`);
     scene.actions([
       { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
     ]);
@@ -167,16 +164,16 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Give in to Mira', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    if (((s as any).pcs_inhib ?? 0) < 50) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 2);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    if (((st as any).pcs_inhib ?? 0) < 50) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 2));
     }
-    qspCall(s, 'npc_relationship', 'modify', 'A60', 5);
-    qspCall(s, 'outfit', 'strip_all', 'forest_edge');
-    ((s as any).MiraVars = (s as any).MiraVars ?? {})['strip_loc'] = 'forest_edge';
-    qspCall(s, 'arousal', 'flash', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'npc_relationship', 'modify', 'A60', 5);
+    qspCall(st, 'outfit', 'strip_all', 'forest_edge');
+    ((st as any).MiraVars = (st as any).MiraVars ?? {})['strip_loc'] = 'forest_edge';
+    qspCall(st, 'arousal', 'flash', 5);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/gadukino/mira/miraforest5.jpg');
     scene.text('Seeing that your resistance had stopped, Mira quickly began to undress you, leaving your clothes in a pile on the forest floor.');
     scene.actions([
@@ -208,7 +205,7 @@ function enterMushroomPickers1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You quickly remember you are naked right now and back away from them. It\'s a good thing they didn\'t see you here. If they did, it would be the talk of the whole village.');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     qspCall(s, 'stat', '');
   }
   // TODO-QSP: end
@@ -228,7 +225,7 @@ function enterMushroomPickers2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You quickly remember you are naked right now and back away from them. It\'s a good thing they didn\'t see you here. If they did, it would be the talk of the whole village.');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   } else {
     scene.actions([
       { label: 'Follow them', goto: ['gad_forest', 'forest_outskirts'] },
@@ -250,35 +247,35 @@ function enterMushroomPickers3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You quickly remember you are naked right now and back away from them. It\'s a good thing they didn\'t see you here. If they did, it would be the talk of the whole village.');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   } else {
     scene.actions([
       { label: 'Say Hello', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/forest/mushroom_pickers3.jpg');
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    if (((s as any).pickersQW ?? 0) <= 3) {
-      (s as any).pickersQW = ((s as any).pickersQW ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    if (((st as any).pickersQW ?? 0) <= 3) {
+      (st as any).pickersQW = ((st as any).pickersQW ?? 0) + (1);
     }
-    if (((s as any).pickersQW ?? 0) < 3) {
+    if (((st as any).pickersQW ?? 0) < 3) {
       scene.text('You politely greet them as you are passing by. The men glance at you and respond the same.');
     } else {
       scene.text('You politely greet them as you are passing by. The men look at you and invite you to stop and chat for a bit.');
       scene.actions([
         { label: 'Chat', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'gad_forest', 'bushcraft', 'forest_outskirts');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'gad_forest', 'bushcraft', 'forest_outskirts');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/forest/mushroom_pickers3.jpg');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('They are very good at finding mushrooms and berries. One of them shows you his basket full of mushrooms and berries. You spend ten minutes talking about the forest and the best places to find mushrooms and berries before continuing your day.');
     } else {
       scene.text('One of them asks, "How is your day going?"');
-      if (((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
+      if (((st as any).boletus ?? 0) + ((st as any).boletus_cooked ?? 0) + ((st as any).bilberry ?? 0) < 5) {
         scene.text('"Not great today," you answer sadly, showing him your less-than-full basket.');
         scene.text('"Here you go, have a few of mine." the man says, giving you a couple mushrooms and berries from his basket.');
         scene.text('You spend ten minutes talking about the forest and the best places to find mushrooms and berries before continuing your day.');
-        (s as any).boletus = ((s as any).boletus ?? 0) + (Math.floor(Math.random() * 2) + 1);
-        (s as any).bilberry = ((s as any).bilberry ?? 0) + (Math.floor(Math.random() * 2) + 1);
+        (st as any).boletus = ((st as any).boletus ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+        (st as any).bilberry = ((st as any).bilberry ?? 0) + ((Math.floor(Math.random() * 2) + 1));
       } else {
         scene.text('"Pretty well today," you answer happily, showing him your full basket.');
         scene.text('You spend ten minutes talking about the forest and the best places to find mushrooms and berries before continuing your day.');
@@ -290,7 +287,7 @@ function enterMushroomPickers3(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['gad_forest', 'forest_outskirts'] },
     ]);
@@ -308,18 +305,18 @@ function enterMushroomPickers3(s: GameState, scene: SceneBuilder): void {
 function enterMushroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'gad_forest', 'bushcraft', 'forest_center');
-  scene.img('images/locations/gadukino/forest/mushroom0.\'+rand(1, 3)+\'.jpg');
+  scene.img('images/locations/gadukino/forest/mushroom0.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
   scene.text('Wandering deep in the forest, you stumble upon a clearing full of mushrooms. How lucky!');
   if (((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
     scene.actions([
       { label: 'Gather mushrooms', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
-    (s as any).boletus = ((s as any).boletus ?? 0) + (Math.floor(Math.random() * 3) + 3);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'gad_forest', 'picking_clothes', 'forest_center', 'mushroom');
+    (st as any).boletus = ((st as any).boletus ?? 0) + ((Math.floor(Math.random() * 3) + 3));
+    qspCall(st, 'stat', '');
+    qspCall(st, 'gad_forest', 'picking_clothes', 'forest_center', 'mushroom');
     scene.text('You begin collecting mushrooms trying to make everything fit in your basket.');
     scene.actions([
       { label: 'Continue', goto: ['gad_forest', 'forest_center'] },
@@ -341,18 +338,18 @@ function enterMushroom(s: GameState, scene: SceneBuilder): void {
 function enterBilberry(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'gad_forest', 'bushcraft', 'forest_center');
-  scene.img('images/locations/gadukino/forest/bilberry\'+rand(3, 5)+\'.jpg');
+  scene.img('images/locations/gadukino/forest/bilberry' + (Math.floor(Math.random() * 3) + 3) + '.jpg');
   scene.text('Wandering deep in the forest, you stumble upon a clearing full of berries. How lucky!');
   if (((s as any).boletus ?? 0) + ((s as any).boletus_cooked ?? 0) + ((s as any).bilberry ?? 0) < 5) {
     scene.actions([
       { label: 'Gather berries', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (((s as any).clothingworntype ?? 0) === 'nude') {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    if (((st as any).clothingworntype ?? 0) === 'nude') {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
-    (s as any).bilberry = ((s as any).bilberry ?? 0) + (Math.floor(Math.random() * 3) + 3);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'gad_forest', 'picking_clothes', 'forest_center', 'berry');
+    (st as any).bilberry = ((st as any).bilberry ?? 0) + ((Math.floor(Math.random() * 3) + 3));
+    qspCall(st, 'stat', '');
+    qspCall(st, 'gad_forest', 'picking_clothes', 'forest_center', 'berry');
     scene.text('You begin collecting berries trying to make everything fit in your basket.');
     scene.actions([
       { label: 'Continue', goto: ['gad_forest', 'forest_center'] },
@@ -410,7 +407,7 @@ function enterBasket(s: GameState, scene: SceneBuilder): void {
 function enterPicnic(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img('images/locations/gadukino/forest/picnic1.\'+rand(1, 4)+\'.jpg');
+  scene.img('images/locations/gadukino/forest/picnic1.' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('On the edge of the forest, you see some people. Apparently, they are having a family picnic.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You quickly remember you are naked right now and back away from them. It\'s a good thing they didn\'t see you here, if they did, it would be the talk of the whole village.');
@@ -418,17 +415,17 @@ function enterPicnic(s: GameState, scene: SceneBuilder): void {
     if (((s as any).clothesAtLocation ?? 0) === 1) {
       scene.actions([
         { label: 'Hide and get dressed', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'clothing', 'gad_swamp_clothes', 0);
-    qspCall(s, 'outfit', 'recover_lost_outfit', 'forest_edge', 1);
-    qspCall(s, 'stat', '');
-    if ((!((s as any).PCloSkirt ?? 0))) {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'clothing', 'gad_swamp_clothes', 0);
+    qspCall(st, 'outfit', 'recover_lost_outfit', 'forest_edge', 1);
+    qspCall(st, 'stat', '');
+    if ((!((st as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
-    if (((s as any).PCloSkirt ?? 0) > 0) {
+    if (((st as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest1.'+rand(1, 2)+'.jpg"></center>`);
+      scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
     }
     scene.text('You change into your clothes before anyone spots you.');
     scene.actions([
@@ -482,9 +479,9 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Stay in the forest', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? ''));
   } },
         ]);
       }
@@ -496,97 +493,97 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Keep walking', handler: (st: GameState) => {
-    ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (((s as any).pcs_apprnc ?? 0) / 12);
-    qspCall(s, 'arousal', 'flash', 5);
-    qspCall(s, 'arousal', 'end');
+    ((st as any).hunterVars = (st as any).hunterVars ?? {})['sexual_comfort'] = ((st as any).hunterVars['sexual_comfort'] ?? 0) + (((st as any).pcs_apprnc ?? 0) / 12);
+    qspCall(st, 'arousal', 'flash', 5);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/gadukino/forest/mitkanudeforest.jpg');
     scene.text('You pretend not to notice the hunters and walk right past them, swaying your hips pointedly to maximize the effect. Looking around, you see that the impact has exceeded your expectations. The men have been stopped in their tracks and are staring at you…');
     scene.actions([
-      { label: 'Continue', goto: ['gad_forest', 'ReturnAdr'] },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? '')); } },
     ]);
   } },
       { label: 'Hide', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/forest/hiding_woods.jpg');
     scene.text('They haven\'t noticed you yet, so you quickly hide from sight in a nearby bush. You wait until you can no longer hear them talking to continue on your way.');
     scene.actions([
-      { label: 'Continue', goto: ['gad_forest', 'ReturnAdr'] },
+      { label: 'Continue', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? '')); } },
     ]);
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Leave them alone', goto: ['gad_forest', 'ReturnAdr'] },
+    { label: 'Leave them alone', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? '')); } },
     { label: 'Approach the hunters', handler: (st: GameState) => {
-    if (((s as any).hunterVars ?? 0)?.['were_met'] === 0) {
-      ((s as any).hunterVars = (s as any).hunterVars ?? {})['were_met'] = 1;
-      qspCall(s, 'stat', '');
+    if (((st as any).hunterVars ?? 0)?.['were_met'] === 0) {
+      ((st as any).hunterVars = (st as any).hunterVars ?? {})['were_met'] = 1;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/gadukino/hunters/hanters.jpg');
       scene.text('You decide to approach the strangers and chat. You never know. Maybe they can show you some good places to find mushrooms and berries. After welcoming you, the whole company sat on the ground to rest and chat.');
-      // TODO-QSP: dynamic text: "What's your name'+iif(pcs_apprnc >= 60, ', beautiful', ')+'?" one of them asks.
-      scene.text('"What\'s your name\'+iif(pcs_apprnc >= 60, \', beautiful\', \')+\'?" one of them asks.');
+      // TODO-QSP: dynamic text: "What''s your name'+iif(pcs_apprnc >= 60, ', beautiful', '')+'?" one of them ask...
+      scene.text('"What\'s your name' + ((((st as any).pcs_apprnc ?? 0) >= 60) ? (', beautiful') : ('')) + '?" one of them asks.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you answer.
-      scene.text(`"${((s as any).pcs_nickname || '')}," you answer.`);
-      if (((s as any).GadBoy ?? 0)?.['river_gang'] === 0) {
-        (s as any).minut = ((s as any).minut ?? 0) + 30;
-        qspCall(s, 'stat', '');
+      scene.text(`"${((st as any).pcs_nickname || '')}," you answer.`);
+      if (((st as any).GadBoy ?? 0)?.['river_gang'] === 0) {
+        (st as any).minut = ((st as any).minut ?? 0) + 30;
+        qspCall(st, 'stat', '');
         scene.text('"I\'m Andrei," replies the older man, "And these are my friends from the village, Igor and Sergei."');
         // TODO-QSP: dynamic text: "By any chance, is your last name <<$pcs_lastname>>?" he asked. You looked at hi...
-        scene.text(`"By any chance, is your last name ${((s as any).pcs_lastname || '')}?" he asked. You looked at him and nodded.`);
-        // TODO-QSP: dynamic text: Don't be surprised, <<$pcs_nickname>>, you look a lot like your mother when she ...
-        scene.text(`Don't be surprised, ${((s as any).pcs_nickname || '')}, you look a lot like your mother when she was younger. I… Hmmm… very good to know. I'm also from Gadukino." said Andrei.`);
+        scene.text(`"By any chance, is your last name ${((st as any).pcs_lastname || '')}?" he asked. You looked at him and nodded.`);
+        // TODO-QSP: dynamic text: Don''t be surprised, <<$pcs_nickname>>, you look a lot like your mother when she...
+        scene.text(`Don't be surprised, ${((st as any).pcs_nickname || '')}, you look a lot like your mother when she was younger. I… Hmmm… very good to know. I'm also from Gadukino." said Andrei.`);
         scene.text('After chatting with them for about half an hour, the hunters begin to get up and gather their things.');
-        // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, it's time for us to go," said Andrei.
-        scene.text(`"Okay, ${((s as any).pcs_nickname || '')}, it's time for us to go," said Andrei.`);
+        // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, it''s time for us to go," said Andrei.
+        scene.text(`"Okay, ${((st as any).pcs_nickname || '')}, it's time for us to go," said Andrei.`);
         scene.text('"If you want, we will show you our camp," he added after a short pause. "From there, we have made a path back to the village. We can show it to you if you come with us. Or you can stay with us for a bit if you want."');
         scene.actions([
-          { label: 'Stay in the forest', goto: ['gad_forest', 'ReturnAdr'] },
+          { label: 'Stay in the forest', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? '')); } },
           { label: 'Go with them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
         ]);
       } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 15;
-        ((s as any).hunterVars = (s as any).hunterVars ?? {})['Rape'] = 1;
-        qspCall(s, 'stat', '');
+        (st as any).minut = ((st as any).minut ?? 0) + 15;
+        ((st as any).hunterVars = (st as any).hunterVars ?? {})['Rape'] = 1;
+        qspCall(st, 'stat', '');
         // TODO-QSP: dynamic text: "What are you doing so far from the village?" asks the older man, looking at you...
-        scene.text(`"What are you doing so far from the village?" asks the older man, looking at you closely, "It's ${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')}, the local whore."`);
+        scene.text(`"What are you doing so far from the village?" asks the older man, looking at you closely, "It's ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}, the local whore."`);
         scene.text('You look at him with a mixture of surprise and shock.');
         scene.text('"Don\'t be surprised. I\'m also from Gadukino, and you look just like your mother when she was younger, and apparently, you are a whore like her, too," he said.');
         scene.text('You don\'t even remember us. We remember you from that day by the river with Uncle Stepan.');
         scene.text('"I\'m Andrei, " he added further, "And these are my friends, also from the village, Igor and Sergei."');
-        if (((s as any).GadBoy ?? 0)?.['river_gang'] > 2) {
+        if (((st as any).GadBoy ?? 0)?.['river_gang'] > 2) {
           scene.text('I\'m not a whore. I told Uncle Stepan to go to hell! I didn\'t want that to happen to me!');
         }
         scene.text('"Don\'t run away. We won\'t hurt you," said Sergei, seeing you jump to your feet.');
         scene.text('"I think it\'s about time I left", you reply.');
         scene.text('You quickly move away from them, only slowing once you can no longer hear them talking.');
         scene.actions([
-          { label: 'Go back to the forest', goto: ['gad_forest', 'ReturnAdr'] },
+          { label: 'Go back to the forest', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? '')); } },
         ]);
       }
     } else {
       scene.img('images/locations/gadukino/hunters/hanters.jpg');
       scene.text('You decide to approach the guys and chat.');
-      if (((s as any).hunterVars ?? 0)?.['sexual_comfort'] < 60  ||  ((s as any).hunterVars ?? 0)?.['collective_opinion'] < 60) {
-        (s as any).minut = ((s as any).minut ?? 0) + 30;
+      if (((st as any).hunterVars ?? 0)?.['sexual_comfort'] < 60  ||  ((st as any).hunterVars ?? 0)?.['collective_opinion'] < 60) {
+        (st as any).minut = ((st as any).minut ?? 0) + 30;
         scene.text('After chatting with them for about half an hour, the hunters begin to get up and gather their things.');
-        // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, it's time for us to go," said Andrei. "You should pay ...
-        scene.text(`"Okay, ${((s as any).pcs_nickname || '')}, it's time for us to go," said Andrei. "You should pay us another visit sometime, okay?"`);
+        // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, it''s time for us to go," said Andrei. "You should pay...
+        scene.text(`"Okay, ${((st as any).pcs_nickname || '')}, it's time for us to go," said Andrei. "You should pay us another visit sometime, okay?"`);
         scene.actions([
-          { label: 'Stay in the forest', goto: ['gad_forest', 'ReturnAdr'] },
+          { label: 'Stay in the forest', handler: (st: GameState) => { qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? '')); } },
           { label: 'Go with them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['gad_swamp_yard', 'start'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, we were all looking forward to seeing you again," Andrei...
-        scene.text(`"Oh, ${((s as any).pcs_nickname || '')}, we were all looking forward to seeing you again," Andrei said with a smile.`);
+        scene.text(`"Oh, ${((st as any).pcs_nickname || '')}, we were all looking forward to seeing you again," Andrei said with a smile.`);
         scene.text('"How about you come back with us to our hut, we were just about to head back there anyways."');
-        qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+        qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Stay in the forest', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -595,9 +592,9 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Stay in the forest', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    // TODO-QSP: gt 'gad_forest', $ReturnAdr
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'gad_forest', ((st as any).ReturnAdr ?? ''));
   } },
           ]);
         }
@@ -629,30 +626,30 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
         { label: 'Spy on them', handler: (st: GameState) => {
-    if (((s as any).MiraVars ?? 0)?.['QW'] < 6) {
-      qspCall(s, 'arousal', 'voyeur', 5);
-      qspCall(s, 'stat', '');
+    if (((st as any).MiraVars ?? 0)?.['QW'] < 6) {
+      qspCall(st, 'arousal', 'voyeur', 5);
+      qspCall(st, 'stat', '');
       scene.img('images/characters/gadukino/mira/mirameadowsex.jpg');
       scene.text('You decide to follow them from a safe distance. The forest offers plenty of hiding places, and you have no trouble staying unseen.');
       scene.text('Mira and Mitka talk in whispers, slowly undressing as they walk, but you can\'t hear a word they are saying.');
       scene.actions([
         { label: 'Watch', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'voyeur', 10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/mirameadowsex1.jpg');
-    if (((s as any).MiraVars ?? 0)?.['QW'] === 2) {
+    if (((st as any).MiraVars ?? 0)?.['QW'] === 2) {
       scene.text('Eventually, you arrive at your secret meadow. Mira lays down on a blanket before Mitka and spreads her legs invitingly. He doesn\'t waste a second before he is on top of her. He positions himself between her legs and eagerly slams his cock roughly into her vagina. Mira seems to be enjoying it, though, as she moans and begs for more.');
     } else {
       scene.text('Eventually, you arrive at your not-so-secret meadow. You already know what will happen, having seen it all before. Mira lays down on a blanket before Mitka and spreads her legs invitingly. He doesn\'t waste a second before he is on top of her. He positions himself between her legs and eagerly slams his cock roughly into her vagina. Mira seems to be enjoying it even more than last time as she moans and begs for more.');
     }
     scene.actions([
       { label: 'Continue Watching', handler: (st: GameState) => {
-    if (((s as any).MiraVars ?? 0)?.['QW'] === 2) {
-      ((s as any).MiraVars = (s as any).MiraVars ?? {})['QW'] = 3;
+    if (((st as any).MiraVars ?? 0)?.['QW'] === 2) {
+      ((st as any).MiraVars = (st as any).MiraVars ?? {})['QW'] = 3;
     }
-    ((s as any).MiraVars = (s as any).MiraVars ?? {})['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
+    ((st as any).MiraVars = (st as any).MiraVars ?? {})['Mitka_fucks'] = ((st as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/mirameadowsex2.jpg');
     scene.text('After a few more minutes, Mitka pulls out and cums on her stomach. They rest for a little while, then get dressed and leave to head back to the village.');
     scene.actions([
@@ -663,30 +660,30 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'arousal', 'voyeur', 5);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'voyeur', 5);
+      qspCall(st, 'stat', '');
       scene.img('images/characters/gadukino/mira/mirameadowsex.jpg');
       scene.text('You decide to follow them from a safe distance. The forest offers plenty of hiding places, and you have no trouble staying unseen.');
       scene.text('Mira and Mitka talk in whispers, slowly undressing as they walk, but you can\'t hear a word they are saying.');
       scene.actions([
         { label: 'Watch', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'voyeur', 10);
-    qspCall(s, 'stat', '');
-    (s as any).temp_gadf = Math.floor(Math.random() * 2) + 0;
-    if ((!((s as any).temp_gadf ?? 0))) {
+    qspCall(st, 'arousal', 'voyeur', 10);
+    qspCall(st, 'stat', '');
+    (st as any).temp_gadf = (Math.floor(Math.random() * 2) + 0);
+    if ((!((st as any).temp_gadf ?? 0))) {
       scene.img('images/characters/gadukino/mira/sex/mirameadowanal.jpg');
       scene.text('Mira is working her ass up and down on Mitka\'s hard member. Every time she goes down, her buttocks slap loudly on his thighs.');
     } else {
-      if (((s as any).temp_gadf ?? 0) === 1) {
+      if (((st as any).temp_gadf ?? 0) === 1) {
         scene.img('images/characters/gadukino/mira/sex/mirameadowanal1.jpg');
         scene.text('Mira is on all fours and moaning loudly as Mitka spreads her asshole with his fingers and then drives his cock into her wide-open hole.');
       }
     }
     scene.actions([
       { label: 'Continue Watching', handler: (st: GameState) => {
-    ((s as any).MiraVars = (s as any).MiraVars ?? {})['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
+    ((st as any).MiraVars = (st as any).MiraVars ?? {})['Mitka_fucks'] = ((st as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/sex/mirameadowanal2.jpg');
     scene.text('After a couple of minutes, Mitka vigorously slaps her ass. Mira quickly turns around, gets on her knees before him and sucks his cock for a few seconds before he shoots his warm cum all over her face.');
     scene.actions([
@@ -711,23 +708,23 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
           { label: 'Spy on them', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'voyeur', 10);
-    qspCall(s, 'stat', '');
-    (s as any).temp_gadf = Math.floor(Math.random() * 2) + 0;
-    if ((!((s as any).temp_gadf ?? 0))) {
+    qspCall(st, 'arousal', 'voyeur', 10);
+    qspCall(st, 'stat', '');
+    (st as any).temp_gadf = (Math.floor(Math.random() * 2) + 0);
+    if ((!((st as any).temp_gadf ?? 0))) {
       scene.img('images/characters/gadukino/mira/sex/mirameadowanal.jpg');
       scene.text('Mira is working her ass up and down on Mitka\'s hard member. Every time she goes down, her buttocks slap loudly on his thighs.');
     } else {
-      if (((s as any).temp_gadf ?? 0) === 1) {
+      if (((st as any).temp_gadf ?? 0) === 1) {
         scene.img('images/characters/gadukino/mira/sex/mirameadowanal1.jpg');
         scene.text('Mira is on all fours and moaning loudly as Mitka spreads her asshole with his fingers and then drives his cock into her wide-open hole.');
       }
     }
     scene.actions([
       { label: 'Continue Watching', handler: (st: GameState) => {
-    ((s as any).MiraVars = (s as any).MiraVars ?? {})['Mitka_fucks'] = ((s as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
+    ((st as any).MiraVars = (st as any).MiraVars ?? {})['Mitka_fucks'] = ((st as any).MiraVars['Mitka_fucks'] ?? 0) + (1);
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/sex/mirameadowanal2.jpg');
     scene.text('After a couple of minutes, Mitka vigorously slaps her ass. Mira quickly turns around, gets on her knees before him and sucks his cock for a few seconds before he shoots his warm cum all over her face.');
     scene.actions([
@@ -765,6 +762,9 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
+  qspCall(s, 'stat', '');
+  (s as any).ReturnAdr = ((s as any).locArgs?.[1] ?? 0);
   const arg = s.locArg;
   switch (arg) {
     case 'find_meadow':

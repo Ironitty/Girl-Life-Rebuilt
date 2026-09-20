@@ -25,37 +25,37 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Get on your knees and give head', handler: (st: GameState) => {
-    (s as any).alexgangbang = ((s as any).alexgangbang ?? 0) + (1);
-    qspCall(s, 'stat', '');
-    scene.img(`images/shared/sex/blowjob/bj${Math.floor(Math.random() * 13) + 29}.jpg`);
+    (st as any).alexgangbang = ((st as any).alexgangbang ?? 0) + (1);
+    qspCall(st, 'stat', '');
+    scene.img(`images/shared/sex/blowjob/bj${(Math.floor(Math.random() * 13) + 29)}.jpg`);
     scene.text('Kneeling before him, you pull Alexei\'s pants all the way down then take a firm grasp of his erect cock.');
-    // TODO-QSP: dynamic text: Leaning in closer, you give it a quick kiss with your <<$pc_desc['lips']>> lips ...
-    scene.text(`Leaning in closer, you give it a quick kiss with your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips before guiding it into your mouth.`);
+    // TODO-QSP: dynamic text: Leaning in closer, you give it a quick kiss with your <<$pc_desc[''lips'']>> lip...
+    scene.text(`Leaning in closer, you give it a quick kiss with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips before guiding it into your mouth.`);
     scene.text('As you suck on his hard dick, he relaxes in his chair and lets you take care of his needs.');
     scene.text('Suddenly, he removes his penis from your mouth and pulls you up on your feet. He leads you to his bedroom.');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'sub', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID ?? 0), 'sub', 'group');
+    qspCall(st, 'stat', '');
     scene.text('Alexei lifts you up to put you down in front of the bed where Sasha has seated himself. He tells you to get on all fours with your head placed before Sasha. Sasha starts to unbutton his pants, which leaves no doubt as to what you\'re expected to do.');
     scene.actions([
       { label: 'Give Sasha a blowjob', handler: (st: GameState) => {
-    if ((!((s as any).sashaclubsex ?? 0))) {
-      (s as any).sashaclubsex = 1;
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    if ((!((st as any).sashaclubsex ?? 0))) {
+      (st as any).sashaclubsex = 1;
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
-    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-    (s as any).alexgangbang = ((s as any).alexgangbang ?? 0) + (1);
-    (s as any).pose = 1;
-    scene.img(`images/shared/sex/group/gang${Math.floor(Math.random() * 10) + 16}.jpg`);
+    ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
+    (st as any).alexgangbang = ((st as any).alexgangbang ?? 0) + (1);
+    (st as any).pose = 1;
+    scene.img(`images/shared/sex/group/gang${(Math.floor(Math.random() * 10) + 16)}.jpg`);
     scene.text('Kneeling on all fours, you start sucking Sasha\'s limp cock. As you lick, suck, and roll your tongue around his dick while stroking the shaft with your hands, you can feel it slowly stiffen in your mouth.');
-    qspCall(s, 'dinSex', 'wear_condom');
+    qspCall(st, 'dinSex', 'wear_condom');
     scene.text('The position you\'re in doesn\'t make it easy for you to move your head up and down. However with some determination, you manage to keep Sasha\'s cock in your mouth with the help of your hands.');
-    qspCall(s, 'dinsex', 'vaginal_sex', 10);
+    qspCall(st, 'dinsex', 'vaginal_sex', 10);
     scene.text('After a while, you feel Sasha\'s hard cock begin to throb. With a low grunt, he thrusts his hips forward, and you feel his sperm coat the insides of your mouth.');
     scene.text('He doesn\'t cum a whole lot, so you easily manage to swallow all of it. It still doesn\'t diminish the inherent thrill of the threesome you just participated in.');
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID1 ?? 0), 1);
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'group');
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID1 ?? 0), 1);
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID1 ?? 0), 'sub', 'group');
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['city_industrial', ''] },
     ]);

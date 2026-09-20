@@ -24,10 +24,10 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Flip him the bird', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_park', 'start');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_park', 'start');
   } },
     ]);
   }
@@ -61,8 +61,8 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'finish', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'pav_park', 'start');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'pav_park', 'start');
   } },
   ]);
   scene.build();

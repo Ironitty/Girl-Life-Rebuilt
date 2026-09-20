@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHasAppointment(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = ((((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') ? (1) : (0));
+  (s as any).result = ((((s as any).appointment_active ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') ? (1) : (0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -54,7 +54,7 @@ function enterResolveState(s: GameState, scene: SceneBuilder): void {
     (s as any).appointment_state_wait = 0;
     return;
   }
-  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
     if (qspFunc(s, 'calendar_events', 'event_occurs_in_day', ((s as any).locArgs?.[2] ?? 0), ((s as any).daystart ?? 0)) === 0) {
       (s as any).appointment_state = 'none';
       (s as any).appointment_state_wait = 0;
@@ -63,7 +63,7 @@ function enterResolveState(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0), ((s as any).daystart ?? 0)]; enterStateFromEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
-  if (((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+  if (((s as any).appointment_active ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
     (s as any).appointment_state = 'none';
     (s as any).appointment_state_wait = 0;
     return;
@@ -106,14 +106,14 @@ function enterOfferSlots(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_apptOffer = (s as any).temp_apptOffer ?? {})['found'] = 0;
   ((s as any).temp_apptOffer = (s as any).temp_apptOffer ?? {})['day'] = 1;
   // TODO-QSP: :offer_sweep
-  if (((s as any).temp_apptOffer ?? 0)?.['found'] < ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).temp_apptOffer ?? 0)?.['day'] <= ((s as any).locArgs?.[3] ?? 0)) {
+  if (((s as any).temp_apptOffer ?? 0)?.['found'] < Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).temp_apptOffer ?? 0)?.['day'] <= Number((s as any).locArgs?.[3] ?? 0)) {
     // TODO-QSP: gs 'appointments', '_offer_try_day', ARGS[2], temp_apptOffer['day'], ARGS[6], ARGS[7], ARGS[8]
     ((s as any).temp_apptOffer = (s as any).temp_apptOffer ?? {})['day'] = ((s as any).temp_apptOffer['day'] ?? 0) + (1);
     // TODO-QSP: jump 'offer_sweep'
   }
   ((s as any).temp_apptOffer = (s as any).temp_apptOffer ?? {})['i'] = ((s as any).temp_apptOffer ?? 0)?.['found'];
   // TODO-QSP: :offer_pad
-  if (((s as any).temp_apptOffer ?? 0)?.['i'] < ((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).temp_apptOffer ?? 0)?.['i'] < Number((s as any).locArgs?.[1] ?? 0)) {
     // TODO-QSP: appointment_offer_day[temp_apptOffer['i']] = -1
     ((s as any).temp_apptOffer = (s as any).temp_apptOffer ?? {})['i'] = ((s as any).temp_apptOffer['i'] ?? 0) + (1);
     // TODO-QSP: jump 'offer_pad'
@@ -128,7 +128,7 @@ function enterOfferTryDay(s: GameState, scene: SceneBuilder): void {
   ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['offset'] = ((s as any).locArgs?.[2] ?? 0);
   ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['daystart'] = ((s as any).daystart ?? 0) + (((s as any).temp_apptTry ?? {})?.['offset'] ?? 0);
   ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['done'] = 0;
-  if (((s as any).locArgs?.[5] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[5] ?? 0) === 1) {
     ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['wk'] = (((s as any).week ?? 0) + (((s as any).temp_apptTry ?? {})?.['offset'] ?? 0)) % 7;
     if (((s as any).temp_apptTry ?? 0)?.['wk'] === 0) {
       ((s as any).temp_apptTry = (s as any).temp_apptTry ?? {})['wk'] = 7;
@@ -239,12 +239,12 @@ function enterOfferConflictNote(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBook(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== ''  ||  ((s as any).appointment_offer_day ?? 0)[((s as any).locArgs?.[2] ?? 0)] < 0) {
+  if (((s as any).appointment_active ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== ''  ||  ((s as any).appointment_offer_day ?? 0)[Number((s as any).locArgs?.[2] ?? 0)] < 0) {
     (s as any).result = 0;
     return;
   }
   qspCall(s, 'calendar_list', 'init_event_vars');
-  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'appointment_' + ((s as any).locArgs?.[1] ?? 0) + '_' + qspUntranslated(s, "str(appointment_offer_day[ARGS[2]])", { location: "appointments" });
+  ((s as any).event_vars = (s as any).event_vars ?? {})['id'] = 'appointment_' + ((s as any).locArgs?.[1] ?? 0) + '_' + String(qspUntranslated(s, "appointment_offer_day[ARGS[2]]", { location: "appointments" }));
   ((s as any).event_vars = (s as any).event_vars ?? {})['title'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).event_vars = (s as any).event_vars ?? {})['loc'] = ((s as any).locArgs?.[4] ?? 0);
   // TODO-QSP: gs 'appointments', '_slot_event_vars', appointment_offer_day[ARGS[2]], appointment_offer_window_end[...
@@ -253,7 +253,7 @@ function enterBook(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 0;
     return;
   }
-  if ((Array.isArray((s as any).appointment_categories) ? ((s as any).appointment_categories as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) === -1) {
+  if ((Array.isArray((s as any).appointment_categories) ? ((s as any).appointment_categories as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) === -1) {
     // TODO-QSP: $appointment_categories[] = $ARGS[1]
   }
   // TODO-QSP: $appointment_active[$ARGS[1]] = $event_vars['id']
@@ -265,7 +265,7 @@ function enterBook(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResolve(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).appointment_active ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
+  if (((s as any).appointment_active ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
     // TODO-QSP: gs 'calendar_events', 'remove_event', $appointment_active[$ARGS[1]]
   }
   // TODO-QSP: $appointment_active[$ARGS[1]] = ''
@@ -294,12 +294,12 @@ function enterCheckIn(s: GameState, scene: SceneBuilder): void {
     (s as any).result = 'too_early';
     return;
   }
-  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
     (s as any).result = 'ok';
     return;
   }
   ((s as any).temp_apptCheckin = (s as any).temp_apptCheckin ?? {})['lateness'] = -1 * qspFunc(s, 'appointments', 'get_wait_minutes', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
-  ((s as any).temp_apptCheckin = (s as any).temp_apptCheckin ?? {})['late_limit'] = ((((s as any).appointment_late_limit ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) ? (((s as any).appointment_late_limit ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]) : (90));
+  ((s as any).temp_apptCheckin = (s as any).temp_apptCheckin ?? {})['late_limit'] = ((((s as any).appointment_late_limit ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) ? (((s as any).appointment_late_limit ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]) : (90));
   ((s as any).temp_apptCheckin = (s as any).temp_apptCheckin ?? {})['severity'] = Math.min(100, (((s as any).temp_apptCheckin ?? {})?.['lateness'] ?? 0) * 100 / (((s as any).temp_apptCheckin ?? {})?.['late_limit'] ?? 0));
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterResolve(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((Math.floor(Math.random() * 100) + 0) < ((s as any).temp_apptCheckin ?? 0)?.['severity']) {
@@ -330,9 +330,9 @@ function enterRenderActs(s: GameState, scene: SceneBuilder): void {
         (s as any).appt_pending_wait = ((s as any).temp_apptRender ?? 0)?.['wait'];
         scene.actions([
           { label: 'Wait for your appointment', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).appt_pending_wait ?? 0) - 60);
-    qspCall(s, 'stat', '');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).appt_pending_category ?? 0), ((s as any).appt_pending_loc ?? 0), ((s as any).appt_pending_none_func ?? 0), ((s as any).appt_pending_func ?? 0), ((s as any).appt_pending_recur ?? 0)]; enterRenderActs(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).minut = ((st as any).minut ?? 0) + (((st as any).appt_pending_wait ?? 0) - 60);
+    qspCall(st, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ((st as any).appt_pending_category ?? 0), ((st as any).appt_pending_loc ?? 0), ((st as any).appt_pending_none_func ?? 0), ((st as any).appt_pending_func ?? 0), ((st as any).appt_pending_recur ?? 0)]; enterRenderActs(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }

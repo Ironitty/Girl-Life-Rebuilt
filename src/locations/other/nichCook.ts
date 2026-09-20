@@ -20,23 +20,23 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Introduce yourself', handler: (st: GameState) => {
-    (s as any).nichKnowsCook = 1;
-    if (((s as any).pcs_firstname ?? 0) === ((s as any).pcs_nickname ?? 0)) {
+    (st as any).nichKnowsCook = 1;
+    if (((st as any).pcs_firstname ?? 0) === ((st as any).pcs_nickname ?? 0)) {
       // TODO-QSP: dynamic text: "Nice to meet you, Jegor. My name is <<$pcs_nickname>>."
-      scene.text(`"Nice to meet you, Jegor. My name is ${((s as any).pcs_nickname || '')}."`);
+      scene.text(`"Nice to meet you, Jegor. My name is ${((st as any).pcs_nickname || '')}."`);
     } else {
       // TODO-QSP: dynamic text: "Nice to meet you, Jegor. My name is <<$pcs_firstname>>. But you can call me <<$...
-      scene.text(`"Nice to meet you, Jegor. My name is ${((s as any).pcs_firstname || '')}. But you can call me ${((s as any).pcs_nickname || '')}."`);
+      scene.text(`"Nice to meet you, Jegor. My name is ${((st as any).pcs_firstname || '')}. But you can call me ${((st as any).pcs_nickname || '')}."`);
     }
-    // TODO-QSP: dynamic text: "My pleasure, <<$pcs_nickname>>. I'm glad there is a new maid around here. It go...
-    scene.text(`"My pleasure, ${((s as any).pcs_nickname || '')}. I'm glad there is a new maid around here. It got a bit boring ever since Katinka left."`);
+    // TODO-QSP: dynamic text: "My pleasure, <<$pcs_nickname>>. I''m glad there is a new maid around here. It g...
+    scene.text(`"My pleasure, ${((st as any).pcs_nickname || '')}. I'm glad there is a new maid around here. It got a bit boring ever since Katinka left."`);
     scene.text('He turns back to his work. "She was a nice girl. But I guess she and Mistress Gala didn\'t get along too well."');
     scene.text('"But I don\'t think you came here to chat with an old fool, did you? Are you hungry?" He points at the freezer. "You can eat any of the frozen meals. You just have to put it in the microwave or the oven."');
     scene.text('"That\'s what I make them for. The family always gets the fresh meals. But since you\'re surely as busy as I am I assume you won\'t want to wait for me preparing an additional portion for you."');
     scene.text('He points at the fridge. "You can also drink anything that\'s in the fridge. After all you are the one responsible for refilling it." He winks at you.');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -52,7 +52,7 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
       { label: 'Talk', handler: (st: GameState) => {
     scene.text('"Hello Jegor"');
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>."
-    scene.text(`"Hey ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"Hey ${((st as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Talk: Nicholas', handler: (st: GameState) => {
     scene.text('"Could you tell me something about Master Nicholas?"');
@@ -89,7 +89,7 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     scene.text('"Of course not. It\'s not my place to question anything Master Nicholas, his family, his staff or his guests do. And of course I wouldn\'t disclose anything he doesn\'t disclose himself. As far as I am concerned everything that happens in this apartment is \'usual\'."');
   } },
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
@@ -98,12 +98,12 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     scene.text('He grins at you. "You are a nice girl and I really appreciate the effort. But you\'re wasting your time here."');
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } },
       { label: 'Move away', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   }

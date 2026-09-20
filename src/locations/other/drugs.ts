@@ -399,19 +399,19 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: $ARGS[1] = $lcase($ARGS[1])
-  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((((s as any).locArgs?.[2] ?? 0) <= 1) ? (1) : (((s as any).locArgs?.[2] ?? 0)));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[2] = ((Number((s as any).locArgs?.[2] ?? 0) <= 1) ? (1) : (((s as any).locArgs?.[2] ?? 0)));
   (s as any).temp_alc_count = 0;
   // TODO-QSP: :alcohol_jump
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (5);
   (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) - (5);
-  if (((s as any).locArgs?.[1] ?? 0) === 'beer') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'beer') {
     if (((s as any).trait_vars ?? 0)?.['drinking'] < 0) {
-      (s as any).alko = ((s as any).alko ?? 0) + (Math.floor(Math.random() * 2) + 1);
+      (s as any).alko = ((s as any).alko ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     } else {
       if (((s as any).trait_vars ?? 0)?.['drinking'] === 0) {
         (s as any).alko = ((s as any).alko ?? 0) + (1);
       } else {
-        (s as any).alko = ((s as any).alko ?? 0) + (Math.floor(Math.random() * 2) + 0);
+        (s as any).alko = ((s as any).alko ?? 0) + ((Math.floor(Math.random() * 2) + 0));
       }
     }
     ((s as any).trait_vars = (s as any).trait_vars ?? {})['alko_today'] = ((s as any).trait_vars['alko_today'] ?? 0) + (1);
@@ -423,7 +423,7 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (10);
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'wine'  ||  ((s as any).locArgs?.[1] ?? 0) === 'champagne') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'wine'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'champagne') {
       if (((s as any).trait_vars ?? 0)?.['drinking'] < 0) {
         (s as any).alko = ((s as any).alko ?? 0) + (3);
       } else {
@@ -442,14 +442,14 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (10);
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'vodka'  ||  ((s as any).locArgs?.[1] ?? 0) === 'whiskey'  ||  ((s as any).locArgs?.[1] ?? 0) === 'scotch'  ||  ((s as any).locArgs?.[1] ?? 0) === 'rum') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'vodka'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'whiskey'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'scotch'  ||  Number((s as any).locArgs?.[1] ?? 0) === 'rum') {
         if (((s as any).trait_vars ?? 0)?.['drinking'] < 0) {
-          (s as any).alko = ((s as any).alko ?? 0) + (Math.floor(Math.random() * 2) + 4);
+          (s as any).alko = ((s as any).alko ?? 0) + ((Math.floor(Math.random() * 2) + 4));
         } else {
           if (((s as any).trait_vars ?? 0)?.['drinking'] === 0) {
             (s as any).alko = ((s as any).alko ?? 0) + (3);
           } else {
-            (s as any).alko = ((s as any).alko ?? 0) + (Math.floor(Math.random() * 2) + 1);
+            (s as any).alko = ((s as any).alko ?? 0) + ((Math.floor(Math.random() * 2) + 1));
           }
         }
         ((s as any).trait_vars = (s as any).trait_vars ?? {})['alko_today'] = ((s as any).trait_vars['alko_today'] ?? 0) + (3);
@@ -460,18 +460,18 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
         }
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'moonshine') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'moonshine') {
           if (((s as any).trait_vars ?? 0)?.['drinking'] < 0) {
-            (s as any).alko = ((s as any).alko ?? 0) + (Math.floor(Math.random() * 2) + 7);
+            (s as any).alko = ((s as any).alko ?? 0) + ((Math.floor(Math.random() * 2) + 7));
           } else {
             if (((s as any).trait_vars ?? 0)?.['drinking'] === 0) {
               (s as any).alko = ((s as any).alko ?? 0) + (5);
             } else {
-              (s as any).alko = ((s as any).alko ?? 0) + (Math.floor(Math.random() * 2) + 2);
+              (s as any).alko = ((s as any).alko ?? 0) + ((Math.floor(Math.random() * 2) + 2));
             }
           }
           ((s as any).trait_vars = (s as any).trait_vars ?? {})['alko_today'] = ((s as any).trait_vars['alko_today'] ?? 0) + (5);
-          (s as any).fat = ((s as any).fat ?? 0) + (Math.floor(Math.random() * 2) + 1);
+          (s as any).fat = ((s as any).fat ?? 0) + ((Math.floor(Math.random() * 2) + 1));
           if (((s as any).pcs_hydra ?? 0) >= 100) {
             (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
           } else {
@@ -482,7 +482,7 @@ function enterAlcohol(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_alc_count = ((s as any).temp_alc_count ?? 0) + (1);
-  if (((s as any).temp_alc_count ?? 0) < ((s as any).locArgs?.[2] ?? 0)) {
+  if (((s as any).temp_alc_count ?? 0) < Number((s as any).locArgs?.[2] ?? 0)) {
     // TODO-QSP: jump 'alcohol_jump'
   }
   if (((s as any).drugVars ?? 0)?.['painkiller_points'] >= 50) {
@@ -507,10 +507,10 @@ function enterCaffeine(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['caffeine_dose'] > 0) {
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = 4;
   }
-  if (((s as any).locArgs?.[2] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[2] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 1;
   }
   ((s as any).drugVars = (s as any).drugVars ?? {})['caffeine_dose'] = ((s as any).locArgs?.[2] ?? 0);
@@ -565,7 +565,7 @@ function enterCaffeineHourlyEvents(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (Math.max(0, Math.min((Math.floor(Math.random() * ((((s as any).drugVars ?? {})?.['caffeine_dose'] ?? 0) - (-1) + 1)) + ((-1))), 1)));
   }
   if (((s as any).drugVars ?? 0)?.['caffeine_addict'] > 0) {
-    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (Math.floor(Math.random() * 2) + 0);
+    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - ((Math.floor(Math.random() * 2) + 0));
   }
   return;
   // TODO-QSP: end
@@ -598,7 +598,46 @@ function enterCaffeineStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSmoke(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) - (1);
+    if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = 0;
+      // TODO-QSP: msg 'That was your last cigarette.'
+    }
+  }
+  if (((s as any).cheatVars ?? 0)?.['drugs_immune'] === 0) {
+    ((s as any).drugVars = (s as any).drugVars ?? {})['cigarettes_used'] = ((s as any).drugVars['cigarettes_used'] ?? 0) + (1);
+    ((s as any).drugVars = (s as any).drugVars ?? {})['cigarettes_ever'] = ((s as any).drugVars['cigarettes_ever'] ?? 0) + (1);
+    if (((s as any).drugVars ?? 0)?.['cigarettes_used'] > 20  &&  ((s as any).drugVars ?? 0)?.['cigarettes_exp'] === 0) {
+      ((s as any).drugVars = (s as any).drugVars ?? {})['cigarettes_exp'] = 1;
+    }
+  }
+  ((s as any).stat = (s as any).stat ?? {})['cigarettes_smoked'] = ((s as any).stat['cigarettes_smoked'] ?? 0) + (1);
+  ((s as any).drugVars = (s as any).drugVars ?? {})['cigarettes_minute'] = ((s as any).totminut ?? 0) + 3;
+  ((s as any).drugVars = (s as any).drugVars ?? {})['cigarettes_need'] = 0;
+  ((s as any).teeth = (s as any).teeth ?? {})['smoked'] = ((s as any).teeth['smoked'] ?? 0) + (1);
+  (s as any).pcs_breath = 0;
+  qspCall(s, 'mood', 'raise', 'medium');
+  qspCall(s, 'mood', 'hold', 15);
+  if (((s as any).pcs_hydra ?? 0) >= 100) {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
+  } else {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
+  }
+  if (((s as any).pcs_energy ?? 0) < 80) {
+    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (4);
+  }
+  (s as any).cumspclnt = 2;
+  qspCall(s, 'cum_cleanup', '');
+  qspCall(s, 'body', 'SkinLoss', 'Smoke');
+  qspCall(s, 'stat', '');
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterCigarette(s: GameState, scene: SceneBuilder): void {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = ((s as any).mc_inventory['cigarettes'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cigarettes'] = 0;
@@ -674,7 +713,47 @@ function enterCigaretteHourlyEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWeed(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
+    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) - (1);
+    if (((s as any).mc_inventory ?? 0)?.['joints'] <= 0) {
+      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = 0;
+      // TODO-QSP: msg 'That was your last joint.'
+    }
+  }
+  if (((s as any).cheatVars ?? 0)?.['drugs_immune'] === 0) {
+    ((s as any).drugVars = (s as any).drugVars ?? {})['weed_used'] = ((s as any).drugVars['weed_used'] ?? 0) + (1);
+    if (((s as any).drugVars ?? 0)?.['weed_used'] > 5  &&  ((s as any).drugVars ?? 0)?.['weed_exp'] === 0) {
+      ((s as any).drugVars = (s as any).drugVars ?? {})['weed_exp'] = 1;
+    }
+  }
+  if (((s as any).minut ?? 0) > 30) {
+    ((s as any).drugVars = (s as any).drugVars ?? {})['weed_high'] = 2;
+  } else {
+    ((s as any).drugVars = (s as any).drugVars ?? {})['weed_high'] = 1;
+  }
+  ((s as any).drugVars = (s as any).drugVars ?? {})['weed_day'] = ((s as any).daystart ?? 0);
+  ((s as any).drugVars = (s as any).drugVars ?? {})['weed_hour'] = ((s as any).hour ?? 0);
+  ((s as any).drugVars = (s as any).drugVars ?? {})['weed_minute'] = ((s as any).totminut ?? 0) + 2;
+  (s as any).pcs_breath = 0;
+  qspCall(s, 'mood', 'raise', 'large');
+  qspCall(s, 'archetypes', 'gain', 'punk', 'tiny', 'Smoking weed');
+  qspCall(s, 'mood', 'hold', 15);
+  if (((s as any).pcs_hydra ?? 0) >= 100) {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
+  } else {
+    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
+  }
+  (s as any).pcs_energy = Math.max(0, ((s as any).pcs_energy ?? 0) - 20);
+  (s as any).cumspclnt = 2;
+  qspCall(s, 'cum_cleanup', '');
+  qspCall(s, 'stat', '');
+  return;
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterJoint(s: GameState, scene: SceneBuilder): void {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = ((s as any).mc_inventory['joints'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['joints'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['joints'] = 0;
@@ -732,7 +811,7 @@ function enterAmphetamine(s: GameState, scene: SceneBuilder): void {
     scene.text('Your heart is already beating uncontrollably in your chest, you should avoid taking anymore pills.');
     return;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = ((s as any).mc_inventory['amphetamine'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['amphetamine'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['amphetamine'] = 0;
@@ -825,7 +904,7 @@ function enterAmphetamineStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCocaine(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cocaine'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['cocaine'] = 0;
@@ -1029,7 +1108,7 @@ function enterHeroinStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPainkiller(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['painkillers'] = ((s as any).mc_inventory['painkillers'] ?? 0) - (1);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAddPainkillerTimer(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).mc_inventory ?? 0)?.['painkillers'] <= 0) {
@@ -1037,13 +1116,13 @@ function enterPainkiller(s: GameState, scene: SceneBuilder): void {
     }
   }
   ((s as any).drugVars = (s as any).drugVars ?? {})['painkiller_points'] = ((s as any).drugVars['painkiller_points'] ?? 0) + (100);
-  if (((s as any).cheatVars ?? 0)?.['drugs_immune'] === 0  &&  ((s as any).locArgs?.[1] ?? 0) !== 'spell') {
+  if (((s as any).cheatVars ?? 0)?.['drugs_immune'] === 0  &&  Number((s as any).locArgs?.[1] ?? 0) !== 'spell') {
     ((s as any).drugVars = (s as any).drugVars ?? {})['painkiller_tolerance'] = ((s as any).drugVars['painkiller_tolerance'] ?? 0) + (2);
     if (((s as any).drugVars ?? 0)?.['painkiller_tolerance'] > 60) {
       ((s as any).drugVars = (s as any).drugVars ?? {})['painkiller_tolerance'] = 60;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) !== 'spell') {
+  if (Number((s as any).locArgs?.[1] ?? 0) !== 'spell') {
     if (((s as any).alko ?? 0) >= 12) {
       (s as any).pcs_health = ((s as any).pcs_health ?? 0) - (150);
     } else {
@@ -1187,7 +1266,7 @@ function enterAphrodisiac(s: GameState, scene: SceneBuilder): void {
     ((s as any).drugVars = (s as any).drugVars ?? {})['aphrodisiac_msg'] = '<br>You\'ve had enough aphrodisiac for today.';
     return;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['aphrodisiac'] = ((s as any).mc_inventory['aphrodisiac'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['aphrodisiac'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['aphrodisiac'] = 0;
@@ -1272,7 +1351,7 @@ function enterAphrodisiacHourlyEvents(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMentats(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mentats'] = ((s as any).mc_inventory['mentats'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['mentats'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['mentats'] = 0;
@@ -1312,7 +1391,7 @@ function enterSteroids(s: GameState, scene: SceneBuilder): void {
     scene.text('You really shouldn\'t take any more pills today.');
     return;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['steroids'] = ((s as any).mc_inventory['steroids'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['steroids'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['steroids'] = 0;
@@ -1355,7 +1434,7 @@ function enterSteroidsHourlyEvents(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if ((Math.floor(Math.random() * 5) + 0) < ((s as any).drugVars ?? 0)?.['steroids_dose']) {
-    (s as any).clit_size = ((s as any).clit_size ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (s as any).clit_size = ((s as any).clit_size ?? 0) + ((Math.floor(Math.random() * 2) + 0));
   }
   ((s as any).drugVars = (s as any).drugVars ?? {})['steroids_check'] = 0;
   return;
@@ -1368,7 +1447,7 @@ function enterBreastcream(s: GameState, scene: SceneBuilder): void {
     scene.text('Using any more cream won\'t have any effect.');
     return;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['breastcream'] = ((s as any).mc_inventory['breastcream'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['breastcream'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['breastcream'] = 0;
@@ -1406,7 +1485,7 @@ function enterHairExtensioncream(s: GameState, scene: SceneBuilder): void {
     scene.text('Using any more hair extension shampoo won\'t have any effect.');
     return;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['hair_extensioncream'] = ((s as any).mc_inventory['hair_extensioncream'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['hair_extensioncream'] = 0;
@@ -1442,7 +1521,7 @@ function enterButtInjection(s: GameState, scene: SceneBuilder): void {
     scene.text('Using any more injections won\'t have any effect.');
     return;
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0  &&  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['butt_injection'] = ((s as any).mc_inventory['butt_injection'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['butt_injection'] <= 0) {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['butt_injection'] = 0;
@@ -1512,11 +1591,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'smoke':
       enterSmoke(s, scene);
       break;
+    case 'cigarette':
+      enterCigarette(s, scene);
+      break;
     case 'cigarette_hourly_events':
       enterCigaretteHourlyEvents(s, scene);
       break;
     case 'weed':
       enterWeed(s, scene);
+      break;
+    case 'joint':
+      enterJoint(s, scene);
       break;
     case 'weed_hourly_events':
       enterWeedHourlyEvents(s, scene);

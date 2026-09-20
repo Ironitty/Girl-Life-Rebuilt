@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'family_schedule', '');
   qspCall(s, 'stat', '');
   scene.text('<center><b>Community Center</b></center>');
-  scene.img('images/locations/pavlovsk/community/\' + iif(DayStage < 4, \'dk.jpg\', \'dk_night.jpg\') + \'');
+  scene.img('images/locations/pavlovsk/community/' + ((((s as any).DayStage ?? 0) < 4) ? ('dk.jpg') : ('dk_night.jpg')) + '');
   if (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) >= 40  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Wait in line for the disco to open (0:' + String('TODO' ?? '') + '", 60-minut)>>)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: gs 'money', 'pay', 25 & minut += (60 - minut) & pav_disco_in = daystart & gt 'pav_disco'
     }
@@ -25,8 +25,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) <= 23  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
       scene.text('The entrance to the community center is full of young people. The guys are hanging around smoking and joking while the girls are in small groups, all dressed up and gossiping. You see the bushes moving - Pavlovsk\'s famous make out garden.');
-      // TODO-QSP: dynamic text: You hear people in the alley beside the club. <a href="exec:minut += 5 & gt 'pav...
-      scene.text('You hear people in the alley beside the club. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027pav_commcenter\\u0027, \\u0027alley\\u0027); return false;">Investigate</a>.');
+      // TODO-QSP: dynamic text: You hear people in the alley beside the club. <a href="exec:minut += 5 & gt ''pa...
+      scene.text('You hear people in the alley beside the club. <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027alley/u0027); return false;">Investigate</a>.');
       if (((s as any).gdkincum ?? 0) === ((s as any).daystart ?? 0)  &&  (((s as any).cumloc ?? 0)[6] === 0  &&  ((s as any).cumloc ?? 0)[7] === 0)  &&  ((s as any).cumloc ?? 0)[11] === 0) {
         (s as any).gdkincum = 0;
       }
@@ -44,7 +44,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_disco', ''] },
             ]);
           } else {
-            // TODO-QSP: dynamic text: The dance is on, but you don't have the ' + $func('money', 'string_price', 25) +...
+            // TODO-QSP: dynamic text: The dance is on, but you don''t have the ' + $func('money', 'string_price', 25) ...
             scene.text('The dance is on, but you don\'t have the 25₽ needed to pay the entrance fee.');
           }
         }
@@ -116,15 +116,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     scene.actions([
       { label: 'Smoke a joint', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'drugs', 'joint');
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'drugs', 'joint');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
   qspCall(s, 'pushkin_ballet_res', 'check_start_evt');
   if (((s as any).locat ?? 0)?.['Anya'] === 10) {
-    scene.text('Your sister <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027sister\\u0027, \\u0027pav_commcenter\\u0027); return false;">Anya</a> is sitting with a group of boys and girls, drinking beer.');
+    scene.text('Your sister <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027sister/u0027, /u0027pav_commcenter/u0027); return false;">Anya</a> is sitting with a group of boys and girls, drinking beer.');
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end

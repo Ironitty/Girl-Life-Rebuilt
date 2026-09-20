@@ -41,7 +41,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).AnushkaLocCity ?? 0) === 'home') {
         if (((s as any).ArkadiLocCity ?? 0) === 'home') {
-          (s as any).aptdoor = Math.floor(Math.random() * 2) + 1;
+          (s as any).aptdoor = (Math.floor(Math.random() * 2) + 1);
           scene.text('You stand outside the door as you knock, waiting to see who answers it.');
           if (((s as any).aptdoor ?? 0) === 1) {
             scene.img('images/characters/shared/headshots_main/big156.jpg');
@@ -86,7 +86,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         if (((s as any).locat ?? 0)?.['A144'] === 9) {
           ((s as any).locat = (s as any).locat ?? {})['A156'] = 1;
           ((s as any).locat = (s as any).locat ?? {})['A158'] = 1;
-          (s as any).aptdoor = Math.floor(Math.random() * 2) + 1;
+          (s as any).aptdoor = (Math.floor(Math.random() * 2) + 1);
           scene.text('You stand outside the door as you knock, waiting to see who answers it.');
           if (((s as any).aptdoor ?? 0) === 1) {
             ((s as any).locat = (s as any).locat ?? {})['A156'] = 1;
@@ -184,7 +184,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).AnushkaLocCity ?? 0) === 'home'  &&  ((s as any).ValentinLocCity ?? 0) === 'home') {
               (s as any).minut = ((s as any).minut ?? 0) + 1;
-              (s as any).aptdoor = Math.floor(Math.random() * 2) + 1;
+              (s as any).aptdoor = (Math.floor(Math.random() * 2) + 1);
               scene.text('You stand outside the door as you knock, waiting to see who answers it.');
               if (((s as any).aptdoor ?? 0) === 1) {
                 scene.img('images/characters/shared/headshots_main/big144.jpg');
@@ -227,7 +227,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 17) {
                 ((s as any).locat = (s as any).locat ?? {})['A144'] = 2;
                 ((s as any).locat = (s as any).locat ?? {})['A156'] = 1;
-                (s as any).aptdoor = Math.floor(Math.random() * 3) + 1;
+                (s as any).aptdoor = (Math.floor(Math.random() * 3) + 1);
                 scene.text('You stand outside the door as you knock, waiting to see who answers it.');
                 if (((s as any).aptdoor ?? 0) === 1) {
                   scene.img('images/characters/shared/headshots_main/big156.jpg');
@@ -291,7 +291,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) < 23) {
                   ((s as any).locat = (s as any).locat ?? {})['A144'] = 9;
-                  (s as any).aptdoor = Math.floor(Math.random() * 2) + 1;
+                  (s as any).aptdoor = (Math.floor(Math.random() * 2) + 1);
                   scene.text('You stand outside the door as you knock, waiting to see who answers it.');
                   if (((s as any).aptdoor ?? 0) === 1) {
                     ((s as any).locat = (s as any).locat ?? {})['A156'] = 1;
@@ -403,7 +403,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/city/island/homes/band_apt/bathroom.jpg');
   scene.text('The bathroom is fairly clean and larger than most apartment bathrooms you\'ve seen. It has white floor tiles with dark green lower wall tiles and lighter green ones above. The one thing you notice right away is the toilet set is up, which is not a surprise with three guys living here.');
-  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> above the sink.');
+  scene.text('You can do your hair and makeup in the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
   qspCall(s, 'din_van', 'bteeth');
@@ -414,18 +414,18 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the bathroom', goto: ['anushapt_city', 'hallway'] },
     { label: 'Take a shower', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'din_van', 'showerdin');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'anushapt_city_schedule', '');
-    (s as any).tempShower = 5;
-    if (((s as any).tempShower ?? 0) === 0  &&  ((((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 16)  ||  (((s as any).week ?? 0) > 5  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23))) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'din_van', 'showerdin');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'anushapt_city_schedule', '');
+    (st as any).tempShower = 5;
+    if (((st as any).tempShower ?? 0) === 0  &&  ((((st as any).hour ?? 0) >= 20  &&  ((st as any).hour ?? 0) < 23)  ||  (((st as any).week ?? 0) > 5  &&  ((st as any).hour ?? 0) >= 8  &&  ((st as any).hour ?? 0) < 16)  ||  (((st as any).week ?? 0) > 5  &&  ((st as any).hour ?? 0) >= 18  &&  ((st as any).hour ?? 0) < 23))) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (1);
       scene.text('Despite the pattering noise of the running water, you hear the bathroom door open. You look past the shower curtain to see Eduard walking up to the toilet and unzipping his pants.');
-      if (((s as any).pcs_inhib ?? 0) >= 50) {
+      if (((st as any).pcs_inhib ?? 0) >= 50) {
         scene.actions([
           { label: 'Give him a show', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (3);
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (3);
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/showershow.jpg');
     scene.text('It seems he hasn\'t looked over to see who is in the shower yet. You decide to pull the curtain wide open and give him a proper view of your soapy naked body. "Excuse me, is this what you were looking for?" you ask him.');
     scene.text('He is a bit surprised at first. "Oh sorry… I thought you were my wife." His eyes roam up and down your naked body as he pulls out his dick and starts to piss in the toilet. "Don\'t mind me. Just get back to your shower." he adds with a smirk.');
@@ -447,13 +447,13 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).tempShower ?? 0) === 1  &&  ((s as any).maksimQW ?? 0)?.['QWstage'] >= 5) {
-        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
+      if (((st as any).tempShower ?? 0) === 1  &&  ((st as any).maksimQW ?? 0)?.['QWstage'] >= 5) {
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (1);
         scene.text('Despite the pattering noise of the running water, you hear the bathroom door creaking slightly. Looking past the shower curtain you see that the bathroom door has been cracked open a little bit. Through the small crack in the doorway, you notice Maksim, Anushka\'s younger brother, peeking in to watch you shower.');
-        if (((s as any).pcs_inhib ?? 0) >= 50) {
+        if (((st as any).pcs_inhib ?? 0) >= 50) {
           scene.actions([
             { label: 'Give him a show', handler: (st: GameState) => {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (3);
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (3);
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/showershow.jpg');
     scene.text('Looking straight at him, you give him a smile. You pull the curtain wide open to give him the perfect view of your naked, wet, supple body. His eyes grow wide and he wastes no time, quickly coming into the bathroom, pulling the door closed behind him. After a few minutes of just watching you, you notice him pulling out his phone and trying to take a picture. You immediately shake your head at him. "No pictures or I will tell your sister that you snuck in here and started taking pictures of me in the shower." He doesn\'t say anything, but gives you a look that\'s a mixture of disgust, annoyance and fear at the mention of his sister.');
     scene.text('He just settles in, enjoying watching you shower and dry yourself off. As you start getting dressed, you shoo him out of the room before finishing up.');
@@ -466,7 +466,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Yell at him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/anushapt/showergetout.jpg');
-    if (((s as any).locat ?? 0)?.['A144'] === 0) {
+    if (((st as any).locat ?? 0)?.['A144'] === 0) {
       scene.text('You pull the shower curtain tight against your body to make sure there is nothing for him to see other than your head. "Get out of here you little pervert!"');
       scene.text('He laughs, then quickly ducks away before you hear Anushka yelling at him. "What the hell are you doing?" As you continue your shower, you hear a lot more yelling from behind the door, and there is even a loud crash. Suddenly, silence descends upon the apartment.');
     } else {
@@ -486,14 +486,14 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
         scene.text('You take a nice shower fully cleaning yourself.');
         scene.actions([
           { label: 'Take a selfie', handler: (st: GameState) => {
-    qspCall(s, 'telefon', 'Phone_selfie_image_bathing', 'shower');
+    qspCall(st, 'telefon', 'Phone_selfie_image_bathing', 'shower');
   } },
           { label: 'Get out of the shower', goto: ['anushapt_city', 'bathroom'] },
         ]);
       }
     }
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
     }
   } },
@@ -516,9 +516,9 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['anushapt_city', 'hallway'] },
       { label: 'Join him', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/home/video_games/videogame_boy.jpg');
     scene.text('You take a seat next to Arkadi. After a few minutes, he switches to a two player game and you pick up the other controller and start playing with him. The two of you have a good time playing games for a while, but you eventually get bored and he seems to have no interest in switching games, so you get up and decide to look around the rest of the apartment.');
     scene.actions([
@@ -535,11 +535,11 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave', goto: ['anushapt_city', 'hallway'] },
         { label: 'Join themn', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A156', 'like');
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
-    scene.img('images/shared/home/video_games/videogame_2boys\' + rand(1, 2) + \'.jpg');
+    qspCall(st, 'npc_relationship', 'modify', 'A156', 'like');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
+    scene.img('images/shared/home/video_games/videogame_2boys' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('You take a seat between the boys and watch as they play the game. Valentin asks you how things have been going and generally makes pleasant conversation with you as he plays, while Arkadi mostly ignores you. He seems very intent on winning his game against Valentin and has no time for talking.');
     scene.text('After a while, you get bored and eventually excuse yourself, but they barely even notice you leaving.');
     scene.actions([
@@ -555,9 +555,9 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Leave', goto: ['anushapt_city', 'hallway'] },
           { label: 'Join him', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A158', 'like');
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A158', 'like');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/home/video_games/videogame_boy.jpg');
     scene.text('You take a seat next to Valentin. After a few minutes, he switches to a two player game and you pick up the other controller and start playing with him. As the two of you play, he asks how things are going and politely chats while you play.');
     scene.text('You eventually get bored and he seems to have no interest in switching games, so you get up and decide to look around the rest of the apartment.');
@@ -641,12 +641,12 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushbeer_count ?? 0) > 0) {
     scene.actions([
       { label: 'Have a beer', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    (s as any).anushfood_day = ((s as any).daystart ?? 0);
-    (s as any).anushbeer_count = ((s as any).anushbeer_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer\'+rand(1, 3)+\'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    (st as any).anushfood_day = ((st as any).daystart ?? 0);
+    (st as any).anushbeer_count = ((st as any).anushbeer_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/beer' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
     scene.text('You take a bottle of beer from the fridge and drink it, which quenches your thirst.');
     scene.actions([
       { label: 'Continue', goto: ['anushapt_city', 'fridge'] },
@@ -658,27 +658,27 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushvodka_count ?? 0) > 0) {
     scene.actions([
       { label: 'Drink some vodka', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'drugs', 'alcohol', 'vodka');
-    (s as any).anushfood_day = ((s as any).daystart ?? 0);
-    (s as any).anushvodka_count = ((s as any).anushvodka_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka\'+rand(1, 2)+\'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'drugs', 'alcohol', 'vodka');
+    (st as any).anushfood_day = ((st as any).daystart ?? 0);
+    (st as any).anushvodka_count = ((st as any).anushvodka_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('You pour some vodka into a glass and drink it. You shiver as you feel the warm, burning sensation slowly slide down your gullet.');
     scene.actions([
       { label: 'Put the bottle back in the fridge', goto: ['anushapt_city', 'fridge'] },
       { label: 'Close the refrigerator', goto: ['anushapt_city', 'kitchen'] },
       { label: 'Drink more vodka', handler: (st: GameState) => {
-    if ((!((s as any).anushvodka_count ?? 0))) {
+    if ((!((st as any).anushvodka_count ?? 0))) {
       scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka0.jpg');
       scene.text('<font color = red>There\'s no vodka left. You drank it all!</font>');
     } else {
-      if (((s as any).anushvodka_count ?? 0) > 0) {
-        (s as any).minut = ((s as any).minut ?? 0) + 1;
-        qspCall(s, 'drugs', 'alcohol', 'vodka');
-        (s as any).anushvodka_count = ((s as any).anushvodka_count ?? 0) - (1);
-        qspCall(s, 'stat', '');
-        scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka\'+rand(1, 2)+\'.jpg');
+      if (((st as any).anushvodka_count ?? 0) > 0) {
+        (st as any).minut = ((st as any).minut ?? 0) + 1;
+        qspCall(st, 'drugs', 'alcohol', 'vodka');
+        (st as any).anushvodka_count = ((st as any).anushvodka_count ?? 0) - (1);
+        qspCall(st, 'stat', '');
+        scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
         scene.text('You pour yourself another glass and drain it in one gulp. Wow, that stuff is strong!');
       }
     }
@@ -694,23 +694,23 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushsup_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).anushfood_day = ((s as any).daystart ?? 0);
-    (s as any).anushsup_count = ((s as any).anushsup_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).anushfood_day = ((st as any).daystart ?? 0);
+    (st as any).anushsup_count = ((st as any).anushsup_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/leftovers.jpg');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    qspCall(s, 'mood', 'raise', 'small');
-    (s as any).fat = ((s as any).fat ?? 0) + (2);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    qspCall(st, 'mood', 'raise', 'small');
+    (st as any).fat = ((st as any).fat ?? 0) + (2);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
     scene.text('It seems to be leftovers from a ready to make meal. You wonder if anyone here knows how to cook.');
     scene.actions([
       { label: 'Continue', goto: ['anushapt_city', 'fridge'] },
@@ -722,21 +722,21 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).anushfresh_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat veggies', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).anushfood_day = ((s as any).daystart ?? 0);
-    (s as any).anushfresh_count = ((s as any).anushfresh_count ?? 0) - (1);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).anushfood_day = ((st as any).daystart ?? 0);
+    (st as any).anushfresh_count = ((st as any).anushfresh_count ?? 0) - (1);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/food/veggies.jpg');
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (20);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (30);
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (20);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (30);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (20);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (40);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (40);
     }
-    (s as any).cumspclnt = 2;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).pcs_breath = 0;
+    (st as any).cumspclnt = 2;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).pcs_breath = 0;
     scene.text('You grab a plate of fresh vegetables from the fridge and put them on a plate before you take a seat and eat them. When you\'re done, you rinse your plate off in the sink.');
     scene.actions([
       { label: 'Continue', goto: ['anushapt_city', 'fridge'] },
@@ -794,7 +794,7 @@ function enterRadRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Radomir\'s room</b></center>');
   if ((((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 2  ||  ((s as any).week ?? 0) === 4)  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 23) {
     ((s as any).locat = (s as any).locat ?? {})['A154'] = 3;
-    (s as any).tempRad = Math.floor(Math.random() * 5) + 0;
+    (s as any).tempRad = (Math.floor(Math.random() * 5) + 0);
     if ((!((s as any).tempRad ?? 0))) {
       scene.img('images/locations/city/island/homes/band_apt/door.jpg');
       scene.text('Just as you walk up to the door, you hear sounds coming from the other side. As you lean in close to the door, you can make out the soft moans and cries of a girl, with a louder Radomir\'s voice partially drowning them out. "Yeah, that\'s right bitch! Take my cock! You love my big cock pounding your tight little ass, don\'t you slut?!"');
@@ -812,8 +812,8 @@ function enterRadRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('You walk into his room. "Hi. You busy?"');
-    if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
+    if (((st as any).npc_rel ?? 0)?.['A154'] >= 60) {
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
       scene.text('He glances over at you. "Hey girl, what you up to?"');
       scene.text('You smile at him. "Nothing much. Just thought I\'d stop by and see what you were doing."');
       scene.text('He nods. "Just working on a new song is all."');
@@ -822,15 +822,15 @@ function enterRadRoom(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave his room', goto: ['anushapt_city', 'hallway'] },
       ]);
     } else {
-      if (((s as any).npc_rel ?? 0)?.['A154'] <= 20) {
-        (s as any).minut = ((s as any).minut ?? 0) + 1;
+      if (((st as any).npc_rel ?? 0)?.['A154'] <= 20) {
+        (st as any).minut = ((st as any).minut ?? 0) + 1;
         scene.text('He glances over at you and immediately has a look of anger on his face.');
         scene.text('"What the fuck are you doing? Get the fuck out of my room!" he says as he gets up and crosses over to you. He grabs you by the arm and shoves your out of his room, closing the door afterwards.');
         scene.actions([
           { label: 'Leave his room', goto: ['anushapt_city', 'hallway'] },
         ]);
       } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
         scene.text('He glances up at you and then back at his computer. "Yeah, I\'m busy."');
         scene.text('"Can I ask what you\'re doing?" you ask, trying to strike up more of a conversation.');
         scene.text('He sighs and looks over at you. "I\'m working on a new song. Now if you don\'t mind, I\'d like to be left alone."');
@@ -854,8 +854,8 @@ function enterRadRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/characters/shared/headshots_main/big154.jpg');
     scene.text('You walk into his room. "Hi. You busy?"');
-    if (((s as any).npc_rel ?? 0)?.['A154'] >= 60) {
-      (s as any).minut = ((s as any).minut ?? 0) + 10;
+    if (((st as any).npc_rel ?? 0)?.['A154'] >= 60) {
+      (st as any).minut = ((st as any).minut ?? 0) + 10;
       scene.text('He glances over at you. "Hey girl, what you up to?"');
       scene.text('You smile at him. "Nothing much. Just thought I\'d stop by and see what you were doing."');
       scene.text('He nods. "Just working on a new song is all."');
@@ -864,15 +864,15 @@ function enterRadRoom(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave his room', goto: ['anushapt_city', 'hallway'] },
       ]);
     } else {
-      if (((s as any).npc_rel ?? 0)?.['A154'] <= 20) {
-        (s as any).minut = ((s as any).minut ?? 0) + 1;
+      if (((st as any).npc_rel ?? 0)?.['A154'] <= 20) {
+        (st as any).minut = ((st as any).minut ?? 0) + 1;
         scene.text('He glances over at you and immediately has a look of anger on his face.');
         scene.text('"What the fuck are you doing? Get the fuck out of my room!" he says as he gets up and crosses over to you. He grabs you by the arm and shoves your out of his room, closing the door afterwards.');
         scene.actions([
           { label: 'Leave his room', goto: ['anushapt_city', 'hallway'] },
         ]);
       } else {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
         scene.text('He glances up at you and then back at his computer. "Yeah, I\'m busy."');
         scene.text('"Can I ask what you are doing?" you ask, trying to strike up more of a conversation.');
         scene.text('He sighs and looks over at you. "I\'m working on a new song. Now if you don\'t mind, I\'d like to be left alone."');
@@ -891,7 +891,7 @@ function enterRadRoom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Leave his room', goto: ['anushapt_city', 'hallway'] },
         { label: 'Look around', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.text('<center><b>Radomir\'s Room</b></center>');
     scene.img('images/locations/city/island/homes/band_apt/rad_nightstand.jpg');
     scene.text('You snoop around, opening drawers and looking in the closet, but you don\'t find anything of interest. His computer is password protected, so you can\'t use it. The only thing of note is some condoms and other stuff in one of the night stands.');
@@ -920,7 +920,7 @@ function enterArkValRoom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', goto: ['anushapt_city', 'hallway'] },
     { label: 'Look around', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.text('<center><b>Arkadi and Valentin\'s room</b></center>');
     scene.img('images/locations/city/island/homes/band_apt/ark_val_room.jpg');
     scene.text('You snoop around, opening drawers and looking in the closet, but you don\'t find anything of interest. The room is too disorganized for you to find much. Beyond clothes, nothing stands out other than a few joints and condoms in the nightstands.');
@@ -944,9 +944,9 @@ function enterNushlivroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).strapNumber ?? 0) > 0  &&  ((s as any).npc_had_sex ?? 0)?.['A144']) {
     scene.actions([
       { label: 'Pull out your strap-on', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/livingroom/couchstrap1.jpg');
-    if (((s as any).pcs_hotcat ?? 0) >= 6) {
+    if (((st as any).pcs_hotcat ?? 0) >= 6) {
       scene.text('Anushka arches her eyebrows when you pull the strap-on out of your purse, then bites her lower lip. "Just what are you planning to do with that?"');
       scene.text('You give her a grin. "I was thinking about fucking you with it, or maybe having you fuck me with it? With nobody home, it would be a crime to waste the freedom it gives us."');
       scene.text('She gets flushed, and you can tell she is turned on. "Yeah? Well hand it over and I\'ll fuck your tight little asshole until you scream for me."');
@@ -958,10 +958,10 @@ function enterNushlivroom(s: GameState, scene: SceneBuilder): void {
       scene.text('Anushka reaches up and takes the strap-on from you. She takes a look at it then gives the straps a few good tugs while she checks the size of the dildo. "Pretty nice one. It\'s a quality dildo and sturdy harness. You made a good choice," she says as she hands it back to you and turns her attention back to the movie. Taking the hint that she doesn\'t want to play, you put the strap-on away and join her in watching the TV.');
       scene.actions([
         { label: 'Watch the show with her', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'anushapt_city_schedule', '');
+    qspCall(st, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
+    qspCall(st, 'anushapt_city_schedule', '');
     scene.text('<center><b>Living room</b></center>');
     scene.img('images/shared/home/tv/tv_watch_1.jpg');
     scene.text('The two of you chat while watching some cheesy American action movie, so you barely pay attention to it. In fact, it ends and something else comes on that you don\'t even remember. After a few hours though, you hear keys in the lock of the door.');
@@ -980,10 +980,10 @@ function enterNushlivroom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Watch the show with her', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'stat', '');
-    qspCall(s, 'anushapt_city_schedule', '');
+    qspCall(st, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'stat', '');
+    qspCall(st, 'anushapt_city_schedule', '');
     scene.text('<center><b>Living room</b></center>');
     scene.img('images/shared/home/tv/tv_watch_1.jpg');
     scene.text('The two of you chat while watching some cheesy American action movie, so you barely pay attention to it. In fact, it ends and something else comes on that you don\'t even remember. After a few hours though, you hear keys in the lock of the door.');

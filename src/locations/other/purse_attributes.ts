@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'purses', 'reset_PurseVars');
-  if (hasLocation('$attributes_' + ((s as any).locArgs?.[0] ?? 0) + '_purses')) {
+  if (hasLocation('$attributes_' + Number((s as any).locArgs?.[0] ?? 0) + '_purses')) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>_purses', ARGS[1]
   }
   if ((!((s as any).PurseQuality ?? 0))) {

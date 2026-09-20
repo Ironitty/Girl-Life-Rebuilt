@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
-  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/lecture1.jpg');
   if (((s as any).university ?? 0)?.['first_visit_psychology_101']) {
@@ -36,10 +36,10 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Listen attentively to Professor Kucherov', handler: (st: GameState) => {
-    if (((s as any).will_cost ?? 0) > 0) {
-      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    if (((st as any).will_cost ?? 0) > 0) {
+      qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
-    qspGoto(s, 'uni_lessons_electives_psychology1', 'psychology_101_listen');
+    qspGoto(st, 'uni_lessons_electives_psychology1', 'psychology_101_listen');
   } },
     ]);
   }
@@ -53,16 +53,16 @@ function enterPsychology_101(s: GameState, scene: SceneBuilder): void {
 
 function enterPsychology_101Listen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
-  qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'humint', (Math.floor(Math.random() * 2) + 0));
   ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Kucherov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/question1.jpg');
     scene.text('Professor Kucherov nods approvingly, happy to see his students engaged and trying their best. He happily spends some extra time explaining the topic again, and answers any additional questions you might have.');
     scene.text('You feel smarter, thoroughly understanding today\'s lesson.');
@@ -109,7 +109,7 @@ function enterPsychology_101Talk(s: GameState, scene: SceneBuilder): void {
 
 function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
-  qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 0, 'no_bonus');
+  qspCall(s, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 0), 'no_bonus');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/electives/computer/class.jpg');
   scene.text('You walk into the classroom and take a seat at one of the tables. The rest of your classmates walk in one-by-one before Professor Kucherov enters the classroom and closes the door. He turns to the class and begins today\'s lecture.');
@@ -130,10 +130,10 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Listen attentively to Professor Kucherov', handler: (st: GameState) => {
-    if (((s as any).will_cost ?? 0) > 0) {
-      qspCall(s, 'willpower', 'pay', 'self', 'chore');
+    if (((st as any).will_cost ?? 0) > 0) {
+      qspCall(st, 'willpower', 'pay', 'self', 'chore');
     }
-    qspGoto(s, 'uni_lessons_electives_psychology1', 'psychology_102_listen');
+    qspGoto(st, 'uni_lessons_electives_psychology1', 'psychology_102_listen');
   } },
     ]);
   }
@@ -147,16 +147,16 @@ function enterPsychology_102(s: GameState, scene: SceneBuilder): void {
 
 function enterPsychology_102Listen(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
-  qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'humint', (Math.floor(Math.random() * 2) + 0));
   ((s as any).trait_vars = (s as any).trait_vars ?? {})['academic_lessons'] = ((s as any).trait_vars['academic_lessons'] ?? 0) + (1);
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/island/university/classroom/attentive${Math.floor(Math.random() * 4) + 1}.jpg`);
+  scene.img(`images/locations/city/island/university/classroom/attentive${(Math.floor(Math.random() * 4) + 1)}.jpg`);
   scene.text('You listen attentively to Professor Kucherov for the duration of the class. He manages to make today\'s lesson interesting and informative, and you feel like you\'ve learned something from actively taking part in the discussion.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask a question about the lesson', handler: (st: GameState) => {
-    qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1, 'no_bonus');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'exp_gain', 'intel', (Math.floor(Math.random() * 2) + 1), 'no_bonus');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/classroom/question1.jpg');
     scene.text('Professor Kucherov nods approvingly, happy to see his students engaged and trying their best. He happily spends some extra time explaining the topic again, and answers any additional questions you might have. You feel smarter, thoroughly understanding today\'s lesson.');
     scene.actions([
@@ -201,10 +201,10 @@ function enterPsychology_102Talk(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_101TalkKendra_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   if (((s as any).pcs_hotcat ?? 0) < 5) {
-    // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
+    // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
     scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
     scene.text('"No. Not interested. Maybe if you do something about all of... \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
     scene.text('You\'re taken aback by her comment. "What?"');
@@ -212,7 +212,7 @@ function enterPsychology_101TalkKendra_1(s: GameState, scene: SceneBuilder): voi
     scene.text('She ignores you for the rest of the class, leaving you to wonder if she doesn\'t find you attractive enough to get her attention. Maybe if you were better looking she would talk to you?');
   } else {
     (s as any).meet_kendra = 1;
-    // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
+    // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
     scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
     scene.text('She eyes you like a pair of shoes she might buy. "I\'m Kendra, but you can call me Mistress," she replies in an exotic accent. "If you like, I can train you to become one of my slaves."');
     scene.text('You\'re taken aback by her comment. "Slaves?"');
@@ -229,7 +229,7 @@ function enterPsychology_101TalkKendra_1(s: GameState, scene: SceneBuilder): voi
 function enterPsychology_101TalkKendra_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   if (((s as any).kendraQW ?? 0)?.['sub'] < 1) {
@@ -270,11 +270,11 @@ function enterPsychology_101TalkKendra_2(s: GameState, scene: SceneBuilder): voi
 function enterPsychology_102TalkKendra_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   if (((s as any).pcs_hotcat ?? 0) < 5) {
-    // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
+    // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
     scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
     scene.text('"No. Not interested. Maybe if you do something about all of... \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
     scene.text('You\'re taken aback by her comment. "What?"');
@@ -282,7 +282,7 @@ function enterPsychology_102TalkKendra_1(s: GameState, scene: SceneBuilder): voi
     scene.text('She ignores you for the rest of the class. but you wonder if she doesn\'t find you attractive enough to get her attention. Maybe if you were better looking she would talk to you?');
   } else {
     (s as any).meet_kendra = 1;
-    // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
+    // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
     scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
     scene.text('She eyes you like a pair of shoes she might buy. "I\'m Kendra, but you can call me Mistress," she replies in an exotic accent. "If you like, I can train you to become one of my slaves."');
     scene.text('You\'re taken aback by her comment. "Slaves?"');
@@ -299,7 +299,7 @@ function enterPsychology_102TalkKendra_1(s: GameState, scene: SceneBuilder): voi
 function enterPsychology_102TalkKendra_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A82', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   if (((s as any).kendraQW ?? 0)?.['sub'] < 1) {
@@ -340,7 +340,7 @@ function enterPsychology_102TalkKendra_2(s: GameState, scene: SceneBuilder): voi
 function enterPsychology_101TalkKatja(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
@@ -366,7 +366,7 @@ function enterPsychology_101TalkKatja(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_102TalkKatja(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
@@ -392,7 +392,7 @@ function enterPsychology_102TalkKatja(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_101TalkVicky(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A15', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
@@ -418,7 +418,7 @@ function enterPsychology_101TalkVicky(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_102TalkVicky(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A15', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).npc_rel ?? 0)?.['A15'] <= 20) {
@@ -444,7 +444,7 @@ function enterPsychology_102TalkVicky(s: GameState, scene: SceneBuilder): void {
 function enterPsychology_101TalkAlbina(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A23', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -478,7 +478,7 @@ function enterPsychology_101TalkAlbina(s: GameState, scene: SceneBuilder): void 
 function enterPsychology_102TalkAlbina(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A23', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 250  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 250) {
@@ -513,7 +513,7 @@ function enterPsychology_101TalkMiaYana(s: GameState, scene: SceneBuilder): void
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A267', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A268', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 150) {
@@ -549,7 +549,7 @@ function enterPsychology_102TalkMiaYana(s: GameState, scene: SceneBuilder): void
   // TODO-QSP: close all
   qspCall(s, 'npc_relationship', 'modify', 'A267', 'like');
   qspCall(s, 'npc_relationship', 'modify', 'A268', 'like');
-  qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'exp_gain', 'chrsm', (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/talk.jpg');
   if (((s as any).fame ?? 0)?.['city_slut'] < 150) {
@@ -584,7 +584,7 @@ function enterPsychology_102TalkMiaYana(s: GameState, scene: SceneBuilder): void
 function enterPsychology_101Events(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: close all
   (s as any).uni_event_hour = 1;
-  (s as any).temp = Math.floor(Math.random() * 17) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 17) + 0);
   if (((s as any).temp ?? 0) < 2) {
     scene.img('images/locations/city/island/university/classroom/electives/psychology/boy_sleeping.jpg');
     scene.text('As Professor Kucherov continues his lecture, you notice a boy just ahead of you with his head down softly snoring. You shake your head and go back to focusing on the lecture.');
@@ -647,8 +647,8 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_explain.jpg');
     scene.text('Kendra glances at the boy, then you. "I told my friend here what a good little white slave slut you are, so you\'re going to show him just how well you obey me."');
     scene.text('You glance at him and notice that he\'s looking at you with lust in his eyes, so you have no doubt of what she promised him you would do. "I want you to get on your knees in front of him," she orders.');
-    qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'humiliation', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -657,15 +657,15 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
-    ((s as any).kendraQW = (s as any).kendraQW ?? {})['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (1);
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', 'A84', 'loathe');
+    ((st as any).kendraQW = (st as any).kendraQW ?? {})['sub'] = ((st as any).kendraQW['sub'] ?? 0) - (1);
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');
     scene.text('You shake your head. "Sorry mistress, I can\'t... I\'m not a whore that you can just pimp out."');
     scene.text('An angry scowl appears on her face. "Listen you little fucking cunt, either get down on your knees or we\'re done!"');
-    qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'humiliation', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse again', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -674,11 +674,11 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse again', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
-    ((s as any).kendraQW = (s as any).kendraQW ?? {})['sub'] = (-1);
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A84', 'loathe');
+    ((st as any).kendraQW = (st as any).kendraQW ?? {})['sub'] = (-1);
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/university/girl/kendra/sex/classroom/kendra_resist.jpg');
     scene.text('You shake your head. "No! I\'m not going to let you pimp me out!"');
     scene.text('She looks even angrier beforeshe takes a deep breath. "Fine! Get the fuck out of here, you useless cunt! Don\'t come crawling back to me, we\'re done!"');

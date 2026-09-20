@@ -7,14 +7,14 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) !== '%') {
+  if (Number((s as any).locArgs?.[0] ?? 0) !== '%') {
     (s as any).food_loc = 1;
     (s as any).food_loc_last = ((s as any).loc ?? 0);
-    if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+    if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
     }
   }
   if (((s as any).loc ?? 0) === 'burger') {
-    if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+    if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
       scene.text('<center><b>Diner Bystroeshka</b></center>');
       scene.img('images/shared/menus/burger.jpg');
     }
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 180;
   } else {
     if (((s as any).loc ?? 0) === 'gkafe') {
-      if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+      if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
         scene.text('<center><b>Borislav\'s cafe</b></center>');
         scene.img('images/shared/menus/borislav.jpg');
       }
@@ -128,7 +128,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).loc ?? 0) === 'brothel') {
-        if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+        if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
           scene.text('<center><h3>Hotel Bar</h3></center>');
           scene.img('images/shared/drinks/bardrinks.jpg');
         }
@@ -163,7 +163,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).loc ?? 0) === 'cafe_parco') {
-          if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+          if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
             scene.text('<center><b>Cafe "Del Parco"</b></center>');
             scene.img('images/shared/menus/del_parco.jpg');
           }
@@ -202,7 +202,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 200;
         } else {
           if (((s as any).loc ?? 0) === 'city_kafe') {
-            if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+            if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
               scene.text('<center><b>The Roadhouse</b></center>');
               scene.img('images/shared/menus/roadhouse.jpg');
             }
@@ -241,7 +241,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 180;
           } else {
             if (((s as any).loc ?? 0) === 'lakecafe') {
-              if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+              if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                 scene.text('<center><b>The Lake Cafe</b></center>');
                 scene.img('images/shared/drinks/cafedrinks.jpg');
               }
@@ -280,7 +280,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 200;
             } else {
               if (((s as any).loc ?? 0) === 'pushkin_cafe') {
-                if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                   scene.text('<center><b>Tiny Cafe</b></center>');
                   scene.img('images/shared/drinks/cafedrinks.jpg');
                 }
@@ -319,7 +319,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 200;
               } else {
                 if (((s as any).loc ?? 0) === 'ParkKafe') {
-                  if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                  if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                     scene.text('<center><b>Park Cafe</b></center>');
                     scene.img('images/shared/drinks/cafedrinks.jpg');
                   }
@@ -358,7 +358,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 200;
                 } else {
                   if (((s as any).loc ?? 0) === 'qwBarPolet') {
-                    if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                    if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                       scene.text('<center><b>Bar "Rabotnik"</b></center>');
                       scene.img('images/shared/drinks/bardrinks.jpg');
                     }
@@ -388,7 +388,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 250;
                   } else {
                     if (((s as any).loc ?? 0) === 'restoran') {
-                      if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                      if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                         scene.text('<center><b>Babel</b></center>');
                         scene.img('images/shared/menus/babel.jpg');
                       }
@@ -427,7 +427,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 900;
                     } else {
                       if (((s as any).loc ?? 0) === 'uni_cafe') {
-                        if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                        if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                           scene.text('<center><b>University cafe</b></center>');
                           scene.img('images/shared/drinks/cafedrinks.jpg');
                         }
@@ -467,7 +467,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).loc ?? 0) === 'city_coffee_hole') {
                           (s as any).loc_arg = 'eat';
-                          if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                          if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                             scene.text('<center><b>Cafe "Coffee hole"</b></center>');
                             scene.img('images/shared/drinks/cafedrinks.jpg');
                           }
@@ -518,7 +518,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 150;
                         } else {
                           if (((s as any).loc ?? 0) === 'artem_events_uni') {
-                            if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                            if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                               scene.text('<center><b>Cafe "Coffee hole"</b></center>');
                               scene.img('images/shared/drinks/cafedrinks.jpg');
                             }
@@ -569,7 +569,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             ((s as any)._drink = (s as any)._drink ?? {})['5,price'] = 0;
                           } else {
                             if (((s as any).loc ?? 0) === 'city_nightclub') {
-                              if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                              if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                                 scene.text('<center><b>Bar "Nightclub"</b></center>');
                                 scene.img('images/shared/drinks/bardrinks.jpg');
                               }
@@ -608,7 +608,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               ((s as any)._drink = (s as any)._drink ?? {})['9,price'] = 300;
                             } else {
                               if (((s as any).loc ?? 0) === 'katja_nightclub'  ||  ((s as any).loc ?? 0) === 'katja_nightclub_sex'  ||  ((s as any).loc ?? 0) === 'katja_nightclub_first_orgy') {
-                                if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+                                if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
                                   scene.text('<center><b>Bar "Nightclub"</b></center>');
                                   if (((s as any).loc ?? 0) === 'katja_nightclub_sex') {
                                     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/hot_bartender.jpg');
@@ -699,14 +699,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_diner_drinks'
   }
   // TODO-QSP: $_str += '</table></center>'
-  if (((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
+  if (Number((s as any).locArgs?.[0] ?? 0) !== 'no_image') {
     scene.text('<center>Please place your order</center><br><br>');
   }
   // TODO-QSP: +$_str
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();

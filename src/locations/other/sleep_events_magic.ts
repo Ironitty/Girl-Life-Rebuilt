@@ -42,8 +42,8 @@ function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
     scene.text('Taking this as consent, you shove her back down on your cock and fuck her throat until you suddenly feel your orgasm building. You\'re going to cum in her moouth!');
     scene.text('You start thrusting even harder, eager to blow your load when you suddenly feel the tingling sensation again. When it fades, you no longer feel your dick in Anya\'s mouth. In fact, you can\'t feel your dick at all!');
     scene.text('When you look down, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Anya asks in surprise. "You don't want to know what your so...
-    scene.text(`"${((s as any).pcs_nickname || '')}?" Anya asks in surprise. "You don't want to know what your so called boyfriend was just doing!"`);
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Anya asks in surprise. "You don''t want to know what your s...
+    scene.text(`"${((st as any).pcs_nickname || '')}?" Anya asks in surprise. "You don't want to know what your so called boyfriend was just doing!"`);
     scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     scene.actions([
       { label: 'Wake up', goto: ['sleep_events', 'male_dream_end'] },
@@ -57,14 +57,14 @@ function enterDreamSexAnya(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel your heart racing as you kneel between her legs and line the tip of your cock up with her wet slit. Is this actually happening?!');
     scene.text('You take a deep breath before pushing forward, moaning as you feel your cock slide into her warm, wet pussy. Her walls immediately clamp down around your shaft as she moans softly herself.');
     // TODO-QSP: dynamic text: "Tighter than <<$pcs_nickname>>, right?" she grins as she lifts her legs and squ...
-    scene.text(`"Tighter than ${((s as any).pcs_nickname || '')}, right?" she grins as she lifts her legs and squeezes them together, causing her pussy to grip your cock even tighter. "Now <i>fuck</i> me, Mikhail!"`);
+    scene.text(`"Tighter than ${((st as any).pcs_nickname || '')}, right?" she grins as she lifts her legs and squeezes them together, causing her pussy to grip your cock even tighter. "Now <i>fuck</i> me, Mikhail!"`);
     scene.text('You grin as you start thrusting, causing her to moan loudly as you push as deep as you can. This feels amazing!');
     scene.text('You suddenly feel your orgasm building and start grunting, causing Anya to giggle.');
     scene.text('"Go ahead. Cum in my pussy, Mikhail!" she says teasingly.');
     scene.text('You start thrusting harder, eager to blow your load in her wet, warm pussy. However, just as you\'re about to cum, you suddenly feel the tingling sensation again. When it fades, you no longer feel your dick in Anya\'s pussy. In fact, you can\'t feel your dick at all!');
     scene.text('When you look down, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Anya asks in surprise. "You don't want to know what your so...
-    scene.text(`"${((s as any).pcs_nickname || '')}?" Anya asks in surprise. "You don't want to know what your so called boyfriend was just doing!"`);
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Anya asks in surprise. "You don''t want to know what your s...
+    scene.text(`"${((st as any).pcs_nickname || '')}?" Anya asks in surprise. "You don't want to know what your so called boyfriend was just doing!"`);
     scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     scene.actions([
       { label: 'Wake up', goto: ['sleep_events', 'male_dream_end'] },
@@ -87,7 +87,7 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
     { label: 'Investigate', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/vika/sex/dream/dream1.jpg');
     scene.text('You enter the en-suite and find a naked, dolled up Vika admiring herself in the mirror while applying some lip balm.');
-    if (((s as any).vikaslut ?? 0) === 1) {
+    if (((st as any).vikaslut ?? 0) === 1) {
       scene.text('She smiles when she sees you. "You\'re early, but I guess I can\'t blame you. You were pretty eager when you hired me, Mikhail."');
       scene.text('"Hired you?" you ask in confusion, the shock of hearing your old name causing your heart to race.');
       scene.text('"I\'m a slut for hire, remember?" she giggles. "You paid good money for me, so let\'s get down to business, shall we?"');
@@ -102,7 +102,7 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/vika/sex/dream/dream2.jpg');
     scene.text('She seductively crawls onto the bed and smiles at you before reaching out to pull you over.');
-    if (((s as any).vikaslut ?? 0) === 1) {
+    if (((st as any).vikaslut ?? 0) === 1) {
       scene.text('"Come on then, Mikhail. Come and fuck your whore like the slut that she is."');
     } else {
       scene.text('"You ready to get down and dirty, Mikhail?"');
@@ -126,7 +126,7 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/university/girl/vika/sex/dream/dream4.jpg');
     scene.text('You quickly move in behind her and take a second to admire the sight in front of you before you line the tip of your cock up with her slit and slide it into her pussy.');
     scene.text('You both moan in pleasure before she glances back at you as you grab her ass cheek in your hand.');
-    if (((s as any).vikaslut ?? 0) === 1) {
+    if (((st as any).vikaslut ?? 0) === 1) {
       scene.text('"Let me show how buying my slutty little pussy was the best money you\'ll ever spend."');
     } else {
       scene.text('"Uhhh, you like that?" she moans. "You like how tight my little pussy feels?"');
@@ -137,13 +137,13 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Let her ride you', handler: (st: GameState) => {
     scene.img('images/characters/city/university/girl/vika/sex/dream/dream5.jpg');
-    if (((s as any).vikaslut ?? 0) === 1) {
+    if (((st as any).vikaslut ?? 0) === 1) {
       scene.text('She starts riding you hard and fast, taking you balls deep inside her over and over. She moans loudly as you feel your balls start to tighten.');
       scene.text('"You paid extra for the creampie privilege, so go ahead and fill me with every drop of your cum!"');
       scene.text('You close your eyes, ready to blow your load inside her. That\'s when the tingling sensation returns; when it fades, you no longer feel your dick inside her pussy. In fact, you can\'t feel your dick at all!');
       scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
-      // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Vika asks in shocked surprise. "I don't normally work with ...
-      scene.text(`"${((s as any).pcs_nickname || '')}?" Vika asks in shocked surprise. "I don't normally work with girls, but there's a first time for everything, I guess…"`);
+      // TODO-QSP: dynamic text: "<<$pcs_nickname>>?" Vika asks in shocked surprise. "I don''t normally work with...
+      scene.text(`"${((st as any).pcs_nickname || '')}?" Vika asks in shocked surprise. "I don't normally work with girls, but there's a first time for everything, I guess…"`);
       scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     } else {
       scene.text('She starts riding you hard and fast, taking you balls deep inside her over and over. She moans loudly as you feel your balls start to tighten.');
@@ -151,7 +151,7 @@ function enterDreamSexVika(s: GameState, scene: SceneBuilder): void {
       scene.text('You close your eyes, ready to blow your load inside her. That\'s when the tingling sensation returns; when it fades, you no longer feel your dick inside her pussy. In fact, you can\'t feel your dick at all!');
       scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Where did that guy with the nice big cock go?"
-      scene.text(`"${((s as any).pcs_nickname || '')}? Where did that guy with the nice big cock go?"`);
+      scene.text(`"${((st as any).pcs_nickname || '')}? Where did that guy with the nice big cock go?"`);
       scene.text('You try to speak, but your vision blurs and the room starts spinning around you before you suddenly black out.');
     }
     scene.actions([
@@ -232,7 +232,7 @@ function enterDreamSexAlbina(s: GameState, scene: SceneBuilder): void {
     scene.text('You close your eyes and take a deep breath. That\'s when you no longer feel your dick inside Albina\'s pussy. In fact, you can\'t feel your dick at all!');
     scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
     // TODO-QSP: dynamic text: "What the fuck? <<$pcs_nickname>>?! Where did Mikhail go?!" Albina squeals, her ...
-    scene.text(`"What the fuck? ${((s as any).pcs_nickname || '')}?! Where did Mikhail go?!" Albina squeals, her legs still spread wide. It feels like the puffy wet lips of her pussy are mocking you for not being able to finish what you started.`);
+    scene.text(`"What the fuck? ${((st as any).pcs_nickname || '')}?! Where did Mikhail go?!" Albina squeals, her legs still spread wide. It feels like the puffy wet lips of her pussy are mocking you for not being able to finish what you started.`);
     scene.text('You reach out to her and try to speak, but your vision blurs again and the room starts spinning around you before you suddenly black out.');
     scene.actions([
       { label: 'Wake up', goto: ['sleep_events', 'male_dream_end'] },
@@ -350,7 +350,7 @@ function enterDreamSexNush1(s: GameState, scene: SceneBuilder): void {
     scene.text('You close your eyes, ready to blow your load inside her. That\'s when the tingling sensation returns; when it fades, you no longer feel your dick inside her pussy. In fact, you can\'t feel your dick at all!');
     scene.text('When you open your eyes again, you\'re dismayed to find that you\'ve transformed back into your feminine self. You try to let out a frustrated grunt, only to be met with a very feminine shriek instead.');
     // TODO-QSP: dynamic text: "What the fuck? <<$pcs_nickname>>?! Why did you change back?!" Anushka asks in a...
-    scene.text(`"What the fuck? ${((s as any).pcs_nickname || '')}?! Why did you change back?!" Anushka asks in a desperate dismay as she looks for where your dick went as well.`);
+    scene.text(`"What the fuck? ${((st as any).pcs_nickname || '')}?! Why did you change back?!" Anushka asks in a desperate dismay as she looks for where your dick went as well.`);
     scene.text('You reach out to her and try to speak, but your vision blurs again and the room starts spinning around you before you suddenly black out.');
     scene.actions([
       { label: 'Wake up', goto: ['sleep_events', 'male_dream_end'] },

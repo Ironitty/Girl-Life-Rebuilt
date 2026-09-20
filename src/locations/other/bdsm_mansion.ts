@@ -45,10 +45,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/bdsm_club/club.jpg');
   scene.text('You are standing in front of a large mansion in the suburbs of St Petersberg.');
   if (((s as any).bdsmclub ?? 0)?.['unlocked'] === 0) {
-    return;
     scene.actions([
-      { label: 'Go to the elite settlement', goto: ['city_suburbs', 'start'] },
-    ]);
+{ label: 'Go to the elite settlement', goto: ['city_suburbs', 'start'] },
+]);
+    return;
   }
   scene.text('You know this to be a BDSM club for rich people and you have access.');
   if (((s as any).hour ?? 0) < 16  &&  ((s as any).hour ?? 0) > 2) {
@@ -100,7 +100,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('"Candidate? Passport."');
   scene.text('Your hand trembles as you reach out your passport.');
   scene.text('The woman points you to a chair, turns to the computer and starts clicking on the keys. She nods a few times, but says nothing. Then takes the phone and speaks to someone called Vladimir Viktorovich, discussing you. "There\'s candidacy, but a bit young, can you check and sort the paperwork? She hangs up, after a few minutes from the office comes a strapping man in a perfectly fitting suit and glasses with gold rim. He says, "Hello." And sits down next to you.');
-  // TODO-QSP: dynamic text: "What's your name? <<$pcs_nickname>>? Fine. How old are you?"
+  // TODO-QSP: dynamic text: "What''s your name? <<$pcs_nickname>>? Fine. How old are you?"
   scene.text(`"What's your name? ${((s as any).pcs_nickname || '')}? Fine. How old are you?"`);
   scene.text('You answer the questions.');
   scene.text('"Tell me, are you sure you want this?"');
@@ -117,9 +117,9 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hesitate', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['intro'] = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    ((st as any).bdsmclub = (st as any).bdsmclub ?? {})['intro'] = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/suburb/bdsm_club/r1_2.jpg');
     scene.text('The woman\'s eyes light up. She stands up behind the desk and orders you.');
     scene.text('"Stand up!"');
@@ -138,7 +138,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('She explains that there are two ways to visit the club, either as a submissive where you will be subject to sexualization and humiliation, but its free. Or you can pay a monthly fee of 10000₽ and visit as a Dominant, in this case you will be able to sexualize and humiliate the submissives.');
     scene.text('For each role there is something of a dress code in that subs must dress either in submissive fetishwear, as a maid or be naked. A dominant simply has to be dressed in expensive quality clothing.');
     scene.text('There is also a required training aspect.');
-    if (((s as any).bdsmclub ?? 0)?.['annatraining'] === 1) {
+    if (((st as any).bdsmclub ?? 0)?.['annatraining'] === 1) {
       scene.text('You tell Mistress Elektra that you have been training with Anna');
       scene.text('"OMG! She told me to look out for you and I clean forgot. I\'m so sorry, I\'ll mark your training for both roles as complete."');
       scene.text('Due to some contract law you can\'t use the club today but you will be able to from tomorrow.');
@@ -173,12 +173,12 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
     { label: 'Return to dressing room', goto: ['bdsm_dressing', ''] },
     { label: 'Pay to extend your membership and return to the dressing room', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['payday'] = ((s as any).daystart ?? 0);
-      ((s as any).bdsmclub = (s as any).bdsmclub ?? {})['training_daystart'] = ((s as any).daystart ?? 0);
-      qspCall(s, 'money', 'pay', 10000);
-      qspGoto(s, 'bdsm_dressing', '');
+      ((st as any).bdsmclub = (st as any).bdsmclub ?? {})['payday'] = ((st as any).daystart ?? 0);
+      ((st as any).bdsmclub = (st as any).bdsmclub ?? {})['training_daystart'] = ((st as any).daystart ?? 0);
+      qspCall(st, 'money', 'pay', 10000);
+      qspGoto(st, 'bdsm_dressing', '');
     }
   } },
   ]);

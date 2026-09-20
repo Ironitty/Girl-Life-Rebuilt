@@ -5,10 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).loc = 'city_dima';
-  (s as any).loc_arg = 'start';
-  (s as any).menu_loc = 'city_dima';
-  (s as any).menu_arg = '';
   scene.build();
 }
 
@@ -21,14 +17,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspGoto(s, 'city_residential', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspGoto(st, 'city_residential', '');
   } },
   ]);
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'city_dima';
+  (s as any).loc_arg = 'start';
+  (s as any).menu_loc = 'city_dima';
+  (s as any).menu_arg = '';
   const arg = s.locArg;
   switch (arg) {
     case 'start':

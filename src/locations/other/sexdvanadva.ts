@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'sexdvanadva', 'var');
   // TODO-QSP: end
   scene.build();
@@ -23,15 +23,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).sexvar = ((s as any).sexvar ?? 0) + (1);
-  (s as any).sexdvarand = Math.floor(Math.random() * 7) + 0;
+  (s as any).sexdvarand = (Math.floor(Math.random() * 7) + 0);
   if (((s as any).picrand ?? 0) === 11) {
-    (s as any).sexdvarand = Math.floor(Math.random() * 6) + 0;
+    (s as any).sexdvarand = (Math.floor(Math.random() * 6) + 0);
   }
   if (((s as any).picrand ?? 0) === 12) {
-    (s as any).sexdvarand = Math.floor(Math.random() * 6) + 1;
+    (s as any).sexdvarand = (Math.floor(Math.random() * 6) + 1);
   }
   if (((s as any).picrand ?? 0) === 14) {
-    (s as any).sexdvarand = Math.floor(Math.random() * 5) + 0;
+    (s as any).sexdvarand = (Math.floor(Math.random() * 5) + 0);
   }
   if ((!((s as any).sexdvarand ?? 0))) {
     scene.img(`images/locations/shared/sex/sexdvanadva/minet${((s as any).picrand || '')}.jpg`);
@@ -94,7 +94,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'npcgeneratec', '', 0, 'Random Guy', Math.floor(Math.random() * 28) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Random Guy', (Math.floor(Math.random() * 28) + 18));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'cum_call', 'mouth_swallow', 'Random Guy');
   if (((s as any).pcs_horny ?? 0) >= 80) {
@@ -106,15 +106,15 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).kafesexrand ?? 0) === 1) {
-      (s as any).kafesexrand = 0;
-      qspGoto(s, 'city_kafe', 'workPred');
+    if (((st as any).kafesexrand ?? 0) === 1) {
+      (st as any).kafesexrand = 0;
+      qspGoto(st, 'city_kafe', 'workPred');
     }
-    if (((s as any).kazsexdva ?? 0) === 1) {
-      (s as any).kazsexdva = 0;
-      qspGoto(s, 'kazinosvid', '3');
+    if (((st as any).kazsexdva ?? 0) === 1) {
+      (st as any).kazsexdva = 0;
+      qspGoto(st, 'kazinosvid', '3');
     }
-    dynamicGoto(s, 'sexloc');
+    dynamicGoto(st, 'sexloc');
   } },
   ]);
   scene.build();

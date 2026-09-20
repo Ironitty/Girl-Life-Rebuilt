@@ -48,16 +48,16 @@ function enterPos4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'city_trashplaceevents', 'pos5');
+      qspGoto(st, 'city_trashplaceevents', 'pos5');
     }
   } },
     { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'city_trashplaceevents', 'pos6');
+      qspGoto(st, 'city_trashplaceevents', 'pos6');
     }
   } },
     { label: 'Leave', goto: ['city_trashplace', ''] },
@@ -102,7 +102,7 @@ function enterPos7(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Further', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/bum_gra.jpg');
     scene.text('He then suddenly grabs you and starts sniffing furiously between your legs.');
     scene.actions([
@@ -125,18 +125,18 @@ function enterPos8(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    (s as any).bomjqw = 1;
-    qspCall(s, 'money', 'earn', 50);
-    (s as any).bomjshet = ((s as any).bomjshet ?? 0) + (1);
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    (st as any).bomjqw = 1;
+    qspCall(st, 'money', 'earn', 50);
+    (st as any).bomjshet = ((st as any).bomjshet ?? 0) + (1);
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/bumt1.jpg');
     scene.text('Looking around to make sure that no one else can see, you show the homeless man your breasts and panties.');
     scene.text('The bum looks at you with wide eyes as he violently jerks his dick. With a loud groan, the homeless man collapses on his cardboard box.');
     scene.text('You quickly grab his money and run away.');
-    qspCall(s, 'arousal', 'flashlite', 10);
-    qspCall(s, 'arousal', 'flash', (-10));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flashlite', 10);
+    qspCall(st, 'arousal', 'flash', (-10));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);
@@ -172,24 +172,24 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 50);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'earn', 50);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/bumt1.jpg');
     scene.text('Looking around to make sure that no one else can see, you show the homeless man your breasts and panties.');
     scene.text('The bum looks at you with wide eyes as he violently jerks his dick. With a loud groan, the homeless man collapses on his cardboard box.');
     scene.text('You quickly grab his money and prepare to make a run for it.');
-    qspCall(s, 'arousal', 'flashlite', 10);
-    qspCall(s, 'arousal', 'flash', (-10));
-    qspCall(s, 'stat', '');
-    if (((s as any).bomjqw ?? 0) > 0) {
+    qspCall(st, 'arousal', 'flashlite', 10);
+    qspCall(st, 'arousal', 'flash', (-10));
+    qspCall(st, 'stat', '');
+    if (((st as any).bomjqw ?? 0) > 0) {
       scene.text('"Thank you very much once again," he starts. "But if you agree to one more service?"');
       scene.text('"What?" you ask suspiciously.');
-      // TODO-QSP: dynamic text: "Could you help an old man with your lovely mouth? I'll pay <<$func('money', 'st...
+      // TODO-QSP: dynamic text: "Could you help an old man with your lovely mouth? I''ll pay <<$func(''money'', ...
       scene.text(`"Could you help an old man with your lovely mouth? I'll pay ${qspFunc(s, 'money', 'string_profit', 150)}!"`);
-      if (((s as any).pcs_horny ?? 0) < 50) {
+      if (((st as any).pcs_horny ?? 0) < 50) {
         scene.actions([
           { label: 'No!', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.text('"No, that\'s disgusting!" you reply before turning around and walking away.');
     scene.actions([
       { label: 'Leave', goto: ['city_residential', ''] },
@@ -197,22 +197,22 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        qspCall(s, 'npcgeneratec', '', 0, 'Homeless man', Math.floor(Math.random() * 31) + 25);
-        qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-        if (((s as any).bomjshet ?? 0) >= 10) {
+        qspCall(st, 'npcgeneratec', '', 0, 'Homeless man', (Math.floor(Math.random() * 31) + 25));
+        qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+        if (((st as any).bomjshet ?? 0) >= 10) {
           scene.actions([
             { label: 'Give yourself to the homeless man', handler: (st: GameState) => {
-    (s as any).dick = 14;
-    qspCall(s, 'money', 'earn', 300);
-    (s as any).bomjshet = ((s as any).bomjshet ?? 0) + (1);
-    qspCall(s, 'cum_call', 'butt', 'hobo');
-    scene.img('images/locations/city/residential/street/sex/old1,\'+rand(0, 2)+\'.jpg');
+    (st as any).dick = 14;
+    qspCall(st, 'money', 'earn', 300);
+    (st as any).bomjshet = ((st as any).bomjshet ?? 0) + (1);
+    qspCall(st, 'cum_call', 'butt', 'hobo');
+    scene.img('images/locations/city/residential/street/sex/old1,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
     scene.text('This isn\'t your first time dealing with such people and you\'ve already learned to overcome any aversion, so you decide to give him something a little better than just a blowjob.');
     scene.text('You take off your panties and throw them at him. A smile appears on his face and after throwing off his pants, the old man moves towards you.');
     scene.text('You get down on all fours and feel the tip of his cock pushing into your pussy. He starts vigorously fucking you, but only lasts a few seconds before he pulls out and splatters his cum over your ass.');
     scene.text('You then quickly get dressed, take your money, and run away before anyone sees you.');
-    qspCall(s, 'arousal', 'vaginal', 15, 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'vaginal', 15, 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);
@@ -221,37 +221,37 @@ function enterPos10(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Get on your knees', handler: (st: GameState) => {
-    (s as any).bomjshet = ((s as any).bomjshet ?? 0) + (1);
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/city/residential/street/sex/old0,\'+rand(0, 3)+\'.jpg');
+    (st as any).bomjshet = ((st as any).bomjshet ?? 0) + (1);
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/city/residential/street/sex/old0,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
     scene.text('"This is so disgusting…" you think to yourself, but you need the money.');
     scene.text('You get down on your knees in front of him. Amazed by his luck, he leisurely pulls out his filthy cock, which looks and smells like it hasn\'t been washed in months.');
     scene.text('You hold in your gag reflex as you take his cock into your mouth and start sucking.');
-    qspCall(s, 'arousal', 'bj', 3, 'prostitution');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 3, 'prostitution');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck harder', handler: (st: GameState) => {
     scene.text('You start sucking harder and your efforts are paying off. The old man is ready to cum…');
     scene.actions([
       { label: 'In your mouth', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'money', 'earn', 150);
-    qspCall(s, 'cum_call', 'mouth_swallow', 'hobo');
-    scene.img('images/shared/sex/cum/mouth/cum1,\'+rand(0, 10)+\'.mp4');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'money', 'earn', 150);
+    qspCall(st, 'cum_call', 'mouth_swallow', 'hobo');
+    scene.img('images/shared/sex/cum/mouth/cum1,' + (Math.floor(Math.random() * 11) + 0) + '.mp4');
     scene.text('A few seconds later, your mouth fills with nasty tasting cum that you force yourself to quickly swallow. You take your money and quickly leave before someone sees you.');
-    qspCall(s, 'arousal', 'bj', 3, 'prostitution');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 3, 'prostitution');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);
   } },
       { label: 'On your face', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'money', 'earn', 150);
-    qspCall(s, 'cum_call', 'face', 'hobo');
-    scene.img('images/shared/sex/public/cum0,\'+rand(0, 3)+\'.jpg');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'money', 'earn', 150);
+    qspCall(st, 'cum_call', 'face', 'hobo');
+    scene.img('images/shared/sex/public/cum0,' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
     scene.text('A few seconds later, your face is covered in nasty smelling cum. You take your money and quickly leave before someone sees you.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['city_residential', ''] },
     ]);

@@ -136,17 +136,17 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted'  ||  ((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'cheater') {
-      // TODO-QSP: dynamic text: The moment you're through the door, the both of you begin discarding clothes in ...
+      // TODO-QSP: dynamic text: The moment you''re through the door, the both of you begin discarding clothes in...
       scene.text(`The moment you're through the door, the both of you begin discarding clothes in a hurry. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, rough hands slide over your skin.`);
       scene.text('"Girls like you all want the same thing," he says as he rips it off and pins you to the wall. His hands seem to find every inch of your bare skin. By the time you\'re at the bed, there\'s a trail of clothing across the floor.');
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
-        // TODO-QSP: dynamic text: <<$npcdesc>> can't keep his eyes off you as you lead him.
+        // TODO-QSP: dynamic text: <<$npcdesc>> can''t keep his eyes off you as you lead him.
         scene.text(`${((s as any).npcdesc || '')} can't keep his eyes off you as you lead him.`);
         scene.text('"Fuck," he groans as you start to undress once you\'re inside the door. His eyes light up as your breasts are exposed and he openly leers at them. He suddenly remembers he needs to get undressed as well and scrambles to take off his pants. His eyes never leave your body as you lead him toward the bed.');
       } else {
         if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
-          // TODO-QSP: dynamic text: The moment you're through the door, the both of you begin discarding clothes in ...
+          // TODO-QSP: dynamic text: The moment you''re through the door, the both of you begin discarding clothes in...
           scene.text(`The moment you're through the door, the both of you begin discarding clothes in a hurry. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, warm hands slide stop you.`);
           scene.text('"Hold up your arms," he orders as he expertly pulls it over your shoulders. His slightly labored breath makes you want to rush but he takes his time. By the time you\'re make the bed, you are naked and panting.');
         } else {
@@ -290,7 +290,7 @@ function enterPantyStrip(s: GameState, scene: SceneBuilder): void {
 function enterPantylessSkirt(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/undress/skirt_drop1.mp4');
   // TODO-QSP: dynamic text: You trail behind <<$npc_usedname[$npcID]>> on the way to the bed, letting him la...
-  scene.text(`You trail behind ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} on the way to the bed, letting him lay back on it as a mischievous smirk plays on your lips. You drop ' + iif(sex_ev['CloDress'] = 1, 'the rest of your dress', 'your skirt') + ' to the floor to let him see what's underneath.`);
+  scene.text('You trail behind ' + ((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? '' + ' on the way to the bed, letting him lay back on it as a mischievous smirk plays on your lips. You drop \' + iif(sex_ev[\'CloDress\'] = 1, \'the rest of your dress\', \'your skirt\') + \' to the floor to let him see what\'s underneath.');
   if (((s as any).sex_ev ?? 0)?.['commando'] === 1) {
     scene.text('"I see you weren\'t lying about not wearing any underwear," he says, staring at your bare pussy.');
   } else {
@@ -299,16 +299,16 @@ function enterPantylessSkirt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him lead', handler: (st: GameState) => {
-    if (((((s as any).npc_caretaker ?? 0)?.[String((s as any).npcID ?? 0)] === 1  &&  ((s as any).sex_ev ?? 0)?.['orgasm_count'] === 0)  ||  ((s as any).npc_pussyeater ?? 0)?.[String((s as any).npcID ?? 0)] === 1)  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
-      qspCall(s, 'sex_ev_foreplay', 'generous_initiative');
+    if (((((st as any).npc_caretaker ?? 0)?.[String((st as any).npcID ?? 0)] === 1  &&  ((st as any).sex_ev ?? 0)?.['orgasm_count'] === 0)  ||  ((st as any).npc_pussyeater ?? 0)?.[String((st as any).npcID ?? 0)] === 1)  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
+      qspCall(st, 'sex_ev_foreplay', 'generous_initiative');
     } else {
-      if (((s as any).npc_selfish ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
-        qspCall(s, 'sex_ev_foreplay', 'selfish_initiative');
+      if (((st as any).npc_selfish ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
+        qspCall(st, 'sex_ev_foreplay', 'selfish_initiative');
       } else {
         if ((Math.floor(Math.random() * 2) + 0) === 1) {
-          qspCall(s, 'sex_ev_foreplay', 'generous_initiative');
+          qspCall(st, 'sex_ev_foreplay', 'generous_initiative');
         } else {
-          qspCall(s, 'sex_ev_foreplay', 'selfish_initiative');
+          qspCall(st, 'sex_ev_foreplay', 'selfish_initiative');
         }
       }
     }

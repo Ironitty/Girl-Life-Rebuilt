@@ -46,28 +46,28 @@ function enterWhatDoYouLikeMenu(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Studying', handler: (st: GameState) => {
     scene.text('"I spend a lot of time studying."');
-    if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
+    if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'intellectual') {
       scene.text('"Oh yeah?" He seems surprised and interested. "What are you studying?"');
       scene.actions([
         { label: 'Getting into uni', handler: (st: GameState) => {
-    if (((s as any).class ?? 0)?.['school_grade_average'] <= 20) {
+    if (((st as any).class ?? 0)?.['school_grade_average'] <= 20) {
       // TODO-QSP: dynamic text: "Pretty much everything." You give <<$npcdesc>> a wistful smile. "My grades are ...
-      scene.text(`"Pretty much everything." You give ${((s as any).npcdesc || '')} a wistful smile. "My grades are awful right now. I have to make a complete turnaround if I even want a <i>chance</i> at getting into uni!"`);
+      scene.text(`"Pretty much everything." You give ${((st as any).npcdesc || '')} a wistful smile. "My grades are awful right now. I have to make a complete turnaround if I even want a <i>chance</i> at getting into uni!"`);
     } else {
-      if (((s as any).class ?? 0)?.['school_grade_average'] <= 40) {
+      if (((st as any).class ?? 0)?.['school_grade_average'] <= 40) {
         // TODO-QSP: dynamic text: "Pretty much everything." You give <<$npcdesc>> a wistful smile. "My grades are ...
-        scene.text(`"Pretty much everything." You give ${((s as any).npcdesc || '')} a wistful smile. "My grades are awful right now. I have a long way to go if I want to actually get into uni."`);
+        scene.text(`"Pretty much everything." You give ${((st as any).npcdesc || '')} a wistful smile. "My grades are awful right now. I have a long way to go if I want to actually get into uni."`);
       } else {
-        if (((s as any).class ?? 0)?.['school_grade_average'] <= 60) {
+        if (((st as any).class ?? 0)?.['school_grade_average'] <= 60) {
           // TODO-QSP: dynamic text: "Pretty much everything." You give <<$npcdesc>> a wistful smile. "My grades aren...
-          scene.text(`"Pretty much everything." You give ${((s as any).npcdesc || '')} a wistful smile. "My grades aren't bad, but they're nothing special. I have a long way to go if I want to actually get into uni."`);
+          scene.text(`"Pretty much everything." You give ${((st as any).npcdesc || '')} a wistful smile. "My grades aren't bad, but they're nothing special. I have a long way to go if I want to actually get into uni."`);
         } else {
-          if (((s as any).class ?? 0)?.['school_grade_average'] <= 80) {
-            // TODO-QSP: dynamic text: "Pretty much everything." You give <<$npcdesc>> a wistful smile. "I'm just tryin...
-            scene.text(`"Pretty much everything." You give ${((s as any).npcdesc || '')} a wistful smile. "I'm just trying to get into uni."`);
+          if (((st as any).class ?? 0)?.['school_grade_average'] <= 80) {
+            // TODO-QSP: dynamic text: "Pretty much everything." You give <<$npcdesc>> a wistful smile. "I''m just tryi...
+            scene.text(`"Pretty much everything." You give ${((st as any).npcdesc || '')} a wistful smile. "I'm just trying to get into uni."`);
           } else {
-            // TODO-QSP: dynamic text: "Pretty much everything." You give <<$npcdesc>> a wistful smile. "I'm just tryin...
-            scene.text(`"Pretty much everything." You give ${((s as any).npcdesc || '')} a wistful smile. "I'm just trying to get into uni."`);
+            // TODO-QSP: dynamic text: "Pretty much everything." You give <<$npcdesc>> a wistful smile. "I''m just tryi...
+            scene.text(`"Pretty much everything." You give ${((st as any).npcdesc || '')} a wistful smile. "I'm just trying to get into uni."`);
           }
         }
       }
@@ -141,8 +141,8 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Candy Crunch', handler: (st: GameState) => {
     scene.text('"I\'m always playing that candy game on my phone. It\'s so addicting, I can\'t put it down!"');
-    if (((s as any).npc_snob ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((String(((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
-      qspGoto(s, 'date_boy_talk', 'video_games_talk', 'mobile_game');
+    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String(((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
+      qspGoto(st, 'date_boy_talk', 'video_games_talk', 'mobile_game');
     } else {
       scene.text('"Oh, that\'s cool I guess."');
       scene.actions([
@@ -152,8 +152,8 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Call of Booty', handler: (st: GameState) => {
     scene.text('"I really like playing Call of Booty! Especially because of those sexy skins that come in the loot boxes."');
-    if (((s as any).npc_snob ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((String(((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
-      qspGoto(s, 'date_boy_talk', 'video_games_talk');
+    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String(((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
+      qspGoto(st, 'date_boy_talk', 'video_games_talk');
     } else {
       scene.text('"Oh, that\'s cool I guess."');
       scene.actions([
@@ -163,10 +163,10 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'FUFU (the football game)', handler: (st: GameState) => {
     scene.text('"I really like playing FUFU! All the fun of football without any of the sweating."');
-    if (((s as any).npc_snob ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((String(((s as any).npc_hobbies ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
-      qspGoto(s, 'date_boy_talk', 'video_games_talk');
+    if (((st as any).npc_snob ?? 0)?.[String((st as any).npcID ?? 0)] > 0  &&  ((String(((st as any).npc_hobbies ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';video_games;'))) + 1) > 0) {
+      qspGoto(st, 'date_boy_talk', 'video_games_talk');
     } else {
-      if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
+      if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'childish') {
         scene.text('"Nothing like kicking balls around for 90 minutes, huh?" he snickers.');
       } else {
         scene.text('"Oh, that\'s cool I guess."');
@@ -196,7 +196,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Tekken', handler: (st: GameState) => {
-    if (((s as any).AlbinaQW ?? 0)?.['gamebet'] === 1) {
+    if (((st as any).AlbinaQW ?? 0)?.['gamebet'] === 1) {
       scene.text('"I like fighting games. One of my favorite ones right now is Tekken. I play it all the time with my friend and we-" You suddenly cut off, realizing Albina might not like you sharing the fact that you play the game and make bets to fuck each other with strap-ons. "We uhh, we play it a lot together."');
     } else {
       scene.text('"I like fighting games. One of my favorite ones right now is Tekken."');
@@ -214,7 +214,7 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Cunt Souls', handler: (st: GameState) => {
     scene.text('"I like playing hard and difficult games. Cunt Souls is one of my favorites right now."');
-    if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
+    if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'perverted'  ||  ((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'childish') {
       scene.text('"I got something hard down here for you," he snickers.');
     }
     scene.actions([
@@ -229,19 +229,19 @@ function enterVideoGameMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterVideoGameSnob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
-  if (((s as any).locArgs?.[1] ?? 0) === 'mobile_game') {
-    // TODO-QSP: dynamic text: "Oh." <<$npcdesc>>'s grin turns to a sneer. "I thought you played <i>real</i> ga...
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'mobile_game') {
+    // TODO-QSP: dynamic text: "Oh." <<$npcdesc>>''s grin turns to a sneer. "I thought you played <i>real</i> g...
     scene.text(`"Oh." ${((s as any).npcdesc || '')}'s grin turns to a sneer. "I thought you played <i>real</i> games, not that mobile phone junk."`);
   } else {
-    // TODO-QSP: dynamic text: "Oh." <<$npcdesc>>'s grin turns to a sneer. "I thought you played <i>real</i> ga...
+    // TODO-QSP: dynamic text: "Oh." <<$npcdesc>>''s grin turns to a sneer. "I thought you played <i>real</i> g...
     scene.text(`"Oh." ${((s as any).npcdesc || '')}'s grin turns to a sneer. "I thought you played <i>real</i> games, not that junk."`);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Feel hurt', handler: (st: GameState) => {
-    qspCall(s, 'date_talk', 'loc_img');
-    // TODO-QSP: dynamic text: You wilt under the barrage of <<$npcdesc>>'s harsh words, your feelings more tha...
-    scene.text(`You wilt under the barrage of ${((s as any).npcdesc || '')}'s harsh words, your feelings more than just a little hurt.`);
+    qspCall(st, 'date_talk', 'loc_img');
+    // TODO-QSP: dynamic text: You wilt under the barrage of <<$npcdesc>>''s harsh words, your feelings more th...
+    scene.text(`You wilt under the barrage of ${((st as any).npcdesc || '')}'s harsh words, your feelings more than just a little hurt.`);
     scene.actions([
       { label: 'Continue', goto: ['date_talk', 'continue_rate'] },
     ]);
@@ -255,7 +255,7 @@ function enterWhatsYourTypeTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'date_talk', 'talk_img');
   if ((!((String(((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';type_talk;'))) + 1))) {
     // TODO-QSP: $npc_conversations[$npcID] += ';type_talk;'
-    // TODO-QSP: dynamic text: "So, I was wondering, what's your type?" <<$npcdesc>> asks.
+    // TODO-QSP: dynamic text: "So, I was wondering, what''s your type?" <<$npcdesc>> asks.
     scene.text(`"So, I was wondering, what's your type?" ${((s as any).npcdesc || '')} asks.`);
   } else {
     // TODO-QSP: dynamic text: "You told me about some of the things you like in a guy before," <<$npcdesc>> sa...
@@ -270,7 +270,7 @@ function enterWhatsYourTypeMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Never thought about it', handler: (st: GameState) => {
-    if ((!((String(((s as any).npc_conversations ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';type_talk;'))) + 1))) {
+    if ((!((String(((st as any).npc_conversations ?? 0)?.[String((st as any).npcID ?? 0)]).indexOf(String(';type_talk;'))) + 1))) {
       scene.text('"My type?" The question startles you. "Uhmm... I don\'t know? I guess I never really thought about it before."');
     } else {
       scene.text('"Uhmm... I don\'t know? I guess I still haven\'t given it much thought."');
@@ -358,19 +358,19 @@ function enterWashingHandsTalk(s: GameState, scene: SceneBuilder): void {
     { label: 'Quiet disgust', handler: (st: GameState) => {
     scene.text('"Uhm, yeah..." you reply stiffly, trying not to let your disgust show on your face.');
     scene.text('<i>He only washes his hands when somebody is watching?</i> you think. <i>Gross!</i>');
-    qspGoto(s, 'date_talk', 'date_continue');
+    qspGoto(st, 'date_talk', 'date_continue');
   } },
     { label: 'Laugh in agreement', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     scene.text('"Yeah!" you laugh. "It\'s the worst!"');
-    qspGoto(s, 'date_talk', 'date_continue');
+    qspGoto(st, 'date_talk', 'date_continue');
   } },
     { label: 'Visible disgust', handler: (st: GameState) => {
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'dislike');
     scene.text('"You only wash your hands when somebody is watching?!" you say.');
     scene.text('"I mean, it\'s not like I actually touch anything when I take a piss."');
     scene.text('"That\'s fucking gross." Your brow wrinkles in disgust.');
-    qspGoto(s, 'date_talk', 'date_continue');
+    qspGoto(st, 'date_talk', 'date_continue');
   } },
   ]);
   scene.build();
@@ -386,9 +386,9 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'It\'s cause he\'s hot', handler: (st: GameState) => {
     scene.text('"Not as crazy as you think," you smirk. "You\'re pretty hot after all."');
-    if (((s as any).npc_shy ?? 0)?.[String((s as any).npcID ?? 0)] > 0  ||  ((s as any).npc_insecure ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+    if (((st as any).npc_shy ?? 0)?.[String((st as any).npcID ?? 0)] > 0  ||  ((st as any).npc_insecure ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       // TODO-QSP: dynamic text: "You think so?" <<$npcdesc>> seems genuinely surprised.
-      scene.text(`"You think so?" ${((s as any).npcdesc || '')} seems genuinely surprised.`);
+      scene.text(`"You think so?" ${((st as any).npcdesc || '')} seems genuinely surprised.`);
       scene.text('"Yeah! You may not realize it, but you\'re drop dead gorgeous. A girl will do a lot to grab the attention of a guy like you."');
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
         scene.text('He seems pleased and takes the compliment with a blush.');
@@ -401,7 +401,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
           { label: 'No', handler: (st: GameState) => {
     scene.text('"No!" You laugh. "I\'m not that kind of girl."');
     // TODO-QSP: dynamic text: "Oh." <<$npcdesc>> seems kind of deflated after that...
-    scene.text(`"Oh." ${((s as any).npcdesc || '')} seems kind of deflated after that...`);
+    scene.text(`"Oh." ${((st as any).npcdesc || '')} seems kind of deflated after that...`);
     scene.actions([
       { label: 'Continue', goto: ['date_talk', 'continue_rate'] },
     ]);
@@ -409,20 +409,20 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
           { label: 'Definitely', handler: (st: GameState) => {
     scene.text('"Definitely." You grin at him. "Someone as hot as you can see my tits any time."');
     // TODO-QSP: dynamic text: <<$npcdesc>> grins back at that. Though he does blush too.
-    scene.text(`${((s as any).npcdesc || '')} grins back at that. Though he does blush too.`);
+    scene.text(`${((st as any).npcdesc || '')} grins back at that. Though he does blush too.`);
     scene.actions([
       { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
     ]);
   } },
           { label: 'Flash him now', handler: (st: GameState) => {
-    qspCall(s, 'date_talk', 'flash_mov');
+    qspCall(st, 'date_talk', 'flash_mov');
     scene.text('"Definitely. In fact-"');
-    if ((!((s as any).PCloDress ?? 0))) {
-      // TODO-QSP: dynamic text: <<$npcdesc>>'s jaw drops as you pull your top up and flash him your <<$pcdesc_br...
-      scene.text(`${((s as any).npcdesc || '')}'s jaw drops as you pull your top up and flash him your ${((s as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
+    if ((!((st as any).PCloDress ?? 0))) {
+      // TODO-QSP: dynamic text: <<$npcdesc>>''s jaw drops as you pull your top up and flash him your <<$pcdesc_b...
+      scene.text(`${((st as any).npcdesc || '')}'s jaw drops as you pull your top up and flash him your ${((st as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
     } else {
-      // TODO-QSP: dynamic text: <<$npcdesc>>'s jaw drops as you pull down your dress and flash him your <<$pcdes...
-      scene.text(`${((s as any).npcdesc || '')}'s jaw drops as you pull down your dress and flash him your ${((s as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
+      // TODO-QSP: dynamic text: <<$npcdesc>>''s jaw drops as you pull down your dress and flash him your <<$pcde...
+      scene.text(`${((st as any).npcdesc || '')}'s jaw drops as you pull down your dress and flash him your ${((st as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
     }
     scene.text('"See? You\'re so hot a girl can\'t help herself."');
     scene.text('He has trouble keeping eye contact after that.');
@@ -450,14 +450,14 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: 'Flash him now', handler: (st: GameState) => {
-    qspCall(s, 'date_talk', 'flash_mov');
+    qspCall(st, 'date_talk', 'flash_mov');
     scene.text('"Definitely. In fact-"');
-    if ((!((s as any).PCloDress ?? 0))) {
-      // TODO-QSP: dynamic text: <<$npcdesc>>'s eyes light up as you pull your top up and flash him your <<$pcdes...
-      scene.text(`${((s as any).npcdesc || '')}'s eyes light up as you pull your top up and flash him your ${((s as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
+    if ((!((st as any).PCloDress ?? 0))) {
+      // TODO-QSP: dynamic text: <<$npcdesc>>''s eyes light up as you pull your top up and flash him your <<$pcde...
+      scene.text(`${((st as any).npcdesc || '')}'s eyes light up as you pull your top up and flash him your ${((st as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
     } else {
-      // TODO-QSP: dynamic text: <<$npcdesc>>'s eyes light up as you pull down your dress and flash him your <<$p...
-      scene.text(`${((s as any).npcdesc || '')}'s eyes light up as you pull down your dress and flash him your ${((s as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
+      // TODO-QSP: dynamic text: <<$npcdesc>>''s eyes light up as you pull down your dress and flash him your <<$...
+      scene.text(`${((st as any).npcdesc || '')}'s eyes light up as you pull down your dress and flash him your ${((st as any).pcdesc_breasts || '')} breasts with a big grin on your face.`);
     }
     scene.text('"See? You\'re so hot a girl can\'t help herself."');
     scene.text('He has trouble keeping eye contact after that.');
@@ -484,7 +484,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Sometimes', handler: (st: GameState) => {
     scene.text('"Sometimes," you admit. "Depends on if I\'m in the mood or not."');
-    if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
+    if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'childish') {
       scene.text('"That\'s hot," he grins.');
     } else {
       scene.text('"Well, if it was you, I don\'t remember," he grins. "To be honest, I\'m not really looking her face when that happens."');
@@ -495,7 +495,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'All the time', handler: (st: GameState) => {
     scene.text('"All the time," you grin. "It\'s my favorite part of taking a jog."');
-    if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
+    if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'childish') {
       scene.text('"That\'s hot," he grins.');
     } else {
       scene.text('"Well, if it was you, I don\'t remember," he grins. "To be honest, I\'m not really looking her face when that happens."');
@@ -512,9 +512,9 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'I\'ll try not to get jealous', handler: (st: GameState) => {
     scene.text('"I\'ll try not to get jealous," you snicker back at him.');
-    if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted'  ||  ((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
+    if (((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'perverted'  ||  ((st as any).npc_humor ?? 0)?.[String((st as any).npcID ?? 0)] === 'childish') {
       scene.text('"Well, you could always flash me yourself to keep my interest up."');
-      if (((s as any).npc_last_sex ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+      if (((st as any).npc_last_sex ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
         scene.actions([
           { label: 'You\'ll use sex instead', handler: (st: GameState) => {
     scene.text('"I don\'t think there\'s a need for that." You grin at him. "Not as long as I keep fucking you."');
@@ -536,15 +536,15 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] >= 80) {
+      if (((st as any).npc_rel ?? 0)?.[String((st as any).npcID ?? 0)] >= 80) {
         scene.text('"You\'ve got nothing to be jealous of."');
         // TODO-QSP: dynamic text: <<$npcdesc>> smiles warmly at you and takes your hand.
-        scene.text(`${((s as any).npcdesc || '')} smiles warmly at you and takes your hand.`);
+        scene.text(`${((st as any).npcdesc || '')} smiles warmly at you and takes your hand.`);
         scene.actions([
           { label: 'Continue', goto: ['date_talk', 'continue_rate', 'improve'] },
         ]);
       } else {
-        if (((s as any).npc_misogynist ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+        if (((st as any).npc_misogynist ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
           scene.text('"I doubt that," he snickers back. "If there\'s such a thing as a woman who doesn\'t get jealous, I\'ve yet to meet her."');
           scene.actions([
             { label: 'Continue', goto: ['date_talk', 'continue_rate'] },
@@ -561,7 +561,7 @@ function enterFlashingJogger(s: GameState, scene: SceneBuilder): void {
     { label: 'That <i>is</i> crazy!', handler: (st: GameState) => {
     scene.text('You can\'t help but gasp and gape.');
     scene.text('"Woah seriously? That <i>is</i> crazy!"');
-    if (((s as any).npc_misogynist ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
+    if (((st as any).npc_misogynist ?? 0)?.[String((st as any).npcID ?? 0)] > 0) {
       scene.text('"Girls are sluts, what are you gonna do?" he grins.');
     } else {
       scene.text('"I know right?"');

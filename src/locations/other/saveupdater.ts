@@ -279,19 +279,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     // TODO-QSP: :saveupdaterloop853_1
     if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 5) {
-      ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_outcast_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
+      ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).i ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_outcast_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
     } else {
       if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4) {
-        ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_gopnik_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
+        ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).i ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_gopnik_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
       } else {
         if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 3) {
-          ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_nerd_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
+          ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).i ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_nerd_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
         } else {
           if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 2) {
-            ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_jock_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
+            ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).i ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_jock_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
           } else {
             if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 1) {
-              ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String((s as any).i || '') + ''] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_coolkid_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
+              ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A' + String(((s as any).i ?? 0))] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_coolkid_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A' + String(((s as any).i ?? 0))] + '</a>';
             }
           }
         }
@@ -308,7 +308,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).temp_current_save_version ?? 0) < 80504) {
-    ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A18'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027gschool_jock_chats\\u0027, \\u0027\\u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A18'] + '</a>';
+    ((s as any).npcGoSchool = (s as any).npcGoSchool ?? {})['A18'] = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_jock_chats/u0027, /u0027/u0027); return false;">' + ((s as any).npc_usedname ?? 0)?.['A18'] + '</a>';
     if (((s as any).storyline ?? 0) === 1  &&  ((s as any).magikDostup ?? 0) === 1) {
       (s as any).start_type = 'sg';
       // TODO-QSP: $start_type[1]   = 'nomagic'
@@ -1024,11 +1024,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_makeup_routine = 0;
     (s as any).temp_makeup_routine_name = 0;
     if (((s as any).temp_makeup_routine ?? 0) !== '') {
-      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String((s as any).makeup_routine_update_index || '') + '_makeup'] = parseFloat((String(((s as any).temp_makeup_routine ?? 0)).slice((1)-1, ((1)-1)+(1))));
-      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String((s as any).makeup_routine_update_index || '') + '_lipbalm'] = parseFloat((String(((s as any).temp_makeup_routine ?? 0)).slice((2)-1, ((2)-1)+(1))));
-      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String((s as any).makeup_routine_update_index || '') + '_lashes'] = parseFloat((String(((s as any).temp_makeup_routine ?? 0)).slice((3)-1, ((3)-1)+(1))));
-      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String((s as any).makeup_routine_update_index || '') + ''] = ((s as any).temp_makeup_routine ?? 0);
-      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String((s as any).makeup_routine_update_index || '') + '_name'] = ((s as any).temp_makeup_routine_name ?? 0);
+      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String(((s as any).makeup_routine_update_index ?? 0)) + '_makeup'] = parseFloat((String(((s as any).temp_makeup_routine ?? 0)).slice((1)-1, ((1)-1)+(1))));
+      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String(((s as any).makeup_routine_update_index ?? 0)) + '_lipbalm'] = parseFloat((String(((s as any).temp_makeup_routine ?? 0)).slice((2)-1, ((2)-1)+(1))));
+      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String(((s as any).makeup_routine_update_index ?? 0)) + '_lashes'] = parseFloat((String(((s as any).temp_makeup_routine ?? 0)).slice((3)-1, ((3)-1)+(1))));
+      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String(((s as any).makeup_routine_update_index ?? 0))] = ((s as any).temp_makeup_routine ?? 0);
+      ((s as any).makeup = (s as any).makeup ?? {})['routine_' + String(((s as any).makeup_routine_update_index ?? 0)) + '_name'] = ((s as any).temp_makeup_routine_name ?? 0);
     }
     (s as any).makeup_routine_update_index = ((s as any).makeup_routine_update_index ?? 0) + (1);
     if (((s as any).makeup_routine_update_index ?? 0) <= 4) {
@@ -1497,49 +1497,49 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: killvar 'alarm_holiday'
     }
     (s as any).npctemp = 264;
-    ((s as any).npc_dna = (s as any).npc_dna ?? {})['A' + String((s as any).npctemp || '') + ''] = '1290130369 1043654233 5049908515 3153411713 0721993774 2486220839 0288719745';
-    ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Yakov';
-    ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Yakov';
-    ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String((s as any).npctemp || '') + ''] = '';
-    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Yakov';
-    ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String((s as any).npctemp || '') + ''] = 19961215;
-    ((s as any).npc_notes = (s as any).npc_notes ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Yakov is a fitness-focused sports enthusiast with blond hair and a tanned complexion.';
-    ((s as any).npc_gender = (s as any).npc_gender ?? {})['A' + String((s as any).npctemp || '') + ''] = 0;
+    ((s as any).npc_dna = (s as any).npc_dna ?? {})['A' + String(((s as any).npctemp ?? 0))] = '1290130369 1043654233 5049908515 3153411713 0721993774 2486220839 0288719745';
+    ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Yakov';
+    ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Yakov';
+    ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String(((s as any).npctemp ?? 0))] = '';
+    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Yakov';
+    ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String(((s as any).npctemp ?? 0))] = 19961215;
+    ((s as any).npc_notes = (s as any).npc_notes ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Yakov is a fitness-focused sports enthusiast with blond hair and a tanned complexion.';
+    ((s as any).npc_gender = (s as any).npc_gender ?? {})['A' + String(((s as any).npctemp ?? 0))] = 0;
     qspCall(s, 'npcstaticdefaults', 'defaults');
-    ((s as any).npc_thdick = (s as any).npc_thdick ?? {})['A' + String((s as any).npctemp || '') + ''] = 'well proportioned';
-    ((s as any).npc_dick = (s as any).npc_dick ?? {})['A' + String((s as any).npctemp || '') + ''] = 14;
-    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})['A' + String((s as any).npctemp || '') + ''] = 1;
-    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})['A' + String((s as any).npctemp || '') + ''] = 'personal_trainer';
-    ((s as any).npc_style = (s as any).npc_style ?? {})['A' + String((s as any).npctemp || '') + ''] = 5;
+    ((s as any).npc_thdick = (s as any).npc_thdick ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'well proportioned';
+    ((s as any).npc_dick = (s as any).npc_dick ?? {})['A' + String(((s as any).npctemp ?? 0))] = 14;
+    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})['A' + String(((s as any).npctemp ?? 0))] = 1;
+    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'personal_trainer';
+    ((s as any).npc_style = (s as any).npc_style ?? {})['A' + String(((s as any).npctemp ?? 0))] = 5;
     (s as any).npctemp = 265;
-    ((s as any).npc_dna = (s as any).npc_dna ?? {})['A' + String((s as any).npctemp || '') + ''] = '1085950303 4348731991 6618084127 9067996922 8669859044 9431283301 0673267503';
-    ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Nestor';
-    ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Nestor';
-    ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String((s as any).npctemp || '') + ''] = '';
-    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Nestor';
-    ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String((s as any).npctemp || '') + ''] = 19930127;
-    ((s as any).npc_notes = (s as any).npc_notes ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Nestor is a gopnik with a reputation for being rude and aggressive. His motto seems to be "the younger, the better," which can be concerning. He has a tough demeanor, with dark hair and dark skin, giving off an intimidating presence.';
-    ((s as any).npc_gender = (s as any).npc_gender ?? {})['A' + String((s as any).npctemp || '') + ''] = 0;
+    ((s as any).npc_dna = (s as any).npc_dna ?? {})['A' + String(((s as any).npctemp ?? 0))] = '1085950303 4348731991 6618084127 9067996922 8669859044 9431283301 0673267503';
+    ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Nestor';
+    ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Nestor';
+    ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String(((s as any).npctemp ?? 0))] = '';
+    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Nestor';
+    ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String(((s as any).npctemp ?? 0))] = 19930127;
+    ((s as any).npc_notes = (s as any).npc_notes ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Nestor is a gopnik with a reputation for being rude and aggressive. His motto seems to be "the younger, the better," which can be concerning. He has a tough demeanor, with dark hair and dark skin, giving off an intimidating presence.';
+    ((s as any).npc_gender = (s as any).npc_gender ?? {})['A' + String(((s as any).npctemp ?? 0))] = 0;
     qspCall(s, 'npcstaticdefaults', 'defaults');
-    ((s as any).npc_thdick = (s as any).npc_thdick ?? {})['A' + String((s as any).npctemp || '') + ''] = 'massive';
-    ((s as any).npc_dick = (s as any).npc_dick ?? {})['A' + String((s as any).npctemp || '') + ''] = 22;
-    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})['A' + String((s as any).npctemp || '') + ''] = 1;
-    ((s as any).npc_style = (s as any).npc_style ?? {})['A' + String((s as any).npctemp || '') + ''] = 2;
+    ((s as any).npc_thdick = (s as any).npc_thdick ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'massive';
+    ((s as any).npc_dick = (s as any).npc_dick ?? {})['A' + String(((s as any).npctemp ?? 0))] = 22;
+    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})['A' + String(((s as any).npctemp ?? 0))] = 1;
+    ((s as any).npc_style = (s as any).npc_style ?? {})['A' + String(((s as any).npctemp ?? 0))] = 2;
     (s as any).npctemp = 266;
-    ((s as any).npc_dna = (s as any).npc_dna ?? {})['A' + String((s as any).npctemp || '') + ''] = '5654106058 6395942483 3363408422 7113656738 1111862818 8859290040 7960339191';
-    ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Oleg';
-    ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Oleg';
-    ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String((s as any).npctemp || '') + ''] = '';
-    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Oleg';
-    ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String((s as any).npctemp || '') + ''] = 19950712;
-    ((s as any).npc_notes = (s as any).npc_notes ?? {})['A' + String((s as any).npctemp || '') + ''] = 'Oleg is a shy, young-looking guy with thick glasses, a slim frame, and very pale skin.';
-    ((s as any).npc_gender = (s as any).npc_gender ?? {})['A' + String((s as any).npctemp || '') + ''] = 0;
+    ((s as any).npc_dna = (s as any).npc_dna ?? {})['A' + String(((s as any).npctemp ?? 0))] = '5654106058 6395942483 3363408422 7113656738 1111862818 8859290040 7960339191';
+    ((s as any).npc_firstname = (s as any).npc_firstname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Oleg';
+    ((s as any).npc_nickname = (s as any).npc_nickname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Oleg';
+    ((s as any).npc_lastname = (s as any).npc_lastname ?? {})['A' + String(((s as any).npctemp ?? 0))] = '';
+    ((s as any).npc_usedname = (s as any).npc_usedname ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Oleg';
+    ((s as any).npc_dob = (s as any).npc_dob ?? {})['A' + String(((s as any).npctemp ?? 0))] = 19950712;
+    ((s as any).npc_notes = (s as any).npc_notes ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'Oleg is a shy, young-looking guy with thick glasses, a slim frame, and very pale skin.';
+    ((s as any).npc_gender = (s as any).npc_gender ?? {})['A' + String(((s as any).npctemp ?? 0))] = 0;
     qspCall(s, 'npcstaticdefaults', 'defaults');
-    ((s as any).npc_thdick = (s as any).npc_thdick ?? {})['A' + String((s as any).npctemp || '') + ''] = 'thick';
-    ((s as any).npc_dick = (s as any).npc_dick ?? {})['A' + String((s as any).npctemp || '') + ''] = 17;
-    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})['A' + String((s as any).npctemp || '') + ''] = 1;
-    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})['A' + String((s as any).npctemp || '') + ''] = 'programmer';
-    ((s as any).npc_style = (s as any).npc_style ?? {})['A' + String((s as any).npctemp || '') + ''] = 3;
+    ((s as any).npc_thdick = (s as any).npc_thdick ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'thick';
+    ((s as any).npc_dick = (s as any).npc_dick ?? {})['A' + String(((s as any).npctemp ?? 0))] = 17;
+    ((s as any).npc_sexskill = (s as any).npc_sexskill ?? {})['A' + String(((s as any).npctemp ?? 0))] = 1;
+    ((s as any).npc_occupation = (s as any).npc_occupation ?? {})['A' + String(((s as any).npctemp ?? 0))] = 'programmer';
+    ((s as any).npc_style = (s as any).npc_style ?? {})['A' + String(((s as any).npctemp ?? 0))] = 3;
     if (((s as any).sp_rel ?? 0)                  > 0) {
       ((s as any).npc_rel = (s as any).npc_rel ?? {})['A264'] = ((s as any).sp_rel ?? 0);
       // TODO-QSP: killvar 'sp_rel'
@@ -3392,7 +3392,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).su_i = 0;
       // TODO-QSP: :zaprFreplaceloop
       if (((String(qspUntranslated(s, "blackmailQW[\u00000\u0000]", { location: "saveupdater" })).indexOf(String('zaprF'))) + 1) > 0) {
-        ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_location_' + String((s as any).su_i || '') + ''] = (String(((s as any).blackmailQW ?? 0)?.['selfie_location_' + String(((s as any).su_i ?? 0))]).split('zaprF').join('fuelstation'));
+        ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_location_' + String(((s as any).su_i ?? 0))] = (String(((s as any).blackmailQW ?? 0)?.['selfie_location_' + String(((s as any).su_i ?? 0))]).split('zaprF').join('fuelstation'));
       }
       (s as any).su_i = ((s as any).su_i ?? 0) + (1);
       if (((s as any).su_i ?? 0) < 10) {
@@ -4156,13 +4156,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).su_j = 0;
       // TODO-QSP: :su_bodimgset_move_loop
       if (((s as any).su_j ?? 0) < 9) {
-        ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String((s as any).su_i-4 || '') + '_desc_' + String((s as any).su_j || '') + ''] = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).su_j ?? 0));
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).su_i ?? 0)-4) + '_desc_' + String(((s as any).su_j ?? 0))] = qspFunc(s, 'body_structure', 'body_desc_from_class', ((s as any).su_j ?? 0));
         if ((((s as any).su_j ?? 0) >= 1  &&  ((s as any).su_j ?? 0) <= 5)  ||  (!(0 as any))) {
-          ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String((s as any).su_i-4 || '') + '_img_' + String((s as any).su_j || '') + ''] = '' + ((s as any).su_j ?? 0) + '';
+          ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).su_i ?? 0)-4) + '_img_' + String(((s as any).su_j ?? 0))] = '' + ((s as any).su_j ?? 0) + '';
         }
         (s as any).su_j = ((s as any).su_j ?? 0) + (1);
       } else {
-        ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String((s as any).su_i-4 || '') + '_folder'] = ((s as any).bodimgsets ?? 0)?.[10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0)];
+        ((s as any).cheatVars = (s as any).cheatVars ?? {})['fix_biset_' + String(((s as any).su_i ?? 0)-4) + '_folder'] = ((s as any).bodimgsets ?? 0)?.[10 * ((s as any).su_i ?? 0) + ((s as any).su_j ?? 0)];
         (s as any).su_j = 0;
         (s as any).su_i = ((s as any).su_i ?? 0) + (1);
       }
@@ -4306,35 +4306,35 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :piercing_owned_update_loop
     // TODO-QSP: dynamic "
     if (((s as any)[('pirsC' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['ears_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['ears_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsC<<su_i>>_owned'
     }
     if (((s as any)[('pirsD' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['nose_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['nose_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsD<<su_i>>_owned'
     }
     if (((s as any)[('pirsE' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['brow_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['brow_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsE<<su_i>>_owned'
     }
     if (((s as any)[('pirsB' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['lip_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['lip_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsB<<su_i>>_owned'
     }
     if (((s as any)[('pirsA' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['tongue_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['tongue_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsA<<su_i>>_owned'
     }
     if (((s as any)[('pirsN' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['navel_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['navel_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsN<<su_i>>_owned'
     }
     if (((s as any)[('pirsF' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['nipples_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['nipples_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsF<<su_i>>_owned'
     }
     if (((s as any)[('pirsG' + String((s as any).su_i ?? 0)) + '_owned'] ?? 0) === 1) {
-      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['pussy_' + String((s as any).su_i || '') + '_owned'] = 1;
+      ((s as any).pcs_piercings = (s as any).pcs_piercings ?? {})['pussy_' + String(((s as any).su_i ?? 0)) + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsG<<su_i>>_owned'
     }
     // TODO-QSP: "
@@ -4681,7 +4681,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :npc_selfie_update_loop
     if (((s as any).npc_selfie ?? 0)['A' + ((s as any).su_i ?? 0)] !== '') {
       (s as any).su_temp_str = qspUntranslated(s, "replace(npc_selfie['A<<su_i>>'], ' & gt 'phone_selfies', 'listretrieve2', )", { location: "saveupdater" });
-      ((s as any).npc_selfie = (s as any).npc_selfie ?? {})['A' + String((s as any).su_i || '') + ''] = qspUntranslated(s, "replace(su_temp_str, 'numnpc = ', ' gt 'phone_selfies', 'listretrieve2', 'A')", { location: "saveupdater" });
+      ((s as any).npc_selfie = (s as any).npc_selfie ?? {})['A' + String(((s as any).su_i ?? 0))] = qspUntranslated(s, "replace(su_temp_str, 'numnpc = ', ' gt 'phone_selfies', 'listretrieve2', 'A')", { location: "saveupdater" });
     }
     (s as any).su_i = ((s as any).su_i ?? 0) + (1);
     if (((s as any).su_i ?? 0) < ((s as any).su_max_i ?? 0)) {
@@ -4968,12 +4968,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).husBody ?? 0) === 'short') {
-        ((s as any).npc_height = (s as any).npc_height ?? {})[String((s as any).husID ?? 0)] = Math.floor(Math.random() * 10) + 160;
+        ((s as any).npc_height = (s as any).npc_height ?? {})[String((s as any).husID ?? 0)] = (Math.floor(Math.random() * 10) + 160);
       } else {
         if (((s as any).husBody ?? 0) === 'average') {
-          ((s as any).npc_height = (s as any).npc_height ?? {})[String((s as any).husID ?? 0)] = Math.floor(Math.random() * 9) + 171;
+          ((s as any).npc_height = (s as any).npc_height ?? {})[String((s as any).husID ?? 0)] = (Math.floor(Math.random() * 9) + 171);
         } else {
-          ((s as any).npc_height = (s as any).npc_height ?? {})[String((s as any).husID ?? 0)] = Math.floor(Math.random() * 10) + 181;
+          ((s as any).npc_height = (s as any).npc_height ?? {})[String((s as any).husID ?? 0)] = (Math.floor(Math.random() * 10) + 181);
         }
       }
       if (((s as any).husFat ?? 0) === 'thin') {
@@ -5753,8 +5753,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if ((String(((s as any).curloc ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'komp_cam'  ||  (String(((s as any).menu_loc ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'komp_cam'  ||  (String(((s as any).curloc ?? 0)).slice((1)-1, ((1)-1)+(7))) === 'kompMFC'  ||  (String(((s as any).menu_loc ?? 0)).slice((1)-1, ((1)-1)+(7))) === 'kompMFC') {
         scene.actions([
           { label: 'Stop Camming (camgirl update)', handler: (st: GameState) => {
-    qspCall(s, 'komp_cam_functions', 'stop_camming');
-    qspGoto(s, 'komp', 'browse');
+    qspCall(st, 'komp_cam_functions', 'stop_camming');
+    qspGoto(st, 'komp', 'browse');
   } },
         ]);
       }
@@ -7814,7 +7814,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_psd_slot = (-1);
       // TODO-QSP: :psd_slot_loop
       (s as any).temp_psd_slot = ((s as any).temp_psd_slot ?? 0) + (1);
-      (s as any).temp_psd_key = 'city_pornstudio_actress, ' + qspUntranslated(s, "str(temp_psd_day)", { location: "saveupdater" }) + ', ' + qspUntranslated(s, "str(temp_psd_slot)", { location: "saveupdater" });
+      (s as any).temp_psd_key = 'city_pornstudio_actress, ' + String(((s as any).temp_psd_day ?? 0)) + ', ' + String(((s as any).temp_psd_slot ?? 0));
       (s as any).temp_psd_val = ((s as any).job_booking ?? 0)?.[String((s as any).temp_psd_key ?? 0)];
       if (((s as any).temp_psd_val ?? 0) !== ''  &&  parseFloat(((s as any).temp_psd_val ?? 0)) === 0) {
         if (((s as any).temp_psd_val ?? 0) === 'Titfuck'  ||  ((s as any).temp_psd_val ?? 0) === 'Handjob') {

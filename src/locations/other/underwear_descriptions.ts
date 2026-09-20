@@ -3,7 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).description = '';
   scene.build();
 }
 
@@ -445,6 +444,7 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).description = '';
   const arg = s.locArg;
   switch (arg) {
     case 'panties':

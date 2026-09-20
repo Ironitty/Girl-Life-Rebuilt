@@ -17,43 +17,43 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Get dressed', goto: ['gschool_lessons4', 'dress'] },
     { label: 'Check out the other girls', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/school/gym/locker/peekdress\' + rand(1, 2) + \'.jpg');
+    qspCall(st, 'stat', '');
+    scene.img('images/locations/pavlovsk/school/gym/locker/peekdress' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('You let your eyes wander around the room, checking out the other girls. Some are almost finished dressing, a few are in their underwear and a few are still naked. It\'s a nice view, one thing you\'ll always appreciate about gym class.');
-    qspCall(s, 'arousal', 'erotic_nudity', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Check out Albina', handler: (st: GameState) => {
-    if (((s as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
-      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['voyeur'] = 1;
+    if (((st as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
+      ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['voyeur'] = 1;
     }
     scene.img('images/locations/pavlovsk/school/gym/locker/albpeek.jpg');
     scene.text('You glance at Albina as she pulls her clothes out of her locker. She is petite and slender, but has well-toned muscles, a very shapely set of thighs and a firm bubble butt that\'s the envy of many girls in school. Her long dark brown hair reaches halfway down her back and her pussy is clean-shaven - in fact, you can\'t see a single hair on her smooth skin. She has a great body and you can see why so many boys consider her one of the most attractive girls in your class.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts have a nice firm shape to them and are bigger than your own, but are average-sized compared to the rest of the class.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. They are average-sized compared to the other girls.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them, but are smaller than your own and most of your classmates.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
+      if (((st as any).npc_rel ?? 0)?.['A23'] >= 70) {
         scene.text('You continue to watch Albina dressing. She makes a point of wiggling her shapely ass as she slowly pulls her thong on. It\'s difficult to ignore her, but you manage to pull your gaze away and return your attention to getting dressed yourself. She gives you a friendly smile when she finishes dressing and walks out.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('You continue to watch Albina dressing before she suddenly whips around and catches you staring.');
           scene.text('"What the fuck, perv?! Are you checking me out?!" she screams and the rest of the girls turn to see what the commotion is about.');
           scene.text('Embarrassed at being caught, you stutter at Albina as the girls figure out what you were doing and start pointing and whispering among each other. Unable to answer her, Albina coldly glares at you before turning back to finish getting dressed. You silently and awkwardly look at the floor as you finish getting dressed yourself.');
@@ -62,8 +62,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           scene.text('You breathe a sigh of relief and finish dressing yourself.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -71,8 +71,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your own locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -85,32 +85,32 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Alyona', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/alypeek.jpg');
     scene.text('You take a peek at Aylona while she finishes drying herself off. Her body is incredibly thin, almost anorexic and is covered in tattoos. However, she has a flat stomach and small but perky breasts. Between her legs is a neatly trimmed landing strip that matches the black hair that hangs just past her shoulders. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 1) {
+    if (((st as any).tits ?? 0) < 1) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 1) {
+      if (((st as any).tits ?? 0) === 1) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, she has one of the smaller busts in the class.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, she has one of the smaller busts in the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A143'] <= 20) {
-        (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+      if (((st as any).npc_rel ?? 0)?.['A143'] <= 20) {
+        (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
         scene.text('After watching her for a little longer, she eventually turns and looks at you. "What the fuck are you looking at? Keep your eyes to yourself, you fucking pervert!"');
         scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. You blush and turn back to your own locker to finish getting dressed. Luckily, no one else says anything.');
       } else {
         scene.text('After watching her a little longer, she turns and looks at you. She stares at you for a few seconds while you glance down. When you look back up, she\'s gone back to getting dressed like nothing happened. You turn back to your own locker, blushing a little as you finish getting dressed.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -118,8 +118,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your own locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -132,17 +132,17 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Anushka', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/nushpeek.jpg');
     scene.text('You peek at Anushka, who is walking in from the shower and still drying herself off. She has a petite build and has a variety of tattoos large and small covering her body. She\'s rather slender, with small perky breasts and a firm butt. Her pussy is completely smooth and her black hair reaches just past her chin. With a model\'s face and body, she\'s one of the most beautiful girls in school.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little bit small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -150,11 +150,11 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep checking her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchnush2.jpg');
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A144'] >= 60) {
         scene.text('Perhaps sensing your gaze, Anushka suddenly turns her head over her shoulder and makes direct eye contact with you. You freeze, your eyes growing wide and your mouth going slack as you try to think of some kind of excuse.');
         scene.text('Before you can say anything, she puts her fingers up to her mouth in a V shape and sticks her tongue between them, the universal sign for eating pussy. She then goes back to pretending like nothing happened, so you turn back to your own locker, blushing a little as you finish getting dressed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A144'] <= 20) {
           scene.text('Perhaps sensing your gaze, Anushka suddenly turns towards you. You freeze, realizing you\'ve been caught.');
           scene.text('You panic, trying to think of some kind of excuse, but she smirks and shakes her head at you and goes back to pretending like nothing happened. You turn back to your own locker, blushing a little as you finish getting dressed.');
         } else {
@@ -162,8 +162,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           scene.text('You panic, trying to think of some kind of excuse, but she just winks at you and goes back to pretending like nothing happened. You turn back to your own locker, blushing a little as you finish getting dressed.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -171,8 +171,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your own locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -185,39 +185,39 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Bella', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/belpeek.jpg');
     scene.text('You peek at Bella, who is standing by her locker still drying herself off. She has a slim build and her pussy is shaved smooth while her long brown hair reaches halfway down her back. Bella isn\'t just beautiful, she rivals the looks of models and actresses - she\'s the prettiest girl you\'ve ever seen.');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('Upon inspection, you notice her breasts are fairly large, but have a nice firm shape to them. Her bust is bigger than yours and most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own and are fairly large and firm. They are above average compared to other girls.');
       } else {
         scene.text('Upon inspection, you notice her breasts are fairly large and firm, but still not as large as yours. However, her breasts are above average compared to the rest of the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A22'] >= 80) {
+      if (((st as any).npc_rel ?? 0)?.['A22'] >= 80) {
         scene.text('"If you like what you see, then you should really join me at the city gym sometime. The equipment there is worth the extra money. And no, I don\'t mean that \'equipment\'."');
         scene.text('You both giggle at her comment.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A22'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A22'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('"What the fuck, were you watching me!? Get the fuck away from me, you fucking lesbian!"');
           scene.text('Several girls look up to see what she\'s talking about and you decide it\'s time to get dressed and leave, embarrassed that you were caught checking her out.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('"I don\'t blame you for staring at me. I\'d do the same if I were you, so thanks I guess."');
           scene.text('Several girls look up to see what she\'s talking about and you decide it\'s time to get dressed and leave, embarrassed that you were caught checking her out.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -225,8 +225,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your own locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -240,44 +240,44 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
     scene.text('You glance at Christina walking across the room after tossing her towel in a bin. Her build is very athletic with a toned body. Every single part of her has great muscle definition, especially her legs.');
     scene.text('In combination with her firm breasts and neat landing strip between her legs, her figure is surprisingly pleasing, with a very pretty face boarding on beautiful. She\'s very attractive, if not in the conventional way. You could easily imagine her on the cover of a sports magazine.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them and are bigger than your own.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts are a little small when compared to you and your classmates, but have a nice firm shape to them.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).christinaQW ?? 0)?.['fight'] === 1  ||  ((s as any).christinaQW ?? 0)?.['blackmail'] === 2) {
+      if (((st as any).christinaQW ?? 0)?.['fight'] === 1  ||  ((st as any).christinaQW ?? 0)?.['blackmail'] === 2) {
         scene.text('You look a bit too long and she turns to face you, having seemingly realized that she\'s being watched. You give her a look and she reluctantly turns back to her locker, not saying anything.');
       } else {
-        if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('She catches you looking at her and angrily glares at you. "No, bitch! I won\'t fuck you."');
           scene.text('The girls around you look up to figure out what\'s happening and start laughing at you. You decide it\'s time to get dressed and leave.');
         } else {
-          if (((s as any).grupTipe ?? 0) === 5) {
-            (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          if (((st as any).grupTipe ?? 0) === 5) {
+            (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
             scene.text('She catches you looking at her body and sneers. "Get lost, loser!"');
             scene.text('Girls around you look up, not sure what they missed. You decide it\'s time to get dressed and leave, embarrassed that you were caught checking her out.');
           } else {
-            (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+            (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
             scene.text('You look a bit too long and she turns to face you, having seemingly realized that she\'s being watched. When she sees it\'s you, she just glares. "What, bitch?"');
             scene.text('The girls around you look up, not sure what they missed. You respond with "Sorry, I just spaced out a bit there." You decide it\'s time to get dressed and leave, embarrassed that you were caught checking her out.');
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -285,8 +285,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you let your gaze slide away, not wanting to get caught looking at her.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -300,40 +300,40 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/locker/iripeek.jpg');
     scene.text('You peek at Irina, who is standing by her locker as she gets dressed. She has a petite build that makes her large breasts seem even larger on her frame, her pussy has a neatly trimmed landing strip above it and her long blonde hair reaches just past her shoulders.');
     scene.text('She\'s one of the prettiest girls in school, just behind her friend Bella.');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('Upon inspection, you notice her breasts are fairly large, but have a nice firm shape to them. Her bust is bigger than yours and most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own and are fairly large and firm. They are above average compared to other girls.');
       } else {
         scene.text('Upon inspection, you notice her breasts are fairly large and firm, but still not as large as yours. However, her breasts are above average compared to the rest of the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A17'] >= 80) {
+      if (((st as any).npc_rel ?? 0)?.['A17'] >= 80) {
         scene.text('"I\'m really pretty, aren\'t I?" she asks with a grin and starts dancing while getting dressed.');
         scene.text('You blush as you turn away and finish dressing.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A17'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
-          // TODO-QSP: dynamic text: "Oh, it's you… Ellen Degenerate," she sneers. "<<$pcs_nickname>> is checking me ...
-          scene.text(`"Oh, it's you… Ellen Degenerate," she sneers. "${((s as any).pcs_nickname || '')} is checking me out like some pervy ten-year-old boy!" she says loud enough to get the attention of the room.`);
+        if (((st as any).npc_rel ?? 0)?.['A17'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
+          // TODO-QSP: dynamic text: "Oh, it''s you… Ellen Degenerate," she sneers. "<<$pcs_nickname>> is checking me...
+          scene.text(`"Oh, it's you… Ellen Degenerate," she sneers. "${((st as any).pcs_nickname || '')} is checking me out like some pervy ten-year-old boy!" she says loud enough to get the attention of the room.`);
           scene.text('You decide it\'s time to get dressed and leave, embarrassed that you were caught checking her out.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('"Can I help you? You lost something? Lockers are that way," she says while pointing with her finger. "And stop staring at my tits!" she says loud enough to get the attention of the room.');
           scene.text('You decide it\'s time to get dressed and leave, embarrassed that you were caught checking her out.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -341,8 +341,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your own locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -353,37 +353,37 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Check out Julia', handler: (st: GameState) => {
-    ((s as any).shower_checkout = (s as any).shower_checkout ?? {})['julia_m'] = 1;
+    ((st as any).shower_checkout = (st as any).shower_checkout ?? {})['julia_m'] = 1;
     scene.img('images/locations/pavlovsk/school/gym/locker/julpeek.jpg');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('You peek at Julia while she stands at her locker, still naked and still toweling her long brown hair off. Although her arms and legs are barely more than boney twigs, her breasts are quite large. Certainly bigger than your own, possibly one of the biggest in the whole class, and <i>very</i> soft looking.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('You peek at Julia while she stands at her locker, still naked and still toweling her long brown hair off. Although her arms and legs are barely more than boney twigs, her breasts are quite large. Probably about as big as yours, which makes them one of the biggest pairs in the whole class, and <i>very</i> soft looking.');
       } else {
         scene.text('You peek at Julia while she stands at her locker, still naked and still toweling her long brown hair off. Although her arms and legs are barely more than boney twigs, her breasts are quite large. Not quite as big as yours, but certainly one of the biggest in the whole class, and <i>very</i> soft looking.');
       }
     }
     scene.text('Unlike the other nerds, her pussy is smooth and clean-shaven, clearly displaying her lovely innie lips between her thighs.');
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A12'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A12'] >= 60) {
         scene.text('After watching her for a few minutes, she turns to look at you and starts blushing and smiling for a few seconds before she turns back and finishes getting dressed. You turn back to your own locker, blushing as you finish getting dressed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A12'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A12'] <= 20) {
           scene.text('After watching her for a few minutes, she turns to look at you and starts blushing and looking fearful as she quickly turns away from you and getting dressed. You turn back to your own locker, blushing as you finish getting dressed.');
         } else {
           scene.text('After watching her for a few minutes, she turns to look at you and starts blushing as she quickly turns back away from you and gets dressed. You turn back to your own locker, blushing as you finish getting dressed.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -391,8 +391,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -405,30 +405,30 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Katja', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/katpeek.jpg');
     scene.text('Your attention is drawn towards Katja carefully gathering her clothes from her locker and neatly placing them down. She is petite and very slender, with a clean-shaven pussy and very long red hair reaching halfway down her back. You can see why many boys and even some girls consider her to be very cute and attractive.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Her teardrop-shaped breasts are average-sized, but bigger than your own.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Her teardrop-shaped breasts are average-sized and around the same size as your own.');
       } else {
         scene.text('Her teardrop-shaped breasts are average-sized, but smaller than your own.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A14'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 30  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
+      if (((st as any).npc_rel ?? 0)?.['A14'] >= 50  &&  ((st as any).katjaQW ?? 0)?.['horny'] >= 30  &&  ((st as any).npc_had_sex ?? 0)?.['A14']) {
         scene.text('You\'re unable to pull your gaze away from her and keep watching her getting dressed until she turns and catches you staring at her. She parts her legs slightly, discreetly showing her pussy to you with a small smile before turning and giving you a barely noticeable wiggle of her ass. You smile back at her and you both finish dressing.');
       } else {
         scene.text('You\'re unable to pull your gaze away from her and keep watching her getting dressed until she turns and catches you staring at her. She blushes bright red and looks a little flustered as she covers herself and turns back to her locker. She very quickly finishes dressing before grabbing her belongings and dashing out of the room. Feeling a little embarrassed, you finish getting dressed yourself.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -436,8 +436,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -450,29 +450,29 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Katyusha', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/katypeek.jpg');
     scene.text('You take a peek at Katyusha while she finishes drying herself off. She has a few small tattoos and is incredibly toned and muscled for a girl, giving her body an almost man-ish quality to it. Between her legs is an unsightly bush that matches the brown hair that hangs just past her shoulders. She\'s not an attractive-looking girl.');
-    if ((!((s as any).tits ?? 0))) {
+    if ((!((st as any).tits ?? 0))) {
       scene.text('Upon inspection, you notice her breasts are the same size as your own, barely more than puffy nipples. The two of you have the smallest breasts in the entire class.');
     } else {
       scene.text('Upon inspection, you notice her breasts are very small, barely more than puffy nipples. She has the smallest breasts in the entire class.');
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+    (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A145'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A145'] <= 20) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She storms across the locker room and gets right up in your face. "Keep your eyes to yourself, you fucking dyke!"');
         scene.text('Her comment causes other girls to look over to see what\'s going on and a few seem like they might have guessed. Once you look away from her, she walks back to her locker and you turn back to your own locker, blushing as you finish getting dressed. Luckily, no one else says anything.');
       } else {
         scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck are you looking at, dyke?"');
         scene.text('Her comment causes other girls to look over to see what\'s going on and a few seem like they might have guessed. You turn back to your locker, blushing as you finish getting dressed. Luckily, no one else says anything.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -480,8 +480,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -494,36 +494,36 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Lariska', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/larpeek.jpg');
     scene.text('You glance at Lariska as she finishes drying herself off, wrapping her hair in a towel before bundling it around her head. She is tall and lanky with narrow hips and small perky breasts. You also notice that she keeps her bush trimmed and tidy; she has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 1) {
+    if (((st as any).tits ?? 0) < 1) {
       scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. Her bust is bigger than yours, but smaller than almost all of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 1) {
+      if (((st as any).tits ?? 0) === 1) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, she has one of the smaller busts in the class.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, she has one of the smaller busts in the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).LariskaQW ?? 0)?.['story'] >= 8) {
+      if (((st as any).LariskaQW ?? 0)?.['story'] >= 8) {
         scene.text('Feeling you watching her, she looks in your direction. Seeing you, she gives you a sweet smile and a wink before turning a little red. You wink back with your own smile.');
         scene.text('You think it\'s probably time to get dressed before somebody else notices the two of you silently flirting with each other.');
       } else {
-        if (((s as any).fame ?? 0)?.['pav_slut'] >= 250  ||  ((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).fame ?? 0)?.['pav_slut'] >= 250  ||  ((st as any).grupTipe ?? 0) === 5) {
           scene.text('Feeling somebody watching her, she looks around until she sees you. Turning red, she gives you a strange look before going back to getting dressed.');
           scene.text('You should get dressed before somebody else notices you staring at her.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A13'] >= 50) {
+          if (((st as any).npc_rel ?? 0)?.['A13'] >= 50) {
             scene.text('Feeling somebody watching her, she looks around until she sees you. She gives you a friendly smile and a wave before going back to getting dressed.');
             scene.text('You should get dressed before somebody else notices you staring at her.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+            if (((st as any).npc_rel ?? 0)?.['A13'] <= 20) {
               scene.text('Feeling somebody watching her, she looks around until she sees you. Looking annoyed, she ignores you as she goes back to getting dressed.');
               scene.text('You should get dressed before somebody else notices you staring at her.');
             } else {
@@ -533,8 +533,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -542,8 +542,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Letting your gaze wander past her, you turn back to your locker before anybody catches you staring and reach for your clothes.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -556,38 +556,38 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Lena', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/lenpeek.jpg');
     scene.text('You take a peek at Lena as she finishes drying herself off. Her body is curvy with large breasts and a fairly large butt, with a few small tattoos dotted around. Between her legs is a neatly trimmed landing strip of brown hair while her red-dyed hair hangs just past her shoulders. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('Upon inspection, you notice her breasts are fairly large, but have a nice firm shape to them. Her bust is bigger than yours and most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own and are fairly large and firm. They are above average-sized compared to other girls.');
       } else {
         scene.text('Upon inspection, you notice her breasts are firm, but still not as large as yours. However, her breasts are above average compared to the rest of the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A20'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A20'] >= 60) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She gives you a knowing smirk, but it seems like she doesn\'t really care as she just turns back to her locker and keeps getting dressed. You turn back to your own locker, blushing as you finish getting dressed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A20'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A20'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck? Keep your eyes to yourself, perv!"');
           scene.text('Her comments cause other girls to look over to see what\'s going on. Once you look away, she goes back to getting dressed while muttering and you turn back to your own locker, blushing as you finish getting dressed.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "Are you checking me out? Fucking pervert."');
           scene.text('Her comments cause other girls to look over to see what\'s going on. You turn back to your locker, blushing as you finish getting dressed. Luckily, no one else says anything.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -595,8 +595,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Letting your gaze wander past her, you turn back to your own locker before anybody catches you staring and reach for your clothes.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -609,38 +609,38 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Lera', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/lerpeek.jpg');
     scene.text('You take a peek at Lera while she finishes drying herself off. Her body is fairly normal looking with a few small tattoos dotted around. Between her legs is a neatly trimmed V of brown hair, while her long brown highlighted hair hangs partway down her back. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. Her bust is bigger than yours, but about average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, her breasts are about average-sized compared to the other girls.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, they\'re smaller than your own and some of your classmates.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A21'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A21'] >= 60) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She gives you a knowing smile before spreading her legs slightly and indicating down with her eyes, inviting you to come over and eat her out. You quickly turn back to your locker, blushing as you finish getting dressed. No one else seemed to have noticed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A21'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A21'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck? You checking me out? I know you want my pussy, but I\'ve got standards loser, so fuck off!"');
           scene.text('Her comments cause other girls to look over to see what\'s going on. Once you look away, she goes back to getting dressed while muttering the whole time and you turn back to your locker, blushing as you finish getting dressed.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck are you looking at? You like staring at my pussy? Well why don\'t you crawl over here and give her a lick!?"');
           scene.text('Her comments cause other girls to look over to see what\'s going on and a few give disgusted looks, but most just laugh. You turn back to your locker, blushing as you finish getting dressed.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -648,8 +648,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('Letting your gaze wander past her, you turn back to your own locker before anybody catches you staring and reach for your clothes.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -662,40 +662,40 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Lina', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/linpeek.jpg');
     scene.text('You take a peek at Lina as she starts to pull her thigh highs on. She is slightly more athletic-looking than most girls, with average-sized breasts and a neatly trimmed triangle between her legs. She doesn\'t stand out in any particular way, but you\'d never call her ugly. In fact, most of the boys think she\'s rather pretty and you\'re inclined to agree.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).avelinaQW ?? 0)?.['encourage'] >= 1) {
+      if (((st as any).avelinaQW ?? 0)?.['encourage'] >= 1) {
         scene.text('Feeling your eyes on her, she looks in your direction. Seeing you staring, she gives you a warm smile before going back to getting dressed.');
         scene.text('You should get back to getting dressed before others notice you staring.');
       } else {
-        if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+        if (((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
           scene.text('Feeling your eyes on her, she looks in your direction. Seeing you staring, she covers her breasts with her arm and makes a rude gesture at you.');
           scene.text('Taking the hint, you get back to getting dressed before she starts a scene.');
         } else {
-          if (((s as any).grupTipe ?? 0) === 5) {
+          if (((st as any).grupTipe ?? 0) === 5) {
             scene.text('Feeling your eyes on her, she looks in your direction. Seeing you staring, she gives you a disgusted look, but otherwise ignores you.');
             scene.text('You should get back to getting dressed before others notice you staring.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A19'] >= 50) {
+            if (((st as any).npc_rel ?? 0)?.['A19'] >= 50) {
               scene.text('Feeling your eyes on her, she looks in your direction. Seeing you staring, she gives you a friendly smile before continuing to get dressed.');
               scene.text('You should get back to getting dressed before others notice you staring.');
             } else {
-              if (((s as any).npc_rel ?? 0)?.['A19'] <= 20) {
+              if (((st as any).npc_rel ?? 0)?.['A19'] <= 20) {
                 scene.text('Feeling your eyes on her, she looks in your direction. Seeing you staring, she glares at you until you look away, but otherwise doesn\'t say anything.');
                 scene.text('You should get back to getting dressed before others notice you staring.');
               } else {
@@ -706,8 +706,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -715,8 +715,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -729,50 +729,50 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Lizaveta', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/lizpeek.jpg');
     scene.text('You take a peek at Lizaveta as she starts to get dressed. She has reddish-brown hair that goes just past her shoulders. Allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Looking further, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Looking further, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Looking further, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      qspCall(s, 'fame', 'pav', 'sex', 10);
-      (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+      qspCall(st, 'fame', 'pav', 'sex', 10);
+      (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
       scene.text('She\'s constantly chatting with other girls walking past. Her mouth never seems to stop moving.');
-      if (((s as any).fame ?? 0)?.['pav_slut'] >= 225) {
+      if (((st as any).fame ?? 0)?.['pav_slut'] >= 225) {
         scene.text('Noticing you checking her out, she covers her breasts. "Oh my god, slut! Quit staring at me!"');
         scene.text('The other girls look up to see what\'s happening. When they see who she\'s talking to, they start covering themselves and bitching at you or giving you dirty looks.');
         scene.text('Now would be a good time to get dressed and get out of here, before this gets even more awkward.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('Noticing you checking her out, she covers her breasts. "Oh my god, freak! Quit staring at me!"');
           scene.text('The other girls look up to see what\'s happening. When they see who she\'s talking to, they start covering themselves and bitching at you or giving you dirty looks.');
           scene.text('Now would be a good time to get dressed and get out of here, before this gets even more awkward.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A140'] >= 60) {
+          if (((st as any).npc_rel ?? 0)?.['A140'] >= 60) {
             // TODO-QSP: dynamic text: Noticing you checking her out, she says "Hey <<$pcs_nickname>>, I see you."
-            scene.text(`Noticing you checking her out, she says "Hey ${((s as any).pcs_nickname || '')}, I see you."`);
+            scene.text(`Noticing you checking her out, she says "Hey ${((st as any).pcs_nickname || '')}, I see you."`);
             scene.text('Startled, you try to quickly look away, but it\'s too late. "What was that about?" one of the other girls asks.');
             scene.text('"She was totally checking me out!" Lizaveta replies. "I didn\'t know she swung that way."');
             scene.text('A few of the girls unconsciously cover themselves and give you dirty looks. Now would probably be a good time to get dressed and get out of here, before this gets even more awkward.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A140'] <= 20) {
+            if (((st as any).npc_rel ?? 0)?.['A140'] <= 20) {
               scene.text('Noticing you checking her out, she covers her breasts. "Quit staring at me! It\'s creeping me out."');
               scene.text('Startled, you try to quickly look away, but it\'s too late. Before long, she\'s telling everyone about how you were checking her out as she was getting dressed.');
               scene.text('Now would be a good time to get dressed and get out of here, before this gets even more awkward.');
             } else {
               // TODO-QSP: dynamic text: She snaps her fingers when she notices you checking her out. "Can I help you wit...
-              scene.text(`She snaps her fingers when she notices you checking her out. "Can I help you with something, ${((s as any).pcs_nickname || '')}?"`);
+              scene.text(`She snaps her fingers when she notices you checking her out. "Can I help you with something, ${((st as any).pcs_nickname || '')}?"`);
               scene.text('Startled, you try to quickly look away, but it\'s too late. "What was that about?" one of the other girls asks.');
               scene.text('"She was totally checking me out!" Lizaveta replies. "I didn\'t know she swung that way."');
               scene.text('A few of the girls unconsciously cover themselves and give you dirty looks. Now would be a good time to get dressed and out of here, before this gets even more awkward.');
@@ -780,8 +780,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -789,8 +789,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -803,37 +803,37 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Natalia', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/natapeek.jpg');
     scene.text('You take a peek at Natalia as she starts to get dressed. Her body is slim, while her brown hair hangs partway down her back. Allowing your eyes to wander, you see her neatly trimmed pubic hair. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but about average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+    (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).fame ?? 0)?.['pav_slut'] >= 175) {
+      if (((st as any).fame ?? 0)?.['pav_slut'] >= 175) {
         scene.text('After finishing her shower and returning to the changing room, she opens her locker and starts getting dressed when she seems to realize someone is looking at her and suddenly turns and looks in your direction.');
         scene.text('Seeing you looking at her, she gives you an icy glare and turns away while covering herself up as best she can. You\'re embarrassed that you got caught but are glad that she didn\'t say anything. You turn away and finish dressing yourself before leaving.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('After finishing her shower and returning to the changing room, she opens her locker and starts getting dressed when she seems to realize someone is looking at her and suddenly turns and looks in your direction.');
           scene.text('Seeing you looking at her, she glares at you, clearly unhappy that you were staring at her as she turns away covering herself up as best she can. You\'re embarrassed at your actions, but are thankful that she didn\'t say anything. You turn away and finish dressing yourself before leaving.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A240'] >= 60) {
+          if (((st as any).npc_rel ?? 0)?.['A240'] >= 60) {
             scene.text('After finishing her shower and returning to the changing room, she opens her locker and starts getting dressed when she seems to realize someone is looking at her and suddenly turns and looks in your direction.');
             scene.text('Seeing you looking at her, she gives you a fleeting shy smile and blushes, but quickly winks at you before turning away, probably embarrassed at her own reaction as well. You smile inwardly and are glad that she didn\'t say anything as you finish getting dressed before leaving.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A240'] <= 20) {
+            if (((st as any).npc_rel ?? 0)?.['A240'] <= 20) {
               scene.text('After finishing her shower and returning to the changing room, she opens her locker and starts getting dressed when she seems to realize someone is looking at her and suddenly turns and looks in your direction.');
               scene.text('Seeing you looking at her, she gives you an icy glare and turns away while covering herself up as best she can; it looks as though she was about to call you out, but chose not to for some reason. You\'re thankful for that as it was embarrassing enough that you got caught. You turn away and finish dressing yourself before leaving.');
             } else {
@@ -843,8 +843,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -852,8 +852,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -866,37 +866,37 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Natasha', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/natpeek.jpg');
     scene.text('You take a peek at Natasha as she starts to get dressed. She has very long light brown hair reaching halfway down her back. Allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 5) {
+    if (((st as any).tits ?? 0) < 5) {
       scene.text('Looking closer, you notice her breasts are large, but have a nice firm shape to them. She has the biggest breasts in the entire class, although the popular girls would never admit their jealousy.');
     } else {
-      if (((s as any).tits ?? 0) === 5) {
+      if (((st as any).tits ?? 0) === 5) {
         scene.text('Looking closer, you notice her breasts are the same size as your own and are large and firm. They are the largest among your classmates, although the popular girls would never admit their jealousy.');
       } else {
         scene.text('Looking closer, you notice her breasts are firm but not as large as yours. However, her breasts are larger than any of the other girls, although the popular girls would never admit their jealousy.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).NatbelQW ?? 0)?.['QWstage'] > 5) {
+      if (((st as any).NatbelQW ?? 0)?.['QWstage'] > 5) {
         scene.text('She\'s standing in front of her locker with the door open, apparently deciding on something. Seeing you staring, she smiles mischievously before pulling her socks out of her locker and proceeding to bend over and put them on. She\'s facing away from you, with her legs slightly spread and without any panties on, giving you a perfect view of her pussy.');
         scene.text('Straightening back up, she smiles at you again and continues to dress, her face bright red, but looking pleased.');
         scene.text('You should probably get dressed and leave before somebody notices her giving you such a good view.');
       } else {
-        if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 3) {
+        if (((st as any).NatbelQW ?? 0)?.['FriendLover'] >= 3) {
           scene.text('She\'s standing in front of her locker with the door open, apparently deciding on something. Seeing you staring, she quickly scans over your body and smiles briefly at you before blushing and covering herself up. You can\'t help but grin at her; she does get embarrassed easily!');
           scene.text('You should probably get dressed and leave before anyone notices.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A16'] >= 50) {
+          if (((st as any).npc_rel ?? 0)?.['A16'] >= 50) {
             scene.text('She\'s standing in front of her locker with the door open, apparently deciding on something. Seeing you staring, she covers herself as best she can and turns away, her face red.');
             scene.text('You should probably get dressed and leave before this gets more awkward.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A16'] <= 20  ||  ((s as any).grupTipe ?? 0) === 5  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 175) {
+            if (((st as any).npc_rel ?? 0)?.['A16'] <= 20  ||  ((st as any).grupTipe ?? 0) === 5  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 175) {
               scene.text('She\'s standing in front of her locker with the door open, apparently deciding on something. Seeing you staring, she covers herself as best she can and turns away, her face red with anger.');
               scene.text('You should probably get dressed and leave before this gets more awkward.');
             } else {
@@ -906,8 +906,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -915,8 +915,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -929,33 +929,33 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Pauline', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/palpeek.jpg');
     scene.text('You take a peek at Pauline as she starts to get dressed. She\'s slightly more muscular-looking than most girls, with average-sized breasts and a neatly trimmed triangle between her legs that matches her long black hair, which hangs just past her shoulders. She doesn\'t stand out in any particular way, but you\'d never call her ugly.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but about average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+    (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A24'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A24'] <= 20) {
         scene.text('After watching her for a few minutes, she turns and looks at you. "I don\'t like pussy dyke, so keep your eyes to your fucking self."');
         scene.text('Her comment causes other girls to look over to see what\'s going on and a few seem like they might have guessed. Once you look away, she goes back to getting dressed and you turn back to your locker, blushing as you finish getting dressed. Luckily, no one else says anything.');
       } else {
         scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck are you looking at? Are you another carpet muncher? Can\'t a girl get dressed in peace?!"');
         scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. You quickly turn back to your locker, blushing as you finish getting dressed. Luckily, no one else says anything.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -963,8 +963,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -977,36 +977,36 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Sonia', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/sonpeek.jpg');
     scene.text('Your attention homes in on Sonia as she pulls her clothes out of her locker. She has long brown hair reaching just past her shoulders and, allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A25'] >= 60) {
-        if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
+      if (((st as any).npc_rel ?? 0)?.['A25'] >= 60) {
+        if (((st as any).soniaQW ?? 0)?.['slut'] === 0) {
           scene.text('Letting your gaze linger, you are surprised when she suddenly looks in your direction. Seeing you staring, she gives you a smile and turns her body, giving you a better look.');
           scene.text('You should probably get dressed and leave before this goes any further.');
         } else {
           scene.text('You\'re unable to pull your gaze away from her and keep watching her getting dressed until she turns and catches you staring at her. She parts her legs slightly, discreetly showing you her pussy with a small smile before turning and giving you a barely noticeable wiggle of her ass. You smile back at her and you both finish dressing.');
         }
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A25'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A25'] <= 20) {
           scene.text('Letting your gaze linger, you are surprised when she suddenly looks in your direction. Seeing you staring, she gives you a dirty look and turns around, hiding her body as she quickly gets dressed and leaves.');
           scene.text('You should probably get dressed and leave before it gets more awkward.');
         } else {
-          if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
+          if (((st as any).soniaQW ?? 0)?.['slut'] === 0) {
             scene.text('She is focused on getting dressed when she suddenly stops and looks at you. Seeing you staring, she gives you a hesitant smile before continuing to get dressed.');
             scene.text('You should probably get back to getting dressed yourself before others notice you staring.');
           } else {
@@ -1014,8 +1014,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1023,8 +1023,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1037,44 +1037,44 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Stasya', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/stapeek.jpg');
     scene.text('Your attention homes in on Stasya as she starts to get dressed. She has long black hair reaching just past her shoulders and, allowing your eyes to wander, you see she has a completely smooth pussy. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but is average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
-      if (((s as any).npc_rel ?? 0)?.['A139'] >= 60) {
+      (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
+      if (((st as any).npc_rel ?? 0)?.['A139'] >= 60) {
         scene.text('Noticing you checking her out, she asks you to stop.');
         scene.text('Startled, you try to quickly look away, but it\'s too late. "What was that about?" Bella asks.');
         scene.text('"She was totally checking me out!" Stasya replies. "I didn\'t know she swung that way."');
         scene.text('Bella and a few other girls cover themselves and give you dirty looks. Now would be a good time to get dressed and get out of here before this gets even more awkward.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A139'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A139'] <= 20) {
           scene.text('Noticing you checking her out, she covers her herself up and says loudly "Quit staring at me, pervert!"');
           scene.text('Startled, you try to quickly look away, but it\'s too late. Several girls ask her what happened and she starts telling them how you were checking her out as she was getting dressed.');
           scene.text('Now would be a good time to get dressed and get out of here, before this gets even more awkward.');
         } else {
           scene.text('"Oh my god, what\'s your problem?" she asks when she catches you staring.');
           scene.text('Startled, you try to quickly look away, but it\'s too late. "What was that about?" Bella asks.');
-          // TODO-QSP: dynamic text: "<<$pcs_nickname>> was totally checking me out!" Stasya replies. "She's a total ...
-          scene.text(`"${((s as any).pcs_nickname || '')} was totally checking me out!" Stasya replies. "She's a total dyke!"`);
+          // TODO-QSP: dynamic text: "<<$pcs_nickname>> was totally checking me out!" Stasya replies. "She''s a total...
+          scene.text(`"${((st as any).pcs_nickname || '')} was totally checking me out!" Stasya replies. "She's a total dyke!"`);
           scene.text('Bella and a few other girls cover themselves and give you dirty looks. Now would be a good time to get dressed and get out of here, before this gets even more awkward.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1082,8 +1082,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1096,30 +1096,30 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Veronika', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/verpeek.jpg');
     scene.text('Your attention is drawn to Veronika getting dressed. She\'s slightly taller than most girls and is slim and slightly muscular, with a neatly trimmed triangle of pubic hair atop her pussy that matches the long blonde hair that reaches halfway down her back.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but about average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, they are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A141'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A141'] <= 20) {
         scene.text('You continue to watch Veronika dressing before she suddenly turns around and catches you staring. She silently glares at you while covering herself and you quickly turn back to your locker and finish getting dressed. When you glance back, you see her coldly staring at you as she finishes dressing before leaving.');
       } else {
         scene.text('You continue to watch Veronika dressing before she suddenly turns around and catches you staring. She gives you a blank stare in return and you both stand in awkward silence before you decide to just turn around and finish getting dressed. Veronika casually goes back to what she was doing as if nothing happened.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1127,8 +1127,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you let your gaze slip away and turn back to your own locker to finish getting dressed.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1141,32 +1141,32 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Vicky', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/vicpeek.jpg');
     scene.text('You see Vicky standing in front of her locker, with her long red hair reaching just past her shoulders. Allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair. You can see why many boys and even some girls consider her to be very cute and attractive.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Looking closer, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but about average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Looking closer, you notice her breasts are the same size as your own, with a nice firm shape to them. Compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Looking closer, you notice your bust is bigger than hers, but compared to your classmates, her breasts are about average-sized with a nice firm shape to them.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A15'] <= 20  ||  ((s as any).grupTipe ?? 0) === 5) {
+      if (((st as any).npc_rel ?? 0)?.['A15'] <= 20  ||  ((st as any).grupTipe ?? 0) === 5) {
         scene.text('Letting your gaze linger, you\'re surprised when she suddenly looks in your direction. Seeing you staring, she gives you a dirty look and turns around, hiding her body.');
         scene.text('You should get dressed and leave before it gets more awkward.');
       } else {
         scene.text('Letting your gaze linger, you\'re surprised when she suddenly looks in your direction. Seeing you staring, she gives you a smirk and turns her body, giving you a better look.');
         scene.text('You should get dressed and leave before this gets more awkward.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1174,8 +1174,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1188,34 +1188,34 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Check out Zinaida', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/locker/zinpeek.jpg');
     scene.text('Your attention homes in on Zinaida as she pulls her clothes out of her locker. She has long brown hair reaching just past her shoulders and, allowing your eyes to wander, you see she has a bush of pubic hair. She doesn\'t stand out in any particular way, but you\'d never call her ugly.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A142'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A142'] >= 60) {
         scene.text('After watching her for a few minutes, she turns to look at you, blushes and quickly turns away from you to finish getting dressed. You turn back to your own locker, blushing as you finish getting dressed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A142'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A142'] <= 20) {
           scene.text('After watching her for a few minutes, she turns to look at you, blushes and looks fearful as she quickly turns away from you and gets dressed. You turn back to your own locker, blushing as you finish getting dressed.');
         } else {
           scene.text('After watching her for a few minutes, she turns to look at you, blushes and quickly turns away from you and gets dressed. You turn back to your own locker, blushing as you finish getting dressed.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1223,8 +1223,8 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1243,7 +1243,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
 function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   (s as any).menu_loc = 'gschool_post_shower';
   (s as any).menu_arg = 'post_shower2';
-  scene.img('images/locations/pavlovsk/school/gym/shower/postphyssho\' + rand(1, 7) + \'.jpg');
+  scene.img('images/locations/pavlovsk/school/gym/shower/postphyssho' + (Math.floor(Math.random() * 7) + 1) + '.jpg');
   scene.text('You let your eyes wander around the room, checking out the other girls as they chat and shower. It\'s a nice view, one thing you\'ll always appreciate about gym class.');
   // TODO-QSP: end
   scene.actions([
@@ -1251,21 +1251,21 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['gschool_lessons4', 'dress'] },
     { label: 'Check out Albina', handler: (st: GameState) => {
-    if (((s as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
-      ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['voyeur'] = 1;
+    if (((st as any).AlbinaQW ?? 0)?.['voyeur'] === 0) {
+      ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['voyeur'] = 1;
     }
     scene.img('images/locations/pavlovsk/school/gym/shower/watchalb.jpg');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Your attention homes in on Albina, her eyes closed as water rains over her head and pours down her face. Her body is well-toned and shapely, her skin is silky smooth from head to toe and she has a firm bubble butt that\'s the envy of many girls in school. It\'s clear to you why so many boys consider her to be one of the most attractive girls in your class. She starts soaping up her breasts and upon inspection, you notice that they have a nice firm shape to them and are bigger than your own.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Your attention homes in on Albina, her eyes closed as water rains over her head and pours down her face. Her body is well-toned and shapely, her skin is silky smooth from head to toe and she has a firm bubble butt that\'s the envy of many girls in school. It\'s clear to you why so many boys consider her to be one of the most attractive girls in your class. She starts soaping up her breasts and upon inspection, you notice that they are the same size as your own, with a nice firm shape to them.');
       } else {
         scene.text('Your attention homes in on Albina, her eyes closed as water rains over her head and pours down her face. Her body is well-toned and shapely, her skin is silky smooth from head to toe and she has a firm bubble butt that\'s the envy of many girls in school. It\'s clear to you why so many boys consider her to be one of the most attractive girls in your class. She starts soaping up her breasts and upon inspection, you notice that they have a nice firm shape to them, but are smaller than your own.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1273,11 +1273,11 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
+      if (((st as any).npc_rel ?? 0)?.['A23'] >= 70) {
         scene.text('You continue watching Albina thoroughly washing her body, paying particular attention to her breasts and ass. You can\'t help but watch the soapy water running down her curvy body and gulp when she drops her shampoo bottle and bends over to pick it up, giving you a good view of both her holes. Flustered, you quickly turn around and finish your shower before she notices you staring.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A23'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('You continue to watch Albina showering. You can\'t help but watch the soapy water running down her curvy body. You\'re snapped out of your mindless gaze when Albina finishes showering and turns around to catch you staring.');
           scene.text('"What the fuck, perv? Are you checking me out?!" she screams while covering up and the rest of the girls turn to see what the commotion is about.');
           scene.text('Embarrassed at being caught, you stutter at Albina as the girls figure out what you were doing and start pointing and whispering among each other. Unable to answer her, Albina coldly glares at you before wrapping herself in her towel and storming out. You silently and awkwardly look at the floor as you finish showering.');
@@ -1286,8 +1286,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           scene.text('You breathe a sigh of relief and finish your shower.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1295,8 +1295,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('You look away after watching her a little longer, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1309,17 +1309,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Alyona', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchaly.jpg');
     scene.text('Your attention homes in on Aylona as she soaps herself up. Her body is incredibly thin, almost anorexic and is covered in tattoos. Your attention is drawn to her small but perky breasts as she soaps them up. By the way they jiggle under her hands, they must be very soft. Between her legs is a neatly trimmed landing strip of carpet that matches the black hair that hangs just past her shoulders. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 1) {
+    if (((st as any).tits ?? 0) < 1) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 1) {
+      if (((st as any).tits ?? 0) === 1) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, she has one of the smaller busts in the class.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, she has one of the smaller busts in the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1327,15 +1327,15 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A143'] <= 20) {
-        (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+      if (((st as any).npc_rel ?? 0)?.['A143'] <= 20) {
+        (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
         scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck are you looking at?"');
         scene.text('The other girls look over to see what\'s going on and a few seem like they might have guessed. You turn around, blushing as you finish showering. Luckily, no one else says anything.');
       } else {
         scene.text('After watching her for a few minutes, she turns and looks at you. She stares at you for a few seconds while you glance down. When you look back up, she\'s turned back around and continued showering like nothing happened. You turn back to your own shower, blushing as you finish showering.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1343,8 +1343,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1358,17 +1358,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/anushka/nush_model/nush_talk.jpg');
     scene.text('You glance at Anushka, who is standing directly under the shower letting it run down her body, plastering her short black chin-length hair to her head and face. She has a petite build and has a variety of tattoos large and small covering her body.');
     scene.text('She\'s rather slender, her breasts are small and perky, her ass is firm and her pussy is completely smooth. She\'s one of the most beautiful girls in school, with a model\'s face and body.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1377,11 +1377,11 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep checking her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchnush2.jpg');
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A144'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A144'] >= 60) {
         scene.text('Perhaps sensing your gaze, Anushka suddenly turns her head over her shoulder and makes direct eye contact with you. You freeze, your eyes grow wide and your mouth goes slack as you try to think of some kind of excuse.');
         scene.text('Before you can say anything, she puts her fingers up to her mouth in a V shape and sticks her tongue between them, the universal sign for eating pussy. She then turns the shower off and strides out of the room towards the lockers as if nothing happened. Letting out a breath you didn\'t know you were holding, you shake your head and turn off the faucet before heading back to your locker so you can get dressed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A144'] <= 20) {
           scene.text('Perhaps sensing your gaze, Anushka suddenly turns her head over her shoulder and makes direct eye contact with you. You freeze, your eyes grow wide and your mouth goes slack as you try to think of some kind of excuse.');
           scene.text('Before you can say anything, she smirks and shakes her head before she turns the shower off and strides out of the room towards the lockers as if nothing happened. Letting out a breath you didn\'t know you were holding, you shake your head and turn off the faucet before heading back to your locker so you can get dressed.');
         } else {
@@ -1389,8 +1389,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           scene.text('Before you can say anything, she winks and turns the shower off before striding out of the room towards the lockers as if nothing happened. Letting out a breath you didn\'t know you were holding, you shake your head and turn off the faucet before heading back to your locker so you can get dressed.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1398,8 +1398,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1412,17 +1412,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Bella', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchbel.jpg');
     scene.text('You peek at Bella, who is standing under the shower soaping herself up. She has a slim build and her pussy is shaved smooth while her long brown hair reaches halfway down her back. Bella isn\'t just beautiful, she rivals the looks of models and actresses - she\'s the prettiest girl you\'ve ever seen.');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('Upon inspection, you notice her breasts are fairly large, but have a nice firm shape to them. Her bust is bigger than yours and most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('Upon inspection, you notice her breasts are the same size as yours and are fairly large and firm. Her breasts are above average when compared to other girls.');
       } else {
         scene.text('Upon inspection, you notice her breasts are fairly large and firm, but still not as large as yours. However, her breasts are above average when compared to the rest of the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1430,24 +1430,24 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A22'] >= 80) {
-        // TODO-QSP: dynamic text: She turns and catches you looking at her. "I'm thinking of growing a bush, <<$pc...
-        scene.text(`She turns and catches you looking at her. "I'm thinking of growing a bush, ${((s as any).pcs_nickname || '')}. What do you think?" She then shows you her shaved pussy. "Geez, you don't have to stare that much," she says as she turns off the shower and walks towards the locker room.`);
+      if (((st as any).npc_rel ?? 0)?.['A22'] >= 80) {
+        // TODO-QSP: dynamic text: She turns and catches you looking at her. "I''m thinking of growing a bush, <<$p...
+        scene.text(`She turns and catches you looking at her. "I'm thinking of growing a bush, ${((st as any).pcs_nickname || '')}. What do you think?" She then shows you her shaved pussy. "Geez, you don't have to stare that much," she says as she turns off the shower and walks towards the locker room.`);
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A22'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A22'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What are you looking at, bitch? God, this school is overrun with fucking dykes."');
           scene.text('Startled, you look away, but the damage is already done. You can hear her telling others that you were checking her out while she showered.');
           scene.text('It would be best to finish your shower and leave before things get worse.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What are you looking at, pervert?"');
           scene.text('Surprised, you mumble something and quickly look away, but the damage is done. You can hear her telling others you were checking her out while she showered.');
           scene.text('It would be best to finish your shower and leave before things get even more awkward.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1455,8 +1455,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1471,8 +1471,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     scene.text('Your attention homes in on Christina as someone calls her name and she turns to look at them. While she\'s distracted by conversation, you take the opportunity to survey her from head to toe. Her build is very athletic with a toned body. Every single part of her has great muscle definition, especially her legs.');
     scene.text('In combination with her firm breasts and neat landing strip between her legs, her figure is surprisingly pleasing, if not conventionally attractive. You could easily imagine her on the cover of a sports magazine.');
     scene.text('"Yeah, just leave it in my locker," she replies to the girl talking to her and turns towards you. Not wanting to get caught peeping, you quickly turn around and return to your shower.');
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1480,27 +1480,27 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).christinaQW ?? 0)?.['fight'] === 1  ||  ((s as any).christinaQW ?? 0)?.['blackmail'] === 2) {
+      if (((st as any).christinaQW ?? 0)?.['fight'] === 1  ||  ((st as any).christinaQW ?? 0)?.['blackmail'] === 2) {
         scene.text('After a few minutes, she feels your gaze and looks in your direction. You give her a look and she reluctantly goes back to her shower, occasionally stealing looks your way to see if you\'re still watching her.');
       } else {
-        if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('She catches you looking at her and angrily glares at you. "No, bitch! I won\'t fuck you!"');
           scene.text('The girls around you look up, figure out what\'s happening, and start laughing at you. You think now might be a good time to end your shower.');
         } else {
-          if (((s as any).grupTipe ?? 0) === 5) {
-            (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          if (((st as any).grupTipe ?? 0) === 5) {
+            (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
             scene.text('She catches you looking at her body and sneers. "Get lost, loser!"');
             scene.text('The girls around you look up, not sure what they missed. You think now might be a good time to end your shower, embarrassed that you were caught checking her out.');
           } else {
-            (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+            (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
             scene.text('You look a bit too long and she seems to realize that she\'s being watched. When she sees it\'s you, she just glares. "What, bitch?"');
             scene.text('The girls around you look up, not sure what they missed. "Sorry, I just spaced out a bit there," you reply and decide to end your shower, embarrassed that you were caught checking her out.');
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1508,8 +1508,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1522,17 +1522,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Irina', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchira.jpg');
     scene.text('You peek at Irina letting the water run over her body. She has a petite build that makes her large breasts seem even larger on her frame, her pussy has a neatly trimmed landing strip above it and her long blonde hair reaches just past her shoulders. Irina is very pretty and would likely be considered the prettiest if not for her friend Bella.');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('Upon inspection, you notice her breasts are fairly large, but have a nice firm shape to them. Her bust is bigger than yours and most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('Upon inspection, you notice her breasts are fairly large and firm, the same size as yours. However, compared to the other girls, her breasts are above average.');
       } else {
         scene.text('Upon inspection, you notice her breasts are fairly large and firm, but still not as large as yours. However, compared to you and your classmates, her breasts are above average.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1540,25 +1540,25 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A17'] >= 80) {
+      if (((st as any).npc_rel ?? 0)?.['A17'] >= 80) {
         scene.text('She turns and catches you staring, but just smiles. "Oh great, you\'re here. I\'ll need your input. We girls plan to put some money together and get Igor some penis enlargement pills."');
         scene.text('Stasya giggles next to her. "Sure, that might help him."');
         scene.text('"What\'s the worse that could happen?" Irina replies.');
         scene.text('"What if it swelled up and burst?" Bella chimes in.');
         scene.text('They all start laughing, Irina apparently having forgotten that you were checking her out or simply not caring.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A17'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A17'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('"This is a pussy," Irina says while pointing to her crotch. "You want to crawl over here and lick it, dyke?"');
           scene.text('Several girls look over, likely to see if you\'re going to do it. You quickly turn back to your shower and try to ignore the comments.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('As you continue watching her, she suddenly turns around and catches you. "What the hell?! Can\'t even shower in peace without some fucking muff diver drolling all over you! What\'s happening to this world?"');
           scene.text('Several girls look over and follow her gaze to you. You turn around and quickly finish your shower.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1566,8 +1566,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1579,29 +1579,29 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Check out Julia', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchjul.jpg');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('You peek at Julia soaping herself up. Although her arms and legs are barely more than boney twigs, her breasts are quite large. Certainly bigger than your own, possibly one of the biggest in the whole class, and <i>very</i> soft looking.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('You peek at Julia soaping herself up. Although her arms and legs are barely more than boney twigs, her breasts are quite large. Probably about as big as yours, which makes them one of the biggest pairs in the whole class, and <i>very</i> soft looking.');
       } else {
         scene.text('You peek at Julia soaping herself up. Although her arms and legs are barely more than boney twigs, her breasts are quite large. Not quite as big as yours, but certainly one of the biggest in the whole class, and <i>very</i> soft looking.');
       }
     }
     scene.text('Unlike the other nerds, her pussy is smooth and clean-shaven, clearly displaying her lovely innie lips between her thighs.');
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'gschool_lessons4', 'shower_watch_end');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    if (((s as any).juliaQW ?? 0)?.['date'] === 1) {
+    if (((st as any).juliaQW ?? 0)?.['date'] === 1) {
       scene.text('Julia notices you stealing glances at her and freezes in place. She swallows nervously and slowly folds her arms behind her back, giving you a full view of her body as the water runs down it. She chews on her bottom lip, seemingly both anxious and excited by the attention as her face begins to turn red. After less than half a minute, she turns back to the shower but you keep seeing her glance back your way until both of you are finished.');
     } else {
       if ((Math.floor(Math.random() * 4) + 1) === 1) {
-        if (((s as any).npc_rel ?? 0)?.['A12'] >= 60) {
+        if (((st as any).npc_rel ?? 0)?.['A12'] >= 60) {
           scene.text('A few minutes go by as you keep stealing glances at her until suddenly you try to sneak a peek and see her looking your way. Her eyes slowly trail up your body until they make contact with yours, widening in surprise. Her face turns bright red and she quickly turns back to her shower, but you notice a slight smile at the corner of her mouth as she does.');
         } else {
           scene.text('A few minutes go by as you keep stealing glances at her until suddenly you try to sneak a peek and see her looking your way. Her eyes slowly trail up your body until they make contact with yours, widening in surprise. She blushes, looking panicked as she quickly turns away, turns off the shower and leaves.');
@@ -1610,8 +1610,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
         scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1623,17 +1623,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Katja', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchkat.jpg');
     scene.text('Your attention is drawn towards Katja thoroughly washing her very long red hair that reaches halfway down her back. She is petite and very slender with a clean-shaven pussy. You can see why many boys and even some girls consider her to be very cute and attractive.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Her teardrop-shaped breasts are average-sized but bigger than your own.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Her teardrop-shaped breasts are average-sized and around the same size as your own.');
       } else {
         scene.text('Her teardrop-shaped breasts are average-sized but smaller than your own.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1641,13 +1641,13 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A14'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 30  &&  ((s as any).npc_had_sex ?? 0)?.['A14']) {
+      if (((st as any).npc_rel ?? 0)?.['A14'] >= 50  &&  ((st as any).katjaQW ?? 0)?.['horny'] >= 30  &&  ((st as any).npc_had_sex ?? 0)?.['A14']) {
         scene.text('You\'re unable to pull your gaze away from her and keep watching her showering until she turns and catches you staring at her. She parts her legs slightly and discreetly shows you her pussy while soaping up her breasts with a small smile. You smile back at her and you both finish showering.');
       } else {
         scene.text('You\'re unable to pull your gaze away from her and keep watching her getting showering until she turns and catches you staring at her. She blushes bright red and looks a little flustered as she covers herself and quickly finishes showering before grabbing her towel, wrapping herself in it and dashing out of the room. Feeling a little embarrassed, you return your attention to your shower.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1655,8 +1655,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('You look away after watching her a little longer, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1669,30 +1669,30 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Katyusha', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchkaty.jpg');
     scene.text('You take a peek at Katyusha as she stands silently under the shower. She has a few small tattoos and is incredibly toned and muscled for a girl, giving her body an almost man-ish quality to it. Between her legs is an unsightly bush that matches the brown hair that hangs just past her shoulders. She is not a very attractive-looking girl.');
-    if ((!((s as any).tits ?? 0))) {
+    if ((!((st as any).tits ?? 0))) {
       scene.text('Upon inspection, you notice her breasts are the same size as your own, barely more than puffy nipples. The two of you have the smallest breasts in the entire class.');
     } else {
       scene.text('Upon inspection, you notice her breasts are very small, barely more than puffy nipples. She has the smallest breasts in the entire class.');
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'gschool_lessons4', 'shower_watch_end');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+    (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A145'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A145'] <= 20) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She storms across and gets right up in your face. "Keep your eyes to yourself, you fucking dyke!"');
         scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. Once you look away, she walks back to her shower and you turn back to your own shower blushing as you finish showering. Luckily, no one else says anything.');
       } else {
         scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck are you looking at, dyke?"');
         scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. You quickly turn back to your shower, blushing as you finish showering. Luckily, no one else says anything.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1700,8 +1700,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1714,17 +1714,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Lariska', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchlar.jpg');
     scene.text('Your attention homes in on Lariska, who is letting the water from the shower pour over her head, rinsing the suds from her body. She is tall and lanky with narrow hips and small perky breasts. The stream of water running down her stomach draws your eyes between her legs, soap collecting and washing through the natural filter of her neatly trimmed bush. She has that cute girl next door look to her.');
-    if (((s as any).tits ?? 0) < 1) {
+    if (((st as any).tits ?? 0) < 1) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than almost all of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 1) {
+      if (((st as any).tits ?? 0) === 1) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, she has one of the smaller busts in the class.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, she has one of the smaller busts in the class.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1732,19 +1732,19 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).LariskaQW ?? 0)?.['story'] >= 8) {
+      if (((st as any).LariskaQW ?? 0)?.['story'] >= 8) {
         scene.text('Almost as if she knew you were looking, she turns her naked body towards you. Her eyes are closed, but a flush starts creeping up her neck. She starts to cup her perky little breasts but stops, seemingly remembering she\'s in a public place.');
         scene.text('Smiling to yourself, you think you should probably finish your shower before somebody notices you ogling her naked body.');
       } else {
-        if (((s as any).fame ?? 0)?.['pav_slut'] >= 250  ||  ((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).fame ?? 0)?.['pav_slut'] >= 250  ||  ((st as any).grupTipe ?? 0) === 5) {
           scene.text('Feeling somebody watching her, she looks around until she sees you. Turning red, she gives you a strange look before going back to showering.');
           scene.text('You should finish your shower before somebody else notices you staring at her.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A13'] >= 50) {
+          if (((st as any).npc_rel ?? 0)?.['A13'] >= 50) {
             scene.text('Feeling somebody watching her, she looks around until she sees you. She gives you a friendly smile and a wave before going back to showering.');
             scene.text('You should finish your shower before somebody else notices you staring at her.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
+            if (((st as any).npc_rel ?? 0)?.['A13'] <= 20) {
               scene.text('Feeling somebody watching her, she looks around until she sees you. Looking annoyed, she ignores you as she goes back to showering.');
               scene.text('You should finish your shower before somebody else notices you staring at her.');
             } else {
@@ -1754,8 +1754,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1763,8 +1763,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1777,17 +1777,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Lena', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchlen.jpg');
     scene.text('Your attention homes in on Lena, who is letting the water from the shower pour over her head, rinsing the suds from her body. Her body is curvy with large breasts and a fairly large butt, with a few small tattoos dotted around. Between her legs is a neatly trimmed landing strip of brown hair while her red dyed hair hangs just past her shoulders. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 4) {
+    if (((st as any).tits ?? 0) < 4) {
       scene.text('Upon inspection, you notice her breasts are fairly large, but have a nice firm shape to them. Her bust is bigger than yours and most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 4) {
+      if (((st as any).tits ?? 0) === 4) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own and are fairly large and firm. Compared to the other girls, her breasts are above average.');
       } else {
         scene.text('Upon inspection, you notice her breasts are fairly large and firm, but still not as large as yours. Compared to your classmates, her breasts are above average.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1795,21 +1795,21 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A20'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A20'] >= 60) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She gives you a knowing smirk, but it seems like she doesn\'t really care as she just turns back and keeps showering. You turn back to your own shower, blushing as you finish showering. Luckily, no one else seems to have noticed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A20'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A20'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck? Are you checking me out? Keep your eyes to your fucking self, pervert!"');
           scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. Once you look away, she goes back to showering while muttering and you turn back to your own shower, blushing as you finish showering.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "Are you checking me out? Fucking pervert."');
           scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. You quickly turn back to your own shower, blushing as you finish showering.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1817,8 +1817,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1831,17 +1831,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Lera', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchler.jpg');
     scene.text('Your attention homes in on Lera, who is letting the water from the shower pour over her head, rinsing the suds from her body. Her body is fairly normal looking with a few small tattoos dotted around. Between her legs is a neatly trimmed V of brown hair, while her long brown highlighted hair hangs partway down her back. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but is average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. Compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. Compared to you and your classmates, her breasts are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1849,21 +1849,21 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A21'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A21'] >= 60) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She gives you a knowing smile and spreads her legs slightly before indicating down with her eyes, inviting you to come over and eat her out. You quickly turn back to your shower, blushing as you finish showering. Luckily, no one else seems to have noticed.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A21'] <= 20) {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+        if (((st as any).npc_rel ?? 0)?.['A21'] <= 20) {
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck? You checking me out? I know you want my pussy, but I\'ve got standards loser, so fuck off!"');
           scene.text('Her comments cause other girls to look over to see what\'s going on. Once you look away, she goes back to showering while muttering the whole time and you turn back to your own shower, blushing as you finish showering. Luckily, no one else says anything.');
         } else {
-          (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+          (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
           scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck are you looking at? You like staring at my pussy? Well, why don\'t you crawl over here and give her a lick?"');
           scene.text('Her comment causes other girls to look over to see what\'s going on and a few give disgusted looks, but most just laugh. You quickly turn back to your shower, blushing as you finish showering.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1871,8 +1871,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1885,17 +1885,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Lina', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchlin.jpg');
     scene.text('Your attention homes in on Lina as she soaps herself up. She\'s slightly more athletic looking than most girls, with average-sized breasts and a neatly trimmed triangle between her legs, highlighted by the soap suds collecting in it. She doesn\'t stand out in any particular way, but you\'d never call her ugly. In fact, most of the boys think she\'s rather pretty and you\'re inclined to agree.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1903,23 +1903,23 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).avelinaQW ?? 0)?.['encourage'] >= 1) {
+      if (((st as any).avelinaQW ?? 0)?.['encourage'] >= 1) {
         scene.text('She seems to be enjoying her shower when she suddenly stops and looks at you. Seeing you staring, she gives you a warm smile before continuing her shower.');
         scene.text('You should get back to your own shower before others notice you staring.');
       } else {
-        if (((s as any).fame ?? 0)?.['pav_slut'] >= 250) {
+        if (((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
           scene.text('She seems to be enjoying her shower when she suddenly stops and looks at you. Seeing you staring, she sneers and mutters "lesbo slut" loud enough for you to hear. She then goes back to her shower and ignores you.');
           scene.text('You should get back to your own shower before others notice you staring.');
         } else {
-          if (((s as any).grupTipe ?? 0) === 5) {
+          if (((st as any).grupTipe ?? 0) === 5) {
             scene.text('She seems to be enjoying her shower when she suddenly stops and looks at you. Seeing you staring, she gives you a disgusted look before going back to her shower and ignoring you.');
             scene.text('You should get back to your own shower before others notice you staring.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A19'] >= 50) {
+            if (((st as any).npc_rel ?? 0)?.['A19'] >= 50) {
               scene.text('She seems to be enjoying her shower when she suddenly stops and looks at you. Seeing you staring, she gives you a friendly smile and a wave before continuing her shower.');
               scene.text('You should get back to your own shower before others notice you staring.');
             } else {
-              if (((s as any).npc_rel ?? 0)?.['A19'] <= 20) {
+              if (((st as any).npc_rel ?? 0)?.['A19'] <= 20) {
                 scene.text('She seems to be enjoying her shower when she suddenly stops and looks at you. Seeing you staring, she gives you a cold look before continuing her shower.');
                 scene.text('You should get back to your own shower before others notice you staring.');
               } else {
@@ -1930,8 +1930,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1939,8 +1939,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After a few minutes, you look away, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1953,17 +1953,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Lizaveta', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchliz.jpg');
     scene.text('Your attention homes in on Lizaveta as she soaps herself up. She has reddish-brown hair that goes just past her shoulders and, allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Looking further, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Looking further, you notice her breasts are the same size as your own, with a nice firm shape to them. Compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Looking further, you notice her breasts have a nice firm shape to them. Compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -1971,39 +1971,39 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      qspCall(s, 'fame', 'pav', 'sex', 10);
-      (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
-      if (((s as any).fame ?? 0)?.['pav_slut'] >= 225) {
+      qspCall(st, 'fame', 'pav', 'sex', 10);
+      (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
+      if (((st as any).fame ?? 0)?.['pav_slut'] >= 225) {
         scene.text('She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What do you want, slut? Can\'t get enough cock to satisfy you?"');
         scene.text('Startled, you look away, but the damage is already done. You can hear her telling the others that you were staring at her while she showered.');
         scene.text('It would be best for you to finish your shower and leave before things get worse.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "Oh my god, freak! Quit staring at me!"');
           scene.text('Startled, you look away, but the damage is already done. You can hear her telling the others that you were staring at her while she showered.');
           scene.text('It would be best for you to finish your shower and leave before things get worse.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A140'] >= 60) {
+          if (((st as any).npc_rel ?? 0)?.['A140'] >= 60) {
             // TODO-QSP: dynamic text: She seems to be enjoying her shower when she looks in your direction and notices...
-            scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What's the matter, ${((s as any).pcs_nickname || '')}?"`);
+            scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What's the matter, ${((st as any).pcs_nickname || '')}?"`);
             scene.text('Surprised, you mumble something and quickly look away, but the damage is done. You can hear her telling the others that you were staring at her while she showered.');
             scene.text('It would be best for you to finish your shower and leave before things get even more awkward.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A140'] <= 20) {
+            if (((st as any).npc_rel ?? 0)?.['A140'] <= 20) {
               scene.text('She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What do you want, bitch? This isn\'t a free show."');
               scene.text('Startled, you look away, but the damage is already done. You can hear her telling the others that you were staring at her while she showered.');
               scene.text('It would be best for you to finish your shower and leave before things get worse.');
             } else {
               // TODO-QSP: dynamic text: She seems to be enjoying her shower when she looks in your direction and notices...
-              scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What do you want, ${((s as any).pcs_nickname || '')}?"`);
+              scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What do you want, ${((st as any).pcs_nickname || '')}?"`);
               scene.text('Surprised, you mumble something and quickly look away, but the damage is done. You can hear her telling the others that you were staring at her while she showered.');
               scene.text('It would be best for you to finish your shower and leave before things get even more awkward.');
             }
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2011,8 +2011,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2025,17 +2025,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Natalia', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchnata.jpg');
     scene.text('Your attention focuses in on Natalia, who lets the water from the shower run over her head while appearing to cradle her body as she rinses herself. Her body is slim and her brown hair hangs partway down her back, allowing your eyes to wander, you see her pubic hair is neatly trimmed. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but about average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2043,19 +2043,19 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).fame ?? 0)?.['pav_slut'] >= 175) {
+      if (((st as any).fame ?? 0)?.['pav_slut'] >= 175) {
         scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you looking at her, she glares at you as she turns away while covering herself up as best she can.');
         scene.text('You\'re a little embarrassed that you got caught, but are glad that she didn\'t say anything. You turn away and finish your shower before leaving.');
       } else {
-        if (((s as any).grupTipe ?? 0) === 5) {
+        if (((st as any).grupTipe ?? 0) === 5) {
           scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you looking at her, she immediately turns away while covering herself up as best she can.');
           scene.text('You\'re embarrassed that she caught you but glad she didn\'t say anything. You turn away and finish your shower before leaving.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A240'] >= 60) {
+          if (((st as any).npc_rel ?? 0)?.['A240'] >= 60) {
             scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you looking at her, she smiles shyly and blushes before winking at you and turning away, clearly somewhat embarrassed.');
             scene.text('You smile inwardly but are glad that she didn\'t say anything as you finish your shower and leave.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A240'] <= 20) {
+            if (((st as any).npc_rel ?? 0)?.['A240'] <= 20) {
               scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you looking at her, she gives you an icy look before immediately turning away while covering herself up as best she can.');
               scene.text('You\'re embarrassed that she caught you as you turn away and finish your shower before leaving.');
             } else {
@@ -2065,8 +2065,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Get dressed', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2074,8 +2074,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2088,17 +2088,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Natasha', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchnat.jpg');
     scene.text('Your attention homes in on Natasha as she soaps herself up. She has very long light brown hair reaching halfway down her back and, allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 5) {
+    if (((st as any).tits ?? 0) < 5) {
       scene.text('Looking closer, you notice her breasts are large, but have a nice firm shape to them. She has the biggest breasts in the entire class, although the popular girls would never admit their jealousy.');
     } else {
-      if (((s as any).tits ?? 0) === 5) {
+      if (((st as any).tits ?? 0) === 5) {
         scene.text('Looking closer, you notice her breasts are the same size as your own and are large and firm. They are the largest among your classmates, although the popular girls would never admit their jealousy.');
       } else {
         scene.text('Looking closer, you notice her breasts are large and firm, but still not as large as yours. However, her breasts are larger than any of the other girls, although the popular girls would never admit their jealousy.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2106,20 +2106,20 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).NatbelQW ?? 0)?.['QWstage'] > 5) {
+      if (((st as any).NatbelQW ?? 0)?.['QWstage'] > 5) {
         scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you staring, she smiles mischievously and lathers her hands in soap before bending over and washing her slightly spread legs, giving you a perfect view of her pussy.');
         scene.text('Straightening back up, she smiles at you again and starts to rinse off, her face bright red, but looking pleased.');
         scene.text('You should finish your shower and leave before somebody notices her giving you such a good view.');
       } else {
-        if (((s as any).NatbelQW ?? 0)?.['FriendLover'] >= 3) {
+        if (((st as any).NatbelQW ?? 0)?.['FriendLover'] >= 3) {
           scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you staring, she smiles at you before blushing and turning away, looking a little flustered.');
           scene.text('You should finish your shower and leave before anyone notices.');
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A16'] >= 50) {
+          if (((st as any).npc_rel ?? 0)?.['A16'] >= 50) {
             scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you staring, she covers herself as best she can and turns away, her face red.');
             scene.text('You should finish your shower and leave before this gets more awkward.');
           } else {
-            if (((s as any).npc_rel ?? 0)?.['A16'] <= 20  ||  ((s as any).grupTipe ?? 0) === 5  ||  ((s as any).fame ?? 0)?.['pav_slut'] >= 175) {
+            if (((st as any).npc_rel ?? 0)?.['A16'] <= 20  ||  ((st as any).grupTipe ?? 0) === 5  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 175) {
               scene.text('She seems to be enjoying her shower when she suddenly stops and looks in your direction. Seeing you staring, she covers herself as best she can and turns away, her face red with anger.');
               scene.text('You should finish your shower and leave before this gets more awkward.');
             } else {
@@ -2129,8 +2129,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2138,8 +2138,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2152,34 +2152,34 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Pauline', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchpau.jpg');
     scene.text('Your attention homes in on Pauline as she soaps herself up. She\'s slightly more muscular-looking than most girls, with average-sized breasts and a neatly trimmed triangle between her legs that matches her long black hair, which hangs just past her shoulders. She doesn\'t stand out in any particular way, but you\'d never call her ugly.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but is average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. Compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. Compared to you and your classmates, her breasts are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'gschool_lessons4', 'shower_watch_end');
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
-    (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
+    (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A24'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A24'] <= 20) {
         scene.text('After watching her for a few minutes, she turns and looks at you. "I don\'t like pussy, you dyke, so keep your eyes to your fucking self."');
         scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. Once you look away, she goes back to showering while muttering and you turn back to your own shower, blushing as you finish showering. Luckily, no one else says anything.');
       } else {
         scene.text('After watching her for a few minutes, she turns and looks at you. "What the fuck are you looking at? Are you another carpet muncher? Can\'t a girl shower in peace?!"');
         scene.text('Her comments cause other girls to look over to see what\'s going on and a few seem like they might have guessed. You quickly turn back to your shower, blushing as you finish showering. Luckily, no one else says anything.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2187,8 +2187,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2201,17 +2201,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Sonia', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchson1.jpg');
     scene.text('Your attention homes in on Sonia as she soaps herself up. She has long brown hair reaching just past her shoulders and, allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, they are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2219,8 +2219,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A25'] >= 60) {
-        if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
+      if (((st as any).npc_rel ?? 0)?.['A25'] >= 60) {
+        if (((st as any).soniaQW ?? 0)?.['slut'] === 0) {
           scene.img('images/locations/pavlovsk/school/gym/shower/watchson1.jpg');
           scene.text('Letting your gaze linger, you are surprised when she suddenly looks in your direction. Seeing you staring, she gives you a smile and turns, giving you a better look.');
           scene.text('You should finish showering and leave before this gets more awkward.');
@@ -2230,12 +2230,12 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           scene.text('Straightening back up, she smiles at you again and starts to rinse off. You should finish your shower and leave before somebody notices her giving you such a good view.');
         }
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A25'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A25'] <= 20) {
           scene.img('images/locations/pavlovsk/school/gym/shower/watchson1.jpg');
           scene.text('Letting your gaze linger, you are surprised when she suddenly looks in your direction. Seeing you staring, she gives you a dirty look and turns around, hiding her body.');
           scene.text('You should finish showering and leave before it gets more awkward.');
         } else {
-          if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
+          if (((st as any).soniaQW ?? 0)?.['slut'] === 0) {
             scene.img('images/locations/pavlovsk/school/gym/shower/watchson1.jpg');
             scene.text('She seems to be enjoying her shower when she suddenly stops and looks at you. Seeing you staring, she gives you a hesitant smile before continuing her shower.');
             scene.text('You should get back to your own shower before others notice you staring.');
@@ -2245,8 +2245,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2255,8 +2255,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/school/gym/shower/watchson1.jpg');
       scene.text('After watching for a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2269,17 +2269,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Stasya', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchsta.jpg');
     scene.text('Your attention homes in on Stasya as she soaps herself up. She has long black hair reaching just past her shoulders and, allowing your eyes to wander, you see she has a completely smooth pussy. She has that cute girl next door level of looks.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but about average compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are about average.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are about average.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2287,14 +2287,14 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
-      if (((s as any).npc_rel ?? 0)?.['A139'] >= 60) {
+      (st as any).sveta_dyke_rumor = ((st as any).sveta_dyke_rumor ?? 0) + (1);
+      if (((st as any).npc_rel ?? 0)?.['A139'] >= 60) {
         // TODO-QSP: dynamic text: She seems to be enjoying her shower when she looks in your direction and notices...
-        scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What are you looking at, ${((s as any).pcs_nickname || '')}?"`);
+        scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What are you looking at, ${((st as any).pcs_nickname || '')}?"`);
         scene.text('Surprised, you mumble something and quickly look away, but the damage is done. You can hear her telling the others that you were checking her out while she showered.');
         scene.text('It would be best for you to finish your shower and leave before things get even more awkward.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A139'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A139'] <= 20) {
           scene.text('She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What are you looking at, pervert? Fuck, you can\'t even take a shower in peace without some fucking dyke staring at you!"');
           scene.text('Startled, you look away, but the damage is already done. You can hear her telling the others that you were checking her out while she showered.');
           scene.text('It would be best for you to finish your shower and leave before things get worse.');
@@ -2304,8 +2304,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
           scene.text('It would be best for you to finish your shower and leave before things get even more awkward.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2313,8 +2313,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2327,17 +2327,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Veronika', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchver.jpg');
     scene.text('Your attention is drawn to Veronika silently and stiffly standing under the shower as the water rains down over her head. She\'s slightly taller than most girls and is slim and slightly muscular, with a neatly trimmed triangle of pubic hair atop her pussy that matches the long blonde hair that reaches halfway down her back.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. They are bigger than yours, but about average compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are about average.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, they are about average-sized.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2345,13 +2345,13 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A141'] <= 20) {
+      if (((st as any).npc_rel ?? 0)?.['A141'] <= 20) {
         scene.text('You continue to watch Veronika showering before she suddenly turns around and catches you staring. She silently glares at you while covering herself and you quickly turn around and return your focus to showering. When you glance back, you see her coldly staring at you as she wraps herself in her towel before leaving.');
       } else {
         scene.text('You continue to watch Veronika showering before she suddenly turns around and catches you staring. She gives you a blank stare in return and you both stand in awkward silence before you decide to just turn around and finish showering. Veronika casually goes back to what she was doing as if nothing happened.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2359,8 +2359,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('You look away after watching her a little longer, not wanting to get caught staring and sucked into an awkward conversation.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2373,17 +2373,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Vicky', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchvic.jpg');
     scene.text('You see Vicky taking her shower, with her long red hair reaching just past her shoulders. Allowing your eyes to wander, you see she has a neatly trimmed triangle of pubic hair. You can see why many boys and even some girls consider her to be very cute and attractive.');
-    if (((s as any).tits ?? 0) < 3) {
+    if (((st as any).tits ?? 0) < 3) {
       scene.text('Looking closer, you notice her breasts are about average, but have a nice firm shape to them. Her bust is bigger than yours, but is about average-sized compared to the rest of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 3) {
+      if (((st as any).tits ?? 0) === 3) {
         scene.text('Looking closer, you notice her breasts are the same size as your own, with a nice firm shape to them. Compared to the other girls, her breasts are about average-sized.');
       } else {
         scene.text('Looking closer, you notice your bust is bigger than hers, but compared to your classmates, her breasts are about average-sized with a nice firm shape to them.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2391,15 +2391,15 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A15'] <= 20  ||  ((s as any).grupTipe ?? 0) === 5) {
+      if (((st as any).npc_rel ?? 0)?.['A15'] <= 20  ||  ((st as any).grupTipe ?? 0) === 5) {
         scene.text('Letting your gaze linger, you\'re surprised when she suddenly looks in your direction. Seeing you staring, she gives you a dirty look and turns around, hiding her body.');
         scene.text('You should finish showering and leave before this gets more awkward.');
       } else {
         scene.text('Letting your gaze linger, you\'re surprised when she suddenly looks in your direction. Seeing you staring, she gives you a smirk and turns her body, giving you a better look.');
         scene.text('You should finish showering and leave before this gets more awkward.');
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2407,8 +2407,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2421,17 +2421,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     { label: 'Check out Zinaida', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/watchzin.jpg');
     scene.text('Your attention homes in on Zinaida as she soaps herself up in the shower. She has long brown hair reaching just past her shoulders and, allowing your eyes to wander, you see she has a bush of pubic hair. She doesn\'t stand out in any particular way, but you\'d never call her ugly.');
-    if (((s as any).tits ?? 0) < 2) {
+    if (((st as any).tits ?? 0) < 2) {
       scene.text('Upon inspection, you notice her breasts are a little small, but have a nice firm shape to them. Her bust is bigger than yours, but smaller than most of your classmates.');
     } else {
-      if (((s as any).tits ?? 0) === 2) {
+      if (((st as any).tits ?? 0) === 2) {
         scene.text('Upon inspection, you notice her breasts are the same size as your own, with a nice firm shape to them. However, compared to the other girls, her breasts are a little small.');
       } else {
         scene.text('Upon inspection, you notice her breasts have a nice firm shape to them. However, compared to you and your classmates, her breasts are a little small.');
       }
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop peeping', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2439,17 +2439,17 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Keep checking her out', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
-      if (((s as any).npc_rel ?? 0)?.['A142'] >= 60) {
+      if (((st as any).npc_rel ?? 0)?.['A142'] >= 60) {
         scene.text('After watching her for a few minutes, she turns and looks at you. She blushes and quickly turns away from you before rinsing off, turning off the shower and leaving. You turn back to your own shower, blushing as you finish showering.');
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A142'] <= 20) {
+        if (((st as any).npc_rel ?? 0)?.['A142'] <= 20) {
           scene.text('After watching her for a few minutes, she turns and looks at you. She blushes and looks fearful as she quickly turns away from you and turns off the shower before leaving. You turn back to your own shower, blushing as you finish showering.');
         } else {
           scene.text('After watching her for a few minutes, she turns and looks at you. She blushes as she quickly turns away from you and turns off the shower before leaving. You turn back to your own shower, blushing as you finish showering.');
         }
       }
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -2457,8 +2457,8 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('After watching her a little longer, you decide you\'ve looked enough and turn back to your shower to turn the faucet off. Grabbing a towel, you start drying off as you pad your way back to your locker.');
-      qspCall(s, 'arousal', 'erotic_nudity', 3);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'erotic_nudity', 3);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Go to the locker room', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');

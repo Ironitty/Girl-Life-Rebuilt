@@ -15,11 +15,11 @@ function enterScheduleReset(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :loop_masseuse_sched_part
     (s as any).ms_j = 1;
     // TODO-QSP: :loop_masseuse_sched_inner
-    ((s as any).masseuse = (s as any).masseuse ?? {})['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = ((s as any).masseuse ?? 0)?.['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'];
+    ((s as any).masseuse = (s as any).masseuse ?? {})[String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'] = ((s as any).masseuse ?? 0)?.['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'];
     if (((s as any).masseuse ?? 0)[((s as any).ms_i ?? 0) + '_shift_' + ((s as any).ms_j ?? 0) + '_taken'] !== 1) {
-      ((s as any).masseuse = (s as any).masseuse ?? {})['' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
+      ((s as any).masseuse = (s as any).masseuse ?? {})[String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
     }
-    ((s as any).masseuse = (s as any).masseuse ?? {})['next_' + String((s as any).ms_i || '') + '_shift_' + String((s as any).ms_j || '') + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
+    ((s as any).masseuse = (s as any).masseuse ?? {})['next_' + String(((s as any).ms_i ?? 0)) + '_shift_' + String(((s as any).ms_j ?? 0)) + '_taken'] = (((!(Math.floor(Math.random() * (2 + ((s as any).masseuse ?? 0)?.['shifts_required'] / 2 - 0 + 1)) + (0)))) ? (1) : (0));
     (s as any).ms_j = ((s as any).ms_j ?? 0) + (1);
     if (((s as any).ms_j ?? 0) < 4) {
       // TODO-QSP: jump 'loop_masseuse_sched_inner'
@@ -42,28 +42,28 @@ function enterExitSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[3] ?? 0))) {
+  if (Number((s as any).locArgs?.[3] ?? 0) === 0) {
     (s as any).ms_taken_key = '' + ((s as any).locArgs?.[1] ?? 0) + '_shift_' + ((s as any).locArgs?.[2] ?? 0) + '_taken';
     (s as any).ms_target_day = ((s as any).daystart ?? 0) - (((s as any).week ?? 0) - 1) + (((s as any).locArgs?.[1] ?? 0) - 1);
     (s as any).ms_return_arg = 'set_schedule';
   } else {
-    if (((s as any).locArgs?.[3] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
       (s as any).ms_taken_key = 'next_' + ((s as any).locArgs?.[1] ?? 0) + '_shift_' + ((s as any).locArgs?.[2] ?? 0) + '_taken';
       (s as any).ms_target_day = ((s as any).daystart ?? 0) - (((s as any).week ?? 0) - 1) + 7 + (((s as any).locArgs?.[1] ?? 0) - 1);
       (s as any).ms_return_arg = 'next_week_set_schedule';
     }
   }
-  if (((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
     (s as any).ms_time_string = '9:00-13:00';
     (s as any).ms_hour1 = 9;
     (s as any).ms_hour2 = 13;
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 2) {
       (s as any).ms_time_string = '13:00-17:00';
       (s as any).ms_hour1 = 13;
       (s as any).ms_hour2 = 17;
     } else {
-      if (((s as any).locArgs?.[2] ?? 0) === 3) {
+      if (Number((s as any).locArgs?.[2] ?? 0) === 3) {
         (s as any).ms_time_string = '17:00-21:00';
         (s as any).ms_hour1 = 17;
         (s as any).ms_hour2 = 21;
@@ -76,7 +76,7 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
   (s as any).ms_taken = ((s as any).masseuse ?? 0)?.[String((s as any).ms_taken_key ?? 0)];
   (s as any).ms_past = ((((s as any).ms_target_day ?? 0) < ((s as any).daystart ?? 0)) ? (1) : (0));
   // TODO-QSP: $result += '<tr><td>'
-  if (((s as any).ms_taken ?? 0) === 1  ||  ((s as any).ms_past ?? 0) === 1  ||  (((s as any).week ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).hour ?? 0) >= ((s as any).ms_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).ms_hour2 ?? 0))) {
+  if (((s as any).ms_taken ?? 0) === 1  ||  ((s as any).ms_past ?? 0) === 1  ||  (((s as any).week ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).hour ?? 0) >= ((s as any).ms_hour1 ?? 0)  &&  ((s as any).hour ?? 0) < ((s as any).ms_hour2 ?? 0))) {
     // TODO-QSP: $result += '<<$ms_time_string>> shift'
     // TODO-QSP: $result += '</td></tr><tr><td>'
     // TODO-QSP: $result += '<i>not available</i>'
@@ -101,7 +101,7 @@ function enterDisplaySingleShift(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandomMasseuseName(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rand = Math.floor(Math.random() * 8) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
   if ((!((s as any).temp_rand ?? 0))) {
     (s as any).result = '<i>Katia</i>';
   } else {

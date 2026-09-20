@@ -5,17 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'public_indoors';
-  (s as any).minut = ((s as any).minut ?? 0) + 1;
-  qspCall(s, 'stat', '');
-  (s as any).TerminalOfficeDirWorkTime = 0;
-  (s as any).TerminalOfficeBuhWorkTime = 0;
-  if (((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).week ?? 0) < 6) {
-    (s as any).TerminalOfficeDirWorkTime = 1;
-  }
-  if (((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).week ?? 0) < 6) {
-    (s as any).TerminalOfficeBuhWorkTime = 1;
-  }
   scene.build();
 }
 
@@ -60,8 +49,8 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   if (((s as any).YouNotOpenDoorDir ?? 0) === 1) {
     scene.actions([
       { label: 'Ask about the Director', handler: (st: GameState) => {
-    (s as any).YouNotOpenDoorDir = 0;
-    qspCall(s, 'stat', '');
+    (st as any).YouNotOpenDoorDir = 0;
+    qspCall(st, 'stat', '');
     scene.text('"Excuse me, I wonder if I could meet your supervisor?" you ask.');
     // TODO-QSP: dynamic text: The Manager grins, "Yuri is usually here every Monday through Friday, between '+...
     scene.text('The Manager grins, "Yuri is usually here every Monday through Friday, between 9:00 and 18:00 except lunch between 13:00 and 14:00."');
@@ -74,8 +63,8 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   if (((s as any).YouNotOpenDoorBuh ?? 0) === 1) {
     scene.actions([
       { label: 'Ask about the accountant', handler: (st: GameState) => {
-    (s as any).YouNotOpenDoorBuh = 0;
-    qspCall(s, 'stat', '');
+    (st as any).YouNotOpenDoorBuh = 0;
+    qspCall(st, 'stat', '');
     scene.text('"Excuse me, I wonder if I could meet your accountant?" you ask.');
     // TODO-QSP: dynamic text: The Manager grins, "Elizabeth is usually here Monday through Friday, between '+f...
     scene.text('The Manager grins, "Elizabeth is usually here Monday through Friday, between 9:00 and 20:00 except lunch between 13:00 and 14:00."');
@@ -89,8 +78,8 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m Anatoly Chubais from the company "OOO Bystroushka limited". Do you have the required documents with you?"');
     scene.actions([
       { label: 'Give him the documents', handler: (st: GameState) => {
-    (s as any).AboutDocsManager = 1;
-    qspCall(s, 'stat', '');
+    (st as any).AboutDocsManager = 1;
+    qspCall(st, 'stat', '');
     scene.text('"Looks good. Go and see Elizabeth in the account department. She needs to register you. You can find her next door."');
     scene.actions([
       { label: 'Leave', goto: ['TerminalOffice', '11'] },
@@ -124,7 +113,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
     // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. You...
-    scene.text(`You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. You're only able to store ${((s as any).TovarLimitHomeRepository || '')} trinkets.`);
+    scene.text('You have \' + mc_inventory[\'trinkets_home\'] + \' trinkets stored in your home. You\'re only able to store ' + ((s as any).TovarLimitHomeRepository || '') + ' trinkets.');
     (s as any).MaxQuantityHome = ((s as any).TovarLimitHomeRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0);
   }
   if (((s as any).YouCanGar ?? 0) > 0) {
@@ -133,7 +122,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
       // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage. ...
-      scene.text(`You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage. You're only able to store ${((s as any).TovarLimitGarageRepository || '')} trinkets.`);
+      scene.text('You have \' + mc_inventory[\'trinkets_garage\'] + \' trinkets stored in the garage. You\'re only able to store ' + ((s as any).TovarLimitGarageRepository || '') + ' trinkets.');
       (s as any).MaxQuantityGarage = ((s as any).TovarLimitGarageRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0);
     }
   }
@@ -142,19 +131,19 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'The small trinkets cost ' + String(qspFunc(s, 'money', 'string_price', 100) ?? '') + '. Please put in how many trinkets you want to purchase.', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 13;
-    (s as any).BuyQuantity = 0;
-    if (((s as any).BuyQuantity ?? 0) > (((s as any).MaxQuantityHome ?? 0) + ((s as any).MaxQuantityGarage ?? 0))) {
+    (st as any).minut = ((st as any).minut ?? 0) + 13;
+    (st as any).BuyQuantity = 0;
+    if (((st as any).BuyQuantity ?? 0) > (((st as any).MaxQuantityHome ?? 0) + ((st as any).MaxQuantityGarage ?? 0))) {
       // TODO-QSP: dynamic text: <b><font color=red>You have nowhere to store the surplus <<BuyQuantity-(MaxQuant...
-      scene.text(`<b><font color=red>You have nowhere to store the surplus ${((s as any).BuyQuantity ?? '')-(((s as any).MaxQuantityHome ?? '') + ((s as any).MaxQuantityGarage ?? ''))} ' + iif(BuyQuantity - (MaxQuantityHome + MaxQuantityGarage) = 1, 'trinket', 'trinkets') + '.</front></b>`);
+      scene.text('<b><font color=red>You have nowhere to store the surplus ' + ((st as any).BuyQuantity ?? '')-(((st as any).MaxQuantityHome ?? '') + ((st as any).MaxQuantityGarage ?? '')) + ' \' + iif(BuyQuantity - (MaxQuantityHome + MaxQuantityGarage) = 1, \'trinket\', \'trinkets\') + \'.</front></b>');
       scene.actions([
         { label: 'Leave', goto: ['TerminalOffice', '11'] },
       ]);
     }
-    (s as any).MaxCost = ((s as any).BuyQuantity ?? 0) * 100;
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).MaxCost ?? 0), 'cash') === 0) {
+    (st as any).MaxCost = ((st as any).BuyQuantity ?? 0) * 100;
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).MaxCost ?? 0), 'cash') === 0) {
       scene.text('You don\'t have enough money on you. You will have to withdraw money before proceeding with the purchase.');
-      if (qspFunc(s, 'money', 'can_afford', ((s as any).MaxCost ?? 0)) === 1) {
+      if (qspFunc(s, 'money', 'can_afford', ((st as any).MaxCost ?? 0)) === 1) {
         scene.text('You have enough money on your credit card, and you offer them to pay with that.');
         scene.text('"I\'m sorry, we don\'t own a card terminal," the Manager replies, "We accept only cash."');
       }
@@ -162,28 +151,28 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['TerminalOffice', '11'] },
       ]);
     } else {
-      qspCall(s, 'money', 'pay', ((s as any).MaxCost ?? 0), 'cash');
-      // TODO-QSP: dynamic text: You've purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
-      scene.text(`You've purchased ${((s as any).BuyQuantity || '')} trinkets, worth ${((s as any).MaxCost || '')}.`);
-      if (((s as any).BuyQuantity ?? 0) >= ((s as any).MaxQuantityHome ?? 0)) {
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_home'] = (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((s as any).MaxQuantityHome ?? 0);
-        (s as any).BuyQuantity = ((s as any).BuyQuantity ?? 0) - (((s as any).MaxQuantityHome ?? 0));
-        if (((s as any).YouCanGar ?? 0) > 0) {
+      qspCall(st, 'money', 'pay', ((st as any).MaxCost ?? 0), 'cash');
+      // TODO-QSP: dynamic text: You''ve purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
+      scene.text(`You've purchased ${((st as any).BuyQuantity || '')} trinkets, worth ${((st as any).MaxCost || '')}.`);
+      if (((st as any).BuyQuantity ?? 0) >= ((st as any).MaxQuantityHome ?? 0)) {
+        ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((st as any).MaxQuantityHome ?? 0);
+        (st as any).BuyQuantity = ((st as any).BuyQuantity ?? 0) - (((st as any).MaxQuantityHome ?? 0));
+        if (((st as any).YouCanGar ?? 0) > 0) {
           // TODO-QSP: *PL 'You''ll store <<MaxQuantityHome>> trickets at home.'
         }
       } else {
-        if (((s as any).YouCanGar ?? 0) > 0) {
+        if (((st as any).YouCanGar ?? 0) > 0) {
           // TODO-QSP: *PL 'You''ll store <<BuyQuantity>> trinkets at home.'
         }
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_home'] = (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((s as any).BuyQuantity ?? 0);
-        (s as any).BuyQuantity = 0;
+        ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((st as any).BuyQuantity ?? 0);
+        (st as any).BuyQuantity = 0;
       }
-      if (((s as any).BuyQuantity ?? 0) > 0) {
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_garage'] = (((s as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0) + ((s as any).BuyQuantity ?? 0);
-        // TODO-QSP: dynamic text: You'll store <<BuyQuantity>> trinkets in the garage.
-        scene.text(`You'll store ${((s as any).BuyQuantity || '')} trinkets in the garage.`);
+      if (((st as any).BuyQuantity ?? 0) > 0) {
+        ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_garage'] = (((st as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0) + ((st as any).BuyQuantity ?? 0);
+        // TODO-QSP: dynamic text: You''ll store <<BuyQuantity>> trinkets in the garage.
+        scene.text(`You'll store ${((st as any).BuyQuantity || '')} trinkets in the garage.`);
       }
-      if (((s as any).YouCanGar ?? 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 100, 'cash') === 1) {
+      if (((st as any).YouCanGar ?? 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 100, 'cash') === 1) {
         scene.text('You\'ve purchased plenty of trinkets, but you\'ve been thinking about expanding your business. But where could you store them all? Maybe you should ask your stepfather if you could use some free space in his garage…');
       }
       scene.actions([
@@ -192,12 +181,12 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     }
   } },
       { label: '', labelFn: (s: GameState) => 'Buy small trinkets for ' + String(qspFunc(s, 'money', 'string_price', 100) ?? '') + ' called "Eyeballs".', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 13;
-    (s as any).BuyQuantity = ((s as any).MaxQuantityHome ?? 0) + ((s as any).MaxQuantityGarage ?? 0);
-    (s as any).MaxCost = ((s as any).BuyQuantity ?? 0) * 100;
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).MaxCost ?? 0), 'cash') === 0) {
+    (st as any).minut = ((st as any).minut ?? 0) + 13;
+    (st as any).BuyQuantity = ((st as any).MaxQuantityHome ?? 0) + ((st as any).MaxQuantityGarage ?? 0);
+    (st as any).MaxCost = ((st as any).BuyQuantity ?? 0) * 100;
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).MaxCost ?? 0), 'cash') === 0) {
       scene.text('You don\'t have enough money on you. You will have to withdraw money before proceeding with the purchase.');
-      if (qspFunc(s, 'money', 'can_afford', ((s as any).MaxCost ?? 0)) === 1) {
+      if (qspFunc(s, 'money', 'can_afford', ((st as any).MaxCost ?? 0)) === 1) {
         scene.text('You have enough money on your credit card, and you offer them to pay with that.');
         scene.text('"I\'m sorry, we don\'t own a card terminal," the Manager replies, "We accept only cash."');
       }
@@ -205,30 +194,30 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave', goto: ['TerminalOffice', '11'] },
       ]);
     } else {
-      qspCall(s, 'money', 'pay', ((s as any).MaxCost ?? 0), 'cash');
-      // TODO-QSP: dynamic text: You've purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
-      scene.text(`You've purchased ${((s as any).BuyQuantity || '')} trinkets, worth ${((s as any).MaxCost || '')}.`);
-      if (((s as any).BuyQuantity ?? 0) >= ((s as any).MaxQuantityHome ?? 0)) {
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_home'] = (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((s as any).MaxQuantityHome ?? 0);
-        (s as any).BuyQuantity = ((s as any).BuyQuantity ?? 0) - (((s as any).MaxQuantityHome ?? 0));
-        if (((s as any).YouCanGar ?? 0) > 0) {
-          // TODO-QSP: dynamic text: You'll store <<MaxQuantityHome>> trickets at home.
-          scene.text(`You'll store ${((s as any).MaxQuantityHome || '')} trickets at home.`);
+      qspCall(st, 'money', 'pay', ((st as any).MaxCost ?? 0), 'cash');
+      // TODO-QSP: dynamic text: You''ve purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
+      scene.text(`You've purchased ${((st as any).BuyQuantity || '')} trinkets, worth ${((st as any).MaxCost || '')}.`);
+      if (((st as any).BuyQuantity ?? 0) >= ((st as any).MaxQuantityHome ?? 0)) {
+        ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((st as any).MaxQuantityHome ?? 0);
+        (st as any).BuyQuantity = ((st as any).BuyQuantity ?? 0) - (((st as any).MaxQuantityHome ?? 0));
+        if (((st as any).YouCanGar ?? 0) > 0) {
+          // TODO-QSP: dynamic text: You''ll store <<MaxQuantityHome>> trickets at home.
+          scene.text(`You'll store ${((st as any).MaxQuantityHome || '')} trickets at home.`);
         }
       } else {
-        if (((s as any).YouCanGar ?? 0) > 0) {
-          // TODO-QSP: dynamic text: You'll store <<BuyQuantity>> trickets at home.
-          scene.text(`You'll store ${((s as any).BuyQuantity || '')} trickets at home.`);
+        if (((st as any).YouCanGar ?? 0) > 0) {
+          // TODO-QSP: dynamic text: You''ll store <<BuyQuantity>> trickets at home.
+          scene.text(`You'll store ${((st as any).BuyQuantity || '')} trickets at home.`);
         }
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_home'] = (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((s as any).BuyQuantity ?? 0);
-        (s as any).BuyQuantity = 0;
+        ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((st as any).BuyQuantity ?? 0);
+        (st as any).BuyQuantity = 0;
       }
-      if (((s as any).BuyQuantity ?? 0) > 0) {
-        ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['trinkets_garage'] = (((s as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0) + ((s as any).BuyQuantity ?? 0);
-        // TODO-QSP: dynamic text: You'll store <<BuyQuantity>> trinkets in the garage.
-        scene.text(`You'll store ${((s as any).BuyQuantity || '')} trinkets in the garage.`);
+      if (((st as any).BuyQuantity ?? 0) > 0) {
+        ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_garage'] = (((st as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0) + ((st as any).BuyQuantity ?? 0);
+        // TODO-QSP: dynamic text: You''ll store <<BuyQuantity>> trinkets in the garage.
+        scene.text(`You'll store ${((st as any).BuyQuantity || '')} trinkets in the garage.`);
       }
-      if (((s as any).YouCanGar ?? 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 100, 'cash') === 1) {
+      if (((st as any).YouCanGar ?? 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 100, 'cash') === 1) {
         scene.text('You\'ve purchased plenty of trinkets, but you\'ve been thinking about expanding your business. But where could you store them all? Maybe you should ask your stepfather if you could use some free space in his garage…');
       }
       scene.actions([
@@ -265,9 +254,9 @@ function enter21(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yes, I\'ve been expecting these, may I?" She holds out her hand.');
       scene.actions([
         { label: 'Give her the documents', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).BurgerQW = (s as any).BurgerQW ?? {})['TerminalTask'] = 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).BurgerQW = (st as any).BurgerQW ?? {})['TerminalTask'] = 2;
+    qspCall(st, 'stat', '');
     scene.text('You hand the girl the folder. She opens it and quickly checks the contents.');
     scene.text('"Tell Anatoly Borisovich that Elizabeth said thank you."');
     scene.text('The girl smiles and then turns her attention to her monitor and starts rapidly typing away on her keyboard.');
@@ -308,8 +297,8 @@ function enter31(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Talk', handler: (st: GameState) => {
     // TODO-QSP: delact $selact
-    (s as any).AboutBussines = 1;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).AboutBussines = 1;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('"I was told to come and see you about a business proposal…" you start.');
     scene.text('"I heard there was a possibility of a good, legitimate and profitable trade business going on…" you continue.');
     scene.text('The man puts the phone to his side and irritably answers, "Can\'t you see I\'m in middle of a phone call? Leave!"');
@@ -320,8 +309,8 @@ function enter31(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Give him the documents', handler: (st: GameState) => {
     // TODO-QSP: delact $selact
-    (s as any).AboutDocs = 1;
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(s, scene); (s as any).locArgs = __savedLocArgs; }
+    (st as any).AboutDocs = 1;
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'The Director\'s office', 'terminal1']; enterTerminalOfficeScreen(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.text('You walk up to the desk. You\'re ignored by the man, but you refuse to turn back, you have an important assignment from the boss.');
     scene.text('"I was told by Anatoly Chubais from the company "OOO Bystroushka limited" to hand over these documents to you."');
     scene.text('The man stops talking on the phone, frowns, and, pointing towards the door, asserts, "You need to head over to the accountant\'s office."');
@@ -342,6 +331,17 @@ function enter31(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'public_indoors';
+  (s as any).minut = ((s as any).minut ?? 0) + 1;
+  qspCall(s, 'stat', '');
+  (s as any).TerminalOfficeDirWorkTime = 0;
+  (s as any).TerminalOfficeBuhWorkTime = 0;
+  if (((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).week ?? 0) < 6) {
+    (s as any).TerminalOfficeDirWorkTime = 1;
+  }
+  if (((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 13)  ||  (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20))  &&  ((s as any).week ?? 0) < 6) {
+    (s as any).TerminalOfficeBuhWorkTime = 1;
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'TerminalOfficeScreen':

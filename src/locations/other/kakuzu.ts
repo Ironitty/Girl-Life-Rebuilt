@@ -58,11 +58,11 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Here\'s the money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 100000);
-      (s as any).tobiQW = 2;
-      (s as any).srodpaper = 10;
+      qspCall(st, 'money', 'pay', 100000);
+      (st as any).tobiQW = 2;
+      (st as any).srodpaper = 10;
       scene.text('You put money in front of Kakuzu. He threw them in a drawer without even looking.');
       scene.text('You ask, "Not even going to count?" Kakuzu replies quietly, "if there is not enough by even a ruble, I will find and kill you."');
       scene.text('(Kakuzu) - Listen to me carefully. There are five elements, ');
@@ -84,10 +84,10 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I need another paper', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 10000);
-      (s as any).srodpaper = ((s as any).srodpaper ?? 0) + (1);
+      qspCall(st, 'money', 'pay', 10000);
+      (st as any).srodpaper = ((st as any).srodpaper ?? 0) + (1);
       scene.text('You gave money and Kakuzu handed a sheet of paper.');
       scene.actions([
         { label: 'Mark sheets', goto: ['kakuzu', 'mansion1'] },
@@ -120,52 +120,52 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tobiQW ?? 0) === 2  &&  ((s as any).srodpaper ?? 0) > 0  &&  ((s as any).pcs_mana ?? 0) >= 2000) {
     scene.actions([
       { label: 'Concentrating the energy in the sheet of paper (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (2000);
-    qspCall(s, 'sweat', 'add', 40);
-    if ((!((s as any).srodstvo ?? 0))) {
-      (s as any).srodrand = Math.floor(Math.random() * 5) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).pcs_mana = ((st as any).pcs_mana ?? 0) - (2000);
+    qspCall(st, 'sweat', 'add', 40);
+    if ((!((st as any).srodstvo ?? 0))) {
+      (st as any).srodrand = (Math.floor(Math.random() * 5) + 1);
     }
     scene.text('You concentrate energy in the sheet of paper. You feel that you are spending a huge amount of mana for this action.');
-    (s as any).srodstvo = ((s as any).srodstvo ?? 0) + ((Math.floor(Math.random() * (10 - 9 - 2 * (((s as any).cheatVars ?? {})?.['skill_gain'] ?? 0) + 1)) + (9 - 2 * (((s as any).cheatVars ?? {})?.['skill_gain'] ?? 0))));
-    if (((s as any).srodstvo ?? 0) < 100) {
+    (st as any).srodstvo = ((st as any).srodstvo ?? 0) + ((Math.floor(Math.random() * (10 - 9 - 2 * (((st as any).cheatVars ?? {})?.['skill_gain'] ?? 0) + 1)) + (9 - 2 * (((st as any).cheatVars ?? {})?.['skill_gain'] ?? 0))));
+    if (((st as any).srodstvo ?? 0) < 100) {
       scene.text('You get tired and sweat like a horse, but your effort was not enough.');
       scene.actions([
         { label: 'Move away', goto: ['kakuzu', 'mansion1'] },
       ]);
     } else {
-      if (((s as any).srodstvo ?? 0) >= 100) {
-        (s as any).srodpaper = ((s as any).srodpaper ?? 0) - (1);
-        if (((s as any).srodrand ?? 0) === 1) {
+      if (((st as any).srodstvo ?? 0) >= 100) {
+        (st as any).srodpaper = ((st as any).srodpaper ?? 0) - (1);
+        if (((st as any).srodrand ?? 0) === 1) {
           scene.text('Paper broke in your hands. Kakuzu nods approvingly. Affinity with fire. Will you take it?');
-          qspCall(s, 'spellList', 'addAvailableSpells', 'fireSpells', 20);
+          qspCall(st, 'spellList', 'addAvailableSpells', 'fireSpells', 20);
         }
-        if (((s as any).srodrand ?? 0) === 2) {
+        if (((st as any).srodrand ?? 0) === 2) {
           scene.text('Paper electrified in your hands, and sparks dance on it. Kakuzu nods approvingly. Affinity with lightning. Will you take it?');
-          qspCall(s, 'spellList', 'addAvailableSpells', 'electSpells', 20);
+          qspCall(st, 'spellList', 'addAvailableSpells', 'electSpells', 20);
         }
-        if (((s as any).srodrand ?? 0) === 3) {
+        if (((st as any).srodrand ?? 0) === 3) {
           scene.text('Paper hardened in your hands. Kakuzu nods approvingly. Affinity with the land. Will you take it?');
-          qspCall(s, 'spellList', 'addAvailableSpells', 'earthSpells', 20);
+          qspCall(st, 'spellList', 'addAvailableSpells', 'earthSpells', 20);
         }
-        if (((s as any).srodrand ?? 0) === 4) {
+        if (((st as any).srodrand ?? 0) === 4) {
           scene.text('Paper shredded to pieces in your hands. Kakuzu nods approvingly. Affinity with the wind. Will you take it?');
-          qspCall(s, 'spellList', 'addAvailableSpells', 'airSpells', 20);
+          qspCall(st, 'spellList', 'addAvailableSpells', 'airSpells', 20);
         }
-        if (((s as any).srodrand ?? 0) === 5) {
+        if (((st as any).srodrand ?? 0) === 5) {
           scene.text('Paper soaked in your hands. Kakuzu nods approvingly. Affinity for water. Will you take it?');
-          qspCall(s, 'spellList', 'addAvailableSpells', 'waterSpells', 20);
+          qspCall(st, 'spellList', 'addAvailableSpells', 'waterSpells', 20);
         }
         scene.actions([
           { label: 'Secure affinity', handler: (st: GameState) => {
-    (s as any).tobiQW = 3;
-    (s as any).stihia = ((s as any).srodrand ?? 0);
-    (s as any).srodstvo = 0;
-    qspGoto(s, 'kakuzu', 'mansion1');
+    (st as any).tobiQW = 3;
+    (st as any).stihia = ((st as any).srodrand ?? 0);
+    (st as any).srodstvo = 0;
+    qspGoto(st, 'kakuzu', 'mansion1');
   } },
           { label: 'Unsubscribe from this affinity', handler: (st: GameState) => {
-    (s as any).srodstvo = 0;
-    qspGoto(s, 'kakuzu', 'mansion1');
+    (st as any).srodstvo = 0;
+    qspGoto(st, 'kakuzu', 'mansion1');
   } },
         ]);
       }

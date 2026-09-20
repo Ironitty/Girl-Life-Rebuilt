@@ -26,9 +26,9 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc = (s as any).setloc ?? {})['imagepath'] = 'images/' + 'locations/city/canals/';
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 9) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_day_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
+      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_day_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     } else {
-      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_night_' + Math.floor(Math.random() * 2) + 1 + '.jpg');
+      scene.img(((s as any).setloc ?? 0)?.['imagepath'] + 'city_canals_night_' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     }
   } else {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
@@ -43,20 +43,20 @@ function enterSetup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterExit(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'arts') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'arts') {
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'island') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'island') {
       qspGoto(s, 'city_island', '');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'industrial') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'industrial') {
         qspGoto(s, 'city_industrial', '');
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'residential') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'residential') {
           qspGoto(s, 'city_suburbs', 'start');
         } else {
           // TODO-QSP: gt $ARGS[1], $ARGS[2]
@@ -76,10 +76,10 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc_history ?? 0) !== 'city_suburbs') {
       scene.actions([
         { label: 'Take a boat to City Suburbia (0:20,  [100₽])...]', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'money', 'pay', 100);
-    qspCall(s, 'stat', '');
-    scene.img(`images/${((s as any).setloc ?? 0)?.['imagepath'] ?? ''}neva_river.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'money', 'pay', 100);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}neva_river.jpg`);
     scene.text('You take a boat and travel along the Neva River and up the Malaya Neva to the world renowned Spit of Vaslievs Island. As you pull into the jetty, you can see where the river continues to flow into Neva Bay and the two islands of Dekabristov and Petrosky.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -92,10 +92,10 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc_history ?? 0) !== 'city_island') {
       scene.actions([
         { label: 'Take a boat to Vasilyevsky Island (0:20,  [100₽])...]', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'money', 'pay', 100);
-    qspCall(s, 'stat', '');
-    scene.img(`images/${((s as any).setloc ?? 0)?.['imagepath'] ?? ''}island_canal.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'money', 'pay', 100);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}island_canal.jpg`);
     scene.text('You take a boat and travel along the Neva River one of the arterial river that forms the lifeblood of St Petersburg. You gaze upon the many bridges as you pass them and elegant buildings that line the river banks lost in your own thoughts.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -108,10 +108,10 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loc_history ?? 0) !== 'city_industrial') {
       scene.actions([
         { label: 'Take a boat to the Industrial district (0:20,  [100₽])...]', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'money', 'pay', 100);
-    qspCall(s, 'stat', '');
-    scene.img(`images/${((s as any).setloc ?? 0)?.['imagepath'] ?? ''}chernaya_rechka.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'money', 'pay', 100);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}chernaya_rechka.jpg`);
     scene.text('You get into the boat and travel along the Chernaya Rechka to the cities industrial district. You muse as you remember your history lessons about the famous poet Alexander Pushkin meeting his end on the banks in a duel.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -123,10 +123,92 @@ function enterContent(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Take a boat trip (1:20,  [150₽])...]', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'money', 'pay', 150);
-    qspCall(s, 'stat', '');
-    scene.img(`images/${((s as any).setloc ?? 0)?.['imagepath'] ?? ''}tour_boat_${Math.floor(Math.random() * 2) + 1}.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'money', 'pay', 150);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}tour_boat_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
+    scene.text('You take a boat ride. Description of the boat tour goes here');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    dynamicGoto(st, 'prevLoc', 'prevArg');
+  } },
+    ]);
+  } },
+      { label: 'Leave the canals', handler: (st: GameState) => {
+    // TODO-QSP: gt $loc, 'exit', $loc_history, $loc_args_history
+  } },
+    ]);
+  } else {
+    scene.text('You can\'t take a boat trip in the winter. The Canal ways are frozen over.');
+    scene.actions([
+      { label: 'Leave the canals', handler: (st: GameState) => {
+    // TODO-QSP: gt $loc, 'exit', $loc_history, $loc_args_history
+  } },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  ((s as any).setloc = (s as any).setloc ?? {})['StageTitle'] = 'St Petersburg Canals';
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'start']; enterSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 12) {
+    scene.text('You stand gazing at St. Petersburg\'s famous Canals of the North, the hustle and bustle of people on the streets against a backdrop of elegant Russian buildings. You see the boatmen plying their trade on the waters below and working on their tour boats.');
+    if (((s as any).loc_history ?? 0) !== 'city_suburbs') {
+      scene.actions([
+        { label: 'Take a boat to City Suburbia (0:20,  [100₽])...]', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'money', 'pay', 100);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}neva_river.jpg`);
+    scene.text('You take a boat and travel along the Neva River and up the Malaya Neva to the world renowned Spit of Vaslievs Island. As you pull into the jetty, you can see where the river continues to flow into Neva Bay and the two islands of Dekabristov and Petrosky.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: gt $loc, 'exit', 'residential'
+  } },
+    ]);
+  } },
+      ]);
+    }
+    if (((s as any).loc_history ?? 0) !== 'city_island') {
+      scene.actions([
+        { label: 'Take a boat to Vasilyevsky Island (0:20,  [100₽])...]', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'money', 'pay', 100);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}island_canal.jpg`);
+    scene.text('You take a boat and travel along the Neva River one of the arterial river that forms the lifeblood of St Petersburg. You gaze upon the many bridges as you pass them and elegant buildings that line the river banks lost in your own thoughts.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: gt $loc, 'exit', 'island'
+  } },
+    ]);
+  } },
+      ]);
+    }
+    if (((s as any).loc_history ?? 0) !== 'city_industrial') {
+      scene.actions([
+        { label: 'Take a boat to the Industrial district (0:20,  [100₽])...]', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'money', 'pay', 100);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}chernaya_rechka.jpg`);
+    scene.text('You get into the boat and travel along the Chernaya Rechka to the cities industrial district. You muse as you remember your history lessons about the famous poet Alexander Pushkin meeting his end on the banks in a duel.');
+    scene.actions([
+      { label: 'Continue', handler: (st: GameState) => {
+    // TODO-QSP: gt $loc, 'exit', 'industrial'
+  } },
+    ]);
+  } },
+      ]);
+    }
+    scene.actions([
+      { label: 'Take a boat trip (1:20,  [150₽])...]', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'money', 'pay', 150);
+    qspCall(st, 'stat', '');
+    scene.img(`images/${((st as any).setloc ?? 0)?.['imagepath'] ?? ''}tour_boat_${(Math.floor(Math.random() * 2) + 1)}.jpg`);
     scene.text('You take a boat ride. Description of the boat tour goes here');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -155,13 +237,13 @@ function enterTickets(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Pay the boatman', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 100);
-      (s as any).canals_ticket = ((s as any).daystart ?? 0);
+      qspCall(st, 'money', 'pay', 100);
+      (st as any).canals_ticket = ((st as any).daystart ?? 0);
       // TODO-QSP: dynamic text: You pay the boatman ' + $func('money', 'string_price', 100) + ' for your ticket.
       scene.text('You pay the boatman 100₽ for your ticket.');
-      qspGoto(s, 'city_canals', 'start');
+      qspGoto(st, 'city_canals', 'start');
     }
   } },
   ]);
@@ -188,6 +270,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'content':
       enterContent(s, scene);
+      break;
+    case 'start':
+      enterStart(s, scene);
       break;
     case 'tickets':
       enterTickets(s, scene);

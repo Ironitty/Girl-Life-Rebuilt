@@ -19,76 +19,76 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
-    if (((s as any).telsob ?? 0) === 'Alla') {
-      (s as any).alla = ((s as any).alla ?? 0) + (1);
-      if (((s as any).alla ?? 0) >= 20) {
-        (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
-        if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-          qspGoto(s, 'billsvid', '1');
+    if (((st as any).telsob ?? 0) === 'Alla') {
+      (st as any).alla = ((st as any).alla ?? 0) + (1);
+      if (((st as any).alla ?? 0) >= 20) {
+        (st as any).bilrand = (Math.floor(Math.random() * 11) + 0);
+        if (((st as any).bilrand ?? 0) > 0  &&  ((st as any).bilrand ?? 0) < 3) {
+          qspGoto(st, 'billsvid', '1');
         }
-        if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-          qspGoto(s, 'billsvid', '2');
+        if (((st as any).bilrand ?? 0) > 2  &&  ((st as any).bilrand ?? 0) < 5) {
+          qspGoto(st, 'billsvid', '2');
         }
-        if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-          qspGoto(s, 'billsvid', '3');
+        if (((st as any).bilrand ?? 0) === 0  ||  ((st as any).bilrand ?? 0) > 4) {
+          qspGoto(st, 'billsvid', '3');
         }
       } else {
-        if (((s as any).alla ?? 0) < 20) {
-          qspGoto(s, 'billsvid', '3');
+        if (((st as any).alla ?? 0) < 20) {
+          qspGoto(st, 'billsvid', '3');
         }
       }
     } else {
-      if (((s as any).telsob ?? 0) === 'Masha') {
-        (s as any).masha = ((s as any).masha ?? 0) + (1);
-        if (((s as any).masha ?? 0) >= 20) {
-          (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
-          if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-            qspGoto(s, 'billsvid', '1');
+      if (((st as any).telsob ?? 0) === 'Masha') {
+        (st as any).masha = ((st as any).masha ?? 0) + (1);
+        if (((st as any).masha ?? 0) >= 20) {
+          (st as any).bilrand = (Math.floor(Math.random() * 11) + 0);
+          if (((st as any).bilrand ?? 0) > 0  &&  ((st as any).bilrand ?? 0) < 3) {
+            qspGoto(st, 'billsvid', '1');
           }
-          if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-            qspGoto(s, 'billsvid', '2');
+          if (((st as any).bilrand ?? 0) > 2  &&  ((st as any).bilrand ?? 0) < 5) {
+            qspGoto(st, 'billsvid', '2');
           }
-          if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-            qspGoto(s, 'billsvid', '3');
+          if (((st as any).bilrand ?? 0) === 0  ||  ((st as any).bilrand ?? 0) > 4) {
+            qspGoto(st, 'billsvid', '3');
           }
         } else {
-          if (((s as any).masha ?? 0) < 20) {
-            qspGoto(s, 'billsvid', '3');
+          if (((st as any).masha ?? 0) < 20) {
+            qspGoto(st, 'billsvid', '3');
           }
         }
       } else {
-        if (((s as any).telsob ?? 0) === 'Kate') {
-          qspCall(s, 'npc_relationship', 'modify', 'A219', 1);
-          if (((s as any).npc_rel ?? 0)?.['A219'] >= 20) {
-            (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
-            if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-              qspGoto(s, 'billsvid', '1');
+        if (((st as any).telsob ?? 0) === 'Kate') {
+          qspCall(st, 'npc_relationship', 'modify', 'A219', 1);
+          if (((st as any).npc_rel ?? 0)?.['A219'] >= 20) {
+            (st as any).bilrand = (Math.floor(Math.random() * 11) + 0);
+            if (((st as any).bilrand ?? 0) > 0  &&  ((st as any).bilrand ?? 0) < 3) {
+              qspGoto(st, 'billsvid', '1');
             }
-            if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-              qspGoto(s, 'billsvid', '2');
+            if (((st as any).bilrand ?? 0) > 2  &&  ((st as any).bilrand ?? 0) < 5) {
+              qspGoto(st, 'billsvid', '2');
             }
-            if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-              qspGoto(s, 'billsvid', '3');
+            if (((st as any).bilrand ?? 0) === 0  ||  ((st as any).bilrand ?? 0) > 4) {
+              qspGoto(st, 'billsvid', '3');
             }
           } else {
-            qspGoto(s, 'billsvid', '3');
+            qspGoto(st, 'billsvid', '3');
           }
         } else {
-          if (((s as any).telsob ?? 0) === ((s as any).npcdesc ?? 0)) {
-            qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
-            if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID ?? 0)] >= 60) {
-              (s as any).bilrand = Math.floor(Math.random() * 11) + 0;
-              if (((s as any).bilrand ?? 0) > 0  &&  ((s as any).bilrand ?? 0) < 3) {
-                qspGoto(s, 'billsvid', '1');
+          if (((st as any).telsob ?? 0) === ((st as any).npcdesc ?? 0)) {
+            qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
+            if (((st as any).npc_rel ?? 0)?.[String((st as any).npcID ?? 0)] >= 60) {
+              (st as any).bilrand = (Math.floor(Math.random() * 11) + 0);
+              if (((st as any).bilrand ?? 0) > 0  &&  ((st as any).bilrand ?? 0) < 3) {
+                qspGoto(st, 'billsvid', '1');
               }
-              if (((s as any).bilrand ?? 0) > 2  &&  ((s as any).bilrand ?? 0) < 5) {
-                qspGoto(s, 'billsvid', '2');
+              if (((st as any).bilrand ?? 0) > 2  &&  ((st as any).bilrand ?? 0) < 5) {
+                qspGoto(st, 'billsvid', '2');
               }
-              if (((s as any).bilrand ?? 0) === 0  ||  ((s as any).bilrand ?? 0) > 4) {
-                qspGoto(s, 'billsvid', '3');
+              if (((st as any).bilrand ?? 0) === 0  ||  ((st as any).bilrand ?? 0) > 4) {
+                qspGoto(st, 'billsvid', '3');
               }
             } else {
-              qspGoto(s, 'billsvid', '3');
+              qspGoto(st, 'billsvid', '3');
             }
           }
         }
@@ -115,24 +115,24 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Not now ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billsvid', '3');
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billsvid', '3');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss her', handler: (st: GameState) => {
-    ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
+    ((st as any).stat = (st as any).stat ?? {})['lesbian_count'] = ((st as any).stat['lesbian_count'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/mall/pool/sex/2.jpg');
     // TODO-QSP: dynamic text: You turn around and kiss her, in response <<$telsob>> quickly takes off her clot...
-    scene.text(`You turn around and kiss her, in response ${((s as any).telsob || '')} quickly takes off her clothes, helps you strip and throws you against the table, you jump on it, and continue to kiss.`);
-    qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'cuni', 'force');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`You turn around and kiss her, in response ${((st as any).telsob || '')} quickly takes off her clothes, helps you strip and throws you against the table, you jump on it, and continue to kiss.`);
+    qspCall(st, 'arousal', 'kiss', 5, 'lesbian');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'cuni', 'force');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Get licked', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -141,10 +141,10 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Get licked', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cuni', 'force');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billsvid', '11');
+    qspCall(st, 'willpower', 'cuni', 'force');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billsvid', '11');
   } },
       ]);
     }
@@ -171,10 +171,10 @@ function enter10(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Get licked', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cuni', 'force');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billsvid', '11');
+    qspCall(st, 'willpower', 'cuni', 'force');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billsvid', '11');
   } },
     ]);
   }
@@ -214,10 +214,10 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Ask her to play with a cue', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'force');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billsvid', '13');
+    qspCall(st, 'willpower', 'sex', 'force');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billsvid', '13');
   } },
       ]);
     }
@@ -247,10 +247,10 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Ask her to play with a cue', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'force');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billsvid', '13');
+    qspCall(st, 'willpower', 'sex', 'force');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billsvid', '13');
   } },
       ]);
     }
@@ -266,7 +266,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   (s as any).bilsvidukiy = 1;
   scene.img('images/locations/city/citycenter/mall/pool/sex/5.jpg');
-  // TODO-QSP: dynamic text: You sit on the edge of the table, throwing one leg on the table. "How's my cuein...
+  // TODO-QSP: dynamic text: You sit on the edge of the table, throwing one leg on the table. "How''s my cuei...
   scene.text(`You sit on the edge of the table, throwing one leg on the table. "How's my cueing action?" ${((s as any).telsob || '')} jokes as she dramatically uses her tongue to moisten her cue, before quickly inserting it into your pussy. You squeal in surprise. She diligently fucks you with the cue, turning it in different directions, you're massaging your clitoris with a finger. After a few minutes of pleasant sensations spread through your body and you float into a world of orgasm.`);
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian');
@@ -299,10 +299,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Continue to play ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'billsvid', '3');
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'billsvid', '3');
   } },
     ]);
   }
@@ -311,43 +311,43 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/11.jpg');
     // TODO-QSP: dynamic text: When <<$telsob>> once again put her hand on your stomach, you move closer to her...
-    scene.text(`When ${((s as any).telsob || '')} once again put her hand on your stomach, you move closer to her and kiss. Her hand immediately slipped under your clothes and massaged your breast.`);
-    qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    scene.text(`When ${((st as any).telsob || '')} once again put her hand on your stomach, you move closer to her and kiss. Her hand immediately slipped under your clothes and massaged your breast.`);
+    qspCall(st, 'arousal', 'kiss', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Proceed', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/12.jpg');
     // TODO-QSP: dynamic text: <<$telsob>> knelt down and taking off your clothes starts to kiss you down towar...
-    scene.text(`${((s as any).telsob || '')} knelt down and taking off your clothes starts to kiss you down toward your crotch, until her tongue is under your pussy.`);
-    qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    scene.text(`${((st as any).telsob || '')} knelt down and taking off your clothes starts to kiss you down toward your crotch, until her tongue is under your pussy.`);
+    qspCall(st, 'arousal', 'foreplay', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lick her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/13.jpg');
     scene.text('Lifting her knee onto the table you kneel below her, pull her panties aside and begin to kiss her pussy, caress it with your tongue and suck it between your lips.');
-    qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Proceed', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/14.jpg');
     scene.text('turning to face you, you help her onto the table and spreading her legs continue to caress her pussy with your tongue until she cums.');
-    qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni_give', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Your turn', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/15.jpg');
     // TODO-QSP: dynamic text: When <<$telsob>> has finished, you climb on the table and position your pussy ri...
-    scene.text(`When ${((s as any).telsob || '')} has finished, you climb on the table and position your pussy right in front of her face, ${((s as any).telsob || '')} immediately begins to caress you with her lips, and parting you with her fingers she tries to thrust her tongue even deeper.`);
-    qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    scene.text(`When ${((st as any).telsob || '')} has finished, you climb on the table and position your pussy right in front of her face, ${((st as any).telsob || '')} immediately begins to caress you with her lips, and parting you with her fingers she tries to thrust her tongue even deeper.`);
+    qspCall(st, 'arousal', 'cuni', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lick her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/16.jpg');
     // TODO-QSP: dynamic text: You turn around so that your face is above her pussy, and start licking her. Aft...
-    scene.text(`You turn around so that your face is above her pussy, and start licking her. After a few minutes, you feel her body shake and ${((s as any).telsob || '')} groans strongly pressing against your pussy, and then you are shrouded in pleasant waves of orgasm.`);
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
-    qspCall(s, 'stat', '');
+    scene.text(`You turn around so that your face is above her pussy, and start licking her. After a few minutes, you feel her body shake and ${((st as any).telsob || '')} groans strongly pressing against your pussy, and then you are shrouded in pleasant waves of orgasm.`);
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni', 5, 'lesbian');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['billsvid', '3'] },
     ]);

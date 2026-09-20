@@ -39,14 +39,14 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Spy on them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/pc/activities/spy/peep1.jpg');
     scene.text('You force yourself to slowly grab the handle of the door. You turn it slowly and push the door open just a crack. Pressing your face to the gap, you peer into the room.');
     scene.text('Your eyes focus on your sister and her boyfriend passionately kissing and undressing each other. It looks like they\'re about to have sex.');
-    qspCall(s, 'arousal', 'voyeur', 5);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'voyeur', 'self', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'voyeur', 5);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'voyeur', 'self', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Keep spying on them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -55,23 +55,23 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Keep spying on them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    if ((!((s as any).sisterbfspy ?? 0))) {
-      qspGoto(s, 'sisterQW', 'spy1');
+    qspCall(st, 'willpower', 'pay', 'self');
+    if ((!((st as any).sisterbfspy ?? 0))) {
+      qspGoto(st, 'sisterQW', 'spy1');
     } else {
-      if (((s as any).sisterbfspy ?? 0) === 1) {
-        qspGoto(s, 'sisterQW', 'spy2');
+      if (((st as any).sisterbfspy ?? 0) === 1) {
+        qspGoto(st, 'sisterQW', 'spy2');
       } else {
-        if (((s as any).sisterbfspy ?? 0) === 2) {
-          qspGoto(s, 'sisterQW', 'spy3');
+        if (((st as any).sisterbfspy ?? 0) === 2) {
+          qspGoto(st, 'sisterQW', 'spy3');
         } else {
-          if (((s as any).sisterbfspy ?? 0) === 3) {
-            qspGoto(s, 'sisterQW', 'spy4');
+          if (((st as any).sisterbfspy ?? 0) === 3) {
+            qspGoto(st, 'sisterQW', 'spy4');
           } else {
-            if (((s as any).sisterbfspy ?? 0) === 4) {
-              qspGoto(s, 'sisterQW', 'spy5');
+            if (((st as any).sisterbfspy ?? 0) === 4) {
+              qspGoto(st, 'sisterQW', 'spy5');
             } else {
-              qspGoto(s, 'sisterQW', 'spy6');
+              qspGoto(st, 'sisterQW', 'spy6');
             }
           }
         }
@@ -82,11 +82,11 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Close the door', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).blockBedrPar = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).blockBedrPar = 1;
     scene.img('images/pc/activities/spy/peep3.jpg');
     scene.text('You feel guilty about spying on your sister after you promised you would leave her in peace, and you close the door softly so they don\'t hear you. You lean your head against the door for a few seconds to collect yourself before walking away.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['korrPar', ''] },
     ]);
@@ -98,9 +98,9 @@ function enterSisboyQWBedroom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave them in peace', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).blockBedrPar = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).blockBedrPar = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_06.jpg');
     scene.text('You can\'t bring yourself to spy on them and remember your promise to your sister, so you decide not to bother her.');
     scene.actions([
@@ -129,8 +129,8 @@ function enterSpy1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'sisterQW', 'caress');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'sisterQW', 'caress');
   } },
     ]);
   }
@@ -161,8 +161,8 @@ function enterSpy2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'sisterQW', 'caress');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'sisterQW', 'caress');
   } },
     ]);
   }
@@ -195,8 +195,8 @@ function enterSpy3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'sisterQW', 'caress');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'sisterQW', 'caress');
   } },
     ]);
   }
@@ -228,8 +228,8 @@ function enterSpy4(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'sisterQW', 'caress');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'sisterQW', 'caress');
   } },
     ]);
   }
@@ -262,8 +262,8 @@ function enterSpy5(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'sisterQW', 'caress');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'sisterQW', 'caress');
   } },
     ]);
   }
@@ -293,8 +293,8 @@ function enterSpy6(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Caress yourself', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspGoto(s, 'sisterQW', 'caress');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspGoto(st, 'sisterQW', 'caress');
   } },
     ]);
   }
@@ -308,29 +308,29 @@ function enterSpy6(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
     scene.img('images/characters/pavlovsk/resident/anya/sex/spy5.jpg');
     scene.text('After receiving her blowjob, Roma effortlessly picks her up and lowers her down onto his dick. They both moan as they start fucking.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/spy6.jpg');
     scene.text('Eventually, Roma gets tired and lies back on the bed. Anya then mounts him and starts riding him hard. Her pace is frantic, almost animal like. After a few minutes, she cries out as an orgasm pulses through her body, and she slowly stops moving while sitting on top of him, his dick still inside her pussy.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/spy7.jpg');
     scene.text('Having recovered his strength, Roma rolls Anya off him and gets back up on his knees. He pulls her up on her knees, spins her around and pushes her shoulders forwards until she bends over on all fours. Once she\'s in position, he slides up behind her and starts fucking her doggy style. He smacks her ass with one hand and grabs hold of her hair with the other, occasionally pulling it back and causing her head to strain back.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/spy8.jpg');
     scene.text('He suddenly pulls out of her pussy and takes only a moment to line his large dick up against her asshole before pushing forward. The head of his dick pops into her ass before she has time to react and she cries out in both pleasure and pain. Roma, on the other hand, groans in pleasure as he starts fucking her ass, quickly starting to really hammer it. You see her hands grip the sheets tightly as she moans and grunts.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Keep watching', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/spy11.jpg');
@@ -338,8 +338,8 @@ function enterSpy6(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few seconds, your sister finally speaks. "I told you to stop doing that. It\'s fucking gross."');
     scene.text('You hear Roma chuckle. "You said you love the taste of my cum, babe."');
     scene.text('She sighs. "I meant pulling out of my ass and putting it in my mouth! Stop doing it, it\'s gross." Roma mutters something that you can\'t quite make out. You decide to leave before someone finds you spying or Roma gets dressed and leaves.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['korrPar', ''] },
     ]);
@@ -365,10 +365,10 @@ function enterSpy6(s: GameState, scene: SceneBuilder): void {
 
 function enterCaress(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) < 40) {
-    qspCall(s, 'exp_gain', 'inhib', Math.floor(Math.random() * 3) + 1);
+    qspCall(s, 'exp_gain', 'inhib', (Math.floor(Math.random() * 3) + 1));
   }
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/pavlovsk/resident/anya/sex/spymas${Math.floor(Math.random() * 2) + 1}.jpg`);
+  scene.img(`images/characters/pavlovsk/resident/anya/sex/spymas${(Math.floor(Math.random() * 2) + 1)}.jpg`);
   scene.text('You can\'t help yourself. You turn and press your back against the wall before pulling your panties down and rubbing your glistening wet pussy as you listen to the moans and groans coming from your room.');
   scene.text('You lick your finger before rhythmically caressing your swollen clit and caressing your breasts with your other hand. You\'re lost in the moment, oblivious to everything around you.');
   scene.text('Your muscles contract, your breath shortens. Realizing you\'ve hit your peak, you bite your lip to stifle your moans.');
@@ -397,10 +397,10 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_07.jpg');
     scene.text('Anya opens the door, looking sad.');
     scene.text('"You promised to come! What happened?"');
-    return;
     scene.actions([
-      { label: 'Leave', goto: ['korrPar', ''] },
-    ]);
+{ label: 'Leave', goto: ['korrPar', ''] },
+]);
+    return;
   }
   (s as any).sisboytrio = ((s as any).sisboytrio ?? 0) + (1);
   qspCall(s, 'stat', '');
@@ -412,17 +412,17 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'This is wrong', handler: (st: GameState) => {
-    (s as any).sisboytrioQW = (-1);
-    (s as any).sisboytrioDayOtkaz = ((s as any).daystart ?? 0) + 3;
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).sisterQW = (s as any).sisterQW ?? {})['roma3block'] = 1;
-    qspCall(s, 'npc_relationship', 'modify', 'A33', (-10));
-    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A33'] = 2;
-    (s as any).sisThank = 0;
-    qspCall(s, 'stat', '');
+    (st as any).sisboytrioQW = (-1);
+    (st as any).sisboytrioDayOtkaz = ((st as any).daystart ?? 0) + 3;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).sisterQW = (st as any).sisterQW ?? {})['roma3block'] = 1;
+    qspCall(st, 'npc_relationship', 'modify', 'A33', (-10));
+    ((st as any).npc_QW = (st as any).npc_QW ?? {})['A33'] = 2;
+    (st as any).sisThank = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/spy/peep4.jpg');
     scene.text('Suddenly having last second thoughts, you turn and flee. Once outside, you turn and close the door. You hold it tightly as you realize what almost happened before you let go and walk away.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Flee', goto: ['korrPar', ''] },
     ]);
@@ -430,21 +430,21 @@ function enterSisboytrioQWBedroom(s: GameState, scene: SceneBuilder): void {
     { label: 'Join her on the bed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some1.jpg');
     scene.text('You crawl onto her bed with her and the two of you hug and lightly fondle each other as Roma just watches while licking his lips. "Come on girls, show me your tits!"');
-    qspCall(s, 'arousal', 'foreplay', 2, 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 2, 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Flash', handler: (st: GameState) => {
-    if (((s as any).braworntype ?? 0) !== 'none') {
+    if (((st as any).braworntype ?? 0) !== 'none') {
       scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some2.jpg');
       scene.text('You and Anya both expose your bras to him and his eyes are drawn to your chest, then Anya\'s before going back and forth as if he can\'t decide who to look at. "Nice bras, but I said tits. Don\'t be shy now!"');
       scene.text('With his encouragement, you pull up your bra.');
-      qspCall(s, 'arousal', 'flashlite', 1, 'lesbian', 'incest', 'group');
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'flashlite', 1, 'lesbian', 'incest', 'group');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Flash your breasts', goto: ['sisterQW', 'flash_boobs'] },
       ]);
     } else {
-      qspGoto(s, 'sisterQW', 'flash_boobs');
+      qspGoto(st, 'sisterQW', 'flash_boobs');
     }
   } },
     ]);
@@ -466,33 +466,33 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some4.jpg');
     scene.text('You and Anya kiss as Roma takes turns fondling both of you. "Damn, this is so fucking hot!" he says as he starts tugging at the rest of your clothes as well as Anya\'s.');
-    qspCall(s, 'arousal', 'kiss', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'arousal', 'foreplay', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 3, ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'arousal', 'foreplay', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fondle', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some5.jpg');
     scene.text('Once you\'re both naked, Roma removes his clothes as well. All of you now naked, Roma starts to rub your pussy while he suckles at one of your nipples and Anya plays with your other breast with one hand while the other smacks and squeezes your ass. Not wanting Anya to feel left out, you start rubbing her clit with one of your hands.');
     scene.text('Roma then stops playing with you. "One of you needs to start sucking my dick!"');
-    qspCall(s, 'arousal', 'foreplay', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Watch Anya suck his dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some6.jpg');
     scene.text('Anya gets down on all fours and starts sucking Roma\'s dick. You get down as well as Roma makes her deepthroat him as you watch. After a few minutes, Anya pops his dick out of her mouth and offers it to you.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5, 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5, 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck Roma\'s dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some7.jpg');
     // TODO-QSP: dynamic text: You open your mouth as he slides his wet dick into it. Closing your lips around ...
-    scene.text(`You open your mouth as he slides his wet dick into it. Closing your lips around his shaft, you start sucking his dick. You feel his hand slide to the back of your head to force you to go deep while Anya starts playing with your breasts. Several minutes go by before Roma speaks up. "I want to fuck you now, ${((s as any).pcs_nickname || '')}."`);
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'sex', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`You open your mouth as he slides his wet dick into it. Closing your lips around his shaft, you start sucking his dick. You feel his hand slide to the back of your head to force you to go deep while Anya starts playing with your breasts. Several minutes go by before Roma speaks up. "I want to fuck you now, ${((st as any).pcs_nickname || '')}."`);
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse to fuck Roma', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -505,28 +505,28 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
   }, goto: ['sisterQW', 'refuse_to_fuck_roma'] },
       ]);
     }
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([
         { label: 'Offer your ass', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some12.jpg');
     scene.text('You shake your head. "Sorry Roma, but I\'m saving myself. You can take me from behind if you want?"');
     // TODO-QSP: dynamic text: Roma smiles and you soon feel the head of his <<dick_length>>cm <<$dick_girth>> ...
-    scene.text(`Roma smiles and you soon feel the head of his ${((s as any).dick_length || '')}cm ${((s as any).dick_girth || '')} dick pressing against your asshole.`);
+    scene.text(`Roma smiles and you soon feel the head of his ${((st as any).dick_length || '')}cm ${((st as any).dick_girth || '')} dick pressing against your asshole.`);
     // TODO-QSP: dynamic text: He pushes his dick forward until the head of it painfully pops into your ass and...
-    scene.text(`He pushes his dick forward until the head of it painfully pops into your ass and he slowly starts sliding his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock inside you. It's already wet from you and Anya's saliva, so it slides in fairly easily.`);
+    scene.text(`He pushes his dick forward until the head of it painfully pops into your ass and he slowly starts sliding his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock inside you. It's already wet from you and Anya's saliva, so it slides in fairly easily.`);
     scene.text('He\'s fairly gentle, not going too fast or too deep and giving you time to adjust and stretch out. As he does, you start fingering Anya as you lick her clit.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal_finger_give', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'arousal', 'cuni_give', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal_finger_give', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'arousal', 'cuni_give', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Deep pounding', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some10.jpg');
     scene.text('Roma gets up on his feet and grips your hips as he pushes his cock balls deep into your asshole and starts fucking you a little harder, slowly picking up speed and only backing off when you visibly tense up.');
     scene.text('He does a pretty good job of pounding you without being too rough, but eventually he starts getting rougher and you can hear him straining. He pulls his dick out of your ass as Anya suddenly has an orgasm that rocks her body.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal_finger_give', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal_finger_give', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['sisterQW', 'first_cum_shot'] },
     ]);
@@ -538,42 +538,42 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Fuck Roma', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some8.jpg');
-    if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-      (s as any).roma_cherry = 1;
+    if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
+      (st as any).roma_cherry = 1;
       // TODO-QSP: dynamic text: When you nod your head in agreement, Roma pulls his dick out of your mouth and l...
-      scene.text(`When you nod your head in agreement, Roma pulls his dick out of your mouth and lies down on his back. Anya encourages you to straddle him and takes hold of his dick to guide it as you lower yourself down. You feel the head of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick, already slick with drool, press up against your lips before you feel your hymen tearing as it slides into you. As you ride his cock, Anya licks and sucks at your clit, reducing the pain and causing the pleasure to be almost overwhelming.`);
-      qspCall(s, 'pain', '', 3, 'vaginal', 'tear');
-      qspCall(s, 'arousal', 'vaginal', 10, ((s as any).npcID ?? 0), 'group');
-      qspCall(s, 'arousal', 'cuni', (-10), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-      qspCall(s, 'stat', '');
+      scene.text(`When you nod your head in agreement, Roma pulls his dick out of your mouth and lies down on his back. Anya encourages you to straddle him and takes hold of his dick to guide it as you lower yourself down. You feel the head of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick, already slick with drool, press up against your lips before you feel your hymen tearing as it slides into you. As you ride his cock, Anya licks and sucks at your clit, reducing the pain and causing the pleasure to be almost overwhelming.`);
+      qspCall(st, 'pain', '', 3, 'vaginal', 'tear');
+      qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID ?? 0), 'group');
+      qspCall(st, 'arousal', 'cuni', (-10), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Continue', goto: ['sisterQW', 'first_cum_shot'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: When you nod your head in agreement, Roma pulls his dick out of your mouth and l...
-      scene.text(`When you nod your head in agreement, Roma pulls his dick out of your mouth and lies down on his back. Anya encourages you to straddle him and takes hold of his dick to guide it as you lower yourself down. You feel the head of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick, already slick with drool, press up against your lips and force them apart as it slides into you. As you ride his cock, Anya licks and sucks at your clit, causing the pleasure to be almost overwhelming.`);
-      qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'group');
-      qspCall(s, 'arousal', 'cuni', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-      qspCall(s, 'stat', '');
+      scene.text(`When you nod your head in agreement, Roma pulls his dick out of your mouth and lies down on his back. Anya encourages you to straddle him and takes hold of his dick to guide it as you lower yourself down. You feel the head of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick, already slick with drool, press up against your lips and force them apart as it slides into you. As you ride his cock, Anya licks and sucks at your clit, causing the pleasure to be almost overwhelming.`);
+      qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0), 'group');
+      qspCall(st, 'arousal', 'cuni', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Anya\'s turn', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some9.jpg');
     // TODO-QSP: dynamic text: After what seems like a long time and no time at all, he lifts you off of him an...
-    scene.text(`After what seems like a long time and no time at all, he lifts you off of him and places you aside. He then drags Anya over and rolls her onto her side before effortlessly sliding his dick into her. She moans loudly as he starts fucking her. "Straddle her face, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`After what seems like a long time and no time at all, he lifts you off of him and places you aside. He then drags Anya over and rolls her onto her side before effortlessly sliding his dick into her. She moans loudly as he starts fucking her. "Straddle her face, ${((st as any).pcs_nickname || '')}."`);
     scene.text('Doing as Roma says, you straddle Anya\'s face and she starts licking your pussy as Roma fucks her.');
-    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 5, ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Your turn again', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some11.jpg');
     scene.text('You then feel a sudden smack on your ass. "Come over here and get on all fours. I want to fuck you again," Roma demands.');
     scene.text('You climb off Anya and get on all fours as Roma scoots up behind you and easily slides his dick back into your pussy while Anya lies down in front of you and spreads her legs. Roma reaches forward and forces your face into her crotch, so you start licking her pussy as Roma starts fucking you again.');
     scene.text('Several minutes pass before Roma pulls his dick out of your pussy and you feel the head of it pressing against your asshole.');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'cuni_give', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'anal', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'cuni_give', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'anal', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse to fuck Roma', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -582,14 +582,14 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'No anal', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some9.jpg');
     scene.text('You pull away. "No anal!"');
     scene.text('He sighs. "Okay…" He then grabs Anya and drags her back over to him while she\'s still on her back. You watch as he slides his dick into her ass, then glances up at you. "Well? Get back on her face!"');
     scene.text('You straddle her face and she starts licking your pussy. You glance back occasionally and see how he switches which of her holes he\'s fucking, going from ass to pussy and then back to ass again.');
-    qspCall(s, 'arousal', 'cuni', 5, ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 5, ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['sisterQW', 'first_cum_shot'] },
     ]);
@@ -598,22 +598,22 @@ function enterFlashBoobs(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Anal', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A56');
+    qspCall(st, 'boyStat', 'A56');
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some12.jpg');
-    // TODO-QSP: dynamic text: When you don't say anything, he pushes his dick forward until the head of it pai...
-    scene.text(`When you don't say anything, he pushes his dick forward until the head of it painfully pops into your ass and he slowly starts sliding his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock inside you. It's already wet from you and Anya's saliva, so it slides in fairly easily.`);
+    // TODO-QSP: dynamic text: When you don''t say anything, he pushes his dick forward until the head of it pa...
+    scene.text(`When you don't say anything, he pushes his dick forward until the head of it painfully pops into your ass and he slowly starts sliding his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock inside you. It's already wet from you and Anya's saliva, so it slides in fairly easily.`);
     scene.text('He\'s fairly gentle, not going too fast or too deep and giving you time to adjust and stretch out. As he does, you start fingering Anya as you lick her clit.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal_finger_give', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal_finger_give', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Deep pounding', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/anya/sex/anya3some10.jpg');
     scene.text('Roma gets up on his feet and grips your hips as he pushes his cock balls deep into your asshole and starts fucking you a little harder, slowly picking up speed and only backing off when you visibly tense up.');
     scene.text('He does a pretty good job of pounding you without being too rough, but eventually he starts getting rougher and you can hear him straining. He pulls his dick out of your ass as Anya suddenly has an orgasm that rocks her body.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal_finger_give', (-5), ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal_finger_give', (-5), ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['sisterQW', 'first_cum_shot'] },
     ]);
@@ -665,7 +665,7 @@ function enterFirstCumShot(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what the hell were you thinking?!" she asks you angrily.
     scene.text(`"${((s as any).pcs_nickname || '')}, what the hell were you thinking?!" she asks you angrily.`);
     scene.text('Seeing their reaction, you start to tear up. "I was thinking I loved you! I was tired of being a virgin and couldn\'t think of a better way to lose my virginity!"');
-    // TODO-QSP: dynamic text: Anya, seeing your tears, gives you a hug. "I'm sorry I yelled at you, <<$pcs_nic...
+    // TODO-QSP: dynamic text: Anya, seeing your tears, gives you a hug. "I''m sorry I yelled at you, <<$pcs_ni...
     scene.text(`Anya, seeing your tears, gives you a hug. "I'm sorry I yelled at you, ${((s as any).pcs_nickname || '')}. It was just a shock. Let's get you cleaned up and we can talk about it."`);
     scene.text('She gives Roma a glare and he gets up to take a shower and finish himself off in there.');
     scene.text('You and Anya end up having a long talk about what just happened and what it means going forward. Your bond, if anything, is now stronger.');
@@ -690,10 +690,10 @@ function enterFirstCumShot(s: GameState, scene: SceneBuilder): void {
     scene.text('Anya laughs and shakes her head. "Maybe. It depends on how good you are."');
     scene.text('He laughs and grabs her, pulling her up into a huge bear hug. "I\'m always good, that\'s why you love me!"');
     scene.text('Before she can respond, he kisses her deeply and passionately. Feeling like they\'re getting all romantic, you decide to leave.');
-    qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
-    (s as any).cumspclnt = 12;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 3, ((st as any).npcID1 ?? 0), 'lesbian', 'incest', 'group');
+    (st as any).cumspclnt = 12;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['korrPar', ''] },
     ]);

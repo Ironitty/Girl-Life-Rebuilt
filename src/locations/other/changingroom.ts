@@ -31,8 +31,8 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1) {
     scene.actions([
       { label: 'Put your regular clothes back on', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'restore', 'swim');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'outfit', 'restore', 'swim');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -134,7 +134,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
 
 function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
-  scene.img(`${qspFunc(s, '$clothing_image', '$ARGS[1]', ((s as any).locArgs?.[2] ?? ''))}`);
+  scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
   // TODO-QSP: dynamic text: <<$ARGS[1]>> no.<<ARGS[2]>>
   scene.text(`${((s as any).locArgs?.[1] ?? '')} no.${((s as any).locArgs?.[2] ?? '')}`);
   ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['strength'] = ((s as any).CloStrength ?? 0);
@@ -142,16 +142,16 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
     scene.text('This item is worn and is not suitable for further wear.');
     scene.actions([
       { label: 'Throw it away', handler: (st: GameState) => {
-    qspCall(s, 'clothing', 'dispose');
-    dynamicGoto(s, 'menu_loc', 'menu_arg');
+    qspCall(st, 'clothing', 'dispose');
+    dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
     ]);
   } else {
     if (((s as any).pcs_inhib ?? 0) < ((s as any).CloInhibit ?? 0)) {
-      if ((!((s as any).locArgs?.[3] ?? 0))) {
+      if (Number((s as any).locArgs?.[3] ?? 0) === 0) {
         scene.text('You don\'t feel daring enough to wear swimwear this revealing.');
       } else {
-        if (((s as any).locArgs?.[3] ?? 0) === 1) {
+        if (Number((s as any).locArgs?.[3] ?? 0) === 1) {
           scene.text('You don\'t feel daring enough to wear swimwear this revealing, but if you want to go into the water, you\'re going to have to brave it.');
           qspCall(s, 'willpower', 'exhib', 'self', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -163,23 +163,23 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Put it on', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'underwear', 'remove');
-    qspCall(s, 'shoes', 'strip');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'underwear', 'remove');
+    qspCall(st, 'shoes', 'strip');
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             ]);
           }
         } else {
-          if (((s as any).locArgs?.[3] ?? 0) === 2) {
+          if (Number((s as any).locArgs?.[3] ?? 0) === 2) {
             scene.text('You don\'t feel daring enough to wear swimwear this revealing, but if you want to go into the water, you\'re going to have to brave it.');
             scene.actions([
               { label: 'Wear', handler: (st: GameState) => {
-    qspCall(s, 'underwear', 'remove');
-    qspCall(s, 'shoes', 'strip');
+    qspCall(st, 'underwear', 'remove');
+    qspCall(st, 'shoes', 'strip');
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
             ]);
           }
@@ -191,10 +191,10 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Wear', handler: (st: GameState) => {
-    qspCall(s, 'underwear', 'remove');
-    qspCall(s, 'shoes', 'strip');
+    qspCall(st, 'underwear', 'remove');
+    qspCall(st, 'shoes', 'strip');
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterLeave(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -210,7 +210,7 @@ function enterViewSwimItem(s: GameState, scene: SceneBuilder): void {
 
 function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (((s as any).locArgs?.[1] ?? 0) === 'danilovich_swimsuit'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'danilovich_swimsuit'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
     // TODO-QSP: :loopcount_danilovich_swimsuit
     if (((s as any).danilovich_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).danilovich_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
@@ -221,7 +221,7 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loopcount_danilovich_swimsuit'
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'scandalicious_swimsuit'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'scandalicious_swimsuit'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
     // TODO-QSP: :loopcount_scandalicious_swimsuit
     if (((s as any).scandalicious_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
@@ -232,7 +232,7 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loopcount_scandalicious_swimsuit'
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'scandalicious_bikinis'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'scandalicious_bikinis'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
     // TODO-QSP: :loopcount_scandalicious_bikinis
     if (((s as any).scandalicious_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).scandalicious_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
@@ -243,7 +243,7 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loopcount_scandalicious_bikinis'
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'allure_swimsuit'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'allure_swimsuit'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
     // TODO-QSP: :loopcount_allure_swimsuit
     if (((s as any).allure_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
@@ -254,7 +254,7 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loopcount_allure_swimsuit'
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'allure_bikinis'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'allure_bikinis'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
     // TODO-QSP: :loopcount_allure_bikinis
     if (((s as any).allure_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).allure_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
@@ -265,7 +265,7 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loopcount_allure_bikinis'
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'nerdvana_swimsuit'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana_swimsuit'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
     // TODO-QSP: :loopcount_nerdvana_swimsuit
     if (((s as any).nerdvana_swimsuit ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_swimsuit_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {
@@ -276,7 +276,7 @@ function enterCountSwimItem(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'loopcount_nerdvana_swimsuit'
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'nerdvana_bikinis'  ||  ((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'nerdvana_bikinis'  ||  Number((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).temp_changingroomVars = (s as any).temp_changingroomVars ?? {})['i'] = 1;
     // TODO-QSP: :loopcount_nerdvana_bikinis
     if (((s as any).nerdvana_bikinis ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 1  &&  ((s as any).nerdvana_bikinis_s ?? 0)[((s as any).temp_changingroomVars ?? 0)?.['i']] === 0) {

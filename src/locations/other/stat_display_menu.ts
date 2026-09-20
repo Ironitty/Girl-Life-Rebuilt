@@ -123,10 +123,10 @@ function enterRenderCellNum(s: GameState, scene: SceneBuilder): void {
   ((s as any).rcn = (s as any).rcn ?? {})['def'] = ((s as any).locArgs?.[3] ?? 0);
   ((s as any).rcn = (s as any).rcn ?? {})['min'] = ((s as any).locArgs?.[4] ?? 0);
   ((s as any).rcn = (s as any).rcn ?? {})['max'] = ((s as any).locArgs?.[5] ?? 0);
-  ((s as any).rcn = (s as any).rcn ?? {})['act_left'] = ((s as any).locArgs?.[2] ?? 0) + ' = max(' + qspUntranslated(s, "str(rcn['min'])", { location: "stat_display_menu" }) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' - 1)';
-  ((s as any).rcn = (s as any).rcn ?? {})['act_right'] = ((s as any).locArgs?.[2] ?? 0) + ' = min(' + qspUntranslated(s, "str(rcn['max'])", { location: "stat_display_menu" }) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' + 1)';
-  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = '$rcn_inp = input(\'' + ((s as any).locArgs?.[1] ?? 0) + ' [default: ' + qspUntranslated(s, "str(rcn['def'])", { location: "stat_display_menu" }) + ', Min: ' + qspUntranslated(s, "str(rcn['min'])", { location: "stat_display_menu" }) + ', Max: ' + qspUntranslated(s, "str(rcn['max'])", { location: "stat_display_menu" }) + ']\')';
-  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & ' + ((s as any).locArgs?.[2] ?? 0) + ' = iif($rcn_inp = \' or val($rcn_inp) = 0 and $rcn_inp <> \'0\', ' + qspUntranslated(s, "str(rcn['def'])", { location: "stat_display_menu" }) + ', min(' + qspUntranslated(s, "str(rcn['max'])", { location: "stat_display_menu" }) + ', max(' + qspUntranslated(s, "str(rcn['min'])", { location: "stat_display_menu" }) + ', val($rcn_inp))))');
+  ((s as any).rcn = (s as any).rcn ?? {})['act_left'] = ((s as any).locArgs?.[2] ?? 0) + ' = max(' + String(((s as any).rcn ?? 0)?.['min']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' - 1)';
+  ((s as any).rcn = (s as any).rcn ?? {})['act_right'] = ((s as any).locArgs?.[2] ?? 0) + ' = min(' + String(((s as any).rcn ?? 0)?.['max']) + ', ' + ((s as any).locArgs?.[2] ?? 0) + ' + 1)';
+  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = '$rcn_inp = input(\'' + ((s as any).locArgs?.[1] ?? 0) + ' [default: ' + String(((s as any).rcn ?? 0)?.['def']) + ', Min: ' + String(((s as any).rcn ?? 0)?.['min']) + ', Max: ' + String(((s as any).rcn ?? 0)?.['max']) + ']\')';
+  ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & ' + ((s as any).locArgs?.[2] ?? 0) + ' = iif($rcn_inp = \' or val($rcn_inp) = 0 and $rcn_inp <> \'0\', ' + String(((s as any).rcn ?? 0)?.['def']) + ', min(' + String(((s as any).rcn ?? 0)?.['max']) + ', max(' + String(((s as any).rcn ?? 0)?.['min']) + ', val($rcn_inp))))');
   ((s as any).rcn = (s as any).rcn ?? {})['act_input'] = ((s as any).rcn['act_input'] ?? 0) + (' & killvar \'rcn_inp\'');
   (s as any).result = '<table width="100%" cellpadding="0" cellspacing="0" border="0">';
   // TODO-QSP: $result +=    '<tr>'
@@ -589,15 +589,15 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + ((s as any).ro ?? 0)?.['c'] + '.png';
   ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
   ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']) + '; border-radius:4px;';
-  ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \\u0027$' + ((s as any).locArgs?.[1] ?? 0) + '\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027' + ((s as any).locArgs?.[3] ?? 0) + '\\u0027); return false;">[Reset]</a></td></tr>';
+  ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027$' + ((s as any).locArgs?.[1] ?? 0) + '/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027); return false;">[Reset]</a></td></tr>';
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   ((s as any).ro = (s as any).ro ?? {})['i'] = 0;
   // TODO-QSP: :_rfl_loop
   ((s as any).ro = (s as any).ro ?? {})['key'] = 0;
-  if (((s as any).ro ?? 0)?.['key'] === ((s as any).locArgs?.[4] ?? 0)  &&  ((s as any).locArgs?.[4] ?? 0) !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+  if (((s as any).ro ?? 0)?.['key'] === Number((s as any).locArgs?.[4] ?? 0)  &&  Number((s as any).locArgs?.[4] ?? 0) !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
     // TODO-QSP: jump '_rfl_next'
   }
-  if (((s as any).ro ?? 0)?.['key'] === ((s as any).locArgs?.[5] ?? 0)  &&  ((s as any).locArgs?.[5] ?? 0) !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
+  if (((s as any).ro ?? 0)?.['key'] === Number((s as any).locArgs?.[5] ?? 0)  &&  Number((s as any).locArgs?.[5] ?? 0) !== ''  &&  ((s as any).start_type ?? 0)?.['magic'] === 'nomagic') {
     // TODO-QSP: jump '_rfl_next'
   }
   ((s as any).ro = (s as any).ro ?? {})['hidden'] = 0;
@@ -610,7 +610,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'' + ((s as any).locArgs?.[1] ?? 0) + '\', ' + ((s as any).ro ?? 0)?.['i'] + ', \'down\' & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + ((s as any).locArgs?.[2] ?? 0) + '[\\u0027' + qspUntranslated(s, "ro[\\u0027key\\u0027]", { location: "stat_display_menu" }) + '\\u0027] = 1 - ' + ((s as any).locArgs?.[2] ?? 0) + '[\\u0027' + qspUntranslated(s, "ro[\\u0027key\\u0027]", { location: "stat_display_menu" }) + '\\u0027] */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027' + ((s as any).locArgs?.[3] ?? 0) + '\\u0027); return false;">\' + $ro[\'label\'] + \'</a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ' + ((s as any).locArgs?.[2] ?? 0) + '[/u0027' + qspUntranslated(s, "ro[\\u0027key\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - ' + ((s as any).locArgs?.[2] ?? 0) + '[/u0027' + qspUntranslated(s, "ro[\\u0027key\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027' + ((s as any).locArgs?.[3] ?? 0) + '/u0027); return false;">\' + $ro[\'label\'] + \'</a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: ' + ((s as any).locArgs?.[2] ?? 0) + '[\'' + ((s as any).ro ?? 0)?.['key'] + '\'] = 1 - ' + ((s as any).locArgs?.[2] ?? 0) + '[\'' + ((s as any).ro ?? 0)?.['key'] + '\'] & gt \'$menu_settings\', \'' + ((s as any).locArgs?.[3] ?? 0) + '\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['hide_icon'] + '"></a>');
@@ -634,7 +634,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + ((s as any).ro ?? 0)?.['c'] + '.png';
   ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
   ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']) + '; border-radius:4px;';
-  ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027reset_skills\\u0027); return false;">[Reset]</a></td></tr>';
+  ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027reset_skills/u0027); return false;">[Reset]</a></td></tr>';
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   ((s as any).ro = (s as any).ro ?? {})['gi'] = 0;
   // TODO-QSP: :_rns_gloop
@@ -651,7 +651,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap\', \'skill_group_order\', ' + ((s as any).ro ?? 0)?.['gi'] + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_cfg[\\u0027show_skills_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] = 1 - stat_cfg[\\u0027show_skills_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027status\\u0027); return false;">\' + $ro[\'glbl\'] + \'</a>');
+  ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_cfg[/u0027show_skills_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_cfg[/u0027show_skills_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'glbl\'] + \'</a>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_hide[\'' + ((s as any).ro ?? 0)?.['gkey'] + '\'] = 1 - stat_hide[\'' + ((s as any).ro ?? 0)?.['gkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="18" src="' + ((s as any).ro ?? 0)?.['ghi_ic'] + '"></a>');
@@ -662,7 +662,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['mi'] = 0;
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rns_mloop
-    ((s as any).ro = (s as any).ro ?? {})['mkey'] = ((s as any).skill_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + qspUntranslated(s, "str(ro['mi'])", { location: "stat_display_menu" })];
+    ((s as any).ro = (s as any).ro ?? {})['mkey'] = ((s as any).skill_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rns_mdone'
     }
@@ -676,7 +676,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'skill_grp\', \'' + ((s as any).ro ?? 0)?.['gkey'] + '\', ' + ((s as any).ro ?? 0)?.['mi'] + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide_skill[\\u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] = 1 - stat_hide_skill[\\u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027status\\u0027); return false;">\' + $ro[\'mlbl\'] + \'</a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide_skill[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_hide_skill[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'mlbl\'] + \'</a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_hide_skill[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] = 1 - stat_hide_skill[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['mhi_ic'] + '"></a>');
@@ -705,7 +705,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['down'] = 'images/system/ui/angle_down_' + ((s as any).ro ?? 0)?.['c'] + '.png';
   ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
   ((s as any).ro = (s as any).ro ?? {})['ibdr'] = 'display:inline-block; padding:4px; line-height:0; border:1px solid ' + qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).theme ?? 0)?.['fcolor']) + '; border-radius:4px;';
-  ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027reset_rels\\u0027); return false;">[Reset]</a></td></tr>';
+  ((s as any).ro = (s as any).ro ?? {})['html'] = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order &amp; Visibility</b>&nbsp; <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027reset_rels/u0027); return false;">[Reset]</a></td></tr>';
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table width="90%" cellspacing="3" cellpadding="0" border="0" style="width:90%;">');
   ((s as any).ro = (s as any).ro ?? {})['gi'] = 0;
   // TODO-QSP: :_rnr_gloop
@@ -723,7 +723,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
   ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
   if (((s as any).ro ?? 0)?.['gkey'] !== 'lovers') {
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_cfg[\\u0027show_rels_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] = 1 - stat_cfg[\\u0027show_rels_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027status\\u0027); return false;">\' + $ro[\'glbl\'] + \'</a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_cfg[/u0027show_rels_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_cfg[/u0027show_rels_' + qspUntranslated(s, "ro[\\u0027gkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'glbl\'] + \'</a>');
   } else {
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + (((s as any).ro ?? 0)?.['glbl']);
   }
@@ -742,7 +742,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['nm'] = ((s as any).stat_cfg ?? 0)?.['rel_name_mode'];
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rnr_mloop
-    ((s as any).ro = (s as any).ro ?? {})['mkey'] = ((s as any).rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + qspUntranslated(s, "str(ro['mi'])", { location: "stat_display_menu" })];
+    ((s as any).ro = (s as any).ro ?? {})['mkey'] = ((s as any).rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rnr_mdone'
     }
@@ -805,7 +805,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: gs \'$menu_settings\', \'swap_grp_member\', \'rel_grp\', \'' + ((s as any).ro ?? 0)?.['gkey'] + '\', ' + ((s as any).ro ?? 0)?.['mi'] + ', \'down\' & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['down'] + '"></a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td align="center" style="text-align:center; padding:0 4px;">');
-    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide_rel[\\u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] = 1 - stat_hide_rel[\\u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '\\u0027] */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027status\\u0027); return false;">\' + $ro[\'mlbl\'] + \'</a>');
+    ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: stat_hide_rel[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] = 1 - stat_hide_rel[/u0027' + qspUntranslated(s, "ro[\\u0027mkey\\u0027]", { location: "stat_display_menu" }) + '/u0027] */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">\' + $ro[\'mlbl\'] + \'</a>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('</td>');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<td width="1%" nowrap style="padding:0 0 0 3px;">');
     ((s as any).ro = (s as any).ro ?? {})['html'] = ((s as any).ro['html'] ?? 0) + ('<a style="' + ((s as any).ro ?? 0)?.['ibdr'] + '" href="exec: stat_hide_rel[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] = 1 - stat_hide_rel[\'' + ((s as any).ro ?? 0)?.['mkey'] + '\'] & gt \'$menu_settings\', \'status\'"><img height="14" src="' + ((s as any).ro ?? 0)?.['mhi_ic'] + '"></a>');
@@ -841,7 +841,7 @@ function enterReorderMenuBar(s: GameState, scene: SceneBuilder): void {
   ((s as any).ro = (s as any).ro ?? {})['ri_help'] = 'icon_help_color.png';
   ((s as any).ro = (s as any).ro ?? {})['imgbase'] = 'images/system/icons/menu/';
   ((s as any).ro = (s as any).ro ?? {})['bdr'] = '1px solid ' + ((s as any).theme_hex ?? 0)?.['goth'] + '';
-  (s as any).result = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order</b>&nbsp; <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar \\u0027$menu_bar_order\\u0027 */ return s; }); window.__gameStore.getState().doGoto(\\u0027$menu_settings\\u0027, \\u0027status\\u0027); return false;">[Reset]</a></td></tr>';
+  (s as any).result = '<tr><td align="center" colspan="3" style="padding:6px 10px 2px 10px; text-align:center;"><b>Order</b>&nbsp; <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027$menu_bar_order/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027status/u0027); return false;">[Reset]</a></td></tr>';
   // TODO-QSP: $result += '<tr><td colspan="3" style="padding:2px 10px 8px 10px;"><center><table cellspacing="6" ce...
   ((s as any).ro = (s as any).ro ?? {})['i'] = 0;
   // TODO-QSP: :_rmb_loop

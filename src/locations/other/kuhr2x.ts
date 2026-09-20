@@ -22,17 +22,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'kuhr2x', 'leak');
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
-    // TODO-QSP: dynamic text: <b><<mc_inventory['dish_plates']>></b> clean plates are stored in the cupboard.
+    // TODO-QSP: dynamic text: <b><<mc_inventory[''dish_plates'']>></b> clean plates are stored in the cupboard...
     scene.text(`<b>${((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? ''}</b> clean plates are stored in the cupboard.`);
   } else {
     scene.text('<b><font color = red>You have no clean dishes left.</font></b>');
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
-    // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs 'kit...
-    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027dirtarm\\u0027); return false;">Wash the dishes</a>.`);
+    // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs ''ki...
+    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027dirtarm/u0027); return false;">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
-    // TODO-QSP: dynamic text: There is dishwashing liquid next to the sink, enough for <b><<mc_inventory['dish...
+    // TODO-QSP: dynamic text: There is dishwashing liquid next to the sink, enough for <b><<mc_inventory[''dis...
     scene.text(`There is dishwashing liquid next to the sink, enough for <b>${((s as any).mc_inventory ?? 0)?.['dish_soap'] ?? ''}</b> uses.`);
   } else {
     scene.text('<center><b>You need to buy dishwashing liquid before you can wash the dishes.</b></center>');
@@ -42,10 +42,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       (s as any).edagot = '';
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
-      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027kit_din\\u0027, \\u0027edagotd\\u0027); return false;">Cook a meal</a>';
+      (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
     }
-    // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
-    scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot || '')}`);
+    // TODO-QSP: dynamic text: There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inve...
+    scene.text('There\'s enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot || '') + '');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
       scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');
@@ -57,7 +57,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['dildo_suction'] > 0  &&  ((s as any).pcs_horny ?? 0) >= 50) {
     scene.actions([
       { label: 'Masturbate with a dildo', handler: (st: GameState) => {
-    qspGoto(s, 'kuhr2x', 'dildo');
+    qspGoto(st, 'kuhr2x', 'dildo');
   } },
     ]);
   }
@@ -84,8 +84,8 @@ function enterLeak(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'korr2x', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'korr2x', '');
   } },
   ]);
   scene.build();
@@ -93,7 +93,7 @@ function enterLeak(s: GameState, scene: SceneBuilder): void {
 
 function enterDildo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) < 30) {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   }
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');

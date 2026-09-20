@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $func('wrap', 'header b center', 'Afanasiy')
   }
   scene.img('images/characters/shared/headshots_main/big64.jpg');
-  // TODO-QSP: dynamic text: Mira's father is <<boyage>> years old. After his wife died, he started to drink ...
+  // TODO-QSP: dynamic text: Mira''s father is <<boyage>> years old. After his wife died, he started to drink...
   scene.text(`Mira's father is ${((s as any).boyage || '')} years old. After his wife died, he started to drink heavily. As a result, he looks much older than he actually is. However, he is still in good shape for a man his age.`);
   if (((s as any).daystart ?? 0) < ((s as any).MiraVars ?? 0)?.['emb_day']  &&  ((s as any).mirafathertalk ?? 0) === 0  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
     scene.img('images/characters/shared/headshots_main/big64.jpg');
@@ -48,15 +48,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_QW ?? 0)?.['A64'] < 5) {
         scene.actions([
           { label: 'Ask how he\'s doing', handler: (st: GameState) => {
-    if (((s as any).npc_QW ?? 0)?.['A64'] < 5) {
-      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+    if (((st as any).npc_QW ?? 0)?.['A64'] < 5) {
+      ((st as any).npc_QW = (st as any).npc_QW ?? {})['A64'] = ((st as any).npc_QW['A64'] ?? 0) + (1);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
-    // TODO-QSP: dynamic text: You are greeted by '+iif(npc_QW['A64'] = 0, 'Mira's father', 'Afanasiy')+' and p...
-    scene.text('You are greeted by \'+iif(npc_QW[\'A64\'] = 0, \'Mira\'s father\', \'Afanasiy\')+\' and politely inquire about his health.  He responds with a smile and says, "All is well, little lady."');
-    if (((s as any).npc_QW ?? 0)?.['A64'] === 0) {
+    // TODO-QSP: dynamic text: You are greeted by '+iif(npc_QW['A64'] = 0, 'Mira''s father', 'Afanasiy')+' and ...
+    scene.text('You are greeted by ' + ((((st as any).npc_QW ?? 0)?.['A64'] === 0) ? ('Mira\'s father') : ('Afanasiy')) + ' and politely inquire about his health.  He responds with a smile and says, "All is well, little lady."');
+    if (((st as any).npc_QW ?? 0)?.['A64'] === 0) {
       scene.text('Mira\'s father continues, "I\'m glad Mira has finally found a friend here in the village. It will be good for her to have another girl around. By the way, you can call me Afanasiy."');
     }
     scene.actions([
@@ -68,11 +68,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_QW ?? 0)?.['A64'] < 10) {
           scene.actions([
             { label: 'Chat with him', handler: (st: GameState) => {
-    if (((s as any).npc_QW ?? 0)?.['A64'] < 10) {
-      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+    if (((st as any).npc_QW ?? 0)?.['A64'] < 10) {
+      ((st as any).npc_QW = (st as any).npc_QW ?? {})['A64'] = ((st as any).npc_QW['A64'] ?? 0) + (1);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
     scene.text('You spend several minutes chatting with Afanasiy about the weather and trivia.');
     scene.actions([
@@ -84,11 +84,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_QW ?? 0)?.['A64'] >= 10  &&  ((s as any).npc_QW ?? 0)?.['A64'] < 15) {
             scene.actions([
               { label: 'Flirt with him', handler: (st: GameState) => {
-    if (((s as any).npc_QW ?? 0)?.['A64'] < 15) {
-      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+    if (((st as any).npc_QW ?? 0)?.['A64'] < 15) {
+      ((st as any).npc_QW = (st as any).npc_QW ?? {})['A64'] = ((st as any).npc_QW['A64'] ?? 0) + (1);
     }
-    qspCall(s, 'arousal', 'foreplay', 10);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'foreplay', 10);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
     scene.text('You spend several minutes with Afanasiy, playful looking him over and smiling meaningfully at him. He is happy with the company of a beautiful young woman. During your conversation, you notice his eyes roving up and down your body appraisingly.');
     scene.actions([
@@ -100,33 +100,33 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_QW ?? 0)?.['A64'] === 15) {
               scene.actions([
                 { label: 'Seduce him', handler: (st: GameState) => {
-    ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = 16;
-    qspCall(s, 'arousal', 'foreplay', 10);
-    qspCall(s, 'stat', '');
+    ((st as any).npc_QW = (st as any).npc_QW ?? {})['A64'] = 16;
+    qspCall(st, 'arousal', 'foreplay', 10);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
     scene.text('You move over and stand next to Afanasiy.  You let your hand start to stroke his thigh and slowly move towards his crotch. Afanasiy looks at you for a while, deep in thought. Eventually, he sighs and then nods to himself as if he has made a decision. He takes you by the hand, leads you into his house, and then down the hall into his room.');
     scene.actions([
       { label: 'Enjoy his touch', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mira/mirafathersexkuni.jpg');
     scene.text('Afanasiy is a gentle lover. With practised ease, he gently undresses you and crouches before you. His mouth and fingers play across the lips of your pussy, and he skillfully licks you until he brings you a powerful orgasm.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'cuni', 10);
-    qspCall(s, 'arousal', 'vaginal_finger', 10);
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'cuni', 10);
+    qspCall(st, 'arousal', 'vaginal_finger', 10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Turn around for him', handler: (st: GameState) => {
     scene.img('images/locations/gadukino/sex/mira/mirafathersex.jpg');
-    (s as any).pose = 0;
-    if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-      qspCall(s, 'dinsex', 'boy_puts_condom');
-      qspCall(s, 'dinsex', 'vaginal_sex', 10);
-      qspCall(s, 'dinsex', 'sexcum');
-      qspCall(s, 'arousal', 'vaginal', 10);
+    (st as any).pose = 0;
+    if (((st as any).mesec ?? 0) === 0  &&  ((st as any).stat ?? 0)?.['think_virgin'] === 0) {
+      qspCall(st, 'dinsex', 'boy_puts_condom');
+      qspCall(st, 'dinsex', 'vaginal_sex', 10);
+      qspCall(st, 'dinsex', 'sexcum');
+      qspCall(st, 'arousal', 'vaginal', 10);
     } else {
-      qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
-      qspCall(s, 'arousal', 'anal', 10);
+      qspCall(st, 'dinSex', 'boy_wants_anal', '', 'lubri\' & gs \'dinsex', 'analsex');
+      qspCall(st, 'arousal', 'anal', 10);
     }
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['mirafather', ''] },
     ]);
@@ -140,45 +140,45 @@ function enter(s: GameState, scene: SceneBuilder): void {
               if (((s as any).npc_QW ?? 0)?.['A64'] > 15) {
                 scene.actions([
                   { label: 'Wink at him', handler: (st: GameState) => {
-    if (((s as any).npc_QW ?? 0)?.['A64'] < 20) {
-      ((s as any).npc_QW = (s as any).npc_QW ?? {})['A64'] = ((s as any).npc_QW['A64'] ?? 0) + (1);
+    if (((st as any).npc_QW ?? 0)?.['A64'] < 20) {
+      ((st as any).npc_QW = (st as any).npc_QW ?? {})['A64'] = ((st as any).npc_QW['A64'] ?? 0) + (1);
     }
-    qspCall(s, 'arousal', 'foreplay', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big64.jpg');
     scene.text('You expressly wink at Afanasiy, and he understands your meaning. Then, looking for nosy neighbours, he quickly waves for you to enter the house.');
     scene.actions([
       { label: 'Go inside', handler: (st: GameState) => {
-    (s as any).pose = 0;
-    (s as any).temp_mf = Math.floor(Math.random() * 10) + 0;
-    if ((!((s as any).temp_mf ?? 0))) {
+    (st as any).pose = 0;
+    (st as any).temp_mf = (Math.floor(Math.random() * 10) + 0);
+    if ((!((st as any).temp_mf ?? 0))) {
       scene.img('images/locations/gadukino/sex/mira/mirafathersex.jpg');
     } else {
-      if (((s as any).temp_mf ?? 0) === 1) {
+      if (((st as any).temp_mf ?? 0) === 1) {
         scene.img('images/locations/gadukino/sex/mira/mirafathersex1.jpg');
       } else {
-        if (((s as any).temp_mf ?? 0) === 2) {
+        if (((st as any).temp_mf ?? 0) === 2) {
           scene.img('images/locations/gadukino/sex/mira/mirafathersex2.jpg');
         } else {
-          if (((s as any).temp_mf ?? 0) === 3) {
+          if (((st as any).temp_mf ?? 0) === 3) {
             scene.img('images/locations/gadukino/sex/mira/mirafathersex3.jpg');
           } else {
-            if (((s as any).temp_mf ?? 0) === 4) {
+            if (((st as any).temp_mf ?? 0) === 4) {
               scene.img('images/locations/gadukino/sex/mira/mirafathersex4.jpg');
             } else {
-              if (((s as any).temp_mf ?? 0) === 5) {
+              if (((st as any).temp_mf ?? 0) === 5) {
                 scene.img('images/locations/gadukino/sex/mira/mirafatherbj1.jpg');
               } else {
-                if (((s as any).temp_mf ?? 0) === 6) {
+                if (((st as any).temp_mf ?? 0) === 6) {
                   scene.img('images/locations/gadukino/sex/mira/mirafatherbj1.jpg');
                 } else {
-                  if (((s as any).temp_mf ?? 0) === 7) {
+                  if (((st as any).temp_mf ?? 0) === 7) {
                     scene.img('images/locations/gadukino/sex/mira/mirafatherbj2.jpg');
                   } else {
-                    if (((s as any).temp_mf ?? 0) === 8) {
+                    if (((st as any).temp_mf ?? 0) === 8) {
                       scene.img('images/locations/gadukino/sex/mira/mirafatherbj3.jpg');
                     } else {
-                      if (((s as any).temp_mf ?? 0) === 9) {
+                      if (((st as any).temp_mf ?? 0) === 9) {
                         scene.img('images/locations/gadukino/sex/mira/mirafatherbj4.jpg');
                       }
                     }
@@ -190,39 +190,39 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (((s as any).temp_mf ?? 0) < 5) {
-      if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0  &&  (Math.floor(Math.random() * 3) + 0) < 2) {
-        qspCall(s, 'dinsex', 'boy_puts_condom');
-        qspCall(s, 'dinsex', 'vaginal_sex', 10);
-        qspCall(s, 'dinsex', 'sexcum');
-        qspCall(s, 'arousal', 'vaginal', 10);
+    if (((st as any).temp_mf ?? 0) < 5) {
+      if (((st as any).mesec ?? 0) === 0  &&  ((st as any).stat ?? 0)?.['think_virgin'] === 0  &&  (Math.floor(Math.random() * 3) + 0) < 2) {
+        qspCall(st, 'dinsex', 'boy_puts_condom');
+        qspCall(st, 'dinsex', 'vaginal_sex', 10);
+        qspCall(st, 'dinsex', 'sexcum');
+        qspCall(st, 'arousal', 'vaginal', 10);
       } else {
-        qspCall(s, 'dinSex', 'boy_wants_anal', '', 'lubri');
-        qspCall(s, 'dinsex', 'analsex');
-        qspCall(s, 'arousal', 'anal', 10);
+        qspCall(st, 'dinSex', 'boy_wants_anal', '', 'lubri');
+        qspCall(st, 'dinsex', 'analsex');
+        qspCall(st, 'arousal', 'anal', 10);
       }
-      qspCall(s, 'arousal', 'end');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Continue', goto: ['mirafather', ''] },
       ]);
     } else {
-      qspCall(s, 'oral', 'start');
-      qspCall(s, 'arousal', 'bj', 10);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'oral', 'start');
+      qspCall(st, 'arousal', 'bj', 10);
+      qspCall(st, 'stat', '');
       scene.actions([
         { label: 'Make him cum', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/gadukino/sex/mira/mirafathercum.jpg');
-    if (((s as any).temp_mf ?? 0) < 5) {
+    if (((st as any).temp_mf ?? 0) < 5) {
       scene.text('Afanasiy gently pulls away from you, leaving a couple of pearly drops of semen on your lips, and continues cumming on your tits and abdomen.');
     } else {
       scene.text('Afanasiy gently pulls out of you. You kneel before him as he begins cumming on your tits and abdomen.');
     }
-    qspCall(s, 'arousal', 'bj', (-2));
-    qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1, '', '', 15);
-    qspCall(s, 'cum_call', 'breasts', ((s as any).boy ?? 0), 1, '', '', 20);
-    qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1, '', '', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', (-2));
+    qspCall(st, 'cum_call', 'stomach', ((st as any).boy ?? 0), 1, '', '', 15);
+    qspCall(st, 'cum_call', 'breasts', ((st as any).boy ?? 0), 1, '', '', 20);
+    qspCall(st, 'cum_call', 'mouth', ((st as any).boy ?? 0), 1, '', '', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['mirafather', ''] },
     ]);
@@ -242,10 +242,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask if Mira is home', handler: (st: GameState) => {
     if (qspFunc(s, 'miroslava_schedule', 'is_here', 'gad_miroslava_home', 'start')) {
-      qspGoto(s, 'miroslava', 'start');
+      qspGoto(st, 'miroslava', 'start');
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 2;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 2;
+      qspCall(st, 'stat', '');
       scene.img('images/characters/shared/headshots_main/big64.jpg');
       if (qspFunc(s, 'miroslava_schedule', 'is_here', 'gp')) {
         scene.text('Mira\'s father tells you that she\'s not home. She said she was going to visit you.');
@@ -255,10 +255,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
         ]);
       } else {
-        if (((s as any).locat ?? 0)?.['A60_loc'] === 'gadukino') {
+        if (((st as any).locat ?? 0)?.['A60_loc'] === 'gadukino') {
           scene.text('Mira\'s father tells you that she\'s not home. She said she was going to take a walk.');
         } else {
-          if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_church') {
+          if (((st as any).locat ?? 0)?.['A60_loc'] === 'gad_church') {
             scene.text('Mira\'s father tells you that she\'s not home. She said she was going to the church.');
             scene.actions([
               { label: 'Go to the church', handler: (st: GameState) => {
@@ -272,7 +272,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 { label: 'Go to the forest road', goto: ['gad_road', 'start'] },
               ]);
             } else {
-              if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group') {
+              if (((st as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group') {
                 scene.text('Mira\'s father tells you that she\'s not home. She said she was going visit her friends.');
                 scene.actions([
                   { label: 'Go to Mitka', goto: ['gad_road', 'start'] },
@@ -292,29 +292,29 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       { label: 'Go to the forest', goto: ['gad_forest', 'forest_edge'] },
                     ]);
                   } else {
-                    if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
+                    if (((st as any).locat ?? 0)?.['A60_loc'] === 'gad_field') {
                       scene.text('Mira\'s father tells you that she\'s not home. She said she was going watch the cows.');
                       scene.actions([
                         { label: 'Go to the field', goto: ['gad_field', 'field'] },
                       ]);
                     } else {
-                      if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_prostitutes') {
+                      if (((st as any).locat ?? 0)?.['A60_loc'] === 'gad_prostitutes') {
                         scene.text('Mira\'s father tells you that she\'s not home. She left without telling him where she was going.');
-                        if (((s as any).MiraVars ?? 0)?.['pimp'] === 1) {
+                        if (((st as any).MiraVars ?? 0)?.['pimp'] === 1) {
                           scene.text('Mira is not home, but you know exactly where to find her. She has been working as your prostitute on the highway.');
                         } else {
-                          if (((s as any).MiraVars ?? 0)?.['prostitute'] > 1) {
+                          if (((st as any).MiraVars ?? 0)?.['prostitute'] > 1) {
                             scene.text('Mira is not home, but you know exactly where to find her. You have seen her working as a prostitute on the highway.');
                           } else {
-                            if (((s as any).MiraVars ?? 0)?.['prostitute'] === 1) {
+                            if (((st as any).MiraVars ?? 0)?.['prostitute'] === 1) {
                               scene.text('Mira is not home, but you think you know where to find her. Ever since granting your second wish, you have heard rumors that Mira has been earning money as a prostitute on the highway.');
                             } else {
                               scene.text('Mira is not home, and you have no idea where she might be. So maybe you should go look around town.');
                             }
                           }
                         }
-                        if (((s as any).MiraVars ?? 0)?.['prostitute'] > 0) {
-                          (s as any).minut = ((s as any).minut ?? 0) + (20);
+                        if (((st as any).MiraVars ?? 0)?.['prostitute'] > 0) {
+                          (st as any).minut = ((st as any).minut ?? 0) + (20);
                           scene.actions([
                             { label: 'Go to the highway', goto: ['gad_prostitutes', 'start'] },
                           ]);

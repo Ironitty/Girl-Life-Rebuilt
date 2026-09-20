@@ -16,13 +16,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   (s as any).locM_arg = 'main';
   (s as any).menu_loc = 'laketoilet';
   (s as any).menu_arg = 'main';
-  (s as any).LCtoiletiventrand = Math.floor(Math.random() * 100) + 1;
+  (s as any).LCtoiletiventrand = (Math.floor(Math.random() * 100) + 1);
   if ((((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) <= 4)  &&  ((s as any).LCtoiletiventrand ?? 0) >= 75) {
     scene.img('images/locations/city/industrial/bbq/sex/toiletsexstart.jpg');
     scene.text('When you enter the restroom, you see a naked man slowly jerking himself off. He hasn\'t noticed you yet.');
     scene.actions([
       { label: 'Seduce him', handler: (st: GameState) => {
-    qspGoto(s, 'LCwork', 'toiletsex');
+    qspGoto(st, 'LCwork', 'toiletsex');
   } },
       { label: 'Leave the restroom', goto: ['lakecafe', 'main'] },
     ]);

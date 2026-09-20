@@ -23,27 +23,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_stren ?? 0) >= 40  ||  (!((s as any).needstrength ?? 0))) {
           scene.actions([
             { label: 'Pole dance class (0:30)', handler: (st: GameState) => {
-    qspCall(s, 'exercise', 'tier2', 15, 'agil', 'stren', 'dancpol');
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    if (((s as any).pcs_inhib ?? 0) < 60) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exercise', 'tier2', 15, 'agil', 'stren', 'dancpol');
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    if (((st as any).pcs_inhib ?? 0) < 60) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/locations/city/citycenter/gym/dance/poledance.jpg');
-    if (((s as any).pcs_dancero ?? 0) < 40  ||  ((s as any).pcs_stren ?? 0) < 40) {
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
+    if (((st as any).pcs_dancero ?? 0) < 40  ||  ((st as any).pcs_stren ?? 0) < 40) {
+      (st as any).minut = ((st as any).minut ?? 0) + 15;
       scene.text('You don\'t look all that sensual and even bang your head pretty hard on the pole. This is far harder than it looks. It would help if you improved your modern dancing skills or the burlesque one, but you did learn a little.');
-      if (((s as any).pcs_stren ?? 0) < 40) {
-        (s as any).needstrength = 1;
+      if (((st as any).pcs_stren ?? 0) < 40) {
+        (st as any).needstrength = 1;
         scene.text('The instructor tries to be patient with you, but it\'s clear that you\'re too weak for this sort of dancing. You should build up your strength first.');
       }
     } else {
-      qspCall(s, 'exercise', 'tier2', 15, 'dancpol');
+      qspCall(st, 'exercise', 'tier2', 15, 'dancpol');
       scene.text('You study and practice various acrobatic moves on the pole.');
-      if (((s as any).pcs_dancpol ?? 0) >= 100) {
+      if (((st as any).pcs_dancpol ?? 0) >= 100) {
         scene.text('You\'ve mastered the art of pole dancing. There\'s nothing else you can learn from this class.');
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['havana_dance', ''] },
     ]);
@@ -52,40 +52,40 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Modern dance class (0:30)', handler: (st: GameState) => {
-    qspCall(s, 'exercise', 'tier2', 30, 'agil', 'stren', 'danc');
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    if (((s as any).pcs_inhib ?? 0) < 40) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exercise', 'tier2', 30, 'agil', 'stren', 'danc');
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    if (((st as any).pcs_inhib ?? 0) < 40) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/locations/city/citycenter/gym/dance/moderndance.jpg');
-    if (((s as any).pcs_danc ?? 0) < 100) {
+    if (((st as any).pcs_danc ?? 0) < 100) {
       scene.text('You study modern dance, which is very popular in the clubs.');
     } else {
       scene.text('You\'ve learned everything you can from this class and mastered the art of modern dance.');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['havana_dance', ''] },
     ]);
   } },
           { label: 'Burlesque class (0:30)', handler: (st: GameState) => {
-    qspCall(s, 'exercise', 'tier2', 15, 'agil', 'stren', 'danc', 'dancero');
-    (s as any).abonement = ((s as any).abonement ?? 0) - (1);
-    if (((s as any).pcs_inhib ?? 0) < 60) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    qspCall(st, 'exercise', 'tier2', 15, 'agil', 'stren', 'danc', 'dancero');
+    (st as any).abonement = ((st as any).abonement ?? 0) - (1);
+    if (((st as any).pcs_inhib ?? 0) < 60) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
     scene.img('images/locations/city/citycenter/gym/dance/burlesque.jpg');
-    if (((s as any).pcs_danc ?? 0) < 50) {
-      qspCall(s, 'exercise', 'tier2', 15, 'danc');
+    if (((st as any).pcs_danc ?? 0) < 50) {
+      qspCall(st, 'exercise', 'tier2', 15, 'danc');
       scene.text('This class isn\'t just about taking your clothes off - it\'s a difficult dance style and your basics aren\'t sufficient. Instead, the teacher helps you with your basic modern dance steps.');
     } else {
-      qspCall(s, 'exercise', 'tier2', 15, 'dancero');
+      qspCall(st, 'exercise', 'tier2', 15, 'dancero');
       scene.text('You study the art of burlesque, imaging yourself stripping to the music.');
-      if (((s as any).pcs_dancero ?? 0) >= 100) {
+      if (((st as any).pcs_dancero ?? 0) >= 100) {
         scene.text('You\'ve finally managed to master the art of burlesque. There\'s nothing else you can learn from this class.');
       }
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['havana_dance', ''] },
     ]);

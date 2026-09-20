@@ -12,7 +12,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_chats', 'nerds');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNerdEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  scene.img('images/locations/pavlovsk/school/chat/nerd\' + rand(1, 3) + \'.jpg');
+  scene.img('images/locations/pavlovsk/school/chat/nerd' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
   if ((!((s as any).PSchool ?? 0))) {
     scene.text('You are using the school uniform cheat and are not wearing a uniform, therefore there are no reactions to your uniform.');
   } else {
@@ -240,7 +240,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'mood', 'lower', 'small');
           qspCall(s, 'stat', '');
           // TODO-QSP: dynamic text: You head to the stairwell that '+iif(grupTipe = 4, 'you and your fellow', 'the')...
-          scene.text('You head to the stairwell that \'+iif(grupTipe = 4, \'you and your fellow\', \'the\')+\' gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations. As you approach, Dan stands up and whistles. "Hey there, slut. Why don\'t you come over here and suck my dick?" Several of the other gopniks laugh and a few of the guys comment about being next in line. You feel yourself getting very nervous around them dressed the way you are and fear they might actually try something. No one comes down to this end of the school at this time of the day after all without a good reason.');
+          scene.text('You head to the stairwell that ' + ((((s as any).grupTipe ?? 0) === 4) ? ('you and your fellow') : ('the')) + ' gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations. As you approach, Dan stands up and whistles. "Hey there, slut. Why don\'t you come over here and suck my dick?" Several of the other gopniks laugh and a few of the guys comment about being next in line. You feel yourself getting very nervous around them dressed the way you are and fear they might actually try something. No one comes down to this end of the school at this time of the day after all without a good reason.');
           scene.text('Vitek stands up and shoves Dan up against the wall. "What did you say about my girl?"');
           scene.text('Dan just swallows while everyone else shuts up. "Hey, I was just joking! We all know she\'s your girl."');
           scene.text('Vitek lets go of him. "Then watch your fucking mouth!" He turns towards you and walks over, grabbing you by the arm and dragging you over to the side. "Just what are you wearing? You\'re dressed like a slut! Don\'t wear this to school again. Now get out of here." He then shoves you away. You glance back, but know better than to tempt fate so you walk away.');
@@ -251,7 +251,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'mood', 'lower', 'small');
             qspCall(s, 'stat', '');
             // TODO-QSP: dynamic text: You head to the stairwell that '+iif(grupTipe = 4, 'you and your fellow', 'the')...
-            scene.text('You head to the stairwell that \'+iif(grupTipe = 4, \'you and your fellow\', \'the\')+\' gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations. As you approach, everyone notices you and when Vitek sees you, he tenses up and angrily walks over to you before grabbing you roughly by the arm and dragging you out of the stairwell. "What did I tell you about coming to school dressed like this? No girl of mine is going to walk around dressed like some slut. Now don\'t come back to school dressed like this again!" He roughly shoves you into the wall and storms back to the other gopniks.');
+            scene.text('You head to the stairwell that ' + ((((s as any).grupTipe ?? 0) === 4) ? ('you and your fellow') : ('the')) + ' gopniks like to gather in and find them leaning against the wall or sitting on the stairs engaged in a variety of conversations. As you approach, everyone notices you and when Vitek sees you, he tenses up and angrily walks over to you before grabbing you roughly by the arm and dragging you out of the stairwell. "What did I tell you about coming to school dressed like this? No girl of mine is going to walk around dressed like some slut. Now don\'t come back to school dressed like this again!" He roughly shoves you into the wall and storms back to the other gopniks.');
             return;
           } else {
             if (((s as any).grupTipe ?? 0) === 4) {
@@ -430,8 +430,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('Stasya glances at Bella. "My god, she\'s an absolute social disaster. Really no sense of style at all." She then turns towards Andrey. "If I ever wore something like that, would you still love me?"');
       scene.text('Andrey shakes his head. "Hell no, a man has to have his standards after all." This results in more of them laughing at you.');
-      // TODO-QSP: dynamic text: Dimka steps forwards. "Maybe you're lost? The nerds and outcasts are over that w...
-      scene.text('Dimka steps forwards. "Maybe you\'re lost? The nerds and outcasts are over that way." He points in the direction of the classroom the nerds and outcasts hang out in. "Perhaps you\'ll find those who might appreciate your sense of… style there." Igor, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\' Marcus, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Veronika, Lazar and Erast either ignore what\'s going on or join in on mocking your clothes.');
+      // TODO-QSP: dynamic text: Dimka steps forwards. "Maybe you''re lost? The nerds and outcasts are over that ...
+      scene.text('Dimka steps forwards. "Maybe you\'re lost? The nerds and outcasts are over that way." He points in the direction of the classroom the nerds and outcasts hang out in. "Perhaps you\'ll find those who might appreciate your sense of… style there." Igor, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + ' Marcus, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Veronika, Lazar and Erast either ignore what\'s going on or join in on mocking your clothes.');
     } else {
       if (((s as any).PCloSkirt ?? 0) > 5  ||  ((s as any).PCloThinness ?? 0) >= 5  ||  ((s as any).PCloBra ?? 0) === 2) {
         qspCall(s, 'fame', 'pav', 'sex', 5);
@@ -451,7 +451,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
         scene.text('As you approach, everyone is staring at you. Irina speaks up. "What on earth are you wearing? Forget to change out of your whoring clothes last night?" Several of the others laugh and you can sense the general feeling of agreement from the rest.');
         scene.text('Dimka smirks. "Maybe she messed up the wash and her uniform shrunk, but she was too stupid to notice?"');
         // TODO-QSP: dynamic text: Bella steps forward. "Get out of here with your whorish clothes! No one wants yo...
-        scene.text('Bella steps forward. "Get out of here with your whorish clothes! No one wants you around!" You hear several murmurs of agreement from the others. It looks like even Igor, Katja, Vicky, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Stasya, Albina, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya appear to agree. They either give you the cold shoulder or refuse to meet your eyes. Feeling very unwelcome, you turn around and leave.');
+        scene.text('Bella steps forward. "Get out of here with your whorish clothes! No one wants you around!" You hear several murmurs of agreement from the others. It looks like even Igor, Katja, Vicky, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Stasya, Albina, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya appear to agree. They either give you the cold shoulder or refuse to meet your eyes. Feeling very unwelcome, you turn around and leave.');
         qspCall(s, 'stat', '');
         return;
       } else {
@@ -474,7 +474,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
             scene.text('As you approach, everyone is staring at you. Irina speaks up. "What on earth are you wearing? Forget to change out of your whoring clothes last night?" Several of the others laugh and you can sense the general feeling of agreement from the rest.');
             scene.text('Dimka smirks. "Maybe she messed up the wash and her uniform shrunk, but she was too stupid to notice?"');
             // TODO-QSP: dynamic text: Bella steps forward. "Looks like someone is looking for a good time." You hear s...
-            scene.text('Bella steps forward. "Looks like someone is looking for a good time." You hear several murmurs of agreement from the others. It looks like even Igor, Katja, Vicky, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Stasya, Albina, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya appear to agree. They either give you the cold shoulder or refuse to meet your eyes. Feeling very unwelcome, you turn around and leave.');
+            scene.text('Bella steps forward. "Looks like someone is looking for a good time." You hear several murmurs of agreement from the others. It looks like even Igor, Katja, Vicky, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Stasya, Albina, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya appear to agree. They either give you the cold shoulder or refuse to meet your eyes. Feeling very unwelcome, you turn around and leave.');
             qspCall(s, 'stat', '');
             return;
           } else {
@@ -484,12 +484,12 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
               if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
                 scene.text('Staysia greets you "Hey cutie, looking cool today." Bella looks over and nods in agreement smiling at you.');
                 // TODO-QSP: dynamic text: Dimka, Igor, Katja, Vicky, Irina, Albina, '+iif(npc_grupTipe['A25'] ! 5, 'Sonia,...
-                scene.text('Dimka, Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                scene.text('Dimka, Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
               } else {
                 scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look cute," Stasya says with a smirk.');
                 scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
               }
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
@@ -499,8 +499,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                 ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
                 scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look dark," Stasya says with a smirk.');
                 scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
@@ -509,8 +509,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                   ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                   scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look tough," Stasya says with a smirk.');
                   scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                  // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                  scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                  // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                  scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
@@ -528,8 +528,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'npc_relationship', 'modify', 'A140', 'dislike');
                     scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look tough," Stasya says with a smirk.');
                     scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                    // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                    scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                    // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                    scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
                   } else {
                     if (((s as any).PCloQuality ?? 0) >= 4) {
                       ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
@@ -566,10 +566,10 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                       // TODO-QSP: dynamic text: As you approach them, several of them give you approving looks. "Looking good <<...
                       scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname || '')}! Where did you buy that uniform?" Stasya comments.`);
                       // TODO-QSP: dynamic text: "Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, '+iif(np...
-                      scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor \', \')+\'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
+                      scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor ') : ('')) + 'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
                     } else {
                       // TODO-QSP: dynamic text: Dimka, Igor, Katja, Vicky, Irina, Albina, '+iif(npc_grupTipe['A25'] ! 5, 'Sonia,...
-                      scene.text('Dimka, Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Stasya, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Lariska, Christina, Lina, Bella, Veronika, Lazar, Erast and Vanya are all gathered around the lockers.');
+                      scene.text('Dimka, Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Stasya, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Lariska, Christina, Lina, Bella, Veronika, Lazar, Erast and Vanya are all gathered around the lockers.');
                     }
                   }
                 }
@@ -595,7 +595,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
             scene.text('As you approach, everyone is staring at you. Irina speaks up. "What on earth are you wearing? Forget to change out of your whoring clothes last night?" Several of the others laugh and you can sense the general feeling of agreement from the rest.');
             scene.text('Dimka smirks. "Maybe she messed up the wash and her uniform shrunk, but she was too stupid to notice?"');
             // TODO-QSP: dynamic text: Bella steps forward. "Looks like someone is looking for a good time." You hear s...
-            scene.text('Bella steps forward. "Looks like someone is looking for a good time." You hear several murmurs of agreement from the others. It looks like even Igor, Katja, Vicky, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Stasya, Albina, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya appear to agree. They either give you the cold shoulder or refuse to meet your eyes. Feeling very unwelcome, you turn around and leave.');
+            scene.text('Bella steps forward. "Looks like someone is looking for a good time." You hear several murmurs of agreement from the others. It looks like even Igor, Katja, Vicky, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Stasya, Albina, Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya appear to agree. They either give you the cold shoulder or refuse to meet your eyes. Feeling very unwelcome, you turn around and leave.');
             qspCall(s, 'stat', '');
             return;
           } else {
@@ -604,8 +604,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
               ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (1);
               scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look cute," Stasya says with a smirk.');
               scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-              // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-              scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+              // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+              scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
             } else {
               if (qspFunc(s, 'pcs_has_attr', 'clothes_style_goth')) {
                 qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
@@ -614,8 +614,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                 ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) - (2);
                 scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look dark," Stasya says with a smirk.');
                 scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
               } else {
                 if (qspFunc(s, 'pcs_has_attr', 'clothes_style_punk')) {
                   qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
@@ -624,8 +624,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                   ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
                   scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look tough," Stasya says with a smirk.');
                   scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                  // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                  scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                  // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                  scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
                 } else {
                   if (((s as any).PCloStyle ?? 0) === 2) {
                     qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', (-1));
@@ -643,8 +643,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'npc_relationship', 'modify', 'A140', 'dislike');
                     scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to look tough," Stasya says with a smirk.');
                     scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                    // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                    scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                    // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                    scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
                   } else {
                     if (((s as any).PCloQuality ?? 0) >= 4) {
                       qspCall(s, 'gschool_socialchg', 'group_rel_change', 'cool kids', 1);
@@ -659,7 +659,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                       // TODO-QSP: dynamic text: As you approach them, several of them give you approving looks. "Looking good <<...
                       scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname || '')}! Where did you buy that uniform?" Stasya comments.`);
                       // TODO-QSP: dynamic text: "Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, '+iif(np...
-                      scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor \', \')+\'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
+                      scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor ') : ('')) + 'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
                     } else {
                       qspCall(s, 'gschool_socialchg', 'group_rel_change', 'jocks', 1, 'male');
                       ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (1);
@@ -688,8 +688,8 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                       }
                       scene.text('As you approach them, several of them give you once over, obviously noticing your uniform. "Someone\'s trying hard to get the boys to look at her," Stasya says with a smirk.');
                       scene.text('Hearing this, Bella gives you a closer look. "It wouldn\'t be so bad if it was a good quality."');
-                      // TODO-QSP: dynamic text: "Now Bella, you know her family can't afford the finer things in life," Dimka ad...
-                      scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor, \', \')+\'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
+                      // TODO-QSP: dynamic text: "Now Bella, you know her family can''t afford the finer things in life," Dimka a...
+                      scene.text('"Now Bella, you know her family can\'t afford the finer things in life," Dimka adds. If not for the tone of his voice and the smirk, it would almost sound like he was defending you, but it comes across as more of an insult. Igor, Katja, Vicky, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor, ') : ('')) + 'Svyatoslav, Christina, Lariska, Lina, Veronika, Lazar, Erast and Vanya just stay out of it.');
                     }
                   }
                 }
@@ -713,7 +713,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdEventCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rand = Math.floor(Math.random() * 20) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 20) + 0);
   if (((s as any).gschool_gropeday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).pcs_hotcat ?? 0) >= 8  &&  ((s as any).temp_rand ?? 0) < 2)  ||  (((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).temp_rand ?? 0) === 0))) {
     qspGoto(s, 'gschool_chats', 'nerd_grope_event');
   }
@@ -723,7 +723,7 @@ function enterNerdEventCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGopnikEventCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rand = Math.floor(Math.random() * 20) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 20) + 0);
   if (((s as any).gschool_gropeday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).pcs_hotcat ?? 0) >= 8  &&  ((s as any).temp_rand ?? 0) < 2)  ||  (((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).temp_rand ?? 0) === 0))) {
     qspGoto(s, 'gschool_chats', 'gopnik_grope_event');
   }
@@ -732,7 +732,7 @@ function enterGopnikEventCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCooljockEventCheck(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rand = Math.floor(Math.random() * 20) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 20) + 0);
   if (((s as any).gschool_gropeday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).pcs_hotcat ?? 0) >= 8  &&  ((s as any).temp_rand ?? 0) < 2)  ||  (((s as any).pcs_hotcat ?? 0) >= 5  &&  ((s as any).temp_rand ?? 0) === 0))) {
     qspGoto(s, 'gschool_chats', 'cooljocks_grope_event');
   }

@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterElectric(s: GameState, scene: SceneBuilder): void {
   (s as any).store = 'musicstore';
   // TODO-QSP: </table></center>'
-  // TODO-QSP: dynamic text: <center><font size="+4" color="red"><b>Warning: These guitars don't yet have any...
+  // TODO-QSP: dynamic text: <center><font size="+4" color="red"><b>Warning: These guitars don''t yet have an...
   scene.text('<center><font size="+4" color="red"><b>Warning: These guitars don\'t yet have any unique gameplay effects.</b></font></center>');
   // TODO-QSP: '<center><table border=1>
   // TODO-QSP: <tr>
@@ -31,18 +31,18 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Burny RLG55 VLD', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 43990) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['burny-rlg55-vld'] = 1;
-      qspCall(s, 'money', 'pay', 43990);
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_gigbag = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['burny-rlg55-vld'] = 1;
+      qspCall(st, 'money', 'pay', 43990);
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_gigbag = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'electric');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'electric');
     }
   } },
     ]);
@@ -51,18 +51,18 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Epiphone Les Paul Express', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 14280) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['epiphone-les-paul-express'] = 1;
-      qspCall(s, 'money', 'pay', 14280);
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_gigbag = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['epiphone-les-paul-express'] = 1;
+      qspCall(st, 'money', 'pay', 14280);
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_gigbag = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'electric');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'electric');
     }
   } },
     ]);
@@ -71,18 +71,18 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Fender American Professional Stratocaster', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 179000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 179000);
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['fender-american-professional-stratocaster'] = 1;
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_hardcase = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      qspCall(st, 'money', 'pay', 179000);
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['fender-american-professional-stratocaster'] = 1;
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_hardcase = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'electric');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'electric');
     }
   } },
     ]);
@@ -91,18 +91,18 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Fender Player Tele', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 83000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['fender-player-tele'] = 1;
-      qspCall(s, 'money', 'pay', 83000);
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_hardcase = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['fender-player-tele'] = 1;
+      qspCall(st, 'money', 'pay', 83000);
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_hardcase = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'electric');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'electric');
     }
   } },
     ]);
@@ -111,18 +111,18 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Gibson 2019 Les Paul', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 241000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 241000);
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['gibson-2019-les-paul'] = 1;
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_hardcase = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      qspCall(st, 'money', 'pay', 241000);
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['gibson-2019-les-paul'] = 1;
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_hardcase = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'electric');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'electric');
     }
   } },
     ]);
@@ -131,18 +131,18 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Yamaha Pacifica 012 RM', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 17990) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 17990);
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['yamaha-pacifica-012-rm'] = 1;
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_gigbag = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      qspCall(st, 'money', 'pay', 17990);
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['yamaha-pacifica-012-rm'] = 1;
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_gigbag = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'electric');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'electric');
     }
   } },
     ]);
@@ -172,18 +172,18 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Martin HDC-28E', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 320000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 320000);
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['martin-hdc-28e'] = 1;
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_hardcase = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      qspCall(st, 'money', 'pay', 320000);
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['martin-hdc-28e'] = 1;
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_hardcase = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'acoustic');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'acoustic');
     }
   } },
     ]);
@@ -192,18 +192,18 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Martin D-10E-01', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 81990) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 81990);
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['martin-d10e-01'] = 1;
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_hardcase = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      qspCall(st, 'money', 'pay', 81990);
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['martin-d10e-01'] = 1;
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_hardcase = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'acoustic');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'acoustic');
     }
   } },
     ]);
@@ -212,18 +212,18 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Martin Ed Sheeran Signature Edition', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 63900) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 63900);
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['martin-ed-sheeran'] = 1;
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_hardcase = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      qspCall(st, 'money', 'pay', 63900);
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['martin-ed-sheeran'] = 1;
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_hardcase = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'acoustic');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'acoustic');
     }
   } },
     ]);
@@ -232,18 +232,18 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy the Martin LX-1', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 41990) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).ml_guitars = (s as any).ml_guitars ?? {})['martin-lx-1'] = 1;
-      qspCall(s, 'money', 'pay', 41990);
-      (s as any).ml_boughtguitar = ((s as any).ml_boughtguitar ?? 0) + (1);
-      (s as any).ml_gigbag = 1;
-      ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['hasguitar'] = 1;
-      if (((s as any).ml_guitar ?? 0)?.['carried'] === 0) {
-        ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
+      ((st as any).ml_guitars = (st as any).ml_guitars ?? {})['martin-lx-1'] = 1;
+      qspCall(st, 'money', 'pay', 41990);
+      (st as any).ml_boughtguitar = ((st as any).ml_boughtguitar ?? 0) + (1);
+      (st as any).ml_gigbag = 1;
+      ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['hasguitar'] = 1;
+      if (((st as any).ml_guitar ?? 0)?.['carried'] === 0) {
+        ((st as any).ml_guitar = (st as any).ml_guitar ?? {})['carried'] = 1;
       }
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'acoustic');
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'acoustic');
     }
   } },
     ]);
@@ -272,13 +272,13 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy Kustom KG112FX', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10790) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 10790);
-      ((s as any).ml_amplifiers = (s as any).ml_amplifiers ?? {})['kustom-kg112fx'] = 1;
-      (s as any).ml_boughtamp = ((s as any).ml_boughtamp ?? 0) + (1);
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'amplifier');
+      qspCall(st, 'money', 'pay', 10790);
+      ((st as any).ml_amplifiers = (st as any).ml_amplifiers ?? {})['kustom-kg112fx'] = 1;
+      (st as any).ml_boughtamp = ((st as any).ml_boughtamp ?? 0) + (1);
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'amplifier');
     }
   } },
     ]);
@@ -287,13 +287,13 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy Orange Rocker 32', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 99990) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 99990);
-      ((s as any).ml_amplifiers = (s as any).ml_amplifiers ?? {})['orange-rocker-32'] = 1;
-      (s as any).ml_boughtamp = ((s as any).ml_boughtamp ?? 0) + (1);
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'amplifier');
+      qspCall(st, 'money', 'pay', 99990);
+      ((st as any).ml_amplifiers = (st as any).ml_amplifiers ?? {})['orange-rocker-32'] = 1;
+      (st as any).ml_boughtamp = ((st as any).ml_boughtamp ?? 0) + (1);
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'amplifier');
     }
   } },
     ]);
@@ -302,13 +302,13 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy Blackstar Artisan 15', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 145900) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).ml_amplifiers = (s as any).ml_amplifiers ?? {})['blackstar-artisan-15'] = 1;
-      qspCall(s, 'money', 'pay', 145900);
-      (s as any).ml_boughtamp = ((s as any).ml_boughtamp ?? 0) + (1);
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'amplifier');
+      ((st as any).ml_amplifiers = (st as any).ml_amplifiers ?? {})['blackstar-artisan-15'] = 1;
+      qspCall(st, 'money', 'pay', 145900);
+      (st as any).ml_boughtamp = ((st as any).ml_boughtamp ?? 0) + (1);
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'amplifier');
     }
   } },
     ]);
@@ -334,12 +334,12 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy Focusrite Scarlett Solo Studio 3rd Gen', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 19980) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 19980);
-      ((s as any).ml_studio = (s as any).ml_studio ?? {})['scarlet-3rd-gen'] = 1;
-      qspCall(s, 'stat', '');
-      qspGoto(s, 'city_musicstore_stock', 'studio');
+      qspCall(st, 'money', 'pay', 19980);
+      ((st as any).ml_studio = (st as any).ml_studio ?? {})['scarlet-3rd-gen'] = 1;
+      qspCall(st, 'stat', '');
+      qspGoto(st, 'city_musicstore_stock', 'studio');
     }
   } },
     ]);

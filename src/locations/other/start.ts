@@ -1,4 +1,4 @@
-import { qspCall, qspGoto } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -45,32 +45,32 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center>Version <<$version>></center>
   scene.text(`<center>Version ${((s as any).version || '')}</center>`);
   scene.text('<center><font color="red"><b>Children under 18 years are strictly forbidden to play</b></font>');
-  scene.img('images/system/1_openings/splashes/splash\' + rand(1, 30) + \'.jpg');
+  scene.img('images/system/1_openings/splashes/splash' + (Math.floor(Math.random() * 30) + 1) + '.jpg');
   scene.text('<center>Based on the Russian game ЭТО by DeGross.</center>');
   scene.text('This game is about the simulated life of a woman containing elements of RPG, strategy, porn and magical combat.');
   scene.text('You may choose what kind of life the character will live according to your play style, conscience or even personal beliefs.');
   scene.text('There are many choices to make in this game, from chaste nun to slutty porn star. Will you be a saint or a sinner?');
   scene.text('All characters in this game are fictional and any similarities to any persons living or dead are purely coincidental.');
   scene.text('All explicit images are performed by consenting adults aged 18 or older. Images are for illustrative purposes only.');
-  scene.text('<b><a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027start\\u0027, \\u0027version\\u0027); return false;">Change log</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027history\\u0027, \\u0027\\u0027); return false;">Game history</a></b>');
+  scene.text('<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027start/u0027, /u0027version/u0027); return false;">Change log</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027history/u0027, /u0027/u0027); return false;">Game history</a></b>');
   scene.text('<b>* Wiki hosted by Google sites available <a href="https://sites.google.com/view/girllifewiki/home">here</a> (External link) *</center></b>');
   scene.text('<center>Feel free to contribute.</center>');
   qspCall(s, 'themes', 'indoors');
   if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
     scene.actions([
       { label: '<center>Mute music</center>', handler: (st: GameState) => {
-    ((s as any).sound_settings = (s as any).sound_settings ?? {})['music_off'] = 1;
-    (s as any).music_loop = 0;
-    (s as any).track_loop = '';
-    qspGoto(s, 'start', 'start');
+    ((st as any).sound_settings = (st as any).sound_settings ?? {})['music_off'] = 1;
+    (st as any).music_loop = 0;
+    (st as any).track_loop = '';
+    qspGoto(st, 'start', 'start');
   } },
     ]);
   } else {
     scene.actions([
       { label: '<center>Unmute music</center>', handler: (st: GameState) => {
-    ((s as any).sound_settings = (s as any).sound_settings ?? {})['music_off'] = 0;
-    (s as any).music_loop = 1;
-    qspGoto(s, 'start', 'start');
+    ((st as any).sound_settings = (st as any).sound_settings ?? {})['music_off'] = 0;
+    (st as any).music_loop = 1;
+    qspGoto(st, 'start', 'start');
   } },
     ]);
   }
@@ -78,12 +78,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: '<center><b>Start</b></center>', handler: (st: GameState) => {
-    if (((s as any).sound_settings ?? 0)?.['music_off'] === 0) {
-      (s as any).track_loop = 'sound/suki.mp3';
-      (s as any).volume = 100;
-      (s as any).music_loop = 1;
+    if (((st as any).sound_settings ?? 0)?.['music_off'] === 0) {
+      (st as any).track_loop = 'sound/suki.mp3';
+      (st as any).volume = 100;
+      (st as any).music_loop = 1;
     }
-    qspGoto(s, 'begin', 'warning');
+    qspGoto(st, 'begin', 'warning');
   } },
     { label: '<center><b>LOAD</b></center>', handler: (st: GameState) => {
     // TODO-QSP: opengame
@@ -102,7 +102,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: '<center>New Features</center>', goto: ['feature_updates', 'show', 'start'] },
     { label: '<center>Manage mods</center>', handler: (st: GameState) => {
     (st as any).settingmode = 2;
-  }, goto: ['$menu_settings', 'mods'] },
+    dynamicGoto(st, 'menu_settings', 'mods');
+  } },
   ]);
   scene.build();
 }

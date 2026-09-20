@@ -17,13 +17,13 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/sharedapt/apthallway.jpg');
   scene.text('An old apartment complex that hasn\'t seen any kind of maintenance for years.');
   scene.text('The entry doors are left unlocked and even if they weren\'t, they look like they\'ll fall apart at any moment.');
-  scene.text('Inside is a board with <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027pav_complexold\\u0027, \\u0027advert\\u0027); return false;">announcements</a> for the tenants.');
+  scene.text('Inside is a board with <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_complexold/u0027, /u0027advert/u0027); return false;">announcements</a> for the tenants.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the building', goto: ['pav_complex', 'start'] },
     { label: 'Take the elevator', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/liftnotwork.jpg');
     scene.text('The building supervisor has put a sign on the elevator: "Dear tenants, the elevator is out of order for today. Don\'t worry, I should have it working again by tomorrow!". Unfortunately, that sign has been there for years.');
     scene.actions([
@@ -31,8 +31,8 @@ function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Go up to the second floor', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/brokenstairs.jpg');
     scene.text('The stairs are as run down as the rest of the apartment building. Thankfully, there\'s no one you want to see on the floor above.');
     scene.actions([

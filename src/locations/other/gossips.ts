@@ -9,36 +9,36 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComplex(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'old_women_slutrep') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'old_women_slutrep') {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
-      scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip\' + rand(1, 3) + \'.jpg');
+      scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
       scene.text('You overhear a group of old women talking while sitting on the benches. They often sit outside and gossip regardless of the weather. One of them comments on the way you are walking.');
       scene.text('"Look at the way she walks, swinging her hips." Another nods as she replies. "She should be ashamed! Of course, if she had a proper mother such behavior would have been beaten out of her." You are tempted to stop and say something, but you know it wouldn\'t change anything and would only make matters worse. They seem to lose interest in you, but you can\'t help but notice people are talking about your reputation. You should be more discreet if you want them to stop talking about you.');
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] < 150) {
-        scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip\' + rand(1, 3) + \'.jpg');
+        scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
         scene.text('You overhear a group of old women talking while sitting on the benches. They often sit outside and gossip regardless of the weather. One of them makes a comment loud enough for you to hear.');
         scene.text('"She should be ashamed of herself, always dressing in tight skimpy clothes!" Another nods as she replies. "Or with how she flirts with every boy in town." You are tempted to stop and say something, but you know it wouldn\'t change anything and would only make matters worse. They seem to lose interest in you, but you can\'t help but notice people are talking about your growing reputation. You should be more discreet if you want them to stop talking about you.');
       } else {
         if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
-          scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip\' + rand(1, 3) + \'.jpg');
+          scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
           scene.text('You overhear a group of old women talking while sitting on the benches. They often sit outside and gossip regardless of the weather. One of them makes a comment loud enough for you to hear.');
           scene.text('"She should be ashamed of herself, using her body to get boys to like her." Another nods as she replies. "Just wait. Soon enough, they will wise up and want nothing to do with her. They\'ll find proper young ladies to marry." You are tempted to stop and say something, but you know it wouldn\'t change anything and would only make matters worse. They seem to lose interest in you, but you can\'t help but notice people are talking about your reputation, which is only getting worse. You should be more discreet if you want people to stop talking about you.');
         } else {
           if (((s as any).fame ?? 0)?.['pav_slut'] < 250) {
-            scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip\' + rand(1, 3) + \'.jpg');
+            scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
             scene.text('You overhear a group of old women talking while sitting on the benches. They often sit outside and gossip regardless of the weather. They all shake their heads and give you dirty looks.');
             scene.text('"She should be ashamed of herself." Another nods as she replies. "She needs to find herself a man before it\'s too late." The third one then chimes in. "If anyone would have her now." You are tempted to stop and say something, but you know it wouldn\'t change anything and would only make matters worse. They seem to lose interest in you, but you can\'t help but notice it seems like everyone is now aware of your tarnished reputation. You should be more discreet if you want people to stop talking about you.');
           } else {
             if (((s as any).fame ?? 0)?.['pav_slut'] < 300) {
-              scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip\' + rand(1, 3) + \'.jpg');
+              scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
               scene.text('You overhear a group of old women talking while sitting on the benches. They often sit outside and gossip regardless of the weather. They all shake their heads and give you dirty looks.');
               scene.text('"You should be ashamed of yourself, you little whore." Another nods as she replies. "Don\'t waste your time with the likes of her." A few of them make a shooing motion towards you, obviously wanting you to move on. You are tempted to stop and say something, but you know it wouldn\'t change anything and would only make matters worse. They seem to keep talking about you, but you\'re too far away to hear them. Your reputation is in tatters, but maybe it isn\'t too late to redeem yourself.');
             } else {
               if (((s as any).fame ?? 0)?.['pav_slut'] >= 300) {
-                scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip\' + rand(1, 3) + \'.jpg');
+                scene.img('images/locations/pavlovsk/resident/apartment/events/grandmothers_gossip' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
                 scene.text('You overhear a group of old women talking while sitting on the benches. They often sit outside and gossip regardless of the weather. They all shake their heads and give you dirty looks.');
                 scene.text('"Worse than her mother! And at her age!" Another nods as she replies. "I don\'t know about worse. I think you forget how bad her mother was at that age." They continue to talk about your mother. You know your mother\'s reputation, deserved or not, but there\'s little you can say in your own defense.');
               }
@@ -51,7 +51,7 @@ function enterComplex(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep going', goto: ['pav_complex', 'start'] },
     ]);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'boys_slutrep') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'boys_slutrep') {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {
@@ -102,7 +102,7 @@ function enterComplex(s: GameState, scene: SceneBuilder): void {
       { label: 'Keep going', goto: ['pav_complex', 'start'] },
     ]);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'girls_slutrep') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'girls_slutrep') {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     if (((s as any).fame ?? 0)?.['pav_slut'] < 150) {
@@ -148,7 +148,7 @@ function enterComplex(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSchool(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'boys_slutrep') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'boys_slutrep') {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/boys_gossip.jpg');
@@ -186,7 +186,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue on', goto: ['gschool_events', 'leave_break_events2'] },
     ]);
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'girls_slutrep') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'girls_slutrep') {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     if (((s as any).fame ?? 0)?.['pav_slut'] < 100) {

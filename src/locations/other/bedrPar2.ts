@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'family_schedule', '');
   scene.text('<center><b>Master bedroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/home/bedrpar2.jpg');
-  scene.text('The room in which your parents sleep. Their large bed, <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bedrPar2\\u0027, \\u0027parents_wardrobe\\u0027); return false;">wardrobe</a> and other closets take up most of the space.');
+  scene.text('The room in which your parents sleep. Their large bed, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bedrPar2/u0027, /u0027parents_wardrobe/u0027); return false;">wardrobe</a> and other closets take up most of the space.');
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
     if (((s as any).locat ?? 0)?.['Mother'] === 1  &&  ((s as any).locat ?? 0)?.['Stepdad'] === 1) {
       scene.text('Your mother and stepfather are sleeping on the bed.');
@@ -28,26 +28,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1  ||  (((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) < 21)) {
     if (((s as any).kamasutra_day ?? 0) !== ((s as any).daystart ?? 0)) {
-      scene.text('You notice a <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027bedrPar2\\u0027, \\u0027kamasutra\\u0027); return false;">book laying on the bed</a>.');
+      scene.text('You notice a <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027bedrPar2/u0027, /u0027kamasutra/u0027); return false;">book laying on the bed</a>.');
     }
     if (((s as any).prezikday ?? 0) !== ((s as any).daystart ?? 0)) {
       if (((s as any).prezikProver ?? 0) >= 3) {
         (s as any).prezikday = ((s as any).daystart ?? 0) - 4;
         scene.actions([
           { label: 'Steal condoms from your parents\' stash', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 3) + 5);
-    qspCall(s, 'stat', '');
-    if ((!((s as any).preziktype ?? 0))) {
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['equipped_condoms'] = ((s as any).mc_inventory['equipped_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (st as any).minut = ((st as any).minut ?? 0) + ((Math.floor(Math.random() * 3) + 5));
+    qspCall(st, 'stat', '');
+    if ((!((st as any).preziktype ?? 0))) {
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['equipped_condoms'] = ((st as any).mc_inventory['equipped_condoms'] ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
-    if (((s as any).preziktype ?? 0) === 1  ||  ((s as any).preziktype ?? 0) === 2) {
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['normal_condoms'] = ((s as any).mc_inventory['normal_condoms'] ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    if (((st as any).preziktype ?? 0) === 1  ||  ((st as any).preziktype ?? 0) === 2) {
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['normal_condoms'] = ((st as any).mc_inventory['normal_condoms'] ?? 0) + ((Math.floor(Math.random() * 3) + 1));
     }
-    (s as any).prezikday = ((s as any).daystart ?? 0);
-    (s as any).prezikProver = 0;
+    (st as any).prezikday = ((st as any).daystart ?? 0);
+    (st as any).prezikProver = 0;
     scene.img('images/pc/items/accessories/birthcontrol/condoms_steal.jpg');
-    // TODO-QSP: dynamic text: After you make sure you're not seen, you quickly search your parents' room for t...
-    scene.text(`After you make sure you're not seen, you quickly search your parents' room for their condom stash and take a few. You now have '+iif(preziktype = 0, '${((s as any).mc_inventory ?? 0)?.['equipped_condoms'] ?? ''}', '${((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''}')+' condoms.`);
+    // TODO-QSP: dynamic text: After you make sure you''re not seen, you quickly search your parents'' room for...
+    scene.text('After you make sure you\'re not seen, you quickly search your parents\' room for their condom stash and take a few. You now have \'+iif(preziktype = 0, \'' + ((st as any).mc_inventory ?? 0)?.['equipped_condoms'] ?? '' + '\', \'' + ((st as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '' + '\')+\' condoms.');
     scene.actions([
       { label: 'Continue', goto: ['bedrPar2', ''] },
     ]);
@@ -86,7 +86,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
-  scene.img('images/pc/items/accessories/books/kamasutra/ik\' + kamasutra_page + \'.jpg');
+  scene.img('images/pc/items/accessories/books/kamasutra/ik' + ((s as any).kamasutra_page || '') + '.jpg');
   if (((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).family_trip ?? 0) === 1) {
     scene.actions([
       { label: 'Masturbate', goto: ['selfplay', 'start'] },
@@ -117,16 +117,16 @@ function enterParentsWardrobe(s: GameState, scene: SceneBuilder): void {
 function enterWardrobeSearch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  (((s as any).locat ?? 0)?.['Mother'] === 1  ||  ((s as any).locat ?? 0)?.['Mother'] === 3  ||  ((s as any).locat ?? 0)?.['Stepdad'] === 1  ||  ((s as any).locat ?? 0)?.['Stepdad'] === 2)) {
     scene.text('What are you thinking? You can\'t go through the wardrobe while your parents are in the room!');
-    return;
     scene.actions([
-      { label: 'Leave ', handler: (st: GameState) => {
+{ label: 'Leave ', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
-    ]);
+]);
+    return;
   }
   if ((Math.floor(Math.random() * 2) + 0) === 0  ||  ((s as any).tookmomdildo ?? 0) === 1) {
-    scene.img('images/locations/pavlovsk/resident/apartment/home/wardrobesearch\'+rand(1, 4)+\'.jpg');
+    scene.img('images/locations/pavlovsk/resident/apartment/home/wardrobesearch' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
     // TODO-QSP: $failwords[0] = 'You don''t find anything interesting.'
     // TODO-QSP: $failwords[1] = 'You find some clothes and underwear.'
     // TODO-QSP: $failwords[2] = 'You dig through your mother''s closet, but find nothing interesting except underwea...
@@ -151,20 +151,20 @@ function enterMomtoyPlay(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 70) {
-    // TODO-QSP: dynamic text: You're really thinking about experimenting with <<$npc_nickname['A29']>>'s dildo...
+    // TODO-QSP: dynamic text: You''re really thinking about experimenting with <<$npc_nickname[''A29'']>>''s d...
     scene.text(`You're really thinking about experimenting with ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}'s dildo.`);
     scene.text('I can also take it for later use?');
     scene.actions([
       { label: 'Play with it', handler: (st: GameState) => {
-    (s as any).dildohand = 10;
-    (s as any).selfmomtoyplay = 1;
-    qspGoto(s, 'selfplay', 'start');
+    (st as any).dildohand = 10;
+    (st as any).selfmomtoyplay = 1;
+    qspGoto(st, 'selfplay', 'start');
   } },
       { label: 'Steal the dildo and leave', handler: (st: GameState) => {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['dildo_small'] = 1;
-    (s as any).tookmomdildo = 1;
-    (s as any).selfmomtoyplay = 1;
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['dildo_small'] = 1;
+    (st as any).tookmomdildo = 1;
+    (st as any).selfmomtoyplay = 1;
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   }
@@ -192,50 +192,50 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['korrPar', ''] },
     { label: 'Keep peeking', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/sex/momvlad2.jpg');
     scene.text('You mother seems to be loving the attention and doesn\'t put up much of a fight as he starts to undress her.');
     scene.text('Once she\'s mostly naked, he pushes her down on the bed so she\'s sitting on it in front of him, her head about crotch height to him. Knowing what he wants, she opens the fly on his pants and pulls out his cock, stroking it a few times in her hand until he gets hard.');
     scene.text('She then takes his dick into her mouth and starts sucking it. He moans softly as she does. "Fuck, you\'re the best cocksucker ever, Natasha."');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['korrPar', ''] },
       { label: 'Keep peeking', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/sex/momvlad3.jpg');
     scene.text('After spending several minutes sucking Vlad\'s cock, she helps him strip while continuing to suck his dick. Once he\'s naked, he lies down on the bed and she straddles him and quickly starts riding his dick reverse cowgirl style.');
     scene.text('Both of them start moaning as they fuck. "Oh god Vlad, your dick feels so good in my pussy! It\'s so big!"');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['korrPar', ''] },
       { label: 'Keep peeking', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/sex/momvlad4.jpg');
     scene.text('Vlad suddenly grabs her and throws her on her side on the bed. He turns on his side, lifting up her leg with one hand while using the other to guide his cock.');
     scene.text('He feels around until he places the head of his dick against her anus, then pushes it in, using only her pussy juices for lubrication. It slides in surprisingly easy and you can only guess that this is far from the first time your mother has had a dick in her ass.');
     scene.text('They both moan in pleasure and she rubs her clit as Vlad fucks her ass.');
-    qspCall(s, 'arousal', 'voyeur_sex', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['korrPar', ''] },
       { label: 'Keep peeking', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/sex/momvlad5.jpg');
     scene.text('They keep going for several more minutes until Vlad starts to pant and buries his dick balls deep in your mother\'s ass and lets out a loud moan as he twitches.');
     scene.text('After a few seconds, he pulls out of her and rolls off the bed as she gets on her back and spreads her ass, giving both you and Vlad a good view of her asshole as his cum starts leaking out of it.');
     scene.text('"You\'re such a nasty bitch, Natasha!" he laughs.');
     scene.text('She smiles at him. "That\'s why you love me," she replies.');
     scene.text('They start getting cleaned up and you decide it\'s time to go before you get caught.');
-    qspCall(s, 'arousal', 'voyeur_sex', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 3);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;

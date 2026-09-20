@@ -5,8 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat', '');
-  qspCall(s, 'themes', 'indoors');
   scene.build();
 }
 
@@ -38,7 +36,7 @@ function enterMartinBlowTease(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/dresssub_bjtease.mp4');
     scene.text('Sure, you and Martin could talk and explore this strange relationship on an intellectual level and all that, but if you\'re honest with yourself, you\'d rather suck his dick right now, and the look in Martin\'s eyes tells you that he feels the same way.');
     scene.text('You approach Martin for a \'chaste little kiss\' that quickly ends up in a chaste little French kissing and groping, but after only a few seconds of that, you can feel his hand on your shoulder, pushing you down on your knees. And you know exactly what he\'s trying to tell you.');
-    // TODO-QSP: dynamic text: You look up at Martin, smiling devotedly as you're opening his fly and freeing h...
+    // TODO-QSP: dynamic text: You look up at Martin, smiling devotedly as you''re opening his fly and freeing ...
     scene.text(`You look up at Martin, smiling devotedly as you're opening his fly and freeing his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick from its textile prison. You could feel in charge if it wasn't for his hand at the back of your head, it's weight reassuring in a way but leaving no doubt as to who is giving the orders.`);
     scene.text('Taking his cock into your hand, you can feel the heat emanating from it, can see it growing to its full size before your eyes. It\'s a wondrous sight… but not so much so that it would make you forget what Martin wants you to do.');
     // TODO-QSP: dynamic text: Sensing no pressure from Martin, you conclude that he wants you to surprise and ...
@@ -114,7 +112,7 @@ function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
     (s as any).martinpos = 'MartinBlowjob_dressed';
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/dresssub_bj.mp4');
     scene.text('But you want to please him more, and he\'s not leaving any doubt that he wants more from you, too - a soft nudge at the back of your head is all the encouragement you need.');
-    // TODO-QSP: dynamic text: You sensually slide your <<$pc_descWordy['lips']>> lips over the head of Martin'...
+    // TODO-QSP: dynamic text: You sensually slide your <<$pc_descWordy[''lips'']>> lips over the head of Marti...
     scene.text(`You sensually slide your ${((s as any).pc_descWordy ?? 0)?.['lips'] ?? ''} lips over the head of Martin's ${((s as any).dick_girth || '')} dick, your eyes closed as you enjoy the sensations: His musky, manly smell; the sense of security and guidance he gives you; the texture of his cock's tip.`);
     // TODO-QSP: dynamic text: You move back and forth, never taking him too deep - all your attention is focus...
     scene.text(`You move back and forth, never taking him too deep - all your attention is focused on his crown, your ${((s as any).pc_desc ?? 0)?.['tongue'] ?? ''} tongue circling around the head, teasing that sensitive little spot on its underside.`);
@@ -128,7 +126,7 @@ function enterMartinBlowjob(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/city/industrial/bar/sex/bar/martin/blowjob/dresssub_deep.mp4');
     }
-    // TODO-QSP: dynamic text: But that's not enough for him yet. Martin wants to claim all of your mouth and m...
+    // TODO-QSP: dynamic text: But that''s not enough for him yet. Martin wants to claim all of your mouth and ...
     scene.text(`But that's not enough for him yet. Martin wants to claim all of your mouth and more, and after only a hint of a warning, he takes what he wants: One assertive push at the back of your head is all it takes to drive his hard ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock down your ${((s as any).pc_desc ?? 0)?.['throat'] ?? ''} throat until your ${((s as any).pc_desc ?? 0)?.['nose'] ?? ''} nose almost touches his belly…`);
     scene.text('You can feel your gag reflex piping up, but Martin is insistent, holding you there just a few moments longer, groaning softly. You like having a dick in your mouth, but you <b>love</b> having one in your throat. There\'s a sense of safety in this carefully-measured abuse, a sense of freedom in giving up control to somebody, a sense of empowerment and arousal in letting him use you for his own pleasure.');
     scene.text('Finally, he allows you to pull back, take a breath… only to push you right back down again. He\'s not holding back but you\'re not protesting or resisting, making it as clear as possible to Martin that you don\'t want him to - you want him to use your mouth until he cums.');
@@ -193,15 +191,15 @@ function enterMartinPussyLick(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $martinpos = 'rev_cowgirl'
   }, goto: ['MartinSex2', 'MartinAnalDyn'] },
     { label: 'Blueball him - Get dressed and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'npc_relationship', 'modify', 'A216', (-1));
-    qspCall(s, 'underwear', 'wear');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'npc_relationship', 'modify', 'A216', (-1));
+    qspCall(st, 'underwear', 'wear');
     scene.img('images/locations/city/industrial/bar/gettingdressed.mp4');
     scene.text('"That was wonderful," you say, pushing yourself off the counter, "but I\'m afraid I have to go now."');
     scene.text('At first, Martin probably thinks you\'re joking, but seeing as you\'re putting your other clothes back on as well, he gets up, frowning.');
     scene.text('"You\'d leave me here, alone, in this state?" He points towards his crotch where his dick is straining against the fabric of his pants. "You couldn\'t possibly be this cruel."');
     scene.text('You walk up to Martin, put your arms around his neck and give him a soft kiss, the taste of your pussy on your lips and tongue. When you break it, you whisper: "If I wasn\'t cruel at least once in a while, you wouldn\'t appreciate it when I\'m not."');
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('"Besides," you add with a naughty smile, "you just saw me cum really hard, so I think you\'ll cum immediately when I\'m out that door once you realize that I\'m going commando again."');
       scene.text('With that, you quickly move out of his range, towards the door, blow the perplexed barkeeper a final kiss and make off like a bandit.');
       scene.text('…A cruel, pantiless bandit.');
@@ -210,11 +208,11 @@ function enterMartinPussyLick(s: GameState, scene: SceneBuilder): void {
       scene.text('With that, you quickly move out of his range, towards the door, blow the perplexed barkeeper a final kiss and make off like a bandit.');
       scene.text('…A cruel bandit.');
     }
-    qspCall(s, 'clothing', 'wear_last_worn');
-    qspCall(s, 'shoes', 'wear', 'last_worn');
-    qspCall(s, 'purses', 'wear', 'last_worn');
-    qspCall(s, 'coats', 'wear', 'last_worn');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'clothing', 'wear_last_worn');
+    qspCall(st, 'shoes', 'wear', 'last_worn');
+    qspCall(st, 'purses', 'wear', 'last_worn');
+    qspCall(st, 'coats', 'wear', 'last_worn');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave the bar', goto: ['city_industrial', ''] },
     ]);
@@ -224,6 +222,8 @@ function enterMartinPussyLick(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
   const arg = s.locArg;
   switch (arg) {
     case 'MartinBlowTease':

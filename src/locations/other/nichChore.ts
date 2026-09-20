@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInspect(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'hallway') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'hallway') {
     (s as any).location_type = 'event';
     (s as any).nichChoreID = 0;
     (s as any).nichChoreTimeF = 1;
@@ -39,7 +39,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'bathGuest') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'bathGuest') {
       (s as any).location_type = 'event';
       (s as any).nichChoreID = 1;
       (s as any).nichChoreTimeF = 1;
@@ -69,7 +69,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
         }
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'servant') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'servant') {
         (s as any).location_type = 'event';
         (s as any).nichChoreID = 2;
         (s as any).nichChoreTimeF = 1;
@@ -99,7 +99,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'bathServant') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'bathServant') {
           (s as any).location_type = 'event';
           (s as any).nichChoreID = 3;
           (s as any).nichChoreTimeF = 1;
@@ -129,7 +129,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 'laundry') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'laundry') {
             (s as any).location_type = 'event';
             (s as any).nichChoreID = 4;
             (s as any).nichChoreTimeF = 1;
@@ -162,7 +162,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
               }
             }
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'tanya') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'tanya') {
               (s as any).location_type = 'event';
               (s as any).nichChoreID = 5;
               (s as any).nichChoreTimeF = 1;
@@ -192,7 +192,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
                 }
               }
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 'masterbath') {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 'masterbath') {
                 (s as any).location_type = 'event';
                 (s as any).nichChoreID = 6;
                 (s as any).nichChoreTimeF = 1;
@@ -222,7 +222,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
                   }
                 }
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 'master') {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 'master') {
                   (s as any).location_type = 'event';
                   (s as any).nichChoreID = 7;
                   (s as any).nichChoreTimeF = 1;
@@ -252,7 +252,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
                     }
                   }
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 'living') {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 'living') {
                     (s as any).location_type = 'event';
                     (s as any).nichChoreID = 8;
                     (s as any).nichChoreTimeF = 1;
@@ -282,7 +282,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
                       }
                     }
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 'kitchen') {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 'kitchen') {
                       (s as any).location_type = 'event';
                       (s as any).nichChoreID = 9;
                       (s as any).nichChoreTimeF = 1;
@@ -312,7 +312,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
                         }
                       }
                     } else {
-                      if (((s as any).locArgs?.[1] ?? 0) === 'study') {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 'study') {
                         (s as any).location_type = 'event';
                         (s as any).nichChoreID = 10;
                         (s as any).nichChoreTimeF = 1;
@@ -355,45 +355,45 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
   (s as any).nichtTimeQuick = ((s as any).nichTimeBQuick ?? 0) * ((s as any).nichChoreTimeF ?? 0);
   (s as any).nichTimeNormal = ((s as any).nichTimeBNormal ?? 0) * ((s as any).nichChoreTimeF ?? 0);
   (s as any).nichTimeDiligent = ((s as any).nichTimeBDiligent ?? 0) * ((s as any).nichChoreTimeF ?? 0);
-  if (((s as any).locArgs?.[2] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 1) {
     // TODO-QSP: jump 'nichChoreSkipInspect'
   }
   scene.actions([
     { label: '', labelFn: (s: GameState) => String(((s as any).nichChoreActCaption || '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: :nichChoreSkipInspect
-    qspCall(s, 'stat', '');
-    scene.img(`${((s as any).nichTempPic || '')}`);
+    qspCall(st, 'stat', '');
+    scene.img(`${((st as any).nichTempPic || '')}`);
     // TODO-QSP: dynamic text: <<$nichChoreDesc>>
-    scene.text(`${((s as any).nichChoreDesc || '')}`);
-    if ((!((s as any).nichOutfitState ?? 0))) {
+    scene.text(`${((st as any).nichChoreDesc || '')}`);
+    if ((!((st as any).nichOutfitState ?? 0))) {
       scene.text('<b><font color = red>You have to change into an appropriate outfit before cleaning up.</font></b>');
     } else {
-      if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0) {
-        if (((s as any).nichTimeDiligent ?? 0) > 0) {
+      if (((st as any).nichChoreState ?? 0)?.[String((st as any).nichChoreID ?? 0)] > 0) {
+        if (((st as any).nichTimeDiligent ?? 0) > 0) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeDiligent || '') ?? '') + ' minutes) Clean diligently', handler: (st: GameState) => {
-    qspGoto(s, 'nichChore', 'work', '3');
+            { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichTimeDiligent || '') ?? '') + ' minutes) Clean diligently', handler: (st: GameState) => {
+    qspGoto(st, 'nichChore', 'work', '3');
   } },
           ]);
         }
         scene.actions([
-          { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichtTimeQuick || '') ?? '') + ' minutes) Clean quickly', handler: (st: GameState) => {
-    qspGoto(s, 'nichChore', 'work', '1');
+          { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichtTimeQuick || '') ?? '') + ' minutes) Clean quickly', handler: (st: GameState) => {
+    qspGoto(st, 'nichChore', 'work', '1');
   } },
-          { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeNormal || '') ?? '') + ' minutes) Clean normally', handler: (st: GameState) => {
-    qspGoto(s, 'nichChore', 'work', '2');
+          { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichTimeNormal || '') ?? '') + ' minutes) Clean normally', handler: (st: GameState) => {
+    qspGoto(st, 'nichChore', 'work', '2');
   } },
         ]);
       }
     }
-    if ((!((s as any).nichChoreMode ?? 0))) {
+    if ((!((st as any).nichChoreMode ?? 0))) {
       scene.actions([
         { label: 'Don\'t clean', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
       ]);
     } else {
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterCleanApartmentActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 0]; enterCleanApartmentActions(s, scene); (st as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -401,8 +401,8 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWork(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[2] ?? 0) !== 1) {
-    (s as any).nichRand = Math.floor(Math.random() * 100) + 1;
+  if (Number((s as any).locArgs?.[2] ?? 0) !== 1) {
+    (s as any).nichRand = (Math.floor(Math.random() * 100) + 1);
     if (((s as any).nichChoreID ?? 0) === 5) {
       if (((s as any).nichTanya ?? 0)?.['Relationship'] > 0  &&  ((s as any).nichTanya ?? 0)?.['Relationship'] < 4  &&  ((s as any).nichTanya ?? 0)?.['Dominance'] >= 20) {
         (s as any).nichTanyPresent = qspFunc(s, 'nichUtil', 'isPresent', 'tanya', 'bedroomTanya');
@@ -410,22 +410,21 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           if (((s as any).nichRand ?? 0) <= 30  ||  ((s as any).nichDebug ?? 0) === 1) {
             scene.img('images/characters/city/tanya/encounter/dom1.jpg');
             scene.text('When you start cleaning Tanya approaches you from behind and smacks you on your butt.');
-            // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, don't miss that edge over there." she points at a small ...
+            // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, don''t miss that edge over there." she points at a small...
             scene.text(`"Hey ${((s as any).pcs_nickname || '')}, don't miss that edge over there." she points at a small mess she obviously created on purpose.`);
-            return;
             scene.actions([
-              { label: 'Comply', handler: (st: GameState) => {
-    ((s as any).nichTanya = (s as any).nichTanya ?? {})['Dominance'] = ((s as any).nichTanya['Dominance'] ?? 0) + (2);
+{ label: 'Comply', handler: (st: GameState) => {
+    ((st as any).nichTanya = (st as any).nichTanya ?? {})['Dominance'] = ((st as any).nichTanya['Dominance'] ?? 0) + (2);
     scene.text('Once you are done cleaning up the first spot Tanya points you to another one. She obviously enjoys bossing you around, taking several opportunities to hit you on you butt again.');
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
     // TODO-QSP: gt 'nichChore', 'work', ARGS[1], 1
   } },
     ]);
-  } },
-              { label: 'Tell her to stop this', handler: (st: GameState) => {
-    ((s as any).nichTanya = (s as any).nichTanya ?? {})['Dominance'] = ((s as any).nichTanya['Dominance'] ?? 0) - (3);
+  } },,
+{ label: 'Tell her to stop this', handler: (st: GameState) => {
+    ((st as any).nichTanya = (st as any).nichTanya ?? {})['Dominance'] = ((st as any).nichTanya['Dominance'] ?? 0) - (3);
     scene.text('She looks a little bit disappointed as you tell her that you are not in the mood for this right now and want to focus on your work.');
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
@@ -433,7 +432,8 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-            ]);
+]);
+            return;
           }
         }
       }
@@ -441,7 +441,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       if (((s as any).nichChoreID ?? 0) === 8) {
         if (((s as any).nichGalaContractActive ?? 0) === 1  &&  ((s as any).nichRand ?? 0) <= 40) {
           if (qspFunc(s, 'nichUtil', 'isAlone', 'gala', 'living') === 1) {
-            (s as any).nichRand = Math.floor(Math.random() * 10) + 1;
+            (s as any).nichRand = (Math.floor(Math.random() * 10) + 1);
             if (((s as any).nichRand ?? 0) <= 5) {
               scene.text('Gala sits on the sofa and watches you as you start cleaning. It doesn\'t take long before she snaps her finger.');
               scene.text('"Slave! You missed a spot. Get over here!"');
@@ -451,7 +451,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 { label: 'Lick her shoe', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/slave/maid1.jpg');
     scene.text('You get down to your knees and lick her shoe the best you can.');
-    if (((s as any).nichRand ?? 0) === 1) {
+    if (((st as any).nichRand ?? 0) === 1) {
       scene.text('"Good enough. Now get back to work!"');
       scene.actions([
         { label: 'Continue cleaning', handler: (st: GameState) => {
@@ -464,7 +464,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue licking', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/slave/maid2.jpg');
     scene.text('She pushes your head down with her other foot while you continue licking her shoe.');
-    if (((s as any).nichRand ?? 0) <= 3) {
+    if (((st as any).nichRand ?? 0) <= 3) {
       scene.text('"Good enough. Now get back to work!"');
       scene.actions([
         { label: 'Continue cleaning', handler: (st: GameState) => {
@@ -472,7 +472,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).nichRand ?? 0) === 4) {
+      if (((st as any).nichRand ?? 0) === 4) {
         scene.text('Finally she pulls away her shoe and inspects it closely.');
         scene.text('"You did a fine job there. I think you earned yourself a reward."');
         scene.actions([
@@ -482,8 +482,8 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('She grabs your head and starts mercilessly fucking your skull, forcing her dildo down your throat.');
     scene.text('Once she is done she forces you back to your feet by pulling your hair.');
     scene.text('"Enough fun. Now get back to work!"');
-    qspCall(s, 'arousal', 'bj', 5, 'rough', 'lesbian', 'deepthroat');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'rough', 'lesbian', 'deepthroat');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
     // TODO-QSP: gt 'nichChore', 'work', ARGS[1], 1
@@ -502,8 +502,8 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('She emphasizes each word with a smack on your butt. She repeats her sentence several times.');
     scene.text('"Do you understand? Yes? Then back to work!"');
     scene.text('You pull down your skirt and get back up.');
-    qspCall(s, 'pain', '', 1, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
     // TODO-QSP: gt 'nichChore', 'work', ARGS[1], 1
@@ -529,8 +529,8 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.text('She emphasizes each word with a smack on your butt. She repeats her sentence several times.');
     scene.text('"Do you understand? Yes? Then back to work!"');
     scene.text('You pull down your skirt and get back up.');
-    qspCall(s, 'pain', '', 1, 'asscheeks', 'spank');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'pain', '', 1, 'asscheeks', 'spank');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue cleaning', handler: (st: GameState) => {
     // TODO-QSP: gt 'nichChore', 'work', ARGS[1], 1
@@ -545,11 +545,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).nichRand = Math.floor(Math.random() * 100) + 1;
+  (s as any).nichRand = (Math.floor(Math.random() * 100) + 1);
   (s as any).nichTempPic = qspFunc(s, 'nichUtil', 'cleanPic', ((s as any).nichChoreType ?? 0), ((s as any).nichChoreLoc ?? 0));
   (s as any).nichChoreResult = 0;
   if ((!((s as any).nichChoreID ?? 0))) {
-    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
       (s as any).nichChoreDesc = 'You decide to clean the hallway as quickly as possible, not wasting your time with harder to reach spots or visiting a place twice.';
       // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
       // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -558,7 +558,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
         (s as any).nichChoreDesc = 'You carefully clean the hallway, making sure you also remove the dirt in hard to reach corners.';
       } else {
         (s as any).nichChoreDesc = 'You carefully clean the hallway, making sure you also remove the dirt in hard to reach corners. Afterwards you apply a special polish to protect the wooden floor from visible aging.';
@@ -570,7 +570,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).nichChoreID ?? 0) === 1) {
-      if (((s as any).locArgs?.[1] ?? 0) === 1) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
         (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
         // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
         // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -579,7 +579,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
         }
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 2) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
           (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also make sure that the towels are neatly folded.';
         } else {
           (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also apply a special perfume to improve the smell and fold some of the towels into hearts and swans.';
@@ -591,7 +591,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).nichChoreID ?? 0) === 2) {
-        if (((s as any).locArgs?.[1] ?? 0) === 1) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
           (s as any).nichChoreDesc = 'You clean your room as quickly as possible.';
           // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
           // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -600,13 +600,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
           }
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 2) {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
             (s as any).nichChoreDesc = 'Your carefully clean your room.';
           }
         }
       } else {
         if (((s as any).nichChoreID ?? 0) === 3) {
-          if (((s as any).locArgs?.[1] ?? 0) === 1) {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
             (s as any).nichChoreDesc = 'You clean the room as quickly as possible.';
             // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
             // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -615,13 +615,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
             }
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 2) {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
               (s as any).nichChoreDesc = 'Your carefully clean the room.';
             }
           }
         } else {
           if (((s as any).nichChoreID ?? 0) === 4) {
-            if (((s as any).locArgs?.[1] ?? 0) === 1) {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
               (s as any).nichChoreDesc = 'You think about separating the clothes before you wash them, but then you decide to put them into the washing machine all at once. While the washing machine washes them you wash the delicates by hand by putting all of them into the sink at the same time. After the washing washine is done you place its load in the dryer. Afterwards you iron the clothes quickly.';
               // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are done you realize that one...
               // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10
@@ -630,7 +630,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "nichChoreResult = max (0, nichChoreState[ni...
               // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10000
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 2) {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
                 (s as any).nichChoreDesc = 'You start by separating the laundry by color. While the washing machine washes the dark and then the light clothes you wash the delicates by hand. Whenever the washing washine is done you place its load in the dryer. Everything that comes from the dryer you iron.';
                 // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "nichChoreResult = max (0, nichChoreState[ni...
                 // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 10000
@@ -644,7 +644,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).nichChoreID ?? 0) === 5) {
-              if (((s as any).locArgs?.[1] ?? 0) === 1) {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                 (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                 // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
                 // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -653,13 +653,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                   // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
                 }
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 2) {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
                   (s as any).nichChoreDesc = 'You carefully clean the room, making sure you place every possession of Tanya at the right place so she can easily find it again.';
                 }
               }
             } else {
               if (((s as any).nichChoreID ?? 0) === 6) {
-                if (((s as any).locArgs?.[1] ?? 0) === 1) {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                   (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                   // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
                   // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -668,7 +668,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                     // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
                   }
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 2) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
                     (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the sink and the floor. You also make sure that the towels are neatly folded.';
                   } else {
                     (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the toilet, the bathtub, the shower, the sink and the floor. You also apply a special perfume to improve the smell and fold some of the towels into hearts and swans.';
@@ -680,7 +680,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 if (((s as any).nichChoreID ?? 0) === 7) {
-                  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                     (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                     // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
                     // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -689,13 +689,13 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                       // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
                     }
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 2) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
                       (s as any).nichChoreDesc = 'You carefully clean the room, making sure you place every possession of Nicholas at the right place so he can easily find it again.';
                     }
                   }
                 } else {
                   if (((s as any).nichChoreID ?? 0) === 8) {
-                    if (((s as any).locArgs?.[1] ?? 0) === 1) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                       (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                       // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
                       // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -704,7 +704,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                         // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
                       }
                     } else {
-                      if (((s as any).locArgs?.[1] ?? 0) === 2) {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
                         (s as any).nichChoreDesc = 'You carefully clean the room, making sure you catch every tiny bit of dust.';
                       } else {
                         (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the floor and the various pieces of furniture.';
@@ -716,7 +716,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                     }
                   } else {
                     if (((s as any).nichChoreID ?? 0) === 9) {
-                      if (((s as any).locArgs?.[1] ?? 0) === 1) {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                         (s as any).nichChoreDesc = 'You jam all dirty dishes in the dishwasher at once and hastily clean up the stove and the floor.';
                         // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
                         // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -725,7 +725,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                           // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
                         }
                       } else {
-                        if (((s as any).locArgs?.[1] ?? 0) === 2) {
+                        if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
                           (s as any).nichChoreDesc = 'You carefully clean the room, making sure you clean the silverware by hand and using the recommended cleaning agents to clean the stove and the floor.';
                         } else {
                           (s as any).nichChoreDesc = 'You carefully clean the room. In order to get the silverware sparkling you use a special silver polish and you also clean the whine glasses by hand to remove every tiny spot of imperfection.';
@@ -737,7 +737,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                       }
                     } else {
                       if (((s as any).nichChoreID ?? 0) === 10) {
-                        if (((s as any).locArgs?.[1] ?? 0) === 1) {
+                        if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
                           (s as any).nichChoreDesc = 'You clean the room as quickly as possible, cleaning every spot only once and using as few different cleaning agents as possible.';
                           // TODO-QSP: $nichChoreResultCode[arrsize('$nichChoreResultCode')] = "*pl 'Once you are finished you realize that...
                           // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
@@ -746,7 +746,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: nichChoreResulChance[arrsize('nichChoreResulChance')] = 30
                           }
                         } else {
-                          if (((s as any).locArgs?.[1] ?? 0) === 2) {
+                          if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
                             (s as any).nichChoreDesc = 'You carefully clean the room, making sure you catch every tiny bit of dust.';
                           } else {
                             (s as any).nichChoreDesc = 'You carefully clean the room, using the recommended cleaning agents for the floor and the various pieces of furniture.';
@@ -775,11 +775,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     (s as any).nichI = ((s as any).nichI ?? 0) + (1);
     // TODO-QSP: jump 'nichChoreResultLoop'
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
       (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
       // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
     } else {
@@ -792,7 +792,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichChoreMode ?? 0))) {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   } else {
@@ -802,14 +802,14 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanApartment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'start') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === ''  ||  Number((s as any).locArgs?.[1] ?? 0) === 'start') {
     (s as any).nichChoreMode = 1;
     if (((s as any).nichChoreCurrent ?? 0) === '') {
       (s as any).nichChoreCurrent = 'hallway';
     }
     // TODO-QSP: gt 'nichChore', 'inspect', $nichChoreCurrent, 1
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'end') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'end') {
       dynamicGoto(s, 'prevLoc');
     }
   }
@@ -817,7 +817,7 @@ function enterCleanApartment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0  &&  ((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0  &&  Number((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.actions([
       { label: 'Clean again', handler: (st: GameState) => {
     // TODO-QSP: gt 'nichChore', 'inspect', $nichChoreCurrent, 1
@@ -827,7 +827,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichChoreID ?? 0))) {
     scene.actions([
       { label: 'Continue to guest cloakroom', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'bathGuest';
+    (st as any).nichChoreCurrent = 'bathGuest';
     // TODO-QSP: gt 'nichChore', 'inspect', 'bathGuest', 1
   } },
     ]);
@@ -835,7 +835,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichChoreID ?? 0) === 1) {
       scene.actions([
         { label: 'Continue to your bedroom', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'servant';
+    (st as any).nichChoreCurrent = 'servant';
     // TODO-QSP: gt 'nichChore', 'inspect', 'servant', 1
   } },
       ]);
@@ -843,7 +843,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
       if (((s as any).nichChoreID ?? 0) === 2) {
         scene.actions([
           { label: 'Continue to your bathroom', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'bathServant';
+    (st as any).nichChoreCurrent = 'bathServant';
     // TODO-QSP: gt 'nichChore', 'inspect', 'bathServant', 1
   } },
         ]);
@@ -851,7 +851,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
         if (((s as any).nichChoreID ?? 0) === 3) {
           scene.actions([
             { label: 'Check laundry', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'laundry';
+    (st as any).nichChoreCurrent = 'laundry';
     // TODO-QSP: gt 'nichChore', 'inspect', 'laundry', 1
   } },
           ]);
@@ -859,7 +859,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
           if (((s as any).nichChoreID ?? 0) === 4) {
             scene.actions([
               { label: 'Continue to Tanyas bedroom', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'tanya';
+    (st as any).nichChoreCurrent = 'tanya';
     // TODO-QSP: gt 'nichChore', 'inspect', 'tanya', 1
   } },
             ]);
@@ -867,7 +867,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
             if (((s as any).nichChoreID ?? 0) === 5) {
               scene.actions([
                 { label: 'Continue to the master bathroom', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'masterbath';
+    (st as any).nichChoreCurrent = 'masterbath';
     // TODO-QSP: gt 'nichChore', 'inspect', 'masterbath', 1
   } },
               ]);
@@ -875,7 +875,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
               if (((s as any).nichChoreID ?? 0) === 6) {
                 scene.actions([
                   { label: 'Continue to Nicholas\' bedroom', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'master';
+    (st as any).nichChoreCurrent = 'master';
     // TODO-QSP: gt 'nichChore', 'inspect', 'master', 1
   } },
                 ]);
@@ -883,7 +883,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).nichChoreID ?? 0) === 7) {
                   scene.actions([
                     { label: 'Continue to the living room', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'living';
+    (st as any).nichChoreCurrent = 'living';
     // TODO-QSP: gt 'nichChore', 'inspect', 'living', 1
   } },
                   ]);
@@ -891,7 +891,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).nichChoreID ?? 0) === 8) {
                     scene.actions([
                       { label: 'Continue to the kitchen', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'kitchen';
+    (st as any).nichChoreCurrent = 'kitchen';
     // TODO-QSP: gt 'nichChore', 'inspect', 'kitchen', 1
   } },
                     ]);
@@ -899,7 +899,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).nichChoreID ?? 0) === 9) {
                       scene.actions([
                         { label: 'Continue to the study', handler: (st: GameState) => {
-    (s as any).nichChoreCurrent = 'study';
+    (st as any).nichChoreCurrent = 'study';
     // TODO-QSP: gt 'nichChore', 'inspect', 'study', 1
   } },
                       ]);
@@ -907,7 +907,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).nichChoreID ?? 0) === 10) {
                         scene.actions([
                           { label: 'Finish', handler: (st: GameState) => {
-    qspGoto(s, 'nichChore', 'cleanApartment', 'end');
+    qspGoto(st, 'nichChore', 'cleanApartment', 'end');
   } },
                         ]);
                       }
@@ -924,7 +924,7 @@ function enterCleanApartmentActions(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichChoreID ?? 0) < 10) {
     scene.actions([
       { label: 'Pause cleaning', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc');
+    dynamicGoto(st, 'prevLoc');
   } },
     ]);
   }

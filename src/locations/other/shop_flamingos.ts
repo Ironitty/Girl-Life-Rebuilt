@@ -31,6 +31,33 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_flamingos', 'start');
+  (s as any).location_type = 'public_indoors';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Flamingo\'s</b></center>');
+  scene.img('images/locations/city/island/flamingos/shop.jpg');
+  scene.text('Flamingos is trendy and modern while still keeping the prices low enough for the large student population on the Island.');
+  scene.text('It mimics the latest fashions for young adults, but cuts costs on material and manufacturing. This suits the clients, who are likely to grow bored of an outfit before it falls apart.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pushkin_sq', ''] },
+    { label: 'View dresses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_flamingos', 'dresses'] },
+    { label: 'View other clothing', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_flamingos', 'clothes'] },
+    { label: 'View purses', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_flamingos', 'purses'] },
+  ]);
+  scene.build();
+}
+
 function enterDresses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_flamingos', 'dresses');
   (s as any).locclass = 'changingroom';
@@ -46,9 +73,9 @@ function enterDresses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_flamingos', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_flamingos', 'start');
   } },
   ]);
   scene.build();
@@ -69,9 +96,9 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_flamingos', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_flamingos', 'start');
   } },
   ]);
   scene.build();
@@ -91,9 +118,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_flamingos', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_flamingos', 'start');
   } },
   ]);
   scene.build();
@@ -102,6 +129,9 @@ function enterPurses(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'dresses':
       enterDresses(s, scene);
       break;

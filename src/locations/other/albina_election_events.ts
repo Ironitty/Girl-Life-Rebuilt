@@ -19,33 +19,33 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Speak with Chernov', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
     scene.text('He opens the back door and motions for you to step inside. You notice he\'s holstering a gun under his jacket and so decide to listen to him. You climb inside and he slides in after you, closing the door behind him. A second man sits silently behind the wheel as Chernov turns to you.');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, you are a member of the front that was pretending to be...
-    scene.text(`"Miss ${((s as any).pcs_lastname || '')}, you are a member of the front that was pretending to be Miss Barlovskaya's dance entourage. These criminal activities are about to be put on hold permanently, with or without your collaboration."`);
+    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, you are a member of the front that was pretending to be Miss Barlovskaya's dance entourage. These criminal activities are about to be put on hold permanently, with or without your collaboration."`);
     scene.text('You freeze, your body stiff with worry as you wonder what he\'s about to do.');
     scene.text('"Our little talk here is quite important. This investigation will soon be the talk of the town, but I can keep your name out of it."');
     scene.actions([
       { label: 'Protest', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
     scene.text('"Albina didn\'t whore me out!" you protest.');
     scene.text('"This goes far beyond young Miss Barlovskaya," he replies. "All you have to do is give me your testimony stating that you were forced into an illegal prostitution ring. You don\'t have to worry about your friend. We\'ll keep her safe from any consequences."');
     scene.text('He pauses and gives you time to think before continuing.');
     scene.text('"I already have an anonymous source giving me all the evidence I need, but your testimony will still help the case. Your name will be kept secret, of course."');
-    if (((s as any).pcs_intel ?? 0) >= 70) {
+    if (((st as any).pcs_intel ?? 0) >= 70) {
       scene.actions([
         { label: 'Ask why the Security Service is involved', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
     scene.text('"What\'s the big deal anyway? What\'s so important about all this that the Security Service are involved?" you ask, causing Chernov to raise a brow.');
     scene.text('"You\'re a smart girl, huh? You know that slimeball Boris Barlovskay? He wishes to become the mayor, but we don\'t want the corrupt scumbag running the town in the interests of the criminal syndicates he\'s been associated with over the years. The only problem was that we\'ve never able to prove that he was dirty - until now."');
-    // TODO-QSP: dynamic text: He places a hand gently on your shoulder. "We're finally going to put him behind...
-    scene.text(`He places a hand gently on your shoulder. "We're finally going to put him behind bars where he belongs, but we could use your help, Miss ${((s as any).pcs_lastname || '')}, however small it seems."`);
+    // TODO-QSP: dynamic text: He places a hand gently on your shoulder. "We''re finally going to put him behin...
+    scene.text(`He places a hand gently on your shoulder. "We're finally going to put him behind bars where he belongs, but we could use your help, Miss ${((st as any).pcs_lastname || '')}, however small it seems."`);
     scene.actions([
       { label: 'Write a statement', goto: ['albina_election_events', 'give_statement'] },
       { label: 'Refuse', goto: ['albina_election_events', 'refuse_statement'] },
@@ -74,21 +74,21 @@ function enterGiveStatement(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/shared/misc/signature.jpg');
     scene.text('You quickly scribble a signature at the bottom and he lets you go without a fuss.');
-    // TODO-QSP: dynamic text: "You've really helped us here, Miss <<$pcs_lastname>>. Thank you."
-    scene.text(`"You've really helped us here, Miss ${((s as any).pcs_lastname || '')}. Thank you."`);
+    // TODO-QSP: dynamic text: "You''ve really helped us here, Miss <<$pcs_lastname>>. Thank you."
+    scene.text(`"You've really helped us here, Miss ${((st as any).pcs_lastname || '')}. Thank you."`);
     scene.text('He motions for you to leave the car and it drives away as soon as you close the door.');
     scene.actions([
       { label: 'Call Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Friends'] = 1;
-    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['StarletsShutDown'] = 1;
-    qspCall(s, 'calendar', 'pack', 'remove', 'starlets');
-    (s as any).starlets_missed = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['Friends'] = 1;
+    ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['StarletsShutDown'] = 1;
+    qspCall(st, 'calendar', 'pack', 'remove', 'starlets');
+    (st as any).starlets_missed = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/phone/calling_outdoor.jpg');
     scene.text('You quickly dial Albina\'s number and, in a panic, tell her what happened. She calms you down and asks if you told them anything.');
     scene.text('"I… I did. I told them everything, but they told me that you\'d be left out of it! I didn\'t have a choice, Albina! I\'m sorry!"');
@@ -115,8 +115,8 @@ function enterRefuseStatement(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_intel ?? 0) >= 70) {
     scene.actions([
       { label: 'Why should I give you information?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
     scene.text('"If you already have everything you need, then why do you need my testimony?" you ask.');
     scene.text('"To be honest, we don\'t. Like I said, we\'ve got more than enough, but a statement from you would still help us out and guarantee our success."');
@@ -148,12 +148,12 @@ function enterRefuseStatement2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Call Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['Friends'] = 1;
-    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['StarletsShutDown'] = 1;
-    qspCall(s, 'calendar', 'pack', 'remove', 'starlets');
-    (s as any).starlets_missed = 0;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['Friends'] = 1;
+    ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['StarletsShutDown'] = 1;
+    qspCall(st, 'calendar', 'pack', 'remove', 'starlets');
+    (st as any).starlets_missed = 0;
+    qspCall(st, 'stat', '');
     scene.img('images/pc/activities/phone/calling_outdoor.jpg');
     scene.text('You quickly dial Albina\'s number and, in a panic, tell her what happened. She calms you down and asks if you told them anything.');
     scene.text('"What?! No! I\'d never sell you out like that!"');

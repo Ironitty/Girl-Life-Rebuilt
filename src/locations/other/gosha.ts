@@ -27,18 +27,18 @@ function enterGoshaRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('He thinks on that a moment and then shurgs. "Sure ok, lets go for a walk."');
     scene.actions([
       { label: 'Just hang out', handler: (st: GameState) => {
-    (s as any).gosh = ((s as any).gosh ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    (st as any).gosh = ((st as any).gosh ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.text('You tell him you would rather just hand out and talk. So the two of you start talking about your past, you tell him about things that happened with your family and at Pavlovsk school, while he tells you about stuff he has gotten up to at the university of late or what him and his friends have done around the city. After about a hour of this he finally says he needs to get some studying done for a class, you take the hint and leave.');
     scene.actions([
       { label: 'Leave', goto: ['uni_dorm', 'sixth_floor'] },
     ]);
   } },
       { label: 'Go for a walk', handler: (st: GameState) => {
-    (s as any).gosh = ((s as any).gosh ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
+    (st as any).gosh = ((st as any).gosh ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
     scene.text('You go for a walk with Gosha. You have a great time, he\'s a great conversationalist. You spend a hour walking around the campus with him pointing out different buildings and even introducing you to some of the other students. Before long he guides you back to the dorms. "Well I got some studying I need to do, I hope you decided to come by some other day and we can spend time together again." With that he walks into the building and you leave the university grounds.');
     scene.actions([
       { label: 'Leave', goto: ['city_island', ''] },
@@ -58,7 +58,7 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
     (s as any).goshsex = 1;
     (s as any).guy = ((s as any).guy ?? 0) + (1);
   }
-  (s as any).srand = Math.floor(Math.random() * 3) + 1;
+  (s as any).srand = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).srand ?? 0) === 1) {
     qspCall(s, 'cum_manage', '');
     scene.img('images/characters/city/university/boy/gosha/sex/gosh13.jpg');
@@ -67,7 +67,7 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('Once he cums he quickly gets dressed and then sits down at his desk. It takes you a little bit longer to get dressed but once you are, he glances over at you. "It was great you stopping by, but I got some class work I need to do if you don\'t mind." He says as he indicates the door, as you walk over to it he adds. "I hope you stop by again, see you later." With that you leave.');
     scene.actions([
@@ -85,7 +85,7 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'end');
       scene.actions([
         { label: 'Clean up', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('Once he cums he quickly gets dressed and then sits down at his desk. It takes you a little bit longer to get dressed but once you are, he glances over at you. "It was great you stopping by, but I got some class work I need to do if you don\'t mind." He says as he indicates the door, as you walk over to it he adds. "I hope you stop by again, see you later." With that you leave.');
     scene.actions([
@@ -106,7 +106,7 @@ function enterGoshaSex(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'end');
         scene.actions([
           { label: 'Clean up', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/island/university/dorm/gosharoom/gosha_room.jpg');
     scene.text('Once he cums he quickly gets dressed and then sits down at his desk. It takes you a little bit longer to get dressed but once you are, he glances over at you. "It was great you stopping by, but I got some class work I need to do if you don\'t mind." He says as he indicates the door, as you walk over to it he adds. "I hope you stop by again, see you later." With that you leave.');
     scene.actions([

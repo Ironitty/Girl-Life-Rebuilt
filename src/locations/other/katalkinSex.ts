@@ -5,8 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'boyStat', 'A70');
-  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   scene.build();
 }
 
@@ -30,8 +28,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Push his hands away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
     scene.text('You try to object. "Wait! Please, I\'m on my period and I have a headache and…"');
     scene.text('You try to push his hands away, but he doesn\'t listen. If anything, he\'s groping you even harder now, trying to overcome your interruptions. He\'s slowly tugging and pulling at your clothes, attempting to take them off.');
@@ -52,9 +50,9 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Close your eyes', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'katalkinSex', 'd_katsub');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'katalkinSex', 'd_katsub');
   } },
     ]);
   }
@@ -63,8 +61,8 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
     scene.text('You put your arms around him and kiss him on his lips, happy to let him grope your ass for the time being. He\'s surprisingly powerful for his figure, and the way he takes control of the kiss and aggressively shoves his tongue in your mouth makes you feel like he\'s used to getting his way.');
-    qspCall(s, 'arousal', 'kiss', 5, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'kiss', 5, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Put your hand on his groin', goto: ['katalkinSex', 'sexgo'] },
       { label: 'Close your eyes', goto: ['katalkinSex', 'd_katsub'] },
@@ -81,27 +79,27 @@ function enterSexgo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Kneel before him', handler: (st: GameState) => {
-    (s as any).katalkinSexOnce = 1;
-    (s as any).katalkinSexDay = ((s as any).daystart ?? 0);
-    qspCall(s, 'stat', '');
+    (st as any).katalkinSexOnce = 1;
+    (st as any).katalkinSexDay = ((st as any).daystart ?? 0);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/kneel.jpg');
     scene.text('You drop down to your knees in front of captain Katalkin, your hand never leaving his groin as you tease him. "Captain, could you give me a hand please?"');
     scene.text('He\'s more than happy to oblige, and quickly undoes his pants and pulls them down. His erect cock springs out, nearly smacking you on the forehead. You close your fingers around it as you direct it towards your mouth, running your tongue over the head.');
     scene.actions([
       { label: 'Suck his dick', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/bj.jpg');
-    qspCall(s, 'dinsex', 'bj_random');
-    qspCall(s, 'arousal', 'bj', 10, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'dinsex', 'bj_random');
+    qspCall(st, 'arousal', 'bj', 10, 'sub');
+    qspCall(st, 'stat', '');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.actions([
         { label: 'Swallow his cum', handler: (st: GameState) => {
-    (s as any).KatalkinSwallow = ((s as any).KatalkinSwallow ?? 0) + (1);
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
+    (st as any).KatalkinSwallow = ((st as any).KatalkinSwallow ?? 0) + (1);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/swallow.jpg');
-    qspCall(s, 'dinsex', 'bj_swallow_random');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'dinsex', 'bj_swallow_random');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -110,11 +108,11 @@ function enterSexgo(s: GameState, scene: SceneBuilder): void {
   } },
         { label: 'Take his load on your face', handler: (st: GameState) => {
     // TODO-QSP: Katalkin
-    qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', ((st as any).boy ?? 0), 1);
     scene.img('images/pc/body/cum/cumface/black/13.jpg');
     scene.text('When he\'s about to orgasm, you release his cock from your mouth and give it a few quick jerks with your fingers as you aim it over your face, closing your eyes in anticipation.');
     scene.text('Soon enough, you feel his warm load splattering all over your face. You lick your lips to have a taste. It tastes somewhat bitter, but not necessarily unpleasant.');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -125,7 +123,7 @@ function enterSexgo(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You\'re doing your best to give captain Katalkin a good blowjob, but after a few minutes he suddenly pulls his dick out of your mouth and pulls you up.');
       scene.text('He grabs you by the ass cheeks and gives you another rough kiss. "That was nice, but now one of your other holes gets a turn…"');
-      qspGoto(s, 'katalkinSex', 'd_katsub');
+      qspGoto(st, 'katalkinSex', 'd_katsub');
     }
   } },
     ]);
@@ -151,9 +149,9 @@ function enterDKatanal(s: GameState, scene: SceneBuilder): void {
     scene.text('Captain Katalkin enjoys the feeling of your ass squeezing around his cock for a few seconds before he slowly pulls out. A trickle of cum slowly dribbles out of your stretched asshole.');
     scene.text('When you try to get up, he pushes you back down against the table. "In a minute, girl! Show me your used hole first."');
     scene.text('You obey and pull your ass cheeks to the sides, showing him your stretched asshole as his cum slowly dribbles down over your pussy lips. He admires his work for a few more seconds before he slaps your ass, indicating that you can get up.');
-    qspCall(s, 'arousal', 'anal', 3, 'sub');
-    qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0), 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'anal', 3, 'sub');
+    qspCall(st, 'cum_call', 'anus', ((st as any).boy ?? 0), 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -177,19 +175,19 @@ function enterDKatsub(s: GameState, scene: SceneBuilder): void {
     scene.text('You open your eyes and rapidly see the wall approaching. You quickly place your hands up against the wall and lean against it as he kicks the insides of your heels to signal you to spread your legs more.');
     scene.text('As soon as you do, his hand finds its way between your legs and crudely massages your pussy and ass crack through your clothes.');
     scene.text('"Take off your clothes and get on your hands and knees over there," he hisses.');
-    qspCall(s, 'arousal', 'vaginal_finger', 3, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger', 3, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Undress and assume the position', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/katbeforeanal.jpg');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('For a brief second, you wonder how many girls he\'s had in his office like this before you. There definitely seems to be a degree of routine in how he treats you, and the way he commands you to do things reinforce that image. You quickly take off your clothes and drop to your hands and knees.');
       scene.text('You can tell he noticed your hesitation, and his commands get more impatient and strict. "Spread your ass cheeks and show me your holes."');
       scene.text('You quickly do as he says and he runs his hands over your ass cheeks before he pushes two fingers against your clenched sphincter.');
       scene.text('He then reaches for his dick and gives it a few strokes. "I think I\'d rather fuck your ass today," he growls. "Besides, as captain of the police department, I really can\'t have you getting pregnant on me."');
-      qspCall(s, 'arousal', 'anal_finger', 3, 'sub');
-      qspCall(s, 'arousal', 'end');
+      qspCall(st, 'arousal', 'anal_finger', 3, 'sub');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Continue', goto: ['katalkinSex', 'd_katanal'] },
       ]);
@@ -198,16 +196,16 @@ function enterDKatsub(s: GameState, scene: SceneBuilder): void {
       scene.text('You can tell he noticed your hesitation, and his commands get more impatient and strict. "Spread your ass cheeks and show me your holes."');
       scene.text('You quickly do as he says and he runs his hands over your ass cheeks.');
       scene.text('"Got a condom?" he bluntly asks.');
-      if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
+      if (((st as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
         scene.actions([
           { label: 'Yes', handler: (st: GameState) => {
-    (s as any).pose = 1;
-    qspCall(s, 'stat', '');
+    (st as any).pose = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/sex.jpg');
-    qspCall(s, 'dinsex', 'boy_puts_condom');
-    qspCall(s, 'dinsex', 'vaginal_sex', 15, 'sub');
-    qspCall(s, 'dinsex', 'sexcum');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'dinsex', 'boy_puts_condom');
+    qspCall(st, 'dinsex', 'vaginal_sex', 15, 'sub');
+    qspCall(st, 'dinsex', 'sexcum');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Clean up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -221,8 +219,8 @@ function enterDKatsub(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/katbeforeanal.jpg');
     scene.text('You shake your head. "Sorry, I don\'t."');
     scene.text('He grins. "It\'s okay girl, I was hoping you would say that. In that case, I\'m going to fuck you in the ass. Can\'t have you getting pregnant on me."');
-    qspCall(s, 'arousal', 'anal_finger', 3, 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal_finger', 3, 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['katalkinSex', 'd_katanal'] },
     ]);
@@ -237,6 +235,8 @@ function enterDKatsub(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'boyStat', 'A70');
+  ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})[String((s as any).boy ?? 0)] = 1;
   const arg = s.locArg;
   switch (arg) {
     case 'sex':

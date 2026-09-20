@@ -55,9 +55,9 @@ function enterDPpHand(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Give him a handjob', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'skverdin', 'd_pp_hjcum');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'skverdin', 'd_pp_hjcum');
   } },
       ]);
     }
@@ -105,9 +105,9 @@ function enterDPpBj(s: GameState, scene: SceneBuilder): void {
   scene.text(`You wrap your lips around his hard ${((s as any).dick || '')}cm cock and suck it carefully, exploring it with your tongue.`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
-  (s as any).tiprand = Math.floor(Math.random() * 100) + 1;
+  (s as any).tiprand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).tiprand ?? 0) === 100) {
-    // TODO-QSP: dynamic text: Suddenly, he laughs and calls out, "Shit, <<$boydesc>>, you can't even last fift...
+    // TODO-QSP: dynamic text: Suddenly, he laughs and calls out, "Shit, <<$boydesc>>, you can''t even last fif...
     scene.text(`Suddenly, he laughs and calls out, "Shit, ${((s as any).boydesc || '')}, you can't even last fifteen minutes before some slut is already sucking you off." His friend laughs and turns to him, "What are you waiting for? Come over!" The second guy immediately approaches and pulls his dick out of his pants.`);
     scene.actions([
       { label: 'Oh my god!', goto: ['skverdin', 'd_pp_double'] },
@@ -121,7 +121,7 @@ function enterDPpBj(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).tiprand ?? 0) >= 70) {
-        // TODO-QSP: dynamic text: <<$boydesc>> whispers to you, "<<$pcs_nickname>>, isn't your mouth getting tired...
+        // TODO-QSP: dynamic text: <<$boydesc>> whispers to you, "<<$pcs_nickname>>, isn''t your mouth getting tire...
         scene.text(`${((s as any).boydesc || '')} whispers to you, "${((s as any).pcs_nickname || '')}, isn't your mouth getting tired? Want to switch positions?"`);
         scene.actions([
           { label: 'Bend over', goto: ['skverdin', 'd_pp_sex'] },
@@ -193,29 +193,29 @@ function enterDPpDouble(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck both members', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/ppbjdouble2.jpg');
     // TODO-QSP: dynamic text: You take turns polishing both cocks with your wet lips and tongue, alternating b...
-    scene.text(`You take turns polishing both cocks with your wet lips and tongue, alternating between their purple heads. Soon ${((s as any).boydesc || '')} groans, "Open your mouth, slut!"`);
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'sub', 'group');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub', 'group');
-    qspCall(s, 'stat', '');
+    scene.text(`You take turns polishing both cocks with your wet lips and tongue, alternating between their purple heads. Soon ${((st as any).boydesc || '')} groans, "Open your mouth, slut!"`);
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'sub', 'group');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'sub', 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/ppbjdouble3.jpg');
     // TODO-QSP: dynamic text: You obediently open your already tired mouth and <<$boydesc>> shoots thick white...
-    scene.text(`You obediently open your already tired mouth and ${((s as any).boydesc || '')} shoots thick white cum directly onto your wet and slightly swollen lips. His friend hisses "My turn!" and grabs you by the hair, turning your face toward his cock.`);
-    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID ?? 0), 'sub', 'group');
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 0, 0, 0, 20);
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 0, 0, 0, 20);
-    qspCall(s, 'stat', '');
+    scene.text(`You obediently open your already tired mouth and ${((st as any).boydesc || '')} shoots thick white cum directly onto your wet and slightly swollen lips. His friend hisses "My turn!" and grabs you by the hair, turning your face toward his cock.`);
+    qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID ?? 0), 'sub', 'group');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0), 0, 0, 0, 20);
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID ?? 0), 0, 0, 0, 20);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Turn your face', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/ppbjdouble4.jpg');
     // TODO-QSP: dynamic text: You turn your face and immediately get hit with a second load of cum directly in...
-    scene.text(`You turn your face and immediately get hit with a second load of cum directly into your open mouth. You instinctively flinch and a large glob of sperm falls out of your mouth and splatters on your clothes. ${((s as any).boydesc || '')} laughs, "Damn! You're a sniper - loaded that cumslut's mouth perfectly!"`);
-    qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID1 ?? 0), 'sub', 'group');
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0), 0, 0, 0, 15);
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 0, 0, 0, 15);
-    qspCall(s, 'cum_call', 'clothes', ((s as any).npcID1 ?? 0), 0, 0, 0, 10);
-    qspCall(s, 'stat', '');
+    scene.text(`You turn your face and immediately get hit with a second load of cum directly into your open mouth. You instinctively flinch and a large glob of sperm falls out of your mouth and splatters on your clothes. ${((st as any).boydesc || '')} laughs, "Damn! You're a sniper - loaded that cumslut's mouth perfectly!"`);
+    qspCall(st, 'arousal', 'bj', 2, ((st as any).npcID1 ?? 0), 'sub', 'group');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0), 0, 0, 0, 15);
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0), 0, 0, 0, 15);
+    qspCall(st, 'cum_call', 'clothes', ((st as any).npcID1 ?? 0), 0, 0, 0, 10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Clean yourself up', goto: ['skverdin', 'd_pp_goend'] },
     ]);

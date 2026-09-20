@@ -14,21 +14,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('"I eat real food for lunch, meat on skewers, not the rubbish in the cafe. And real jam." He says proudly. You continue to make small talk while driving towards your destination.');
   scene.actions([
     { label: 'Go to his home', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'drugs', 'alcohol', 'vodka', 2);
-    qspCall(s, 'boyStat', 'A73');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'drugs', 'alcohol', 'vodka', 2);
+    qspCall(st, 'boyStat', 'A73');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('Arthur has generously set the table with food and you eat meat wrapped in grape leaves and roasted on skewers. You drink strong Chacha with your food and quickly find yourself getting tipsy. Once you\'re nearly done with your meal Arthur turns on some music before approaching, a look of lust on his face. "Come to me girl." He says authoritatively');
-    if (((s as any).condomtalkartur ?? 0) === 0  &&  ((s as any).arturSex ?? 0) > 0) {
+    if (((st as any).condomtalkartur ?? 0) === 0  &&  ((st as any).arturSex ?? 0) > 0) {
       scene.actions([
         { label: 'Ask him to wear a condom', handler: (st: GameState) => {
-    (s as any).condomtalkartur = 1;
-    qspCall(s, 'stat', '');
+    (st as any).condomtalkartur = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('You ask Arthur to wear a condom. He scoffs loudly at the suggestion and shakes his head."What? Sex with a condom is like breathing through a mask. No!"');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -37,10 +37,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_commercial', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_commercial', '');
   } },
       ]);
     }
@@ -52,8 +52,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -62,10 +62,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_commercial', '');
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_commercial', '');
   } },
       ]);
     }

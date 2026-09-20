@@ -9,44 +9,44 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSelect(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp = Math.floor(Math.random() * 3) + 0;
+  (s as any).temp = (Math.floor(Math.random() * 3) + 0);
   if ((!((s as any).temp ?? 0))) {
-    if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
+    if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
       ((s as any).fame = (s as any).fame ?? {})['activity'] = 'kickboxing';
       ((s as any).fame = (s as any).fame ?? {})['noun'] = 'kickboxer';
       // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
     }
   } else {
     if (((s as any).temp ?? 0) === 1) {
-      if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
+      if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
         ((s as any).fame = (s as any).fame ?? {})['activity'] = 'running';
         ((s as any).fame = (s as any).fame ?? {})['noun'] = 'runner';
         // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
       }
     } else {
       if (((s as any).temp ?? 0) === 2) {
-        if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
+        if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
           ((s as any).fame = (s as any).fame ?? {})['activity'] = 'singing';
           ((s as any).fame = (s as any).fame ?? {})['noun'] = 'singer';
           // TODO-QSP: gt 'fame_events', 'boy', $ARGS[1]
         }
       } else {
         if (((s as any).temp ?? 0) === 3) {
-          if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
+          if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_kickboxing'] >= (Math.floor(Math.random() * 501) + 500)) {
             ((s as any).fame = (s as any).fame ?? {})['activity'] = 'kickboxing';
             ((s as any).fame = (s as any).fame ?? {})['noun'] = 'kickboxer';
             // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
           }
         } else {
           if (((s as any).temp ?? 0) === 4) {
-            if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
+            if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_running'] >= (Math.floor(Math.random() * 501) + 500)) {
               ((s as any).fame = (s as any).fame ?? {})['activity'] = 'running';
               ((s as any).fame = (s as any).fame ?? {})['noun'] = 'runner';
               // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
             }
           } else {
             if (((s as any).temp ?? 0) === 5) {
-              if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
+              if (((s as any).fame ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_music'] >= (Math.floor(Math.random() * 501) + 500)) {
                 ((s as any).fame = (s as any).fame ?? {})['activity'] = 'singing';
                 ((s as any).fame = (s as any).fame ?? {})['noun'] = 'singer';
                 // TODO-QSP: gt 'fame_events', 'girl', $ARGS[1]
@@ -96,17 +96,17 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     { label: 'Thank you!', handler: (st: GameState) => {
     scene.img('images/locations/shared/fame/boyapproaching1.jpg');
     scene.text('"Wow, thank you!" you smile back. "It\'s always nice to meet a fan!"');
-    if (((s as any).fame ?? 0)?.['activity'] === 'kickboxing') {
+    if (((st as any).fame ?? 0)?.['activity'] === 'kickboxing') {
       scene.text('"I try to watch all you matches, you are best kickboxer in the city. I am sure you will beat all your opponents!"');
     } else {
-      if (((s as any).fame ?? 0)?.['activity'] === 'running') {
-        if (((s as any).runnerQW ?? 0)?.['champ_gold'] > 0) {
+      if (((st as any).fame ?? 0)?.['activity'] === 'running') {
+        if (((st as any).runnerQW ?? 0)?.['champ_gold'] > 0) {
           scene.text('"I try to watch all you races, you are best runner in the city. I am sure you will also win the next championship!"');
         } else {
           scene.text('"I try to watch all you races, you are best runner in the city. I am sure you will become the next champion in no time!"');
         }
       } else {
-        if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
+        if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
           scene.text('"I listen to you all the time, and have saved all your performances. You make the best music!"');
         }
       }
@@ -115,30 +115,30 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('"Can I get a selfie with you?" he asks holding up his phone.');
     scene.actions([
       { label: 'Of course!', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'medium');
-    (s as any).minut = ((s as any).minut ?? 0) + 6;
-    if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', 'medium');
+    qspCall(st, 'mood', 'raise', 'medium');
+    (st as any).minut = ((st as any).minut ?? 0) + 6;
+    if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'music', 'medium');
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', 'medium');
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), '' + ((st as any).fame ?? 0)?.['activity'] + '', 'medium');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/fame/boyselfie1.jpg');
     scene.text('"Of course!" you say, scooching over towards him.');
-    if (((s as any).stat_visible_cum ?? 0) === 1) {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', 'small');
+    if (((st as any).stat_visible_cum ?? 0) === 1) {
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', 'small');
       scene.text('You sidle up to him and give a big smile into his camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. You can clearly see the cum from your last sexual encounter on you. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
     } else {
-      if (((s as any).PCloThinness ?? 0) === 6  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
-        qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', 'small');
+      if (((st as any).PCloThinness ?? 0) === 6  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
+        qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', 'small');
         scene.text('You sidle up to him and give a big smile into his camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. Your breasts are <i>fully</i> visible, nipples and everything. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
       } else {
-        if (((s as any).PCloThinness ?? 0) === 5  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
-          qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', 'tiny');
+        if (((st as any).PCloThinness ?? 0) === 5  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
+          qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', 'tiny');
           scene.text('You sidle up to him, giving a big smile into his camera phone. After a few moments, the boy manages to thumb the button and an artificial shuttering sound goes off. He immediately pulls it up for review and you take a look at it with him. It\'s a cute picture, the two of you together, though you notice just now that you can totally see your nipples are poking through your top and it\'s totally visible. Oh well, that\'s hardly the worst thing someone\'s seen of a female celebrity on the internet. But he clearly doesn\'t mind.');
         } else {
-          if (((s as any).PCloThinness ?? 0) === 6) {
-            qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', Math.floor(Math.random() * 2) + 0);
+          if (((st as any).PCloThinness ?? 0) === 6) {
+            qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', (Math.floor(Math.random() * 2) + 0));
             scene.text('You sidle up to him, giving a big smile into his camera phone. After a few moments, the boy manages to thumb the button and an artificial shuttering sound goes off. He immediately pulls it up for review and you take a look at it with him. It\'s a cute picture, the two of you together, though you realize just a bit too late that maybe you shouldn\'t have done a fan photo in an exhibitionist outfit like this… But he clearly doesn\'t mind.');
           } else {
             scene.text('You sidle up to him, giving a big smile into his camera phone. After a few moments, the boy manages to thumb the button and an artificial shuttering sound goes off. He immediately pulls it up for review and you take a look at it with him. It\'s a cute picture, the two of you together and he giggles excitedly just looking at it.');
@@ -147,7 +147,7 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Thank you! Thank you! Thank you so much!" he says elatedly. "You are the best! ...
-    scene.text(`"Thank you! Thank you! Thank you so much!" he says elatedly. "You are the best! I will be cheering for you whenever you are ${((s as any).fame ?? 0)?.['activity'] ?? ''}" looking like he's just gotten his greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
+    scene.text(`"Thank you! Thank you! Thank you so much!" he says elatedly. "You are the best! I will be cheering for you whenever you are ${((st as any).fame ?? 0)?.['activity'] ?? ''}" looking like he's just gotten his greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -155,13 +155,13 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Sorry, I\'m in a hurry', handler: (st: GameState) => {
-    if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', (-50));
+    if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'music', (-50));
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', (-50));
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), '' + ((st as any).fame ?? 0)?.['activity'] + '', (-50));
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/fame/boyrejection1.jpg');
     scene.text('"Sorry, I\'m in a big hurry. No time. It was nice meeting you though!" You turn around to leave as a look of horror crosses his face, like this moment will haunt his dreams.');
     scene.text('"Wait! But-!" You don\'t wait for him and walk off, not listening to another word.');
@@ -174,11 +174,11 @@ function enterBoy(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Lie and say that he has mistaken your identity', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/fame/boyrejection1.jpg');
-    // TODO-QSP: dynamic text: "I'm not <<$pcs_firstname>> <<$pcs_lastname>>" you lie. "But, you look just like...
-    scene.text(`"I'm not ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}" you lie. "But, you look just like her?" he says confused.`);
+    // TODO-QSP: dynamic text: "I''m not <<$pcs_firstname>> <<$pcs_lastname>>" you lie. "But, you look just lik...
+    scene.text(`"I'm not ${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}" you lie. "But, you look just like her?" he says confused.`);
     scene.text('"But I\'m not her. You\'ve mistaken me for someone else," you say as you turn around leaving the very puzzled looking boy.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -223,17 +223,17 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Thank you!', handler: (st: GameState) => {
     scene.text('"Wow, thank you!" you smile back. "It\'s always nice to meet a fan!"');
-    if (((s as any).fame ?? 0)?.['activity'] === 'kickboxing') {
+    if (((st as any).fame ?? 0)?.['activity'] === 'kickboxing') {
       scene.text('"I try to watch all you matches, you are best kickboxer in the city. I am sure you will beat all your opponents!"');
     } else {
-      if (((s as any).fame ?? 0)?.['activity'] === 'running') {
-        if (((s as any).runnerQW ?? 0)?.['champ_gold'] > 0) {
+      if (((st as any).fame ?? 0)?.['activity'] === 'running') {
+        if (((st as any).runnerQW ?? 0)?.['champ_gold'] > 0) {
           scene.text('"I try to watch all you races, you are best runner in the city. I am sure you will also win the next championship!"');
         } else {
           scene.text('"I try to watch all you races, you are best runner in the city. I am sure you will become the next champion in no time!"');
         }
       } else {
-        if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
+        if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
           scene.text('"I listen to you all the time, and have saved all your performances. You make the best music!"');
         }
       }
@@ -242,29 +242,29 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     scene.text('"Can I get a selfie with you?" she asks holding up her phone.');
     scene.actions([
       { label: 'Of course!', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'medium');
-    (s as any).minut = ((s as any).minut ?? 0) + 6;
-    if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', 'medium');
+    qspCall(st, 'mood', 'raise', 'medium');
+    (st as any).minut = ((st as any).minut ?? 0) + 6;
+    if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'music', 'medium');
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', 'medium');
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), '' + ((st as any).fame ?? 0)?.['activity'] + '', 'medium');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('"Of course!" you say, scooching over towards her.');
-    if (((s as any).stat_visible_cum ?? 0) === 1) {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', 'small');
+    if (((st as any).stat_visible_cum ?? 0) === 1) {
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', 'small');
       scene.text('You sidle up to her and give a big smile into her camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. You can clearly see the cum from your last sexual encounter on you. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
     } else {
-      if (((s as any).PCloThinness ?? 0) === 6  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
-        qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', 'small');
+      if (((st as any).PCloThinness ?? 0) === 6  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
+        qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', 'small');
         scene.text('You sidle up to her and give a big smile into her camera phone. It\'s only when you see yourself reflected in the viewfinder that you think maybe this isn\'t such a great idea. Your breasts are <i>fully</i> visible, nipples and everything. If this kind of thing gets posted on social media, what will people think? Before you can come up with an excuse to back out, the phone makes an artificial shuttering sound and the picture is taken.');
       } else {
-        if (((s as any).PCloThinness ?? 0) === 5  &&  (((s as any).braworntype ?? 0) === 'salacious'  ||  ((s as any).braworntype ?? 0) === 'none')) {
-          qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', 'tiny');
+        if (((st as any).PCloThinness ?? 0) === 5  &&  (((st as any).braworntype ?? 0) === 'salacious'  ||  ((st as any).braworntype ?? 0) === 'none')) {
+          qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', 'tiny');
           scene.text('You sidle up to her, giving a big smile into her camera phone. After a few moments, the girl manages to thumb the button and an artificial shuttering sound goes off. She immediately pulls it up for review and you take a look at it with her. It\'s a cute picture, the two of you together, though you notice just now that you can totally see your nipples are poking through your top and it\'s totally visible. Oh well, that\'s hardly the worst thing someone\'s seen of a female celebrity on the internet. But she clearly doesn\'t mind.');
         } else {
-          if (((s as any).PCloThinness ?? 0) === 6) {
-            qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'sex', Math.floor(Math.random() * 2) + 0);
+          if (((st as any).PCloThinness ?? 0) === 6) {
+            qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'sex', (Math.floor(Math.random() * 2) + 0));
             scene.text('You sidle up to her, giving a big smile into her camera phone. After a few moments, the girl manages to thumb the button and an artificial shuttering sound goes off. She immediately pulls it up for review and you take a look at it with her. It\'s a cute picture, the two of you together, though you realize just a bit too late that maybe you shouldn\'t have done a fan photo in an exhibitionist outfit like this… But she clearly doesn\'t mind.');
           } else {
             scene.text('You sidle up to her, giving a big smile into her camera phone. After a few moments, the girl manages to thumb the button and an artificial shuttering sound goes off. She immediately pulls it up for review and you take a look at it with her. It\'s a cute picture, the two of you together and she giggles excitedly just looking at it.');
@@ -273,7 +273,7 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Thank you! Thank you! Thank you so much!" she says elatedly. "You are the best!...
-    scene.text(`"Thank you! Thank you! Thank you so much!" she says elatedly. "You are the best! I will be cheering for you whenever you are ${((s as any).fame ?? 0)?.['activity'] ?? ''}" looking like she's just gotten her greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
+    scene.text(`"Thank you! Thank you! Thank you so much!" she says elatedly. "You are the best! I will be cheering for you whenever you are ${((st as any).fame ?? 0)?.['activity'] ?? ''}" looking like she's just gotten her greatest wish fulfilled as you happily go on with your day. It seems all your hard work is finally starting to pay off.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -281,13 +281,13 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Sorry, I\'m in a hurry', handler: (st: GameState) => {
-    if (((s as any).fame ?? 0)?.['activity'] === 'singing') {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), 'music', (-50));
+    if (((st as any).fame ?? 0)?.['activity'] === 'singing') {
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), 'music', (-50));
     } else {
-      qspCall(s, 'fame', '', ((s as any).locArgs?.[1] ?? 0), '' + ((s as any).fame ?? 0)?.['activity'] + '', (-50));
+      qspCall(st, 'fame', '', ((st as any).locArgs?.[1] ?? 0), '' + ((st as any).fame ?? 0)?.['activity'] + '', (-50));
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.text('"Sorry, I\'m in a big hurry. No time. It was nice meeting you though!" You turn around to leave as a look of horror crosses her face, like this moment will haunt her dreams.');
     scene.text('"Wait! But-!" You don\'t wait for her and walk off, not listening to another word.');
     scene.actions([
@@ -299,10 +299,10 @@ function enterGirl(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Lie and say that she has mistaken your identity', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: "I'm not <<$pcs_firstname>> <<$pcs_lastname>>" you lie. "But, you look just like...
-    scene.text(`"I'm not ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}" you lie. "But, you look just like her?" she says confused.`);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
+    // TODO-QSP: dynamic text: "I''m not <<$pcs_firstname>> <<$pcs_lastname>>" you lie. "But, you look just lik...
+    scene.text(`"I'm not ${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}" you lie. "But, you look just like her?" she says confused.`);
     scene.text('"But I\'m not her. You\'ve mistaken me for someone else," you say as you turn around leaving the very puzzled looking girl.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

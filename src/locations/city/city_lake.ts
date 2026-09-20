@@ -29,22 +29,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
     scene.text('You can see the winding path leading to the railway station in the industrial region. You should get dressed into your clothes if you want to go there.');
   } else {
-    // TODO-QSP: dynamic text: There is a winding path leading to the <a href="exec:minut += 60 & gt 'city_indu...
-    scene.text('There is a winding path leading to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(\\u0027city_industrial_train\\u0027, \\u0027outside\\u0027); return false;">railway station</a> in the city industrial region.');
+    // TODO-QSP: dynamic text: There is a winding path leading to the <a href="exec:minut += 60 & gt ''city_ind...
+    scene.text('There is a winding path leading to the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.60; return s; }); window.__gameStore.getState().doGoto(/u0027city_industrial_train/u0027, /u0027outside/u0027); return false;">railway station</a> in the city industrial region.');
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
-    // TODO-QSP: dynamic text: There is a branch of the swimwear chain <a href="exec: minut += 3 & gt 'shop_all...
-    scene.text('There is a branch of the swimwear chain <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027shop_allure\\u0027, \\u0027start\\u0027); return false;">Allure</a> here');
+    // TODO-QSP: dynamic text: There is a branch of the swimwear chain <a href="exec: minut += 3 & gt ''shop_al...
+    scene.text('There is a branch of the swimwear chain <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027shop_allure/u0027, /u0027start/u0027); return false;">Allure</a> here');
   } else {
     // TODO-QSP: dynamic text: There is a branch of the swimwear chain Allure here, but it is currently closed....
     scene.text('There is a branch of the swimwear chain Allure here, but it is currently closed. It will reopen at 8:00.');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     if ((!((s as any).PSwim ?? 0))) {
-      // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is parked near the l...
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked near the lake.`);
+      // TODO-QSP: dynamic text: <a href="exec:gs ''carF'', ''start''">Your <<$car[''name'']>></a> is parked near...
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked near the lake.`);
     } else {
-      // TODO-QSP: dynamic text: Your <<$car['name']>> is parked nearby. You should get dressed into your clothes...
+      // TODO-QSP: dynamic text: Your <<$car[''name'']>> is parked nearby. You should get dressed into your cloth...
       scene.text(`Your ${((s as any).car ?? 0)?.['name'] ?? ''} is parked nearby. You should get dressed into your clothes if you want to drive away.`);
     }
   }
@@ -56,33 +56,33 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You should buy some swimwear if you intend on spending time at the beach.');
   }
   if (((s as any).npc_QW ?? 0)?.['A192'] === 3  &&  ((s as any).temper ?? 0) >= 15  &&  (((s as any).PSwim ?? 0) === 1)  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nastja\\u0027, \\u0027pos14\\u0027); return false;">Anastasia</a> is waving her hand at you.');
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nastja/u0027, /u0027pos14/u0027); return false;">Anastasia</a> is waving her hand at you.');
   }
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-    // TODO-QSP: dynamic text: There are various '+iif(PSwim = 1, '<a href="exec:minut += 5 & gt 'city_lake', '...
-    scene.text('There are various \'+iif(PSwim = 1, \'<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027aquapark\\u0027); return false;">water attractions</a>.\', \'water attractions, but you need to put on some swimwear before you go there.\')+\'');
-    // TODO-QSP: dynamic text: You can go for a ride on a <a href="exec:minut += 1 & gt 'city_lake', 'horse'">h...
-    scene.text('You can go for a ride on a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027horse\\u0027); return false;">horse</a> along the beach.');
+    // TODO-QSP: dynamic text: There are various '+iif(PSwim = 1, '<a href="exec:minut += 5 & gt ''city_lake'',...
+    scene.text('There are various ' + ((((s as any).PSwim ?? 0) === 1) ? ('<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027aquapark/u0027); return false;">water attractions</a>.') : ('water attractions, but you need to put on some swimwear before you go there.')) + '');
+    // TODO-QSP: dynamic text: You can go for a ride on a <a href="exec:minut += 1 & gt ''city_lake'', ''horse'...
+    scene.text('You can go for a ride on a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027horse/u0027); return false;">horse</a> along the beach.');
     // TODO-QSP: dynamic text: There is also a '+iif(pcs_inhib >= 30 or (trait_vars['exhibitionist'] > 1 and pc...
-    scene.text('There is also a \'+iif(pcs_inhib >= 30 or (trait_vars[\'exhibitionist\'] > 1 and pcs_horny > 60), \'<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027Nudelake\\u0027, \\u0027\\u0027); return false;">nudist beach</a>\', \'nudist beach a short walk away, but you are\'t confident enough to go in that direction.\')+\'');
+    scene.text('There is also a ' + ((((s as any).pcs_inhib ?? 0) >= 30  ||  (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  &&  ((s as any).pcs_horny ?? 0) > 60)) ? ('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027Nudelake/u0027, /u0027/u0027); return false;">nudist beach</a>') : ('nudist beach a short walk away, but you are\'t confident enough to go in that direction.')) + '');
     if (((s as any).temper ?? 0) >= 15  &&  ((s as any).PSwim ?? 0) === 1) {
       scene.text('You can sunbathe or go for a swim.');
       if (((s as any).pcs_stam ?? 0) >= (20 * (10 - ((s as any).sport_clothes_exercise_bonus ?? 0))) / 2) {
         scene.actions([
           { label: 'Go for a swim', handler: (st: GameState) => {
-    (s as any).pcs_makeup = 1;
-    (s as any).cumspclnt = 4;
-    qspCall(s, 'cum_cleanup', '');
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'exercise', 'tier1', 60, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
-    if (((s as any).pcs_inhib ?? 0) < 40) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).pcs_makeup = 1;
+    (st as any).cumspclnt = 4;
+    qspCall(st, 'cum_cleanup', '');
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'exercise', 'tier1', 60, 'stren', 'vital');
+    (st as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
+    if (((st as any).pcs_inhib ?? 0) < 40) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
-    scene.img(`images/pc/activities/swim/lake/swim_bikini_${Math.floor(Math.random() * 9) + 0}.jpg`);
+    scene.img(`images/pc/activities/swim/lake/swim_bikini_${(Math.floor(Math.random() * 9) + 0)}.jpg`);
     scene.text('You swim in the lake for an hour. The water refreshes and invigorates you.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
@@ -94,55 +94,55 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).sunWeather ?? 0) === 1) {
         scene.actions([
           { label: 'Sunbathe', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    if (((s as any).pcs_inhib ?? 0) < 50) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    if (((st as any).pcs_inhib ?? 0) < 50) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 1));
     }
-    if (((s as any).pcs_sweat ?? 0) < 35) {
-      qspCall(s, 'sweat', 'add', 5);
+    if (((st as any).pcs_sweat ?? 0) < 35) {
+      qspCall(st, 'sweat', 'add', 5);
     }
-    if (((s as any).pcs_hydra ?? 0) >= 100) {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
+    if (((st as any).pcs_hydra ?? 0) >= 100) {
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) - (10);
     } else {
-      (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (20);
+      (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) - (20);
     }
-    qspCall(s, 'mood', 'raise', 'tiny');
+    qspCall(st, 'mood', 'raise', 'tiny');
     scene.img('images/locations/shared/lake/tanning_swimsuit.jpg');
-    if (((s as any).mc_inventory ?? 0)?.['suncream'] === 0) {
-      (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
+    if (((st as any).mc_inventory ?? 0)?.['suncream'] === 0) {
+      (st as any).pcs_tan = ((st as any).pcs_tan ?? 0) + (1);
       scene.text('You lie on the beach and sunbathe for an hour.');
     } else {
-      ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['suncream'] = ((s as any).mc_inventory['suncream'] ?? 0) - (1);
-      (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (3);
+      ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['suncream'] = ((st as any).mc_inventory['suncream'] ?? 0) - (1);
+      (st as any).pcs_tan = ((st as any).pcs_tan ?? 0) + (3);
       scene.text('You apply sunblock to your body before sunbathing for an hour.');
     }
-    (s as any).evrand = Math.floor(Math.random() * 101) + 0;
-    if (((s as any).evrand ?? 0) <= 90  &&  ((s as any).evrand ?? 0) > 80  &&  ((s as any).temp ?? 0) >=20  &&  ((s as any).daystage ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pcs_hotcat ?? 0) >= 7) {
+    (st as any).evrand = (Math.floor(Math.random() * 101) + 0);
+    if (((st as any).evrand ?? 0) <= 90  &&  ((st as any).evrand ?? 0) > 80  &&  ((st as any).temp ?? 0) >=20  &&  ((st as any).daystage ?? 0) === 3  &&  ((st as any).hour ?? 0) >= 19  &&  ((st as any).hour ?? 0) <= 21  &&  ((st as any).pcs_hotcat ?? 0) >= 7) {
       scene.actions([
         { label: 'Continue', goto: ['city_lake', 'volleyball_intro_nite'] },
       ]);
     } else {
-      if (((s as any).evrand ?? 0) <= 80  &&  ((s as any).evrand ?? 0) > 60  &&  ((s as any).temp ?? 0) >= 8  &&  ((s as any).daystage ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 3  &&  ((s as any).pcs_hotcat ?? 0) >= 7) {
+      if (((st as any).evrand ?? 0) <= 80  &&  ((st as any).evrand ?? 0) > 60  &&  ((st as any).temp ?? 0) >= 8  &&  ((st as any).daystage ?? 0) === 3  &&  ((st as any).hour ?? 0) >= 19  &&  ((st as any).hour ?? 0) <= 3  &&  ((st as any).pcs_hotcat ?? 0) >= 7) {
         scene.actions([
           { label: 'Continue', goto: ['city_lake', 'bonfire'] },
         ]);
       } else {
-        if (((s as any).evrand ?? 0) <= 60  &&  ((s as any).evrand ?? 0) > 40  &&  ((s as any).temp ?? 0) >= 20  &&  ((s as any).daystage ?? 0) === 2  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 19  &&  ((s as any).pcs_hotcat ?? 0) >= 7) {
+        if (((st as any).evrand ?? 0) <= 60  &&  ((st as any).evrand ?? 0) > 40  &&  ((st as any).temp ?? 0) >= 20  &&  ((st as any).daystage ?? 0) === 2  &&  ((st as any).hour ?? 0) >= 10  &&  ((st as any).hour ?? 0) <= 19  &&  ((st as any).pcs_hotcat ?? 0) >= 7) {
           scene.actions([
             { label: 'Continue', goto: ['city_lake', 'volleyball_intro_day'] },
           ]);
         } else {
-          if (((s as any).evrand ?? 0) <= 40  &&  ((s as any).andrei ?? 0) > 30) {
+          if (((st as any).evrand ?? 0) <= 40  &&  ((st as any).andrei ?? 0) > 30) {
             scene.actions([
               { label: 'Continue', goto: ['city_lake', 'Andrei_intro'] },
             ]);
           } else {
-            if (((s as any).evrand ?? 0) <= 30  &&  ((s as any).evrand ?? 0) > 20) {
+            if (((st as any).evrand ?? 0) <= 30  &&  ((st as any).evrand ?? 0) > 20) {
               scene.actions([
                 { label: 'Continue', goto: ['city_lake', 'vlake1'] },
               ]);
             } else {
-              if (((s as any).evrand ?? 0) <= 20  &&  ((s as any).evrand ?? 0) > 10) {
+              if (((st as any).evrand ?? 0) <= 20  &&  ((st as any).evrand ?? 0) > 10) {
                 scene.actions([
                   { label: 'Continue', goto: ['city_lake', 'vlake2'] },
                 ]);
@@ -161,28 +161,28 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
       scene.actions([
         { label: 'Walk on the beach', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/lake.jpg');
     scene.text('You go for a walk along the shore.');
-    (s as any).walkrand = Math.floor(Math.random() * 101) + 0;
-    if (((s as any).walkrand ?? 0) >= 60  &&  ((s as any).walkrand ?? 0) < 70  &&  ((s as any).temp ?? 0) >= 8  &&  ((s as any).daystage ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 3  &&  ((s as any).pcs_hotcat ?? 0) >= 7) {
+    (st as any).walkrand = (Math.floor(Math.random() * 101) + 0);
+    if (((st as any).walkrand ?? 0) >= 60  &&  ((st as any).walkrand ?? 0) < 70  &&  ((st as any).temp ?? 0) >= 8  &&  ((st as any).daystage ?? 0) === 3  &&  ((st as any).hour ?? 0) >= 19  &&  ((st as any).hour ?? 0) <= 3  &&  ((st as any).pcs_hotcat ?? 0) >= 7) {
       scene.actions([
         { label: 'Continue', goto: ['city_lake', 'bonfire'] },
       ]);
     } else {
-      if (((s as any).walkrand ?? 0) >= 70  &&  ((s as any).walkrand ?? 0) < 80  &&  ((s as any).temp ?? 0) >= 20  &&  ((s as any).daystage ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 19  &&  ((s as any).pcs_hotcat ?? 0) >= 7) {
+      if (((st as any).walkrand ?? 0) >= 70  &&  ((st as any).walkrand ?? 0) < 80  &&  ((st as any).temp ?? 0) >= 20  &&  ((st as any).daystage ?? 0) === 3  &&  ((st as any).hour ?? 0) >= 10  &&  ((st as any).hour ?? 0) <= 19  &&  ((st as any).pcs_hotcat ?? 0) >= 7) {
         scene.actions([
           { label: 'Continue', goto: ['city_lake', 'volleyball_day'] },
         ]);
       } else {
-        if (((s as any).walkrand ?? 0) >= 80  &&  ((s as any).walkrand ?? 0) < 90) {
+        if (((st as any).walkrand ?? 0) >= 80  &&  ((st as any).walkrand ?? 0) < 90) {
           scene.actions([
             { label: 'Continue', goto: ['city_lake', 'walklake1'] },
           ]);
         } else {
-          if (((s as any).walkrand ?? 0) >= 90  &&  ((s as any).walkrand ?? 0) < 100) {
+          if (((st as any).walkrand ?? 0) >= 90  &&  ((st as any).walkrand ?? 0) < 100) {
             scene.actions([
               { label: 'Continue', goto: ['city_lake', 'walklake2'] },
             ]);
@@ -207,25 +207,25 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk to the Residential Area (0:40)', handler: (st: GameState) => {
-    if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
+    if (((st as any).PSwim ?? 0) === 1  ||  ((st as any).clothingworntype ?? 0) === 'nude') {
       scene.text('You need to get dressed into your regular clothing first.');
       scene.actions([
         { label: 'Return', goto: ['city_lake', 'start'] },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 40;
-      qspGoto(s, 'city_residential', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 40;
+      qspGoto(st, 'city_residential', '');
     }
   } },
     { label: 'Walk to the industrial train station (1:00)', handler: (st: GameState) => {
-    if (((s as any).PSwim ?? 0) === 1  ||  ((s as any).clothingworntype ?? 0) === 'nude') {
+    if (((st as any).PSwim ?? 0) === 1  ||  ((st as any).clothingworntype ?? 0) === 'nude') {
       scene.text('You need to get dressed into your regular clothing first.');
       scene.actions([
         { label: 'Return', goto: ['city_lake', 'start'] },
       ]);
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      qspGoto(s, 'city_industrial_train', 'outside');
+      (st as any).minut = ((st as any).minut ?? 0) + 60;
+      qspGoto(st, 'city_industrial_train', 'outside');
     }
   } },
   ]);
@@ -237,10 +237,10 @@ function enterAquapark(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
-  // TODO-QSP: dynamic text: You go to the attractions. There is <a href="exec:minut += 1 & gt 'city_lake', '...
-  scene.text('You go to the attractions. There is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027gidro\\u0027); return false;">jet skiing</a>, a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027banan\\u0027); return false;">banana ride</a>, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027gorka\\u0027); return false;">water slide</a>, and a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027tour_boat\\u0027); return false;">tour boat</a>.');
-  // TODO-QSP: dynamic text: There is also a small <a href="exec:minut += 1 & gt 'city_lake', 'hut'">hut</a> ...
-  scene.text('There is also a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027city_lake\\u0027, \\u0027hut\\u0027); return false;">hut</a> that rents out surf boards.');
+  // TODO-QSP: dynamic text: You go to the attractions. There is <a href="exec:minut += 1 & gt ''city_lake'',...
+  scene.text('You go to the attractions. There is <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027gidro/u0027); return false;">jet skiing</a>, a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027banan/u0027); return false;">banana ride</a>, the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027gorka/u0027); return false;">water slide</a>, and a <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027tour_boat/u0027); return false;">tour boat</a>.');
+  // TODO-QSP: dynamic text: There is also a small <a href="exec:minut += 1 & gt ''city_lake'', ''hut''">hut<...
+  scene.text('There is also a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027city_lake/u0027, /u0027hut/u0027); return false;">hut</a> that rents out surf boards.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_lake', 'start'] },
@@ -259,16 +259,16 @@ function enterGidro(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'mood', 'raise', 'tiny');
-      qspCall(s, 'money', 'pay', 100);
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 100);
+      (st as any).minut = ((st as any).minut ?? 0) + 30;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/city/residential/lake/gidro.jpg');
       scene.text('You hire a jet ski and have fun out on the water.');
       if ((!(Math.floor(Math.random() * 11) + 0))) {
-        qspGoto(s, 'city_lake', 'kater1');
+        qspGoto(st, 'city_lake', 'kater1');
       }
       scene.actions([
         { label: 'Finish', handler: (st: GameState) => {
@@ -295,20 +295,20 @@ function enterBanan(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      qspCall(s, 'money', 'pay', 100);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).minut = ((st as any).minut ?? 0) + 30;
+      qspCall(st, 'money', 'pay', 100);
+      qspCall(st, 'stat', '');
       scene.img('images/locations/city/residential/lake/banan.jpg');
       scene.text('You get on the banana and the boat drags it around for half an hour, stopping every so often to let you and the others get back on. You have a great time.');
-      (s as any).banrand = Math.floor(Math.random() * 101) + 0;
-      if (((s as any).banrand ?? 0) >= 80  &&  ((s as any).banrand ?? 0) < 90) {
-        qspGoto(s, 'city_lake', 'kater2');
+      (st as any).banrand = (Math.floor(Math.random() * 101) + 0);
+      if (((st as any).banrand ?? 0) >= 80  &&  ((st as any).banrand ?? 0) < 90) {
+        qspGoto(st, 'city_lake', 'kater2');
       } else {
-        if (((s as any).banrand ?? 0) >= 90) {
-          qspGoto(s, 'city_lake', 'kater3');
+        if (((st as any).banrand ?? 0) >= 90) {
+          qspGoto(st, 'city_lake', 'kater3');
         }
       }
       scene.actions([
@@ -336,16 +336,16 @@ function enterGorka(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Use the slide', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).minut = ((s as any).minut ?? 0) + 15;
-      qspCall(s, 'money', 'pay', 50);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).minut = ((st as any).minut ?? 0) + 15;
+      qspCall(st, 'money', 'pay', 50);
+      qspCall(st, 'stat', '');
       scene.img('images/locations/city/residential/lake/gorka.jpg');
       scene.text('You climb to the top of the slide and lie back as you whiz down before splashing into the pool at the bottom.');
-      if (((s as any).deodorant_on ?? 0) === 1) {
-        qspCall(s, 'sweat', 'remove_deo');
+      if (((st as any).deodorant_on ?? 0) === 1) {
+        qspCall(st, 'sweat', 'remove_deo');
         scene.text('<br>Your deodorant gets washed away in the water.');
       }
       scene.actions([
@@ -373,20 +373,20 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'mood', 'raise', 'tiny');
-      (s as any).minut = ((s as any).minut ?? 0) + 30;
-      qspCall(s, 'money', 'pay', 100);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'mood', 'raise', 'tiny');
+      (st as any).minut = ((st as any).minut ?? 0) + 30;
+      qspCall(st, 'money', 'pay', 100);
+      qspCall(st, 'stat', '');
       scene.img('images/locations/city/residential/lake/horse.jpg');
       scene.text('You are helped into the saddle and have a pleasant ride along the lake shore.');
-      (s as any).horserand = Math.floor(Math.random() * 101) + 0;
-      if (((s as any).horserand ?? 0) >= 80  &&  ((s as any).horserand ?? 0) < 90) {
-        qspGoto(s, 'city_lake', 'horse1');
+      (st as any).horserand = (Math.floor(Math.random() * 101) + 0);
+      if (((st as any).horserand ?? 0) >= 80  &&  ((st as any).horserand ?? 0) < 90) {
+        qspGoto(st, 'city_lake', 'horse1');
       } else {
-        if (((s as any).horserand ?? 0) >= 90) {
-          qspGoto(s, 'city_lake', 'horse2');
+        if (((st as any).horserand ?? 0) >= 90) {
+          qspGoto(st, 'city_lake', 'horse2');
         }
       }
       scene.actions([
@@ -410,23 +410,23 @@ function enterTourBoat(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'mood', 'raise', 'tiny');
-      qspCall(s, 'money', 'pay', 100);
-      (s as any).minut = ((s as any).minut ?? 0) + 120;
-      qspCall(s, 'stat', '');
+      qspCall(st, 'mood', 'raise', 'tiny');
+      qspCall(st, 'money', 'pay', 100);
+      (st as any).minut = ((st as any).minut ?? 0) + 120;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/city/residential/lake/tourboat.jpg');
       scene.text('You pay for your ticket and board the boat spending tour hours enjoying the bay.');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
-    if (((s as any).daystage ?? 0) === 3) {
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
+    if (((st as any).daystage ?? 0) === 3) {
       scene.img('images/locations/city/residential/lake/sunset.jpg');
     } else {
-      if (((s as any).temper ?? 0) >= 10) {
+      if (((st as any).temper ?? 0) >= 10) {
         scene.img('images/locations/city/residential/lake/Seal.jpg');
       } else {
         scene.img('images/locations/city/residential/lake/Sealwinter.jpg');
@@ -511,47 +511,47 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['city_lake', 'start'] },
       { label: 'Approach', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You approach the man and he looks you over from head to toe, lustfully and imposingly.');
-    if (((s as any).pcs_hotcat ?? 0) <= 4) {
+    if (((st as any).pcs_hotcat ?? 0) <= 4) {
       scene.text('The man frowns. "You look terrible. You really should look after yourself better." he says with a hint of disappointment.');
     } else {
-      if (((s as any).pcs_hotcat ?? 0) <= 8) {
+      if (((st as any).pcs_hotcat ?? 0) <= 8) {
         scene.text('The man grins. "Looking good…"');
       } else {
         scene.text('The man nods. "I don\'t often see women as beautiful as you around here."');
       }
     }
-    if (((s as any).pcs_hotcat ?? 0) > 4) {
+    if (((st as any).pcs_hotcat ?? 0) > 4) {
       scene.actions([
         { label: 'What do you want?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You ask what he wants and he looks at you with a smirk. "It\'s written all over your face that you\'re a whore. Here to earn your money?"');
     scene.actions([
       { label: 'How dare you!?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You\'re taken aback by his comment, but he just grins widely. "Come on, don\'t worry. I love whores." He unbuttons his pants and pulls out his sizeable cock. "Come on baby, look what papa has for your goddamned mouth." The man beckons you with a finger.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinribak(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinribak(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'What?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You\'re surprised by such impudence, but he just grins widely. "You\'ll be even hungrier after seeing this!" He unbuttons his pants and pulls out his sizeable cock. "Come on baby, look what papa has for your goddamned mouth." The man beckons you with a finger.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinribak(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinribak(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Don\'t say anything', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You stand there, stunned in silence and grins widely. "Damn, I knew it just by looking at you! I have a nose for whores missing out on dick." He then unbuttons his pants and pulls out his sizeable cock. "Come on baby, look what papa has for your goddamned mouth." The man beckons you with a finger.');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinribak(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDinribak(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -569,12 +569,12 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).ribakName ?? 0) === 'whore') {
         scene.actions([
           { label: 'Money first', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('"Money first!" you tell him and he grins. "If you\'re going to make money whoring, then you better be prepared to be humiliated!" He takes the money out and hands it to you imposingly.');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -583,18 +583,18 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Take the money', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 2000);
-    (s as any).ribakSex = ((s as any).ribakSex ?? 0) + (1);
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'earn', 2000);
+    (st as any).ribakSex = ((st as any).ribakSex ?? 0) + (1);
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/facefuck.jpg');
     scene.text('You take the money and quickly hide it as the man grins wickedly. "On your knees scum! Now I\'m going to fuck your face so hard that you\'ll never forget it!" You blush, but still kneel in front of him. He grabs your head in his hands and spits in your face before rubbing it in with his hand.');
     scene.text('You freeze in confusion, but he immediately shoves his dick down your throat. You choke and tears flow from your eyes as he growls. "So, do you like it slut? Scum like you should enjoy it, you dirty whore. Do you like money? Then you\'ll have to get used to such things."');
@@ -602,17 +602,17 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     scene.text('Time slows to a halt and you start to think that this torment will never end when he suddenly pulls his cock out of your mouth.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', 'A177', 1);
-    qspCall(s, 'cum_call', 'mouth', 'A177', 1);
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', 'A177', 1);
+    qspCall(st, 'cum_call', 'mouth', 'A177', 1);
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/facefuck1.jpg');
     scene.text('He starts to cum on your face. A spurt of his cum flies into your mouth and you choke at the taste.');
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).ribakName = 'whore';
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    (st as any).ribakName = 'whore';
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/whore/facefuck1.jpg');
     scene.text('You\'re tired and haven\'t got the energy to leave. The man takes your hair in his hand and wipes his cock on your hair. After that, he rudely tells you. "Whore to the core! Now get out of here."');
     scene.actions([
@@ -630,9 +630,9 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
         if (((s as any).ribakName ?? 0) !== 'whore') {
           scene.actions([
             { label: 'Kneel in front of him', handler: (st: GameState) => {
-    (s as any).ribakSex = ((s as any).ribakSex ?? 0) + (1);
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    (st as any).ribakSex = ((st as any).ribakSex ?? 0) + (1);
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/big.jpg');
     scene.text('You kneel in front of him and he impatiently slaps you with his dick. "What me to slap your tits too? Start sucking!" He then grabs you by the hair and buries your face into his dick.');
     scene.text('He takes your head in his hands and begins to fuck your face with his dick. He often pushes it down your throat, causing you to gag and saliva to dribble from your mouth.');
@@ -641,23 +641,23 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Open your dirty fucking mouth and stick out your tongue!" he growls.');
     scene.actions([
       { label: 'Comply', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', 'A177', 1);
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A177', 1);
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', 'A177', 1);
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A177', 1);
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/whore/cum.jpg');
     scene.text('You obediently open your mouth and stick out your tongue. His cum starts splattering across your face and onto your tongue almost instantly.');
     scene.actions([
       { label: 'Look up at him', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/cumeat.jpg');
     scene.text('Your face is dripping with cum as you look up at the man. He smiles and collects some cum from your face with his finger before shoving it in your mouth. You obediently lick his finger and when it\'s clean, he gathers the rest of the cum from your face and makes you lick it up and swallow it.');
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).ribakName = 'lowered whore';
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    (st as any).ribakName = 'lowered whore';
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/spit.jpg');
     scene.text('He suddenly thrusts the fingers of both his hands into your mouth, holding your lips apart as he spits in your mouth. You flinch and feel like your cheeks blush with a flood of shame as he looks down at you angrily. "You are a lewd, vile creature that got what she deserved. Now get out!"');
     scene.actions([
@@ -669,10 +669,10 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Try to move out of the way', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'cum_call', 'face', 'A177', 1);
-    (s as any).ribakName = 'whore';
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'cum_call', 'face', 'A177', 1);
+    (st as any).ribakName = 'whore';
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/whore/cum1.jpg');
     scene.text('You try to dodge it, but he grabs you by the hair and pulls you back. You whimper as his cum splatters across your face. When he\'s finished, he pushes you away. "Get out of here, you dirty bitch!"');
     scene.actions([
@@ -698,12 +698,12 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the idiot alone', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You call him an idiot and get ready to leave. The man just smiles. "Well, maybe I was wrong, and you\'re not a slutty whore. Or maybe I\'m right and you are a slut, and you will stay and earn two thousand."');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -712,21 +712,21 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Money first', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('"Money up front!" you hesitantly blurt out.');
     scene.text('The man laughs. "Well, that solves that one then! Take your money whore, and then you won\'t need to play games pretending to be a schoolgirl virgin." The guy takes the money and hands it to you imposingly.');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Change your mind and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -735,21 +735,21 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Change your mind and leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Take the money', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 2000);
-    if ((!((s as any).ribakSex ?? 0))) {
-      (s as any).ribakSex = 1;
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    qspCall(st, 'money', 'earn', 2000);
+    if ((!((st as any).ribakSex ?? 0))) {
+      (st as any).ribakSex = 1;
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/facefuck.jpg');
     scene.text('You take the money and quickly hide it as the man grins wickedly. "On your knees scum! Now I\'m going to fuck your face so hard that you\'ll never forget it!" You blush, but still kneel in front of him. He grabs your head in his hands and spits in your face before rubbing it in with his hand.');
     scene.text('You freeze in confusion, but he immediately shoves his dick down your throat. You choke and tears flow from your eyes as he growls. "So, do you like it slut? Scum like you should enjoy it, you dirty whore. Do you like money? Then you\'ll have to get used to such things."');
@@ -757,17 +757,17 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     scene.text('Time slows to a halt and you start to think that this torment will never end when he suddenly pulls his cock out of your mouth.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', 'A177', 1);
-    qspCall(s, 'cum_call', 'mouth', 'A177', 1);
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', 'A177', 1);
+    qspCall(st, 'cum_call', 'mouth', 'A177', 1);
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/facefuck1.jpg');
     scene.text('He starts to cum on your face. A spurt of his cum flies into your mouth and you choke at the taste.');
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).ribakName = 'whore';
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    (st as any).ribakName = 'whore';
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/whore/facefuck1.jpg');
     scene.text('You\'re tired and haven\'t got the energy to leave. The man takes your hair in his hand and wipes his cock on your hair. After that, he rudely tells you. "Whore to the core! Now get out of here."');
     scene.actions([
@@ -783,12 +783,12 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Move closer', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You hesitantly move closer to the man and he quickly grabs you by the wrist, literally restraining you. "Come on baby, no need to think about it. We both know you want to taste my dick, so don\'t be shy."');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Feign compliance then run', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -797,21 +797,21 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Feign compliance then run', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Kneel in front of him', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if ((!((s as any).ribakSex ?? 0))) {
-      (s as any).ribakSex = 1;
-      (s as any).guy = ((s as any).guy ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    if ((!((st as any).ribakSex ?? 0))) {
+      (st as any).ribakSex = 1;
+      (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/big.jpg');
     scene.text('You kneel in front of him and he impatiently slaps you with his dick. "What me to slap your tits too? Start sucking!" He then grabs you by the hair and buries your face into his dick.');
     scene.text('He takes your head in his hands and begins to fuck your face with his dick. He often pushes it down your throat, causing you to gag and saliva to dribble from your mouth.');
@@ -820,23 +820,23 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     scene.text('"Open your dirty fucking mouth and stick out your tongue!" he growls.');
     scene.actions([
       { label: 'Comply', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', 'A177', 1);
-    qspCall(s, 'cum_call', 'mouth_swallow', 'A177', 1);
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', 'A177', 1);
+    qspCall(st, 'cum_call', 'mouth_swallow', 'A177', 1);
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/whore/cum.jpg');
     scene.text('You obediently open your mouth and stick out your tongue. His cum starts splattering across your face and onto your tongue almost instantly.');
     scene.actions([
       { label: 'Look up at him', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/cumeat.jpg');
     scene.text('Your face is dripping with cum as you look up at the man. He smiles and collects some cum from your face with his finger before shoving it in your mouth. You obediently lick his finger and when it\'s clean, he gathers the rest of the cum from your face and makes you lick it up and swallow it.');
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    (s as any).ribakName = 'lowered whore';
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    (st as any).ribakName = 'lowered whore';
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/whore/spit.jpg');
     scene.text('He suddenly thrusts the fingers of both his hands into your mouth, holding your lips apart as he spits in your mouth. You flinch and feel like your cheeks blush with a flood of shame as he looks down at you angrily. "You are a lewd, vile creature that got what she deserved. Now get out!"');
     scene.actions([
@@ -848,10 +848,10 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Try to move out of the way', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'cum_call', 'face', 'A177', 1);
-    (s as any).ribakName = 'whore';
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'cum_call', 'face', 'A177', 1);
+    (st as any).ribakName = 'whore';
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/whore/cum1.jpg');
     scene.text('You try to dodge it, but he grabs you by the hair and pulls you back. You whimper as his cum splatters across your face. When he\'s finished, he pushes you away. "Get out of here, you dirty bitch!"');
     scene.actions([
@@ -878,19 +878,19 @@ function enterWalklake2(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).StasikValera ?? 0))) {
     scene.actions([
       { label: 'Look at them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).StasikValera = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).StasikValera = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/stasValera.jpg');
     scene.text('You watch the two men whispering to each other before one of them walks up to you. "Hey beautiful, I\'m Stasik, and this is my friend Valera. What\'s your name?" he asks with a smile.');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname || '') ?? ''), goto: ['city_lake', 'stasValera'] },
+      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname || '') ?? ''), goto: ['city_lake', 'stasValera'] },
       { label: 'I have to go', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('You don\'t want to talk with them and start walking out of the water as Stasik tries to persuade you. "Come on, babe. Do we look like savages? We just wanted to talk, but I understand if you\'re frightened. I just wanted to ask you your name."');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname || '') ?? ''), goto: ['city_lake', 'stasValera'] },
+      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname || '') ?? ''), goto: ['city_lake', 'stasValera'] },
       { label: 'Leave', goto: ['city_lake', 'start'] },
     ]);
   } },
@@ -901,43 +901,43 @@ function enterWalklake2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_had_sex ?? 0)?.['A47']) {
     scene.actions([
       { label: 'Wave to them', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A47');
-    qspCall(s, 'npcStat', 'A48', 'a');
+    qspCall(st, 'npcStat', 'A47');
+    qspCall(st, 'npcStat', 'A48', 'a');
     scene.img('images/locations/city/residential/lake/sex/walk2/walk2.jpg');
     scene.text('Looking directly at them, you pull off your panties and wave to them. Stasik and Valera almost run towards you as you pull off the rest of your clothes and kneel.');
-    ((s as any).npc_had_sex = (s as any).npc_had_sex ?? {})['A48'] = 1;
+    ((st as any).npc_had_sex = (st as any).npc_had_sex ?? {})['A48'] = 1;
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 2, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID1 ?? 0), 'group');
     scene.img('images/locations/city/residential/lake/sex/walk2/walk3.jpg');
     scene.text('The men unbutton their pants as they run to you. When they reach you, you grab their cocks and alternate between sucking them before Stasik roughly grabs your ass and tries to push you on all fours.');
     scene.actions([
       { label: 'Doggystyle', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID1 ?? 0), 'group');
     scene.img('images/locations/city/residential/lake/sex/walk2/walk4.jpg');
     scene.text('You comply and bend over. Stasik forcefully enters your pussy as you continue to suck Valera\'s dick, but he too can\'t resist and tries to pull his dick out of your mouth.');
     scene.actions([
       { label: 'Let him go', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0));
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0));
     scene.img('images/locations/city/residential/lake/sex/walk2/walk5.jpg');
     scene.text('As soon as you let go of his cock, Valera literally pulls you off Stasik\'s dick, pulls you on top of him and lowers you down onto his dick, slowly penetrating your asshole.');
     scene.actions([
       { label: 'Beckon Stasik', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'anal', 10, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 10, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk2/walk6.jpg');
     scene.text('With a simple glance, you beckon Stasik back to your pussy. He quickly moves in and pushes his dick back into you, filling both your holes.');
     scene.text('They start fucking your holes in tandem, causing you to moan loudly in pleasure.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1);
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0), 1);
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0), 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0), 1);
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0), 1);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/walk2/walk7.jpg');
     scene.text('After a few minutes, Stasik and Valera pull out of you and you get on your knees in front of them as they jerk their dicks. You open your mouth and cum soon starts splattering across your face and tongue as the two men groan loudly.');
     scene.actions([
@@ -972,8 +972,8 @@ function enterStasValera(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat with them', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/talk6.jpg');
     scene.text('You chat with the two men. Stasik tells you that he and Valera work as sales representatives at a major company, and boasts about their seniority and importance. Both men make lewd gestures throughout the conversation before Stasik moves his hand towards your breasts.');
     scene.actions([
@@ -1000,9 +1000,9 @@ function enterStasValera2a(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/refuse3.jpg');
     scene.text('You angrily stand up and prepare to leave. Stasik gets to his feet and tries to persuade you to go with them to the cafe.');
     scene.actions([
@@ -1016,9 +1016,9 @@ function enterStasValera2a(s: GameState, scene: SceneBuilder): void {
     { label: 'Remain silent', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/stas/tits1.jpg');
     scene.text('You say nothing and Stasik immediately takes advantage of your confusion. His hand gently squeezes your breast and you feel a pleasant warmth and tenderness.');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'arousal', 'foreplay', (-5));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'arousal', 'foreplay', (-5));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', goto: ['city_lake', 'stasValera3'] },
     ]);
@@ -1056,9 +1056,9 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'What are you doing?', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/refuse4.jpg');
     scene.text('You jump to your feet and fix your bra as Stasik smiles. "Don\'t be afraid girl. I\'m sure you\'ll like it."');
     scene.actions([
@@ -1077,13 +1077,13 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Feebly protest', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/talk5.jpg');
     scene.text('You try to pull your bra back and shake your head as Stasik smiles. "Don\'t be shy girl. I\'m sure you\'ll like it."');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'arousal', 'foreplay', (-5));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'arousal', 'foreplay', (-5));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Relax', goto: ['city_lake', 'stasValera4'] },
     ]);
@@ -1095,9 +1095,9 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
     { label: 'Be silent', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/stas/tits3.jpg');
     scene.text('You get comfortable and enjoy the skillful way Staik sucks your breast as his hands begin to passionately caress your body before his fingers penetrate your panties and begin to caress your pussy.');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'arousal', 'foreplay', (-5));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'arousal', 'foreplay', (-5));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Relax', goto: ['city_lake', 'stasValera4'] },
     ]);
@@ -1112,7 +1112,7 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A47');
   qspCall(s, 'npcStat', 'A48', 'a');
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/city/residential/lake/sex/stas/oral${Math.floor(Math.random() * 6) + 1}.jpg`);
+  scene.img(`images/locations/city/residential/lake/sex/stas/oral${(Math.floor(Math.random() * 6) + 1)}.jpg`);
   scene.text('The guys pull out their cocks and you kneel down to get them warmed up. It doesn\'t take long before you\'re in the mood for more and it\'s clear they are too.');
   qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID ?? 0));
   qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0));
@@ -1120,40 +1120,40 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Get fucked', handler: (st: GameState) => {
-    scene.img(`images/locations/city/residential/lake/sex/stas/sex${Math.floor(Math.random() * 3) + 7}.jpg`);
+    scene.img(`images/locations/city/residential/lake/sex/stas/sex${(Math.floor(Math.random() * 3) + 7)}.jpg`);
     scene.text('Valera watches as Stasik spreads your legs and lines his dick up with your pussy. He slowly pushes into you, making you moan softly.');
-    qspCall(s, 'dinsex', 'vaginal_sex', 10, ((s as any).npcID ?? 0));
+    qspCall(st, 'dinsex', 'vaginal_sex', 10, ((st as any).npcID ?? 0));
     scene.actions([
       { label: 'Don\'t forget Valera', handler: (st: GameState) => {
-    scene.img(`images/locations/city/residential/lake/sex/stas/sex${Math.floor(Math.random() * 6) + 1}.jpg`);
+    scene.img(`images/locations/city/residential/lake/sex/stas/sex${(Math.floor(Math.random() * 6) + 1)}.jpg`);
     scene.text('Stasik starts fucking you as Valera kneels in front of you and slides his dick into your mouth.');
-    qspCall(s, 'dinSex', 'bj_random');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0));
-    (s as any).pose = 1;
-    qspCall(s, 'dinsex', 'sexcum', ((s as any).npcID1 ?? 0));
+    qspCall(st, 'dinSex', 'bj_random');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0));
+    (st as any).pose = 1;
+    qspCall(st, 'dinsex', 'sexcum', ((st as any).npcID1 ?? 0));
     scene.actions([
       { label: 'Finish Valera off', handler: (st: GameState) => {
-    scene.img(`images/locations/city/residential/lake/sex/stas/sex${Math.floor(Math.random() * 4) + 1}.jpg`);
+    scene.img(`images/locations/city/residential/lake/sex/stas/sex${(Math.floor(Math.random() * 4) + 1)}.jpg`);
     scene.text('Valera groans and his cock twitches in your mouth as his cum spurts into your throat. You obediently swallow all of it.');
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID1 ?? 0), 1);
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0));
-    qspCall(s, 'dinsex', 'bj_swallow_random');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID1 ?? 0), 1);
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0));
+    qspCall(st, 'dinsex', 'bj_swallow_random');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'arousal', 'end');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/stas/undress.jpg');
     // TODO-QSP: dynamic text: Once the men recover, they start getting dressed before Stasik helps you to your...
-    scene.text(`Once the men recover, they start getting dressed before Stasik helps you to your feet. "You're a cool girl ${((s as any).pcs_nickname || '')}, let us walk you home."`);
-    if (((s as any).home ?? 0)?.['current'] === 'city_apartment') {
+    scene.text(`Once the men recover, they start getting dressed before Stasik helps you to your feet. "You're a cool girl ${((st as any).pcs_nickname || '')}, let us walk you home."`);
+    if (((st as any).home ?? 0)?.['current'] === 'city_apartment') {
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    (s as any).cumface = 0;
-    (s as any).StasValeraKnow = 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    (st as any).cumface = 0;
+    (st as any).StasValeraKnow = 1;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/stasValera.jpg');
-    if (((s as any).PSwim ?? 0) === 1) {
+    if (((st as any).PSwim ?? 0) === 1) {
       // TODO-QSP: gs 'clothing', 'wear', $lastwornclothingtype['swim'], lastwornclothingnumber['swim']
       // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
       // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
@@ -1168,8 +1168,8 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'You don\'t live nearby', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/stasValera.jpg');
     scene.text('"I\'m flattered, but I don\'t live nearby." you reply and Stasik nods. "I see. Maybe we\'ll meet here again another time?"');
     scene.text('"Maybe." you reply with a smile as you start walking back to the beach.');
@@ -1182,8 +1182,8 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'car_funcs', 'is_here')) {
       scene.actions([
         { label: 'Tell them that your car parked close by', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/stasValera.jpg');
     scene.text('"Thanks, but my car is nearby." you reply and Stasik nods. "I see. Maybe we\'ll meet here again another time?"');
     scene.text('"Maybe." you reply with a smile and start to walk toward your car.');
@@ -1195,8 +1195,8 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'I\'ll manage', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/refuse2.jpg');
     scene.text('You shake your head and Stasik simply shrugs. "As you wish then."');
     scene.actions([
@@ -1230,9 +1230,9 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
     ]);
   }
@@ -1241,8 +1241,8 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
     { label: 'Flirt with them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake2.jpg');
     scene.text('The men sit next to you and start flirting with you while trying to sneak a touch of your body.');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1251,58 +1251,58 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Relax and enjoy it', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'b');
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'c');
-    (s as any).guy = ((s as any).guy ?? 0) + (4);
+    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'b');
+    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'c');
+    (st as any).guy = ((st as any).guy ?? 0) + (4);
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake3.jpg');
     scene.text('You lie back and enjoy what\'s happening before one of the men suddenly pulls his dick out and holds it to your face. You grin and start licking it as the others get excited and pull their dicks out as well. You get up on your knees in the middle of the group, trying to please all of them at once.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID2 ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-5), ((s as any).npcID3 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-5), ((st as any).npcID2 ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-5), ((st as any).npcID3 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake4.jpg');
     scene.text('One of the men leans toward your pussy and begins to lick it before trying to shove his fingers inside.');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal_finger', (-10), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-10), ((s as any).npcID2 ?? 0), 'group');
-    qspCall(s, 'arousal', 'foreplay', (-10), ((s as any).npcID3 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal_finger', (-10), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-10), ((st as any).npcID2 ?? 0), 'group');
+    qspCall(st, 'arousal', 'foreplay', (-10), ((st as any).npcID3 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Stop him', goto: ['city_lake', 'vlake1cum'] },
       { label: 'Enjoy it', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake7.jpg');
     scene.text('You relax and enjoy the sensation. Noticing your reaction, the man removes his fingers and pushes his dick inside you. You continue giving the others blowjobs and jerking them off.');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'hj', (-10), ((s as any).npcID2 ?? 0), 'group');
-    qspCall(s, 'arousal', 'hj', (-10), ((s as any).npcID3 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'hj', (-10), ((st as any).npcID2 ?? 0), 'group');
+    qspCall(st, 'arousal', 'hj', (-10), ((st as any).npcID3 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Double penetration', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake8.jpg');
     scene.text('"There\'s room for two…" you say teasingly and don\'t even have time to react before a dick is being pushed into your ass. The group pass you around and take turns fucking both your holes and letting you suck and jerk their dicks before it becomes apparent that they\'re all close to finishing.');
-    qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal', (-10), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'anal', (-10), ((s as any).npcID2 ?? 0), 'group');
-    qspCall(s, 'arousal', 'hj', (-10), ((s as any).npcID3 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 10, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', (-10), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', (-10), ((st as any).npcID2 ?? 0), 'group');
+    qspCall(st, 'arousal', 'hj', (-10), ((st as any).npcID3 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['city_lake', 'vlake1cum'] },
     ]);
@@ -1337,12 +1337,12 @@ function enterVlake1cum(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
   }, goto: ['city_lake', 'start'] },
     { label: 'Masturbate', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'clit_finger', 5, 'masturbation');
+    qspCall(st, 'arousal', 'clit_finger', 5, 'masturbation');
     scene.img('images/locations/city/residential/lake/sex/vlake1/vlake6.jpg');
     scene.text('Left unsatisfied, you take matters into your own hands and vigorously caress your pussy until you scream out in orgasm.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'clit_finger', 5);
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'clit_finger', 5);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['city_lake', 'start'] },
     ]);
@@ -1365,9 +1365,9 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Ignore them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
     ]);
   }
@@ -1376,13 +1376,13 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
     { label: 'Wave at them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake2.jpg');
     scene.text('You smile and wave at them and they walk up to you. One of them kneels down next to you and kisses your lips as the second one kneels in front of you and strokes your panties.');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Push them away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
       ]);
     } else {
@@ -1394,42 +1394,42 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Kneel', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'npcgeneratec', '', 0, 'Stranger at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    (s as any).guy = ((s as any).guy ?? 0) + (2);
+    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'npcgeneratec', '', 0, 'Stranger at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake3.jpg');
     scene.text('You get up on your knees and remove your bikini as they pull their cocks out. You take them in your hands and begin sucking both in turn.');
-    qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'hj', (-2), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'hj', (-2), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 2, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', 2, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'hj', (-2), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'hj', (-2), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake4.jpg');
     scene.text('One of the men lies down and you continue to suck him while lifting your ass into the air. The second man enjoys the view before sliding his dick into your wet pussy.');
     scene.actions([
       { label: 'Double penetration', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake5.jpg');
     scene.text('"I want you both!" you moan loudly as you straddle one of the men. The second moves in behind and pushes his cock into your ass.');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'anus', ((st as any).npcID ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake6.jpg');
     scene.text('Changing position, you straddle the man lying down and slide down onto his dick, moaning as it penetrates your ass while the second man holds your head in his hand and starts fucking your mouth, pushing his cock deeper down your throat with every thrust. After a while, you feel hot cum fill your ass as the second man gets ready to cum in your mouth.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake8.jpg');
     scene.text('You continue to suck and soon your mouth is filled with their cum. You swallow it and carefully lick his cock, leaving not even a drop of cum behind.');
     scene.actions([
@@ -1437,8 +1437,8 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/vlake2/vlake7.jpg');
     scene.text('You remove the cock from your mouth and the man groans as he cums over your face.');
     scene.actions([
@@ -1473,53 +1473,53 @@ function enterAndrey1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with him', handler: (st: GameState) => {
-    (s as any).anreiday = ((s as any).daystart ?? 0);
-    (s as any).anreirape = 0;
-    (s as any).pcs_makeup = 1;
-    (s as any).cumspclnt = 4;
-    qspCall(s, 'cum_cleanup', '');
-    (s as any).minut = ((s as any).minut ?? 0) + 25;
-    qspCall(s, 'exercise', 'tier1', 5, 'stren', 'vital');
-    (s as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
-    qspCall(s, 'stat', '');
+    (st as any).anreiday = ((st as any).daystart ?? 0);
+    (st as any).anreirape = 0;
+    (st as any).pcs_makeup = 1;
+    (st as any).cumspclnt = 4;
+    qspCall(st, 'cum_cleanup', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 25;
+    qspCall(st, 'exercise', 'tier1', 5, 'stren', 'vital');
+    (st as any).pcs_sweat = 10 + (Math.floor(Math.random() * 5) + 0);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/andrey1/andrey1.jpg');
     scene.text('"I see the lady agrees…" Andrew says with a wide grin. "Then let\'s go for a swim!" He takes you in his arms, laughing at your ineffective attempts to stop him uncovering your chest. Moving your hand aside, his lips gently pinch your right nipple. You sigh and a warm wave of excitement rushes through you.');
     scene.text('You then both go swimming before returning to the beach and lying down in the sand, catching your breath as your body relaxes. "First, you should excite a man… Wrap your lips around my cock."');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
       { label: 'Open your mouth', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A46');
+    qspCall(st, 'npcStat', 'A46');
     scene.img('images/locations/city/residential/lake/sex/andrey1/andrey2.jpg');
     scene.text('You run your tongue along his shaft before taking him into your mouth as deep as you can. Andrew starts fucking your mouth when you suddenly hear a noise coming from some nearby bushes. You look up and see a young man spying on you, his hand buried in his pants.');
     scene.text('Andrew also notices the Peeping Tom and turns your head so that the voyeur can watch him fuck your mouth. You defiantly continue to suck Andrew\'s cock, periodically holding his full length in your mouth and gagging as you lick his testicles.');
     scene.text('Andrew then pulls out of your mouth and pushes you onto your back. In one swift motion, he plunges his dick deep into your puusy. You cringe in pain, but Andrew ignores you and begins roughly thrusting in and out of you.');
     scene.text('After a few minutes of monotonous movements, you are enveloped in sweet bliss when Andrew\'s fingers stimulate your anus. You ride the waves of incredible pleasure and through narrowed eyelids, you see the young Peeping Tom, speechless as he watches in fascinated wonder.');
-    qspCall(s, 'arousal', 'bj', 4, ((s as any).npcID ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 4, ((st as any).npcID ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Call him over', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
     scene.img('images/locations/city/residential/lake/sex/andrey1/andrey3.jpg');
     scene.text('You beckon him over and the shy young man slowly walks up to you. "Well, what are you waiting for? Undress and get inside her already!" Andrew shouts as he turns you over and spreads your buttocks with his hands. The young man moves in behind and pushes his dick into your ass. You moan loudly as the two cocks thrust in and out of you until the young man pulls out and finishes on your ass. Andrew then gets up and cums in your mouth.');
-    qspCall(s, 'cum_call', 'mouth', 'A46', 1);
-    qspCall(s, 'npcgeneratec', '', 0, 'a voyeur at the beach', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0));
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0));
-    qspCall(s, 'cum_call', 'butt', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth', 'A46', 1);
+    qspCall(st, 'npcgeneratec', '', 0, 'a voyeur at the beach', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0));
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0));
+    qspCall(st, 'cum_call', 'butt', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get up', goto: ['city_lake', 'start'] },
     ]);
@@ -1527,9 +1527,9 @@ function enterAndrey1(s: GameState, scene: SceneBuilder): void {
       { label: 'Faster', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/andrey1/andrey4.jpg');
     scene.text('"Faster! Deeper! Stronger!" you enthusiastically scream. He answers with an inarticulate growl through his ragged breathing. You look back and notice that the peeping man has run away. Andrew then pulls out and cums in your mouth.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0));
-    qspCall(s, 'cum_call', 'mouth', 'A46', 1);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0));
+    qspCall(st, 'cum_call', 'mouth', 'A46', 1);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Get up', goto: ['city_lake', 'start'] },
     ]);
@@ -1558,58 +1558,58 @@ function enterKater1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Take the jet ski and leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'arousal', 'vaginal_finger', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'arousal', 'vaginal_finger', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/kater1/kater2.jpg');
     scene.text('You open your legs, making it clear that you are ready to thank your savior. He smiles and slides his fingers into your pussy as his tongue begins to tease your clitoris.');
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater3.jpg');
     scene.text('You sit the guy down and start licking his cock before opening your lips and taking it into your mouth. You start passionately sucking and in only a few minutes, you sense that he\'s about to cum.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['city_lake', 'kater1cum'] },
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater4.jpg');
     scene.text('The guy bends you over and slides his dick into your pussy before he starts roughly fucking you.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater5.jpg');
     scene.text('When he gets tired, you push him onto his back and jump on top of him, riding him cowgirl.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater6.jpg');
     scene.text('His dick still deep inside you, you spin around and keep riding him. After a few minutes, you grow weak with pleasure and fall off of him.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater7.jpg');
     scene.text('The guy turns you onto your side and re-enters your pussy, continuing the rhythm from before.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater1/kater8.jpg');
     scene.text('He stands up and pulls you up before lifting one of your legs and forcefully penetrating you. Tired but feeling very satisfied, you hang onto him as he fucks you, waiting for him to finish. After a few more thrusts, he pulls out and lets you fall to your knees before sliding his dick into your mouth, giving you a good taste of your juices.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck his dick', goto: ['city_lake', 'kater1cum'] },
     ]);
@@ -1652,9 +1652,9 @@ function enterKater1cum(s: GameState, scene: SceneBuilder): void {
 
 function enterKater2(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/kater2/kater1.jpg');
@@ -1673,57 +1673,57 @@ function enterKater2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Pretend to be asleep until docked', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Approach them', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (2);
+    (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/kater2/kater2.jpg');
     scene.text('You grin as you strip out of your swimsuit, walk over to the guys and, without saying a word, jump on one of them and start kissing him passionately as you feel his cock grow hard and press against your ass. You take it in your hand and guide it into your pussy, moaning as it slides into you.');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater2/kater3.jpg');
     scene.text('The guy pulls out of you and turns you around before lifting you up and spreading your legs. He pushes his dick against your anus and you moan when it pops into your ass. He then starts fucking you, making you moan even more.');
     scene.text('"Want it deeper?" he asks with a laugh.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater2/kater4.jpg');
     scene.text('"Yes! Fuck me harder and deeper!" you shout.');
     scene.text('"Well then, hold on!" he replies as he places you down on all fours before he moves in behind you and shoves his cock so deep into your ass that his balls slap against your pussy. The second guy, who up until this point has just been watching, slaps you in the face with his cock. You take it in your hand and start sucking it.');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Take both of them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater2/kater5.jpg');
     scene.text('"Fuck me in both holes!" you shout and the two men laugh in marvel at your lust. Feeling very encouraged, they quickly penetrate both your ass and your pussy and satrt vigorously pounding your holes. The pleasure quickly overwhelms you and you scream out in orgasm.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater2/kater6.jpg');
     scene.text('Once your orgasm passes, the guys sit you on the deck and stand on either side of you, jerking their dicks.');
     scene.actions([
       { label: 'Turn to one', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/kater2/kater7.jpg');
     scene.text('One of the guys groans and you turn to him with your mouth open. His cum shoots into your mouth and you enthusiastically swallow it.');
     scene.actions([
       { label: 'Turn to the other', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth', 'a rescuer at the lake', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth', 'a rescuer at the lake', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/kater2/kater8.jpg');
     scene.text('The second guy then grabs your head and turns you to face him. He completely covers your face with his load.');
     scene.actions([
@@ -1748,7 +1748,7 @@ function enterKater2(s: GameState, scene: SceneBuilder): void {
 
 function enterKater3(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (20);
-  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/kater3/1.jpg');
@@ -1768,50 +1768,50 @@ function enterKater3(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Take the jet ski and leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Spread your legs', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (2);
+    (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/kater3/2.jpg');
     scene.text('You open your legs, making it clear that you are ready to thank your savior. He smiles and slides his fingers into your pussy as his tongue begins to tease your clitoris.');
-    qspCall(s, 'arousal', 'vaginal_finger', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal_finger', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Give blowjob', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'a rescuer at the lake', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npcgeneratec', '', 0, 'a rescuer at the lake', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
     scene.img('images/locations/city/residential/lake/sex/kater3/4.jpg');
     scene.text('You sit the guy down and start licking his cock before opening your lips and taking it into your mouth. You start passionately sucking until you see a second boat approaching. Your saviour obviously knows him and waves him aboard. He quickly jumps over into the boat and walks up to you. After checking you out, he pulls his cock out and slides it into your pussy.');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater3/6.jpg');
     scene.text('You climb on top of one of them, taking his cock into your pussy as the other penetrates your ass.');
-    qspCall(s, 'arousal', 'vaginal', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater3/8.jpg');
     scene.text('The two guys move around in various positions as they take turns fucking both your holes.');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'anal', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/kater3/11.jpg');
     scene.text('They both pull out and you kneel down to let them both cum in your mouth.');
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0));
-    qspCall(s, 'cum_call', 'mouth', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID ?? 0));
+    qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['city_lake', 'start'] },
     ]);
@@ -1830,9 +1830,9 @@ function enterKater3(s: GameState, scene: SceneBuilder): void {
 
 function enterHorse1(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'event_outdoors';
-  qspCall(s, 'npcgeneratec', '', 0, 'Quad rider', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'Quad rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Quad rider', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'Quad rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/horse1/horse1.jpg');
@@ -1860,10 +1860,10 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
       { label: 'Move on', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse3.jpg');
     scene.text('One of the men then suddenly grabs you and begins to paw at you as the other hugs you from behind and reaches into your panties.');
-    qspCall(s, 'arousal', 'foreplay', 5);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'group', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'foreplay', 5);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'group', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Push them away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1878,39 +1878,39 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Go with it', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (2);
+    (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/horse1/horse4.jpg');
     scene.text('You pull their cocks out of their pants, squat down and begin to suck them in turn.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Fuck them', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse5.jpg');
     scene.text('One of the men lies down and you continue to suck him as the other moves in behind and slides his cock into your pussy.');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse6.jpg');
     scene.text('You straddle one of the men and the other moves up and starts teasing you with his cock, letting you suck it before pulling away from you.');
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse7.jpg');
     scene.text('You climb off the guy you were riding and get on all fours. The two of them then spitroast you as one fucks your pussy and the other pushes his dick into your mouth. You suck the dick in your mouth as you buck your hips, taking the cock as deep into your pussy as you can. A few minutes of this go by before you have a small but satisfying orgasm. You sense that the guys are close as well.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Pull out', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse8.jpg');
     scene.text('You remove the dick from your mouth and begin stroking it. A few seconds, a stream of cum splashes onto your tongue.');
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck the other guy', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse9.jpg');
@@ -1919,8 +1919,8 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse11.jpg');
     scene.text('Cum pours into your mouth and you swallow it all before licking and sucking his cock clean.');
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['city_lake', 'start'] },
     ]);
@@ -1928,8 +1928,8 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
       { label: 'Finish', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse1/horse10.jpg');
     scene.text('You remove the dick from your mouth and begin stroking it. A few seconds, a stream of cum splatters across your face.');
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['city_lake', 'start'] },
     ]);
@@ -1955,9 +1955,9 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHorse2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Horse rider', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'Horse rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-  qspCall(s, 'npcgeneratec', '', 0, 'Horse rider', Math.floor(Math.random() * 28) + 18, Math.floor(Math.random() * 2) + 3, 1);
+  qspCall(s, 'npcgeneratec', '', 0, 'Horse rider', (Math.floor(Math.random() * 28) + 18), (Math.floor(Math.random() * 2) + 3), 1);
   qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/horse2/horse1.jpg');
@@ -1972,9 +1972,9 @@ function enterHorse2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'city_lake', 'start');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'city_lake', 'start');
   } },
     ]);
   }
@@ -1986,37 +1986,37 @@ function enterHorse2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Return to your horse', goto: ['city_lake', 'start'] },
       { label: 'Tease them', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (2);
+    (st as any).guy = ((st as any).guy ?? 0) + (2);
     scene.img('images/locations/city/residential/lake/sex/horse2/horse3.jpg');
     scene.text('You slowly rub their groins through their pants. The men look at each other and freeze as you kneel down, pull out their cocks and start stroking and sucking them.');
-    qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lie back', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse2/horse4.jpg');
     scene.text('You lie on your back and one of the men grabs your ankles and spreads your legs wide enough to slide his dick into your ass. You squeal softly and the second kneels next to your head and tries to shove his dick into your mouth.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Suck him', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse2/horse5.jpg');
     scene.text('You take his dick into your mouth and suck it as the other man fucks your ass.');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     scene.img('images/locations/city/residential/lake/sex/horse2/horse6.jpg');
     scene.text('The man you\'re sucking pulls out and lies down. You straddle him as the other man moves in behind to penetrate your ass. The two men fuck you strongly and your whole body trembles as you orgasm. The two men sound like they\'re close as well.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'bj', (-5), ((s as any).npcID ?? 0), 'group');
-    qspCall(s, 'arousal', 'anal', 5, ((s as any).npcID1 ?? 0), 'group');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'bj', (-5), ((st as any).npcID ?? 0), 'group');
+    qspCall(st, 'arousal', 'anal', 5, ((st as any).npcID1 ?? 0), 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'face', ((s as any).npcID1 ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/horse2/horse7.jpg');
     scene.text('You climb off them and kneel down in front of them. They stand on either side of you as they jerk their cocks. One immediately groans as his cum splashes over your face.');
     scene.actions([
@@ -2025,8 +2025,8 @@ function enterHorse2(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn to the other man and wrap your lips around his cock. He pushes deep into your mouth and groans.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).npcID ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).npcID ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/horse2/horse9.jpg');
     scene.text('He pulls out ands you stick your tongue out. Cum soon splatters into your mouth and down your throat.');
     scene.actions([
@@ -2064,8 +2064,8 @@ function enterVolleyballIntroDay(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Agree to join', goto: ['city_lake', 'volleyball_day'] },
     { label: 'Decline (polite)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).pcs_tan = ((st as any).pcs_tan ?? 0) + (1);
     scene.text('"No, Thanks, I am not feeling it today, I am just wanting to take in some sun," you say with a smile.');
     scene.text('He smiles back and says "If you change your mind you know where we are."');
     scene.text('With a laugh he rejoins his friends.');
@@ -2076,8 +2076,8 @@ function enterVolleyballIntroDay(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Decline (rude)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    (s as any).pcs_tan = ((s as any).pcs_tan ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    (st as any).pcs_tan = ((st as any).pcs_tan ?? 0) + (1);
     scene.text('You give the guy a cold sneer and say "Go eat a bag of dicks."');
     scene.text('You put you sunglasses back on and begin to lay down.');
     scene.text('Then you hear him say "Damn, bitch. No wonder you are here alone".');
@@ -2134,14 +2134,14 @@ function enterBonfire(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Join in', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'drugs', 'alcohol', 'beer');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'drugs', 'alcohol', 'beer');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/lake/bonfire.jpg');
     scene.text('As you follow your new friend over to the fire pit, he asks, "Hey what\'s your name? Mine is Gregor"');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you responded, as the two of you reach the party.
-    scene.text(`"${((s as any).pcs_firstname || '')}." you responded, as the two of you reach the party.`);
+    scene.text(`"${((st as any).pcs_firstname || '')}." you responded, as the two of you reach the party.`);
     scene.text('You set down your things, and are handed a beer and a stick with a marshmallow on it.');
     scene.text('You enjoy the next couple of hours with Gregor and his friends, laughing, flirting and dancing.');
     scene.text('You finally succeed in roasting a marshmallow and enjoy a tasty smore as the party winds down.');
@@ -2175,8 +2175,8 @@ function enterAndreiIntro(s: GameState, scene: SceneBuilder): void {
     scene.text('Opening your eyes, you see the shadowy figure of an unshaven man lustfully staring at you. You become uncomfortable - you\'re lying in front of a stranger, moaning in sexual bliss like a slut. There\'s no one else on the beach and you fear what he might do with you.');
     scene.text('Thoughts flash through your head as the man pulls off his shorts. You can\'t help but stare at his dick - it\'s huge.');
     scene.text('"Like what you see, girl?" he asks with a smile.');
-    qspCall(s, 'willpower', 'misc', 'resist', 'medium');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'medium');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Run away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -2185,11 +2185,11 @@ function enterAndreiIntro(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Run away', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('You try to get up, but he pulls you in close to his chest.');
-    qspCall(s, 'willpower', 'misc', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'misc', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Knee him in the balls', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -2198,9 +2198,9 @@ function enterAndreiIntro(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Knee him in the balls', handler: (st: GameState) => {
-    (s as any).andrei = 1;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).andrei = 1;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('You very accurately knee him in the balls and he screams and lets you go. You quickly dash away while he\'s down.');
     scene.actions([
       { label: 'Escape', goto: ['city_lake', 'start'] },
@@ -2237,23 +2237,23 @@ function enterAndreiRape(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'More', handler: (st: GameState) => {
-    qspCall(s, 'cum_call', 'anus', ((s as any).npcID ?? 0));
+    qspCall(st, 'cum_call', 'anus', ((st as any).npcID ?? 0));
     scene.img('images/characters/city/andrew/sex/andrei.jpg');
     scene.text('The pleasure overtakes the pain as he keeps rubbing your clit, and a few seconds later you explode in orgasm. He then changes positions and pulls you into an upright position, continues to stimulate your clit as you ride his dick.');
     scene.text('A few minutes later, he lets out a dull growl and warm cum starts spurting into your ass. When he finishes, he lifts you off of his dick and his cum starts trickling out of your ravaged asshole.');
     scene.text('"Did you like that?" the man asks with a touch of irony.');
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal_finger', (-10), 'no_orgasm_msg');
-    qspCall(s, 'arousal', 'anal', 10, 'no_orgasm_msg');
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal_finger', (-10), 'no_orgasm_msg');
+    qspCall(st, 'arousal', 'anal', 10, 'no_orgasm_msg');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Chat', handler: (st: GameState) => {
     scene.text('"Who… who are you?" you ask feebly as you sit in the sand next to him.');
     scene.text('"My name is Andrew." he grins. "And yours?"');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you answer and he smiles.
-    scene.text(`"${((s as any).pcs_firstname || '')}." you answer and he smiles.`);
+    scene.text(`"${((st as any).pcs_firstname || '')}." you answer and he smiles.`);
     // TODO-QSP: dynamic text: "So did you like our little game, <<$pcs_firstname>>? Want to catch an even bigg...
-    scene.text(`"So did you like our little game, ${((s as any).pcs_firstname || '')}? Want to catch an even bigger thrill? Then come back tomorrow." he says suavely while pulling his shorts back on.`);
+    scene.text(`"So did you like our little game, ${((st as any).pcs_firstname || '')}? Want to catch an even bigger thrill? Then come back tomorrow." he says suavely while pulling his shorts back on.`);
     scene.actions([
       { label: 'Leave the beach', goto: ['city_lake', 'start'] },
     ]);

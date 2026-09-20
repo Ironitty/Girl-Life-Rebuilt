@@ -4,11 +4,15 @@ import { qspCall, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  (s as any).shour = 24 - ((s as any).hour ?? 0);
+  qspCall(s, 'stat', '');
+  qspGoto(s, 'bed', 'mod_sleeptriggers');
+  // TODO-QSP: end
   scene.build();
 }
 
-function enterStart(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).shour = 24 - ((s as any).hour ?? 0);
   qspCall(s, 'stat', '');
   qspGoto(s, 'bed', 'mod_sleeptriggers');

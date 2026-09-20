@@ -9,10 +9,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetNickname(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'rusMale') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'rusMale') {
     (s as any).result = qspFunc(s, 'npcrnamefile', 'get_nickname', qspFunc(s, 'npcrnamefile', 'rusMale'));
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'rusFemale') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'rusFemale') {
       (s as any).result = qspFunc(s, 'npcrnamefile', 'get_nickname', qspFunc(s, 'npcrnamefile', 'rusFemale'));
     } else {
       (s as any).result = ((s as any).locArgs?.[1] ?? 0);

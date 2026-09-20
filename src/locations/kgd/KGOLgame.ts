@@ -57,8 +57,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).KGHP = 0;
   }
   qspCall(s, 'KGOLexpa', '');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027KGstart\\u0027, \\u0027\\u0027); return false;">Exit the game</a>');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027KGOLgame\\u0027, \\u0027KGOLstat\\u0027); return false;">View Statistics</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGstart/u0027, /u0027/u0027); return false;">Exit the game</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGOLgame/u0027, /u0027KGOLstat/u0027); return false;">View Statistics</a>');
   // TODO-QSP: dynamic text: <<$KGOLname>>, Level <<KGOLlvl>> <<$KGOLrace>> <<$KGOLklass>>
   scene.text(`${((s as any).KGOLname || '')}, Level ${((s as any).KGOLlvl || '')} ${((s as any).KGOLrace || '')} ${((s as any).KGOLklass || '')}`);
   // TODO-QSP: dynamic text: Health: <<KGHP>>
@@ -82,16 +82,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`You have ${((s as any).KGOLmoney || '')} coins.`);
   }
   if (((s as any).KGOLneedExp ?? 0) <= 0) {
-    // TODO-QSP: dynamic text: <a href="exec:gs 'KGOLexpa', 'KGOLrise'">' + $func('wrap', 'neg', 'Earn experien...
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise\\u0027); return false;">Earn experience points to improve your stats.</a>');
+    // TODO-QSP: dynamic text: <a href="exec:gs ''KGOLexpa'', ''KGOLrise''">' + $func('wrap', 'neg', 'Earn expe...
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise/u0027); return false;">Earn experience points to improve your stats.</a>');
   }
   if (((s as any).KGOLpoint ?? 0) > 0) {
-    // TODO-QSP: dynamic text: <a href="exec:gs 'KGOLexpa', 'KGOLrise'">' + $func('wrap', 'neg', 'You have upgr...
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise\\u0027); return false;">You have upgrade points that have not been allocated.</a>');
+    // TODO-QSP: dynamic text: <a href="exec:gs ''KGOLexpa'', ''KGOLrise''">' + $func('wrap', 'neg', 'You have ...
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise/u0027); return false;">You have upgrade points that have not been allocated.</a>');
   }
   if (((s as any).KGOLspellpoint ?? 0) >= 4) {
-    // TODO-QSP: dynamic text: <a href="exec:gs 'KGOLexpa', 'KGOLrise2'">' + $func('wrap', 'neg', 'You have ski...
-    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027KGOLexpa\\u0027, \\u0027KGOLrise2\\u0027); return false;">You have skill points to spend.</a>');
+    // TODO-QSP: dynamic text: <a href="exec:gs ''KGOLexpa'', ''KGOLrise2''">' + $func('wrap', 'neg', 'You have...
+    scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGOLexpa/u0027, /u0027KGOLrise2/u0027); return false;">You have skill points to spend.</a>');
   }
   // TODO-QSP: dynamic text: <<KGOLspellpoint>>
   scene.text(`${((s as any).KGOLspellpoint || '')}`);
@@ -101,9 +101,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGHP ?? 0) < ((s as any).KGHPMAX ?? 0)  ||  ((s as any).KGMana ?? 0) < ((s as any).KGManaMax ?? 0)) {
     scene.actions([
       { label: 'Regenerate (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).KGHP = ((s as any).KGHPMAX ?? 0);
-    (s as any).KGMana = ((s as any).KGManaMax ?? 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).KGHP = ((st as any).KGHPMAX ?? 0);
+    (st as any).KGMana = ((st as any).KGManaMax ?? 0);
     scene.text('You sit for an hour waiting for your health and mana to regenerate. It\'s boring, but at least it was free.');
     scene.actions([
       { label: 'Leave', goto: ['KGOLgame', ''] },
@@ -114,29 +114,29 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGHP ?? 0) > 0) {
     scene.actions([
       { label: 'Farm near the village', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).KGOLdist = Math.floor(Math.random() * 10) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).KGOLdist = (Math.floor(Math.random() * 10) + 1);
     scene.text('A variety of monsters roam around the fields near the village.');
     scene.actions([
       { label: 'Predatory flower', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '0');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '0');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Iridescent beetle', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '1');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '1');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Sundew', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '2');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '2');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Toothless dog', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '3');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '3');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Young cactus', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '4');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '4');
+    qspGoto(st, 'KGOLfight', '');
   } },
     ]);
   } },
@@ -145,151 +145,151 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KGOLlvl ?? 0) >= 5  &&  ((s as any).KGHP ?? 0) > 0) {
     scene.actions([
       { label: 'Farm near the mill', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).KGOLdist = Math.floor(Math.random() * 10) + 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).KGOLdist = (Math.floor(Math.random() * 10) + 1);
     scene.text('A variety of monsters roam around the fields near the mill.');
     scene.actions([
       { label: 'Toad', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '5');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '5');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Royal beetle', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '6');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '6');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Spotted mantis', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '7');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '7');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Plague Rat', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '8');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '8');
+    qspGoto(st, 'KGOLfight', '');
   } },
       { label: 'Prickly cactus', handler: (st: GameState) => {
-    qspCall(s, 'KGOLenemy', '9');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLenemy', '9');
+    qspGoto(st, 'KGOLfight', '');
   } },
     ]);
   } },
       { label: 'Level 5 Boss', handler: (st: GameState) => {
-    qspCall(s, 'KGOLboss', '1');
-    qspGoto(s, 'KGOLfight', '');
+    qspCall(st, 'KGOLboss', '1');
+    qspGoto(st, 'KGOLfight', '');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Approach the NPC', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if ((!((s as any).KGOLmqw ?? 0))) {
-      (s as any).KGOLmqw = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    if ((!((st as any).KGOLmqw ?? 0))) {
+      (st as any).KGOLmqw = 1;
       // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill prey 5 predatory flowers."
-      scene.text(`(NPC) - "${((s as any).KGOLname || '')}, I need you to kill prey 5 predatory flowers."`);
+      scene.text(`(NPC) - "${((st as any).KGOLname || '')}, I need you to kill prey 5 predatory flowers."`);
       scene.text('Reward: Weapon (class locked)');
     } else {
-      if (((s as any).KGOLmqw ?? 0) === 1  &&  ((s as any).KGOLqwvip ?? 0) >= 5) {
-        (s as any).KGOLqwvip = 0;
-        (s as any).KGOLmqw = 2;
-        (s as any).KGOLwpower = 10;
-        if (((s as any).KGOLklass ?? 0) === 'Warrior'  ||  ((s as any).KGOLklass ?? 0) === 'Barbarian') {
-          (s as any).KGOLset5 = 'You are equipped with a simple sword';
+      if (((st as any).KGOLmqw ?? 0) === 1  &&  ((st as any).KGOLqwvip ?? 0) >= 5) {
+        (st as any).KGOLqwvip = 0;
+        (st as any).KGOLmqw = 2;
+        (st as any).KGOLwpower = 10;
+        if (((st as any).KGOLklass ?? 0) === 'Warrior'  ||  ((st as any).KGOLklass ?? 0) === 'Barbarian') {
+          (st as any).KGOLset5 = 'You are equipped with a simple sword';
         } else {
-          if (((s as any).KGOLklass ?? 0) === 'Rogue') {
-            (s as any).KGOLset5 = 'You are equipped with a set of daggers';
+          if (((st as any).KGOLklass ?? 0) === 'Rogue') {
+            (st as any).KGOLset5 = 'You are equipped with a set of daggers';
           } else {
-            if (((s as any).KGOLklass ?? 0) === 'Magician'  ||  ((s as any).KGOLklass ?? 0) === 'Priest') {
-              (s as any).KGOLset5 = 'You are equipped with a simple staff';
+            if (((st as any).KGOLklass ?? 0) === 'Magician'  ||  ((st as any).KGOLklass ?? 0) === 'Priest') {
+              (st as any).KGOLset5 = 'You are equipped with a simple staff';
             } else {
-              if (((s as any).KGOLklass ?? 0) === 'Archer') {
-                (s as any).KGOLset5 = 'You are equipped with a simple bow';
+              if (((st as any).KGOLklass ?? 0) === 'Archer') {
+                (st as any).KGOLset5 = 'You are equipped with a simple bow';
               }
             }
           }
         }
-        // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here's your weapon."
-        scene.text(`(NPC) - "Thank you, ${((s as any).KGOLname || '')}! Here's your weapon."`);
+        // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here''s your weapon."
+        scene.text(`(NPC) - "Thank you, ${((st as any).KGOLname || '')}! Here's your weapon."`);
       } else {
-        if (((s as any).KGOLmqw ?? 0) === 2) {
-          (s as any).KGOLmqw = 3;
+        if (((st as any).KGOLmqw ?? 0) === 2) {
+          (st as any).KGOLmqw = 3;
           // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill 10 iridescent beetles."
-          scene.text(`(NPC) - "${((s as any).KGOLname || '')}, I need you to kill 10 iridescent beetles."`);
+          scene.text(`(NPC) - "${((st as any).KGOLname || '')}, I need you to kill 10 iridescent beetles."`);
           scene.text('Reward: Leather armor');
         } else {
-          if (((s as any).KGOLmqw ?? 0) === 3  &&  ((s as any).KGOLqwvip ?? 0) >= 10) {
-            (s as any).KGOLqwvip = 0;
-            (s as any).KGOLmqw = 4;
-            (s as any).KGOLbrona = ((s as any).KGOLbrona ?? 0) + (10);
-            (s as any).KGOLset2 = 'You are wearing simple leather armor';
-            // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here's your armor."
-            scene.text(`(NPC) - "Thank you, ${((s as any).KGOLname || '')}! Here's your armor."`);
+          if (((st as any).KGOLmqw ?? 0) === 3  &&  ((st as any).KGOLqwvip ?? 0) >= 10) {
+            (st as any).KGOLqwvip = 0;
+            (st as any).KGOLmqw = 4;
+            (st as any).KGOLbrona = ((st as any).KGOLbrona ?? 0) + (10);
+            (st as any).KGOLset2 = 'You are wearing simple leather armor';
+            // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here''s your armor."
+            scene.text(`(NPC) - "Thank you, ${((st as any).KGOLname || '')}! Here's your armor."`);
           } else {
-            if (((s as any).KGOLmqw ?? 0) === 4) {
-              (s as any).KGOLmqw = 5;
+            if (((st as any).KGOLmqw ?? 0) === 4) {
+              (st as any).KGOLmqw = 5;
               // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill 20 sundews."
-              scene.text(`(NPC) - "${((s as any).KGOLname || '')}, I need you to kill 20 sundews."`);
+              scene.text(`(NPC) - "${((st as any).KGOLname || '')}, I need you to kill 20 sundews."`);
               scene.text('Reward: Leather boots');
             } else {
-              if (((s as any).KGOLmqw ?? 0) === 5  &&  ((s as any).KGOLqwvip ?? 0) >= 20) {
-                (s as any).KGOLqwvip = 0;
-                (s as any).KGOLmqw = 6;
-                (s as any).KGOLbrona = ((s as any).KGOLbrona ?? 0) + (2);
-                (s as any).KGOLset3 = 'You are wearing a pair of rugged leather boots';
+              if (((st as any).KGOLmqw ?? 0) === 5  &&  ((st as any).KGOLqwvip ?? 0) >= 20) {
+                (st as any).KGOLqwvip = 0;
+                (st as any).KGOLmqw = 6;
+                (st as any).KGOLbrona = ((st as any).KGOLbrona ?? 0) + (2);
+                (st as any).KGOLset3 = 'You are wearing a pair of rugged leather boots';
                 // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here are your boots."
-                scene.text(`(NPC) - "Thank you, ${((s as any).KGOLname || '')}! Here are your boots."`);
+                scene.text(`(NPC) - "Thank you, ${((st as any).KGOLname || '')}! Here are your boots."`);
               } else {
-                if (((s as any).KGOLmqw ?? 0) === 6) {
-                  (s as any).KGOLmqw = 7;
+                if (((st as any).KGOLmqw ?? 0) === 6) {
+                  (st as any).KGOLmqw = 7;
                   // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill 25 toothless dogs."
-                  scene.text(`(NPC) - "${((s as any).KGOLname || '')}, I need you to kill 25 toothless dogs."`);
+                  scene.text(`(NPC) - "${((st as any).KGOLname || '')}, I need you to kill 25 toothless dogs."`);
                   scene.text('Reward: Leather Gauntlets');
                 } else {
-                  if (((s as any).KGOLmqw ?? 0) === 7  &&  ((s as any).KGOLqwvip ?? 0) >= 25) {
-                    (s as any).KGOLqwvip = 0;
-                    (s as any).KGOLmqw = 8;
-                    (s as any).KGOLbrona = ((s as any).KGOLbrona ?? 0) + (2);
-                    (s as any).KGOLset4 = 'You are wearing a pair of leather gauntlets';
+                  if (((st as any).KGOLmqw ?? 0) === 7  &&  ((st as any).KGOLqwvip ?? 0) >= 25) {
+                    (st as any).KGOLqwvip = 0;
+                    (st as any).KGOLmqw = 8;
+                    (st as any).KGOLbrona = ((st as any).KGOLbrona ?? 0) + (2);
+                    (st as any).KGOLset4 = 'You are wearing a pair of leather gauntlets';
                     // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here are your gauntlets."
-                    scene.text(`(NPC) - "Thank you, ${((s as any).KGOLname || '')}! Here are your gauntlets."`);
+                    scene.text(`(NPC) - "Thank you, ${((st as any).KGOLname || '')}! Here are your gauntlets."`);
                   } else {
-                    if (((s as any).KGOLmqw ?? 0) === 8) {
-                      (s as any).KGOLmqw = 9;
+                    if (((st as any).KGOLmqw ?? 0) === 8) {
+                      (st as any).KGOLmqw = 9;
                       // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill 30 young cacti."
-                      scene.text(`(NPC) - "${((s as any).KGOLname || '')}, I need you to kill 30 young cacti."`);
+                      scene.text(`(NPC) - "${((st as any).KGOLname || '')}, I need you to kill 30 young cacti."`);
                       scene.text('Reward: Leather Helmet');
                     } else {
-                      if (((s as any).KGOLmqw ?? 0) === 9  &&  ((s as any).KGOLqwvip ?? 0) >= 30) {
-                        (s as any).KGOLqwvip = 0;
-                        (s as any).KGOLmqw = 10;
-                        (s as any).KGOLbrona = ((s as any).KGOLbrona ?? 0) + (2);
-                        (s as any).KGOLset = 'You are wearing a leather helmet';
-                        // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here's your helmet."
-                        scene.text(`(NPC) - "Thank you, ${((s as any).KGOLname || '')}! Here's your helmet."`);
+                      if (((st as any).KGOLmqw ?? 0) === 9  &&  ((st as any).KGOLqwvip ?? 0) >= 30) {
+                        (st as any).KGOLqwvip = 0;
+                        (st as any).KGOLmqw = 10;
+                        (st as any).KGOLbrona = ((st as any).KGOLbrona ?? 0) + (2);
+                        (st as any).KGOLset = 'You are wearing a leather helmet';
+                        // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here''s your helmet."
+                        scene.text(`(NPC) - "Thank you, ${((st as any).KGOLname || '')}! Here's your helmet."`);
                       } else {
-                        if (((s as any).KGOLmqw ?? 0) === 10  &&  ((s as any).KGOLlvl ?? 0) >= 5) {
-                          (s as any).KGOLmqw = 11;
+                        if (((st as any).KGOLmqw ?? 0) === 10  &&  ((st as any).KGOLlvl ?? 0) >= 5) {
+                          (st as any).KGOLmqw = 11;
                           // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill 10 toads."
-                          scene.text(`(NPC) - "${((s as any).KGOLname || '')}, I need you to kill 10 toads."`);
+                          scene.text(`(NPC) - "${((st as any).KGOLname || '')}, I need you to kill 10 toads."`);
                           scene.text('Reward: 100 experience points');
                         } else {
-                          if (((s as any).KGOLmqw ?? 0) === 11  &&  ((s as any).KGOLqwvip ?? 0) >= 10) {
-                            (s as any).KGOLqwvip = 0;
-                            (s as any).KGOLmqw = 12;
-                            (s as any).KGOLexp = ((s as any).KGOLexp ?? 0) + (100);
-                            // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here's your reward!"
-                            scene.text(`(NPC) - "Thank you, ${((s as any).KGOLname || '')}! Here's your reward!"`);
+                          if (((st as any).KGOLmqw ?? 0) === 11  &&  ((st as any).KGOLqwvip ?? 0) >= 10) {
+                            (st as any).KGOLqwvip = 0;
+                            (st as any).KGOLmqw = 12;
+                            (st as any).KGOLexp = ((st as any).KGOLexp ?? 0) + (100);
+                            // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here''s your reward!"
+                            scene.text(`(NPC) - "Thank you, ${((st as any).KGOLname || '')}! Here's your reward!"`);
                           } else {
-                            if (((s as any).KGOLmqw ?? 0) === 12  &&  ((s as any).KGOLlvl ?? 0) >= 5) {
-                              (s as any).KGOLmqw = 13;
+                            if (((st as any).KGOLmqw ?? 0) === 12  &&  ((st as any).KGOLlvl ?? 0) >= 5) {
+                              (st as any).KGOLmqw = 13;
                               // TODO-QSP: dynamic text: (NPC) - "<<$KGOLname>>, I need you to kill 10 royal beetles."
-                              scene.text(`(NPC) - "${((s as any).KGOLname || '')}, I need you to kill 10 royal beetles."`);
+                              scene.text(`(NPC) - "${((st as any).KGOLname || '')}, I need you to kill 10 royal beetles."`);
                               scene.text('Reward: 200 experience points');
                             } else {
-                              if (((s as any).KGOLmqw ?? 0) === 13  &&  ((s as any).KGOLqwvip ?? 0) >= 10) {
-                                (s as any).KGOLqwvip = 0;
-                                (s as any).KGOLmqw = 14;
-                                (s as any).KGOLexp = ((s as any).KGOLexp ?? 0) + (200);
-                                // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here's your reward!"
-                                scene.text(`(NPC) - "Thank you, ${((s as any).KGOLname || '')}! Here's your reward!"`);
+                              if (((st as any).KGOLmqw ?? 0) === 13  &&  ((st as any).KGOLqwvip ?? 0) >= 10) {
+                                (st as any).KGOLqwvip = 0;
+                                (st as any).KGOLmqw = 14;
+                                (st as any).KGOLexp = ((st as any).KGOLexp ?? 0) + (200);
+                                // TODO-QSP: dynamic text: (NPC) - "Thank you, <<$KGOLname>>! Here''s your reward!"
+                                scene.text(`(NPC) - "Thank you, ${((st as any).KGOLname || '')}! Here's your reward!"`);
                               }
                             }
                           }
@@ -309,31 +309,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Go to the store', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    if (((s as any).KGOLmoney ?? 0) >= 300) {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    if (((st as any).KGOLmoney ?? 0) >= 300) {
       scene.actions([
         { label: 'Buy health potion (300 coins)', handler: (st: GameState) => {
-    (s as any).KGOLmoney = ((s as any).KGOLmoney ?? 0) - (300);
-    (s as any).KGOLpotionH = ((s as any).KGOLpotionH ?? 0) + (1);
-    qspGoto(s, 'KGOLgame', '');
+    (st as any).KGOLmoney = ((st as any).KGOLmoney ?? 0) - (300);
+    (st as any).KGOLpotionH = ((st as any).KGOLpotionH ?? 0) + (1);
+    qspGoto(st, 'KGOLgame', '');
   } },
       ]);
     }
-    if (((s as any).KGOLmoney ?? 0) >= 300) {
+    if (((st as any).KGOLmoney ?? 0) >= 300) {
       scene.actions([
         { label: 'Buy a mana potion (300 coins)', handler: (st: GameState) => {
-    (s as any).KGOLmoney = ((s as any).KGOLmoney ?? 0) - (300);
-    (s as any).KGOLpotionM = ((s as any).KGOLpotionM ?? 0) + (1);
-    qspGoto(s, 'KGOLgame', '');
+    (st as any).KGOLmoney = ((st as any).KGOLmoney ?? 0) - (300);
+    (st as any).KGOLpotionM = ((st as any).KGOLpotionM ?? 0) + (1);
+    qspGoto(st, 'KGOLgame', '');
   } },
       ]);
     }
-    if (((s as any).KGOLmoney ?? 0) >= 1500  &&  ((s as any).KGOLhirka ?? 0) <= 0) {
+    if (((st as any).KGOLmoney ?? 0) >= 1500  &&  ((st as any).KGOLhirka ?? 0) <= 0) {
       scene.actions([
         { label: 'Buy a Rejuvenation Tonic (1500 coins)', handler: (st: GameState) => {
-    (s as any).KGOLmoney = ((s as any).KGOLmoney ?? 0) - (1500);
-    (s as any).KGOLhirka = ((s as any).KGOLhirka ?? 0) + (10000);
-    qspGoto(s, 'KGOLgame', '');
+    (st as any).KGOLmoney = ((st as any).KGOLmoney ?? 0) - (1500);
+    (st as any).KGOLhirka = ((st as any).KGOLhirka ?? 0) + (10000);
+    qspGoto(st, 'KGOLgame', '');
   } },
       ]);
     }
@@ -348,7 +348,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterKGOLstat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$KGOLname>>, level <<KGOLlvl>> <<$KGOLrace>> <<$KGOLklass>>
   scene.text(`${((s as any).KGOLname || '')}, level ${((s as any).KGOLlvl || '')} ${((s as any).KGOLrace || '')} ${((s as any).KGOLklass || '')}`);
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027KGOLgame\\u0027, \\u0027KGOLstat2\\u0027); return false;">Close Statistics</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027KGOLgame/u0027, /u0027KGOLstat2/u0027); return false;">Close Statistics</a>');
   if (((s as any).KGOLneedExp ?? 0) > 0) {
     // TODO-QSP: pl 'Total experience points: <<KGOLexp>> Experience needed to level up: <<KGOLneedExp>>'
   } else {

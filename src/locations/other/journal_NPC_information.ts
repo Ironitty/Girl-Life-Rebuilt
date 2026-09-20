@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterRelationship(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_npc_rel = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).locArgs?.[2] ?? 0) === 'm') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'm') {
     if (((s as any).temp_npc_rel ?? 0) >= 80) {
       scene.text('He really likes you and considers you one of his best friends.');
     } else {
@@ -23,7 +23,7 @@ function enterRelationship(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'f') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'f') {
       if (((s as any).temp_npc_rel ?? 0) >= 80) {
         scene.text('She really likes you and considers you one of her best friends.');
       } else {
@@ -59,7 +59,7 @@ function enterRelationship(s: GameState, scene: SceneBuilder): void {
 
 function enterPast_Relationship(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_npc_rel = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).locArgs?.[2] ?? 0) === 'm') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'm') {
     if (((s as any).temp_npc_rel ?? 0) >= 80) {
       scene.text('He really liked you and considered you one of his best friends.');
     } else {
@@ -74,7 +74,7 @@ function enterPast_Relationship(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'f') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'f') {
       if (((s as any).temp_npc_rel ?? 0) >= 80) {
         scene.text('She really liked you and considered you one of her best friends.');
       } else {
@@ -251,14 +251,14 @@ function enterA174(s: GameState, scene: SceneBuilder): void {
 function enterA1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/1.jpg');
   scene.text('<center>Dimka Nosov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Dimka Nosov is a cute guy and all the girls adore him. Considered the coolest kid in school, he comes from a fairly wealthy family and is always dressed in expensive stylish clothes. He throws some epic parties that everyone that is anyone tries to get invited to, with even kids from Pushkin sometimes attending. He is the king of the school and everyone wants to either be his friend or hang out with him.');
     } else {
       scene.text('Dimka Nosov is a cute guy and all the girls adore him. Considered the coolest kid in school, the guys tend to either befriend him or loath him. He comes from a fairly wealthy family and is always dressed in expensive stylish clothes. Since Lavrenti started hanging out with the gopniks, Dimka is now even king of the parties. Despite his pleasant smile and friendly demeanor, there are rumors saying he is a sadist bastard that always gets what he wants. He seems to love verbally tormenting the nerds and outcasts when given the chance.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Dimka Nosov is a cute guy and all the girls adore him. He comes from a fairly wealthy family and is always dressed in expensive stylish clothes. He even threw some epic parties back in Pavlovsk that everyone tried to attend. He was the king of the school and everyone wanted to either be his friend or hang out with him, but now he is just a freshman in a totally new environment, though he seems to be doing almost as well as he used to back in school.');
       } else {
@@ -266,7 +266,7 @@ function enterA1(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('He is getting a business degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -278,14 +278,14 @@ function enterA1(s: GameState, scene: SceneBuilder): void {
 function enterA4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/4.jpg');
   scene.text('<center>Igor Kruglov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Igor Kruglov is Dimka\'s best friend and whenever you see one of them, the other is usually not too far away. With a small stature, high pitched voice and pretty face, many consider him to be very feminine. Normally a boy like him would be mocked but his friendship with Dimka, the most popular boy in school, shields him from such abuse. Many wonder about their friendship as they seem to have always been friends; some would even say that Igor is overly attached to Dimka. Other than Dimka, Igor doesn\'t seem to have any other close friends.');
     } else {
       scene.text('Igor Kruglov is Dimka\'s best friend and whenever you see one of them, the other is usually not too far away. With a small stature, high pitched voice and pretty face, many consider him to be very feminine. Many wonder why the cool kids keep him around, but Dimka\'s pull with the other cool kids seems to be enough. Many wonder about their friendship as they seem to have always been friends; some would even say that Igor is overly attached to Dimka. Other than Dimka, Igor doesn\'t seem to have any other close friends.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Igor Kruglov is Dimka\'s best friend and whenever you seen one of them, the other is usually not too far away. With a small stature, high pitched voice and pretty face, many considered him to be very feminine. Normally a boy like him would be mocked but his friendship with Dimka, the most popular boy in school, shielded him from such abuse. Many wonder about their friendship as they seem to have always been friends. Some would even say that Igor is overly attached to Dimka. Other than Dimka, Igor didn\'t seem to have any other close friends.');
       } else {
@@ -293,7 +293,7 @@ function enterA4(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('He is getting a teaching degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -305,14 +305,14 @@ function enterA4(s: GameState, scene: SceneBuilder): void {
 function enterA14(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/14.jpg');
   scene.text('<center>Ekaterina "Katja" Meynold</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Katja Meynold is an attractive and petite girl, a redhead with a keen interest in fashion and cosmetics. She and her twin sister, Vicky, are like two sides of the same coin. As a quiet and sensible girl, Katja is shy and intelligent, but can also be impulsive at times. She is an avid reader and can sometimes be found discussing books with the nerds, but is more often than not found at the disco with her sister.');
     } else {
       scene.text('Katja Meynold is an attractive and petite girl, a redhead with a keen interest in fashion and cosmetics. She and her twin sister, Vicky, are like two sides of the same coin. As a quiet and sensible girl, Katja is shy and intelligent, but is an avid reader and can sometimes be found discussing books with the nerds. She can often be found at the disco with her sister.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Katja Meynold is an attractive and petite girl, a redhead with a keen interest in fashion and cosmetics. She and her twin sister, Vicky, are like two sides of the same coin. As a quiet and sensible girl, Katja is shy and intelligent, but can also be impulsive at times. She is an avid reader and could sometimes be found discussing books with the nerds, but more often than not could be found at the disco with her sister.');
       } else {
@@ -320,7 +320,7 @@ function enterA14(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a teaching degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -332,14 +332,14 @@ function enterA14(s: GameState, scene: SceneBuilder): void {
 function enterA15(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/15.jpg');
   scene.text('<center>Viktoriya "Vicky" Meynold</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Vicky Meynold is the opposite of her sister. On one side a smart ass and on the other a cheerful girl. She is very sociable, being friends with many of the students in school and is considered to be one of the most popular girls in school. With a passionate love for dancing, Vicky can often be found at the disco with her sister and boyfriend Vanya. A good humored girl, she loves bright and crazy colored clothing. As a child, she took gymnastic lessons and as a result has excellent flexibility and tries out for many of the sports, especially cheerleading. A bit flighty and unpredictable, you never know what thoughts she will come up with next. Logic and reason were never her strong suit as she lives by her emotions and feelings, making decisions from her heart rather than her head. Despite her unpredictable nature, her liveliness and spontaneity make her fun to hang out with.');
     } else {
       scene.text('Vicky Meynold is the opposite of her sister. On one side a smart ass and on the other a cheerful girl. She is very sociable, being friends with many of the students in school and is considered to be one of the most popular girls in school. With a passionate love for dancing, Vicky can often be found at the disco with her sister and good friend Vanya. A good humored girl, she loves bright and crazy colored clothing. She is a member of the cheerleaders and sometimes tries out for other sports. A bit flighty and unpredictable, you never know what thoughts she will come up with next. Logic and reason were never her strong suit as she lives by her emotions and feelings, making decisions from her heart rather than her head. Despite her unpredictable nature, her liveliness and spontaneity make her fun to hang out with.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Vicky Meynold is the opposite of her sister. On one side a smart ass and on the other a cheerful girl. She is very sociable, being friends with many of the students at school and was considered to be one of the most popular girls. With a passionate love for dancing, Vicky was often found at the disco with her sister and boyfriend Vanya. A good humored girl, she loves bright and crazy colored clothing. As a child, she took gymnastic lessons and as a result has excellent flexibility and tried out for many of the sports, especially cheerleading. A bit flighty and unpredictable, you never know what thoughts she will come up with next. Logic and reason were never her strong suit as she lives by her emotions and feelings, making decisions from her heart rather than her head. Despite her flighty and unpredictable nature, her liveliness and spontaneity make her fun to hang out with.');
       } else {
@@ -347,7 +347,7 @@ function enterA15(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a science degree at the University.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -359,21 +359,21 @@ function enterA15(s: GameState, scene: SceneBuilder): void {
 function enterA17(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/17.jpg');
   scene.text('<center>Irina Devyatova</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Irina Devyatova is a tall and pretty girl. She knows it and takes full advantage of it, using her looks to sweet talk boys and teachers alike to get her way. She has a very arrogant and haughty personality hidden behind her sweet smile. She is the queen of what is in fashion and often berates those she deems to have no sense of style, more than once driving other girls to tears. She is often the center of attention when the popular kids hang out. When needed, she often sweet talks the jocks and gopniks into doing her dirty work, making them think they have a chance with her and then laughing at them behind their back.');
     } else {
       scene.text('Irina Devyatova is a tall and pretty girl. She knows it and takes full advantage of it, using her looks to sweet talk boys and teachers alike to get her way. She has a very arrogant and haughty personality hidden behind her sweet smile. She is the queen of what is in fashion and often berates those she deems to have no sense of style, more than once driving other girls to tears. When needed, she often sweet talks the jocks and gopniks into doing her dirty work.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Irina Devyatova is a tall and pretty girl who knows it and takes full advantage of it, using her looks to get her way. She has a very arrogant and haughty personality hidden behind her sweet smile and considers herself to be the queen of what is in fashion, often berating those she deems to have no sense of style, often driving other girls to tears. When needed, she often sweet talks boys into doing her dirty work, making them think they have a chance with her and then laughing at them behind their back.');
       } else {
         scene.text('Irina Devyatova is a tall and pretty girl who knows it and takes full advantage of it, using her looks to sweet talk boys and professors alike to get her way. She has a very arrogant and haughty personality hidden behind her sweet smile and considers herself to the queen of what is in fashion, often berating those she deems to have no sense of style, often driving other girls to tears. When needed, she often sweet talks boys into doing her dirty work.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -385,21 +385,21 @@ function enterA17(s: GameState, scene: SceneBuilder): void {
 function enterA22(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/22.jpg');
   scene.text('<center>Elžbieta "Bella" Artamonov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Bella Artamonov is the most beautiful girl in school and knows it, which makes her come off as arrogant. You don\'t know her very well since she doesn\'t want to deal with "kids". She seems to consider herself an adult already and the rest of her classmates as being beneath her, too young and childish for her to be around. You\'ve heard some rumors about her only hanging around with people much older than herself.');
     } else {
       scene.text('Bella Artamonov is the most beautiful girl in school and knows it, which makes her come off like a self centered bitch. You don\'t know her at all since she doesn\'t want to deal with "kids", especially those with no sense of style. She seems to consider herself an adult already and the rest of her classmates as being beneath her, too young and childish for her to be around. You\'ve heard some rumors about her only hanging around with people much older than herself.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Bella Artamonov was the most beautiful girl in school and knew it, which made her come off as arrogant. You don\'t know her very well since she didn\'t want to deal with "kids". She seemed to consider herself an adult already and the rest of her classmates as being beneath her, too young and childish for her to be around. There were even rumors about her only hanging around with people much older than herself. Now that she\'s at the university, she seems much happier, like she finally feels like she\'s around others like herself.');
       } else {
         scene.text('Bella Artamonov was the most beautiful girl in school and knew it, which made her come off as a self centered bitch. You don\'t know her at all since she didn\'t want to deal with "kids", especially those with no sense of style. She seemed to consider herself an adult already and the rest of her classmates as being beneath her, too young and childish for her to be around. There were even rumors about her only hanging around with people much older than herself.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -411,7 +411,7 @@ function enterA22(s: GameState, scene: SceneBuilder): void {
 function enterA25(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/25.jpg');
   scene.text('<center>Sonia Ivanko</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).npc_grupTipe ?? 0)?.['A25'] === 1) {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Sonia Ivanko is an ordinary girl and doesn\'t stand out much, other than her sense of fashion. Despite her lack of money or variety of clothing, she has an amazing sense of style, able to pull off many great looks and earning the envy of many other girls at school. Pretty, smart, cheerful and sociable, Sonia loves to party and is rarely in a bad mood. She even has grades nearly as good as most of the nerds.');
@@ -426,7 +426,7 @@ function enterA25(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Sonia Ivanko is an ordinary girl and doesn\'t stand out much, other than her sense of fashion. Despite her lack of money or variety of clothing, she has an amazing sense of style, able to pull off many great looks and earning the envy of many other girls at school. Pretty, smart, cheerful and sociable, Sonia loves to have fun and is rarely in a bad mood. She even had grades nearly as good as most of the nerds.');
         scene.text('After a series of slutty incidents that crescendoed at the dance where she got way too drunk, gave Vitek and his buddies a simultaneous blowjob and returned with her face covered in their cum, Sonia\'s reputation is in shambles. Even at university, most of the girls give her the silent treatment while the guys still treat her like a cheap whore and regularly ask (or sometimes even demand) sex from her.');
@@ -436,7 +436,7 @@ function enterA25(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a fashion degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -448,21 +448,21 @@ function enterA25(s: GameState, scene: SceneBuilder): void {
 function enterA139(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/139.jpg');
   scene.text('<center>Stanislava "Stasya" Pavlov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Stasya Pavlov is a complete bitch to those she considers beneath her, which is the nerds, outcasts, gopniks and even some of the cool kids and jocks. Now that her boyfriend Andrey hangs around with Marcus more than her, she has become jealous of all the time Andrey and Marcus spend together without her, but never says anything about it around them. Instead, she seems to take out her anger on everyone around her, especially the nerds and the outcasts, or complains to her friends Irina and Lizaveta.');
     } else {
       scene.text('Stasya Pavlov is a complete bitch, and always has been one, but now that her boyfriend Andrey hangs around with Marcus more than her, she has become a lot worse. She doesn\'t care for Marcus at all, but never says anything around him or Andrey. Instead, she seems to take out her anger on everyone around her, especially the nerds and the outcasts.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Stasya Pavlov is a complete bitch to those she considers beneath her, which was pretty much everyone, even some of the cool kids and jocks. When her boyfriend Andrey started hanging around with Marcus more than her, she became jealous of all the time Andrey and Marcus spend together without her, but never said anything around Marcus or Andrey. Instead, she took out her anger on everyone around her, especially the nerds and the outcasts, or complained to her friends Irina and Lizaveta.');
       } else {
         scene.text('Stasya Pavlov is a complete bitch, and always has been one, but ever since her boyfriend Andrey started hanging around with Marcus more than her, she became a lot worse. She doesn\'t care for Marcus at all, but never said anything around Marcus or Andrey. Instead, she seemed to take out her anger on everyone around her, especially the nerds and the outcasts.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -474,14 +474,14 @@ function enterA139(s: GameState, scene: SceneBuilder): void {
 function enterA140(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/140.jpg');
   scene.text('<center>Yelizaveta "Lizaveta" Petrov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Lizaveta Petrov wants to know everyone\'s secrets, but is completely incapable of keeping them. Extremely nosy, she is the first to arrive at the scene of any commotion, eager to pry into the details. She is pretty and willing to use her looks to sweet talk boys into sharing any juicy gossip. If you want to know anything about anyone, she is the one to ask. Luckily, she seems more interested in collecting and sharing gossip than using it for her own gain. Though pretty much everyone has respect for what she knows, the few times she has really gone after someone, she has destroyed their status and reputation among their peers. She is often found with Irina and Stasya.');
     } else {
       scene.text('Lizaveta Petrov wants to know everyone\'s secrets, but is completely incapable of keeping them. Extremely nosy, she is the first to arrive at the scene of any commotion, eager to pry into the details. She is pretty and most boys seem torn. They are attracted to her, but are afraid she will tell everyone everything about them and their whole life becomes public knowledge.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Lizaveta Petrov wants to know everyone\'s secrets, but is completely incapable of keeping them. Extremely nosy, she is the first to arrive at the scene of any commotion, eager to pry into the details. She is pretty and willing to use her looks to sweet talk boys into sharing any juicy gossip. If you want to know anything about anyone, she is the one to ask. Luckily, she seems more interested in collecting and sharing gossip than using it for her own gain.');
       } else {
@@ -489,7 +489,7 @@ function enterA140(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a psychology degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -501,21 +501,21 @@ function enterA140(s: GameState, scene: SceneBuilder): void {
 function enterA146(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/146.jpg');
   scene.text('<center>Marcus Larson</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Marcus Larson is an African American exchange student who arrived at the school last year and opted to stay for a second year. He does well in school, is a good athlete and seems to really enjoy Russia. He has an eye for Russian girls, always going on about how they are much more beautiful than the girls back home and is a decent looking guy himself which, combined with his exotic looks, accent, athletic ability and different views, has made him popular with the cool kids and jocks. He is friendly and outgoing and if he wasn\'t such close friends with Andrey, he would have likely been a jock instead, as he seems to get along with them even more than most of the cool kids.');
     } else {
       scene.text('Marcus Larson is an African American exchange student who arrived at the school last year and opted to stay for a second year. He does well in school, is a good athlete and seems to really enjoy Russia. He has an eye for Russian girls, always going on about how they are much more beautiful than the girls back home and is a decent looking guy himself which, combined with his exotic looks, accent, athletic ability and different views, has made him popular with the cool kids and jocks. Those same traits and especially his skin color has made him just as unpopular with most of the gopniks, who go out of their way to mess with him or make racist comments. He is friendly and outgoing, and stays with Andrey\'s family, whom he has become close friends with.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Marcus Larson is an African American exchange student who opted to stay for a second year. He did well in school, is a good athlete and seems to really enjoy Russia. He has an eye for Russian girls, always going on about how they are much more beautiful than the girls back home and is a decent looking guy himself which, combined with his exotic looks, accent, athletic ability and different views, made him popular with the cool kids and jocks. He is friendly and outgoing and if he wasn\'t such close friends with Andrey, he would have likely been a jock instead, as he seemed to get along with them even more than most of the cool kids.');
       } else {
         scene.text('Marcus Larson is an African American exchange student who arrived at the Pavlovsk school last year and opted to stay for a second year. He does well in Pavlovsk school, is a good athlete and seems to really enjoy Russia. He has an eye for Russian girls, always going on about how they are much more beautiful than the girls back home and is a decent looking guy himself which, combined with his exotic looks, accent, athletic ability and different views, has made him popular with the cool kids and jocks. Those same traits and especially his skin color made him just as unpopular with most of the gopniks, who went out of their way to mess with him or make racist comments. He is friendly and outgoing, and stays with Andrey\'s family, whom he has become close friends with.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -527,21 +527,21 @@ function enterA146(s: GameState, scene: SceneBuilder): void {
 function enterA147(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/147.jpg');
   scene.text('<center>Andrey Aleksandrov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Andrey Aleksandrov was a late bloomer among the boys. He was small for his age and a bit goofy looking and shy, but his status was boosted when he started dating Staysa. When he did finally grow into his body, he got a lot better looking and more confident. His family recently took part in the exchange student program and were less than happy when the student they sent was an African American, but Andrey didn\'t mind and welcomed Marcus right away. He and Marcus quickly became friends and he tends to use Marcus\' rising popularity to boost his own and in the process, spends a lot less time with Stasya. The school nurse is his aunt.');
     } else {
       scene.text('Andrey Aleksandrov was a late bloomer among the boys. He was small for his age and a bit goofy looking and shy, but despite that he and Staysa started dating. When he did finally grow into his body, he got a lot better looking and now more than a few girls are jealous that Staysa snagged him up. His family recently took part in the exchange student program and rumor is they were less than happy when the student they sent was an African American, but Andrey doesn\'t seem to mind. He and Marcus quickly became friends and he tends to use Marcus\' rising popularity to boost his own and in the process, spends a lot less time with Stasya. The school nurse is his aunt.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 1) {
         scene.text('Andrey Aleksandrov was a late bloomer among the boys. Small for his age and a bit goofy looking and shy, his status was boosted when he started dating Staysa. When he did finally grow into his body, he got a lot better looking and more confident. His family took part in the exchange student program and were less than happy when the student they sent was an African American, but Andrey didn\'t mind and welcomed Marcus right away. He and Marcus quickly became friends and he tended to use Marcus\' rising popularity to boost his own and in the process, spent a lot less time with Stasya.');
       } else {
         scene.text('Andrey Aleksandrov was a late bloomer among the boys. Small for his age and a bit goofy looking and shy, his status was boosted when he started dating Staysa. When he did finally grow into his body, he got a lot better looking and more confident. His family took part in the exchange student program and were less than happy when the student they sent was an African American, but Andrey didn\'t mind and welcomed Marcus right away. He and Marcus quickly became friends and he tended to use Marcus\' rising popularity to boost his own and in the process, spent a lot less time with Stasya.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -553,7 +553,7 @@ function enterA147(s: GameState, scene: SceneBuilder): void {
 function enterA148(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/148.jpg');
   scene.text('<center>Mefodiy Utkin</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 1) {
       scene.text('Mefodiy Utkin is reasonably intelligent, with middle-of-the-road grades. He is fairly average looking, but possesses a good sense of humor and comedic timing. He isn\'t too popular, just popular enough to hang among the cool kids, who like his humor. He seems to enjoy mocking or making jokes at the gopniks expense, often in ways they don\'t always understand.');
     } else {
@@ -561,12 +561,12 @@ function enterA148(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A148'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Mefodiy Utkin was reasonably intelligent, with middle-of-the-road grades. He was fairly average looking, but possessed a good sense of humor and timing. He wasn\'t too popular, just popular enough to hang among the cool kids, who liked his humor.');
       scene.text('He just packed up and left right after graduation. Rumors are he is traveling around Europe.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A148'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -578,7 +578,7 @@ function enterA148(s: GameState, scene: SceneBuilder): void {
 function enterA3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/3.jpg');
   scene.text('<center>Ivan Prokhorov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Ivan Prokhorov is a talented athlete who is able to succeed in any sport he takes part in. He is mostly into boxing and running and spends a lot of training and is regularly away competing. Despite being considered very good looking by the girls in school, he isn\'t very sociable and, other than when he is training, tends to be at home taking care of his siblings while his mother works two jobs. He occasionally hangs out with Fedor and on rare occasions shows up at the disco or some of the jock parties. He is calm and collected by nature, some might even say apathetic.');
     } else {
@@ -586,12 +586,12 @@ function enterA3(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A3'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Ivan Prokhorov is a talented athlete who was able to succeed in any sport he took part in. He is mostly into boxing and running and was considered to be very good looking by the girls in school. He spends a lot of time training and is regularly away competing. He wasn\'t very sociable and, other than when he is training, tended to keep to himself, although he occasionally hung out with Fedor. He was calm and collected by nature, some might even say apathetic.');
       scene.text('He stayed in Pavlovsk to work and support his family, though he does go to the city to train in boxing and has started boxing professionally.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A3'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -602,7 +602,7 @@ function enterA3(s: GameState, scene: SceneBuilder): void {
 function enterA5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/5.jpg');
   scene.text('<center>Fyodor "Fedor" Kozlov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).npc_grupTipe ?? 0)?.['A5'] === 2) {
       if (((s as any).grupTipe ?? 0) === 2) {
         scene.text('Fedor Kozlov is a decent athlete. He often trains with his good friend Ivan, but lacks Ivan\'s level of natural talent. He is on all the school\'s sports teams and goes to the community center to train in boxing with Ivan. He is decent looking and often is seen chasing Ivan\'s leftovers.');
@@ -616,7 +616,7 @@ function enterA5(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A5'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).npc_grupTipe ?? 0)?.['A5'] === 2) {
         scene.text('Fedor Kozlov is a decent athlete. He often trained with his good friend Ivan, but lacked Ivan\'s level of talent. He was a member of all the school\'s sports teams. He was decent looking and could often be seen chasing Ivan\'s leftovers.');
       } else {
@@ -627,7 +627,7 @@ function enterA5(s: GameState, scene: SceneBuilder): void {
       scene.text('He stayed in Pavlovsk.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A3'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -638,7 +638,7 @@ function enterA5(s: GameState, scene: SceneBuilder): void {
 function enterA8(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/8.jpg');
   scene.text('<center>Svyatoslav Voinov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Svyatoslav Voinov is an athletic guy with a very competitive spirit, perhaps the most competitive of the boys. Unfortunately for him, he is not as good of an athlete as Lazar or Ivan and almost always comes in third. He is on every one of the school\'s sports teams and runs track, often competing with Ivan to be the fastest. His other focus is football, where he competes with Lazar to be the best player on the team. He\'s always trying to one up Ivan or Lazar, but rarely manages to beat either of them at anything.');
     } else {
@@ -646,12 +646,12 @@ function enterA8(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A8'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Svyatoslav Voinov is an athletic guy with a very competitive spirit. He ran track and often competed with Ivan to be the fastest boy at school. His other focus was football, as well as many other sports the school offered. He was always trying to one up Ivan or Lazar, but rarely managed to beat either of them at anything.');
       scene.text('He left Pavlovsk to attend a university in Moscow.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A8'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -662,7 +662,7 @@ function enterA8(s: GameState, scene: SceneBuilder): void {
 function enterA13(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/13.jpg');
   scene.text('<center>Lariska Gruzdeva</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       if (((s as any).christinaQW ?? 0)?.['blackmail'] === 2  ||  ((s as any).christinaQW ?? 0)?.['fight'] === 1) {
         scene.text('Lariska is an athletic girl who is highly insecure, being very dependent on other people\'s opinions of her. Christina used to control her, but ever since you got the upper hand on Christina, Lariska has been a lot more energetic. She has a sparkle in her eyes, and is almost always in a good mood.');
@@ -677,7 +677,7 @@ function enterA13(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 2) {
         if (((s as any).christinaQW ?? 0)?.['blackmail'] === 2  ||  ((s as any).christinaQW ?? 0)?.['fight'] === 1) {
           scene.text('Lariska is an athletic girl who is highly insecure, being very dependent on other people\'s opinions of her. Christina used to control her, but ever since you got the upper hand on Christina, Lariska has been a lot more energetic. She has a sparkle in her eyes, and is almost always in a good mood.');
@@ -693,7 +693,7 @@ function enterA13(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a nursing degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -705,14 +705,14 @@ function enterA13(s: GameState, scene: SceneBuilder): void {
 function enterA18(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/18.jpg');
   scene.text('<center>Christina Zvereva</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Christina is one of the school\'s best athletes and is the most athletic girl you know. She is very muscular and is a surprisingly skilled fighter, not afraid to start a fight with any of the other girls in school and even some of the boys. She has leadership abilities that, together with her tenacity and intelligence, make her a dominant presence wherever she goes. She is, however, a bully to most of the non-jock girls in school, and enjoys verbally, emotionally and physically tormenting them. She seems to utterly hate you in particular and goes out of her way to torment you when she can.');
     } else {
       scene.text('Christina is one of the school\'s best athletes and is the most athletic girl you know. She is very muscular and rumored to be a good fighter, not afraid to start a fight with any of the other girls in school or even some of the boys. She has leadership abilities that, together with her tenacity and intelligence, make her a dominant presence wherever she goes. She is, however, a bully to most of the non-jock girls in school, and enjoys verbally, emotionally and physically bullying them. She seems to utterly hate you in particular and goes out of her way to torment you when she can.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 2) {
         scene.text('Christina was one of the school\'s best athletes and is the most athletic girl you know. She is very muscular and a surprisingly skilled fighter, not afraid to start a fight with any of the other girls at school or even some of the boys. She has leadership abilities that, together with her tenacity and intelligence, make her a dominant presence wherever she goes. She was, however, a bully to most of the non-jock girls in school, verbally, emotionally, and physically tormenting them while tending to dominate most of the other girl jocks. She also seemed to utterly hate you in particular and went out of her way to torment you when she could, a hatred that has carried over into university.');
       } else {
@@ -720,7 +720,7 @@ function enterA18(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a teaching degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -731,21 +731,21 @@ function enterA18(s: GameState, scene: SceneBuilder): void {
 function enterA19(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/19.jpg');
   scene.text('<center>Avelina "Lina" Starov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Lina Starov is a mediocre athlete. While she looks like Christina\'s friend, the right term would be lapdog. She usually does anything Christina wants her to do, as if she doesn\'t have a mind of her own. She is a very pretty girl and if she would think for herself, she would be a lot more popular as most of the other students find her doormat personality off putting.');
     } else {
       scene.text('Lina Starov is a mediocre athlete. While she looks like Christina\'s friend, the right term would be lapdog. She usually does anything Christina wants her to do, often helping her bully others or following her around telling her how great she is. She is a very pretty girl and if she would think for herself, she would be a lot more popular.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 2) {
         scene.text('Lina Starov is a mediocre athlete. While she looked like Christina\'s friend, the right term would be Christina\'s lapdog. She usually did anything Christina wanted her to do, as if she didn\'t have a mind of her own. She is a very pretty girl and if she would have thought for herself, she would have been a lot more popular since most of the jocks found her doormat personality off putting.');
       } else {
         scene.text('Lina Starov is a mediocre athlete. While she looked like Christina\'s friend, the right term would be Christina\'s lapdog. She usually did anything Christina wanted her to do, often helping her bully others or following her around telling her how great she is. She is a very pretty girl and if she would have thought for herself, she would have been a lot more popular.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -757,7 +757,7 @@ function enterA19(s: GameState, scene: SceneBuilder): void {
 function enterA23(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/23.jpg');
   scene.text('<center>Albina Barlovskaya</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Albina Barlovskaya comes from a wealthy background and is considered to be one of the most attractive girls in school. A gifted dancer and leader of the cheerleaders at school, she is trying to conduct herself properly as her father is trying to become the town mayor, but she is well known for her short temper and is intimidating if angered, despite her rather petite size. She leads a dance troupe that only the prettiest and best dancers are allowed to join, which comes before all other sports or even hanging out with her fellow jocks. There are several rumors about her going around school, but nobody dares mention them in front of her out of fear of incurring her wrath.');
     } else {
@@ -768,11 +768,11 @@ function enterA23(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Albina Barlovskaya comes from a wealthy background and was considered to be one of the most attractive girls in school. She is a gifted dancer and was the leader of the school cheerleaders who was well known for her short and intimidating temper, despite her rather petite size. She also led a dance troupe that only the prettiest and best dancers were allowed to join, but it was disbanded shortly after her father was arrested. There were several rumors about her going around school, but nobody dared mention them in front of her out of fear of incurring her wrath.');
       scene.text('She is getting a nursing degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -796,7 +796,7 @@ function enterA23(s: GameState, scene: SceneBuilder): void {
 function enterA141(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/141.jpg');
   scene.text('<center>Veronika "Ronnie" Sokolov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Veronika Sokolov is sometimes called the "Ice Queen" behind her back for two reasons. One is that she is a very talented ice skater; there is even talk about how she might compete in the next winter Olympics. The other is because she often comes across as cold and indifferent and never lets anyone get close to her. You know that isn\'t true; she can be nice or even sweet at times, she\'s just hyper focused on her skating and rarely has any free time between school and training. She comes from one of the wealthier families in Pavlovsk.');
     } else {
@@ -804,12 +804,12 @@ function enterA141(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A141'], 'f'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Veronika Sokolov was called the "Ice Queen" by her fellow students behind her back for two reasons. One is that she was a very talented ice skater, while the other is because she was cold and indifferent and never let anyone get close to her. She came from one of the wealthier families in Pavlovsk.');
       scene.text('She left to join the Russian Olympic skating team.');
       // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A141'], 'f'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -820,21 +820,21 @@ function enterA141(s: GameState, scene: SceneBuilder): void {
 function enterA149(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/149.jpg');
   scene.text('<center>Lazar Pajari</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Lazar Pajari is the school football star and the best athlete in school. He is a central midfielder and the football team captain. He excels in several sports, but his passion is football, at least when he\'s not chasing after girls or, more often than not, being chased by them, whom he happily lets catch him. His status and good looks make him desirable among the girls and he is often seen with several different ones. He has even been seen hanging out with Albina, who mostly ignores the boys in school. Ivan is his biggest competition in sports. While Lazar is the over all better athlete, Ivan is far more focused on boxing than other sports.');
     } else {
       scene.text('Lazar Pajari is the school football star and the best athlete in school. He is a central midfielder and the football team captain. He excels in several sports, but his passion is football, at least when he\'s not chasing after girls or, more often than not, being chased by them, whom he happily lets catch him. His status and good looks make him desirable among the girls and he is often seen with several different ones. Ivan is his biggest competition in sports. While Lazar is the over all better athlete, Ivan is far more focused on boxing than other sports.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 2) {
         scene.text('Lazar Pajari was the school\'s football star and best athlete. The former team captain, he is now a midfielder on the university team. He excels in several sports, but his passion is football, at least when he is not chasing after girls or, more often than not, being chased by them, whom he happily lets catch him. His status and good looks make him desirable among the girls and he is often seen with several different ones. He has even been seen hanging out with Albina, who mostly ignored the boys at school.');
       } else {
         scene.text('Lazar Pajari was the school\'s football star and best athlete. The former team captain, he is now a midfielder on the university team. He excels in several sports, but his passion is football, at least when he is not chasing after girls or, more often than not, being chased by them, whom he happily lets catch him. His status and good looks make him desirable among the girls and he is often seen with several different ones.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -846,7 +846,7 @@ function enterA149(s: GameState, scene: SceneBuilder): void {
 function enterA150(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/150.jpg');
   scene.text('<center>Erast Vagin</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Erast Vagin is a huge boy, nearly two meters tall, and is very strong. He is not a looker or even clever, though anyone that has played sports with him knows he\'s not as dumb as he looks; he just seems to have little interest in learning anything outside of sports. He is always polite and a little shy, especially around girls. He often defends girls from being bullied by the other boys, not afraid to stand up to several gopniks at once. However, when he is playing sports he puts his all into winning and nothing else. He is an average athlete and relies on his size and strength to win the day for him. Other than playing sports, he sometimes boxes with Ivan.');
     } else {
@@ -854,12 +854,12 @@ function enterA150(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A150'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Erast Vagin was a huge boy, nearly two meters tall, and was very strong. He wasn\'t a looker or even clever, but was always polite and a little shy, especially around girls. He often defended girls from being bullied by the other boys, not afraid to stand up to several gopniks at once. Most of the girls were nice to him because of it, though a few of them loved to tease him and make him blush. No one that seen him play sports would mistake him for a big teddy bear, as he could be ferocious when he chose to be. He was an average athlete and relied on his size and strength to win the day for him. Other than playing sports, he sometimes boxed with Ivan.');
       scene.text('He stayed in Pavlovsk.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A150'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -870,14 +870,14 @@ function enterA150(s: GameState, scene: SceneBuilder): void {
 function enterA165(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/165.jpg');
   scene.text('<center>Vanya Yanka</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 2) {
       scene.text('Vanya Yanka is a goofy little jock who often plays jokes on his teammates and annoys the coaches. He never goes too far with his jokes and is a good morale booster, so everyone likes him. Despite his easy going attitude, he is a better athlete than most would suspect. When he\'s not training or competing, he spends most of his free time hanging out with Vicky and Katja. He is popular with the girls at school, but only seems to have eyes for Vicky, whom he is dating.');
     } else {
       scene.text('Vanya Yanka is a goofy little jock who often plays jokes at school, even during class. He never goes too far with his jokes, so everyone except the nerds, who tend to be the butt of his jokes, like him. When he\'s not training or competing, he spends most of his free time hanging out with Vicky and Katja. He is popular with the girls at school, but only seems to have eyes for Vicky, whom he is dating.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 2) {
         scene.text('Vanya Yanka was a little goofy jock, playing jokes on his teammates and annoying the coaches. He never went too far with his jokes and was a good morale booster, so everyone liked him. Despite his easy going attitude, he was a better athlete than most would suspect. When he wasn\'t training or competing, he spent most of his free time hanging out with Vicky and Katja. He was popular with the girls at school, but only seemed to have eyes for Vicky, whom he is dating.');
       } else {
@@ -885,7 +885,7 @@ function enterA165(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('He is getting a teaching degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -898,14 +898,14 @@ function enterA165(s: GameState, scene: SceneBuilder): void {
 function enterA2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/2.jpg');
   scene.text('<center>Artem Chebotarev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Artem Chebotarev lives in the same apartment building as you. He is a typical geek, but one could easily be deceived by his looks as he is actually not that bad looking. He does very well in school and is popular with the other geeks, not to mention that, thanks to his looks and good grades, he has befriended a lot of jocks as he is also their tutor outside of school. He is always at D&D night and tends to assume the role of party leader while playing. He is close friends with Petka, but otherwise tries to keep a low profile at school, especially around the cool kids and gopniks.');
     } else {
       scene.text('Artem Chebotarev lives in the same apartment building as you. He is a typical geek, but one could easily be deceived by his looks as he is actually not that bad looking. He does very well in school and is popular with the other geeks, not to mention that, thanks to his looks and good grades, he has befriended a lot of jocks as he is also their tutor outside of school. He otherwise tries to keep a low profile at school, especially around the cool kids and gopniks.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 3) {
         scene.text('Artem Chebotarev lived in the same apartment building as you. He is a typical geek, but one could easily be deceived by his looks as he is actually not that bad looking. He did very well in school and was popular with the other geeks, not to mention that, thanks to his looks and good grades, he befriended a lot of jocks as he was their tutor outside of school. He is always at D&D night and tends to assume the role of party leader while playing. He is close friends with Petka, but otherwise tried to keep a low profile at school, especially around the cool kids and gopniks.');
       } else {
@@ -913,7 +913,7 @@ function enterA2(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('He is getting a science degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -925,21 +925,21 @@ function enterA2(s: GameState, scene: SceneBuilder): void {
 function enterA6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/6.jpg');
   scene.text('<center>Petka Klyuyev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Petka Klyuyev is a nerd who usually doesn\'t interact with other students, preferring to only talk to his fellow nerds and mostly spends his time reading. He\'s good friends with Artem and you can usually hear them recommending what to read to each other. He is another of the regulars at the D&D game night. He does very well in school and has been known to sometimes tutor others.');
     } else {
       scene.text('Petka Klyuyev is a nerd who usually doesn\'t interact with other people, mostly spending his time reading. He\'s good friends with Artem and you can usually hear them recommending what to read to each other. He does very well in school and has been known to tutor others. However, he is afraid of his own shadow and is thus an easy target for bullying; other students are known to steal his homework with little effort.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 3) {
         scene.text('Petka Klyuyev was a nerd who usually didn\'t interact with other students, preferring to only talk to his fellow nerds and mostly spent his time reading. He\'s good friends with Artem and you could usually hear them recommending what to read to each other. He is another of the regulars at the D&D game night. He did very well in school and was known to tutor others.');
       } else {
         scene.text('Petka Klyuyev was a nerd who usually didn\'t interact with other people, mostly spending his time reading. He\'s good friends with Artem and you could usually hear them recommending what to read to each other. He did very well in school and was known to tutor others sometimes. However, he is afraid of his own shadow and was thus an easy target for bullying; other students were known to steal his homework with little effort.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -951,14 +951,14 @@ function enterA6(s: GameState, scene: SceneBuilder): void {
 function enterA12(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/12.jpg');
   scene.text('<center>Julia Milov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Julia is a diligent and silent girl. She\'s very nerdy and doesn\'t really have any friends other than her fellow nerds. She used to be best friends with Natasha, but they had a falling out and she now hangs out with Zinaida, whom she spends a lot of time with. She seems to like keeping to herself, but has sometimes been caught eyeing the other girls while they are changing after gym lessons, likely jealous of them.');
     } else {
       scene.text('Julia is a diligent and silent girl. She\'s very nerdy and doesn\'t really have any friends other than her fellow nerds. She seems to like keeping to herself, but has sometimes been caught eyeing the other girls while they are changing after gym lessons, likely jealous of them.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 3) {
         scene.text('Julia is a diligent and silent girl. She\'s very nerdy and didn\'t really have any friends other than her fellow nerds. She seemed to like keeping to herself, but was sometimes caught eyeing the other girls while they were changing after gym lessons, likely jealous of them.');
       } else {
@@ -966,7 +966,7 @@ function enterA12(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a science degree at the University.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -978,14 +978,14 @@ function enterA12(s: GameState, scene: SceneBuilder): void {
 function enterA16(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/16.jpg');
   scene.text('<center>Natasha Belova</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Natasha is an excellent student and one of the smartest people in your school. Even though you both live in the same building, her parents are very poor and it shows as Natasha is always dressed in second-hand clothes and can never afford to do anything fun. As a result, she doesn\'t have many friends as most of the other girls shun her or mock her poor clothing. She and Julia used to be best friends, but they recently had a falling out. She rarely attends gaming night or other such events. All of you know is that she dreams of being one of the popular girls and has been seen attending the disco trying to befriend them.');
     } else {
       scene.text('Natasha is an excellent student and one of the smartest people in your school. Even though you both live in the same building, her parents are very poor and it shows as Natasha is always dressed in second-hand clothes and can never afford to do anything fun. As a result, she doesn\'t have many friends as most of the other girls shun her or mock her poor clothing. She doesn\'t even seem to get along with her fellow nerds that much.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 3) {
         scene.text('Natasha was an excellent student and one of the smartest people in school. Even though you both lived in the same building, her parents are very poor and it showed as Natasha was always dressed in second-hand clothes and could never afford to do anything fun. As a result, she didn\'t have many friends as most of the other girls shunned her or mocked her poor clothing. She rarely attended gaming night or other such events, attending the disco to try and befriend the popular girls instead.');
       } else {
@@ -993,7 +993,7 @@ function enterA16(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a fashion degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1005,14 +1005,14 @@ function enterA16(s: GameState, scene: SceneBuilder): void {
 function enterA142(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/142.jpg');
   scene.text('<center>Zinaida "Zina" Alkaev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Zinaida Alkaev is a mousey girl who is very plain looking. She never wears makeup, dresses in baggy clothes and barely bothers to brush her hair. She mostly keeps to herself, although she is great at video games and knows all about fantasy, sci-fi, superheroes and other important things. She is always at the D&D game night and loves getting into role playing her character more than most. She always seems eager to attend events when Feofan is present and has recently started hanging out with Julia. The boys seem to love that she knows as much as they do and can beat most of them at the games they play.');
     } else {
       scene.text('Zinaida Alkaev is a mousey girl who is very plain looking. She never wears makeup, dresses in baggy clothes and barely bothers to brush her hair. She mostly keeps to herself playing various games on her phone, although she is fairly popular with the male nerds for reasons unknown to everyone else. She seems to be a complete loner unless she is around her fellow nerds.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 3) {
         scene.text('Zinaida Alkaev is a mousey girl who is very plain looking. She never wears makeup, dresses in baggy clothes and barely bothers to brush her hair. She mostly kept to herself playing various games on her phone, although she is great at video games and knows all about fantasy, sci-fi, superheroes and other important things. She is always at the D&D game night and loves getting into role playing her character more than most. The boys seemed to love that she knows as much as they do about that stuff and can beat most of them at the games they play.');
       } else {
@@ -1020,7 +1020,7 @@ function enterA142(s: GameState, scene: SceneBuilder): void {
       }
       scene.text('She is getting a programing degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1032,7 +1032,7 @@ function enterA142(s: GameState, scene: SceneBuilder): void {
 function enterA151(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/151.jpg');
   scene.text('<center>Evgeny Kuznetsov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Evgeny Kuznetsov is the school chess champion and you can always find him at the chess club at the community center. He is shy and very intelligent, but has not shown any interest in girls, or anyone else for that matter. The other nerds often try and get him interested in their activities but it rarely works, although they do support him when he plays competitive chess. His family has confirmed he does indeed have autism.');
     } else {
@@ -1040,12 +1040,12 @@ function enterA151(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A151'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Evgeny Kuznetsov was the Pavlovsk school chess champion and you could always find him at the chess club at the community center. He was shy and very intelligent, but didn\'t show any interest in girls, or anyone else for that matter. No one would be surprised if he had mild autism.');
       scene.text('He left to attend the university in Moscow.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A151'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1056,21 +1056,21 @@ function enterA151(s: GameState, scene: SceneBuilder): void {
 function enterA152(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/152.jpg');
   scene.text('<center>Feofan Krupin</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Feofan Krupin is heavily into science fiction, fantasy and the like. He has a serious love for superheroes and loves talking about them, their movies and comic books all the time. He also has a collection of cosplay outfits of all the most famous superheroes. He does well in school, but not as well as most would expect. He is the most outgoing of the nerds and is not afraid to talk to the other students, even flirting with girls that are way out of his league. He is the Game Master for the weekly game night and often invites others over to play games at his house.');
     } else {
       scene.text('Feofan Krupin is heavily into science fiction, fantasy and the like. He has a serious love for superheroes and loves talking about them, their movies and comic books all the time. He also has a collection of cosplay outfits of all the most famous superheroes. He does well in school, but not as well as most would expect. He is a nerd\'s nerd, but isn\'t bad looking for one. He is the most outgoing of the nerds and is not afraid to talk to the other students, even flirting with girls that are way out of his league. Rumor is that he runs some silly game night for the other nerds, which has earned him the nickname "King of the Nerds".');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 3) {
         scene.text('Feofan Krupin is heavily into science fiction, fantasy and the like. He has a serious love for superheroes and loves talking about them, their movies and comic books all the time. He also has a collection of cosplay outfits of all the most famous superheroes. He did well in school, but not as well as most would have expected. He was the most outgoing of the nerds and wasn\'t afraid to talk to the other students, even flirting with girls that were way out of his league. He is the Game Master for the weekly game night and often invites others over to play games at his house.');
       } else {
         scene.text('Feofan Krupin is heavily into science fiction, fantasy and the like. He has a serious love for superheroes and loves talking about them, their movies and comic books all the time. He also has a collection of cosplay outfits of all the most famous superheroes. He did well in school, but not as well as most would have expected. He is a nerd\'s nerd, but isn\'t bad looking for one. He was the most outgoing of the nerds and wasn\'t afraid to talk to the other students, even flirting with girls that were way out of his league. Rumor is that he runs some silly game night for the other nerds, which has earned him the nickname "King of the Nerds."');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1082,21 +1082,21 @@ function enterA152(s: GameState, scene: SceneBuilder): void {
 function enterA153(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/153.jpg');
   scene.text('<center>Gerasim Vasilyev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 3) {
       scene.text('Gerasim Vasilyev was confined to a wheelchair after an early childhood accident. He is friendly to everyone, even if most don\'t return the favor. He is well accepted by his fellow nerds and, surprisingly, a few of the jocks and even Anushka, who has been seen defending him from her fellow gopniks. When asked, he tends to be vague about it, saying they just get along. No one seems to know exactly why she likes him, but the rest see him as an easy target to bully and/or force him to do their homework.');
     } else {
       scene.text('Gerasim Vasilyev was confined to a wheelchair after an early childhood accident. He is friendly to everyone, even if most don\'t return the favor. He is well accepted by his fellow nerds and, surprisingly, a few of the jocks and even Anushka, who has been seen defending him from her fellow gopniks. No one seems to know exactly why she likes him, but the rest see him as an easy target to bully and/or force him to do their homework.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 3) {
         scene.text('Gerasim Vasilyev was confined to a wheelchair after an early childhood accident. He was friendly to everyone, even if most didn\'t return the favor. He was well accepted by his fellow nerds and, surprisingly, a few of the jocks and even Anushka, who was often seen defending him from her fellow gopniks. No one seems to know exactly why she liked him, but the rest seen him as an easy target to bully and/or force him to do their homework.');
       } else {
         scene.text('Gerasim Vasilyev was confined to a wheelchair after an early childhood accident. He was friendly to everyone, even if most didn\'t return the favor. He was well accepted by his fellow nerds and, surprisingly, a few of the jocks and even Anushka, who was often seen defending him from her fellow gopniks. No one seems to know exactly why she liked him, but the rest seen him as an easy target to bully and/or force him to do their homework.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1108,16 +1108,16 @@ function enterA153(s: GameState, scene: SceneBuilder): void {
 function enterA240(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/240.jpg');
   scene.text('<center>Natalia "Nat" Pavlova</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     scene.text('Natalia is a very smart, but weak willed girl. She constantly struggles to maintain friendships, but her friendly attitude and eagerness to help others prevents her from being an outcast, despite her not being overly attractive. She is rarely seen hanging out with anyone and fiercely guards a notebook she likes to keep private, never letting anyone read or even touch it.');
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A240'], 'f'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Natalia was a very smart, but weak willed girl. She constantly struggled to maintain friendships, but her good looks and eagerness to help others prevented her from being an outcast. Despite this, she was rarely seen hanging out with anyone. She also fiercely guarded a notebook she liked to keep private, never letting anyone read or even touch it.');
       scene.text('She left to attend the university in Moscow.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A240'], 'f'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1129,7 +1129,7 @@ function enterA240(s: GameState, scene: SceneBuilder): void {
 function enterA9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/9.jpg');
   scene.text('<center>Vitek Kotov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Vitek Kotov is an aggressive and strong guy who considers himself to be a "gangsta". He is very loud, obnoxious, and not very attractive. Lena is his twin sister, whom he is overly protective of, which has caused more than a fair share of drama. He is the leader of the local gopniks and the rest of the troublemakers tend to respect him. As such, he is the most feared boy in school; even some adults are afraid of him. He is involved with the local organized crime, selling and running drugs for them.');
     } else {
@@ -1137,7 +1137,7 @@ function enterA9(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A9'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Vitek Kotov was an aggressive and strong guy who considered himself to be a "gangsta". He was very loud, obnoxious, and not very attractive. Lena was his twin sister, whom he was overly protective of, which has caused more than a fair share of drama. He was the leader of the local gopniks and as such was the most feared boy in school. Even some adults were afraid of him. He was even rumored to be involved with the local organized crime selling drugs.');
       scene.text('He stayed in Pavlovsk and got more involved with Vadim Bely.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A9'], 'm'
@@ -1149,7 +1149,7 @@ function enterA9(s: GameState, scene: SceneBuilder): void {
 function enterA10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/10.jpg');
   scene.text('<center>Dan Ryzhov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Dan Ryzhov is a tall and skinny guy who has nothing but disdain and contempt for anyone who isn\'t not a gopnik, even feeling that way about some of the gopniks. He is well known, even by gopnik standards, to have no respect for girls and is very stubborn, never letting an argument be. He\'s best friends with Vitek and Vasily, and is considered to be the smartest of the bunch, which most people don\'t consider to be that much of a feat. He is the one that takes Vitek\'s ideas and turns them into plans.');
     } else {
@@ -1157,12 +1157,12 @@ function enterA10(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A10'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Dan Ryzhov was a tall and skinny guy whose body language screamed his disdain and contempt for others. He was a very stubborn guy who would never let an argument be and was best friends with Vitek and Vasily. He was considered to be the smartest of the bunch, which most didn\'t consider to be that much of a feat.');
       scene.text('He stayed in Pavlovsk, still hanging out with Vitek.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A10'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1173,7 +1173,7 @@ function enterA10(s: GameState, scene: SceneBuilder): void {
 function enterA11(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/11.jpg');
   scene.text('<center>Vasily Shulgin</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Also known as Shulga, Vasily is always hanging out with Dan and Vitek since they are his best friends. He\'s considered the physically weakest one of the bunch, but is a bit of a prankster and is always making the others laugh, which makes him popular with the gopniks. He was raised by his father after his mother left when he was still an infant and you were good friends when you were younger. As you both drifted towards the gopniks as you grew up, you have remained friends.');
     } else {
@@ -1181,12 +1181,12 @@ function enterA11(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A11'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Also known as Shulga, Vasily was always hanging out with Dan and Vitek since they were his best friends. He was considered the physically weakest one of the bunch, but was a bit of a prankster and was always making the others laugh, which made him popular with the gopniks. He was raised by his father after his mother left when he was still an infant.');
       scene.text('He stayed in Pavlovsk, still hanging out with Vitek.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A11'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1197,7 +1197,7 @@ function enterA11(s: GameState, scene: SceneBuilder): void {
 function enterA20(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/20.jpg');
   scene.text('<center>Yalena "Lena" Kotova</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Lena Kotov is Vitek\'s twin sister. Just like her brother, she is one of the local gopniks. She has a chip on her shoulder, so she can be aggressive and unpredictable. She\'s best friends with Lera and they can often be found together smoking in the school\'s restrooms or hanging out after school. Due to her brother scaring off boys, she can sometimes be found making out with Lera. Katyusha has said the only reason Lena is a gopnik is because of her brother.');
     } else {
@@ -1205,12 +1205,12 @@ function enterA20(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A20'], 'f'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Lena Kotov was Vitek\'s twin sister. Just like her brother, she was one of the local gopniks. She often bullied the nerds and outcasts, even targeting some of the jocks and cool kids at times. She was best friends with Lera and they could often be found together smoking in the school\'s restrooms or hanging out after school.');
       scene.text('She stayed in Pavlovsk.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A20'], 'f'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1221,7 +1221,7 @@ function enterA20(s: GameState, scene: SceneBuilder): void {
 function enterA21(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/21.jpg');
   scene.text('<center>Valeria "Lera" Tsarev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Lera Tsarev comes from a poor family. Her father is one of the teachers at school and her cousin Lesco recently moved in with them and attends the same school. She often picks on him and the other outcasts at school, where she hangs out with the gopniks in your class and is liked by most of them. She\'s best friends with Lena and they can often be found together, smoking in the school\'s restrooms or hanging out after school. She is protective of Lena and always follows her lead. Just about all the gopniks are convinced she is a lesbian since it\'s well known that she and Lena hook up fairly regularly and she has been seen making eyes at some of the other pretty gopnik girls. Katyusha seems disgusted by Lera and dislikes her, almost as much as she dislikes Anushka.');
     } else {
@@ -1229,12 +1229,12 @@ function enterA21(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A21'], 'f'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Lera Tsarev came from a poor family. Her father works at the school as a teacher. After her cousin Lesco moved in with them, she often picked on him and the other outcasts at school. She often hung out with the gopniks in your class and was liked by them. She was best friends with Lena and they could often be found together, smoking in the school\'s restrooms or hanging out after school. She was protective of Lena and always took her lead. It was rumored that she is a lesbian and was in love with Lena.');
       scene.text('She stayed in Pavlovsk.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A21'], 'f'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1245,7 +1245,7 @@ function enterA21(s: GameState, scene: SceneBuilder): void {
 function enterA24(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/24.jpg');
   scene.text('<center>Pauline Sebagotulina</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Pauline Sebagotulina is a bit of a wild child, which makes her very unpredictable. She is a bit of a tomboy and mostly hangs out with the gopnik boys since she doesn\'t seem to have a lot of respect for the other gopnik girls, except Katyusha. No one dares to mess with her because she\'s been in more fights than anyone else. She and Katyusha can sometimes be found sparring together and starting fights with others.');
     } else {
@@ -1253,12 +1253,12 @@ function enterA24(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A24'], 'f'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Pauline Sebagotulina was a bit of a wild child, which made her very unpredictable. She often hung out with the gopniks in your class and was liked by them. No one dared to mess with her because she was in more fights than anyone else. She and Katyusha could sometimes be found sparring together and starting fights with others.');
       scene.text('She stayed in Pavlovsk.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A24'], 'f'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1269,7 +1269,7 @@ function enterA24(s: GameState, scene: SceneBuilder): void {
 function enterA143(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/143.jpg');
   scene.text('<center>Alyona Zima</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Alyona Zima is a hardcore troublemaker. She lives to cause trouble and jumps into any trouble she can find. She can often be found drinking alcohol, and is drunk more often than not. The only person she seems to spend a lot of time around is Anushka, although she occasionally hangs out with the boys from the band or Lena and Lera. It is well known that she carries a knife with her everywhere she goes and isn\'t afraid to use it. She comes from a troubled family as her parents are alcoholic drug addicts. Her father is well known as a bad guy and a bully.');
     } else {
@@ -1277,12 +1277,12 @@ function enterA143(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A143'], 'f'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Alyona Zima was a hardcore troublemaker. She lived to cause trouble and jumped into any trouble she can find. She could often be found drinking alcohol, and was drunk more often than not. The only person she seemed to spend a lot of time around was Anushka, although she occasionally hung out with the boys from the band or Lena and Lera. It was well known that she carried a knife with her everywhere she went, which caused others to give her a wide berth. Rumor is her mother is a drug addict and her father is an alcoholic bully. Most people viewed her as the apple that didn\'t fall far from the tree.');
       scene.text('She moved to the city and moved in with the boys from the band.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A143'], 'f'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1293,14 +1293,14 @@ function enterA143(s: GameState, scene: SceneBuilder): void {
 function enterA144(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/144.jpg');
   scene.text('<center>Anushka "Nush" Konstantinov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Anushka Konstantinov is the lead guitarist and backup vocalist in Radomir\'s band. She and the band often use her good looks to their advantage. She is very adventurous and is very open about her bisexuality. She often teases the boys and even some of the girls at school and is a bit of an exhibitionist. Her main goal in life seems to just be having fun, but she does surprisingly well in school. She doesn\'t seem to be hung up on social standing and seems willing to hang out with or pick on everyone equally, with the exception of Gerasim, whom she has been seen protecting from being bullied, even from the other gopniks. While she has a bit of a reputation as a slut, the reality is that while most of the guys try to get in her panties, few succeed, though she loves making them all think they have a chance.');
     } else {
       scene.text('Anushka Konstantinov is the lead guitarist and backup vocalist in Radomir\'s band. She and the band often use her good looks to their advantage. She is very adventurous and is not shy about her bisexuality. She often teases the boys and even some of the girls at school and is a bit of an exhibitionist. Her main goal in life seems to just be having fun and she likes getting into and causing trouble. She doesn\'t seem to be hung up on social standing and seems willing to hang out with or pick on everyone equally, with the exception of Gerasim, whom she has been seen protecting from being bullied, even from the other gopniks. She has a reputation for being a slut and most wonder why she isn\'t an outcast. A popular rumor is that she is the gopniks\' personal slut and lets all the guys fuck her.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 4) {
         scene.text('Anushka Konstantinov is the lead guitarist and part time vocalist in Radomir\'s band. She and the band often use her good looks to their advantage. She is very adventurous and is very open about her bisexuality, often teasing boys and girls alike. She is also a bit of an exhibitionist and her main goal in life seems to just be having fun. She did surprisingly well at school, enough to get a scholarship into the university, despite the fact she seemed to like getting into and causing trouble more than studying.');
         scene.text('She doesn\'t seem to be hung up on social standing and seems willing to hang out with or pick on everyone equally. While she had a bit of a reputation as a slut, the reality is most of the guys tried to get in her panties, but few succeeded. She and Radomir used to date, but broke up a little over a year ago. Rumor is that they both cheated on each other.');
@@ -1309,7 +1309,7 @@ function enterA144(s: GameState, scene: SceneBuilder): void {
         scene.text('She doesn\'t seem to be hung up on social standing and seems willing to hang out with or pick on everyone equally. She had a reputation for being a slut and most wonder why she wasn\'t an outcast. A popular rumor was that she was the gopniks personal slut and let all the guys fuck her. She and Radomir used to date, with many rumors surrounding their break-up.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1321,7 +1321,7 @@ function enterA144(s: GameState, scene: SceneBuilder): void {
 function enterA145(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/145.jpg');
   scene.text('<center>Katyusha Maksimov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Katyusha Maksimov is the least attractive girl in school. Her face and body are too masculine, she tends to dress like a boy and never shaves her arm pits or legs. She only seems to care about two things; booze and fighting. She gets her booze by either stealing it or hanging out with the boys. When she "plays" with the boys, it only goes as far as she wants it. While the boys are afraid of Lena\'s brother, she prefers fighting the boys herself, which has left them with a healthy respect for her.');
       scene.text('Regardless of the weather, she practices Sambo in the park every day before school. She often taunts or makes fun of the boxers by claiming "boxing is for pussies" and that real fighters fight without rules. She doesn\'t see herself as a gopnik, but other people consider her one. This doesn\'t bother her because she only cares about the opinion of the people whom earn her respect, which is really hard to do. She mostly hangs out with Arkadi, Roman and Pauline since she has no respect at all for the other gopnik girls, often wondering why they are even allowed to hang out with them.');
@@ -1330,12 +1330,12 @@ function enterA145(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A145'], 'f'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Katyusha Maksimov was the least attractive girl in school. Her face and body were too masculine and she tended to dress like a boy while never shaving her arm pits or legs. She only seemed to care about two things; booze and fighting. Regardless of the weather, she practiced Sambo in the park every day before school, often taunting or making fun of the boxers by claiming "boxing is for pussies" and that real fighters fight without rules. She didn\'t see herself as a gopnik, but other people considered her one.');
       scene.text('Shortly after graduation, she moved away without telling anyone where she was going. Rumors are she joined the army.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A145'], 'f'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1346,7 +1346,7 @@ function enterA145(s: GameState, scene: SceneBuilder): void {
 function enterA154(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/154.jpg');
   scene.text('<center>Radomir Popov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Radomir Popov is the lead singer, backup guitarist and leader of a local underground rock/punk band named Pizdá Reydery (Pussy Raiders). He has a great deal of raw talent and is convinced the band is going to become mega stars. In fact, he already acts like they\'re more famous then they are and can thus be arrogant to almost everybody. Some girls adore him because they think he\'s cool or are just groupies that latch onto his limited fame, but he is more than happy to use his small amount of fame to let him use as many girls as he can, as often as he can. He seems to think girls only exist to provide him with sexual gratification.');
     } else {
@@ -1354,12 +1354,12 @@ function enterA154(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A154'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Radomir Popov is the lead singer, backup guitarist and leader of a local underground rock/punk band named Pizdá Reydery (Pussy Raiders). They were considered fairly talented, but he was more or less an asshole who thinks he should already be a star. He could thus be arrogant to almost everybody. Some girls adored him because they think he was cool or were just groupies that latched onto his limited fame, but he was more than happy to use his small amount of fame to let him use as many girls as he can, as often as he can. He seemed to think girls only exist to provide him with sexual gratification. He used to date Anushka, but they broke up over a year ago.');
       scene.text('He and the rest of the band and Alyona rented a place in the city, near the university.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A154'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1370,21 +1370,21 @@ function enterA154(s: GameState, scene: SceneBuilder): void {
 function enterA155(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/155.jpg');
   scene.text('<center>Lavrenti Romanov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Lavrenti Romanov comes from a wealthy family, an only child with parents that are rarely around. He used to be one of the cool kids, but his attitude abruptly changed when Dimka fucked his girlfriend at the time and they had it out in school where Lavrenti beat Dimka badly, which earned him the respect of the gopniks. Since the fight, he has been hanging with the gopniks and starting to become mean and violent. However, he is more of a follower; the other gopniks tolerate him while he uses his money to supply them with alcohol and drugs, sometimes throwing parties at his house when his parents are away.');
     } else {
       scene.text('Lavrenti Romanov comes from a wealthy family, an only child with parents that are rarely around. He used to be one of the cool kids, but his attitude abruptly changed last year. He became mean and violent, which resulted in him and Dimika having a major falling out. Since the fight, he has been hanging with the gopniks. However, he is more of a follower; the gopniks seem to tolerate him while using him for his money.');
     }
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       if (((s as any).grupTipe ?? 0) === 4) {
         scene.text('Lavrenti Romanov comes from a wealthy family. He is an only child with parents that are rarely around. He used to be one of the cool kids, but his attitude abruptly changed when Dimka fucked his girlfriend at the time and they had it out in school where Lavrenti beat Dimka badly, which earned him the respect of the gopniks. After the fight, he started hanging out with the gopniks and became mean and violent. However, he was more of a follower; the other gopniks tolerated him while he used his money to supply them with alcohol and drugs, sometimes throwing parties at his house when his parents were away. He kept his grades up enough to get into the university, which many found surprising.');
       } else {
         scene.text('Lavrenti Romanov comes from a wealthy family. He is an only child with parents that are rarely around. He used to be one of the cool kids, but his attitude abruptly changed a few years ago. He became mean and violent, which resulted in him and Dimika having a major falling out, where he ended up beating Dimka up at school. Since the fight, he started hanging out with the gopniks. However, he is more of a follower; the gopniks seemed to tolerate him while using him for his money. He kept his grades up enough to get into the university, which many found surprising.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1396,7 +1396,7 @@ function enterA155(s: GameState, scene: SceneBuilder): void {
 function enterA156(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/156.jpg');
   scene.text('<center>Arkadi Fyodorov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Arkadi Fyodorov is the drummer in Radomir\'s band. His family recently moved from Saint Petersburg to Pavlovsk. He was held back a year at some point, so is a year older than his fellow students. He is very violent when angry, especially with anyone outside the gopniks. When not hanging out with the band, he is often found hanging out with Roman since they both love getting into fights. He is also not shy about reminding everyone how much harder the city is and how lame Pavlovsk is. He often encourages the rest of the band to practice more.');
     } else {
@@ -1404,12 +1404,12 @@ function enterA156(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A156'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Arkadi Fyodorov is the drummer in Radomir\'s band. His family moved from Saint Petersburg to Pavlovsk. He was held back a year at some point, so was a year older than his fellow students. He was very violent when angry, especially with anyone outside the gopniks. He was also not shy about reminding everyone how much harder the city is and how lame Pavlovsk was.');
       scene.text('He and the rest of the band and Alyona rented a place in the city, near the university.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A156'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1420,7 +1420,7 @@ function enterA156(s: GameState, scene: SceneBuilder): void {
 function enterA157(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/157.jpg');
   scene.text('<center>Roman Yakovlev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Roman Yakovlev is an absolute psychopath and everyone but Vitek seems to be afraid of him. Despite his small size, he is muscular. He\'ll start fights out of boredom and has no problems fighting dirty. He enjoys being especially cruel or sadistic to his victims, once smashing a bottle over a guy\'s head and stabbing him in the face with it, simply because he said the guy looked at him funny. He always has a snide remark and is not afraid to speak back to the teachers or other adults. He\'s not doing great at school because he doesn\'t care, but the other gopniks find his attitude amusing and seem to like that he\'s always getting them into fights.');
     } else {
@@ -1428,12 +1428,12 @@ function enterA157(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A157'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Roman Yakovlev was an absolute psychopath and just about everyone was afraid of him. He was one of the smaller students, but he was always causing trouble. He would start fights out of boredom, knowing that the other gopniks would have his back. He enjoyed being especially cruel or sadistic to his victims. He once smashed a bottle over a guy\'s head and then stabbed him in the face with it, simply because he said the guy looked at him funny. He always had a snide remark and wasn\'t afraid to speak back to the teachers or other adults. He didn\'t do great at school because he didn\'t care, but the other gopniks found his attitude amusing and seemed to like that he was always getting them into funny situations.');
       scene.text('He stayed in Pavlovsk.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A157'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1444,7 +1444,7 @@ function enterA157(s: GameState, scene: SceneBuilder): void {
 function enterA158(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/158.jpg');
   scene.text('<center>Valentin Bogdanov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Valentin Bogdanov is the bassist in Radomir\'s band and the nicest guy in the band. However, this doesn\'t stop him from using his small amount of fame to seduce and use girls, he is just rarely a dick about it. He and Radomir were the two that first started the band, and his goal is to make enough cash to buy an old American motorbike and ride it across the country. He can often be found hanging out with Anushka\'s dad, working on his motorcycle when he\'s not hanging out with the band or practicing with his bass guitar.');
     } else {
@@ -1452,12 +1452,12 @@ function enterA158(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A158'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Valentin Bogdanov is the bassist in Radomir\'s band and the nicest guy in the band. However, this didn\'t stop him from using his small amount of fame to use girls. He was just rarely a dick about it. His goal was to make enough cash from the band to buy an old American motorbike and ride it across the country. He could often be found hanging out with Anushka\'s dad, working on his motorcycle when he wasn\'t hanging out with the band.');
       scene.text('He and the rest of the band and Alyona rented a place in the city, near the university.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A158'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1468,7 +1468,7 @@ function enterA158(s: GameState, scene: SceneBuilder): void {
 function enterA189(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/189.jpg');
   scene.text('<center>Nikolai Volkov</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     if (((s as any).grupTipe ?? 0) === 4) {
       scene.text('Niko Volkov is clever, confident and well spoken, but is also short tempered. When he\'s not drinking and partying, he is hanging out with Lavrenti, with many saying that he only spends time with Lavrenti for his money. His family used to be fairly wealthy but fell on hard times, their once grand house falling into disrepair.');
     } else {
@@ -1476,12 +1476,12 @@ function enterA189(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'journal_NPC_information', 'Relationship', npc_rel['A189'], 'm'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Niko Volkov was clever, but short tempered. When he wasn\'t drinking and partying, he was hanging out with Lavrenti, with many saying that he only spent time with Lavrenti for his money. He always seemed confident and well spoken, but could sometimes come off as paranoid and unstable.');
       scene.text('He disappeared just after graduation and no one has seen him since.');
       // TODO-QSP: gs 'journal_NPC_information', 'Past_Relationship', npc_rel['A189'], 'm'
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1493,14 +1493,14 @@ function enterA189(s: GameState, scene: SceneBuilder): void {
 function enterA7(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/7.jpg');
   scene.text('<center>Lesco Tsarev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     scene.text('Everyone bullies Lesco about anything and everything. The nephew of Mr. Tsarev and the cousin of Lera, he has been residing with his uncle after his mother abandoned him for a week on one of her drug binges. He is very ugly and not very sociable. He always seems be sad and just wants to be left alone.');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Everyone bullied Lesco about anything and everything. The nephew of Mr. Tsarev and the cousin of Lera, he had been residing with his uncle after his mother abandoned him for a week on one of her drug binges. He is very ugly and not very sociable. He always seems be sad and just wants to be left alone.');
       scene.text('He is getting a teaching degree at the university.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }
@@ -1512,13 +1512,13 @@ function enterA7(s: GameState, scene: SceneBuilder): void {
 function enterA159(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/159.jpg');
   scene.text('<center>Petia Alkaev</center>');
-  if (((s as any).locArgs?.[1] ?? 0) === 'gschool') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'gschool') {
     scene.text('Petia Alkaev is the class mooch, constantly asking others for food, money and cigarettes. He can\'t take a hint and doesn\'t know the meaning of "personal space", which is made worse by the fact that he seems to be unaware of what soap is. He is an unattractive, overweight loser who makes girls uncomfortable by repeatedly hitting on them, but no matter how many beatdowns he suffers or how many cruel pranks are pulled on him, he never seems to learn his lesson.');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'uni') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'uni') {
       scene.text('Petia Alkaev was the class mooch, constantly asking others for food, money and cigarettes. He couldn\'t take a hint and didn\'t know the meaning of "personal space", which was made worse by the fact that he seems to be unaware of what soap is. He was and still is an unattractive, overweight loser who makes girls uncomfortable by repeatedly hitting on them, but no matter how many beatdowns he suffered or how many cruel pranks were pulled on him, he never seemed to learn his lesson.');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'city') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'city') {
         scene.text('');
       }
     }

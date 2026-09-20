@@ -205,7 +205,7 @@ function enterCondomUpdate(s: GameState, scene: SceneBuilder): void {
 
 function enterStaminaUpdate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_sex_stamina ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
-    ((s as any).npc_sex_stamina = (s as any).npc_sex_stamina ?? {})[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 10) + 1;
+    ((s as any).npc_sex_stamina = (s as any).npc_sex_stamina ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 10) + 1);
   }
   // TODO-QSP: end
   scene.build();
@@ -232,7 +232,7 @@ function enterScheduleUpdate(s: GameState, scene: SceneBuilder): void {
           ((s as any).npc_work_end = (s as any).npc_work_end ?? {})[String((s as any).npcID ?? 0)] = 17;
         }
       }
-      ((s as any).npc_day_off = (s as any).npc_day_off ?? {})[String((s as any).npcID ?? 0)] = Math.floor(Math.random() * 7) + 1;
+      ((s as any).npc_day_off = (s as any).npc_day_off ?? {})[String((s as any).npcID ?? 0)] = (Math.floor(Math.random() * 7) + 1);
     } else {
       if (((s as any).npc_finance ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         if ((Math.floor(Math.random() * 2) + 1) === 1) {

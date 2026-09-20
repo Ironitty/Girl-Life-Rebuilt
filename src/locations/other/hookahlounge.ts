@@ -45,13 +45,13 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pay for an hour and leave the counter', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: dynamic text: You glance at her name badge, before looking back at her. Smiling, you hand over...
-      scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${((s as any).npc_firstname ?? 0)?.['A262'] ?? ''}!"`);
-      qspCall(s, 'money', 'pay', 100, 'cash');
-      (s as any).smoketab = 1;
-      qspGoto(s, 'hookahlounge', 'start');
+      scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${((st as any).npc_firstname ?? 0)?.['A262'] ?? ''}!"`);
+      qspCall(st, 'money', 'pay', 100, 'cash');
+      (st as any).smoketab = 1;
+      qspGoto(st, 'hookahlounge', 'start');
     }
   } },
     ]);
@@ -70,9 +70,9 @@ function enterSmoke_Hookah(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Smoke using hookah', handler: (st: GameState) => {
-    (s as any).smoketab = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'drugs', 'smoke', 1);
+    (st as any).smoketab = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'drugs', 'smoke', 1);
     scene.img('images/locations/city/redlight/hookahlounge/HookahSmoke.jpg');
     scene.text('You smoke using the hookah');
     scene.actions([

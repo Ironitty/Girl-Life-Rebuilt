@@ -14,12 +14,12 @@ function enterInitCheck(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['day'] !== 0) {
     // TODO-QSP: exit
   }
-  if ((((s as any).locArgs?.[2] ?? 0) === 'inside'  ||  ((s as any).locArgs?.[2] ?? 0) === 'indoors')) {
+  if ((Number((s as any).locArgs?.[2] ?? 0) === 'inside'  ||  Number((s as any).locArgs?.[2] ?? 0) === 'indoors')) {
     if (((String(((s as any).loc ?? 0)).indexOf(String('church'))) + 1) <= 0) {
       // TODO-QSP: exit
     }
   } else {
-    if (((s as any).locArgs?.[2] ?? 0) === 'secluded') {
+    if (Number((s as any).locArgs?.[2] ?? 0) === 'secluded') {
       return;
     }
   }
@@ -36,16 +36,16 @@ function enterInitCheck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'temp_prob_chance'
     // TODO-QSP: exit
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'tits') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'tits') {
     (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) - (50);
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'butt') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'butt') {
       (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) - (75);
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'pussy') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'pussy') {
         (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) - (85);
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'full') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'full') {
           (s as any).temp_prob_chance = ((s as any).temp_prob_chance ?? 0) - (120);
         }
       }
@@ -64,16 +64,16 @@ function enterInitBlackmail(s: GameState, scene: SceneBuilder): void {
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['day'] = ((s as any).daystart ?? 0);
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['stage'] = 1;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['init_day'] = ((s as any).daystart ?? 0);
-  if (((s as any).locArgs?.[1] ?? 0) === 'panty') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'panty') {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['init_flashaction'] = 'panties';
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 'pantyrear') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'pantyrear') {
       ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['init_flashaction'] = 'panty clad ass';
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 'butt_plug') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'butt_plug') {
         ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['init_flashaction'] = 'butt plug';
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 'full') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'full') {
           ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['init_flashaction'] = 'naked body';
         } else {
           ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['init_flashaction'] = ((s as any).locArgs?.[1] ?? 0);
@@ -169,9 +169,9 @@ function enterCiklSetSmsday(s: GameState, scene: SceneBuilder): void {
         ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + (4 - (((s as any).blackmailQW ?? {})?.['selfie_stage'] ?? 0));
       }
       if (((s as any).blackmailQW ?? 0)?.['stage'] < 8) {
-        ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + (Math.floor(Math.random() * 7) + 0);
+        ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + ((Math.floor(Math.random() * 7) + 0));
       } else {
-        ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + (Math.floor(Math.random() * 5) + 0);
+        ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).blackmailQW['smsday'] ?? 0) + ((Math.floor(Math.random() * 5) + 0));
       }
     }
   }
@@ -278,7 +278,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Your blackmailer has demanded you to leave ' + $func('money', 'string_price', bl...
     scene.text('Your blackmailer has demanded you to leave \' + $func(\'money\', \'string_price\', blackmailQW[\'next_payment\']) + \' in the nearest park.');
     if (((s as any).daystart ?? 0) < ((s as any).blackmailQW ?? 0)?.['smsday'] - 1) {
-      // TODO-QSP: dynamic text: You have <<blackmailQW['smsday'] - daystart>> days left
+      // TODO-QSP: dynamic text: You have <<blackmailQW[''smsday''] - daystart>> days left
       scene.text(`You have ${(((s as any).blackmailQW ?? {})?.['smsday'] ?? 0) - ((s as any).daystart ?? '')} days left`);
     } else {
       if (((s as any).daystart ?? 0) === ((s as any).blackmailQW ?? 0)?.['smsday'] - 1) {
@@ -337,7 +337,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
     scene.text('Your blackmailer has sent you a package, you should go pick it up at the St. Petersburg post office.');
     if (((s as any).blackmailQW ?? 0)?.['stage'] >= 8) {
       if (((s as any).daystart ?? 0) < ((s as any).blackmailQW ?? 0)?.['package_day'] - 1) {
-        // TODO-QSP: dynamic text: You have <<blackmailQW['package_day']-daystart>> days left.
+        // TODO-QSP: dynamic text: You have <<blackmailQW[''package_day'']-daystart>> days left.
         scene.text(`You have ${(((s as any).blackmailQW ?? {})?.['package_day'] ?? 0)-((s as any).daystart ?? '')} days left.`);
       } else {
         if (((s as any).daystart ?? 0) === ((s as any).blackmailQW ?? 0)?.['package_day'] - 1) {
@@ -373,10 +373,10 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   scene.text('<b>Blackmailer:</b>');
-  scene.text('    Purge the "Blackmailer" questline: <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\\u0027this_menu\\u0027]] */ return s; }); window.__gameStore.getState().doGoto(\\u0027blackmailer\\u0027, \\u0027purge_all\\u0027); return false;">Permanently reset the entire questline!</a>');
+  scene.text('    Purge the "Blackmailer" questline: <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); window.__gameStore.getState().doGoto(/u0027blackmailer/u0027, /u0027purge_all/u0027); return false;">Permanently reset the entire questline!</a>');
   if (((s as any).daystart ?? 0) < ((s as any).blackmailQW ?? 0)?.['dreamday']) {
-    // TODO-QSP: dynamic text:     Minimum days to next dream: <<blackmailQW['dreamday'] - daystart>>.  <a href...
-    scene.text(`    Minimum days to next dream: ${(((s as any).blackmailQW ?? {})?.['dreamday'] ?? 0) - ((s as any).daystart ?? '')}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})\\u0027dreamday\\u0027 = s.daystart; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\\u0027this_menu\\u0027]] */ return s; }); return false;">Set to 0</a>`);
+    // TODO-QSP: dynamic text:     Minimum days to next dream: <<blackmailQW[''dreamday''] - daystart>>.  <a hr...
+    scene.text(`    Minimum days to next dream: ${(((s as any).blackmailQW ?? {})?.['dreamday'] ?? 0) - ((s as any).daystart ?? '')}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})/u0027dreamday/u0027 = s.daystart; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); return false;">Set to 0</a>`);
   } else {
     scene.text('    Minimum days to next dream: 0');
   }
@@ -385,13 +385,13 @@ function enterCheatmenu(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_index ?? 0) >= 0) {
       (s as any).temp_ISMSCode = ((s as any).contactISMSCode ?? 0)?.[String((s as any).temp_index ?? 0)];
       if (((s as any).temp_ISMSCode ?? 0) !== "") {
-        scene.text('    Blackmailer will contact you today.  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\\u0027this_menu\\u0027]] */ return s; }); window.__gameStore.getState().doGoto(\\u0027blackmailer\\u0027, \\u0027cheatmenu_force_sendsms\\u0027); return false;">Force sms now</a>');
+        scene.text('    Blackmailer will contact you today.  <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); window.__gameStore.getState().doGoto(/u0027blackmailer/u0027, /u0027cheatmenu_force_sendsms/u0027); return false;">Force sms now</a>');
       } else {
         if (((s as any).blackmailQW ?? 0)?.['smsday'] === 0) {
-          scene.text('    Blackmailer will decide when to contact you tomorrow.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})\\u0027smsday\\u0027 = s.daystart; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\\u0027this_menu\\u0027]] */ return s; }); return false;">Force next sms tomorrow</a>');
+          scene.text('    Blackmailer will decide when to contact you tomorrow.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})/u0027smsday/u0027 = s.daystart; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); return false;">Force next sms tomorrow</a>');
         } else {
-          // TODO-QSP: dynamic text:     Days to next sms: <<max(1, blackmailQW['smsday']-daystart+1)>>.  <a href="ex...
-          scene.text(`    Days to next sms: ${Math.max(1, (((s as any).blackmailQW ?? {})?.['smsday'] ?? 0)-((s as any).daystart ?? '')+1)}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})\\u0027smsday\\u0027 = daystart-1; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[\\u0027this_menu\\u0027]] */ return s; }); window.__gameStore.getState().doGoto(\\u0027blackmailer\\u0027, \\u0027cikl_set_sms\\u0027); return false;">Force next sms today</a>`);
+          // TODO-QSP: dynamic text:     Days to next sms: <<max(1, blackmailQW[''smsday'']-daystart+1)>>.  <a href="...
+          scene.text(`    Days to next sms: ${Math.max(1, (((s as any).blackmailQW ?? {})?.['smsday'] ?? 0)-((s as any).daystart ?? '')+1)}.  <a href="#" onclick="window.__gameStore.setState((s) => { (s.blackmailQW ??= {})/u0027smsday/u0027 = daystart-1; /* TODO-QSP: dynamic $cheatmenu[$cheatmenu[/u0027this_menu/u0027]] */ return s; }); window.__gameStore.getState().doGoto(/u0027blackmailer/u0027, /u0027cikl_set_sms/u0027); return false;">Force next sms today</a>`);
         }
       }
       if (((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
@@ -444,13 +444,13 @@ function enterSetNextPayment(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMakePayment(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) <= 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) <= 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
   }
-  if (((s as any).locArgs?.[1] ?? 0) > ((s as any).blackmailQW ?? 0)?.['next_payment']) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > ((s as any).blackmailQW ?? 0)?.['next_payment']) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).blackmailQW ?? 0)?.['next_payment'];
   }
-  if (((s as any).locArgs?.[2] ?? 0) === 'money') {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 'money') {
     // TODO-QSP: gs 'money', 'pay', ARGS[1], 'cash'
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_payment'] = ((s as any).blackmailQW['total_payment'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   } else {
@@ -474,7 +474,7 @@ function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_i = 0;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['unique_selfie_sent'] = 0;
   // TODO-QSP: :add_blackmail_loop
-  if (((s as any).blackmailQW ?? 0)['selfie_image_' + ((s as any).temp_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
+  if (((s as any).blackmailQW ?? 0)['selfie_image_' + ((s as any).temp_i ?? 0)] === Number((s as any).locArgs?.[1] ?? 0)) {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['unique_selfie_sent'] = 1;
     return;
   } else {
@@ -483,14 +483,14 @@ function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_i ?? 0) < 10) {
         // TODO-QSP: jump 'add_blackmail_loop'
       }
-      (s as any).temp_i = Math.floor(Math.random() * 10) + 0;
+      (s as any).temp_i = (Math.floor(Math.random() * 10) + 0);
     }
   }
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_image_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[1] ?? 0);
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_location_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[2] ?? 0);
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_dress_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[3] ?? 0);
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_LocIndex_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[4] ?? 0);
-  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_number_' + String((s as any).temp_i || '') + ''] = ((s as any).locArgs?.[5] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_image_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[1] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_location_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[2] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_dress_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_LocIndex_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[4] ?? 0);
+  ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['selfie_number_' + String(((s as any).temp_i ?? 0))] = ((s as any).locArgs?.[5] ?? 0);
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_material'] = ((s as any).blackmailQW['total_material'] ?? 0) + (1);
   // TODO-QSP: end
   scene.build();
@@ -498,7 +498,7 @@ function enterAddBlackmailSelfie(s: GameState, scene: SceneBuilder): void {
 
 function enterChooseBlackmailImage(s: GameState, scene: SceneBuilder): void {
   (s as any).result = '';
-  if ((Math.floor(Math.random() * 11) + 0) > 0  ||  ((s as any).locArgs?.[1] ?? 0) === 1) {
+  if ((Math.floor(Math.random() * 11) + 0) > 0  ||  Number((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).result = ((s as any).blackmailQW ?? 0)['selfie_image_' + ((s as any).rand ?? 0)(0, ((s as any).in ?? 0)(((s as any).blackmailQW ?? 0)?.[String((s as any).total_material ?? 0)]-1, 9)) + ''];
   }
   if (((s as any).result ?? 0) === '') {
@@ -515,24 +515,24 @@ function enterChoosePackage(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_i = 7;
   } else {
     if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] < 5) {
-      (s as any).temp_i = Math.floor(Math.random() * 7) + 1;
+      (s as any).temp_i = (Math.floor(Math.random() * 7) + 1);
     } else {
       if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 5) {
-        (s as any).temp_i = Math.floor(Math.random() * 12) + 1;
+        (s as any).temp_i = (Math.floor(Math.random() * 12) + 1);
       } else {
         if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 6) {
-          (s as any).temp_i = Math.floor(Math.random() * 18) + 1;
+          (s as any).temp_i = (Math.floor(Math.random() * 18) + 1);
         } else {
           if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 7) {
-            (s as any).temp_i = Math.floor(Math.random() * 20) + 1;
+            (s as any).temp_i = (Math.floor(Math.random() * 20) + 1);
           } else {
             if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 8) {
-              (s as any).temp_i = Math.floor(Math.random() * 20) + 1;
+              (s as any).temp_i = (Math.floor(Math.random() * 20) + 1);
             } else {
               if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 9) {
-                (s as any).temp_i = Math.floor(Math.random() * 30) + 1;
+                (s as any).temp_i = (Math.floor(Math.random() * 30) + 1);
               } else {
-                (s as any).temp_i = Math.floor(Math.random() * 20) + 21;
+                (s as any).temp_i = (Math.floor(Math.random() * 20) + 21);
               }
             }
           }
@@ -685,40 +685,40 @@ function enterGetPackageContent(s: GameState, scene: SceneBuilder): void {
 
 function enterCosplaynumberToBmid(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (((s as any).locArgs?.[1] ?? 0) === 78) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 78) {
     (s as any).result = 1;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 21) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 21) {
       (s as any).result = 2;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 110) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 110) {
         (s as any).result = 3;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 26) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 26) {
           (s as any).result = 4;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 90) {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 90) {
             (s as any).result = 5;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 106) {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 106) {
               (s as any).result = 6;
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 31) {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 31) {
                 (s as any).result = 7;
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 34) {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 34) {
                   (s as any).result = 8;
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 129) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 129) {
                     (s as any).result = 9;
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 74) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 74) {
                       (s as any).result = 10;
                     } else {
-                      if (((s as any).locArgs?.[1] ?? 0) === 93) {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 93) {
                         (s as any).result = 11;
                       } else {
-                        if (((s as any).locArgs?.[1] ?? 0) === 133) {
+                        if (Number((s as any).locArgs?.[1] ?? 0) === 133) {
                           (s as any).result = 12;
                         }
                       }
@@ -738,60 +738,60 @@ function enterCosplaynumberToBmid(s: GameState, scene: SceneBuilder): void {
 
 function enterBmidToCosplaynumber(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).result = 78;
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 2) {
       (s as any).result = 21;
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 3) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
         (s as any).result = 110;
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === 4) {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 4) {
           (s as any).result = 26;
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === 5) {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 5) {
             (s as any).result = 90;
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 6) {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 6) {
               (s as any).result = 106;
             } else {
-              if (((s as any).locArgs?.[1] ?? 0) === 7) {
+              if (Number((s as any).locArgs?.[1] ?? 0) === 7) {
                 (s as any).result = 31;
               } else {
-                if (((s as any).locArgs?.[1] ?? 0) === 8) {
+                if (Number((s as any).locArgs?.[1] ?? 0) === 8) {
                   (s as any).result = 34;
                 } else {
-                  if (((s as any).locArgs?.[1] ?? 0) === 9) {
+                  if (Number((s as any).locArgs?.[1] ?? 0) === 9) {
                     (s as any).result = 129;
                   } else {
-                    if (((s as any).locArgs?.[1] ?? 0) === 10) {
+                    if (Number((s as any).locArgs?.[1] ?? 0) === 10) {
                       (s as any).result = 74;
                     } else {
-                      if (((s as any).locArgs?.[1] ?? 0) === 11) {
+                      if (Number((s as any).locArgs?.[1] ?? 0) === 11) {
                         (s as any).result = 83;
                       } else {
-                        if (((s as any).locArgs?.[1] ?? 0) === 12) {
+                        if (Number((s as any).locArgs?.[1] ?? 0) === 12) {
                           (s as any).result = 133;
                         } else {
-                          if (((s as any).locArgs?.[1] ?? 0) === 13) {
+                          if (Number((s as any).locArgs?.[1] ?? 0) === 13) {
                           } else {
-                            if (((s as any).locArgs?.[1] ?? 0) === 14) {
+                            if (Number((s as any).locArgs?.[1] ?? 0) === 14) {
                               (s as any).bm_i = 37;
                             } else {
-                              if (((s as any).locArgs?.[1] ?? 0) === 15) {
+                              if (Number((s as any).locArgs?.[1] ?? 0) === 15) {
                                 (s as any).bm_i = 86;
                               } else {
-                                if (((s as any).locArgs?.[1] ?? 0) === 16) {
+                                if (Number((s as any).locArgs?.[1] ?? 0) === 16) {
                                   (s as any).bm_i = 95;
                                 } else {
-                                  if (((s as any).locArgs?.[1] ?? 0) === 17) {
+                                  if (Number((s as any).locArgs?.[1] ?? 0) === 17) {
                                     (s as any).bm_i = 130;
                                   } else {
-                                    if (((s as any).locArgs?.[1] ?? 0) === 18) {
+                                    if (Number((s as any).locArgs?.[1] ?? 0) === 18) {
                                       (s as any).bm_i = 132;
                                     } else {
-                                      if (((s as any).locArgs?.[1] ?? 0) === 19) {
+                                      if (Number((s as any).locArgs?.[1] ?? 0) === 19) {
                                         (s as any).bm_i = 138;
                                       } else {
                                         (s as any).bm_i = 104;
@@ -820,7 +820,7 @@ function enterBmidToCosplaynumber(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRegisterCosplayUsed(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = qspFunc(s, 'blackmailer', 'cosplaynumber_to_bmid', ((s as any).clothingwornnumber ?? 0));
   }
   (s as any).temp_cu = (String(100 + ((s as any).locArgs?.[1] ?? 0)).slice((2)-1));
@@ -841,7 +841,7 @@ function enterChooseRandomCosplayUsed(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_tries = 0;
   // TODO-QSP: :choose_random_cosplay_loop
-  (s as any).temp_rand = Math.floor(Math.random() * 12) + 1;
+  (s as any).temp_rand = (Math.floor(Math.random() * 12) + 1);
   if ((!((String(((s as any).blackmailQW ?? 0)?.['cosplays_used']).indexOf(String(';' + (String(100 + ((s as any).temp_rand ?? 0)).slice((2)-1)) + ';'))) + 1))) {
     (s as any).temp_tries = ((s as any).temp_tries ?? 0) + (1);
     if (((s as any).temp_tries ?? 0) < 1000) {
@@ -928,7 +928,7 @@ function enterBlackmailDreams(s: GameState, scene: SceneBuilder): void {
     if (((s as any).blackmailQW ?? 0)?.['stage'] === 2) {
       // TODO-QSP: $sleep_events_priority[] = "gt 'blackmailer', 'photo_dream2'"
     } else {
-      (s as any).temp_rand = Math.floor(Math.random() * 10) + 0;
+      (s as any).temp_rand = (Math.floor(Math.random() * 10) + 0);
       if (((s as any).temp_rand ?? 0) < 5) {
       } else {
         if (((s as any).temp_rand ?? 0) < 8) {
@@ -984,35 +984,35 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).npc_rel ?? 0)?.['A29'] >= 10) {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
-    // TODO-QSP: dynamic text: You dream that your <<$npc_nickname['A29']>> is sitting at the kitchen table, lo...
+    // TODO-QSP: dynamic text: You dream that your <<$npc_nickname[''A29'']>> is sitting at the kitchen table, ...
     scene.text(`You dream that your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is sitting at the kitchen table, looking somber, almost defeated, reading what seems to be a letter.`);
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Ask your ' + String(((s as any).npc_nickname ?? 0)?.['A29'] ?? '' ?? '') + ' what\'s wrong', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/mum_gyno2.jpg');
-    // TODO-QSP: dynamic text: You walk up to her and ask "What's wrong <<$npc_nickname['A29']>>?"
-    scene.text(`You walk up to her and ask "What's wrong ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}?"`);
+    // TODO-QSP: dynamic text: You walk up to her and ask "What''s wrong <<$npc_nickname[''A29'']>>?"
+    scene.text(`You walk up to her and ask "What's wrong ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}?"`);
     scene.text('She drops the letter and see that it is accompanied by a picture.');
     scene.actions([
       { label: 'Look at the picture', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
-    scene.img(`${((s as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
-    (s as any).temp_dream_text = 'You get a clear look at the picture depicting you flashing your ';
+    scene.img(`${((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
+    (st as any).temp_dream_text = 'You get a clear look at the picture depicting you flashing your ';
     // TODO-QSP: $temp_dream_text += $blackmailQW['init_flashaction']
-    if (((s as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
+    if (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
       // TODO-QSP: $temp_dream_text += ' ' + $blackmailQW['init_flashloc_desc']
     }
     // TODO-QSP: $temp_dream_text += '.'
-    qspCall(s, 'arousal', 'flash', (-5));
-    qspCall(s, 'arousal', 'end');
-    // TODO-QSP: dynamic text: Overcoming the initial shock, you can barely hear that your <<$npc_nickname['A29...
-    scene.text(`Overcoming the initial shock, you can barely hear that your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is speaking to you, though you don't register what she's saying to you.`);
+    qspCall(st, 'arousal', 'flash', (-5));
+    qspCall(st, 'arousal', 'end');
+    // TODO-QSP: dynamic text: Overcoming the initial shock, you can barely hear that your <<$npc_nickname[''A2...
+    scene.text(`Overcoming the initial shock, you can barely hear that your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is speaking to you, though you don't register what she's saying to you.`);
     scene.actions([
       { label: 'Listen to your mother', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/spank.jpg');
     // TODO-QSP: dynamic text: "Oh, you slut! Your father and I worked so hard to raise you as a decent person,...
-    scene.text(`"Oh, you slut! Your father and I worked so hard to raise you as a decent person, hoping you would find a good husband some day and it turns out you're a whore who gets off on showing her ${((s as any).blackmailQW ?? 0)?.['init_flashaction'] ?? ''} to strangers!"`);
+    scene.text(`"Oh, you slut! Your father and I worked so hard to raise you as a decent person, hoping you would find a good husband some day and it turns out you're a whore who gets off on showing her ${((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? ''} to strangers!"`);
     scene.text('Suddenly her expression steels, her mind made up. "You can still be saved. I will turn you away from this errant path, you will not shame this family even if I have to beat the sin out of you."');
     scene.text('She grabs your arm and yanks you over kitchen table, ripping donw your pants as she reaches for something outside of your view.');
     scene.text('You hear sound of metal and leather, the feel of thick, rough, leather against your naked behind. The sound as she cracks it like a whip. "This is for your own good, someday you\'ll understand."');
@@ -1023,7 +1023,7 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Dream</b></center>');
     scene.img('images/characters/pavlovsk/resident/mom/hug_sad1.jpg');
     // TODO-QSP: dynamic text: Bracing yourself for the pain that never comes, the dream shifts. You are left o...
-    scene.text(`Bracing yourself for the pain that never comes, the dream shifts. You are left on the outside looking in, the house a mess, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} crying, ${((s as any).npc_nickname ?? 0)?.['A34'] ?? ''} and your ${((s as any).npc_nickname ?? 0)?.['A28'] ?? ''} nowhere to be seen.`);
+    scene.text(`Bracing yourself for the pain that never comes, the dream shifts. You are left on the outside looking in, the house a mess, your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} crying, ${((st as any).npc_nickname ?? 0)?.['A34'] ?? ''} and your ${((st as any).npc_nickname ?? 0)?.['A28'] ?? ''} nowhere to be seen.`);
     scene.text('The lingering feelings of a happy family quickly fading.');
     scene.actions([
       { label: 'Continue sleeping', handler: (st: GameState) => {
@@ -1048,15 +1048,15 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Grab a polaroid', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
-    scene.img(`${((s as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
-    (s as any).temp_dream_text = 'You grab one of the pictures and see yourself flashing your ';
+    scene.img(`${((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
+    (st as any).temp_dream_text = 'You grab one of the pictures and see yourself flashing your ';
     // TODO-QSP: $temp_dream_text += $blackmailQW['init_flashaction']
-    if (((s as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
+    if (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
       // TODO-QSP: $temp_dream_text += ' ' + $blackmailQW['init_flashloc_desc']
     }
     // TODO-QSP: $temp_dream_text += '.'
-    qspCall(s, 'arousal', 'flash', (-5));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flash', (-5));
+    qspCall(st, 'arousal', 'end');
     scene.text('The laughter around you grows, you are surrounded by a sea of people holding your picture and laughing at you.');
     scene.text('Wading through the ocean of polaroids, you are ever confronted with the fact that you have lost the respect of your former friends.');
     scene.actions([
@@ -1080,15 +1080,15 @@ function enterPhotoDream2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Buy a newspaper', handler: (st: GameState) => {
     scene.text('<center><b>Dream</b></center>');
-    scene.img(`${((s as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
-    (s as any).temp_dream_text = 'The postmaster distandly hands you a newspaper, and on the front cover you see a picture of yourself flashing your ';
+    scene.img(`${((st as any).blackmailQW ?? 0)?.['init_flashimage'] ?? ''}`);
+    (st as any).temp_dream_text = 'The postmaster distandly hands you a newspaper, and on the front cover you see a picture of yourself flashing your ';
     // TODO-QSP: $temp_dream_text += $blackmailQW['init_flashaction']
-    if (((s as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
+    if (((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] !== '') {
       // TODO-QSP: $temp_dream_text += ' ' + $blackmailQW['init_flashloc_desc']
     }
     // TODO-QSP: $temp_dream_text += '.'
-    qspCall(s, 'arousal', 'flash', (-5));
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'flash', (-5));
+    qspCall(st, 'arousal', 'end');
     scene.text('"I didn\'t know that you were such a whore!", "That\'s really her, what a slut!", "Maybe she\'ll let us fuck her too!"');
     scene.text('You run outside into the raging storm, the insults piercing through, chasing you.');
     scene.actions([
@@ -1133,15 +1133,15 @@ function enterSetParkAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
     scene.actions([
       { label: 'Walk to the fourth bench to pay your blackmailer', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
-    if (((s as any).blackmailQW ?? 0)?.['stage'] === 4) {
-      qspGoto(s, 'blackmailer', 'park1');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
+    if (((st as any).blackmailQW ?? 0)?.['stage'] === 4) {
+      qspGoto(st, 'blackmailer', 'park1');
     } else {
-      if (((s as any).blackmailQW ?? 0)?.['stage'] === 7) {
-        qspGoto(s, 'blackmailer', 'park2');
+      if (((st as any).blackmailQW ?? 0)?.['stage'] === 7) {
+        qspGoto(st, 'blackmailer', 'park2');
       } else {
-        qspGoto(s, 'blackmailer', 'park_repeat');
+        qspGoto(st, 'blackmailer', 'park_repeat');
       }
     }
   } },
@@ -1157,17 +1157,17 @@ function enterPark1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Hide the money', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      if (((s as any).blackmailQW ?? 0)?.['stage'] === 4) {
-        ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['stage'] = 5;
+      if (((st as any).blackmailQW ?? 0)?.['stage'] === 4) {
+        ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['stage'] = 5;
       }
-      qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
-      ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
+      qspCall(st, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
+      ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['smsday'] = 0;
       // TODO-QSP: gs 'blackmailer', 'make_payment', blackmailQW['next_payment'], 'money'
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
       scene.text('You descretely hide the money inside a nearby paper bag and hide it on the side of the bench.');
       scene.actions([
@@ -1210,17 +1210,17 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk to the familiar bench and take a seat at the edge of it.');
     scene.actions([
       { label: 'Hide the money', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['stage'] = 8;
-      qspCall(s, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
-      ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = 0;
-      ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['cosplay_stage'] = 1;
-      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterRegisterCosplayUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
+      ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['stage'] = 8;
+      qspCall(st, 'telefon', 'ClearInSMSSchedule', 'Blackmailer');
+      ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['smsday'] = 0;
+      ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['cosplay_stage'] = 1;
+      { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 7]; enterRegisterCosplayUsed(s, scene); (st as any).locArgs = __savedLocArgs; }
       // TODO-QSP: gs 'blackmailer', 'make_payment', blackmailQW['next_payment'], 'money'
-      (s as any).minut = ((s as any).minut ?? 0) + 1;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 1;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
       scene.text('You can only hope that this getup doesn\'t draw too much attention to you as you try to descretely put the money inside a nearby paper bag and hide it on the side of the bench.');
       scene.actions([
@@ -1249,18 +1249,18 @@ function enterParkRepeat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 0  ||  ((s as any).clothingworntype ?? 0) === 'nerdvana_cosplay') {
     scene.actions([
       { label: 'Hide the money', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      if (((s as any).blackmailQW ?? 0)?.['cosplay_stage'] === 0) {
-        qspGoto(s, 'blackmailer', 'park_repeat_hide');
+      if (((st as any).blackmailQW ?? 0)?.['cosplay_stage'] === 0) {
+        qspGoto(st, 'blackmailer', 'park_repeat_hide');
       } else {
         if ((!(Math.floor(Math.random() * 10) + 0))) {
-          ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['worn_costume'] = 2;
+          ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['worn_costume'] = 2;
         } else {
-          ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['worn_costume'] = 1;
+          ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['worn_costume'] = 1;
         }
-        qspGoto(s, 'blackmailer', 'park_repeat_hide', '1');
+        qspGoto(st, 'blackmailer', 'park_repeat_hide', '1');
       }
     }
   } },
@@ -1269,18 +1269,18 @@ function enterParkRepeat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
     scene.actions([
       { label: 'Hide the money', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).blackmailQW ?? 0)?.['next_payment'], 'cash') === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
-        s.scene = { ...s.scene, mainText: String((s as any).noWillpower || ''), curActs: [] };
+      if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
+        s.scene = { ...s.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
       } else {
-        qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
-        qspCall(s, 'willpower', 'pay', 'resist');
+        qspCall(st, 'willpower', 'humiliation', 'resist', 'medium');
+        qspCall(st, 'willpower', 'pay', 'resist');
         if ((!(Math.floor(Math.random() * 10) + 0))) {
-          ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['worn_costume'] = (-2);
+          ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['worn_costume'] = (-2);
         } else {
-          ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['worn_costume'] = (-1);
+          ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['worn_costume'] = (-1);
         }
         // TODO-QSP: gt 'blackmailer', 'park_repeat_hide', -1
       }
@@ -1304,10 +1304,10 @@ function enterParkRepeatHide(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/park/blackmailer/dropoff.jpg');
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.text('You descretely put the money inside a nearby paper bag and hide it on the side of the bench.');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === -1) {
+    if (Number((s as any).locArgs?.[1] ?? 0) === -1) {
       scene.text('You try to descretely put the money inside a nearby paper bag and hide it on the side of the bench.');
       if (((s as any).blackmailQW ?? 0)?.['resist'] > 0) {
         scene.text('You can only hope that the police have scared off the blackmailer from checking up on you');
@@ -1315,7 +1315,7 @@ function enterParkRepeatHide(s: GameState, scene: SceneBuilder): void {
         scene.text('You can only hope that the blackmailer isn\'t currently watching you.');
       }
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === 1) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
         scene.text('You can only hope that this getup doesn\'t draw too much attention to you as you try to descretely put the money inside a nearby paper bag and hide it on the side of the bench.');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).clothingwornnumber ?? 0)]; enterRegisterCosplayUsed(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
@@ -1345,9 +1345,9 @@ function enterSetPoliceAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['stage'] >= 4  &&  ((s as any).blackmailQW ?? 0)?.['escape'] === 0) {
     scene.actions([
       { label: 'Report that you\'re being blackmailed', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'blackmailer', 'police1');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'blackmailer', 'police1');
   } },
     ]);
   }
@@ -1373,42 +1373,42 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/police/interrogation1.jpg');
-    if (((s as any).region ?? 0) === 'pav') {
+    if (((st as any).region ?? 0) === 'pav') {
       scene.text('You sit down at a shoddy looking desk and another officer who looks only marginally more competent than the one who greeted you sits down across from you.');
     } else {
       scene.text('As promised, someone comes out and takes you into their office space behind. You sit down at a shoddy looking desk and the officer takes his place on the other side of it.');
     }
     scene.text('"Alright ma\'am, you stated that you were being blackmailed. Could you please explain the situation?"');
-    qspCall(s, 'willpower', 'flash', 'self');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'flash', 'self');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String(((s as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '' ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String(((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '' ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String(((s as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '' ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+        { label: '', labelFn: (s: GameState) => 'Tell them that somebody caught you flashing your ' + String(((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '' ?? '') + ' [+iif($blackmailQW[\'init_flashloc_desc\'] =...]', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/police/interrogation2.jpg');
     scene.text('"Some creep took a picture of me and is demanding money or he\'ll release the picture!"');
     scene.text('"Hmm, how did this person contact you?"');
     scene.text('"He texted me."');
     scene.text('You see a stark of hope flash through the officers eyes, if you could show us the texts we might be able to locate him."');
-    if ((Array.isArray((s as any).SMSContact) ? ((s as any).SMSContact as any[]).indexOf('Blackmailer') : -1) >= 0) {
+    if ((Array.isArray((st as any).SMSContact) ? ((st as any).SMSContact as any[]).indexOf('Blackmailer') : -1) >= 0) {
       scene.actions([
         { label: 'Show them the messages', handler: (st: GameState) => {
-    if (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] === '') {
-      ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['blackmail_image_chosen'] = ((s as any).blackmailQW ?? 0)?.['init_flashimage'];
+    if (((st as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] === '') {
+      ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['blackmail_image_chosen'] = ((st as any).blackmailQW ?? 0)?.['init_flashimage'];
     }
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['escape'] = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    scene.img(`${((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] ?? ''}`);
+    ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['escape'] = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    scene.img(`${((st as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] ?? ''}`);
     scene.text('You open your phone and show the police officers the messages, and the images that you were send. You see the officer raise his eyebrow and you think you can almost hear him mutter "accidentally?" under his breath.');
     scene.text('The officer fuddles around with you phone for a few minutes, his expression darkning with every bygone moment.');
     scene.text('"Ma\'am, we\'re taking this very seriously, but the perp was smart and hid his telephone number. We\'ll try our best, stake out this drop-off location, but I don\'t have high hopes that we\'ll catch him quick enough."');
@@ -1418,8 +1418,8 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
     scene.text('You pocket the card without even looking at it, and quickly hurry out the station.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetOfficerContact(s, scene); (s as any).locArgs = __savedLocArgs; }
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetOfficerContact(s, scene); (st as any).locArgs = __savedLocArgs; }
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
     ]);
   } },
@@ -1435,16 +1435,16 @@ function enterPolice1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'This is too embarrassing, flee the police station', handler: (st: GameState) => {
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['escape'] = (-1);
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    if (((s as any).region ?? 0) === 'pav') {
+    ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['escape'] = (-1);
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    if (((st as any).region ?? 0) === 'pav') {
       scene.img('images/locations/pavlovsk/police/pavext.jpg');
     } else {
       scene.img('images/locations/city/citycenter/police/cityext.jpg');
     }
     // TODO-QSP: dynamic text: Sitting in the interrogation room with the police officer, the situation suddenl...
-    scene.text(`Sitting in the interrogation room with the police officer, the situation suddenly comes crashing into you. You're going to have to show some proof. That you were flashing your ${((s as any).blackmailQW ?? 0)?.['init_flashaction'] ?? ''}' + iif($blackmailQW['init_flashloc_desc'] = ', ', ' ${((s as any).blackmailQW ?? 0)?.['init_flashloc_desc'] ?? ''}') + '. They will see the texts, the photos. They will see you for who you must be on the inside. You can already feel their eyes judging you.`);
+    scene.text('Sitting in the interrogation room with the police officer, the situation suddenly comes crashing into you. You\'re going to have to show some proof. That you were flashing your ' + ((st as any).blackmailQW ?? 0)?.['init_flashaction'] ?? '' + '\' + iif($blackmailQW[\'init_flashloc_desc\'] = \', \', \' ' + ((st as any).blackmailQW ?? 0)?.['init_flashloc_desc'] ?? '' + '\') + \'. They will see the texts, the photos. They will see you for who you must be on the inside. You can already feel their eyes judging you.');
     scene.text('"I-I-I can\'t, I can\'t, I can\'t…" you manage to push out, nearly hyper-ventilating.');
     scene.text('You nearly jump up out of the chair, backing up towards the door. Your eyes wide with panic "I\'m sorry, I was mistaken".');
     scene.text('The police officer just sighs and moves towards the door "If you change your mind, you kn…"');
@@ -1516,7 +1516,7 @@ function enterCallOfficerFail(s: GameState, scene: SceneBuilder): void {
 
 function enterCallOfficer1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hello this is Officer Sokolov."');
-  // TODO-QSP: dynamic text: "Hi, it's <<$pcs_firstname>> <<$pcs_lastname>>"
+  // TODO-QSP: dynamic text: "Hi, it''s <<$pcs_firstname>> <<$pcs_lastname>>"
   scene.text(`"Hi, it's ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
   scene.text('"…"');
   scene.text('"We met a while ago when I reported that I was being blackmailed."');
@@ -1543,13 +1543,13 @@ function enterSetPostAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Pick up the package', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     // TODO-QSP: gs 'post_office', 'remove_mail', "gs 'blackmailer', 'set_post_act'"
-    qspCall(s, 'stat', '');
-    if (((s as any).blackmailQW ?? 0)?.['stage'] === 7) {
-      qspGoto(s, 'blackmailer', 'post_office1');
+    qspCall(st, 'stat', '');
+    if (((st as any).blackmailQW ?? 0)?.['stage'] === 7) {
+      qspGoto(st, 'blackmailer', 'post_office1');
     } else {
-      qspGoto(s, 'blackmailer', 'post_office_repeat');
+      qspGoto(st, 'blackmailer', 'post_office_repeat');
     }
   } },
   ]);
@@ -1565,12 +1565,12 @@ function enterPostOffice1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ask who send the package', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/shared/postoffice/worker.jpg');
     scene.text('He looks at you and raises an eyebrow. "Why are you picking up a package if you don\'t know who send it?"');
     scene.text('After a few seconds of silence, the postal worker sighs and looks at something out of your view.');
-    if (((s as any).year ?? 0) <= 2016  ||  ((s as any).year ?? 0) === 2017  &&  ((s as any).month ?? 0) < 9) {
+    if (((st as any).year ?? 0) <= 2016  ||  ((st as any).year ?? 0) === 2017  &&  ((st as any).month ?? 0) < 9) {
       scene.text('"It says here that the package was collected from a public post box in Pavlovsk."');
     } else {
       scene.text('"It says here that the package was collected from a public post box in the University district."');
@@ -1590,12 +1590,12 @@ function enterOpenPackageAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['inventory'] > 0) {
     scene.actions([
       { label: 'Take the package from your <b>blackmailer</b>', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
-    if (((s as any).blackmailQW ?? 0)?.['stage'] === 7) {
-      qspGoto(s, 'blackmailer', 'package1');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
+    if (((st as any).blackmailQW ?? 0)?.['stage'] === 7) {
+      qspGoto(st, 'blackmailer', 'package1');
     } else {
-      qspGoto(s, 'blackmailer', 'package_outfit_repeat');
+      qspGoto(st, 'blackmailer', 'package_outfit_repeat');
     }
   } },
     ]);
@@ -1610,25 +1610,25 @@ function enterPackage1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Open the package', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
-    (s as any).bm_owns_cosplay = 0;
-    if (((s as any).trait_vars ?? 0)?.['academic'] > 0  ||  ((s as any).start_type ?? 0)?.['group'] === 'nerd') {
-      (s as any).bm_i = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
+    (st as any).bm_owns_cosplay = 0;
+    if (((st as any).trait_vars ?? 0)?.['academic'] > 0  ||  ((st as any).start_type ?? 0)?.['group'] === 'nerd') {
+      (st as any).bm_i = 1;
       // TODO-QSP: :cosplays_owned
-      if (((s as any).nerdvana_cosplay ?? 0)?.[String((s as any).bm_i ?? 0)] === 1) {
-        (s as any).bm_owns_cosplay = 1;
-        (s as any).bm_i = 300;
+      if (((st as any).nerdvana_cosplay ?? 0)?.[String((st as any).bm_i ?? 0)] === 1) {
+        (st as any).bm_owns_cosplay = 1;
+        (st as any).bm_i = 300;
       }
-      (s as any).bm_i = ((s as any).bm_i ?? 0) + (1);
-      if (((s as any).bm_i ?? 0) < 200) {
+      (st as any).bm_i = ((st as any).bm_i ?? 0) + (1);
+      if (((st as any).bm_i ?? 0) < 200) {
         // TODO-QSP: jump 'cosplays_owned'
       }
     }
-    (s as any).temp_bm_out_img = qspFunc(s, 'blackmailer', 'open_package');
-    ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['cosplay_stage'] = 1;
-    scene.img(`${((s as any).temp_bm_out_img || '')}`);
-    if (((s as any).trait_vars ?? 0)?.['academic'] > 0  ||  ((s as any).start_type ?? 0)?.['group'] === 'nerd') {
+    (st as any).temp_bm_out_img = qspFunc(s, 'blackmailer', 'open_package');
+    ((st as any).blackmailQW = (st as any).blackmailQW ?? {})['cosplay_stage'] = 1;
+    scene.img(`${((st as any).temp_bm_out_img || '')}`);
+    if (((st as any).trait_vars ?? 0)?.['academic'] > 0  ||  ((st as any).start_type ?? 0)?.['group'] === 'nerd') {
       scene.text('You open the package and are surprised when you spot the high-quality wonder-woman cosplay inside.');
     } else {
       scene.text('You open the package and are surprised when you spot an outfit that looks like a movie-costume or something.');
@@ -1637,8 +1637,8 @@ function enterPackage1(s: GameState, scene: SceneBuilder): void {
     scene.text('You can only wait until the blackmailer contacts you again.');
     scene.text('…');
     scene.text('Unless… There can\'t be too many shops that sell stuff like this.');
-    if (((s as any).trait_vars ?? 0)?.['academic'] > 0  ||  ((s as any).start_type ?? 0)?.['group'] === 'nerd') {
-      if (((s as any).bm_owns_cosplay ?? 0) === 1) {
+    if (((st as any).trait_vars ?? 0)?.['academic'] > 0  ||  ((st as any).start_type ?? 0)?.['group'] === 'nerd') {
+      if (((st as any).bm_owns_cosplay ?? 0) === 1) {
         scene.text('Next time you\'re going to Nerdvana, you should ask around.');
       } else {
         scene.text('You\'ve heard about a store in the university district that sells cosplays like this.');
@@ -1676,10 +1676,10 @@ function enterPackageOutfitRepeat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Open the package', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    qspCall(s, 'stat', '');
-    (s as any).bm_out_img = qspFunc(s, 'blackmailer', 'open_package');
-    scene.img(`${((s as any).bm_out_img || '')}`);
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    qspCall(st, 'stat', '');
+    (st as any).bm_out_img = qspFunc(s, 'blackmailer', 'open_package');
+    scene.img(`${((st as any).bm_out_img || '')}`);
     scene.actions([
       { label: 'Put the outfit into your wardrobe', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -1699,10 +1699,10 @@ function enterSetNerdvanaTalkAct(s: GameState, scene: SceneBuilder): void {
         if (((s as any).blackmailQW ?? 0)[((s as any).npcID ?? 0) + '_bj'] > 0) {
           scene.actions([
             { label: '', labelFn: (s: GameState) => 'Sneak off with ' + String(((s as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNerdvanaBj1(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNerdvanaBj1(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((s as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReturnToNerdvana(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((st as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReturnToNerdvana(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1711,10 +1711,10 @@ function enterSetNerdvanaTalkAct(s: GameState, scene: SceneBuilder): void {
           if (((s as any).blackmailQW ?? 0)[((s as any).npcID ?? 0) + '_kuni'] > 0) {
             scene.actions([
               { label: '', labelFn: (s: GameState) => 'Sneak off with ' + String(((s as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNerdvanaKuni1(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNerdvanaKuni1(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((s as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReturnToNerdvana(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((st as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReturnToNerdvana(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1748,7 +1748,7 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: act $temp_act_text:
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/shared/headshots_main/big${0}.jpg`);
+  scene.img(`images/characters/shared/headshots_main/big${(String(((s as any).npcID || '')).slice((2)-1))}.jpg`);
   if ((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).length) <= 7) {
     if (((s as any).temp_knows_cosplay ?? 0) === 1) {
       scene.text('"Hey, I have a question. Could this cosplay have been bought here?" you ask.');
@@ -1783,7 +1783,7 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You feel your face drop as despair slowly flows through you. <<$npcdesc>>, notic...
       scene.text(`You feel your face drop as despair slowly flows through you. ${((s as any).npcdesc || '')}, noticing the changes across your face, ask "Is everything alright?"`);
       scene.text('"I really need to know who sent me this, can you help me please."');
-      // TODO-QSP: dynamic text: "Look miss, I can't help you. I'm sorry." <<$xe>> says.
+      // TODO-QSP: dynamic text: "Look miss, I can''t help you. I''m sorry." <<$xe>> says.
       scene.text(`"Look miss, I can't help you. I'm sorry." ${((s as any).xe || '')} says.`);
     } else {
       scene.text('"Hey, I have a question… d these… cost… hingies… have been bought here?" you ask.');
@@ -1796,7 +1796,7 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You feel your face drop as despair slowly flows through you. <<$npcdesc>>, notic...
       scene.text(`You feel your face drop as despair slowly flows through you. ${((s as any).npcdesc || '')}, noticing the changes across your face, softens ${((s as any).xyr || '')} tone and asks "Is everything alright?"`);
       scene.text('"I really need to know who sent me this, can you help me please."');
-      // TODO-QSP: dynamic text: "Look miss, I can't help you. I'm sorry." <<$xe>> says. "I could lose my job."
+      // TODO-QSP: dynamic text: "Look miss, I can''t help you. I''m sorry." <<$xe>> says. "I could lose my job."
       scene.text(`"Look miss, I can't help you. I'm sorry." ${((s as any).xe || '')} says. "I could lose my job."`);
     }
     scene.actions([
@@ -1807,7 +1807,7 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    qspCall(st, 'blackmailer', 'return_to_nerdvana', Math.floor(Math.random() * 5) + 5);
+    qspCall(st, 'blackmailer', 'return_to_nerdvana', (Math.floor(Math.random() * 5) + 5));
   } },
   ]);
   scene.build();
@@ -1816,9 +1816,9 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
 function enterNerdvanaCosplayTalk1_1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/shared/headshots_main/big${0}.jpg`);
+  scene.img(`images/characters/shared/headshots_main/big${(String(((s as any).npcID || '')).slice((2)-1))}.jpg`);
   scene.text('"Please, <i>please</i>, there has to be <b>something</b>…"');
-  // TODO-QSP: dynamic text: You see <<$xem>> looking down to your <<iif(pcs_buttsize > pcs_cupsize, 'hips', ...
+  // TODO-QSP: dynamic text: You see <<$xem>> looking down to your <<iif(pcs_buttsize > pcs_cupsize, ''hips''...
   scene.text(`You see ${((s as any).xem || '')} looking down to your ${((((s as any).pcs_buttsize ?? 0) > ((s as any).pcs_cupsize ?? 0)) ? ('hips') : ('tits'))} for barely a moment before quickly looking away. ${((s as any).Xec || '')} probably only needs a small push.`);
   if (((s as any).pcs_inhib ?? 0) < 20) {
     qspCall(s, 'willpower', 'flash', 'self', 'hard');
@@ -1838,72 +1838,72 @@ function enterNerdvanaCosplayTalk1_1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Flash ' + String(((s as any).xem || '') ?? ''), handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    if (((s as any).pcs_buttsize ?? 0) > ((s as any).pcs_cupsize ?? 0)) {
-      if (((s as any).pantyworntype ?? 0) === 'none') {
-        qspCall(s, 'flash', 'pussy', 'inside', 5, 2);
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    if (((st as any).pcs_buttsize ?? 0) > ((st as any).pcs_cupsize ?? 0)) {
+      if (((st as any).pantyworntype ?? 0) === 'none') {
+        qspCall(st, 'flash', 'pussy', 'inside', 5, 2);
         // TODO-QSP: dynamic text: You steel yourself and ' + iif(PCloSkirt > 0, 'lift the front of your skirt', 'p...
-        scene.text(`You steel yourself and ' + iif(PCloSkirt > 0, 'lift the front of your skirt', 'pull down the front of your pants') + ', exposing your naked flesh, ${((s as any).xyr || '')} wide eyes locked to your pussy.`);
+        scene.text('You steel yourself and \' + iif(PCloSkirt > 0, \'lift the front of your skirt\', \'pull down the front of your pants\') + \', exposing your naked flesh, ' + ((st as any).xyr || '') + ' wide eyes locked to your pussy.');
       } else {
-        qspCall(s, 'flash', 'panties', 'inside', 5, 2);
+        qspCall(st, 'flash', 'panties', 'inside', 5, 2);
         // TODO-QSP: dynamic text: You steel yourself and ' + iif(PCloSkirt > 0, 'lift the front of your skirt', 'p...
-        scene.text('You steel yourself and \' + iif(PCloSkirt > 0, \'lift the front of your skirt\', \'pull down the front of your pants\') + \', exposing your underwear.');
+        scene.text('You steel yourself and ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('lift the front of your skirt') : ('pull down the front of your pants')) + ', exposing your underwear.');
       }
     } else {
-      if (((s as any).braworntype ?? 0) === 'none') {
-        qspCall(s, 'flash', 'tits', 'inside', 5, 2);
+      if (((st as any).braworntype ?? 0) === 'none') {
+        qspCall(st, 'flash', 'tits', 'inside', 5, 2);
         // TODO-QSP: dynamic text: You steel yourself and ' + iif(PCloSkirt > 0, 'pull down', 'lift up') + ' your t...
-        scene.text(`You steel yourself and ' + iif(PCloSkirt > 0, 'pull down', 'lift up') + ' your top, exposing your naked flesh, ${((s as any).xyr || '')} wide eyes locked to your quickly stiffening nipples.`);
+        scene.text('You steel yourself and \' + iif(PCloSkirt > 0, \'pull down\', \'lift up\') + \' your top, exposing your naked flesh, ' + ((st as any).xyr || '') + ' wide eyes locked to your quickly stiffening nipples.');
       } else {
-        qspCall(s, 'flash', 'bra', 'inside', 5, 2);
+        qspCall(st, 'flash', 'bra', 'inside', 5, 2);
         // TODO-QSP: dynamic text: You steel yourself and ' + iif(PCloSkirt > 0, 'pull down', 'lift up') + ' your t...
-        scene.text('You steel yourself and \' + iif(PCloSkirt > 0, \'pull down\', \'lift up\') + \' your top, exposing your underwear.');
+        scene.text('You steel yourself and ' + ((((st as any).PCloSkirt ?? 0) > 0) ? ('pull down') : ('lift up')) + ' your top, exposing your underwear.');
       }
     }
     scene.text('"Please, it would mean so much to me"');
     // TODO-QSP: dynamic text: You see <<$xyr>> resolve falter, but not break. <<$Xec>> only needs one more pus...
-    scene.text(`You see ${((s as any).xyr || '')} resolve falter, but not break. ${((s as any).Xec || '')} only needs one more push`);
-    qspCall(s, 'willpower', 'bj', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)  &&  ((s as any).pcs_inhib ?? 0) >= 35) {
+    scene.text(`You see ${((st as any).xyr || '')} resolve falter, but not break. ${((st as any).Xec || '')} only needs one more push`);
+    qspCall(st, 'willpower', 'bj', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)  &&  ((st as any).pcs_inhib ?? 0) >= 35) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => '<i>Convince ' + String(((s as any).xem || '') ?? '') + '</i>', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => '<i>Convince ' + String(((st as any).xem || '') ?? '') + '</i>', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => '<i>Convince ' + String(((s as any).xem || '') ?? '') + '</i>', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    scene.img(`images/characters/shared/headshots_main/big${0}.jpg`);
+        { label: '', labelFn: (s: GameState) => '<i>Convince ' + String(((st as any).xem || '') ?? '') + '</i>', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    scene.img(`images/characters/shared/headshots_main/big${(String(((st as any).npcID || '')).slice((2)-1))}.jpg`);
     // TODO-QSP: dynamic text: You lean over the counter, keeping <<$xyr>> eyes locked on you as you slowly lic...
-    scene.text(`You lean over the counter, keeping ${((s as any).xyr || '')} eyes locked on you as you slowly lick your lips.`);
+    scene.text(`You lean over the counter, keeping ${((st as any).xyr || '')} eyes locked on you as you slowly lick your lips.`);
     // TODO-QSP: dynamic text: "How about I make it worth your while?" you ' + iif(pcs_chrsm < 50, 'manage to s...
-    scene.text('"How about I make it worth your while?" you \' + iif(pcs_chrsm < 50, \'manage to stumble\', \'say sultrily\') + \'.');
+    scene.text('"How about I make it worth your while?" you ' + ((((st as any).pcs_chrsm ?? 0) < 50) ? ('manage to stumble') : ('say sultrily')) + '.');
     // TODO-QSP: dynamic text: <<$Xec>> eagerly nods <<$xyr>> head, and you drag <<$xem>> into an unoccupied fi...
-    scene.text(`${((s as any).Xec || '')} eagerly nods ${((s as any).xyr || '')} head, and you drag ${((s as any).xem || '')} into an unoccupied fitting-room.`);
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNerdvanaCosplayTalk1_2(s, scene); (s as any).locArgs = __savedLocArgs; }
+    scene.text(`${((st as any).Xec || '')} eagerly nods ${((st as any).xyr || '')} head, and you drag ${((st as any).xem || '')} into an unoccupied fitting-room.`);
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNerdvanaCosplayTalk1_2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
     scene.actions([
       { label: 'Give up for now', handler: (st: GameState) => {
-    qspCall(st, 'blackmailer', 'return_to_nerdvana', Math.floor(Math.random() * 5) + 5);
+    qspCall(st, 'blackmailer', 'return_to_nerdvana', (Math.floor(Math.random() * 5) + 5));
   } },
-      { label: '', labelFn: (s: GameState) => 'Bribe ' + String(((s as any).xem || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Bribe ' + String(((st as any).xem || '') ?? ''), handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 3;
-      qspCall(s, 'money', 'pay', 5000, 'cash');
-      qspCall(s, 'stat', '');
-      scene.img(`images/characters/shared/headshots_main/big${0}.jpg`);
+      (st as any).minut = ((st as any).minut ?? 0) + 3;
+      qspCall(st, 'money', 'pay', 5000, 'cash');
+      qspCall(st, 'stat', '');
+      scene.img(`images/characters/shared/headshots_main/big${(String(((st as any).npcID || '')).slice((2)-1))}.jpg`);
       // TODO-QSP: dynamic text: You reach into your purse and pull out ' + $func('money', 'string_price', 5000) ...
       scene.text('You reach into your purse and pull out 5000₽.');
       // TODO-QSP: dynamic text: The clerks eyes fill with a mixture of lust and greed as <<$xe>> reaches out and...
-      scene.text(`The clerks eyes fill with a mixture of lust and greed as ${((s as any).xe || '')} reaches out and takes the money.`);
+      scene.text(`The clerks eyes fill with a mixture of lust and greed as ${((st as any).xe || '')} reaches out and takes the money.`);
       scene.actions([
         { label: 'Continue', goto: ['blackmailer', 'nerdvana_cosplay_talk1_3'] },
       ]);
@@ -1916,7 +1916,7 @@ function enterNerdvanaCosplayTalk1_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Give up for now', handler: (st: GameState) => {
-    qspCall(st, 'blackmailer', 'return_to_nerdvana', Math.floor(Math.random() * 5) + 5);
+    qspCall(st, 'blackmailer', 'return_to_nerdvana', (Math.floor(Math.random() * 5) + 5));
   } },
   ]);
   scene.build();
@@ -1926,10 +1926,10 @@ function enterNerdvanaCosplayTalk1_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dick ?? 0) > 0) {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Unbuckle ' + String(((s as any).xyr || '') ?? '') + ' belt', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNerdvanaBj1(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNerdvanaBj1(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((s as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
-    qspGoto(s, 'blackmailer', 'nerdvana_cosplay_talk1_3');
+      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((st as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
+    qspGoto(st, 'blackmailer', 'nerdvana_cosplay_talk1_3');
   } },
     ]);
   } },
@@ -1937,10 +1937,10 @@ function enterNerdvanaCosplayTalk1_2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '', labelFn: (s: GameState) => 'Pull ' + String(((s as any).xyr || '') ?? '') + ' shorts to the side', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNerdvanaKuni1(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterNerdvanaKuni1(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((s as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
-    qspGoto(s, 'blackmailer', 'nerdvana_cosplay_talk1_3');
+      { label: '', labelFn: (s: GameState) => 'Return to the counter with ' + String(((st as any).npcdesc || '') ?? ''), handler: (st: GameState) => {
+    qspGoto(st, 'blackmailer', 'nerdvana_cosplay_talk1_3');
   } },
     ]);
   } },
@@ -2015,10 +2015,10 @@ function enterNerdvanaCosplayTalk1_3(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['cosplay_stage'] = 2;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/shared/headshots_main/big${0}.jpg`);
+  scene.img(`images/characters/shared/headshots_main/big${(String(((s as any).npcID || '')).slice((2)-1))}.jpg`);
   // TODO-QSP: dynamic text: <<$npcdesc>> gets behind the counter and starts typing away on the computer, and...
   scene.text(`${((s as any).npcdesc || '')} gets behind the counter and starts typing away on the computer, and a short while later ${((s as any).xe || '')} speaks up.`);
-  // TODO-QSP: dynamic text: "There's only a single customer that bought those specific cosplays." <<$Xec>> t...
+  // TODO-QSP: dynamic text: "There''s only a single customer that bought those specific cosplays." <<$Xec>> ...
   scene.text(`"There's only a single customer that bought those specific cosplays." ${((s as any).Xec || '')} turns the monitor around so you can look at the contents.`);
   scene.text('"See, they called in their orders and paid through this account." pointing at the screen.');
   scene.text('You take out your phone and note down the phone account numbers: 945-977-7397 and 5334 7262 3618 0390');
@@ -2181,23 +2181,23 @@ function enterAdd_SMS2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMSText_builder', 'start');
   qspCall(s, 'SMSText_builder', 'send_img', ((s as any).locArgs?.[3] ?? 0));
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-  if (((s as any).locArgs?.[4] ?? 0) !== 'bedroom') {
+  if (Number((s as any).locArgs?.[4] ?? 0) !== 'bedroom') {
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a']
   } else {
-    if (((s as any).blackmailQW ?? 0)?.['catfish_pic_0'] === ((s as any).locArgs?.[3] ?? 0)  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_1'] === ((s as any).locArgs?.[3] ?? 0)  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_2'] === ((s as any).locArgs?.[3] ?? 0)) {
+    if (((s as any).blackmailQW ?? 0)?.['catfish_pic_0'] === Number((s as any).locArgs?.[3] ?? 0)  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_1'] === Number((s as any).locArgs?.[3] ?? 0)  ||  ((s as any).blackmailQW ?? 0)?.['catfish_pic_2'] === Number((s as any).locArgs?.[3] ?? 0)) {
       // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b']
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) < 3) {
+      if (Number((s as any).locArgs?.[1] ?? 0) < 3) {
         // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['c']
       } else {
         // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['d']
       }
-      ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['catfish_pic_' + String((s as any).ARGS[1] || '') + ''] = ((s as any).locArgs?.[3] ?? 0);
+      ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['catfish_pic_' + String(((s as any).locArgs?.[1] ?? 0))] = ((s as any).locArgs?.[3] ?? 0);
       ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['total_material'] = ((s as any).blackmailQW['total_material'] ?? 0) + (1);
       ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((s as any).ARGS[1] ?? 0) + (1);
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) < 4) {
+  if (Number((s as any).locArgs?.[1] ?? 0) < 4) {
     // TODO-QSP: gs 'SMStext_builder', 'send_selfie', 'Send a clothed selfie', 'c', 'blackmailer', 'Add_SMS2_1', ARGS...
   } else {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['smsday'] = ((s as any).daystart ?? 0) + 4;
@@ -2278,7 +2278,7 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
   }
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['22'] = 'Just hang tight, we\'ll get through this';
   ((s as any).SMSTree = (s as any).SMSTree ?? {})['23'] = 'Okay, if you need anything from me, you know how to reach me.';
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).npcID9 ?? 0));
     qspCall(s, 'SMStext_builder', 'start');
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['0']
@@ -2286,13 +2286,13 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'add_sms', ((s as any).npcID9 ?? 0));
     qspCall(s, 'SMStext_builder', 'end');
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) === '1') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === '1') {
       qspCall(s, 'SMStext_builder', 'start');
       // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['1']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
       // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['2']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-      qspCall(s, 'telefon', 'AddContact', ((s as any).npcID9 ?? 0), 'images/characters/shared/headshots_main/' + 0 + '.jpg', 0);
+      qspCall(s, 'telefon', 'AddContact', ((s as any).npcID9 ?? 0), 'images/characters/shared/headshots_main/' + (String(((s as any).npcID9 ?? 0)).slice((2)-1)) + '.jpg', 0);
       // TODO-QSP: gs 'SMStext_builder', 'receive_img', $blackmailQW['catfish_pic_<<rand(0, 3)>>']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
       // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['3']
@@ -2302,7 +2302,7 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
       qspCall(s, 'SMStext_builder', 'end');
     } else {
-      if (((s as any).locArgs?.[1] ?? 0) === '2') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === '2') {
         qspCall(s, 'SMStext_builder', 'start');
         // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['5']
         // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
@@ -2317,7 +2317,7 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
         qspCall(s, 'SMStext_builder', 'end');
       } else {
-        if (((s as any).locArgs?.[1] ?? 0) === '3') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === '3') {
           qspCall(s, 'SMStext_builder', 'start');
           // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['10']
           // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
@@ -2334,7 +2334,7 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
           qspCall(s, 'SMStext_builder', 'end');
         } else {
-          if (((s as any).locArgs?.[1] ?? 0) === '4') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === '4') {
             qspCall(s, 'SMStext_builder', 'start');
             // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['16']
             // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
@@ -2349,7 +2349,7 @@ function enterAdd_SMS_Nerdvana(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
             qspCall(s, 'SMStext_builder', 'end');
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === '5') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === '5') {
               qspCall(s, 'SMStext_builder', 'start');
               // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['21']
               // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
@@ -2537,7 +2537,7 @@ function enterSmsRepeatSwitch1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'send', ((s as any).locArgs?.[2] ?? 0));
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[3]
   // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['10' + $ARGS[1]]
-  if (((s as any).locArgs?.[1] ?? 0) === 'c') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'c') {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (1000);
   }
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[3]
@@ -2552,7 +2552,7 @@ function enterSmsRepeatSwitch1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'SMStext_builder', 'send_selfie', $SMSTree['d12'], 'c;sw;u;n;b;sh;ft;fa;fp', 'blackmailer', 'sms_...
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'b') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'b') {
     // TODO-QSP: gs 'SMStext_builder', 'add_reply', $SMSTree['e12'], 'blackmailer', 'sms_repeat_first_favour', $SMSTr...
   }
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[3]
@@ -2566,7 +2566,7 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'SMStext_builder', 'start');
   qspCall(s, 'SMStext_builder', 'send_img', ((s as any).locArgs?.[2] ?? 0));
   // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[1]
-  if (((s as any).locArgs?.[4] ?? 0) === 'clothed') {
+  if (Number((s as any).locArgs?.[4] ?? 0) === 'clothed') {
     ((s as any).blackmailQW = (s as any).blackmailQW ?? {})['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (500);
     (s as any).temp_path = 'a';
   } else {

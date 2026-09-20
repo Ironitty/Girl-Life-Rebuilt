@@ -21,16 +21,16 @@ function enterFirstHalf(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 1;
-    qspGoto(s, 'rasputin_walkway', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).rasputin = (st as any).rasputin ?? {})['burlesque_ticket'] = 1;
+    qspGoto(st, 'rasputin_walkway', '');
   } },
     { label: 'Wait until show starts', goto: ['rasputin_show_bur', 'first_half_start'] },
     { label: 'Ask for a free champagne', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'drugs', 'alcohol', 'champagne');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'drugs', 'alcohol', 'champagne');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/drinks_free_4.jpg');
     scene.text('The server smiles and hand you a glass of champagne to enjoy.');
     scene.actions([
@@ -63,28 +63,28 @@ function enterFirstHalfStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The singer moves away and allow your eyes to focus on the three performer on the stage.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/2.jpg');
     scene.text('The dancers turn around and confidently flaunt their toned bodies wearing flashy burlesque costume.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/3.jpg');
     scene.text('The dancers stretch and keep their balance while perform on the chairs.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 25;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 25;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/4.jpg');
     scene.text('They follow the music and give an equally lighthearted, fun and teasing performance.');
     scene.text('The first part of the show finished, you walkout to take a break and stretch your legs.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'mood', 'raise', 'small');
-    qspGoto(s, 'rasputin_walkway', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'mood', 'raise', 'small');
+    qspGoto(st, 'rasputin_walkway', '');
   } },
     ]);
   } },
@@ -105,16 +105,16 @@ function enterSecondHalf(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    ((s as any).rasputin = (s as any).rasputin ?? {})['burlesque_ticket'] = 2;
-    qspGoto(s, 'rasputin_walkway', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    ((st as any).rasputin = (st as any).rasputin ?? {})['burlesque_ticket'] = 2;
+    qspGoto(st, 'rasputin_walkway', '');
   } },
     { label: 'Wait until show starts', goto: ['rasputin_show_bur', 'second_half_start'] },
     { label: 'Ask for a free champagne', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'drugs', 'alcohol', 'champagne');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'drugs', 'alcohol', 'champagne');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/drinks_free_4.jpg');
     scene.text('The server smiles and hand you a glass of champagne to enjoy.');
     scene.actions([
@@ -143,37 +143,37 @@ function enterSecondHalfStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The dancers move around rhythmically and energetically. Their blue feather headdresses freely flowing.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/6.jpg');
     scene.text('As other music plays, other performers dance away allow you to focus on the lead dancer on the stage.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/7.jpg');
     scene.text('The lead dancer move seductively with the beats, both freely and confidently display her dance skills and sexuality.');
     scene.text('The audience goes wild by the end of her performance and react with thounderous appluses and catcallings.');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pushkin/rasputin/shows/bur_1/8.jpg');
     scene.text('The last part of show is champagne glass dance. You are mersmerized by the glamorous and the sexy movements of the performance.');
     scene.text('The burlesque show ends with a round of applause and excited chattering');
     scene.actions([
       { label: 'Okay', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'small');
-    if (((s as any).pcs_inhib ?? 0) >= 80) {
-      (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 5) + 2);
+    qspCall(st, 'mood', 'raise', 'small');
+    if (((st as any).pcs_inhib ?? 0) >= 80) {
+      (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 5) + 2));
     } else {
-      if (((s as any).pcs_inhib ?? 0) >= 50  &&  ((s as any).pcs_inhib ?? 0) < 80) {
-        (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+      if (((st as any).pcs_inhib ?? 0) >= 50  &&  ((st as any).pcs_inhib ?? 0) < 80) {
+        (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
       }
     }
-    qspCall(s, 'arousal', 'erotic', 15);
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'rasputin_walkway', '');
+    qspCall(st, 'arousal', 'erotic', 15);
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'rasputin_walkway', '');
   } },
     ]);
   } },

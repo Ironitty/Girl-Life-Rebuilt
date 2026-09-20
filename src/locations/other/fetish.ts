@@ -5,29 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $fetish_name[0] = 'maso'
-  // TODO-QSP: $fetish_name[1] = 'bound'
-  // TODO-QSP: $fetish_name[2] = 'beast'
-  // TODO-QSP: $fetish_name[3] = 'exhibitionism'
-  // TODO-QSP: $fetish_name[4] = 'rough'
-  // TODO-QSP: $fetish_name[5] = 'prostitution'
-  // TODO-QSP: $fetish_name[6] = 'dom'
-  // TODO-QSP: $fetish_name[7] = 'sub'
-  // TODO-QSP: $fetish_name[8] = 'incest'
-  // TODO-QSP: $fetish_name[9] = 'feet'
-  // TODO-QSP: $fetish_name[10] = 'lesbian'
-  // TODO-QSP: $fetish_name[11] = 'group'
-  // TODO-QSP: $fetish_name[12] = 'gangbang'
-  // TODO-QSP: $fetish_name[13] = 'humiliation'
-  // TODO-QSP: $fetish_name[14] = 'deepthroat'
-  // TODO-QSP: $fetish_name[15] = 'unknown'
-  // TODO-QSP: $fetish_name[16] = 'gloryhole'
-  // TODO-QSP: $fetish_name[17] = 'rape'
-  // TODO-QSP: $fetish_name[18] = 'shemale'
-  // TODO-QSP: $fetish_name[19] = 'masturbate'
-  // TODO-QSP: $fetish_name[20] = 'creampie'
-  // TODO-QSP: $fetish_name[21] = 'pregnant'
-  // TODO-QSP: $fetish_name[22] = 'orgy'
   scene.build();
 }
 
@@ -48,7 +25,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddBonuses(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_exp_bonus'] !== 0  ||  ((s as any).fetishes ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_pref_bonus'] !== 0) {
+  if (((s as any).fetishes ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_exp_bonus'] !== 0  ||  ((s as any).fetishes ?? 0)[Number((s as any).locArgs?.[1] ?? 0) + '_pref_bonus'] !== 0) {
     ((s as any).temp = (s as any).temp ?? {})['j'] = 0;
     // TODO-QSP: :fetish_cikl_loop1
     ((s as any).temp = (s as any).temp ?? {})['link'] = ((s as any).fetish_link ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + '_' + ((s as any).temp ?? 0)?.['j'] + '' + '_name'];
@@ -73,7 +50,7 @@ function enterAddBonuses(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckForTraits(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).fetish_trait ?? 0)[((s as any).locArgs?.[1] ?? 0)] !== '') {
+  if (((s as any).fetish_trait ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] !== '') {
     // TODO-QSP: dynamic $fetish_trait[$ARGS[1]]
   }
   return;
@@ -82,14 +59,14 @@ function enterCheckForTraits(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddExp(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'add_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 1;
   }
   // TODO-QSP: fetishes[$ARGS[1] + '_exp'] += ARGS[2]
@@ -101,10 +78,10 @@ function enterAddExp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetExp(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'set_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
@@ -114,10 +91,10 @@ function enterSetExp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetExp(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'get_exp': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
@@ -127,14 +104,14 @@ function enterGetExp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddPref(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'add_pref': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
-  if ((!((s as any).locArgs?.[2] ?? 0))) {
+  if (Number((s as any).locArgs?.[2] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[2] = 1;
   }
   // TODO-QSP: fetishes[$ARGS[1] + '_pref'] += ARGS[2]
@@ -147,10 +124,10 @@ function enterAddPref(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetPref(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'set_pref': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
@@ -161,10 +138,10 @@ function enterSetPref(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetPref(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+  if ((Array.isArray((s as any).fetish_name) ? ((s as any).fetish_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
     scene.text(`Error in gs 'fetish', 'get_pref': ${((s as any).locArgs?.[1] ?? '')} is not in $fetish_name`);
     return;
   }
@@ -175,6 +152,29 @@ function enterGetPref(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $fetish_name[0] = 'maso'
+  // TODO-QSP: $fetish_name[1] = 'bound'
+  // TODO-QSP: $fetish_name[2] = 'beast'
+  // TODO-QSP: $fetish_name[3] = 'exhibitionism'
+  // TODO-QSP: $fetish_name[4] = 'rough'
+  // TODO-QSP: $fetish_name[5] = 'prostitution'
+  // TODO-QSP: $fetish_name[6] = 'dom'
+  // TODO-QSP: $fetish_name[7] = 'sub'
+  // TODO-QSP: $fetish_name[8] = 'incest'
+  // TODO-QSP: $fetish_name[9] = 'feet'
+  // TODO-QSP: $fetish_name[10] = 'lesbian'
+  // TODO-QSP: $fetish_name[11] = 'group'
+  // TODO-QSP: $fetish_name[12] = 'gangbang'
+  // TODO-QSP: $fetish_name[13] = 'humiliation'
+  // TODO-QSP: $fetish_name[14] = 'deepthroat'
+  // TODO-QSP: $fetish_name[15] = 'unknown'
+  // TODO-QSP: $fetish_name[16] = 'gloryhole'
+  // TODO-QSP: $fetish_name[17] = 'rape'
+  // TODO-QSP: $fetish_name[18] = 'shemale'
+  // TODO-QSP: $fetish_name[19] = 'masturbate'
+  // TODO-QSP: $fetish_name[20] = 'creampie'
+  // TODO-QSP: $fetish_name[21] = 'pregnant'
+  // TODO-QSP: $fetish_name[22] = 'orgy'
   const arg = s.locArg;
   switch (arg) {
     case 'cikl':

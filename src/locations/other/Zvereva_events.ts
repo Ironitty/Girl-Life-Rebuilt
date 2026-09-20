@@ -33,24 +33,24 @@ function enterChristinaBu_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Say nothing', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'lower', 'small');
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (1);
+    qspCall(st, 'mood', 'lower', 'small');
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/events/nastymessage2.jpg');
     scene.text('As much as you want to say something, you know it won\'t do any good.');
     // TODO-QSP: dynamic text: She gives you a sweet, and entirely fake, smile when she sees you coming. "Oh, h...
-    scene.text(`She gives you a sweet, and entirely fake, smile when she sees you coming. "Oh, hi ${((s as any).pcs_nickname || '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
+    scene.text(`She gives you a sweet, and entirely fake, smile when she sees you coming. "Oh, hi ${((st as any).pcs_nickname || '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
     // TODO-QSP: 'You try to rub it off, but have no luck. ' + $OpenInnerThought + 'Why does she always pick on me? I...
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'building'] },
     ]);
   } },
     { label: 'Say something', handler: (st: GameState) => {
-    qspCall(s, 'mood', 'raise', 'tiny');
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (1);
+    qspCall(st, 'mood', 'raise', 'tiny');
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) - (1);
     scene.img('images/locations/pavlovsk/school/events/nastymessage2.jpg');
     scene.text('Though you know it won\'t stop her, you cannot resist standing up for yourself. "What the fuck, Christina! Does my locker look like a coloring book to you? Why can\'t you just leave my shit alone?"');
     // TODO-QSP: dynamic text: She gives you a sweet, and entirely fake, smile and says "Oh, hi <<$pcs_nickname...
-    scene.text(`She gives you a sweet, and entirely fake, smile and says "Oh, hi ${((s as any).pcs_nickname || '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
+    scene.text(`She gives you a sweet, and entirely fake, smile and says "Oh, hi ${((st as any).pcs_nickname || '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
     // TODO-QSP: 'You try to rub it off, but have no luck. ' + $OpenInnerThought + 'Fucking bitch, someday I''ll get ...
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'building'] },
@@ -67,20 +67,20 @@ function enterChristinaBu_2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bully/fall_panties.jpg');
     scene.actions([
       { label: 'Say nothing', handler: (st: GameState) => {
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (2);
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) + (2);
     scene.text('Your face burns as you imagine everybody in school looking at a picture of your panties, but she will do it no matter what you say, so you just quietly gather your fallen books and walk away.');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
   } },
       { label: 'Say something', handler: (st: GameState) => {
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (2);
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) - (2);
     scene.text('Your face burns as you imagine everybody in school looking at a picture of your panties, and can\'t stop yourself from saying "You pervert. Do you get off looking at girls panties?"');
-    (s as any).temp_txt = 'Christina just shrugs and responds with "You\'re the one showing them to the world. I bet you did it on purpose so people could see your ';
-    if (((s as any).pantyworntype ?? 0) === 'gm') {
+    (st as any).temp_txt = 'Christina just shrugs and responds with "You\'re the one showing them to the world. I bet you did it on purpose so people could see your ';
+    if (((st as any).pantyworntype ?? 0) === 'gm') {
       // TODO-QSP: $temp_txt += 'ugly'
     } else {
-      if (((s as any).pantyworntype ?? 0) === 'eroto'  ||  ((s as any).pantyworntype ?? 0) === 'salacious'  ||  ((s as any).pantyworntype ?? 0) === 'lusso') {
+      if (((st as any).pantyworntype ?? 0) === 'eroto'  ||  ((st as any).pantyworntype ?? 0) === 'salacious'  ||  ((st as any).pantyworntype ?? 0) === 'lusso') {
         // TODO-QSP: $temp_txt += 'slutty'
       } else {
         // TODO-QSP: $temp_txt += 'cute'
@@ -99,17 +99,17 @@ function enterChristinaBu_2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bully/fall_nopanties.jpg');
     scene.actions([
       { label: 'Say nothing', handler: (st: GameState) => {
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) + (3);
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) + (3);
     scene.text('Your face burns as you imagine everybody in school looking at a picture of your pussy on display, but she will do it no matter what you say, so you just quietly gather your fallen books and walk away.');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
     ]);
   } },
       { label: 'Say something', handler: (st: GameState) => {
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['bully'] = ((s as any).christinaQW['bully'] ?? 0) - (3);
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['bully'] = ((st as any).christinaQW['bully'] ?? 0) - (3);
     scene.text('Your face burns as you imagine everybody in school looking at a picture of your pussy on display, and can\'t stop yourself from saying "You pervert. Do you get off taking upskirt pictures?"');
-    // TODO-QSP: dynamic text: Christina just shrugs and responds with "You're the one not wearing panties. I b...
-    scene.text(`Christina just shrugs and responds with "You're the one not wearing panties. I bet you did it on purpose so people could see your ${((s as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy, slut." She finishes sending the picture, gives you a smirk, and walks away.`);
+    // TODO-QSP: dynamic text: Christina just shrugs and responds with "You''re the one not wearing panties. I ...
+    scene.text(`Christina just shrugs and responds with "You're the one not wearing panties. I bet you did it on purpose so people could see your ${((st as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy, slut." She finishes sending the picture, gives you a smirk, and walks away.`);
     scene.text('All you can do at this point is gather your fallen stuff and head out.');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
@@ -129,7 +129,7 @@ function enterChristinaDecide1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave it as is', goto: ['gschool_lessons', 'short_break'] },
     { label: 'Pick a fight', handler: (st: GameState) => {
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_fight'] = 1;
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['pre_fight'] = 1;
     scene.img('images/characters/shared/headshots_main/big18.jpg');
     scene.text('You make your decision. You decide you\'re going after her when school ends, when no teachers are around to stop it but everybody else will see.');
     scene.actions([
@@ -137,7 +137,7 @@ function enterChristinaDecide1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Find something to blackmail her with', handler: (st: GameState) => {
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['pre_bm'] = 1;
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['pre_bm'] = 1;
     scene.img('images/characters/shared/headshots_main/big18.jpg');
     scene.text('You make your decision. You need to keep your eyes and ears open to find something to use against her.');
     scene.actions([
@@ -156,7 +156,7 @@ function enterChristinaDecide2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave it as is', goto: ['gschool_lessons', 'short_break'] },
     { label: 'Try and become her new pet', handler: (st: GameState) => {
-    ((s as any).christinaQW = (s as any).christinaQW ?? {})['subpath'] = 1;
+    ((st as any).christinaQW = (st as any).christinaQW ?? {})['subpath'] = 1;
     scene.img('images/characters/shared/headshots_main/big18.jpg');
     scene.text('You make your decision. You should head to the beach where she trains Lina on weekday afternoons and see what happens.');
     scene.actions([
@@ -193,9 +193,9 @@ function enterKristinaFight(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fight her', handler: (st: GameState) => {
-    qspCall(s, 'fight', 'initFight');
-    qspCall(s, 'fight_npcdata', 'christina');
-    qspGoto(s, 'fight', 'start');
+    qspCall(st, 'fight', 'initFight');
+    qspCall(st, 'fight_npcdata', 'christina');
+    qspGoto(st, 'fight', 'start');
   } },
   ]);
   scene.build();

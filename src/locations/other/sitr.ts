@@ -32,29 +32,29 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_TV_text = 'a great place for a TV, if you had one.';
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_tv'] >= 1  &&  ((s as any).mc_inventory ?? 0)?.['plasma_tv'] === 0) {
-    (s as any).temp_TV_text = 'an old CRT <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">television</a>';
+    (s as any).temp_TV_text = 'an old CRT <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">television</a>';
   }
   if (((s as any).mc_inventory ?? 0)?.['plasma_tv'] >= 1) {
-    (s as any).temp_TV_text = 'a huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027TV\\u0027, \\u0027start\\u0027); return false;">TV</a>';
+    (s as any).temp_TV_text = 'a huge plasma <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>';
   }
   if ((!((s as any).divan_tier ?? 0))) {
-    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027divan\\u0027, \\u0027start\\u0027); return false;">An old sofa</a>';
+    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">An old sofa</a>';
   }
   if (((s as any).divan_tier ?? 0) === 1) {
-    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027divan\\u0027, \\u0027start\\u0027); return false;">A luxurious leather sofa</a>';
+    (s as any).divan = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">A luxurious leather sofa</a>';
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 0) {
     (s as any).komp = '';
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
-    (s as any).komp = 'A <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp\\u0027, \\u0027start\\u0027); return false;">computer</a> sits on top of it.';
+    (s as any).komp = 'A <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> sits on top of it.';
   }
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 0) {
-    (s as any).stol = 'an old wooden <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">table</a>';
+    (s as any).stol = 'an old wooden <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">table</a>';
   }
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 1) {
-    (s as any).stol = 'a new <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027stol\\u0027, \\u0027start\\u0027); return false;">table</a>';
+    (s as any).stol = 'a new <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">table</a>';
   }
   // TODO-QSP: dynamic text: <<$zal>>. <<$divan>> sits next to the <<$zal2>>. In front of the sofa is <<$temp...
   scene.text(`${((s as any).zal || '')}. ${((s as any).divan || '')} sits next to the ${((s as any).zal2 || '')}. In front of the sofa is ${((s as any).temp_TV_text || '')}, while ${((s as any).stol || '')} sits in front of the window. ${((s as any).komp || '')}`);
@@ -97,7 +97,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterMasturbate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_inhib ?? 0) < 30) {
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 1));
   }
   if (((s as any).husID ?? 0) !== ''  &&  ((s as any).spouseVars ?? 0)?.['drink'] !== 10  &&  (((s as any).week ?? 0) >= 6  ||  ((s as any).hour ?? 0) >= 17)) {
     qspGoto(s, 'husbsex', 'husb_mastr_vtor');

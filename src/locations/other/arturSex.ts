@@ -17,10 +17,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     { label: 'Kneel down', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/arthur/sex/bj.jpg');
     scene.text('You kneel down before Arthur and began stroking his long, thick cock, the bulbous head tantalizingly close to your soft lips. Arthur impatiently strokes your head with his sinewy hand. You can see the lust in his expression.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
-    qspCall(s, 'willpower', 'bj', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Masturbate him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -30,10 +30,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Masturbate him', handler: (st: GameState) => {
     scene.text('You began to slowly stroke his large member, but as you look up at Arthur, you see him roll his eyes with impatience before reaching for you.');
-    qspCall(s, 'willpower', 'bj', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'arousal', 'hj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'arousal', 'hj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['arturdin', 'facefuck'] },
     ]);
@@ -42,16 +42,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Suck', handler: (st: GameState) => {
-    (s as any).artbj = ((s as any).artbj ?? 0) + (1);
+    (st as any).artbj = ((st as any).artbj ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/arthur/sex/bj2.jpg');
     scene.text('You open your mouth and slowly wrap your lips around the hefty cock. The corners of your mouth stretch to accommodate the rod as you begun to suck at a gradual pace.');
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('Arthur suddenly grabs you by the hair and tries to force his cock deep into your throat.');
-    qspCall(s, 'arousal', 'bj', 5, 'rough', 'sub');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5, 'rough', 'sub');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['arturdin', 'facefuck'] },
     ]);
@@ -62,20 +62,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Enjoy his touch', handler: (st: GameState) => {
     scene.text('Arthur caresses your sensitive body as he undresses you with his manly hands. Before long you find yourself naked in his embrace.');
-    (s as any).temp = Math.floor(Math.random() * 3) + 0;
-    qspCall(s, 'arousal', 'foreplay', 5);
-    qspCall(s, 'stat', '');
-    if ((!((s as any).temp ?? 0))) {
+    (st as any).temp = (Math.floor(Math.random() * 3) + 0);
+    qspCall(st, 'arousal', 'foreplay', 5);
+    qspCall(st, 'stat', '');
+    if ((!((st as any).temp ?? 0))) {
       scene.actions([
         { label: 'Continue', goto: ['arturdin', 'bed'] },
       ]);
     }
-    if (((s as any).temp ?? 0) === 1) {
+    if (((st as any).temp ?? 0) === 1) {
       scene.actions([
         { label: 'Continue', goto: ['arturdin', 'bedmiss'] },
       ]);
     }
-    if (((s as any).temp ?? 0) === 2) {
+    if (((st as any).temp ?? 0) === 2) {
       scene.actions([
         { label: 'Continue', goto: ['arturdin', 'facefuck'] },
       ]);

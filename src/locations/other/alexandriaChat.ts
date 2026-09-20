@@ -5,8 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'themes', 'indoors');
-  (s as any).location_type = 'public_indoors';
   scene.build();
 }
 
@@ -17,26 +15,26 @@ function enterLate(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/alexandria/alexandria.jpg');
   scene.text('DONG! DONG! DONG! DONG! DONG! DONG! DONG! DONG!');
   scene.text('The bells in the Victorian clock rumble, silencing anything that you or Aleksei were saying and he looks reflectively at the clock hands before continuing the conversation.');
-  // TODO-QSP: dynamic text: Aleksei stands and signals towards the door. "Well <<$pcs_lastname>>, it's getti...
+  // TODO-QSP: dynamic text: Aleksei stands and signals towards the door. "Well <<$pcs_lastname>>, it''s gett...
   scene.text(`Aleksei stands and signals towards the door. "Well ${((s as any).pcs_lastname || '')}, it's getting late. Time for you to go." He walks towards the door, expecting you to follow.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_suburbs', 'start'] },
     { label: '"Can I sleep here tonight?"', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Aleksei</b></center>');
     scene.img('images/characters/city/alexandria/alexandria3.jpg');
-    if (((s as any).npc_rel ?? 0)?.['A241'] === 0) {
+    if (((st as any).npc_rel ?? 0)?.['A241'] === 0) {
       scene.text('He turns his head without slowing and dispassionately says "No."');
       scene.text('Aleksei leaves the room and it would be wise to follow him.');
     } else {
       scene.text('He stops mid-stride and turns his head to look at you for a moment, seemingly about to refuse before rethinking whatever he was going to say.');
-      // TODO-QSP: dynamic text: "Remember, I… don't dislike your presence in my home <<$pcs_lastname>>, but… you...
-      scene.text(`"Remember, I… don't dislike your presence in my home ${((s as any).pcs_lastname || '')}, but… you must respect my need for solitude."`);
+      // TODO-QSP: dynamic text: "Remember, I… don''t dislike your presence in my home <<$pcs_lastname>>, but… yo...
+      scene.text(`"Remember, I… don't dislike your presence in my home ${((st as any).pcs_lastname || '')}, but… you must respect my need for solitude."`);
       scene.text('Aleksei doesn\'t seems too vexed from your question and waits patiently for an answer.');
       scene.text('"So… maybe it would be better if I ask you another time?"');
       // TODO-QSP: dynamic text: "Ask if you must <<$pcs_lastname>>, but my answer will be the same… or not."
-      scene.text(`"Ask if you must ${((s as any).pcs_lastname || '')}, but my answer will be the same… or not."`);
+      scene.text(`"Ask if you must ${((st as any).pcs_lastname || '')}, but my answer will be the same… or not."`);
       scene.text('Smiling slightly, Aleksei leaves the room and it would be wise to follow him.');
     }
     scene.actions([
@@ -48,10 +46,10 @@ function enterLate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterChat(s: GameState, scene: SceneBuilder): void {
-  (s as any).random_event = Math.floor(Math.random() * 30) + 1;
+  (s as any).random_event = (Math.floor(Math.random() * 30) + 1);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
-  qspCall(s, 'mood', 'raise', Math.floor(Math.random() * 11) + 0);
-  (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'mood', 'raise', (Math.floor(Math.random() * 11) + 0));
+  (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + ((Math.floor(Math.random() * 2) + 0));
   qspCall(s, 'stat', '');
   scene.text('<center><b>Aleksei</b></center>');
   scene.img('images/characters/city/alexandria/chair.jpg');
@@ -84,7 +82,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
             scene.text('"Are you talking about Catherine the Great and Grigory Potemkin?!"');
           } else {
             if (((s as any).random_event ?? 0) === 5) {
-              // TODO-QSP: dynamic text: "Yes indeed. Time has changed the courtship's customs, <<$pcs_lastname>>. In my ...
+              // TODO-QSP: dynamic text: "Yes indeed. Time has changed the courtship''s customs, <<$pcs_lastname>>. In my...
               scene.text(`"Yes indeed. Time has changed the courtship's customs, ${((s as any).pcs_lastname || '')}. In my time, the first thing you did before dating a girl was to show the value of your stallion to her father."`);
             } else {
               if (((s as any).random_event ?? 0) === 6) {
@@ -131,7 +129,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
                               scene.text(`"During the Battle of Crecy, tens of thousands of soldiers of all status and conditions died, with some <i>sages</i> only lamenting the nobles that fell to <i>men of no value</i>. In the U.S.A, political careers can be done and undone from a single KIA. What do you think about that, ${((s as any).pcs_lastname || '')}?"`);
                             } else {
                               if (((s as any).random_event ?? 0) === 14) {
-                                // TODO-QSP: dynamic text: "<<$pcs_lastname>>, you can't begin to imagine the power and resources that the ...
+                                // TODO-QSP: dynamic text: "<<$pcs_lastname>>, you can''t begin to imagine the power and resources that the...
                                 scene.text(`"${((s as any).pcs_lastname || '')}, you can't begin to imagine the power and resources that the monopoly over magic gives The Council. It's, without a doubt, the most powerful government in this world, but even with that power, the magic-users don't govern the world. We leave that headache to the Illuminati."`);
                                 scene.text('You are silent for a minute before asking "What do you mean by the Illuminati?"');
                               } else {
@@ -216,7 +214,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
                                                             if (((s as any).random_event ?? 0) === 29) {
                                                               scene.text('"So… If secret global conspiracies like The Council and The Veil are a reality, there must be others out there, like the MIB and Area 51."');
                                                               scene.text('Disappointed eyes meet yours before Aleksei picks up a laptop and shows you a video of some men throwing up their guts between yellow gas.');
-                                                              // TODO-QSP: dynamic text: "Please <<$pcs_lastname>>, don't follow that logic. These idiots did that and us...
+                                                              // TODO-QSP: dynamic text: "Please <<$pcs_lastname>>, don''t follow that logic. These idiots did that and u...
                                                               scene.text(`"Please ${((s as any).pcs_lastname || '')}, don't follow that logic. These idiots did that and used their magical talents to infiltrate The Pentagon, only to find that those tales are the purview of tinfoil lunatics and a 20 year jail sentence. If you want conspiracies, read Wikileaks."`);
                                                             } else {
                                                               if (((s as any).random_event ?? 0) === 30) {
@@ -279,18 +277,18 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'succubus', 'active', 5)) {
       scene.actions([
         { label: 'Succubae', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
-      // TODO-QSP: dynamic text: "The Succubae… Yes, your new <i>sisterhood</i>. I'm not happy about that develop...
-      scene.text(`"The Succubae… Yes, your new <i>sisterhood</i>. I'm not happy about that development ${((s as any).pcs_lastname || '')}, but remember my apprentice, they are the ones that need you."`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    if (((st as any).npc_rel ?? 0)?.['A241'] === 1) {
+      // TODO-QSP: dynamic text: "The Succubae… Yes, your new <i>sisterhood</i>. I''m not happy about that develo...
+      scene.text(`"The Succubae… Yes, your new <i>sisterhood</i>. I'm not happy about that development ${((st as any).pcs_lastname || '')}, but remember my apprentice, they are the ones that need you."`);
     } else {
-      // TODO-QSP: dynamic text: "The Succubae… Yes, your new <i>sisterhood</i>. I'm not happy about that develop...
-      scene.text(`"The Succubae… Yes, your new <i>sisterhood</i>. I'm not happy about that development ${((s as any).pcs_lastname || '')}, but… I didn't have much hope in you anyway."`);
+      // TODO-QSP: dynamic text: "The Succubae… Yes, your new <i>sisterhood</i>. I''m not happy about that develo...
+      scene.text(`"The Succubae… Yes, your new <i>sisterhood</i>. I'm not happy about that development ${((st as any).pcs_lastname || '')}, but… I didn't have much hope in you anyway."`);
     }
     scene.text('Even with the evident derision in Aleksei\'s words, you don\'t feel any hostility against The Succubae.');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, it's obvious that I don't exactly approve of your new… <i>li...
-    scene.text(`"${((s as any).pcs_lastname || '')}, it's obvious that I don't exactly approve of your new… <i>lifestyle</i>, but like others, Succubae are chained by their own needs, so I try to be sympathetic. No… What I don't like is that most of your brethren seem to lose sight of the extraordinary powers they inherit in a quest for more… decadent experiences. You're probably waiting for me to spill some of their secrets, but I'm not going to do that. Your trickster is doing the work for me, but I will tell you a tidbit."`);
+    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, it''s obvious that I don''t exactly approve of your new… <i>...
+    scene.text(`"${((st as any).pcs_lastname || '')}, it's obvious that I don't exactly approve of your new… <i>lifestyle</i>, but like others, Succubae are chained by their own needs, so I try to be sympathetic. No… What I don't like is that most of your brethren seem to lose sight of the extraordinary powers they inherit in a quest for more… decadent experiences. You're probably waiting for me to spill some of their secrets, but I'm not going to do that. Your trickster is doing the work for me, but I will tell you a tidbit."`);
     scene.text('"Thanks to an ancient curse, The Succubae are chained to The High Sidhe reproductive cycle. That is what gives you an extraordinary leeway and let your brethren act like royalty. Some try to act on that like idealized <i>Faeric Ladies</i>, but most fail, enjoying the perks but ignoring any responsibility, and this is a potential danger, and opportunity, for you."');
     scene.text('"You have suddenly entered an exclusive club, jumping the figurative line, and most Succubae will react to that, in diverse, sometimes dangerous ways. At least until they find the next shiny toy, leaving you in that nebulous place between where those on their way up meet those on their way down, a place of vast potential."');
     scene.actions([
@@ -302,8 +300,8 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Magic schools & Minor arts', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Aleksei</b></center>');
     scene.img('images/characters/city/alexandria/chair.jpg');
     scene.text('"At its most basic, schools and arts are academic disciplines that help a wizard learn how to manipulate mana and cast spells. As with all crafts in our world, most wizards need to specialize to attain any measure of power, truly multi-mathematical masters are unheard of."');
@@ -315,8 +313,8 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Magic Vs Technology', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"First and foremost, you must understand that it isn\'t a <i>Magic Vs Technology</i> issue. If magic were an anti-technology force, we all would be living in the middle of the forest without electricity. The answer is a lot more complex."');
     scene.text('"Everything in our universe that exists follows certain universal parameters. If these parameters were different, then reality would have followed a different path. Magic, for reasons unknown, seems to have the capacity to <i>rewrite</i> these universal parameters in a… let\'s say <i>unnatural</i> way, giving the mage the tools to shape the world to its taste, and this is the conflict point."');
     scene.text('"Technology, <i>work</i> with the universal laws in a <i>natural</i> way, to shape the world. As magic and technology use different methodologies, they can\'t be combined. You can use one or the other for the same effect, but they can\'t be mixed."');
@@ -326,8 +324,8 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Mutants & Psychics', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"The so-called mutants and psychics, if we must use a modern vulgarism, form an interesting phenomenon in The Council\'s periphery. They are normally grouped under The Wizards\' chair, as they lack magical power or a unifying agenda."');
     scene.text('"Mutants are in general any lifeform that has been altered through magical means that let them perceive beyond The Veil. You and I aren\'t considered mutants because our magical talents give us full-wizard status. Those, that lack magical talent fall into this category. Beyond that, there isn\'t a unifying factor, as mutants can go from wretched beings that must be euthanized to erase their suffering, to the more… <i>fortunate</i> that win some magical enhancements, like your acquaintance, Gustav."');
     scene.text('"Psychics, on the other hand, are the brown dwarfs of the magical world. Born with enough magic to see beyond The Veil, but lacking enough strength to manipulate mana, At best, they will have some minor magical talents, like seeing the dead, talking to goldfish or predicting the weather."');
@@ -338,8 +336,8 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Personality', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"Archetype, Ethos or Personality are some names for a relatively extended magical practice that originated in the mask-wearing on <i>mundane</i> magical and religious rituals. Of course, true wizards don\'t need masks to invoke their powers, but they can help magic-users to channel their powers better."');
     scene.text('"At its core is the knowledge that the human mind can\'t hope to grasp all the power that magic offers, and the risk, to be changed back in a magical mismatch. Taking into certain vital philosophies, behaviors and taboos, the wizards shield themselves from these dangers, which lets them tap into more power."');
     scene.text('"Not all wizards follow this tradition, that not without reason give us certain… let\'s say eccentric fame. If you want to know, I follow <i>The Autarch Ethos</i>."');
@@ -349,8 +347,8 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'The Veil', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"The Veil is a global, self-sustained, delusional magical effect that hijacks the pattern recognization capacity on the mundanes\' brains, so the affected look for alternative explanations to any perceived magical event. As this method isn\'t perfect, there is a veritable risk that continued exposure to magic will damage the mental health of any given observer. As a side note, The Veil only affects humans."');
     scene.text('"The original proposal came from the High Sidhe around the 10th century, who wanted to <i>veil</i> their holdings from mundane influences and promised magical knowledge and gifts to those that helped them. From this came a centuries-long collaboration between hundreds of high-level wizards, me and Rikudo included, that ended with decades-long rituals. Around 1350, The Veil was fully functional, and we began to see the unwanted side-effects."');
     scene.text('"What was the cause? Nobody is sure, the most likely cause is, that we somehow exceeded our goals or that somebody altered the ritual. The most likely candidates were the High Sidhe or Rikudo, but nobody is sure."');
@@ -381,16 +379,16 @@ function enterPeople(s: GameState, scene: SceneBuilder): void {
     if (((s as any).AlexandriaQW ?? 0) > 19) {
       scene.actions([
         { label: 'Est potentia ex testamento', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, <i>Est potentia ex testamento</i>, was the motto from the ho...
-    scene.text(`"${((s as any).pcs_lastname || '')}, <i>Est potentia ex testamento</i>, was the motto from the honorably disbandment <i>Council Army Forces</i>, a force that I have the privilege to command."`);
+    scene.text(`"${((st as any).pcs_lastname || '')}, <i>Est potentia ex testamento</i>, was the motto from the honorably disbandment <i>Council Army Forces</i>, a force that I have the privilege to command."`);
     scene.text('Aleksei smile at those words obviously, they mean much to him, and during a long moment, he looks to the ceiling lost in his thoughts, before continuing.');
     // TODO-QSP: dynamic text: "I will not explain in deep all the details, <<$pcs_lastname>>, but what I will ...
-    scene.text(`"I will not explain in deep all the details, ${((s as any).pcs_lastname || '')}, but what I will give you is this: We were the iron fist of The Council, enforcers of their will, and for a thousand years, the <i>Creme de la creme</i> of the world military forces. We used all to win, martial training, the last technology, and the more powerful magics all bend to our will to spill the blood of our enemies. I will not taint our history with lies, we did some of the most atrocious war crimes in the name of the uncaring High Sidhe, but thanks to us, today there are a lot fewer monsters waiting in the shadows of the world."`);
+    scene.text(`"I will not explain in deep all the details, ${((st as any).pcs_lastname || '')}, but what I will give you is this: We were the iron fist of The Council, enforcers of their will, and for a thousand years, the <i>Creme de la creme</i> of the world military forces. We used all to win, martial training, the last technology, and the more powerful magics all bend to our will to spill the blood of our enemies. I will not taint our history with lies, we did some of the most atrocious war crimes in the name of the uncaring High Sidhe, but thanks to us, today there are a lot fewer monsters waiting in the shadows of the world."`);
     scene.text('He takes a deep drag from his cigarette, a proud smirk on his lips that soon turns into a gesture of absolute ruthlessness.');
     // TODO-QSP: dynamic text: "I must say <<$pcs_lastname>>, that that girl, has committed a serious mistake t...
-    scene.text(`"I must say ${((s as any).pcs_lastname || '')}, that that girl, has committed a serious mistake taking our legacy in vain, as even now, decades after our disbandment, those words - <i>Est potentia ex testamento</i> - carry a lot of weight in our corner of the world."`);
+    scene.text(`"I must say ${((st as any).pcs_lastname || '')}, that that girl, has committed a serious mistake taking our legacy in vain, as even now, decades after our disbandment, those words - <i>Est potentia ex testamento</i> - carry a lot of weight in our corner of the world."`);
     scene.actions([
       { label: 'Continue talking about people', goto: ['alexandriaChat', 'people'] },
       { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
@@ -400,10 +398,10 @@ function enterPeople(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Gustav', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "Ah, the parahuman. I must admit that he is the only acquaintance of yours that ...
-    scene.text(`"Ah, the parahuman. I must admit that he is the only acquaintance of yours that I don't have problems with, ${((s as any).pcs_lastname || '')}. A remarkable achievement on its own."`);
+    scene.text(`"Ah, the parahuman. I must admit that he is the only acquaintance of yours that I don't have problems with, ${((st as any).pcs_lastname || '')}. A remarkable achievement on its own."`);
     scene.text('Indeed, that remark is surprising as Aleksei seems to be a pretty antisocial person who ignores or outright detests everybody around him.');
     scene.text('"I am embarrassed to say that I disregarded Gustav as that trickster\'s personal lapdog, as something below my notice. An error that shocked me when he, using only observational and deductive skills, found me! I have a millennia of experience over him!"');
     scene.text('He then looks at you with a puzzled expression, as if something is playing in his head.');
@@ -415,13 +413,13 @@ function enterPeople(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Rikudo', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('The mere mention of that name makes Aleksei grit his teeth, and his posture grows more tense.');
     scene.text('"Rikudo… No name in this world can fill my heart with so much hate… The creator of The Talisman of Power, an item destined to give the <i>man</i> that acquired it, powers beyond the reach of the High Sidhe… Hmpf… I believed myself smarter than that supreme trickster, and in my hubris, ended up cursed to be a <i>woman</i> and have my prize forever beyond my reach."');
     scene.text('Aleksei drags his cigarette, trying to calm himself, but the vitriol soon returns to his voice.');
-    // TODO-QSP: dynamic text: "So, you want information about him/her/it/them? There isn't any… Rikudo is an e...
-    scene.text(`"So, you want information about him/her/it/them? There isn't any… Rikudo is an enigma, the essence of chaos, one of the <i>old guards</i> appearing and disappearing randomly, wearing many masks, and helping or hindering us in aid of an unknown goal. Some call Rikudo the Keyser Soze of the magical world and doubt its existence. Some youngsters even look at him as some kind of Promethean figure. You want my opinion ${((s as any).pcs_lastname || '')}?"`);
+    // TODO-QSP: dynamic text: "So, you want information about him/her/it/them? There isn''t any… Rikudo is an ...
+    scene.text(`"So, you want information about him/her/it/them? There isn't any… Rikudo is an enigma, the essence of chaos, one of the <i>old guards</i> appearing and disappearing randomly, wearing many masks, and helping or hindering us in aid of an unknown goal. Some call Rikudo the Keyser Soze of the magical world and doubt its existence. Some youngsters even look at him as some kind of Promethean figure. You want my opinion ${((st as any).pcs_lastname || '')}?"`);
     scene.text('He then looks at you fiercely, making you shiver under his gaze.');
     scene.text('"Rikudo is real! Very real. I have met <i>HIM</i>, been tricked by <i>HER</i>, been cursed by <i>IT</i> and even killed a pair of <i>THEM</i>. There will be a reckoning someday and Rikudo\'s name will be erased by my hand, but until that time, if you hear about Rikudo, just run and pray that you don\'t end up entangled in another of Rikudo\'s mad schemes."');
     scene.actions([
@@ -430,23 +428,23 @@ function enterPeople(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Reinhold', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
-    // TODO-QSP: dynamic text: "Let's begin with some basic information <<$pcs_lastname>>. Reinhold is a high-l...
-    scene.text(`"Let's begin with some basic information ${((s as any).pcs_lastname || '')}. Reinhold is a high-level agent for The Council, under the aegis of The Wizards' chair, who has been lucky enough to claim oversight over your case. He isn't only a master of the Time art, but a hero in every definition of the term, as he has fought against forces beyond the mouth of madness and won. We made the same oaths to protect the inhabitants of this world, and even if we don't see them in the same light, he has won my respect."`);
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
+    // TODO-QSP: dynamic text: "Let''s begin with some basic information <<$pcs_lastname>>. Reinhold is a high-...
+    scene.text(`"Let's begin with some basic information ${((st as any).pcs_lastname || '')}. Reinhold is a high-level agent for The Council, under the aegis of The Wizards' chair, who has been lucky enough to claim oversight over your case. He isn't only a master of the Time art, but a hero in every definition of the term, as he has fought against forces beyond the mouth of madness and won. We made the same oaths to protect the inhabitants of this world, and even if we don't see them in the same light, he has won my respect."`);
     scene.text('Aleksei bends slightly towards you, with a conspiratory smile.');
     scene.text('"And here is the part where I take away the blindfold from your eyes and explain some details. Reinhold is playing with your welfare. His intentions maybe altruistic, but most people will only see him trying to disrupt The Council\'s status quo in favor of The Wizards\' chair. The problem? Reinhold has decided on a hands-off approach where any magical knowledge can only be filtered down through his apprentice, limiting your growth, and making you… less desirable to the powers-that-be. That plan has imploded, but what hasn\'t changed is that you are mostly alone, as nobody is going to risk a confrontation to save you from any mismatch you can walk uninformed."');
     scene.text('After saying this, he reclines in his chair, letting the smoke drift from his nostrils like an ancient dragon.');
-    // TODO-QSP: dynamic text: "What do you think about your <i>handler's</i> actions <<$pcs_lastname>>?"
-    scene.text(`"What do you think about your <i>handler's</i> actions ${((s as any).pcs_lastname || '')}?"`);
+    // TODO-QSP: dynamic text: "What do you think about your <i>handler''s</i> actions <<$pcs_lastname>>?"
+    scene.text(`"What do you think about your <i>handler's</i> actions ${((st as any).pcs_lastname || '')}?"`);
     scene.actions([
       { label: 'Continue talking about people', goto: ['alexandriaChat', 'people'] },
       { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
     ]);
   } },
       { label: 'Tatiana', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('"Yes, let\'s talk about the wannabe trickster. It\'s not like we can talk about something better…"');
     scene.text('Sarcasm drips from his voice as Aleksei lets you know his feelings for Tatiana.');
     scene.text('"I suppose that we can lose some semi-valuable minutes talking about your <i>teacher</i>. She is Reinhold\'s apprentice, older than she looks, a flesh crafter and a trickster, or… pardon me… a <i>body modding wizard</i> and <i>prankster</i>… and now we can jump to a more in-depth analysis."');
@@ -458,23 +456,23 @@ function enterPeople(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'The Council', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, you must understand this. Civilizations have risen and crumb...
-    scene.text(`"${((s as any).pcs_lastname || '')}, you must understand this. Civilizations have risen and crumbled, history made and forgotten, but The Council has existed in one form or another under the High Sidhe leadership from as early as the last glacial period. They have rewritten history, altered landscapes and are behind the greatest lie ever created. Impressive feats for an organization to which the average wizard only gives lip service."`);
+    scene.text(`"${((st as any).pcs_lastname || '')}, you must understand this. Civilizations have risen and crumbled, history made and forgotten, but The Council has existed in one form or another under the High Sidhe leadership from as early as the last glacial period. They have rewritten history, altered landscapes and are behind the greatest lie ever created. Impressive feats for an organization to which the average wizard only gives lip service."`);
     scene.text('Aleksei reclines in his chair and looks to the ceiling before continuing.');
     scene.text('"The Council is supposed to be a democratic quorum for the magically gifted, a place to settle disputes without bloodshed and a bridle for the unruly horse that is the standard wizard. It\'s divided into Chairs that represent and care for the needs of specific magical subspecies, the most prominent The High Sidhe, <i>primus inter pares</i> with the right to veto, but largely uncaring about political affairs. The Succubae happily try to reign in their place with great opposition from The Wizards, the most numerous group. In short terms, The Council is the governing body of the magical world."');
     scene.text('He sighs. "I may sound bitter, but my tenure with them wasn\'t happy. Like all governments, The Council is a cesspool of drama and backroom deals, a place for the undistinguished penpushers of our society to feel important. My job was going from crisis to crisis without help or acknowledgment, siphoning away my resources and time from more worthy undertakings. In the end, I quit without remorse."');
-    // TODO-QSP: dynamic text: "In general, I must say that the common wizard doesn't care or even give any tho...
-    scene.text(`"In general, I must say that the common wizard doesn't care or even give any thought about their decisions, and beyond maintaining The Veil or stopping Existential Threats, The Council tends to delegate any policing action to the local magical or mundane authority. This is something that you youngsters must understand, The Council WILL NOT intervene to save the miscreants from any lynching mob triggered by their foolishness, not even you ${((s as any).pcs_lastname || '')}."`);
+    // TODO-QSP: dynamic text: "In general, I must say that the common wizard doesn''t care or even give any th...
+    scene.text(`"In general, I must say that the common wizard doesn't care or even give any thought about their decisions, and beyond maintaining The Veil or stopping Existential Threats, The Council tends to delegate any policing action to the local magical or mundane authority. This is something that you youngsters must understand, The Council WILL NOT intervene to save the miscreants from any lynching mob triggered by their foolishness, not even you ${((st as any).pcs_lastname || '')}."`);
     scene.actions([
       { label: 'Continue talking about people', goto: ['alexandriaChat', 'people'] },
       { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
     ]);
   } },
       { label: 'The Lilith', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     if (qspFunc(s, 'succubus', 'active', 5)) {
       scene.text('"Your <i>Queen</i>? Conqueror of high and low beds? You want to know about your clique\'s role model?"');
       scene.text('You lick your dry lips at the word <i>Queen</i>, your instinct telling you that this title would be better attached to your name, and whatever Aleksei can tell you about The Lilith could be useful to take it for your own.');
@@ -512,12 +510,12 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
     if (((s as any).willpowermax ?? 0) < 100) {
       scene.actions([
         { label: 'Meditation(Willpower training)', handler: (st: GameState) => {
-    if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
+    if (((st as any).sound_settings ?? 0)?.['environment_off'] === 0) {
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 30;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (Math.floor(Math.random() * 2) + 0);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    (st as any).willpowermax = ((st as any).willpowermax ?? 0) + ((Math.floor(Math.random() * 2) + 0));
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/alexandria/meditation.jpg');
     scene.text('Under Aleksei\'s expert guidance, you sit on the carpet in the lotus pose and begin a series of breathing exercises to the sound of the clock, the magical smoke in the room filling your lungs.');
     scene.text('In-Out');
@@ -561,25 +559,25 @@ function enterElectric1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Extend your hands', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'mood', 'raise', 'tiny');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'mood', 'raise', 'tiny');
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Aleksei</b></center>');
     scene.img('images/characters/city/alexandria/alexandria3.jpg');
     scene.text('Aleksei grabs some wet wipes from a drawer and begins to carefully clean your wrist before grabbing it, and after examining your hands in concentration, sends a wave of mana up your arms, tickling your bones, flesh and skin.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, this spell is used to create an <i>apprentice link</i>, a li...
-    scene.text(`"${((s as any).pcs_lastname || '')}, this spell is used to create an <i>apprentice link</i>, a limited empathic vinculum that lets the magical knowledge flow easily from teacher to student. It's something that was used in past centuries when the teaching was a more personalized affair. Don't worry, it isn't dangerous, most people say that it's actually enjoyable. After it's formed, I will teach you Electric Shock, the first spell of the Electric School."`);
+    scene.text(`"${((st as any).pcs_lastname || '')}, this spell is used to create an <i>apprentice link</i>, a limited empathic vinculum that lets the magical knowledge flow easily from teacher to student. It's something that was used in past centuries when the teaching was a more personalized affair. Don't worry, it isn't dangerous, most people say that it's actually enjoyable. After it's formed, I will teach you Electric Shock, the first spell of the Electric School."`);
     scene.text('Indeed, the sensations traveling through your body are making you squirm, but not in disgust, as the tickling is beginning to make you giggle, a reaction that seems to amuse the serious wizard sitting before you.');
     scene.text('Your giggles quickly explode into full belly laughs, and you are barely aware that your hands are grabbing the confused Aleksei\'s ones.');
     scene.text('"Oh! Alexandria! This is going to be so fun!"');
     scene.text('You speak in a sing-song voice that you don\'t recognize before some kind of spell manifests between the two of you. After that comes a confusing series of images as Alexandria takes you somewhere else.');
     scene.actions([
       { label: 'You awake in somewhere else', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
-      qspGoto(s, 'alexandriaSex', 'nice1');
+    qspCall(st, 'stat', '');
+    if (((st as any).npc_rel ?? 0)?.['A241'] === 1) {
+      qspGoto(st, 'alexandriaSex', 'nice1');
     } else {
-      qspGoto(s, 'alexandriaSex', 'grumpy1');
+      qspGoto(st, 'alexandriaSex', 'grumpy1');
     }
   } },
     ]);
@@ -636,7 +634,7 @@ function enterElectric3(s: GameState, scene: SceneBuilder): void {
         if (((s as any).AlexandriaQW ?? 0) < 16) {
           scene.text('<center><b>Aleksei</b></center>');
           scene.img('images/characters/city/alexandria/alexandria3.jpg');
-          // TODO-QSP: dynamic text: "<<$pcs_lastname>>, aren't you supposed to be looking for my sword?"
+          // TODO-QSP: dynamic text: "<<$pcs_lastname>>, aren''t you supposed to be looking for my sword?"
           scene.text(`"${((s as any).pcs_lastname || '')}, aren't you supposed to be looking for my sword?"`);
           scene.actions([
             { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
@@ -645,10 +643,10 @@ function enterElectric3(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pregChem ?? 0) > 1800  &&  (!((s as any).knowpreg ?? 0))) {
             scene.text('<center><b>Aleksei</b></center>');
             scene.img('images/characters/city/alexandria/alexandria2.jpg');
-            // TODO-QSP: dynamic text: Aleksei is silent at your question, looking at you with curiosity "You dodn't kn...
+            // TODO-QSP: dynamic text: Aleksei is silent at your question, looking at you with curiosity "You dodn''t k...
             scene.text(`Aleksei is silent at your question, looking at you with curiosity "You dodn't know… Isn't it ${((s as any).pcs_lastname || '')}?"`);
             scene.text('"Know what? Is there a problem?"');
-            // TODO-QSP: dynamic text: An amused smirk creeps into Aleksei's face as he deigns to answer "<<$pcs_lastna...
+            // TODO-QSP: dynamic text: An amused smirk creeps into Aleksei''s face as he deigns to answer "<<$pcs_lastn...
             scene.text(`An amused smirk creeps into Aleksei's face as he deigns to answer "${((s as any).pcs_lastname || '')}, that depends on your point of view at the prospect of being pregnant."`);
             scene.text('You take a moment to process those words. Are you really with child? Well… it seems that you must ask for a medical appointment.');
             scene.actions([
@@ -683,7 +681,7 @@ function enterElectric3(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.text('<center><b>Aleksei</b></center>');
                 scene.img('images/characters/city/alexandria/alexandria3.jpg');
-                // TODO-QSP: dynamic text: "<<$pcs_lastname>>, you aren't ready for the next lesson(PLACEHOLDER until I wri...
+                // TODO-QSP: dynamic text: "<<$pcs_lastname>>, you aren''t ready for the next lesson(PLACEHOLDER until I wr...
                 scene.text(`"${((s as any).pcs_lastname || '')}, you aren't ready for the next lesson(PLACEHOLDER until I write the next part)."`);
                 scene.actions([
                   { label: 'Talk about other things', goto: ['alexandriaHome', 'study'] },
@@ -725,14 +723,14 @@ function enterSword(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.img('images/characters/city/alexandria/saber.jpg');
       scene.text('As you deliver those words, Aleksei put a package over his desk, and begin to open it. Inside, shrouded in red cloth, is the sword.');
-      // TODO-QSP: dynamic text: "Yes, <<$pcs_lastname>>, let's talk about this sword, that that little nuisance ...
+      // TODO-QSP: dynamic text: "Yes, <<$pcs_lastname>>, let''s talk about this sword, that that little nuisance...
       scene.text(`"Yes, ${((s as any).pcs_lastname || '')}, let's talk about this sword, that that little nuisance has sent me with a detailed and <i>colurfull</i> description of your actions."`);
       // TODO-QSP: dynamic text: You freeze, as Aleksei fixes his gaze into yours… He seems <i>superficially</i> ...
       scene.text(`You freeze, as Aleksei fixes his gaze into yours… He seems <i>superficially</i> calm, but if eyes are a window to the soul… Well… It has been good to know you ${((s as any).pcs_nickname || '')}.`);
-      // TODO-QSP: dynamic text: "Let's be clear <<$pcs_lastname>>. I am old, I know betrayal in all forms and co...
+      // TODO-QSP: dynamic text: "Let''s be clear <<$pcs_lastname>>. I am old, I know betrayal in all forms and c...
       scene.text(`"Let's be clear ${((s as any).pcs_lastname || '')}. I am old, I know betrayal in all forms and colors, and even with that, it always surprises me, human pettiness… It seems that putting my confidence in you was… unwise. In time you will help me to find those who are behind this travesty, but until then, our <i>study methodology</i> must be re-evaluated."`);
       scene.text('He then, stands up and walks menacingly behind you… put his hands over your shoulders… and let fall into your hands some leather straps…');
-      // TODO-QSP: dynamic text: "Let's start now <<$pcs_lastname>>."
+      // TODO-QSP: dynamic text: "Let''s start now <<$pcs_lastname>>."
       scene.text(`"Let's start now ${((s as any).pcs_lastname || '')}."`);
       scene.actions([
         { label: 'There is no escape', goto: ['alexandriaSex', 'grumpy2'] },
@@ -743,7 +741,7 @@ function enterSword(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         scene.img('images/characters/city/alexandria/saber.jpg');
         scene.text('As you deliver those words, Aleksei put a package over his desk, and begin to open it. Inside, shrouded in red cloth, is the sword.');
-        // TODO-QSP: dynamic text: "Yes, <<$pcs_lastname>>, let's talk about this sword, that that little nuisance ...
+        // TODO-QSP: dynamic text: "Yes, <<$pcs_lastname>>, let''s talk about this sword, that that little nuisance...
         scene.text(`"Yes, ${((s as any).pcs_lastname || '')}, let's talk about this sword, that that little nuisance has sent me with a detailed and <i>colurfull</i> description of your actions."`);
         scene.text('You can only frown in silence at the item, that has given you so many troubles, from your silent reaction, Aleksei, take advantage dragging into his cigar and continuing.');
         // TODO-QSP: dynamic text: "This, <<$pcs_lastname>>, is war. Let me explain something to you, people like m...
@@ -752,103 +750,103 @@ function enterSword(s: GameState, scene: SceneBuilder): void {
         scene.text('Alex rises from his chair and paces up and down around the room, seemingly lost in his thought before turning towards you and giving an exasperated sigh.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'stat', '');
     scene.text('<center><b>Aleksei</b></center>');
     scene.img('images/characters/city/alexandria/alexandria2.jpg');
     // TODO-QSP: dynamic text: "Now <<$pcs_lastname>>, I must search the miasma that are my so-called <i>enemie...
-    scene.text(`"Now ${((s as any).pcs_lastname || '')}, I must search the miasma that are my so-called <i>enemies</i>, looking for the idiot that has decided to waste our precious time on this childish <i>attack</i>."`);
+    scene.text(`"Now ${((st as any).pcs_lastname || '')}, I must search the miasma that are my so-called <i>enemies</i>, looking for the idiot that has decided to waste our precious time on this childish <i>attack</i>."`);
     scene.text('"You don\'t have an idea of who can be behind this?"');
-    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, that isn't the question, no, take this lesson to heart… When...
-    scene.text(`"${((s as any).pcs_lastname || '')}, that isn't the question, no, take this lesson to heart… When you are as old and powerful as I am, the problem is to crib through the cesspit of incompetence that rise regularly against you… is not that I don't have an idea about who is behind this, no… my problem is that I have, <i>too many ideas</i>, but… let's leave this for later, we must talk about your actions aftermatch."`);
+    // TODO-QSP: dynamic text: "<<$pcs_lastname>>, that isn''t the question, no, take this lesson to heart… Whe...
+    scene.text(`"${((st as any).pcs_lastname || '')}, that isn't the question, no, take this lesson to heart… When you are as old and powerful as I am, the problem is to crib through the cesspit of incompetence that rise regularly against you… is not that I don't have an idea about who is behind this, no… my problem is that I have, <i>too many ideas</i>, but… let's leave this for later, we must talk about your actions aftermatch."`);
     scene.text('Aleksei takes a long drag from his cigar, to calm himself before continuing.');
-    if (((s as any).npc_rel ?? 0)?.['A241'] === 0  &&  ((s as any).AlexandriaMissionQW ?? 0) >= 12) {
-      (s as any).minut = ((s as any).minut ?? 0) + 5;
-      qspCall(s, 'npc_relationship', 'set', 'A241', 1);
-      qspCall(s, 'stat', '');
+    if (((st as any).npc_rel ?? 0)?.['A241'] === 0  &&  ((st as any).AlexandriaMissionQW ?? 0) >= 12) {
+      (st as any).minut = ((st as any).minut ?? 0) + 5;
+      qspCall(st, 'npc_relationship', 'set', 'A241', 1);
+      qspCall(st, 'stat', '');
       scene.text('<center><b>Aleksei</b></center>');
       scene.img('images/characters/city/alexandria/alexandria3.jpg');
       // TODO-QSP: dynamic text: "As I told you <<$pcs_lastname>>, <i>you lack the maturity and will that are req...
-      scene.text(`"As I told you ${((s as any).pcs_lastname || '')}, <i>you lack the maturity and will that are required to master the high arts</i>, but… seeing your performance in this last endeavor, I am inclined to rethink our relationship."`);
+      scene.text(`"As I told you ${((st as any).pcs_lastname || '')}, <i>you lack the maturity and will that are required to master the high arts</i>, but… seeing your performance in this last endeavor, I am inclined to rethink our relationship."`);
       scene.text('Aleksei, then walk towards you, smirking, and grab delicately your chin, so you can see into his hard eyes.');
       // TODO-QSP: dynamic text: "You have done well my new <i>apprentice</i>. Now, <<$pcs_lastname>>, come with ...
-      scene.text(`"You have done well my new <i>apprentice</i>. Now, ${((s as any).pcs_lastname || '')}, come with me, is time that I teach you the secrets of the Lighting spell."`);
+      scene.text(`"You have done well my new <i>apprentice</i>. Now, ${((st as any).pcs_lastname || '')}, come with me, is time that I teach you the secrets of the Lighting spell."`);
       scene.text('Saying this, Aleksei, grab your hand and pull, taking you out his study… towards his bedroom.');
       scene.actions([
         { label: 'Follow your master', goto: ['alexandriaSex', 'nice2'] },
       ]);
     } else {
-      if (((s as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((s as any).AlexandriaQW ?? 0) === 19) {
-        (s as any).minut = ((s as any).minut ?? 0) + 5;
-        qspCall(s, 'stat', '');
+      if (((st as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((st as any).AlexandriaQW ?? 0) === 19) {
+        (st as any).minut = ((st as any).minut ?? 0) + 5;
+        qspCall(st, 'stat', '');
         scene.text('<center><b>Aleksei</b></center>');
         scene.img('images/characters/city/alexandria/alexandria2.jpg');
         // TODO-QSP: dynamic text: "<<$pcs_lastname>>, at risk of sounding ill-bred, I want to ask you a question… ...
-        scene.text(`"${((s as any).pcs_lastname || '')}, at risk of sounding ill-bred, I want to ask you a question… Why you decided to lie with the little nuisance?"`);
+        scene.text(`"${((st as any).pcs_lastname || '')}, at risk of sounding ill-bred, I want to ask you a question… Why you decided to lie with the little nuisance?"`);
         scene.text('The air freezes as he says those words, and you try to find a satisfactory answer, to the question asked by the irascible wizard. Fortunately, before you can mess this a little more, Aleksei, choose to throw you a bone.');
         // TODO-QSP: dynamic text: "Ehm… <<$pcs_lastname>>, maybe you find my question… <i>inpropper</i>… is not li...
-        scene.text(`"Ehm… ${((s as any).pcs_lastname || '')}, maybe you find my question… <i>inpropper</i>… is not like I want to be privy of your <i>affairs</i>, but that woman is an agent for, at the moment, a unknow enemy, whose objectives are at best nebulous."`);
+        scene.text(`"Ehm… ${((st as any).pcs_lastname || '')}, maybe you find my question… <i>inpropper</i>… is not like I want to be privy of your <i>affairs</i>, but that woman is an agent for, at the moment, a unknow enemy, whose objectives are at best nebulous."`);
         scene.text('Aleksei, then walk towards you, put his hands on your shoulders, and push you towards the studio\'s exit.');
         // TODO-QSP: dynamic text: "Is evident, that I must to up your training <<$pcs_lastname>>, first teaching y...
-        scene.text(`"Is evident, that I must to up your training ${((s as any).pcs_lastname || '')}, first teaching you the secrets of the Lighting spell, and then helping you to take away the idea of another dalliance with that <i>woman</i>."`);
+        scene.text(`"Is evident, that I must to up your training ${((st as any).pcs_lastname || '')}, first teaching you the secrets of the Lighting spell, and then helping you to take away the idea of another dalliance with that <i>woman</i>."`);
         scene.actions([
           { label: 'Follow your master', goto: ['alexandriaSex', 'nice2'] },
         ]);
       } else {
-        if (((s as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((s as any).AlexandriaQW ?? 0) === 18) {
-          (s as any).minut = ((s as any).minut ?? 0) + 5;
-          qspCall(s, 'stat', '');
+        if (((st as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((st as any).AlexandriaQW ?? 0) === 18) {
+          (st as any).minut = ((st as any).minut ?? 0) + 5;
+          qspCall(st, 'stat', '');
           scene.text('<center><b>Aleksei</b></center>');
           scene.img('images/characters/city/alexandria/alexandria2.jpg');
           // TODO-QSP: dynamic text: "<<$pcs_lastname>>, at risk to sound ill-bred, I want to ask you a question… Why...
-          scene.text(`"${((s as any).pcs_lastname || '')}, at risk to sound ill-bred, I want to ask you a question… Why you didn't lie with the little nuisance?"`);
+          scene.text(`"${((st as any).pcs_lastname || '')}, at risk to sound ill-bred, I want to ask you a question… Why you didn't lie with the little nuisance?"`);
           scene.text('You look confused at the irascible wizard. "I was supposed to do it?" Aleksei locks his eyes on yours, as he stands there letting the cigar burn away.');
           // TODO-QSP: dynamic text: "Of course no! <<$pcs_lastname>> you did the correct! I just thought that…" He s...
-          scene.text(`"Of course no! ${((s as any).pcs_lastname || '')} you did the correct! I just thought that…" He stops in his tracks and seems to consider his answer before continuing. "Well ${((s as any).pcs_lastname || '')}, it doesn't matter, is evident that as my apprentice you have the <i>Gravitas</i>, to do the correct and ignore the siren's call from some loose moral woman, that obviously is working for one of my so-called enemies."`);
+          scene.text(`"Of course no! ${((st as any).pcs_lastname || '')} you did the correct! I just thought that…" He stops in his tracks and seems to consider his answer before continuing. "Well ${((st as any).pcs_lastname || '')}, it doesn't matter, is evident that as my apprentice you have the <i>Gravitas</i>, to do the correct and ignore the siren's call from some loose moral woman, that obviously is working for one of my so-called enemies."`);
           scene.text('Aleksei, then walk towards you, put his hands on your shoulders, and lead you outside his home… towards a waiting limousine?');
           // TODO-QSP: dynamic text: "Is evident, that I must to up your training <<$pcs_lastname>>, teaching you the...
-          scene.text(`"Is evident, that I must to up your training ${((s as any).pcs_lastname || '')}, teaching you the secrets of the Lighting spell, but first… I think a little shopping is necessary."`);
+          scene.text(`"Is evident, that I must to up your training ${((st as any).pcs_lastname || '')}, teaching you the secrets of the Lighting spell, but first… I think a little shopping is necessary."`);
           scene.actions([
             { label: 'Mon Cheri?!', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 13;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 13;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/boutique/butik.jpg');
     scene.text('A silent and somewhat sullen Aleksei, take you in the limousine towards the city center and a… very high class <i>women</i>\'s clothes boutique, the sort, that entertain the shoppers with champagne and have shoes in the one hundred thousand rubles rank.');
-    // TODO-QSP: dynamic text: "I admit, <<$pcs_lastname>>, that I wasn't expecting for me to come to this esta...
-    scene.text(`"I admit, ${((s as any).pcs_lastname || '')}, that I wasn't expecting for me to come to this establishment, but… you need a recompense, and sadly, my curse acting through the <i>apprentice link</i>, will, without doubt, end in a more <i>girly</i> outcome so… we will need to ride the wave and find something of good taste that you can wear, without embarrassing both of us."`);
+    // TODO-QSP: dynamic text: "I admit, <<$pcs_lastname>>, that I wasn''t expecting for me to come to this est...
+    scene.text(`"I admit, ${((st as any).pcs_lastname || '')}, that I wasn't expecting for me to come to this establishment, but… you need a recompense, and sadly, my curse acting through the <i>apprentice link</i>, will, without doubt, end in a more <i>girly</i> outcome so… we will need to ride the wave and find something of good taste that you can wear, without embarrassing both of us."`);
     scene.text('Saying this, he made a gesture, and the boutique\'s staff surge towards you.');
     scene.actions([
       { label: 'Try on the gowns the retainers bring to you', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    (s as any).loop_counter = 0;
+    qspCall(st, 'stat', '');
+    (st as any).loop_counter = 0;
     // TODO-QSP: :markbuycloalexandria
-    (s as any).loop_counter = ((s as any).loop_counter ?? 0) + (1);
+    (st as any).loop_counter = ((st as any).loop_counter ?? 0) + (1);
     scene.text('<center><b>Aleksei</b></center>');
     scene.img('images/characters/city/alexandria/alexandria.jpg');
-    if (((s as any).loop_counter ?? 0) === 300) {
+    if (((st as any).loop_counter ?? 0) === 300) {
       scene.text('You spend the next 30 minutes trying on various gowns, with the full complement of the shop\'s staff fuzzing all over you, and making you feel like a <i>pretty princess</i>. Aleksei on his part seems somewhat mortified at the staff\'s attention, that doesn\'t seem to understand what exactly is your relationship, and don\'t know how to treat him. That attention is cut short after somebody calls him… <i>Miss</i>, triggering a seething glade that makes the staff blanch… promptly making them put all their attention on you, but you are unable to find any that you either don\'t already own or that you are willing to wear. This seems to amuse Aleksei - and fright the shop\'s staff - that takes you back towards the limousine.');
       // TODO-QSP: dynamic text: "Sorry <<$pcs_lastname>>, that was a waste of our valuable time, that could have...
-      scene.text(`"Sorry ${((s as any).pcs_lastname || '')}, that was a waste of our valuable time, that could have been used for more worthy endeavors… sigh… let get that for late and indulge us on something more worthy of our time."`);
+      scene.text(`"Sorry ${((st as any).pcs_lastname || '')}, that was a waste of our valuable time, that could have been used for more worthy endeavors… sigh… let get that for late and indulge us on something more worthy of our time."`);
       scene.text('The rest of the trip towards his home, go without problems, and when you arrive, Aleksei don\'t lose time in taking you to his room.');
     } else {
-      (s as any).numrand = Math.floor(Math.random() * 100) + 1;
-      qspCall(s, 'clothing_attributes', 'moncheri_gown', ((s as any).numrand ?? 0));
-      if (((s as any).CloBimbo ?? 0) === 1) {
+      (st as any).numrand = (Math.floor(Math.random() * 100) + 1);
+      qspCall(st, 'clothing_attributes', 'moncheri_gown', ((st as any).numrand ?? 0));
+      if (((st as any).CloBimbo ?? 0) === 1) {
         // TODO-QSP: jump 'markbuycloalexandria'
       }
-      if (((s as any).CloInhibit ?? 0) > ((s as any).pcs_inhib ?? 0)) {
+      if (((st as any).CloInhibit ?? 0) > ((st as any).pcs_inhib ?? 0)) {
         // TODO-QSP: jump 'markbuycloalexandria'
       }
-      if (qspFunc(s, 'clothing', 'is_owned', 'moncheri_gown', ((s as any).numrand ?? 0))) {
+      if (qspFunc(s, 'clothing', 'is_owned', 'moncheri_gown', ((st as any).numrand ?? 0))) {
         // TODO-QSP: jump 'markbuycloalexandria'
       } else {
-        qspCall(s, 'clothing', 'add_item', 'moncheri_gown', ((s as any).numrand ?? 0));
-        scene.img(`images/pc/items/moncheri/gown/${((s as any).numrand || '')}.jpg`);
+        qspCall(st, 'clothing', 'add_item', 'moncheri_gown', ((st as any).numrand ?? 0));
+        scene.img(`images/pc/items/moncheri/gown/${((st as any).numrand || '')}.jpg`);
       }
     }
     scene.text('You spend the next 30 minutes trying on various gowns, with the full complement of the shop\'s staff fuzzing all over you, and making you feel like a <i>pretty princess</i>. Aleksei on his part seems somewhat mortified at the staff\'s attention, that doesn\'t seem to understand what exactly is your relationship, and don\'t know how to treat him. That attention is cut short after somebody calls him… <i>Miss</i>, triggering a seething glare that makes the staff blanch… promptly making them put all their attention on you until you find a gown that seems to <i>complement your eyes</i>, a somewhat quickly - but extremely polite - Aleksei and you are accompanied towards the limousine.');
     // TODO-QSP: dynamic text: "That was… interesting <<$pcs_lastname>>, but sadly a necessity, as is inescapab...
-    scene.text(`"That was… interesting ${((s as any).pcs_lastname || '')}, but sadly a necessity, as is inescapable that you, as my apprentice, will be required to attempt certain societal gatherings where… so-called <i>masters</i> will judge you based only on your appearance… sigh… let get that for late and indulge us on something more worthy of our time."`);
+    scene.text(`"That was… interesting ${((st as any).pcs_lastname || '')}, but sadly a necessity, as is inescapable that you, as my apprentice, will be required to attempt certain societal gatherings where… so-called <i>masters</i> will judge you based only on your appearance… sigh… let get that for late and indulge us on something more worthy of our time."`);
     scene.text('The rest of the trip towards his home, go without problems, and when you arrive, Aleksei don\'t lose time in taking you to his room.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -860,24 +858,24 @@ function enterSword(s: GameState, scene: SceneBuilder): void {
   } },
           ]);
         } else {
-          if (((s as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((s as any).AlexandriaQW ?? 0) === 17) {
-            (s as any).minut = ((s as any).minut ?? 0) + 5;
-            qspCall(s, 'stat', '');
+          if (((st as any).npc_rel ?? 0)?.['A241'] === 1  &&  ((st as any).AlexandriaQW ?? 0) === 17) {
+            (st as any).minut = ((st as any).minut ?? 0) + 5;
+            qspCall(st, 'stat', '');
             scene.text('<center><b>Aleksei</b></center>');
             scene.img('images/characters/city/alexandria/alexandria3.jpg');
             // TODO-QSP: dynamic text: "Is evident, that I must to up your training <<$pcs_lastname>>, teaching you the...
-            scene.text(`"Is evident, that I must to up your training ${((s as any).pcs_lastname || '')}, teaching you the secrets of the Lighting spell."`);
+            scene.text(`"Is evident, that I must to up your training ${((st as any).pcs_lastname || '')}, teaching you the secrets of the Lighting spell."`);
             scene.text('Aleksei, then walk towards you, put his hands on your shoulders, and push you towards the studio\'s exit.');
             scene.actions([
               { label: 'Continue', goto: ['alexandriaSex', 'nice2'] },
             ]);
           } else {
-            (s as any).minut = ((s as any).minut ?? 0) + 5;
-            qspCall(s, 'stat', '');
+            (st as any).minut = ((st as any).minut ?? 0) + 5;
+            qspCall(st, 'stat', '');
             scene.text('<center><b>Aleksei</b></center>');
             scene.img('images/characters/city/alexandria/alexandria3.jpg');
             // TODO-QSP: dynamic text: "Is evident, that I must to up your training <<$pcs_lastname>>, teaching you the...
-            scene.text(`"Is evident, that I must to up your training ${((s as any).pcs_lastname || '')}, teaching you the secrets of the Lighting spell."`);
+            scene.text(`"Is evident, that I must to up your training ${((st as any).pcs_lastname || '')}, teaching you the secrets of the Lighting spell."`);
             scene.text('Aleksei, then walk towards you, put his hands on your shoulders, and push you towards the studio\'s exit.');
             scene.actions([
               { label: 'Continue', goto: ['alexandriaSex', 'grumpy2'] },
@@ -932,6 +930,8 @@ function enterTractatus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'themes', 'indoors');
+  (s as any).location_type = 'public_indoors';
   const arg = s.locArg;
   switch (arg) {
     case 'late':

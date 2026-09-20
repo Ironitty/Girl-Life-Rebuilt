@@ -7,490 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 'end') {
-    qspCall(s, 'traits', 'sizequeen', 'update');
-    qspCall(s, 'arousal_stats', 'end', ((s as any).locArgs?.[1] ?? 0));
-    return;
-  } else {
-    if (((String(';count;count2;checks;auto_lube;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) > 0) {
-      qspCall(s, 'arousal_funcs', '', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
-      return;
-    }
-  }
-  if (((s as any).arousal_overcall ?? 0)?.['args'] === ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0)) {
-    (s as any).arousal_overcall = 1;
-  } else {
-    (s as any).arousal_overcall = 0;
-    ((s as any).arousal_overcall = (s as any).arousal_overcall ?? {})['args'] = ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0);
-  }
-  (s as any).temp_time = ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0);
-  if ((!((s as any).temp_time ?? 0))) {
-    scene.text('Error: Arousal called with a duration of 0 minutes.');
-  } else {
-    if (((s as any).temp_time ?? 0) > 0) {
-      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_time ?? 0));
-    }
-  }
-  ((s as any).stim = (s as any).stim ?? {})['time'] = ((((s as any).temp_time ?? 0) > 0) ? (((s as any).temp_time ?? 0)) : (-((s as any).temp_time ?? 0)));
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unaware') : -1) >= 0) {
-    ((s as any).arousalVars = (s as any).arousalVars ?? {})['unaware'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_orgasm_msg') : -1) >= 0) {
-    ((s as any).arousalVars = (s as any).arousalVars ?? {})['text'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('self') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('masturbation') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('masturbate') : -1) >= 0  ||  (String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'self_') {
-    ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_stats') : -1) >= 0) {
-    ((s as any).arousalVars = (s as any).arousalVars ?? {})['no_stats'] = 1;
-  }
-  if ((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'dick_length') {
-    if (((s as any).npcID ?? 0) === '') {
-      ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
-    } else {
-      qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'j');
-    }
-    // TODO-QSP: dynamic "
-    // TODO-QSP: gs 'npcStat', $npcID<<$mid($ARGS[2], 12)>>, 'k'
-    (s as any).dick_length11 = qspUntranslated(s, "dick_length0", { location: "arousal" });
-    (s as any).silavag11 = qspUntranslated(s, "silavag0", { location: "arousal" });
-    (s as any).dick_width11 = qspUntranslated(s, "dick_width0", { location: "arousal" });
-    (s as any).npcCondom11 = qspUntranslated(s, "npcCondom0", { location: "arousal" });
-    // TODO-QSP: "
-  } else {
-    if ((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'dick') {
-      if (((s as any).npcID ?? 0) === '') {
-        ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
-      } else {
-        qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'j');
-      }
-      // TODO-QSP: dynamic "
-      // TODO-QSP: gs 'npcStat', $npcID<<$mid($ARGS[2], 5)>>, 'k'
-      (s as any).dick_length11 = qspUntranslated(s, "dick_length0", { location: "arousal" });
-      (s as any).silavag11 = qspUntranslated(s, "silavag0", { location: "arousal" });
-      (s as any).dick_width11 = qspUntranslated(s, "dick_width0", { location: "arousal" });
-      (s as any).npcCondom11 = qspUntranslated(s, "npcCondom0", { location: "arousal" });
-      // TODO-QSP: "
-    } else {
-      if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[2] ?? 0))) {
-        if ((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'D') {
-          (s as any).arousal_npcID1 = ((s as any).npcID ?? 0);
-          (s as any).arousal_npcID2 = ((s as any).locArgs?.[2] ?? 0);
-        } else {
-          if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[3] ?? 0))) {
-            (s as any).arousal_npcID1 = ((s as any).locArgs?.[2] ?? 0);
-            (s as any).arousal_npcID2 = ((s as any).locArgs?.[3] ?? 0);
-          } else {
-            (s as any).arousal_npcID1 = ((s as any).locArgs?.[2] ?? 0);
-            (s as any).arousal_npcID2 = ((s as any).locArgs?.[2] ?? 0);
-          }
-        }
-        if (((s as any).arousal_npcID1 ?? 0) === '') {
-          ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
-        } else {
-          qspCall(s, 'npcStat', '', ((s as any).arousal_npcID1 ?? 0), 'j');
-        }
-        if (((s as any).arousal_npcID2 ?? 0) === '') {
-          (s as any).arousal_npcID2 = 'D1';
-        }
-        (s as any).temp_index = qspFunc(s, 'npc', 'find_in_npcStat', ((s as any).arousal_npcID2 ?? 0));
-        if (((s as any).temp_index ?? 0) !== 'none') {
-          qspCall(s, 'npc', 'copy_npcStat', ((s as any).temp_index ?? 0), 'k');
-        } else {
-          qspCall(s, 'npcStat', '', ((s as any).arousal_npcID2 ?? 0), 'k');
-        }
-      } else {
-        if (((s as any).npcID ?? 0) === '') {
-          ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
-          qspCall(s, 'npcStat', 'D1', 'k');
-        } else {
-          qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'j');
-          qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'k', ((s as any).npcCondom ?? 0));
-        }
-      }
-    }
-  }
-  if (((s as any).arousalVars ?? 0)?.['self'] === 0  &&  (String(((s as any).npcID11 ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'D') {
-    (s as any).silavag11 = ((s as any).silavag10 ?? 0);
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('prostitution') : -1) >= 0) {
-    (s as any).silavag11 = Math.floor(Math.random() * 2) + 0;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) >= 0) {
-    (s as any).silavag11 = Math.floor(Math.random() * 3) + 0;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) >= 0) {
-    (s as any).silavag11 = 0;
-  }
-  ((s as any).arousalVars = (s as any).arousalVars ?? {})['girth_range'] = Math.min(Math.max(1, (((s as any).dick_width11 ?? 0) - 9) * 5), 30);
-  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'anal'  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('anal_finger') : -1) < 0) {
-    if (((s as any).anal_slip ?? 0) < Math.max(1, 8 + ((s as any).pain ?? 0)?.['asshole']/2 - ((s as any).pcs_ass ?? 0))) {
-      ((s as any).anslipVars = (s as any).anslipVars ?? {})['cum'] = (Math.floor(Math.random() * (3 * ((s as any).cumvol ?? 0)[3] - 2 * ((s as any).cumvol ?? 0)[3] + 1)) + (2 * ((s as any).cumvol ?? 0)[3])) / 30;
-      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('spit') : -1) >= 0) {
-        ((s as any).anslipVars = (s as any).anslipVars ?? {})['spit'] = 4;
-      }
-      if (((s as any).ar_anal_lube ?? 0) === 1) {
-        ((s as any).anslipVars = (s as any).anslipVars ?? {})['lube'] = 8;
-      } else {
-        if (Math.max('anslipVars') < Math.min(Math.max(1, 8 + ((s as any).pain ?? 0)?.['asshole']/2 - ((s as any).pcs_ass ?? 0)), 8)) {
-          if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lube') : -1) >= 0  &&  (!((s as any).ar_anal_lube ?? 0))) {
-            ((s as any).anslipVars = (s as any).anslipVars ?? {})['lube'] = 8;
-            (s as any).ar_anal_lube = 1;
-          } else {
-            if (((s as any).auto_anal_lube ?? 0) === 1  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('humiliation') : -1) < 0) {
-              qspCall(s, 'arousal_funcs', 'auto_lube', 'anal');
-            }
-          }
-        }
-      }
-      (s as any).anal_slip = Math.max('anslipVars');
-      if (((s as any).anal_slip ?? 0) !== ((s as any).lubonus ?? 0)  &&  ((s as any).lubonus ?? 0) > 0) {
-        (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (((s as any).lubonus ?? 0));
-        (s as any).lubonus = ((s as any).anal_slip ?? 0);
-      }
-    }
-  }
-  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'vagi'  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('vaginal_finger') : -1) < 0) {
-    if (((s as any).vaginal_slip ?? 0) < Math.max(1, 8 + ((s as any).pain ?? 0)?.['vaginal'] / 2 - ((s as any).pcs_vag ?? 0))) {
-      ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['horny'] = Math.min(((s as any).pcs_horny ?? 0) / 10, 10);
-      ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['cum'] = (Math.floor(Math.random() * (2 * ((s as any).cumvol ?? 0)[0] - qspUntranslated(s, "cumvol[0]", { location: "arousal" }) + 1)) + (qspUntranslated(s, "cumvol[0]", { location: "arousal" }))) / 10;
-      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('spit') : -1) >= 0) {
-        ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['spit'] = 4;
-      }
-      if (((s as any).ar_vag_lube ?? 0) === 1) {
-        ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['lube'] = 8;
-      } else {
-        if (Math.max('vagslipVars') < Math.min(Math.max(1, 8 + ((s as any).pain ?? 0)?.['vaginal']/2 - ((s as any).pcs_vag ?? 0)), 8)) {
-          if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lube') : -1) >= 0  &&  (!((s as any).ar_vag_lube ?? 0))) {
-            ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['lube'] = 8;
-            (s as any).ar_vag_lube = 1;
-          } else {
-            if (((s as any).auto_vag_lube ?? 0) === 1  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('humiliation') : -1) < 0) {
-              qspCall(s, 'arousal_funcs', 'auto_lube', 'vag');
-            }
-          }
-        }
-      }
-      (s as any).vaginal_slip = Math.max('vagslipVars');
-    }
-  }
-  if ((String(((s as any).locArgs?.[0] ?? 0)).slice(((String(((s as any).locArgs?.[0] ?? 0)).length) - 3)-1)) !== 'give') {
-    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'vagi'  ||  (String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-      if (((s as any).dick_length11 ?? 0) >= 22) {
-        ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) + (3);
-      } else {
-        if (((s as any).dick_length11 ?? 0) >= 17) {
-          ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) + (1);
-        } else {
-          if (((s as any).dick_length11 ?? 0) <= 7) {
-            ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) - (3);
-          } else {
-            if (((s as any).dick_length11 ?? 0) <= 12) {
-              ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) - (2);
-            }
-          }
-        }
-      }
-    }
-    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'vagi') {
-      if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
-        if (((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] === 0) {
-          ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_vag_backup'] = ((s as any).pcs_vag ?? 0);
-        }
-        (s as any).pcs_vag = ((s as any).dick_length11 ?? 0);
-      } else {
-        if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 1) {
-          if (((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] === 0) {
-            ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_vag_backup'] = ((s as any).pcs_vag ?? 0);
-          }
-          (s as any).pcs_vag = Math.min(((s as any).dick_length11 ?? 0), ((s as any).pcs_vag ?? 0) + 10);
-        } else {
-          if (((s as any).trait_vars ?? 0)?.['elasticity'] < 0) {
-            if (((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] === 0) {
-              ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_vag_backup'] = ((s as any).pcs_vag ?? 0);
-            }
-            (s as any).pcs_vag = Math.max(5, ((s as any).pcs_vag ?? 0) - 5);
-          }
-        }
-      }
-    } else {
-      if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'anal') {
-        if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
-          if (((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] === 0) {
-            ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_ass_backup'] = ((s as any).pcs_ass ?? 0);
-          }
-          (s as any).pcs_ass = ((s as any).dick_length11 ?? 0);
-        } else {
-          if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 1) {
-            if (((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] === 0) {
-              ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_ass_backup'] = ((s as any).pcs_ass ?? 0);
-            }
-            (s as any).pcs_ass = Math.min(((s as any).dick_length11 ?? 0), ((s as any).pcs_ass ?? 0) + 10);
-          } else {
-            if (((s as any).trait_vars ?? 0)?.['elasticity'] < 0) {
-              if (((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] === 0) {
-                ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_ass_backup'] = ((s as any).pcs_ass ?? 0);
-              }
-              (s as any).pcs_ass = Math.max(5, ((s as any).pcs_ass ?? 0) - 5);
-            }
-          }
-        }
-      } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 'bj'  ||  ((s as any).locArgs?.[0] ?? 0) === 'dildo_suck'  ||  ((s as any).locArgs?.[0] ?? 0) === 'strap_suck') {
-          if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
-            if (((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] === 0) {
-              ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_throat_backup'] = ((s as any).pcs_throat ?? 0);
-            }
-            (s as any).pcs_throat = ((s as any).dick_length11 ?? 0);
-          } else {
-            if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 1) {
-              if (((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] === 0) {
-                ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_throat_backup'] = ((s as any).pcs_throat ?? 0);
-              }
-              (s as any).pcs_throat = Math.min(((s as any).dick_length11 ?? 0), ((s as any).pcs_throat ?? 0) + 10);
-            } else {
-              if (((s as any).trait_vars ?? 0)?.['elasticity'] < 0) {
-                if (((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] === 0) {
-                  ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_throat_backup'] = ((s as any).pcs_throat ?? 0);
-                }
-                (s as any).pcs_throat = Math.max(5, ((s as any).pcs_throat ?? 0) - 5);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ((s as any).stim = (s as any).stim ?? {})['act'] = 1;
-  ((s as any).stim = (s as any).stim ?? {})['mag'] = qspFunc(s, 'arousal_funcs', 'get_base_stimmag');
-  (s as any).pain_coeff = 0;
-  ((s as any).arousalVars = (s as any).arousalVars ?? {})['max_sex_pain'] = (120 - ((s as any).pcs_vital ?? 0)) / 4;
-  ((s as any).stim = (s as any).stim ?? {})['kinkno'] = 0;
-  ((s as any).stim = (s as any).stim ?? {})['kink'] = 0;
-  ((s as any).stim = (s as any).stim ?? {})['pref'] = 0;
-  if (0  &&  ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('porn') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('voyeur') : -1) >= 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('erotic') : -1) >= 0)) {
-    ((s as any).stim = (s as any).stim ?? {})['no_kinks'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) >= 0) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 2) + 4);
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 2) + 2);
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'bound'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'bound'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['bound'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 4) + 7);
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'beast'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'beast'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['beast'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('creampie') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'creampie'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'creampie'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['creampie'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('deepthroat') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'deepthroat'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'deepthroat'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['deepthroat'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('dom') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'dom'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'dom'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['dom'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('exhibitionism') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'exhibitionism'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'exhibitionism'));
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 5) + 2);
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['exhibitionism'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('feet') : -1) > 1  ||  ((s as any).arousalVars ?? 0)?.['foot'] === 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'feet'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'feet'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['feet'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) > 1  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gang') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 6) + 10);
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'gangbang'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'gangbang'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_gang'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['gangbang'] = 1;
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gloryhole') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'gloryhole'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'gloryhole'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_gloryhole'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['gloryhole'] = 1;
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('group') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'group'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'group'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_group'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['group'] = 1;
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('orgy') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'orgy'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'orgy'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_orgy'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['orgy'] = 1;
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('humiliation') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'humiliation'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'humiliation'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['humiliation'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('incest') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'incest'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'incest'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['incest'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lesbian') : -1) > 1  ||  ((s as any).arousalVars ?? 0)?.['lesbian'] === 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'lesbian'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'lesbian'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_lesbian'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['lesbian'] = 1;
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('maso') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 2) + 3);
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'maso'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'maso'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['maso'] = 1;
-  }
-  if (((s as any).arousalVars ?? 0)?.['self'] === 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'masturbate'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'masturbate'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['masturbate'] = 1;
-    ((s as any).orgasm_flag = (s as any).orgasm_flag ?? {})['masturbate'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('pregnant') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'pregnant'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'pregnant'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['pregnant'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('prostitution') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.max(0, (Math.floor(Math.random() * (2 - (-3) + 1)) + ((-3)))));
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'prostitution'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'prostitution'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_prostitution'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['prostitution'] = 1;
-      if ((((s as any).count ?? 0)?.['vaginal'] === 1  ||  ((s as any).count ?? 0)?.['vaginal_strap'] === 1)  &&  ((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
-        ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['prostitute'] = 1;
-      }
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('public') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['public'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 16) + 15);
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'rape'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'rape'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).rape = (s as any).rape ?? {})[1] = ((s as any).daystart ?? 0);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_rape'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['rape'] = 1;
-    }
-    if ((((s as any).count ?? 0)?.['vaginal'] === 1  ||  ((s as any).count ?? 0)?.['vaginal_strap'] === 1)  &&  ((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
-      ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['rape'] = 1;
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 3) + 5);
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'rough'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'rough'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['rough'] = 1;
-    (s as any).pcs_hairbsh = (-1);
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('shemale') : -1) > 1) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'shemale'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'shemale'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
-      ((s as any).stim = (s as any).stim ?? {})['hidden_shemale'] = 1;
-    } else {
-      ((s as any).stim = (s as any).stim ?? {})['shemale'] = 1;
-    }
-    if ((((s as any).count ?? 0)?.['vaginal'] === 1  ||  ((s as any).count ?? 0)?.['vaginal_strap'] === 1)  &&  ((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
-      ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['shemale'] = 1;
-    }
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('sub') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'sub'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'sub'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['sub'] = 1;
-  }
-  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unknown') : -1) > 1) {
-    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.max(0, (Math.floor(Math.random() * (1 - (-4) + 1)) + ((-4)))));
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'unknown'));
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'unknown'));
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
-    ((s as any).stim = (s as any).stim ?? {})['unknown'] = 1;
-  }
-  if (((s as any).stim ?? 0)?.['kinkno'] > 0) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = (((s as any).stim ?? {})?.['kink'] ?? 0) / (((s as any).stim ?? {})?.['kinkno'] ?? 0);
-    ((s as any).stim = (s as any).stim ?? {})['pref'] = (((s as any).stim ?? {})?.['pref'] ?? 0) / (((s as any).stim ?? {})?.['kinkno'] ?? 0);
-    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = 0;
-  }
-  if ((Math.floor(Math.random() * 100) + 0) < ((s as any).stim ?? 0)?.['kink']) {
-    ((s as any).stim = (s as any).stim ?? {})['kink'] = 120;
-  } else {
-    if ((Math.floor(Math.random() * 80) + 0) < ((s as any).stim ?? 0)?.['kink']) {
-      ((s as any).stim = (s as any).stim ?? {})['kink'] = 110;
-    } else {
-      if ((Math.floor(Math.random() * 60) + 0) < ((s as any).stim ?? 0)?.['kink']) {
-        ((s as any).stim = (s as any).stim ?? {})['kink'] = 100;
-      } else {
-        if ((Math.floor(Math.random() * 40) + 0) < ((s as any).stim ?? 0)?.['kink']) {
-          ((s as any).stim = (s as any).stim ?? {})['kink'] = 90;
-        } else {
-          ((s as any).stim = (s as any).stim ?? {})['kink'] = 80;
-        }
-      }
-    }
-  }
   scene.build();
 }
 
@@ -630,7 +146,7 @@ function enterVoyeurSex(s: GameState, scene: SceneBuilder): void {
 function enterBreasts(s: GameState, scene: SceneBuilder): void {
   ((s as any).stim = (s as any).stim ?? {})['act'] = 30;
   if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lactation ?? 0)?.['breastmv'] > 3 * ((s as any).lactation ?? 0)?.['breastmm'] / 2) {
-    ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + (Math.floor(Math.random() * 11) + 10);
+    ((s as any).stim = (s as any).stim ?? {})['act'] = ((s as any).stim['act'] ?? 0) + ((Math.floor(Math.random() * 11) + 10));
     ((s as any).lactation = (s as any).lactation ?? {})['breastmv'] = Math.max(0, (((s as any).lactation ?? {})?.['breastmv'] ?? 0) - (Math.floor(Math.random() * ((((s as any).lactation ?? {})?.['breastmv'] ?? 0) / 10 - (((s as any).lactation ?? {})?.['breastmv'] ?? 0) / 20 + 1)) + ((((s as any).lactation ?? {})?.['breastmv'] ?? 0) / 20)) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 2));
   }
   if (((s as any).pain_coeff ?? 0) > 0) {
@@ -747,7 +263,7 @@ function enterVaginalFinger(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal_funcs', 'feed', 1);
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 4) + 2) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -793,7 +309,7 @@ function enterVaginalFist(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal_funcs', 'feed', 3);
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 6) + 15) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -830,7 +346,7 @@ function enterSelfFisting(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['self_fisting'] = 1;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 6) + 10) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -865,7 +381,7 @@ function enterCuni(s: GameState, scene: SceneBuilder): void {
 function enterVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', (Math.floor(Math.random() * 3) + 1) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   ((s as any).orgasm_flag = (s as any).orgasm_flag ?? {})['vaginal'] = 1;
-  if ((Math.floor(Math.random() * 121) + 0) < ((s as any).locArgs?.[1] ?? 0)) {
+  if ((Math.floor(Math.random() * 121) + 0) < Number((s as any).locArgs?.[1] ?? 0)) {
     (s as any).cumprecheck = 1;
     qspCall(s, 'cum_manage', '');
   }
@@ -1046,7 +562,7 @@ function enterVaginalVibe(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal_funcs', 'feed', 1);
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_vag ?? 0) - ((s as any).pcs_vag ?? 0) / 2 + 1)) + (((s as any).pcs_vag ?? 0) / 2)) < ((s as any).cumvol ?? 0)[0]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 6) + 5) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -1081,7 +597,7 @@ function enterAnalFinger(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal_funcs', 'feed', 1);
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 4) + 2) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -1121,7 +637,7 @@ function enterAnalFist(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 6) + 15) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -1154,7 +670,7 @@ function enterSelfFistingAnal(s: GameState, scene: SceneBuilder): void {
       ((s as any).count = (s as any).count ?? {})['self_fisting_anal'] = 1;
     }
   }
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 6) + 10) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -1317,7 +833,7 @@ function enterAnalVibe(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'arousal_funcs', 'feed', 1);
-  if (((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0  &&  (Math.floor(Math.random() * (((s as any).pcs_ass ?? 0) - ((s as any).pcs_ass ?? 0) / 2 + 1)) + (((s as any).pcs_ass ?? 0) / 2)) < ((s as any).cumvol ?? 0)[3]) {
     qspCall(s, 'cum_manage', 'cum_decay', (Math.floor(Math.random() * 6) + 5) * Math.max(1, (((s as any).stim ?? {})?.['time'] ?? 0) / 5));
   }
   scene.build();
@@ -2458,6 +1974,490 @@ function enterPeeGive(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 'end') {
+    qspCall(s, 'traits', 'sizequeen', 'update');
+    qspCall(s, 'arousal_stats', 'end', ((s as any).locArgs?.[1] ?? 0));
+    return;
+  } else {
+    if (((String(';count;count2;checks;auto_lube;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) > 0) {
+      qspCall(s, 'arousal_funcs', '', ((s as any).locArgs?.[0] ?? 0), ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+      return;
+    }
+  }
+  if (((s as any).arousal_overcall ?? 0)?.['args'] === Number((s as any).locArgs?.[0] ?? 0) + Number((s as any).locArgs?.[1] ?? 0) + Number((s as any).locArgs?.[2] ?? 0) + Number((s as any).locArgs?.[3] ?? 0) + Number((s as any).locArgs?.[4] ?? 0) + Number((s as any).locArgs?.[5] ?? 0) + Number((s as any).locArgs?.[6] ?? 0) + Number((s as any).locArgs?.[7] ?? 0) + Number((s as any).locArgs?.[8] ?? 0)) {
+    (s as any).arousal_overcall = 1;
+  } else {
+    (s as any).arousal_overcall = 0;
+    ((s as any).arousal_overcall = (s as any).arousal_overcall ?? {})['args'] = ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0);
+  }
+  (s as any).temp_time = ((s as any).locArgs?.[0] ?? 0) + ((s as any).locArgs?.[1] ?? 0) + ((s as any).locArgs?.[2] ?? 0) + ((s as any).locArgs?.[3] ?? 0) + ((s as any).locArgs?.[4] ?? 0) + ((s as any).locArgs?.[5] ?? 0) + ((s as any).locArgs?.[6] ?? 0) + ((s as any).locArgs?.[7] ?? 0) + ((s as any).locArgs?.[8] ?? 0);
+  if ((!((s as any).temp_time ?? 0))) {
+    scene.text('Error: Arousal called with a duration of 0 minutes.');
+  } else {
+    if (((s as any).temp_time ?? 0) > 0) {
+      (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_time ?? 0));
+    }
+  }
+  ((s as any).stim = (s as any).stim ?? {})['time'] = ((((s as any).temp_time ?? 0) > 0) ? (((s as any).temp_time ?? 0)) : (-((s as any).temp_time ?? 0)));
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unaware') : -1) >= 0) {
+    ((s as any).arousalVars = (s as any).arousalVars ?? {})['unaware'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_orgasm_msg') : -1) >= 0) {
+    ((s as any).arousalVars = (s as any).arousalVars ?? {})['text'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('self') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('masturbation') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('masturbate') : -1) >= 0  ||  (String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'self_') {
+    ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_stats') : -1) >= 0) {
+    ((s as any).arousalVars = (s as any).arousalVars ?? {})['no_stats'] = 1;
+  }
+  if ((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'dick_length') {
+    if (((s as any).npcID ?? 0) === '') {
+      ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
+    } else {
+      qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'j');
+    }
+    // TODO-QSP: dynamic "
+    // TODO-QSP: gs 'npcStat', $npcID<<$mid($ARGS[2], 12)>>, 'k'
+    (s as any).dick_length11 = qspUntranslated(s, "dick_length(String(((s as any).locArgs?.[2] ?? 0)).slice((12)-1))", { location: "arousal" });
+    (s as any).silavag11 = qspUntranslated(s, "silavag(String(((s as any).locArgs?.[2] ?? 0)).slice((12)-1))", { location: "arousal" });
+    (s as any).dick_width11 = qspUntranslated(s, "dick_width(String(((s as any).locArgs?.[2] ?? 0)).slice((12)-1))", { location: "arousal" });
+    (s as any).npcCondom11 = qspUntranslated(s, "npcCondom(String(((s as any).locArgs?.[2] ?? 0)).slice((12)-1))", { location: "arousal" });
+    // TODO-QSP: "
+  } else {
+    if ((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'dick') {
+      if (((s as any).npcID ?? 0) === '') {
+        ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
+      } else {
+        qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'j');
+      }
+      // TODO-QSP: dynamic "
+      // TODO-QSP: gs 'npcStat', $npcID<<$mid($ARGS[2], 5)>>, 'k'
+      (s as any).dick_length11 = qspUntranslated(s, "dick_length(String(((s as any).locArgs?.[2] ?? 0)).slice((5)-1))", { location: "arousal" });
+      (s as any).silavag11 = qspUntranslated(s, "silavag(String(((s as any).locArgs?.[2] ?? 0)).slice((5)-1))", { location: "arousal" });
+      (s as any).dick_width11 = qspUntranslated(s, "dick_width(String(((s as any).locArgs?.[2] ?? 0)).slice((5)-1))", { location: "arousal" });
+      (s as any).npcCondom11 = qspUntranslated(s, "npcCondom(String(((s as any).locArgs?.[2] ?? 0)).slice((5)-1))", { location: "arousal" });
+      // TODO-QSP: "
+    } else {
+      if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[2] ?? 0))) {
+        if ((String(((s as any).locArgs?.[2] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'D') {
+          (s as any).arousal_npcID1 = ((s as any).npcID ?? 0);
+          (s as any).arousal_npcID2 = ((s as any).locArgs?.[2] ?? 0);
+        } else {
+          if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[3] ?? 0))) {
+            (s as any).arousal_npcID1 = ((s as any).locArgs?.[2] ?? 0);
+            (s as any).arousal_npcID2 = ((s as any).locArgs?.[3] ?? 0);
+          } else {
+            (s as any).arousal_npcID1 = ((s as any).locArgs?.[2] ?? 0);
+            (s as any).arousal_npcID2 = ((s as any).locArgs?.[2] ?? 0);
+          }
+        }
+        if (((s as any).arousal_npcID1 ?? 0) === '') {
+          ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
+        } else {
+          qspCall(s, 'npcStat', '', ((s as any).arousal_npcID1 ?? 0), 'j');
+        }
+        if (((s as any).arousal_npcID2 ?? 0) === '') {
+          (s as any).arousal_npcID2 = 'D1';
+        }
+        (s as any).temp_index = qspFunc(s, 'npc', 'find_in_npcStat', ((s as any).arousal_npcID2 ?? 0));
+        if (((s as any).temp_index ?? 0) !== 'none') {
+          qspCall(s, 'npc', 'copy_npcStat', ((s as any).temp_index ?? 0), 'k');
+        } else {
+          qspCall(s, 'npcStat', '', ((s as any).arousal_npcID2 ?? 0), 'k');
+        }
+      } else {
+        if (((s as any).npcID ?? 0) === '') {
+          ((s as any).arousalVars = (s as any).arousalVars ?? {})['self'] = 1;
+          qspCall(s, 'npcStat', 'D1', 'k');
+        } else {
+          qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'j');
+          qspCall(s, 'npcStat', '', ((s as any).npcID ?? 0), 'k', ((s as any).npcCondom ?? 0));
+        }
+      }
+    }
+  }
+  if (((s as any).arousalVars ?? 0)?.['self'] === 0  &&  (String(((s as any).npcID11 ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'D') {
+    (s as any).silavag11 = ((s as any).silavag10 ?? 0);
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('prostitution') : -1) >= 0) {
+    (s as any).silavag11 = (Math.floor(Math.random() * 2) + 0);
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) >= 0) {
+    (s as any).silavag11 = (Math.floor(Math.random() * 3) + 0);
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) >= 0) {
+    (s as any).silavag11 = 0;
+  }
+  ((s as any).arousalVars = (s as any).arousalVars ?? {})['girth_range'] = Math.min(Math.max(1, (((s as any).dick_width11 ?? 0) - 9) * 5), 30);
+  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'anal'  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('anal_finger') : -1) < 0) {
+    if (((s as any).anal_slip ?? 0) < Math.max(1, 8 + ((s as any).pain ?? 0)?.['asshole']/2 - ((s as any).pcs_ass ?? 0))) {
+      ((s as any).anslipVars = (s as any).anslipVars ?? {})['cum'] = (Math.floor(Math.random() * (3 * ((s as any).cumvol ?? 0)[3] - 2 * ((s as any).cumvol ?? 0)[3] + 1)) + (2 * ((s as any).cumvol ?? 0)[3])) / 30;
+      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('spit') : -1) >= 0) {
+        ((s as any).anslipVars = (s as any).anslipVars ?? {})['spit'] = 4;
+      }
+      if (((s as any).ar_anal_lube ?? 0) === 1) {
+        ((s as any).anslipVars = (s as any).anslipVars ?? {})['lube'] = 8;
+      } else {
+        if (Math.max('anslipVars') < Math.min(Math.max(1, 8 + ((s as any).pain ?? 0)?.['asshole']/2 - ((s as any).pcs_ass ?? 0)), 8)) {
+          if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lube') : -1) >= 0  &&  (!((s as any).ar_anal_lube ?? 0))) {
+            ((s as any).anslipVars = (s as any).anslipVars ?? {})['lube'] = 8;
+            (s as any).ar_anal_lube = 1;
+          } else {
+            if (((s as any).auto_anal_lube ?? 0) === 1  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('humiliation') : -1) < 0) {
+              qspCall(s, 'arousal_funcs', 'auto_lube', 'anal');
+            }
+          }
+        }
+      }
+      (s as any).anal_slip = Math.max('anslipVars');
+      if (((s as any).anal_slip ?? 0) !== ((s as any).lubonus ?? 0)  &&  ((s as any).lubonus ?? 0) > 0) {
+        (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (((s as any).lubonus ?? 0));
+        (s as any).lubonus = ((s as any).anal_slip ?? 0);
+      }
+    }
+  }
+  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'vagi'  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('vaginal_finger') : -1) < 0) {
+    if (((s as any).vaginal_slip ?? 0) < Math.max(1, 8 + ((s as any).pain ?? 0)?.['vaginal'] / 2 - ((s as any).pcs_vag ?? 0))) {
+      ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['horny'] = Math.min(((s as any).pcs_horny ?? 0) / 10, 10);
+      ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['cum'] = (Math.floor(Math.random() * (2 * ((s as any).cumvol ?? 0)[0] - qspUntranslated(s, "cumvol[0]", { location: "arousal" }) + 1)) + (qspUntranslated(s, "cumvol[0]", { location: "arousal" }))) / 10;
+      if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('spit') : -1) >= 0) {
+        ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['spit'] = 4;
+      }
+      if (((s as any).ar_vag_lube ?? 0) === 1) {
+        ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['lube'] = 8;
+      } else {
+        if (Math.max('vagslipVars') < Math.min(Math.max(1, 8 + ((s as any).pain ?? 0)?.['vaginal']/2 - ((s as any).pcs_vag ?? 0)), 8)) {
+          if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lube') : -1) >= 0  &&  (!((s as any).ar_vag_lube ?? 0))) {
+            ((s as any).vagslipVars = (s as any).vagslipVars ?? {})['lube'] = 8;
+            (s as any).ar_vag_lube = 1;
+          } else {
+            if (((s as any).auto_vag_lube ?? 0) === 1  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) < 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('humiliation') : -1) < 0) {
+              qspCall(s, 'arousal_funcs', 'auto_lube', 'vag');
+            }
+          }
+        }
+      }
+      (s as any).vaginal_slip = Math.max('vagslipVars');
+    }
+  }
+  if ((String(((s as any).locArgs?.[0] ?? 0)).slice(((String(((s as any).locArgs?.[0] ?? 0)).length) - 3)-1)) !== 'give') {
+    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'vagi'  ||  (String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'anal') {
+      if (((s as any).dick_length11 ?? 0) >= 22) {
+        ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) + (3);
+      } else {
+        if (((s as any).dick_length11 ?? 0) >= 17) {
+          ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) + (1);
+        } else {
+          if (((s as any).dick_length11 ?? 0) <= 7) {
+            ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) - (3);
+          } else {
+            if (((s as any).dick_length11 ?? 0) <= 12) {
+              ((s as any).trait_vars = (s as any).trait_vars ?? {})['sizequeen_temp'] = ((s as any).trait_vars['sizequeen_temp'] ?? 0) - (2);
+            }
+          }
+        }
+      }
+    }
+    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'vagi') {
+      if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
+        if (((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] === 0) {
+          ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_vag_backup'] = ((s as any).pcs_vag ?? 0);
+        }
+        (s as any).pcs_vag = ((s as any).dick_length11 ?? 0);
+      } else {
+        if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 1) {
+          if (((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] === 0) {
+            ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_vag_backup'] = ((s as any).pcs_vag ?? 0);
+          }
+          (s as any).pcs_vag = Math.min(((s as any).dick_length11 ?? 0), ((s as any).pcs_vag ?? 0) + 10);
+        } else {
+          if (((s as any).trait_vars ?? 0)?.['elasticity'] < 0) {
+            if (((s as any).arousalVars ?? 0)?.['pcs_vag_backup'] === 0) {
+              ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_vag_backup'] = ((s as any).pcs_vag ?? 0);
+            }
+            (s as any).pcs_vag = Math.max(5, ((s as any).pcs_vag ?? 0) - 5);
+          }
+        }
+      }
+    } else {
+      if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'anal') {
+        if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
+          if (((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] === 0) {
+            ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_ass_backup'] = ((s as any).pcs_ass ?? 0);
+          }
+          (s as any).pcs_ass = ((s as any).dick_length11 ?? 0);
+        } else {
+          if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 1) {
+            if (((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] === 0) {
+              ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_ass_backup'] = ((s as any).pcs_ass ?? 0);
+            }
+            (s as any).pcs_ass = Math.min(((s as any).dick_length11 ?? 0), ((s as any).pcs_ass ?? 0) + 10);
+          } else {
+            if (((s as any).trait_vars ?? 0)?.['elasticity'] < 0) {
+              if (((s as any).arousalVars ?? 0)?.['pcs_ass_backup'] === 0) {
+                ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_ass_backup'] = ((s as any).pcs_ass ?? 0);
+              }
+              (s as any).pcs_ass = Math.max(5, ((s as any).pcs_ass ?? 0) - 5);
+            }
+          }
+        }
+      } else {
+        if (Number((s as any).locArgs?.[0] ?? 0) === 'bj'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'dildo_suck'  ||  Number((s as any).locArgs?.[0] ?? 0) === 'strap_suck') {
+          if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucskill ?? 0) >= 4) {
+            if (((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] === 0) {
+              ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_throat_backup'] = ((s as any).pcs_throat ?? 0);
+            }
+            (s as any).pcs_throat = ((s as any).dick_length11 ?? 0);
+          } else {
+            if (((s as any).trait_vars ?? 0)?.['elasticity'] >= 1) {
+              if (((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] === 0) {
+                ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_throat_backup'] = ((s as any).pcs_throat ?? 0);
+              }
+              (s as any).pcs_throat = Math.min(((s as any).dick_length11 ?? 0), ((s as any).pcs_throat ?? 0) + 10);
+            } else {
+              if (((s as any).trait_vars ?? 0)?.['elasticity'] < 0) {
+                if (((s as any).arousalVars ?? 0)?.['pcs_throat_backup'] === 0) {
+                  ((s as any).arousalVars = (s as any).arousalVars ?? {})['pcs_throat_backup'] = ((s as any).pcs_throat ?? 0);
+                }
+                (s as any).pcs_throat = Math.max(5, ((s as any).pcs_throat ?? 0) - 5);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ((s as any).stim = (s as any).stim ?? {})['act'] = 1;
+  ((s as any).stim = (s as any).stim ?? {})['mag'] = qspFunc(s, 'arousal_funcs', 'get_base_stimmag');
+  (s as any).pain_coeff = 0;
+  ((s as any).arousalVars = (s as any).arousalVars ?? {})['max_sex_pain'] = (120 - ((s as any).pcs_vital ?? 0)) / 4;
+  ((s as any).stim = (s as any).stim ?? {})['kinkno'] = 0;
+  ((s as any).stim = (s as any).stim ?? {})['kink'] = 0;
+  ((s as any).stim = (s as any).stim ?? {})['pref'] = 0;
+  if (0  &&  ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('porn') : -1) >= 0  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('voyeur') : -1) >= 0  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('erotic') : -1) >= 0)) {
+    ((s as any).stim = (s as any).stim ?? {})['no_kinks'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('BDSM') : -1) >= 0) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 2) + 4));
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('bound') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 2) + 2));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'bound'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'bound'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['bound'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('beast') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 4) + 7));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'beast'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'beast'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['beast'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('creampie') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'creampie'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'creampie'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['creampie'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('deepthroat') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'deepthroat'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'deepthroat'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['deepthroat'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('dom') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'dom'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'dom'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['dom'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('exhibitionism') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'exhibitionism'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'exhibitionism'));
+    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 5) + 2));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['exhibitionism'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('feet') : -1) > 1  ||  ((s as any).arousalVars ?? 0)?.['foot'] === 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'feet'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'feet'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['feet'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gangbang') : -1) > 1  ||  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gang') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 6) + 10));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'gangbang'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'gangbang'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_gang'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['gangbang'] = 1;
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('gloryhole') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'gloryhole'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'gloryhole'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_gloryhole'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['gloryhole'] = 1;
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('group') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'group'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'group'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_group'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['group'] = 1;
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('orgy') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'orgy'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'orgy'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_orgy'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['orgy'] = 1;
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('humiliation') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'humiliation'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'humiliation'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['humiliation'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('incest') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'incest'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'incest'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['incest'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('lesbian') : -1) > 1  ||  ((s as any).arousalVars ?? 0)?.['lesbian'] === 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'lesbian'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'lesbian'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_lesbian'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['lesbian'] = 1;
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('maso') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 2) + 3));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'maso'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'maso'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['maso'] = 1;
+  }
+  if (((s as any).arousalVars ?? 0)?.['self'] === 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'masturbate'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'masturbate'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['masturbate'] = 1;
+    ((s as any).orgasm_flag = (s as any).orgasm_flag ?? {})['masturbate'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('pregnant') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'pregnant'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'pregnant'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['pregnant'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('prostitution') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.max(0, (Math.floor(Math.random() * (2 - (-3) + 1)) + ((-3)))));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'prostitution'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'prostitution'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_prostitution'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['prostitution'] = 1;
+      if ((((s as any).count ?? 0)?.['vaginal'] === 1  ||  ((s as any).count ?? 0)?.['vaginal_strap'] === 1)  &&  ((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
+        ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['prostitute'] = 1;
+      }
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('public') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['public'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rape') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 16) + 15));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'rape'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'rape'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).rape = (s as any).rape ?? {})[1] = ((s as any).daystart ?? 0);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_rape'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['rape'] = 1;
+    }
+    if ((((s as any).count ?? 0)?.['vaginal'] === 1  ||  ((s as any).count ?? 0)?.['vaginal_strap'] === 1)  &&  ((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
+      ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['rape'] = 1;
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('rough') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 3) + 5));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'rough'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'rough'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['rough'] = 1;
+    (s as any).pcs_hairbsh = (-1);
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('shemale') : -1) > 1) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'shemale'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'shemale'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    if (((s as any).arousalVars ?? 0)?.['unaware'] === 1) {
+      ((s as any).stim = (s as any).stim ?? {})['hidden_shemale'] = 1;
+    } else {
+      ((s as any).stim = (s as any).stim ?? {})['shemale'] = 1;
+    }
+    if ((((s as any).count ?? 0)?.['vaginal'] === 1  ||  ((s as any).count ?? 0)?.['vaginal_strap'] === 1)  &&  ((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {
+      ((s as any).virgin_stats = (s as any).virgin_stats ?? {})['shemale'] = 1;
+    }
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('sub') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + ((Math.floor(Math.random() * 2) + 1));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'sub'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'sub'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['sub'] = 1;
+  }
+  if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('unknown') : -1) > 1) {
+    (s as any).pain_coeff = ((s as any).pain_coeff ?? 0) + (Math.max(0, (Math.floor(Math.random() * (1 - (-4) + 1)) + ((-4)))));
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = ((s as any).stim['kink'] ?? 0) + (qspFunc(s, 'fetish', 'get_exp', 'unknown'));
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = ((s as any).stim['pref'] ?? 0) + (qspFunc(s, 'fetish', 'get_pref', 'unknown'));
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = ((s as any).stim['kinkno'] ?? 0) + (1);
+    ((s as any).stim = (s as any).stim ?? {})['unknown'] = 1;
+  }
+  if (((s as any).stim ?? 0)?.['kinkno'] > 0) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = (((s as any).stim ?? {})?.['kink'] ?? 0) / (((s as any).stim ?? {})?.['kinkno'] ?? 0);
+    ((s as any).stim = (s as any).stim ?? {})['pref'] = (((s as any).stim ?? {})?.['pref'] ?? 0) / (((s as any).stim ?? {})?.['kinkno'] ?? 0);
+    ((s as any).stim = (s as any).stim ?? {})['kinkno'] = 0;
+  }
+  if ((Math.floor(Math.random() * 100) + 0) < ((s as any).stim ?? 0)?.['kink']) {
+    ((s as any).stim = (s as any).stim ?? {})['kink'] = 120;
+  } else {
+    if ((Math.floor(Math.random() * 80) + 0) < ((s as any).stim ?? 0)?.['kink']) {
+      ((s as any).stim = (s as any).stim ?? {})['kink'] = 110;
+    } else {
+      if ((Math.floor(Math.random() * 60) + 0) < ((s as any).stim ?? 0)?.['kink']) {
+        ((s as any).stim = (s as any).stim ?? {})['kink'] = 100;
+      } else {
+        if ((Math.floor(Math.random() * 40) + 0) < ((s as any).stim ?? 0)?.['kink']) {
+          ((s as any).stim = (s as any).stim ?? {})['kink'] = 90;
+        } else {
+          ((s as any).stim = (s as any).stim ?? {})['kink'] = 80;
+        }
+      }
+    }
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'foreplay':
@@ -2674,6 +2674,5 @@ export const arousal: LocationDef = {
   name: 'arousal',
   title: 'Error: Arousal called with a duration of 0 minutes.',
   region: 'other',
-  description: ['Error: Arousal called with a duration of 0 minutes.'],
   enter: enter,
 };

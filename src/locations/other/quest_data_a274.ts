@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterQuestBody(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'stage_1') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'stage_1') {
     ((s as any).npc_quest = (s as any).npc_quest ?? {})['q_back'] = 'null';
     if (((s as any).mayaqw ?? 0)?.['path'] >= 1) {
       ((s as any).npc_quest = (s as any).npc_quest ?? {})['q_next'] = 'stage_2';
@@ -35,7 +35,7 @@ function enterQuestBody(s: GameState, scene: SceneBuilder): void {
     ((s as any).npc_quest = (s as any).npc_quest ?? {})['hints'] = 'Attend the Pushken Ballet School and interact with the students.';
     ((s as any).npc_quest = (s as any).npc_quest ?? {})['body'] = 'Build Maya\'s trust: Meet Maya at the Residential Dance School in Pushkin.';
   }
-  if (((s as any).locArgs?.[1] ?? 0) === 'stage_2') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'stage_2') {
     ((s as any).npc_quest = (s as any).npc_quest ?? {})['q_back'] = 'stage_1';
     if (((s as any).mayaqw ?? 0)?.['path'] >= 3) {
       ((s as any).npc_quest = (s as any).npc_quest ?? {})['q_next'] = 'stage_3';

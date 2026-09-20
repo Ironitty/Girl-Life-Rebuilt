@@ -21,8 +21,8 @@ function enterApplyForJob(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept the position', handler: (st: GameState) => {
-    qspCall(s, 'jobs', 'set_employed', 'pav_tour_guide');
-    qspGoto(s, 'pav_park', 'start');
+    qspCall(st, 'jobs', 'set_employed', 'pav_tour_guide');
+    qspGoto(st, 'pav_park', 'start');
   } },
     { label: 'Change your mind', goto: ['pav_park', 'start'] },
   ]);
@@ -34,8 +34,8 @@ function enterTourstart(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   qspCall(s, 'jobs', 'clock', 'pav_tour_guide');
   (s as any).minut = ((s as any).minut ?? 0) + 240;
-  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 0);
-  qspCall(s, 'exp_gain', 'humint', Math.floor(Math.random() * 3) + 0);
+  (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
+  qspCall(s, 'exp_gain', 'humint', (Math.floor(Math.random() * 3) + 0));
   qspCall(s, 'stat', '');
   scene.text('<center><h2>Imperial Palace</h2></center>');
   scene.img('images/locations/pavlovsk/palace/pav_palace.jpg');
@@ -43,11 +43,11 @@ function enterTourstart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Eat lunch and get back to work', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 240;
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (10);
-    (s as any).pcs_energy = ((s as any).pcs_energy ?? 0) + (50);
-    (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) + (100);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 240;
+    (st as any).pcs_health = ((st as any).pcs_health ?? 0) + (10);
+    (st as any).pcs_energy = ((st as any).pcs_energy ?? 0) + (50);
+    (st as any).pcs_hydra = ((st as any).pcs_hydra ?? 0) + (100);
+    qspCall(st, 'stat', '');
     // TODO-QSP: gt 'tour_guide', 'tourran' + rand(1, 8)
   } },
   ]);
@@ -86,12 +86,12 @@ function enterTourran2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Slip away to the beach', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'exp_gain', 'persuas', Math.floor(Math.random() * 2) + 1);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'exp_gain', 'persuas', (Math.floor(Math.random() * 2) + 1));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/lake/lake.summer.jpg');
     scene.text('You tell the group to follow you as you slip into the trees and down to the river spot you decided would be a good place to swim without interruption. Since they planned to go swimming after the tour they already have swim trunks on and jump straight in once you get there.');
-    if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
+    if (((st as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
       scene.text('As you watch them jump around, half-naked, you feel a strong desire to join them. Since you are wearing your tour guide outfit, doing so will mean going in completely nude, just going in your underwear would mean wet spots on your uniform. Management would definitely notice and question you about it. You could even have some fun with the boys, if you wanted to.');
       scene.actions([
         { label: 'Hang out nude', goto: ['tour_guide', 'rivernude'] },
@@ -117,7 +117,7 @@ function enterTourran3(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_outdoors';
   scene.img('images/locations/pavlovsk/palace/palace_garden.jpg');
   scene.text('You end up with a group that has several small children. When taking them through some of the gardens a couple kids break loose from their parents and run through some of the flower beds. The parents run after them, grab them, and bring them back to the group, faces red with embarrassment.');
-  qspCall(s, 'exp_gain', 'observ', Math.floor(Math.random() * 2) + 0);
+  qspCall(s, 'exp_gain', 'observ', (Math.floor(Math.random() * 2) + 0));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -133,7 +133,7 @@ function enterTourran4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your manager paces all over the place, "I just got word that several buses with ...
   scene.text(`Your manager paces all over the place, "I just got word that several buses with important foreign tourists are coming here in a few minutes. It's very important that we show ourselves from our best side. I'm looking specially at you, Miss ${((s as any).pcs_lastname || '')}"`);
   scene.text('"Why am I being singled out?" you blurt out, confounded.');
-  // TODO-QSP: dynamic text: "I really don't have time for this, you're in charge of the second bus, don't di...
+  // TODO-QSP: dynamic text: "I really don''t have time for this, you''re in charge of the second bus, don''t...
   scene.text(`"I really don't have time for this, you're in charge of the second bus, don't disappoint me, Miss ${((s as any).pcs_lastname || '')}!" he shrugs you off.`);
   scene.text('Several buses stop in front of the Palace and a lot of tourists pour out of them. Suddenly you\'re approached by an important looking man, "Young lady, I\'ve understood that you\'ll be our guide today. Aren\'t you a bit too young to be doing this important job?"');
   scene.text('You shrug your shoulders not really caring about his comments too much and tell him to tell the tour group to scurry along.');
@@ -164,18 +164,18 @@ function enterTourran5(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Peek', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'arousal', 'voyeur_sex', 10);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'arousal', 'voyeur_sex', 10);
+    qspCall(st, 'arousal', 'end');
     scene.img('images/locations/pavlovsk/palace/events/tour_bj.jpg');
     scene.text('You can\'t resist the urge and peek inside the room, and almost giving yourself up as you gasp seeing the woman sucking her boyfriend off. She\'s clearly experienced, as she easily fits his member inside her mouth, all the way down his shaft.');
     scene.text('The boyfriend switches between looking worryingly around, not wanting to get caught and giving himself up into pure indulgence, "That\'s it babe, you\'re so fucking good with…" you barely hear him.');
     scene.text('All of a sudden, you feel someone creeping behind you…');
-    // TODO-QSP: dynamic text: As you turn around, it's the manager, "What are you doing <<$pcs_firstname>>?"
-    scene.text(`As you turn around, it's the manager, "What are you doing ${((s as any).pcs_firstname || '')}?"`);
+    // TODO-QSP: dynamic text: As you turn around, it''s the manager, "What are you doing <<$pcs_firstname>>?"
+    scene.text(`As you turn around, it's the manager, "What are you doing ${((st as any).pcs_firstname || '')}?"`);
     scene.text('Knowing the couple would get in trouble and get the cops called on them, you turn around making as much sound as possible to warn them, "N-Nothing sir, I thought I heard a sound, but I was wrong, so I was just making my way back to my tour group."');
     // TODO-QSP: dynamic text: The manager sighs, clearly annoyed by your answer, "What do you mean you left yo...
-    scene.text(`The manager sighs, clearly annoyed by your answer, "What do you mean you left your tour group alone?! Let me take a look! W-What is happening here?! Why is your penis out in the open?! And why is this girl kneeling on the floor?! ${((s as any).pcs_firstname || '')}!"`);
+    scene.text(`The manager sighs, clearly annoyed by your answer, "What do you mean you left your tour group alone?! Let me take a look! W-What is happening here?! Why is your penis out in the open?! And why is this girl kneeling on the floor?! ${((st as any).pcs_firstname || '')}!"`);
     scene.text('Not wanting to get involved with this situation, you quietly slip away to the rest of the group awaiting your return. It doesn\'t take long before you see the man gunning for the door with his pants down while his girlfriend is trailing closely behind, chased by your manager.');
     scene.actions([
       { label: 'Finish the tour', goto: ['tour_guide', 'toursdone'] },
@@ -186,7 +186,7 @@ function enterTourran5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Ignore it', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/palace/pav_palace.jpg');
     scene.text('Not wanting to deal with whatever is happening in there, you decide to head back to the main group and await the couple to show up again. After a couple of minutes, they reunite with the group again, making some half-hearted excuses about them getting lost.');
     scene.actions([
@@ -240,9 +240,9 @@ function enterTourran8(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRivernude(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npcgeneratec', '', 0, 'Beach boys', Math.floor(Math.random() * 13) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Beach boys', (Math.floor(Math.random() * 13) + 18));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-  scene.img(`images/locations/pavlovsk/palace/river/river${Math.floor(Math.random() * 3) + 1}.jpg`);
+  scene.img(`images/locations/pavlovsk/palace/river/river${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   scene.text('The boys are too busy playing water games with each other to realize you have removed your clothes until you wade into the water with them. When they do notice, jaws drop, and you notice several of them have bulges in their shorts. A few whistle, and a couple of them start sliding closer to you.');
   qspCall(s, 'mood', 'raise', 'tiny');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
@@ -254,9 +254,9 @@ function enterRivernude(s: GameState, scene: SceneBuilder): void {
     { label: 'Give them a show', goto: ['tour_guide', 'riverbate'] },
     { label: 'Seduce one of the cute boys', goto: ['tour_guide', 'riverseduce1'] },
     { label: 'Alright boys, I have to go back to work', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'tour_guide', 'toursdone');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'tour_guide', 'toursdone');
   } },
   ]);
   scene.build();
@@ -279,9 +279,9 @@ function enterRiverbate(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Give in to your desires', goto: ['tour_guide', 'riverseduce2'] },
     { label: 'Alright boys, I have to get back to work', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'wear_last_worn');
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'tour_guide', 'toursdone');
+    qspCall(st, 'outfit', 'wear_last_worn');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'tour_guide', 'toursdone');
   } },
   ]);
   scene.build();
@@ -289,7 +289,7 @@ function enterRiverbate(s: GameState, scene: SceneBuilder): void {
 
 function enterRiverseduce1(s: GameState, scene: SceneBuilder): void {
   (s as any).rivermissed = 0;
-  scene.img(`images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_${Math.floor(Math.random() * 3) + 1}.jpg`);
+  scene.img(`images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   scene.text('You wait until the one you think is cute looks at you, then subtly motion him to follow. You casually walk around a bend in the river, out of sight of the others, and wait for him. He follows casually, unnoticed by the others.');
   scene.text('He walks up to you and starts to kiss you, making you melt, hungry for more. He drops his shorts and lies in the sand, while you start kissing your way down his body, until you reach his dick. You start by licking the tip, drawing out a few soft moans from him, before taking his head into your mouth.');
   scene.text('You take your time, sucking softly and working your tongue around, slowly bobbing your head lower and lower, until you get about halfway. Taking a deep breath through your nose, you shove the cock down your throat as much as you can.');
@@ -308,7 +308,7 @@ function enterRiverseduce1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Mount him', handler: (st: GameState) => {
-    scene.img(`images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_${Math.floor(Math.random() * 11) + 5}.jpg`);
+    scene.img(`images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_${(Math.floor(Math.random() * 11) + 5)}.jpg`);
     scene.text('You slide up until his dick is against your pussy, and start rubbing, coating it with your juices. You reach down and line his dick up, and start to slide down.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
       scene.text('As he pushes in you feel something inside of you rip. You know it was your hymen, you are no longer a virgin.');
@@ -317,16 +317,16 @@ function enterRiverseduce1(s: GameState, scene: SceneBuilder): void {
     scene.text('As he fucks you, he reaches between your legs and rubs your clit, causing the pleasure to surge through you in waves. Rolling you onto your back, he plunges back in, hardly slowing. Throwing your legs into the air, you moan your approval, loudly.');
     scene.actions([
       { label: 'Cum', handler: (st: GameState) => {
-    scene.img(`images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_${Math.floor(Math.random() * 2) + 16}.jpg`);
+    scene.img(`images/locations/pavlovsk/lake/secluded_beach/voyeurism/voyeurism_start_event_${(Math.floor(Math.random() * 2) + 16)}.jpg`);
     scene.text('Cupping your breasts, you massage them for a bit, stopping occasionally to pinch and twist your rock-hard nipples. Still rubbing your clit, he speeds up his thrusting, until you begin to see stars.');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
-    (s as any).orgasm_or = 'custom';
-    (s as any).orgasm_txt = 'Throwing your head back, you surrender to the rising orgasm, waves of pleasure rolling through you, from head to toe. Reaching his own orgasm, he pulls out and you feel your stomach grow warm as he shoots his load onto you.';
-    qspCall(s, 'npcgeneratec', '', 0, 'Rowdy guy', Math.floor(Math.random() * 13) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'arousal', 'vaginal', 10);
-    qspCall(s, 'cum_call', 'stomach');
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (15);
+    (st as any).orgasm_or = 'custom';
+    (st as any).orgasm_txt = 'Throwing your head back, you surrender to the rising orgasm, waves of pleasure rolling through you, from head to toe. Reaching his own orgasm, he pulls out and you feel your stomach grow warm as he shoots his load onto you.';
+    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'arousal', 'vaginal', 10);
+    qspCall(st, 'cum_call', 'stomach');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Clean up', goto: ['tour_guide', 'riverclean'] },
     ]);
@@ -357,30 +357,30 @@ function enterRiverseduce2(s: GameState, scene: SceneBuilder): void {
   scene.text('The guy between your legs stands up and pushes his cock in between your lips, as another one dives between your legs. He was already close, so he cums almost right away, giving you a moment to breathe and swallow before the next guy jumps in.');
   qspCall(s, 'arousal', 'vaginal', 10, 'rough', 'gangbang');
   qspCall(s, 'arousal', 'bj', (-10), 'deepthroat', 'gangbang');
-  qspCall(s, 'npcgeneratec', '', 0, 'Rowdy guy', Math.floor(Math.random() * 13) + 18);
+  qspCall(s, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
   qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
   qspCall(s, 'cum_call', 'mouth_swallow');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Keep going', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'Rowdy guy', Math.floor(Math.random() * 13) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'cum_call', 'stomach');
-    qspCall(s, 'npcgeneratec', '', 0, 'Rowdy guy', Math.floor(Math.random() * 13) + 18);
-    qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'cum_call', 'breasts');
+    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'cum_call', 'stomach');
+    qspCall(st, 'npcgeneratec', '', 0, 'Rowdy guy', (Math.floor(Math.random() * 13) + 18));
+    qspCall(st, 'boyStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'cum_call', 'breasts');
     scene.img('images/locations/gadukino/sex/mitka/mitkaguysriversex14.jpg');
     scene.text('The guys take turns rotating, you have long since lost count of how many loads you have swallowed. Some have splattered on your breasts or stomach, but thankfully nobody has tried to give you a facial yet.');
     scene.text('You get lost in the moment, the only thing on your mind now is where the next dick is coming from. The boys are having a great time, tossing jokes back and forth as you are twisted, bent, held down, or picked up to be in a position they want to fuck you in.');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (25);
-    if (((s as any).pcs_horny ?? 0) >= 90) {
-      qspCall(s, 'mood', 'raise', 'small');
-      (s as any).orgasm_or = 'yes';
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (25);
+    if (((st as any).pcs_horny ?? 0) >= 90) {
+      qspCall(st, 'mood', 'raise', 'small');
+      (st as any).orgasm_or = 'yes';
     }
-    (s as any).orgasm_txt = 'Suddenly, your orgasm hits you like a truck, blasting through you, leaving you screaming and twisting in their arms.';
-    qspCall(s, 'arousal', 'vaginal', 10, 'gangbang');
-    qspCall(s, 'stat', '');
+    (st as any).orgasm_txt = 'Suddenly, your orgasm hits you like a truck, blasting through you, leaving you screaming and twisting in their arms.';
+    qspCall(st, 'arousal', 'vaginal', 10, 'gangbang');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Clean up', goto: ['tour_guide', 'riverclean'] },
     ]);
@@ -390,7 +390,7 @@ function enterRiverseduce2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRiverclean(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/locations/pavlovsk/palace/river/river${Math.floor(Math.random() * 3) + 1}.jpg`);
+  scene.img(`images/locations/pavlovsk/palace/river/river${(Math.floor(Math.random() * 3) + 1)}.jpg`);
   if (((s as any).riverbusted ?? 0) === 2) {
     (s as any).start_text = 'The thought of being busted again is strangely exciting, though.';
   } else {
@@ -414,8 +414,8 @@ function enterRiverclean(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Alright boys, I have to get back to work', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'end');
-    qspGoto(s, 'tour_guide', 'toursdone');
+    qspCall(st, 'arousal', 'end');
+    qspGoto(st, 'tour_guide', 'toursdone');
   } },
   ]);
   scene.build();
@@ -465,8 +465,8 @@ function enterResign(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Resign', handler: (st: GameState) => {
-    qspCall(s, 'jobs', 'set_terminated', 'pav_tour_guide');
-    qspGoto(s, 'pav_park', 'start');
+    qspCall(st, 'jobs', 'set_terminated', 'pav_tour_guide');
+    qspGoto(st, 'pav_park', 'start');
   } },
     { label: 'Change your mind', goto: ['pav_park', 'start'] },
   ]);
@@ -478,7 +478,7 @@ function enterBackroom(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/palace/office/angry_boss.jpg');
   scene.text('You enter a small office, far enough from the front desk that you know anything could happen back here and nobody would even notice.');
   if (((s as any).riverbusted ?? 0) === 2) {
-    // TODO-QSP: dynamic text: "As usual, you were missing again, <<$pcs_firstname>>. I guess you don't learn e...
+    // TODO-QSP: dynamic text: "As usual, you were missing again, <<$pcs_firstname>>. I guess you don''t learn ...
     scene.text(`"As usual, you were missing again, ${((s as any).pcs_firstname || '')}. I guess you don't learn easily. You know your options, get naked and in the position, or get out."`);
   } else {
     if (((s as any).riverbusted ?? 0) === 1) {
@@ -512,10 +512,10 @@ function enterBackroom(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Take your punishment', goto: ['tour_guide', 'spank'] },
     { label: 'Quit your job', handler: (st: GameState) => {
-    qspCall(s, 'jobs', 'set_fired', 'pav_tour_guide');
-    qspCall(s, 'mood', 'lower', 'large');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_park', 'start');
+    qspCall(st, 'jobs', 'set_fired', 'pav_tour_guide');
+    qspCall(st, 'mood', 'lower', 'large');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_park', 'start');
   } },
   ]);
   scene.build();
@@ -567,7 +567,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
 function enterAfterSpank(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   if (((s as any).riverbusted ?? 0) === 2) {
-    scene.img(`images/locations/pavlovsk/palace/office/after_spank${Math.floor(Math.random() * 2) + 2}.jpg`);
+    scene.img(`images/locations/pavlovsk/palace/office/after_spank${(Math.floor(Math.random() * 2) + 2)}.jpg`);
     scene.text('You carefully check out your reddened butt in the mirror, before you start to get dressed, wishing you could put some lotion on it and masturbate while you wait for the stinging to subside.');
     if (((s as any).pcs_makeup ?? 0) > ((s as any).makeup ?? 0)?.['base']) {
       (s as any).pcs_makeup = 0;
@@ -575,7 +575,7 @@ function enterAfterSpank(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
   } else {
     if (((s as any).riverbusted ?? 0) === 1) {
-      scene.img(`images/locations/pavlovsk/palace/office/after_spank${Math.floor(Math.random() * 2) + 2}.jpg`);
+      scene.img(`images/locations/pavlovsk/palace/office/after_spank${(Math.floor(Math.random() * 2) + 2)}.jpg`);
       scene.text('Your hands are shaking so bad that you can barely get undressed again. Your entire ass is bright red from the paddle, and you swear to yourself you will never get caught slacking off again!');
       scene.text('A little voice in the back of your mind tells you this will probably happen more, though you try and ignore it. Once you finish getting your everyday clothes back on, you put your uniform in the basket and leave.');
       (s as any).riverbusted = 2;

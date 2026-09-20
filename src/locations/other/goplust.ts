@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).GLust = 0;
-  (s as any).VasanLust = Math.floor(Math.random() * 101) + 0;
+  (s as any).VasanLust = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).VasanLust ?? 0) >= 50  &&  ((s as any).VasanTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     (s as any).gopV_msg = 'Vasan looks at you greedily';
@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).BerezaLust = Math.floor(Math.random() * 101) + 0;
+  (s as any).BerezaLust = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).BerezaLust ?? 0) >= 60  &&  ((s as any).BerezaTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     (s as any).gopB_msg = 'Bereza rubs his groin and looks at you with interest';
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).VitekLust = Math.floor(Math.random() * 101) + 0;
+  (s as any).VitekLust = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).VitekLust ?? 0) >= 60  &&  ((s as any).VitekTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     (s as any).gopVi_msg = 'Konstantin can\'t take his eyes off your boobs';
@@ -62,7 +62,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).KotilLust = Math.floor(Math.random() * 101) + 0;
+  (s as any).KotilLust = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).KotilLust ?? 0) >= 70  &&  ((s as any).KostilTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     (s as any).gopK_msg = 'Kostil occasionally touches your thigh';
@@ -81,7 +81,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).UdmurtLust = Math.floor(Math.random() * 101) + 0;
+  (s as any).UdmurtLust = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).UdmurtLust ?? 0) >= 80  &&  ((s as any).UdmurtTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     (s as any).gopU_msg = 'Udmurt stares intently at you. You can see the bulge in his pants grow';
@@ -100,7 +100,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).SeriLust = Math.floor(Math.random() * 101) + 0;
+  (s as any).SeriLust = (Math.floor(Math.random() * 101) + 0);
   if (((s as any).SeriLust ?? 0) >= 90  &&  ((s as any).SeriTut ?? 0) === 1) {
     (s as any).GLust = ((s as any).GLust ?? 0) + (1);
     (s as any).gopS_msg = 'Gray grins mischievously at you, revealing his gold teeth. His eyes are focused on your feet';

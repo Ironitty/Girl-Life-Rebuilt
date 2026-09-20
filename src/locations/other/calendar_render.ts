@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -312,7 +310,7 @@ function enterRenderHeader(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).temp_hdr_date_str = ((s as any).temp_hdr_month_name ?? 0) + ' ' + qspUntranslated(s, "str(temp_hdr_day)", { location: "calendar_render" }) + ((s as any).temp_hdr_suffix ?? 0);
+  (s as any).temp_hdr_date_str = ((s as any).temp_hdr_month_name ?? 0) + ' ' + String(((s as any).temp_hdr_day ?? 0)) + ((s as any).temp_hdr_suffix ?? 0);
   (s as any).temp_hdr_style = '';
   if (((s as any).temp_hdr_day_date ?? 0) === ((s as any).daystart ?? 0)) {
     (s as any).temp_hdr_style = ' color: ' + ((s as any).theme_hex ?? 0)?.['accent'] + ';';
@@ -627,7 +625,7 @@ function enterRenderEventCell(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_event_percent_int = (((s as any).temp_event_slots ?? 0) * 1000000) / ((s as any).temp_total_slots ?? 0);
     (s as any).temp_window_percent = String(((s as any).temp_window_percent_int ?? 0) / 10000) + '.' + String(((s as any).temp_window_percent_int ?? 0) % 10000);
     (s as any).temp_event_percent = String(((s as any).temp_event_percent_int ?? 0) / 10000) + '.' + String(((s as any).temp_event_percent_int ?? 0) % 10000);
-    (s as any).result = '<td rowspan="' + qspUntranslated(s, "str(temp_rowspan)", { location: "calendar_render" }) + '" colspan="' + qspUntranslated(s, "str(temp_colspan)", { location: "calendar_render" }) + '" ';
+    (s as any).result = '<td rowspan="' + String(((s as any).temp_rowspan ?? 0)) + '" colspan="' + String(((s as any).temp_colspan ?? 0)) + '" ';
     // TODO-QSP: $result += 'class="event-cell" style="padding: 0 !important; position: relative;">'
     // TODO-QSP: $result += '<div class="event-window" style="position: absolute; top: 0; left: 0; right: 0; height: ...
     // TODO-QSP: $result += 'margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; '
@@ -659,7 +657,7 @@ function enterRenderEventCell(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $result += '</td>'
   } else {
     (s as any).temp_event_space = ((s as any).temp_colspan ?? 0) * ((s as any).temp_rowspan ?? 0);
-    (s as any).result = '<td rowspan="' + qspUntranslated(s, "str(temp_rowspan)", { location: "calendar_render" }) + '" colspan="' + qspUntranslated(s, "str(temp_colspan)", { location: "calendar_render" }) + '" ';
+    (s as any).result = '<td rowspan="' + String(((s as any).temp_rowspan ?? 0)) + '" colspan="' + String(((s as any).temp_colspan ?? 0)) + '" ';
     // TODO-QSP: $result += 'class="event-cell" style="background-color: rgb(' + $temp_color_rgb + '); padding: 2px;"...
     // TODO-QSP: $result += '<div class="event-title" style="word-wrap: break-word; overflow-wrap: break-word;">' + $...
     if (((s as any).temp_event_space ?? 0) >= 5) {
@@ -683,7 +681,7 @@ function enterRenderEmptyCell(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_ec_timeslot = ((s as any).locArgs?.[3] ?? 0);
   (s as any).temp_ec_day = ((s as any).locArgs?.[4] ?? 0);
   (s as any).temp_ec_bg = qspFunc(s, 'calendar_render', 'get_timeslot_bg_color', ((s as any).temp_ec_timeslot ?? 0));
-  (s as any).result = '<td rowspan="' + qspUntranslated(s, "str(temp_ec_rowspan)", { location: "calendar_render" }) + '" colspan="' + qspUntranslated(s, "str(temp_ec_colspan)", { location: "calendar_render" }) + '" ';
+  (s as any).result = '<td rowspan="' + String(((s as any).temp_ec_rowspan ?? 0)) + '" colspan="' + String(((s as any).temp_ec_colspan ?? 0)) + '" ';
   // TODO-QSP: $result += 'class="empty-cell" style="background-color: ' + $temp_ec_bg + ';">&nbsp;</td>'
   return;
   // TODO-QSP: end

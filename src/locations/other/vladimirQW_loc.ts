@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'event_outdoors';
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Man</b></center>');
@@ -15,15 +14,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Approach the man', handler: (st: GameState) => {
     scene.text('You approach the man and he leaves the fence to walk towards you.');
-    qspGoto(s, 'vladimirQW_loc', 'qwvladdy');
+    qspGoto(st, 'vladimirQW_loc', 'qwvladdy');
   } },
       { label: 'Smile', handler: (st: GameState) => {
     scene.text('You smile at the man and he leaves the fence to walk towards you.');
-    qspGoto(s, 'vladimirQW_loc', 'qwvladdy');
+    qspGoto(st, 'vladimirQW_loc', 'qwvladdy');
   } },
       { label: 'Ignore', handler: (st: GameState) => {
     scene.text('You decide to ignore the man and start walking away but hearing his footsteps behind you, you turn back around.');
-    qspGoto(s, 'vladimirQW_loc', 'qwvladdy');
+    qspGoto(st, 'vladimirQW_loc', 'qwvladdy');
   } },
     ]);
   } else {
@@ -42,13 +41,13 @@ function enterQwvladdy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- qwladdy ---
   scene.actions([
     { label: 'Sorry, I\'m busy', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 1;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 1;
     scene.text('"Sorry, I\'m busy," you excuse yourself.');
     scene.text('Vladimir shakes his head to that. "Well, what are you busy with? I will not bite. I would just like to know the name of a beautiful, young lady."');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterQwnamedy(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterQwnamedy(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave anyway', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 2;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 2;
     scene.text('You turn away from the man with a roll of your eyes and leave.');
     scene.actions([
       { label: 'Leave', goto: ['city_park', 'luna'] },
@@ -64,24 +63,24 @@ function enterQwnamedy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- qwnamedy ---
   scene.actions([
     { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname || '') ?? ''), handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 10;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 10;
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you introduce yourself.
-    scene.text(`"${((s as any).pcs_nickname || '')}," you introduce yourself.`);
+    scene.text(`"${((st as any).pcs_nickname || '')}," you introduce yourself.`);
     scene.text('Vladimir smiled. "A beautiful name that suits you perfectly. Unfortunately I have to go, but I would like to see you again. If you leave me your phone number, I could call you tomorrow. I could take you out to dinner at a restaurant."');
     scene.actions([
       { label: 'No (Go)', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 2;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 2;
     scene.text('You decline and walk away, leaving the man standing.');
     scene.actions([
       { label: 'Leave', goto: ['city_park', 'luna'] },
     ]);
   } },
       { label: 'Give him your number', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 20;
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'telefon', 'AddContact', 'A108', 'icon_na', 1);
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 20;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
+    qspCall(st, 'telefon', 'AddContact', 'A108', 'icon_na', 1);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You tell Vladimir your phone number and he writes it down in a small notebook with a leather cover.');
     scene.actions([
       { label: 'Leave', goto: ['city_park', 'luna'] },
@@ -104,11 +103,11 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.text('"The offer to take you to dinner at the restaurant is still on the table. Would you like to go?" Vladimir asks.');
     scene.actions([
       { label: 'Oh, I have a lot to do today, I\'m sorry.', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 20;
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 20;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('You explain that you simply can\'t today, as busy as you are.');
-    // TODO-QSP: dynamic text: "Okay. Then I'll call you tomorrow at '+func('time', 'get_time_string', 16, 0)+'...
+    // TODO-QSP: dynamic text: "Okay. Then I''ll call you tomorrow at '+func('time', 'get_time_string', 16, 0)+...
     scene.text('"Okay. Then I\'ll call you tomorrow at 16:00." Vladimir promises.');
     scene.actions([
       { label: 'Hang up', handler: (st: GameState) => {
@@ -117,11 +116,11 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'I wouldn\'t mind', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 21;
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 21;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('"I would like that," you tell him.');
-    // TODO-QSP: dynamic text: "Wonderful!" says Vladimir. "Then I'll meet you at the restaurant in the city ce...
+    // TODO-QSP: dynamic text: "Wonderful!" says Vladimir. "Then I''ll meet you at the restaurant in the city c...
     scene.text('"Wonderful!" says Vladimir. "Then I\'ll meet you at the restaurant in the city center at 20:00."');
     scene.text('"I\'ll see you then!"');
     scene.actions([
@@ -143,7 +142,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('You explain that you simply can\'t today, as busy as you are.');
     scene.text('"Okay. Then I\'ll call you another time." Vladimir promises.');
@@ -154,8 +153,8 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'I\'d like that', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 30;
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 30;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('"I\'d like that." you tell him.');
     scene.text('You can hear that Vladimir\'s pleased over the phone. "Wonderful, my driver will come to pick you up."');
@@ -176,7 +175,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('You explain that you simply can\'t today, as busy as you are.');
     scene.text('"Okay. Then I\'ll call you another day." Vladimir promises.');
@@ -187,8 +186,8 @@ function enter4(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'I\'d like that', handler: (st: GameState) => {
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['stage'] = 40;
-    ((s as any).vladimirQW = (s as any).vladimirQW ?? {})['day'] = ((s as any).daystart ?? 0);
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 40;
+    ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['day'] = ((st as any).daystart ?? 0);
     // TODO-QSP: gs 'telefon', 'SetInCallSchedule', 'A108', "gs 'vladimirQW_loc', 'telephone_call'", "vladimirQW['day...
     scene.text('"I\'d like that." you tell him.');
     scene.text('You can hear that Vladimir\'s pleased over the phone. "Wonderful, my driver will come to pick you up."');
@@ -223,6 +222,7 @@ function enterTelephoneCall(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'event_outdoors';
   const arg = s.locArg;
   switch (arg) {
     case 'qwvladdy':

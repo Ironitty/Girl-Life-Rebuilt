@@ -26,6 +26,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_fancy_pancy', 'start');
+  (s as any).location_type = 'public_indoors';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Fancy Pancy</b></center>');
+  scene.img('images/locations/pushkin/fancypancy/shop.jpg');
+  scene.text('This small boutique looks more like a dressing room at the nearby burlesque club than a clothing store. Satin, leather, ruffles and glamour make it clear this is not a place to buy a practical outfit.');
+  scene.text('It\'s the only place in the city where you can buy outfits suitable for the burlesque club or perhaps spice up things in the bedroom.');
+  scene.text('The boutique sells designer winter coats, burlesque clothing, beautiful shoes and exquisite handbags.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave the boutique', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+  }, goto: ['pushkin_sq', ''] },
+    { label: 'View clothing', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_fancy_pancy', 'clothes'] },
+  ]);
+  scene.build();
+}
+
 function enterClothes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_fancy_pancy', 'clothes');
   (s as any).locclass = 'changingroom';
@@ -41,9 +63,9 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_fancy_pancy', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_fancy_pancy', 'start');
   } },
   ]);
   scene.build();
@@ -52,6 +74,9 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'clothes':
       enterClothes(s, scene);
       break;

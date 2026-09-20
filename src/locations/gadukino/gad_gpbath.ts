@@ -19,8 +19,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/gp_dacha/bana.jpg');
   scene.text('A small room with a low, smoky ceiling, a small stove, a couple of stainless steel water tanks, and a blackened wooden shelf.');
   scene.text('Grandma\'s enema bulb is hidden behind some stuff on the shelf.');
-  // TODO-QSP: dynamic text: You can check your weight on your grandma's old mechanical <a href="exec:msg '<c...
-  scene.text(`You can check your weight on your grandma's old mechanical <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg \\u0027<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "gad_gpbath" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "gad_gpbath" })}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "gad_gpbath" })}</center>\\u0027 */ return s; }); return false;">scales</a>.`);
+  // TODO-QSP: dynamic text: You can check your weight on your grandma''s old mechanical <a href="exec:msg ''...
+  scene.text(`You can check your weight on your grandma's old mechanical <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "gad_gpbath" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "gad_gpbath" })}.<br>${qspUntranslated(s, "bodyVars[\\u0027bmi_desc\\u0027]", { location: "gad_gpbath" })}</center>/u0027 */ return s; }); return false;">scales</a>.`);
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
@@ -42,35 +42,35 @@ function enterSetLeaveActs(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Get dressed and leave', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'outfit', 'restore', 'swim');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'gad_gpyard', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'outfit', 'restore', 'swim');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'gad_gpyard', 'start');
   } },
       { label: 'Go outside naked', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 0);
-    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 3) + 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 3) + 0));
+    ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['nudity_trouble'] = ((st as any).grandmaQW['nudity_trouble'] ?? 0) + ((Math.floor(Math.random() * 3) + 0));
     scene.img('images/locations/gadukino/grandparents/gaddvor_nude.jpg');
     scene.text('It\'s undoubtedly risky leaving the bathhouse like this. But, while it\'s unlikely anyone saw you go outside naked, there\'s a thrill in potentially getting caught.');
-    qspCall(s, 'arousal', 'flash', 10, 'exhibitionism');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'flash', 10, 'exhibitionism');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['gad_gpyard', 'start'] },
     ]);
   } },
       { label: 'Go outside in your underwear', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 0);
-    ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['nudity_trouble'] = ((s as any).grandmaQW['nudity_trouble'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + ((Math.floor(Math.random() * 2) + 0));
+    ((st as any).grandmaQW = (st as any).grandmaQW ?? {})['nudity_trouble'] = ((st as any).grandmaQW['nudity_trouble'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
     scene.img('images/locations/gadukino/grandparents/gaddvor_nude.jpg');
     scene.text('It\'s undoubtedly risky leaving the bathhouse like this. But, while it\'s unlikely anyone saw you go outside in your underwear, there\'s a thrill in potentially getting caught.');
-    qspCall(s, 'arousal', 'flashlite', 10, 'exhibitionism');
-    if ((((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).braworntype ?? 0) !== 'none')) {
+    qspCall(st, 'arousal', 'flashlite', 10, 'exhibitionism');
+    if ((((st as any).pantyworntype ?? 0) !== 'none'  ||  ((st as any).braworntype ?? 0) !== 'none')) {
       // TODO-QSP: gs 'panties', 'wear', $lastwornpantytype['swim'], lastwornpantynumber['swim']
       // TODO-QSP: gs 'bras', 'wear', $lastwornbratype['swim'], lastwornbranumber['swim']
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['gad_gpyard', 'start'] },
     ]);
@@ -92,40 +92,40 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
         if (((s as any).banaday ?? 0) !== ((s as any).daystart ?? 0)) {
           scene.actions([
             { label: 'Relax in the banya (2:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).pcs_sweat = Math.floor(Math.random() * 6) + 0;
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).pcs_hairbsh = 0;
-    (s as any).pcs_makeup = 1;
-    (s as any).banaday = ((s as any).daystart ?? 0);
-    if (((s as any).frost ?? 0) > 0) {
-      (s as any).frost = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 120;
+    (st as any).pcs_sweat = (Math.floor(Math.random() * 6) + 0);
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).pcs_hairbsh = 0;
+    (st as any).pcs_makeup = 1;
+    (st as any).banaday = ((st as any).daystart ?? 0);
+    if (((st as any).frost ?? 0) > 0) {
+      (st as any).frost = 0;
     }
-    if (((s as any).sauna_daystart ?? 0) !== ((s as any).daystart ?? 0)) {
-      (s as any).sauna_daystart = ((s as any).daystart ?? 0);
-      (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (Math.floor(Math.random() * 3) + 2);
-      (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (3);
+    if (((st as any).sauna_daystart ?? 0) !== ((st as any).daystart ?? 0)) {
+      (st as any).sauna_daystart = ((st as any).daystart ?? 0);
+      (st as any).pcs_skin = ((st as any).pcs_skin ?? 0) + ((Math.floor(Math.random() * 3) + 2));
+      (st as any).pcs_willpwr = ((st as any).pcs_willpwr ?? 0) + (3);
     }
     scene.img('images/locations/gadukino/gp_dacha/par.jpg');
-    if (((s as any).clothingworntype ?? 0) !== 'nude') {
+    if (((st as any).clothingworntype ?? 0) !== 'nude') {
       scene.text('You strip out of your clothes.');
-      ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['swim'] = ((s as any).clothingworntype ?? 0);
-      ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['swim'] = ((s as any).clothingwornnumber ?? 0);
-      qspCall(s, 'clothing', 'strip');
+      ((st as any).lastwornclothingtype = (st as any).lastwornclothingtype ?? {})['swim'] = ((st as any).clothingworntype ?? 0);
+      ((st as any).lastwornclothingnumber = (st as any).lastwornclothingnumber ?? {})['swim'] = ((st as any).clothingwornnumber ?? 0);
+      qspCall(st, 'clothing', 'strip');
     }
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You strip out of your underwear.');
-      ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})['swim'] = ((s as any).pantyworntype ?? 0);
-      ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})['swim'] = ((s as any).pantywornnumber ?? 0);
-      ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})['swim'] = ((s as any).braworntype ?? 0);
-      ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})['swim'] = ((s as any).brawornnumber ?? 0);
-      qspCall(s, 'underwear', 'remove');
+      ((st as any).lastwornpantytype = (st as any).lastwornpantytype ?? {})['swim'] = ((st as any).pantyworntype ?? 0);
+      ((st as any).lastwornpantynumber = (st as any).lastwornpantynumber ?? {})['swim'] = ((st as any).pantywornnumber ?? 0);
+      ((st as any).lastwornbratype = (st as any).lastwornbratype ?? {})['swim'] = ((st as any).braworntype ?? 0);
+      ((st as any).lastwornbranumber = (st as any).lastwornbranumber ?? {})['swim'] = ((st as any).brawornnumber ?? 0);
+      qspCall(st, 'underwear', 'remove');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You sit down and relax. Then, after a proper banya session, you pick up a bucket filled with cold water, pour it over yourself, and head over to the shower. You feel like a completely new person.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
@@ -148,34 +148,34 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] > 0  ||  (((s as any).locat ?? 0)?.['Fam_inGad'] === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home'))) {
     scene.actions([
       { label: 'Wash your body (0:25)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 25;
-    if (((s as any).locat ?? 0)?.['Fam_inGad'] === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
-      (s as any).noshampoo = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 25;
+    if (((st as any).locat ?? 0)?.['Fam_inGad'] === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
+      (st as any).noshampoo = 1;
     }
-    qspCall(s, 'din_van', 'showerdin');
-    if (((s as any).frost ?? 0) > 0) {
-      (s as any).frost = 0;
+    qspCall(st, 'din_van', 'showerdin');
+    if (((st as any).frost ?? 0) > 0) {
+      (st as any).frost = 0;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/village/mit.jpg');
-    if (((s as any).clothingworntype ?? 0) !== 'nude') {
+    if (((st as any).clothingworntype ?? 0) !== 'nude') {
       scene.text('You strip out of your clothes.');
-      ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['swim'] = ((s as any).clothingworntype ?? 0);
-      ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['swim'] = ((s as any).clothingwornnumber ?? 0);
-      qspCall(s, 'clothing', 'strip');
+      ((st as any).lastwornclothingtype = (st as any).lastwornclothingtype ?? {})['swim'] = ((st as any).clothingworntype ?? 0);
+      ((st as any).lastwornclothingnumber = (st as any).lastwornclothingnumber ?? {})['swim'] = ((st as any).clothingwornnumber ?? 0);
+      qspCall(st, 'clothing', 'strip');
     }
-    if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).braworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none'  &&  ((st as any).braworntype ?? 0) !== 'none') {
       scene.text('You strip out of your underwear.');
-      ((s as any).lastwornpantytype = (s as any).lastwornpantytype ?? {})['swim'] = ((s as any).pantyworntype ?? 0);
-      ((s as any).lastwornpantynumber = (s as any).lastwornpantynumber ?? {})['swim'] = ((s as any).pantywornnumber ?? 0);
-      ((s as any).lastwornbratype = (s as any).lastwornbratype ?? {})['swim'] = ((s as any).braworntype ?? 0);
-      ((s as any).lastwornbranumber = (s as any).lastwornbranumber ?? {})['swim'] = ((s as any).brawornnumber ?? 0);
-      qspCall(s, 'underwear', 'remove');
+      ((st as any).lastwornpantytype = (st as any).lastwornpantytype ?? {})['swim'] = ((st as any).pantyworntype ?? 0);
+      ((st as any).lastwornpantynumber = (st as any).lastwornpantynumber ?? {})['swim'] = ((st as any).pantywornnumber ?? 0);
+      ((st as any).lastwornbratype = (st as any).lastwornbratype ?? {})['swim'] = ((st as any).braworntype ?? 0);
+      ((st as any).lastwornbranumber = (st as any).lastwornbranumber ?? {})['swim'] = ((st as any).brawornnumber ?? 0);
+      qspCall(st, 'underwear', 'remove');
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You lather up your washcloth and start scrubbing your body. Next, you rinse off the soap and begin to lather your hair with shampoo. After rinsing off the shampoo, you feel completely clean.');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
     scene.actions([
@@ -196,30 +196,30 @@ function enterWith_Mira(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([
       { label: 'Bathe with Mira', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'backup', 'swim');
-    ((s as any).lastwornclothingtype = (s as any).lastwornclothingtype ?? {})['swim'] = ((s as any).lastwornclothingtype ?? 0);
-    ((s as any).lastwornclothingnumber = (s as any).lastwornclothingnumber ?? {})['swim'] = ((s as any).lastwornclothingnumber ?? 0);
-    qspCall(s, 'underwear', 'remove');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'outfit', 'backup', 'swim');
+    ((st as any).lastwornclothingtype = (st as any).lastwornclothingtype ?? {})['swim'] = ((st as any).lastwornclothingtype ?? 0);
+    ((st as any).lastwornclothingnumber = (st as any).lastwornclothingnumber ?? {})['swim'] = ((st as any).lastwornclothingnumber ?? 0);
+    qspCall(st, 'underwear', 'remove');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/miraban.jpg');
     scene.text('You watch Mira removing her panties from the corner of your eye.');
-    qspCall(s, 'arousal', 'erotic_nudity', 5);
-    qspCall(s, 'stat', '');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'arousal', 'erotic_nudity', 5);
+    qspCall(st, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Undress and bathe with Mira', handler: (st: GameState) => {
-    qspCall(s, 'outfit', 'backup', 'swim');
-    qspCall(s, 'clothing', 'strip');
-    qspCall(s, 'underwear', 'remove');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'outfit', 'backup', 'swim');
+    qspCall(st, 'clothing', 'strip');
+    qspCall(st, 'underwear', 'remove');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/miraban.jpg');
     scene.text('While you undress, you notice Mira removing her panties from the corner of your eye.');
-    qspCall(s, 'arousal', 'erotic_nudity', 5);
-    qspCall(s, 'stat', '');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'arousal', 'erotic_nudity', 5);
+    qspCall(st, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -231,32 +231,32 @@ function enterWith_MiraCore(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Watch Mira clean herself', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/miraban1.jpg');
     scene.text('You feel the hot steam penetrate into your pores while you blissfully watch Mira lather up. She sometimes throws at you short glances and smiles hesitantly in response…');
-    qspCall(s, 'arousal', 'erotic_nudity', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'erotic_nudity', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Steam', handler: (st: GameState) => {
-    (s as any).noshampoo = 1;
-    qspCall(s, 'din_van', 'showerdin');
-    (s as any).pcs_hairbsh = 0;
-    (s as any).pcs_makeup = 1;
-    (s as any).banaday = ((s as any).daystart ?? 0);
-    if (((s as any).frost ?? 0) > 0) {
-      (s as any).frost = 0;
+    (st as any).noshampoo = 1;
+    qspCall(st, 'din_van', 'showerdin');
+    (st as any).pcs_hairbsh = 0;
+    (st as any).pcs_makeup = 1;
+    (st as any).banaday = ((st as any).daystart ?? 0);
+    if (((st as any).frost ?? 0) > 0) {
+      (st as any).frost = 0;
     }
-    (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (5);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_skin = ((st as any).pcs_skin ?? 0) + (5);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/gadukino/mira/miraban2.jpg');
     scene.text('Mira finally finishes lathering herself; you take the loofah and lather yourself from head to toe. You enjoy yourselves in the warm bath, relaxing in each other\'s company, occasionally exchanging meaningless anecdotes…');
-    if (((s as any).deodorant_on ?? 0) === 1) {
-      qspCall(s, 'sweat', 'remove_deo');
+    if (((st as any).deodorant_on ?? 0) === 1) {
+      qspCall(st, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the water.');
     }
-    qspCall(s, 'arousal', 'erotic_nudity', 25);
-    qspCall(s, 'arousal', 'end');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (s as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'arousal', 'erotic_nudity', 25);
+    qspCall(st, 'arousal', 'end');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

@@ -42,7 +42,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: Welcome to the Cursed Schoolgirl version! Guide <<$pcs_nickname>> through her sc...
         scene.text(`Welcome to the Cursed Schoolgirl version! Guide ${((s as any).pcs_nickname || '')} through her school life, relationships and myriad of other issues that might pop up, all with the added spice of magic to keep things interesting!`);
       } else {
-        // TODO-QSP: dynamic text: Welcome to the Transformation start! Although you've lost your masculinity and y...
+        // TODO-QSP: dynamic text: Welcome to the Transformation start! Although you''ve lost your masculinity and ...
         scene.text(`Welcome to the Transformation start! Although you've lost your masculinity and your old life, new possibilities are opening up before your eyes! Guide ${((s as any).pcs_nickname || '')} through her school life, relationships and the many other issues that might pop up.`);
       }
     }
@@ -77,26 +77,26 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      if ((!((s as any).start_location ?? 0))) {
-        qspGoto(s, 'intro_sg', 'intro_pavlovsk');
+    (st as any).music_loop = 0;
+    if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
+      if ((!((st as any).start_location ?? 0))) {
+        qspGoto(st, 'intro_sg', 'intro_pavlovsk');
       } else {
-        if (((s as any).start_location ?? 0) === 1) {
-          qspGoto(s, 'intro_sg', 'intro_gadukino');
+        if (((st as any).start_location ?? 0) === 1) {
+          qspGoto(st, 'intro_sg', 'intro_gadukino');
         } else {
-          if (((s as any).start_location ?? 0) === 2) {
-            qspGoto(s, 'intro_sg', 'intro_pushkin');
+          if (((st as any).start_location ?? 0) === 2) {
+            qspGoto(st, 'intro_sg', 'intro_pushkin');
           } else {
-            qspGoto(s, 'intro_sg', 'intro_sharing');
+            qspGoto(st, 'intro_sg', 'intro_sharing');
           }
         }
       }
     } else {
-      if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        qspGoto(s, 'uni_grounds', '');
+      if (((st as any).start_type ?? 0)?.['loc'] === 'uni') {
+        qspGoto(st, 'uni_grounds', '');
       } else {
-        qspGoto(s, 'korr', '');
+        qspGoto(st, 'korr', '');
       }
     }
   } },
@@ -112,13 +112,13 @@ function enterQuickStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Start the game', handler: (st: GameState) => {
-    if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      qspGoto(s, 'intro_sg', 'quick_start', 'start_location');
+    if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
+      qspGoto(st, 'intro_sg', 'quick_start', ((st as any).start_location ?? ''));
     } else {
-      if (((s as any).start_type ?? 0)?.['loc'] === 'uni') {
-        qspGoto(s, 'uni_grounds', '');
+      if (((st as any).start_type ?? 0)?.['loc'] === 'uni') {
+        qspGoto(st, 'uni_grounds', '');
       } else {
-        qspGoto(s, 'korr', '');
+        qspGoto(st, 'korr', '');
       }
     }
   } },

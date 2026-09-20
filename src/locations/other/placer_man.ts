@@ -43,10 +43,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 50  &&  ((s as any).placerParameter ?? 0)?.['know_slut'] === 0) {
       if (((s as any).placerParameter ?? 0)?.['recognize_status'] === 1) {
-        (s as any).knowrand = Math.floor(Math.random() * 2) + 0;
+        (s as any).knowrand = (Math.floor(Math.random() * 2) + 0);
       } else {
         if (((s as any).placerParameter ?? 0)?.['recognize_status'] === 2) {
-          (s as any).knowrand = Math.floor(Math.random() * 5) + 0;
+          (s as any).knowrand = (Math.floor(Math.random() * 5) + 0);
         }
       }
       if ((!((s as any).knowrand ?? 0))) {
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
-    (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
+    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
       ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_start_meet'] = 'Nice clothes, slut!';
     } else {
@@ -129,7 +129,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_start_meet'] = ((s as any).placerStringParameter['text_start_meet'] ?? 0) + (' ');
-    (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
+    (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
     if ((!((s as any).temp_rand ?? 0))) {
       ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_start_meet'] = ((s as any).placerStringParameter['text_start_meet'] ?? 0) + ('How much for a blowjob?');
     } else {

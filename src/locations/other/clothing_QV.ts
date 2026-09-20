@@ -1,5 +1,3 @@
-import { qspUntranslated } from '../_shared/qspUntranslated';
-
 import { qspCall, qspFunc, dynamicGoto, qspGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
@@ -11,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFilterHeader(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
     qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
   } else {
     if (((s as any).ward_list_file ?? 0) === 'clothing') {
@@ -33,7 +31,7 @@ function enterGetShopFilterHeader(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetFilterHeaderBase(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
     qspCall(s, 'clothing_view', 'filter_builder', 'setup_shop_filters');
   } else {
     if (((s as any).ward_list_file ?? 0) === 'clothing') {
@@ -62,7 +60,7 @@ function enterCloFilter(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFiltersBase(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === 'shop') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'shop') {
     qspCall(s, 'clothing_view', 'shop_filter');
   } else {
     qspCall(s, 'clothing_view', 'home_filter');
@@ -100,8 +98,8 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).outfitfilter ?? 0)?.['quality_sort'] === 1  &&  ((s as any).CloQuality ?? 0) === ((s as any).clo_i ?? 0))  ||  (((s as any).outfitfilter ?? 0)?.['inhibition_sort'] === 1  &&  ((s as any).CloInhibit ?? 0) === ((s as any).clo_i ?? 0))  ||  ((s as any).outfitfilter ?? 0)?.['number_sort'] === 1) {
       if (((s as any).outfitfilter ?? 0)?.['include'] === 1  &&  ((s as any).outfitfilter ?? 0)?.['sport'] >= 0) {
         if (qspFunc(s, 'clothing', 'can_wear', 'danilovich', ((s as any).i ?? 0))) {
-          // TODO-QSP: dynamic text: <a href="exec:gt 'clothing_QV', 'change', 'danilovich_outfits', <<i>>"><img heig...
-          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027clothing_QV\\u0027, \\u0027change\\u0027, \\u0027danilovich_outfits\\u0027); return false;"><img height="250" src="images/pc/items/danilovich/outfits/${((s as any).i || '')}.jpg"/></a>`);
+          // TODO-QSP: dynamic text: <a href="exec:gt ''clothing_QV'', ''change'', ''danilovich_outfits'', <<i>>"><im...
+          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing_QV/u0027, /u0027change/u0027, /u0027danilovich_outfits/u0027); return false;"><img height="250" src="images/pc/items/danilovich/outfits/${((s as any).i || '')}.jpg"/></a>`);
         }
       }
     }
@@ -139,9 +137,9 @@ function enterGym2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change back into your regular clothes', handler: (st: GameState) => {
-    (s as any).clothingworntype = ((s as any).regularwornclothingtype ?? 0);
-    (s as any).clothingwornnumber = ((s as any).regularwornclothingnumber ?? 0);
-    qspGoto(s, 'clothing_QV', 'gym');
+    (st as any).clothingworntype = ((st as any).regularwornclothingtype ?? 0);
+    (st as any).clothingwornnumber = ((st as any).regularwornclothingnumber ?? 0);
+    qspGoto(st, 'clothing_QV', 'gym');
   } },
   ]);
   scene.build();
@@ -152,8 +150,8 @@ function enterCloak(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopcoat
   if (((s as any).coat ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     if (((s as any).coat_h ?? 0)?.[String((s as any).i ?? 0)] > 0) {
-      // TODO-QSP: dynamic text: <a href="exec:gt 'clothing_QV', 'change', 'coat', <<i>>"><img height="250" src="...
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027clothing_QV\\u0027, \\u0027change\\u0027, \\u0027coat\\u0027); return false;"><img height="250" src="images/pc/clothing/11coat/${((s as any).i || '')}.jpg"/></a>`);
+      // TODO-QSP: dynamic text: <a href="exec:gt ''clothing_QV'', ''change'', ''coat'', <<i>>"><img height="250"...
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing_QV/u0027, /u0027change/u0027, /u0027coat/u0027); return false;"><img height="250" src="images/pc/clothing/11coat/${((s as any).i || '')}.jpg"/></a>`);
     }
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
@@ -176,10 +174,10 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Choose something to wear', handler: (st: GameState) => {
-    if (((s as any).regularwornclothingtype ?? 0) === '') {
-      qspGoto(s, 'clothing_QV', 'list');
+    if (((st as any).regularwornclothingtype ?? 0) === '') {
+      qspGoto(st, 'clothing_QV', 'list');
     } else {
-      qspGoto(s, 'clothing_QV', 'gym');
+      qspGoto(st, 'clothing_QV', 'gym');
     }
   } },
     { label: 'Leave', handler: (st: GameState) => {
@@ -192,8 +190,8 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 function enterChange(s: GameState, scene: SceneBuilder): void {
   (s as any).swimwear_description = '';
   // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
-  scene.img(`${qspFunc(s, '$clothing_image', '$ARGS[1]', ((s as any).locArgs?.[2] ?? ''))}`);
-  if (((s as any).locArgs?.[1] ?? 0) === 'misc_outfits'  &&  ((s as any).locArgs?.[2] ?? 0) === 1) {
+  scene.img(`${qspFunc(s, '$clothing_image', '', ((s as any).locArgs?.[1] ?? ''), ((s as any).locArgs?.[2] ?? ''))}`);
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'misc_outfits'  &&  Number((s as any).locArgs?.[2] ?? 0) === 1) {
     scene.text('A hessian sack the hunters gave you.');
   } else {
     if (((s as any).swimwear_description ?? 0) === '') {
@@ -214,7 +212,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_clo_text[] = 'punk'
   }
   if (Object.keys((s as any).temp_clo_text ?? {}).length > 0) {
-    // TODO-QSP: dynamic text: This item is considered <<func('string', 'enumerate_list', '$temp_clo_text')>> c...
+    // TODO-QSP: dynamic text: This item is considered <<func(''string'', ''enumerate_list'', ''$temp_clo_text'...
     scene.text(`This item is considered ${qspFunc(s, 'string', 'enumerate_list', '$temp_clo_text')} clothing.`);
   }
   if (((s as any).CloStyle ?? 0) === 4) {
@@ -238,13 +236,13 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   if (((s as any).CloStyle2 ?? 0) === 6  ||  ((s as any).CloSport ?? 0) === 1) {
     scene.text('This outfit is a gym outfit.');
   }
-  if (((s as any).clothingworntype ?? 0) === ((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).clothingwornnumber ?? 0) === ((s as any).locArgs?.[2] ?? 0)) {
+  if (((s as any).clothingworntype ?? 0) === Number((s as any).locArgs?.[1] ?? 0)  &&  ((s as any).clothingwornnumber ?? 0) === Number((s as any).locArgs?.[2] ?? 0)) {
     scene.text('You are wearing this outfit.');
   } else {
     if (((s as any).CloInhibit ?? 0) > ((s as any).pcs_inhib ?? 0)) {
       scene.text('You don\'t feel confident enough to wear an outfit this revealing.');
     } else {
-      if ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(((s as any).locArgs?.[2] ?? 0)) : -1) >= 0) {
+      if ((Array.isArray((s as any).CloLosTyp) ? ((s as any).CloLosTyp as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  &&  (Array.isArray((s as any).CloLosNum) ? ((s as any).CloLosNum as any[]).indexOf(Number((s as any).locArgs?.[2] ?? 0)) : -1) >= 0) {
         scene.text('You lost these clothes somewhere, maybe you can find them again?.');
       } else {
         if (((s as any).CloInhibit ?? 0) > 10) {
@@ -256,10 +254,10 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Wear this outfit', handler: (st: GameState) => {
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
-    if (((s as any).regularwornclothingtype ?? 0) === '') {
-      qspGoto(s, 'wardrobe', 'main');
+    if (((st as any).regularwornclothingtype ?? 0) === '') {
+      qspGoto(st, 'wardrobe', 'main');
     } else {
-      qspGoto(s, 'clothing_QV', 'gym');
+      qspGoto(st, 'clothing_QV', 'gym');
     }
   } },
           ]);
@@ -267,11 +265,11 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
           scene.actions([
             { label: 'Wear this outfit', handler: (st: GameState) => {
     scene.text('You pick up the outfit and think about trying them on… but you don\'t really like wearing these type of outfits');
-    qspCall(s, 'willpower', 'misc', 'resist', 'easy');
-    if (((s as any).cheatVars ?? 0)?.['willpower'] === 0) {
-      (s as any).will_cost = ((s as any).will_cost ?? 0) + (((s as any).hypnoTime ?? 0));
+    qspCall(st, 'willpower', 'misc', 'resist', 'easy');
+    if (((st as any).cheatVars ?? 0)?.['willpower'] === 0) {
+      (st as any).will_cost = ((st as any).will_cost ?? 0) + (((st as any).hypnoTime ?? 0));
     }
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Put them on anyways', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -280,23 +278,23 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Put them on anyways', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]
-    if (((s as any).regularwornclothingtype ?? 0) === '') {
-      qspGoto(s, 'wardrobe', 'main');
+    if (((st as any).regularwornclothingtype ?? 0) === '') {
+      qspGoto(st, 'wardrobe', 'main');
     } else {
-      qspGoto(s, 'clothing_QV', 'gym');
+      qspGoto(st, 'clothing_QV', 'gym');
     }
   } },
       ]);
     }
     scene.actions([
       { label: 'Back', handler: (st: GameState) => {
-    if (((s as any).regularwornclothingtype ?? 0) === '') {
-      qspGoto(s, 'wardrobe', 'main');
+    if (((st as any).regularwornclothingtype ?? 0) === '') {
+      qspGoto(st, 'wardrobe', 'main');
     } else {
-      qspGoto(s, 'clothing_QV', 'gym');
+      qspGoto(st, 'clothing_QV', 'gym');
     }
   } },
     ]);
@@ -308,7 +306,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Return', goto: ['clothing_QV', 'clothing_list', qspUntranslated(s, "'<<ward_list_store>>'", { location: "clothing_QV" })] },
+    { label: 'Return', goto: ['clothing_QV', 'clothing_list', '' + ((s as any).ward_list_store ?? 0) + ''] },
   ]);
   scene.build();
 }

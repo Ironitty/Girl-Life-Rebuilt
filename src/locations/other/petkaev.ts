@@ -35,7 +35,7 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
       if (((s as any).petkaQW ?? 0)?.['homework'] === 1) {
         scene.actions([
           { label: 'Demand his homework', handler: (st: GameState) => {
-    qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
+    qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
     scene.text('You hold out your hand. "Give me your homework, unless you want the teachers to know what you get up to in the girls\' locker room."');
     scene.text('He blushes bright red and shakes his head. "No… no…" he mutters, opening up his backpack before pulling out some papers and handing them over. "Here - here\'s my homework," he says with a sigh.');
     scene.text('You smile at him. "Pleasure doing business with you, perv."');
@@ -57,7 +57,7 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
         { label: 'Pull out your strap-on', handler: (st: GameState) => {
     scene.img('images/pc/activities/misc/showstrapon.jpg');
     scene.text('You reach into your bag and take out your strap-on. You let the harness dangle from your hand in clear view of him.');
-    if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] === 0) {
+    if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] === 0) {
       scene.text('He blushes and looks around nervously. "What?! Why do you have that?!"');
       scene.text('You smile confidently at him. "This is a strap-on, which I\'m going to put it on, bend you over and fuck you with."');
       scene.text('He starts shaking his head. "What if someone comes in?"');
@@ -65,14 +65,14 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
       scene.text('You just grin. "See? Everyone is heading to class, so no one is going to come in. I could also just let the teachers know what you\'re doing in the girls\' locker room and get you expelled…"');
       scene.text('He suddenly looks even more panicked than before, his shoulders sagging in defeat. "Okay, okay! Just… Don\'t get me expelled."');
     } else {
-      if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] < 5) {
+      if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] < 5) {
         scene.text('He blushes and looks around nervously. "Again?! Here?"');
         scene.text('You smile confidently at him. "Yes, again. Remember, you\'re my little butt slut. Unless you want me to tell everyone what you get up to in the girls\' locker room?"');
         scene.text('He shakes his head, letting his shoulder sag in defeat. "Okay, okay! Just… Don\'t be so rough this time, please. My ass was sore last time!"');
         scene.text('You just keep smiling. "Oh, please! You moaned like a whore last time! Besides, after I stretch out your asshole a few more times with my dick, it will stop hurting. Now turn around and get those pants off."');
         scene.text('He blushes harder, which you didn\'t think was possible, but he does as you ask. He turns around, facing away from you, and starts to unbutton his pants.');
       } else {
-        if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] < 10) {
+        if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] < 10) {
           scene.text('He bites his lower lip and looks at your strap-on. "Are you going to fuck me again?" he asks, sounding all too eager.');
           scene.text('You smile confidently at him. "Well, aren\'t you the eager little slut? And, yes, I am going to fuck you with my big dick again."');
           scene.text('Before you even ask, he turns around and starts unbuttoning his pants.');
@@ -117,15 +117,15 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Threaten his reputation', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'force', 'medium');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
-    ((s as any).petkaQW = (s as any).petkaQW ?? {})['threaten'] = 1;
-    ((s as any).petkaQW = (s as any).petkaQW ?? {})['homework'] = 1;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (5);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[1] = ((s as any).grupvalue[1] ?? 0) + (3);
-    qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
-    qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
+    qspCall(st, 'willpower', 'misc', 'force', 'medium');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
+    ((st as any).petkaQW = (st as any).petkaQW ?? {})['threaten'] = 1;
+    ((st as any).petkaQW = (st as any).petkaQW ?? {})['homework'] = 1;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (5);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[1] = ((st as any).grupvalue[1] ?? 0) + (3);
+    qspCall(st, 'npc_relationship', 'modify', 'A6', 'loathe');
+    qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworksuccess.jpg');
     scene.text('You sigh. "Well, I guess I\'ll just have to tell everyone that I just caught you jerking off to upskirt pictures of the girls on your phone."');
     scene.text('He turns pale. "I never did that! The guys will make fun of me or even beat me up!"');
@@ -151,17 +151,17 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.actions([
                 { label: 'Give him a swirly', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'misc', 'force', 'medium');
-    qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'stat', '');
-    ((s as any).petkaQW = (s as any).petkaQW ?? {})['threaten'] = 1;
-    ((s as any).petkaQW = (s as any).petkaQW ?? {})['homework'] = 1;
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[3] = ((s as any).grupvalue[3] ?? 0) - (10);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[2] = ((s as any).grupvalue[2] ?? 0) + (2);
-    ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) + (3);
-    qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
-    qspCall(s, 'npc_relationship', 'modify', 'A6', 'hate');
-    qspCall(s, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
+    qspCall(st, 'willpower', 'misc', 'force', 'medium');
+    qspCall(st, 'willpower', 'pay', 'force');
+    qspCall(st, 'stat', '');
+    ((st as any).petkaQW = (st as any).petkaQW ?? {})['threaten'] = 1;
+    ((st as any).petkaQW = (st as any).petkaQW ?? {})['homework'] = 1;
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[3] = ((st as any).grupvalue[3] ?? 0) - (10);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (2);
+    ((st as any).grupvalue = (st as any).grupvalue ?? {})[4] = ((st as any).grupvalue[4] ?? 0) + (3);
+    qspCall(st, 'npc_relationship', 'modify', 'A6', 'loathe');
+    qspCall(st, 'npc_relationship', 'modify', 'A6', 'hate');
+    qspCall(st, 'grades', 'homework', 'school', 'yes', 1, 2, 'A6');
     scene.img('images/locations/pavlovsk/school/bathroom/swirlygb.jpg');
     scene.text('You look at him, a little surprised that he would turn you down, but you have a solution in mind. "Okay then…"');
     scene.text('He looks relieved, but as you step closer to him, he panics. You grab him by the ear and start pulling him into one of the stalls. He grabs your hand and starts to pry your fingers off him.');
@@ -173,7 +173,7 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
     scene.text('He finally relents. "Okay! Okay! Y-you can have my homework! Just, please… stop!" he pleads through what sounds like sobs.');
     scene.actions([
       { label: 'Let him up', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworksuccess.jpg');
     scene.text('You let go of him and back off, letting him shakily get back on his feet.');
     scene.text('"Well?" you demand.');
@@ -200,10 +200,10 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Bribe him with sex', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'self');
-    qspCall(s, 'willpower', 'pay', 'self');
-    ((s as any).petkaQW = (s as any).petkaQW ?? {})['bribe'] = 1;
-    qspGoto(s, 'petkaev', 'homework_sex_bribe');
+    qspCall(st, 'willpower', 'sex', 'self');
+    qspCall(st, 'willpower', 'pay', 'self');
+    ((st as any).petkaQW = (st as any).petkaQW ?? {})['bribe'] = 1;
+    qspGoto(st, 'petkaev', 'homework_sex_bribe');
   } },
           ]);
         }
@@ -212,7 +212,7 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/nerdtalk.jpg');
     scene.text('You sigh.');
     scene.text('<i>Maybe I really will have to study to get my grades up,</i> you think to yourself as you leave the bathroom.');
-    qspCall(s, 'gschool_events', 'leave_break_events');
+    qspCall(st, 'gschool_events', 'leave_break_events');
   } },
         ]);
       }
@@ -244,34 +244,34 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull open your shirt and show him your bare breasts. "Like you do something for me, I can make you feel real good. What do you say?"');
     scene.text('He swallows hard as he stares at your breasts and nods vigorously. You can see the growing bulge in his pants.');
     scene.text('"Well, you need to get me ready," you tell him as you walk over to the stall with your back turned to him. "Why don\'t you use that tongue to get me all wet?"');
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You pull down your panties, letting them drop to the floor around your ankles as he walks up behind you and kneels down.');
     }
     scene.actions([
       { label: 'Eat me', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homework3.jpg');
     scene.text('You lean forward, spreading your legs and asscheeks to give him easier access to your pussy. He starts eagerly licking your pussy - so eagerly, in fact, his tongue occasionally reaches your asshole. You\'re not sure if he\'s doing it intentionally or not due to inexperience, but he\'s definitely giving it his all.');
-    qspCall(s, 'arousal', 'cuni', 2, 'unknown');
-    qspCall(s, 'arousal', 'rimming', (-2), 'unknown');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'cuni', 2, 'unknown');
+    qspCall(st, 'arousal', 'rimming', (-2), 'unknown');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Ride him cowgirl', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworkride1.jpg');
     scene.text('Getting tired of his lackluster attempt to eat you out, you push his head away.');
     scene.text('"Get your cock out and lay on your back," you order.');
     // TODO-QSP: dynamic text: He quickly gets on his back and unbuttons his pants, his <<dick>>cm <<$dick_girt...
-    scene.text(`He quickly gets on his back and unbuttons his pants, his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick springing free. You take your clothes off and walk over to him before straddling him and slowly lowering yourself down, feeling his cock slide into you.`);
+    scene.text(`He quickly gets on his back and unbuttons his pants, his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick springing free. You take your clothes off and walk over to him before straddling him and slowly lowering yourself down, feeling his cock slide into you.`);
     scene.text('You start off slowly riding him, picking up speed as it starts to feel better and better.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Reverse cowgirl', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworkride2.jpg');
     scene.text('It starts to feel really good, but looking into his longing eyes starts to bother you, so you turn around and start riding him reverse cowgirl style. This is even better since you can just focus on your own pleasure and not worry about him as you use him.');
     scene.text('His breathing becomes quicker and he starts to grunt louder.');
     scene.text('"I\'m about to cum!" he announces.');
-    qspCall(s, 'arousal', 'vaginal', 5, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let him cum on your face', goto: ['petkaev', 'petra_homework_facial'] },
     ]);
@@ -283,25 +283,25 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('Getting tired of his lackluster attempt to eat you out, you push his head away.');
     scene.text('"Get your cock out and come over here," you order.');
     // TODO-QSP: dynamic text: He quickly unbuttons his pants and his <<dick>>cm <<$dick_girth>> dick springs f...
-    scene.text(`He quickly unbuttons his pants and his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick springs free. You take your clothes off and walk over to the sinks before getting into position. "Come over here and fuck my pussy."`);
+    scene.text(`He quickly unbuttons his pants and his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick springs free. You take your clothes off and walk over to the sinks before getting into position. "Come over here and fuck my pussy."`);
     scene.text('He doesn\'t waste any time and hurries over behind you. His inexperience shows, as it takes him a few tries to get his cock inside you.');
     scene.text('Finally, with your help, he gets himself lined up and slides his cock into your pussy, moaning loudly as he does. He quickly slides himself in balls deep and starts frantically fucking you without technique, like you imagine a virgin would.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworkv2.jpg');
     scene.text('What he lacks in skill, he almost makes up for in enthusiasm, although you can tell he\'s trying to restrain himself. It doesn\'t take too long before he moans out that he\'s about to cum, though.');
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let him cum on your face', goto: ['petkaev', 'petra_homework_facial'] },
     ]);
   } },
       { label: 'You can fuck my ass', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'anal', 5);
-    qspCall(s, 'arousal', 'auto_lube', 'anal');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5);
+    qspCall(st, 'arousal', 'auto_lube', 'anal');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworka1.jpg');
     scene.text('"I want you to fuck my ass now," you order.');
     scene.text('He nods and pulls out before trying to put his dick in your ass, failing until you grab his dick and help line it up.');
@@ -313,14 +313,14 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Fuck my ass', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'anal', 5);
-    qspCall(s, 'arousal', 'auto_lube', 'anal');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5);
+    qspCall(st, 'arousal', 'auto_lube', 'anal');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworka1.jpg');
     scene.text('Getting tired of his lackluster attempt to eat you out, you push his head away.');
     scene.text('"Get your cock out and fuck my ass," you order.');
     // TODO-QSP: dynamic text: He quickly unbuttons his pants and his <<dick>>cm <<$dick_girth>> dick springs f...
-    scene.text(`He quickly unbuttons his pants and his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick springs free. You take your clothes off before leaning against the side of the stall, using one hand to spread your cheeks while the other guides his dick to your asshole.`);
+    scene.text(`He quickly unbuttons his pants and his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick springs free. You take your clothes off before leaning against the side of the stall, using one hand to spread your cheeks while the other guides his dick to your asshole.`);
     scene.text('With your help, he gets it lined up and slides his cock into your ass, moaning loudly as he does. He quickly slides himself in balls deep and starts frantically fucking you without technique, like you imagine a virgin would.');
     scene.actions([
       { label: 'Pound my ass', handler: (st: GameState) => {
@@ -328,8 +328,8 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('After he pulls back and slips out of you one too many times, you decide to change positions. "Stop, let me change to a better position."');
     scene.text('He stops and waits while you lay down face first on the floor. You\'re a little thrilled at the idea of laying on the dirty floor while some guy fucks your ass. You reach back with both hands and spread your ass cheeks wide, glancing back at him. "Well? What are you waiting for?"');
     scene.text('That is all the encouragement he needs and he quickly gets down on top of you. This time he doesn\'t have any trouble shoving his dick back in your ass. He starts fucking your ass again before very quickly moaning out that he\'s about to cum.');
-    qspCall(s, 'arousal', 'anal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let him cum on your face', goto: ['petkaev', 'petra_homework_facial'] },
     ]);
@@ -362,14 +362,14 @@ function enterPetraHomeworkFacial(s: GameState, scene: SceneBuilder): void {
     scene.text('He smiles at first, then looks a little alarmed when you tell him to get lost. He quickly exits the bathroom, leaving you alone.');
     scene.actions([
       { label: 'Clean your face and leave', handler: (st: GameState) => {
-    (s as any).pcs_makeup = 1;
-    qspCall(s, 'cum_cleanup', '', 9);
-    qspCall(s, 'cum_cleanup', '', 11);
-    if (((s as any).pcs_sweat ?? 0) > 19) {
-      (s as any).pcs_sweat = ((s as any).pcs_sweat ?? 0) - (5);
+    (st as any).pcs_makeup = 1;
+    qspCall(st, 'cum_cleanup', '', 9);
+    qspCall(st, 'cum_cleanup', '', 11);
+    if (((st as any).pcs_sweat ?? 0) > 19) {
+      (st as any).pcs_sweat = ((st as any).pcs_sweat ?? 0) - (5);
     }
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'gschool_events', 'leave_break_events2');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'gschool_events', 'leave_break_events2');
   } },
     ]);
   } },
@@ -413,18 +413,18 @@ function enterSchoolRestroomStrap(s: GameState, scene: SceneBuilder): void {
     { label: 'Get ready to fuck him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging1.jpg');
     scene.text('You check the straps to make sure they\'re good and tight.');
-    ((s as any).petkaQW = (s as any).petkaQW ?? {})['restroom_strapon'] = ((s as any).petkaQW['restroom_strapon'] ?? 0) + (1);
-    ((s as any).petkaQW = (s as any).petkaQW ?? {})['pegged'] = ((s as any).petkaQW['pegged'] ?? 0) + (1);
-    if (((s as any).penisEnvyVariable ?? 0) === 1) {
+    ((st as any).petkaQW = (st as any).petkaQW ?? {})['restroom_strapon'] = ((st as any).petkaQW['restroom_strapon'] ?? 0) + (1);
+    ((st as any).petkaQW = (st as any).petkaQW ?? {})['pegged'] = ((st as any).petkaQW['pegged'] ?? 0) + (1);
+    if (((st as any).penisEnvyVariable ?? 0) === 1) {
       scene.actions([
         { label: 'Fuck him with your magic dick', goto: ['petkaev', 'school_restroom_pegging_magic'] },
       ]);
     } else {
-      if (((s as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
+      if (((st as any).spellKnown ?? 0)?.['penisenvy'] === 1) {
         scene.actions([
           { label: 'Cast Penis Envy spell', handler: (st: GameState) => {
-    qspCall(s, 'castSpell', 'penisenvy');
-    if (((s as any).spellSuccess ?? 0) > 0) {
+    qspCall(st, 'castSpell', 'penisenvy');
+    if (((st as any).spellSuccess ?? 0) > 0) {
       scene.actions([
         { label: 'Fuck him with your magic dick', goto: ['petkaev', 'school_restroom_pegging_magic'] },
       ]);
@@ -449,31 +449,31 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use lube', handler: (st: GameState) => {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['lubricant'] = ((st as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
     scene.text('You walk up behind him and lube up the dildo, then his ass as well. You slap the dildo against his ass before lining it up against his asshole.');
-    if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
-      qspCall(s, 'npc_relationship', 'modify', 'A6', 'hate');
+    if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
+      qspCall(st, 'npc_relationship', 'modify', 'A6', 'hate');
       scene.text('You keep pushing and he tenses up before your dildo suddenly pops into his ass and he cries out in pain.');
       scene.text('You slap his ass. "Take a deep breath and release it slowly."');
       scene.text('He does as you say, but he doesn\'t relax too much. "Ow! It still hurts!"');
       scene.text('You snort. "Don\'t worry, I\'ll stretch you out soon enough."');
     } else {
-      if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
+      if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
         scene.text('You keep pushing as he tenses up a little. Your dildo pops into his ass more easily this time, but he still groans a little in pain.');
         scene.text('You slap his ass. "Take a deep breath and release it slowly."');
         scene.text('He does as you say and you can feel him relax. It seems like he\'s getting used to it. "It still hurts a little."');
         scene.text('You snort. "Only a little? You\'re starting to like it, aren\'t you?"');
         scene.text('You see his face turning red. "N-no!" he sputters, but you can tell he\'s starting to like it.');
       } else {
-        if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'like');
+        if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'like');
           scene.text('You keep pushing and he takes a deep breath and fully relaxes, letting your dildo slowly slide into his ass, emitting a moan of pleasure from him.');
           scene.text('You slap his ass. "Someone\'s starting to love taking dick in his ass."');
           scene.text('He moans louder. "Yes… It\'s starting to feel really good."');
           scene.text('You snort. "I\'ll turn you into such a good little butt slut."');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'dislike');
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'dislike');
           scene.text('You keep pushing as he tenses up before your dildo suddenly pops into his ass and he hisses in pain.');
           scene.text('You slap his ass. "Take a deep breath and release it slowly."');
           scene.text('He does as you say, but only seems to relax a little. "Ow! It still hurts!"');
@@ -481,8 +481,8 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'arousal', 'anal_strap_give', 1, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal_strap_give', 1, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Start fucking his ass', goto: ['petkaev', 'femdom_petka_doggy'] },
     ]);
@@ -496,28 +496,28 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk up behind him, spitting on your dildo a few times and rubbing the saliva along the shaft of it before slapping your dildo against his ass.');
     scene.text('"Spread your cheeks," you command and he does so as you spit in the crack of his ass a few times and watch your saliva run down to his asshole. You rub the tip of your dildo against your spit on his ass and work it in, along with his saliva on your dildo.');
     scene.text('You then line the dildo up against his asshole.');
-    if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
-      qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
+    if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
+      qspCall(st, 'npc_relationship', 'modify', 'A6', 'loathe');
       scene.text('You keep pushing as he tenses up before your dildo suddenly pops into his ass and he cries out in pain.');
       scene.text('You slap his ass. "Take a deep breath and release it slowly."');
       scene.text('He does as you say, but he doesn\'t relax too much. "Ow! Fuck, it hurts! It hurts a lot!"');
       scene.text('You snort. "Don\'t worry, I\'ll stretch you out soon enough."');
     } else {
-      if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
+      if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
         scene.text('You keep pushing as he tenses up a little. Though your dildo pops into his ass more easily than usual, he still groans in pain.');
         scene.text('You slap his ass. "Take a deep breath and release it slowly."');
         scene.text('He does as you say and you can feel him relax. It seems he\'s getting used to it. "It still hurts a little."');
         scene.text('You snort. "Only a little? You\'re starting to like it, aren\'t you?"');
         scene.text('You see his face turning red. "N-no!" he sputters, but you can tell he\'s starting to like it.');
       } else {
-        if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'like');
+        if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'like');
           scene.text('You keep pushing and he takes a deep breath and fully relaxes. Your dildo slowly slides into his ass, and Petka emits a sound that\'s both a moan of pleasure and a groan of pain.');
           scene.text('You slap his ass. "Someone\'s starting to love taking dick up his ass."');
           scene.text('He moans louder. "Yes… It\'s starting to feel really good."');
           scene.text('You snort. "I\'ll turn you into such a good little butt slut."');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'hate');
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'hate');
           scene.text('You keep pushing against it as he tenses up before your dildo suddenly pops into his ass and he hisses in pain.');
           scene.text('You slap his ass. "Take a deep breath and release it slowly."');
           scene.text('He does as you say, but he doesn\'t seem to relax much. "Ow! It still hurts!"');
@@ -525,8 +525,8 @@ function enterSchoolRestroomPegging(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'arousal', 'anal_strap_give', 1, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal_strap_give', 1, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Start fucking his ass', goto: ['petkaev', 'femdom_petka_doggy'] },
     ]);
@@ -580,13 +580,13 @@ function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Fuck your buttslut', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging4.jpg');
-    if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
+    if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
       scene.text('As you keep fucking his ass with your strap-on, he starts to tense up, his groans and grunts of pain getting louder.');
       scene.text('"Please stop! I can\'t take it anymore!" he pleads.');
       scene.text('You thrust your dildo deeper into his ass one last time, causing him to cry out in pain. "Okay, bitch. I\'ll take pity on you and call it a day," you tell him and slide the dildo out of his ass, causing him to sigh in relief. "But remember - This isn\'t over."');
       scene.text('He looks back at you in fear. "Please! No more!"');
-      qspCall(s, 'arousal', 'anal_strap_give', 3, 'dom');
-      qspCall(s, 'arousal', 'end');
+      qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
+      qspCall(st, 'arousal', 'end');
       scene.actions([
         { label: 'Tell him to shut up', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/bathroom/sex/boys/homeworksuccess.jpg');
@@ -601,12 +601,12 @@ function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
+      if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
         scene.text('You pound into his slightly-experienced asshole. His moans are getting louder and he\'s frantically jerking himself off now. You pull down his pants as far as you can before he takes the initiative and steps out of them completely. You then pull his shirt up and over his head, leaving him fully naked before you pull up one of his legs, giving you better access to his ass.');
         scene.text('"Oh fuck… Oh fuck… I\'m gonna cum!" he moans out.');
         scene.text('You grin. "What a dirty, little buttslut you are."');
       } else {
-        if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
+        if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
           scene.text('You pound into his experienced asshole. His moans echo off the restroom walls and he\'s jerking himself off at a frantic pace. Suddenly, he stops touching himself and pulls off his pants. He raises one of his legs to give you better access to his ass before he starts masturbating again.');
           scene.text('"Yes… yes… Fuck me harder!" he cries.');
           scene.text('You grin widely and slap his ass before you grab him by the hips and pull him back, driving your dildo completely inside him. "You like that, you fucking buttslut?!"');
@@ -620,8 +620,8 @@ function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'arousal', 'anal_strap_give', 3, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Let him jerk off', goto: ['petkaev', 'femdom_petka_doggy_finish'] },
     ]);
@@ -658,17 +658,17 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] > 0) {
     scene.actions([
       { label: 'Use lube', handler: (st: GameState) => {
-    ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
+    ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['lubricant'] = ((st as any).mc_inventory['lubricant'] ?? 0) - (1);
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
     scene.text('Having cast the spell, you watch as the harness melds with your skin and feel the dildo twitching as it makes contact with your flesh. Once completed, you walk up to Petka and lube up your member and his asshole with your lubricant before you start pushing yourself into his rear entrance.');
-    if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] === 0) {
-      qspCall(s, 'npc_relationship', 'modify', 'A6', 'hate');
+    if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] === 0) {
+      qspCall(st, 'npc_relationship', 'modify', 'A6', 'hate');
       scene.text('He tenses up before your cock suddenly pops into his ass. You can feel his tight ass gripping the shaft of your dick as he cries out in pain.');
       scene.text('You slap his ass. "Take a deep breath and release it slowly."');
       scene.text('He does as you say, but he doesn\'t relax that much. "Ow! It still hurts!"');
       scene.text('You snort. "Don\'t worry, I\'ll stretch you out soon enough."');
     } else {
-      if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] > 5) {
+      if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] > 5) {
         scene.text('He barely tenses up as your dick pops into his ass much easier than before. He still groans from time to time, and you can feel him squeezing tightly against your shaft.');
         scene.text('You slap his ass. "Take a deep breath and release it slowly."');
         scene.text('He does as you say and you can feel him relax. It seems as though he\'s finally getting used to it.');
@@ -676,14 +676,14 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
         scene.text('You snort. "Only a little? You\'re starting to like it, aren\'t you?"');
         scene.text('You see his face turning red. "N-no!" he stutters, but you can tell he\'s starting to like it.');
       } else {
-        if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] > 10) {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'like');
+        if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] > 10) {
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'like');
           scene.text('He takes a deep breath and relaxes, allowing your dick to slowly slide into his ass without much effort. He emits a moan of pleasure as you sink in deeper. He doesn\'t feel as tight as before, but he still squeezes against your shaft.');
           scene.text('You slap his ass. "Someone\'s beginning to love taking dick up his ass."');
           scene.text('He moans louder. "Yes, it\'s starting to feel really good."');
           scene.text('You snort. "I\'ll make you into such a good little buttslut."');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'dislike');
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'dislike');
           scene.text('He tenses up and hisses in pain when your cock pops into his asshole and he tightly grips the shaft of your cock.');
           scene.text('You slap his ass. "Take a deep breath and release it slowly."');
           scene.text('He does as you say, but he only relaxes a little. "Ow! It still hurts!"');
@@ -691,8 +691,8 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
         }
       }
     }
-    qspCall(s, 'arousal', 'anal_strap_give', 1, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal_strap_give', 1, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Start fucking his ass', goto: ['petkaev', 'femdom_petka_doggy_magic'] },
     ]);
@@ -704,14 +704,14 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
     { label: 'Use spit', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging2.jpg');
     scene.text('Having cast the spell, you watch as the harness melds with your skin and feel the dildo twitching as it makes contact with your flesh. Once completed, you walk up to Petka and use your spit to lube up your member and his asshole before you start pushing yourself into his rear entrance.');
-    if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
-      qspCall(s, 'npc_relationship', 'modify', 'A6', 'loathe');
+    if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
+      qspCall(st, 'npc_relationship', 'modify', 'A6', 'loathe');
       scene.text('He tenses up before your cock suddenly pops into his ass. You can feel his tight ass gripping the shaft of your dick as he cries out in pain.');
       scene.text('You slap his ass. "Take a deep breath and release it slowly."');
       scene.text('He does as you say, but he doesn\'t relax too much. "Ow! It still hurts!"');
       scene.text('You snort. "Don\'t worry, I\'ll stretch you out soon enough."');
     } else {
-      if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
+      if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
         scene.text('He barely tenses up as your dick pops into his ass much easier than before. He still groans from time to time, and you can feel him squeezing against your shaft tightly.');
         scene.text('You slap his ass. "Take a deep breath and release it slowly."');
         scene.text('He does as you say and you can feel him relax. It seem as though he\'s finally getting used to it.');
@@ -719,14 +719,14 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
         scene.text('You snort. "Only a little? You\'re starting to like it, aren\'t you?"');
         scene.text('You see the sides of his face turning red. "N-no!" he stutters, but you can tell he\'s starting to like it.');
       } else {
-        if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'like');
+        if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'like');
           scene.text('He takes a deep breath and relaxes, allowing your dick to slowly slide into his ass without much effort. He emits a moan of pleasure as you sink in deeper. He doesn\'t feel as tight as before, but he still squeezes against your shaft.');
           scene.text('You slap his ass. "Someone\'s beginning to love taking dick up his ass."');
           scene.text('He moans louder. "Yes, it\'s starting to feel really good."');
           scene.text('You snort. "I\'ll make you into such a good little buttslut."');
         } else {
-          qspCall(s, 'npc_relationship', 'modify', 'A6', 'hate');
+          qspCall(st, 'npc_relationship', 'modify', 'A6', 'hate');
           scene.text('He tenses up and hisses in pain when your cock pops into his asshole and he tightly grips the shaft of your cock.');
           scene.text('You slap his ass. "Take a deep breath and release it slowly."');
           scene.text('He does as you say, but he only relaxes a little bit. "Ow! It still hurts!"');
@@ -734,8 +734,8 @@ function enterSchoolRestroomPeggingMagic(s: GameState, scene: SceneBuilder): voi
         }
       }
     }
-    qspCall(s, 'arousal', 'anal_strap_give', 1, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal_strap_give', 1, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Start fucking his ass', goto: ['petkaev', 'femdom_petka_doggy_magic'] },
     ]);
@@ -790,19 +790,19 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Fuck your buttslut', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging4.jpg');
-    if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
+    if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
       scene.text('As you keep fucking his ass with your strap-on, he starts to tense up and his groans and grunts of pain get louder.');
       scene.text('"Please stop! I can\'t take it anymore!" he pleads.');
       scene.text('You thrust your dildo deeper into his ass one last time, causing him to cry out in pain. "Okay, bitch. I\'ll take pity on you since I\'m almost there," you tell him.');
       scene.text('His asshole is squeezing your shaft, bringing you closer to climax.');
       scene.text('He looks back at you in fear. "Please… No more…"');
     } else {
-      if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
+      if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
         scene.text('You pound into his slightly-experienced asshole. His moans are getting louder and he is frantically jerking himself off now. You pull down his pants as far as you can before he takes the initiative and steps out of them completely. You pull his shirt up and over his head, leaving him fully naked. You raise up one of his legs, giving you better access to his ass.');
         scene.text('"Oh fuck… Oh fuck! I\'m gonna cum!" he moans out.');
         scene.text('You grin. "What a dirty, little buttslut you are," you tell him, feeling yourself about to cum as well.');
       } else {
-        if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
+        if (((st as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
           scene.text('You pound into his experienced butthole as his moans echo off the restroom walls and he jerks himself off at a frantic pace.');
           scene.text('He suddenly stops touching himself and pulls off his pants before he raises up one of his legs to give you better access to his ass and he begins masturbating again.');
           scene.text('"Yes, yes… Fuck me harder!" he cries out.');
@@ -820,8 +820,8 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'arousal', 'magicd_anal', 3, 'dom');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'magicd_anal', 3, 'dom');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Pull out', goto: ['petkaev', 'femdom_petka_pullout_magic'] },
       { label: 'Cum inside him', goto: ['petkaev', 'femdom_petka_cuminside_magic'] },
@@ -832,7 +832,7 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFemdomPetkaPulloutMagic(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/pc/magic/penis_envy/guy_butt_cum\' + rand(1, 2) + \'.jpg');
+  scene.img('images/pc/magic/penis_envy/guy_butt_cum' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
     (s as any).orgasm_or = 'yes';
     (s as any).orgasm_txt = 'You pull out and feel the sudden release as cum starts shooting out of your dick. You moan loudly as you shoot several loads over his ass, stroking your dick as you milk every last drop out of it. You find yourself panting as the feeling of release makes for an amazing afterglow.';

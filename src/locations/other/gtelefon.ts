@@ -11,10 +11,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You pick up the phone, "Hello?"');
   if (((s as any).boyvstre ?? 0)?.[String((s as any).numnpcboy ?? 0)] > 0) {
-    // TODO-QSP: dynamic text: A male voice on the phone says "Hi <<$pcs_nickname>>! It's me, <<$nameBoyfrend[n...
+    // TODO-QSP: dynamic text: A male voice on the phone says "Hi <<$pcs_nickname>>! It''s me, <<$nameBoyfrend[...
     scene.text(`A male voice on the phone says "Hi ${((s as any).pcs_nickname || '')}! It's me, ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] ?? ''}. Let's go for a walk somewhere."`);
   } else {
-    // TODO-QSP: dynamic text: Through the phone, a male voice says "Hello, I'm looking for <<$pcs_nickname>>?"
+    // TODO-QSP: dynamic text: Through the phone, a male voice says "Hello, I''m looking for <<$pcs_nickname>>?...
     scene.text(`Through the phone, a male voice says "Hello, I'm looking for ${((s as any).pcs_nickname || '')}?"`);
     // TODO-QSP: dynamic text: You answer the caller that you are <<$pcs_nickname>>. The stranger sounds deligh...
     scene.text(`You answer the caller that you are ${((s as any).pcs_nickname || '')}. The stranger sounds delighted. "Hi! I'm ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] ?? ''}, we met the other day. Remember? Let's go for a walk."`);
@@ -22,11 +22,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).GvstreBoy ?? 0))) {
     scene.actions([
       { label: 'Meet me in the park', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    (s as any).GvstreBoy = 1;
-    ((s as any).GvstreBoyAfter = (s as any).GvstreBoyAfter ?? {})[String((s as any).numnpcboy ?? 0)] = 1;
-    (s as any).SkverBoy = ((s as any).numnpcboy ?? 0);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    (st as any).GvstreBoy = 1;
+    ((st as any).GvstreBoyAfter = (st as any).GvstreBoyAfter ?? {})[String((st as any).numnpcboy ?? 0)] = 1;
+    (st as any).SkverBoy = ((st as any).numnpcboy ?? 0);
+    qspCall(st, 'stat', '');
     scene.text('You agree to meet him in the park.');
     scene.actions([
       { label: 'Hang up', goto: ['korrPar', ''] },
@@ -36,22 +36,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Tell him you have no time today', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 3;
-    if (((s as any).boyvstre ?? 0)?.[String((s as any).numnpcboy ?? 0)] === 0) {
-      ((s as any).otnBoyFrend = (s as any).otnBoyFrend ?? {})[String((s as any).numnpcboy ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpcboy ?? 0)] ?? 0) - (10);
+    (st as any).minut = ((st as any).minut ?? 0) + 3;
+    if (((st as any).boyvstre ?? 0)?.[String((st as any).numnpcboy ?? 0)] === 0) {
+      ((st as any).otnBoyFrend = (st as any).otnBoyFrend ?? {})[String((st as any).numnpcboy ?? 0)] = ((st as any).otnBoyFrend[String((st as any).numnpcboy ?? 0)] ?? 0) - (10);
     }
-    if (((s as any).boyvstre ?? 0)?.[String((s as any).numnpcboy ?? 0)] > 0) {
-      ((s as any).otnBoyFrend = (s as any).otnBoyFrend ?? {})[String((s as any).numnpcboy ?? 0)] = ((s as any).otnBoyFrend[String((s as any).numnpcboy ?? 0)] ?? 0) - (5);
+    if (((st as any).boyvstre ?? 0)?.[String((st as any).numnpcboy ?? 0)] > 0) {
+      ((st as any).otnBoyFrend = (st as any).otnBoyFrend ?? {})[String((st as any).numnpcboy ?? 0)] = ((st as any).otnBoyFrend[String((st as any).numnpcboy ?? 0)] ?? 0) - (5);
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('');
-    if (((s as any).otnBoyFrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] > 20) {
+    if (((st as any).otnBoyFrend ?? 0)?.[String((st as any).numnpcboy ?? 0)] > 20) {
       // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpcboy]>> sounds upset. "I see. Well, maybe next time then."
-      scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] ?? ''} sounds upset. "I see. Well, maybe next time then."`);
+      scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpcboy ?? 0)] ?? ''} sounds upset. "I see. Well, maybe next time then."`);
     } else {
-      ((s as any).otnBoyFrend = (s as any).otnBoyFrend ?? {})[String((s as any).numnpcboy ?? 0)] = 0;
+      ((st as any).otnBoyFrend = (st as any).otnBoyFrend ?? {})[String((st as any).numnpcboy ?? 0)] = 0;
       // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpcboy]>> sounds angry. "Whatever, screw you!" he said, and h...
-      scene.text(`${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpcboy ?? 0)] ?? ''} sounds angry. "Whatever, screw you!" he said, and hung up immediately after. You don't think you'll hear from him again.`);
+      scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpcboy ?? 0)] ?? ''} sounds angry. "Whatever, screw you!" he said, and hung up immediately after. You don't think you'll hear from him again.`);
     }
     scene.actions([
       { label: 'Hang up', goto: ['korrPar', ''] },

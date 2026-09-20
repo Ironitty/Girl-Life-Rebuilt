@@ -4,15 +4,7 @@ import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enter(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'core_library', 'setloc', 'nichKitchen', '');
-  (s as any).location_type = 'private';
-  (s as any).nichLoc = 'kitchen';
-  qspCall(s, 'stat', '');
-  qspCall(s, 'kit_din', '');
-  (s as any).sexpartkno = 1;
-  qspCall(s, 'npcStat', 'A52');
-  qspCall(s, 'npcStat', 'A161', 'a');
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Nicholas\' Kitchen</b></center>');
   scene.img('images/locations/city/citycenter/nichApartment/kitchen.jpg');
   scene.text('The kitchen has a sleek, contemporary design with lots of metal and polished wood - black, white and gray dominate the room\'s color scheme and all appliances and additional furniture in it adhere to this order.');
@@ -20,16 +12,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).nichCookPresent = qspFunc(s, 'nichUtil', 'isPresent', 'cook', 'kitchen');
   if (((s as any).nichCookPresent ?? 0) === 1) {
     if (((s as any).nichKnowsCook ?? 0) === 1) {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichCook\\u0027, \\u0027desc\\u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
     } else {
-      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027nichCook\\u0027, \\u0027desc\\u0027); return false;">The cook of the family</a> is preparing some meals.');
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">The cook of the family</a> is preparing some meals.');
     }
   }
   if (((s as any).nichWork ?? 0) === 2) {
     if (((s as any).nichBreakfLast ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).week ?? 0) <= 5  &&  (((s as any).hour ?? 0) === 6  ||  ((s as any).hour ?? 0) === 7  ||  (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) < 15)))  ||  (((s as any).week ?? 0) > 5  &&  (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 8  ||  (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 15))))) {
       scene.actions([
         { label: 'Prepare breakfast', handler: (st: GameState) => {
-    qspGoto(s, 'nichLivingroom', 'breakfast');
+    qspGoto(st, 'nichLivingroom', 'breakfast');
   } },
       ]);
     }
@@ -40,11 +32,104 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to the living room', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'nichLivingroom', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichLivingroom', '');
   } },
   ]);
   scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Nicholas\' Kitchen</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/kitchen.jpg');
+  scene.text('The kitchen has a sleek, contemporary design with lots of metal and polished wood - black, white and gray dominate the room\'s color scheme and all appliances and additional furniture in it adhere to this order.');
+  scene.text('It seems to house every kitchen device known to man - all of them the most expensive variant of their kind - and the fridge and freezer cabinet are filled to the top with fresh food. There\'s also a refrigerated wine rack, stocked with bottle upon bottle of reds and whites of the finest vintages.');
+  (s as any).nichCookPresent = qspFunc(s, 'nichUtil', 'isPresent', 'cook', 'kitchen');
+  if (((s as any).nichCookPresent ?? 0) === 1) {
+    if (((s as any).nichKnowsCook ?? 0) === 1) {
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
+    } else {
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">The cook of the family</a> is preparing some meals.');
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    if (((s as any).nichBreakfLast ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).week ?? 0) <= 5  &&  (((s as any).hour ?? 0) === 6  ||  ((s as any).hour ?? 0) === 7  ||  (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) < 15)))  ||  (((s as any).week ?? 0) > 5  &&  (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 8  ||  (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 15))))) {
+      scene.actions([
+        { label: 'Prepare breakfast', handler: (st: GameState) => {
+    qspGoto(st, 'nichLivingroom', 'breakfast');
+  } },
+      ]);
+    }
+    qspCall(s, 'nichChore', 'inspect', 'kitchen');
+  }
+  qspCall(s, 'kit_din', 'edahota');
+  qspCall(s, 'core_library', 'kitchen', 'full');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go to the living room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichLivingroom', '');
+  } },
+  ]);
+  scene.build();
+}
+
+function enterReturn(s: GameState, scene: SceneBuilder): void {
+  scene.text('<center><b>Nicholas\' Kitchen</b></center>');
+  scene.img('images/locations/city/citycenter/nichApartment/kitchen.jpg');
+  scene.text('The kitchen has a sleek, contemporary design with lots of metal and polished wood - black, white and gray dominate the room\'s color scheme and all appliances and additional furniture in it adhere to this order.');
+  scene.text('It seems to house every kitchen device known to man - all of them the most expensive variant of their kind - and the fridge and freezer cabinet are filled to the top with fresh food. There\'s also a refrigerated wine rack, stocked with bottle upon bottle of reds and whites of the finest vintages.');
+  (s as any).nichCookPresent = qspFunc(s, 'nichUtil', 'isPresent', 'cook', 'kitchen');
+  if (((s as any).nichCookPresent ?? 0) === 1) {
+    if (((s as any).nichKnowsCook ?? 0) === 1) {
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">Jegor</a>, the cook of the family, is preparing some meals.');
+    } else {
+      scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichCook/u0027, /u0027desc/u0027); return false;">The cook of the family</a> is preparing some meals.');
+    }
+  }
+  if (((s as any).nichWork ?? 0) === 2) {
+    if (((s as any).nichBreakfLast ?? 0) !== ((s as any).daystart ?? 0)  &&  ((((s as any).week ?? 0) <= 5  &&  (((s as any).hour ?? 0) === 6  ||  ((s as any).hour ?? 0) === 7  ||  (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) < 15)))  ||  (((s as any).week ?? 0) > 5  &&  (((s as any).hour ?? 0) === 7  ||  ((s as any).hour ?? 0) === 8  ||  (((s as any).hour ?? 0) === 9  &&  ((s as any).minut ?? 0) < 15))))) {
+      scene.actions([
+        { label: 'Prepare breakfast', handler: (st: GameState) => {
+    qspGoto(st, 'nichLivingroom', 'breakfast');
+  } },
+      ]);
+    }
+    qspCall(s, 'nichChore', 'inspect', 'kitchen');
+  }
+  qspCall(s, 'kit_din', 'edahota');
+  qspCall(s, 'core_library', 'kitchen', 'full');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Go to the living room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'nichLivingroom', '');
+  } },
+  ]);
+  scene.build();
+}
+
+function enter(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'nichKitchen', '');
+  (s as any).location_type = 'private';
+  (s as any).nichLoc = 'kitchen';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'kit_din', '');
+  (s as any).sexpartkno = 1;
+  qspCall(s, 'npcStat', 'A52');
+  qspCall(s, 'npcStat', 'A161', 'a');
+  const arg = s.locArg;
+  switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
+    case 'return':
+      enterReturn(s, scene);
+      break;
+    default:
+      enterDefault(s, scene);
+      break;
+  }
 }
 
 export const nichKitchen: LocationDef = {

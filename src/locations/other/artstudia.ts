@@ -5,8 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).loc = 'artstudia';
-  (s as any).location_type = 'secluded';
   scene.build();
 }
 
@@ -41,11 +39,11 @@ function enterBodimod2(s: GameState, scene: SceneBuilder): void {
     scene.text('One of the girls calls you over, "Hello again, I\'m so glad you came to join us again. Quick, get your clothes off. Masya has nearly finished painting Emilia."');
     scene.actions([
       { label: 'Strip off and join in', handler: (st: GameState) => {
-    (s as any).arts_day = ((s as any).daystart ?? 0);
+    (st as any).arts_day = ((st as any).daystart ?? 0);
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      qspGoto(s, 'artstudia', 'bodimod3');
+      qspGoto(st, 'artstudia', 'bodimod3');
     } else {
-      qspGoto(s, 'artstudia', 'bodimod4');
+      qspGoto(st, 'artstudia', 'bodimod4');
     }
   } },
     ]);
@@ -86,6 +84,8 @@ function enterBodimod4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).loc = 'artstudia';
+  (s as any).location_type = 'secluded';
   const arg = s.locArg;
   switch (arg) {
     case 'bodimod1':

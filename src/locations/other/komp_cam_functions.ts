@@ -7,7 +7,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  ((s as any).camConst = (s as any).camConst ?? {})['MFC_N'] = 100000;
   scene.build();
 }
 
@@ -212,11 +211,11 @@ function enterCheckAvailableOralDildo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCamming(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).locArgs?.[1] ?? 0));
     // TODO-QSP: gs 'internet_mobile', 'use_internet', $subs, ARGS[1]
   }
-  ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((((s as any).locArgs?.[1] ?? 0) < 0) ? (-((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
+  ((s as any).ARGS = (s as any).ARGS ?? {})[1] = ((Number((s as any).locArgs?.[1] ?? 0) < 0) ? (-((s as any).locArgs?.[1] ?? 0)) : (((s as any).locArgs?.[1] ?? 0)));
   // TODO-QSP: gs 'komp_cam_functions', 'UpdateCamBonus', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   // TODO-QSP: gs 'komp_cam_functions', 'UpdateStats', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   // TODO-QSP: gs 'komp_cam_functions', 'views', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
@@ -577,6 +576,7 @@ function enterMFCStopCamming(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  ((s as any).camConst = (s as any).camConst ?? {})['MFC_N'] = 100000;
   const arg = s.locArg;
   switch (arg) {
     case 'MFC_init':

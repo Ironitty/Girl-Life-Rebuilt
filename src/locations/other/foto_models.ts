@@ -7,9 +7,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterModelChatter(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/locations/city/citycenter/photo/models${Math.floor(Math.random() * 2) + 1}.jpg`);
+  scene.img(`images/locations/city/citycenter/photo/models${(Math.floor(Math.random() * 2) + 1)}.jpg`);
   scene.text('You lean on one of the sinks and listen in on the other models and their chattering…');
-  ((s as any).model = (s as any).model ?? {})['chatter'] = Math.floor(Math.random() * 9) + 1;
+  ((s as any).model = (s as any).model ?? {})['chatter'] = (Math.floor(Math.random() * 9) + 1);
   if (((s as any).model ?? 0)?.['chatter'] === 1) {
     scene.text('"… does she do it? She\'s so amazing!"');
     scene.text('"Psh! Anastasia\'s overrated. She\'s only the most popular model because they keep giving her all the good jobs. If they gave me half the chance they give her, I\'d have the top spot."');

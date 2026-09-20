@@ -5,17 +5,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: $exp_ignored_stats[0] = 'magik'
-  // TODO-QSP: $exp_ignored_stats[1] = 'stren_plus'
-  // TODO-QSP: $exp_ignored_stats[2] = 'butt_tr'
-  // TODO-QSP: $exp_ignored_stats[3] = 'heels'
   scene.build();
 }
 
 function enterTrackExp(s: GameState, scene: SceneBuilder): void {
-  if ((Array.isArray((s as any).exp_ignored_stats) ? ((s as any).exp_ignored_stats as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0  &&  ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  ||  (Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) >= 0)) {
+  if ((Array.isArray((s as any).exp_ignored_stats) ? ((s as any).exp_ignored_stats as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0  &&  ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0  ||  (Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) >= 0)) {
     // TODO-QSP: exp_tracked_values[$ARGS[1]] += ARGS[2]
-    if ((Array.isArray((s as any).exp_tracked_names) ? ((s as any).exp_tracked_names as any[]).indexOf(((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
+    if ((Array.isArray((s as any).exp_tracked_names) ? ((s as any).exp_tracked_names as any[]).indexOf(Number((s as any).locArgs?.[1] ?? 0)) : -1) < 0) {
       // TODO-QSP: $exp_tracked_names[] = $ARGS[1]
     }
   }
@@ -58,6 +54,10 @@ function enterIsEmpty(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  // TODO-QSP: $exp_ignored_stats[0] = 'magik'
+  // TODO-QSP: $exp_ignored_stats[1] = 'stren_plus'
+  // TODO-QSP: $exp_ignored_stats[2] = 'butt_tr'
+  // TODO-QSP: $exp_ignored_stats[3] = 'heels'
   const arg = s.locArg;
   switch (arg) {
     case 'track_exp':

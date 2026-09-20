@@ -44,10 +44,10 @@ function enterDefGroup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_toc_page[$ARGS[2]] = ''
   // TODO-QSP: $help_toc_loc[$ARGS[2]] = 'help'
   // TODO-QSP: help_toc_is_group[$ARGS[2]] = 1
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: $help_toc_sections[] = $ARGS[2]
   } else {
-    if (((s as any).help_toc_children ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+    if (((s as any).help_toc_children ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
       // TODO-QSP: $help_toc_children[$ARGS[1]] = $ARGS[2]
     } else {
       // TODO-QSP: $help_toc_children[$ARGS[1]] += ' ' + $ARGS[2]
@@ -58,7 +58,7 @@ function enterDefGroup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefChild(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).help_toc_children ?? 0)[((s as any).locArgs?.[1] ?? 0)] === '') {
+  if (((s as any).help_toc_children ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] === '') {
     // TODO-QSP: $help_toc_children[$ARGS[1]]  = $ARGS[2]
   } else {
     // TODO-QSP: $help_toc_children[$ARGS[1]] += ' ' + $ARGS[2]
@@ -283,7 +283,7 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
       (s as any).rt_has_kids = ((((s as any).rt_kids ?? 0) !== '') ? (1) : (0));
       if (((s as any).rt_has_kids ?? 0)) {
         (s as any).rt_tri = ((((s as any).rt_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-        (s as any).rt_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\\u0027' + ((s as any).rt_key ?? 0) + '\\u0027 = 1 - help_toc_open[\\u0027' + ((s as any).rt_key ?? 0) + '\\u0027]; return s; }); window.__gameStore.getState().doGoto(\\u0027' + ((s as any).help_page_loc ?? 0) + '\\u0027, \\u0027' + ((s as any).help_page_key ?? 0) + '\\u0027); return false;">\' + $rt_tri + \'</a> ';
+        (s as any).rt_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_key ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_key ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $rt_tri + \'</a> ';
       } else {
         (s as any).rt_toggle = '&nbsp;&nbsp; ';
       }
@@ -293,10 +293,10 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
         } else {
           (s as any).rt_active = '';
         }
-        (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027' + ((s as any).rt_loc ?? 0) + '\\u0027, \\u0027' + ((s as any).rt_page ?? 0) + '\\u0027); return false;">\' + $rt_label + \'</a>';
+        (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027' + ((s as any).rt_loc ?? 0) + '/u0027, /u0027' + ((s as any).rt_page ?? 0) + '/u0027); return false;">\' + $rt_label + \'</a>';
       } else {
         if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_key ?? 0)]) {
-          (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\\u0027' + ((s as any).rt_key ?? 0) + '\\u0027 = 1 - help_toc_open[\\u0027' + ((s as any).rt_key ?? 0) + '\\u0027]; return s; }); window.__gameStore.getState().doGoto(\\u0027' + ((s as any).help_page_loc ?? 0) + '\\u0027, \\u0027' + ((s as any).help_page_key ?? 0) + '\\u0027); return false;">\' + $rt_label + \'</a>';
+          (s as any).rt_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_key ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_key ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $rt_label + \'</a>';
         } else {
           (s as any).rt_lnk = ((s as any).rt_label ?? 0);
         }
@@ -317,8 +317,8 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
           if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ck ?? 0)]) {
             (s as any).rt_cg_open = ((s as any).help_toc_open ?? 0)?.[String((s as any).rt_ck ?? 0)];
             (s as any).rt_cg_tri = ((((s as any).rt_cg_open ?? 0)) ? ('&#9660;') : ('&#9654;'));
-            (s as any).rt_cg_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\\u0027' + ((s as any).rt_ck ?? 0) + '\\u0027 = 1 - help_toc_open[\\u0027' + ((s as any).rt_ck ?? 0) + '\\u0027]; return s; }); window.__gameStore.getState().doGoto(\\u0027' + ((s as any).help_page_loc ?? 0) + '\\u0027, \\u0027' + ((s as any).help_page_key ?? 0) + '\\u0027); return false;">\' + $rt_cg_tri + \'</a> ';
-            (s as any).rt_cg_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})\\u0027' + ((s as any).rt_ck ?? 0) + '\\u0027 = 1 - help_toc_open[\\u0027' + ((s as any).rt_ck ?? 0) + '\\u0027]; return s; }); window.__gameStore.getState().doGoto(\\u0027' + ((s as any).help_page_loc ?? 0) + '\\u0027, \\u0027' + ((s as any).help_page_key ?? 0) + '\\u0027); return false;">\' + $help_toc_label[$rt_ck] + \'</a>';
+            (s as any).rt_cg_toggle = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_ck ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_ck ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $rt_cg_tri + \'</a> ';
+            (s as any).rt_cg_lnk = '<a href="#" onclick="window.__gameStore.setState((s) => { (s.help_toc_open ??= {})/u0027' + ((s as any).rt_ck ?? 0) + '/u0027 = 1 - help_toc_open[/u0027' + ((s as any).rt_ck ?? 0) + '/u0027]; return s; }); window.__gameStore.getState().doGoto(/u0027' + ((s as any).help_page_loc ?? 0) + '/u0027, /u0027' + ((s as any).help_page_key ?? 0) + '/u0027); return false;">\' + $help_toc_label[$rt_ck] + \'</a>';
             // TODO-QSP: $rt_html += '<div style="margin:3px 0 1px 0;padding-left:14px;font-style:italic;font-size:0.88em;opa...
             if (((s as any).rt_cg_open ?? 0)  &&  ((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)] !== '') {
               (s as any).rt_gc_rem = ((s as any).help_toc_children ?? 0)?.[String((s as any).rt_ck ?? 0)];
@@ -399,14 +399,14 @@ function enterGeneric(s: GameState, scene: SceneBuilder): void {
   (s as any).help_gen_cs = 'border:1px solid;border-radius:4px;padding:10px 14px;vertical-align:top;width:50%';
   (s as any).help_page_content = '<p style="font-size:0.9em;margin-bottom:12px">Select a topic below or use the Contents panel on the left.</p>';
   // TODO-QSP: $help_page_content += '<table width="100%" cellspacing="6" cellpadding="0"><tr>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027help\\u0027, \\u0027ui_overview\\u0027); return false;">User Interface</a><br>';
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027ui_overview/u0027); return false;">User Interface</a><br>';
   // TODO-QSP: $help_gen_c += '<small>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''ui_statbar''">Stat Bar</a><br>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''ui_menu''">Navigation Menu</a><br>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''ui_actions''">Action Buttons</a>'
   // TODO-QSP: $help_gen_c += '</small>'
   // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027help\\u0027, \\u0027mech_overview\\u0027); return false;">Game Mechanics</a><br>';
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027mech_overview/u0027); return false;">Game Mechanics</a><br>';
   // TODO-QSP: $help_gen_c += '<small>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''mech_time''">Time &amp; Schedule</a><br>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''mech_stats''">Stats &amp; Attributes</a><br>'
@@ -414,13 +414,13 @@ function enterGeneric(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_gen_c += '</small>'
   // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
   // TODO-QSP: $help_page_content += '</tr><tr>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027help\\u0027, \\u0027chars_overview\\u0027); return false;">Characters</a><br>';
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027chars_overview/u0027); return false;">Characters</a><br>';
   // TODO-QSP: $help_gen_c += '<small>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help_characters'', ''chars_pc''">Your Character</a><br>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''chars_overview''">Family &amp; School</a>'
   // TODO-QSP: $help_gen_c += '</small>'
   // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
-  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027help\\u0027, \\u0027locs_overview\\u0027); return false;">Locations</a><br>';
+  (s as any).help_gen_c = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027help/u0027, /u0027locs_overview/u0027); return false;">Locations</a><br>';
   // TODO-QSP: $help_gen_c += '<small>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''locs_home''">Home</a><br>'
   // TODO-QSP: $help_gen_c += '<a href="exec: gs ''help'', ''locs_school''">School</a><br>'

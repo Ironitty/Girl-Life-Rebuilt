@@ -5,14 +5,13 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).svidboy_home_arg = '';
   scene.build();
 }
 
 function enterKinosvid(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
-  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
     (s as any).svidboy_home = 'pav_cinema';
@@ -26,12 +25,12 @@ function enterKinosvid(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Watch the movie', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 90;
+    (st as any).minut = ((st as any).minut ?? 0) + 90;
     scene.img('images/characters/city/boyfriend/sex/event/kino1.jpg');
     // TODO-QSP: dynamic text: During the screening, <<$npcdesc>> looks around and, making sure that you are al...
-    scene.text(`During the screening, ${((s as any).npcdesc || '')} looks around and, making sure that you are alone in the theater, turns and starts to kiss you. His hand slips under your clothes, and you start to caress his chest.`);
-    qspCall(s, 'willpower', 'bj', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`During the screening, ${((st as any).npcdesc || '')} looks around and, making sure that you are alone in the theater, turns and starts to kiss you. His hand slips under your clothes, and you start to caress his chest.`);
+    qspCall(st, 'willpower', 'bj', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: '"Not here"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -40,13 +39,13 @@ function enterKinosvid(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: '"Not here"', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/kino0.jpg');
     scene.text('You remove his hand with the words, "Not here."');
     // TODO-QSP: dynamic text: When the movie ends, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`When the movie ends, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`When the movie ends, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home');
@@ -57,12 +56,12 @@ function enterKinosvid(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Unbutton his pants', handler: (st: GameState) => {
-    (s as any).picrand = 48;
-    (s as any).svidboysex = 1;
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
+    (st as any).picrand = 48;
+    (st as any).svidboysex = 1;
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
     scene.img('images/characters/city/boyfriend/sex/event/kino2.jpg');
     // TODO-QSP: dynamic text: You unbutton his pants and pull out his already erect cock, beginning to stroke ...
-    scene.text(`You unbutton his pants and pull out his already erect cock, beginning to stroke it in your hand. ${((s as any).npcdesc || '')} lays his hands on your shoulders and begins to press down gently, guiding your head to his member.`);
+    scene.text(`You unbutton his pants and pull out his already erect cock, beginning to stroke it in your hand. ${((st as any).npcdesc || '')} lays his hands on your shoulders and begins to press down gently, guiding your head to his member.`);
     scene.actions([
       { label: 'Take by mouth', goto: ['sex', 'minet'] },
     ]);
@@ -83,7 +82,7 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
-  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   scene.text('<center><b>Park</b></center>');
   scene.img('images/characters/city/boyfriend/sex/event/sex_park0.jpg');
@@ -93,14 +92,14 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Go for a walk', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
-      qspGoto(s, 'svidboy', 'parksvid2');
+      qspGoto(st, 'svidboy', 'parksvid2');
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
     scene.img('images/characters/city/boyfriend/sex/event/sex_park1.jpg');
     // TODO-QSP: dynamic text: When you come into the park, <<$npcdesc>> catches you in his arms and begins to ...
-    scene.text(`When you come into the park, ${((s as any).npcdesc || '')} catches you in his arms and begins to swing you. "Stop, stop, you will drop me," you laugh. ${((s as any).npcdesc || '')} put you on the ground.`);
-    qspCall(s, 'willpower', 'kiss', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`When you come into the park, ${((st as any).npcdesc || '')} catches you in his arms and begins to swing you. "Stop, stop, you will drop me," you laugh. ${((st as any).npcdesc || '')} put you on the ground.`);
+    qspCall(st, 'willpower', 'kiss', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Move on', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -109,13 +108,13 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Move on', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'kiss', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'kiss', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/sex_park0.jpg');
     scene.text('You take his hand and walk away.');
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -128,8 +127,8 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss him', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/sex_park2.jpg');
     scene.text('You turn to him and kiss him on the lips. He holds you, and his hands begin to wander through your body, one on the chest, the second squeezing your buttocks.');
-    qspCall(s, 'willpower', 'foreplay', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'foreplay', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -138,13 +137,13 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'foreplay', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'foreplay', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/sex_park0.jpg');
     scene.text('You take his hand and walk away.');
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -155,12 +154,12 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
     scene.img('images/characters/city/boyfriend/sex/event/sex_park3.jpg');
     // TODO-QSP: dynamic text: You kiss him. <<$npcdesc>> starts at your lips, then moves lower. Meanwhile, he ...
-    scene.text(`You kiss him. ${((s as any).npcdesc || '')} starts at your lips, then moves lower. Meanwhile, he bares your chest and begins to squeeze, while his other hand moves to your pussy.`);
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`You kiss him. ${((st as any).npcdesc || '')} starts at your lips, then moves lower. Meanwhile, he bares your chest and begins to squeeze, while his other hand moves to your pussy.`);
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -169,13 +168,13 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/sex_park0.jpg');
     scene.text('You remove his hands and cover your bare breasts.');
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -188,15 +187,15 @@ function enterParksvid(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/sex_park4.jpg');
     // TODO-QSP: dynamic text: You enjoy the petting, as one hand fingers your pussy, when <<$npcdesc>> suddenl...
-    scene.text(`You enjoy the petting, as one hand fingers your pussy, when ${((s as any).npcdesc || '')} suddenly bends you over, exposing your ass. You glance at his tongue as it slides between your buttocks and your fingered pussy.`);
-    // TODO-QSP: dynamic text: It feels quite sensitive, and you enjoy <<$npcdesc>>'s actions very much.
-    scene.text(`It feels quite sensitive, and you enjoy ${((s as any).npcdesc || '')}'s actions very much.`);
+    scene.text(`You enjoy the petting, as one hand fingers your pussy, when ${((st as any).npcdesc || '')} suddenly bends you over, exposing your ass. You glance at his tongue as it slides between your buttocks and your fingered pussy.`);
+    // TODO-QSP: dynamic text: It feels quite sensitive, and you enjoy <<$npcdesc>>''s actions very much.
+    scene.text(`It feels quite sensitive, and you enjoy ${((st as any).npcdesc || '')}'s actions very much.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).picrand = 49;
-    (s as any).svidboysex = 1;
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-    qspGoto(s, 'sex', 'kuni');
+    (st as any).picrand = 49;
+    (st as any).svidboysex = 1;
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
+    qspGoto(st, 'sex', 'kuni');
   } },
     ]);
   } },
@@ -234,13 +233,13 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/sex_park6.jpg');
     scene.text('"Well, no, I will not do that, " you reply. Buttoning his pants, you take his hand and move on.');
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -251,12 +250,12 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
-    (s as any).svidboy_home = 'svidboy';
-    (s as any).svidboy_home_arg = 'parksvid21';
-    (s as any).picrand = 50;
-    (s as any).svidboysex = 1;
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-    qspGoto(s, 'sex', 'minet');
+    (st as any).svidboy_home = 'svidboy';
+    (st as any).svidboy_home_arg = 'parksvid21';
+    (st as any).picrand = 50;
+    (st as any).svidboysex = 1;
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
+    qspGoto(st, 'sex', 'minet');
   } },
     ]);
   } else {
@@ -272,13 +271,13 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Discard the idea and move on.', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'exhib', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'exhib', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/sex_park6.jpg');
     scene.text('You drop the idea and move on.');
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -294,12 +293,12 @@ function enterParksvid2(s: GameState, scene: SceneBuilder): void {
     scene.text('"And I do not have a problem with that," he says, coming up to you and unfastening his fly.');
     scene.actions([
       { label: 'Blowjob', handler: (st: GameState) => {
-    (s as any).svidboy_home = 'svidboy';
-    (s as any).svidboy_home_arg = 'parksvid22';
-    (s as any).picrand = 50;
-    (s as any).svidboysex = 1;
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-    qspGoto(s, 'sex', 'minet');
+    (st as any).svidboy_home = 'svidboy';
+    (st as any).svidboy_home_arg = 'parksvid22';
+    (st as any).picrand = 50;
+    (st as any).svidboysex = 1;
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
+    qspGoto(st, 'sex', 'minet');
   } },
     ]);
   } },
@@ -340,13 +339,13 @@ function enterParksvid21(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/sex_park6.jpg');
     scene.text('"Well, no, I\'m not going to suck him, enough with him and watching," you reply, dressing then taking his hand and moving on.');
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -358,22 +357,22 @@ function enterParksvid21(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Agree', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'African guy', Math.floor(Math.random() * 15) + 21);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
+    qspCall(st, 'npcgeneratec', '', 0, 'African guy', (Math.floor(Math.random() * 15) + 21));
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
     scene.img('images/characters/city/boyfriend/sex/event/sex_park8.jpg');
     scene.text('You beckon the African over. He carefully approaches, cautiously glancing at your guy.');
     // TODO-QSP: dynamic text: "Do not worry, took out personal belongings, now my slut suck you down to the bo...
-    scene.text(`"Do not worry, took out personal belongings, now my slut suck you down to the bottom" grinned ${((s as any).npcdesc || '')}`);
+    scene.text(`"Do not worry, took out personal belongings, now my slut suck you down to the bottom" grinned ${((st as any).npcdesc || '')}`);
     // TODO-QSP: dynamic text: You go down on your knees so that <<$npcdesc>> can see the whole process and, pu...
-    scene.text(`You go down on your knees so that ${((s as any).npcdesc || '')} can see the whole process and, pulling off the man's briefs, start sucking. You do not have to work long. A minute later, he comes in your mouth. Happy, the man immediately runs away.`);
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy1 ?? 0));
-    qspCall(s, 'arousal', 'bj', 5, 'unknown', 'sub');
+    scene.text(`You go down on your knees so that ${((st as any).npcdesc || '')} can see the whole process and, pulling off the man's briefs, start sucking. You do not have to work long. A minute later, he comes in your mouth. Happy, the man immediately runs away.`);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy1 ?? 0));
+    qspCall(st, 'arousal', 'bj', 5, 'unknown', 'sub');
     // TODO-QSP: dynamic text: "Hey, if a slut does not take money, you should at least say thank you," <<$npcd...
-    scene.text(`"Hey, if a slut does not take money, you should at least say thank you," ${((s as any).npcdesc || '')} yells after him.`);
+    scene.text(`"Hey, if a slut does not take money, you should at least say thank you," ${((st as any).npcdesc || '')} yells after him.`);
     scene.text('Not paying attention to his words, because you really behaved like a whore, you get dressed and move on.');
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -405,14 +404,14 @@ function enterParksvid22(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Reassure him', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'bj', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/sex_park6.jpg');
     // TODO-QSP: dynamic text: "Of course I did not know anything, do you think that I could have sex with you ...
-    scene.text(`"Of course I did not know anything, do you think that I could have sex with you in front of this…" you make a pained face and dress quickly, starting to walk away after a few seconds. ${((s as any).npcdesc || '')} catches up with you. "I'm sorry, honey, I did not mean to offend you." You take him by the hand, saying that you forgive him, and move on.`);
+    scene.text(`"Of course I did not know anything, do you think that I could have sex with you in front of this…" you make a pained face and dress quickly, starting to walk away after a few seconds. ${((st as any).npcdesc || '')} catches up with you. "I'm sorry, honey, I did not mean to offend you." You take him by the hand, saying that you forgive him, and move on.`);
     // TODO-QSP: dynamic text: Soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`Soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`Soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -424,18 +423,18 @@ function enterParksvid22(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Annoy him', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'African guy', Math.floor(Math.random() * 15) + 21);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0), 'a');
-    ((s as any).npc_rel = (s as any).npc_rel ?? {})[String((s as any).npcID ?? 0)] = 0;
+    qspCall(st, 'npcgeneratec', '', 0, 'African guy', (Math.floor(Math.random() * 15) + 21));
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0), 'a');
+    ((st as any).npc_rel = (st as any).npc_rel ?? {})[String((st as any).npcID ?? 0)] = 0;
     scene.img('images/characters/city/boyfriend/sex/event/sex_park8.jpg');
     scene.text('"And what if I do want to suck him off?" you snap back at him.');
     // TODO-QSP: dynamic text: "Oh hey, let me call him over then. Hey man, come here, free whore sucks just fo...
-    scene.text(`"Oh hey, let me call him over then. Hey man, come here, free whore sucks just for you," ${((s as any).npcdesc || '')} yells at the distant man.`);
+    scene.text(`"Oh hey, let me call him over then. Hey man, come here, free whore sucks just for you," ${((st as any).npcdesc || '')} yells at the distant man.`);
     scene.text('"Come on, do not be afraid" you shout, and the African guy timidly walks up to you.');
     // TODO-QSP: dynamic text: You go down on your knees so that <<$npcdesc>> can see the whole process, and pu...
-    scene.text(`You go down on your knees so that ${((s as any).npcdesc || '')} can see the whole process, and pulling off the man's briefs, start sucking. You do not have to work long. A minute later, he comes in your mouth. But you're not going to let this end so quickly, especially with ${((s as any).npcdesc || '')} sitting next to you crimson with anger. You take the guy's cock and continue to suck it until it finally falls from your mouth, then demonstratively turn to your now ex-boyfriend and tinker with the sperm in your mouth a little before swallowing it. You turn back to the African and without delay take his cock in your hand and begin to fondle his balls, then taking them into your mouth you begin to suck them, releasing them then taking them in again. As the African's member rises again, you switch your attention to it. Slowly and methodically you lick every inch of his phallus and then begin to suck the head. Smacking loudly, you then try to get the full length inside your throat, and as his member is very modestly sized, you manage it. At this, ${((s as any).npcdesc || '')} can not resist shouting something about the fact that you a whore and he hates you. You quietly complete your blowjob and, swallowing the man's cum, get up and start walking away.`);
-    qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy1 ?? 0));
-    qspCall(s, 'arousal', 'bj', 5, 'unknown', 'dom');
+    scene.text(`You go down on your knees so that ${((st as any).npcdesc || '')} can see the whole process, and pulling off the man's briefs, start sucking. You do not have to work long. A minute later, he comes in your mouth. But you're not going to let this end so quickly, especially with ${((st as any).npcdesc || '')} sitting next to you crimson with anger. You take the guy's cock and continue to suck it until it finally falls from your mouth, then demonstratively turn to your now ex-boyfriend and tinker with the sperm in your mouth a little before swallowing it. You turn back to the African and without delay take his cock in your hand and begin to fondle his balls, then taking them into your mouth you begin to suck them, releasing them then taking them in again. As the African's member rises again, you switch your attention to it. Slowly and methodically you lick every inch of his phallus and then begin to suck the head. Smacking loudly, you then try to get the full length inside your throat, and as his member is very modestly sized, you manage it. At this, ${((st as any).npcdesc || '')} can not resist shouting something about the fact that you a whore and he hates you. You quietly complete your blowjob and, swallowing the man's cum, get up and start walking away.`);
+    qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy1 ?? 0));
+    qspCall(st, 'arousal', 'bj', 5, 'unknown', 'dom');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -449,23 +448,23 @@ function enterParksvid22(s: GameState, scene: SceneBuilder): void {
 function enterBillsvid(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
-  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 1));
   (s as any).svidboy_home = 'city_mall';
   qspCall(s, 'stat', '');
-  (s as any).picrand = Math.floor(Math.random() * 2) + 51;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 51);
   scene.img(`images/characters/city/boyfriend/sex/event/bil${((s as any).picrand || '')}.jpg`);
   // TODO-QSP: dynamic text: <<$npcdesc>> pays for a table at a booth, and you go to play.
   scene.text(`${((s as any).npcdesc || '')} pays for a table at a booth, and you go to play.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    qspCall(s, 'stat', '');
-    scene.img(`images/characters/city/boyfriend/sex/event/bil1${((s as any).picrand || '')}.jpg`);
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    qspCall(st, 'stat', '');
+    scene.img(`images/characters/city/boyfriend/sex/event/bil1${((st as any).picrand || '')}.jpg`);
     // TODO-QSP: dynamic text: During the game, <<$npcdesc>> moves behind you, his hands gliding over your hips...
-    scene.text(`During the game, ${((s as any).npcdesc || '')} moves behind you, his hands gliding over your hips and lips drawn to your neck.`);
-    qspCall(s, 'willpower', 'foreplay', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`During the game, ${((st as any).npcdesc || '')} moves behind you, his hands gliding over your hips and lips drawn to your neck.`);
+    qspCall(st, 'willpower', 'foreplay', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Not here', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -474,13 +473,13 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Not here', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'foreplay', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'foreplay', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     // TODO-QSP: $ImageNeededPlacholder
     scene.text('You remove his hands with the words, "Not here."');
     // TODO-QSP: dynamic text: When your time is up, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`When your time is up, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`When your time is up, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -491,10 +490,10 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let him continue', handler: (st: GameState) => {
-    scene.img(`images/characters/city/boyfriend/sex/event/bil2${((s as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/boyfriend/sex/event/bil2${((st as any).picrand || '')}.jpg`);
     scene.text('You lay down the cue on the table and relax, allowing him to continue to caress your body, kissing it down lower and lower.');
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -503,13 +502,13 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     // TODO-QSP: $ImageNeededPlacholder
     scene.text('You remove his hands with the words, "Not here."');
     // TODO-QSP: dynamic text: When your time is up, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`When your time is up, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`When your time is up, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -520,9 +519,9 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let him continue', handler: (st: GameState) => {
-    (s as any).svidboysex = 1;
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-    qspGoto(s, 'sex', 'kuni');
+    (st as any).svidboysex = 1;
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
+    qspGoto(st, 'sex', 'kuni');
   } },
     ]);
   } },
@@ -535,7 +534,7 @@ function enterBillsvid(s: GameState, scene: SceneBuilder): void {
 function enterKafesvid(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'mood', 'raise', 'tiny');
-  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 1);
+  qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 1));
   qspCall(s, 'stat', '');
   if (((s as any).home ?? 0)?.['town'] === 'pavlovsk') {
     (s as any).svidboy_home = 'pav_commercial';
@@ -548,12 +547,12 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the order', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
     scene.img('images/characters/city/boyfriend/sex/event/kafe1.jpg');
     // TODO-QSP: dynamic text: Once you have made your order, <<$npcdesc>> begins to pester you, kissing you an...
-    scene.text(`Once you have made your order, ${((s as any).npcdesc || '')} begins to pester you, kissing you and sliding his hands over your body, one moment caressing your chest, then another squeezing your buttocks.`);
-    qspCall(s, 'willpower', 'foreplay', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`Once you have made your order, ${((st as any).npcdesc || '')} begins to pester you, kissing you and sliding his hands over your body, one moment caressing your chest, then another squeezing your buttocks.`);
+    qspCall(st, 'willpower', 'foreplay', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Not here', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -562,13 +561,13 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Not here', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'foreplay', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'foreplay', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/kafe0.jpg');
     scene.text('You remove his hands with the words, "Not here."');
     // TODO-QSP: dynamic text: After some time, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`After some time, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`After some time, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -581,18 +580,18 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
       { label: 'Let him continue', handler: (st: GameState) => {
     scene.img('images/characters/city/boyfriend/sex/event/kafe2.jpg');
     // TODO-QSP: dynamic text: Soon, you are almost without clothes, and <<$npcdesc>> is kissing your underbell...
-    scene.text(`Soon, you are almost without clothes, and ${((s as any).npcdesc || '')} is kissing your underbelly, dropping to the pubis.`);
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`Soon, you are almost without clothes, and ${((st as any).npcdesc || '')} is kissing your underbelly, dropping to the pubis.`);
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Stop', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'cuni', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'cuni', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/city/boyfriend/sex/event/kafe0.jpg');
     scene.text('At the last second, you come to your senses and realize that you are in a cafe. "No, we have done enough in this cafe, patience until we get home," you insist, pushing him away.');
     // TODO-QSP: dynamic text: But soon, <<$npcdesc>> says that he has to run and leaves.
-    scene.text(`But soon, ${((s as any).npcdesc || '')} says that he has to run and leaves.`);
+    scene.text(`But soon, ${((st as any).npcdesc || '')} says that he has to run and leaves.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'svidboy_home', 'svidboy_home_arg');
@@ -609,10 +608,10 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Let him continue', handler: (st: GameState) => {
-    (s as any).svidboysex = 1;
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), Math.floor(Math.random() * 2) + 2);
-    (s as any).picrand = 53;
-    qspGoto(s, 'sex', 'kuni');
+    (st as any).svidboysex = 1;
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
+    (st as any).picrand = 53;
+    qspGoto(st, 'sex', 'kuni');
   } },
     ]);
   } },
@@ -623,6 +622,7 @@ function enterKafesvid(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).svidboy_home_arg = '';
   const arg = s.locArg;
   switch (arg) {
     case 'kinosvid':

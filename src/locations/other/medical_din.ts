@@ -16,9 +16,9 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get a birth control shot (0:15)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2750) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'medical_din', 'birth_control_shot');
+      qspGoto(st, 'medical_din', 'birth_control_shot');
     }
   } },
       ]);
@@ -27,9 +27,9 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Get a birth control implant (0:35)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'medical_din', 'birth_control_implant');
+      qspGoto(st, 'medical_din', 'birth_control_implant');
     }
   } },
       ]);
@@ -38,9 +38,9 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Renew your birth control implant (0:35)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'medical_din', 'birth_control_renew');
+      qspGoto(st, 'medical_din', 'birth_control_renew');
     }
   } },
         ]);
@@ -51,9 +51,9 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Remove your birth control implant (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspGoto(s, 'medical_din', 'birth_control_remove');
+      qspGoto(st, 'medical_din', 'birth_control_remove');
     }
   } },
     ]);
@@ -184,7 +184,7 @@ function enterAbortion(s: GameState, scene: SceneBuilder): void {
   (s as any).abortionbirthdate = ((s as any).daystart ?? 0);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRemovePreg(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).knowpregloss = 1;
-  (s as any).abortrand = Math.floor(Math.random() * 11) + 0;
+  (s as any).abortrand = (Math.floor(Math.random() * 11) + 0);
   if (((s as any).age ?? 0) > 18) {
     if (((s as any).abortrand ?? 0) < 10) {
       (s as any).sterilewb = ((s as any).sterilewb ?? 0) + (1);
@@ -219,7 +219,7 @@ function enterRemovePreg(s: GameState, scene: SceneBuilder): void {
   (s as any).pregChem = 0;
   ((s as any).vomit = (s as any).vomit ?? {})['morning_sick'] = 0;
   (s as any).cycle = 4;
-  (s as any).RecovH = Math.floor(Math.random() * 201) + 375;
+  (s as any).RecovH = (Math.floor(Math.random() * 201) + 375);
   (s as any).nextBaby = 0;
   // TODO-QSP: :poliabortloop
   if (((s as any).yearkid ?? 0)[((s as any).nextBaby ?? 0)-1] === 0) {
@@ -233,7 +233,7 @@ function enterRemovePreg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBirthControlShot2(s: GameState, scene: SceneBuilder): void {
-  (s as any).tabletkishot = Math.floor(Math.random() * 8) + 84;
+  (s as any).tabletkishot = (Math.floor(Math.random() * 8) + 84);
   (s as any).shotdays = 93;
   (s as any).tabletkicheck = 2;
   (s as any).pillcon = 40000;
@@ -242,9 +242,9 @@ function enterBirthControlShot2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHealthTreatment(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'drugs', 'painkiller', ((((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
-  qspCall(s, 'drugs', 'painkiller', ((((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
-  qspCall(s, 'drugs', 'painkiller', ((((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
+  qspCall(s, 'drugs', 'painkiller', ((Number((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
+  qspCall(s, 'drugs', 'painkiller', ((Number((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
+  qspCall(s, 'drugs', 'painkiller', ((Number((s as any).locArgs?.[1] ?? 0) === 'spell') ? ('spell') : ('gift')));
   (s as any).pcs_health = Math.min(((s as any).healthmax ?? 0), Math.max(((s as any).pcs_health ?? 0) + ((s as any).healthmax ?? 0) / 4, ((s as any).healthmax ?? 0) / 2));
   if (((s as any).pillcon ?? 0) > 0  &&  (!(Math.floor(Math.random() * 5) + 0))) {
     (s as any).pillcon = ((s as any).pillcon ?? 0) - (2500);
@@ -290,18 +290,18 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Swallow', handler: (st: GameState) => {
     // TODO-QSP: delact 'Swallow' & delact 'Reconsider'
-    scene.img('images/pc/items/accessories/birthcontrol/pill_take\' + iif($locclass = \'kitr\' or $locclass = \'kitchen\', 2, 1) + \'.jpg');
-    if (((s as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((s as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
-      ((s as any).LudaQW = (s as any).LudaQW ?? {})['luda_ma_pill'] = 1;
+    scene.img('images/pc/items/accessories/birthcontrol/pill_take' + ((((st as any).locclass ?? 0) === 'kitr'  ||  ((st as any).locclass ?? 0) === 'kitchen') ? (2) : (1)) + '.jpg');
+    if (((st as any).LudaQW ?? 0)?.['free_condoms'] === 1  &&  ((st as any).LudaQW ?? 0)?.['luda_ma_pill'] === 0) {
+      ((st as any).LudaQW = (st as any).LudaQW ?? {})['luda_ma_pill'] = 1;
       scene.text('<i>I suppose this is why Aunt Luda gave me this,</i> you think as you take out the morning after pill.');
     }
-    if (((s as any).locclass ?? 0) === 'kitr'  ||  ((s as any).locclass ?? 0) === 'kitchen') {
+    if (((st as any).locclass ?? 0) === 'kitr'  ||  ((st as any).locclass ?? 0) === 'kitchen') {
       scene.text('You fill up a small glass of water and pop the pill out of the packaging. Putting it in your mouth, you gulp and wash it down with sips of water from the glass, feeling the lump of medication slide down your throat.');
     } else {
-      if (((s as any).locclass ?? 0) === 'bathroom') {
+      if (((st as any).locclass ?? 0) === 'bathroom') {
         scene.text('Removing the pill from the packaging, you pop it in your mouth and gulp it down with a handful of water from the sink, feeling the lump of medication slide down your throat.');
       } else {
-        if (((s as any).mc_inventory ?? 0)?.['refill_bottle'] > 1) {
+        if (((st as any).mc_inventory ?? 0)?.['refill_bottle'] > 1) {
           scene.text('Removing the pill from the packaging, you pop it in your mouth and gulp it down with a sip from your water bottle, feeling the lump of medication slide down your throat.');
         } else {
           scene.text('Removing the pill from the packaging, you pop it in your mouth and gulp it down dry, wincing in discomfort as you feel it stick slightly on the way down.');
@@ -309,8 +309,8 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('<i>Well, that\'s that,</i> you think to yourself. <i>Hopefully I won\'t get pregnant now. I need to be more careful in the future.</i>');
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMorningAfterPillFunction(s, scene); (s as any).locArgs = __savedLocArgs; }
-    qspCall(s, 'stat', '');
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterMorningAfterPillFunction(s, scene); (st as any).locArgs = __savedLocArgs; }
+    qspCall(st, 'stat', '');
   } },
         { label: 'Reconsider', handler: (st: GameState) => {
     // TODO-QSP: delact 'Swallow'
@@ -333,14 +333,14 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
 
 function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kid ?? 0) > 0) {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 361) + 300);
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 361) + 300));
   } else {
-    (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 361) + 120);
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 361) + 120));
   }
   scene.img('images/locations/shared/clinic/birthing.jpg');
   scene.text('You lay on the bed and your feet are put in stirrups. Your contractions get closer and closer, and after some time and a lot of swearing, you finally give birth.');
   // TODO-QSP: :multikidloop
-  (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 61) + 30);
+  (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 61) + 30));
   (s as any).sterilewb = ((s as any).sterilewb ?? 0) + (1);
   (s as any).nextBaby = qspUntranslated(s, "arrpos('kidname', 'unborn')", { location: "medical_din" });
   (s as any).kid = ((s as any).kid ?? 0) + (1);
@@ -366,12 +366,12 @@ function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The doctors clean up <<$kidname[nextBaby]>>.
   scene.text(`The doctors clean up ${((s as any).kidname ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? ''}.`);
   if (((s as any).BabyEmbryo ?? 0) > 0) {
-    // TODO-QSP: dynamic text: You don't have much time to look at your <<$polreb[nextBaby]>> because you're ha...
+    // TODO-QSP: dynamic text: You don''t have much time to look at your <<$polreb[nextBaby]>> because you''re ...
     scene.text(`You don't have much time to look at your ${((s as any).polreb ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? ''} because you're having an another contraction. Your next baby is coming!`);
     // TODO-QSP: jump 'multikidloop'
   }
   (s as any).preg = 0;
-  (s as any).RecovH = Math.floor(Math.random() * 701) + 1175;
+  (s as any).RecovH = (Math.floor(Math.random() * 701) + 1175);
   (s as any).pregbirthdate = ((s as any).daystart ?? 0);
   (s as any).thinkpreg = 0;
   (s as any).knowpreg = 0;

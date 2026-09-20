@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Laugh', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     // TODO-QSP: xgt 'kafeM', 'a'
   } },
     { label: 'Smile', handler: (st: GameState) => {
@@ -87,17 +87,17 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: 'Refuse', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-    qspGoto(s, 'kafeM', 'end');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
+    qspGoto(st, 'kafeM', 'end');
   } },
     ]);
   }
   // TODO-QSP: end
   scene.actions([
     { label: 'Dance', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
   }, goto: ['kafeM', 'dance'] },
   ]);
   scene.build();
@@ -113,7 +113,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc || '')} is very reserved in his dance. He holds you a bit awkwardly and apologizes.`);
     scene.actions([
       { label: 'Finish the dance', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     // TODO-QSP: xgt 'kafeM', 'end'
   } },
     ]);
@@ -123,7 +123,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).npcdesc || '')} leads you confidently in the dance.`);
       scene.actions([
         { label: 'Finish the dance', handler: (st: GameState) => {
-    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), Math.floor(Math.random() * 2) + 0);
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 0));
     // TODO-QSP: xgt 'kafeM', 'end'
   } },
       ]);
@@ -141,10 +141,10 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Finish the dance', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
-    qspGoto(s, 'kafeM', 'end');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
+    qspGoto(st, 'kafeM', 'end');
   } },
         ]);
       }

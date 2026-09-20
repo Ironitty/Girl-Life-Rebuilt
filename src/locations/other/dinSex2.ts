@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sexstart ?? 0) <= 0) {
     (s as any).sexstart = 1;
-    (s as any).sexvar = Math.floor(Math.random() * 4) + 2;
+    (s as any).sexvar = (Math.floor(Math.random() * 4) + 2);
   }
   (s as any).sh_ind = ((s as any).sexvar ?? 0);
   if (((s as any).sh_ind ?? 0) === 6) {
@@ -42,7 +42,7 @@ function enterStaminaNpc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   (s as any).frost = 0;
@@ -85,7 +85,7 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_mens = ((((s as any).cycle ?? 0) <= 0) ? (' and menstruation blood leaks from your vagina') : (''));
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'medium');
-    // TODO-QSP: dynamic text: You bite your <<$pc_desc['lips']>> lips in pain while tears start to flow from y...
+    // TODO-QSP: dynamic text: You bite your <<$pc_desc[''lips'']>> lips in pain while tears start to flow from...
     scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips in pain while tears start to flow from your eyes when ${((s as any).boydesc || '')} penetrates you, breaking your hymen. You moan while crying and ${((s as any).xyr || '')} rubber ${((s as any).dick || '')} centimeter dick fucks your bloody pussy.`);
     // TODO-QSP: gs 'arousal', 'vaginal', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4], $ARGS[5], $ARGS[6], $ARGS[7], $ARGS[...
   }
@@ -95,9 +95,9 @@ function enterDStraponVag(s: GameState, scene: SceneBuilder): void {
 
 function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
+  (s as any).dick = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
   (s as any).dick_girth = 'well proportioned';
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
@@ -127,7 +127,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
       scene.text(`You flinch, from feeling your pussy being stretched, with a thrust from a ${((s as any).dick || '')}cm dildo. Between your legs feels a little nice, when you fuck yourself with the dildo. Gradually, a warm and throbbing feeling grows in your lower abdomen, then the feeling subsides and feels nice until the end of${((s as any).temp_mens || '')}.`);
     }
     if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) >= -3  &&  (((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) < 2) {
-      // TODO-QSP: dynamic text: You're startled by a pleasant sensation, when your pussy ravishly starts taking ...
+      // TODO-QSP: dynamic text: You''re startled by a pleasant sensation, when your pussy ravishly starts taking...
       scene.text(`You're startled by a pleasant sensation, when your pussy ravishly starts taking the dildo. Between your legs becomes very warm, and you feel a pleasant sensation, when a strong ${((s as any).dick || '')} cm dildo moves back and forth in your wet pussy${((s as any).temp_mens || '')}. Gradually, a warm and throbbing feeling grows in your lower abdomen, then the feeling descends on you and your entire body is covered in hot waves of orgasm. You start giving out involuntarily shouts of pleasure while ravishing the dildo.`);
     }
     if ((((s as any).arousalVars ?? 0)?.['girth_diff'] + ((s as any).arousalVars ?? 0)?.['length_diff']) <  -3) {
@@ -149,7 +149,7 @@ function enterDVagSexBottle(s: GameState, scene: SceneBuilder): void {
 
 function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   // TODO-QSP: dynamic text: <<$boydesc>> tucks a finger into your anus, then a second one.
@@ -199,9 +199,9 @@ function enterDStraponAnal(s: GameState, scene: SceneBuilder): void {
 
 function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
-  (s as any).dick = ((((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
+  (s as any).dick = ((Number((s as any).locArgs?.[2] ?? 0) > 0) ? (((s as any).locArgs?.[2] ?? 0)) : (20));
   (s as any).dick_girth = 'well proportioned';
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-1);
   }
   if (((s as any).analPlugIn ?? 0) === 1) {
@@ -251,7 +251,7 @@ function enterDAnalsexBottle(s: GameState, scene: SceneBuilder): void {
 function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
   (s as any).frost = 0;
   (s as any).totPain = 0;
-  if (((s as any).locArgs?.[1] ?? 0) / 2 === 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) / 2 === 0) {
     ((s as any).ARGS = (s as any).ARGS ?? {})[1] = (-2);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
@@ -292,7 +292,7 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'lower', 'medium');
     (s as any).totPain = ((s as any).totPain ?? 0) + (4);
-    // TODO-QSP: dynamic text: You bite your <<$pc_desc['lips']>> lips in pain and tears start to flow from you...
+    // TODO-QSP: dynamic text: You bite your <<$pc_desc[''lips'']>> lips in pain and tears start to flow from y...
     scene.text(`You bite your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips in pain and tears start to flow from your eyes when ${((s as any).boydesc1 || '')} penetrates you, breaking your hymen.`);
   }
   (s as any).grange = 0;
@@ -326,7 +326,7 @@ function enterDoublepenetration(s: GameState, scene: SceneBuilder): void {
     scene.text(`Feelings merge together when you move inside two members in contact with each other through a thin opening sharing your vagina filled ${((s as any).dick1 || '')} centimeter and a member of your ${((s as any).anustipe || '')} anus filled ${((s as any).dick2 || '')} centimeter member. Your abdomen burns as if pleasant sunlight was spreading heat throughout your body.`);
     (s as any).bonusMana = ((s as any).pcs_mood ?? 0);
     (s as any).DPplus = (((s as any).vaginalOrgasm ?? 0) * 10) + ((s as any).pcs_horny ?? 0) + ((s as any).bonusMana ?? 0);
-    (s as any).DPminus = Math.floor(Math.random() * 101) + 250;
+    (s as any).DPminus = (Math.floor(Math.random() * 101) + 250);
     if (((s as any).DPplus ?? 0) > ((s as any).DPminus ?? 0)) {
       (s as any).vaginalOrgasm = ((s as any).vaginalOrgasm ?? 0) + (1);
       (s as any).DPorgasm = ((s as any).DPorgasm ?? 0) + (1);

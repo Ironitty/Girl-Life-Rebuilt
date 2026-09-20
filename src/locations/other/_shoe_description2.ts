@@ -3,31 +3,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).ShoQuality ?? 0) <= 1) {
-    (s as any).result = 'This is a crappy cheap ';
-  } else {
-    if (((s as any).ShoQuality ?? 0) === 2) {
-      (s as any).result = 'This is a low quality ';
-    } else {
-      if (((s as any).ShoQuality ?? 0) === 3) {
-        (s as any).result = 'This is an average quality ';
-      } else {
-        if (((s as any).ShoQuality ?? 0) === 4) {
-          (s as any).result = 'This is a reasonable quality ';
-        } else {
-          if (((s as any).ShoQuality ?? 0) === 5) {
-            (s as any).result = 'This is a high quality ';
-          } else {
-            if (((s as any).ShoQuality ?? 0) === 6) {
-              (s as any).result = 'This is a very well made ';
-            } else {
-              (s as any).result = 'This is a beautifully made ';
-            }
-          }
-        }
-      }
-    }
-  }
   scene.build();
 }
 
@@ -104,6 +79,31 @@ function enterDanilovich(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).ShoQuality ?? 0) <= 1) {
+    (s as any).result = 'This is a crappy cheap ';
+  } else {
+    if (((s as any).ShoQuality ?? 0) === 2) {
+      (s as any).result = 'This is a low quality ';
+    } else {
+      if (((s as any).ShoQuality ?? 0) === 3) {
+        (s as any).result = 'This is an average quality ';
+      } else {
+        if (((s as any).ShoQuality ?? 0) === 4) {
+          (s as any).result = 'This is a reasonable quality ';
+        } else {
+          if (((s as any).ShoQuality ?? 0) === 5) {
+            (s as any).result = 'This is a high quality ';
+          } else {
+            if (((s as any).ShoQuality ?? 0) === 6) {
+              (s as any).result = 'This is a very well made ';
+            } else {
+              (s as any).result = 'This is a beautifully made ';
+            }
+          }
+        }
+      }
+    }
+  }
   const arg = s.locArg;
   switch (arg) {
     case 'danilovich':

@@ -24,8 +24,8 @@ function enter8floorAnalGangbang(s: GameState, scene: SceneBuilder): void {
     scene.text('She tenses up and hisses in pain before she relaxes and starts moaning, really getting into it.');
     scene.text('Before she can get off, he pulls out and slides his dick into the third girl\'s ass. She starts moaning loudly at once and begs him to fuck her harder, which Haruna is only to happy to do.');
     scene.text('He quickly starts hammering her ass hard and fast as you see the girl next to you look even more nervous as Haruna grunts and fills the third girl\'s ass with his cum.');
-    qspCall(s, 'arousal', 'voyeur_sex', 10, 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 10, 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait your turn', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set2/5wg1bm3.jpg');
@@ -38,23 +38,23 @@ function enter8floorAnalGangbang(s: GameState, scene: SceneBuilder): void {
     scene.text('"OW! Ow! It hurts! He\'s too big!" She says, but her friends all give her encouragement, telling her that it will feel better in time.');
     scene.text('With their encouragement, she stops complaining and just lets him fuck her ass, but you can tell she\'s not enjoying it.');
     scene.text('After a few minutes, he pulls out of Gagolina\'s ass and she sighs in relief as he moves over behind you. You feel the tip of his dick sliding between your cheeks and pressing against your asshole.');
-    qspCall(s, 'arousal', 'voyeur_sex', 10, 'group');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur_sex', 10, 'group');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Get buttfucked', handler: (st: GameState) => {
-    qspCall(s, 'boyStat', 'A245');
+    qspCall(st, 'boyStat', 'A245');
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set2/5wg1bm4.jpg');
     // TODO-QSP: dynamic text: You feel the pressure build up until it suddenly pops into your ass and you gasp...
-    scene.text(`You feel the pressure build up until it suddenly pops into your ass and you gasp as Haruna's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick starts sliding up your ass.`);
+    scene.text(`You feel the pressure build up until it suddenly pops into your ass and you gasp as Haruna's ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick starts sliding up your ass.`);
     scene.text('He\'s fairly slow at first, but he pushes your head down until your face is pressed against the seat. Your new position allows him to easily start fucking you balls deep.');
     scene.text('You grunt when he suddenly thrusts deep and feel his cock twitching inside you.');
     scene.text('When he finishes, he steps back and you feel his dick slide out of you, your ass suddenly feeling very empty as his cum leaks out of you.');
     scene.text('He laughs and slaps your ass before he starts cleaning his dick and getting dressed.');
     scene.text('You and the girls all start doing the same.');
-    qspCall(s, 'arousal', 'anal', 5, 'group', 'sub', 'lube');
-    qspCall(s, 'cum_call', 'anus', 'A245', 1);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 5, 'group', 'sub', 'lube');
+    qspCall(st, 'cum_call', 'anus', 'A245', 1);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Just get dressed and leave', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/dorm/misc/2wg_lovebbc.jpg');

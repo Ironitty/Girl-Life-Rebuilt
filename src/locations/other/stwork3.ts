@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(s, 'stwork3', 'first_shift');
   } else {
     scene.text('Arriving at your locker, you change into your uniform before heading out to the bar.');
-    ((s as any).strip_club = (s as any).strip_club ?? {})['rand'] = Math.floor(Math.random() * 6) + 0;
+    ((s as any).strip_club = (s as any).strip_club ?? {})['rand'] = (Math.floor(Math.random() * 6) + 0);
     if (((s as any).strip_club ?? 0)?.['rand'] === 0) {
       qspGoto(s, 'stwork3', '1');
     } else {
@@ -49,7 +49,7 @@ function enterFirstShift(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/ivanna.jpg');
-  // TODO-QSP: dynamic text: You arrive in the employee area, where you're greeted by a tall, dark haired wom...
+  // TODO-QSP: dynamic text: You arrive in the employee area, where you''re greeted by a tall, dark haired wo...
   scene.text(`You arrive in the employee area, where you're greeted by a tall, dark haired woman. "You must be ${((s as any).pcs_nickname || '')}. I'm Ivanna, the club's bar manager. If you'll follow me."`);
   if (((s as any).pcs_magik ?? 0) > 0) {
     scene.text('There\'s something strange, almost… <i>familiar</i> about her, but you can\'t quite put your finger on it as you follow her out into the main area of the club.');
@@ -59,11 +59,11 @@ function enterFirstShift(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Follow her', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/stripclub_interior.jpg');
     scene.text('You walk out into the club and are greeted by loud music, bright lights and scenes of rowdy men and half naked girls. You follow Ivanna to the bar, where she introduces you to the other staff.');
-    if (((s as any).week ?? 0) < 5) {
+    if (((st as any).week ?? 0) < 5) {
       scene.text('"This is Lev, our weekday bartender," she says and the man behind the bar waves at you.');
       scene.text('"What\'s up?" he asks and gives you a flirty smile.');
     } else {
@@ -78,19 +78,19 @@ function enterFirstShift(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and Ivanna gives you a smile before disappearing into a back office.');
     scene.actions([
       { label: 'Get to work', handler: (st: GameState) => {
-    (s as any).temp_time_change = (3 - ((s as any).hour ?? 0)) * 60 - ((s as any).minut ?? 0);
-    if (((s as any).temp_time_change ?? 0) < 0) {
-      (s as any).temp_time_change = ((s as any).temp_time_change ?? 0) + (1440);
+    (st as any).temp_time_change = (3 - ((st as any).hour ?? 0)) * 60 - ((st as any).minut ?? 0);
+    if (((st as any).temp_time_change ?? 0) < 0) {
+      (st as any).temp_time_change = ((st as any).temp_time_change ?? 0) + (1440);
     }
-    (s as any).minut = ((s as any).minut ?? 0) + (((s as any).temp_time_change ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (((st as any).temp_time_change ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/serve.jpg');
     scene.text('The patrons are all in good moods and being busy like this makes time go by rather quickly. If every night were like this, then you\'d have no complaints.');
     scene.text('You take the time to chat to your colleagues and customers while taking in the sights and sounds of the club. Before you know it, the night has given way to the early hours of the morning and the patrons all file out as the bar staff clear down.');
     scene.actions([
       { label: 'Speak with Ivanna', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/ivanna.jpg');
     scene.text('Ivanna beckons you over. "So how was your night?"');
     scene.text('"It was great. The customers were so friendly," you reply.');
@@ -196,13 +196,13 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) === 3  ||  ((s as any).week ?? 0) === 4) {
     scene.actions([
       { label: 'Chat with Lev', handler: (st: GameState) => {
-    qspGoto(s, 'stwork3', 'bartender_chat');
+    qspGoto(st, 'stwork3', 'bartender_chat');
   } },
     ]);
   } else {
     scene.actions([
       { label: 'Chat with Nadia', handler: (st: GameState) => {
-    qspGoto(s, 'stwork3', 'bartender_chat1');
+    qspGoto(st, 'stwork3', 'bartender_chat1');
   } },
     ]);
   }
@@ -210,12 +210,12 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Have a snack', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).loc = 'stwork3';
-      (s as any).loc_arg = 'events1';
-      qspCall(s, 'money', 'pay', 100);
-      qspCall(s, 'food', 'snack');
+      (st as any).loc = 'stwork3';
+      (st as any).loc_arg = 'events1';
+      qspCall(st, 'money', 'pay', 100);
+      qspCall(st, 'food', 'snack');
     }
   } },
     { label: 'Drink some water', handler: (st: GameState) => {
@@ -224,10 +224,10 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'beverage', 'water');
   } },
     { label: 'Chat with Ivanna', handler: (st: GameState) => {
-    qspGoto(s, 'stwork3', 'manager_chat');
+    qspGoto(st, 'stwork3', 'manager_chat');
   } },
     { label: 'Chat with Olga', handler: (st: GameState) => {
-    qspGoto(s, 'stwork3', 'waitress_chat');
+    qspGoto(st, 'stwork3', 'waitress_chat');
   } },
   ]);
   scene.build();
@@ -264,9 +264,9 @@ function enterManagerChat(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Resist her charm', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'force');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'force');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.text('You feel yourself getting a little wet at the mental images, but manage to resist her attempt at bringing you under her spell and back away.');
     scene.text('"Hhhmmph!" she scowls. "You\'re no fun. Maybe another night then, slave. Get back to work."');
     scene.actions([
@@ -277,9 +277,9 @@ function enterManagerChat(s: GameState, scene: SceneBuilder): void {
         }
         scene.actions([
           { label: 'Give in', handler: (st: GameState) => {
-    ((s as any).strip_club = (s as any).strip_club ?? {})['ivanna_slave'] = 1;
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
-    qspCall(s, 'stat', '');
+    ((st as any).strip_club = (st as any).strip_club ?? {})['ivanna_slave'] = 1;
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (20);
+    qspCall(st, 'stat', '');
     scene.text('Ivanna overwhelms your mind with thoughts and sensations of what she\'s seemingly planning on doing to you and you feel yourself becoming extremely aroused.');
     scene.text('"I\'ll see you later tonight, slave. Now get back to work," she smiles.');
     scene.actions([
@@ -318,7 +318,7 @@ function enterManagerChat(s: GameState, scene: SceneBuilder): void {
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
         qspCall(s, 'stat', '');
         scene.text('You feel a tingle of arousal pulse through you as you speak with Ivanna, who cocks her head and smiles at you.');
-        // TODO-QSP: dynamic text: "You feeling okay, <<$pcs_nickname>>?" she asks. "You're looking a little fluste...
+        // TODO-QSP: dynamic text: "You feeling okay, <<$pcs_nickname>>?" she asks. "You''re looking a little flust...
         scene.text(`"You feeling okay, ${((s as any).pcs_nickname || '')}?" she asks. "You're looking a little flustered there."`);
         scene.text('Feeling your pussy getting a little wet, you just nod before quickly scurrying away as Ivanna returns her attention to what she was doing. As you walk away, you look back at Ivanna, who just smiles and waves at you as you bite your lip to stop yourself from moaning out loud.');
         scene.text('You\'re not sure what just happened, but you\'re too horny to think about it.');
@@ -335,7 +335,7 @@ function enterManagerChat(s: GameState, scene: SceneBuilder): void {
 function enterBartenderChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/lev.jpg');
-  // TODO-QSP: dynamic text: You decide to spend some time chatting with Lev, one of the bartenders. He's a y...
+  // TODO-QSP: dynamic text: You decide to spend some time chatting with Lev, one of the bartenders. He''s a ...
   scene.text(`You decide to spend some time chatting with Lev, one of the bartenders. He's a young, somewhat attractive man who greets you with a smile. "What's up, ${((s as any).pcs_nickname || '')}?"`);
   scene.text('"Nothing much, just thought I\'d have a quick chat," you reply.');
   scene.text('He nods and the two of you engage in a lively conversation. "I\'m telling you, if I didn\'t have a girlfriend waiting for me back home, then I\'d be <i>drowning</i> in pussy right now," he laughs.');
@@ -396,7 +396,7 @@ function enterSmokeBreak(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEvents1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).strip_club = (s as any).strip_club ?? {})['rand'] = Math.floor(Math.random() * 12) + 0;
+  ((s as any).strip_club = (s as any).strip_club ?? {})['rand'] = (Math.floor(Math.random() * 12) + 0);
   qspCall(s, 'schedule', 'A23');
   qspCall(s, 'stat', '');
   if (((s as any).strip_club ?? 0)?.['rand'] === 0) {
@@ -421,12 +421,12 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Tease them', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'money', 'earn', 500);
-    qspCall(s, 'arousal', 'foreplay', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'money', 'earn', 500);
+    qspCall(st, 'arousal', 'foreplay', 2);
+    qspCall(st, 'stat', '');
     scene.text('You seductively wiggle your ass at them. "I hope you\'ll tip for a job well done..."');
-    // TODO-QSP: dynamic text: They both grin widely. "Not the tip I want to give that ass but sure, you've ear...
+    // TODO-QSP: dynamic text: They both grin widely. "Not the tip I want to give that ass but sure, you''ve ea...
     scene.text(`They both grin widely. "Not the tip I want to give that ass but sure, you've earned it," one of them says and hands you ${qspFunc(s, 'money', 'string_profit', 500)}.`);
     scene.text('You stuff it away and smile sweetly at the men, putting some sway in your hips as you walk away.');
     scene.actions([
@@ -451,7 +451,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
           scene.text('"Hey hot stuff, want to keep me company?"');
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You quickly serve the man his drink and leave the booth as quickly as you can.');
     scene.actions([
       { label: 'Leave', goto: ['stwork3', 'shift_end'] },
@@ -459,8 +459,8 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
   } },
             { label: 'Sit next to him', handler: (st: GameState) => {
     scene.text('You sit next to the man and look at him, waiting to see what he\'ll do when he suddenly grabs your hand and places it on his crotch.');
-    qspCall(s, 'willpower', 'hj', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'hj', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -469,9 +469,9 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'hj', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'hj', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.text('You quickly pull your hand away from him and hurry away, leaving the man in the booth.');
     scene.actions([
       { label: 'Get back to work', goto: ['stwork3', 'shift_end'] },
@@ -481,23 +481,23 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Unbutton his pants', handler: (st: GameState) => {
-    qspCall(s, 'npcgeneratec', '', 0, 'a customer at Golden Girls', Math.floor(Math.random() * 48) + 18);
-    qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
-    qspCall(s, 'stat', '');
+    qspCall(st, 'npcgeneratec', '', 0, 'a customer at Golden Girls', (Math.floor(Math.random() * 48) + 18));
+    qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/residential/cafe/sex/waitress_work_2.jpg');
     scene.text('You take a quick look around, but the club is too noisy and dark for anyone to take notice. The man smiles as you undo his pants and grasp his rock hard cock in your hand. It twitches in anticipation.');
     scene.actions([
       { label: 'Jerk him off', handler: (st: GameState) => {
-    (s as any).guy = ((s as any).guy ?? 0) + (1);
-    qspCall(s, 'money', 'earn', 500);
-    qspCall(s, 'arousal', 'hj', 2, ((s as any).npcID ?? 0), 'sub', 'prostitution');
-    qspCall(s, 'cum_call', 'hands', ((s as any).npcID ?? 0), 1);
-    qspCall(s, 'arousal', 'end');
-    (s as any).cumspclnt = 9;
-    qspCall(s, 'cum_cleanup', '');
+    (st as any).guy = ((st as any).guy ?? 0) + (1);
+    qspCall(st, 'money', 'earn', 500);
+    qspCall(st, 'arousal', 'hj', 2, ((st as any).npcID ?? 0), 'sub', 'prostitution');
+    qspCall(st, 'cum_call', 'hands', ((st as any).npcID ?? 0), 1);
+    qspCall(st, 'arousal', 'end');
+    (st as any).cumspclnt = 9;
+    qspCall(st, 'cum_cleanup', '');
     scene.img('images/locations/city/residential/cafe/sex/waitress_work_hj.jpg');
     scene.text('Clasping your fingers around his shaft, you start discreetly jerking him off as he watches the girl stripping and dancing on stage. A few minutes later, he groans as he blows his load, covering your hand in his cum.');
-    // TODO-QSP: dynamic text: Once he's finished, you grab a napkin off the table and use it to clean your han...
+    // TODO-QSP: dynamic text: Once he''s finished, you grab a napkin off the table and use it to clean your ha...
     scene.text(`Once he's finished, you grab a napkin off the table and use it to clean your hand. The man just grins at you and gives you ${qspFunc(s, 'money', 'string_profit', 500)}.`);
     scene.text('You smile at him before leaving the booth.');
     scene.actions([
@@ -534,18 +534,18 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
             scene.text('Heading into one of the booths, you see a girl leaning over sucking a guy\'s dick.');
             scene.actions([
               { label: 'Serve their drinks and leave', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You ignore them and place their drinks on the table before quickly leaving them in peace.');
     scene.actions([
       { label: 'Leave', goto: ['stwork3', 'shift_end'] },
     ]);
   } },
               { label: 'Get their attention', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 300);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'earn', 300);
+    qspCall(st, 'stat', '');
     scene.text('You clear your throat and the girl looks up at you in bewilderment.');
     scene.text('"Put those down and leave. We have business to finish here," the man says as he forces the girl\'s head back down on his cock, almost choking her as she loudly gags.');
-    // TODO-QSP: dynamic text: You place the drinks on the table and the man gives you <<$func('money', 'string...
+    // TODO-QSP: dynamic text: You place the drinks on the table and the man gives you <<$func(''money'', ''str...
     scene.text(`You place the drinks on the table and the man gives you ${qspFunc(s, 'money', 'string_profit', 300)}. "You didn't see this. Got it?"`);
     scene.text('You take the money and nod before quickly leaving them to it.');
     scene.actions([
@@ -570,7 +570,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                   scene.img('images/locations/city/redlight/stripclub/stripper_bar.jpg');
                   scene.text('You see one of the strippers sitting half naked on the bar, teasing a man by groping her breasts. As you get closer, you\'re stunned to see that it\'s Albina!');
                   if (((s as any).npc_rel ?? 0)?.['A23'] >= 60  ||  ((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
-                    // TODO-QSP: dynamic text: She looks equally surprised to see you. "<<$pcs_nickname>>?! You didn't tell me ...
+                    // TODO-QSP: dynamic text: She looks equally surprised to see you. "<<$pcs_nickname>>?! You didn''t tell me...
                     scene.text(`She looks equally surprised to see you. "${((s as any).pcs_nickname || '')}?! You didn't tell me you worked here!"`);
                     scene.text('"I could say the same about you!" you chuckle and she smiles as the middle aged man she was teasing asks her for a dance.');
                     scene.text('"We\'ll talk about this some other time, yeah?" she winks at you before seductively leading the man to one of the private rooms with a lot of sway in her hips.');
@@ -666,18 +666,18 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                     scene.text('Tonight seems to be no different, and going by the amount of clothes she\'s still wearing, it seems they\'ve skipped the dance altogether… They\'re too busy to notice that you\'ve even entered the room.');
                     scene.actions([
                       { label: 'Serve the drink and leave', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You\'re fairly certain this is against club rules, but you don\'t want to get involved in it, so you place the drink on the table, the two of them too busy to acknowledge you as she continues riding his dick, then quickly dash out of the room, leaving them to it.');
     scene.actions([
       { label: 'Leave', goto: ['stwork3', 'shift_end'] },
     ]);
   } },
                       { label: 'Get their attention', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 300);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'earn', 300);
+    qspCall(st, 'stat', '');
     scene.text('You clear your throat and Ruby looks up at you and scowls.');
     scene.text('"Put that down and get out! We have business to finish here," she says and points at the table.');
-    // TODO-QSP: dynamic text: You place the drinks on the table and the man gives you <<$func('money', 'string...
+    // TODO-QSP: dynamic text: You place the drinks on the table and the man gives you <<$func(''money'', ''str...
     scene.text(`You place the drinks on the table and the man gives you ${qspFunc(s, 'money', 'string_profit', 300)}. "You didn't see this. Got it?"`);
     scene.text('You take the money and nod before quickly leaving them to it.');
     scene.actions([
@@ -689,7 +689,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                     scene.text('Heading into one of the private rooms with an order, you\'re greeted by the sight of Ruby having sex with her customer. It looks like she\'s high on something.');
                     scene.actions([
                       { label: 'Serve the drink and leave', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/ruby_bj.mp4');
     scene.text('As you place the drink on the table, you notice traces of powder. The two of them are apparently too high to have noticed you as she climbs off him and gets on her knees in front of him, sucking his dick right in front of you. You quickly dash out of the room, leaving them to it.');
     scene.actions([
@@ -697,14 +697,14 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
                       { label: 'Get their attention', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 100);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'earn', 100);
+    qspCall(st, 'stat', '');
     scene.text('You clear your throat and Ruby looks up at you.');
     scene.text('"The fuck? It\'s called \'knocking\', bitch! Get out! We\'re in the middle of something here!" she snarls.');
     scene.text('"What\'s happening, babe? Why did you stop?" you hear the man ask with a groan.');
     scene.text('"It\'s nothing, Oleg. Just sit back and enjoy it…" she says as she pulls out some money and hands it to you. "Fuck off."');
     scene.text('You place the drinks on the table and take the money before quickly leaving them to it. You haven\'t even left the room before the two of them go back to fucking like rabbits.');
-    // TODO-QSP: dynamic text: Once outside the room, you count your 'tip'. You scowl when you realize that Rub...
+    // TODO-QSP: dynamic text: Once outside the room, you count your ''tip''. You scowl when you realize that R...
     scene.text(`Once outside the room, you count your 'tip'. You scowl when you realize that Ruby has generously gifted you… ${qspFunc(s, 'money', 'string_profit', 100)}. Stuffing it away, you shake your head and get back to work.`);
     scene.actions([
       { label: 'Leave', goto: ['stwork3', 'shift_end'] },
@@ -740,7 +740,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                         scene.text('She pops his cock out of her mouth and starts licking the shaft, but stops and glares when she sees you. "Ugh, it\'s you. Can\'t you knock?"');
                         scene.text('The man grins. "Friend of yours?"');
                         scene.text('"Hardly," Albina snorts. "She was just leaving. And she didn\'t see a thing. Got it?"');
-                        // TODO-QSP: dynamic text: The man motions for you to place the drink down. "Here's <<$func('money', 'strin...
+                        // TODO-QSP: dynamic text: The man motions for you to place the drink down. "Here''s <<$func(''money'', ''s...
                         scene.text(`The man motions for you to place the drink down. "Here's ${qspFunc(s, 'money', 'string_profit', 300)} for you to… forget all this."`);
                         scene.text('You take the money and nod before quickly leaving the room.');
                         scene.actions([
@@ -752,7 +752,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'stat', '');
                       scene.text('As you get closer, the girl obediently swallows the cum in her mouth before she suddenly spots you and jumps to her feet as she wipes her mouth.');
                       scene.text('The man looks over at you as he makes the girl get back down on her knees and suck his dick clean. "Just put it down over there. There\'s something on the table for you to… forget you ever saw this."');
-                      // TODO-QSP: dynamic text: Leaving the drink on the table, you grab the <<$func('money', 'string_profit', 3...
+                      // TODO-QSP: dynamic text: Leaving the drink on the table, you grab the <<$func(''money'', ''string_profit'...
                       scene.text(`Leaving the drink on the table, you grab the ${qspFunc(s, 'money', 'string_profit', 300)} and quickly leave the room.`);
                       scene.actions([
                         { label: 'Leave', goto: ['stwork3', 'shift_end'] },
@@ -772,13 +772,13 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
                       } else {
                         scene.actions([
                           { label: 'Peek inside', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/ruby_sex.mp4');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('You carefully peek through the gap and see Sasha sitting on the couch in the corner of the office, his pants around his ankles as a girl with her fishnet bodysuit bunched up around her ankles eagerly slams herself up and down on his fat cock.');
-      if (((s as any).strip_club ?? 0)?.['seen_ruby_sex'] === 0  ||  ((s as any).strip_club ?? 0)?.['ruby_seen_drugs'] === 0) {
-        ((s as any).strip_club = (s as any).strip_club ?? {})['seen_ruby_sex'] = 1;
+      if (((st as any).strip_club ?? 0)?.['seen_ruby_sex'] === 0  ||  ((st as any).strip_club ?? 0)?.['ruby_seen_drugs'] === 0) {
+        ((st as any).strip_club = (st as any).strip_club ?? {})['seen_ruby_sex'] = 1;
         scene.text('You watch as he suddenly grabs her hips and lifts her off him before she quickly gets down on her knees and sticks her tongue out.');
         scene.text('He quickly jerks his cock before he grunts loudly and shoots his load into her mouth and across her face. When he finishes, she just up looks at him expectantly.');
         scene.text('He smiles and reaches into his jacket pocket, pulling out a baggy of white powder that he drops at his feet.');
@@ -795,7 +795,7 @@ function enterEvents1(s: GameState, scene: SceneBuilder): void {
       scene.text('"I loathe the idea of having a dirty, drug addicted skank working in my club, but you\'re lucky since being a dirty skank is what makes you one of my most popular girls. Now get your sorry ass up and get out of my sight, you worthless fucking whore! And at least <i>try</i> and turn up for your next shift without being fucking high!"');
     } else {
       scene.text('You carefully peek through the gap and see Sasha sitting on the couch in the corner of the office, his pants around his ankles as a girl rides his fat cock, her bikini thong bottom pulled to the side as he gropes and spanks her ass with both hands.');
-      if (((s as any).strip_club ?? 0)?.['amythest_intro'] === 0) {
+      if (((st as any).strip_club ?? 0)?.['amythest_intro'] === 0) {
         scene.text('Her deeply tanned skin stands out to you, as do the intricate tattoos on her hands. You\'ve heard that there is an exotic stripper working here, but that she is a bit of a mystery. It looks like she\'s bored and is just waiting for him to finish, even as she moans softly.');
       } else {
         scene.text('Her deeply tanned skin and the henna tattoos on her hands are a dead giveaway that this is Amythest. It looks like she\'s bored and is just waiting for him to finish, but you wonder what kind of relationship she has with the boss if she\'s banging him.');
@@ -887,44 +887,44 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       { label: 'Do it', handler: (st: GameState) => {
     scene.img('images/shared/sex/blowjob/bimbo.knees5.jpg');
     scene.text('"Okay, I\'ll do it. How much is this bonus?" you ask.');
-    // TODO-QSP: dynamic text: "<<$func('money', 'string_profit', 1000)>>," he replies while motioning you over...
+    // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', 1000)>>," he replies while motioning you ...
     scene.text(`"${qspFunc(s, 'money', 'string_profit', 1000)}," he replies while motioning you over to him.`);
     // TODO-QSP: dynamic text: You nod before you walk over and kneel in front of him as he unzips his pants an...
-    scene.text(`You nod before you walk over and kneel in front of him as he unzips his pants and pulls his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock out.`);
+    scene.text(`You nod before you walk over and kneel in front of him as he unzips his pants and pulls his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock out.`);
     scene.text('"Get to work," he orders while snapping his fingers.');
     scene.text('You obediently take his fat, veiny cock into your mouth, feeling it grow hard as you take it into your throat and work it with your tongue. "That\'s it, keep going..." he says softly.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    ((s as any).strip_club = (s as any).strip_club ?? {})['manager_bonus'] = 1;
-    qspCall(s, 'stat', '');
-    if (((s as any).tits ?? 0) >= 4) {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    ((st as any).strip_club = (st as any).strip_club ?? {})['manager_bonus'] = 1;
+    qspCall(st, 'stat', '');
+    if (((st as any).tits ?? 0) >= 4) {
       scene.img('images/locations/city/redlight/studio_porn/sex/titfuck.mp4');
       scene.text('A few seconds later, he roughly pulls you off his cock and scowls down at you. "Put those nice tits to good use."');
-      // TODO-QSP: dynamic text: You nod and undress your top half, exposing your <<$pc_descWordy['breast']>> to ...
-      scene.text(`You nod and undress your top half, exposing your ${((s as any).pc_descWordy ?? 0)?.['breast'] ?? ''} to a grinning Sasha. You then obediently wrap your breasts around his warm, twitching cock and start titfucking him while continuing to suck on the head.`);
+      // TODO-QSP: dynamic text: You nod and undress your top half, exposing your <<$pc_descWordy[''breast'']>> t...
+      scene.text(`You nod and undress your top half, exposing your ${((st as any).pc_descWordy ?? 0)?.['breast'] ?? ''} to a grinning Sasha. You then obediently wrap your breasts around his warm, twitching cock and start titfucking him while continuing to suck on the head.`);
       scene.text('A few minutes later, he finally reaches climax and grunts loudly as cum spurts out of his dick and splatters over your breasts. You release your grip on his dick and sit back on your knees as Sasha looks down at you.');
       // TODO-QSP: dynamic text: "Good job <<$pcs_nickname>>, you more than earned this," he says as he counts ou...
-      scene.text(`"Good job ${((s as any).pcs_nickname || '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
+      scene.text(`"Good job ${((st as any).pcs_nickname || '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
       scene.text('You just smile at him and get up to clean yourself up before taking the money. After counting it, Sasha sends you on your way with a slap on the ass. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to work.');
-      qspCall(s, 'arousal', 'bj', (-2));
-      qspCall(s, 'arousal', 'titjob', (-2));
-      qspCall(s, 'cum_call', 'mouth_swallow', 'A292', 0, 0, 10000, 40);
-      qspCall(s, 'arousal', 'end');
-      qspCall(s, 'money', 'earn', 1000);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'bj', (-2));
+      qspCall(st, 'arousal', 'titjob', (-2));
+      qspCall(st, 'cum_call', 'mouth_swallow', 'A292', 0, 0, 10000, 40);
+      qspCall(st, 'arousal', 'end');
+      qspCall(st, 'money', 'earn', 1000);
+      qspCall(st, 'stat', '');
     } else {
       scene.img('images/shared/sex/cum/mouth/cum13.jpg');
       scene.text('You spend the next few minutes sucking his dick, listening to him moan before he suddenly grabs your head and holds you down on his cock as his cum starts shooting into your mouth. You\'re forced to swallow it to stop yourself from choking as he groans loudly.');
       scene.text('When he finally finishes and releases his grip on your head, allowing you pull yourself off of his cock, you gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as you slowly jerk his slowly softening cock in your hand.');
       // TODO-QSP: dynamic text: "Good job <<$pcs_strippername>>, you more than earned this," he says as he count...
-      scene.text(`"Good job ${((s as any).pcs_strippername || '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
+      scene.text(`"Good job ${((st as any).pcs_strippername || '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
       scene.text('You just smile at him before getting up and taking the money. After counting it, Sasha sends you on your way with a slap on the ass. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to work.');
-      qspCall(s, 'arousal', 'bj', (-2));
-      qspCall(s, 'cum_call', 'mouth_swallow', 'A292', 0, 0, 10000, 40);
-      qspCall(s, 'arousal', 'end');
-      qspCall(s, 'money', 'earn', 1000);
-      qspCall(s, 'stat', '');
+      qspCall(st, 'arousal', 'bj', (-2));
+      qspCall(st, 'cum_call', 'mouth_swallow', 'A292', 0, 0, 10000, 40);
+      qspCall(st, 'arousal', 'end');
+      qspCall(st, 'money', 'earn', 1000);
+      qspCall(st, 'stat', '');
     }
     scene.actions([
       { label: 'Return to work', goto: ['stwork3', 'shift_end'] },
@@ -933,7 +933,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Refuse and leave', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.text('You shake your head and storm back out into the hallway without saying a word, ignoring the security guard on your way.');
     scene.actions([
       { label: 'Return to work', goto: ['stwork3', 'shift_end'] },
@@ -955,12 +955,12 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'end');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 1000);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'earn', 1000);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/mouth/cum13.jpg');
     scene.text('He finally finishes and releases his grip on your head, allowing you pull yourself off of his cock. You gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as he counts your money.');
-    // TODO-QSP: dynamic text: "Nice work, <<$pcs_nickname>>. Good to see you aren't afraid of performing in fr...
-    scene.text(`"Nice work, ${((s as any).pcs_nickname || '')}. Good to see you aren't afraid of performing in front of an audience. Maybe a career in porn is in your future?"`);
+    // TODO-QSP: dynamic text: "Nice work, <<$pcs_nickname>>. Good to see you aren''t afraid of performing in f...
+    scene.text(`"Nice work, ${((st as any).pcs_nickname || '')}. Good to see you aren't afraid of performing in front of an audience. Maybe a career in porn is in your future?"`);
     scene.text('You just smile at him before getting up and taking the money. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to work.');
     scene.actions([
       { label: 'Return to work', goto: ['stwork3', 'shift_end'] },
@@ -975,12 +975,12 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'end');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'money', 'earn', 1000);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'money', 'earn', 1000);
+    qspCall(st, 'stat', '');
     scene.img('images/shared/sex/cum/mouth/cum13.jpg');
     scene.text('He finally finishes and releases his grip on your head, allowing you pull yourself off of his cock. You gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as he counts your money.');
-    // TODO-QSP: dynamic text: "Nice work, <<$pcs_nickname>>. It's nice to see young girls with a good work eth...
-    scene.text(`"Nice work, ${((s as any).pcs_nickname || '')}. It's nice to see young girls with a good work ethic," he laughs.`);
+    // TODO-QSP: dynamic text: "Nice work, <<$pcs_nickname>>. It''s nice to see young girls with a good work et...
+    scene.text(`"Nice work, ${((st as any).pcs_nickname || '')}. It's nice to see young girls with a good work ethic," he laughs.`);
     scene.text('You just smile at him before getting up and taking the money. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to work.');
     scene.actions([
       { label: 'Return to work', goto: ['stwork3', 'shift_end'] },
@@ -1029,12 +1029,12 @@ function enterTips(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/stripclub_bar.jpg');
   scene.text('With your shift finally over, you sit at the bar and count out your tips.');
-  // TODO-QSP: dynamic text: You made <<$func('money', 'string_profit', strip_club['tips_total'])>> in tips t...
+  // TODO-QSP: dynamic text: You made <<$func(''money'', ''string_profit'', strip_club[''tips_total''])>> in ...
   scene.text(`You made ${qspFunc(s, 'money', 'string_profit', ((s as any).strip_club ?? 0)?.['tips_total'] ?? '')} in tips tonight.`);
   if ((((s as any).job_active_schedule ?? 0)?.['city_strip_bargirl'] === '0'  &&  ((s as any).week ?? 0) === 4)  ||  (((s as any).job_active_schedule ?? 0)?.['city_strip_bargirl'] === '1'  &&  ((s as any).week ?? 0) === 6)) {
     (s as any).temp_shifts_pay = qspFunc(s, 'jobs', 'paycheck', 'city_strip_bargirl');
     if (((s as any).temp_shifts_pay ?? 0) > 0) {
-      // TODO-QSP: dynamic text: After counting your tips, Ivanna pays you <<$func('money', 'string_profit', temp...
+      // TODO-QSP: dynamic text: After counting your tips, Ivanna pays you <<$func(''money'', ''string_profit'', ...
       scene.text(`After counting your tips, Ivanna pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).temp_shifts_pay || ''))} for the shifts you've worked this week.`);
     }
     qspCall(s, 'stat', '');
@@ -1066,12 +1066,12 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
   ((s as any).strip_club = (s as any).strip_club ?? {})['manager_speak'] = 2;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/redlight/stripclub/ivanna1.jpg');
-  // TODO-QSP: dynamic text: Ivanna poses in front of the bar. "Let's not beat around the bush as you humans ...
+  // TODO-QSP: dynamic text: Ivanna poses in front of the bar. "Let''s not beat around the bush as you humans...
   scene.text(`Ivanna poses in front of the bar. "Let's not beat around the bush as you humans say. I know who you are, ${((s as any).pcs_nickname || '')}."`);
   scene.text('You give her an inquisitive stare and she chuckles.');
   if (((s as any).start_type ?? 0) === 'sg_tg'  ||  ((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg') {
     // TODO-QSP: dynamic text: "Or should I say <i>Mikhail</i>?" she knowingly smirks. "The foolish little boy ...
-    scene.text('"Or should I say <i>Mikhail</i>?" she knowingly smirks. "The foolish little boy who absorbed a powerful source of ancient magic and is now hiding in the body of a dead girl \'+iif($start_type = \'sg_tg\', \'he got killed\', \')+\'? Reinhold speaks of you a lot, the creepy old bastard."');
+    scene.text('"Or should I say <i>Mikhail</i>?" she knowingly smirks. "The foolish little boy who absorbed a powerful source of ancient magic and is now hiding in the body of a dead girl ' + ((((s as any).start_type ?? 0) === 'sg_tg') ? ('he got killed') : ('')) + '? Reinhold speaks of you a lot, the creepy old bastard."');
   } else {
     // TODO-QSP: dynamic text: "You are <<$pcs_firstname>> <<$pcs_lastname>>, yes? The foolish little girl who ...
     scene.text(`"You are ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, yes? The foolish little girl who went poking around at an ancient amulet and almost died after somehow absorbing its power when she wasn't supposed to be able to do that? Reinhold speaks of you a lot, the creepy old bastard."`);
@@ -1082,8 +1082,8 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Who are you?', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'voyeur', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'voyeur', 2);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/ivanna1.jpg');
     scene.text('"I\'m a succubus sent here by my Mother to keep an eye on people like Reinhold and that insufferable air-headed bimbo Tatiana. She also seems to have an interest in you, though the reason is lost on me."');
     scene.text('"So are you the same as me then?" you ask.');
@@ -1093,8 +1093,8 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
     scene.text('She hikes up her dress and you stare in bewilderment as a cock suddenly appears between her legs in place of her pussy. "A pleasure slave. Humans like you need to know your place. You\'re nothing but toys to us. Less than that, even."');
     scene.text('"How did-" you start to ask before she cuts you off.');
     scene.text('"With a spell that only high ranking succubae such as myself are allowed to use. Inferior beings like you are limited to such ridiculously childish things as \'Penis Envy,\'" she scoffs while idly jerking her cock. "<i>This</i> is a penis you can envy! Now be a good little slave and come over here!"');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Resist her charm', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -1103,9 +1103,9 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Resist her charm', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'resist');
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    qspCall(st, 'stat', '');
     scene.text('You sense her trying to flood your mind with devious thoughts and desires you never even knew you had. Though it arouses you, you\'re able to resist and back away. She seems rather surprised at her failure.');
     scene.text('"Hhmmph. You\'re more resistant than I thought," she scowls as her cock disappears and she fixes her dress. "I was hoping your feeble human mind was still weak enough for me to have broken it and let me have some fun with you."');
     scene.text('"Break me? Fun?" you curiously ask.');
@@ -1119,24 +1119,24 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Fall to her spell', handler: (st: GameState) => {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (15);
-    qspCall(s, 'stat', '');
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (15);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/ivanna1.jpg');
     scene.text('Her magic charms suddenly pierce your mind and you\'re unable to resist as she overwhelms you with devious thoughts and desires you never knew you had. You stare at the cock hanging between her legs, feeling yourself growing wet and thinking how tasty her cum would be...');
     scene.text('"That\'s it, slave. Give in to your desires… Come. Let\'s have some fun."');
     scene.text('She grabs your hand and starts dragging you along. Fully under her spell, you offer no resistance and allow her to lead you.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/ivanna2.jpg');
     scene.text('She takes you to one of the private dance rooms, where you obediently get on your knees in front of her as she uses her magic to make her cock even bigger and thicker. You have to open your mouth as wide as you can to fit it inside.');
     scene.text('She seems content to let you do all the work and moans softly as you eagerly suck her dick, taking it as deep into your throat as you can manage.');
     scene.text('After a few minutes, she suddenly pulls you up by the hair, her cock loudly popping out of your mouth as you pant heavily. "Okay, enough of that."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/sex/ivanna3.jpg');
     scene.text('You feel compelled to undress before she drags you over to the sofa, where she takes a seat and pulls you on top of her, the thick head of her cock teasingly pushing against your wet slit.');
     scene.text('"Ready to take me, slave?" she whispers in your ear.');
@@ -1147,13 +1147,13 @@ function enterManagerSpeak(s: GameState, scene: SceneBuilder): void {
       { label: 'Cum', handler: (st: GameState) => {
     scene.text('You suddenly feel your orgasm building as you continue riding Ivanna.');
     scene.text('"That\'s it, slave! Cum for me!" you hear her say through your moans of pleasure.');
-    (s as any).orgasm_txt = 'You suddenly feel a wave of pleasure overwhelm you and cry out in orgasm as Ivanna keeps thrusting. Your pussy tightens around her cock and you soon feel it twitching and throbbing inside you as spurt after spurt of thick, warm cum is unloaded deep inside you. Ivanna moans loudly in pleasure as she pumps what feels like an endless stream of cum into your pussy.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'cum_call', '', '', 'Ivanna', 0, 1, (-1));
-    qspCall(s, 'arousal', 'end');
-    if (((s as any).strip_club ?? 0)?.['ivanna_sex'] === 0) {
-      ((s as any).strip_club = (s as any).strip_club ?? {})['ivanna_sex'] = 1;
+    (st as any).orgasm_txt = 'You suddenly feel a wave of pleasure overwhelm you and cry out in orgasm as Ivanna keeps thrusting. Your pussy tightens around her cock and you soon feel it twitching and throbbing inside you as spurt after spurt of thick, warm cum is unloaded deep inside you. Ivanna moans loudly in pleasure as she pumps what feels like an endless stream of cum into your pussy.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'cum_call', '', '', 'Ivanna', 0, 1, (-1));
+    qspCall(st, 'arousal', 'end');
+    if (((st as any).strip_club ?? 0)?.['ivanna_sex'] === 0) {
+      ((st as any).strip_club = (st as any).strip_club ?? {})['ivanna_sex'] = 1;
     }
     scene.text('When she finally finishes, she pulls you off of her and throws you down on the sofa, panting loudly as cum dribbles out the tip of her cock. Your stretched pussy suddenly feels very empty as a stream of thick cum oozes out of you.');
     scene.text('When you catch your breath, you get dressed as she casts the spell to remove her cock before fixing her dress.');
@@ -1183,16 +1183,16 @@ function enterIvannaSlave(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Pleasure her', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'bj', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'bj', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/ivanna2.jpg');
     scene.text('You obediently drop to your knees and take her cock into your mouth, feeling it twitch and throb as you start sucking.');
     scene.text('She moans softly as you eagerly suck her dick, taking it as deep into your throat as you can manage.');
     scene.text('After a few minutes, she suddenly pulls you up by the hair, her cock loudly popping out of your mouth as you pant heavily. "Okay, enough of that."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/city/redlight/stripclub/ivanna3.jpg');
     scene.text('You feel compelled to undress before she drags you over to the sofa, where she takes a seat and pulls you on top of her, the thick head of her cock teasingly pushing against your wet slit.');
     scene.text('"Ready to take me, slave?" she whispers in your ear.');
@@ -1201,14 +1201,14 @@ function enterIvannaSlave(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t even know what\'s happening anymore, your mind overwhelmed with nothing but lustful pleasure as this succubus freely abuses your pussy.');
     scene.actions([
       { label: 'Cum', handler: (st: GameState) => {
-    ((s as any).strip_club = (s as any).strip_club ?? {})['ivanna_slave'] = 0;
+    ((st as any).strip_club = (st as any).strip_club ?? {})['ivanna_slave'] = 0;
     scene.text('You suddenly feel your orgasm building as you continue riding Ivanna.');
     scene.text('"That\'s it, slave! Cum for me!" you hear her say through your moans of pleasure.');
-    (s as any).orgasm_txt = 'You suddenly feel a wave of pleasure overwhelm you and cry out in orgasm as Ivanna keeps thrusting. Your pussy tightens around her cock and you soon feel it twitching and throbbing inside you as spurt after spurt of thick, warm cum is unloaded deep inside you. Ivanna moans loudly in pleasure as she pumps what feels like an endless stream of cum into your pussy.';
-    (s as any).orgasm_or = 'yes';
-    qspCall(s, 'arousal', 'vaginal', 5);
-    qspCall(s, 'cum_call', '', '', 'Ivanna', 0, 1, (-1));
-    qspCall(s, 'arousal', 'end');
+    (st as any).orgasm_txt = 'You suddenly feel a wave of pleasure overwhelm you and cry out in orgasm as Ivanna keeps thrusting. Your pussy tightens around her cock and you soon feel it twitching and throbbing inside you as spurt after spurt of thick, warm cum is unloaded deep inside you. Ivanna moans loudly in pleasure as she pumps what feels like an endless stream of cum into your pussy.';
+    (st as any).orgasm_or = 'yes';
+    qspCall(st, 'arousal', 'vaginal', 5);
+    qspCall(st, 'cum_call', '', '', 'Ivanna', 0, 1, (-1));
+    qspCall(st, 'arousal', 'end');
     scene.text('When she finally finishes, she pulls you off of her and throws you down on the sofa, panting loudly as cum dribbles out the tip of her cock. Your stretched pussy suddenly feels very empty as a stream of thick cum oozes out of you.');
     scene.text('When you catch your breath, you get dressed as she casts the spell to remove her cock before fixing her dress.');
     scene.text('You then head back out to the bar, where Ivanna slaps you on the ass. "You were as fun as always, slave. Now get out of here."');

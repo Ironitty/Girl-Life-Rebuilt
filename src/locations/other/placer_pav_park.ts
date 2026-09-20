@@ -9,9 +9,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).encounter = 0;
   } else {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14  &&  ((s as any).katjaQW ?? 0)?.['park_sex'] < 2) {
-      (s as any).encounter = Math.floor(Math.random() * 9) + 0;
+      (s as any).encounter = (Math.floor(Math.random() * 9) + 0);
     } else {
-      (s as any).encounter = Math.floor(Math.random() * 11) + 0;
+      (s as any).encounter = (Math.floor(Math.random() * 11) + 0);
     }
   }
   (s as any).met_someone = 0;
@@ -45,7 +45,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 1;
               } else {
                 if (((s as any).placerParameter ?? 0)?.['friend_index'] === 14  &&  ((s as any).katjaQW ?? 0)?.['park_sex'] === 1) {
-                  ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.max(1, Math.floor(Math.random() * 4) + 0);
+                  ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.max(1, (Math.floor(Math.random() * 4) + 0));
                 } else {
                   if ((!(Math.floor(Math.random() * 2) + 0))) {
                     ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = 1;
@@ -107,20 +107,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       scene.text('Then they get up and leave you');
                       scene.text('You wonder what kind of \'thanks\' they have in mind');
                       (s as any).hotelcouple = 2;
-                      return;
                       scene.actions([
-                        { label: 'Finish your walk', goto: ['pav_park', 'start'] },
-                      ]);
+{ label: 'Finish your walk', goto: ['pav_park', 'start'] },
+]);
+                      return;
                     }
                   } else {
                     if (((s as any).encounter ?? 0) === 9) {
                       (s as any).textEvent = 'You see a group of teenagers sitting on a park bench, listening to some music.';
-                      ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 5) + 2;
+                      ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = (Math.floor(Math.random() * 5) + 2);
                       ((s as any).placerParameter = (s as any).placerParameter ?? {})['recognize_status'] = 1;
                       (s as any).met_someone = 1;
                     } else {
                       if (((s as any).encounter ?? 0) === 10) {
-                        ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = Math.floor(Math.random() * 4) + 3;
+                        ((s as any).placerParameter = (s as any).placerParameter ?? {})['number_of_man'] = (Math.floor(Math.random() * 4) + 3);
                         (s as any).textEvent = 'Some Gopniks are sitting on their haunches just off to the side of one of the main paths, drinking beer. The area around them is littered with empty bottles.';
                         ((s as any).placerParameter = (s as any).placerParameter ?? {})['recognize_status'] = 2;
                         (s as any).met_someone = 1;
@@ -149,7 +149,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('There are puddles on the ground everywhere, all remains from the melted snow. A lot of people in the park are having fun with them, trying to jump over them and mocking those that fail. They\'re not particularly deep though, and plenty of others just walk through without giving them a second thought.');
       scene.text('The park is not particularly crowded, this time of year. Many people think it\'s still too cold to spend much time outdoors.');
     } else {
-      qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+      qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
       scene.text('<center><h2>Pavlovsk Park</h2></center>');
       scene.img('images/locations/pavlovsk/lake/skver.spring.night.jpg');
       scene.text('The main square of Pavlovsk Park. Spring has come, melting the worst of the snow. The trees are sprouting new leaves.');
@@ -163,7 +163,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('The main square of Pavlovsk Park. At this time of year, it\'s one of the primary places in town that locals and tourists enjoy spending their spare time in.');
       scene.text('It\'s always busy: people are resting, walking, playing and dating to their heart\'s desires, enjoying the nice surroundings.');
     } else {
-      qspCall(s, 'exp_gain', 'prcptn', Math.floor(Math.random() * 2) + 1);
+      qspCall(s, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
       scene.text('<center><h2>Pavlovsk Park</h2></center>');
       scene.img('images/locations/pavlovsk/lake/skver.summer.night.jpg');
       scene.text('The main square of Pavlovsk Park. At this time of year, it\'s one of the places where locals and tourists enjoy going in their spare time.');
@@ -202,18 +202,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     scene.actions([
       { label: 'Investigate', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/sex/sonia.skver.boy0,0.jpg');
     scene.text('You carefully walk towards the bushes and push some branches aside to see what\'s going on. There you see your classmate Sonia, on her haunches in front of a muscular man. She\'s giving the stranger a blowjob, not even 20 meters away from where people walk!');
     scene.actions([
       { label: 'Keep looking', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/sonia.skver.boy1,\'+rand(0, 2)+\'.jpg');
+    qspCall(st, 'stat', '');
+    scene.img('images/characters/pavlovsk/school/girl/sonia/sex/sonia.skver.boy1,' + (Math.floor(Math.random() * 3) + 0) + '.jpg');
     scene.text('After a while, the guy tells Sonia that he wants more. Sonia obediently gets up and asks him: "Would you like to fuck me from behind, sir?"');
     scene.text('The stranger happily accepts the invitation, and watches in amazement when he notices Sonia eagerly grinding her hips back against him once he\'s inside her. He had no idea she would be such a lusty slut for him, willing to do all the work!');
     scene.text('You watch Sonia give herself to the man for just a moment longer, before you decide you really have to get going. You\'re quite turned on from her little show. Sonia looks like she\'s having a lot of fun, and for just a second you think about what it would feel like to be in her place.');
-    qspCall(s, 'arousal', 'voyeur_sex', 15);
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'voyeur_sex', 15);
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave them be', goto: ['pav_park', 'start'] },
     ]);
@@ -242,24 +242,24 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You give the <<$textSomeone>> a cute smile as you walk past with your friend.
         scene.text(`You give the ${((s as any).textSomeone || '')} a cute smile as you walk past with your friend.`);
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
-          // TODO-QSP: dynamic text: You don't think you've ever seen him before. He approaches you and says: "<<$pla...
+          // TODO-QSP: dynamic text: You don''t think you''ve ever seen him before. He approaches you and says: "<<$p...
           scene.text(`You don't think you've ever seen him before. He approaches you and says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
         }
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1) {
-          // TODO-QSP: dynamic text: You don't think you've ever seen them before. The guys walk towards you, and one...
+          // TODO-QSP: dynamic text: You don''t think you''ve ever seen them before. The guys walk towards you, and o...
           scene.text(`You don't think you've ever seen them before. The guys walk towards you, and one of them says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
         }
         scene.actions([
           { label: 'Agree to hang out', handler: (st: GameState) => {
-    if (((s as any).placerParameter ?? 0)?.['friend_dom'] < 80) {
-      qspGoto(s, 'placer_act', '');
+    if (((st as any).placerParameter ?? 0)?.['friend_dom'] < 80) {
+      qspGoto(st, 'placer_act', '');
     } else {
-      if (((s as any).placerParameter ?? 0)?.['friend_dom'] >= 80) {
-        qspCall(s, 'stat', '');
-        // TODO-QSP: dynamic text: <<$ev_name>> hisses in your ear: "I don't want to hang out with strangers, <<$pc...
-        scene.text(`${((s as any).ev_name || '')} hisses in your ear: "I don't want to hang out with strangers, ${((s as any).pcs_nickname || '')}! They could be dangerous! If you want to stay here, I'm leaving."`);
-        qspCall(s, 'willpower', 'misc', 'self', 'hard');
-        if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+      if (((st as any).placerParameter ?? 0)?.['friend_dom'] >= 80) {
+        qspCall(st, 'stat', '');
+        // TODO-QSP: dynamic text: <<$ev_name>> hisses in your ear: "I don''t want to hang out with strangers, <<$p...
+        scene.text(`${((st as any).ev_name || '')} hisses in your ear: "I don't want to hang out with strangers, ${((st as any).pcs_nickname || '')}! They could be dangerous! If you want to stay here, I'm leaving."`);
+        qspCall(st, 'willpower', 'misc', 'self', 'hard');
+        if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
             { label: 'Leave with your friend', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -268,16 +268,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Leave with your friend', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'placer_end', '');
+    qspCall(st, 'willpower', 'pay', 'self');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'placer_end', '');
   } },
           ]);
         }
         scene.actions([
           { label: 'Say goodbye to your friend and stay', handler: (st: GameState) => {
-    ((s as any).placerParameter = (s as any).placerParameter ?? {})['friend_index'] = 0;
-    qspGoto(s, 'placer_act', '');
+    ((st as any).placerParameter = (st as any).placerParameter ?? {})['friend_index'] = 0;
+    qspGoto(st, 'placer_act', '');
   } },
         ]);
       }
@@ -297,11 +297,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You give the <<$textSomeone>> a cute smile as you walk past. 
         scene.text(`You give the ${((s as any).textSomeone || '')} a cute smile as you walk past. `);
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
-          // TODO-QSP: dynamic text: You don't think you've ever seen him before. He approaches you and says: "<<$pla...
+          // TODO-QSP: dynamic text: You don''t think you''ve ever seen him before. He approaches you and says: "<<$p...
           scene.text(`You don't think you've ever seen him before. He approaches you and says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
         }
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] > 1) {
-          // TODO-QSP: dynamic text: You don't think you've ever seen them before. The guys walk towards you, and one...
+          // TODO-QSP: dynamic text: You don''t think you''ve ever seen them before. The guys walk towards you, and o...
           scene.text(`You don't think you've ever seen them before. The guys walk towards you, and one of them says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
         }
         scene.actions([

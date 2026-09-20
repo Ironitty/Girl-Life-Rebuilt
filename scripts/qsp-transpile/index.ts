@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync, statSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { parseQsp } from './parser';
@@ -23,6 +23,41 @@ interface TranspileResult {
   status: 'AUTO-ACCEPT' | 'AI REVIEW' | 'MANUAL';
   reasons: string[];
   report: ConfidenceReport;
+}
+
+function resolveCaseInsensitive(path: string): string | null {
+  const dir = dirname(path);
+  const base = path.split('/').pop() || '';
+  if (!existsSync(dir)) return null;
+  let entries: string[];
+  try { entries = readdirSync(dir); } catch { return null; }
+  const match = entries.find(e => e.toLowerCase() === base.toLowerCase());
+  return match ? join(dir, match).split('\\').join('/') : null;
+}
+
+function fixCaseInGeneratedFiles(dir: string): number {
+  let fixed = 0;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      fixed += fixCaseInGeneratedFiles(full);
+    } else if (entry.name.endsWith('.ts')) {
+      let content = readFileSync(full, 'utf-8');
+      const orig = content;
+      content = content.replace(/scene\.img\('([^']+)'\)/g, (_m: string, p: string) => {
+        if (p.startsWith('images/') && !existsSync(join(ROOT, p))) {
+          const resolved = resolveCaseInsensitive(join(ROOT, p));
+          if (resolved) {
+            const rel = resolved.split(ROOT + '/').join('');
+            if (rel !== p) { fixed++; return `scene.img('${rel}')`; }
+          }
+        }
+        return _m;
+      });
+      if (content !== orig) writeFileSync(full, content);
+    }
+  }
+  return fixed;
 }
 
 function main() {
@@ -117,6 +152,8 @@ function main() {
         }
       }
       console.log(`\nWrote ${results.filter(r => r.status !== 'MANUAL' || allFlag).length} files`);
+      const caseFixed = fixCaseInGeneratedFiles(OUTPUT_DIR);
+      if (caseFixed > 0) console.log(`Fixed ${caseFixed} case-sensitive image paths`);
     }
   }
 

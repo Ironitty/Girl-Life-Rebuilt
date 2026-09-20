@@ -5,24 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).NPCFS_Team = ((s as any).locArgs?.[1] ?? 0);
-  if (((s as any).NPCFS_Team ?? 0) === '') {
-    (s as any).NPCFS_Team = 'opp';
-  }
-  (s as any).NPCFS_TeamSlot = 0;
-  (s as any).setNPCFightStats = qspUntranslated(s, "{", { location: "fight_npcdata" });
-  (s as any).NPCFS_Attrib = ((s as any).locArgs?.[0] ?? 0);
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
-    (s as any).NPCFS_Value = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: dynamic '<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = <<NPCFS_Value>>'
-  } else {
-    (s as any).NPCFS_Value = ((s as any).locArgs?.[1] ?? 0);
-    // TODO-QSP: dynamic '$<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = ''<<$NPCFS_Value>>'''
-  }
-  (s as any).calcNPCFightHealth = qspUntranslated(s, "{", { location: "fight_npcdata" });
-  (s as any).NPCFightStatStr = 0;
-  (s as any).NPCFightStatVit = 0;
-  (s as any).result = 5 * (((s as any).NPCFightStatStr ?? 0) + ((s as any).NPCFightStatVit ?? 0));
   scene.build();
 }
 
@@ -197,12 +179,30 @@ function enterRandomGopfem(s: GameState, scene: SceneBuilder): void {
 
 function enterRandomGopmale(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
-  if (((s as any).locArgs?.[2] ?? 0) !== '') {
+  if (Number((s as any).locArgs?.[2] ?? 0) !== '') {
   }
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).NPCFS_Team = ((s as any).locArgs?.[1] ?? 0);
+  if (((s as any).NPCFS_Team ?? 0) === '') {
+    (s as any).NPCFS_Team = 'opp';
+  }
+  (s as any).NPCFS_TeamSlot = 0;
+  (s as any).setNPCFightStats = qspUntranslated(s, "{", { location: "fight_npcdata" });
+  (s as any).NPCFS_Attrib = ((s as any).locArgs?.[0] ?? 0);
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
+    (s as any).NPCFS_Value = ((s as any).locArgs?.[1] ?? 0);
+    // TODO-QSP: dynamic '<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = <<NPCFS_Value>>'
+  } else {
+    (s as any).NPCFS_Value = ((s as any).locArgs?.[1] ?? 0);
+    // TODO-QSP: dynamic '$<<$NPCFS_Team>>_<<$NPCFS_Attrib>>[<<NPCFS_TeamSlot>>] = ''<<$NPCFS_Value>>'''
+  }
+  (s as any).calcNPCFightHealth = qspUntranslated(s, "{", { location: "fight_npcdata" });
+  (s as any).NPCFightStatStr = 0;
+  (s as any).NPCFightStatVit = 0;
+  (s as any).result = 5 * (((s as any).NPCFightStatStr ?? 0) + ((s as any).NPCFightStatVit ?? 0));
   const arg = s.locArg;
   switch (arg) {
     case 'gustav':

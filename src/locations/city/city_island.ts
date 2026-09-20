@@ -45,43 +45,43 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> stands in the parkin...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> stands in the parking lot.`);
+    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> stands in the ...
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> stands in the parking lot.`);
   }
   qspCall(s, 'taxi', '');
   qspCall(s, 'camera', 'check_location');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
-    // TODO-QSP: dynamic text: The <a href="exec: minut += 3 & gt 'uni_shop', 'start'">supermarket</a> is not f...
-    scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027uni_shop\\u0027, \\u0027start\\u0027); return false;">supermarket</a> is not far from here.');
-    // TODO-QSP: dynamic text: You can see a <a href="exec:$loc = 'city_island' & minut += 1 & gt 'kiosk', 'sta...
-    scene.text('You can see a <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = \\u0027city_island\\u0027 */ s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027kiosk\\u0027, \\u0027start\\u0027); return false;">kiosk</a> selling cigarettes and magazines.');
+    // TODO-QSP: dynamic text: The <a href="exec: minut += 3 & gt ''uni_shop'', ''start''">supermarket</a> is n...
+    scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027uni_shop/u0027, /u0027start/u0027); return false;">supermarket</a> is not far from here.');
+    // TODO-QSP: dynamic text: You can see a <a href="exec:$loc = ''city_island'' & minut += 1 & gt ''kiosk'', ...
+    scene.text('You can see a <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $loc = /u0027city_island/u0027 */ s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027kiosk/u0027, /u0027start/u0027); return false;">kiosk</a> selling cigarettes and magazines.');
   } else {
     // TODO-QSP: dynamic text: The local convenience store is closed. It will reopen at '+func('time', 'get_tim...
     scene.text('The local convenience store is closed. It will reopen at 8:00.');
-    // TODO-QSP: dynamic text: You can see a closed kiosk. It's open between '+func('time', 'get_time_string', ...
+    // TODO-QSP: dynamic text: You can see a closed kiosk. It''s open between '+func('time', 'get_time_string',...
     scene.text('You can see a closed kiosk. It\'s open between 8:00 and 23:00.');
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 22) {
-    scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shop_dolls\\u0027, \\u0027start\\u0027); return false;">Patch Work Dolls</a>, a clothing store that caters to Alternative styles, like gothic, punk and skater. Next door is <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027shop_nerdvana\\u0027, \\u0027start\\u0027); return false;">Nerdvana</a>, a clothing store that stock everything a nerd could desire.');
+    scene.text('You can see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_dolls/u0027, /u0027start/u0027); return false;">Patch Work Dolls</a>, a clothing store that caters to Alternative styles, like gothic, punk and skater. Next door is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shop_nerdvana/u0027, /u0027start/u0027); return false;">Nerdvana</a>, a clothing store that stock everything a nerd could desire.');
   } else {
     // TODO-QSP: dynamic text: You can see Patch Work Dolls, a clothing store that caters to Alternative styles...
     scene.text('You can see Patch Work Dolls, a clothing store that caters to Alternative styles, like gothic, punk and skater. Next door is Nerdvana, the nerd clothing store. They\'re both open every day between 8:00 and 22:00');
   }
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
     // TODO-QSP: dynamic text: You can see a sign advertising a coffee shop called <a href="exec: minut += 3 & ...
-    scene.text('You can see a sign advertising a coffee shop called <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(\\u0027city_coffee_hole\\u0027, \\u0027\\u0027); return false;">The Coffee Hole</a> just a few blocks away from the university.');
+    scene.text('You can see a sign advertising a coffee shop called <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027city_coffee_hole/u0027, /u0027/u0027); return false;">The Coffee Hole</a> just a few blocks away from the university.');
   } else {
     // TODO-QSP: dynamic text: The Coffee Hole is closed. They reopen at '+func('time', 'get_time_string', 7, 0...
     scene.text('The Coffee Hole is closed. They reopen at 7:00.');
   }
-  // TODO-QSP: dynamic text: The <a href="exec:minut += 5 & gt 'metro', 'island'">Metro</a> Station is within...
-  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(\\u0027metro\\u0027, \\u0027island\\u0027); return false;">Metro</a> Station is within a 5 minute walk from here.');
+  // TODO-QSP: dynamic text: The <a href="exec:minut += 5 & gt ''metro'', ''island''">Metro</a> Station is wi...
+  scene.text('The <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027metro/u0027, /u0027island/u0027); return false;">Metro</a> Station is within a 5 minute walk from here.');
   if (((s as any).anushkaCityQW ?? 0)?.['first_visit'] > 0) {
-    // TODO-QSP: dynamic text: Anushka lives in <a href="exec:minut += 1 & gt 'anushapt_city', 'home'">a shared...
-    scene.text('Anushka lives in <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(\\u0027anushapt_city\\u0027, \\u0027home\\u0027); return false;">a shared apartment</a> around the corner.');
+    // TODO-QSP: dynamic text: Anushka lives in <a href="exec:minut += 1 & gt ''anushapt_city'', ''home''">a sh...
+    scene.text('Anushka lives in <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027anushapt_city/u0027, /u0027home/u0027); return false;">a shared apartment</a> around the corner.');
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'university_dorm')  ||  ((s as any).university ?? 0)?.['student'] === 1  ||  ((s as any).hour ?? 0) >= 6) {
-    scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027uni_dorm\\u0027, \\u0027\\u0027); return false;">University dorms</a> offers small, but cheap living space for university students.');
+    scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027uni_dorm/u0027, /u0027/u0027); return false;">University dorms</a> offers small, but cheap living space for university students.');
   }
   if (((s as any).pcs_magik ?? 0) >= 1  &&  ((s as any).mainQW ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'uni') {
     (s as any).mainQW = 1;
@@ -89,10 +89,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/lab/event/main.jpg');
     scene.text('You see Tatiana and Gustav standing in front of your dorm. Tatiana adjusts her glasses and looks around, while Gustav seems to be distracted, glancing here and there with a strange look on his face. You notice his tattoos are not visible.');
     scene.text('Tatiana looks at you closely. "I felt a burst of energy. Were you attacked by a magician?"');
-    return;
     scene.actions([
-      { label: 'No', goto: ['mainQW', ''] },
-    ]);
+{ label: 'No', goto: ['mainQW', ''] },
+]);
+    return;
   }
   qspCall(s, 'lover', 'lover_events');
   scene.actions([
@@ -101,8 +101,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: minut + 5
   }, goto: ['city_canals', 'start'] },
     { label: 'Go to the university campus', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspGoto(s, 'uni_grounds', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspGoto(st, 'uni_grounds', '');
   } },
   ]);
   scene.build();

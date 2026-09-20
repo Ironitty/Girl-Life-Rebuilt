@@ -1,3 +1,5 @@
+import { qspGoto } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -21,7 +23,7 @@ function enterRegister(s: GameState, scene: SceneBuilder): void {
   return;
   // TODO-QSP: end
   if (((s as any).update_report_last ?? 0) < ((s as any).update_report_new ?? 0)) {
-    // TODO-QSP: gt 'feature_updates', 'show', $loc
+    qspGoto(s, 'feature_updates', 'show', ((s as any).loc ?? ''));
   }
   if (((s as any).loc ?? 0) === 'city_residential') {
     (s as any).streetev_title = '<center><b>Residential Area</b></center>';

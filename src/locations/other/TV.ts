@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Turn off the TV and get up', handler: (st: GameState) => {
-    dynamicGoto(s, 'prevLoc', 'prevArg');
+    dynamicGoto(st, 'prevLoc', 'prevArg');
   } },
   ]);
   scene.build();
@@ -101,7 +101,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).locat ?? 0)?.['Kolka'] === 1  &&  ((s as any).loc ?? 0) === 'sitrPar') {
         scene.img('images/locations/gadukino/grandparents/tv/oldtvon.mp4');
-        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> is sleeping soundly on the sofa. You can\'t watch TV without disturbing him.');
+        scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> is sleeping soundly on the sofa. You can\'t watch TV without disturbing him.');
         scene.actions([
           { label: 'Do something else', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -125,7 +125,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
         if (((s as any).locat ?? 0)?.['Kolka'] === 1  &&  ((s as any).loc ?? 0) === 'sitrPar') {
           (s as any).tvtime = 0;
           scene.img('images/locations/gadukino/grandparents/tv/tv_turn_off_effect.mp4');
-          scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027brother\\u0027, \\u0027start\\u0027); return false;">Kolka</a> sleeping on the sofa. You can\'t continue watching TV without disturbing him.');
+          scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> sleeping on the sofa. You can\'t continue watching TV without disturbing him.');
           scene.text('With a sigh, you turn off the TV. The image collapses into a bright horizontal line that shrinks into a tiny white dot before slowly fading away. The speakers emit a high-pitched squawk as the power cuts off.');
           scene.actions([
             { label: 'Continue', handler: (st: GameState) => {
@@ -140,7 +140,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['TV', 'pav'] },
             { label: 'Turn off the TV', handler: (st: GameState) => {
-    (s as any).tvtime = 0;
+    (st as any).tvtime = 0;
     scene.img('images/locations/gadukino/grandparents/tv/tv_turn_off_effect.mp4');
     scene.text('You press the power button and the image immediately collapses into a bright horizontal line across the center of the screen. The line quickly shrinks into a tiny white dot that gradually fades away. As the power cuts off, the speakers protest with a sharp, high-pitched squawk.');
     scene.actions([
@@ -172,14 +172,14 @@ function enterGad(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tvtime ?? 0) === 1) {
       qspCall(s, 'mood', 'raise', 'tiny');
       qspCall(s, 'stat', '');
-      scene.img('images/locations/gadukino/grandparents/tv/tv\'+rand(1, 5)+\'.mp4');
+      scene.img('images/locations/gadukino/grandparents/tv/tv' + (Math.floor(Math.random() * 5) + 1) + '.mp4');
       scene.text('You browse through the three available channels that reach this rural area. The selection is limited and the reception occasionally fuzzy, but even these modest programs provide a welcome distraction from country life. You watch with mild interest as the black and white images flicker across the screen.');
       scene.actions([
         { label: 'Watch for another hour (1:00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['TV', 'gad'] },
         { label: 'Turn off the TV', handler: (st: GameState) => {
-    (s as any).tvtime = 0;
+    (st as any).tvtime = 0;
     scene.img('images/locations/gadukino/grandparents/tv/tv_turn_off_effect.mp4');
     scene.text('You turn off the television. The image immediately collapses in on itself, forming a bright horizontal line that quickly shrinks into a small white dot before fading completely. The ancient speakers emit a shrill squawk in protest as the power cuts off.');
     scene.actions([
@@ -217,7 +217,7 @@ function enterMeyhome(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
   }, goto: ['TV', 'meyhome'] },
         { label: 'Turn off the TV and get up', handler: (st: GameState) => {
-    (s as any).tvtime = 0;
+    (st as any).tvtime = 0;
     scene.img('images/locations/pavlovsk/resident/meynolds/tvoff.jpg');
     scene.text('With a click of the remote, the screen goes black and the sound fades away. You stand up and stretch, feeling refreshed after enjoying some quality entertainment.');
     scene.actions([

@@ -74,18 +74,18 @@ function enterZoyaSunbathingSolo1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Check her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
-    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+    ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['check_out_zoya'] = ((st as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
     scene.text('"Okay. Thanks, Zoya."');
     scene.text('Your gaze wanders up and down her body. Zoya looks incredible for her age, especially given that she wasn\'t a teen parent like your own mother.');
     scene.text('Her skin is wonderfully tanned, unmarred by any white lines, clearly due to her topless sunbathing habits. Her breasts are exceptionally full, large and with a beautiful symmetrical roundness to them. Not to mention her flat, toned stomach and long shapely legs. Though mostly obscured by the floatie, her thick thighs give you a pretty good idea of where Albina got her ass from.');
     scene.text('"<i>Ahem</i>."');
     // TODO-QSP: dynamic text: You blink and realize that Zoya is looking sternly at you, seemingly annoyed. "I...
-    scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly annoyed. "It's rude to stare at someone's body like that, ${((s as any).pcs_firstname || '')}."`);
+    scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly annoyed. "It's rude to stare at someone's body like that, ${((st as any).pcs_firstname || '')}."`);
     scene.text('"Oh, sorry…" you gulp.');
     scene.text('"Perhaps you should wait for Albina inside?"');
     scene.text('"Yeahhhh… I\'ll go do that…" Awkwardly walking away, you head back inside, taking one last glance back at Zoya to see her lay her head back on the floatie and close her eyes again.');
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'hallway'] },
     ]);
@@ -102,11 +102,11 @@ function enterZoyaSunbathingSolo1(s: GameState, scene: SceneBuilder): void {
       { label: 'Check her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
     scene.text('"Okay. Thanks, Zoya."');
-    if (((s as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
+    if (((st as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
       scene.text('You can\'t help but ogle her body again. Those big tanned tits, those long toned legs… You vaguely imagine what it would be like to bury your head into her breasts or feel her thighs squeeze your head during climax. A tingling sensation runs through your crotch at the thought.');
       scene.text('"Ahem."');
       // TODO-QSP: dynamic text: You blink and realize that Zoya is glaring at you. "I believe we talked about th...
-      scene.text(`You blink and realize that Zoya is glaring at you. "I believe we talked about this before, ${((s as any).pcs_firstname || '')}…`);
+      scene.text(`You blink and realize that Zoya is glaring at you. "I believe we talked about this before, ${((st as any).pcs_firstname || '')}…`);
       scene.text('"Oh, uhh…" you gulp.');
       scene.text('"You should go and wait for Albina inside."');
       scene.text('"Umm, yeah.. I\'ll go do that…" Awkwardly walking away, you head back inside, taking one last glance back at Zoya before you go.');
@@ -115,14 +115,14 @@ function enterZoyaSunbathingSolo1(s: GameState, scene: SceneBuilder): void {
       scene.text('Your gaze wanders up and down her body. Zoya looks incredible for her age, especially given that she wasn\'t a teen parent like your own mother. Her skin is wonderfully tanned, unmarred by any white lines, clearly due to her topless sunbathing habits. Her breasts are exceptionally full, large and with a beautiful symmetrical roundness to them. Not to mention her flat, toned stomach and long shapely legs. Though mostly obscured by the floatie, her thick thighs give you a pretty good idea of where Albina got her ass from.');
       scene.text('"Ahem."');
       // TODO-QSP: dynamic text: You blink and realize that Zoya is looking sternly at you, seemingly a bit annoy...
-      scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly a bit annoyed. "It's rude to stare at someone's body like that, ${((s as any).pcs_firstname || '')}."`);
+      scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly a bit annoyed. "It's rude to stare at someone's body like that, ${((st as any).pcs_firstname || '')}."`);
       scene.text('"Oh, sorry…" you gulp.');
       scene.text('"Perhaps you should wait for Albina inside?"');
       scene.text('"Yeahhhh… I\'ll go do that…"');
       scene.text('Awkwardly walking away, you head back inside, taking one last glance back at Zoya to see her lay her head back on the floatie and close her eyes again.');
     }
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'hallway'] },
     ]);
@@ -136,8 +136,8 @@ function enterZoyaSunbathingSolo1(s: GameState, scene: SceneBuilder): void {
     scene.text('"So," you begin, sitting down next to the pool to be closer to eye level. "How have you been?"');
     scene.text('The two of you chat about various subjects until Milena interrupts to tell you that Albina has returned home.');
     scene.text('Ending on that note, you wave goodbye and head back in to see Albina.');
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'hallway'] },
     ]);
@@ -146,8 +146,8 @@ function enterZoyaSunbathingSolo1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
     scene.text('"Okay. Thanks, Zoya. I\'ll let you get back to your sunbathing."');
     scene.text('You wave goodbye and head back into the house, thinking about how to pass the time until Albina returns.');
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'hallway'] },
     ]);
@@ -168,18 +168,18 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Check her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
-    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+    ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['check_out_zoya'] = ((st as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
     scene.text('Your gaze wanders up and down her body. Zoya looks incredible for her age, especially given that she wasn\'t a teen parent like your own mother.');
     scene.text('Her skin is wonderfully tanned, unmarred by any white lines, clearly due to her topless sunbathing habits. Her breasts are exceptionally full, large and with a beautiful symmetrical roundness to them. Not to mention her flat, toned stomach and long shapely legs. Though mostly obscured by the floatie, her thick thighs give you a pretty good idea of where Albina got her ass from.');
     scene.text('"<i>Ahem</i>."');
     // TODO-QSP: dynamic text: You blink and realize that Zoya is looking sternly at you, seemingly annoyed. "I...
-    scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly annoyed. "It's rude to stare at someone's body like that, ${((s as any).pcs_firstname || '')}."`);
+    scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly annoyed. "It's rude to stare at someone's body like that, ${((st as any).pcs_firstname || '')}."`);
     scene.text('"Oh, sorry…" you gulp.');
     scene.text('"Perhaps you should go back inside?"');
     scene.text('"Yeahhhh… I\'ll go do that…"');
     scene.text('Awkwardly walking away, you head back inside, taking one last glance back at Zoya to see her lay her head back on the floatie and close her eyes again.');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'hallway'] },
     ]);
@@ -194,11 +194,11 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Check her out', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
-    if (((s as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
+    if (((st as any).AlbinaQW ?? 0)?.['check_out_zoya'] > 0) {
       scene.text('You can\'t help but ogle her body again. Those big tanned tits, those long toned legs… You vaguely imagine what it would be like to bury your head into her breasts or feel her thighs squeeze your head during climax. A tingling sensation runs through your crotch at the thought.');
       scene.text('"Ahem."');
       // TODO-QSP: dynamic text: You blink and realize that Zoya is glaring at you. "I believe we talked about th...
-      scene.text(`You blink and realize that Zoya is glaring at you. "I believe we talked about this before, ${((s as any).pcs_firstname || '')}…`);
+      scene.text(`You blink and realize that Zoya is glaring at you. "I believe we talked about this before, ${((st as any).pcs_firstname || '')}…`);
       scene.text('"Oh, uhh…" you gulp.');
       scene.text('"Perhaps you should go back inside?"');
       scene.text('"Umm, yeah.. I\'ll go do that…"');
@@ -208,15 +208,15 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
       scene.text('Your gaze wanders up and down her body. Zoya looks incredible for her age, especially given that she wasn\'t a teen parent like your own mother. Her skin is wonderfully tanned, unmarred by any white lines, clearly due to her topless sunbathing habits. Her breasts are exceptionally full, large and with a beautiful symmetrical roundness to them. Not to mention her flat, toned stomach and long shapely legs. Though mostly obscured by the floatie, her thick thighs give you a pretty good idea of where Albina got her ass from.');
       scene.text('"Ahem."');
       // TODO-QSP: dynamic text: You blink and realize that Zoya is looking sternly at you, seemingly a bit annoy...
-      scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly a bit annoyed. "It's rude to stare at someone's body like that, ${((s as any).pcs_firstname || '')}."`);
+      scene.text(`You blink and realize that Zoya is looking sternly at you, seemingly a bit annoyed. "It's rude to stare at someone's body like that, ${((st as any).pcs_firstname || '')}."`);
       scene.text('"Oh, sorry…" you gulp.');
       scene.text('"Perhaps you should go back inside?"');
       scene.text('"Yeahhhh… I\'ll go do that…"');
       scene.text('Awkwardly walking away, you head back inside, taking one last glance back at Zoya to see her lay her head back on the floatie and close her eyes again.');
     }
-    ((s as any).AlbinaQW = (s as any).AlbinaQW ?? {})['check_out_zoya'] = ((s as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['check_out_zoya'] = ((st as any).AlbinaQW['check_out_zoya'] ?? 0) + (1);
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'hallway'] },
     ]);
@@ -235,8 +235,8 @@ function enterZoyaSunbathingSolo2(s: GameState, scene: SceneBuilder): void {
     { label: 'Go back inside', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/albinahome/zoyapool.jpg');
     scene.text('"I\'ll let you get back to your sunbathing," you say and wave goodbye before heading back into the house.');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'hallway'] },
     ]);
@@ -262,7 +262,7 @@ function enterZoyaSunbathingAlbina(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/home/pool/alb_zoya2.jpg');
     scene.text('Only once you get closer does Albina notice you, making no move to cover herself as her lips give way to a sly smile.');
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she says. "Did Milena let you in?"
-    scene.text(`"Hey ${((s as any).pcs_nickname || '')}," she says. "Did Milena let you in?"`);
+    scene.text(`"Hey ${((st as any).pcs_nickname || '')}," she says. "Did Milena let you in?"`);
     scene.text('"Yeah," you nod.');
     scene.text('"Mama and I were just tanning ourselves," she smirks, casually picking up one of the bottles on the tables and drizzling a line of oil across her stomach. It sparkles in the sunlight as she rubs it in with her hands, clearly defining the muscles of her core. Her hands move up to her breasts, rubbing it in there as well. She massages and knead with almost groping motions. Her fingers squeeze from the base of her mounds all the way up to her nipples, rolling them between them and forefinger, only releasing after gentle tugs.');
     scene.text('You can\'t help but stare as she does this until your eyes flicker to her face and only then do you realize:');
@@ -271,8 +271,8 @@ function enterZoyaSunbathingAlbina(s: GameState, scene: SceneBuilder): void {
       { label: 'Interrupted', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/home/pool/alb_zoya2.jpg');
     scene.text('"Why must you act like this, Albina?" Zoya sighs, rolling her eyes from the other chair.');
-    // TODO-QSP: dynamic text: Albina snorts. "Why not? It's nothing <<$pcs_nickname>> hasn't seen before. We s...
-    scene.text(`Albina snorts. "Why not? It's nothing ${((s as any).pcs_nickname || '')} hasn't seen before. We shower together all the time at school. Besides, you're topless too, Mama."`);
+    // TODO-QSP: dynamic text: Albina snorts. "Why not? It''s nothing <<$pcs_nickname>> hasn''t seen before. We...
+    scene.text(`Albina snorts. "Why not? It's nothing ${((st as any).pcs_nickname || '')} hasn't seen before. We shower together all the time at school. Besides, you're topless too, Mama."`);
     scene.text('"It\'s called <i>modesty</i>, young lady!" Zoya snorts in return. "You could stand to have some. It was time for my back anyway. And it\'s time you went inside. You\'ve been out here long enough. Go rinse off before you get skin cancer."');
     scene.text('Albina sighs and gets up. "Yes, Mama…"');
     scene.actions([
@@ -280,7 +280,7 @@ function enterZoyaSunbathingAlbina(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/home/pool/bottoms_off.jpg');
     scene.text('Albina drains her cocktail glass in one gulp and then shamelessly pulls down her bikini bottom to stand completely nude on the deck. Her mother gives her an eyeful, but you see her physically bite her tongue as Albina pads her way back through the house, you following along behind her.');
     scene.text('"I need to take a shower," she says, casually twirling her bottoms around one finger before carelessly letting them fall to the floor. She stops in the hall outside her room and gives you a playful smile. "Care to join me?"');
-    qspCall(s, 'albina_house_events', 'albina_shower_talk_start');
+    qspCall(st, 'albina_house_events', 'albina_shower_talk_start');
   } },
     ]);
   } },
@@ -299,7 +299,7 @@ function enterZoyaYogaAlbina(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Is that you, <<$pcs_nickname>>?" you hear Albina call out from the room and ent...
   scene.text(`"Is that you, ${((s as any).pcs_nickname || '')}?" you hear Albina call out from the room and enter to find her and Zoya doing some yoga.`);
   scene.text('You get a great view of their round asses and toned legs stretching their skintight yoga pants and aren\'t sure where to look as they finish their routine.');
-  // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>. I'd love to stay and chat, but I need to shower and g...
+  // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>. I''d love to stay and chat, but I need to shower and ...
   scene.text(`"Hello ${((s as any).pcs_firstname || '')}. I'd love to stay and chat, but I need to shower and get some paperwork done for work," Zoya says and excuses herself from the room, leaving you with Albina.`);
   // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>, I gotta get showered and changed."
   scene.text(`"Come on ${((s as any).pcs_nickname || '')}, I gotta get showered and changed."`);
@@ -311,7 +311,7 @@ function enterZoyaYogaAlbina(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
     scene.text('You follow Albina to her room, where she strips from her clothes and tosses them aside without a care.');
     scene.text('"I need to take a shower and wash all this sweat off. Care to join me?" she asks with a playful smile.');
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Join her', goto: ['albina_sex_scenes', 'albina_shower'] },
       { label: 'Just talk', handler: (st: GameState) => {
@@ -321,8 +321,8 @@ function enterZoyaYogaAlbina(s: GameState, scene: SceneBuilder): void {
     scene.text('"So you and your mother work out together?"');
     scene.text('"When we can," she replies, her voice echoing off the glass and tile. "Sometimes I\'m busy, sometimes she\'s busy. She says I should always try and keep myself in shape and use yoga to calm myself and my mind. Says it\'ll \'do me a world of good\', whatever the hell that means."');
     scene.text('The tap squeaks off and she steps out of the shower before grabbing a towel to dry herself off. You follow her into her room and sit on her bed, continuing to chat while she gets dressed.');
-    (s as any).minut = ((s as any).minut ?? 0) + 7;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 7;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'bedroom'] },
     ]);
@@ -333,8 +333,8 @@ function enterZoyaYogaAlbina(s: GameState, scene: SceneBuilder): void {
     scene.text('"Suit yourself I guess," she shrugs and heads into the bathroom, closing the door behind her.');
     scene.text('You twiddle your thumbs for a few minutes until she comes back out, towel wrapped around her hair and with nothing around her body.');
     scene.text('She heads straight to her dresser to start picking out clothes, chatting with you while she gets dressed.');
-    (s as any).minut = ((s as any).minut ?? 0) + 7;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 7;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'bedroom'] },
     ]);
@@ -361,9 +361,9 @@ function enterZoyaWorkoutSolo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Wait for Albina', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'albinahome', 'hallway');
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'albinahome', 'hallway');
   } },
     { label: 'Follow her', goto: ['albina_mother_events', 'peep1'] },
   ]);
@@ -378,8 +378,8 @@ function enterPeep1(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.text('You decide not to invade Zoya\'s privacy and leave, waiting downstairs for Albina to return.');
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for Albina', goto: ['albinahome', 'hallway'] },
     ]);
@@ -392,7 +392,7 @@ function enterPeep1(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     scene.text('You don\'t feel comfortable invading Zoya\'s privacy any further and so quickly and quietly leave the room.');
     scene.text('You then quickly head back downstairs ans wait for Albina to return.');
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
     scene.actions([
       { label: 'Wait for Albina', goto: ['albinahome', 'hallway'] },
     ]);
@@ -402,8 +402,8 @@ function enterPeep1(s: GameState, scene: SceneBuilder): void {
     scene.text('Your curiosity gets the better of you and you peek around the sliding wall panel into the en-suite. Zoya is unaware of your presence and continues showering.');
     scene.text('Being a former model, she has a great body that she keeps in shape and you can see where Albina gets some of her curvy nature from, especially her ass.');
     scene.text('You continue watching for a few seconds before deciding you shouldn\'t push your luck. You quietly slip back out into the hallway just as you hear the water stop running.');
-    (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Wait for Albina', goto: ['albinahome', 'hallway'] },
     ]);
@@ -432,8 +432,8 @@ function enterPeep2(s: GameState, scene: SceneBuilder): void {
     scene.text('Being a former model, she has a great body that she keeps in shape and you can see where Albina gets some of her curvy nature from, especially her ass.');
     scene.text('She suddenly turns around and you duck out of view, but she doesn\'t react and you peer back in. This time, you get a good view of her large breasts and the neatly trimmed tuft of pubic hair sitting atop her pussy, the only hair on her otherwise silky smooth body.');
     scene.text('You keep watching her as she starts putting on her underwear, her breasts bouncing slightly as she adjusts her bra. She then disappears out of your view and you hear her rummaging through her closet before returning with the rest of her clothes.');
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     scene.text('You decide not to push your luck any further and leave before someone catches you peeping.');
@@ -446,7 +446,7 @@ function enterPeep2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/albinahome/zoyapeeping1.jpg');
       scene.text('Before you can peek back in and watch any further, you hear someone coming and run over to the bathroom, pretending to leave just as Albina arrives. She has an inquisitive look on her face.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>? What are you doing?" she asks, noticing the flushed appearan...
-      scene.text(`"${((s as any).pcs_nickname || '')}? What are you doing?" she asks, noticing the flushed appearance on your face.`);
+      scene.text(`"${((st as any).pcs_nickname || '')}? What are you doing?" she asks, noticing the flushed appearance on your face.`);
       scene.text('"Oh, uuhh… I was… just leaving the bathroom," you reply, awkwardly trying to hide the fact that you were peeping on her mother.');
       scene.text('She raises a brow. "You didn\'t clog the toilet, did you?"');
       scene.text('"No! I\'m just… I\'m fine. I promise!" you blurt out and she seems even more confused.');
@@ -457,7 +457,7 @@ function enterPeep2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/albinahome/zoyapeeping1.jpg');
       scene.text('Before you can peek back in and watch any further, you hear someone coming and run over to the bathroom, pretending to leave just as the maid walks up the stairs doing her rounds. She seems a little surprised to see you.');
       // TODO-QSP: dynamic text: "Are you okay, Miss <<$pcs_firstname>>?" she asks, noticing the flushed appearan...
-      scene.text(`"Are you okay, Miss ${((s as any).pcs_firstname || '')}?" she asks, noticing the flushed appearance on your face.`);
+      scene.text(`"Are you okay, Miss ${((st as any).pcs_firstname || '')}?" she asks, noticing the flushed appearance on your face.`);
       scene.text('"Oh, uuhh… I was… just leaving the bathroom," you reply, awkwardly trying to hide the fact that you were peeping on her employer.');
       scene.text('"I\'m just… I\'m fine. I promise!" you awkwardly blurt out and she seems even more confused. ');
       scene.text('She gives you an awkward stare, but Zoya peers out into the hallway before she can push you further.');
@@ -465,8 +465,8 @@ function enterPeep2(s: GameState, scene: SceneBuilder): void {
       scene.text('The maid silently nods and continues on her duties, giving you a disapproving glare as she enters Zoya\'s bedroom.');
       scene.text('You awkwardly avoid eye contact with Zoya as you hastily walk past her and return to Albina.');
     }
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Continue', goto: ['albinahome', 'bedroom'] },
     ]);

@@ -6,10 +6,6 @@ import { qspCall, qspFunc, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  scene.build();
-}
-
 function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).subs = ((s as any).access ?? 0)?.['subscription'];
@@ -24,9 +20,48 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/image_needed.png');
     scene.text('You\'re currently on Russia\'s biggest social network site, "Assbook". Almost everyone has an account here');
     if (((s as any).assbook ?? 0)?.['account_name'] === '') {
-      scene.text('Click here to log in or <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp_assbook\\u0027, \\u0027signup\\u0027); return false;">sign up</a>');
+      scene.text('Click here to log in or <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp_assbook/u0027, /u0027signup/u0027); return false;">sign up</a>');
     } else {
-      scene.text('Click here to <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp_assbook\\u0027, \\u0027login\\u0027); return false;">log in</a> or signup');
+      scene.text('Click here to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp_assbook/u0027, /u0027login/u0027); return false;">log in</a> or signup');
+      scene.actions([
+        { label: 'Go to your page', goto: ['komp_assbook', 'login'] },
+      ]);
+    }
+    if (((s as any).shantfoto ?? 0) > 0) {
+      scene.actions([
+        { label: 'Find the girl you took photos of in the park', goto: ['komp_assbook', 'blackmail'] },
+      ]);
+    }
+    scene.actions([
+      { label: 'Browse assbook (0:20)', goto: ['komp_assbook', 'browse'] },
+      { label: 'Look through your friends\' feeds', goto: ['komp_assbook', 'friends'] },
+      { label: 'Read more about Assbook', goto: ['komp_assbook', 'mission_statements'] },
+    ]);
+  }
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Close Assbook', goto: ['komp', 'browse'] },
+  ]);
+  scene.build();
+}
+
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'stat', '');
+  (s as any).subs = ((s as any).access ?? 0)?.['subscription'];
+  scene.text('<center><b>Assbook</b></center>');
+  if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
+    scene.img('images/pc/items/accessories/computer/eror.jpg');
+    // TODO-QSP: 'You have no internet access, ' + iif(access['metered'], ' you have to buy more minutes.', ' maybe y...
+    scene.actions([
+      { label: '<b>Close the browser</b>', goto: ['komp', 'start'] },
+    ]);
+  } else {
+    scene.img('images/system/image_needed.png');
+    scene.text('You\'re currently on Russia\'s biggest social network site, "Assbook". Almost everyone has an account here');
+    if (((s as any).assbook ?? 0)?.['account_name'] === '') {
+      scene.text('Click here to log in or <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp_assbook/u0027, /u0027signup/u0027); return false;">sign up</a>');
+    } else {
+      scene.text('Click here to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp_assbook/u0027, /u0027login/u0027); return false;">log in</a> or signup');
       scene.actions([
         { label: 'Go to your page', goto: ['komp_assbook', 'login'] },
       ]);
@@ -95,7 +130,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
 function enterLogin(s: GameState, scene: SceneBuilder): void {
   scene.img('images/system/image_needed.png');
   scene.text('This content is WIP.');
-  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027komp_assbook\\u0027, \\u0027upload_photo\\u0027); return false;">Upload a new photo</a>');
+  scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp_assbook/u0027, /u0027upload_photo/u0027); return false;">Upload a new photo</a>');
   scene.text('Uploaded photos:');
   qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
   (s as any).temp_locationCnt = 0;
@@ -128,7 +163,7 @@ function enterListretrieve(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
@@ -143,7 +178,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + (1);
-    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'retr_clothed_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -157,7 +192,7 @@ function enterRetrieveClothedSelfies(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
@@ -172,7 +207,7 @@ function enterRetrieveSwimSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
-    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'retr_swim_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -200,9 +235,9 @@ function enterUploadPhoto(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to your page', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 1);
-    qspGoto(s, 'komp_assbook', 'login');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'internet_mobile', 'use_internet', ((st as any).subs ?? 0), 1);
+    qspGoto(st, 'komp_assbook', 'login');
   } },
   ]);
   scene.build();
@@ -235,7 +270,7 @@ function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_clocnt = 1;
@@ -251,7 +286,7 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_clocnt = ((s as any).temp_clocnt ?? 0) + (1);
-    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_clocnt ?? 0) <= ((s as any).selfieClotot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'upl_clothed_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -265,7 +300,7 @@ function enterUploadClothedSelfies(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
+  if (((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)] > 0) {
     // TODO-QSP: $result += '<tr></tr><tr>'
     (s as any).temp_cnum = 0;
     (s as any).temp_swicnt = 1;
@@ -281,7 +316,7 @@ function enterUploadSwimSelfies(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_cnum = ((s as any).temp_cnum ?? 0) + (1);
     }
     (s as any).temp_swicnt = ((s as any).temp_swicnt ?? 0) + (1);
-    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
+    if (((s as any).temp_swicnt ?? 0) <= ((s as any).selfieSwimtot ?? 0)[Number((s as any).locArgs?.[1] ?? 0)]) {
       // TODO-QSP: jump 'upl_swim_loop'
     }
     if (((s as any).temp_cnum ?? 0) !== 4) {
@@ -328,27 +363,27 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to find out who she is (1:00)', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 60;
-    (s as any).elektro = ((s as any).elektro ?? 0) + (6);
-    qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 60);
-    (s as any).temp_rand = Math.floor(Math.random() * 10) + 0;
-    if (((s as any).temp_rand ?? 0) < 7) {
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+    (st as any).elektro = ((st as any).elektro ?? 0) + (6);
+    qspCall(st, 'internet_mobile', 'use_internet', ((st as any).subs ?? 0), 60);
+    (st as any).temp_rand = (Math.floor(Math.random() * 10) + 0);
+    if (((st as any).temp_rand ?? 0) < 7) {
       scene.text('Despite your best efforts, you don\'t manage to find the girl this time.');
       scene.actions([
         { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
       ]);
     } else {
-      (s as any).shantfoto = ((s as any).shantfoto ?? 0) - (1);
+      (st as any).shantfoto = ((st as any).shantfoto ?? 0) - (1);
       scene.text('Despite your best efforts, you don\'t manage to… wait, that\'s her! You found her!');
-      (s as any).temp_randB = Math.floor(Math.random() * 100) + 0;
-      if (((s as any).temp_randB ?? 0) < 70) {
+      (st as any).temp_randB = (Math.floor(Math.random() * 100) + 0);
+      if (((st as any).temp_randB ?? 0) < 70) {
         scene.text('Your dreams of making a fortune are quickly shattered when you check out her profile. Cheap clothes, few friends, lives in a poor district of the city… this girl is not worth blackmailing.');
         scene.actions([
           { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
         ]);
       } else {
-        if (((s as any).temp_randB ?? 0) < 95) {
-          (s as any).shantsr = ((s as any).shantsr ?? 0) + (1);
+        if (((st as any).temp_randB ?? 0) < 95) {
+          (st as any).shantsr = ((st as any).shantsr ?? 0) + (1);
           scene.text('When you click through her profile, you estimate she\'s an unknown middle-class girl. Still, she has a lot of friends and the outfits she\'s wearing in her photos look stylish… she has money to spend.');
           scene.text('"Why not make her spend some of it on me?" you laugh to yourself, and begin to write a private message.');
           // TODO-QSP: dynamic text: You send her a copy of the photo with the private message and tell her to transf...
@@ -357,7 +392,7 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
             { label: 'Go back to the "Assbook" main page', goto: ['komp_assbook', 'main'] },
           ]);
         } else {
-          (s as any).shantbog = ((s as any).shantbog ?? 0) + (1);
+          (st as any).shantbog = ((st as any).shantbog ?? 0) + (1);
           scene.text('You can barely believe it when you read her profile, this girl is a celebrity! It would be a major scandal if this photo got published!');
           // TODO-QSP: dynamic text: You send her a copy of the photo with a private message, telling her to transfer...
           scene.text(`You send her a copy of the photo with a private message, telling her to transfer ${qspFunc(s, 'money', 'string_profit', 30000)} to your bank account. If she doesn't want that photo to be sent to the press, the money needs to be on your bank account within 48 hours.`);

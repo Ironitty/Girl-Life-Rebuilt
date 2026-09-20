@@ -15,10 +15,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).danceevtimes = ((s as any).danceevtimes ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).danceevtimes ?? 0) < 5) {
-    (s as any).dancegevtipe = Math.floor(Math.random() * 3) + 0;
+    (s as any).dancegevtipe = (Math.floor(Math.random() * 3) + 0);
   }
   if (((s as any).danceevtimes ?? 0) >= 5) {
-    (s as any).dancegevtipe = Math.floor(Math.random() * 4) + 0;
+    (s as any).dancegevtipe = (Math.floor(Math.random() * 4) + 0);
   }
   scene.img(`images/locations/pavlovsk/community/dance_studio/ev${((s as any).dancegevtipe || '')}.jpg`);
   if ((!((s as any).dancegevtipe ?? 0))) {

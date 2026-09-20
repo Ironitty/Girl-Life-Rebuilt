@@ -22,11 +22,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Pay for the towing service (1:00)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2500) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      qspCall(s, 'money', 'pay', 2500);
-      qspCall(s, 'car_funcs', 'setloc', 'autoservisF', 'start', 'city');
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
+      qspCall(st, 'money', 'pay', 2500);
+      qspCall(st, 'car_funcs', 'setloc', 'autoservisF', 'start', 'city');
+      (st as any).minut = ((st as any).minut ?? 0) + 60;
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
       scene.text('You sit down and wait at the service station. It takes about an hour until your car arrives, but when it does, it is almost immediately moved into the garage, and it looks like the foreman is about ready to inspect it.');
       scene.actions([
@@ -37,23 +37,23 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked just insid...
-    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027carF\\u0027, \\u0027start\\u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
+    // TODO-QSP: dynamic text: Your <a href="exec:gs ''carF'', ''start''"><<$car[''name'']>></a> is parked just...
+    scene.text(`Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027carF/u0027, /u0027start/u0027); return false;">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
     if (qspFunc(s, 'car_funcs', 'has_wreck')) {
       scene.text('The foreman looks at your car, if this wreckage even qualifies as one, with a professional boredom that tells you he\'s seen vehicles in similar or worse states a million times over.');
       // TODO-QSP: dynamic text: He quickly but thoroughly inspects it, murmuring all the while to take mental no...
       scene.text('He quickly but thoroughly inspects it, murmuring all the while to take mental notes on what needs to be done, and, when he returns to you, simply states that it would cost \' + $func(\'money\', \'string_price\', normrem) + \' to repair the damage.');
       scene.actions([
         { label: 'Pay and wait while they repair the car', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).normrem ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).normrem ?? 0)) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
-      ((s as any).car = (s as any).car ?? {})['new_condition'] = (((s as any).car ?? {})?.['new_condition'] ?? 0) / 2;
-      ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
-      ((s as any).car = (s as any).car ?? {})['wreck'] = 0;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 60;
+      qspCall(st, 'money', 'pay', ((st as any).normrem ?? 0));
+      ((st as any).car = (st as any).car ?? {})['new_condition'] = (((st as any).car ?? {})?.['new_condition'] ?? 0) / 2;
+      ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car ?? 0)?.['new_condition'];
+      ((st as any).car = (st as any).car ?? {})['wreck'] = 0;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
       scene.text('Since he tells you that it\'s not gonna take long - at first you think he is being sarcastic but then realize that his no-nonsense attitude doesn\'t leave much room for humour - you go into a waiting room with couches and a TV. After about an hour of flipping through channels, you are called back to the garage and can hardly believe your eyes.');
       scene.text('The car looks brand new! Not a single dent, not one scratch, and when you start the engine to make sure it\'s working, it sounds better than ever before. You ask the foreman how he and his crew managed to repair the car, and that quickly, but his only response is a shrug.');
@@ -78,16 +78,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         scene.text('It would cost you \' + $func(\'money\', \'string_price\', normrem) + \'.');
         scene.actions([
           { label: 'Pay and wait while they repair the car', handler: (st: GameState) => {
-    if (qspFunc(s, 'money', 'can_afford', ((s as any).normrem ?? 0)) === 0) {
-      s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
+    if (qspFunc(s, 'money', 'can_afford', ((st as any).normrem ?? 0)) === 0) {
+      s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).minut = ((s as any).minut ?? 0) + 60;
-      qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
-      ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
-      ((s as any).car = (s as any).car ?? {})['wreck'] = 0;
-      qspCall(s, 'stat', '');
+      (st as any).minut = ((st as any).minut ?? 0) + 60;
+      qspCall(st, 'money', 'pay', ((st as any).normrem ?? 0));
+      ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car ?? 0)?.['new_condition'];
+      ((st as any).car = (st as any).car ?? {})['wreck'] = 0;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/city/industrial/CarServiceSta/autoservis2.jpg');
-      // TODO-QSP: dynamic text: Since he tells you that it's not gonna take long, you go into a waiting room wit...
+      // TODO-QSP: dynamic text: Since he tells you that it''s not gonna take long, you go into a waiting room wi...
       scene.text('Since he tells you that it\'s not gonna take long, you go into a waiting room with couches and a TV. After about an hour of flipping through channels, the car is ready, and you pay \' + $func(\'money\', \'string_price\', normrem) + \'.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {

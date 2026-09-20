@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Albida</b></center>');
   scene.text('.');
   scene.text('<b>Your current character</b>');
-  // TODO-QSP: dynamic text: <<$FSpers['text']>>
+  // TODO-QSP: dynamic text: <<$FSpers[''text'']>>
   scene.text(`${((s as any).FSpers ?? 0)?.['text'] ?? ''}`);
   if (((s as any).FSpers ?? 0) === 1) {
     scene.actions([
@@ -20,40 +20,40 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.actions([
     { label: 'Play a new game', handler: (st: GameState) => {
-    (s as any).FSfemin = 0;
-    (s as any).FSfigur = 0;
-    (s as any).FScolor = 0;
-    (s as any).FSface = 0;
-    (s as any).FSskin = 0;
-    (s as any).FShvost = 0;
-    (s as any).dicktipe = 0;
-    (s as any).FSdick = 18;
-    (s as any).FSvagina = 0;
-    (s as any).FStits = 0;
-    (s as any).FStitsLine = 0;
-    (s as any).FSpers = 1;
-    (s as any).FSday = 0;
-    (s as any).FShour = 8;
-    (s as any).FSsup = 1;
-    (s as any).FSplace = 0;
-    (s as any).FSgem = 0;
-    (s as any).FSmedkit = 0;
-    (s as any).FSlvl = 1;
-    (s as any).FSexp = 0;
-    (s as any).FSstren = 10;
-    (s as any).FSspeed = 10;
-    (s as any).FSagil = 10;
-    (s as any).FSreakt = 10;
-    (s as any).FSvital = 10;
-    (s as any).FSHP = ((s as any).FSvital ?? 0) * 10;
-    (s as any).FSbrona = 0;
-    (s as any).FSweaponDam = 0;
-    (s as any).FSname = 0;
-    if (((s as any).FSpers ?? 0)?.['text'] === '') {
-      ((s as any).FSpers = (s as any).FSpers ?? {})['text'] = 'Player';
+    (st as any).FSfemin = 0;
+    (st as any).FSfigur = 0;
+    (st as any).FScolor = 0;
+    (st as any).FSface = 0;
+    (st as any).FSskin = 0;
+    (st as any).FShvost = 0;
+    (st as any).dicktipe = 0;
+    (st as any).FSdick = 18;
+    (st as any).FSvagina = 0;
+    (st as any).FStits = 0;
+    (st as any).FStitsLine = 0;
+    (st as any).FSpers = 1;
+    (st as any).FSday = 0;
+    (st as any).FShour = 8;
+    (st as any).FSsup = 1;
+    (st as any).FSplace = 0;
+    (st as any).FSgem = 0;
+    (st as any).FSmedkit = 0;
+    (st as any).FSlvl = 1;
+    (st as any).FSexp = 0;
+    (st as any).FSstren = 10;
+    (st as any).FSspeed = 10;
+    (st as any).FSagil = 10;
+    (st as any).FSreakt = 10;
+    (st as any).FSvital = 10;
+    (st as any).FSHP = ((st as any).FSvital ?? 0) * 10;
+    (st as any).FSbrona = 0;
+    (st as any).FSweaponDam = 0;
+    (st as any).FSname = 0;
+    if (((st as any).FSpers ?? 0)?.['text'] === '') {
+      ((st as any).FSpers = (st as any).FSpers ?? {})['text'] = 'Player';
     }
-    // TODO-QSP: dynamic text: Character Name <<$FSpers['text']>>
-    scene.text(`Character Name ${((s as any).FSpers ?? 0)?.['text'] ?? ''}`);
+    // TODO-QSP: dynamic text: Character Name <<$FSpers[''text'']>>
+    scene.text(`Character Name ${((st as any).FSpers ?? 0)?.['text'] ?? ''}`);
     scene.actions([
       { label: 'Play', goto: ['FSgame', ''] },
     ]);

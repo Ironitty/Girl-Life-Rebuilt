@@ -26,13 +26,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    ((s as any).stat = (s as any).stat ?? {})['rape_count'] = ((s as any).stat['rape_count'] ?? 0) + (1);
-    ((s as any).stat = (s as any).stat ?? {})['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
-    (s as any).guy = ((s as any).guy ?? 0) + (((s as any).placerParameter ?? 0)?.['number_of_man']);
-    (s as any).ciklkm = ((s as any).placerParameter ?? 0)?.['number_of_man'];
-    qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'group');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'gopnik_house', 'rape');
+    ((st as any).stat = (st as any).stat ?? {})['rape_count'] = ((st as any).stat['rape_count'] ?? 0) + (1);
+    ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
+    (st as any).guy = ((st as any).guy ?? 0) + (((st as any).placerParameter ?? 0)?.['number_of_man']);
+    (st as any).ciklkm = ((st as any).placerParameter ?? 0)?.['number_of_man'];
+    qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'group');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'gopnik_house', 'rape');
   } },
   ]);
   scene.build();
@@ -41,7 +41,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterRape(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/park/gop/sex/gop/podval.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 15;
-  (s as any).tiprand = Math.floor(Math.random() * 3) + 0;
+  (s as any).tiprand = (Math.floor(Math.random() * 3) + 0);
   if (((s as any).tiprand ?? 0) < 2) {
     qspCall(s, 'dinsex', 'vaginal_sex', 10);
     qspCall(s, 'dinsex', 'sexcum');
@@ -60,7 +60,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ciklkm ?? 0) < ((s as any).placerParameter ?? 0)?.['number_of_man']) {
       scene.text('Once the Gopnik finishes, his friend quickly takes his place between your legs.');
     }
-    qspCall(s, 'npcgeneratec', '', 0, 'Gopnik from the park', Math.floor(Math.random() * 11) + 16);
+    qspCall(s, 'npcgeneratec', '', 0, 'Gopnik from the park', (Math.floor(Math.random() * 11) + 16));
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     scene.actions([
       { label: 'Continue', goto: ['gopnik_house', 'rape'] },
@@ -90,7 +90,7 @@ function enterRapeEnd(s: GameState, scene: SceneBuilder): void {
     (s as any).body_write = 5;
     (s as any).face_write = 1;
     qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/park/gop/sex/gop/podvalwrite\'+rand(1, 6)+\'.jpg');
+    scene.img('images/locations/pavlovsk/park/gop/sex/gop/podvalwrite' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
     scene.text('You passed out at some point during their fuck session. When you come to your body aches, your head is throbbing, and some kid is mocking you.');
     scene.text('When you look down, you realize why: those bastards have written obscene words all over your face and body! You look like a public toilet, and quickly cover up their writing as best you can while you get up.');
     qspCall(s, 'arousal', 'end');

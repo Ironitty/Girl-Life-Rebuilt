@@ -64,7 +64,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     scene.text('"I know, I know. But we can\'t keep having repeats of what happened before. So I\'m going to go over the rules me and the boys came up with."');
     scene.actions([
       { label: 'Listen to the speech', handler: (st: GameState) => {
-    ((s as any).gopnik_fight_nightQW = (s as any).gopnik_fight_nightQW ?? {})['nights'] = 1;
+    ((st as any).gopnik_fight_nightQW = (st as any).gopnik_fight_nightQW ?? {})['nights'] = 1;
     scene.img('images/characters/pavlovsk/school/boy/vitek/vitek.jpg');
     scene.text('He glances over at Lera. "One. Only two people to a fight."');
     scene.text('He gives a very pointed look at Roman. "Two. If someone says \'stop\', goes limp or taps out, then the fight is over."');
@@ -125,8 +125,8 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fight!', handler: (st: GameState) => {
-    ((s as any).gopnik_fight_nightQW = (s as any).gopnik_fight_nightQW ?? {})['nights'] = ((s as any).gopnik_fight_nightQW['nights'] ?? 0) + (1);
-    ((s as any).gopnik_fight_nightQW = (s as any).gopnik_fight_nightQW ?? {})['fights'] = ((s as any).gopnik_fight_nightQW['fights'] ?? 0) + (1);
+    ((st as any).gopnik_fight_nightQW = (st as any).gopnik_fight_nightQW ?? {})['nights'] = ((st as any).gopnik_fight_nightQW['nights'] ?? 0) + (1);
+    ((st as any).gopnik_fight_nightQW = (st as any).gopnik_fight_nightQW ?? {})['fights'] = ((st as any).gopnik_fight_nightQW['fights'] ?? 0) + (1);
     scene.img('images/locations/pavlovsk/school/oldschool/fightnight/fight_club.jpg');
     scene.text('Her challenge made, she walks out and informs Vitek. The last two fighters clear out of the center of the ring as the two of you walk out, taking stances opposite each other.');
     scene.text('Vitek walks out to stand between both of you. "Okay, you guys know the rules. I would say have a clean fight, but fuck that. Beat the shit out of each other and may the best bitch win!"');
@@ -141,7 +141,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
 
 function enterStartFight(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fight', 'initFight');
-  if (((s as any).locArgs?.[1] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     qspCall(s, 'fight_npcdata', 'random_gopfem');
   } else {
     qspCall(s, 'fight_npcdata', 'random_gopmale');
@@ -163,12 +163,12 @@ function enterBarelyWin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) < 23) {
-      (s as any).minut = ((s as any).minut ?? 0) + ((23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0));
+    if (((st as any).hour ?? 0) < 23) {
+      (st as any).minut = ((st as any).minut ?? 0) + ((23-((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0));
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/oldschool/fightnight/fight_club.jpg');
-    if (((s as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
+    if (((st as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
       scene.text('After the last fight between some of the older gopniks finish, Vitek walks out to the middle.');
       scene.text('"Alright, that\'s it for tonight." There are some groans and boos, but you think most seem ready to call it a night. "I hope to see all of you again next week."');
       scene.text('With that, everyone starts slowly leaving, a few having to get help to leave.');
@@ -199,12 +199,12 @@ function enterEasilyWin(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) < 23) {
-      (s as any).minut = ((s as any).minut ?? 0) + ((23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0));
+    if (((st as any).hour ?? 0) < 23) {
+      (st as any).minut = ((st as any).minut ?? 0) + ((23-((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0));
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/oldschool/fightnight/fight_club.jpg');
-    if (((s as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
+    if (((st as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
       scene.text('After the last fight between some of the older gopniks finish, Vitek walks out to the middle.');
       scene.text('"Alright, that\'s it for tonight." There are some groans and boos, but you think most seem ready to call it a night. "I hope to see all of you again next week."');
       scene.text('With that, everyone starts slowly leaving, a few having to get help to leave. Just before you head out, Vitek walks over to you with a grin.');
@@ -235,12 +235,12 @@ function enterBarelyLose(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) < 23) {
-      (s as any).minut = ((s as any).minut ?? 0) + ((23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0));
+    if (((st as any).hour ?? 0) < 23) {
+      (st as any).minut = ((st as any).minut ?? 0) + ((23-((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0));
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/oldschool/fightnight/fight_club.jpg');
-    if (((s as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
+    if (((st as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
       scene.text('After the last fight between some of the older gopniks finish, Vitek walks out to the middle.');
       scene.text('"Alright, that\'s it for tonight." There are some groans and boos, but you think most seem ready to call it a night. "I hope to see all of you again next week."');
       scene.text('With that, everyone starts slowly leaving, a few having to get help to leave. Just before you head out, Vitek walks over to you. "Good job. It was a tough fight, but you gave her all she could take. I\'m sure you\'ll take her next time."');
@@ -270,12 +270,12 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) < 23) {
-      (s as any).minut = ((s as any).minut ?? 0) + ((23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0));
+    if (((st as any).hour ?? 0) < 23) {
+      (st as any).minut = ((st as any).minut ?? 0) + ((23-((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0));
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/oldschool/fightnight/fight_club.jpg');
-    if (((s as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
+    if (((st as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
       scene.text('After the last fight between some of the older gopniks finish, Vitek walks out to the middle.');
       scene.text('"Alright, that\'s it for tonight." There are some groans and boos, but you think most seem ready to call it a night. "I hope to see all of you again next week."');
       scene.text('With that, everyone starts slowly leaving, a few having to get help to leave. Just before you head out, Vitek walks over to you.');
@@ -304,12 +304,12 @@ function enterBadlyLose(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
-    if (((s as any).hour ?? 0) < 23) {
-      (s as any).minut = ((s as any).minut ?? 0) + ((23-((s as any).hour ?? 0))*60 - ((s as any).minut ?? 0));
+    if (((st as any).hour ?? 0) < 23) {
+      (st as any).minut = ((st as any).minut ?? 0) + ((23-((st as any).hour ?? 0))*60 - ((st as any).minut ?? 0));
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/oldschool/fightnight/fight_club.jpg');
-    if (((s as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
+    if (((st as any).gopnik_fight_nightQW ?? 0)?.['nights'] === 0) {
       scene.text('After the last fight between some of the older gopniks finish, Vitek walks out to the middle.');
       scene.text('"Alright, that\'s it for tonight." There are some groans and boos, but you think most seem ready to call it a night. "I hope to see all of you again next week."');
       scene.text('With that, everyone starts slowly leaving, a few having to get help to leave. Just before you head out, Vitek walks over to you.');

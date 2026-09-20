@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterEvents(s: GameState, scene: SceneBuilder): void {
   ((s as any).transportVars = (s as any).transportVars ?? {})['train_event_day'] = ((s as any).daystart ?? 0);
   if (((s as any).hour ?? 0) >= 22  ||  ((s as any).hour ?? 0) < 7) {
-    ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 0;
+    ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 2) + 0);
   } else {
     if ((((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 16)  ||  (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22)) {
-      ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 1;
+      ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 2) + 1);
     } else {
-      ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = Math.floor(Math.random() * 2) + 2;
+      ((s as any).temp_transportVars = (s as any).temp_transportVars ?? {})['rand'] = (Math.floor(Math.random() * 2) + 2);
     }
   }
   // TODO-QSP: gt 'metro_incidental', 'event<<temp_transportVars[''rand'']>>'
@@ -71,7 +71,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  scene.img(`images/locations/city/shared/metro/metrofull${Math.floor(Math.random() * 5) + 1}.jpg`);
+  scene.img(`images/locations/city/shared/metro/metrofull${(Math.floor(Math.random() * 5) + 1)}.jpg`);
   scene.text('The car is full of people. All the seats are taken, but only a few people are forced to stand. You easily find a place for yourself, leaving you plenty of room to get comfortable.');
   if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)  ||  ((s as any).cumloc ?? 0)[11] === 1) {
     if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21) {
@@ -111,7 +111,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspGoto(s, 'metro_incidental', 'end' + Math.floor(Math.random() * 1) + 1 + '');
+  qspGoto(s, 'metro_incidental', 'end' + (Math.floor(Math.random() * 1) + 1) + '');
   // TODO-QSP: end
   scene.build();
 }

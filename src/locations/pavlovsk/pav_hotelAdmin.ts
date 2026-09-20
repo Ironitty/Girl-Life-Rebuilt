@@ -14,21 +14,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] >= 3  &&  ((s as any).job_status ?? 0)?.['pav_hotel_maid'] !== 'employed') {
     scene.actions([
       { label: 'Ask about your old maid job', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('You approach the man\'s desk. He glances up and recognizes you.');
-    // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I didn't expect to see you back here. What can I do for you?...
-    scene.text(`"${((s as any).pcs_nickname || '')}! I didn't expect to see you back here. What can I do for you?"`);
+    // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I didn''t expect to see you back here. What can I do for you...
+    scene.text(`"${((st as any).pcs_nickname || '')}! I didn't expect to see you back here. What can I do for you?"`);
     scene.text('"I was wondering if the maid position is still open," you ask. "I\'d like to come back, if that\'s alright."');
     scene.text('Herman leans back in his chair, thinking it over for a moment. "Well, we\'ve been a bit short-staffed, to be honest. I don\'t see why not."');
     // TODO-QSP: dynamic text: "Same terms as before: working between '+func('time', 'get_time_string', 16, 0)+...
     scene.text(`"Same terms as before: working between 16:00 and 19:00, give or take, ${qspFunc(s, 'money', 'string_profit', 375)} per shift. Sound good?"`);
     scene.actions([
       { label: 'Sounds great', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
-    qspCall(s, 'jobs', 'set_employed', 'pav_hotel_maid');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
+    qspCall(st, 'jobs', 'set_employed', 'pav_hotel_maid');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');
     scene.text('You smile. "Thank you, I really appreciate it!"');
     // TODO-QSP: dynamic text: Herman nods. "Your uniform should still be in the locker room. Come by between '...
@@ -52,22 +52,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] < 3) {
       scene.actions([
         { label: 'Ask about the maid job', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'stat', '');
     scene.text('You approach the man\'s desk, but he doesn\'t look up from his work.');
     scene.text('You carefully try to get his attention with a soft voice. "Umm… Excuse me?"');
     scene.text('He looks up from his paperwork. "Oh, I\'m sorry, I didn\'t hear you come in. Hello, I\'m Herman Leonidovich, manager of this hotel. Is there a problem?"');
     scene.text('You smile and shake your head. "No, no problem. I\'m actually looking for a job and I heard that you\'re often looking for maids?"');
     // TODO-QSP: dynamic text: You can feel his eyes exploring your body for a moment before he responds. "Yes,...
     scene.text('You can feel his eyes exploring your body for a moment before he responds. "Yes, we are! We currently only have a part-time vacancy for a maid. You would be working between 16:00 and 19:00, give or take. Most of the hotel rooms are empty then, before the new guests come in."');
-    // TODO-QSP: dynamic text: "You can work any day you like, no pressure. It would pay <<$func('money', 'stri...
+    // TODO-QSP: dynamic text: "You can work any day you like, no pressure. It would pay <<$func(''money'', ''s...
     scene.text(`"You can work any day you like, no pressure. It would pay ${qspFunc(s, 'money', 'string_profit', 375)} per shift. After your work, you can immediately collect your salary at the reception, or you can save it up and collect it all at once later. Does that sound good to you?"`);
     scene.actions([
       { label: 'Sounds great', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
-    qspCall(s, 'jobs', 'set_employed', 'pav_hotel_maid');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    ((st as any).job_hiring_step = (st as any).job_hiring_step ?? {})['pav_hotel_maid'] = 3;
+    qspCall(st, 'jobs', 'set_employed', 'pav_hotel_maid');
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/hotel/goteladmin.jpg');
     scene.text('You smile. "That sounds fantastic! Thank you so much!"');
     scene.text('Herman gives you a friendly smile, happy to have found another potential worker. ');

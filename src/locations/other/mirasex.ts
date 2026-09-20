@@ -12,8 +12,8 @@ function enterMirakiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A64');
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (10);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  scene.img('images/characters/gadukino/mira/mirakiss\'+rand(1, 4)+\'.jpg');
-  (s as any).temp = Math.floor(Math.random() * 4) + 1;
+  scene.img('images/characters/gadukino/mira/mirakiss' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  (s as any).temp = (Math.floor(Math.random() * 4) + 1);
   if (((s as any).temp ?? 0) === 1) {
     scene.text('You passionately bite Mira\'s luscious lips. She responds to your kiss no less passionately, causing you to moan out of joy.');
   }
@@ -21,11 +21,11 @@ function enterMirakiss(s: GameState, scene: SceneBuilder): void {
     scene.text('You kiss Mira as her soft lips, and slim, nimble tongue penetrate your mouth.');
   }
   if (((s as any).temp ?? 0) === 3) {
-    // TODO-QSP: dynamic text: Mira gently kisses your <<$pc_desc['lips']>> lips, and you feel the thrill of he...
+    // TODO-QSP: dynamic text: Mira gently kisses your <<$pc_desc[''lips'']>> lips, and you feel the thrill of ...
     scene.text(`Mira gently kisses your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and you feel the thrill of her kiss washing over you.`);
   }
   if (((s as any).temp ?? 0) === 4) {
-    // TODO-QSP: dynamic text: Mira passionately kisses your <<$pc_desc['lips']>> lips, and you return the kiss...
+    // TODO-QSP: dynamic text: Mira passionately kisses your <<$pc_desc[''lips'']>> lips, and you return the ki...
     scene.text(`Mira passionately kisses your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and you return the kiss, feeling exhilaration in every part of your body.`);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -35,9 +35,9 @@ function enterMirakiss(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue kissing', goto: ['mirasex', 'mirakiss'] },
       { label: 'stop kissing', handler: (st: GameState) => {
-    scene.img('images/characters/gadukino/mira/mirakiss\'+rand(1, 4)+\'.jpg');
+    scene.img('images/characters/gadukino/mira/mirakiss' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
     scene.text('you give her one last kiss and tell her that you just aren\'t in the mood right now and pull back');
-    qspCall(s, 'arousal', 'end');
+    qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'say goodbye', goto: ['gad_meadow', 'start'] },
     ]);
@@ -53,8 +53,8 @@ function enterMirakiss(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterForeplay(s: GameState, scene: SceneBuilder): void {
-  scene.img('images/characters/gadukino/mira/sex/miraforeplay\'+rand(1, 4)+\'.jpg');
-  (s as any).temp = Math.floor(Math.random() * 3) + 1;
+  scene.img('images/characters/gadukino/mira/sex/miraforeplay' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
+  (s as any).temp = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).temp ?? 0) === 1) {
     scene.text('You kiss Mira passionately, stroking her crotch and arousing you even more.');
   }
@@ -62,7 +62,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
     scene.text('You give Mira a gentle kiss while stroking her pussy through her panties…');
   }
   if (((s as any).temp ?? 0) === 3) {
-    // TODO-QSP: dynamic text: You kiss Mira, your <<$pc_desc['lips']>> lips touching her lips in a hot kiss, a...
+    // TODO-QSP: dynamic text: You kiss Mira, your <<$pc_desc[''lips'']>> lips touching her lips in a hot kiss,...
     scene.text(`You kiss Mira, your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips touching her lips in a hot kiss, and your hand on her crotch making her moan excitedly.`);
   }
   scene.text('Mira starts to unbutton your top.');
@@ -71,23 +71,23 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Allow her to continue', handler: (st: GameState) => {
-    scene.img('images/characters/gadukino/mira/sex/miraforeplay\'+rand(5, 7)+\'.jpg');
-    (s as any).temp = Math.floor(Math.random() * 3) + 1;
-    if (((s as any).temp ?? 0) === 1) {
+    scene.img('images/characters/gadukino/mira/sex/miraforeplay' + (Math.floor(Math.random() * 3) + 5) + '.jpg');
+    (st as any).temp = (Math.floor(Math.random() * 3) + 1);
+    if (((st as any).temp ?? 0) === 1) {
       // TODO-QSP: dynamic text: Mira fondles your <<$titsize>> breasts, gently squeezing them in her hands and k...
-      scene.text(`Mira fondles your ${((s as any).titsize || '')} breasts, gently squeezing them in her hands and kissing them.`);
+      scene.text(`Mira fondles your ${((st as any).titsize || '')} breasts, gently squeezing them in her hands and kissing them.`);
     }
-    if (((s as any).temp ?? 0) === 2) {
+    if (((st as any).temp ?? 0) === 2) {
       scene.text('You feel her hot breath on your chest and her slick tongue caressing your nipples and giving you great pleasure.');
     }
-    if (((s as any).temp ?? 0) === 3) {
+    if (((st as any).temp ?? 0) === 3) {
       scene.text('Mira fondles your breasts, gently squeezing them in her hands. Then, she kisses and teases your nipples with her tongue.');
     }
-    ((s as any).MiraVars = (s as any).MiraVars ?? {})['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (10);
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-    qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
-    qspCall(s, 'stat', '');
-    if (((s as any).npc_rel ?? 0)?.['A60'] < 30) {
+    ((st as any).MiraVars = (st as any).MiraVars ?? {})['arousal'] = ((st as any).MiraVars['arousal'] ?? 0) + (10);
+    (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (10);
+    qspCall(st, 'arousal', 'foreplay', 5, 'lesbian');
+    qspCall(st, 'stat', '');
+    if (((st as any).npc_rel ?? 0)?.['A60'] < 30) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -141,7 +141,7 @@ function enterMirafinger(s: GameState, scene: SceneBuilder): void {
   ((s as any).MiraVars = (s as any).MiraVars ?? {})['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (5);
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   qspCall(s, 'stat', '');
-  scene.img('images/characters/gadukino/mira/sex/mirafinger_dog\'+rand(1, 4)+\'.jpg');
+  scene.img('images/characters/gadukino/mira/sex/mirafinger_dog' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   scene.text('Mira bends you over and slowly slides her fingers inside you.');
   // TODO-QSP: $textdog[4]+$textfinger[rand(1, 3)]+$text_emotions[iif(pcs_horny < 60, 1, iif(pcs_horny < 80, 2, 4))...
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -164,7 +164,7 @@ function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
     (s as any).orgasm_txt = 'You cannot hold out anymore from Mira\'s stimulation, and you cum in her face with a shudder.';
     scene.img('images/characters/gadukino/mira/sex/miralick_dog_cum.jpg');
   } else {
-    scene.img('images/characters/gadukino/mira/sex/miralick_dog\'+rand(1, 2)+\'.jpg');
+    scene.img('images/characters/gadukino/mira/sex/miralick_dog' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   }
   // TODO-QSP: $textdog[rand(1, 3)] + $textlick[iif(MiraVars['cuni_given'] < 10, rand(1, 3), rand(4, 6))] + $text_e...
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -191,7 +191,7 @@ function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -242,7 +242,7 @@ function enterLickmiraMis2(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).MiraVars ?? 0)?.['arousal'] < 50) {
-      scene.img('images/characters/gadukino/mira/sex/lickmira_mis\'+rand(1, 3)+\'.jpg');
+      scene.img('images/characters/gadukino/mira/sex/lickmira_mis' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
       // TODO-QSP: $textmis[rand(1, 3)]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emot...
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
@@ -271,7 +271,7 @@ function enterLickmiraMis2(s: GameState, scene: SceneBuilder): void {
         scene.text('After Mira\'s orgasms, you get out between her legs and wipe her juices off your face. Then, you clean yourself up and head back to the village with Mira.');
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -315,7 +315,7 @@ function enter69_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).MiraVars ?? 0)?.['arousal'] >= 50  &&  ((s as any).pcs_horny ?? 0) >= 50  &&  (Math.floor(Math.random() * 3) + 0) !== 0) {
     (s as any).miraorgasm = 1;
     ((s as any).MiraVars = (s as any).MiraVars ?? {})['arousal'] = 0;
-    scene.img('images/characters/gadukino/mira/sex/lickmira_69_cum\'+rand(1, 2)+\'.jpg');
+    scene.img('images/characters/gadukino/mira/sex/lickmira_69_cum' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     // TODO-QSP: $text69[4]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emotions[iif(p...
     (s as any).orgasm_or = 'custom';
     (s as any).orgasm_txt = 'Mira and you cum together. Your mouth filled with her taste, and her scent filled the air. You lie for a minute blissed out before you slowly regain your senses and get ready to go.';
@@ -346,7 +346,7 @@ function enter69_1(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
         qspCall(s, 'stat', '');
       } else {
-        scene.img('images/characters/gadukino/mira/sex/lickmira_69_\'+rand(1, 3)+\'.jpg');
+        scene.img('images/characters/gadukino/mira/sex/lickmira_69_' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
         // TODO-QSP: $text69[4]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emotions[iif(p...
         (s as any).minut = ((s as any).minut ?? 0) + 5;
         qspCall(s, 'arousal', 'cuni', (-10), 'lesbian');
@@ -376,7 +376,7 @@ function enter69_1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -396,7 +396,7 @@ function enterMiralickStand2(s: GameState, scene: SceneBuilder): void {
     (s as any).orgasm_txt = 'Mira licks your pussy. It feels great. In fact, it feels incredible, you can\'t hold back anymore, and a warmth spreads through your abdomen as you cum.';
     (s as any).orgasm_or = 'yes';
   } else {
-    scene.img('images/characters/gadukino/mira/sex/miralick_stand\'+rand(1, 2)+\'.jpg');
+    scene.img('images/characters/gadukino/mira/sex/miralick_stand' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     // TODO-QSP: $textstand[rand(1, 3)]+$textlick[iif(MiraVars['cuni_given'] < 10, rand(1, 3), rand(4, 6))]+$text_emo...
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -423,7 +423,7 @@ function enterMiralickStand2(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterEnd(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -466,11 +466,11 @@ function enterMiralickFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMiralickStand1(s: GameState, scene: SceneBuilder): void {
-  ((s as any).MiraVars = (s as any).MiraVars ?? {})['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (Math.floor(Math.random() * 6) + 0);
+  ((s as any).MiraVars = (s as any).MiraVars ?? {})['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + ((Math.floor(Math.random() * 6) + 0));
   (s as any).mira_counter = ((s as any).mira_counter ?? 0) + (1);
   qspCall(s, 'stat', '');
   if (((s as any).mira_counter ?? 0) < (Math.floor(Math.random() * 3) + 3)) {
-    scene.img('images/characters/gadukino/mira/sex/miralick_stand\'+rand(1, 2)+\'.jpg');
+    scene.img('images/characters/gadukino/mira/sex/miralick_stand' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     // TODO-QSP: $textstand[rand(1, 3)]+$textlick[iif(MiraVars['cuni_given'] < 10, rand(1, 3), rand(4, 6))]+$text_emo...
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'cuni', (-10), 'lesbian');
@@ -522,7 +522,7 @@ function enterLickmiraMis1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).MiraVars ?? 0)?.['arousal'] < 50  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     ((s as any).MiraVars = (s as any).MiraVars ?? {})['arousal'] = ((s as any).MiraVars['arousal'] ?? 0) + (20);
-    scene.img('images/characters/gadukino/mira/sex/lickmira_mis\'+rand(1, 3)+\'.jpg');
+    scene.img('images/characters/gadukino/mira/sex/lickmira_mis' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
     // TODO-QSP: $textmis[rand(1, 3)]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emot...
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');

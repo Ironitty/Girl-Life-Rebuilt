@@ -4,11 +4,21 @@ import { qspCall, qspGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
+  if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
+    ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
+    if (((s as any).vomit ?? 0)?.['morning_sick'] === 1  ||  ((s as any).vomit ?? 0)?.['hangover'] === 1  ||  ((s as any).vomit ?? 0)?.['unlucky'] === 1) {
+      // TODO-QSP: $sleep_events[] = 'gs ''bed_get_out_events'', ''vomit'' '
+    }
+    qspGoto(s, 'bed_get_out_events', 'mod_sleepevents');
+  }
+  qspGoto(s, 'bed_get_out_events', 'continue');
+  // TODO-QSP: end
   scene.build();
 }
 
-function enterStart(s: GameState, scene: SceneBuilder): void {
+function enterDefault(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['stat_display'] = 1;
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
     ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = 0;
@@ -46,7 +56,7 @@ function enterEventHandler(s: GameState, scene: SceneBuilder): void {
 
 function enterEventHandler2(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars = (s as any).sleepVars ?? {})['events_done'] = ((s as any).sleepVars['events_done'] ?? 0) + (1);
-  if (((s as any).locArgs?.[1] ?? 0) === 'priority') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 'priority') {
     (s as any).temp_slev_id = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('sleep_events_priority')-1);
     (s as any).temp_sleep_event_chosen = ((s as any).sleep_events_priority ?? 0)?.[String((s as any).temp_slev_id ?? 0)];
   } else {

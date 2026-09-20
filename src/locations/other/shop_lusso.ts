@@ -29,6 +29,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
+function enterStart(s: GameState, scene: SceneBuilder): void {
+  qspCall(s, 'core_library', 'setloc', 'shop_lusso', 'start');
+  (s as any).location_type = 'public_indoors';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  scene.text('<center><b>Lusso Intimo</b></center>');
+  scene.img('images/locations/city/citycenter/mall/lusso/lusso.jpg');
+  scene.text('The décor is bright and modern, the flowers are real and the dressers are made with expensive woods.');
+  scene.text('This is clearly a high end underwear shop. Just knowing you\'re wearing these will boost your confidence to the point that you\'ll never want to go back to wearing cheap, ill fitting underwear again. That is of course assuming you can afford the prices here.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave', goto: ['city_mall', ''] },
+    { label: 'View panties', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_lusso', 'panties'] },
+    { label: 'View bras', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_lusso', 'bras'] },
+    { label: 'View bodysuits', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_lusso', 'bodysuit'] },
+  ]);
+  scene.build();
+}
+
 function enterPanties(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_lusso', 'panties');
   (s as any).locclass = 'changingroom';
@@ -43,9 +68,9 @@ function enterPanties(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_lusso', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_lusso', 'start');
   } },
   ]);
   scene.build();
@@ -65,9 +90,9 @@ function enterBras(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_lusso', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_lusso', 'start');
   } },
   ]);
   scene.build();
@@ -87,9 +112,9 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_lusso', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_lusso', 'start');
   } },
   ]);
   scene.build();
@@ -98,6 +123,9 @@ function enterBodysuit(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'panties':
       enterPanties(s, scene);
       break;

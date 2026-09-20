@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'sweat', 'add', 10);
-  (s as any).picrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspCall(s, 'stat', '');
   qspGoto(s, 'sexorg', 'var');
   // TODO-QSP: end
@@ -20,7 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 
 function enterVar(s: GameState, scene: SceneBuilder): void {
   (s as any).sexvar = ((s as any).sexvar ?? 0) + (1);
-  (s as any).sexorgrand = Math.floor(Math.random() * 7) + 0;
+  (s as any).sexorgrand = (Math.floor(Math.random() * 7) + 0);
   if ((!((s as any).sexorgrand ?? 0))) {
     scene.img(`images/locations/city/citycenter/mall/bowling/sex/minet${((s as any).picrand || '')}.jpg`);
     scene.text('You and one of the girls switch back and forth sucking one guy\'s cock for a while, getting off on his moans of pleasure but never pushing him so far that he could actually cum. Every now and then, you both lick his head simultaneously, French kissing while your "victim" watches and enjoys.');

@@ -111,7 +111,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :discogop_loop
     if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).i ?? 0)] === 4  &&  ((s as any).discoenable ?? 0)['A' + ((s as any).i ?? 0)] === 1  &&  ((s as any).discobloc ?? 0)['A' + ((s as any).i ?? 0)] !== ((s as any).daystart ?? 0)) {
       (s as any).loopname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
-      (s as any).loopname = qspUntranslated(s, "lcase(loopname)", { location: "pav_disco_classmates" });
+      (s as any).loopname = (String(((s as any).loopname ?? 0)).toLowerCase());
       if ((!((s as any).i2 ?? 0))) {
         // TODO-QSP: $table_disco += '<tr>'
       }
@@ -179,24 +179,24 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
 
 function enterJocksList(s: GameState, scene: SceneBuilder): void {
   (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
-  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_disco_classmates" });
-  // TODO-QSP: gt 'pav_disco_jocks', $listname
+  (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
+  qspGoto(s, 'pav_disco_jocks', ((s as any).listname ?? ''));
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCoolList(s: GameState, scene: SceneBuilder): void {
   (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
-  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_disco_classmates" });
-  // TODO-QSP: gt 'pav_disco_coolkids', $listname
+  (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
+  qspGoto(s, 'pav_disco_coolkids', ((s as any).listname ?? ''));
   // TODO-QSP: end
   scene.build();
 }
 
 function enterGopList(s: GameState, scene: SceneBuilder): void {
   (s as any).listname = ((s as any).npc_nickname ?? 0)?.['A' + String(((s as any).i ?? 0))];
-  (s as any).listname = qspUntranslated(s, "lcase(listname)", { location: "pav_disco_classmates" });
-  // TODO-QSP: gt 'pav_disco_gopniks', $listname
+  (s as any).listname = (String(((s as any).listname ?? 0)).toLowerCase());
+  qspGoto(s, 'pav_disco_gopniks', ((s as any).listname ?? ''));
   // TODO-QSP: end
   scene.build();
 }
@@ -328,9 +328,9 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco2(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 2) + 1) !== 2) {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 1;
   } else {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -339,9 +339,9 @@ function enterAtdisco2(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco3i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 3) + 1) === 1) {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 1;
   } else {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -350,9 +350,9 @@ function enterAtdisco3i(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco4(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 4) + 1) !== 4) {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 1;
   } else {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -361,9 +361,9 @@ function enterAtdisco4(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco4i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 4) + 1) === 1) {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 1;
   } else {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -372,9 +372,9 @@ function enterAtdisco4i(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco5i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 5) + 1) === 1) {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 1;
   } else {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -383,9 +383,9 @@ function enterAtdisco5i(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco10(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 10) + 1) !== 10) {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 1;
   } else {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -394,9 +394,9 @@ function enterAtdisco10(s: GameState, scene: SceneBuilder): void {
 function enterAtdisco10i(s: GameState, scene: SceneBuilder): void {
   (s as any).i = qspUntranslated(s, "args[1]", { location: "pav_disco_classmates" });
   if ((Math.floor(Math.random() * 10) + 1) === 1) {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 1;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 1;
   } else {
-    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String((s as any).i || '') + ''] = 0;
+    ((s as any).discoenable = (s as any).discoenable ?? {})['A' + String(((s as any).i ?? 0))] = 0;
   }
   // TODO-QSP: end
   scene.build();
@@ -422,9 +422,9 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
       scene.text('"Come on, I\'d better take you home," the coach says. Looks like you are done at the disco for tonight.');
       scene.actions([
         { label: 'Go with the coach', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
+    (st as any).music_loop = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/gorodok.jpg');
     scene.text('You walk through town. As you near your apartment, the coach stops.');
     scene.actions([
@@ -450,7 +450,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_vball ?? 0) < 80) {
             scene.text('The coach looks at you with condemnation. "What are you doing here?"');
             scene.text('"What are you doing here?" You turn the question back onto him.');
-            // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don't piss me off. What I do is my business, and what you ar...
+            // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don''t piss me off. What I do is my business, and what you a...
             scene.text(`"${((s as any).pcs_lastname || '')}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
             if (((s as any).pcs_horny ?? 0) > 79) {
               ((s as any).vballVars = (s as any).vballVars ?? {})['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
@@ -481,60 +481,60 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
 
 function enterCoachSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
-  // TODO-QSP: dynamic text: "<<$pcs_lastname>>, let's find somewhere a bit more private." You are about to s...
+  // TODO-QSP: dynamic text: "<<$pcs_lastname>>, let''s find somewhere a bit more private." You are about to ...
   scene.text(`"${((s as any).pcs_lastname || '')}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Follow him', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 3) + 0))) {
-      if (((s as any).pcs_horny ?? 0) > 80) {
+      if (((st as any).pcs_horny ?? 0) > 80) {
         scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco1.mp4');
         scene.text('He takes you down a side corridor to one of the bathrooms, holding the door for you before following you inside.');
         scene.actions([
           { label: 'Pull up your skirt', handler: (st: GameState) => {
-    qspCall(s, 'npcStat', 'A69');
-    qspCall(s, 'npc_relationship', 'modify', 'A69', 5);
-    if (((s as any).pantyworntype ?? 0) !== 'none') {
+    qspCall(st, 'npcStat', 'A69');
+    qspCall(st, 'npc_relationship', 'modify', 'A69', 5);
+    if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco2.mp4');
       scene.text('You sit on one of the toilets, pulling your skirt up and spreading your legs. Watching your display for a moment, he pulls you to your feet and tugs your panties down around your ankles.');
     } else {
       scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco3.jpg');
       scene.text('You pull up your skirt, showing him your bare, wet pussy. The coach pulls out his already hard cock and begins stroking it slowly as he watches you.');
     }
-    qspCall(s, 'arousal', 'foreplay', 2);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 2);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Bend over', handler: (st: GameState) => {
-    qspCall(s, 'arousal', 'foreplay', 3);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'foreplay', 3);
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco4.mp4');
     scene.text('As you bend over and pull up your skirt, he grabs your hip and guides himself, rubbing against your pussy then slowly dragging up to your asshole, leaving a slick trail.');
     scene.text('He pushes the head of his cock gently against your ass. You wince at the stretch. He rubs your back. "Take a breath and relax. It will feel better."');
     scene.actions([
       { label: 'Let him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco5.mp4');
-    qspCall(s, 'dinSex', 'boy_wants_anal', 'lubri');
-    qspCall(s, 'arousal', 'auto_lube', 'anal');
+    qspCall(st, 'dinSex', 'boy_wants_anal', 'lubri');
+    qspCall(st, 'arousal', 'auto_lube', 'anal');
     scene.text('You take a slow breath and do your best to relax as he begins working into your ass with short, careful strokes. In time the discomfort gives way to a warm, full sensation and you find yourself moaning softly.');
     scene.text('He picks up the pace, pounding steadily deeper.');
-    qspCall(s, 'arousal', 'anal', 10);
-    qspCall(s, 'stat', '');
+    qspCall(st, 'arousal', 'anal', 10);
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voitrensexdisco6.mp4');
     scene.text('He pulls out suddenly and you feel a warm burst on your ass. With a low, satisfied exhale he tucks himself away and waits while you clean up.');
-    qspCall(s, 'arousal', 'anal', 5);
-    qspCall(s, 'arousal', 'end');
-    qspCall(s, 'cum_call', 'butt', ((s as any).boy ?? 0), 1);
-    if (((s as any).vballVars ?? 0)?.['coachsex'] < 5) {
-      ((s as any).vballVars = (s as any).vballVars ?? {})['coachsex'] = 5;
+    qspCall(st, 'arousal', 'anal', 5);
+    qspCall(st, 'arousal', 'end');
+    qspCall(st, 'cum_call', 'butt', ((st as any).boy ?? 0), 1);
+    if (((st as any).vballVars ?? 0)?.['coachsex'] < 5) {
+      ((st as any).vballVars = (st as any).vballVars ?? {})['coachsex'] = 5;
     }
-    qspCall(s, 'stat', '');
+    qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Walk home together', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 15;
-    qspCall(s, 'stat', '');
+    (st as any).music_loop = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/gorodok.jpg');
     scene.text('You walk through town together in comfortable silence.');
     scene.actions([
@@ -555,9 +555,9 @@ function enterCoachSex(s: GameState, scene: SceneBuilder): void {
         scene.text('"This isn\'t exactly secluded, Coach." You turn away. He sighs but can\'t stop himself smiling as he watches you go. "Fair enough. Let me walk you home then."');
         scene.actions([
           { label: 'Go with the coach', handler: (st: GameState) => {
-    (s as any).music_loop = 0;
-    (s as any).minut = ((s as any).minut ?? 0) + 20;
-    qspCall(s, 'stat', '');
+    (st as any).music_loop = 0;
+    (st as any).minut = ((st as any).minut ?? 0) + 20;
+    qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/gorodok.jpg');
     scene.text('You walk home.');
     scene.actions([
@@ -570,9 +570,9 @@ function enterCoachSex(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
       scene.text('Having brought you to the bathroom, the coach opens the door to find it packed with students. He looks genuinely put out. "Now that is a pity."');
       scene.text('He offers to walk you home instead. You don\'t think he\'ll take no for an answer, so you agree.');
-      (s as any).music_loop = 0;
-      (s as any).minut = ((s as any).minut ?? 0) + 20;
-      qspCall(s, 'stat', '');
+      (st as any).music_loop = 0;
+      (st as any).minut = ((st as any).minut ?? 0) + 20;
+      qspCall(st, 'stat', '');
       scene.img('images/locations/pavlovsk/gorodok.jpg');
       scene.text('You walk through town. Near your apartment, the coach stops.');
       scene.actions([

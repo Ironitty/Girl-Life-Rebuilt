@@ -5,7 +5,6 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  (s as any).location_type = 'private';
   scene.build();
 }
 
@@ -25,7 +24,7 @@ function enterMaster(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCheckMasterEvents(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_rand = Math.floor(Math.random() * 100) + 0;
+  (s as any).temp_rand = (Math.floor(Math.random() * 100) + 0);
   if (((s as any).temp_rand ?? 0) < 3) {
     qspGoto(s, 'bdsm_bedwest', 'master_event_1');
   } else {
@@ -88,7 +87,7 @@ function enterMasterEvent_4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'pain', '', 4, 'asscheeks', 'spank');
   qspCall(s, 'stat', '');
-  scene.img('images/locations/city/suburb/bdsm_club/sex/spank\'+rand(1, 2)+\'.mp4');
+  scene.img('images/locations/city/suburb/bdsm_club/sex/spank' + (Math.floor(Math.random() * 2) + 1) + '.mp4');
   scene.text('As you are walking into the bedroom you accidentally bump into a man walking out. Before you can even say a word he grabs you by the arm. "Watch where you are going little girl."');
   scene.text('You meekly nod your head. "Sorry, I will be more careful in the future."');
   scene.text('"You don\'t sound very sorry, I think I need to teach you a lesson." With that he pulls you into the room and bares your ass, then he pulls off his belt and spanks you until tears are running down your face.');
@@ -119,7 +118,7 @@ function enterCheckGuestEvents(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 100) + 0) < 96) {
     // TODO-QSP: exit
   }
-  qspGoto(s, 'bdsm_bedwest', 'guest_event_' + Math.floor(Math.random() * 2) + 1 + '');
+  qspGoto(s, 'bdsm_bedwest', 'guest_event_' + (Math.floor(Math.random() * 2) + 1) + '');
   // TODO-QSP: end
   scene.build();
 }
@@ -150,6 +149,7 @@ function enterGuestEvent_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  (s as any).location_type = 'private';
   const arg = s.locArg;
   switch (arg) {
     case 'master':

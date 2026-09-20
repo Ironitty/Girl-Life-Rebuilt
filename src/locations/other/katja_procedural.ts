@@ -17,7 +17,7 @@ function enterHourly(s: GameState, scene: SceneBuilder): void {
         ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = 0;
       }
     } else {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) - (Math.floor(Math.random() * 2) + 0);
+      ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) - ((Math.floor(Math.random() * 2) + 0));
     }
   }
   if (((s as any).katjaQW ?? 0)?.['under_influnece_of_cocaine'] > 0) {
@@ -206,7 +206,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 8) {
                   if (((s as any).katjaQW ?? 0)?.['coke_day'] + 1 < ((s as any).daystart ?? 0)) {
-                    ((s as any).katjaQW = (s as any).katjaQW ?? {})['financial_strain'] = ((s as any).katjaQW['financial_strain'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+                    ((s as any).katjaQW = (s as any).katjaQW ?? {})['financial_strain'] = ((s as any).katjaQW['financial_strain'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
                     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1, 1]; enterTakeCocaine(s, scene); (s as any).locArgs = __savedLocArgs; }
                   }
                   if (((s as any).katjaQW ?? 0)?.['coke_point'] < 55) {
@@ -233,41 +233,41 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 
 function enterFaceColor(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['QWstage'] <= 2) {
-    if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+    if (Number((s as any).locArgs?.[1] ?? 0) === 'func') {
       (s as any).result = 'Katja looks at you with a smile.';
     } else {
       scene.text('Katja looks at you with a smile.');
     }
   } else {
     if (((s as any).katjaQW ?? 0)?.['horny'] < 20) {
-      if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 'func') {
         (s as any).result = 'Katja looks calm and stoic.';
       } else {
         scene.text('Katja looks calm and stoic.');
       }
     } else {
       if (((s as any).katjaQW ?? 0)?.['horny'] < 40) {
-        if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+        if (Number((s as any).locArgs?.[1] ?? 0) === 'func') {
           (s as any).result = 'Katja looks at you with a naughty twinkle in her eyes.';
         } else {
           scene.text('Katja looks at you with a naughty twinkle in her eyes.');
         }
       } else {
         if (((s as any).katjaQW ?? 0)?.['horny'] < 60) {
-          if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+          if (Number((s as any).locArgs?.[1] ?? 0) === 'func') {
             (s as any).result = 'Katja looks at you, a faint blush on her cheeks as she smiles at you mischievously.';
           } else {
             scene.text('Katja looks at you, a faint blush on her cheeks as she smiles at you mischievously.');
           }
         } else {
           if (((s as any).katjaQW ?? 0)?.['horny'] < 80) {
-            if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'func') {
               (s as any).result = 'Katja is blushing fairly obviously and looks at you longingly.';
             } else {
               scene.text('Katja is blushing fairly obviously and looks at you longingly.');
             }
           } else {
-            if (((s as any).locArgs?.[1] ?? 0) === 'func') {
+            if (Number((s as any).locArgs?.[1] ?? 0) === 'func') {
               (s as any).result = 'Katja\'s face is flushed bright red and her chest is heaving from her heavy breathing. She\'s idly rubbing her thighs against one another.';
             } else {
               scene.text('Katja\'s face is flushed bright red and her chest is heaving from her heavy breathing. She\'s idly rubbing her thighs against one another.');
@@ -289,18 +289,18 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let her put makeup on you', handler: (st: GameState) => {
-    (s as any).pcs_hairbsh = 1;
-    (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
+    (st as any).pcs_hairbsh = 1;
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+    qspCall(st, 'stat', '');
+    scene.text(`<center><b>${((st as any).npc_firstname ?? 0)?.['A14'] ?? ''} ${((st as any).npc_lastname ?? 0)?.['A14'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('Katja happily grins as she quickly straightens your hair. "What do you want? A light touch-up, some normal make-up or shall I just shovel it on?"');
     scene.actions([
       { label: 'Light touch-up', handler: (st: GameState) => {
-    (s as any).pcs_makeup = 2;
+    (st as any).pcs_makeup = 2;
     scene.text('Katja subtly applies some neutral tones, with a light application of makeup to bring out your natural beauty.');
-    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
+    if (((st as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (5*(1 + (((st as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -310,10 +310,10 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Normal make-up', handler: (st: GameState) => {
-    (s as any).pcs_makeup = 3;
+    (st as any).pcs_makeup = 3;
     scene.text('Katja applies some mildly vibrate tones and colors of makeup to cover your minor imperfections and enhance your best features.');
-    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
+    if (((st as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (5*(1 + (((st as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -323,10 +323,10 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
       { label: 'Heavy make-up', handler: (st: GameState) => {
-    (s as any).pcs_makeup = 4;
+    (st as any).pcs_makeup = 4;
     scene.text('Katja applies some deeper, richer shades of makeup that are thick enough to cover most imperfections while drawing attention to your eyes and lips.');
-    if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
+    if (((st as any).katjaQW ?? 0)?.['QWstage'] > 2) {
+      ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + (5*(1 + (((st as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -364,10 +364,10 @@ function enterTakeCocaine(s: GameState, scene: SceneBuilder): void {
       ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (2);
     } else {
       if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 2) {
-        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
+        ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + ((Math.floor(Math.random() * 2) + 1));
       } else {
         if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 3) {
-          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.floor(Math.random() * 2) + 0);
+          ((s as any).katjaQW = (s as any).katjaQW ?? {})['slut'] = ((s as any).katjaQW['slut'] ?? 0) + ((Math.floor(Math.random() * 2) + 0));
         }
       }
     }
@@ -375,7 +375,7 @@ function enterTakeCocaine(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['coke_stage'] === -1  &&  (!(Math.floor(Math.random() * 2) + 0))) {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_stage'] = 4;
   }
-  if ((!((s as any).locArgs?.[1] ?? 0))) {
+  if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['under_influnece_of_cocaine'] = ((s as any).katjaQW['under_influnece_of_cocaine'] ?? 0) + (2);
     if (((s as any).katjaQW ?? 0)?.['coke_stage'] > 0) {
       ((s as any).katjaQW = (s as any).katjaQW ?? {})['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (4*(11-(((s as any).katjaQW ?? {})?.['coke_stage'] ?? 0)));
@@ -387,17 +387,17 @@ function enterTakeCocaine(s: GameState, scene: SceneBuilder): void {
     ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
   } else {
     if (((s as any).katjaQW ?? 0)?.['coke_stage'] < 6) {
-      if (((s as any).katjaQW ?? 0)?.['coke_day'] + 7 > ((s as any).daystart ?? 0) - ((s as any).locArgs?.[2] ?? 0)) {
+      if (((s as any).katjaQW ?? 0)?.['coke_day'] + 7 > ((s as any).daystart ?? 0) - Number((s as any).locArgs?.[2] ?? 0)) {
         ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
       }
     } else {
       if (((s as any).katjaQW ?? 0)?.['coke_stage'] < 8) {
-        if (((s as any).katjaQW ?? 0)?.['coke_day'] + 2 > ((s as any).daystart ?? 0) - ((s as any).locArgs?.[2] ?? 0)) {
+        if (((s as any).katjaQW ?? 0)?.['coke_day'] + 2 > ((s as any).daystart ?? 0) - Number((s as any).locArgs?.[2] ?? 0)) {
           ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
         }
       } else {
         if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 8) {
-          if (((s as any).katjaQW ?? 0)?.['coke_day'] === ((s as any).daystart ?? 0) - ((s as any).locArgs?.[2] ?? 0)) {
+          if (((s as any).katjaQW ?? 0)?.['coke_day'] === ((s as any).daystart ?? 0) - Number((s as any).locArgs?.[2] ?? 0)) {
             ((s as any).katjaQW = (s as any).katjaQW ?? {})['coke_point'] = ((s as any).katjaQW['coke_point'] ?? 0) + (1);
           }
         }
@@ -411,7 +411,7 @@ function enterTakeCocaine(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSexSet(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[1] ?? 0) > 0) {
     if (((s as any).katjaQW ?? 0)?.['simultanous_boys'] === 0  &&  (Math.floor(Math.random() * 5) + 0) <= ((s as any).katjaQW ?? 0)?.['slut']/25) {
       if (((s as any).npc_vag ?? 0)?.['A14'] === 0  &&  ((s as any).npc_ass ?? 0)?.['A14'] === 0) {
         if ((!(Math.floor(Math.random() * 5) + 0))) {
@@ -533,9 +533,9 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((s as any).locArgs?.[2] ?? 0) > 0) {
+  if (Number((s as any).locArgs?.[2] ?? 0) > 0) {
     if (((s as any).katjaQW ?? 0)?.['simultanous_girls'] === 0  &&  (Math.floor(Math.random() * 4) + 0) <= ((s as any).katjaQW ?? 0)?.['slut']/33) {
-      if ((!((s as any).locArgs?.[1] ?? 0))) {
+      if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
         if (((s as any).npc_vag ?? 0)?.['A14'] > 0  &&  (Math.floor(Math.random() * 6) + 0) > 0  &&  ((s as any).npc_vag ?? 0)?.['A14'] < 15) {
           ((s as any).npc_vag = (s as any).npc_vag ?? {})['A14'] = ((s as any).npc_vag['A14'] ?? 0) + (1);
         } else {

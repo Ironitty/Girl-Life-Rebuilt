@@ -15,16 +15,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The handsome Armenian man smiles while handing you a plump tangerine.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       { label: 'Take a tangerine', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('You take the delicious looking fruit and return his smile with one of your own. The man grins and says in a thick accent "You are so beautiful girl! Come to my place and eat barbecue, I have Chacha brandy for us to enjoy together, it will be wonderful time."');
-    qspCall(s, 'willpower', 'drink', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'drink', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -33,15 +33,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'willpower', 'drink', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'willpower', 'drink', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     // TODO-QSP: dynamic text: Sensing the man has "other" intentions, you start to refuse and back away from t...
-    scene.text(`Sensing the man has "other" intentions, you start to refuse and back away from the Armenian. He puts his hand out to stop your retreat and says "Hey, I mean no offense. Perhaps my Russian is no good. Nothing bad will happen I swear! I'll even give you ${((((s as any).bag ?? 0)===0) ? ('a handbag') : ('cosmetics'))} if you come and spend some time with me."`);
-    qspCall(s, 'willpower', 'drink', 'resist');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    scene.text(`Sensing the man has "other" intentions, you start to refuse and back away from the Armenian. He puts his hand out to stop your retreat and says "Hey, I mean no offense. Perhaps my Russian is no good. Nothing bad will happen I swear! I'll even give you ${((((st as any).bag ?? 0)===0) ? ('a handbag') : ('cosmetics'))} if you come and spend some time with me."`);
+    qspCall(st, 'willpower', 'drink', 'resist');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -50,21 +50,21 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'drink', 'resist');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'drink', 'resist');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }
     scene.actions([
       { label: 'Show interest', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('You can\'t help but show interested in the gift the unfamiliar Armenian is offering. Suddenly another Armenian comes up to you and leans in with an equally friendly smile. "Do not fear girl, Uncle Arturik does not bite. He is good man." The second stranger insists.');
-    qspCall(s, 'willpower', 'drink', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'drink', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -73,10 +73,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'drink', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'drink', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }
@@ -119,10 +119,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'bj', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'bj', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
             ]);
           }
@@ -145,22 +145,22 @@ function enterWork_1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Trade', handler: (st: GameState) => {
-    (s as any).hour = 18;
-    (s as any).arturDaysWorked1 = ((s as any).arturDaysWorked1 ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).hour = 18;
+    (st as any).arturDaysWorked1 = ((st as any).arturDaysWorked1 ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     scene.text('You work until the evening at the counter, selling fresh fruit. It was a rough day as you quarreled with several customers over prices and you find yourself very tired.');
-    if (((s as any).arturDaysWorked1 ?? 0) >= 10) {
-      qspGoto(s, 'arturQW', 'arturQW_2');
+    if (((st as any).arturDaysWorked1 ?? 0) >= 10) {
+      qspGoto(st, 'arturQW', 'arturQW_2');
     } else {
       scene.actions([
         { label: 'Go with Arthur', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'earn', 1250);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'earn', 1250);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_4.jpg');
     // TODO-QSP: dynamic text: Arthur comes up behind you and firmly grabs a handful of your ass. "<<$pcs_nickn...
-    scene.text(`Arthur comes up behind you and firmly grabs a handful of your ass. "${((s as any).pcs_nickname || '')}, here you go, you earned this." He hands you ${qspFunc(s, 'money', 'string_profit', 1250)}.`);
+    scene.text(`Arthur comes up behind you and firmly grabs a handful of your ass. "${((st as any).pcs_nickname || '')}, here you go, you earned this." He hands you ${qspFunc(s, 'money', 'string_profit', 1250)}.`);
     scene.text('"I like helping you very much, thank you very much Arturik." You look at him with grateful eyes and take the money.');
     scene.text('"Well, you know, the sight of your beautiful eyes nearly overwhelm me every time I see them. So does your tight ass." He says, smiling lecherously at you');
     scene.text('You turn and give him a quick shake of your rump before departing.');
@@ -185,24 +185,24 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Work', handler: (st: GameState) => {
-    (s as any).hour = 17;
-    (s as any).arturDaysWorked2 = ((s as any).arturDaysWorked2 ?? 0) + (1);
-    qspCall(s, 'stat', '');
+    (st as any).hour = 17;
+    (st as any).arturDaysWorked2 = ((st as any).arturDaysWorked2 ?? 0) + (1);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_6.jpg');
     scene.text('You work at the computer for hours, checking inventory, buying and selling, calculating daily expenses and income. The work is complicated and time consuming, but you feel satisfied in the end.');
     scene.actions([
       { label: 'Go with Arthur', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'money', 'earn', 2500);
-    qspCall(s, 'stat', '');
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+    qspCall(st, 'money', 'earn', 2500);
+    qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_7.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> that looks perfect! Now that the accounts are taken care of, ...
-    scene.text(`"${((s as any).pcs_nickname || '')} that looks perfect! Now that the accounts are taken care of, I can relax." Arthur says, leaning back in his chair in a relaxed pose.`);
+    scene.text(`"${((st as any).pcs_nickname || '')} that looks perfect! Now that the accounts are taken care of, I can relax." Arthur says, leaning back in his chair in a relaxed pose.`);
     scene.text('"Yes, but you\'ve still got a lot I haven\'t finished yet. There is far more to do." You say, concerned.');
     scene.text('"Oh well, we will have time to figure it all out. Some other night, perhaps." He says nonchalantly.');
     scene.text('"Now let\'s go eat barbecue and drink Chacha brandy. Then I can grab you by that fine ass of yours." Arthur suggests as he walks over and begins roughly palming your ass.');
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
@@ -211,10 +211,10 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'willpower', 'sex', 'resist', 'hard');
-    qspCall(s, 'willpower', 'pay', 'resist');
-    qspCall(s, 'stat', '');
-    qspGoto(s, 'pav_train_market', 'start');
+    qspCall(st, 'willpower', 'sex', 'resist', 'hard');
+    qspCall(st, 'willpower', 'pay', 'resist');
+    qspCall(st, 'stat', '');
+    qspGoto(st, 'pav_train_market', 'start');
   } },
       ]);
     }

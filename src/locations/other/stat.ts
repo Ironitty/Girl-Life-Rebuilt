@@ -327,19 +327,19 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).hornystat ?? 0) + 2) / 4);
   if (((s as any).vibratorin ?? 0) === 1) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 5) + 1);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 5) + 1));
   }
   if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 3) + 0);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 3) + 0));
   }
   if (((s as any).PCloTopCut ?? 0) === 4) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 2) + 0));
   }
   if (((s as any).PCloSkirt ?? 0) > 5) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 2) + 0));
   }
   if (((s as any).PCloPants ?? 0) > 5) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (Math.floor(Math.random() * 2) + 0);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 2) + 0));
   }
   if (((s as any).succubusflag ?? 0) === 1) {
     if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {

@@ -13,14 +13,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).girl = ((s as any).girl ?? 0) + (1);
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   ((s as any).stat = (s as any).stat ?? {})['lesbian_count'] = ((s as any).stat['lesbian_count'] ?? 0) + (1);
-  (s as any).picrand = Math.floor(Math.random() * 2) + 0;
+  (s as any).picrand = (Math.floor(Math.random() * 2) + 0);
   qspGoto(s, 'podrsex', 'var');
   // TODO-QSP: end
   scene.build();
 }
 
 function enterVar(s: GameState, scene: SceneBuilder): void {
-  (s as any).randhorny = Math.floor(Math.random() * 51) + 50;
+  (s as any).randhorny = (Math.floor(Math.random() * 51) + 50);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -188,7 +188,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pos ?? 0) === 2) {
       scene.text('The man groans, pumping his seed deep inside your pussy.');
-      (s as any).tmp = qspFunc(s, 'pregriskeval', '');
+      (s as any).tmp = qspFunc(s, 'pregriskeval', '\'');
       if ((!((s as any).tmp ?? 0))) {
         scene.text('<br>"Oh, shit!" you think, when you feel his cock pumping his load deep inside you. Hopefully you won\'t end up pregnant…');
         qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
@@ -209,7 +209,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).pos ?? 0) === 4) {
           scene.text('He groans as he fills her pussy with his cum.');
-          (s as any).tmp = qspFunc(s, 'pregriskeval', '');
+          (s as any).tmp = qspFunc(s, 'pregriskeval', '\'');
           if (((s as any).tmp ?? 0) > 0) {
             scene.text('<br>It\'s exciting to watch another woman being filled with cum. Maybe\'ll she end up pregnant…');
             qspCall(s, 'arousal', 'end');
@@ -231,20 +231,20 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
-    if (((s as any).picrand ?? 0) === 26  ||  ((s as any).picrand ?? 0) === 27  ||  ((s as any).picrand ?? 0) === 29) {
-      qspGoto(s, 'office', 'work');
+    if (((st as any).picrand ?? 0) === 26  ||  ((st as any).picrand ?? 0) === 27  ||  ((st as any).picrand ?? 0) === 29) {
+      qspGoto(st, 'office', 'work');
     }
-    if (((s as any).picrand ?? 0) >= 30  &&  ((s as any).picrand ?? 0) <= 32) {
-      qspGoto(s, 'city_center', '');
+    if (((st as any).picrand ?? 0) >= 30  &&  ((st as any).picrand ?? 0) <= 32) {
+      qspGoto(st, 'city_center', '');
     }
-    if (((s as any).picrand ?? 0) === 19) {
-      qspGoto(s, 'nichLivingroom', '');
+    if (((st as any).picrand ?? 0) === 19) {
+      qspGoto(st, 'nichLivingroom', '');
     }
-    if (((s as any).kazsexdva ?? 0) === 1) {
-      (s as any).kazsexdva = 0;
-      qspGoto(s, 'kazinosvid', '3');
+    if (((st as any).kazsexdva ?? 0) === 1) {
+      (st as any).kazsexdva = 0;
+      qspGoto(st, 'kazinosvid', '3');
     }
-    dynamicGoto(s, 'sexloc');
+    dynamicGoto(st, 'sexloc');
   } },
   ]);
   scene.build();

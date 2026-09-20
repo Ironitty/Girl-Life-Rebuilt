@@ -3,7 +3,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[0] ?? 0) === 1) {
+  if (Number((s as any).locArgs?.[0] ?? 0) === 1) {
     (s as any).CloQuality = 2;
     (s as any).CloStrength = 123750;
     (s as any).CloThinness = 5;
@@ -16,7 +16,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).CloPrice = 2850;
     (s as any).swimwear_description = 'A black strappy monokini with a very sexy design, it emphasizes your curves a great deal.';
   } else {
-    if (((s as any).locArgs?.[0] ?? 0) === 2) {
+    if (Number((s as any).locArgs?.[0] ?? 0) === 2) {
       (s as any).CloQuality = 2;
       (s as any).CloStrength = 123750;
       (s as any).CloThinness = 5;
@@ -28,7 +28,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).CloPrice = 2850;
       (s as any).swimwear_description = 'A pink strappy monokini with a very sexy design, it emphasizes your curves a great deal.';
     } else {
-      if (((s as any).locArgs?.[0] ?? 0) === 3) {
+      if (Number((s as any).locArgs?.[0] ?? 0) === 3) {
         (s as any).CloQuality = 2;
         (s as any).CloStrength = 123750;
         (s as any).CloThinness = 5;
@@ -41,7 +41,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).CloPrice = 2850;
         (s as any).swimwear_description = 'A strappy monokini only have small cloths to cover up intimate areas.';
       } else {
-        if (((s as any).locArgs?.[0] ?? 0) === 4) {
+        if (Number((s as any).locArgs?.[0] ?? 0) === 4) {
           (s as any).CloQuality = 2;
           (s as any).CloStrength = 123750;
           (s as any).CloThinness = 5;
@@ -53,7 +53,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           (s as any).CloPrice = 2850;
           (s as any).swimwear_description = 'A yellow strappy monokini that is highly fashionable.';
         } else {
-          if (((s as any).locArgs?.[0] ?? 0) === 5) {
+          if (Number((s as any).locArgs?.[0] ?? 0) === 5) {
             (s as any).CloQuality = 2;
             (s as any).CloStrength = 123750;
             (s as any).CloThinness = 5;
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             (s as any).CloPrice = 2850;
             (s as any).swimwear_description = 'A sexy monokini set that shows your curves quite nicely.';
           } else {
-            if (((s as any).locArgs?.[0] ?? 0) === 6) {
+            if (Number((s as any).locArgs?.[0] ?? 0) === 6) {
               (s as any).CloQuality = 2;
               (s as any).CloStrength = 123750;
               (s as any).CloThinness = 5;
@@ -78,7 +78,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               (s as any).CloPrice = 2850;
               (s as any).swimwear_description = 'A very revealing monokini set that barely covers anything.';
             } else {
-              if (((s as any).locArgs?.[0] ?? 0) === 7) {
+              if (Number((s as any).locArgs?.[0] ?? 0) === 7) {
                 (s as any).CloQuality = 3;
                 (s as any).CloStrength = 129375;
                 (s as any).CloThinness = 4;
@@ -90,7 +90,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 (s as any).CloPrice = 3000;
                 (s as any).swimwear_description = 'An impractical yet really sexy one-piece swimsuit.';
               } else {
-                if (((s as any).locArgs?.[0] ?? 0) === 8) {
+                if (Number((s as any).locArgs?.[0] ?? 0) === 8) {
                   (s as any).CloQuality = 3;
                   (s as any).CloStrength = 129375;
                   (s as any).CloThinness = 5;
@@ -102,7 +102,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   (s as any).CloPrice = 3000;
                   (s as any).swimwear_description = 'An impractical yet really sexy monokini.';
                 } else {
-                  if (((s as any).locArgs?.[0] ?? 0) === 9) {
+                  if (Number((s as any).locArgs?.[0] ?? 0) === 9) {
                     (s as any).CloQuality = 3;
                     (s as any).CloStrength = 129375;
                     (s as any).CloThinness = 5;
@@ -114,7 +114,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     (s as any).CloPrice = 3000;
                     (s as any).swimwear_description = 'An alluring monokini that shows off your body nicely.';
                   } else {
-                    if (((s as any).locArgs?.[0] ?? 0) === 10) {
+                    if (Number((s as any).locArgs?.[0] ?? 0) === 10) {
                       (s as any).CloQuality = 2;
                       (s as any).CloStrength = 123750;
                       (s as any).CloThinness = 5;
@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       (s as any).CloPrice = 2850;
                       (s as any).swimwear_description = 'A pink monokini with many cutouts.';
                     } else {
-                      if (((s as any).locArgs?.[0] ?? 0) === 11) {
+                      if (Number((s as any).locArgs?.[0] ?? 0) === 11) {
                         (s as any).CloQuality = 2;
                         (s as any).CloStrength = 123750;
                         (s as any).CloThinness = 5;
@@ -140,7 +140,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         (s as any).CloPrice = 2850;
                         (s as any).swimwear_description = 'A sexy shining grey monokini.';
                       } else {
-                        if (((s as any).locArgs?.[0] ?? 0) === 12) {
+                        if (Number((s as any).locArgs?.[0] ?? 0) === 12) {
                           (s as any).CloQuality = 3;
                           (s as any).CloStrength = 129375;
                           (s as any).CloThinness = 5;
@@ -152,7 +152,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                           (s as any).CloPrice = 3000;
                           (s as any).swimwear_description = 'A black revealing monokini.';
                         } else {
-                          if (((s as any).locArgs?.[0] ?? 0) === 13) {
+                          if (Number((s as any).locArgs?.[0] ?? 0) === 13) {
                             (s as any).CloQuality = 2;
                             (s as any).CloStrength = 123750;
                             (s as any).CloThinness = 5;
@@ -166,7 +166,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                             (s as any).CloPrice = 2850;
                             (s as any).swimwear_description = 'A tawdry looking one-piece swimsuit.';
                           } else {
-                            if (((s as any).locArgs?.[0] ?? 0) === 14) {
+                            if (Number((s as any).locArgs?.[0] ?? 0) === 14) {
                               (s as any).CloQuality = 2;
                               (s as any).CloStrength = 123750;
                               (s as any).CloThinness = 4;
@@ -179,7 +179,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                               (s as any).CloPrice = 2850;
                               (s as any).swimwear_description = 'A monokini with cutouts to shows off your curves.';
                             } else {
-                              if (((s as any).locArgs?.[0] ?? 0) === 15) {
+                              if (Number((s as any).locArgs?.[0] ?? 0) === 15) {
                                 (s as any).CloQuality = 2;
                                 (s as any).CloStrength = 123750;
                                 (s as any).CloThinness = 4;
@@ -191,7 +191,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                 (s as any).CloPrice = 2850;
                                 (s as any).swimwear_description = 'A monokini that shows off your curves very nicely.';
                               } else {
-                                if (((s as any).locArgs?.[0] ?? 0) === 16) {
+                                if (Number((s as any).locArgs?.[0] ?? 0) === 16) {
                                   (s as any).CloQuality = 2;
                                   (s as any).CloStrength = 123750;
                                   (s as any).CloThinness = 4;
@@ -204,7 +204,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                   (s as any).CloPrice = 2850;
                                   (s as any).swimwear_description = 'A monokini that shows off your body for all to see.';
                                 } else {
-                                  if (((s as any).locArgs?.[0] ?? 0) === 17) {
+                                  if (Number((s as any).locArgs?.[0] ?? 0) === 17) {
                                     (s as any).CloQuality = 2;
                                     (s as any).CloStrength = 123750;
                                     (s as any).CloThinness = 4;
@@ -217,7 +217,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                     (s as any).CloPrice = 2850;
                                     (s as any).swimwear_description = 'A monokini that shows off your body for all to see.';
                                   } else {
-                                    if (((s as any).locArgs?.[0] ?? 0) === 18) {
+                                    if (Number((s as any).locArgs?.[0] ?? 0) === 18) {
                                       (s as any).CloQuality = 2;
                                       (s as any).CloStrength = 123750;
                                       (s as any).CloThinness = 4;
@@ -230,7 +230,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                       (s as any).CloPrice = 2850;
                                       (s as any).swimwear_description = 'A pink monokini a bimbette can truly appreciate.';
                                     } else {
-                                      if (((s as any).locArgs?.[0] ?? 0) === 19) {
+                                      if (Number((s as any).locArgs?.[0] ?? 0) === 19) {
                                         (s as any).CloQuality = 2;
                                         (s as any).CloStrength = 123750;
                                         (s as any).CloThinness = 5;
@@ -245,7 +245,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                         (s as any).CloPrice = 2850;
                                         (s as any).swimwear_description = 'A really tawdry looking, semi-transparent one-piece swimsuit.';
                                       } else {
-                                        if (((s as any).locArgs?.[0] ?? 0) === 20) {
+                                        if (Number((s as any).locArgs?.[0] ?? 0) === 20) {
                                           (s as any).CloQuality = 2;
                                           (s as any).CloStrength = 123750;
                                           (s as any).CloThinness = 5;
@@ -260,7 +260,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                           (s as any).CloPrice = 2850;
                                           (s as any).swimwear_description = 'A really tawdry looking, semi-transparent one-piece swimsuit.';
                                         } else {
-                                          if (((s as any).locArgs?.[0] ?? 0) === 21) {
+                                          if (Number((s as any).locArgs?.[0] ?? 0) === 21) {
                                             (s as any).CloQuality = 1;
                                             (s as any).CloStrength = 118125;
                                             (s as any).CloThinness = 5;
@@ -275,7 +275,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                             (s as any).CloPrice = 2700;
                                             (s as any).swimwear_description = 'A semi-transparent swimsuit that covers nothing.';
                                           } else {
-                                            if (((s as any).locArgs?.[0] ?? 0) === 22) {
+                                            if (Number((s as any).locArgs?.[0] ?? 0) === 22) {
                                               (s as any).CloQuality = 1;
                                               (s as any).CloStrength = 118125;
                                               (s as any).CloThinness = 5;
@@ -290,7 +290,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                               (s as any).CloPrice = 2700;
                                               (s as any).swimwear_description = 'A semi-transparent swimsuit that covers nothing.';
                                             } else {
-                                              if (((s as any).locArgs?.[0] ?? 0) === 23) {
+                                              if (Number((s as any).locArgs?.[0] ?? 0) === 23) {
                                                 (s as any).CloQuality = 1;
                                                 (s as any).CloStrength = 118125;
                                                 (s as any).CloThinness = 5;
@@ -303,7 +303,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                 (s as any).CloPrice = 2700;
                                                 (s as any).swimwear_description = 'A semi-transparent swimsuit that covers nothing.';
                                               } else {
-                                                if (((s as any).locArgs?.[0] ?? 0) === 24) {
+                                                if (Number((s as any).locArgs?.[0] ?? 0) === 24) {
                                                   (s as any).CloQuality = 1;
                                                   (s as any).CloStrength = 118125;
                                                   (s as any).CloThinness = 5;
@@ -318,7 +318,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                   (s as any).CloPrice = 2700;
                                                   (s as any).swimwear_description = 'A semi-transparent swimsuit that covers nothing.';
                                                 } else {
-                                                  if (((s as any).locArgs?.[0] ?? 0) === 25) {
+                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 25) {
                                                     (s as any).CloQuality = 1;
                                                     (s as any).CloStrength = 118125;
                                                     (s as any).CloThinness = 6;
@@ -333,7 +333,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                     (s as any).CloPrice = 2700;
                                                     (s as any).swimwear_description = 'An ultra-transparent swimsuit. Seriously, why bother with modesty?';
                                                   } else {
-                                                    if (((s as any).locArgs?.[0] ?? 0) === 26) {
+                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 26) {
                                                       (s as any).CloQuality = 2;
                                                       (s as any).CloStrength = 123750;
                                                       (s as any).CloThinness = 6;
@@ -348,7 +348,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                       (s as any).CloPrice = 2850;
                                                       (s as any).swimwear_description = 'An ultra-transparent swimsuit. Seriously, why bother with modesty?';
                                                     } else {
-                                                      if (((s as any).locArgs?.[0] ?? 0) === 27) {
+                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 27) {
                                                         (s as any).CloQuality = 3;
                                                         (s as any).CloStrength = 129375;
                                                         (s as any).CloThinness = 4;
@@ -361,7 +361,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                         (s as any).CloPrice = 3000;
                                                         (s as any).swimwear_description = 'A thin and stylish swimsuit that showcases your figure nicely.';
                                                       } else {
-                                                        if (((s as any).locArgs?.[0] ?? 0) === 28) {
+                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 28) {
                                                           (s as any).CloQuality = 2;
                                                           (s as any).CloStrength = 123750;
                                                           (s as any).CloThinness = 5;
@@ -374,7 +374,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                           (s as any).CloPrice = 2850;
                                                           (s as any).swimwear_description = 'A thin swimsuit that shows off your cleavage.';
                                                         } else {
-                                                          if (((s as any).locArgs?.[0] ?? 0) === 29) {
+                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 29) {
                                                             (s as any).CloQuality = 2;
                                                             (s as any).CloStrength = 123750;
                                                             (s as any).CloThinness = 5;
@@ -388,7 +388,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                             (s as any).CloPrice = 2850;
                                                             (s as any).swimwear_description = 'A pink monokini that a bimbette will truly appreciate.';
                                                           } else {
-                                                            if (((s as any).locArgs?.[0] ?? 0) === 30) {
+                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 30) {
                                                               (s as any).CloQuality = 2;
                                                               (s as any).CloStrength = 123750;
                                                               (s as any).CloThinness = 6;
@@ -403,7 +403,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                               (s as any).CloPrice = 2850;
                                                               (s as any).swimwear_description = 'An ultra-transparent swimsuit that satisfy your inner exhibitionistic desire.';
                                                             } else {
-                                                              if (((s as any).locArgs?.[0] ?? 0) === 31) {
+                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 31) {
                                                                 (s as any).CloQuality = 2;
                                                                 (s as any).CloStrength = 123750;
                                                                 (s as any).CloThinness = 6;
@@ -418,7 +418,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                 (s as any).CloPrice = 2850;
                                                                 (s as any).swimwear_description = 'An ultra-transparent swimsuit that satisfy your inner exhibitionistic desire.';
                                                               } else {
-                                                                if (((s as any).locArgs?.[0] ?? 0) === 32) {
+                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 32) {
                                                                   (s as any).CloQuality = 3;
                                                                   (s as any).CloStrength = 129375;
                                                                   (s as any).CloThinness = 5;
@@ -433,7 +433,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                   (s as any).CloPrice = 3000;
                                                                   (s as any).swimwear_description = 'A revealing swimsuit that is alluring and a little indecent.';
                                                                 } else {
-                                                                  if (((s as any).locArgs?.[0] ?? 0) === 33) {
+                                                                  if (Number((s as any).locArgs?.[0] ?? 0) === 33) {
                                                                     (s as any).CloQuality = 2;
                                                                     (s as any).CloStrength = 123750;
                                                                     (s as any).CloThinness = 6;
@@ -448,7 +448,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                     (s as any).CloPrice = 2850;
                                                                     (s as any).swimwear_description = 'A really transparent swimsuit that leaves nothing hidden.';
                                                                   } else {
-                                                                    if (((s as any).locArgs?.[0] ?? 0) === 34) {
+                                                                    if (Number((s as any).locArgs?.[0] ?? 0) === 34) {
                                                                       (s as any).CloQuality = 2;
                                                                       (s as any).CloStrength = 123750;
                                                                       (s as any).CloThinness = 5;
@@ -463,7 +463,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                       (s as any).CloPrice = 2850;
                                                                       (s as any).swimwear_description = 'A really transparent swimsuit that leaves nothing hidden.';
                                                                     } else {
-                                                                      if (((s as any).locArgs?.[0] ?? 0) === 35) {
+                                                                      if (Number((s as any).locArgs?.[0] ?? 0) === 35) {
                                                                         (s as any).CloQuality = 2;
                                                                         (s as any).CloStrength = 123750;
                                                                         (s as any).CloThinness = 5;
@@ -476,7 +476,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                         (s as any).CloPrice = 2850;
                                                                         (s as any).swimwear_description = 'A semi-transparent swimsuit that still manages to be some what decent.';
                                                                       } else {
-                                                                        if (((s as any).locArgs?.[0] ?? 0) === 36) {
+                                                                        if (Number((s as any).locArgs?.[0] ?? 0) === 36) {
                                                                           (s as any).CloQuality = 3;
                                                                           (s as any).CloStrength = 129375;
                                                                           (s as any).CloThinness = 4;
@@ -488,7 +488,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                           (s as any).CloPrice = 3000;
                                                                           (s as any).swimwear_description = 'A very fashionable one-piece swimsuit.';
                                                                         } else {
-                                                                          if (((s as any).locArgs?.[0] ?? 0) === 37) {
+                                                                          if (Number((s as any).locArgs?.[0] ?? 0) === 37) {
                                                                             (s as any).CloQuality = 2;
                                                                             (s as any).CloStrength = 123750;
                                                                             (s as any).CloThinness = 6;
@@ -502,7 +502,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                             (s as any).CloPrice = 2850;
                                                                             (s as any).swimwear_description = 'A swimsuit designed for attention-seeking sluts.';
                                                                           } else {
-                                                                            if (((s as any).locArgs?.[0] ?? 0) === 38) {
+                                                                            if (Number((s as any).locArgs?.[0] ?? 0) === 38) {
                                                                               (s as any).CloQuality = 2;
                                                                               (s as any).CloStrength = 123750;
                                                                               (s as any).CloThinness = 6;
@@ -517,7 +517,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                               (s as any).CloPrice = 2850;
                                                                               (s as any).swimwear_description = 'A swimsuit designed for attention-seeking sluts.';
                                                                             } else {
-                                                                              if (((s as any).locArgs?.[0] ?? 0) === 39) {
+                                                                              if (Number((s as any).locArgs?.[0] ?? 0) === 39) {
                                                                                 (s as any).CloQuality = 1;
                                                                                 (s as any).CloStrength = 118125;
                                                                                 (s as any).CloThinness = 5;
@@ -532,7 +532,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                                                                                 (s as any).CloPrice = 2700;
                                                                                 (s as any).swimwear_description = 'A low rise bikini bottom and why bother with the top?';
                                                                               } else {
-                                                                                if (((s as any).locArgs?.[0] ?? 0) === 40) {
+                                                                                if (Number((s as any).locArgs?.[0] ?? 0) === 40) {
                                                                                   (s as any).CloQuality = 1;
                                                                                   (s as any).CloStrength = 118125;
                                                                                   (s as any).CloThinness = 5;

@@ -133,7 +133,7 @@ function enterSaveupdater(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddMod(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === '') {
+  if (Number((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
   if (((s as any).qspver ?? 0) < '5.8.0') {

@@ -5,9 +5,25 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).shoplocation ?? 0) === 'items') {
-    qspGoto(s, 'shop_materinstvo', 'items');
-  }
+  qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'start');
+  (s as any).location_type = 'public_indoors';
+  qspCall(s, 'stat', '');
+  qspCall(s, 'themes', 'indoors');
+  qspCall(s, 'shop_materinstvo', 'config');
+  scene.text('<center><b>Mommy Style</b></center>');
+  scene.img('images/locations/city/citycenter/mall/mommy/shop.jpg');
+  scene.text('This is a shop dedicated to all things pregnancy related. Here you can buy Pregnancy Clothing or items to aid the process of getting through the day.');
+  // TODO-QSP: end
+  scene.actions([
+    { label: 'Leave the Shop', goto: ['city_mall', ''] },
+    { label: 'View clothes', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  }, goto: ['shop_materinstvo', 'clothes'] },
+  ]);
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'shop_materinstvo', 'start');
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'stat', '');
@@ -57,17 +73,23 @@ function enterClothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'shop_utils', 'cleanup');
-    qspGoto(s, 'shop_materinstvo', 'start');
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+    qspCall(st, 'shop_utils', 'cleanup');
+    qspGoto(st, 'shop_materinstvo', 'start');
   } },
   ]);
   scene.build();
 }
 
 function enter(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).shoplocation ?? 0) === 'items') {
+    qspGoto(s, 'shop_materinstvo', 'items');
+  }
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'items':
       enterItems(s, scene);
       break;

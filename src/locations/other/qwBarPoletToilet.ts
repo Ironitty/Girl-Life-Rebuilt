@@ -16,13 +16,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).MartinTalkDaystart = ((s as any).daystart ?? 0);
     (s as any).MartinTalkDay = 0;
   }
-  (s as any).temp = Math.floor(Math.random() * 11) + 1;
+  (s as any).temp = (Math.floor(Math.random() * 11) + 1);
   if (((s as any).temp ?? 0) <= 6) {
     scene.text('<center><b>Bar "Rabotnik" - Toilet</b></center>');
     scene.img('images/locations/shared/bathroom/publictoilet.jpg');
     scene.text('You walk into the unisex toilet, bracing yourself for the absolute worst, but find it surprisingly clean, all things considered.');
     scene.text('The smell of urine is noticeable, but not overwhelming, and both the stalls and the floor look relatively hygienic (so do the urinals, but you\'re not really in a position to make use of that insight).');
-    scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(\\u0027mirror\\u0027, \\u0027start\\u0027); return false;">mirror</a> you see above the sinks has some cracks radiating from one of the corners, but other than that, it\'s perfectly usable.');
+    scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> you see above the sinks has some cracks radiating from one of the corners, but other than that, it\'s perfectly usable.');
     qspCall(s, 'din_van', 'basin');
     qspCall(s, 'din_van', 'publicpan');
     qspCall(s, 'din_van', 'quickwash');

@@ -16,14 +16,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenerspeak11.jpg');
     scene.text('After greeting Mikhail, an awkward silence follows because you don\'t know what to say.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what are you doing here?" Mikhail asks you in astonishment.
-    scene.text(`"${((s as any).pcs_nickname || '')}, what are you doing here?" Mikhail asks you in astonishment.`);
+    scene.text(`"${((st as any).pcs_nickname || '')}, what are you doing here?" Mikhail asks you in astonishment.`);
     // TODO-QSP: dynamic text: "Well, I wanted to improve my physical fitness, and since the sports club doesn'...
     scene.text('"Well, I wanted to improve my physical fitness, and since the sports club doesn\'t open until 14:00, I figured it was worth the trip into the city to come here," you explain hastily.');
     // TODO-QSP: dynamic text: The coach looks at you with an approving nod, "That is good, <<$pcs_nickname>>."
-    scene.text(`The coach looks at you with an approving nod, "That is good, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`The coach looks at you with an approving nod, "That is good, ${((st as any).pcs_nickname || '')}."`);
     scene.text('The stranger smiles at you and says, "I am Guang. Your coach and I are old friends from when we used to compete against each other. He represented the people of the Soviet Republics, and I, naturally, represented the people of the Republic of China. After my team beat his so many times, his government finally convinced me to change sides as it were. Now I train the athletes of the Russian Federation, and Mikhail and I meet here from time to time."');
     // TODO-QSP: dynamic text: "I am sorry, <<$pcs_nickname>> and Guang, but my wife is expecting me and I must...
-    scene.text(`"I am sorry, ${((s as any).pcs_nickname || '')} and Guang, but my wife is expecting me and I must be going," the coach says, looking at his watch. He then departs, leaving you in the company of the Chinese trainer.`);
+    scene.text(`"I am sorry, ${((st as any).pcs_nickname || '')} and Guang, but my wife is expecting me and I must be going," the coach says, looking at his watch. He then departs, leaving you in the company of the Chinese trainer.`);
     scene.actions([
       { label: 'Ask about the coach', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenerspeak12.jpg');
@@ -39,7 +39,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('"It is a deal," you exclaim and start to head for the door then turn back to Guang, "Where can I find your rice wine, your huangjiu?"');
     scene.text('The older man just smiles at you and shrugs.');
     scene.text('You think about it and remember there were a couple of Chinese merchants at the market back home. Maybe one of them will have the rice wine.');
-    (s as any).ShowerIvan = 5;
+    (st as any).ShowerIvan = 5;
     scene.actions([
       { label: 'Move away', goto: ['havana', 'start'] },
     ]);
@@ -55,11 +55,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenerspeak13.jpg');
     scene.text('You go up to Guang and say hello.');
     scene.text('"Have you brought it?" he asks.');
-    if (((s as any).ricewine ?? 0) === 1) {
+    if (((st as any).ricewine ?? 0) === 1) {
       scene.actions([
         { label: 'Give him the wine', handler: (st: GameState) => {
-    (s as any).ricewine = 2;
-    (s as any).ShowerIvan = 6;
+    (st as any).ricewine = 2;
+    (st as any).ShowerIvan = 6;
     scene.text('You show him the bottle of wine and stare questioningly at the other coach.');
     scene.text('Guang sighs, "Okay, I will answer one of your questions, but don\'t bug me anymore, and slow down, you talk like a rabid monkey."');
     scene.text('You feel offended being compared to a rabid monkey, but you restrain yourself.');
