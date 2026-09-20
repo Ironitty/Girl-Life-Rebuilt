@@ -932,6 +932,104 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
       warn(module, func, args);
       return 0;
     }
+    case '$item_description': {
+      const category = str(args[0]), type = str(args[1]), n = str(args[2]);
+      const maps: Record<string, Record<string, string>> = {
+        bra: { gm: 'G&M bra', fashionista: 'Fashionista bra', cats: 'Pussy-Cats bra', danilovich: 'Danilovich bra', eroto: 'Erotomaniac bra', salacious: 'Salacious bra', lusso: 'Lusso bra' },
+        coat: { gm_coats: 'G&M coat', cats_coats: 'Pussy-Cats coat', dolls_coats: 'Patchwork Dolls coat', bomba_coats: 'Tsar Bomba coat', danilovich_coats: 'Danilovich coat', moncheri_coats: 'Mon Chéri coat' },
+        panty: { gm: 'G&M panties', fashionista: 'Fashionista panties', cats: 'Pussy-Cats panties', danilovich: 'Danilovich panties', eroto: 'Erotomaniac panties', salacious: 'Salacious panties', lusso: 'Lusso panties' },
+        bodysuit: { lusso: 'Lusso bodysuit', salacious: 'Salacious bodysuit', moncheri: 'Mon Chéri bodysuit', scandalicious: 'Scandalicious bodysuit' },
+      };
+      const label = maps[category]?.[type];
+      return label ? `${label} number ${n}.` : '';
+    }
+    case '$shoe_description': {
+      const shop = str(args[0]), n = str(args[1]);
+      const maps: Record<string, string> = {
+        moncheri: 'Mon Chéri shoe', cats: 'Pussy Cats shoe', bomba: 'Tsar Bomba shoe',
+        dolls: 'Patchwork Dolls shoe', eroto: 'Erotomaniac shoe', scandalicious: 'Scandalicious shoe',
+        gm: 'G&M shoe', danilovich: 'Training shoe',
+      };
+      const label = maps[shop];
+      return label ? `${label} number ${n}.` : '';
+    }
+    case '$shop_icon_image': {
+      const shop = str(args[0]);
+      const exact: Record<string, string> = {
+        all: 'images/system/icons/clothing/all_outfits.png',
+        gm_school: 'images/pc/items/gm/school.png',
+        gm_office: 'images/pc/items/gm/officewear.png',
+        gm_maid: 'images/pc/items/gm/maid.png',
+        gm_server: 'images/pc/items/gm/server.png',
+        sexshop: 'images/locations/city/redlight/erotomaniac/shop_name.png',
+        exhibitshop: 'images/locations/pushkin/exhibitshop/shop_name.png',
+        scandalicious_swimwear: 'images/locations/city/citycenter/mall/scandalicious_swimwear.png',
+      };
+      if (exact[shop]) return exact[shop];
+      const prefixes: [string, string][] = [
+        ['allure', 'images/locations/city/residential/lake/allure/shop_name.png'],
+        ['bomba', 'images/locations/pushkin/bomba/shop_name.png'],
+        ['cats', 'images/locations/city/citycenter/mall/pussycat.png'],
+        ['coco', 'images/locations/pavlovsk/coco/shop_name.png'],
+        ['danilovich', 'images/locations/city/citycenter/mall/sports.png'],
+        ['dolls', 'images/locations/city/island/dolls/shop_name.png'],
+        ['eroto', 'images/locations/city/redlight/erotomaniac/shop_name.png'],
+        ['fancy', 'images/locations/pushkin/fancypancy/shop_name.png'],
+        ['fashionista', 'images/locations/city/citycenter/mall/fashionista.png'],
+        ['flamingos', 'images/locations/city/island/flamingos/shop_name.png'],
+        ['gm', 'images/locations/city/citycenter/mall/gm.png'],
+        ['lusso', 'images/locations/city/citycenter/mall/Lusso.png'],
+        ['materinstvo', 'images/locations/city/citycenter/mall/mommy.png'],
+        ['market', 'images/pc/items/market/market.png'],
+        ['misc', 'images/pc/items/misc/misc.png'],
+        ['moncheri', 'images/locations/city/citycenter/mall/moncheri.png'],
+        ['nerdvana', 'images/locations/city/island/nerdvana/shop_name.png'],
+        ['salacious', 'images/locations/pushkin/exhibitshop/shop_name.png'],
+        ['scandalicious', 'images/locations/city/citycenter/mall/scandalicious.png'],
+      ];
+      for (const [prefix, path] of prefixes) {
+        if (shop.startsWith(prefix)) return path;
+      }
+      return '';
+    }
+    case '$short_description': {
+      const type = str(args[0]), n = str(args[1]);
+      const maps: Record<string, string> = {
+        gm_dress: 'G&M dress', gm_outfits: 'G&M outfit', gm_office: 'Office wear',
+        gm_school: 'School outfit', gm_server: 'Server uniform', gm_maid: 'Maid outfit',
+        misc_outfits: 'Outfit that is not in a shop', cats_dress: 'Pussy-Cats dress',
+        cats_outfits: 'Pussy-Cats outfit', flamingos_outfits: 'Flamingos outfit',
+        flamingos_dress: 'Flamingos dress', coco_outfits: 'Coco outfit', coco_dress: 'Coco dress',
+        fashionista_dress: 'Fashionista dress', fashionista_outfits: 'Fashionista outfit',
+        moncheri_gown: 'Mon Chéri gown', moncheri_dress: 'Mon Chéri dress',
+        office: 'Office wear', school: 'School uniform', danilovich_outfits: 'Danilovich outfit',
+        fetish: 'Fetish outfit', salacious_dress: 'Revealing dress', salacious_outfits: 'Revealing outfit',
+        eroto_strip: 'Stripper outfit', eroto_outfits: 'Erotic outfit', eroto_dress: 'Erotic dress',
+        danilovich_swimsuit: 'Danilovich swimwear', scandalicious_dress: 'Scandalicious dress',
+        scandalicious_outfits: 'Scandalicious oufit', scandalicious_bikinis: 'Scandalicious bikini',
+        scandalicious_swimsuit: 'Scandalicious swimsuit', allure_swimsuit: 'Allure swimsuit',
+        allure_bikinis: 'Allure bikini', fancy_burlesque: 'Burlesque outfit',
+        dolls_dress: 'Patchwork Dolls dress', dolls_outfits: 'Patchwork Dolls outfit',
+        bomba_dress: 'Tsar Bomba dress', bomba_outfits: 'Tsar Bomba outfit',
+        market_outfits: 'Market outfit', materinstvo_dress: 'Materinstvo dress',
+        nerdvana_cosplay: 'Cosplay outfit', nerdvana_outfits: 'Nerdvana outfit',
+        nerdvana_swimsuit: 'Nerdvana swimsuit', nerdvana_bikinis: 'Nerdvana bikini',
+      };
+      const label = maps[type];
+      return label ? `${label} number ${n}.` : '';
+    }
+    case '$menu_settings': {
+      const sub = func !== '' ? func : str(args[0]);
+      if (sub === 'extract_color_component') {
+        const comp = func !== '' ? str(args[0]) : str(args[1]);
+        const val = num(func !== '' ? args[1] : args[2]);
+        if (comp === 'red') return val & 255;
+        if (comp === 'green') return (val & 65280) / 256;
+        if (comp === 'blue') return (val & 16711680) / 65536;
+      }
+      warn(module, func, args);
+      return 0;
+    }
     default:
       warn(module, func, args);
       return 0;
