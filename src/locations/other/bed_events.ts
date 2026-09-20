@@ -301,21 +301,21 @@ function enterVor3(s: GameState, scene: SceneBuilder): void {
 function enterVorend(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).remsitr ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/apartment/sitr...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/city/residential/apartment/sitr.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/apartment/sitr.jpg"></center>`);
   }
   if (((s as any).remsitr ?? 0) === 1) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/apartment/sitr...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/city/residential/apartment/sitr2.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/residential/apartment/sitr2.jpg"></center>`);
   }
   scene.text('Relieved that it\'s over, you check your apartment to see what\'s missing.');
   if (((s as any).stolmoney ?? 0) > 0) {
     // TODO-QSP: dynamic text: They took <<$func(''money'', ''format'', stolmoney)>> from your living room tabl...
-    scene.text(`They took ${qspFunc(s, 'money', 'format', ((s as any).stolmoney || ''))} from your living room table.`);
+    scene.text(`They took ${qspFunc(s, 'money', 'format', ((s as any).stolmoney ?? ''))} from your living room table.`);
     (s as any).stolmoney = 0;
   }
   if (((s as any).money ?? 0) > 0) {
     // TODO-QSP: dynamic text: They took the <<$func(''money'', ''format'', money)>> that you had on you.
-    scene.text(`They took the ${qspFunc(s, 'money', 'format', ((s as any).money || ''))} that you had on you.`);
+    scene.text(`They took the ${qspFunc(s, 'money', 'format', ((s as any).money ?? ''))} that you had on you.`);
     qspCall(s, 'money', 'set', 0, 'cash');
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
@@ -389,10 +389,10 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 23  ||  ((s as any).hour ?? 0) < 7) {
     // TODO-QSP: dynamic text: <<$boydesc>> looks at you, a little dumbfounded.
-    scene.text(`${((s as any).boydesc || '')} looks at you, a little dumbfounded.`);
+    scene.text(`${((s as any).boydesc ?? '')} looks at you, a little dumbfounded.`);
   } else {
     // TODO-QSP: dynamic text: Once you get into it, <<$boydesc>> enters the room.
-    scene.text(`Once you get into it, ${((s as any).boydesc || '')} enters the room.`);
+    scene.text(`Once you get into it, ${((s as any).boydesc ?? '')} enters the room.`);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     scene.text('"What are you doing?" he asks.');
@@ -417,7 +417,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
         { label: 'Show him', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m22.jpg');
     // TODO-QSP: dynamic text: You pull the dildo out of your pussy and, winking at your husband, insert it int...
-    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your ass. ${((st as any).boydesc || '')} watches closely as the dildo disappears into your ass.`);
+    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your ass. ${((st as any).boydesc ?? '')} watches closely as the dildo disappears into your ass.`);
     scene.text('You see how his pants swell. "Anything else you want, dear?" you ask while smiling.');
     scene.text('"Can I join?" he asks, a little embarrassed.');
     qspCall(st, 'arousal', 'anal_dildo', 5, 'masturbate');
@@ -426,10 +426,10 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
       { label: 'Invite', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m23.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> gets his dick out and starts masturbating. It''s not what you expec...
-    scene.text(`${((st as any).boydesc || '')} gets his dick out and starts masturbating. It's not what you expected and you feel a little sad that he isn't fucking you as you start to masturbate.`);
+    scene.text(`${((st as any).boydesc ?? '')} gets his dick out and starts masturbating. It's not what you expected and you feel a little sad that he isn't fucking you as you start to masturbate.`);
     scene.text('You watch your husband masturbate as he watches you, his face covered in pleasure, before you scream and fall on the table, having experienced an orgasm.');
     // TODO-QSP: dynamic text: <<$boydesc>> is still masturbating, looking at you stretched out on the table be...
-    scene.text(`${((st as any).boydesc || '')} is still masturbating, looking at you stretched out on the table before you take the dildo out of your ass and start lick it while looking into his eyes.`);
+    scene.text(`${((st as any).boydesc ?? '')} is still masturbating, looking at you stretched out on the table before you take the dildo out of your ass and start lick it while looking into his eyes.`);
     scene.text('The spectacle has him immediately cum all over the floor before you walk over to him and kiss him on the lips. He passionately kisses you back.');
     qspCall(st, 'arousal', 'anal_dildo', 5, 'masturbate');
     (st as any).orgasm_or = 'custom';
@@ -458,9 +458,9 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'clit_finger', 5, 'masturbate');
         qspCall(s, 'arousal', 'end');
         // TODO-QSP: dynamic text: <<$boydesc>> stands up and playfully claps. "Bravo! Encore?" he laughs.
-        scene.text(`${((s as any).boydesc || '')} stands up and playfully claps. "Bravo! Encore?" he laughs.`);
+        scene.text(`${((s as any).boydesc ?? '')} stands up and playfully claps. "Bravo! Encore?" he laughs.`);
         // TODO-QSP: dynamic text: "Anything for such a lovely audience, but first an intermission," you laugh and ...
-        scene.text(`"Anything for such a lovely audience, but first an intermission," you laugh and ${((s as any).boydesc || '')} helps you down from the table.`);
+        scene.text(`"Anything for such a lovely audience, but first an intermission," you laugh and ${((s as any).boydesc ?? '')} helps you down from the table.`);
         scene.actions([
           { label: 'Finish', handler: (st: GameState) => {
     qspCall(st, 'bed_events', 'event_end');
@@ -474,7 +474,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
           { label: 'Show', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m22.jpg');
     // TODO-QSP: dynamic text: You pull the dildo out of your pussy and, winking at your husband, insert it int...
-    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your ass. ${((st as any).boydesc || '')} watches closely as you slide the dildo in and out of your ass.`);
+    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your ass. ${((st as any).boydesc ?? '')} watches closely as you slide the dildo in and out of your ass.`);
     scene.text('You see how his pants swell. "Anything else you want, dear?" you ask while smiling.');
     scene.text('"I don\'t just want something, I\'ll do something!" he replies, unbuttoning his pants and brings his cock to your mouth.');
     qspCall(st, 'arousal', 'anal_dildo', 5);
@@ -484,7 +484,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/husband/sex/m24.jpg');
     scene.text('You take his flaccid penis in your mouth and start sucking while continuing to drive the dildo into your ass.');
     // TODO-QSP: dynamic text: When his cock has finally hardened, <<$boydesc>> stops you. "Now I''ll take this...
-    scene.text(`When his cock has finally hardened, ${((st as any).boydesc || '')} stops you. "Now I'll take this hole."`);
+    scene.text(`When his cock has finally hardened, ${((st as any).boydesc ?? '')} stops you. "Now I'll take this hole."`);
     qspCall(st, 'arousal', 'clit_finger', 5);
     qspCall(st, 'arousal', 'bj', (-5));
     qspCall(st, 'stat', '');
@@ -529,7 +529,7 @@ function enterMast2(s: GameState, scene: SceneBuilder): void {
           { label: 'Offer your mouth', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m24.jpg');
     // TODO-QSP: dynamic text: Still using the dildo on your pussy and ass, you offer <<$boydesc>> your mouth. ...
-    scene.text(`Still using the dildo on your pussy and ass, you offer ${((st as any).boydesc || '')} your mouth. He gets up and walks over to you.`);
+    scene.text(`Still using the dildo on your pussy and ass, you offer ${((st as any).boydesc ?? '')} your mouth. He gets up and walks over to you.`);
     scene.text('You take his flaccid penis and start sucking until his cock is finally hard and he stops you. "Now I\'ll fuck your ass."');
     qspCall(st, 'arousal', 'vaginal_dildo', 5);
     qspCall(st, 'arousal', 'anal_dildo', 5);

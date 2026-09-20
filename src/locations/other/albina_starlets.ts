@@ -23,7 +23,7 @@ function enterAlbina1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big23.jpg');
     scene.text('You approach and greet Albina, who turns and raises an eyebrow in scornful confusion.');
     // TODO-QSP: dynamic text: "Who the fuck are you? Oh, right. <<$pcs_firstname>>. So you''ve taken up dancin...
-    scene.text(`"Who the fuck are you? Oh, right. ${((st as any).pcs_firstname || '')}. So you've taken up dancing, have you?" You nod, confirming the obvious, but she just laughs dismissively. "Well, how's that going for you?"`);
+    scene.text(`"Who the fuck are you? Oh, right. ${((st as any).pcs_firstname ?? '')}. So you've taken up dancing, have you?" You nod, confirming the obvious, but she just laughs dismissively. "Well, how's that going for you?"`);
     scene.text('"Not bad," you answer coldly. "Not bad at all."');
     scene.text('She just laughs at you mockingly. "Not bad? Well maybe in comparison to those bowlegged cows of amateurs you train with, but I doubt that you can dance on a <i>professional</i> level like <i>us</i>."');
     scene.actions([
@@ -81,7 +81,7 @@ function enterAlbina2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big23.jpg');
     scene.text('You approach and greet Albina, who turns to you and smiles.');
     // TODO-QSP: dynamic text: "Oh hello <<$pcs_nickname>>. I didn''t know you started dancing. Are you any goo...
-    scene.text(`"Oh hello ${((st as any).pcs_nickname || '')}. I didn't know you started dancing. Are you any good?" she asks with interest.`);
+    scene.text(`"Oh hello ${((st as any).pcs_nickname ?? '')}. I didn't know you started dancing. Are you any good?" she asks with interest.`);
     scene.text('"I\'m pretty good, I think," you reply with a smile. "Even if I do say so myself."');
     scene.text('"Pretty good, huh?" she responds in a condescending tone. "Well, I\'ve seen some of the dancers that take lessons here. It wouldn\'t take much to be better than those bow-legged cows. I doubt you\'re up to any kind of <i>professional</i> standard, though."');
     scene.actions([
@@ -133,7 +133,7 @@ function enterAlbina3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big23.jpg');
     scene.text('You approach and greet Albina, who turns to you and smiles, but stops short of hugging you.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>!! Please tell me you don''t practice with those bow-legged co...
-    scene.text(`"${((st as any).pcs_nickname || '')}!! Please tell me you don't practice with those bow-legged cows who call themselves dancers?" she asks with a smirk.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}!! Please tell me you don't practice with those bow-legged cows who call themselves dancers?" she asks with a smirk.`);
     scene.text('"I\'m pretty good, but I don\'t know if I\'m quite on your level just yet," you reply.');
     scene.text('"Hey, don\'t sell yourself short!" she responds with a smile. "Have you seen the people that take lessons here? <i>Please</i>. No amount of training will help them reach your skill level. You\'ve got talent, which brings me to my next question…"');
     scene.actions([
@@ -159,7 +159,7 @@ function enterAlbina4(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: The music starts playing as Albina sits next to you and motions for you to get u...
-  scene.text(`The music starts playing as Albina sits next to you and motions for you to get up and start dancing. "Hurry up, ${((s as any).pcs_nickname || '')}! I have better things to do than watch you flounder around like a beached whale, so let's get this over with already!"`);
+  scene.text(`The music starts playing as Albina sits next to you and motions for you to get up and start dancing. "Hurry up, ${((s as any).pcs_nickname ?? '')}! I have better things to do than watch you flounder around like a beached whale, so let's get this over with already!"`);
   if (((s as any).pregtime ?? 0) >= 90) {
     scene.text('You might try out for them after you\'ve had your child.');
     scene.actions([
@@ -263,7 +263,7 @@ function enterAlbina5(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "Your turn now <<$pcs_nickname>>. Show me that you''re as passionate as I am and...
-    scene.text(`"Your turn now ${((st as any).pcs_nickname || '')}. Show me that you're as passionate as I am and we might come to an agreement…" she says as she sits down to catch her breath.`);
+    scene.text(`"Your turn now ${((st as any).pcs_nickname ?? '')}. Show me that you're as passionate as I am and we might come to an agreement…" she says as she sits down to catch her breath.`);
     scene.actions([
       { label: 'Dance', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -275,7 +275,7 @@ function enterAlbina5(s: GameState, scene: SceneBuilder): void {
     scene.text('You stand panting before her as she gleefully claps. "I knew you could do it!"');
     scene.text('"Do… what?" you reply.');
     // TODO-QSP: dynamic text: "I had no doubts about you <<$pcs_nickname>>, but the others wanted to see you i...
-    scene.text(`"I had no doubts about you ${((st as any).pcs_nickname || '')}, but the others wanted to see you in action first. They didn't believe me when I said you were <i>almost</i> as good as me."`);
+    scene.text(`"I had no doubts about you ${((st as any).pcs_nickname ?? '')}, but the others wanted to see you in action first. They didn't believe me when I said you were <i>almost</i> as good as me."`);
     scene.actions([
       { label: 'I\'m a Starlet?!', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -330,18 +330,18 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/dance_studio/fit1.jpg');
   if (((s as any).pcs_dancero ?? 0) < 15) {
     // TODO-QSP: dynamic text: Your dancing is terrible and Albina constantly yells at you. "Did I make a mista...
-    scene.text(`Your dancing is terrible and Albina constantly yells at you. "Did I make a mistake letting you join, ${((s as any).pcs_nickname || '')}?"`);
+    scene.text(`Your dancing is terrible and Albina constantly yells at you. "Did I make a mistake letting you join, ${((s as any).pcs_nickname ?? '')}?"`);
   } else {
     if (((s as any).pcs_dancero ?? 0) < 30) {
       scene.text('You sometimes manage to get it right, but you\'re largely out of sync with the others or make the wrong move. Albina constantly yells at you and calls you "a bowlegged cow."');
     } else {
       if (((s as any).pcs_dancero ?? 0) < 45) {
         // TODO-QSP: dynamic text: You manage to get into the general rhythm and move well with the other girls, bu...
-        scene.text(`You manage to get into the general rhythm and move well with the other girls, but Albina still isn't happy. "You're too sluggish, ${((s as any).pcs_nickname || '')}! Put more life into it!"`);
+        scene.text(`You manage to get into the general rhythm and move well with the other girls, but Albina still isn't happy. "You're too sluggish, ${((s as any).pcs_nickname ?? '')}! Put more life into it!"`);
       } else {
         if (((s as any).pcs_dancero ?? 0) < 55) {
           // TODO-QSP: dynamic text: You perform the routine with no mistakes, but Albina still nags at you. "You''re...
-          scene.text(`You perform the routine with no mistakes, but Albina still nags at you. "You're not at a funeral, ${((s as any).pcs_nickname || '')}! Raise your head and smile!"`);
+          scene.text(`You perform the routine with no mistakes, but Albina still nags at you. "You're not at a funeral, ${((s as any).pcs_nickname ?? '')}! Raise your head and smile!"`);
         } else {
           scene.text('You dance beautifully and Albina uses you as an example for the other girls.');
         }
@@ -452,7 +452,7 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
       }
       if (((st as any).AlbinaQW ?? 0)?.['StarletCustomer'] <= 9) {
         // TODO-QSP: dynamic text: Albina walks up to you. "<<$pcs_nickname>>, we… We need to… to talk…" she quietl...
-        scene.text(`Albina walks up to you. "${((st as any).pcs_nickname || '')}, we… We need to… to talk…" she quietly stammers.`);
+        scene.text(`Albina walks up to you. "${((st as any).pcs_nickname ?? '')}, we… We need to… to talk…" she quietly stammers.`);
         scene.actions([
           { label: 'About what?', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
@@ -462,12 +462,12 @@ function enterStarlets(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Albina avoids eye contact. "Nothing, it''s just… If you go with this person and ...
       scene.text(`Albina avoids eye contact. "Nothing, it's just… If you go with this person and be… 'affectionate'," she says hesitantly, "you'll get ${qspFunc(s, 'money', 'string_profit', (((st as any).AlbinaQW ?? {})?.['StarletPay'] ?? 0)*1000, 1)}."`);
       // TODO-QSP: dynamic text: She looks you in the eye, the fear within her apparently growing. "Please <<$pcs...
-      scene.text(`She looks you in the eye, the fear within her apparently growing. "Please ${((st as any).pcs_nickname || '')}, I need you to do this for me. Just… please."`);
+      scene.text(`She looks you in the eye, the fear within her apparently growing. "Please ${((st as any).pcs_nickname ?? '')}, I need you to do this for me. Just… please."`);
     } else {
       // TODO-QSP: dynamic text: Albina avoids eye contact. "Nothing, it''s just… See those guys?" she asks hesit...
       scene.text(`Albina avoids eye contact. "Nothing, it's just… See those guys?" she asks hesitantly. "If you go with them and be…'affectionate', you'll get ${qspFunc(s, 'money', 'string_profit', (((st as any).AlbinaQW ?? {})?.['StarletPay'] ?? 0)*1000, 1)}."`);
       // TODO-QSP: dynamic text: She looks you in the eye, the fear within her apparently growing. "Please <<$pcs...
-      scene.text(`She looks you in the eye, the fear within her apparently growing. "Please ${((st as any).pcs_nickname || '')}, I need you to do this for me. Just… please."`);
+      scene.text(`She looks you in the eye, the fear within her apparently growing. "Please ${((st as any).pcs_nickname ?? '')}, I need you to do this for me. Just… please."`);
     }
     qspCall(st, 'willpower', 'prostitution', 'resist', 'hard');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -641,7 +641,7 @@ function enterParkrally(s: GameState, scene: SceneBuilder): void {
 
 function enterStarletsreact(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: As you approach the group, Albina motions you aside. "What the fuck <<$pcs_nickn...
-  scene.text(`As you approach the group, Albina motions you aside. "What the fuck ${((s as any).pcs_nickname || '')}!? Who knocked you up?" Her eyes then grow wide. "It wasn't one of <i>them</i> was it? Regardless, you can't dance if you're pregnant! I'm sorry, but I'm going to have to cut you loose." she says while placing a hand on your shoulder.`);
+  scene.text(`As you approach the group, Albina motions you aside. "What the fuck ${((s as any).pcs_nickname ?? '')}!? Who knocked you up?" Her eyes then grow wide. "It wasn't one of <i>them</i> was it? Regardless, you can't dance if you're pregnant! I'm sorry, but I'm going to have to cut you loose." she says while placing a hand on your shoulder.`);
   scene.text('You nod in understanding and say your goodbyes before Albina walks back to the group, directing them to start from the beginning.');
   (s as any).starlets_practice = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -658,7 +658,7 @@ function enterStarletsreact(s: GameState, scene: SceneBuilder): void {
 
 function enterStarletsEnd(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You enter the locker room and immediately see the disapproving looks on the girl...
-  scene.text(`You enter the locker room and immediately see the disapproving looks on the girls faces. Albina walks over to you and, looking severely disappointed, shakes her head. "Why ${((s as any).pcs_nickname || '')}? You used to be cool, but now you've gone and done this to yourself. I'm sorry, but I just can't have someone like you being associated with us anymore."`);
+  scene.text(`You enter the locker room and immediately see the disapproving looks on the girls faces. Albina walks over to you and, looking severely disappointed, shakes her head. "Why ${((s as any).pcs_nickname ?? '')}? You used to be cool, but now you've gone and done this to yourself. I'm sorry, but I just can't have someone like you being associated with us anymore."`);
   scene.text('She motions to the door and you walk out in shame as tears well up in your eyes.');
   (s as any).starlets_practice = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -681,7 +681,7 @@ function enterStarletsPracticeMissed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).starlet_practice_skipped ?? 0) === 1) {
     qspCall(s, 'npc_relationship', 'modify', 'A23', (-10));
     // TODO-QSP: dynamic text: You walk in and see an annoyed Albina waiting for you, her arms crossed as she g...
-    scene.text(`You walk in and see an annoyed Albina waiting for you, her arms crossed as she glares at you. "Where the fuck were you ${((s as any).pcs_nickname || '')}?! And don't fucking lie to me!"`);
+    scene.text(`You walk in and see an annoyed Albina waiting for you, her arms crossed as she glares at you. "Where the fuck were you ${((s as any).pcs_nickname ?? '')}?! And don't fucking lie to me!"`);
     scene.text('"Sorry, Albina. I… had a family thing I had to deal with and I didn\'t have time to tell you." you meekly reply.');
     scene.text('She doesn\'t look completely convinced. "Right… Well if you care about your place on the troupe, then you\'ll be at the next training session on time. No excuses."');
     scene.text('You nod at her and she gives you a pat on the head before walking away. It looks like you got off lightly this time.');
@@ -692,7 +692,7 @@ function enterStarletsPracticeMissed(s: GameState, scene: SceneBuilder): void {
     if (((s as any).starlet_practice_skipped ?? 0) === 2) {
       qspCall(s, 'npc_relationship', 'modify', 'A23', (-20));
       // TODO-QSP: dynamic text: You walk into the hall and gulp when you see Albina heading your way. "Skipping ...
-      scene.text(`You walk into the hall and gulp when you see Albina heading your way. "Skipping training <i>again</i>, ${((s as any).pcs_nickname || '')}?! I thought I told you that you were to be here on time <b>no excuses</b>?! I don't care about what miserable story you have to defend yourself with. You either commit to the team or you're out. This is your final warning ${((s as any).pcs_nickname || '')}, don't fucking test me!"`);
+      scene.text(`You walk into the hall and gulp when you see Albina heading your way. "Skipping training <i>again</i>, ${((s as any).pcs_nickname ?? '')}?! I thought I told you that you were to be here on time <b>no excuses</b>?! I don't care about what miserable story you have to defend yourself with. You either commit to the team or you're out. This is your final warning ${((s as any).pcs_nickname ?? '')}, don't fucking test me!"`);
       scene.text('You don\'t have a chance to speak before she walks off. Maybe it\'s best for both of you if you stopped pissing her off?');
       scene.actions([
         { label: 'Train with Starlets', goto: ['albina_starlets', 'starlets'] },
@@ -717,10 +717,10 @@ function enterStarletsPracticeMissed(s: GameState, scene: SceneBuilder): void {
 function enterQuit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big23.jpg');
   // TODO-QSP: dynamic text: You enter the hall and look around for Albina, spotting her as she''s doing some...
-  scene.text(`You enter the hall and look around for Albina, spotting her as she's doing some stretching exercises. You walk over to her and she gives you a puzzled stare. "Hurry up and get dressed ${((s as any).pcs_nickname || '')}, we haven't got all day to wait for you!" she barks. You meekly smile at her in response. "Well? Hurry up and spit it out!" she says while motioning for you to hurry up.`);
+  scene.text(`You enter the hall and look around for Albina, spotting her as she's doing some stretching exercises. You walk over to her and she gives you a puzzled stare. "Hurry up and get dressed ${((s as any).pcs_nickname ?? '')}, we haven't got all day to wait for you!" she barks. You meekly smile at her in response. "Well? Hurry up and spit it out!" she says while motioning for you to hurry up.`);
   scene.text('"I… I don\'t want to be a part of this anymore. I\'ve thought it over and this just isn\'t for me."');
   // TODO-QSP: dynamic text: Albina looks disheartened, but still gives you a weak smile. "I understand… If y...
-  scene.text(`Albina looks disheartened, but still gives you a weak smile. "I understand… If you want to leave, then I won't stop you. Just know that I thought you had some real potential here, ${((s as any).pcs_nickname || '')}. And thanks for telling me and not just disappearing on me," she adds. You breathe a sigh of relief as she gathers the girls up for the session, letting you go on your way.`);
+  scene.text(`Albina looks disheartened, but still gives you a weak smile. "I understand… If you want to leave, then I won't stop you. Just know that I thought you had some real potential here, ${((s as any).pcs_nickname ?? '')}. And thanks for telling me and not just disappearing on me," she adds. You breathe a sigh of relief as she gathers the girls up for the session, letting you go on your way.`);
   (s as any).starlets_practice = 0;
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');

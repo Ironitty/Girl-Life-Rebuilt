@@ -362,7 +362,7 @@ function enterEnd11(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd12(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = (Math.floor(Math.random() * 7) + 3);
-  scene.img(`images/locations/city/island/university/dorm/sex/party/vechend${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/city/island/university/dorm/sex/party/vechend${((s as any).picrand ?? '')}.jpg`);
   scene.text('All mixed up in a big ball of women\'s bodies, you can\'t remember the name of the girl your fingers are exploring, put a face to the taste on your tongue, or identify who is delving into your pussy.');
   qspCall(s, 'arousal', 'cuni', 15);
   qspCall(s, 'arousal', 'cuni_give', (-15));

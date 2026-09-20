@@ -49,7 +49,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('Arthur unloads boxes from his truck and gives them to you. You start hanging the clothes inside around the stall.');
     // TODO-QSP: dynamic text: Before leaving, Arthur gives you instructions. "Sell it all at whatever price yo...
-    scene.text(`Before leaving, Arthur gives you instructions. "Sell it all at whatever price you want, but at the end of your shift, I'll charge you ${qspFunc(s, 'money', 'string_price', 1000)} for each item sold. You should be making me no less than ${qspFunc(s, 'money', 'string_profit', ((st as any).arturplan || ''))}."`);
+    scene.text(`Before leaving, Arthur gives you instructions. "Sell it all at whatever price you want, but at the end of your shift, I'll charge you ${qspFunc(s, 'money', 'string_price', 1000)} for each item sold. You should be making me no less than ${qspFunc(s, 'money', 'string_profit', ((st as any).arturplan ?? ''))}."`);
     scene.actions([
       { label: 'Start working', goto: ['city_marketwork', 'start'] },
     ]);
@@ -170,9 +170,9 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell him your name', handler: (st: GameState) => {
     (st as any).portnoyQW = 1;
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>"
-    scene.text(`"${((st as any).pcs_nickname || '')}"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}"`);
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>…What a pretty name. Come, sit here on this chair. How can I h...
-    scene.text(`"${((st as any).pcs_nickname || '')}…What a pretty name. Come, sit here on this chair. How can I help you?"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}…What a pretty name. Come, sit here on this chair. How can I help you?"`);
     scene.actions([
       { label: 'Ask him about your clothes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -194,7 +194,7 @@ function enterTailor(s: GameState, scene: SceneBuilder): void {
 
 function enterTailorActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "So <<$pcs_nickname>>. Do you need any clothing adjusted?"
-  scene.text(`"So ${((s as any).pcs_nickname || '')}. Do you need any clothing adjusted?"`);
+  scene.text(`"So ${((s as any).pcs_nickname ?? '')}. Do you need any clothing adjusted?"`);
   qspCall(s, 'tailor', 'set_tailor_acts');
   // TODO-QSP: end
   scene.actions([

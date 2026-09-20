@@ -248,7 +248,7 @@ function enterNikoConfront(s: GameState, scene: SceneBuilder): void {
   scene.text('He places his hands on your hands, bringing them to his face before giving them a soft kiss. "I\'ll always be true to my princess. I\'m your noble knight and guardian who will always keep you safe from all threats. You\'re the only one for me."');
   scene.text('He then leans forward before gently placing his lips on yours, sharing a soft and loving kiss, which seems to make the moments fade away as his lips rub against yours and his arms wrap around you, embracing you firmly but gently.');
   // TODO-QSP: dynamic text: After a few more seconds of kissing, he slowly releases you. "You''re the perfec...
-  scene.text(`After a few more seconds of kissing, he slowly releases you. "You're the perfect girl, ${((s as any).pcs_firstname || '')} and I'm so lucky to have such a precious treasure in my life. I should get going. I need to plan out some things for us to do later. I'll see you then." He slowly backs away before walking out of the garage.`);
+  scene.text(`After a few more seconds of kissing, he slowly releases you. "You're the perfect girl, ${((s as any).pcs_firstname ?? '')} and I'm so lucky to have such a precious treasure in my life. I should get going. I need to plan out some things for us to do later. I'll see you then." He slowly backs away before walking out of the garage.`);
   qspCall(s, 'arousal', 'kiss', 1);
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -620,7 +620,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('Anushka shakes her head. "It\'s not worth pissing him off, dude."');
     scene.text('Suddenly being put on the spot, Lavrenti reluctantly gives in. "Fine, fuck it." He reaches into his pocket and pulls out a new bag. "I hope you overdose on it!"');
     // TODO-QSP: dynamic text: With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks <<$pcs_nickn...
-    scene.text(`With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks ${((st as any).pcs_nickname || '')}," he says as he lets you go, but not before giving your ass a light squeeze as you walk away.`);
+    scene.text(`With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks ${((st as any).pcs_nickname ?? '')}," he says as he lets you go, but not before giving your ass a light squeeze as you walk away.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
     ]);

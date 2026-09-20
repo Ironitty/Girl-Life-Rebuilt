@@ -45,7 +45,7 @@ function enter8floorAnalGangbang(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A245');
     scene.img('images/locations/city/island/university/dorm/hallway/events/floor8/sex/set2/5wg1bm4.jpg');
     // TODO-QSP: dynamic text: You feel the pressure build up until it suddenly pops into your ass and you gasp...
-    scene.text(`You feel the pressure build up until it suddenly pops into your ass and you gasp as Haruna's ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick starts sliding up your ass.`);
+    scene.text(`You feel the pressure build up until it suddenly pops into your ass and you gasp as Haruna's ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick starts sliding up your ass.`);
     scene.text('He\'s fairly slow at first, but he pushes your head down until your face is pressed against the seat. Your new position allows him to easily start fucking you balls deep.');
     scene.text('You grunt when he suddenly thrusts deep and feel his cock twitching inside you.');
     scene.text('When he finishes, he steps back and you feel his dick slide out of you, your ass suddenly feeling very empty as his cum leaks out of you.');

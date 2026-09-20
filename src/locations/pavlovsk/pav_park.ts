@@ -183,7 +183,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloInhibit ?? 0) >= 40) {
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You notice passers-by in the park pointing at you as you walk and overhear one o...
-    scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname || '')} girl. Youth these days, they have no shame at all!"`);
+    scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname ?? '')} girl. Youth these days, they have no shame at all!"`);
   }
   if (((s as any).GvstreBoy ?? 0) === 1) {
     // TODO-QSP: dynamic text: You see <a href="exec:numnpc = SkverBoy & gt ''Gnpc''"><<$nameBoyfrend[SkverBoy]...
@@ -453,7 +453,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloInhibit ?? 0) >= 40) {
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You notice passers-by in the park pointing at you as you walk and overhear one o...
-    scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname || '')} girl. Youth these days, they have no shame at all!"`);
+    scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname ?? '')} girl. Youth these days, they have no shame at all!"`);
   }
   if (((s as any).GvstreBoy ?? 0) === 1) {
     // TODO-QSP: dynamic text: You see <a href="exec:numnpc = SkverBoy & gt ''Gnpc''"><<$nameBoyfrend[SkverBoy]...

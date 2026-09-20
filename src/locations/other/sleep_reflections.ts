@@ -39,7 +39,7 @@ function enterTestReflection(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('This is a test reflection!');
   // TODO-QSP: dynamic text: <<$pcs_nickname>> is thinking deeply about "TEST_PERSON".
-  scene.text(`${((s as any).pcs_nickname || '')} is thinking deeply about "TEST_PERSON".`);
+  scene.text(`${((s as any).pcs_nickname ?? '')} is thinking deeply about "TEST_PERSON".`);
   scene.text('Wow, what interesting thoughts!');
   // TODO-QSP: end
   scene.actions([

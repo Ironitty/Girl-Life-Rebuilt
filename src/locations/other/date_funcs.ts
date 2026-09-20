@@ -160,7 +160,7 @@ function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
     scene.text('"Want to just go back to your place and hang?"');
     scene.text('"Sure."');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc || '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
+      { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc ?? '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
     ]);
   } },
     { label: 'Wanna have sex? (casual)', handler: (st: GameState) => {
@@ -175,9 +175,9 @@ function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
       scene.text('"Great! Let\'s go!"');
     }
     // TODO-QSP: dynamic text: You take <<$npcdesc>> by the arm and head off back to his place for sexy times.
-    scene.text(`You take ${((st as any).npcdesc || '')} by the arm and head off back to his place for sexy times.`);
+    scene.text(`You take ${((st as any).npcdesc ?? '')} by the arm and head off back to his place for sexy times.`);
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc || '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
+      { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc ?? '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
     ]);
   } },
     { label: 'Wanna have fuck? (sexy)', handler: (st: GameState) => {
@@ -190,9 +190,9 @@ function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
       scene.text('"Great! Let\'s go!"');
     }
     // TODO-QSP: dynamic text: You take <<$npcdesc>> by the arm and head off back to his place for sexy times.
-    scene.text(`You take ${((st as any).npcdesc || '')} by the arm and head off back to his place for sexy times.`);
+    scene.text(`You take ${((st as any).npcdesc ?? '')} by the arm and head off back to his place for sexy times.`);
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc || '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
+      { label: '', labelFn: (s: GameState) => 'Go to ' + String(((st as any).npcdesc ?? '') ?? '') + '\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
     ]);
   } },
   ]);

@@ -13,7 +13,7 @@ function enterConfrontation(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
   scene.text('You walk up to Borislav and he turns to face you.');
   // TODO-QSP: dynamic text: "Hello there, <<$pcs_nickname>>. What brings you by today? Did you want somethin...
-  scene.text(`"Hello there, ${((s as any).pcs_nickname || '')}. What brings you by today? Did you want something to eat?"`);
+  scene.text(`"Hello there, ${((s as any).pcs_nickname ?? '')}. What brings you by today? Did you want something to eat?"`);
   // TODO-QSP: dynamic text: Ignoring his question you bluntly say, "I know you''ve been fucking <<$npc_nickn...
   scene.text(`Ignoring his question you bluntly say, "I know you've been fucking ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}." He pauses briefly at your words and glances around the room at the customers.`);
   scene.text('"Why don\'t we talk about this in the back?" he says calmly. "We don\'t want to cause trouble for your mother do we?" You give him a hard look and follow him as he escorts you into a back room of the cafe.');
@@ -123,7 +123,7 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/cafe/backroom.jpg');
     scene.text('He curiously follows you in and shuts the door behind him.');
     // TODO-QSP: dynamic text: What''s this about <<$pcs_nickname>>? Did you want to talk about something?"
-    scene.text(`What's this about ${((st as any).pcs_nickname || '')}? Did you want to talk about something?"`);
+    scene.text(`What's this about ${((st as any).pcs_nickname ?? '')}? Did you want to talk about something?"`);
     scene.actions([
       { label: 'I thought we had a deal!', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
@@ -145,7 +145,7 @@ function enterDealbreaker(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/cafe/backroom.jpg');
     scene.text('"What are you talking about?" you ask suspiciously.');
     // TODO-QSP: dynamic text: He smiles at you and continues. "You see <<$pcs_firstname>>, I never extorted yo...
-    scene.text(`He smiles at you and continues. "You see ${((st as any).pcs_firstname || '')}, I never extorted your mother to begin with. That story she told you about how I fuck her in return for letting her work here is the real lie. She's a good worker and an excellent waitress. Her contributions here are what earns her place here, not anything else. The truth is that your mother is just a slut."`);
+    scene.text(`He smiles at you and continues. "You see ${((st as any).pcs_firstname ?? '')}, I never extorted your mother to begin with. That story she told you about how I fuck her in return for letting her work here is the real lie. She's a good worker and an excellent waitress. Her contributions here are what earns her place here, not anything else. The truth is that your mother is just a slut."`);
     scene.text('"How dare you!" you shout back. "How dare you shame my mother and drag her name through the gutter like this! All just to keep pretending you\'re not lying! How dare you call her a slut!"');
     scene.text('Slava starts to laugh again. "Girl, if your mother\'s name is in the gutter it\'s because she put it there herself. Your mother has been a slut since as long as this town can remember. She was a slut when she was in school, she was a slut before she got pregnant, she was a slut after she had kids, and she\'s still a slut today. I fuck your mother because she asks me to and no other reasons."');
     scene.text('You feel your face go pale as you consider what he\'s saying. "But-!"');
@@ -290,7 +290,7 @@ function enterWorkShift(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'servng', 1);
   }
   // TODO-QSP: dynamic text: You worked as a waitress for 2 hours and made <<$func(''money'', ''string_profit...
-  scene.text(`You worked as a waitress for 2 hours and made ${qspFunc(s, 'money', 'string_profit', 300)} plus ${qspFunc(s, 'money', 'string_profit', ((s as any).pcafetip || ''))} in tips.`);
+  scene.text(`You worked as a waitress for 2 hours and made ${qspFunc(s, 'money', 'string_profit', 300)} plus ${qspFunc(s, 'money', 'string_profit', ((s as any).pcafetip ?? ''))} in tips.`);
   if (((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('As you finish up your shift, Slava catches your eye and gestures towards the back room.');
     scene.actions([
@@ -317,7 +317,7 @@ function enterWorkCock(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'earn', 300 + pcafetip
   (s as any).minut = ((s as any).minut ?? 0) + 120;
   // TODO-QSP: dynamic text: You worked as a waitress for 2 hours and made <<$func(''money'', ''string_profit...
-  scene.text(`You worked as a waitress for 2 hours and made ${qspFunc(s, 'money', 'string_profit', 300)} plus ${qspFunc(s, 'money', 'string_profit', ((s as any).pcafetip || ''))} in tips.`);
+  scene.text(`You worked as a waitress for 2 hours and made ${qspFunc(s, 'money', 'string_profit', 300)} plus ${qspFunc(s, 'money', 'string_profit', ((s as any).pcafetip ?? ''))} in tips.`);
   if (((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('As you finish up your shift, Slava catches your eye and gestures towards the back room.');
     scene.actions([
@@ -341,7 +341,7 @@ function enterFirstSex1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/cafe/backroom.jpg');
   scene.text('"W-what??" you stammer, instinctively backing up as he comes closer.');
   // TODO-QSP: dynamic text: "Oh come now <<$pcs_nickname>>, I thought you were serious about this. If you''r...
-  scene.text(`"Oh come now ${((s as any).pcs_nickname || '')}, I thought you were serious about this. If you're going to take your mother's place then you might as well start now, shouldn't you?"`);
+  scene.text(`"Oh come now ${((s as any).pcs_nickname ?? '')}, I thought you were serious about this. If you're going to take your mother's place then you might as well start now, shouldn't you?"`);
   scene.text('"I-! I-!" You have to admit, you didn\'t entirely think this through. When you talked about the deal you thought of it as something in the distant future, not something about to happen right now!');
   scene.text('"W-w-what about your customers?" you try to say as an excuse.');
   // TODO-QSP: end
@@ -638,7 +638,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/cafe/table.mp4');
     // TODO-QSP: dynamic text: Borislav fucks you roughly with no regard for your comfort or enjoyment. His lar...
-    scene.text(`Borislav fucks you roughly with no regard for your comfort or enjoyment. His large ${((st as any).dick || '')} cm cock and not only fills you wall to wall but painfully stretches your virgin sex. There's a brief moment where you want to cry, but thinking of your mother and what you're doing for your parents' marriage, you resign yourself to the situation.`);
+    scene.text(`Borislav fucks you roughly with no regard for your comfort or enjoyment. His large ${((st as any).dick ?? '')} cm cock and not only fills you wall to wall but painfully stretches your virgin sex. There's a brief moment where you want to cry, but thinking of your mother and what you're doing for your parents' marriage, you resign yourself to the situation.`);
     // TODO-QSP: dynamic text: <i>This is for the best. I''m doing this because I love <<$npc_nickname[''A29'']...
     scene.text(`<i>This is for the best. I'm doing this because I love ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and dad. They won't have to suffer anymore and any price is worth that. Even my virginity.</i>`);
     scene.text('The room is filled with the sound of your flesh slapping together and the squelching sound of his cock pumping in and out of your bloody pussy. Between his grunts you hear the sound of your own voice as you instinctively start to moan, the tip of his cock eliciting involuntary cries whenever it bumps against your cervix.');
@@ -689,7 +689,7 @@ function enterFirstSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/cafe/table.mp4');
     // TODO-QSP: dynamic text: You grit your teeth as Borislav fucks you roughly with no regard for your comfor...
-    scene.text(`You grit your teeth as Borislav fucks you roughly with no regard for your comfort or enjoyment. His large ${((st as any).dick || '')} cm cock and not only fills you wall to wall but painfully stretches your virgin sex. With every thrust, you grind your teeth more and more to prevent yourself from crying out in pain.`);
+    scene.text(`You grit your teeth as Borislav fucks you roughly with no regard for your comfort or enjoyment. His large ${((st as any).dick ?? '')} cm cock and not only fills you wall to wall but painfully stretches your virgin sex. With every thrust, you grind your teeth more and more to prevent yourself from crying out in pain.`);
     // TODO-QSP: dynamic text: Even through the pain you think to yourself, <i>This is fucking bullshit. I can'...
     scene.text(`Even through the pain you think to yourself, <i>This is fucking bullshit. I can't believe this is how I'm losing my virginity. Practically getting raped on a table in the back of a cafe. If it weren't for ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}, I wouldn't ev--</i>`);
     scene.text('Your thoughts are interrupted as Borislav grabs you by the thighs and thrusts even deeper inside you, causing an involuntary gasp followed by a grunt of pain.');
@@ -832,7 +832,7 @@ function enterClothBj(s: GameState, scene: SceneBuilder): void {
     scene.text('Your real effort paid off today. Since he\'s cumming now, he probably won\'t fuck you afterwards. You pull off his cock and when he makes no move to blow his load on your face, you open your mouth. You figure that if he\'s going to make you clean his cock anyways you would swallow rather than leave with a facial.');
     scene.text('Slava starts to cum and you catch as much of it as you can on your tongue until you don\'t feel anymore come out. You swallow and clean him off by licking up the rest.');
     // TODO-QSP: dynamic text: "Ahh, that was satisfying," he says while zipping up his trousers. "Keep up the ...
-    scene.text(`"Ahh, that was satisfying," he says while zipping up his trousers. "Keep up the good work ${((st as any).pcs_nickname || '')}," and with that he leaves the room.`);
+    scene.text(`"Ahh, that was satisfying," he says while zipping up his trousers. "Keep up the good work ${((st as any).pcs_nickname ?? '')}," and with that he leaves the room.`);
     scene.text('It was all over so quickly that you think there\'s something you\'re forgetting to do but since you never took off your clothes and don\'t have anything to clean off your face, you shrug and leave behind him.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -953,7 +953,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('But despite your best efforts you can\'t hold back what\'s about to happen. You clamp your hand over your mouth to stop yourself from screaming as you explosively climax. Your whole body spasms and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
     scene.text('You release your mouth from your hand, breathing hard, drooling onto the table a little bit. In a twist of terrible irony, it seems your efforts to hold yourself back only resulted in an even more powerful climax. You feel exhausted.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can''t turn around right n...
-    scene.text(`"Did you just cum ${((st as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    scene.text(`"Did you just cum ${((st as any).pcs_nickname ?? '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -984,7 +984,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('Your whole body shudders and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
     scene.text('As your orgasm winds down, you lean forward onto the table, breathing hard.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can''t turn around right n...
-    scene.text(`"Did you just cum ${((st as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    scene.text(`"Did you just cum ${((st as any).pcs_nickname ?? '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1021,7 +1021,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>How can I be getting wet? Am I enjoying this? How can I be enjoying this? I\'m being blackmailed into letting him fuck me, I can\'t be enjoying his cock! His big… hard… cock… that fills me just righ-! No!! This can\'t be happening!</i>');
     scene.text('You\'re so absorbed in your anxiety that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused for a moment before you realize what happened. You were so caught up in it that you didn\'t notice him pull out. Your eyes go wide with a worse realization. You were moving your hips on your own. You were fucking him as much as he was fucking you. You slowly turn your head around to look at him in horror.');
     // TODO-QSP: dynamic text: "Glad to see you''re enjoying this deal as much as I am," Slava says, grinning. ...
-    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_nickname || '')}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_nickname ?? '')}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1033,7 +1033,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('Still in your state of shock, Slava pulls you down to your knees in front of him. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. With great shame, you realize having his cock so close in front of your face is causing your juices to flow even more. With even greater shame you realize it\'s because you want him back inside you.');
     scene.text('His hot cum spatters across your face and you hear him whisper, "There you go. A nice treat for a nice girl." As per usual, after he finishes cumming he pushes his dick towards your mouth for cleaning. You obediently clean it, subconsciously moving with eagerness to have his cock back inside you, even if only your mouth.');
     // TODO-QSP: dynamic text: He pulls his trousers back up and grins at you again. "Oh, cheer up <<$pcs_first...
-    scene.text(`He pulls his trousers back up and grins at you again. "Oh, cheer up ${((st as any).pcs_firstname || '')}. You can always come back again tomorrow if you want to fuck some more," and closes the door behind him.`);
+    scene.text(`He pulls his trousers back up and grins at you again. "Oh, cheer up ${((st as any).pcs_firstname ?? '')}. You can always come back again tomorrow if you want to fuck some more," and closes the door behind him.`);
     scene.text('After he leaves you sink to the ground, his cum plastering your face and your juices sticking to your legs. You think to yourself…');
     scene.text('<i>Am I really enjoying this…? How could this happen…</i>');
     scene.actions([
@@ -1053,7 +1053,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>Uh! Uhh! Ahh! Aah!</i>');
     scene.text('You\'re so absorbed in your pleasure that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused, almost frustrated, for a moment wondering what happened to that good feeling. You slowly turn your head around to see what happened and see Slava slowly jacking himself. You were so caught up in it that you didn\'t notice him pull out. He pulled out when your body wanted to keep going and missing his cock, your hips kept thrusting anyways. You were fucking him as much as he was fucking you. ');
     // TODO-QSP: dynamic text: "Glad to see you''re enjoying this deal as much as I am," Slava says, grinning. ...
-    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_firstname || '')}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_firstname ?? '')}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1161,7 +1161,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('But despite your best efforts you can\'t hold back what\'s about to happen. You clamp your hand over your mouth to stop yourself from screaming as you explosively climax. Your whole body spasms and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
     scene.text('You release your mouth from your hand, breathing hard, drooling onto the table a little bit. In a twist of terrible irony, it seems your efforts to hold yourself back only resulted in an even more powerful climax. You feel exhausted.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can''t turn around right n...
-    scene.text(`"Did you just cum ${((st as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    scene.text(`"Did you just cum ${((st as any).pcs_nickname ?? '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1193,7 +1193,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('Your whole body shudders and your legs quiver trying to stay standing. You feel your pussy clenching hard on Slava\'s cock, which is still fucking you hard and the sensation is driving you insane. Finally, he thrusts into you one last time and holds it there while you ride out the rest of your orgasm.');
     scene.text('As your orgasm winds down, you lean forward onto the table, breathing hard.');
     // TODO-QSP: dynamic text: "Did you just cum <<$pcs_nickname>>?" Slava asks. You can''t turn around right n...
-    scene.text(`"Did you just cum ${((st as any).pcs_nickname || '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
+    scene.text(`"Did you just cum ${((st as any).pcs_nickname ?? '')}?" Slava asks. You can't turn around right now but you can feel his grin from behind you all the same. "Glad to see you're enjoying this deal as much as I am. All the same, feeling you tighten up on me like that brought me pretty close. Turn around, I'll give you what you came here for."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1230,7 +1230,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>How can I be getting wet? Am I enjoying this? How can I be enjoying this? I\'m being blackmailed into letting him fuck me, I can\'t be enjoying his cock! His big… hard… cock… that fills me just righ-! No!! This can\'t be happening!</i>');
     scene.text('You\'re so absorbed in your anxiety that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused for a moment before you realize what happened. You were so caught up in it that you didn\'t notice him pull out. Your eyes go wide with a worse realization. You were moving your hips on your own. You were fucking him as much as he was fucking you. You slowly turn your head around to look at him in horror.');
     // TODO-QSP: dynamic text: "Glad to see you''re enjoying this deal as much as I am," Slava says, grinning. ...
-    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_nickname || '')}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_nickname ?? '')}. It's natural for a girl your age to be enjoying sex. Here, kneel down and I'll cheer you up with something."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1242,7 +1242,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('Still in your state of shock, Slava pulls you down to your knees in front of him. You can\'t help but be aware of how empty you feel and the slick pussy juices you feel running down your legs. With great shame, you realize having his cock so close in front of your face is causing your juices to flow even more. With even greater shame you realize it\'s because you want him back inside you.');
     scene.text('His hot cum spatters across your face and you hear him whisper, "There you go. A nice treat for a nice girl." As per usual, after he finishes cumming he pushes his dick towards your mouth for cleaning. You obediently clean it, subconsciously moving with eagerness to have his cock back inside you, even if only your mouth.');
     // TODO-QSP: dynamic text: He pulls his trousers back up and grins at you again. "Oh, cheer up <<$pcs_first...
-    scene.text(`He pulls his trousers back up and grins at you again. "Oh, cheer up ${((st as any).pcs_firstname || '')}. You can always come back again tomorrow if you want to fuck some more," and closes the door behind him.`);
+    scene.text(`He pulls his trousers back up and grins at you again. "Oh, cheer up ${((st as any).pcs_firstname ?? '')}. You can always come back again tomorrow if you want to fuck some more," and closes the door behind him.`);
     scene.text('After he leaves you sink to the ground, his cum plastering your face and your juices sticking to your legs. You think to yourself…');
     scene.text('<i>Am I really enjoying this…? How could this happen…</i>');
     scene.actions([
@@ -1263,7 +1263,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('<i>Uh! Uhh! Ahh! Aah!</i>');
     scene.text('You\'re so absorbed in your pleasure that you don\'t hear whatever it is Slava is saying and you suddenly find yourself thrusting your hips backward into empty air. You stop, confused, almost frustrated, for a moment wondering what happened to that good feeling. You slowly turn your head around to see what happened and see Slava slowly jacking himself. You were so caught up in it that you didn\'t notice him pull out. He pulled out when your body wanted to keep going and missing his cock, your hips kept thrusting anyways. You were fucking him as much as he was fucking you. ');
     // TODO-QSP: dynamic text: "Glad to see you''re enjoying this deal as much as I am," Slava says, grinning. ...
-    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_firstname || '')}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
+    scene.text(`"Glad to see you're enjoying this deal as much as I am," Slava says, grinning. Noticing the expression on your face he continues, "Oh, don't look like that ${((st as any).pcs_firstname ?? '')}. If you want more, we can keep fucking tomorrow. Here, kneel down and I'll cheer you up with something."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1299,7 +1299,7 @@ function enterClothFuck(s: GameState, scene: SceneBuilder): void {
     scene.text('You buck your hips into Slava\'s thrusts, matching his pace as his wonderful cock pounds into you. Your cunt squelches loudly with each thrust and your juices drool down your thighs. You moan loudly, savouring the girth and shape of his cock. ');
     scene.text('<i>Uh! Uhh! Ahh! Aah! Slava! Ah! Yes!</i>');
     // TODO-QSP: dynamic text: Slava suddenly pulls his cock out of your pussy and you squeel in protest. "Put ...
-    scene.text(`Slava suddenly pulls his cock out of your pussy and you squeel in protest. "Put it in! Please!" You buck your hips at him, But Slava responds by giving your ass a hard swat. "On your knees, ${((st as any).pcs_firstname || '')}. I'll fuck you again tomorrow."`);
+    scene.text(`Slava suddenly pulls his cock out of your pussy and you squeel in protest. "Put it in! Please!" You buck your hips at him, But Slava responds by giving your ass a hard swat. "On your knees, ${((st as any).pcs_firstname ?? '')}. I'll fuck you again tomorrow."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', (-5), 'no_orgasm_msg');
     scene.actions([
@@ -1337,18 +1337,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/cafe/borislav.jpg');
   if (((s as any).pcafejob ?? 0) <= 0) {
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>," he greets you. "Enjoying the cafe?"
-    scene.text(`"${((s as any).pcs_firstname || '')}," he greets you. "Enjoying the cafe?"`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')}," he greets you. "Enjoying the cafe?"`);
   }
   if (((s as any).pcafejob ?? 0) >=2  &&  ((s as any).pcafejob ?? 0) <= 4) {
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>," he greets you. "Are you here to work a shift?"
-    scene.text(`"${((s as any).pcs_firstname || '')}," he greets you. "Are you here to work a shift?"`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')}," he greets you. "Are you here to work a shift?"`);
   }
   if (((s as any).pcafejob ?? 0) === 4  &&  ((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('"Or do you want to have some fun?"');
   }
   if (((s as any).pcafejob ?? 0) === 1) {
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>," he greets you. "Are you here for another interview to disc...
-    scene.text(`"${((s as any).pcs_firstname || '')}," he greets you. "Are you here for another interview to discuss that 'job offer?' he says with the faintest hint of a smile at the corners of his lips.`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')}," he greets you. "Are you here for another interview to discuss that 'job offer?' he says with the faintest hint of a smile at the corners of his lips.`);
   }
   if (((s as any).pcafejob ?? 0) === 1  &&  ((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([

@@ -23,7 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/city/yaroslav/sex/rabotu_1.jpg');
       scene.text('Yaroslav opens the door.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Hi! Come on in."
-      scene.text(`"${((st as any).pcs_nickname || '')}! Hi! Come on in."`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')}! Hi! Come on in."`);
       scene.actions([
         { label: 'Enter the apartment', goto: ['yarik', 'yaqw'] },
       ]);
@@ -52,7 +52,7 @@ function enterYaqw(s: GameState, scene: SceneBuilder): void {
     scene.text('You clean Yaroslav\'s apartment, as he sits sorting through some papers and reading them.');
     if ((Math.floor(Math.random() * 3) + 0) !== 0) {
       // TODO-QSP: dynamic text: Suddenly he turns to you. "<<$pcs_nickname>>, can you also clean the floor in th...
-      scene.text(`Suddenly he turns to you. "${((st as any).pcs_nickname || '')}, can you also clean the floor in the bathroom?"`);
+      scene.text(`Suddenly he turns to you. "${((st as any).pcs_nickname ?? '')}, can you also clean the floor in the bathroom?"`);
       if (((st as any).yarikwork ?? 0) > 0) {
         scene.actions([
           { label: 'Agree', goto: ['yarik', '3'] },
@@ -137,7 +137,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/yaroslav/sex/rabotu_7.jpg');
     scene.text('Yaroslav says nothing, so you decide to give him a bit of a show so that he can see exactly what you are suggesting.');
     // TODO-QSP: dynamic text: "I can''t say the thought didn''t cross my mind <<$pcs_nickname>>. I''ll tell yo...
-    scene.text(`"I can't say the thought didn't cross my mind ${((st as any).pcs_nickname || '')}. I'll tell you what, if I'm feeling horny I will ask you to clean the bathroom. If you want to mess around I'll give you a nice bonus."`);
+    scene.text(`"I can't say the thought didn't cross my mind ${((st as any).pcs_nickname ?? '')}. I'll tell you what, if I'm feeling horny I will ask you to clean the bathroom. If you want to mess around I'll give you a nice bonus."`);
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     (st as any).yarikwork = 1;

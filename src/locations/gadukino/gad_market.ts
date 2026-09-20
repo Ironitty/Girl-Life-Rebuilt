@@ -403,15 +403,15 @@ function enterSellTalk(s: GameState, scene: SceneBuilder): void {
 function enterSeeStored(s: GameState, scene: SceneBuilder): void {
   if (((s as any).boletus_stored ?? 0) > 0) {
     // TODO-QSP: dynamic text: You currently are storing <b><<boletus_stored>></b> kg of raw mushrooms.
-    scene.text(`You currently are storing <b>${((s as any).boletus_stored || '')}</b> kg of raw mushrooms.`);
+    scene.text(`You currently are storing <b>${((s as any).boletus_stored ?? '')}</b> kg of raw mushrooms.`);
   }
   if (((s as any).bilberry_stored ?? 0) > 0) {
     // TODO-QSP: dynamic text: You currently are storing <b><<bilberry_stored>></b> kg of raw berries.
-    scene.text(`You currently are storing <b>${((s as any).bilberry_stored || '')}</b> kg of raw berries.`);
+    scene.text(`You currently are storing <b>${((s as any).bilberry_stored ?? '')}</b> kg of raw berries.`);
   }
   if (((s as any).fish_stored ?? 0) > 0) {
     // TODO-QSP: dynamic text: You currently are storing <b><<fish_stored>></b> kg of preserved fish.
-    scene.text(`You currently are storing <b>${((s as any).fish_stored || '')}</b> kg of preserved fish.`);
+    scene.text(`You currently are storing <b>${((s as any).fish_stored ?? '')}</b> kg of preserved fish.`);
   }
   if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) + ((s as any).fish_stored ?? 0) === 0) {
     scene.text('You currently have nothing that you can sell');

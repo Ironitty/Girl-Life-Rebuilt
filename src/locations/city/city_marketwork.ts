@@ -18,9 +18,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/market/rinok.jpg');
   scene.text('You stand at your clothes stall waiting for customers.');
   // TODO-QSP: dynamic text: You have sold <<rinvesh>> items and taken <<$func(''money'', ''string_profit'', ...
-  scene.text(`You have sold ${((s as any).rinvesh || '')} items and taken ${qspFunc(s, 'money', 'string_profit', ((s as any).rinmon || ''))} in cash.`);
+  scene.text(`You have sold ${((s as any).rinvesh ?? '')} items and taken ${qspFunc(s, 'money', 'string_profit', ((s as any).rinmon ?? ''))} in cash.`);
   // TODO-QSP: dynamic text: The average price on the market is <<prodpayum>>.
-  scene.text(`The average price on the market is ${((s as any).prodpayum || '')}.`);
+  scene.text(`The average price on the market is ${((s as any).prodpayum ?? '')}.`);
   if (((s as any).hour ?? 0) === 14) {
     scene.text('Arthur comes up to you and you start to calculate how much you should give him.');
     scene.actions([
@@ -31,7 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'jobs', 'clock', 'city_market_saleswoman');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You give Arthur <<rinart>> per sold <<rinvesh>> items.
-    scene.text(`You give Arthur ${((st as any).rinart || '')} per sold ${((st as any).rinvesh || '')} items.`);
+    scene.text(`You give Arthur ${((st as any).rinart ?? '')} per sold ${((st as any).rinvesh ?? '')} items.`);
     // TODO-QSP: dynamic text: You have earned ' + $func('money', 'string_profit', rinmon) + ' today.
     scene.text('You have earned \' + $func(\'money\', \'string_profit\', rinmon) + \' today.');
     (st as any).rinmon = 0;
@@ -39,11 +39,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((st as any).rinart ?? 0) < ((st as any).arturplan ?? 0)) {
       (st as any).arturnoo = ((st as any).arturnoo ?? 0) + (1);
       // TODO-QSP: dynamic text: This is bad, <<$pcs_nickname>>. You haven''t made enough money. You''ll complete...
-      scene.text(`This is bad, ${((st as any).pcs_nickname || '')}. You haven't made enough money. You'll completely ruin me!`);
+      scene.text(`This is bad, ${((st as any).pcs_nickname ?? '')}. You haven't made enough money. You'll completely ruin me!`);
     } else {
       (st as any).arturyes = ((st as any).arturyes ?? 0) + (1);
       // TODO-QSP: dynamic text: Well done <<$pcs_nickname>>, good job today.
-      scene.text(`Well done ${((st as any).pcs_nickname || '')}, good job today.`);
+      scene.text(`Well done ${((st as any).pcs_nickname ?? '')}, good job today.`);
     }
     if (((st as any).arturnoo ?? 0) > ((st as any).arturyes ?? 0)) {
       (st as any).arturnoo = ((st as any).arturnoo ?? 0) - ((st as any).arturyes ?? 0);
@@ -74,14 +74,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((st as any).palevorin ?? 0) <= 1  ||  ((st as any).palevorin ?? 0) === 3) {
         if ((!((st as any).palevorin ?? 0))) {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, you and I have not met properly. Come into the warehouse...
-          scene.text(`"Hey ${((st as any).pcs_nickname || '')}, you and I have not met properly. Come into the warehouse. We can have a drink and a bite to eat while we get acquainted."`);
+          scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}, you and I have not met properly. Come into the warehouse. We can have a drink and a bite to eat while we get acquainted."`);
         } else {
           if (((st as any).palevorin ?? 0) === 1) {
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, want to come to the warehouse again?"
-            scene.text(`"Hey ${((st as any).pcs_nickname || '')}, want to come to the warehouse again?"`);
+            scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}, want to come to the warehouse again?"`);
           } else {
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Come into the warehouse and have a drink with me." He wa...
-            scene.text(`"Hey ${((st as any).pcs_nickname || '')}. Come into the warehouse and have a drink with me." He walks right up to you and slaps you on the ass.`);
+            scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}. Come into the warehouse and have a drink with me." He walks right up to you and slaps you on the ass.`);
           }
         }
         scene.actions([
@@ -380,7 +380,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           }
         }
         // TODO-QSP: dynamic text: <<$rintak>>
-        scene.text(`${((s as any).rintak || '')}`);
+        scene.text(`${((s as any).rintak ?? '')}`);
       } else {
         if (((s as any).hour ?? 0) === 10) {
           if ((!((s as any).rintakrand ?? 0))) {
@@ -467,7 +467,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
             }
           }
           // TODO-QSP: dynamic text: <<$rintak>>
-          scene.text(`${((s as any).rintak || '')}`);
+          scene.text(`${((s as any).rintak ?? '')}`);
         } else {
           if (((s as any).hour ?? 0) === 11) {
             if ((!((s as any).rintakrand ?? 0))) {
@@ -556,7 +556,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               }
             }
             // TODO-QSP: dynamic text: <<$rintak>>
-            scene.text(`${((s as any).rintak || '')}`);
+            scene.text(`${((s as any).rintak ?? '')}`);
           } else {
             if (((s as any).hour ?? 0) === 12) {
               if ((!((s as any).rintakrand ?? 0))) {
@@ -653,7 +653,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 }
               }
               // TODO-QSP: dynamic text: <<$rintak>>
-              scene.text(`${((s as any).rintak || '')}`);
+              scene.text(`${((s as any).rintak ?? '')}`);
             } else {
               if (((s as any).hour ?? 0) === 13) {
                 if ((!((s as any).rintakrand ?? 0))) {
@@ -678,7 +678,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                   }
                 }
                 // TODO-QSP: dynamic text: <<$rintak>>
-                scene.text(`${((s as any).rintak || '')}`);
+                scene.text(`${((s as any).rintak ?? '')}`);
               }
             }
           }
@@ -735,7 +735,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         }
       }
       // TODO-QSP: dynamic text: <b><<$pokup>></b>
-      scene.text(`<b>${((s as any).pokup || '')}</b>`);
+      scene.text(`<b>${((s as any).pokup ?? '')}</b>`);
       if (((s as any).pokupatel ?? 0) === 1) {
         scene.actions([
           { label: 'How can I help you?', handler: (st: GameState) => {
@@ -743,15 +743,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).pokvnirand = (Math.floor(Math.random() * 3) + 0);
     if ((!((st as any).pokvnirand ?? 0))) {
       // TODO-QSP: dynamic text: <<$poktip>> examines your wares with little interest.
-      scene.text(`${((st as any).poktip || '')} examines your wares with little interest.`);
+      scene.text(`${((st as any).poktip ?? '')} examines your wares with little interest.`);
     } else {
       if (((st as any).pokvnirand ?? 0) === 1) {
         // TODO-QSP: dynamic text: <<$poktip>> looks through your wares with interest.
-        scene.text(`${((st as any).poktip || '')} looks through your wares with interest.`);
+        scene.text(`${((st as any).poktip ?? '')} looks through your wares with interest.`);
       } else {
         if (((st as any).pokvnirand ?? 0) === 2) {
           // TODO-QSP: dynamic text: <<$poktip>> picks up an item.
-          scene.text(`${((st as any).poktip || '')} picks up an item.`);
+          scene.text(`${((st as any).poktip ?? '')} picks up an item.`);
         }
       }
     }
@@ -813,11 +813,11 @@ function enterAnswerrin(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$poktip>> asks you for a price.
-    scene.text(`${((s as any).poktip || '')} asks you for a price.`);
+    scene.text(`${((s as any).poktip ?? '')} asks you for a price.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTellprice(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     // TODO-QSP: dynamic text: <<$poktip>> puts the item back and leaves.
-    scene.text(`${((s as any).poktip || '')} puts the item back and leaves.`);
+    scene.text(`${((s as any).poktip ?? '')} puts the item back and leaves.`);
     scene.actions([
       { label: 'Further', goto: ['city_marketwork', 'start'] },
     ]);
@@ -836,26 +836,26 @@ function enterTellprice(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).poknorand = (Math.floor(Math.random() * (100 + ((st as any).pcs_apprnc ?? 0)/4 - 1 + 1)) + (1));
     // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', prodpay)>>." you tell them.
-    scene.text(`"${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay || ''))}." you tell them.`);
+    scene.text(`"${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay ?? ''))}." you tell them.`);
     if (((st as any).prodpay ?? 0) <= ((st as any).pokpay ?? 0)) {
       if (((st as any).poknorand ?? 0) >= 10) {
         (st as any).rinmon = ((st as any).rinmon ?? 0) + (((st as any).prodpay ?? 0));
         (st as any).rinvesh = ((st as any).rinvesh ?? 0) + (1);
         // TODO-QSP: dynamic text: The customer takes the item and pays <<$func(''money'', ''string_profit'', prodp...
-        scene.text(`The customer takes the item and pays ${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay || ''))}.`);
+        scene.text(`The customer takes the item and pays ${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay ?? ''))}.`);
         scene.actions([
           { label: 'Sell it', goto: ['city_marketwork', 'start'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: The customer twirls the clothing in their hands. "<<$func(''money'', ''string_pr...
-        scene.text(`The customer twirls the clothing in their hands. "${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay || ''))} is too expensive."`);
+        scene.text(`The customer twirls the clothing in their hands. "${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay ?? ''))} is too expensive."`);
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHaggling(s, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((st as any).prodpay ?? 0) > ((st as any).pokpay ?? 0)  &&  ((st as any).prodpay ?? 0) <= ((st as any).pokpay ?? 0) + 100) {
         if (((st as any).poknorand ?? 0) >= 10) {
           // TODO-QSP: dynamic text: The customer twirls clothing in their hands. "<<$func(''money'', ''string_profit...
-          scene.text(`The customer twirls clothing in their hands. "${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay || ''))} is too expensive."`);
+          scene.text(`The customer twirls clothing in their hands. "${qspFunc(s, 'money', 'string_profit', ((st as any).prodpay ?? ''))} is too expensive."`);
           { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterHaggling(s, scene); (st as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('They put the item back and leaves');

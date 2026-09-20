@@ -25,7 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
     scene.text('You walk up to Branko. "Excuse me Branko, but you said you might have some work for me. Would you happen to have anything?"');
     // TODO-QSP: dynamic text: He smiles at you. "Yes yes, I remember. You''re <<$pcs_nickname>>, right? Let me...
-    scene.text(`He smiles at you. "Yes yes, I remember. You're ${((st as any).pcs_nickname || '')}, right? Let me check."`);
+    scene.text(`He smiles at you. "Yes yes, I remember. You're ${((st as any).pcs_nickname ?? '')}, right? Let me check."`);
     scene.text('He opens a laptop sitting on the counter next to him and taps on the keys before he looks up at you.');
     ((st as any).photography = (st as any).photography ?? {})['datecheck'] = ((st as any).daystart ?? 0);
     qspCall(st, 'photography_work', 'job_init');
@@ -49,9 +49,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
       scene.text('"Hello there! What\'s your name?" the friendly man behind the counter asks with a smile.');
       // TODO-QSP: dynamic text: "<<$pcs_firstname>>," you reply.
-      scene.text(`"${((st as any).pcs_firstname || '')}," you reply.`);
+      scene.text(`"${((st as any).pcs_firstname ?? '')}," you reply.`);
       // TODO-QSP: dynamic text: "Nice to meet you, <<$pcs_firstname>>. You look like the sort of person who woul...
-      scene.text(`"Nice to meet you, ${((st as any).pcs_firstname || '')}. You look like the sort of person who would be interested in a quality camera. In fact, judging by the sort of person I see before me, I have just the camera right here that would be perfect for you. Only ${qspFunc(s, 'money', 'string_price', 20000)}!"`);
+      scene.text(`"Nice to meet you, ${((st as any).pcs_firstname ?? '')}. You look like the sort of person who would be interested in a quality camera. In fact, judging by the sort of person I see before me, I have just the camera right here that would be perfect for you. Only ${qspFunc(s, 'money', 'string_price', 20000)}!"`);
       scene.text('"Well, I <i>have</i> been thinking about getting into photography… It might be worth it," you reply and he immediately launches into a long-winded discussion about the joys you can have with a camera.');
       scene.text('He talks about what the camera in question can do, along with all it\'s features. It does sound like the perfect camera for someone that\'s serious about getting into photography, but is that you?');
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'first']; enterCameraOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -59,11 +59,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((st as any).photographyEv ?? 0) === 1) {
         scene.img('images/locations/city/citycenter/mall/photoshop/owner.jpg');
         // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
-        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname || '')}! How fantastic it is that you should return to my shop! Have you changed your mind about buying a camera?"`);
+        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname ?? '')}! How fantastic it is that you should return to my shop! Have you changed your mind about buying a camera?"`);
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'repeat']; enterCameraOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
       } else {
         // TODO-QSP: dynamic text: The owner smiles when he sees you. "Aha! I remember you! <<$pcs_firstname>>! How...
-        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname || '')}! How fantastic it is that you should return to my shop! How are you getting on with your recent purchase? Brilliantly I hope? I know what I see and I see brilliance before me, so it can only be that you would get on brilliantly!"`);
+        scene.text(`The owner smiles when he sees you. "Aha! I remember you! ${((st as any).pcs_firstname ?? '')}! How fantastic it is that you should return to my shop! How are you getting on with your recent purchase? Brilliantly I hope? I know what I see and I see brilliance before me, so it can only be that you would get on brilliantly!"`);
         scene.actions([
           { label: 'Walk away', goto: ['shop_photography', 'start'] },
         ]);

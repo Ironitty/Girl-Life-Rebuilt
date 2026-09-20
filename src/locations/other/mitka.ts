@@ -40,7 +40,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, how are you doing?"
-  scene.text(`"Hey ${((s as any).pcs_nickname || '')}, how are you doing?"`);
+  scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, how are you doing?"`);
   if ((((s as any).npc_rel ?? 0)?.['A63'] >= 60  ||  ((s as any).npc_QW ?? 0)?.['A63'] > 0)  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] < 3) {
     scene.actions([
       { label: '"I\'m doing fine, thanks."', handler: (st: GameState) => {
@@ -63,10 +63,10 @@ function enterFirstChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'set', 'A63', 10);
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You introduce yourself, "I''m <<$pcs_nickname>>."
-  scene.text(`You introduce yourself, "I'm ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`You introduce yourself, "I'm ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('"I couldn\'t help but notice, Are you new around here? I have lived my whole life in Gadukino but have never seen you before."');
   // TODO-QSP: dynamic text: If you want I could show you around the village, then he offers, "<<$mitkaInvita...
-  scene.text(`If you want I could show you around the village, then he offers, "${((s as any).mitkaInvitation || '')}"`);
+  scene.text(`If you want I could show you around the village, then he offers, "${((s as any).mitkaInvitation ?? '')}"`);
   qspCall(s, 'calendar', 'remove', 'mitka_drinking_invite');
   qspCall(s, 'calendar', 'add', 'mitka_drinking_invite');
   // TODO-QSP: end
@@ -84,7 +84,7 @@ function enterNormalChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You greet him, "I\'m doing fine, thanks."');
   // TODO-QSP: dynamic text: Mitka smiles, "That''s great to hear, <<$pcs_nickname>>.", then he offers, "<<$m...
-  scene.text(`Mitka smiles, "That's great to hear, ${((s as any).pcs_nickname || '')}.", then he offers, "${((s as any).mitkaInvitation || '')}"`);
+  scene.text(`Mitka smiles, "That's great to hear, ${((s as any).pcs_nickname ?? '')}.", then he offers, "${((s as any).mitkaInvitation ?? '')}"`);
   qspCall(s, 'calendar', 'remove', 'mitka_drinking_invite');
   qspCall(s, 'calendar', 'add', 'mitka_drinking_invite');
   // TODO-QSP: end
@@ -102,12 +102,12 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You greet him, "I\'m doing fine, thanks."');
   // TODO-QSP: dynamic text: Mitka smiles, "That''s great to hear, <<$pcs_nickname>>.", then he offers, "<<$m...
-  scene.text(`Mitka smiles, "That's great to hear, ${((s as any).pcs_nickname || '')}.", then he offers, "${((s as any).mitkaInvitation || '')}"`);
+  scene.text(`Mitka smiles, "That's great to hear, ${((s as any).pcs_nickname ?? '')}.", then he offers, "${((s as any).mitkaInvitation ?? '')}"`);
   qspCall(s, 'calendar', 'remove', 'mitka_drinking_invite');
   qspCall(s, 'calendar', 'add', 'mitka_drinking_invite');
   if (((s as any).npc_QW ?? 0)?.['A63'] === 0) {
     // TODO-QSP: dynamic text: Mitka scratches his balls and adds with a grin: "Hey <<$pcs_nickname>>, do you w...
-    scene.text(`Mitka scratches his balls and adds with a grin: "Hey ${((s as any).pcs_nickname || '')}, do you want to have some fun?"`);
+    scene.text(`Mitka scratches his balls and adds with a grin: "Hey ${((s as any).pcs_nickname ?? '')}, do you want to have some fun?"`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       qspCall(s, 'willpower', 'bj', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -205,7 +205,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((((s as any).npc_QW ?? 0)?.['A63'] > 0  &&  ((s as any).npc_QW ?? 0)?.['A63'] < 11)  &&  (((s as any).MiraVars ?? 0)?.['QW'] < 2  ||  ((s as any).MiraVars ?? 0)?.['QW'] >= 11)) {
       // TODO-QSP: dynamic text: Mitka scratches his balls and adds with a grin: "Hey <<$pcs_nickname>>, do you w...
-      scene.text(`Mitka scratches his balls and adds with a grin: "Hey ${((s as any).pcs_nickname || '')}, do you want to have some fun?"`);
+      scene.text(`Mitka scratches his balls and adds with a grin: "Hey ${((s as any).pcs_nickname ?? '')}, do you want to have some fun?"`);
       (s as any).temp_rand = (Math.floor(Math.random() * 10) + 1);
       if ((((s as any).temp_rand ?? 0) === 1  ||  (((s as any).temp_rand ?? 0) < 5  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0))  &&  (!((s as any).mesec ?? 0))) {
         scene.text('"How about you let me fuck you today?" Mitka asks.');
@@ -455,7 +455,7 @@ function enterSexChat(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).npc_QW ?? 0)?.['A63'] > 0  &&  ((s as any).npc_QW ?? 0)?.['A63'] < 11  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 2  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11) {
         // TODO-QSP: dynamic text: Mitka scratches his balls and adds with a grin: "Hey <<$pcs_nickname>>, do you w...
-        scene.text(`Mitka scratches his balls and adds with a grin: "Hey ${((s as any).pcs_nickname || '')}, do you want to have some fun?"`);
+        scene.text(`Mitka scratches his balls and adds with a grin: "Hey ${((s as any).pcs_nickname ?? '')}, do you want to have some fun?"`);
         scene.text('You hesitate for a moment then look at him sternly.');
         scene.text('"What about Mira? Aren\'t you going out with her?"');
         scene.text('Mitka smiles sheepishly and has the decency to blush. He looks around to make sure Mira isn\'t nearby then tries to explain.');

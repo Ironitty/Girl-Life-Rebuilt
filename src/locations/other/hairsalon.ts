@@ -676,7 +676,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
       { label: 'Return to natural colour', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "I want to go back to my natural hair colour." you say as you pick at your hair ...
-    scene.text(`"I want to go back to my natural hair colour." you say as you pick at your hair in the mirror, "I don't think ${((st as any).pcs_haircolor || '')} is working for me."`);
+    scene.text(`"I want to go back to my natural hair colour." you say as you pick at your hair in the mirror, "I don't think ${((st as any).pcs_haircolor ?? '')} is working for me."`);
     scene.text('"Sure thing!", she says in a cheerful way, "Just a second and I\'ll see who of our hairdressers\' are available, why don\'t you take a seat?" she says and points you over to sit in one of the seats.');
     scene.actions([
       { label: 'Sit down', handler: (st: GameState) => {

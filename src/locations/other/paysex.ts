@@ -32,7 +32,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_randpicture ?? 0) === 2) {
     (s as any).randpicture = 'dp';
   }
-  scene.img(`images/locations/shared/sex/${((s as any).randpicture || '')}${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/${((s as any).randpicture ?? '')}${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: copyarr '$temp1', '$boy'
   (s as any).boyP = qspUntranslated(s, "boy[0]", { location: "paysex" });
   (s as any).x = 0;
@@ -54,7 +54,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal', 5, 'prostitution');
     if (((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] === '') {
       // TODO-QSP: dynamic text: <<$boydesc>> fucks your pussy.
-      scene.text(`${((s as any).boydesc || '')} fucks your pussy.`);
+      scene.text(`${((s as any).boydesc ?? '')} fucks your pussy.`);
     } else {
       // TODO-QSP: dynamic text: <<$paysextext[j]>>
       scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] ?? ''}`);
@@ -71,7 +71,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'anal', (-5), 'prostitution', 'gangbang');
       if (((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] === '') {
         // TODO-QSP: dynamic text: <<$boydesc>> fucks your ass.
-        scene.text(`${((s as any).boydesc || '')} fucks your ass.`);
+        scene.text(`${((s as any).boydesc ?? '')} fucks your ass.`);
       } else {
         // TODO-QSP: dynamic text: <<$paysextext[j]>>
         scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] ?? ''}`);
@@ -84,7 +84,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'bj', (-5), 'prostitution', 'gangbang');
         if (((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] === '') {
           // TODO-QSP: dynamic text: <<$boydesc>> fucks your mouth.
-          scene.text(`${((s as any).boydesc || '')} fucks your mouth.`);
+          scene.text(`${((s as any).boydesc ?? '')} fucks your mouth.`);
         } else {
           // TODO-QSP: dynamic text: <<$paysextext[j]>>
           scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] ?? ''}`);
@@ -97,7 +97,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'hj', (-5), 'prostitution', 'gangbang');
           if (((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] === '') {
             // TODO-QSP: dynamic text: <<$boydesc>> uses one of your hands to stroke his cock.
-            scene.text(`${((s as any).boydesc || '')} uses one of your hands to stroke his cock.`);
+            scene.text(`${((s as any).boydesc ?? '')} uses one of your hands to stroke his cock.`);
           } else {
             // TODO-QSP: dynamic text: <<$paysextext[j]>>
             scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] ?? ''}`);
@@ -107,7 +107,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'hj', (-5), 'prostitution', 'gangbang');
             if (((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] === '') {
               // TODO-QSP: dynamic text: <<$boydesc>> uses your other hand to stroke his cock.
-              scene.text(`${((s as any).boydesc || '')} uses your other hand to stroke his cock.`);
+              scene.text(`${((s as any).boydesc ?? '')} uses your other hand to stroke his cock.`);
             } else {
               // TODO-QSP: dynamic text: <<$paysextext[j]>>
               scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] ?? ''}`);
@@ -116,7 +116,7 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
             if (((s as any).j ?? 0) > 4) {
               if (((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] === '') {
                 // TODO-QSP: dynamic text: <<$boydesc>> strokes himself standing over you waiting for his turn.
-                scene.text(`${((s as any).boydesc || '')} strokes himself standing over you waiting for his turn.`);
+                scene.text(`${((s as any).boydesc ?? '')} strokes himself standing over you waiting for his turn.`);
               } else {
                 // TODO-QSP: dynamic text: <<$paysextext[j]>>
                 scene.text(`${((s as any).paysextext ?? 0)?.[String((s as any).j ?? 0)] ?? ''}`);
@@ -152,7 +152,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex2', 'stamina_npc');
   // TODO-QSP: copyarr '$temp1', '$boy'
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-  scene.img(`images/locations/shared/sex/cum${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/cum${((s as any).picrand ?? '')}.jpg`);
   (s as any).x = 0;
   // TODO-QSP: :randomend
   (s as any).paysexrand = ((s as any).rand ?? 0)(0, ((s as any).arrsize ?? 0)('temp1') - 1);
@@ -168,13 +168,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).j ?? 0))) {
     if ((Math.floor(Math.random() * 4) + 0) !== 0) {
       // TODO-QSP: dynamic text: <<$boydesc>> is cumming in your pussy.
-      scene.text(`${((s as any).boydesc || '')} is cumming in your pussy.`);
+      scene.text(`${((s as any).boydesc ?? '')} is cumming in your pussy.`);
       if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
         // TODO-QSP: gs 'cum_call', '', $temp2[j], 1 else gs 'cum_call', '', $temp2[j]
       }
     } else {
       // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your labia.
-      scene.text(`${((s as any).boydesc || '')} is cumming on your labia.`);
+      scene.text(`${((s as any).boydesc ?? '')} is cumming on your labia.`);
       if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
         // TODO-QSP: gs 'cum_call', 'labia', $temp2[j], 1 else gs 'cum_call', 'labia', $temp2[j]
       }
@@ -183,13 +183,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     if (((s as any).j ?? 0) === 1) {
       if ((Math.floor(Math.random() * 4) + 0) !== 0) {
         // TODO-QSP: dynamic text: <<$boydesc>> is cumming in your ass.
-        scene.text(`${((s as any).boydesc || '')} is cumming in your ass.`);
+        scene.text(`${((s as any).boydesc ?? '')} is cumming in your ass.`);
         if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
           // TODO-QSP: gs 'cum_call', 'anus', $temp2[j], 1 else gs 'cum_call', 'anus', $temp2[j]
         }
       } else {
         // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your ass.
-        scene.text(`${((s as any).boydesc || '')} is cumming on your ass.`);
+        scene.text(`${((s as any).boydesc ?? '')} is cumming on your ass.`);
         if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
           // TODO-QSP: gs 'cum_call', 'butt', $temp2[j], 1 else gs 'cum_call', 'butt', $temp2[j]
         }
@@ -198,13 +198,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       if (((s as any).j ?? 0) === 2) {
         if ((Math.floor(Math.random() * 4) + 0) !== 0) {
           // TODO-QSP: dynamic text: <<$boydesc>> is cumming in your mouth.
-          scene.text(`${((s as any).boydesc || '')} is cumming in your mouth.`);
+          scene.text(`${((s as any).boydesc ?? '')} is cumming in your mouth.`);
           if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
             // TODO-QSP: gs 'cum_call', 'mouth', $temp2[j], 1 else gs 'cum_call', 'mouth', $temp2[j]
           }
         } else {
           // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your face.
-          scene.text(`${((s as any).boydesc || '')} is cumming on your face.`);
+          scene.text(`${((s as any).boydesc ?? '')} is cumming on your face.`);
           if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
             // TODO-QSP: gs 'cum_call', 'face', $temp2[j], 1 else gs 'cum_call', 'face', $temp2[j]
           }
@@ -214,63 +214,63 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
           (s as any).cumrand = (Math.floor(Math.random() * 9) + 0);
           if ((!((s as any).cumrand ?? 0))) {
             // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your tits.
-            scene.text(`${((s as any).boydesc || '')} is cumming on your tits.`);
+            scene.text(`${((s as any).boydesc ?? '')} is cumming on your tits.`);
             if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
               // TODO-QSP: gs 'cum_call', 'breasts', $temp2[j], 1 else gs 'cum_call', 'breasts', $temp2[j]
             }
           } else {
             if (((s as any).cumrand ?? 0) === 1) {
               // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your belly.
-              scene.text(`${((s as any).boydesc || '')} is cumming on your belly.`);
+              scene.text(`${((s as any).boydesc ?? '')} is cumming on your belly.`);
               if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                 // TODO-QSP: gs 'cum_call', 'stomach', $temp2[j], 1 else gs 'cum_call', 'stomach', $temp2[j]
               }
             } else {
               if (((s as any).cumrand ?? 0) === 2) {
                 // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your hair.
-                scene.text(`${((s as any).boydesc || '')} is cumming on your hair.`);
+                scene.text(`${((s as any).boydesc ?? '')} is cumming on your hair.`);
                 if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                   // TODO-QSP: gs 'cum_call', 'hair', $temp2[j], 1 else gs 'cum_call', 'hair', $temp2[j]
                 }
               } else {
                 if (((s as any).cumrand ?? 0) === 3) {
                   // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your face.
-                  scene.text(`${((s as any).boydesc || '')} is cumming on your face.`);
+                  scene.text(`${((s as any).boydesc ?? '')} is cumming on your face.`);
                   if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                     // TODO-QSP: gs 'cum_call', 'face', $temp2[j], 1 else gs 'cum_call', 'face', $temp2[j]
                   }
                 } else {
                   if (((s as any).cumrand ?? 0) === 4) {
                     // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your ass.
-                    scene.text(`${((s as any).boydesc || '')} is cumming on your ass.`);
+                    scene.text(`${((s as any).boydesc ?? '')} is cumming on your ass.`);
                     if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                       // TODO-QSP: gs 'cum_call', 'butt', $temp2[j], 1 else gs 'cum_call', 'butt', $temp2[j]
                     }
                   } else {
                     if (((s as any).cumrand ?? 0) === 5) {
                       // TODO-QSP: dynamic text: <<$boydesc>> is cumming on your labia.
-                      scene.text(`${((s as any).boydesc || '')} is cumming on your labia.`);
+                      scene.text(`${((s as any).boydesc ?? '')} is cumming on your labia.`);
                       if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                         // TODO-QSP: gs 'cum_call', 'labia', $temp2[j], 1 else gs 'cum_call', 'labia', $temp2[j]
                       }
                     } else {
                       if (((s as any).cumrand ?? 0) === 6) {
                         // TODO-QSP: dynamic text: <<$boydesc>> is cumming in your pussy.
-                        scene.text(`${((s as any).boydesc || '')} is cumming in your pussy.`);
+                        scene.text(`${((s as any).boydesc ?? '')} is cumming in your pussy.`);
                         if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                           // TODO-QSP: gs 'cum_call', '', $temp2[j], 1 else gs 'cum_call', '', $temp2[j]
                         }
                       } else {
                         if (((s as any).cumrand ?? 0) === 7) {
                           // TODO-QSP: dynamic text: <<$boydesc>> is cumming in your ass.
-                          scene.text(`${((s as any).boydesc || '')} is cumming in your ass.`);
+                          scene.text(`${((s as any).boydesc ?? '')} is cumming in your ass.`);
                           if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                             // TODO-QSP: gs 'cum_call', 'anus', $temp2[j], 1 else gs 'cum_call', 'anus', $temp2[j]
                           }
                         } else {
                           if (((s as any).cumrand ?? 0) === 8) {
                             // TODO-QSP: dynamic text: <<$boydesc>> is cumming in your mouth.
-                            scene.text(`${((s as any).boydesc || '')} is cumming in your mouth.`);
+                            scene.text(`${((s as any).boydesc ?? '')} is cumming in your mouth.`);
                             if (((s as any).knownboy ?? 0)?.[String((s as any).j ?? 0)] === 1) {
                               // TODO-QSP: gs 'cum_call', 'mouth', $temp2[j], 1 else gs 'cum_call', 'mouth', $temp2[j]
                             }

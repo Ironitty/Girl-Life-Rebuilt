@@ -86,7 +86,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
             ((s as any).katjaQW = (s as any).katjaQW ?? {})['annoyed'] = 1;
             qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," Katja whispers in your ear. "Why haven''t I seen you si...
-            scene.text(`"Hey ${((s as any).pcs_nickname || '')}," Katja whispers in your ear. "Why haven't I seen you since we graduated? And why didn't you tell me you were starting the teaching program?" She sounds vaguely disappointed.`);
+            scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," Katja whispers in your ear. "Why haven't I seen you since we graduated? And why didn't you tell me you were starting the teaching program?" She sounds vaguely disappointed.`);
             scene.text('"Sorry, I didn\'t think it was worth mentioning," you say. "You didn\'t tell me were in this program either!"');
           } else {
             ((s as any).katjaQW = (s as any).katjaQW ?? {})['annoyed'] = 2;
@@ -97,7 +97,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
         } else {
           qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," Katja giggles in your ear. "This is going to be so much...
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}," Katja giggles in your ear. "This is going to be so much fun, especially with you here."`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," Katja giggles in your ear. "This is going to be so much fun, especially with you here."`);
           scene.text('"Yes, it is," you say, looking over your shoulder to smile back at her. "We\'re going to rule this place."');
         }
         if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 7) {
@@ -108,7 +108,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
               // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, pulling you t...
-              scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, pulling you tighter, pressing her breasts further into your back. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
+              scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, pulling you tighter, pressing her breasts further into your back. "But ${((s as any).pcs_nickname ?? '')}, have you seen all the hot guys around?`);
               // TODO-QSP: dynamic text: You think we can maybe find '+iif(katjaQW['park_sex'] < 3, 'one or maybe two guy...
               scene.text('You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
             } else {
@@ -126,7 +126,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
                 // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, pulling you t...
-                scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, pulling you tighter, pressing her breasts further into your back. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
+                scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, pulling you tighter, pressing her breasts further into your back. "But ${((s as any).pcs_nickname ?? '')}, have you seen all the hot guys around?`);
                 // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
                 scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?"');
               } else {
@@ -150,7 +150,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
             scene.text('As you\'re walking into the lecture hall, a pair of arms suddenly wrap themselves around you. You turn in surprise and find Katja holding you, an expression on her face that seems caught between a smile and a glare.');
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Why haven''t I seen you since we graduated? And why didn...
-            scene.text(`"Hey ${((s as any).pcs_nickname || '')}! Why haven't I seen you since we graduated? And why didn't you tell me you were starting the teaching program?" Her lips twist a little more towards a frown than a smile.`);
+            scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}! Why haven't I seen you since we graduated? And why didn't you tell me you were starting the teaching program?" Her lips twist a little more towards a frown than a smile.`);
             scene.text('"Sorry, I didn\'t think it was worth mentioning," you say. "You didn\'t tell me were in this program either!"');
           } else {
             qspCall(s, 'npc_relationship', 'modify', 'A14', 'loathe');
@@ -162,7 +162,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
           scene.text('As you\'re walking into the lecture hall, a pair of arms suddenly wrap themselves around your shoulders. You turn in surprise and find Katja holding you, an open grin on her face.');
           // TODO-QSP: dynamic text: "This is going to be so much fun, <<$pcs_nickname>>!" she squeals. "Especially w...
-          scene.text(`"This is going to be so much fun, ${((s as any).pcs_nickname || '')}!" she squeals. "Especially with you here!"`);
+          scene.text(`"This is going to be so much fun, ${((s as any).pcs_nickname ?? '')}!" she squeals. "Especially with you here!"`);
           scene.text('"Yes, it is. We\'re going to rule this place," you answer.');
         }
         if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 7) {
@@ -173,7 +173,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
               // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, letting her f...
-              scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, letting her frown fade away into a rueful smile. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
+              scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, letting her frown fade away into a rueful smile. "But ${((s as any).pcs_nickname ?? '')}, have you seen all the hot guys around?`);
               // TODO-QSP: dynamic text: You think we can maybe find '+iif(katjaQW['park_sex'] < 3, 'one or maybe two guy...
               scene.text('You think we can maybe find ' + ((((s as any).katjaQW ?? 0)?.['park_sex'] < 3) ? ('one or maybe two guys who might have fun with us?') : ('enough to satisfy our needs?')) + '"');
             } else {
@@ -191,7 +191,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).katjaQW ?? 0)?.['annoyed'] === 2) {
                 // TODO-QSP: dynamic text: "Well you''re here now, so I suppose I''ll forgive you," she says, letting her f...
-                scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, letting her frown fade away into a rueful smile. "But ${((s as any).pcs_nickname || '')}, have you seen all the hot guys around?`);
+                scene.text(`"Well you're here now, so I suppose I'll forgive you," she says, letting her frown fade away into a rueful smile. "But ${((s as any).pcs_nickname ?? '')}, have you seen all the hot guys around?`);
                 // TODO-QSP: dynamic text: Since '+iif(katjaQW['marcus_pussy'] = 1, 'Marcus', '')+iif(katjaQW['marcus_pussy...
                 scene.text('Since ' + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] === 1) ? ('Marcus') : ('')) + ((((s as any).katjaQW ?? 0)?.['marcus_pussy'] + ((s as any).katjaQW ?? 0)?.['ivan_anal'] === 2) ? ('and') : ('')) + ((((s as any).katjaQW ?? 0)?.['ivan_anal'] === 1) ? ('Ivan') : ('')) + ' ain\'t around, maybe we can find someone to join us sometime?"');
                 scene.text('"Of course," you reply "Who could say no to two hot chicks like us?"');
@@ -220,7 +220,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
           scene.text('As you\'re walking into the lecture hall, somebody suddenly pokes you on your shoulder. You turn around and see a somewhat annoyed-looking Katja.');
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she says flatly. "Why haven''t I seen you since we grad...
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}," she says flatly. "Why haven't I seen you since we graduated? I had no idea that you were in this program!"`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," she says flatly. "Why haven't I seen you since we graduated? I had no idea that you were in this program!"`);
           scene.text('"Sorry, I didn\'t think it was worth mentioning," you say. "Besides, you didn\'t tell me were in this program either!"');
         } else {
           ((s as any).katjaQW = (s as any).katjaQW ?? {})['annoyed'] = 2;
@@ -254,12 +254,12 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big14.jpg');
       if (((s as any).start_type ?? 0)?.['loc'] !== 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
         // TODO-QSP: dynamic text: As you walk into the lecture hall, a pretty redhead walks up to you. "Hey <<$pcs...
-        scene.text(`As you walk into the lecture hall, a pretty redhead walks up to you. "Hey ${((s as any).pcs_nickname || '')}! I didn't know you also wanted to become a teacher," she says.`);
+        scene.text(`As you walk into the lecture hall, a pretty redhead walks up to you. "Hey ${((s as any).pcs_nickname ?? '')}! I didn't know you also wanted to become a teacher," she says.`);
         scene.text('"I thought it would make for an interesting education and a fun career," you reply while trying to remember who this girl is.');
         scene.text('"If you want, then we can meet and talk about the lectures and maybe do some studying together," she says.');
         scene.text('"That sounds nice," you reply and she turns around and waves goodbye.');
         // TODO-QSP: dynamic text: You quickly take a seat and start flipping through the pages of the journal that...
-        scene.text(`You quickly take a seat and start flipping through the pages of the journal that Tatiana gave you. You find that the redhead is named Katja and she is a former classmate of the original ${((s as any).pcs_firstname || '')}.`);
+        scene.text(`You quickly take a seat and start flipping through the pages of the journal that Tatiana gave you. You find that the redhead is named Katja and she is a former classmate of the original ${((s as any).pcs_firstname ?? '')}.`);
       } else {
         if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
           if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
@@ -275,7 +275,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
               scene.text('As you look around, you see former classmate Katja talking to a girl you don\'t recognize. When she sees that you\'ve noticed her, she promptly drags the other girl away from you. Seems you have some work to do if you want to repair your relationship with her.');
             } else {
               // TODO-QSP: dynamic text: As you''re walking into the lecture hall, you suddenly come face to face with yo...
-              scene.text('As you\'re walking into the lecture hall, you suddenly come face to face with your old classmate, Katja. "Oh, hey ' + ((s as any).pcs_nickname || '') + '," she says a little hesitantly. "\'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know that you\'d be starting in the teaching program.\' , \'I wasn\'t sure if you were joking when you said that you would be studying to become a teacher.\')+\' You do know that a teacher has to be a role model for the kids, so maybe you should try to act like an adult," she says, coming off a little sterner than she looks.');
+              scene.text('As you\'re walking into the lecture hall, you suddenly come face to face with your old classmate, Katja. "Oh, hey ' + ((s as any).pcs_nickname ?? '') + '," she says a little hesitantly. "\'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know that you\'d be starting in the teaching program.\' , \'I wasn\'t sure if you were joking when you said that you would be studying to become a teacher.\')+\' You do know that a teacher has to be a role model for the kids, so maybe you should try to act like an adult," she says, coming off a little sterner than she looks.');
               scene.text('"I am acting like an adult," you reply. "Sex is a very adult thing to partake in. I\'m sure your life would also be much better if you tried being more like me."');
               scene.text('Katja\'s face turns very red, and she just says "bye" before turning around to find a seat furthest away from you. You can\'t help but get the feeling that she might be more interested in the things you do than she lets on.');
             }
@@ -284,7 +284,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 1  ||  ((s as any).grupTipe ?? 0) === 2) {
             if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
               // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I d...
-              scene.text('"Hi, ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you\'ve made your way to our first class,\')+\'" you hear somebody say from behind. When you turn around, you see your former classmate Katja standing there with a smile on her face.');
+              scene.text('"Hi, ' + ((s as any).pcs_nickname ?? '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you\'ve made your way to our first class,\')+\'" you hear somebody say from behind. When you turn around, you see your former classmate Katja standing there with a smile on her face.');
               // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
               scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
               scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have friends in the class. We can talk about classes later and maybe study together," she says before saying goodbye and going off to find a place to sit.');
@@ -292,10 +292,10 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
               if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
                 scene.text('You see a redheaded girl trying to avoid you and recognize her as your old classmate Katja. You decide to approach her. "Hi Katja!"');
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she replies, not looking particularly happy. "You know, ...
-                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '," she replies, not looking particularly happy. "You know, you could try to be nicer and not just look down on others since you think you\'re\'+iif(grupTipe = 1, \' so cool\', \' good at sports\')+\', that way others might like you more," she says before turning around and finding a place to sit.');
+                scene.text('"Hi ' + ((s as any).pcs_nickname ?? '') + '," she replies, not looking particularly happy. "You know, you could try to be nicer and not just look down on others since you think you\'re\'+iif(grupTipe = 1, \' so cool\', \' good at sports\')+\', that way others might like you more," she says before turning around and finding a place to sit.');
               } else {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you\'ve made you way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.');
+                scene.text('"Hi ' + ((s as any).pcs_nickname ?? '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you\'ve made you way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.');
                 // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
                 scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
                 scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have somebody you already know in the class. Maybe we can talk about classes later," she says before saying goodbye and finding a place to sit.');
@@ -305,7 +305,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
             if (((s as any).grupTipe ?? 0) === 3  ||  ((s as any).grupTipe ?? 0) === 4) {
               if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + ', \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have made your way to our first class,\')+\'" you hear someone say behind you. When you turn around, you see your former classmate Katja standing there with a smile on her face.');
+                scene.text('"Hi ' + ((s as any).pcs_nickname ?? '') + ', \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have made your way to our first class,\')+\'" you hear someone say behind you. When you turn around, you see your former classmate Katja standing there with a smile on her face.');
                 // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
                 scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
                 // TODO-QSP: dynamic text: "I think it''s going to be so fun and exciting. It''s nice to already have someb...
@@ -314,10 +314,10 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
                   scene.text('You see a redheaded girl trying to avoid you, and recognize her as your old classmate Katja. You decide to approach her. "Hi Katja," you say.');
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she replies, not looking particularly happy. "You know, ...
-                  scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '," she replies, not looking particularly happy. "You know, you could try to be nicer and\'+iif(grupTipe = 1 or grupTipe = 3, \' not just look down on others since you think you\'re so much smarter than the rest of us,\', \' not be such a bully,\')+\' that way others might like you more," she says before turning around and finding a place to sit.');
+                  scene.text('"Hi ' + ((s as any).pcs_nickname ?? '') + '," she replies, not looking particularly happy. "You know, you could try to be nicer and\'+iif(grupTipe = 1 or grupTipe = 3, \' not just look down on others since you think you\'re so much smarter than the rest of us,\', \' not be such a bully,\')+\' that way others might like you more," she says before turning around and finding a place to sit.');
                 } else {
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                  scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher.\', \'I see that you\'ve made your way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.');
+                  scene.text('"Hi ' + ((s as any).pcs_nickname ?? '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher.\', \'I see that you\'ve made your way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there.');
                   // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
                   scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it is important to be here for the first class,')) + '" you reply.');
                   scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have somebody you already know in the class, especially now that nobody\'s going to judge us for talking simply because we belonged to some stupid cliques in school. Maybe we can talk about classes later?" she says before saying goodbye and finding a place to sit.');
@@ -326,7 +326,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have made your way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there with a smile on her face.');
+                scene.text('"Hi ' + ((s as any).pcs_nickname ?? '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have made your way to our first class,\')+\'" you hear someone say behind you. When you turn round, you see your former classmate Katja standing there with a smile on her face.');
                 // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
                 scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
                 scene.text('"I think it\'s going to be so fun and exciting. It\'s nice to have somebody you know in the class. Now hopefully nobody will shun you just because some of the worst people in our old school decided that you were toxic. We can hang out after class and talk or maybe do some studying together," she says before saying goodbye and finding a place to sit.');
@@ -336,7 +336,7 @@ function enterFirstInClassMeet(s: GameState, scene: SceneBuilder): void {
                   scene.text('"Don\'t talk to me; you are disgusting!" she says before turning around and finding a place to sit far away from you.');
                 } else {
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. '+iif(katjaQW['know_going_to_teaching_degree'] = 0, 'I di...
-                  scene.text('"Hi ' + ((s as any).pcs_nickname || '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have also made your way to our first class,\')+\'" you hear somebody say from behind you. When you turn around, you see your former classmate Katja standing there.');
+                  scene.text('"Hi ' + ((s as any).pcs_nickname ?? '') + '. \'+iif(katjaQW[\'know_going_to_teaching_degree\'] = 0, \'I didn\'t know you had decided to study to become a teacher,\', \'I see that you have also made your way to our first class,\')+\'" you hear somebody say from behind you. When you turn around, you see your former classmate Katja standing there.');
                   // TODO-QSP: dynamic text: "'+iif(katjaQW['know_katja_uni'] = 0, 'I didn''t know you were going to take the...
                   scene.text('"' + ((((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 0) ? ('I didn\'t know you were going to take these classes,') : ('Yes, it\'s important to be here for the first class,')) + '" you reply.');
                   scene.text('"I think it\'s going to be so fun and exciting. It was really terrible the way the others treated you in school, just because some people at school decided that you were toxic. I, for one, am glad to put all that behind us and think it\'s nice to have somebody you already know in the class. Maybe we can talk about classes later?" she says before saying goodbye and finding a place to sit.');
@@ -1038,38 +1038,38 @@ function enterLibrary(s: GameState, scene: SceneBuilder): void {
     scene.text('You approach Katja, who is clearly studying. She doesn\'t notice you until you\'re right next to her.');
     if (((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
       // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she says with a big smile. She gets up to give you a qui...
-      scene.text(`"Hi ${((s as any).pcs_nickname || '')}," she says with a big smile. She gets up to give you a quick kiss.`);
+      scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}," she says with a big smile. She gets up to give you a quick kiss.`);
       scene.text('"What\'s up?" you say.');
       scene.text('"Just studying for my classes," she says. "I don\'t want to fall behind."');
     } else {
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0) {
         // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she says with a big smile and gets up to give you a quic...
-        scene.text(`"Hi ${((s as any).pcs_nickname || '')}," she says with a big smile and gets up to give you a quick hug before she sits down again.`);
+        scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}," she says with a big smile and gets up to give you a quick hug before she sits down again.`);
         scene.text('"What\'s up?" you say.');
         scene.text('"Just studying for my classes," she says. "I don\'t want to fall behind."');
       } else {
         if (((s as any).fame ?? 0)?.['city_slut'] > 200) {
           if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
             // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she says with a smile. "Are you here to study? Or have y...
-            scene.text(`"Hi ${((s as any).pcs_nickname || '')}," she says with a smile. "Are you here to study? Or have you turned the library into your hunting ground?" Katja giggles at her own joke.`);
+            scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}," she says with a smile. "Are you here to study? Or have you turned the library into your hunting ground?" Katja giggles at her own joke.`);
           } else {
             if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
               scene.text('"Why are you disturbing me?" she scowls. "This is a place to study, so if you\'re here to slut it up, then don\'t."');
             } else {
               // TODO-QSP: dynamic text: "What are you doing here <<$pcs_nickname>>?" she says. "This is a place for stud...
-              scene.text(`"What are you doing here ${((s as any).pcs_nickname || '')}?" she says. "This is a place for studying, not hitting on boys."`);
+              scene.text(`"What are you doing here ${((s as any).pcs_nickname ?? '')}?" she says. "This is a place for studying, not hitting on boys."`);
             }
           }
         } else {
           if (((s as any).npc_rel ?? 0)?.['A14'] >= 50) {
             // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," she says with a smile. "Are you also here to study?"
-            scene.text(`"Hi ${((s as any).pcs_nickname || '')}," she says with a smile. "Are you also here to study?"`);
+            scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}," she says with a smile. "Are you also here to study?"`);
           } else {
             if (((s as any).npc_rel ?? 0)?.['A14'] <= 20) {
               scene.text('"Why are you disturbing me?" she scowls. "Leave me alone. Some of us actually take our studies seriously."');
             } else {
               // TODO-QSP: dynamic text: "What are you doing here <<$pcs_nickname>>?" she says. "I''m trying to study, so...
-              scene.text(`"What are you doing here ${((s as any).pcs_nickname || '')}?" she says. "I'm trying to study, so I would like some peace and quiet!" she says, waiting to see your reaction.`);
+              scene.text(`"What are you doing here ${((s as any).pcs_nickname ?? '')}?" she says. "I'm trying to study, so I would like some peace and quiet!" she says, waiting to see your reaction.`);
             }
           }
         }
@@ -1135,7 +1135,7 @@ function enterLibrary2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/library/library.jpg');
   // TODO-QSP: dynamic text: You and Katja arrive at the university library, where she finds a table and star...
-  scene.text(`You and Katja arrive at the university library, where she finds a table and starts to pull out her books from her backpack. "Thanks for coming here with me ${((s as any).pcs_nickname || '')}," she says.`);
+  scene.text(`You and Katja arrive at the university library, where she finds a table and starts to pull out her books from her backpack. "Thanks for coming here with me ${((s as any).pcs_nickname ?? '')}," she says.`);
   if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
     if (((s as any).university ?? 0)?.['semester_week'] > 0) {
       (s as any).i = 0;
@@ -1529,7 +1529,7 @@ function enterDormRoomInvite(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big14.jpg');
   scene.text('As you\'re leaving the last class of the day, an excited Katja grabs your arm.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I bought a new dress and I want to hear your opinion on it. ...
-  scene.text(`"${((s as any).pcs_nickname || '')}! I bought a new dress and I want to hear your opinion on it. Do you have time to come to my dorm room to see it?"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}! I bought a new dress and I want to hear your opinion on it. Do you have time to come to my dorm room to see it?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Katja', goto: ['katja_uni', 'dorm_room_walk'] },
@@ -1584,7 +1584,7 @@ function enterDormRoomWalk(s: GameState, scene: SceneBuilder): void {
     scene.text('You continue up the stairs and into Katja\'s room in complete silence. Her side of the room is a lot less feminine than you would expect from a girl like her. The walls are plastered with posters and notes, and her shelves are lined with books. Her roommate\'s side looks barren by comparison.');
     scene.text('After you have taken in the look of her room, you turn to look at Katja. She hasn\'t said anything since before the staircase and her blush hasn\'t faded in the slightest. Just as you\'re about to say something, she breaks the silence instead.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> have you ever done that? I mean kissed a girl and…" Her voice...
-    scene.text(`"${((st as any).pcs_nickname || '')} have you ever done that? I mean kissed a girl and…" Her voice falters at the end, but she's now looking at you with her big beautiful eyes.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')} have you ever done that? I mean kissed a girl and…" Her voice falters at the end, but she's now looking at you with her big beautiful eyes.`);
     if (((st as any).stat ?? 0)?.['female_sexual_partners'] > 0) {
       scene.actions([
         { label: 'Tell Katja you have kissed a girl and gone further', goto: ['katja_uni', 'experienced_tell'] },
@@ -1771,13 +1771,13 @@ function enterTryClothes(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big260.jpg');
     scene.text('Katja moves over quickly to introduce you.');
     // TODO-QSP: dynamic text: "Sofia! This is <<$pcs_nickname>> my '+iif($university['enrolled_in'] = 'teachin...
-    scene.text('"Sofia! This is ' + ((st as any).pcs_nickname || '') + ' my \'+iif($university[\'enrolled_in\'] = \'teaching studies\', \'classmate\', \'friend from my hometown\')+\'. I was just showing her the clothes I bought yesterday." She then turns to you. "' + ((st as any).pcs_nickname || '') + ', this is Sofia, my roommate."');
+    scene.text('"Sofia! This is ' + ((st as any).pcs_nickname ?? '') + ' my \'+iif($university[\'enrolled_in\'] = \'teaching studies\', \'classmate\', \'friend from my hometown\')+\'. I was just showing her the clothes I bought yesterday." She then turns to you. "' + ((st as any).pcs_nickname ?? '') + ', this is Sofia, my roommate."');
     // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>! It''s so nice to meet Katja''s friends since she doesn''t...
-    scene.text('"Hi ' + ((st as any).pcs_nickname || '') + '! It\'s so nice to meet Katja\'s friends since she doesn\'t seem to have a lot of them," Sofia says, which clearly makes Katja blush. "So \'+iif( $university[\'enrolled_in\'] = \'teaching_studies\', \'you\'re also studying to become a teacher like Katja\', \'what are you studying\')+\'?" she asks. \'+iif( $university[\'enrolled_in\'] = \'teaching_studies\', \'"yes"\', \'"I\'m \'+iif(university[\'student\'] = 1, \'in the \' + $func(\'uni_programs\', \'get_program_name\') + \' program\', \'not studying at the university\')+\'" \')+\' you answer.');
+    scene.text('"Hi ' + ((st as any).pcs_nickname ?? '') + '! It\'s so nice to meet Katja\'s friends since she doesn\'t seem to have a lot of them," Sofia says, which clearly makes Katja blush. "So \'+iif( $university[\'enrolled_in\'] = \'teaching_studies\', \'you\'re also studying to become a teacher like Katja\', \'what are you studying\')+\'?" she asks. \'+iif( $university[\'enrolled_in\'] = \'teaching_studies\', \'"yes"\', \'"I\'m \'+iif(university[\'student\'] = 1, \'in the \' + $func(\'uni_programs\', \'get_program_name\') + \' program\', \'not studying at the university\')+\'" \')+\' you answer.');
     // TODO-QSP: dynamic text: "Cool. I''m '+iif($university['enrolled_in'] = 'nursing', 'also studying to beco...
     scene.text('"Cool. I\'m ' + ((((st as any).university ?? 0)?.['enrolled_in'] === 'nursing') ? ('also studying to become a nurse. Now that I think about it, I do think I\'ve seen you in class.') : ('studying to become a nurse.')) + ' So Katja is showing you her new clothes? She has such a great sense of fashion. Next time I have money to go shopping, I should bring her. Did you finish the show or was I disturbing?"');
     // TODO-QSP: dynamic text: "No we''ve finished, and <<$pcs_nickname>> was about to leave," Katja says, look...
-    scene.text(`"No we've finished, and ${((st as any).pcs_nickname || '')} was about to leave," Katja says, looking at you as if trying to say she is sorry.`);
+    scene.text(`"No we've finished, and ${((st as any).pcs_nickname ?? '')} was about to leave," Katja says, looking at you as if trying to say she is sorry.`);
     scene.text('"That\'s right, I will be leaving now," you say.');
     scene.text('"Nice meeting you," Sofia says. "I wish we had more time to chat since I barely know anybody here, just Katja and my boyfriend Maxim. See you again soon. I\'m sure we\'ll become great friends," she continues.');
     scene.text('You say goodbye to Katja and as you leave the room, you can hear Sofia continuing to talk the ear off Katja.');

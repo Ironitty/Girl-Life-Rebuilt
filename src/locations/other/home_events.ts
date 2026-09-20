@@ -25,14 +25,14 @@ function enterCallDoctor1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Give your address', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You have a coughing fit before you''re able to answer. "Sorry, it''s <<$pcs_firs...
-    scene.text(`You have a coughing fit before you're able to answer. "Sorry, it's ${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}. Street Park House 4, apartment 69," you manage before sneezing.`);
+    scene.text(`You have a coughing fit before you're able to answer. "Sorry, it's ${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}. Street Park House 4, apartment 69," you manage before sneezing.`);
     scene.text('"One moment please," she responds before she puts you on hold.');
     scene.actions([
       { label: 'Wait', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You wait for five minutes, occasionally coughing and sneezing, until she finally...
-    scene.text(`You wait for five minutes, occasionally coughing and sneezing, until she finally returns. "So Miss ${((st as any).pcs_lastname || '')}, what are your symptoms?"`);
+    scene.text(`You wait for five minutes, occasionally coughing and sneezing, until she finally returns. "So Miss ${((st as any).pcs_lastname ?? '')}, what are your symptoms?"`);
     scene.text('You start to answer, but end up coughing. "Sorry. I have a fever, sore throat, a cough and a runny nose."');
     scene.text('"Is your temperature high?"');
     scene.text('"Yes, quite so. 39.2°C," you tell her, followed by a sneeze.');
@@ -94,7 +94,7 @@ function enterCallDoctor2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/drpp1.jpg');
     scene.text('You walk back to the bedroom with the doctor. He sits on the edge of the bed and feels your forehead.');
     // TODO-QSP: dynamic text: "So Miss <<$pcs_lastname>>. What are your symptoms?
-    scene.text(`"So Miss ${((st as any).pcs_lastname || '')}. What are your symptoms?`);
+    scene.text(`"So Miss ${((st as any).pcs_lastname ?? '')}. What are your symptoms?`);
     scene.text('"Ahem… I have a sore throat - very sore actually - and a high temperature."');
     scene.text('"And a nasty cough too I see. And judging by your voice, also a running nose."');
     scene.text('"Yes… Aachoo!!"');
@@ -160,7 +160,7 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/event/sick/nadom0.jpg');
     scene.text('Ninel sits on the edge of your bed and checks your forehead.');
     // TODO-QSP: dynamic text: "What are your symptoms, <<$pcs_nickname>>? Can I call you that?"
-    scene.text(`"What are your symptoms, ${((st as any).pcs_nickname || '')}? Can I call you that?"`);
+    scene.text(`"What are your symptoms, ${((st as any).pcs_nickname ?? '')}? Can I call you that?"`);
     scene.text('"Of course…" You start to answer, but end up coughing. "Sorry. I have a high fever, a sore throat and a cough that\'s killing me!"');
     scene.text('"Running nose? Headaches? Aching bones?"');
     scene.text('"Yes, all of them."');
@@ -263,7 +263,7 @@ function enterNinel0(s: GameState, scene: SceneBuilder): void {
       { label: 'What\'s wrong with me?', handler: (st: GameState) => {
     scene.text('"Doctor, what\'s wrong with me?" you ask fearfully.');
     // TODO-QSP: dynamic text: "I''m afraid you have angina, <<$pcs_nickname>>. I would advise you receive imme...
-    scene.text(`"I'm afraid you have angina, ${((st as any).pcs_nickname || '')}. I would advise you receive immediate treatment," she replies.`);
+    scene.text(`"I'm afraid you have angina, ${((st as any).pcs_nickname ?? '')}. I would advise you receive immediate treatment," she replies.`);
     scene.text('"What? You mean in the hospital?!" you shriek.');
     scene.text('"Yes, at the clinic," she calmly replies.');
     scene.actions([
@@ -317,7 +317,7 @@ function enterBurgerIly1(s: GameState, scene: SceneBuilder): void {
     { label: 'Answer the door', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You walk up to the door and look through the peephole. You see a few men, and ev...
-    scene.text(`You walk up to the door and look through the peephole. You see a few men, and even in the dark, you recognize them from their caps. "${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}! This is the police, open up!"`);
+    scene.text(`You walk up to the door and look through the peephole. You see a few men, and even in the dark, you recognize them from their caps. "${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}! This is the police, open up!"`);
     scene.actions([
       { label: 'Open the door', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 120;
@@ -373,7 +373,7 @@ function enterBurgerIly3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'earn', 2000, 'cash');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: The police arrive and take you to court. After standing trial, you''re given fiv...
-    scene.text(`The police arrive and take you to court. After standing trial, you're given five years of jail time and are required to pay your debt of ${((s as any).newdept || '')}.`);
+    scene.text(`The police arrive and take you to court. After standing trial, you're given five years of jail time and are required to pay your debt of ${((s as any).newdept ?? '')}.`);
     scene.text('This can be done at any bank after you have served your jail time.');
     scene.actions([
       { label: 'Serve your time', handler: (st: GameState) => {
@@ -434,7 +434,7 @@ function enterNatbel(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Feeling that you have little choice you grab your coat and head out with Natasha...
     scene.text(`Feeling that you have little choice you grab your coat and head out with Natasha to help her get ${((st as any).npc_usedname ?? 0)?.['A191'] ?? ''} home.`);
     // TODO-QSP: dynamic text: "I''m so sorry about this <<$pcs_nickname>>, I know she likes a drink but doesn'...
-    scene.text(`"I'm so sorry about this ${((st as any).pcs_nickname || '')}, I know she likes a drink but doesn't normally get this bad. I guess something happened with this guy to trigger it."`);
+    scene.text(`"I'm so sorry about this ${((st as any).pcs_nickname ?? '')}, I know she likes a drink but doesn't normally get this bad. I guess something happened with this guy to trigger it."`);
     scene.text('You reassure her. "Don\'t worry about it and I guess we\'ll all need someone to help us in similar circumstances at some point during our lives."');
     // TODO-QSP: dynamic text: On arriving you spot <<$npc_usedname[''A191'']>> slumped over the bar and go to ...
     scene.text(`On arriving you spot ${((st as any).npc_usedname ?? 0)?.['A191'] ?? ''} slumped over the bar and go to help her home.`);
@@ -476,7 +476,7 @@ function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You hear someone knocking on your front door and go to see who it is but your <<...
     scene.text(`You hear someone knocking on your front door and go to see who it is but your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} has already answered it and is talking to Natasha.`);
     // TODO-QSP: dynamic text: As you approach your <<$npc_nickname[''A29'']>> turns to you. "<<$pcs_nickname>>...
-    scene.text(`As you approach your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} turns to you. "${((st as any).pcs_nickname || '')}, it's your girlfriend! There's a problem with her ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and she needs your help. Just don't stay out too late." She then turns away and doesn't look happy; unsurprising really but it could have been worse you think.`);
+    scene.text(`As you approach your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} turns to you. "${((st as any).pcs_nickname ?? '')}, it's your girlfriend! There's a problem with her ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} and she needs your help. Just don't stay out too late." She then turns away and doesn't look happy; unsurprising really but it could have been worse you think.`);
     scene.text('As you reach the door you are faced with a clearly distraught Natasha who starts talking very fast and is very emotional so you can\'t really make out what she\'s saying. "Natasha, take a breath; I can\'t understand what you\'re saying. What\'s wrong?"');
     // TODO-QSP: dynamic text: She takes a deep breath then tells you. "It''s my <<$npc_nickname[''A29'']>>. Sh...
     scene.text(`She takes a deep breath then tells you. "It's my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}. She went out with a guy from work and I got a call from the bartender at Del Parco saying that she and the guy had a massive row and she's got very drunk and passed out. I don't know what to do, can you help me get her home please as I probably won't manage by myself?"`);
@@ -488,7 +488,7 @@ function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Feeling that you have little choice you grab your coat and head out with Natasha...
     scene.text(`Feeling that you have little choice you grab your coat and head out with Natasha to help her get ${((st as any).npc_usedname ?? 0)?.['A191'] ?? ''} home.`);
     // TODO-QSP: dynamic text: "I''m so sorry about this <<$pcs_nickname>>, I know she likes a drink but doesn'...
-    scene.text(`"I'm so sorry about this ${((st as any).pcs_nickname || '')}, I know she likes a drink but doesn't normally get this bad. I guess something happened with this guy to trigger it."`);
+    scene.text(`"I'm so sorry about this ${((st as any).pcs_nickname ?? '')}, I know she likes a drink but doesn't normally get this bad. I guess something happened with this guy to trigger it."`);
     scene.text('You reassure her. "Don\'t worry about it and I guess we\'ll all need someone to help us in similar circumstances during our lives."');
     // TODO-QSP: dynamic text: On arriving you spot <<$npc_usedname[''A191'']>> slumped over the bar and go to ...
     scene.text(`On arriving you spot ${((st as any).npc_usedname ?? 0)?.['A191'] ?? ''} slumped over the bar and go to help her home.`);
@@ -513,14 +513,14 @@ function enterNatbelPav(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost2.jpg');
     // TODO-QSP: dynamic text: When you arrive back your <<$npc_nickname[''A29'']>> is waiting for you and call...
-    scene.text(`When you arrive back your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is waiting for you and calls you into the kitchen. "Well ${((st as any).pcs_nickname || '')} so I guess that's your girlfriend then?"`);
+    scene.text(`When you arrive back your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} is waiting for you and calls you into the kitchen. "Well ${((st as any).pcs_nickname ?? '')} so I guess that's your girlfriend then?"`);
     // TODO-QSP: dynamic text: You nod to confirm as your <<$npc_nickname[''A29'']>> continues. "Well despite t...
     scene.text(`You nod to confirm as your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} continues. "Well despite the circumstances she seems a nice polite girl. Erm… I guess that the issue with her ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} was drink related."`);
     scene.text('Before you can answer she continues. "Before you ask me why I said that I\'m aware of her circumstances; she had a terrible breakup with her husband and now works in a factory so she doesn\'t have too much in the way of a good life. All that being said she\'s clearly done a good job bringing Natasha up despite her circumstances."');
     // TODO-QSP: dynamic text: Unsure of what to reply you smile at your <<$npc_nickname[''A29'']>>
     scene.text(`Unsure of what to reply you smile at your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}`);
     // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> gives you a short hug then continues. "Well I gu...
-    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} gives you a short hug then continues. "Well I guess what I'm trying to say is that although I don't approve of you being with a girl as I was hoping you may find a nice man, however, I do approve of you being good friends with Natasha. Guess I'll have to work on my prejudice if you two stay together as, I do love you and want the best for you ${((st as any).pcs_nickname || '')}. Anyway I'm rambling and it's getting late now so off you go." She says with a smile.`);
+    scene.text(`Your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} gives you a short hug then continues. "Well I guess what I'm trying to say is that although I don't approve of you being with a girl as I was hoping you may find a nice man, however, I do approve of you being good friends with Natasha. Guess I'll have to work on my prejudice if you two stay together as, I do love you and want the best for you ${((st as any).pcs_nickname ?? '')}. Anyway I'm rambling and it's getting late now so off you go." She says with a smile.`);
     scene.actions([
       { label: 'Stop talking', goto: ['bedrPar', ''] },
     ]);

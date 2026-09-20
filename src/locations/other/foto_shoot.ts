@@ -586,7 +586,7 @@ function enterFashion(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You dress up in the latest in fashion wear and spend the next two hours posing for the photographer.');
   // TODO-QSP: dynamic text: After having taken all his pictures, the photographer thanks you for your time a...
-  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -619,7 +619,7 @@ function enterBikini(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/photo/bikini/${(Math.floor(Math.random() * 2) + 4)}.mp4`);
   scene.text('You spend the shoot in designer bikinis, modelling them to appear in various higher end magazines.');
   // TODO-QSP: dynamic text: Two hours later, you''re all done. The photographer thanks you for your time and...
-  scene.text(`Two hours later, you're all done. The photographer thanks you for your time and pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for the job.`);
+  scene.text(`Two hours later, you're all done. The photographer thanks you for your time and pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for the job.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -652,7 +652,7 @@ function enterLingerie(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You put on some high end lingerie and spend the next two hours striking various poses for a photographer for use in fashion magazines.');
   // TODO-QSP: dynamic text: After having taken all his pictures, the photographer thanks you for your time a...
-  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -681,7 +681,7 @@ function enterSexy(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/photo/sexy/${(Math.floor(Math.random() * 48) + 1)}.jpg`);
   scene.text('You dress up in sexy clothes and spend the next two hours posing for the photographer.');
   // TODO-QSP: dynamic text: After having taken all his pictures, the photographer thanks you for your time a...
-  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -712,7 +712,7 @@ function enterTransparent(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/photo/seethru/${(Math.floor(Math.random() * 25) + 1)}.jpg`);
   scene.text('You put on a transparent top and spend the next two hours in various poses for the photographer, a flash highlighting your breasts with every click of the camera.');
   // TODO-QSP: dynamic text: After having taken all his pictures, the photographer thanks you for your time a...
-  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -749,7 +749,7 @@ function enterTransLing(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You put on some very lacy, very transparent underwear and get to posing, your nipples often showing through the thin fabric.');
   // TODO-QSP: dynamic text: After having taken all his pictures, the photographer thanks you for your time a...
-  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -781,7 +781,7 @@ function enterTopless(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/photo/topless/${(Math.floor(Math.random() * 56) + 1)}.jpg`);
   scene.text('You spend two hours striking various posing with topless breasts, listening to instruction while the photographer takes pictures of you.');
   // TODO-QSP: dynamic text: After having taken all his pictures, the photographer thanks you for your time a...
-  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -812,7 +812,7 @@ function enterTasteful(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/photo/tastenude/${(Math.floor(Math.random() * 28) + 1)}.jpg`);
   scene.text('Already naked, you step onto the set and begin the shoot immediately.');
   // TODO-QSP: dynamic text: You spend two hours posing confidently for a photographer taking pictures of you...
-  scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, often being asked to carefully position your hands or legs in ways that tastefully hides your pussy and nipples. These images, though incredibly provocative, are still somehow considered to be conservative enough to be allowed on the front cover of fashion, sports, and other tabloid magazines. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+  scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, often being asked to carefully position your hands or legs in ways that tastefully hides your pussy and nipples. These images, though incredibly provocative, are still somehow considered to be conservative enough to be allowed on the front cover of fashion, sports, and other tabloid magazines. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -843,7 +843,7 @@ function enterToplessNude(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/city/citycenter/photo/topnude/${(Math.floor(Math.random() * 77) + 1)}.jpg`);
   scene.text('Already naked, you step onto the set and begin the shoot immediately.');
   // TODO-QSP: dynamic text: You spend two hours posing confidently for a photographer taking pictures of you...
-  scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, often using props, hands, legs, or shadow to shield your pussy while simultaneously teasing the would-be readers of what they cannot see. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+  scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, often using props, hands, legs, or shadow to shield your pussy while simultaneously teasing the would-be readers of what they cannot see. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -882,13 +882,13 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
       scene.img(`images/locations/city/citycenter/photo/nude/${(Math.floor(Math.random() * 17) + 1)}.jpg`);
       scene.text('Already naked, you step onto the set and begin the shoot immediately.');
       // TODO-QSP: dynamic text: You spend two hours posing for a photographer taking pictures of you that fully ...
-      scene.text(`You spend two hours posing for a photographer taking pictures of you that fully expose your breasts and pussy. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+      scene.text(`You spend two hours posing for a photographer taking pictures of you that fully expose your breasts and pussy. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
     } else {
       scene.img(`images/locations/city/citycenter/photo/bnude/${(Math.floor(Math.random() * 20) + 1)}.jpg`);
       ((s as any).modelfoto = (s as any).modelfoto ?? {})['bush'] = ((s as any).modelfoto['bush'] ?? 0) + (1);
       scene.text('Already naked, you step onto the set and begin the shoot immediately.');
       // TODO-QSP: dynamic text: You spend two hours posing confidently for a photographer taking pictures of you...
-      scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, your ${((s as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy providing a nice contrast to the rest of your smooth body. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+      scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, your ${((s as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy providing a nice contrast to the rest of your smooth body. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
     }
   } else {
     if (((s as any).pcs_pubes ?? 0) < 16) {
@@ -897,13 +897,13 @@ function enterNude(s: GameState, scene: SceneBuilder): void {
       scene.text('The photographer sends you on a quick trip to the dressing room to change into some clothes before the shoot.');
       scene.text('Once you\'re back, you spend two hours posing in the selected outfit and stripping or removing each piece as required. You never completely lose the clothes, but at one point or another, your breasts or pussy or both are put on display for the camera.');
       // TODO-QSP: dynamic text: When the shoot ends, both you and the photographers are very proud of the result...
-      scene.text(`When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+      scene.text(`When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
     } else {
       scene.img(`images/locations/city/citycenter/photo/bnude/${(Math.floor(Math.random() * 20) + 1)}.jpg`);
       scene.text('The photographer sends you on a quick trip to the dressing room to change into some clothes before the shoot.');
       scene.text('Once you\'re back, you spend two hours posing for a photographer taking pictures of you in the selected outfit and stripping down piece by piece until your most intimate parts are exposed. Even though you started clothed, you have no doubt that the full spread will feature images that capture every part of you, even your furry pussy.');
       // TODO-QSP: dynamic text: When the shoot ends, both you and the photographers are very proud of the result...
-      scene.text(`When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+      scene.text(`When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
     }
   }
   if (((s as any).modelfoto ?? 0)?.['nude'] === 1  &&  ((s as any).foto_persuade ?? 0) !== 5) {
@@ -947,7 +947,7 @@ function enterErotic(s: GameState, scene: SceneBuilder): void {
     scene.text('Already naked, you step onto the set and begin the shoot immediately.');
   }
   // TODO-QSP: dynamic text: You spend two hours posing while the photographer takes many photos of your nude...
-  scene.text(`You spend two hours posing while the photographer takes many photos of your nude body, but especially your breasts, pussy, and asshole. You can see the rock-hard outline of his cock the whole time and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+  scene.text(`You spend two hours posing while the photographer takes many photos of your nude body, but especially your breasts, pussy, and asshole. You can see the rock-hard outline of his cock the whole time and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -979,7 +979,7 @@ function enterSportswear(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Modeling sportwear, is slightly different from other jobs. First, you are taken to the near-by Havanna Fitness Center, as the studio doesn\'t have all the necessary props to do it. Second, you must look "dynamic", and that means do some warm-ups, and add some oil, to give that "sweaty" and "sporty" look. After that, you are ready to pose the next two hours for the photographer.');
   // TODO-QSP: dynamic text: After having taken all his pictures, the photographer thanks you for your time a...
-  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, the photographer thanks you for your time and concludes the shoot, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   if (((s as any).pcs_mdlng ?? 0) >= 40  &&  (!((s as any).commercial ?? 0))) {
     scene.actions([
       { label: 'Leave', goto: ['foto_events', 'commercial'] },
@@ -1014,7 +1014,7 @@ function enterSportsUnderwear(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Modeling sport underwear, is slightly different from other jobs. First, you are taken to the Havanna Fitness Center, as the studio doesn\'t have all the necessary props to do it. Second, you must look "dynamic", and that means do some warm-ups, and add some oil, to give that "sweaty" and "sporty" look. After that, you are ready to pose the next two hours for the photographer.');
   // TODO-QSP: dynamic text: After having taken all his pictures, you and the crew head back to Aphrodite, co...
-  scene.text(`After having taken all his pictures, you and the crew head back to Aphrodite, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} to hand to you.`);
+  scene.text(`After having taken all his pictures, you and the crew head back to Aphrodite, counting out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} to hand to you.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'end'] },
@@ -1043,7 +1043,7 @@ function enterFitnessArtisticNude(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Already naked, you do some warm-ups, work up a sweat, add some body-oil and step onto the set to begin the shoot.');
   // TODO-QSP: dynamic text: You spend two hours posing confidently for a photographer taking pictures of you...
-  scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, often being asked to carefully position your hands or legs in ways that tastefully hides your pussy and nipples. These images, are less provocative, than artistic, as they must show your body in movement so they can appear in sports-related advertisements, articles, and magazines. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for your work.`);
+  scene.text(`You spend two hours posing confidently for a photographer taking pictures of you, often being asked to carefully position your hands or legs in ways that tastefully hides your pussy and nipples. These images, are less provocative, than artistic, as they must show your body in movement so they can appear in sports-related advertisements, articles, and magazines. When the shoot ends, both you and the photographers are very proud of the results and you are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} for your work.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['foto', 'end'] },

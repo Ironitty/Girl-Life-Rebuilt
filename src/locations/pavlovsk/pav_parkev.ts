@@ -859,7 +859,7 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).grupTipe ?? 0) === 4) {
         // TODO-QSP: dynamic text: They make some room on the bench. "Sure. Come join us, <<$pcs_nickname>>," Anush...
-        scene.text(`They make some room on the bench. "Sure. Come join us, ${((st as any).pcs_nickname || '')}," Anushka says.`);
+        scene.text(`They make some room on the bench. "Sure. Come join us, ${((st as any).pcs_nickname ?? '')}," Anushka says.`);
         scene.text('As soon as you sit down, Lera hands you a beer.');
         qspCall(st, 'willpower', 'drink', 'resist', 'medium');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {

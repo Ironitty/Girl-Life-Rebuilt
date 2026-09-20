@@ -193,15 +193,15 @@ function enterMasturbGg(s: GameState, scene: SceneBuilder): void {
         (s as any).rnd_masturb_text = (Math.floor(Math.random() * 3) + 1);
         if (((s as any).rnd_masturb_text ?? 0) === 1) {
           // TODO-QSP: dynamic text: The view is quite exciting. You slip your hand <<$dummywhere>> and start rubbing...
-          scene.text(`The view is quite exciting. You slip your hand ${((s as any).dummywhere || '')} and start rubbing your clit.`);
+          scene.text(`The view is quite exciting. You slip your hand ${((s as any).dummywhere ?? '')} and start rubbing your clit.`);
         } else {
           if (((s as any).rnd_masturb_text ?? 0) === 2) {
             // TODO-QSP: dynamic text: You are very excited about this view. Of course, you can''t help, but your hand ...
-            scene.text(`You are very excited about this view. Of course, you can't help, but your hand slips ${((s as any).dummywhere || '')}, and you start rubbing your itching pussy.`);
+            scene.text(`You are very excited about this view. Of course, you can't help, but your hand slips ${((s as any).dummywhere ?? '')}, and you start rubbing your itching pussy.`);
           } else {
             if (((s as any).rnd_masturb_text ?? 0) === 3) {
               // TODO-QSP: dynamic text: Watching the scene, you become enormously excited. You <<$dummywhat>>, slip your...
-              scene.text(`Watching the scene, you become enormously excited. You ${((s as any).dummywhat || '')}, slip your hand ${((s as any).dummywhere || '')}, and start masturbating.`);
+              scene.text(`Watching the scene, you become enormously excited. You ${((s as any).dummywhat ?? '')}, slip your hand ${((s as any).dummywhere ?? '')}, and start masturbating.`);
             }
           }
         }
@@ -227,15 +227,15 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) < 50  &&  ((s as any).PCloStyle ?? 0) !== 4) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/shu...
-    scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/b\' + rand(1, 17) + \'.jpg"></center> <br> You want sex.');
+    scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/b\' + rand(1, 17) + \'.jpg"></center> <br> You want sex.');
   }
   if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).PCloStyle ?? 0) !== 4) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/shu...
-    scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/g\' + rand(1, 20) + \'.jpg"></center> <br> You are overexcited, and you strongly want to fuck.');
+    scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/g\' + rand(1, 20) + \'.jpg"></center> <br> You are overexcited, and you strongly want to fuck.');
   }
   if (((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/apartment/shu...
-    scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/h\' + rand(1, 17) + \'.jpg"></center>');
+    scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/body/h\' + rand(1, 17) + \'.jpg"></center>');
   }
   if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 150  &&  (((s as any).alko ?? 0) >= 3  &&  ((s as any).shgopsex_gr_count ?? 0) > 0)  ||  (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).shgopsex_gr_count ?? 0) > 0)) {
@@ -265,7 +265,7 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
       { label: 'Have sex with Vitek', handler: (st: GameState) => {
     if (((st as any).shgopsex_vitya_count ?? 0) <= 0) {
       // TODO-QSP: dynamic text: Vitek says, "Sorry, <<$pcs_nickname>>, I can''t fuck you more today."
-      scene.text(`Vitek says, "Sorry, ${((st as any).pcs_nickname || '')}, I can't fuck you more today."`);
+      scene.text(`Vitek says, "Sorry, ${((st as any).pcs_nickname ?? '')}, I can't fuck you more today."`);
       scene.actions([
         { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
       ]);
@@ -302,7 +302,7 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
     { label: 'Have sex with  [+func(\'gopsex\', \'hide\', \'Shulga_var_name\'...]', handler: (st: GameState) => {
     if (((st as any).shgopsex_vasya_count ?? 0) <= 0) {
       // TODO-QSP: dynamic text: Vasily said, "<<$pcs_nickname>>, you fucked with me already. It''s enough fun fo...
-      scene.text(`Vasily said, "${((st as any).pcs_nickname || '')}, you fucked with me already. It's enough fun for today, don't bother."`);
+      scene.text(`Vasily said, "${((st as any).pcs_nickname ?? '')}, you fucked with me already. It's enough fun for today, don't bother."`);
       scene.actions([
         { label: 'Leave', goto: ['vasilyhome', 'livingroom'] },
       ]);
@@ -322,7 +322,7 @@ function enterGopsexSelect(s: GameState, scene: SceneBuilder): void {
 function enterShgopsex(s: GameState, scene: SceneBuilder): void {
   if (Number((s as any).locArgs?.[1] ?? 0) !== 'cont') {
     // TODO-QSP: dynamic text: "So <<$npcdesc>>, do you want to have fun with me?" You lick your lips sensually...
-    scene.text(`"So ${((s as any).npcdesc || '')}, do you want to have fun with me?" You lick your lips sensually and ask him: "What can I do for you?"`);
+    scene.text(`"So ${((s as any).npcdesc ?? '')}, do you want to have fun with me?" You lick your lips sensually and ask him: "What can I do for you?"`);
     if (((s as any).mesec ?? 0) > 0) {
       scene.text('<font color = red><b>You warn him that you\'re on your period, so your pussy is off-limits!</b></font>');
     } else {
@@ -406,7 +406,7 @@ function enterShgopsexLick(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopsex_n_npc ?? 0) === 1) {
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
       // TODO-QSP: dynamic text: <<$pcs_nickname>>, you are a <<$gnikname>>. It''s unpleasant for me to lick the ...
-      scene.text(`${((s as any).pcs_nickname || '')}, you are a ${((s as any).gnikname || '')}. It's unpleasant for me to lick the cunt of such a girl. God knows how many cocks you have got there today. So go ahead, expose your whorish holes! I'm going to fuck you.`);
+      scene.text(`${((s as any).pcs_nickname ?? '')}, you are a ${((s as any).gnikname ?? '')}. It's unpleasant for me to lick the cunt of such a girl. God knows how many cocks you have got there today. So go ahead, expose your whorish holes! I'm going to fuck you.`);
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -420,7 +420,7 @@ function enterShgopsexLick(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopsex_n_npc ?? 0) === 2) {
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
       // TODO-QSP: dynamic text: <<$pcs_nickname>>, you are a <<$gnikname>>. It''s unpleasant for me to lick the ...
-      scene.text(`${((s as any).pcs_nickname || '')}, you are a ${((s as any).gnikname || '')}. It's unpleasant for me to lick the cunt of such a girl. God knows how many cocks you have got there today. So go ahead, show me better your whorish holes!`);
+      scene.text(`${((s as any).pcs_nickname ?? '')}, you are a ${((s as any).gnikname ?? '')}. It's unpleasant for me to lick the cunt of such a girl. God knows how many cocks you have got there today. So go ahead, show me better your whorish holes!`);
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -435,7 +435,7 @@ function enterShgopsexLick(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).gopsex_n_npc ?? 0))) {
     scene.text('"Dan, lick my pussy, please." You ask sweetly.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, aren''t you screwy to ask me to do such stuff?"
-    scene.text(`"${((s as any).pcs_nickname || '')}, aren't you screwy to ask me to do such stuff?"`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, aren't you screwy to ask me to do such stuff?"`);
     scene.text('"And what\'s wrong with that? Are you ashamed to do me nicely?"');
     scene.text('"Yes, it\'s unpleasant for me to lick cunt of a slut. God knows how many cocks you have got there today… So come on! Don\'t fuck with me… Expose your whorish holes! I\'m going to fuck you."');
   }
@@ -454,7 +454,7 @@ function enterShgopsex_69(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopsex_n_npc ?? 0) >= 1) {
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
       // TODO-QSP: dynamic text: <<$pcs_nickname>>, you are a <<$gnikname>>. It''s unpleasant for me to lick the ...
-      scene.text(`${((s as any).pcs_nickname || '')}, you are a ${((s as any).gnikname || '')}. It's unpleasant for me to lick the cunt of such a girl. God knows how many cocks you have got there today. So go ahead, show me better your whorish holes!`);
+      scene.text(`${((s as any).pcs_nickname ?? '')}, you are a ${((s as any).gnikname ?? '')}. It's unpleasant for me to lick the cunt of such a girl. God knows how many cocks you have got there today. So go ahead, show me better your whorish holes!`);
       scene.actions([
         { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
@@ -485,7 +485,7 @@ function enterShgopsex_69(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((!((s as any).gopsex_n_npc ?? 0))) {
       // TODO-QSP: dynamic text: - "No, <<$pcs_nickname>>, I won''t lick your pussy!"
-      scene.text(`- "No, ${((s as any).pcs_nickname || '')}, I won't lick your pussy!"`);
+      scene.text(`- "No, ${((s as any).pcs_nickname ?? '')}, I won't lick your pussy!"`);
       scene.actions([
         { label: 'Sex selection', handler: (st: GameState) => {
     qspCall(st, 'gopsex', 'shgopsex', 'cont');
@@ -504,9 +504,9 @@ function enterShgopsexTits(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/tits/tits' + (Math.floor(Math.random() * 6) + 1) + '.jpg');
   // TODO-QSP: dynamic text: "Well, <<$npcdesc>>, do you like my boobies'' ' + func('gopsex', 'hide', 'gop_te...
-  scene.text('"Well, ' + ((s as any).npcdesc || '') + ', do you like my boobies\' \' + func(\'gopsex\', \'hide\', \'gop_text3\') + \'?"');
+  scene.text('"Well, ' + ((s as any).npcdesc ?? '') + ', do you like my boobies\' \' + func(\'gopsex\', \'hide\', \'gop_text3\') + \'?"');
   // TODO-QSP: dynamic text: "Yes, <<$pcs_nickname>>, you''ve got awesome tits!"
-  scene.text(`"Yes, ${((s as any).pcs_nickname || '')}, you've got awesome tits!"`);
+  scene.text(`"Yes, ${((s as any).pcs_nickname ?? '')}, you've got awesome tits!"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Suck boobs', goto: ['gopsex', 'hide', 'shgopsex_eattits'] },
@@ -727,7 +727,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       (s as any).ind_npc = '<font color = red  > Cumming! </font>';
     }
     // TODO-QSP: dynamic text: <center>The ' + func('gopsex', 'hide', 'gop_text_npcr') + ' are ' + func('gopsex...
-    scene.text('<center>The \' + func(\'gopsex\', \'hide\', \'gop_text_npcr\') + \' are \' + func(\'gopsex\', \'hide\', \'gop_sextext3\') + \' you, their endurance: ' + ((s as any).ind_npc || '') + '</center>');
+    scene.text('<center>The \' + func(\'gopsex\', \'hide\', \'gop_text_npcr\') + \' are \' + func(\'gopsex\', \'hide\', \'gop_sextext3\') + \' you, their endurance: ' + ((s as any).ind_npc ?? '') + '</center>');
     // TODO-QSP: end & !! ---- ind_stamina_groupnpc ------
     if (Number((s as any).locArgs?.[1] ?? 0) === 'ind_stamina_npc') {
       (s as any).sh_ind = ((s as any).shgopsex_count ?? 0);
@@ -756,30 +756,30 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         (s as any).ind_npc = '<font color = red  > Cumming! </font> ';
       }
       // TODO-QSP: dynamic text: <center>You have sex with <<$npcdesc>>, his stamina: <<$ind_npc>></center>
-      scene.text(`<center>You have sex with ${((s as any).npcdesc || '')}, his stamina: ${((s as any).ind_npc || '')}</center>`);
+      scene.text(`<center>You have sex with ${((s as any).npcdesc ?? '')}, his stamina: ${((s as any).ind_npc ?? '')}</center>`);
       // TODO-QSP: end & !! --- ind_stamina_npc ---
       if (Number((s as any).locArgs?.[1] ?? 0) === 'npc_orgasm') {
         if ((!((s as any).shgopsex_count ?? 0))) {
           (s as any).npc_orgasm_txt = (Math.floor(Math.random() * 5) + 1);
           if (((s as any).npc_orgasm_txt ?? 0) === 1) {
             // TODO-QSP: dynamic text: "Oh shit, <<$pcs_nickname>>, I can''t hold it any longer. I''ll finish right now...
-            scene.text(`"Oh shit, ${((s as any).pcs_nickname || '')}, I can't hold it any longer. I'll finish right now!" ${((s as any).npcdesc || '')} warns you.`);
+            scene.text(`"Oh shit, ${((s as any).pcs_nickname ?? '')}, I can't hold it any longer. I'll finish right now!" ${((s as any).npcdesc ?? '')} warns you.`);
           }
           if (((s as any).npc_orgasm_txt ?? 0) === 2) {
             // TODO-QSP: dynamic text: <<$npcdesc>> warns you, "<<$pcs_nickname>>, I''m going to cum right now, finish!...
-            scene.text(`${((s as any).npcdesc || '')} warns you, "${((s as any).pcs_nickname || '')}, I'm going to cum right now, finish!"`);
+            scene.text(`${((s as any).npcdesc ?? '')} warns you, "${((s as any).pcs_nickname ?? '')}, I'm going to cum right now, finish!"`);
           }
           if (((s as any).npc_orgasm_txt ?? 0) === 3) {
             // TODO-QSP: dynamic text: <<$npcdesc>>, "So <<$pcs_nickname>>, where should I offload my cum? It doesn''t ...
-            scene.text(`${((s as any).npcdesc || '')}, "So ${((s as any).pcs_nickname || '')}, where should I offload my cum? It doesn't matter? Well, I'll choose myself!"`);
+            scene.text(`${((s as any).npcdesc ?? '')}, "So ${((s as any).pcs_nickname ?? '')}, where should I offload my cum? It doesn't matter? Well, I'll choose myself!"`);
           }
           if (((s as any).npc_orgasm_txt ?? 0) === 4) {
             // TODO-QSP: dynamic text: "I''m ready to finish! <<$pcs_nickname>>, where do you want my semen? You don''t...
-            scene.text(`"I'm ready to finish! ${((s as any).pcs_nickname || '')}, where do you want my semen? You don't know? Well, I'll choose myself!"`);
+            scene.text(`"I'm ready to finish! ${((s as any).pcs_nickname ?? '')}, where do you want my semen? You don't know? Well, I'll choose myself!"`);
           }
           if (((s as any).npc_orgasm_txt ?? 0) === 5) {
             // TODO-QSP: dynamic text: <<$npcdesc>> tells you, "<<$pcs_nickname>>, I''m on the top. I''ll cum soon!"
-            scene.text(`${((s as any).npcdesc || '')} tells you, "${((s as any).pcs_nickname || '')}, I'm on the top. I'll cum soon!"`);
+            scene.text(`${((s as any).npcdesc ?? '')} tells you, "${((s as any).pcs_nickname ?? '')}, I'm on the top. I'll cum soon!"`);
           }
         }
         // TODO-QSP: end & !! --- npc_orgasm ---
@@ -788,7 +788,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
             (s as any).analPlugIn = 0;
             (s as any).analPlugOut = 1;
             // TODO-QSP: dynamic text: "What?! Do you have a buttplug in your ass?" <<$npcdesc>> asks in surprise.
-            scene.text(`"What?! Do you have a buttplug in your ass?" ${((s as any).npcdesc || '')} asks in surprise.`);
+            scene.text(`"What?! Do you have a buttplug in your ass?" ${((s as any).npcdesc ?? '')} asks in surprise.`);
             scene.text('"Aha, you are loosening your anus."');
             scene.text('"That\'s great, but it\'s in the way right now." He comments and pulls the plug out from your ass.<br>');
           }
@@ -997,7 +997,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
                                 scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/tits/eat' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
                                 // TODO-QSP: dynamic text: <<$npcdesc>> is nibbling on your nipples.
-                                scene.text(`${((s as any).npcdesc || '')} is nibbling on your nipples.`);
+                                scene.text(`${((s as any).npcdesc ?? '')} is nibbling on your nipples.`);
                                 // TODO-QSP: end & !! --- shgopsex_eattits ---
                                 if (Number((s as any).locArgs?.[1] ?? 0) === 'shgopsex_fucktits') {
                                   (s as any).shgopsex_count = ((s as any).shgopsex_count ?? 0) - (1);
@@ -1006,7 +1006,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ind_stamina_npc']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
                                   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/gopsex/tits/tj' + (Math.floor(Math.random() * 9) + 1) + '.jpg');
                                   // TODO-QSP: dynamic text: <<$npcdesc>> wants to tittyfuck you, and you don''t mind.
-                                  scene.text(`${((s as any).npcdesc || '')} wants to tittyfuck you, and you don't mind.`);
+                                  scene.text(`${((s as any).npcdesc ?? '')} wants to tittyfuck you, and you don't mind.`);
                                   if (((s as any).shgopsex_count ?? 0) > 0) {
                                     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cont']; enterShgopsex(s, scene); (s as any).locArgs = __savedLocArgs; }
                                   } else {
@@ -1026,11 +1026,11 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                       qspCall(s, 'cum_call', 'face', ((s as any).npcID ?? 0), 1);
                                       if (((s as any).pcs_haircol ?? 0) < 4) {
                                         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/body/cum/cumface/<<$pcs_haircolor>>/' ...
-                                        scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/pc/body/cum/cumface/' + ((s as any).pcs_haircolor || '') + '/\' + rand(1, 19) + \'.jpg"></center>');
+                                        scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/pc/body/cum/cumface/' + ((s as any).pcs_haircolor ?? '') + '/\' + rand(1, 19) + \'.jpg"></center>');
                                       }
                                       if (((s as any).pcs_haircol ?? 0) > 3) {
                                         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/body/cum/cumface/custom/' + rand(1, 19...
-                                        scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/pc/body/cum/cumface/custom/\' + rand(1, 19) + \'.jpg"></center>');
+                                        scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/pc/body/cum/cumface/custom/\' + rand(1, 19) + \'.jpg"></center>');
                                       }
                                       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_sex_cumface']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
                                       qspCall(s, 'stat', '');
@@ -1683,7 +1683,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                           (s as any).rnd_caughtgg_view = '<br><font color = red>' + ((s as any).rnd_caughtgg_npc ?? 0) + '</font>';
                                                                         }
                                                                         // TODO-QSP: dynamic text: <<$rnd_caughtgg_view>>
-                                                                        scene.text(`${((s as any).rnd_caughtgg_view || '')}`);
+                                                                        scene.text(`${((s as any).rnd_caughtgg_view ?? '')}`);
                                                                         // TODO-QSP: end & !! --- accview_ggsex ---
                                                                         if (Number((s as any).locArgs?.[1] ?? 0) === 'gg_whore_text') {
                                                                           (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
@@ -2080,7 +2080,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                     if (((s as any).temp_rand ?? 0) === 5) {
                                                                                                     }
                                                                                                     // TODO-QSP: dynamic text: <<$txt_sex_cun>>
-                                                                                                    scene.text(`${((s as any).txt_sex_cun || '')}`);
+                                                                                                    scene.text(`${((s as any).txt_sex_cun ?? '')}`);
                                                                                                     // TODO-QSP: end & !! --- text_sex_cun ---
                                                                                                     if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_69') {
                                                                                                       (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
@@ -2091,7 +2091,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                         (s as any).txt_sex_69 = '' + ((s as any).npcdesc ?? 0) + ' lies down on his back, takes your leg and shifts it over himself so your tushie was just in front of his face. Running his tongue between your nether lips, he feels you take his cock deep into your mouth again. You loosen your grasp a bit then and start sucking it with your ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips.';
                                                                                                       }
                                                                                                       // TODO-QSP: dynamic text: <<$txt_sex_69>>
-                                                                                                      scene.text(`${((s as any).txt_sex_69 || '')}`);
+                                                                                                      scene.text(`${((s as any).txt_sex_69 ?? '')}`);
                                                                                                       // TODO-QSP: end & !! --- text_sex_69 ---
                                                                                                       if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_hj') {
                                                                                                         (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
@@ -2111,7 +2111,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                           (s as any).txt_sex_hj = '' + ((s as any).npcdesc ?? 0) + ' asks you to do hand job to him. You take his dick firmly into your hand and start to rub the skin back and forth.';
                                                                                                         }
                                                                                                         // TODO-QSP: dynamic text: <<$txt_sex_hj>>
-                                                                                                        scene.text(`${((s as any).txt_sex_hj || '')}`);
+                                                                                                        scene.text(`${((s as any).txt_sex_hj ?? '')}`);
                                                                                                         // TODO-QSP: end & !! --- text_sex_hj ---
                                                                                                         if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_bj') {
                                                                                                           (s as any).temp_rand = (Math.floor(Math.random() * 8) + 0);
@@ -2140,7 +2140,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                             (s as any).txt_sex_bj = 'You gently wrap his prick with your wet ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips and let it slide in your mouth. You rub it with your nimble tongue, stroke its trunk and fondling his sack with your hands. You captur it stronger, slurping juices and your saliva enveloping its head. You are tickling it with your tongue and you hear ' + ((s as any).npcdesc ?? 0) + '\'s sweet moaning.';
                                                                                                           }
                                                                                                           // TODO-QSP: dynamic text: <<$txt_sex_bj>>
-                                                                                                          scene.text(`${((s as any).txt_sex_bj || '')}`);
+                                                                                                          scene.text(`${((s as any).txt_sex_bj ?? '')}`);
                                                                                                           // TODO-QSP: end & !! --- text_sex_bj ---
                                                                                                           if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_bjt') {
                                                                                                             (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
@@ -2154,7 +2154,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                               (s as any).txt_sex_bjt = 'The cock head bumps into your throat and it even moves farther, but you can\'t take it more - it was simply too thick. Nevertheless, at each thrust, bit by bit, it moves deeper and deeper. A rope of your saliva oozes out of your mouth down to your chin and drips on the ground.';
                                                                                                             }
                                                                                                             // TODO-QSP: dynamic text: <<$txt_sex_bjt>>
-                                                                                                            scene.text(`${((s as any).txt_sex_bjt || '')}`);
+                                                                                                            scene.text(`${((s as any).txt_sex_bjt ?? '')}`);
                                                                                                             // TODO-QSP: end & !! --- text_sex_bjt ---
                                                                                                             if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_doggy') {
                                                                                                               (s as any).temp_rand = (Math.floor(Math.random() * 7) + 0);
@@ -2187,7 +2187,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                 (s as any).txt_sex_doggy = '' + ((s as any).npcdesc ?? 0) + ' turns you, prompts you to bend forward and without ceremony he starts banging your pussy. Slaps beoame louder and louder. His chest and back are glistening with sweat, his fingers dig into your butt and the thrusts become stronger and shorter. ' + ((s as any).npcdesc ?? 0) + ' is not pulling out his prick fully from your cunt but just a bit. His cock is in your box completely and still keeps pounding. It seems that he won\'t stop.';
                                                                                                               }
                                                                                                               // TODO-QSP: dynamic text: <<$txt_sex_doggy>>
-                                                                                                              scene.text(`${((s as any).txt_sex_doggy || '')}`);
+                                                                                                              scene.text(`${((s as any).txt_sex_doggy ?? '')}`);
                                                                                                               // TODO-QSP: end & !! --- text_sex_doggy ---
                                                                                                               if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_doggy_anal') {
                                                                                                                 (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);
@@ -2217,7 +2217,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                   (s as any).txt_sex_doggy_anal = '' + ((s as any).npcdesc ?? 0) + ' instructs you to bend forward and aims the head of his cock to your anus and starts pushing his member into your butt. Your ass is already relaxed and stretched and his cock slide fully into your bowels. ' + ((s as any).npcdesc ?? 0) + ' starts screwing you roughly. Bang! Bang! Bang! Smack! The cock moves back and forth. Waves caused by his blows, fly along your arse, your boobs are shaking, your head shudders in the pace of his strokes. Moan of pleasure flies from your lips. You try to resist to his violent pressure and the bonking. Your vision becomes blurred and color shadows and patterns filled your mind. Squeezing your ass, ' + ((s as any).npcdesc ?? 0) + ' is fucking it strongly and tiresome.';
                                                                                                                 }
                                                                                                                 // TODO-QSP: dynamic text: <<$txt_sex_doggy_anal>>
-                                                                                                                scene.text(`${((s as any).txt_sex_doggy_anal || '')}`);
+                                                                                                                scene.text(`${((s as any).txt_sex_doggy_anal ?? '')}`);
                                                                                                                 // TODO-QSP: end & !! --- text_sex_doggy_anal ---
                                                                                                                 if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_cow') {
                                                                                                                   (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
@@ -2230,12 +2230,12 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                     (s as any).txt_sex_cow = 'You swing your leg over and straddle him, reaching down, you grasp his hard cock and guide it to your wet pussy. Fucking him, you occasionally lean and kiss him and at that time your boobs touch his chest. After a while, you start squeezing him more with your legs and you press tightly to his groin, trying to get his member deeper into your box.';
                                                                                                                   }
                                                                                                                   // TODO-QSP: dynamic text: <<$txt_sex_cow>>
-                                                                                                                  scene.text(`${((s as any).txt_sex_cow || '')}`);
+                                                                                                                  scene.text(`${((s as any).txt_sex_cow ?? '')}`);
                                                                                                                   // TODO-QSP: end & !! --- text_sex_cow ---
                                                                                                                   if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_cow_anal') {
                                                                                                                     (s as any).txt_sex_cow_anal = 'You squat so you could control height of your ass better. You lift your bum up firstly and then slowly lower your ass again, trying impale yourself on ' + ((s as any).npcdesc ?? 0) + '\'s dick. As soon as its head passes your sphincter, you start swaying your hips slightly. During the riding, you feet that your ass became accustomed to his member, there is no pain. You realize that you have started spontaneously sliding lower and lower.';
                                                                                                                     // TODO-QSP: dynamic text: <<$txt_sex_cow_anal>>
-                                                                                                                    scene.text(`${((s as any).txt_sex_cow_anal || '')}`);
+                                                                                                                    scene.text(`${((s as any).txt_sex_cow_anal ?? '')}`);
                                                                                                                     // TODO-QSP: end & !! --- text_sex_cow_anal ---
                                                                                                                     if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_miss') {
                                                                                                                       (s as any).temp_rand = (Math.floor(Math.random() * 6) + 0);
@@ -2257,7 +2257,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                         (s as any).txt_sex_miss = 'Your pussy is well greased and his member slides easily into your love hole. You feel as his mushroom head is stretching inner walls of your fanny. You let out moan with each penetration. It doesn\'t last long and you get accustomed. You put your hands on his buttock and start set the pace. "Faster! faster!" Your whisper is melting into moaning and you tilt your head back. ' + ((s as any).npcdesc ?? 0) + ' doesn\'t contain himself and he rams his prick so deep so your pubes touched. You are breathing fast and heavily through your teeth. After a while ' + ((s as any).npcdesc ?? 0) + ' is fucking you openly. In turn, you seize his back and moan monotonously.';
                                                                                                                       }
                                                                                                                       // TODO-QSP: dynamic text: <<$txt_sex_miss>>
-                                                                                                                      scene.text(`${((s as any).txt_sex_miss || '')}`);
+                                                                                                                      scene.text(`${((s as any).txt_sex_miss ?? '')}`);
                                                                                                                       // TODO-QSP: end & !! --- text_sex_miss ---
                                                                                                                       if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_miss_anal') {
                                                                                                                         (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
@@ -2267,7 +2267,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                         if (((s as any).temp_rand ?? 0) === 1) {
                                                                                                                         }
                                                                                                                         // TODO-QSP: dynamic text: <<$txt_sex_miss_anal>>
-                                                                                                                        scene.text(`${((s as any).txt_sex_miss_anal || '')}`);
+                                                                                                                        scene.text(`${((s as any).txt_sex_miss_anal ?? '')}`);
                                                                                                                         // TODO-QSP: end & !! --- text_sex_miss_anal ---
                                                                                                                         if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_sideways') {
                                                                                                                           (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
@@ -2278,7 +2278,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                             (s as any).txt_sex_sideways = '';
                                                                                                                           }
                                                                                                                           // TODO-QSP: dynamic text: <<$txt_sex_sideways>>
-                                                                                                                          scene.text(`${((s as any).txt_sex_sideways || '')}`);
+                                                                                                                          scene.text(`${((s as any).txt_sex_sideways ?? '')}`);
                                                                                                                           // TODO-QSP: end & !! --- text_sex_sideways ---
                                                                                                                           if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_sideways_anal') {
                                                                                                                             (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
@@ -2289,7 +2289,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                               (s as any).txt_sex_sideways_anal = '';
                                                                                                                             }
                                                                                                                             // TODO-QSP: dynamic text: <<$txt_sex_sideways_anal>>
-                                                                                                                            scene.text(`${((s as any).txt_sex_sideways_anal || '')}`);
+                                                                                                                            scene.text(`${((s as any).txt_sex_sideways_anal ?? '')}`);
                                                                                                                             // TODO-QSP: end & !! --- text_sex_sideways_anal ---
                                                                                                                             if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_cumm') {
                                                                                                                               (s as any).temp_rand = (Math.floor(Math.random() * 3) + 0);
@@ -2303,7 +2303,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                 (s as any).txt_sex_cumm = 'You swallow his dick, your tongue is tickling his big balls and don\'t last long and his throbbing member spills hot stream of semen into your mouth.';
                                                                                                                               }
                                                                                                                               // TODO-QSP: dynamic text: <<$txt_sex_cumm>>
-                                                                                                                              scene.text(`${((s as any).txt_sex_cumm || '')}`);
+                                                                                                                              scene.text(`${((s as any).txt_sex_cumm ?? '')}`);
                                                                                                                               // TODO-QSP: end & !! --- text_sex_cumm ---
                                                                                                                               if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_cumface') {
                                                                                                                                 (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
@@ -2320,7 +2320,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                   (s as any).txt_sex_cumface = '' + ((s as any).npcdesc ?? 0) + ' shifts his cock up to front of your face. At that moment a sticky stream strikes straight into your ' + ((s as any).pc_desc ?? 0)?.['lips'] + ' lips. Trickles of semen is flowing down along your chin and drips on the ground. Ropes of sticky cum hangs down from your chin now. ' + ((s as any).npcdesc ?? 0) + ' spots it after a while when he finally complacently releases last drops of his semen.';
                                                                                                                                 }
                                                                                                                                 // TODO-QSP: dynamic text: <<$txt_sex_cumface>>
-                                                                                                                                scene.text(`${((s as any).txt_sex_cumface || '')}`);
+                                                                                                                                scene.text(`${((s as any).txt_sex_cumface ?? '')}`);
                                                                                                                                 // TODO-QSP: end & !! --- text_sex_cumface ---
                                                                                                                                 if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_cumbody') {
                                                                                                                                   (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
@@ -2331,7 +2331,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                     (s as any).txt_sex_cumbody = '' + ((s as any).npcdesc ?? 0) + ' runs his member over your tummy and finishes. It is so hot, his hard member and warm thick seed.';
                                                                                                                                   }
                                                                                                                                   // TODO-QSP: dynamic text: <<$txt_sex_cumbody>>
-                                                                                                                                  scene.text(`${((s as any).txt_sex_cumbody || '')}`);
+                                                                                                                                  scene.text(`${((s as any).txt_sex_cumbody ?? '')}`);
                                                                                                                                   // TODO-QSP: end & !! --- text_sex_cumbody ---
                                                                                                                                   if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_cumvag') {
                                                                                                                                     (s as any).temp_rand = (Math.floor(Math.random() * 4) + 0);
@@ -2348,7 +2348,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                       (s as any).txt_sex_cumvag = 'Holding your waist, ' + ((s as any).npcdesc ?? 0) + ' pulls you stronger to him not letting his member slid out. His big cock throbs and twitches indicating so that ' + ((s as any).npcdesc ?? 0) + ' is about to cum. Thanks to your skillful effort his orgasm begins and it is so strong that he is cumming into your pussy at least thirty seconds.';
                                                                                                                                     }
                                                                                                                                     // TODO-QSP: dynamic text: <<$txt_sex_cumvag>>
-                                                                                                                                    scene.text(`${((s as any).txt_sex_cumvag || '')}`);
+                                                                                                                                    scene.text(`${((s as any).txt_sex_cumvag ?? '')}`);
                                                                                                                                     // TODO-QSP: end & !! --- text_sex_cumvag ---
                                                                                                                                     if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_cumass') {
                                                                                                                                       (s as any).temp_rand = (Math.floor(Math.random() * 2) + 0);
@@ -2359,7 +2359,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                         (s as any).txt_sex_cumass = '' + ((s as any).npcdesc ?? 0) + ' begins to cum into your ass, his sperm melts and thins in your bowels. When he finished, he tries to shove his cock even deeper, and he presses onto your ass with full strength of his body.';
                                                                                                                                       }
                                                                                                                                       // TODO-QSP: dynamic text: <<$txt_sex_cumass>>
-                                                                                                                                      scene.text(`${((s as any).txt_sex_cumass || '')}`);
+                                                                                                                                      scene.text(`${((s as any).txt_sex_cumass ?? '')}`);
                                                                                                                                       // TODO-QSP: end & !! --- text_sex_cumass ---
                                                                                                                                       if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_group_bjall') {
                                                                                                                                         (s as any).temp_rand = (Math.floor(Math.random() * 3) + 1);
@@ -2372,7 +2372,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                           (s as any).txt_sex_group_bjall = 'Vitek feel that he has free hand, so one time he stuffs his whole cock into your mouth so his sack hits your chin and another time he pulls it whole out, and moistens your lips with his precum. Vasily watches you for a while and then he pulls out his already hard member. He stands next to Vitek and they let you suck their cocks alternately, sometimes even both at once. Dan joins after a few minutes, your mouth is fucked by three guys now, one by one, but sometimes they try to insert into your mouth their members at once…';
                                                                                                                                         }
                                                                                                                                         // TODO-QSP: dynamic text: <<$txt_sex_group_bjall>>
-                                                                                                                                        scene.text(`${((s as any).txt_sex_group_bjall || '')}`);
+                                                                                                                                        scene.text(`${((s as any).txt_sex_group_bjall ?? '')}`);
                                                                                                                                         // TODO-QSP: end & !! --- text_sex_group_bjall ---
                                                                                                                                         if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_group_bj') {
                                                                                                                                           (s as any).temp_rand = (Math.floor(Math.random() * 5) + 1);
@@ -2392,7 +2392,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                             (s as any).txt_sex_group_bj = 'You are on your knees with your mouth open, the boys one by one coming and you take their cocks deep into your beautiful mouth using no hands. No, you don\'t suck them, they just fuck hard your mouth.';
                                                                                                                                           }
                                                                                                                                           // TODO-QSP: dynamic text: <<$txt_sex_group_bj>>
-                                                                                                                                          scene.text(`${((s as any).txt_sex_group_bj || '')}`);
+                                                                                                                                          scene.text(`${((s as any).txt_sex_group_bj ?? '')}`);
                                                                                                                                           // TODO-QSP: end & !! --- text_sex_group_bj ---
                                                                                                                                           if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_group_vag') {
                                                                                                                                             (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
@@ -2402,7 +2402,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                             if (((s as any).temp_rand ?? 0) === 2) {
                                                                                                                                             }
                                                                                                                                             // TODO-QSP: dynamic text: <<$txt_sex_group_vag>>
-                                                                                                                                            scene.text(`${((s as any).txt_sex_group_vag || '')}`);
+                                                                                                                                            scene.text(`${((s as any).txt_sex_group_vag ?? '')}`);
                                                                                                                                             // TODO-QSP: end & !! --- text_sex_group_vag ---
                                                                                                                                             if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_group_anal') {
                                                                                                                                               (s as any).temp_rand = (Math.floor(Math.random() * 2) + 1);
@@ -2413,7 +2413,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                 (s as any).txt_sex_group_anal = 'Dan suggests: "Let\'s go guys, two from sides and one from behind." You bend down, resting your hands. Two boys stand on your sides putting their members to your face, and the third goes up to you from behind. He gropes your ass and starts poking his hard member between your ass cheeks and heading to your brown star. When his cock finally enters into your bum, you give a sigh of pleasure. Vitek starts to fuck your bum, and you are turning your head to one side or the other, and you are giving blow-jobs to the guys standing next to you. The pace of the member in your ass grow gradually and in the same way your excitement grows.';
                                                                                                                                               }
                                                                                                                                               // TODO-QSP: dynamic text: <<$txt_sex_group_anal>>
-                                                                                                                                              scene.text(`${((s as any).txt_sex_group_anal || '')}`);
+                                                                                                                                              scene.text(`${((s as any).txt_sex_group_anal ?? '')}`);
                                                                                                                                               // TODO-QSP: end & !! --- text_sex_group_anal ---
                                                                                                                                               if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_group_dp') {
                                                                                                                                                 (s as any).temp_rand = (Math.floor(Math.random() * 4) + 1);
@@ -2430,17 +2430,17 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
                                                                                                                                                   (s as any).txt_sex_group_dp = 'You climb at Vasily and sit down at his shaft. It slides slowly into your box giving an incredible pleasure to its wearer. Dan take his hard cock and begins to poke into your ass. His member is long and thin, but your anus is not relaxed so he can stretch it still. Dan increases the pressure and his shaft arches and wrinkles a bit, but gradually bit by bit his cock-head disappears into your butt-hole leaving its foreskin outside. It doesn\'t last long and Dan shoves his whole prick into your bum. Vasily breathes heavily and fuckes vigorously your wet squelching pussy. You are wriggling at their cocks and you feel as inside is growing long-forgotten feeling of coming climax. Something soft and warm begins to touch your lips. It is Vitek\'s member, you open your eyes and take his prick into your hand and start suck its head and rub the shaft with your hand.';
                                                                                                                                                 }
                                                                                                                                                 // TODO-QSP: dynamic text: <<$txt_sex_group_dp>>
-                                                                                                                                                scene.text(`${((s as any).txt_sex_group_dp || '')}`);
+                                                                                                                                                scene.text(`${((s as any).txt_sex_group_dp ?? '')}`);
                                                                                                                                                 // TODO-QSP: end & !! --- text_sex_group_dp ---
                                                                                                                                                 if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_group_dpa') {
                                                                                                                                                   (s as any).txt_sex_group_dpa = 'Dan is pressing you tight against his chest and starts to ram forcefully his prick deep into your butt. He turns his head towards Vasily after a while and tells him to stop wanking and shove his prick into your butt hole instead. Vasily expects such opportunity, so he quickly moves behind your butt, kneels and digs his prick into your anus. Dan stops and firmly holds your back, allowing so Vasily penetrate your hole. Your relaxed butt hole adopts his prick naturally almost without resistance. As he shoves his prick deep into your ass, both guys start together to fuck your stretched hole. You think that your hole remained gaping and it will be loose for any pricks. Vitek can\'t resist this view. He comes before you and shoves his cock head into your mouth. You start to suck his prick and at the same time you are wiggling your ass to increase its penetration.';
                                                                                                                                                   // TODO-QSP: dynamic text: <<$txt_sex_group_dpa>>
-                                                                                                                                                  scene.text(`${((s as any).txt_sex_group_dpa || '')}`);
+                                                                                                                                                  scene.text(`${((s as any).txt_sex_group_dpa ?? '')}`);
                                                                                                                                                   // TODO-QSP: end & !! --- text_sex_group_dpa ---
                                                                                                                                                   if (Number((s as any).locArgs?.[1] ?? 0) === 'text_sex_group_triple') {
                                                                                                                                                     (s as any).txt_sex_group_triple = 'The boys remove rests of your clothes, and then they lie you on the bed. You resign and let them to treat you like a rubber doll, which can fulfill any imagination. You cannot remember that your ass was filled with three cocks. They simply use your body along their perverse fantasy…';
                                                                                                                                                     // TODO-QSP: dynamic text: <<$txt_sex_group_triple>>
-                                                                                                                                                    scene.text(`${((s as any).txt_sex_group_triple || '')}`);
+                                                                                                                                                    scene.text(`${((s as any).txt_sex_group_triple ?? '')}`);
                                                                                                                                                     // TODO-QSP: end & !! --- text_sex_group_triple ---
                                                                                                                                                     if (Number((s as any).locArgs?.[1] ?? 0) === 'group_sex_text') {
                                                                                                                                                       (s as any).temp_rand = (Math.floor(Math.random() * 9) + 0);

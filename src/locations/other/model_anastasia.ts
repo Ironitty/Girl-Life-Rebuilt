@@ -354,7 +354,7 @@ function enterAnastasiasex(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'I\'ve got big tits', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I''ve got big tits too," you grin, looking down meaningfully at your <<$titsize...
-    scene.text(`"I've got big tits too," you grin, looking down meaningfully at your ${((st as any).titsize || '')} breasts. "Boys wouldn't be boys if they didn't drool over the thought of fucking busty girls like me.`);
+    scene.text(`"I've got big tits too," you grin, looking down meaningfully at your ${((st as any).titsize ?? '')} breasts. "Boys wouldn't be boys if they didn't drool over the thought of fucking busty girls like me.`);
     scene.text('"True," she smirks. "Though they will pay more to fuck <i>famous</i> busty girls,"');
     if (((st as any).stat ?? 0)?.['prostitution_count'] > 0) {
       scene.actions([

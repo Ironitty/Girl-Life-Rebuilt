@@ -264,7 +264,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   scene.actions([
 { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'coat_view', 'view_grid', $shop_utils_view['link']
-  } },,
+  } },
 { label: 'Wear', handler: (st: GameState) => {
     // TODO-QSP: gs 'coats', 'wear', $shop_utils_view['type'], shop_utils_view['number']
     qspCall(st, 'shop_utils', 'cleanup');

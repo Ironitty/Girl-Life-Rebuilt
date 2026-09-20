@@ -154,7 +154,7 @@ function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['active_init'] = 1;
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['pcs_inittime'] = 0;
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_inittime'] = ((s as any).temp_kickboxVars['npc_inittime'] ?? 0) + (1);
-        scene.text(`${((s as any).boydesc || '')} took the initiative.`);
+        scene.text(`${((s as any).boydesc ?? '')} took the initiative.`);
       } else {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['active_init'] = 0;
@@ -165,7 +165,7 @@ function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['active_init'] = 1;
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['pcs_inittime'] = 0;
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['npc_inittime'] = ((s as any).temp_kickboxVars['npc_inittime'] ?? 0) + (1);
-          scene.text(`${((s as any).boydesc || '')} took the initiative.`);
+          scene.text(`${((s as any).boydesc ?? '')} took the initiative.`);
         }
       }
     }
@@ -210,9 +210,9 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
       scene.text(`You have dealt ${((s as any).temp_kickboxVars ?? 0)?.['damage'] ?? ''} points of damage.`);
       if (((s as any).temp_kickboxVars ?? 0)?.['damage'] >= ((s as any).temp_kickboxVars ?? 0)?.['npc_health'] / 5) {
         ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['pcs_points'] = ((s as any).temp_kickboxVars['pcs_points'] ?? 0) + (1);
-        scene.text(`${((s as any).boydesc || '')} falls to the ground.`);
+        scene.text(`${((s as any).boydesc ?? '')} falls to the ground.`);
         if (((s as any).temp_kickboxVars ?? 0)?.['npc_health'] < ((s as any).temp_kickboxVars ?? 0)?.['npc_max_health'] / 4) {
-          scene.text(`${((s as any).boydesc || '')} is knocked out. You've won!`);
+          scene.text(`${((s as any).boydesc ?? '')} is knocked out. You've won!`);
           ((s as any).temp_kickboxVars = (s as any).temp_kickboxVars ?? {})['KO'] = 1;
         }
       }
@@ -343,9 +343,9 @@ function enterDisplayHeader(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <b><<$boydesc>></b> health <b><font color="red"><<temp_kickboxVars[''npc_health'...
-  scene.text(`<b>${((s as any).boydesc || '')}</b> health <b><font color="red">${((s as any).temp_kickboxVars ?? 0)?.['npc_health'] ?? ''}</font></b>, Stamina <b><font color="green">${((s as any).temp_kickboxVars ?? 0)?.['npc_stam'] ?? ''}</font></b>`);
+  scene.text(`<b>${((s as any).boydesc ?? '')}</b> health <b><font color="red">${((s as any).temp_kickboxVars ?? 0)?.['npc_health'] ?? ''}</font></b>, Stamina <b><font color="green">${((s as any).temp_kickboxVars ?? 0)?.['npc_stam'] ?? ''}</font></b>`);
   // TODO-QSP: dynamic text: Your health <b><font color="red"><<pcs_health>></font></b>, stamina <b><font col...
-  scene.text(`Your health <b><font color="red">${((s as any).pcs_health || '')}</font></b>, stamina <b><font color="green">${((s as any).pcs_stam || '')}</font></b>`);
+  scene.text(`Your health <b><font color="red">${((s as any).pcs_health ?? '')}</font></b>, stamina <b><font color="green">${((s as any).pcs_stam ?? '')}</font></b>`);
   scene.text('<b>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</b>');
   // TODO-QSP: dynamic text: Your points: <<temp_kickboxVars[''pcs_points'']>> Opponent''s points: <<temp_kic...
   scene.text(`Your points: ${((s as any).temp_kickboxVars ?? 0)?.['pcs_points'] ?? ''} Opponent's points: ${((s as any).temp_kickboxVars ?? 0)?.['npc_points'] ?? ''}`);

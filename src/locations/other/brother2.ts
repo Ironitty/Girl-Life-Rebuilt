@@ -257,11 +257,11 @@ function enterDTRYes(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/handjob/bossbjcum.jpg');
     scene.text('You pull your lips away from his and focus on jerking him to completion.');
     // TODO-QSP: dynamic text: "Fuck, <<$pcs_nickname>>!" he groans in a hushed tone. "Here it comes!"
-    scene.text(`"Fuck, ${((st as any).pcs_nickname || '')}!" he groans in a hushed tone. "Here it comes!"`);
+    scene.text(`"Fuck, ${((st as any).pcs_nickname ?? '')}!" he groans in a hushed tone. "Here it comes!"`);
     scene.text('He rears his head back and starts bucking his hips slightly as he comes. Ropes of jizz fly from the tip of his cock onto his stomach and legs, as well as your hand. You keep working his dick until his orgasm is over. He breathlessly slumps back and you give his deflating member a few more tugs before giving him a loving and sweet kiss.');
     scene.text('"My, my, little brother," you tease. "Look at the mess you\'ve made!"');
     // TODO-QSP: dynamic text: Kolka has a huge grin on his face and looks at you. "You had a hand in that, <<$...
-    scene.text(`Kolka has a huge grin on his face and looks at you. "You had a hand in that, ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`Kolka has a huge grin on his face and looks at you. "You had a hand in that, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"My hand was definitely on it," you joke. "I\'m sure you\'d love nothing more than to sit here and bask in it, but we need to get cleaned up before someone catches us."');
     scene.text('He sighs before nabbing some nearby tissue and starts wiping himself up.');
     qspCall(st, 'arousal', 'hj', 3, 'incest');
@@ -358,7 +358,7 @@ function enterDTRSuck(s: GameState, scene: SceneBuilder): void {
     scene.text('"Fuck fuck fuck fuck!" he practically bellows out, and for a moment you\'re worried someone will hear him. But there\'s nothing you can do it about right now while he holds you in place.');
     scene.text('After what feels like a good 30 seconds, Kolka finally lets go - his orgasm finally over.');
     // TODO-QSP: dynamic text: He slumps back on the couch, looking absolutely spent. With a huge grin on his f...
-    scene.text(`He slumps back on the couch, looking absolutely spent. With a huge grin on his face, he looks down at you. "Fucking. Amazing. ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`He slumps back on the couch, looking absolutely spent. With a huge grin on his face, he looks down at you. "Fucking. Amazing. ${((st as any).pcs_nickname ?? '')}."`);
     qspCall(st, 'arousal', 'bj', 3, 'incest');
     qspCall(st, 'stat', '');
     if (((st as any).trait_vars ?? 0)?.['cumeater'] === 1) {
@@ -402,7 +402,7 @@ function enterDTRSuck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/mouth/swallow2.mp4');
     scene.text('You return his gaze and swallow down his slimy load.');
     // TODO-QSP: dynamic text: "You really don''t have to do that, <<$pcs_nickname>>," Kolka says. "I''m happy ...
-    scene.text(`"You really don't have to do that, ${((st as any).pcs_nickname || '')}," Kolka says. "I'm happy enough with getting a blowjob."`);
+    scene.text(`"You really don't have to do that, ${((st as any).pcs_nickname ?? '')}," Kolka says. "I'm happy enough with getting a blowjob."`);
     scene.text('You blush a little. "I don\'t know what came over me. I just wanted to do it."');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -437,7 +437,7 @@ function enterDTRSuck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/handjob/hand2.jpg');
     scene.text('You pull your lips off your brother\'s pulsing cock and start rapidly jerking it. A few seconds later, he starts shooting ropes of cum, groaning in absolute ecstasy. His load lands all over his lap, splashing onto his legs, his stomach and your hand.');
     // TODO-QSP: dynamic text: Kolka lies back on the couch, panting. "Ah! Thank you so much, <<$pcs_nickname>>...
-    scene.text(`Kolka lies back on the couch, panting. "Ah! Thank you so much, ${((st as any).pcs_nickname || '')}! Your blowjobs are the best!"`);
+    scene.text(`Kolka lies back on the couch, panting. "Ah! Thank you so much, ${((st as any).pcs_nickname ?? '')}! Your blowjobs are the best!"`);
     scene.text('He sits for a few more moments before he starts reaching for some tissue to wipe himself up.');
     qspCall(st, 'arousal', 'hj', 3, 'incest');
     qspCall(st, 'cum_call', 'hands', 'A34', 1);
@@ -504,7 +504,7 @@ function enterDTRVaginal(s: GameState, scene: SceneBuilder): void {
     (s as any).panty_txt = ', slide your panties off';
   }
   // TODO-QSP: dynamic text: After a moment, you stand up ' + iif($clothingworntype <> 'nude', 'and start rem...
-  scene.text('After a moment, you stand up \' + iif($clothingworntype <> \'nude\', \'and start removing your clothes\', \') + \'' + ((s as any).panty_txt || '') + ' and sit on your brother\'s lap.');
+  scene.text('After a moment, you stand up \' + iif($clothingworntype <> \'nude\', \'and start removing your clothes\', \') + \'' + ((s as any).panty_txt ?? '') + ' and sit on your brother\'s lap.');
   scene.text('"Ready for some real fun, now, dear brother?" you ask him in your most seductive voice.');
   scene.text('He nods enthusiastically.');
   if (((s as any).preziktype ?? 0) !== 1) {
@@ -523,7 +523,7 @@ function enterDTRVaginal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You move yourself up and down on your brother''s <<npc_dick[''A34'']>>cm cock, s...
     scene.text(`You move yourself up and down on your brother's ${((st as any).npc_dick ?? 0)?.['A34'] ?? ''}cm cock, slowly increasing your tempo until you find a pace both of you enjoy.`);
     // TODO-QSP: dynamic text: Kolka starts playing with your <<$titsize>> breasts, tweaking your nipples with ...
-    scene.text(`Kolka starts playing with your ${((st as any).titsize || '')} breasts, tweaking your nipples with his fingers before putting his mouth over them and sucking.`);
+    scene.text(`Kolka starts playing with your ${((st as any).titsize ?? '')} breasts, tweaking your nipples with his fingers before putting his mouth over them and sucking.`);
     scene.text('You mewl in appreciation. "Mmm."');
     qspCall(st, 'arousal', 'kiss', (-5), 'incest');
     qspCall(st, 'arousal', 'foreplay', (-5), 'incest');
@@ -534,7 +534,7 @@ function enterDTRVaginal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/pussytouch.jpg');
     scene.text('Before long, Kolka stops you and pulls you off of him, placing you on the couch.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, get on your hands and knees," he says.
-    scene.text(`"${((st as any).pcs_nickname || '')}, get on your hands and knees," he says.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, get on your hands and knees," he says.`);
     scene.text('You comply and Kolka gets behind you and penetrates you again.');
     scene.text('Kolka starts thrusting deeply into you, the sound of your skin slapping against each other echoes through the room. He reaches between your legs and starts rubbing at your clit. You have to cover your mouth with your hand to keep from moaning too loudly.');
     qspCall(st, 'arousal', 'vaginal', (-5), 'incest');
@@ -615,7 +615,7 @@ function enterDTRAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/handjob/kotovhj.jpg');
   scene.text('"Not so fast," you say, squeezing down on his cock with your hand again.');
   // TODO-QSP: dynamic text: "Fuck, <<$pcs_nickname>>!" Kolka protests.
-  scene.text(`"Fuck, ${((s as any).pcs_nickname || '')}!" Kolka protests.`);
+  scene.text(`"Fuck, ${((s as any).pcs_nickname ?? '')}!" Kolka protests.`);
   scene.text('"I want you in my ass," you whisper to him.');
   scene.text('He perks up and smiles. "Really?"');
   scene.text('"Mm-hmm."');
@@ -623,7 +623,7 @@ function enterDTRAnal(s: GameState, scene: SceneBuilder): void {
     (s as any).panty_txt = ', slide your panties off';
   }
   // TODO-QSP: dynamic text: After a moment, you stand up ' + iif($clothingworntype <> 'nude', 'and start rem...
-  scene.text('After a moment, you stand up \' + iif($clothingworntype <> \'nude\', \'and start removing your clothes\', \') + \'' + ((s as any).panty_txt || '') + ' and move to the end of the couch, presenting your ' + ((s as any).pc_desc ?? 0)?.['anus'] ?? '' + ' ass to your brother.');
+  scene.text('After a moment, you stand up \' + iif($clothingworntype <> \'nude\', \'and start removing your clothes\', \') + \'' + ((s as any).panty_txt ?? '') + ' and move to the end of the couch, presenting your ' + ((s as any).pc_desc ?? 0)?.['anus'] ?? '' + ' ass to your brother.');
   scene.text('You turn your head back and wiggle your ass enticingly. "Come and get it."');
   // TODO-QSP: end
   scene.actions([
@@ -632,7 +632,7 @@ function enterDTRAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'dinSex', 'boy_wants_anal', 'Kolka', 'lubri');
     scene.text('Kolka pushes his cock into your ass slowly, stopping once he\'s fully inside.');
     // TODO-QSP: dynamic text: "Fuck, <<$pcs_nickname>>, this is so hot!" he murmurs.
-    scene.text(`"Fuck, ${((st as any).pcs_nickname || '')}, this is so hot!" he murmurs.`);
+    scene.text(`"Fuck, ${((st as any).pcs_nickname ?? '')}, this is so hot!" he murmurs.`);
     scene.text('Kolka starts thrusting deeply into you, the sound of your skin slapping against each other echoes through the room. He reaches between your legs and starts rubbing at your clit. You have to cover your mouth with your hand to keep from moaning too loudly.');
     (st as any).orgasm_or = 'no';
     qspCall(st, 'arousal', 'clit_finger', 5, 'incest');
@@ -981,7 +981,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Taking his cock in your mouth, you begin to move your lips up and down his shaft, sucking gently. After an indeterminate amount of time goes by, you hear your brother\'s voice.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" he whispers harshly. "I''m gonna cum!"
-  scene.text(`"${((s as any).pcs_nickname || '')}!" he whispers harshly. "I'm gonna cum!"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}!" he whispers harshly. "I'm gonna cum!"`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBj2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -1174,7 +1174,7 @@ function enterWakeup(s: GameState, scene: SceneBuilder): void {
     scene.text('His eye cracks open to look at you, seemingly intrigued.');
     scene.text('"How does that sound?"');
     // TODO-QSP: dynamic text: "Sounds pretty good to me," he says, throwing off his blanket and leaning back a...
-    scene.text(`"Sounds pretty good to me," he says, throwing off his blanket and leaning back as he pulls his ${((st as any).dick || '')} cm cock out.`);
+    scene.text(`"Sounds pretty good to me," he says, throwing off his blanket and leaning back as he pulls his ${((st as any).dick ?? '')} cm cock out.`);
     scene.actions([
       { label: 'Blow him', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'hj', 5, 'incest');
@@ -1349,7 +1349,7 @@ function enterTrick(s: GameState, scene: SceneBuilder): void {
   scene.text('You wait for him to be more or less fully awake before snatching his blanket and move away.');
   scene.text('"Hey!" he cries. "What are you doing?"');
   // TODO-QSP: dynamic text: "I''m leaving. What the hell is wrong with you? You really thought I was gonna s...
-  scene.text(`"I'm leaving. What the hell is wrong with you? You really thought I was gonna show you my ${((s as any).whatshow || '')}?"`);
+  scene.text(`"I'm leaving. What the hell is wrong with you? You really thought I was gonna show you my ${((s as any).whatshow ?? '')}?"`);
   if (((s as any).brotherQW ?? 0)?.['Sex'] === 2  ||  ((s as any).brotherQW ?? 0)?.['Sex'] === 3) {
     scene.text('"You\'ve let me look at you before!"');
     scene.text('"Yeah well, this isn\'t \'before\'. I\'m not doing it today."');
@@ -1750,7 +1750,7 @@ function enterFlashDare(s: GameState, scene: SceneBuilder): void {
   scene.text('At this point you are standing in the living room with Kolka bending over, his shorts down around his ankles and his bare butt open for all to see.');
   scene.text('Figuring you might as well make him squirm a bit you say "Hmm that\'s a nice butt you got there little brother. You should show it off more often."');
   // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>! Is this enough? Mom will come in and see!" he wines.
-  scene.text(`"Come on ${((s as any).pcs_nickname || '')}! Is this enough? Mom will come in and see!" he wines.`);
+  scene.text(`"Come on ${((s as any).pcs_nickname ?? '')}! Is this enough? Mom will come in and see!" he wines.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him he can stop', handler: (st: GameState) => {
@@ -1787,7 +1787,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Kolka</b></center>');
   scene.img(`${qspUntranslated(s, "FUNC('brother_face_image')", { location: "brother2" })}`);
   // TODO-QSP: dynamic text: "Ok <<$pcs_nickname>>, I dare you… too…" he say as he looks around as if he is t...
-  scene.text(`"Ok ${((s as any).pcs_nickname || '')}, I dare you… too…" he say as he looks around as if he is thinking about what to dare you to do.`);
+  scene.text(`"Ok ${((s as any).pcs_nickname ?? '')}, I dare you… too…" he say as he looks around as if he is thinking about what to dare you to do.`);
   if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       qspCall(s, 'brother2', 'caught_risk');
@@ -1894,7 +1894,7 @@ function enterLoseDares2(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'willpower', 'sex', 'resist', 'hard');
                 (s as any).dare_location = qspFunc(s, 'random', 'pick_from', 'kitchen', 'hall', 'stairway');
                 // TODO-QSP: dynamic text: too… uhh" he seems unsure of what he wants. "Well, I''m not going to sit here al...
-                scene.text(`too… uhh" he seems unsure of what he wants. "Well, I'm not going to sit here all day." you say impatiently. "You have to… <b>let me fuck you in the ${((s as any).dare_location || '')}</b>!" he blurts out.`);
+                scene.text(`too… uhh" he seems unsure of what he wants. "Well, I'm not going to sit here all day." you say impatiently. "You have to… <b>let me fuck you in the ${((s as any).dare_location ?? '')}</b>!" he blurts out.`);
                 scene.text('"What! you perv!" you say with a big grin. He laughs and says "What are you chicken?"');
                 qspCall(s, 'family_schedule', '');
                 if (((s as any).dare_location ?? 0) === 'kitchen'  &&  (((s as any).locat ?? 0)?.['Mother'] === 12  ||  ((s as any).locat ?? 0)?.['Mother'] === 23)) {
@@ -1955,7 +1955,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/flash/flash_dare (${(Math.floor(Math.random() * 7) + 1)}).mp4`);
     // TODO-QSP: dynamic text: You grab your shirt and pull up- "Woa!" your brother sits there stuned. "Oh my g...
-    scene.text(`You grab your shirt and pull up- "Woa!" your brother sits there stuned. "Oh my god ${((s as any).pcs_nickname || '')}, I was just joking. I wasn't going to really make you do it." he says.`);
+    scene.text(`You grab your shirt and pull up- "Woa!" your brother sits there stuned. "Oh my god ${((s as any).pcs_nickname ?? '')}, I was just joking. I wasn't going to really make you do it." he says.`);
     scene.text('Kolka continues with "But I… Wow! Your tits look great!" By this time he is blushing at the situation and you start turning red as well. "Well a dare is a dare… right?" you say looking away from him.');
     scene.text('"Oh, you can pull your shirt back down…" he tells you. You turn an even darker shade of red as you quickly pull your shirt back on.');
     scene.actions([
@@ -2024,7 +2024,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'arousal', 'flash', 3, 'incest');
         qspCall(s, 'brother_disc', 'arousal');
         qspCall(s, 'stat', '');
-        scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/strip/strip (${((s as any).strip_img_temp || '')}).mp4`);
+        scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/strip/strip (${((s as any).strip_img_temp ?? '')}).mp4`);
         scene.text('Reluctantly you start pulling off your clothing as your brother watches from the sofa. His eyes glued to your every move.');
         if (((s as any).strip_img_temp ?? 0) === 1) {
           scene.text('You can\'t help but try to hide yourself as you undress. Not being used to doing something like this in front of others, especially your brother, is making it that much harder.');
@@ -2122,7 +2122,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
               } else {
                 (s as any).dareblowrand = 1;
               }
-              scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/blow/dare_blow${((s as any).dareblowrand || '')}.mp4`);
+              scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/blow/dare_blow${((s as any).dareblowrand ?? '')}.mp4`);
               if (((s as any).brother ?? 0)?.['SexQW'] < 5) {
                 scene.text('"Oh my god I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… n-… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and looked down at his penis. "You had better not tell any one about this!" you say threateningly. He nods.');
               }
@@ -2230,7 +2230,7 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/reluctant.mp4');
     // TODO-QSP: dynamic text: He ignores you and says "Come on <<$pcs_nickname>> you lost…" as he pulls at you...
-    scene.text(`He ignores you and says "Come on ${((st as any).pcs_nickname || '')} you lost…" as he pulls at your panties.`);
+    scene.text(`He ignores you and says "Come on ${((st as any).pcs_nickname ?? '')} you lost…" as he pulls at your panties.`);
     if (((st as any).brother ?? 0)?.['SexQW'] < 5) {
       scene.text('"Oh my god I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… n-… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and look back at his penis. "You had better not tell any one about this!" you say threateningly. He nods.');
     }
@@ -2263,34 +2263,34 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                 if (Number((s as any).locArgs?.[2] ?? 0) === 'sex') {
                   if (Number((s as any).locArgs?.[3] ?? 0) === 'kitchen'  ||  Number((s as any).locArgs?.[3] ?? 0) === 'hall') {
                     qspCall(s, 'npcStat', 'A34');
-                    scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/' + ((s as any).dare_location || '') + '/' + ((s as any).dare_location || '') + ' \' + iif($dare_location <> \'kitchen\', \'(' + (Math.floor(Math.random() * 12) + 1) + ')\', \'(' + (Math.floor(Math.random() * 38) + 1) + ')\') + \'.mp4');
+                    scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/' + ((s as any).dare_location ?? '') + '/' + ((s as any).dare_location ?? '') + ' \' + iif($dare_location <> \'kitchen\', \'(' + (Math.floor(Math.random() * 12) + 1) + ')\', \'(' + (Math.floor(Math.random() * 38) + 1) + ')\') + \'.mp4');
                     if ((!((s as any).losedare_sexcount ?? 0))) {
                       ((s as any).brother = (s as any).brother ?? {})['fuck'] = ((s as any).brother['fuck'] ?? 0) + (1);
                       qspCall(s, 'brother2', 'dare_condom_ask');
                       scene.text('You wast no time and quickly position yourself as your brother thrusts his penis into you.');
                       // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is stiff, and is thrusting ...
-                      scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is stiff, and is thrusting into you.`);
+                      scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is stiff, and is thrusting into you.`);
                     } else {
                       if (((s as any).losedare_sexcount ?? 0) === 1) {
                         // TODO-QSP: dynamic text: You glance across the <<$dare_location>> to keep an eye out.
-                        scene.text(`You glance across the ${((s as any).dare_location || '')} to keep an eye out.`);
+                        scene.text(`You glance across the ${((s as any).dare_location ?? '')} to keep an eye out.`);
                         // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <i>hard</i>, and is fill...
-                        scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <i>hard</i>, and is filling you up fully.`);
+                        scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>hard</i>, and is filling you up fully.`);
                       } else {
                         if (((s as any).losedare_sexcount ?? 0) === 2) {
                           // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <i>rock hard</i> and his...
-                          scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <i>rock hard</i> and his skin is blushing red from arousal.`);
+                          scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>rock hard</i> and his skin is blushing red from arousal.`);
                         } else {
                           if (((s as any).losedare_sexcount ?? 0) === 3) {
                             // TODO-QSP: dynamic text: Once more you glance across the <<$dare_location>> to keep an eye out and make s...
-                            scene.text(`Once more you glance across the ${((s as any).dare_location || '')} to keep an eye out and make sure you not about to get caught.`);
+                            scene.text(`Once more you glance across the ${((s as any).dare_location ?? '')} to keep an eye out and make sure you not about to get caught.`);
                             // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <font color="maroon"><b>...
-                            scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <font color="maroon"><b>rock-hard</b>, his skin is blushing red from arousal. He has started breathing heavily as his thrusting becomes quicker.</font>.`);
+                            scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <font color="maroon"><b>rock-hard</b>, his skin is blushing red from arousal. He has started breathing heavily as his thrusting becomes quicker.</font>.`);
                           } else {
                             if (((s as any).losedare_sexcount ?? 0) === 4) {
-                              scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((s as any).dare_location || '')}/cum.mp4`);
+                              scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((s as any).dare_location ?? '')}/cum.mp4`);
                               // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <font color="red"><b>roc...
-                              scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <font color="red"><b>rock-hard. He starts furiously slamming himself into you as all the muscles in his body have start tensing up, signaling his oncoming <b>ORGASM!</b></font>.`);
+                              scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <font color="red"><b>rock-hard. He starts furiously slamming himself into you as all the muscles in his body have start tensing up, signaling his oncoming <b>ORGASM!</b></font>.`);
                             }
                           }
                         }
@@ -2315,19 +2315,19 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                     if ((!((s as any).losedare_sexcount ?? 0))) {
                       (s as any).losedare_sexcount = 1;
                     }
-                    scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/stairway/${((s as any).losedare_sexcount || '')}.mp4`);
+                    scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/stairway/${((s as any).losedare_sexcount ?? '')}.mp4`);
                     qspCall(s, 'boyStat', 'A34');
                     if (((s as any).losedare_sexcount ?? 0) === 1) {
                       ((s as any).brother = (s as any).brother ?? {})['fuck'] = ((s as any).brother['fuck'] ?? 0) + (1);
                       scene.text('You wast no time and quickly position yourself as your brother bends down and starts licking your sex.');
                       // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is stiff, as he eats you ou...
-                      scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is stiff, as he eats you out.`);
+                      scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is stiff, as he eats you out.`);
                     } else {
                       if (((s as any).losedare_sexcount ?? 0) === 2) {
                         // TODO-QSP: dynamic text: You glance across the <<$dare_location>> to keep an eye out as you kneel down an...
-                        scene.text(`You glance across the ${((s as any).dare_location || '')} to keep an eye out as you kneel down and take your brothers cock into your mouth.`);
+                        scene.text(`You glance across the ${((s as any).dare_location ?? '')} to keep an eye out as you kneel down and take your brothers cock into your mouth.`);
                         // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <i>hard</i>, as it goes ...
-                        scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <i>hard</i>, as it goes in and out of your wide open mouth.`);
+                        scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>hard</i>, as it goes in and out of your wide open mouth.`);
                         qspCall(s, 'dinsex', 'bj_random');
                         qspCall(s, 'arousal', 'bj', (Math.floor(Math.random() * 2) + 1), 'incest');
                         // TODO-QSP: iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose tra...
@@ -2336,14 +2336,14 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                           qspCall(s, 'brother2', 'dare_condom_ask');
                           scene.text('Repositioning yourself you brace for him to penetrate your waiting hole with his member.');
                           // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <i>hard</i>, and starts ...
-                          scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <i>hard</i>, and starts filling you up fully as he thrusts him self into you.`);
+                          scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>hard</i>, and starts filling you up fully as he thrusts him self into you.`);
                           qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                           qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
                           // TODO-QSP: iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose tra...
                         } else {
                           if (((s as any).losedare_sexcount ?? 0) === 4) {
                             // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <i>rock hard</i> and his...
-                            scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <i>rock hard</i> and his skin is blushing red from arousal.`);
+                            scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <i>rock hard</i> and his skin is blushing red from arousal.`);
                             scene.text('His thighs slap against yours with each thrust.');
                             qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                             qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
@@ -2351,16 +2351,16 @@ function enterLoseDares3(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).losedare_sexcount ?? 0) === 5) {
                               // TODO-QSP: dynamic text: Once more you glance across the <<$dare_location>> to keep an eye out and make s...
-                              scene.text(`Once more you glance across the ${((s as any).dare_location || '')} to keep an eye out and make sure you not about to get caught.`);
+                              scene.text(`Once more you glance across the ${((s as any).dare_location ?? '')} to keep an eye out and make sure you not about to get caught.`);
                               // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <font color="maroon"><b>...
-                              scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <font color="maroon"><b>rock-hard</b>, his skin is blushing red from arousal. He has started breathing heavily as his thrusting becomes quicker.</font>.`);
+                              scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <font color="maroon"><b>rock-hard</b>, his skin is blushing red from arousal. He has started breathing heavily as his thrusting becomes quicker.</font>.`);
                               qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                               qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
                               // TODO-QSP: iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose tra...
                             } else {
                               if (((s as any).losedare_sexcount ?? 0) === 6) {
                                 // TODO-QSP: dynamic text: Kolka''s <<dick_length>>cm long <<$dick_girth>> cock is <font color="red"><b>roc...
-                                scene.text(`Kolka's ${((s as any).dick_length || '')}cm long ${((s as any).dick_girth || '')} cock is <font color="red"><b>rock-hard. He starts furiously slamming himself into you as all the muscles in his body have start tensing up, signaling his oncoming <b>ORGASM!</b></font>.`);
+                                scene.text(`Kolka's ${((s as any).dick_length ?? '')}cm long ${((s as any).dick_girth ?? '')} cock is <font color="red"><b>rock-hard. He starts furiously slamming himself into you as all the muscles in his body have start tensing up, signaling his oncoming <b>ORGASM!</b></font>.`);
                                 qspCall(s, 'dinsex', 'vaginal_sex', (-10), 'incest');
                                 qspCall(s, 'brother_disc', 'pre_cum_chance_disc');
                                 // TODO-QSP: iif(pcs_horny >= 85, 'Lost in waves of pleasure from your teenage love making, you start to lose tra...
@@ -2407,7 +2407,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'foreplay', 2, 'incest');
       qspCall(s, 'brother_disc', 'arousal', 'light');
       qspCall(s, 'stat', '');
-      scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((s as any).temp_rub_image || '')}.mp4`);
+      scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((s as any).temp_rub_image ?? '')}.mp4`);
       scene.text('Laying down, you get yourself comfortable while glancing at your brother. He seams a bit nervous but also at the same time eager. Looking at him you see that he is sporting a large bulging boner. He gives it a few tugs to adjust him self, thinking you arn\'t looking, as he moves closer to you.');
       if (((s as any).brother ?? 0)?.['SexQW'] < 5) {
         scene.text('Letting out a long sigh "God… I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and look back at the buldge in his pants. You quickly tell him "Well come on lets get this over with."');
@@ -2472,7 +2472,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 2, 'incest');
     qspCall(st, 'brother_disc', 'arousal', 'light');
     qspCall(st, 'stat', '');
-    scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((st as any).temp_rub_image || '')}.mp4`);
+    scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((st as any).temp_rub_image ?? '')}.mp4`);
     if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('He reaches over and places his hands on your butt cheeks.');
       scene.text('Slowly he starts running his hands up and down your butt cheeks basically giving you a massage.');
@@ -2511,7 +2511,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/reluctant.mp4');
           // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>> you lost… take off everything this time!" as he pulls...
-          scene.text(`"Come on ${((s as any).pcs_nickname || '')} you lost… take off everything this time!" as he pulls at your panties.`);
+          scene.text(`"Come on ${((s as any).pcs_nickname ?? '')} you lost… take off everything this time!" as he pulls at your panties.`);
           if (((s as any).brother ?? 0)?.['SexQW'] < 5) {
             scene.text('"Oh my god I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… n-… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and look back at his penis. "You had better not tell any one about this!" you say threateningly. He nods.');
           }
@@ -2553,7 +2553,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
             scene.img('images/characters/pavlovsk/resident/kolka/event/videogaming/sex/reluctant.mp4');
             scene.text('Laying down, you get yourself comfortable while glancing at your brother. He seams a bit nervous but also at the same time eager. Looking at him you see that he is sporting a large bulging boner. He gives it a few tugs to adjust him self, thinking you arn\'t looking, as he moves closer to you.');
             // TODO-QSP: dynamic text: He then says "Come on <<$pcs_nickname>> you lost…" as he pulls at your panties.
-            scene.text(`He then says "Come on ${((s as any).pcs_nickname || '')} you lost…" as he pulls at your panties.`);
+            scene.text(`He then says "Come on ${((s as any).pcs_nickname ?? '')} you lost…" as he pulls at your panties.`);
             if (((s as any).brother ?? 0)?.['SexQW'] < 5) {
               scene.text('"Oh my god I can\'t believe you\'re making me do this…" you whine. Kolka says "A deal is a deal. You lost… n-… now pay up." You could tell he was nervous as he told you this but it did not help and so you let out a short sigh and look back at his penis. "You had better not tell any one about this!" you say threateningly. He nods.');
             }
@@ -2624,7 +2624,7 @@ function enterLoseDares4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'foreplay', 2, 'incest');
     qspCall(st, 'brother_disc', 'arousal', 'light');
     qspCall(st, 'stat', '');
-    scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((st as any).temp_rub_image || '')}.mp4`);
+    scene.img(`images/characters/pavlovsk/resident/kolka/event/videogaming/sex/${((st as any).temp_rub_image ?? '')}.mp4`);
     if (((st as any).pantyworntype ?? 0) === 'none') {
       scene.text('He reaches over and places his hands on your butt cheeks.');
       scene.text('Slowly he starts running his hands up and down your butt cheeks basically giving you a massage.');

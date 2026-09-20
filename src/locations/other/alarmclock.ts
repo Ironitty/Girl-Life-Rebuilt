@@ -386,9 +386,9 @@ function enterBuildTable(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $alarmVars_table += '</b></font></table></center>'
   // TODO-QSP: dynamic text: <<$more_html>><<$alarm_html>><<$even_more_html>><<$numbud_table>>
-  scene.text(`${((s as any).more_html || '')}${((s as any).alarm_html || '')}${((s as any).even_more_html || '')}${((s as any).numbud_table || '')}`);
+  scene.text(`${((s as any).more_html ?? '')}${((s as any).alarm_html ?? '')}${((s as any).even_more_html ?? '')}${((s as any).numbud_table ?? '')}`);
   // TODO-QSP: dynamic text: <<$alarmVars_table>>
-  scene.text(`${((s as any).alarmVars_table || '')}`);
+  scene.text(`${((s as any).alarmVars_table ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }

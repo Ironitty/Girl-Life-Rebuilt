@@ -164,7 +164,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-      scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
+      scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
   if (((s as any).shared_apt ?? 0)?.['seenAd'] === 1  &&  ((s as any).shared_apt ?? 0)?.['enabled'] === 0) {
@@ -279,7 +279,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     scene.text('You step into the garage and walk up behind him. "Hello Mr. Konstantinov."');
     scene.text('A little startled, he quickly turns towards you, gripping his wrench tight. Frightened by his actions, you instinctively take a step back, ready to quickly run away.');
     // TODO-QSP: dynamic text: It feels like an eternity before Eduard finally relaxes, letting the wrench hang...
-    scene.text(`It feels like an eternity before Eduard finally relaxes, letting the wrench hang loosely in his hand, and breaks out in a small smile. "You should be careful when approaching someone from behind ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`It feels like an eternity before Eduard finally relaxes, letting the wrench hang loosely in his hand, and breaks out in a small smile. "You should be careful when approaching someone from behind ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You nod, still a little frightened, "I\'m really sorry! I didn\'t mean to frighten you."');
     scene.text('"Well you didn\'t frighten me, but you did startle me. You never know who it might be. My past could come back to haunt me…" he says, smiling.');
     scene.text('"I was just passing by and wanted to say hi… I should let you get back to work…" you say as you quickly leave. You don\'t notice him nod, or the slight frown when he sees you scurry away.');
@@ -416,7 +416,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val3.jpg');
     // TODO-QSP: dynamic text: You pull his pants down and lean forward. Opening your mouth, you take his <<dic...
-    scene.text(`You pull his pants down and lean forward. Opening your mouth, you take his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick into your mouth and lock your lips around his shaft. Your tongue presses hard against the shaft of his cock as you start bobbing your head up and down, sucking his dick. Before long, he starts moaning and places a hand on top of your head, forcing you to take his dick deeper into your mouth.`);
+    scene.text(`You pull his pants down and lean forward. Opening your mouth, you take his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick into your mouth and lock your lips around his shaft. Your tongue presses hard against the shaft of his cock as you start bobbing your head up and down, sucking his dick. Before long, he starts moaning and places a hand on top of your head, forcing you to take his dick deeper into your mouth.`);
     scene.text('He then pulls your head up and his dick pops out of your mouth. He turns you around, pushing your legs slightly apart, and you feel the head of his cock rubbing against your slit, making you even wetter.');
     qspCall(st, 'arousal', 'bj', 10, 'unknown');
     qspCall(st, 'stat', '');
@@ -427,7 +427,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val4.jpg');
     // TODO-QSP: dynamic text: Once he is sure you are good and wet, he slides his <<dick>>cm <<$dick_girth>> c...
-    scene.text(`Once he is sure you are good and wet, he slides his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock into your warm pussy, which elicits a moan from both of you. He goes slow and not too deep at first, but as he feels you getting wetter and moaning louder, he starts fucking you a little harder and slowly works himself balls deep into you.`);
+    scene.text(`Once he is sure you are good and wet, he slides his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your warm pussy, which elicits a moan from both of you. He goes slow and not too deep at first, but as he feels you getting wetter and moaning louder, he starts fucking you a little harder and slowly works himself balls deep into you.`);
     qspCall(st, 'arousal', 'vaginal', 10, 'unknown');
     scene.actions([
       { label: 'More', handler: (st: GameState) => {
@@ -435,7 +435,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val5.jpg');
     scene.text('Once you\'re really into it, he pulls out of you and you feel the head of his dick pressing against your asshole. Once he is sure he has it lined up, he pushes forward and his dick pops into your ass, causing you gasp slightly in pain.');
     // TODO-QSP: dynamic text: He slowly start pushing his <<dick>>cm <<$dick_girth>> dick into your ass, stopp...
-    scene.text(`He slowly start pushing his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick into your ass, stopping when you start to pull away. He slowly begins fucking your ass, and as your moans turn back to pleasure, he starts pushing a little deeper and going a little faster.`);
+    scene.text(`He slowly start pushing his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick into your ass, stopping when you start to pull away. He slowly begins fucking your ass, and as your moans turn back to pleasure, he starts pushing a little deeper and going a little faster.`);
     qspCall(st, 'arousal', 'anal', 10, 'unknown');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -444,7 +444,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/val/val6.jpg');
     scene.text('He starts grunting as he fucks your ass and suddenly pulls out of you. He stands up and pulls you up to your knees, turning to face him. As you do, he is already jerking off and within seconds, warm cum starts spurting out of his dick and splattering across your tits. After a few more spurts, he moans a loud sigh of relief.');
     // TODO-QSP: dynamic text: He looks down at your cum covered tits, grinning at his handiwork, before he cle...
-    scene.text(`He looks down at your cum covered tits, grinning at his handiwork, before he cleans himself up and gets dressed as you do the same. Once you are both dressed, he turns to you. "Thanks ${((st as any).pcs_nickname || '')}. I needed that, but I should get back to work. Talk to you later." He turns and starts working on his bike again. You take one last look around to make sure you didn't forget anything and leave.`);
+    scene.text(`He looks down at your cum covered tits, grinning at his handiwork, before he cleans himself up and gets dressed as you do the same. Once you are both dressed, he turns to you. "Thanks ${((st as any).pcs_nickname ?? '')}. I needed that, but I should get back to work. Talk to you later." He turns and starts working on his bike again. You take one last look around to make sure you didn't forget anything and leave.`);
     qspCall(st, 'arousal', 'foreplay', 5, 'unknown');
     qspCall(st, 'cum_call', 'breasts', ((st as any).boy ?? 0), 1);
     qspCall(st, 'arousal', 'end');
@@ -481,10 +481,10 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/garage/ed/ed6.jpg');
     scene.text('You step into the garage and walk up behind him. He turns as you walk in. "Hello Mr. Konstantinov."');
     // TODO-QSP: dynamic text: He gives you a friendly smile. "Hello <<$pcs_nickname>>. Please, call me Ed."
-    scene.text(`He gives you a friendly smile. "Hello ${((st as any).pcs_nickname || '')}. Please, call me Ed."`);
+    scene.text(`He gives you a friendly smile. "Hello ${((st as any).pcs_nickname ?? '')}. Please, call me Ed."`);
     scene.text('You nod and smile. "Okay. Hi Ed."');
     // TODO-QSP: dynamic text: He chuckles slightly. "What can I do for you <<$pcs_nickname>>? Anushka isn''t h...
-    scene.text(`He chuckles slightly. "What can I do for you ${((st as any).pcs_nickname || '')}? Anushka isn't here and I have no clue where she is, like most days." He adds with a bit of a frown.`);
+    scene.text(`He chuckles slightly. "What can I do for you ${((st as any).pcs_nickname ?? '')}? Anushka isn't here and I have no clue where she is, like most days." He adds with a bit of a frown.`);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Nothing', handler: (st: GameState) => {
@@ -536,7 +536,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((st as any).edchat ?? 0) === 4) {
             // TODO-QSP: dynamic text: "May I ask you a question, <<$pcs_nickname>>?" Eduard wipes his hands as he take...
-            scene.text(`"May I ask you a question, ${((st as any).pcs_nickname || '')}?" Eduard wipes his hands as he takes a break from working on the bike.`);
+            scene.text(`"May I ask you a question, ${((st as any).pcs_nickname ?? '')}?" Eduard wipes his hands as he takes a break from working on the bike.`);
             scene.text('You nod, a bit afraid of what he\'ll ask…');
             if (((st as any).grupTipe ?? 0) === 4) {
               scene.text('"So I\'ve heard some rumors that you two were doing some shit around town? Do I need to have a talk with you and my lovely daughter?" He crosses his arms, awaiting an answer.');
@@ -577,7 +577,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
                         scene.text('"I-Is everything okay?" you quietly ask, afraid of his reaction.');
                         scene.text('He mutters on. "Is everything okay… Such a stupid question, everyone always want to know what\'s on Eduard\'s mind. Can\'t be alone for a fucking minute…"');
                         // TODO-QSP: dynamic text: Noticing he''s deep inside his thoughts, you turn around and begin to leave befo...
-                        scene.text(`Noticing he's deep inside his thoughts, you turn around and begin to leave before you hear "Oh sorry ${((st as any).pcs_nickname || '')}. I'm just having a bad day today."`);
+                        scene.text(`Noticing he's deep inside his thoughts, you turn around and begin to leave before you hear "Oh sorry ${((st as any).pcs_nickname ?? '')}. I'm just having a bad day today."`);
                       } else {
                         if (((st as any).edchat ?? 0) === 11) {
                           scene.text('"How many tattoos do you have?" you curiously ask.');
@@ -603,7 +603,7 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((st as any).edchat ?? 0) === 13) {
                               // TODO-QSP: dynamic text: "Tell me <<$pcs_nickname>>, is that place over by the old factory still there?" ...
-                              scene.text(`"Tell me ${((st as any).pcs_nickname || '')}, is that place over by the old factory still there?" Eduard curiously asks.`);
+                              scene.text(`"Tell me ${((st as any).pcs_nickname ?? '')}, is that place over by the old factory still there?" Eduard curiously asks.`);
                               scene.text('You ponder for a while. "I don\'t really know which one you mean, but no one really hangs out over there anymore. The only ones that remain are the drug dealers…"');
                               scene.text('"That\'s a shame, we used to use that as a meeting place. Lots of crazy stuff happened there. The fights, the women, the dru-…" he clears his throat, "Yeah, those were great times…" His mind travels away somewhere as a little smirk appears on his face.');
                             }

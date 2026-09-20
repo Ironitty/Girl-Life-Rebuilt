@@ -14,7 +14,7 @@ function enterStage_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_generic/37.jpg');
   scene.text('You head over to the industrial region where you quickly meet up with your contact at the Experience Center.');
   // TODO-QSP: dynamic text: "Hi there; you must be <<$pcs_firstname>>. The group is already on their way to ...
-  scene.text(`"Hi there; you must be ${((s as any).pcs_firstname || '')}. The group is already on their way to the site, so I'll take you up there in my car. I'm sure you know everything you need to do, but feel free to ask if you have any questions."`);
+  scene.text(`"Hi there; you must be ${((s as any).pcs_firstname ?? '')}. The group is already on their way to the site, so I'll take you up there in my car. I'm sure you know everything you need to do, but feel free to ask if you have any questions."`);
   scene.text('You get in the car and drive for nearly half an hour until you reach the Experience Center. Once there, the representative parks the car and you get out and head inside.');
   // TODO-QSP: end
   scene.actions([

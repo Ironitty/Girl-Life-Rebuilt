@@ -101,7 +101,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('Your hand trembles as you reach out your passport.');
   scene.text('The woman points you to a chair, turns to the computer and starts clicking on the keys. She nods a few times, but says nothing. Then takes the phone and speaks to someone called Vladimir Viktorovich, discussing you. "There\'s candidacy, but a bit young, can you check and sort the paperwork? She hangs up, after a few minutes from the office comes a strapping man in a perfectly fitting suit and glasses with gold rim. He says, "Hello." And sits down next to you.');
   // TODO-QSP: dynamic text: "What''s your name? <<$pcs_nickname>>? Fine. How old are you?"
-  scene.text(`"What's your name? ${((s as any).pcs_nickname || '')}? Fine. How old are you?"`);
+  scene.text(`"What's your name? ${((s as any).pcs_nickname ?? '')}? Fine. How old are you?"`);
   scene.text('You answer the questions.');
   scene.text('"Tell me, are you sure you want this?"');
   scene.text('You understand, all of the questions he is asking and why.');

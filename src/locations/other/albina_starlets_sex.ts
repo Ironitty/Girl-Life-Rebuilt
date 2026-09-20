@@ -704,9 +704,9 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   scene.text('They all look at you with lust in their eyes as the door closes loudly behind you and you jump in fright. You\'re now in a hotel room alone with a dozen older men. The man walks over to the group and sits down, taking the drink that\'s offered to him. He motions for you to come over and you sheepishly comply.');
   scene.text('"What\'s your name, girl?" he asks as he takes a swig of his drink.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>…" you quietly reply and the men laugh.
-  scene.text(`"${((s as any).pcs_firstname || '')}…" you quietly reply and the men laugh.`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')}…" you quietly reply and the men laugh.`);
   // TODO-QSP: dynamic text: "Okay <<$pcs_firstname>>, here''s the deal. These are my associates who are here...
-  scene.text(`"Okay ${((s as any).pcs_firstname || '')}, here's the deal. These are my associates who are here on business. All of us paid good money for you to show us a good time. So what you're going to do is give us a striptease, then we'll go from there. Got it?" he says rather sternly and you meekly nod.`);
+  scene.text(`"Okay ${((s as any).pcs_firstname ?? '')}, here's the deal. These are my associates who are here on business. All of us paid good money for you to show us a good time. So what you're going to do is give us a striptease, then we'll go from there. Got it?" he says rather sternly and you meekly nod.`);
   scene.text('One of the other men pours some vodka into a glass and offers it to you.');
   scene.text('"I can see you\'re a little nervous, so why don\'t you take this liquid courage first?"');
   (s as any).minut = ((s as any).minut ?? 0) + 30;

@@ -1027,7 +1027,7 @@ function enterCumgather(s: GameState, scene: SceneBuilder): void {
       ((s as any).mc_inventory = (s as any).mc_inventory ?? {})['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       // TODO-QSP: dynamic text: You use a wipe to clean the sperm from your <<$part>>.
-      scene.text(`You use a wipe to clean the sperm from your ${((s as any).part || '')}.`);
+      scene.text(`You use a wipe to clean the sperm from your ${((s as any).part ?? '')}.`);
       // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
       qspCall(s, 'stat', '');
     }
@@ -1132,10 +1132,10 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
       }
       if ((!(Math.floor(Math.random() * 2) + 0))) {
         // TODO-QSP: dynamic text: You collect a handful of sperm from your <<$part>> in your hand and lick it up, ...
-        scene.text(`You collect a handful of sperm from your ${((s as any).part || '')} in your hand and lick it up, enjoying the tart taste.`);
+        scene.text(`You collect a handful of sperm from your ${((s as any).part ?? '')} in your hand and lick it up, enjoying the tart taste.`);
       } else {
         // TODO-QSP: dynamic text: You collect the sperm from your <<$part>> with your fingers and lick them, enjoy...
-        scene.text(`You collect the sperm from your ${((s as any).part || '')} with your fingers and lick them, enjoying the tart taste.`);
+        scene.text(`You collect the sperm from your ${((s as any).part ?? '')} with your fingers and lick them, enjoying the tart taste.`);
       }
       if (qspFunc(s, 'cum_manage', 'check_inner_overflow', ((s as any).locArgs?.[1] ?? 0)) === 1  &&  ((s as any).cheatVars ?? 0)?.['enema'] === 0) {
         (s as any).cumspclnt = 15;

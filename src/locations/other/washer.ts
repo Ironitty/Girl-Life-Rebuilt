@@ -31,17 +31,17 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).washer_total_wash_cost ?? 0)) === 0) {
       // TODO-QSP: dynamic text: You do not have enough money to wash all of your clothing. The total cost would ...
-      scene.text(`You do not have enough money to wash all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).washer_total_wash_cost || ''))}.`);
+      scene.text(`You do not have enough money to wash all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).washer_total_wash_cost ?? ''))}.`);
     } else {
       (s as any).temp_washer_cost = qspFunc(s, 'money', 'price', ((s as any).washer_total_wash_cost ?? 0));
       // TODO-QSP: dynamic "
       // TODO-QSP: "
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Wash all your clothes (0:10, ' + String(((s as any).temp_washer_cost || '') ?? '') + ' <b>₽</b>)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Wash all your clothes (0:10, ' + String(((s as any).temp_washer_cost ?? '') ?? '') + ' <b>₽</b>)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     // TODO-QSP: gs 'money', 'pay', <<washer_total_wash_cost>>
     // TODO-QSP: dynamic text: You wash all clothing for <<temp_washer_cost>> <b>₽</b>.
-    scene.text(`You wash all clothing for ${((st as any).temp_washer_cost || '')} <b>₽</b>.`);
+    scene.text(`You wash all clothing for ${((st as any).temp_washer_cost ?? '')} <b>₽</b>.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterWashAll(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

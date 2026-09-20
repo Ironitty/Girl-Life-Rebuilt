@@ -136,7 +136,7 @@ function enterFirst2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/ira/irinaqw1.jpg');
   // TODO-QSP: dynamic text: You toast to sisterhood, and you notice that Irina is looking at you strangely, ...
-  scene.text(`You toast to sisterhood, and you notice that Irina is looking at you strangely, but she follows along and raises her glass and begins laughing, "I didn't expect to hear that from you, ${((s as any).pcs_firstname || '')}." You feel a slight bond building between the two of you.`);
+  scene.text(`You toast to sisterhood, and you notice that Irina is looking at you strangely, but she follows along and raises her glass and begins laughing, "I didn't expect to hear that from you, ${((s as any).pcs_firstname ?? '')}." You feel a slight bond building between the two of you.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss', goto: ['city_irinaroom', 'first3'] },
@@ -178,7 +178,7 @@ function enterFirst4(s: GameState, scene: SceneBuilder): void {
 function enterFirst5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/ira/sex/irinaqw3.jpg');
   // TODO-QSP: dynamic text: The two of you continue drinking, with Irina getting quite intoxicated as she st...
-  scene.text(`The two of you continue drinking, with Irina getting quite intoxicated as she starts laughing at something and manages to spill her glass of wine all over the both of you. "I'm so sorry, ${((s as any).pcs_firstname || '')}… I didn't mean to… Come with me." She grabs you by the hand and staggers towards the bathroom.`);
+  scene.text(`The two of you continue drinking, with Irina getting quite intoxicated as she starts laughing at something and manages to spill her glass of wine all over the both of you. "I'm so sorry, ${((s as any).pcs_firstname ?? '')}… I didn't mean to… Come with me." She grabs you by the hand and staggers towards the bathroom.`);
   scene.text('She leads you inside the bathroom and starts undressing herself as she turns on the shower and steps into it. Seeing her naked body, you decide to follow suit and quickly undress and climb into the shower.');
   scene.text('"Could you help me out with my back?" She hands you a loofah, and as you start lathering her body you notice her nipples are erect.');
   (s as any).IrinaQW = 10;

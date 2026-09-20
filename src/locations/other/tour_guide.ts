@@ -131,10 +131,10 @@ function enterTourran4(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Imperial Palace</h2></center>');
   scene.img('images/locations/pavlovsk/palace/events/tour_bus.jpg');
   // TODO-QSP: dynamic text: Your manager paces all over the place, "I just got word that several buses with ...
-  scene.text(`Your manager paces all over the place, "I just got word that several buses with important foreign tourists are coming here in a few minutes. It's very important that we show ourselves from our best side. I'm looking specially at you, Miss ${((s as any).pcs_lastname || '')}"`);
+  scene.text(`Your manager paces all over the place, "I just got word that several buses with important foreign tourists are coming here in a few minutes. It's very important that we show ourselves from our best side. I'm looking specially at you, Miss ${((s as any).pcs_lastname ?? '')}"`);
   scene.text('"Why am I being singled out?" you blurt out, confounded.');
   // TODO-QSP: dynamic text: "I really don''t have time for this, you''re in charge of the second bus, don''t...
-  scene.text(`"I really don't have time for this, you're in charge of the second bus, don't disappoint me, Miss ${((s as any).pcs_lastname || '')}!" he shrugs you off.`);
+  scene.text(`"I really don't have time for this, you're in charge of the second bus, don't disappoint me, Miss ${((s as any).pcs_lastname ?? '')}!" he shrugs you off.`);
   scene.text('Several buses stop in front of the Palace and a lot of tourists pour out of them. Suddenly you\'re approached by an important looking man, "Young lady, I\'ve understood that you\'ll be our guide today. Aren\'t you a bit too young to be doing this important job?"');
   scene.text('You shrug your shoulders not really caring about his comments too much and tell him to tell the tour group to scurry along.');
   scene.text('The tour follows closely behind only stopping as you explain the nooks and crannies within the Palace, you\'re not really sure why the tourists are laughing at the translations as you\'re taking this as serious as you can.');
@@ -172,10 +172,10 @@ function enterTourran5(s: GameState, scene: SceneBuilder): void {
     scene.text('The boyfriend switches between looking worryingly around, not wanting to get caught and giving himself up into pure indulgence, "That\'s it babe, you\'re so fucking good with…" you barely hear him.');
     scene.text('All of a sudden, you feel someone creeping behind you…');
     // TODO-QSP: dynamic text: As you turn around, it''s the manager, "What are you doing <<$pcs_firstname>>?"
-    scene.text(`As you turn around, it's the manager, "What are you doing ${((st as any).pcs_firstname || '')}?"`);
+    scene.text(`As you turn around, it's the manager, "What are you doing ${((st as any).pcs_firstname ?? '')}?"`);
     scene.text('Knowing the couple would get in trouble and get the cops called on them, you turn around making as much sound as possible to warn them, "N-Nothing sir, I thought I heard a sound, but I was wrong, so I was just making my way back to my tour group."');
     // TODO-QSP: dynamic text: The manager sighs, clearly annoyed by your answer, "What do you mean you left yo...
-    scene.text(`The manager sighs, clearly annoyed by your answer, "What do you mean you left your tour group alone?! Let me take a look! W-What is happening here?! Why is your penis out in the open?! And why is this girl kneeling on the floor?! ${((st as any).pcs_firstname || '')}!"`);
+    scene.text(`The manager sighs, clearly annoyed by your answer, "What do you mean you left your tour group alone?! Let me take a look! W-What is happening here?! Why is your penis out in the open?! And why is this girl kneeling on the floor?! ${((st as any).pcs_firstname ?? '')}!"`);
     scene.text('Not wanting to get involved with this situation, you quietly slip away to the rest of the group awaiting your return. It doesn\'t take long before you see the man gunning for the door with his pants down while his girlfriend is trailing closely behind, chased by your manager.');
     scene.actions([
       { label: 'Finish the tour', goto: ['tour_guide', 'toursdone'] },
@@ -402,7 +402,7 @@ function enterRiverclean(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You go back into the water again to wash off the cum, feeling guilty, certain if you don\'t hurry someone will decide to come looking for you.');
   // TODO-QSP: dynamic text: The palace grounds are big, but you would rather avoid that situation entirely. ...
-  scene.text(`The palace grounds are big, but you would rather avoid that situation entirely. ${((s as any).start_text || '')}`);
+  scene.text(`The palace grounds are big, but you would rather avoid that situation entirely. ${((s as any).start_text ?? '')}`);
   if (((s as any).vibratorOUT ?? 0) === 1) {
     (s as any).vibratorIN = 1;
     (s as any).vibratorOUT = 0;
@@ -435,14 +435,14 @@ function enterToursdone(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).rivermissed ?? 0) >= 6  &&  ((s as any).riverbusted ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 100) {
       // TODO-QSP: dynamic text: Walking into the tour office, you find your boss waiting for you. "Follow me, <<...
-      scene.text(`Walking into the tour office, you find your boss waiting for you. "Follow me, ${((s as any).pcs_firstname || '')}," he says with an unpleasant look on his face, and heads to a room way in the back.`);
+      scene.text(`Walking into the tour office, you find your boss waiting for you. "Follow me, ${((s as any).pcs_firstname ?? '')}," he says with an unpleasant look on his face, and heads to a room way in the back.`);
       scene.actions([
         { label: 'Follow him', goto: ['tour_guide', 'backroom'] },
       ]);
     } else {
       if (((s as any).rivermissed ?? 0) >= 8  &&  ((s as any).riverbusted ?? 0) === 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 100) {
         // TODO-QSP: dynamic text: Walking into the tour office, you find your boss waiting for you. "Follow me, <<...
-        scene.text(`Walking into the tour office, you find your boss waiting for you. "Follow me, ${((s as any).pcs_firstname || '')}," he says with an unpleasant look on his face, and heads to a room way in the back.`);
+        scene.text(`Walking into the tour office, you find your boss waiting for you. "Follow me, ${((s as any).pcs_firstname ?? '')}," he says with an unpleasant look on his face, and heads to a room way in the back.`);
         scene.actions([
           { label: 'Follow him', goto: ['tour_guide', 'backroom'] },
         ]);
@@ -479,11 +479,11 @@ function enterBackroom(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter a small office, far enough from the front desk that you know anything could happen back here and nobody would even notice.');
   if (((s as any).riverbusted ?? 0) === 2) {
     // TODO-QSP: dynamic text: "As usual, you were missing again, <<$pcs_firstname>>. I guess you don''t learn ...
-    scene.text(`"As usual, you were missing again, ${((s as any).pcs_firstname || '')}. I guess you don't learn easily. You know your options, get naked and in the position, or get out."`);
+    scene.text(`"As usual, you were missing again, ${((s as any).pcs_firstname ?? '')}. I guess you don't learn easily. You know your options, get naked and in the position, or get out."`);
   } else {
     if (((s as any).riverbusted ?? 0) === 1) {
       // TODO-QSP: dynamic text: "I went to check up on you today, and you were missing, again, <<$pcs_firstname>...
-      scene.text(`"I went to check up on you today, and you were missing, again, ${((s as any).pcs_firstname || '')}. I thought you would be smarter about this. I told you last time if it happened again, your punishment would be a lot worse."`);
+      scene.text(`"I went to check up on you today, and you were missing, again, ${((s as any).pcs_firstname ?? '')}. I thought you would be smarter about this. I told you last time if it happened again, your punishment would be a lot worse."`);
       scene.text('"But, sir, I…" is all you manage before he makes a cutting motion with his hand.');
       scene.text('"This time you will get the strap, entirely nude, and it will hurt for a long time. If you cannot handle that, then get out and don\'t come back. It\'s that simple."');
     } else {
@@ -491,20 +491,20 @@ function enterBackroom(s: GameState, scene: SceneBuilder): void {
         scene.text('"You were gone a long time today, several tours were delayed as we had to scramble to get things back on track. Where did you disappear to?"');
         scene.text('"I had to use the restroom," you try to lie. "I\'m sorry, it is just that time of the month, I had a lot to clean up!"');
         // TODO-QSP: dynamic text: He stares at you a moment before saying, "Lying and slacking off at work, I can ...
-        scene.text(`He stares at you a moment before saying, "Lying and slacking off at work, I can believe it, after the things I have heard about you around town, ${((s as any).pcs_firstname || '')}. Do you think I'm stupid? I had somebody check the bathrooms, you were not in any of them."`);
+        scene.text(`He stares at you a moment before saying, "Lying and slacking off at work, I can believe it, after the things I have heard about you around town, ${((s as any).pcs_firstname ?? '')}. Do you think I'm stupid? I had somebody check the bathrooms, you were not in any of them."`);
         scene.text('You open your mouth to respond but he cuts you off. "You have two choices. Either you don\'t work here anymore, or you take your punishment, and I keep a closer eye on you."');
         scene.text('"What punishment, Sir?" You ask nervously, afraid to hear the answer.');
         // TODO-QSP: dynamic text: "Corporal Punishment, <<$pcs_firstname>>. Either you bare your butt and bend ove...
-        scene.text(`"Corporal Punishment, ${((s as any).pcs_firstname || '')}. Either you bare your butt and bend over this desk, or you turn in your uniform, and never come back. If you let me, I can make a decent person out of you, now decide."`);
+        scene.text(`"Corporal Punishment, ${((s as any).pcs_firstname ?? '')}. Either you bare your butt and bend over this desk, or you turn in your uniform, and never come back. If you let me, I can make a decent person out of you, now decide."`);
       } else {
         scene.text('"You were gone a long time today, several tours were delayed as we had to scramble to get things back on track. Where did you disappear to?"');
         scene.text('"I had to use the restroom," you try to lie. "I\'m sorry, it is just that time of the month, I had a lot to clean up!"');
         // TODO-QSP: dynamic text: He stares at you a moment before saying, "Lying and slacking off at work, I cann...
-        scene.text(`He stares at you a moment before saying, "Lying and slacking off at work, I cannot believe you, ${((s as any).pcs_firstname || '')}. Do you think I'm stupid? I had somebody check the bathrooms, you were not in any of them."`);
+        scene.text(`He stares at you a moment before saying, "Lying and slacking off at work, I cannot believe you, ${((s as any).pcs_firstname ?? '')}. Do you think I'm stupid? I had somebody check the bathrooms, you were not in any of them."`);
         scene.text('You open your mouth to respond but he cuts you off. "You have two choices. Either you don\'t work here anymore, or you take your punishment, and I keep a closer eye on you, from now on."');
         scene.text('"What punishment, Sir?" You ask nervously, afraid to hear the answer.');
         // TODO-QSP: dynamic text: "Corporal Punishment, <<$pcs_firstname>>. Either you bare your butt and bend ove...
-        scene.text(`"Corporal Punishment, ${((s as any).pcs_firstname || '')}. Either you bare your butt and bend over this desk, or you turn in your uniform, and never come back. Decide."`);
+        scene.text(`"Corporal Punishment, ${((s as any).pcs_firstname ?? '')}. Either you bare your butt and bend over this desk, or you turn in your uniform, and never come back. Decide."`);
       }
     }
   }
@@ -551,7 +551,7 @@ function enterSpank(s: GameState, scene: SceneBuilder): void {
       scene.text('The first hit still catches you off-guard, making you cry out, though it doesn\'t sting as badly as you expected. At least not right away.');
       scene.text('By the fourth smack you can feel each mark on your butt, and tears are definitely in your eyes. By the tenth you are bawling like a child and screaming with each swat he lands.');
       // TODO-QSP: dynamic text: After your 15th, he says he is done. "Let that be a lesson, <<$pcs_firstname>>. ...
-      scene.text(`After your 15th, he says he is done. "Let that be a lesson, ${((s as any).pcs_firstname || '')}. If this has to happen again, it will be a lot worse." You can barely imagine worse, as you try and pull your underwear back up, fingers trembling.`);
+      scene.text(`After your 15th, he says he is done. "Let that be a lesson, ${((s as any).pcs_firstname ?? '')}. If this has to happen again, it will be a lot worse." You can barely imagine worse, as you try and pull your underwear back up, fingers trembling.`);
       qspCall(s, 'mood', 'lower', 'medium');
       qspCall(s, 'pain', '', 3, 'asscheeks', 'spank');
       qspCall(s, 'stat', '');

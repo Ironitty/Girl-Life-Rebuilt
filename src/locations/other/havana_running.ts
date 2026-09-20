@@ -33,7 +33,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('Igor eagerly watches your practice runs and times them as well. Despite his grim demeanour, he nods approvingly at your times and even gives you a hug when you set a personal best.');
         // TODO-QSP: dynamic text: "You''re doing great, <<$pcs_nickname>>. I really can''t give you much more advi...
-        scene.text(`"You're doing great, ${((st as any).pcs_nickname || '')}. I really can't give you much more advice except to tell you to keep pushing and making us proud."`);
+        scene.text(`"You're doing great, ${((st as any).pcs_nickname ?? '')}. I really can't give you much more advice except to tell you to keep pushing and making us proud."`);
         scene.actions([
           { label: 'Leave', goto: ['havana_running', 'start'] },
         ]);
@@ -110,7 +110,7 @@ function enterRaceStart(s: GameState, scene: SceneBuilder): void {
               ((s as any).runnerQW = (s as any).runnerQW ?? {})['qualifiers'] = 0;
               ((s as any).runnerQW = (s as any).runnerQW ?? {})['prof_stage'] = 3;
               // TODO-QSP: dynamic text: You qualified for the <<year>> St. Petersburg Track Championship, taking place t...
-              scene.text(`You qualified for the ${((s as any).year || '')} St. Petersburg Track Championship, taking place this season in the Petrovsky Stadium.`);
+              scene.text(`You qualified for the ${((s as any).year ?? '')} St. Petersburg Track Championship, taking place this season in the Petrovsky Stadium.`);
               scene.actions([
                 { label: 'Go to the stadium', goto: ['havana_running', 'evro'] },
               ]);
@@ -583,15 +583,15 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.text('As you receive congratulations from your coach and fellow competitors, you look towards the crowd to acknowledge their support. You\'re surprised to see your mother frantically waving at you and trying to make her way down to the track-side.');
     scene.text('Breaking out into a huge grin, you jog over to the barrier and reach over and hug each other.');
     // TODO-QSP: dynamic text: "Well done <<$pcs_nickname>>, that was some race! Oh my! My little girl… The Sai...
-    scene.text(`"Well done ${((s as any).pcs_nickname || '')}, that was some race! Oh my! My little girl… The Saint Petersburg Track champion! Where to next, National races? Anyway, I just had to come when I saw your name on the start list for the race in the local paper; I know you've been training hard, but I never expected that you'd be at this level! I'm so proud of you! Give me another hug!"`);
+    scene.text(`"Well done ${((s as any).pcs_nickname ?? '')}, that was some race! Oh my! My little girl… The Saint Petersburg Track champion! Where to next, National races? Anyway, I just had to come when I saw your name on the start list for the race in the local paper; I know you've been training hard, but I never expected that you'd be at this level! I'm so proud of you! Give me another hug!"`);
     // TODO-QSP: dynamic text: You lean over and hug your mother. "Thanks for coming, <<$npc_nickname[''A29'']>...
     scene.text(`You lean over and hug your mother. "Thanks for coming, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I didn't mention it as I wasn't sure how well I'd do and I didn't want to put any pressure on you to attend given we aren't exactly flush with money."`);
     // TODO-QSP: dynamic text: Your mother hugs you close. "Oh <<$pcs_nickname>>, of course I''d come! Whatever...
-    scene.text(`Your mother hugs you close. "Oh ${((s as any).pcs_nickname || '')}, of course I'd come! Whatever differences we've had, you're my daughter and I love you and want the best for you."`);
+    scene.text(`Your mother hugs you close. "Oh ${((s as any).pcs_nickname ?? '')}, of course I'd come! Whatever differences we've had, you're my daughter and I love you and want the best for you."`);
     if (((s as any).npc_rel ?? 0)?.['A33'] > 50) {
       scene.text('At this point, you feel a soft punch on your arm and look up to see Anya standing behind your mother, grinning at you. You both open your arms and include her in the hug.');
       // TODO-QSP: dynamic text: "At last! I got stuck behind some folks. Anyway, well done <<$pcs_nickname>>! Th...
-      scene.text(`"At last! I got stuck behind some folks. Anyway, well done ${((s as any).pcs_nickname || '')}! That was fast, not far off Olympic times!"`);
+      scene.text(`"At last! I got stuck behind some folks. Anyway, well done ${((s as any).pcs_nickname ?? '')}! That was fast, not far off Olympic times!"`);
       scene.text('You take half a step back and look at them. "This calls for a family celebration! Let me get showered and changed and I\'ll meet you outside. I\'ve got an idea…"');
     } else {
       scene.text('After the hug, your mother looks around as if searching for someone.');
@@ -617,7 +617,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/gym/desk.jpg');
     scene.text('Meeting your mother and sister in the reception, you propose your idea. "How about a special treat if I can arrange it? How about the three of us head over to Babel and try to get in for a meal?"');
     // TODO-QSP: dynamic text: Both your mother and Anya look at you as if you''ve gone mad before your mother ...
-    scene.text(`Both your mother and Anya look at you as if you've gone mad before your mother answers. "${((st as any).pcs_nickname || '')}! We aren't dressed for that place, and even if we were, there's no way we could afford it!"`);
+    scene.text(`Both your mother and Anya look at you as if you've gone mad before your mother answers. "${((st as any).pcs_nickname ?? '')}! We aren't dressed for that place, and even if we were, there's no way we could afford it!"`);
     scene.text('You grin. "Well that\'s why I said \'if I can arrange it\'. Let\'s try, and if it doesn\'t work, we can always head over to the diner."');
     scene.text('They both look at each other and back at you, but don\'t say anything. "Right, well I\'ll take that as a yes then."');
     scene.text('You all leave and head towards Babel.');
@@ -629,9 +629,9 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.text('You approach the maître d\'.');
     scene.text('As expected, he initially refuses your party entry to the restaurant. You briefly explain that you\'ve just become the Saint Petersburg track champion for the 400 meter event and show him your gold medal as proof, but he remains doubtful. "Okay young lady, can you please tell me your name?"');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>," you reply.
-    scene.text(`"${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}," you reply.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}," you reply.`);
     // TODO-QSP: dynamic text: "Okay Miss <<$pcs_lastname>>, one second please."
-    scene.text(`"Okay Miss ${((st as any).pcs_lastname || '')}, one second please."`);
+    scene.text(`"Okay Miss ${((st as any).pcs_lastname ?? '')}, one second please."`);
     scene.text('He turns around and approaches a table in the lobby with some national, international and local papers displayed and checks the local paper before returning to you.');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
@@ -740,7 +740,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/pool/pooll.jpg');
     scene.text('You spend a few minutes playing another game before taking your final shot and winning the game.');
     // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, that''s one game each. Let''s have one more beer, then ...
-    scene.text(`"Okay ${((st as any).pcs_nickname || '')}, that's one game each. Let's have one more beer, then I've got to go."`);
+    scene.text(`"Okay ${((st as any).pcs_nickname ?? '')}, that's one game each. Let's have one more beer, then I've got to go."`);
     scene.text('"Sounds good, sis."');
     scene.text('After a final beer, you both leave the bar and Anya gives you a hug before hurrying off. "See you later, sis! And well done again!"');
     qspCall(st, 'drugs', 'alcohol', 'beer', 2);

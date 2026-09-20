@@ -73,9 +73,9 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hello, are you Mikhail Kuznetsov?"');
       scene.text('"Yes, that\'s me. Are you from the control room? Did something happen? Did someone call about my driving? I am careful on the roads."');
       // TODO-QSP: dynamic text: "No no, I am <<$pcs_nickname>> <<$pcs_lastname>>, your daughter.
-      scene.text(`"No no, I am ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}, your daughter.`);
+      scene.text(`"No no, I am ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}, your daughter.`);
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Hell, my daughter? Is it really you?"
-      scene.text(`"${((st as any).pcs_nickname || '')}? Hell, my daughter? Is it really you?"`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')}? Hell, my daughter? Is it really you?"`);
       scene.text('Your father breaks down in tears, looking into your eyes, and recognizing his facial features in you, he quickly grabs you and pulls you into a hug, with his oily hands wrapped around you, both of you cry happily.');
       scene.actions([
         { label: 'Hug', handler: (st: GameState) => {
@@ -119,7 +119,7 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
     scene.text('You reply to his questions with enthusiasm and talk about yourself, what you do, where go to school. Talk about Anya, that she did not go to the university, and works as a salesgirl in the supermarket.');
     scene.text('You tell him about your mother, she remarried, and you now have a stepfather and half brother Kolka…');
     // TODO-QSP: dynamic text: After talking for a while your father says. "<<$pcs_nickname>> I have to go, I h...
-    scene.text(`After talking for a while your father says. "${((st as any).pcs_nickname || '')} I have to go, I have a schedule to keep. I am here on weekends 12 00 to 14 00, I would be happy if you would visit me sometimes." With that he gets up, pays for lunch and kisses you on the cheek goodbye.`);
+    scene.text(`After talking for a while your father says. "${((st as any).pcs_nickname ?? '')} I have to go, I have a schedule to keep. I am here on weekends 12 00 to 14 00, I would be happy if you would visit me sometimes." With that he gets up, pays for lunch and kisses you on the cheek goodbye.`);
     (st as any).trfatherQW = 4;
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

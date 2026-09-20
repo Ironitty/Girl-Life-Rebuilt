@@ -49,7 +49,7 @@ function enterGrave(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img(`${((s as any).npc_img_path ?? 0)?.['A274'] ?? ''}/274-1.jpg`);
   // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>> enters your room, "<<$pcs_nickname>>, do you have s...
-  scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} enters your room, "${((s as any).pcs_nickname || '')}, do you have some free time?"`);
+  scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} enters your room, "${((s as any).pcs_nickname ?? '')}, do you have some free time?"`);
   // TODO-QSP: dynamic text: "Sure, what do you need, <<$npc_firstname[''A274'']>>? Some more practice?"
   scene.text(`"Sure, what do you need, ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}? Some more practice?"`);
   // TODO-QSP: dynamic text: "I need to go somewhere, but I don''t want to go alone," <<$npc_firstname[''A274...
@@ -78,7 +78,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You agree to <<$npc_firstname[''A274'']>>''s strange request. You grab your coat...
   scene.text(`You agree to ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}'s strange request. You grab your coat before the two of you head out of your bedroom. You take the short walk from your residence to the graveyard, a quiet location. ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} has been quiet during your walk, totally unlike her usual boisterous self. However, you're unsure how to break the silence when she touches your arm.`);
   // TODO-QSP: dynamic text: You pause and look towards her. "Thank you, <<$pcs_nickname>>, for coming with m...
-  scene.text(`You pause and look towards her. "Thank you, ${((s as any).pcs_nickname || '')}, for coming with me. You're probably wondering why we're here." Grief fills her eyes, showing the pain that she's been holding back. ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} starts to walk again until you come to a grave.`);
+  scene.text(`You pause and look towards her. "Thank you, ${((s as any).pcs_nickname ?? '')}, for coming with me. You're probably wondering why we're here." Grief fills her eyes, showing the pain that she's been holding back. ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} starts to walk again until you come to a grave.`);
   // TODO-QSP: dynamic text: Standing at the grave, you see the name Anitchka Semionova engraved on the grave...
   scene.text(`Standing at the grave, you see the name Anitchka Semionova engraved on the gravestone. You realize that this must be her mother who died 6 years ago, looking at the dates. You look at ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} and see the tears start to form in her eyes.`);
   if (Number((s as any).locArgs?.[1] ?? 0) === 'graveyard_wait') {
@@ -90,7 +90,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Before she can say anything, you pull her to the bench and start cleaning her up...
     scene.text(`Before she can say anything, you pull her to the bench and start cleaning her up. As you quickly finish the touch-up, ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} just sits there, lost in her own world.`);
     // TODO-QSP: dynamic text: "There, that''s better. I don''t have all my makeup with me, but at least you''r...
-    scene.text(`"There, that's better. I don't have all my makeup with me, but at least you're presentable now," you give a small laugh and smile to show you're joking, and she laughs with you. The first genuine sign all evening that she's coming out of whatever bothers her is, "Thank you, ${((s as any).pcs_nickname || '')}. I don't know if I could have done this without you.`);
+    scene.text(`"There, that's better. I don't have all my makeup with me, but at least you're presentable now," you give a small laugh and smile to show you're joking, and she laughs with you. The first genuine sign all evening that she's coming out of whatever bothers her is, "Thank you, ${((s as any).pcs_nickname ?? '')}. I don't know if I could have done this without you.`);
     // TODO-QSP: dynamic text: "Don''t worry about it," you reply. "Come on, we need to get back, or we''ll get...
     scene.text(`"Don't worry about it," you reply. "Come on, we need to get back, or we'll get into trouble with ${((s as any).npc_firstname ?? 0)?.['A286'] ?? ''}!" ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} gives you a quick hug in gratitude, and somehow her hand finds yours as you make your way back to your residence.`);
     scene.actions([
@@ -110,7 +110,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
       { label: '', labelFn: (s: GameState) => 'Talk to ' + String(((st as any).npc_firstname ?? 0)?.['A274'] ?? '' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>> gives you a warm smile as she takes the tissue. "So...
-    scene.text(`${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} gives you a warm smile as she takes the tissue. "Sorry for being such a mess, ${((st as any).pcs_nickname || '')}. This is why I dance. I owe it to my mum. She was a ballet dancer herself, and I inherited her talent."`);
+    scene.text(`${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} gives you a warm smile as she takes the tissue. "Sorry for being such a mess, ${((st as any).pcs_nickname ?? '')}. This is why I dance. I owe it to my mum. She was a ballet dancer herself, and I inherited her talent."`);
     // TODO-QSP: dynamic text: You squeeze her hand to encourage her. Then, you put your coat on the ground for...
     scene.text(`You squeeze her hand to encourage her. Then, you put your coat on the ground for both of you to sit on. "Take your time, ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''}", you coax her softly.`);
     // TODO-QSP: dynamic text: "I''m not usually this bad," <<$npc_firstname[''A274'']>> replies. "It''s just t...
@@ -126,7 +126,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
     { label: '', labelFn: (s: GameState) => 'Talk to ' + String(((s as any).npc_firstname ?? 0)?.['A274'] ?? '' ?? ''), handler: (st: GameState) => {
     qspCall(st, 'core_library', 'stage_title');
     // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>> gives you a warm smile as she takes the tissue. "So...
-    scene.text(`${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} gives you a warm smile as she takes the tissue. "Sorry for being such a mess, ${((st as any).pcs_nickname || '')}. This is why I dance. I owe it to my mum. She was a ballet dancer herself, and I inherited her talent."`);
+    scene.text(`${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} gives you a warm smile as she takes the tissue. "Sorry for being such a mess, ${((st as any).pcs_nickname ?? '')}. This is why I dance. I owe it to my mum. She was a ballet dancer herself, and I inherited her talent."`);
     // TODO-QSP: dynamic text: You squeeze her hand to encourage her. Then, you put your coat on the ground for...
     scene.text(`You squeeze her hand to encourage her. Then, you put your coat on the ground for both of you to sit on. "Take your time, ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''}", you coax her softly.`);
     // TODO-QSP: dynamic text: "I''m not usually this bad," <<$npc_firstname[''A274'']>> replies. "It''s just t...
@@ -143,7 +143,7 @@ function enterGraveyardMemorial(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Before she can say anything, you pull her to the bench and start cleaning her up...
     scene.text(`Before she can say anything, you pull her to the bench and start cleaning her up. As you quickly finish the touch-up, ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} just sits there, lost in her own world.`);
     // TODO-QSP: dynamic text: "There, that''s better. I don''t have all my makeup with me, but at least you''r...
-    scene.text(`"There, that's better. I don't have all my makeup with me, but at least you're presentable now," you give a small laugh and smile to show you're joking, and she laughs with you. The first genuine sign all evening that she's coming out of whatever bothers her is, "Thank you, ${((st as any).pcs_nickname || '')}. I don't know if I could have done this without you.`);
+    scene.text(`"There, that's better. I don't have all my makeup with me, but at least you're presentable now," you give a small laugh and smile to show you're joking, and she laughs with you. The first genuine sign all evening that she's coming out of whatever bothers her is, "Thank you, ${((st as any).pcs_nickname ?? '')}. I don't know if I could have done this without you.`);
     // TODO-QSP: dynamic text: "Don''t worry about it," you reply. "Come on, we need to get back, or we''ll get...
     scene.text(`"Don't worry about it," you reply. "Come on, we need to get back, or we'll get into trouble with ${((st as any).npc_firstname ?? 0)?.['A286'] ?? ''}!"`);
     scene.actions([
@@ -162,10 +162,10 @@ function enterPostGrave(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h2>Residential Bedroom</h2></center>');
     scene.img('images/locations/pushkin/ballet_residence/bedroom.jpg');
     // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>> enters your room, and you can see she''s been cryin...
-    scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} enters your room, and you can see she's been crying. "${((s as any).pcs_nickname || '')}, do you have a moment?"`);
+    scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} enters your room, and you can see she's been crying. "${((s as any).pcs_nickname ?? '')}, do you have a moment?"`);
     scene.text('"Sure," you reply, wondering if you will get answers as to why she\'s has been crying. She sits on your bed and stays silent for a few moments.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, how much do you know about me?"
-    scene.text(`"${((s as any).pcs_nickname || '')}, how much do you know about me?"`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, how much do you know about me?"`);
     scene.text('"Nothing, we only just met this week!" you say.');
     scene.actions([
       { label: 'Continue talking', handler: (st: GameState) => {
@@ -194,9 +194,9 @@ function enterPostGrave(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You approach her and lead down to touch her hand. "<<$npc_firstname[''A274'']>>,...
     scene.text(`You approach her and lead down to touch her hand. "${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''}, you awake?"`);
     // TODO-QSP: dynamic text: She opens her eyes and gives you a small smile, "Yes, <<$pcs_nickname>>. You bro...
-    scene.text(`She opens her eyes and gives you a small smile, "Yes, ${((st as any).pcs_nickname || '')}. You brought the tea, thank you. You've been too good to me tonight."`);
+    scene.text(`She opens her eyes and gives you a small smile, "Yes, ${((st as any).pcs_nickname ?? '')}. You brought the tea, thank you. You've been too good to me tonight."`);
     // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>> settles down and starts to talk. "<<$pcs_nickname>>...
-    scene.text(`${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} settles down and starts to talk. "${((st as any).pcs_nickname || '')}, how much do you know about me?"`);
+    scene.text(`${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} settles down and starts to talk. "${((st as any).pcs_nickname ?? '')}, how much do you know about me?"`);
     scene.text('"Nothing, we only just meet this week!" you reply, giving a small laugh.');
     scene.actions([
       { label: 'Continue talking', handler: (st: GameState) => {
@@ -223,7 +223,7 @@ function enterPostGrave(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m the daughter of Anitchka Semionova."');
     scene.text('"Wait," you ask in surprise. "<i>THAT</i> Anitchka Semionova?" You remember the stories you heard when you attended dance school about her career and how wonderful she was as a dancer and that she was a local celebrity.');
     // TODO-QSP: dynamic text: "Yes, <<$pcs_nickname>>. That Anitchka Semionova, she was my mother. Now you und...
-    scene.text(`"Yes, ${((s as any).pcs_nickname || '')}. That Anitchka Semionova, she was my mother. Now you understand, I've always had to live in her shadow."`);
+    scene.text(`"Yes, ${((s as any).pcs_nickname ?? '')}. That Anitchka Semionova, she was my mother. Now you understand, I've always had to live in her shadow."`);
     scene.text('"My mother was a freelance ballet coryphée and was touring when she was given the news of terminal cancer." she starts crying again. You draw her into your arms, comforting her, and she rests her head on your shoulder.');
     scene.text('"It\'s okay, she\'s been dead six years, but being at this school reminded me of how much she\'d have been proud of me and getting a place on this course." She dabs the tears from her face, looking down at the floor.');
     scene.text('"It\'s getting late, and we\'ve got a lot to prepare for. I should be going," she says in a soft voice.');
@@ -232,7 +232,7 @@ function enterPostGrave(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yes, thank you for the tea." She gives you the first warm smile of the evening.');
     scene.text('"Any time. You know where you can find me if you need to talk."');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>." With that, she slips quietly out of the room, lo...
-    scene.text(`"Thank you, ${((s as any).pcs_nickname || '')}." With that, she slips quietly out of the room, lost in her thoughts, leaving you to your own about the evening's revelations.`);
+    scene.text(`"Thank you, ${((s as any).pcs_nickname ?? '')}." With that, she slips quietly out of the room, lost in her thoughts, leaving you to your own about the evening's revelations.`);
     scene.actions([
       { label: 'Watch', goto: ['pushkin_ballet_res', 'bedroom'] },
     ]);
@@ -247,7 +247,7 @@ function enterSummerSchool(s: GameState, scene: SceneBuilder): void {
       (s as any).mood = ((s as any).mood ?? 0) + (10);
       scene.img(`${((s as any).npc_img_path ?? 0)?.['A274'] ?? ''}/274-1.jpg`);
       // TODO-QSP: dynamic text: <<$npc_firstname[''A274'']>> is bubbling with enthuasism when she finds you runn...
-      scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} is bubbling with enthuasism when she finds you running behind schedule, "Come on ${((s as any).pcs_nickname || '')} you're going to be late!"`);
+      scene.text(`${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} is bubbling with enthuasism when she finds you running behind schedule, "Come on ${((s as any).pcs_nickname ?? '')} you're going to be late!"`);
       // TODO-QSP: dynamic text: Her mood is infectious and soon you quickly grab your dance bag and head to scho...
       scene.text(`Her mood is infectious and soon you quickly grab your dance bag and head to school with ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}.`);
       scene.actions([
@@ -256,7 +256,7 @@ function enterSummerSchool(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img(`${((s as any).npc_img_path ?? 0)?.['A286'] ?? ''}/286.jpg`);
       // TODO-QSP: dynamic text: <<$npc_firstname[''A286'']>> finds you running late in your morning preparations...
-      scene.text(`${((s as any).npc_firstname ?? 0)?.['A286'] ?? ''} finds you running late in your morning preparations, "Come on ${((s as any).pcs_nickname || '')}, you're going to be late!"`);
+      scene.text(`${((s as any).npc_firstname ?? 0)?.['A286'] ?? ''} finds you running late in your morning preparations, "Come on ${((s as any).pcs_nickname ?? '')}, you're going to be late!"`);
       scene.actions([
         { label: 'Go to School', goto: ['pushkin_ballet_class', 'start'] },
       ]);
@@ -274,7 +274,7 @@ function enterSummerSchool(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: As you make your way through the girls, you meet <<$npc_firstname[''A286'']>> wh...
     scene.text(`As you make your way through the girls, you meet ${((st as any).npc_firstname ?? 0)?.['A286'] ?? ''} who is there to stop you.`);
     // TODO-QSP: dynamic text: “Don''t <<$pcs_nickname>>, she won''t appreciate it.” <<$npc_firstname[''A286'']...
-    scene.text(`“Don't ${((st as any).pcs_nickname || '')}, she won't appreciate it.” ${((st as any).npc_firstname ?? 0)?.['A286'] ?? ''}'s tone is firm and she's insistent that you listen to her.`);
+    scene.text(`“Don't ${((st as any).pcs_nickname ?? '')}, she won't appreciate it.” ${((st as any).npc_firstname ?? 0)?.['A286'] ?? ''}'s tone is firm and she's insistent that you listen to her.`);
     scene.text('“Why? Is she OK?”');
     scene.text('“You know she lost her mother, and she has never let her go. Come with me, I\'ll explain downstairs” she says in a voice so quiet only you can hear her.');
     // TODO-QSP: dynamic text: You are led downstairs to where <<$npc_firstname[''A286'']>> lives in the warden...

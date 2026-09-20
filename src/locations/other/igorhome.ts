@@ -17,7 +17,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     (s as any).temprand = (Math.floor(Math.random() * 10) + 1);
     if (((s as any).temprand ?? 0) === 1  &&  ((s as any).fedorKozlovQW ?? 0) >= 10) {
       // TODO-QSP: dynamic text: As you approach Igor, Fedor walks up beside you. "What are you doing with <<$pcs...
-      scene.text(`As you approach Igor, Fedor walks up beside you. "What are you doing with ${((s as any).pcs_firstname || '')}, Igor? You know she's my girl, right?"`);
+      scene.text(`As you approach Igor, Fedor walks up beside you. "What are you doing with ${((s as any).pcs_firstname ?? '')}, Igor? You know she's my girl, right?"`);
       scene.text('Igor looks surprised before he turns to you, looking sad. "I thought you were <i>my</i> girl?"');
       scene.text('Fedor\'s eyes narrow and he looks at you as well. "Are you cheating on me?!"');
       scene.text('Suddenly caught, you\'re not sure what to do. "It\'s not what it looks like!"');
@@ -84,7 +84,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     (s as any).temprand = (Math.floor(Math.random() * 10) + 1);
     if (((s as any).temprand ?? 0) === 1  &&  ((s as any).fedorKozlovQW ?? 0) >= 10) {
       // TODO-QSP: dynamic text: As you approach Igor, Fedor walks up beside you. "What are you doing with <<$pcs...
-      scene.text(`As you approach Igor, Fedor walks up beside you. "What are you doing with ${((s as any).pcs_firstname || '')}, Igor? You know she's my girl, right?"`);
+      scene.text(`As you approach Igor, Fedor walks up beside you. "What are you doing with ${((s as any).pcs_firstname ?? '')}, Igor? You know she's my girl, right?"`);
       scene.text('Igor downcasts his eyes. "Oh hey Fedor. We were just going to study… I\'ll just be going now."');
       scene.text('Fedor nods. "Yeah, that will be for the best. Catch you later, Igor."');
       scene.text('Igor takes one last look at you before turning around and walking away.');
@@ -389,7 +389,7 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/artemcry.jpg');
     scene.text('You quietly walk past Igor and enter his room. You sit down on the bed without saying a word.');
     // TODO-QSP: dynamic text: Igor looks at you questioningly. "What''s wrong, <<$pcs_nickname>>?"
-    scene.text(`Igor looks at you questioningly. "What's wrong, ${((st as any).pcs_nickname || '')}?"`);
+    scene.text(`Igor looks at you questioningly. "What's wrong, ${((st as any).pcs_nickname ?? '')}?"`);
     scene.text('You frown as you look at him. "We need to talk."');
     scene.text('His eyes start to water up. "Are you breaking up with me?"');
     scene.text('You sigh. "Yes."');
@@ -465,7 +465,7 @@ function enterSisterroom(s: GameState, scene: SceneBuilder): void {
     scene.text('Looking wide-eyed at her, you ask if she\'s Igor\'s sister.');
     scene.text('"Yeah, my name is Galina. Who might you be?"');
     // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>>, one of Igor''s classmates," you say, trying to be as va...
-    scene.text(`"I'm ${((st as any).pcs_nickname || '')}, one of Igor's classmates," you say, trying to be as vague as possible as you still don't know how Galina will react.`);
+    scene.text(`"I'm ${((st as any).pcs_nickname ?? '')}, one of Igor's classmates," you say, trying to be as vague as possible as you still don't know how Galina will react.`);
     scene.text('"That\'s great news!" she exclaims. "I\'m so glad that Igor finally got a female friend. I\'ve been waiting for this day for a long time," she grins.');
     scene.actions([
       { label: 'How come?', handler: (st: GameState) => {
@@ -518,7 +518,7 @@ function enterSisterroom(s: GameState, scene: SceneBuilder): void {
           { label: 'This is…', handler: (st: GameState) => {
     if (((st as any).IgorQW ?? 0)?.['Lover'] === 1) {
       // TODO-QSP: dynamic text: "This is m-my girlfriend, <<$pcs_nickname>>. We''ve been dating for a while."
-      scene.text(`"This is m-my girlfriend, ${((st as any).pcs_nickname || '')}. We've been dating for a while."`);
+      scene.text(`"This is m-my girlfriend, ${((st as any).pcs_nickname ?? '')}. We've been dating for a while."`);
       scene.text('"I\'m so happy for you. It was about time you got yourself a girlfriend. I was getting worried about you being fascinated with girly stuff, especially after I caught you looking through my clothes and reading girly magazines. I thought you were interested in those things."');
       scene.text('Igor blushes. "T-that\'s not true at all!" he angrily replies "Why are you lying? Are you trying to destroy my relationship?"');
       scene.text('"I didn\'t know what to think! I mean I didn\'t see you hooking up with other girls… No need to get all defensive about it. I\'m sure your girlfriend won\'t mind."');
@@ -564,7 +564,7 @@ function enterSisterroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Introduce yourself', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>>. Nice to meet you."
-    scene.text(`"I'm ${((st as any).pcs_nickname || '')}. Nice to meet you."`);
+    scene.text(`"I'm ${((st as any).pcs_nickname ?? '')}. Nice to meet you."`);
     scene.text('Galina looks at you, inspecting you from head to toe.');
     scene.text('"Nice to meet you too," she says with a smile. "Nice to see you with a girl, Igor. So tell me. Are the two of you dating?"');
     scene.actions([
@@ -666,7 +666,7 @@ function enterLivingroom1(s: GameState, scene: SceneBuilder): void {
     scene.text('As you walk into the living room, Igor\'s father throws a glance at you, immediately turning down the volume on the TV as he turns his attention towards you.');
     scene.text('"Hi, I\'m Gemorgen. Who might you be? Are you Galina\'s university friend?"');
     // TODO-QSP: dynamic text: "Hi. I''m <<$pcs_nickname>>, and I''m actually Igor''s friend from school."
-    scene.text(`"Hi. I'm ${((st as any).pcs_nickname || '')}, and I'm actually Igor's friend from school."`);
+    scene.text(`"Hi. I'm ${((st as any).pcs_nickname ?? '')}, and I'm actually Igor's friend from school."`);
     scene.text('He looks at you in amazement, seemingly baffled that his son has befriended a girl.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -757,7 +757,7 @@ function enterLivingroom2(s: GameState, scene: SceneBuilder): void {
     scene.text('As you walk into the living room, Igor\'s father throws a glance at you and immediately turns down the volume on the TV as he turns his attention towards you.');
     scene.text('"Hi, I\'m Gemorgen. Who might you be? Are you Galina\'s university friend?"');
     // TODO-QSP: dynamic text: "Hi. I''m <<$pcs_nickname>>, and I''m actually Igor''s friend from school."
-    scene.text(`"Hi. I'm ${((st as any).pcs_nickname || '')}, and I'm actually Igor's friend from school."`);
+    scene.text(`"Hi. I'm ${((st as any).pcs_nickname ?? '')}, and I'm actually Igor's friend from school."`);
     scene.text('He looks at you in amazement, seemingly baffled that his son has befriended a girl.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -824,7 +824,7 @@ function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
     scene.text('As the two of you walk into the living room, the father turns his attention from the TV towards the two of you.');
     scene.text('"My my, who do we have here? Come on son, introduce me to your beautiful friend."');
     // TODO-QSP: dynamic text: Igor mumbles something to his father, so you take charge instead. "Hello, I''m <...
-    scene.text(`Igor mumbles something to his father, so you take charge instead. "Hello, I'm ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`Igor mumbles something to his father, so you take charge instead. "Hello, I'm ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"Gemorgen," he replies with a smile. "You\'re such a true beauty, a real gem. Have you had the pleasure of meeting my wife? I wonder how she reacted when she saw you?" he says with a laugh. "She can be quite overbearing when it comes to Igor."');
     if (((st as any).IgorQW ?? 0)?.['met_mother'] === 1) {
       scene.actions([
@@ -885,7 +885,7 @@ function enterLivingroom3(s: GameState, scene: SceneBuilder): void {
       { label: 'Defend Igor', handler: (st: GameState) => {
     scene.text('You step in. "We don\'t need to rush anything. If it\'s meant to be, then it\'s meant to be, otherwise I\'m just glad being Igor\'s friend."');
     // TODO-QSP: dynamic text: "You see, son? You''ve just been friend-zoned. You''re too much of a wimp and no...
-    scene.text(`"You see, son? You've just been friend-zoned. You're too much of a wimp and now you've chased away a beauty like ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`"You see, son? You've just been friend-zoned. You're too much of a wimp and now you've chased away a beauty like ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('Gemorgen looks troubled as he turns towards you. "You have to forgive my gawky son."');
     scene.text('You take pity on Igor, who looks like he\'s about to cry. "You shouldn\'t be so hard on your son. He\'s got feelings too."');
     qspCall(st, 'npc_relationship', 'modify', 'A4', 'like');
@@ -924,7 +924,7 @@ function enterLivingroom4(s: GameState, scene: SceneBuilder): void {
         { label: 'Reveal that you\'re dating', handler: (st: GameState) => {
     scene.text('You and Igor look shyly at each other before he takes a deep breath and tells Gemorgen that the two of you are dating.');
     // TODO-QSP: dynamic text: "Not bad, son. I''m glad for you. <<$pcs_nickname>> is a good pick for a first g...
-    scene.text(`"Not bad, son. I'm glad for you. ${((st as any).pcs_nickname || '')} is a good pick for a first girlfriend. You can practice on each other."`);
+    scene.text(`"Not bad, son. I'm glad for you. ${((st as any).pcs_nickname ?? '')} is a good pick for a first girlfriend. You can practice on each other."`);
     scene.text('You feel upset by Gemorgen\'s words and look angrily at Igor, but he\'s too afraid to say anything to his father.');
     scene.text('The conversation ends quickly as you and Igor leave the living room. The father can hear you scold Igor since he didn\'t defend you.');
     scene.actions([
@@ -961,7 +961,7 @@ function enterLivingroom4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A4', 'like');
     scene.text('"You\'re absolutely right," you reply in agreement with Gemorgen. "He really needs to man up a bit."');
     // TODO-QSP: dynamic text: "I''m glad you understand my predicament, <<$pcs_nickname>>. I see so much poten...
-    scene.text(`"I'm glad you understand my predicament, ${((st as any).pcs_nickname || '')}. I see so much potential in him."`);
+    scene.text(`"I'm glad you understand my predicament, ${((st as any).pcs_nickname ?? '')}. I see so much potential in him."`);
     scene.text('"Well, he\'s never going to get a girl behaving like this."');
     scene.text('"You know I\'m standing right here, right?" Igor scowls. "I don\'t understand how you could say something like that. I agreed to help you out and you treat me like this?"');
     scene.text('You smile at him. "Don\'t be like that, I was only teasing you a little…"');
@@ -1042,9 +1042,9 @@ function enterKitchen1(s: GameState, scene: SceneBuilder): void {
     scene.text('You look confidently at her judging eyes, excusing yourself that it wasn\'t you intention to intrude.');
     scene.text('"Don\'t be silly, girl. All of Igor\'s friends are welcome here, no matter who or what they are…" his mother answers in the most demeaning way possible.');
     // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>> <<$pcs_lastname>>, pleasure to meet you. I love what you...
-    scene.text(`"I'm ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}, pleasure to meet you. I love what you've done with your home…" you confidently say and begin walking towards her.`);
+    scene.text(`"I'm ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}, pleasure to meet you. I love what you've done with your home…" you confidently say and begin walking towards her.`);
     // TODO-QSP: dynamic text: She stops you in your tracks with a swift movement of her hand. "<<$pcs_lastname...
-    scene.text(`She stops you in your tracks with a swift movement of her hand. "${((st as any).pcs_lastname || '')}, you say? Are you by any chance related to Natasha ${((st as any).pcs_lastname || '')}?" she asks with a grin.`);
+    scene.text(`She stops you in your tracks with a swift movement of her hand. "${((st as any).pcs_lastname ?? '')}, you say? Are you by any chance related to Natasha ${((st as any).pcs_lastname ?? '')}?" she asks with a grin.`);
     scene.actions([
       { label: 'Are you two familiar with each other?', handler: (st: GameState) => {
     scene.text('"We used to be old classmates. Tell me, is your mother still a loose cannon like in the good old days?"');
@@ -1168,9 +1168,9 @@ function enterKitchen2(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel a bit ashamed as Igor\'s mother aggressively keeps ranting about you and your outfit.');
     scene.text('"Who are you anyway? How do you know my son?"');
     // TODO-QSP: dynamic text: "My name is <<$pcs_nickname>> <<$pcs_lastname>>, and I''m Igor''s schoolmate…"
-    scene.text(`"My name is ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}, and I'm Igor's schoolmate…"`);
+    scene.text(`"My name is ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}, and I'm Igor's schoolmate…"`);
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>? Are you Natasha''s daughter?"
-    scene.text(`"${((st as any).pcs_lastname || '')}? Are you Natasha's daughter?"`);
+    scene.text(`"${((st as any).pcs_lastname ?? '')}? Are you Natasha's daughter?"`);
     scene.actions([
       { label: 'Nod your head', handler: (st: GameState) => {
     scene.text('"Yes, I am…" you answer anxiously.');
@@ -1212,9 +1212,9 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
     scene.text('You shyly look at her, not really knowing what to say.');
     scene.text('"Don\'t be shy, little cutie… I don\'t bite, especially such a cute girl as yourself."');
     // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>> <<$pcs_lastname>>, I''m glad I''m finally able to meet y...
-    scene.text(`"I'm ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}, I'm glad I'm finally able to meet you. You have a lovely home." you say without stopping to take a breath.`);
+    scene.text(`"I'm ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}, I'm glad I'm finally able to meet you. You have a lovely home." you say without stopping to take a breath.`);
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, you say? Are you related to Natasha <<$pcs_lastname>> by any...
-    scene.text(`"${((st as any).pcs_lastname || '')}, you say? Are you related to Natasha ${((st as any).pcs_lastname || '')} by any chance?"`);
+    scene.text(`"${((st as any).pcs_lastname ?? '')}, you say? Are you related to Natasha ${((st as any).pcs_lastname ?? '')} by any chance?"`);
     scene.actions([
       { label: 'Yes', handler: (st: GameState) => {
     scene.text('You nod your head and Inga smiles.');
@@ -1235,7 +1235,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
     scene.text('Igor starts off by telling her that the two of you have been classmates for quite some time and you hit it off when you were assigned to do a school project together.');
     scene.text('"I really like him and enjoy his company," you quickly add while smiling at him.');
     // TODO-QSP: dynamic text: "Well who am I to deny this sweet puppy love?" Inga says with a smile. "I want y...
-    scene.text(`"Well who am I to deny this sweet puppy love?" Inga says with a smile. "I want you to take extra good care of ${((st as any).pcs_nickname || '')}. Remember to always use protection since I don't want you becoming a father at your age."`);
+    scene.text(`"Well who am I to deny this sweet puppy love?" Inga says with a smile. "I want you to take extra good care of ${((st as any).pcs_nickname ?? '')}. Remember to always use protection since I don't want you becoming a father at your age."`);
     scene.text('Both of you nod and promise her that you\'ll be safe if it ever comes to that. Igor hugs his mother and whispers something to her.');
     scene.text('She nods approvingly. "I\'m sure you have better things to do than stand here talking with me," she smiles before returning to her tea.');
     ((st as any).IgorQW = (st as any).IgorQW ?? {})['met_mother'] = 1;
@@ -1251,7 +1251,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh Dimka, that sweet sweet boy. He\'s been Igor\'s friend for as long as I can remember. How is Dimka nowadays? It\'s been a while since I\'ve seen him, the little looker."');
     scene.text('Still looking down, Igor mumbles that Dimka is fine and that he\'s been very busy at school.');
     // TODO-QSP: dynamic text: "You should call him over so all the three of you can hang out. Since it was Dim...
-    scene.text(`"You should call him over so all the three of you can hang out. Since it was Dimka that introduced you to each other, I'm sure the two of you will get along. Run along now. And no funny business, Igor! I know you're a good boy, so don't try anything funny with ${((st as any).pcs_nickname || '')}, especially since you're still a virgin."`);
+    scene.text(`"You should call him over so all the three of you can hang out. Since it was Dimka that introduced you to each other, I'm sure the two of you will get along. Run along now. And no funny business, Igor! I know you're a good boy, so don't try anything funny with ${((st as any).pcs_nickname ?? '')}, especially since you're still a virgin."`);
     scene.text('Igor immediately turns red. "Mother! You\'re embarrassing me!"');
     scene.text('You let out a smile and reassure Inga that nothing will happen.');
     ((st as any).IgorQW = (st as any).IgorQW ?? {})['met_mother'] = 1;
@@ -1272,7 +1272,7 @@ function enterKitchen3(s: GameState, scene: SceneBuilder): void {
       { label: 'I need someone to tutor me', handler: (st: GameState) => {
     scene.text('"I\'ve fallen a bit behind in school and Igor offered to help me out with some of my work."');
     // TODO-QSP: dynamic text: "Don''t worry, <<$pcs_nickname>>. I''m sure Igor will take good care of you. I''...
-    scene.text(`"Don't worry, ${((st as any).pcs_nickname || '')}. I'm sure Igor will take good care of you. I'm not saying that because he's my son, but he's very smart and has good grades."`);
+    scene.text(`"Don't worry, ${((st as any).pcs_nickname ?? '')}. I'm sure Igor will take good care of you. I'm not saying that because he's my son, but he's very smart and has good grades."`);
     scene.text('"I guess I\'m in safe hands then," you reply and give Igor a little smile.');
     scene.text('"Run along now. I\'m sure you have a lot of work to get through."');
     ((st as any).IgorQW = (st as any).IgorQW ?? {})['met_mother'] = 1;
@@ -1298,9 +1298,9 @@ function enterKitchen4(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Introduce yourself', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>> <<$pcs_lastname>>. I''m glad I''m finally able to meet y...
-    scene.text(`"I'm ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}. I'm glad I'm finally able to meet you."`);
+    scene.text(`"I'm ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}. I'm glad I'm finally able to meet you."`);
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>? Could it be that Natasha is your mother? I was friends with ...
-    scene.text(`"${((st as any).pcs_lastname || '')}? Could it be that Natasha is your mother? I was friends with her when we were younger."`);
+    scene.text(`"${((st as any).pcs_lastname ?? '')}? Could it be that Natasha is your mother? I was friends with her when we were younger."`);
     scene.text('You nod approvingly. "Yes, she\'s my mother. I didn\'t know the two of you knew each other?"');
     scene.text('"It was a long time ago, before I had my daughter. She\'s in the university now and doing really well, so I\'m pretty proud of her. But don\'t worry about that now and answer me this instead. How did you and my little boy meet?"');
     scene.actions([
@@ -1320,7 +1320,7 @@ function enterKitchen4(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m not surprised that my little Igor managed to impress a girl by showing off how smart he is. I\'m so proud of him."');
     scene.text('"To be honest, I\'m a bit turned on by how smart he is…" you say, blushing.');
     // TODO-QSP: dynamic text: "Nothing to be ashamed of, <<$pcs_nickname>>. It runs in the family." She''s cle...
-    scene.text(`"Nothing to be ashamed of, ${((st as any).pcs_nickname || '')}. It runs in the family." She's clearly referencing Igor's father. "But please be careful with Igor. He hasn't had lots of experience with women."`);
+    scene.text(`"Nothing to be ashamed of, ${((st as any).pcs_nickname ?? '')}. It runs in the family." She's clearly referencing Igor's father. "But please be careful with Igor. He hasn't had lots of experience with women."`);
     scene.text('"I\'ll take good care of him. I\'ll make sure he doesn\'t stray off too much," you confidently reply. "I should head back. Igor is probably wondering where I am."');
     scene.text('"We\'ll talk about it later. Don\'t hesitate to ask if you\'re ever wondering about anything," Inga replies as you leave the kitchen.');
     ((st as any).IgorQW = (st as any).IgorQW ?? {})['met_mother'] = 1;
@@ -1331,7 +1331,7 @@ function enterKitchen4(s: GameState, scene: SceneBuilder): void {
       { label: 'I need some tutoring', handler: (st: GameState) => {
     scene.text('"I\'ve fallen a bit behind in school and Igor offered to help me out with some of my work."');
     // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>. I''m sure Igor will take good care of you. I''m...
-    scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}. I'm sure Igor will take good care of you. I'm not saying that because he's my son, but he's very smart and has good grades."`);
+    scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}. I'm sure Igor will take good care of you. I'm not saying that because he's my son, but he's very smart and has good grades."`);
     scene.text('You look at her, feeling a little discouraged. "I really hope so. I really need to get my grades up in this subject."');
     scene.text('"I\'m sure Igor won\'t let you fail. You should go back to him so you can plan the work you need to put in," she says with a smile.');
     scene.text('You nod and turn around before leaving the kitchen.');
@@ -1412,7 +1412,7 @@ function enterKitchen7(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Answer her', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You can see that she clearly loathes you. "I''m <<$pcs_nickname>> <<$pcs_lastnam...
-    scene.text(`You can see that she clearly loathes you. "I'm ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}. I'm a friend of Igor's, but what's it to you?"`);
+    scene.text(`You can see that she clearly loathes you. "I'm ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}. I'm a friend of Igor's, but what's it to you?"`);
     scene.text('"I\'m Igor\'s mother and I don\'t like your kind. Unlike his sister, he\'s easily influenced and his future will be ruined because of you."');
     scene.text('You stand with your mouth wide open, shocked by what you just heard before you decide to have some fun with her. "Don\'t worry about your son, he\'s in safe hands. I might even be able to teach him a thing or two…"');
     scene.text('"That\'s it! I want you to leave my son alone, understand? He\'s an innocent boy and I refuse to let him get taken advantage of, especially not by someone like you. It\'s best if you just leave and go home to that mother of yours…"');

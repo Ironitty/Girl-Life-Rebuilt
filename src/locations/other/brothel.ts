@@ -456,7 +456,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('The Receptionist pushes a hidden button, probably signaling the errand boy, because after a minute he arrives with the elevator.');
-    scene.text(`"Go ${((s as any).pcs_firstname || '')}, you are free to leave."`);
+    scene.text(`"Go ${((s as any).pcs_firstname ?? '')}, you are free to leave."`);
     ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['receptionist_annoy'] = 0;
     if (((s as any).job_last_work_day ?? 0)?.['highway_brothel_prostitute'] < ((s as any).daystart ?? 0)) {
       (s as any).brothelCredit = ((s as any).brothelCredit ?? 0) - (1);

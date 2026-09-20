@@ -200,7 +200,7 @@ function enterBedstrapongive(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'D3');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapnush4.jpg');
     // TODO-QSP: dynamic text: You decide to fuck her pussy. You lie on your back and pull her towards you. She...
-    scene.text(`You decide to fuck her pussy. You lie on your back and pull her towards you. She quickly straddles you, reaches between her legs and takes hold of the dildo. She slowly lowers herself down onto it and you watch as her pussy engulfs the ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dildo, causing her to moan in pleasure as she does. She removes her hand once it's inside her and starts to rock back and forth. "That right bitch, take my dick!" you tell her and she grins widely.`);
+    scene.text(`You decide to fuck her pussy. You lie on your back and pull her towards you. She quickly straddles you, reaches between her legs and takes hold of the dildo. She slowly lowers herself down onto it and you watch as her pussy engulfs the ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo, causing her to moan in pleasure as she does. She removes her hand once it's inside her and starts to rock back and forth. "That right bitch, take my dick!" you tell her and she grins widely.`);
     qspCall(st, 'arousal', 'vaginal_strap_give', 5, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -247,7 +247,7 @@ function enterBedstraponget(s: GameState, scene: SceneBuilder): void {
   scene.text('You take the harness off and hand it over to her. "Okay, my turn."');
   scene.text('She smiles at you. "I\'m going to fuck you like a whore."');
   // TODO-QSP: dynamic text: You laugh and help her get into the harness. Once she has the harness firmly in ...
-  scene.text(`You laugh and help her get into the harness. Once she has the harness firmly in place, she pushes you down onto your back. "Spread your legs," she commands and you do as she says before she scoots up between your legs and rubs the tip of the dildo against your wet slit. Once she's sure you're wet enough, she slides the ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo into your pussy, slowly working it in and steadily starting to fuck you with it.`);
+  scene.text(`You laugh and help her get into the harness. Once she has the harness firmly in place, she pushes you down onto your back. "Spread your legs," she commands and you do as she says before she scoots up between your legs and rubs the tip of the dildo against your wet slit. Once she's sure you're wet enough, she slides the ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dildo into your pussy, slowly working it in and steadily starting to fuck you with it.`);
   qspCall(s, 'arousal', 'vaginal_strap', 2, 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -390,7 +390,7 @@ function enterBedstrapongiveanal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'D3');
     scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/sex/strapon/strapdomnush6.jpg');
     // TODO-QSP: dynamic text: You grab onto her hips with both hands and slam the <<dick>>cm <<$dick_girth>> d...
-    scene.text(`You grab onto her hips with both hands and slam the ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dildo balls deep into her ass. She cries out in a mix of pain and pleasure, her moans rapidly start getting louder and louder. "Yes, yes! Harder!" You pull the dildo almost all the way out of her before slamming the full length back in, giving her the hardest, deepest and fastest anal pounding you can.`);
+    scene.text(`You grab onto her hips with both hands and slam the ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dildo balls deep into her ass. She cries out in a mix of pain and pleasure, her moans rapidly start getting louder and louder. "Yes, yes! Harder!" You pull the dildo almost all the way out of her before slamming the full length back in, giving her the hardest, deepest and fastest anal pounding you can.`);
     scene.text('She suddenly starts crying out and shaking as her whole body is rocked by an intense orgasm, but you keep pounding away at her ass through the whole thing. Just as it seems she\'s spent, her body is wracked by another orgasm. After several more rapid fire orgasms, she is spent and slowly sinks onto the bed until she\'s lying on her stomach.');
     scene.text('You ride her all the way down, still fucking her ass. Even once the last orgasm passes and she seems completely spent, you keep hammering away at her ass, just to show her who\'s boss. Finally tiring yourself out, you stop and pull out of her.');
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'lesbian', 'rough', 'dom');

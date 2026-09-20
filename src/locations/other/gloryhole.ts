@@ -539,12 +539,12 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp = (Math.floor(Math.random() * 5) + 1);
   if ((Math.floor(Math.random() * 3) + 0) > 0) {
-    scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp || '')}.mp4`);
+    scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp ?? '')}.mp4`);
   } else {
     if (((s as any).protect ?? 0) === 1) {
-      scene.img(`images/locations/shared/gloryhole/sex/vagcon${((s as any).temp || '')}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/vagcon${((s as any).temp ?? '')}.mp4`);
     } else {
-      scene.img(`images/locations/shared/gloryhole/sex/vag${((s as any).temp || '')}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/vag${((s as any).temp ?? '')}.mp4`);
     }
   }
   // TODO-QSP: dynamic text: You turn around and back up to the hole, you use one hand to guide his dick into...
@@ -626,14 +626,14 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).sexcontra ?? 0) === 4) {
       // TODO-QSP: dynamic text: You pull off of <<$boydesc>> and look at his dick and think, "Oh shit! The condo...
-      scene.text(`You pull off of ${((s as any).boydesc || '')} and look at his dick and think, "Oh shit! The condom burst."`);
+      scene.text(`You pull off of ${((s as any).boydesc ?? '')} and look at his dick and think, "Oh shit! The condom burst."`);
     } else {
       if (((s as any).sexcontra ?? 0) === 5) {
         // TODO-QSP: dynamic text: You pull off of <<$boydesc>> and look at his dick and think, "Oh shit! The condo...
-        scene.text(`You pull off of ${((s as any).boydesc || '')} and look at his dick and think, "Oh shit! The condom is missing!"`);
+        scene.text(`You pull off of ${((s as any).boydesc ?? '')} and look at his dick and think, "Oh shit! The condom is missing!"`);
       } else {
         // TODO-QSP: dynamic text: <<$boydesc>> groaned and you realized that he came in the condom.
-        scene.text(`${((s as any).boydesc || '')} groaned and you realized that he came in the condom.`);
+        scene.text(`${((s as any).boydesc ?? '')} groaned and you realized that he came in the condom.`);
       }
     }
     (s as any).sexcontra = 0;
@@ -660,9 +660,9 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).temp = (Math.floor(Math.random() * 5) + 1);
     if ((Math.floor(Math.random() * 3) + 0) > 0) {
-      scene.img(`images/locations/shared/gloryhole/sex/sex${((st as any).temp || '')}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/sex${((st as any).temp ?? '')}.mp4`);
     } else {
-      scene.img(`images/locations/shared/gloryhole/sex/anal${((st as any).temp || '')}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/anal${((st as any).temp ?? '')}.mp4`);
     }
     if (((st as any).pcs_ass ?? 0) < 10) {
       scene.text('The pain doesn\'t fade and instead it starts to hurt worse after a while and the pleasure starts to fade. You fuck his dick with your ass, at first taking him deeper and deeper, as you get faster and faster. As the pleasure fades and the pain gets worse you slow down and don\'t take him as deep. You start to rub your clit to help with the sensation of pleasure. You consider stopping as the pain gets worse, but you can tell by the throbbing of his dick and ragged breathing he is about to cum and decided to keep it up so he can finish.');

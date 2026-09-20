@@ -75,7 +75,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).money ?? 0) > 0) {
     if (((s as any).money ?? 0) > ((s as any).bankShortCutMoney ?? 0)  &&  ((s as any).bankShortCutMoney ?? 0) > 0) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Put all of your money except for ' + String(qspFunc(s, 'money', 'format', ((s as any).bankShortCutMoney || '')) ?? '') + ' in the desk drawer', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Put all of your money except for ' + String(qspFunc(s, 'money', 'format', ((s as any).bankShortCutMoney ?? '')) ?? '') + ' in the desk drawer', handler: (st: GameState) => {
     qspCall(st, 'money', 'desk_transfer', 0, 'all_to_desk');
     qspCall(st, 'money', 'desk_transfer', ((st as any).bankShortCutMoney ?? 0), 'from_desk');
     qspGoto(st, 'stol', 'start');
@@ -101,7 +101,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stolmoney ?? 0) > 0) {
     if (((s as any).stolmoney ?? 0) >= ((s as any).bankShortCutMoney ?? 0)  &&  ((s as any).bankShortCutMoney ?? 0) > 0) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Take ' + String(qspFunc(s, 'money', 'format', ((s as any).bankShortCutMoney || '')) ?? '') + ' from the desk drawer', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Take ' + String(qspFunc(s, 'money', 'format', ((s as any).bankShortCutMoney ?? '')) ?? '') + ' from the desk drawer', handler: (st: GameState) => {
     qspCall(st, 'money', 'desk_transfer', ((st as any).bankShortCutMoney ?? 0), 'from_desk');
     qspGoto(st, 'stol', 'start');
   } },
@@ -220,7 +220,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Finish all of your homework (' + String(((s as any).lernHome || '') ?? '') + ':00)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Finish all of your homework (' + String(((s as any).lernHome ?? '') ?? '') + ':00)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (60 * ((st as any).lernHome ?? 0));
     // TODO-QSP: gs 'mood', 'raise', 5 * trait_vars['academic'] *lernHome
     (st as any).lern = ((st as any).lern ?? 0) + (1 + ((st as any).lernHome ?? 0)/2);
@@ -231,11 +231,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/homework.jpg');
     if (((st as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
       // TODO-QSP: dynamic text: It took you <<lernHome>> hours to complete your homework.
-      scene.text(`It took you ${((st as any).lernHome || '')} hours to complete your homework.`);
+      scene.text(`It took you ${((st as any).lernHome ?? '')} hours to complete your homework.`);
       qspCall(st, 'grades', 'homework', 'school', 'yes', ((st as any).lernHome ?? 0), 0, 0);
     } else {
       // TODO-QSP: dynamic text: It took you <<lernHome>> hours to complete your homework., but the part for comp...
-      scene.text(`It took you ${((st as any).lernHome || '')} hours to complete your homework., but the part for computer class is not as good as it could be since you don't have a computer. You could do your homework at the library at the community center in the future since there's a computer available to use there.`);
+      scene.text(`It took you ${((st as any).lernHome ?? '')} hours to complete your homework., but the part for computer class is not as good as it could be since you don't have a computer. You could do your homework at the library at the community center in the future since there's a computer available to use there.`);
       qspCall(st, 'grades', 'homework', 'school', 'no', ((st as any).lernHome ?? 0), 0, 0);
     }
     scene.actions([

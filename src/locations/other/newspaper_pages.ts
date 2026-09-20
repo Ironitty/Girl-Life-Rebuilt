@@ -516,9 +516,9 @@ function enterStarletsReport_4(s: GameState, scene: SceneBuilder): void {
 
 function enterBalletPass(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center>Ballerina <<$pcs_firstname>> <<$pcs_lastname>> aiming for stardom?</cent...
-  scene.text(`<center>Ballerina ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} aiming for stardom?</center>`);
+  scene.text(`<center>Ballerina ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} aiming for stardom?</center>`);
   // TODO-QSP: dynamic text: Pushkin Ballet school has announced this years intake with Pavlovks''s own <<$pc...
-  scene.text(`Pushkin Ballet school has announced this years intake with Pavlovks's own ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} being selected as one of the regions up and coming ballerinas.`);
+  scene.text(`Pushkin Ballet school has announced this years intake with Pavlovks's own ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} being selected as one of the regions up and coming ballerinas.`);
   scene.text('Read the full article on page 9.');
   // TODO-QSP: end
   scene.build();
@@ -526,9 +526,9 @@ function enterBalletPass(s: GameState, scene: SceneBuilder): void {
 
 function enterBalletFirst(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><<$pcs_firstname>> <<$pcs_lastname>> first performance</center>
-  scene.text(`<center>${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} first performance</center>`);
+  scene.text(`<center>${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} first performance</center>`);
   // TODO-QSP: dynamic text: Pushkin Ballet school has announced this years performance of Nutcracker at the ...
-  scene.text(`Pushkin Ballet school has announced this years performance of Nutcracker at the prestigious Mariinksy Theatre in St Petersburg. Our local ballerina ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} performing as part of the shows Coryphée.`);
+  scene.text(`Pushkin Ballet school has announced this years performance of Nutcracker at the prestigious Mariinksy Theatre in St Petersburg. Our local ballerina ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} performing as part of the shows Coryphée.`);
   scene.text('Read the editorial on page 5.');
   // TODO-QSP: end
   scene.build();

@@ -329,7 +329,7 @@ function generateSceneBody(
       }
       case 'exit': {
         if (actions.length > 0) {
-          out.push(`scene.actions([\n${actions.join(',\n')}\n]);`);
+          out.push(`scene.actions([\n${actions.join('\n')}\n]);`);
           actions.length = 0;
         }
         out.push(`return;`);
@@ -1863,7 +1863,7 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
   if (/^[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*$/.test(v)) {
     stateReads.push(v);
     return textContext
-      ? `((${stateVar} as any).${v.replace(/\./g, '?.')} || '')`
+      ? `((${stateVar} as any).${v.replace(/\./g, '?.')} ?? '')`
       : `((${stateVar} as any).${v.replace(/\./g, '?.')} ?? 0)`;
   }
   for (let pi = exprPhs.length - 1; pi >= 0; pi--) {

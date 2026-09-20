@@ -333,7 +333,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
 { label: 'Agree', handler: (st: GameState) => {
     (st as any).ProsMoney = ((st as any).KlientMON ?? 0);
     qspGoto(st, 'prostitute', 'work2', '' + ((st as any).locArgs?.[1] ?? 0) + '');
-  } },,
+  } },
 { label: 'Refuse', handler: (st: GameState) => {
     qspGoto(st, 'prostitute', 'start');
   } },
@@ -378,7 +378,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).picrand ?? 0) === 1) {
       scene.img('images/shared/sex/blowjob/bjp.jpg');
     } else {
-      scene.img(`images/shared/sex/blowjob/bjp${((st as any).picrand || '')}.jpg`);
+      scene.img(`images/shared/sex/blowjob/bjp${((st as any).picrand ?? '')}.jpg`);
     }
     scene.text('You put a condom between your lips and slowly guide your mouth to his penis, you gently roll it down using only your lips. You can tell the guy is really impressed with your skills.');
     if (Number((st as any).locArgs?.[1] ?? 0) === 'blow job') {
@@ -441,7 +441,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal_funcs', 'stretch', 'anal', ((st as any).dickK ?? 0));
     scene.img('images/shared/sex/anal/doggy/anal30.jpg');
     // TODO-QSP: dynamic text: You immediately feel the man''s hands on your ass cheeks when you get on your ha...
-    scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter, and slowly thrusts all of his ${((st as any).dick || '')} centimeter inside you.`);
+    scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter, and slowly thrusts all of his ${((st as any).dick ?? '')} centimeter inside you.`);
     qspCall(st, 'arousal', 'anal', 10, 'prostitution', 'unknown');
     qspCall(st, 'stat', '');
     if (((st as any).pcs_ass ?? 0) < ((st as any).dick ?? 0)) {
@@ -621,7 +621,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (((st as any).pcs_ass ?? 0) < ((st as any).dick ?? 0)) {
       // TODO-QSP: dynamic text: You feel a sharp pain and wince when the man pushes the tip of his <<dick>> cent...
-      scene.text(`You feel a sharp pain and wince when the man pushes the tip of his ${((st as any).dick || '')} centimeter member past your sphincter, and continues to work most of his length inside you. Fortunately, he listens when you beg him to go slow.`);
+      scene.text(`You feel a sharp pain and wince when the man pushes the tip of his ${((st as any).dick ?? '')} centimeter member past your sphincter, and continues to work most of his length inside you. Fortunately, he listens when you beg him to go slow.`);
       scene.text('The guy holds still for a moment so your ass can get used to how far it\'s being stretched out. After a little while you don\'t think it\'s going to get any better, and you tell the man he can start to fucking you now with a forced, fake smile on your face.');
       scene.text('He\'s still careful at first, but soon forgets about your suffering and accelerates more and more. The man groans loudly while he hammers his cock inside your ass, ignoring your crying and mewling underneath him.');
       qspCall(st, 'arousal', 'anal', 10, 'prostitution', 'unknown', 'rough');

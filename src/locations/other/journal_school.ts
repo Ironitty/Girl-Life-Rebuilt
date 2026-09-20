@@ -49,7 +49,7 @@ function enterCoursesinfo(s: GameState, scene: SceneBuilder): void {
   scene.text(`<tr><td>P.E.:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_pe_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_pe_grade'], 0, 0, 0, ', ', $temp_grade_thr) + '</td></tr>`);
   scene.text('</table>');
   // TODO-QSP: dynamic text: A grade of 1 means "Very Poor" and is generally only used for absence. 2 means "...
-  scene.text(`A grade of 1 means "Very Poor" and is generally only used for absence. 2 means "Unsatisfactory" and is also a failing grade. 3 means "Satisfactory" and is a passing grade. 4 means "Good". 5 means "Excellent" and is only given to the best students. The number shown on the progress bar (0–100) is the internal variable grade that changes with ${((s as any).pcs_nickname || '')}'s actions; the letter grade beside it is the official mark.`);
+  scene.text(`A grade of 1 means "Very Poor" and is generally only used for absence. 2 means "Unsatisfactory" and is also a failing grade. 3 means "Satisfactory" and is a passing grade. 4 means "Good". 5 means "Excellent" and is only given to the best students. The number shown on the progress bar (0–100) is the internal variable grade that changes with ${((s as any).pcs_nickname ?? '')}'s actions; the letter grade beside it is the official mark.`);
   qspCall(s, 'grades', 'grade above', 'school', 90);
   qspCall(s, 'grades', 'grade above', 'school', 70);
   qspCall(s, 'grades', 'grade above', 'school', 50);
@@ -164,7 +164,7 @@ function enterCreateGrid(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'grid_loop'
   }
   // TODO-QSP: dynamic text: <<$grid_text>>
-  scene.text(`${((s as any).grid_text || '')}`);
+  scene.text(`${((s as any).grid_text ?? '')}`);
   scene.text('</table></center>');
   // TODO-QSP: end
   scene.build();

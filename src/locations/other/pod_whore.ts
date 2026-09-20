@@ -30,7 +30,7 @@ function enterClientTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: When you open the door, you see a stranger quickly eyeing you up and down. He sm...
-    scene.text(`When you open the door, you see a stranger quickly eyeing you up and down. He smiles and asks: "Excuse me, are you ${((s as any).pcs_nickname || '')}?"`);
+    scene.text(`When you open the door, you see a stranger quickly eyeing you up and down. He smiles and asks: "Excuse me, are you ${((s as any).pcs_nickname ?? '')}?"`);
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -667,7 +667,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           scene.text('You give him a seductive smile: "You know what, you\'re cute. I\'ll give you a special deal on my prices."');
         }
         // TODO-QSP: dynamic text: "A blowjob will cost you <<$func(''money'', ''string_profit'', whore_money_bjsex...
-        scene.text(`"A blowjob will cost you ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_bjsex || ''))}<br>fucking my pussy is ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_clsex || ''))}<br>or you can fuck my ass for ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_analsex || ''))}.<br>You can also just give me ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_allsex || ''))}, you can fuck me any way you like then for as long as you want… no holes barred.<br>If you are with your friends, I'll be happy to take all of you on at once for ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_groupsex || ''))}.`);
+        scene.text(`"A blowjob will cost you ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_bjsex ?? ''))}<br>fucking my pussy is ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_clsex ?? ''))}<br>or you can fuck my ass for ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_analsex ?? ''))}.<br>You can also just give me ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_allsex ?? ''))}, you can fuck me any way you like then for as long as you want… no holes barred.<br>If you are with your friends, I'll be happy to take all of you on at once for ${qspFunc(s, 'money', 'string_profit', ((s as any).whore_money_groupsex ?? ''))}.`);
         (s as any).rnd_client_event = (Math.floor(Math.random() * 7) + 1);
         if (((s as any).rnd_client_event ?? 0) === 1) {
           (s as any).rnd_client_text = qspFunc(s, 'pod_whore', 'hide', 'rnd_client_text_bj');
@@ -858,7 +858,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (Number((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar6') {
         qspCall(s, 'stat', '');
         // TODO-QSP: dynamic text: You keep teasing him: "Well, you could always just go from door to door, trying ...
-        scene.text(`You keep teasing him: "Well, you could always just go from door to door, trying to find a girl named ${((s as any).pcs_nickname || '')}…", while you do your best not to laugh.`);
+        scene.text(`You keep teasing him: "Well, you could always just go from door to door, trying to find a girl named ${((s as any).pcs_nickname ?? '')}…", while you do your best not to laugh.`);
         scene.text('The guy is clearly taken aback, his face deeply red with embarrassment.');
         qspCall(s, 'willpower', 'prostitution', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -877,7 +877,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Confess you\'re ' + String(((s as any).pcs_nickname || '') ?? ''), goto: ['pod_whore', 'hide', 'pod_client_talk_bazar8'] },
+          { label: '', labelFn: (s: GameState) => 'Confess you\'re ' + String(((s as any).pcs_nickname ?? '') ?? ''), goto: ['pod_whore', 'hide', 'pod_client_talk_bazar8'] },
         ]);
       }
       if (Number((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar7') {
@@ -889,7 +889,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       if (Number((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar8') {
         // TODO-QSP: dynamic text: You feel bad for the guy, and confess: "I''m sorry babe, I was just teasing you....
-        scene.text(`You feel bad for the guy, and confess: "I'm sorry babe, I was just teasing you. I'm ${((s as any).pcs_nickname || '')}. How can I make it up to you? All of my holes are at your disposal, I'll even give you a discount…"`);
+        scene.text(`You feel bad for the guy, and confess: "I'm sorry babe, I was just teasing you. I'm ${((s as any).pcs_nickname ?? '')}. How can I make it up to you? All of my holes are at your disposal, I'll even give you a discount…"`);
         scene.text('He looks relieved, and it takes him a second to realize why he\'s here. Then it hits him, and he says: "Right… how much do you charge?"');
         scene.actions([
           { label: 'Give him your price list', goto: ['pod_whore', 'hide', 'pod_whore_price'] },
@@ -897,9 +897,9 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       if (Number((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar9') {
         // TODO-QSP: dynamic text: You can barely hide your smile when you say: "Is that all you have to say for yo...
-        scene.text(`You can barely hide your smile when you say: "Is that all you have to say for yourself? You know, my name also happens to be ${((s as any).pcs_nickname || '')}…"`);
+        scene.text(`You can barely hide your smile when you say: "Is that all you have to say for yourself? You know, my name also happens to be ${((s as any).pcs_nickname ?? '')}…"`);
         // TODO-QSP: dynamic text: The man looks at you with a somewhat confused look on his face: "Wait… so you''r...
-        scene.text(`The man looks at you with a somewhat confused look on his face: "Wait… so you're not the ${((s as any).pcs_nickname || '')} that's being advertised on the walls? Are you also in the business or not?"`);
+        scene.text(`The man looks at you with a somewhat confused look on his face: "Wait… so you're not the ${((s as any).pcs_nickname ?? '')} that's being advertised on the walls? Are you also in the business or not?"`);
         scene.actions([
           { label: '"Maybe…"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar10'] },
           { label: '"Just kidding!"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar11'] },
@@ -915,7 +915,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       }
       if (Number((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar11') {
         // TODO-QSP: dynamic text: You decide to let him off easy, and just admit it: "I was just kidding, babe. I'...
-        scene.text(`You decide to let him off easy, and just admit it: "I was just kidding, babe. I'm ${((s as any).pcs_nickname || '')}."`);
+        scene.text(`You decide to let him off easy, and just admit it: "I was just kidding, babe. I'm ${((s as any).pcs_nickname ?? '')}."`);
         scene.text('The guy looks at you, not quite sure what to think: "Wait… so you were just leading me on?"');
         scene.text('You give him a friendly smile and say: "I\'m sorry, babe. Maybe I can make it up to you? I bet I could make you feel good…"');
         scene.text('You see the greedy look in his eyes, you can tell he wants you. After a second, he says: "Alright, you got me. How much do you charge?"');
@@ -946,7 +946,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (Number((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_bazar14') {
         scene.text('You can\'t keep toying with this poor man! You chuckle and tell him: "I\'m sorry sweetie, I don\'t think I could take my clients to a place like that!"');
         // TODO-QSP: dynamic text: The man is silent for a moment while he connects the dots in his mind, and then ...
-        scene.text(`The man is silent for a moment while he connects the dots in his mind, and then mutters: "Wait… so you are <b>the</b> ${((s as any).pcs_nickname || '')} and you were messing with me the whole time!?"`);
+        scene.text(`The man is silent for a moment while he connects the dots in his mind, and then mutters: "Wait… so you are <b>the</b> ${((s as any).pcs_nickname ?? '')} and you were messing with me the whole time!?"`);
         scene.text('You laugh out loud and tell him: "Sorry babe, I was testing you. I like you though, you\'re cute. How about I give you a discount, maybe I can make it up to you?"');
         scene.text('The man looks a tad embarrassed, but is mostly just relieved you are who he thinks you are: "Damn, you got me there! Alright then… how much do you charge?"');
         scene.actions([
@@ -956,7 +956,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
       if (Number((s as any).locArgs?.[1] ?? 0) === 'pod_client_talk_no') {
         qspCall(s, 'stat', '');
         // TODO-QSP: dynamic text: You shake your head: "I''m sorry, I don''t know who this <<$pcs_nickname>> is. Y...
-        scene.text(`You shake your head: "I'm sorry, I don't know who this ${((s as any).pcs_nickname || '')} is. You must be at the wrong number."`);
+        scene.text(`You shake your head: "I'm sorry, I don't know who this ${((s as any).pcs_nickname ?? '')} is. You must be at the wrong number."`);
         scene.text('The man smiles and apologizes: "I\'m sorry, miss. Could you tell me where I could find a willing girl? I have more than enough money on me."');
         scene.actions([
           { label: '"I don\'t know any whores!"', goto: ['pod_whore', 'hide', 'pod_client_talk_bazar4'] },
@@ -991,7 +991,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/resident/apartment/stairs/sex/cum' + (Math.floor(Math.random() * 7) + 1) + '.mp4');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'text_pod_whore_cum']; enterHide(s, scene); (s as any).locArgs = __savedLocArgs; }
         // TODO-QSP: dynamic text: The man gives you <<$func(''money'', ''string_profit'', total_money)>>, as promi...
-        scene.text(`The man gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).total_money || ''))}, as promised.`);
+        scene.text(`The man gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).total_money ?? ''))}, as promised.`);
         if (((s as any).clothingworntype ?? 0) === 'nude') {
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
@@ -1206,10 +1206,10 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.text('After they fucked you in several positions and both had their turns, they tell you they want to cum on your face.');
     scene.text('You eagerly drop to your knees and stick out your tongue, inviting them to cum in your mouth while you look them deep in the eyes.');
     // TODO-QSP: dynamic text: Soon enough, the hot jets of cum splatter down on your face, mostly on your expo...
-    scene.text(`Soon enough, the hot jets of cum splatter down on your face, mostly on your exposed tongue. A few drips run down your chin and drop onto your ${((st as any).titsize || '')} boobs. You absent-mindedly rub them, spreading their cum all over them.`);
+    scene.text(`Soon enough, the hot jets of cum splatter down on your face, mostly on your exposed tongue. A few drips run down your chin and drop onto your ${((st as any).titsize ?? '')} boobs. You absent-mindedly rub them, spreading their cum all over them.`);
     scene.text('You can tell the men are truly spent, and enjoyed your services a great deal.');
     // TODO-QSP: dynamic text: One guy produces the money you were promised, and hands you the <<$func(''money'...
-    scene.text(`One guy produces the money you were promised, and hands you the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money || ''))}. He smiles happily: "You were great, girl. We'll definitely be back."`);
+    scene.text(`One guy produces the money you were promised, and hands you the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money ?? ''))}. He smiles happily: "You were great, girl. We'll definitely be back."`);
     scene.actions([
       { label: 'Thank them and leave', handler: (st: GameState) => {
     qspCall(st, 'pod_whore', 'hide', 'clean');
@@ -1295,7 +1295,7 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     scene.text('After a few more minutes of getting fucked, you suddenly feel the guy underneath you spasm. Seconds later you feel a warm liquid inside you, and when he pulls his cock out of you his cum slowly drips from your pussy. A few more jets of cum come out, landing on your stomach. The other guy cums inside your mouth at the same time, without any warning. You swallow his load as best you can, and only miss a few drops that end up on your chin.');
     scene.text('The guys don\'t pay much attention to you when they put their clothes back on. They\'re mostly talking to one another about how much of a good fuck you were, pretending you\'re not there.');
     // TODO-QSP: dynamic text: Then one guy turns to you and gives you the money: "You''re a pretty decent fuck...
-    scene.text(`Then one guy turns to you and gives you the money: "You're a pretty decent fuck, ${((st as any).pcs_nickname || '')}. Here are the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money || ''))} we agreed upon. See you around."`);
+    scene.text(`Then one guy turns to you and gives you the money: "You're a pretty decent fuck, ${((st as any).pcs_nickname ?? '')}. Here are the ${qspFunc(s, 'money', 'string_profit', ((st as any).total_money ?? ''))} we agreed upon. See you around."`);
     scene.actions([
       { label: 'Thank them and leave', handler: (st: GameState) => {
     qspCall(st, 'pod_whore', 'hide', 'clean');

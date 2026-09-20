@@ -25,7 +25,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 7  &&  ((s as any).hour ?? 0) < 21) {
     scene.text('Hidden by a tree\'s shadow, you notice a man standing there, he watches you and when you look back at him he shouts "Whore!" at you.');
     scene.actions([
-{ label: 'Silently leave', goto: ['city_park', 'start'] },,
+{ label: 'Silently leave', goto: ['city_park', 'start'] },
 { label: 'Tell him to shut up', handler: (st: GameState) => {
     scene.text('"Shut your trap, jackass." You\'re surprised when you see him quickly running away.');
     scene.actions([
@@ -65,7 +65,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fight', 'initFight');
     qspCall(st, 'fight_npcdata', 'rapist');
     qspGoto(st, 'fight', 'start');
-  } },,
+  } },
 { label: 'Try to run away', handler: (st: GameState) => {
     if (((st as any).pcs_run ?? 0) < 10) {
       (st as any).peshimraperand = (Math.floor(Math.random() * 12) + 0);
@@ -161,7 +161,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_apprnc ?? 0) >= 120  &&  ((s as any).parkday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).parkslut ?? 0) > 0) {
       scene.text('From the bench under one of the trees a guy comes up to you. It\'s the guy who fucked you here in the park a while back. He smiles and asks you "Hello again beautiful girl, do you mind if we do it once again?"');
       scene.actions([
-{ label: 'Walk away', goto: ['city_park', 'start'] },,
+{ label: 'Walk away', goto: ['city_park', 'start'] },
 { label: '"I don\'t mind it all"', handler: (st: GameState) => {
     scene.text('The guy laughs "Unfortunately, I doubt it\'ll be as much fun as the first time, but why don\'t you bend over this bench right here?"');
     qspCall(st, 'willpower', 'sex', 'resist', 'hard');
@@ -186,7 +186,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A121');
     (st as any).parkday = ((st as any).daystart ?? 0);
     (st as any).picrand = (Math.floor(Math.random() * 6) + 1);
-    scene.img(`images/locations/shared/park/sex/bench/dogging${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/shared/park/sex/bench/dogging${((st as any).picrand ?? '')}.jpg`);
     scene.text('The man pushes you over the backrest of the bench and pushes his cock into your pussy. He slowly begins to thrust in and out of you.');
     qspCall(st, 'cum_call', '', '', 'Guy from the park');
     qspCall(st, 'arousal', 'vaginal', 20, 'prostitution');
@@ -232,7 +232,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       (st as any).guy = ((st as any).guy ?? 0) + (1);
     }
     (st as any).picrand = (Math.floor(Math.random() * 6) + 1);
-    scene.img(`images/locations/shared/park/sex/bench/dogging${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/shared/park/sex/bench/dogging${((st as any).picrand ?? '')}.jpg`);
     scene.text('The man pushes you over the backrest of the bench and pushes his cock into your pussy. He slowly begins to thrust in and out of you.');
     qspCall(st, 'cum_call', '', '', 'Guy from the park');
     qspCall(st, 'arousal', 'vaginal', 20, 'prostitution');
@@ -242,7 +242,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     ]);
-  } },,
+  } },
 { label: 'Leave', goto: ['city_park', 'start'] },
 ]);
         return;
@@ -432,7 +432,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).parkblackmail ?? 0))) {
     scene.text('On one of the parks open grass area, you see a group of young people enjoying a barbecue. As you walk past them, one of the guys comes up to you and asks if you would like to join them.');
     scene.actions([
-{ label: 'Decline and continue your walk', goto: ['city_park', 'start'] },,
+{ label: 'Decline and continue your walk', goto: ['city_park', 'start'] },
 { label: 'Agree and join them', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 30;
     qspCall(st, 'drugs', 'alcohol', 'vodka');
@@ -548,7 +548,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('As you\'re walking and pondering, a man walks up to you. He introduces himself as Yaroslav and asks if you would like to earn some money.');
     scene.actions([
-{ label: '"No, thanks"', goto: ['city_park', 'start'] },,
+{ label: '"No, thanks"', goto: ['city_park', 'start'] },
 { label: '"I\'m listening"', handler: (st: GameState) => {
     scene.text('"My house is a bit dirty and I\'m looking for someone who would like to keep it clean for me," he says. "All you have to do is to dust and clean everything. My house isn\'t too big so it should be quite manageable."');
     qspCall(st, 'willpower', 'misc', 'self', 'hard');
@@ -573,7 +573,7 @@ function enter5(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "I''d pay you <<$func(''money'', ''string_profit'', 2000)>>," he answers. "By th...
     scene.text(`"I'd pay you ${qspFunc(s, 'money', 'string_profit', 2000)}," he answers. "By the way, I haven't asked you for your name yet."`);
     // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>>.", you tell him.
-    scene.text(`"I'm ${((st as any).pcs_nickname || '')}.", you tell him.`);
+    scene.text(`"I'm ${((st as any).pcs_nickname ?? '')}.", you tell him.`);
     scene.text('He nods, smiles, and tells you it\'s a cute name. Then he gives you his card and judging by the address, it\'s somewhere in the city center.');
     scene.actions([
       { label: 'Ask him when to come by', handler: (st: GameState) => {
@@ -607,7 +607,7 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).ublyudokparkivent ?? 0))) {
     scene.text('As you were deep in your own thoughts, walking through the park, you\'ve strayed of the normal path, realizing you\'ve ended up in a somewhat shady area of it. Standing between two trees you notice a man waving at you.');
     scene.actions([
-{ label: 'Walk away', goto: ['city_park', 'start'] },,
+{ label: 'Walk away', goto: ['city_park', 'start'] },
 { label: 'Walk up to him', handler: (st: GameState) => {
     (st as any).ublyudokparkivent = 1;
     qspCall(st, 'pain', '', 8, 'head', 'hit');
@@ -844,9 +844,9 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcgeneratec', '', 0, '', 'like');
     qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     // TODO-QSP: dynamic text: A guy with <<$npcheight_pref>>, <<$npcbuild>> body and <<$npchair>> hair approac...
-    scene.text(`A guy with ${((s as any).npcheight_pref || '')}, ${((s as any).npcbuild || '')} body and ${((s as any).npchair || '')} hair approaches you. He's wearing wearing ${((s as any).npcClo || '')}.`);
+    scene.text(`A guy with ${((s as any).npcheight_pref ?? '')}, ${((s as any).npcbuild ?? '')} body and ${((s as any).npchair ?? '')} hair approaches you. He's wearing wearing ${((s as any).npcClo ?? '')}.`);
     // TODO-QSP: dynamic text: The guy introduces himself as <<$npcdesc>> and asks for your number.
-    scene.text(`The guy introduces himself as ${((s as any).npcdesc || '')} and asks for your number.`);
+    scene.text(`The guy introduces himself as ${((s as any).npcdesc ?? '')} and asks for your number.`);
     scene.actions([
 { label: 'Give him your number', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -854,11 +854,11 @@ function enter8(s: GameState, scene: SceneBuilder): void {
     }
     (st as any).stopboy = 0;
     // TODO-QSP: dynamic text: <<$npcdesc>> writes it in his phone and walks away from you smiling.
-    scene.text(`${((st as any).npcdesc || '')} writes it in his phone and walks away from you smiling.`);
+    scene.text(`${((st as any).npcdesc ?? '')} writes it in his phone and walks away from you smiling.`);
     scene.actions([
       { label: 'Finish your walk', goto: ['city_park', 'start'] },
     ]);
-  } },,
+  } },
 { label: 'Leave', goto: ['city_park', 'start'] },
 ]);
     return;
@@ -877,14 +877,14 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
   // TODO-QSP: dynamic text: As you walk through the park, you notice <<$npcdesc>> walking towards you.
-  scene.text(`As you walk through the park, you notice ${((s as any).npcdesc || '')} walking towards you.`);
+  scene.text(`As you walk through the park, you notice ${((s as any).npcdesc ?? '')} walking towards you.`);
   if (((s as any).npc_had_sex ?? 0)?.[String((s as any).npcID ?? 0)] === 0  ||  (!((s as any).SUB ?? 0))) {
     scene.actions([
       { label: 'Nice to talk', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     // TODO-QSP: dynamic text: <<$npcdesc>> is happy about meeting you randomly and gives you a big hug. You ha...
-    scene.text(`${((st as any).npcdesc || '')} is happy about meeting you randomly and gives you a big hug. You have a nice short talk and kiss goodbye as you part ways again.`);
+    scene.text(`${((st as any).npcdesc ?? '')} is happy about meeting you randomly and gives you a big hug. You have a nice short talk and kiss goodbye as you part ways again.`);
     scene.actions([
       { label: 'Finish your walk', goto: ['city_park', 'start'] },
     ]);
@@ -893,9 +893,9 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_had_sex ?? 0)?.[String((s as any).npcID ?? 0)]  &&  ((s as any).SUB ?? 0) > 0) {
       // TODO-QSP: dynamic text: <<$npcdesc>> is happy to see you, quickly grabbing you by the hand leading you i...
-      scene.text(`${((s as any).npcdesc || '')} is happy to see you, quickly grabbing you by the hand leading you into a more secluded area of the park.`);
+      scene.text(`${((s as any).npcdesc ?? '')} is happy to see you, quickly grabbing you by the hand leading you into a more secluded area of the park.`);
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Follow ' + String(((s as any).npcdesc || '') ?? '') + '.', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Follow ' + String(((s as any).npcdesc ?? '') ?? '') + '.', handler: (st: GameState) => {
     if (((st as any).npc_gender ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
       qspGoto(st, 'event', 'city_park');
     }
@@ -908,7 +908,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).npc_had_sex ?? 0)?.[String((s as any).npcID ?? 0)]) {
         // TODO-QSP: dynamic text: <<$npcdesc>> is happy to see you, quickly grabbing you by the hand, wanting to l...
-        scene.text(`${((s as any).npcdesc || '')} is happy to see you, quickly grabbing you by the hand, wanting to lead you to a secluded area of the park.`);
+        scene.text(`${((s as any).npcdesc ?? '')} is happy to see you, quickly grabbing you by the hand, wanting to lead you to a secluded area of the park.`);
         scene.actions([
           { label: 'Offer to sit on the bench', handler: (st: GameState) => {
     if (((st as any).npc_gender ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
@@ -923,7 +923,7 @@ function enter9(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), (Math.floor(Math.random() * 2) + 2));
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     // TODO-QSP: dynamic text: <<$npcdesc>> is happy about meeting you randomly and gives you a big hug. You ha...
-    scene.text(`${((st as any).npcdesc || '')} is happy about meeting you randomly and gives you a big hug. You have a nice short talk and kiss goodbye as you part ways again.`);
+    scene.text(`${((st as any).npcdesc ?? '')} is happy about meeting you randomly and gives you a big hug. You have a nice short talk and kiss goodbye as you part ways again.`);
     scene.actions([
       { label: 'Finish your walk', goto: ['city_park', 'start'] },
     ]);
@@ -1078,7 +1078,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Wanna fuck?', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>." you say flatly. "Nice to meet you. But really. You mean all...
-    scene.text(`"${((st as any).pcs_nickname || '')}." you say flatly. "Nice to meet you. But really. You mean all that stuff you said? Cause if you're serious, we could go back to your place and get it on. I could go for a good fuck right now."`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}." you say flatly. "Nice to meet you. But really. You mean all that stuff you said? Cause if you're serious, we could go back to your place and get it on. I could go for a good fuck right now."`);
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.text('He blinks in surprise but recovers quickly. "I mean, hell yeah. If you\'re offering."');
       scene.text('"You\'re the one who offered," you shrug. "Now hurry up and lead the way."');
@@ -1324,7 +1324,7 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: <br>The baby boys weak suckling is getting better with time. After around <<temp...
-      scene.text(`<br>The baby boys weak suckling is getting better with time. After around ${((st as any).temp_var || '')} minutes his sucking is getting more intense.`);
+      scene.text(`<br>The baby boys weak suckling is getting better with time. After around ${((st as any).temp_var ?? '')} minutes his sucking is getting more intense.`);
       (st as any).milkedvolume = qspFunc(s, 'lact_lib', '$get_breastmilk', 7, ((st as any).temp_var ?? 0));
       (st as any).milkedvolume = 0;
       (st as any).minut = ((st as any).minut ?? 0) + (((st as any).temp_var ?? 0));
@@ -1386,10 +1386,10 @@ function enterFindBaby(s: GameState, scene: SceneBuilder): void {
       } else {
         if ((((st as any).lactation ?? 0)?.['breastmv']/120000) < 2) {
           // TODO-QSP: dynamic text: You breastfeed him for <<temp_var>> minutes. During feeding you have to switch b...
-          scene.text(`You breastfeed him for ${((st as any).temp_var || '')} minutes. During feeding you have to switch breasts as he is drinking a lot, but your breasts make enough milk to satisfy his needs.`);
+          scene.text(`You breastfeed him for ${((st as any).temp_var ?? '')} minutes. During feeding you have to switch breasts as he is drinking a lot, but your breasts make enough milk to satisfy his needs.`);
         } else {
           // TODO-QSP: dynamic text: You breastfeed him for <<temp_var>> minutes. Your breasts make so much milk you ...
-          scene.text(`You breastfeed him for ${((st as any).temp_var || '')} minutes. Your breasts make so much milk you don't even have to switch breasts during feeding. He seems fully satisfied when you're done.`);
+          scene.text(`You breastfeed him for ${((st as any).temp_var ?? '')} minutes. Your breasts make so much milk you don't even have to switch breasts during feeding. He seems fully satisfied when you're done.`);
         }
       }
       if (((st as any).age ?? 0) < 18  &&  ((st as any).kid ?? 0) <= 0) {

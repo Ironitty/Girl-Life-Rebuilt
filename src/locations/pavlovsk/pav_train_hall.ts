@@ -83,7 +83,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if ((((s as any).hour ?? 0) === 11  ||  ((s as any).hour ?? 0) === 18)  &&  ((s as any).minut ?? 0) <= 30) {
     // TODO-QSP: dynamic text: The ' + func('time', 'get_time_string', hour, 30) + ' long-distance train is cur...
-    scene.text('The ' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), 30) + ' long-distance train is currently ' + (((!((s as any).minut ?? 0))) ? ('approaching') : (((((s as any).minut ?? 0) < 30) ? ('waiting at') : ('leaving')))) + ' the platform.');
+    scene.text('The ' + qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), 30) + ' long-distance train is currently ' + (((!((s as any).minut ?? 0))) ? ('approaching') : (((((s as any).minut ?? 0) < 30) ? ('waiting at') : ('leaving')))) + ' the platform.');
     scene.text('The platform is bustling with passengers entering or leaving the currently waiting train, carrying their heavy bags with them. Several police officers are patrolling the platforms, keeping an eye out for any unruly activities.');
     if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] > 0) {
       scene.text('You could <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pav_train_hall_events/u0027, /u0027trinkets/u0027); return false;">try to sell some trinkets</a> to some of the passengers.');

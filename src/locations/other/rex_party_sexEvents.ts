@@ -156,7 +156,7 @@ function enterIraLenaRex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_4_1.jpg');
   }
   // TODO-QSP: dynamic text: You go with <<$boydesc>>, Lena and Ira follow a little ways behind and without w...
-  scene.text(`You go with ${((s as any).boydesc || '')}, Lena and Ira follow a little ways behind and without waiting for them, he puts you down on your knees.`);
+  scene.text(`You go with ${((s as any).boydesc ?? '')}, Lena and Ira follow a little ways behind and without waiting for them, he puts you down on your knees.`);
   scene.text('You finish stripping naked, he has his cock out stroking it watching as you got undressed, seeing his cock you start sucking it at once.');
   scene.text('Just as you start sucking his cock, Lena and Ira belatedly join you. They start kissing each other and undressing.');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'unknown');
@@ -181,11 +181,11 @@ function enterIraLenaRex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_5_4.jpg');
     scene.text('You lay down on your back legs wide apart, Ira crawls over to you on all fours and buries her face between your legs and begins kissing, licking and sucking on your clit.');
     // TODO-QSP: dynamic text: <<$boydesc>> takes advantage of Ira''s position and slides his cock inside of he...
-    scene.text(`${((st as any).boydesc || '')} takes advantage of Ira's position and slides his cock inside of her and begins to fuck her roughly.`);
+    scene.text(`${((st as any).boydesc ?? '')} takes advantage of Ira's position and slides his cock inside of her and begins to fuck her roughly.`);
     // TODO-QSP: dynamic text: Ira bouncing her hips back and forth, fucking him as much as he was fucking her ...
-    scene.text(`Ira bouncing her hips back and forth, fucking him as much as he was fucking her as she keeps licking your pussy, Lena starts kissing ${((st as any).boydesc || '')}, while her hand caress his balls.`);
+    scene.text(`Ira bouncing her hips back and forth, fucking him as much as he was fucking her as she keeps licking your pussy, Lena starts kissing ${((st as any).boydesc ?? '')}, while her hand caress his balls.`);
     // TODO-QSP: dynamic text: Time flies fast, Ira, Lena and yourself have all switched positions many times, ...
-    scene.text(`Time flies fast, Ira, Lena and yourself have all switched positions many times, letting him fuck all three of you, ${((st as any).boydesc || '')} can take no more.`);
+    scene.text(`Time flies fast, Ira, Lena and yourself have all switched positions many times, letting him fuck all three of you, ${((st as any).boydesc ?? '')} can take no more.`);
     qspCall(st, 'arousal', 'cuni', 5, 'sub', 'unknown', 'lesbian');
     qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'unknown');
     qspCall(st, 'stat', '');
@@ -199,9 +199,9 @@ function enterIraLenaRex(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Ira and Lena</b></center>');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_5_5.jpg');
     // TODO-QSP: dynamic text: You bend over in front of him, Lena and Ira obediently bend over in front of <<$...
-    scene.text(`You bend over in front of him, Lena and Ira obediently bend over in front of ${((st as any).boydesc || '')} as well. One of them to each side of you, giving him a lovely view of all three of your asses.`);
+    scene.text(`You bend over in front of him, Lena and Ira obediently bend over in front of ${((st as any).boydesc ?? '')} as well. One of them to each side of you, giving him a lovely view of all three of your asses.`);
     // TODO-QSP: dynamic text: <<$boydesc>> enjoys the spectacular view of your graceful asses. He fucks you fi...
-    scene.text(`${((st as any).boydesc || '')} enjoys the spectacular view of your graceful asses. He fucks you first, while he slaps the girls on the ass, as he pounds into you.`);
+    scene.text(`${((st as any).boydesc ?? '')} enjoys the spectacular view of your graceful asses. He fucks you first, while he slaps the girls on the ass, as he pounds into you.`);
     scene.text('You got the feeling he meant to take turns fucking each of you, but he grunts and can no longer hold back.');
     qspCall(st, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'group');
     qspCall(st, 'stat', '');
@@ -227,7 +227,7 @@ function enterIraLenaRexCum(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_manage', '');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_iralena_5_6.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> pulls out of you and blows his load all over your ass, covering it ...
-    scene.text(`${((s as any).boydesc || '')} pulls out of you and blows his load all over your ass, covering it in his spunk.`);
+    scene.text(`${((s as any).boydesc ?? '')} pulls out of you and blows his load all over your ass, covering it in his spunk.`);
     scene.text('Lena and Ira without hesitation began to lick up all the cum, then they kiss you and each other, sharing the taste of sperm with you.');
     scene.text('');
   } else {
@@ -238,7 +238,7 @@ function enterIraLenaRexCum(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_iralena_5_${(Math.floor(Math.random() * 2) + 7)}.mp4`);
     scene.text('With a slap on your ass he pulls out, knowing what he wants you turn around and open your mouth, sticking out your tongue, your girlfriends obediently follow suit and open their mouths, sticking out there tongues as well.');
     // TODO-QSP: dynamic text: <<$boydesc>> jerks his cock until he starts shooting his sperm all over the thre...
-    scene.text(`${((s as any).boydesc || '')} jerks his cock until he starts shooting his sperm all over the three of you, he does his best to aim for your mouths and tries to make sure he gets at least a little in all of your mouths. Once his dick stops spurting cum the three of you start licking up the cum that missed your mouths and kissing, exchanging his sperm from one mouth to another mouth, until it finally ends up back in your mouth and you swallow it.`);
+    scene.text(`${((s as any).boydesc ?? '')} jerks his cock until he starts shooting his sperm all over the three of you, he does his best to aim for your mouths and tries to make sure he gets at least a little in all of your mouths. Once his dick stops spurting cum the three of you start licking up the cum that missed your mouths and kissing, exchanging his sperm from one mouth to another mouth, until it finally ends up back in your mouth and you swallow it.`);
     scene.text('');
   }
   qspCall(s, 'arousal', 'end');
@@ -494,7 +494,7 @@ function enterRexToiletBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_7.jpg');
   // TODO-QSP: dynamic text: Rex drags you to the toilet, sporting a huge erection. You quickly squat down an...
-  scene.text(`Rex drags you to the toilet, sporting a huge erection. You quickly squat down and eagerly plunge his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your mouth. Rex exclaims excitedly, "Wow, you are really unpredictable, and for that I love you." With that, he fucks you in the mouth, while you suck on him passionately. Soon you can tell he is about to blow his load.`);
+  scene.text(`Rex drags you to the toilet, sporting a huge erection. You quickly squat down and eagerly plunge his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock into your mouth. Rex exclaims excitedly, "Wow, you are really unpredictable, and for that I love you." With that, he fucks you in the mouth, while you suck on him passionately. Soon you can tell he is about to blow his load.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -525,7 +525,7 @@ function enterSisterFun(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_sister_3_${(Math.floor(Math.random() * 2) + 1)}.mp4`);
   scene.text('The alcohol has hit you hard. You feel a little light headed, but warm and happy. Anya cheerfully stumbles up to you.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let''s dance like there''s no tomorrow!" Pulling her top off...
-  scene.text(`"${((s as any).pcs_nickname || '')}, let's dance like there's no tomorrow!" Pulling her top off, she helps you remove yours.`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}, let's dance like there's no tomorrow!" Pulling her top off, she helps you remove yours.`);
   scene.text('Before long, you and Anya have both stripped down to your panties and are dancing and shaking your tits for anyone that wants to watch.');
   if (((s as any).rex_love ?? 0) === 1) {
     scene.text('Rex watches you and your sister with great curiosity.');
@@ -576,7 +576,7 @@ function enterSisterFun(s: GameState, scene: SceneBuilder): void {
     scene.text('You roll over as Anya climbs on top of you. As she kisses her way down to your nipples, your body arches in pleasure as you feel your pussy getting wet already.');
     scene.text('Kissing and licking her way down your body, she pulls your panties off and gently kisses your clit. Her tongue gently flicking your clit elicits deep moans of pleasure from you. You feel a full tremor run through your body as her tongue slips inside of you.');
     // TODO-QSP: dynamic text: "Mmm <<$pcs_nickname>>, you taste so sweet," Anya murmurs. You can''t help but s...
-    scene.text(`"Mmm ${((st as any).pcs_nickname || '')}, you taste so sweet," Anya murmurs. You can't help but smile at the skill of her tongue and again silently question her claims that she isn't into girls.`);
+    scene.text(`"Mmm ${((st as any).pcs_nickname ?? '')}, you taste so sweet," Anya murmurs. You can't help but smile at the skill of her tongue and again silently question her claims that she isn't into girls.`);
     scene.text('Anya\'s tongue works wonders, filling you with mounting pleasure as it strokes inside of you, penetrating you as deeply as it can go. She starts to tongue fuck your pussy.');
     qspCall(st, 'arousal', 'cuni', 5, 'lesbian', 'incest');
     qspCall(st, 'stat', '');
@@ -672,7 +672,7 @@ function enterSisterCum(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/party_sister_9_${(Math.floor(Math.random() * 2) + 1)}.mp4`);
   scene.text('Your bodies convulse and spasm at the same time as a pure wave of pleasure overwhelms you both. In time, both of you will claim the other came first, but for now, you are lost in the ecstasy of the moment.');
   // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>, if you weren''t my sister, I would marry you," your siste...
-  scene.text(`"Oh ${((s as any).pcs_nickname || '')}, if you weren't my sister, I would marry you," your sister mumbles.`);
+  scene.text(`"Oh ${((s as any).pcs_nickname ?? '')}, if you weren't my sister, I would marry you," your sister mumbles.`);
   scene.text('Your warm, wet and limp bodies lie entangled in a moment of pure bliss before you fall asleep in each other\'s arms.');
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_finger', 5);
@@ -733,7 +733,7 @@ function enterDjSuck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boy_5.jpg');
     scene.text('You decide to make amends to the guy and kiss the head of his cock.');
     // TODO-QSP: dynamic text: You find you don''t want to stop and passionately start sucking his <<dick>>cm <...
-    scene.text(`You find you don't want to stop and passionately start sucking his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick right there in front of everyone.`);
+    scene.text(`You find you don't want to stop and passionately start sucking his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick right there in front of everyone.`);
     scene.text('After you suck him for a bit, he pulls you up and turns you around. Pulling your panties down, he pushes you forward, bending you over.');
     qspCall(st, 'arousal', 'bj', 5, 'exhibitionism');
     qspCall(st, 'stat', '');
@@ -744,7 +744,7 @@ function enterDjSuck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boy_6.mp4');
     scene.text('You let him bend you over as he begins to rub the head of his dick against your pussy lips.');
     // TODO-QSP: dynamic text: He abruptly pushes his <<dick>>cm <<$dick_girth>> dick inside of you and starts ...
-    scene.text(`He abruptly pushes his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick inside of you and starts fucking you with a fast pace.`);
+    scene.text(`He abruptly pushes his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick inside of you and starts fucking you with a fast pace.`);
     scene.text('Within just a few moments, he grunts and you feel him shooting his load deep into your wet pussy.');
     qspCall(st, 'arousal', 'vaginal', 5, 'exhibitionism');
     qspCall(st, 'arousal', 'end');
@@ -790,11 +790,11 @@ function enterToiletBoysBj(s: GameState, scene: SceneBuilder): void {
     (st as any).i = (Math.floor(Math.random() * 2) + 1);
     if (((st as any).i ?? 0) === 1) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/reside...
-      scene.text(`<center><video autoplay loop ${((st as any).set_imgh || '')} src="images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_12_1.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_12_1.mp4"></video></center>`);
     }
     if (((st as any).i ?? 0) === 2) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/part...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_12_3.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/party_girls_party_gost_12_3.jpg"></center>`);
     }
     scene.text('You dutifully remove your hands and instinctively begin to fondle your pussy with your free hand. The guys take turns fucking your mouth, sliding their cocks until their balls are against you chin, making your gag and your eyes water, while the other masturbates. Soon you bring them both to the point where they are ready to come.');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'group', 'gangbang');
@@ -955,7 +955,7 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).temp_rand ?? 0))) {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_4.mp4');
     // TODO-QSP: dynamic text: Together they get you out to the street and one of the guys pushes you down to y...
-    scene.text(`Together they get you out to the street and one of the guys pushes you down to your knees and pull his cock out. "Come on, ${((s as any).pcs_nickname || '')}, start sucking." You put you hand on his member and start to lick the whole length before wrapping your lips around the head. You keep sucking, taking turns on the guy's dicks, until they are all hard and ready. Then one of them tells you to bend over.`);
+    scene.text(`Together they get you out to the street and one of the guys pushes you down to your knees and pull his cock out. "Come on, ${((s as any).pcs_nickname ?? '')}, start sucking." You put you hand on his member and start to lick the whole length before wrapping your lips around the head. You keep sucking, taking turns on the guy's dicks, until they are all hard and ready. Then one of them tells you to bend over.`);
     qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0), 'sub', 'gangbang');
     qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID2 ?? 0), 'sub', 'gangbang');
     qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID2 ?? 0), 'sub', 'gangbang');
@@ -964,7 +964,7 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
       { label: 'Bend over', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_5.mp4');
     // TODO-QSP: dynamic text: "Bend over, <<$pcs_nickname>>, and show us your tight, wet hole." You get in a c...
-    scene.text(`"Bend over, ${((st as any).pcs_nickname || '')}, and show us your tight, wet hole." You get in a comfortable position and the guys take turns fucking your wet pussy. You really enjoy yourself as you move your hips towards their rock-hard members, making them glide in and out of your pussy, not wanting to wait their turn they start to fuck your ass as well. The guys finish on your ass and back, except the last one who groans and tells you: "Ah, ${((st as any).pcs_nickname || '')}, open up, I want to cum in your mouth!"`);
+    scene.text(`"Bend over, ${((st as any).pcs_nickname ?? '')}, and show us your tight, wet hole." You get in a comfortable position and the guys take turns fucking your wet pussy. You really enjoy yourself as you move your hips towards their rock-hard members, making them glide in and out of your pussy, not wanting to wait their turn they start to fuck your ass as well. The guys finish on your ass and back, except the last one who groans and tells you: "Ah, ${((st as any).pcs_nickname ?? '')}, open up, I want to cum in your mouth!"`);
     qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'sub', 'gangbang');
     qspCall(st, 'arousal', 'anal', (-3), ((st as any).npcID1 ?? 0), 'sub', 'gangbang');
     qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID2 ?? 0), 'sub', 'gangbang');
@@ -977,7 +977,7 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_6.mp4');
     // TODO-QSP: dynamic text: You turn around and kneel in front of him, playfully sticking out your tongue. T...
-    scene.text(`You turn around and kneel in front of him, playfully sticking out your tongue. The drunk guy gives a little jerk and sprays of sperm jets into your mouth. "Ah, ${((st as any).pcs_nickname || '')}, you are truly the best bitch at this party!" the guys all laugh. You try to join in, but your laughter is stifled by the mouthful of sperm.`);
+    scene.text(`You turn around and kneel in front of him, playfully sticking out your tongue. The drunk guy gives a little jerk and sprays of sperm jets into your mouth. "Ah, ${((st as any).pcs_nickname ?? '')}, you are truly the best bitch at this party!" the guys all laugh. You try to join in, but your laughter is stifled by the mouthful of sperm.`);
     qspCall(st, 'cum_call', 'back', ((st as any).npcID1 ?? 0));
     qspCall(st, 'cum_call', 'butt', ((st as any).npcID2 ?? 0));
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID3 ?? 0));
@@ -995,7 +995,7 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 1) {
       scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_7.jpg');
       // TODO-QSP: dynamic text: The boys have fun dragging you into the street, and you immediately go down on y...
-      scene.text(`The boys have fun dragging you into the street, and you immediately go down on your knees. "Hey, ${((s as any).pcs_nickname || '')}, try our lollipops." You get excited as more and more members are put in front of your plump lips. You open your lips and even feel turned on while sucking them. You talk dirty, squeeze your boobs together and even give a little moan with their dicks in your mouth. After everyone is hard and you had your fun you get up, still sucking on one of their members with your mouth, and the boys tell you to bend over.`);
+      scene.text(`The boys have fun dragging you into the street, and you immediately go down on your knees. "Hey, ${((s as any).pcs_nickname ?? '')}, try our lollipops." You get excited as more and more members are put in front of your plump lips. You open your lips and even feel turned on while sucking them. You talk dirty, squeeze your boobs together and even give a little moan with their dicks in your mouth. After everyone is hard and you had your fun you get up, still sucking on one of their members with your mouth, and the boys tell you to bend over.`);
       qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID1 ?? 0), 'sub', 'gangbang');
       qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID2 ?? 0), 'sub', 'gangbang');
       qspCall(s, 'arousal', 'bj', 3, ((s as any).npcID3 ?? 0), 'sub', 'gangbang');
@@ -1116,7 +1116,7 @@ function enterGangbangOutdoor(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_10.jpg');
     // TODO-QSP: dynamic text: The guys a very drunk and soon begin to focus on your pussy and ass, fucking you...
-    scene.text(`The guys a very drunk and soon begin to focus on your pussy and ass, fucking you roughly. Enthralled by the moment the guys cum wherever they want. You feel hot jets of sperm hitting your back and ass. Some of them even cum inside of you. After they are done, one of them exclaims, "Uhh, the crown for the best whore of the evening certainly belongs to you, ${((st as any).pcs_nickname || '')}." Exhausted and quite a mess you drunkenly stumble into a room.`);
+    scene.text(`The guys a very drunk and soon begin to focus on your pussy and ass, fucking you roughly. Enthralled by the moment the guys cum wherever they want. You feel hot jets of sperm hitting your back and ass. Some of them even cum inside of you. After they are done, one of them exclaims, "Uhh, the crown for the best whore of the evening certainly belongs to you, ${((st as any).pcs_nickname ?? '')}." Exhausted and quite a mess you drunkenly stumble into a room.`);
     qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID1 ?? 0), 'sub', 'gangbang');
     qspCall(st, 'arousal', 'anal', (-5), ((st as any).npcID1 ?? 0), 'sub', 'gangbang');
     qspCall(st, 'arousal', 'vaginal', 5, ((st as any).npcID2 ?? 0), 'sub', 'gangbang');
@@ -1317,7 +1317,7 @@ function enterBoobsYes(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/party_boys_party_gost_5.jpg');
     // TODO-QSP: dynamic text: You gladly kneel in front of him to take a closer look at his erect member. "Com...
-    scene.text(`You gladly kneel in front of him to take a closer look at his erect member. "Come on ${((st as any).pcs_nickname || '')}, don't be shy."`);
+    scene.text(`You gladly kneel in front of him to take a closer look at his erect member. "Come on ${((st as any).pcs_nickname ?? '')}, don't be shy."`);
     scene.actions([
       { label: 'Start sucking', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1390,7 +1390,7 @@ function enterBoysSwalow(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_${(Math.floor(Math.random() * 3) + 13)}.mp4`);
   scene.text('You swallow the tart mixture of several different guys sperm, greedily licking your lips with your tongue.');
   // TODO-QSP: dynamic text: "Uhh <<$pcs_nickname>>! You''re still the best cocksucker around. If you want mo...
-  scene.text(`"Uhh ${((s as any).pcs_nickname || '')}! You're still the best cocksucker around. If you want more sperm to swallow, call us."`);
+  scene.text(`"Uhh ${((s as any).pcs_nickname ?? '')}! You're still the best cocksucker around. If you want more sperm to swallow, call us."`);
   scene.text('The guys help you back into the apartment and into one of the bedrooms as you are too drunk to do it yourself.');
   // TODO-QSP: end
   scene.actions([
@@ -1413,7 +1413,7 @@ function enterBoysSpit(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_kuh_4_${(Math.floor(Math.random() * 2) + 16)}.mp4`);
   scene.text('You spit out the mixture of cum from several guys.');
   // TODO-QSP: dynamic text: "What''s wrong <<$pcs_nickname>>? Didn''t you like it? I thought all girls loved...
-  scene.text(`"What's wrong ${((s as any).pcs_nickname || '')}? Didn't you like it? I thought all girls loved the taste of cum." one of the guys asked you with a laugh.`);
+  scene.text(`"What's wrong ${((s as any).pcs_nickname ?? '')}? Didn't you like it? I thought all girls loved the taste of cum." one of the guys asked you with a laugh.`);
   scene.text('The guys help you back into the apartment and into one of the bedrooms as you are too drunk to do it yourself.');
   // TODO-QSP: end
   scene.actions([
@@ -1486,7 +1486,7 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_manage', '');
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_5_5.jpg');
     // TODO-QSP: dynamic text: As you jerk him off, he moans and sperm starts squirting all over your hands. "O...
-    scene.text(`As you jerk him off, he moans and sperm starts squirting all over your hands. "Ooh ${((st as any).pcs_nickname || '')}, you saved me. But next time, use your mouth." he says with a wink.`);
+    scene.text(`As you jerk him off, he moans and sperm starts squirting all over your hands. "Ooh ${((st as any).pcs_nickname ?? '')}, you saved me. But next time, use your mouth." he says with a wink.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Move away', goto: ['rex_party', 'Toilet'] },
@@ -1501,7 +1501,7 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npcStat', 'A57');
     scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_5_${(Math.floor(Math.random() * 5) + 6)}.jpg`);
     // TODO-QSP: dynamic text: You feel Rex''s hands on your shoulders gently pushing you down. You instantly o...
-    scene.text(`You feel Rex's hands on your shoulders gently pushing you down. You instantly obey and drop to your knees. Once you're level with Rex's ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick, you take his head into your mouth and wrap your lips tightly around his shaft as you begin to suck him off.`);
+    scene.text(`You feel Rex's hands on your shoulders gently pushing you down. You instantly obey and drop to your knees. Once you're level with Rex's ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick, you take his head into your mouth and wrap your lips tightly around his shaft as you begin to suck him off.`);
     scene.text('He moans as you suck his cock. He is already tensing up and you can tell he is already about to cum.');
     qspCall(st, 'arousal', 'bj', 5);
     qspCall(st, 'stat', '');
@@ -1515,9 +1515,9 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_manage', '');
     (st as any).i = (Math.floor(Math.random() * 8) + 11);
     if (((st as any).i ?? 0) === 11) {
-      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_5_${((st as any).i || '')}.mp4`);
+      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_5_${((st as any).i ?? '')}.mp4`);
     } else {
-      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_5_${((st as any).i || '')}.jpg`);
+      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_5_${((st as any).i ?? '')}.jpg`);
     }
     scene.text('You barely have time to pull his cock out of your mouth and a couple of spurts of cum shoot into your mouth, but the rest coats your pretty face. You happily lick his quivering dick, licking the last drops of cum up.');
     qspCall(st, 'arousal', 'end');
@@ -1547,9 +1547,9 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).i = (Math.floor(Math.random() * 4) + 2);
     if (((st as any).i ?? 0) === 2  ||  ((st as any).i ?? 0) === 4) {
-      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_6_${((st as any).i || '')}.mp4`);
+      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_6_${((st as any).i ?? '')}.mp4`);
     } else {
-      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_6_${((st as any).i || '')}.jpg`);
+      scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_6_${((st as any).i ?? '')}.jpg`);
     }
     scene.text('Seeing this little display, you smile and kneel down in front of her and start licking the sperm off her face. Once you have licked it all up, you kiss her. The two of you share a long kiss where you trade the cum back and forth in your mouths before you both end up swallowing a portion of it.');
     scene.text('"So who\'s dick, or should I say dicks, have you been sucking to get all that cum all over you?" you ask with a smile.');
@@ -1585,7 +1585,7 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_7_4.jpg');
     scene.text('Once they finish, you walk in. Ira and Lena look at each other and then smile at you.');
     // TODO-QSP: dynamic text: "Oh, it''s you <<$pcs_nickname>>. Glad it is not some guy. We do not know what w...
-    scene.text(`"Oh, it's you ${((st as any).pcs_nickname || '')}. Glad it is not some guy. We do not know what we would have done with him."`);
+    scene.text(`"Oh, it's you ${((st as any).pcs_nickname ?? '')}. Glad it is not some guy. We do not know what we would have done with him."`);
     scene.text('"Yes, I just wanted to tidy myself up." you say with a slight blush.');
     scene.text('Lena comes up to you and leans in close as she whispers in your ear: "You liked watching what we were doing, right? Stay with us and you\'ll like it even more."');
     scene.actions([
@@ -1608,7 +1608,7 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_7_7.mp4');
     // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, did you like it?"
-    scene.text(`"Well ${((st as any).pcs_nickname || '')}, did you like it?"`);
+    scene.text(`"Well ${((st as any).pcs_nickname ?? '')}, did you like it?"`);
     scene.text('"Oh, that was amazing girls! It makes me think we never need the touch of a man."');
     scene.text('"That\'s for sure! You only need a special girlfriend or girlfriends." Lena and Ira then leave.');
     qspCall(st, 'arousal', 'end');
@@ -1635,9 +1635,9 @@ function enterToiletSexEvents(s: GameState, scene: SceneBuilder): void {
               if (((s as any).temp ?? 0) === 7) {
                 (s as any).i = (Math.floor(Math.random() * 3) + 1);
                 if (((s as any).i ?? 0) === 2) {
-                  scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_8_${((s as any).i || '')}.mp4`);
+                  scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_8_${((s as any).i ?? '')}.mp4`);
                 } else {
-                  scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_8_${((s as any).i || '')}.jpg`);
+                  scene.img(`images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_8_${((s as any).i ?? '')}.jpg`);
                 }
                 scene.text('From the sounds of the groans, moans and cries of passion, the bathroom is in use again. Peeking inside, you see a sweet couple fucking like rabbits.');
                 scene.actions([
@@ -1670,11 +1670,11 @@ function enterToiletMast(s: GameState, scene: SceneBuilder): void {
   (s as any).i = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).i ?? 0) < 3) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/rekshome/part...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_1_${((s as any).i || '')}.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_1_${((s as any).i ?? '')}.jpg"></center>`);
   }
   if (((s as any).i ?? 0) === 3) {
     // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/reside...
-    scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_1_${((s as any).i || '')}.mp4"></video></center>`);
+    scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/rekshome/party/reksparty_party_toilet_1_${((s as any).i ?? '')}.mp4"></video></center>`);
   }
   scene.text('With your arousal overpowering your senses, you can\'t take it anymore. You pull your panties down and rigorously begin rubbing your clit. Once you are good and wet, you slide your fingers inside your pussy and start finger fucking yourself, switching back and forth between rubbing your clit and fucking your fingers until you bring yourself to an orgasm.');
   (s as any).orgasm_or = 'no';

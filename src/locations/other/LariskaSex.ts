@@ -193,7 +193,7 @@ function enterMissGive_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/lariska/sex/home/strapgive_1.jpg');
   scene.text('Lariska lays on her back, opens her legs, and spreads her lower lips, inviting you in. You line the wet dildo up and start pushing it in, making her moan with pleasure.');
   // TODO-QSP: dynamic text: "Oh yes, <<$pcs_nickname>>, I sooo needed this!" You pull out to the tip and sta...
-  scene.text(`"Oh yes, ${((s as any).pcs_nickname || '')}, I sooo needed this!" You pull out to the tip and start easing it back in, taking your time. With each thrust her moans get louder until she is pretty much screaming, so you attack her lips with your own, shoving your tongue into her mouth and effectively shutting her up.`);
+  scene.text(`"Oh yes, ${((s as any).pcs_nickname ?? '')}, I sooo needed this!" You pull out to the tip and start easing it back in, taking your time. With each thrust her moans get louder until she is pretty much screaming, so you attack her lips with your own, shoving your tongue into her mouth and effectively shutting her up.`);
   scene.text('You slide your hands to her breasts and start massaging them in circular motions, stopping to lightly pinch her nipples every now and then. With each pinch, you draw a whimper from her, still muffled with your lips locked together.');
   scene.text('She wraps her arms and legs around you, screaming into your mouth, when she starts to shudder. You don\'t slow down in the slightest, riding her orgasm out until she finally goes still underneath you. Pulling back from your long kiss, you lay your head on her chest until you both manage to catch your breath.');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -312,7 +312,7 @@ function enterAnalDogGive_1(s: GameState, scene: SceneBuilder): void {
   scene.text('Reaching back up to her head, you grab a fistful of hair, focus your right hand onto her clit, and start pounding her ass as hard as you can. The screams she makes make you wonder if all of Pavlovsk can hear her, but you don\'t relent, forcing her closer and closer to an orgasm.');
   scene.text('The multiple sensations of hair pulling, frigging her clit, and fucking her ass prove to be too much, and she lets out one long, loud scream as she starts shaking and flopping around. Keeping her pinned, you ride out the orgasm until she finally stops moving.');
   // TODO-QSP: dynamic text: Pulling out and letting her hair go, you collapse on top of her, both of you str...
-  scene.text(`Pulling out and letting her hair go, you collapse on top of her, both of you struggling for breath, until she slide out from under you and latches her lips to yours. She only stops that long enough to say, "That was great, ${((s as any).pcs_nickname || '')}!"`);
+  scene.text(`Pulling out and letting her hair go, you collapse on top of her, both of you struggling for breath, until she slide out from under you and latches her lips to yours. She only stops that long enough to say, "That was great, ${((s as any).pcs_nickname ?? '')}!"`);
   qspCall(s, 'arousal', 'anal_strap_give', 5, 'lesbian', 'dom');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -387,7 +387,7 @@ function enterMiss_1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Pushing you onto your back, she lifts your legs up and starts teasing your pussy lips with the tip. You look her in the eyes, silently begging her to start fucking you. Getting the unspoken message, she eases her way in a few centimeters, before pulling back out and teasing you some more.');
   // TODO-QSP: dynamic text: "Beg," she says in a somewhat commanding voice. "Please, Lariska, fuck me!" Smil...
-  scene.text(`"Beg," she says in a somewhat commanding voice. "Please, Lariska, fuck me!" Smiling she puts it back in, pushing it in a little more, before pulling back out again. "I can't hear you, ${((s as any).pcs_nickname || '')}!" You scream out, "Please, Lariska, I'm begging you!"`);
+  scene.text(`"Beg," she says in a somewhat commanding voice. "Please, Lariska, fuck me!" Smiling she puts it back in, pushing it in a little more, before pulling back out again. "I can't hear you, ${((s as any).pcs_nickname ?? '')}!" You scream out, "Please, Lariska, I'm begging you!"`);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     scene.text('She pushes the strap-on back inside, and you feel something inside of you rip. You know it was your hymen, you are no longer a virgin.');
   }

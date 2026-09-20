@@ -42,7 +42,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] >= 2  &&  ((s as any).RolanLoc ?? 0)?.[String((s as any).hour ?? 0)] <= 8) {
           scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanwelcome.jpg');
           // TODO-QSP: dynamic text: The door opens, "Welcome, Miss <<$pcs_lastname>>, here, take a seat."
-          scene.text(`The door opens, "Welcome, Miss ${((s as any).pcs_lastname || '')}, here, take a seat."`);
+          scene.text(`The door opens, "Welcome, Miss ${((s as any).pcs_lastname ?? '')}, here, take a seat."`);
           scene.actions([
             { label: 'Enter', goto: ['rolanapt', 'hallway'] },
           ]);
@@ -221,7 +221,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You approach Rolan and kiss him on the cheek, showing kindness to obtain your goal…');
     scene.text('"Hi, Rolan…"');
     // TODO-QSP: dynamic text: You caught him by surprise… "I-I-Hi… Miss <<$pcs_lastname>>…"
-    scene.text(`You caught him by surprise… "I-I-Hi… Miss ${((st as any).pcs_lastname || '')}…"`);
+    scene.text(`You caught him by surprise… "I-I-Hi… Miss ${((st as any).pcs_lastname ?? '')}…"`);
     scene.actions([
       { label: 'Continue', goto: ['rolanapt', 'worker'] },
     ]);
@@ -272,21 +272,21 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/bread0.jpg');
     scene.text('"We need to talk."');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, I swear I''ve done nothing wrong!"
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, I swear I've done nothing wrong!"`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, I swear I've done nothing wrong!"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Intro</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/intro0.jpg');
     scene.text('"Ah, silly boy! I\'m not angry, I just want to help you learn how to cook. You need a gentle hand to guide you through it!"');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, do not worry, it''s not necessary, I can take care of m...
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, do not worry, it's not necessary, I can take care of myself."`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, do not worry, it's not necessary, I can take care of myself."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Intro</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/intro1.jpg');
     scene.text('"So it seems, but you need some lessons if you want to stay healthy."');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, really this is not necessary. I usually cook for the we...
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, really this is not necessary. I usually cook for the week, I'm not a pro but I'm satisfied with my skill…"`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, really this is not necessary. I usually cook for the week, I'm not a pro but I'm satisfied with my skill…"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Intro</b></center>');
@@ -390,7 +390,7 @@ function enterHolodil(s: GameState, scene: SceneBuilder): void {
     (s as any).r_pusto = '<center><img ' + ((s as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/kitch/selfservice\' + rand(0, 8) + \'.jpg"></center><br>You open the fridge and see:';
   }
   // TODO-QSP: dynamic text: <<$r_pusto>><br><<$r_kvass>><<$r_guavacoco>><<$r_sup>>
-  scene.text(`${((s as any).r_pusto || '')}<br>${((s as any).r_kvass || '')}${((s as any).r_guavacoco || '')}${((s as any).r_sup || '')}`);
+  scene.text(`${((s as any).r_pusto ?? '')}<br>${((s as any).r_kvass ?? '')}${((s as any).r_guavacoco ?? '')}${((s as any).r_sup ?? '')}`);
   if (((s as any).guavacoco_count ?? 0) > 0) {
     scene.actions([
       { label: 'Have a guavacoco', handler: (st: GameState) => {
@@ -653,7 +653,7 @@ function enterKuhBuh(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/rolanapple0.jpg');
   // TODO-QSP: dynamic text: "Hello Miss <<$pcs_lastname>>! Great day, isn''t it?" he shouts cheerfully.
-  scene.text(`"Hello Miss ${((s as any).pcs_lastname || '')}! Great day, isn't it?" he shouts cheerfully.`);
+  scene.text(`"Hello Miss ${((s as any).pcs_lastname ?? '')}! Great day, isn't it?" he shouts cheerfully.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave him alone', goto: ['rolanapt', 'kitchen'] },
@@ -675,7 +675,7 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/rolanapple1.jpg');
   // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, would you be so kind as to help an old man"?
-  scene.text(`"Miss ${((s as any).pcs_lastname || '')}, would you be so kind as to help an old man"?`);
+  scene.text(`"Miss ${((s as any).pcs_lastname ?? '')}, would you be so kind as to help an old man"?`);
   (s as any).rollrolan = (Math.floor(Math.random() * 4) + 1);
   // TODO-QSP: end
   scene.actions([
@@ -695,7 +695,7 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
         scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/guavacoco' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
         // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, could you bring me a guavacoco? My throath is dry…"
-        scene.text(`"Miss ${((st as any).pcs_lastname || '')}, could you bring me a guavacoco? My throath is dry…"`);
+        scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, could you bring me a guavacoco? My throath is dry…"`);
         scene.actions([
           { label: 'Continue', goto: ['rolanapt', 'kuh_buh'] },
         ]);
@@ -705,7 +705,7 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'stat', '');
           scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/kvass' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
           // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, please take some kvass beer, I''m more than happy to sh...
-          scene.text(`"Miss ${((st as any).pcs_lastname || '')}, please take some kvass beer, I'm more than happy to share some with you." You take some kvass beer and go to sit near him. "Lately our courtyard is more crowded than ever…" `);
+          scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, please take some kvass beer, I'm more than happy to share some with you." You take some kvass beer and go to sit near him. "Lately our courtyard is more crowded than ever…" `);
           scene.actions([
             { label: 'Continue', goto: ['rolanapt', 'kuh_buh'] },
           ]);
@@ -714,7 +714,7 @@ function enterBend(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'stat', '');
           scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/oven' + (Math.floor(Math.random() * 4) + 0) + '.jpg');
           // TODO-QSP: dynamic text: "Could you check the oven please? I haven''t finished eating." You go to check R...
-          scene.text(`"Could you check the oven please? I haven't finished eating." You go to check Rolan's oven and he starts to speak, "Times are strange, Miss ${((st as any).pcs_lastname || '')}, times are really strange…"`);
+          scene.text(`"Could you check the oven please? I haven't finished eating." You go to check Rolan's oven and he starts to speak, "Times are strange, Miss ${((st as any).pcs_lastname ?? '')}, times are really strange…"`);
           scene.actions([
             { label: 'Continue', goto: ['rolanapt', 'kuh_buh'] },
           ]);
@@ -733,7 +733,7 @@ function enterKuhbaz(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolankuhbusy.jpg');
     // TODO-QSP: dynamic text: "Sorry Miss <<$pcs_lastname>>, I have to cook. Maybe we can chat some more later...
-    scene.text(`"Sorry Miss ${((s as any).pcs_lastname || '')}, I have to cook. Maybe we can chat some more later!"`);
+    scene.text(`"Sorry Miss ${((s as any).pcs_lastname ?? '')}, I have to cook. Maybe we can chat some more later!"`);
     scene.actions([
       { label: 'Return to the hallway', goto: ['rolanapt', 'hallway'] },
     ]);
@@ -770,11 +770,11 @@ function enterKuhbaz(s: GameState, scene: SceneBuilder): void {
       (s as any).rolan_textb_kuh = 'Rolan tells you he saw Anushka and Alyona kissing on the playground, in the apartment courtyard. He thinks it is very unbecoming of them, they should be with men.';
     }
     // TODO-QSP: dynamic text: <br><<$rolan_imgb_kuh>><br>
-    scene.text(`<br>${((s as any).rolan_imgb_kuh || '')}<br>`);
+    scene.text(`<br>${((s as any).rolan_imgb_kuh ?? '')}<br>`);
     // TODO-QSP: dynamic text: <br><<$rolan_textb_kuh>><br>
-    scene.text(`<br>${((s as any).rolan_textb_kuh || '')}<br>`);
+    scene.text(`<br>${((s as any).rolan_textb_kuh ?? '')}<br>`);
     // TODO-QSP: dynamic text: "Sure Miss <<$pcs_lastname>>, tell me!"
-    scene.text(`"Sure Miss ${((s as any).pcs_lastname || '')}, tell me!"`);
+    scene.text(`"Sure Miss ${((s as any).pcs_lastname ?? '')}, tell me!"`);
     scene.actions([
       { label: 'Chat some more', goto: ['rolanapt', 'kuhbaz'] },
     ]);
@@ -872,7 +872,7 @@ function enterDrawer(s: GameState, scene: SceneBuilder): void {
       (st as any).rolan_pantpic_baz = '<center><img ' + ((st as any).set_imgh ?? 0) + ' src="images/locations/pavlovsk/resident/apartment/aptrolan/drawer/collection5.jpg"></center>';
     }
     // TODO-QSP: dynamic text: <br><<$rolan_pantext_baz>><br>
-    scene.text(`<br>${((st as any).rolan_pantext_baz || '')}<br>`);
+    scene.text(`<br>${((st as any).rolan_pantext_baz ?? '')}<br>`);
     scene.actions([
       { label: 'Stop snooping', goto: ['rolanapt', 'room'] },
     ]);
@@ -896,7 +896,7 @@ function enterMypanty(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/headrol.jpg');
     scene.text('You decide to confront Rolan with your discovery. "So the rumors at school are true. You really are a panty thief…"');
     // TODO-QSP: dynamic text: Rolan''s eyes drop to the floor. "Miss <<$pcs_lastname>>, I don''t know what you...
-    scene.text(`Rolan's eyes drop to the floor. "Miss ${((s as any).pcs_lastname || '')}, I don't know what you're talking about…"`);
+    scene.text(`Rolan's eyes drop to the floor. "Miss ${((s as any).pcs_lastname ?? '')}, I don't know what you're talking about…"`);
     scene.text('"Oh is that so? Hmm, let\'s play a game…" Rolan suddenly looks up at you.');
     scene.actions([
       { label: 'Take off your panties', handler: (st: GameState) => {
@@ -905,7 +905,7 @@ function enterMypanty(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Guilty</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/drawer/pant.mp4');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>… what are you doing?"
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}… what are you doing?"`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}… what are you doing?"`);
     scene.actions([
       { label: 'Explain the rules', handler: (st: GameState) => {
     scene.text('<center><b>I want my panties back</b></center>');
@@ -924,7 +924,7 @@ function enterMypanty(s: GameState, scene: SceneBuilder): void {
     scene.text('Suddenly, Rolan rushes over to you and snatches the panties from the floor. "What? Hey, how did he… It seems I don\'t need to continue with the rules…"');
     scene.text('"Rolan?"');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>…"
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}…"`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}…"`);
     scene.text('"ROLAN?"');
     scene.text('"I\'m sorry…"');
     scene.actions([
@@ -937,14 +937,14 @@ function enterMypanty(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/drawer/pant2.jpg');
     scene.text('"It\'s okay, Rolan."');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>…"
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}…"`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}…"`);
     scene.text('"I\'m serious, Rolan. It\'s okay. I don\'t want to push you so I won\'t ask. It\'s just… why did you lie to me? I thought we were friends."');
     scene.text('Rolan starts to speak in a feeble voice, "It\'s stronger than me! I mean I don\'t own panties… they own me!" You see he is on the verge of tears.');
     scene.text('You speak up before he can break, "Rolan, I said I won\'t ask. I don\'t know if you want some help from me or what type of help I can give, but if I can do something I will."');
     // TODO-QSP: dynamic text: Rolan extends his hand to you, attempting to give your panties back to you, but ...
-    scene.text(`Rolan extends his hand to you, attempting to give your panties back to you, but you raise your hand. "You know what? You can have them… We are friends and friends usually exchange gifts. So consider this is a gift from your friend ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`Rolan extends his hand to you, attempting to give your panties back to you, but you raise your hand. "You know what? You can have them… We are friends and friends usually exchange gifts. So consider this is a gift from your friend ${((st as any).pcs_nickname ?? '')}."`);
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>…"
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}…"`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}…"`);
     scene.actions([
       { label: 'Leave', goto: ['rolanapt', 'room'] },
     ]);
@@ -956,7 +956,7 @@ function enterMypanty(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/drawer/pant4.jpg');
     scene.text('You raise your voice, "What are you, a fucking perv?"');
     // TODO-QSP: dynamic text: Rolan''s eyes drop back to the floor. "Miss <<$pcs_lastname>>, …I''m sorry!"
-    scene.text(`Rolan's eyes drop back to the floor. "Miss ${((st as any).pcs_lastname || '')}, …I'm sorry!"`);
+    scene.text(`Rolan's eyes drop back to the floor. "Miss ${((st as any).pcs_lastname ?? '')}, …I'm sorry!"`);
     scene.text('"I\'m really disappointed in you, Rolan, and too angry to speak. I\'m going to correct your bad behaviour, no matter what. I don\'t want to see your face today, I\'m so mad at you! We\'ll discuss this another time."');
     scene.text('You are very angry and decide to leave for now.');
     scene.actions([
@@ -980,7 +980,7 @@ function enterMypanty(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/headrol.jpg');
     scene.text('"So it\'s true. The rumors at school? You really are a panty thief!"');
     // TODO-QSP: dynamic text: Rolan eyes you suspiciously, "Miss <<$pcs_lastname>>, I have no idea what you''r...
-    scene.text(`Rolan eyes you suspiciously, "Miss ${((s as any).pcs_lastname || '')}, I have no idea what you're talking about."`);
+    scene.text(`Rolan eyes you suspiciously, "Miss ${((s as any).pcs_lastname ?? '')}, I have no idea what you're talking about."`);
     scene.actions([
       { label: 'Move away from Rolan', goto: ['rolanapt', 'hallway'] },
     ]);
@@ -998,7 +998,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Introduction course</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/intro/intro0.jpg');
     // TODO-QSP: dynamic text: "O-okay, Miss <<$pcs_lastname>>, please don''t get mad."
-    scene.text(`"O-okay, Miss ${((s as any).pcs_lastname || '')}, please don't get mad."`);
+    scene.text(`"O-okay, Miss ${((s as any).pcs_lastname ?? '')}, please don't get mad."`);
     scene.text('"Oh, I\'m not getting mad. When I get mad, you\'ll know it. So now let\'s get started."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1022,7 +1022,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/intro/intro4.jpg');
     scene.text('"You\'re a good listener, Rolan. I didn\'t expect you to be interested in cleaning considering the state of your kitchen, but I have to reconsider my plans. Do you want to ask me something? I\'m more than happy to explain"');
     // TODO-QSP: dynamic text: Rolan''s eyes have wandered down to your chest. "M-miss <<$pcs_lastname>>, y-you...
-    scene.text(`Rolan's eyes have wandered down to your chest. "M-miss ${((st as any).pcs_lastname || '')}, y-your… br-br-bre-brea…"`);
+    scene.text(`Rolan's eyes have wandered down to your chest. "M-miss ${((st as any).pcs_lastname ?? '')}, y-your… br-br-bre-brea…"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Introduction course</b></center>');
@@ -1034,7 +1034,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/intro/intro6.jpg');
     scene.text('You pull your shirt back up, "But we don\'t want a distraction, or we\'ll never be able to finish!"');
     // TODO-QSP: dynamic text: "Yes, Miss <<$pcs_lastname>>," mumbles, disappointedly.
-    scene.text(`"Yes, Miss ${((st as any).pcs_lastname || '')}," mumbles, disappointedly.`);
+    scene.text(`"Yes, Miss ${((st as any).pcs_lastname ?? '')}," mumbles, disappointedly.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Introduction course</b></center>');
@@ -1059,7 +1059,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, I use them for frying about once a month or so. And I didn\'t want to throw out the leftover oil…"');
     scene.text('"Rolan!" you exclaim. "You can\'t keep using the same oil over and over! It\'s not healthy! And it will stink up your kitchen."');
     // TODO-QSP: dynamic text: "Oh, alright, Miss <<$pcs_lastname>>."
-    scene.text(`"Oh, alright, Miss ${((st as any).pcs_lastname || '')}."`);
+    scene.text(`"Oh, alright, Miss ${((st as any).pcs_lastname ?? '')}."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Introduction course</b></center>');
@@ -1093,7 +1093,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/intro/intro16.jpg');
     scene.text('"I think that\'s enough for today. Do you have any questions about what we\'ve discussed, Rolan?"');
     // TODO-QSP: dynamic text: "No, no, Miss <<$pcs_lastname>>, I think I got it," Rolan says to you with a war...
-    scene.text(`"No, no, Miss ${((st as any).pcs_lastname || '')}, I think I got it," Rolan says to you with a warm smile.`);
+    scene.text(`"No, no, Miss ${((st as any).pcs_lastname ?? '')}, I think I got it," Rolan says to you with a warm smile.`);
     scene.text('"Okay, then. In that case, I will give you a shopping list for our next lesson."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1101,7 +1101,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/intro/intro17.jpg');
     scene.text('"Hmm, I think we should make a borscht. Yes, that\'s it! Let\'s see," you begin to make a list of ingredients. "Of course, we\'ll need vegetable broth, beets, carrots, onions, tomatoes, cabbage, some salt, lemon juice, pepper and sour cream. Yes, I think that\'s everything. Okay Rolan get those ingredients soon."');
     // TODO-QSP: dynamic text: "Alright Miss <<$pcs_lastname>>, I''ll try."
-    scene.text(`"Alright Miss ${((st as any).pcs_lastname || '')}, I'll try."`);
+    scene.text(`"Alright Miss ${((st as any).pcs_lastname ?? '')}, I'll try."`);
     scene.text('"Good, I\'ll make you a better cook in no time! You\'ll see!"');
     scene.actions([
       { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
@@ -1310,7 +1310,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/russalad/oliver2.jpg');
     scene.text('"We can add these straight to the water, we\'ll dice them up later so it\'ll be a bit easier this time. That\'ll need about 20 minutes, so Rolan?"');
     // TODO-QSP: dynamic text: "Yes, Miss <<$pcs_lastname>>?"
-    scene.text(`"Yes, Miss ${((st as any).pcs_lastname || '')}?"`);
+    scene.text(`"Yes, Miss ${((st as any).pcs_lastname ?? '')}?"`);
     scene.text('"Go ahead and crack some eggs into that bowl, we\'ll get started on the mayonnaise."');
     scene.text('"Sure, just give me a moment." Rolan leaves the kitchen but returns almost immediately.');
     scene.actions([
@@ -1353,10 +1353,10 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/russalad/oliver9.jpg');
     scene.text('You return to the kitchen a few minutes later. You\'ve removed your clothes and replaced them with only an apron, "Here, what do you think?"');
     // TODO-QSP: dynamic text: Rolan looks you over, "Uh, um, you, uh, look go-great as always, Miss <<$pcs_las...
-    scene.text(`Rolan looks you over, "Uh, um, you, uh, look go-great as always, Miss ${((st as any).pcs_lastname || '')}!"`);
+    scene.text(`Rolan looks you over, "Uh, um, you, uh, look go-great as always, Miss ${((st as any).pcs_lastname ?? '')}!"`);
     scene.text('"Thanks, Rolan!" You wink at him, "You know girls love compliments almost as much as man who cooks!"');
     // TODO-QSP: dynamic text: He looks a bit flustered, "Uhh, sure, Miss <<$pcs_lastname>>… whatever you say."
-    scene.text(`He looks a bit flustered, "Uhh, sure, Miss ${((st as any).pcs_lastname || '')}… whatever you say."`);
+    scene.text(`He looks a bit flustered, "Uhh, sure, Miss ${((st as any).pcs_lastname ?? '')}… whatever you say."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Olivier Salad</b></center>');
@@ -1391,7 +1391,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/russalad/oliver15.jpg');
     scene.text('"Rolan, you don\'t mind if I leave my leg up like this, do you?"');
     // TODO-QSP: dynamic text: He takes a long breath, "N-no, Miss <<$pcs_lastname>>. I-I don''t mind at all…"
-    scene.text(`He takes a long breath, "N-no, Miss ${((st as any).pcs_lastname || '')}. I-I don't mind at all…"`);
+    scene.text(`He takes a long breath, "N-no, Miss ${((st as any).pcs_lastname ?? '')}. I-I don't mind at all…"`);
     scene.text('"Thank you. I need to let my panties dry out. I don\'t want to catch a cold and miss our days together."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1490,7 +1490,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/fridge4.jpg');
           scene.text('"I think today, I\'ll show you one of my favorite breakfast foods: blini! It\'s quite simple, and you should already have the basic ingredients." You poke through the kitchen, "Eggs, milk, flour, sugar, salt, oil…"');
           // TODO-QSP: dynamic text: Rolan speaks up, "Miss <<$pcs_lastname>>, can we postpone this for now? I''m a b...
-          scene.text(`Rolan speaks up, "Miss ${((s as any).pcs_lastname || '')}, can we postpone this for now? I'm a bit tired today…"`);
+          scene.text(`Rolan speaks up, "Miss ${((s as any).pcs_lastname ?? '')}, can we postpone this for now? I'm a bit tired today…"`);
           scene.text('"That\'s perfect. They are supposed to be eaten when you wake up. And think, what girl wouldn\'t love to wake up to blini made by a wonderful man, after a passionate night of lovemaking?"');
           scene.text('Rolan seems to be at a loss for words.');
           scene.actions([
@@ -1538,7 +1538,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>Now do a barrel roll.</b></center>');
       scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/blini/flipag40.mp4');
       // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>! Wow! I didn''t expect that!"
-      scene.text(`"Miss ${((st as any).pcs_lastname || '')}! Wow! I didn't expect that!"`);
+      scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}! Wow! I didn't expect that!"`);
       scene.text('You wink at him, "Pretty soon, you\'ll be able to do this as well. All the girls will be flocking here for breakfast!"');
     } else {
       if (((st as any).pcs_agil ?? 0) >= 60) {
@@ -1551,7 +1551,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/blini/blini8.jpg');
     scene.text('You stare at Rolan in amusement, "What? Cat got your tongue?"');
     // TODO-QSP: dynamic text: Rolan stammers, "M-miss <<$pcs_lastname>>… I-I… wow…"
-    scene.text(`Rolan stammers, "M-miss ${((st as any).pcs_lastname || '')}… I-I… wow…"`);
+    scene.text(`Rolan stammers, "M-miss ${((st as any).pcs_lastname ?? '')}… I-I… wow…"`);
     scene.text('You laugh, "Oh, I guess you\'ll be taking our lessons a little more seriously now?"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1559,14 +1559,14 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/blini/blini.jpg');
     scene.text('You hand Rolan a prepared plate, "Here are the blini. You can serve them with cream and jam. Enjoy, sleepyhead!"');
     // TODO-QSP: dynamic text: Rolan eyes his plate, "Miss <<$pcs_lastname>>, they look delicious!"
-    scene.text(`Rolan eyes his plate, "Miss ${((st as any).pcs_lastname || '')}, they look delicious!"`);
+    scene.text(`Rolan eyes his plate, "Miss ${((st as any).pcs_lastname ?? '')}, they look delicious!"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Blini</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/dishes3.jpg');
     scene.text('"Rolan, please remember to clean up the kitchen after you finish eating!"');
     // TODO-QSP: dynamic text: Mouth stuffed, he responds. "I''ll try miss <<$pcs_lastname>>…"
-    scene.text(`Mouth stuffed, he responds. "I'll try miss ${((st as any).pcs_lastname || '')}…"`);
+    scene.text(`Mouth stuffed, he responds. "I'll try miss ${((st as any).pcs_lastname ?? '')}…"`);
     scene.text('You don\'t hear too much conviction in Rolan\'s words while he eats his blini. You doubt he\'ll even put his plate away…');
     scene.actions([
       { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
@@ -1586,7 +1586,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Blini</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/blini/blini7.jpg');
     // TODO-QSP: dynamic text: Rolan asks in a mocking tone, "Miss <<$pcs_lastname>>… are you sure you''ve done...
-    scene.text(`Rolan asks in a mocking tone, "Miss ${((st as any).pcs_lastname || '')}… are you sure you've done this before?"`);
+    scene.text(`Rolan asks in a mocking tone, "Miss ${((st as any).pcs_lastname ?? '')}… are you sure you've done this before?"`);
     scene.text('You try to save face, "Yes, yes, yes! I just, uh, wanted to show <b>YOU</b> what <b>NOT</b> to do. Haha, yeah, that\'s right!"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1594,14 +1594,14 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/blini/blini.jpg');
     scene.text('A few minutes later, you\'ve prepared another blini. You didn\'t bother to show off this time. "Here are our pancakes. You can serve them with cream and jam. Here try these sleepy head."');
     // TODO-QSP: dynamic text: Rolan eyes his plate, "Miss <<$pcs_lastname>>, they look delicious!"
-    scene.text(`Rolan eyes his plate, "Miss ${((st as any).pcs_lastname || '')}, they look delicious!"`);
+    scene.text(`Rolan eyes his plate, "Miss ${((st as any).pcs_lastname ?? '')}, they look delicious!"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Blini</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/dishes3.jpg');
     scene.text('"Rolan, please remember to clean up the kitchen after you finish eating!"');
     // TODO-QSP: dynamic text: Mouth stuffed, he responds. "I''ll try miss <<$pcs_lastname>>…"
-    scene.text(`Mouth stuffed, he responds. "I'll try miss ${((st as any).pcs_lastname || '')}…"`);
+    scene.text(`Mouth stuffed, he responds. "I'll try miss ${((st as any).pcs_lastname ?? '')}…"`);
     scene.text('You don\'t hear too much conviction in Rolan\'s words while he eats his blini. You doubt he\'ll even put his plate away…');
     scene.actions([
       { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
@@ -1620,14 +1620,14 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/blini/blini.jpg');
     scene.text('You hand Rolan a prepared plate, "Here are the blini. You can serve them with cream and jam. Enjoy, sleepyhead!"');
     // TODO-QSP: dynamic text: Rolan eyes his plate, "Miss <<$pcs_lastname>>, they look delicious!"
-    scene.text(`Rolan eyes his plate, "Miss ${((st as any).pcs_lastname || '')}, they look delicious!"`);
+    scene.text(`Rolan eyes his plate, "Miss ${((st as any).pcs_lastname ?? '')}, they look delicious!"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Blini</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/dishes3.jpg');
     scene.text('"Rolan, please remember to clean up the kitchen after you finish eating!"');
     // TODO-QSP: dynamic text: Mouth stuffed, he responds. "I''ll try miss <<$pcs_lastname>>…"
-    scene.text(`Mouth stuffed, he responds. "I'll try miss ${((st as any).pcs_lastname || '')}…"`);
+    scene.text(`Mouth stuffed, he responds. "I'll try miss ${((st as any).pcs_lastname ?? '')}…"`);
     scene.text('You don\'t hear too much conviction in Rolan\'s words while he eats his blini. You doubt he\'ll even put his plate away…');
     scene.actions([
       { label: 'Leave the room', goto: ['rolanapt', 'hallway'] },
@@ -1690,7 +1690,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.text('"Are we mixing with our hands, like last time?"');
     scene.text('You nod, "Yup, just like our blini batter, we need to ensure the quality of our bread dough. For a beginner, it\'s better to have that hands-on approach."');
     // TODO-QSP: dynamic text: He nods along, "Of course, Miss <<$pcs_lastname>>."
-    scene.text(`He nods along, "Of course, Miss ${((st as any).pcs_lastname || '')}."`);
+    scene.text(`He nods along, "Of course, Miss ${((st as any).pcs_lastname ?? '')}."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
@@ -1748,7 +1748,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/blackbread/blackb9.jpg');
     scene.text('You re-enter the kitchen and you see Rolan removing the bread from the oven. It smells delicious. "I\'m back! We\'ll put the bread on a rack so it can cool."');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, is it ready to eat? I''m quite hungry after all this wa...
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, is it ready to eat? I'm quite hungry after all this waiting…"`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, is it ready to eat? I'm quite hungry after all this waiting…"`);
     scene.text('You lightly admonish him, "It\'s almost done, Rolan. You need to be patient!"');
     scene.text('"Alright…"');
     scene.actions([
@@ -1801,7 +1801,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
               scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/fridge1.jpg');
               scene.text('"Okay Rolan, this is it. Our last cooking lesson. After this, I think you should be able to handle anything else on your own, but don\'t be afraid to ask me for help if you need it." You give him an assuring smile. "But first, do you have something I could wear? The aprons are still drying from last time. I can\'t believe you forgot to wash them! Or were you hoping I\'d go without this time, you naughty old man…"');
               // TODO-QSP: dynamic text: "No, no, of course not, Miss <<$pcs_lastname>>! I honestly forgot! I should have...
-              scene.text(`"No, no, of course not, Miss ${((s as any).pcs_lastname || '')}! I honestly forgot! I should have something you could wear, just give me one moment, please!" He hurries out of the room. You start gathering ingredients.`);
+              scene.text(`"No, no, of course not, Miss ${((s as any).pcs_lastname ?? '')}! I honestly forgot! I should have something you could wear, just give me one moment, please!" He hurries out of the room. You start gathering ingredients.`);
               scene.actions([
                 { label: 'Continue', handler: (st: GameState) => {
     scene.text('<center><b>Stroganoff</b></center>');
@@ -1814,7 +1814,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Stroganoff</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/stroganoff/stroganoff1.jpg');
     // TODO-QSP: dynamic text: "Well, it''s just that, Miss <<$pcs_lastname>>…" He seems hesitant to continue, ...
-    scene.text(`"Well, it's just that, Miss ${((st as any).pcs_lastname || '')}…" He seems hesitant to continue, "I thought you were vegetarian or something…"`);
+    scene.text(`"Well, it's just that, Miss ${((st as any).pcs_lastname ?? '')}…" He seems hesitant to continue, "I thought you were vegetarian or something…"`);
     scene.text('You look at him curiously, "Hmm? No, why would you think that?"');
     scene.text('"Ah, well, it\'s just that our other lessons were loaded with vegetables and we haven\'t touched meat so far…"');
     scene.text('"Oh, that\'s just because we needed to work our way up. It\'s much easier to work with vegetables to start with. I wouldn\'t expect you to live off only bread and vegetables. You\'re a man, not a rabbit, after all!" You laugh remembering your earlier lessons.');
@@ -1877,7 +1877,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/stroganoff/stroganoff10.jpg');
     scene.text('"There, now we\'re free to focus on the food."');
     // TODO-QSP: dynamic text: "P-please… M-miss <<$pcs_lastname>>… i-it''s worse…"
-    scene.text(`"P-please… M-miss ${((st as any).pcs_lastname || '')}… i-it's worse…"`);
+    scene.text(`"P-please… M-miss ${((st as any).pcs_lastname ?? '')}… i-it's worse…"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
@@ -1944,7 +1944,7 @@ function enterChef(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/kitch/lesson/stroganoff/stroganoff15.jpg');
     scene.text('"It\'s okay, Rolan. But we should get back to our cooking."');
     // TODO-QSP: dynamic text: "Thank you, Miss <<$pcs_lastname>>, I''ll try not to get distracted again."
-    scene.text(`"Thank you, Miss ${((st as any).pcs_lastname || '')}, I'll try not to get distracted again."`);
+    scene.text(`"Thank you, Miss ${((st as any).pcs_lastname ?? '')}, I'll try not to get distracted again."`);
     scene.text('You turn your attention back to the stove, "Okay, so… where were we?"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -2018,7 +2018,7 @@ function enterWorker(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Chat</b></center>');
     scene.img('images/locations/pavlovsk/resident/apartment/aptrolan/rolanwelcome.jpg');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, I have thought about it. But I don''t have the money to...
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, I have thought about it. But I don't have the money to pay anyone to work on my home and I also don't have all the know-how to do it myself."`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, I have thought about it. But I don't have the money to pay anyone to work on my home and I also don't have all the know-how to do it myself."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;

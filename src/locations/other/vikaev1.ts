@@ -104,7 +104,7 @@ function enterBVikaPresent_3(s: GameState, scene: SceneBuilder): void {
 
 function enterBVikaPresentBlow(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = (Math.floor(Math.random() * 4) + 1);
-  scene.img(`images/characters/city/university/girl/vika/sex/b_present_blow${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/university/girl/vika/sex/b_present_blow${((s as any).picrand ?? '')}.jpg`);
   scene.text('You get down on your knees and are instantly surrounded on all sides by large, rock-hard cocks.');
   scene.text('You grab the closest one, giving it a lick then wrapping your lips around it and swallowing it. You savor and enjoy the strangers cock, playing with his head and using your tongue to carefully lick every centimeter of his shaft.');
   scene.text('The other men put their cocks right in front of you. You grab two of them and begin slowly jerking them off.');
@@ -120,7 +120,7 @@ function enterBVikaPresentBlow(s: GameState, scene: SceneBuilder): void {
 
 function enterBVikaPresentBlow1(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = (Math.floor(Math.random() * 4) + 1);
-  scene.img(`images/characters/city/university/girl/vika/sex/b_present_blow${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/university/girl/vika/sex/b_present_blow${((s as any).picrand ?? '')}.jpg`);
   scene.text('Trying your best to appease everyone, you make sure that no cock gets left out, but one of the men is clearly irritated that he has to wait for his turn; he shoves his cock in your mouth and forces his way down your throat, making you choke.');
   scene.text('The rest, seeing that you\'re not resisting, join in. Before you know it, your mouth is being fucked by all of them in turn.');
   qspCall(s, 'arousal', 'bj', 10, 'gangbang', 'deepthroat', 'rough');
@@ -180,7 +180,7 @@ function enterBVikaPresentSex1(s: GameState, scene: SceneBuilder): void {
 function enterBVikaPresentSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 8) + 1);
-  scene.img(`images/characters/city/university/girl/vika/sex/b_present_dp${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/university/girl/vika/sex/b_present_dp${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).picrand ?? 0) < 3) {
     scene.text('They make you ride one of the men\'s cock while another guy standing behind you spreads your ass cheeks and slowly enters you. It takes a while until they\'re able to sync their movements, but as soon they get a good rhythm going, you feel a surge come upon you and start moaning loudly.');
     scene.text('They don\'t let you moan too long as a third guy steps in front of you and shoves his cock deep into your throat. Your sounds are muffled thanks to his constant thrusting, and you do your best to focus on pleasing him.');

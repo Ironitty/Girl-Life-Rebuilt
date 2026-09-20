@@ -219,7 +219,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_train_hall', ''] },
     ]);
-  } },,
+  } },
 { label: 'Suck up to Vera', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'npc_relationship', 'modify', 'A27', 1);
@@ -274,7 +274,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
       if (((st as any).veraboyrand ?? 0) <0) {
         scene.img('images/characters/pavlovsk/resident/vera/verasmoke.jpg');
         // TODO-QSP: dynamic text: Vera lets out a wistful sigh and shrugs. "I don''t know, <<$pcs_nickname>>. I do...
-        scene.text(`Vera lets out a wistful sigh and shrugs. "I don't know, ${((st as any).pcs_nickname || '')}. I don't feel like talking about the past right now."`);
+        scene.text(`Vera lets out a wistful sigh and shrugs. "I don't know, ${((st as any).pcs_nickname ?? '')}. I don't feel like talking about the past right now."`);
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -417,7 +417,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/vera/verasmoke.jpg');
     scene.text('You can\'t hide your disgust. "Anal sex?" you exclaim. "Urgh! That\'s disgusting!"');
     // TODO-QSP: dynamic text: Vera just gives you a disappointed look before she grins. "Oh dear… <<$pcs_nickn...
-    scene.text(`Vera just gives you a disappointed look before she grins. "Oh dear… ${((st as any).pcs_nickname || '')}, you're such a prude!"`);
+    scene.text(`Vera just gives you a disappointed look before she grins. "Oh dear… ${((st as any).pcs_nickname ?? '')}, you're such a prude!"`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -521,7 +521,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/vera/verasmoke.jpg');
     scene.text('You shake your head in disbelief. "Wow… It sounds like you finally met a good guy. I can\'t believe you let him go!"');
     // TODO-QSP: dynamic text: "Hardly!" she haughtily replies. "He never lasted long in bed. He''d get on top ...
-    scene.text(`"Hardly!" she haughtily replies. "He never lasted long in bed. He'd get on top of me and finish within 30 seconds! The few times I got him to lick me, he never even got close to my asshole. He pretended it wasn't even there! There were so many times I just wanted to beg him to fuck my ass hard and make me cum! You'll see what I mean, ${((st as any).pcs_nickname || '')}. If your man doesn't want to try things, you'll remember this conversation, and you'll realize that I'm right. Life is too short to spend with a man who doesn't satisfy you."`);
+    scene.text(`"Hardly!" she haughtily replies. "He never lasted long in bed. He'd get on top of me and finish within 30 seconds! The few times I got him to lick me, he never even got close to my asshole. He pretended it wasn't even there! There were so many times I just wanted to beg him to fuck my ass hard and make me cum! You'll see what I mean, ${((st as any).pcs_nickname ?? '')}. If your man doesn't want to try things, you'll remember this conversation, and you'll realize that I'm right. Life is too short to spend with a man who doesn't satisfy you."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -547,7 +547,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
                       scene.img('images/characters/pavlovsk/resident/vera/sex/bvtalk8.jpg');
                       scene.text('Vera tells you the last part of her sexual history. You can tell she\'s not proud of it, but nevertheless she begins. "After I graduated from college and broke up with Sasha, I had to make a choice: return to the village and tend to some boring cows until I die, or somehow make it in the city. I decided to do the one thing I was good at: have sex. For money. Yeah, you heard me right… I became a prostitute."');
                       // TODO-QSP: dynamic text: "I figured I would only do it for a little while, earn some money to find my own...
-                      scene.text(`"I figured I would only do it for a little while, earn some money to find my own place, get a good job and stop there. That's not what happened. I ended up in an illegal brothel where the owner took my passport and wouldn't even let me out to buy cigarettes. Several people would come to fuck me every day. Saturdays were the worst. He'd rent me out to a group of criminals regularly who would fuck me all night and stick beer bottles in my pussy and anus by the end of the night, when they no longer wanted me. It was hell, ${((st as any).pcs_nickname || '')}!"`);
+                      scene.text(`"I figured I would only do it for a little while, earn some money to find my own place, get a good job and stop there. That's not what happened. I ended up in an illegal brothel where the owner took my passport and wouldn't even let me out to buy cigarettes. Several people would come to fuck me every day. Saturdays were the worst. He'd rent me out to a group of criminals regularly who would fuck me all night and stick beer bottles in my pussy and anus by the end of the night, when they no longer wanted me. It was hell, ${((st as any).pcs_nickname ?? '')}!"`);
                       scene.text('"I don\'t know what would\'ve happened to me if the police didn\'t raid the brothel that one night, about a year after I got there. I might\'ve ended up dead in a ditch somewhere. I spent a few weeks in prison, but after that the court only gave me a fine and released me. With the money I had saved up, I moved to Pavlovsk, where I met Anatoly and settled down with him. It\'s not the life I had in mind for myself, but… It wasn\'t so bad, after all I\'d been through."');
                       scene.actions([
                         { label: '"That\'s fucked up!"', handler: (st: GameState) => {
@@ -557,7 +557,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/vera/verasmoke.jpg');
     scene.text('You look at Vera in disbelief, never having expected this end to her story. "Prostitution!? That\'s terrible, Vera! How could you!?"');
     // TODO-QSP: dynamic text: She hangs her head in shame for a moment, but then rebounds. "I was young and na...
-    scene.text(`She hangs her head in shame for a moment, but then rebounds. "I was young and naive, ${((st as any).pcs_nickname || '')}! A stupid girl who thought her pussy could conquer the world. It was foolish of me, but I've paid my dues and ended up just fine. Things could've been a lot worse."`);
+    scene.text(`She hangs her head in shame for a moment, but then rebounds. "I was young and naive, ${((st as any).pcs_nickname ?? '')}! A stupid girl who thought her pussy could conquer the world. It was foolish of me, but I've paid my dues and ended up just fine. Things could've been a lot worse."`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -623,7 +623,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/vera/verasmoke.jpg');
     scene.text('You\'re not sure whether you want to hear about your teacher\'s sex life, but ask anyway.');
     // TODO-QSP: dynamic text: Vera doesn''t give it a second thought. "I guess it''s the classic story. During...
-    scene.text(`Vera doesn't give it a second thought. "I guess it's the classic story. During the honeymoon phase, everything was great. He was always ready to go and open to try new things. We fucked a lot those first months. Every day, all night long, in my ass while I was on my period, we just never stopped. But now, he barely even notices me. I bet he's fucking one or two of those sluts in his classes… How do I compete with younger girls like that, ${((st as any).pcs_nickname || '')}?"`);
+    scene.text(`Vera doesn't give it a second thought. "I guess it's the classic story. During the honeymoon phase, everything was great. He was always ready to go and open to try new things. We fucked a lot those first months. Every day, all night long, in my ass while I was on my period, we just never stopped. But now, he barely even notices me. I bet he's fucking one or two of those sluts in his classes… How do I compete with younger girls like that, ${((st as any).pcs_nickname ?? '')}?"`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -645,7 +645,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
       if (((st as any).npc_rel ?? 0)?.['A27'] <= 0) {
         scene.text('You approach Vera, happy to have another chat to break the monotony of the day. She\'s having none of it, though, and waves you away.');
         // TODO-QSP: dynamic text: "Leave me alone, <<$pcs_nickname>>! I don''t want to talk to you."
-        scene.text(`"Leave me alone, ${((st as any).pcs_nickname || '')}! I don't want to talk to you."`);
+        scene.text(`"Leave me alone, ${((st as any).pcs_nickname ?? '')}! I don't want to talk to you."`);
         scene.actions([
           { label: 'Apologize', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -658,7 +658,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).npc_rel ?? 0)?.['A27'] > 0) {
         // TODO-QSP: dynamic text: Vera nods. "Thanks <<$pcs_nickname>>, I appreciate the apology. I guess I should...
-        scene.text(`Vera nods. "Thanks ${((st as any).pcs_nickname || '')}, I appreciate the apology. I guess I should forgive you."`);
+        scene.text(`Vera nods. "Thanks ${((st as any).pcs_nickname ?? '')}, I appreciate the apology. I guess I should forgive you."`);
       }
     }
     scene.actions([
@@ -730,7 +730,7 @@ function enterVera(s: GameState, scene: SceneBuilder): void {
     scene.text('She nods, fully understanding your problem before her eyes suddenly light up. "Oh! You know how there are long-distance trains arriving at the station at 11:00 and 18:00 every day? The station is always packed with tourists then. I bet you could make some good money selling trinkets and baubles to them!"');
     scene.text('When she notices your interest, she continues. "There\'s a warehouse in the city industrial district where you can buy items that tourists will like. You can sell them at the station for a good profit. Just make sure the police don\'t see you. They don\'t like it when you sell things without a permit."');
     // TODO-QSP: dynamic text: "Thanks for the tip, maybe I will!" you reply. "By the way, my name is <<$pcs_ni...
-    scene.text(`"Thanks for the tip, maybe I will!" you reply. "By the way, my name is ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`"Thanks for the tip, maybe I will!" you reply. "By the way, my name is ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('She smiles. "Vera Tsarev, pleased to meet you. I have to get back to work now, but I\'ll be seeing you around!"');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -878,7 +878,7 @@ function enterTrinkets(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/market/peron.jpg');
   // TODO-QSP: dynamic text: You manage to sell <<tovarand>> trinkets to passengers today, earning ' + $func(...
-  scene.text(`You manage to sell ${((s as any).tovarand || '')} trinkets to passengers today, earning ' + $func('money', 'string_profit', tovpay) + '.`);
+  scene.text(`You manage to sell ${((s as any).tovarand ?? '')} trinkets to passengers today, earning ' + $func('money', 'string_profit', tovpay) + '.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -940,7 +940,7 @@ function enterTrinkets(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).katalkinSexDay ?? 0) + 7 < ((st as any).daystart ?? 0)) {
           // TODO-QSP: dynamic text: Captain Katalkin suddenly recognizes you and frowns. "<<$pcs_nickname>>? You hav...
-          scene.text(`Captain Katalkin suddenly recognizes you and frowns. "${((st as any).pcs_nickname || '')}? You haven't come to see me in a long time… I thought we had an agreement. Are you avoiding me?"`);
+          scene.text(`Captain Katalkin suddenly recognizes you and frowns. "${((st as any).pcs_nickname ?? '')}? You haven't come to see me in a long time… I thought we had an agreement. Are you avoiding me?"`);
           scene.actions([
             { label: 'No you haven\'t!', handler: (st: GameState) => {
     qspCall(st, 'stat', '');

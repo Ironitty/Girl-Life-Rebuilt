@@ -283,7 +283,7 @@ function enterFaceColor(s: GameState, scene: SceneBuilder): void {
 
 function enterMakeup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Katja looks at you with a smile. "<<$pcs_nickname>>, I bet you would look great ...
-  scene.text(`Katja looks at you with a smile. "${((s as any).pcs_nickname || '')}, I bet you would look great with a little make-up on you! What do you say?"`);
+  scene.text(`Katja looks at you with a smile. "${((s as any).pcs_nickname ?? '')}, I bet you would look great with a little make-up on you! What do you say?"`);
   (s as any).temp_loc = ((s as any).locArgs?.[1] ?? 0);
   (s as any).temp_loc_arg = ((s as any).locArgs?.[2] ?? 0);
   // TODO-QSP: end

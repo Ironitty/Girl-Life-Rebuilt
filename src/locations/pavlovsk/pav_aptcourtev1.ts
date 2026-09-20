@@ -372,7 +372,7 @@ function enterSuck3stooges(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck Vasily', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/suck3s3.jpg');
     // TODO-QSP: dynamic text: You start sucking Vasily''s dick next while you keep jerking Dan and Vitek off. ...
-    scene.text(`You start sucking Vasily's dick next while you keep jerking Dan and Vitek off. "Oh yeah, that's it. Suck my cock, ${((st as any).pcs_nickname || '')}!" he says.`);
+    scene.text(`You start sucking Vasily's dick next while you keep jerking Dan and Vitek off. "Oh yeah, that's it. Suck my cock, ${((st as any).pcs_nickname ?? '')}!" he says.`);
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID2 ?? 0), 'group', 'exhibitionism');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID1 ?? 0), 'group', 'exhibitionism');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID ?? 0), 'group', 'exhibitionism');
@@ -417,7 +417,7 @@ function enterSuck3stooges(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/events/sex/beercum.jpg');
     // TODO-QSP: dynamic text: You take the beer and take a drink, keenly aware of the cum covering your face. ...
-    scene.text(`You take the beer and take a drink, keenly aware of the cum covering your face. The boys mostly ignore it and talk about what they've been up to of late. Soon, it's almost like it never happened and as if you had just been sitting around drinking the whole time. Sometime later, the beers are gone and the boys get up and head off to find trouble. "See you around, ${((st as any).pcs_nickname || '')}," Vasily says as they walk away.`);
+    scene.text(`You take the beer and take a drink, keenly aware of the cum covering your face. The boys mostly ignore it and talk about what they've been up to of late. Soon, it's almost like it never happened and as if you had just been sitting around drinking the whole time. Sometime later, the beers are gone and the boys get up and head off to find trouble. "See you around, ${((st as any).pcs_nickname ?? '')}," Vasily says as they walk away.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'start'] },
     ]);

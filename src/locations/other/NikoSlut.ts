@@ -140,7 +140,7 @@ function enterCustomer1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/1/Vag2.jpg');
     scene.text('The man reaches out for your hands which you happily let him grab onto and you wrap your fingers around his while looking him in his eyes which are full of love. <font color=#FF00FF>This man is so affectionate. He looks at me with such love. I may have been the first girl that he has ever had sex with. Oh the love in his eyes is so beautiful. I don\'t want him to look away. Keep looking at me with those eyes and don\'t stop.</font> Feeling so turned on by his passionate eyes.');
     // TODO-QSP: dynamic text: The man suddenly groans and you feel the condom expanding as he fills it up. You...
-    scene.text(`The man suddenly groans and you feel the condom expanding as he fills it up. You can slightly feel the warmth of the condom inside you. The man looks you in the eyes and says, "Thank you so much ${((st as any).NikoSlutName || '')}. You are such a beautiful girl and I would gladly pay you every day, for your services." The man puts his pants on then walks out of the restroom as you follow behind.`);
+    scene.text(`The man suddenly groans and you feel the condom expanding as he fills it up. You can slightly feel the warmth of the condom inside you. The man looks you in the eyes and says, "Thank you so much ${((st as any).NikoSlutName ?? '')}. You are such a beautiful girl and I would gladly pay you every day, for your services." The man puts his pants on then walks out of the restroom as you follow behind.`);
     scene.actions([
       { label: 'Stand up', goto: ['NikoSlut', 'Customers'] },
     ]);
@@ -161,7 +161,7 @@ function enterCustomer1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum3.mp4');
     scene.text('The man suddenly groans and you feel his dick throbbing inside you, filling your womb with his warm seed.');
     // TODO-QSP: dynamic text: The man looks you in the eyes. "Thank you so much, <<$NikoSlutName>>. You''re su...
-    scene.text(`The man looks you in the eyes. "Thank you so much, ${((st as any).NikoSlutName || '')}. You're such a perfect girl and I would gladly pay you every day for your services." The man puts his pants on and walks out of the restroom as you follow behind.`);
+    scene.text(`The man looks you in the eyes. "Thank you so much, ${((st as any).NikoSlutName ?? '')}. You're such a perfect girl and I would gladly pay you every day for your services." The man puts his pants on and walks out of the restroom as you follow behind.`);
     scene.actions([
       { label: 'Wash up first', goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', goto: ['NikoSlut', 'Customers'] },
@@ -293,7 +293,7 @@ function enterCustomer2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/cum/cum10.mp4');
     // TODO-QSP: dynamic text: The man''s breathing suddenly stops as he starts pumping his warm seed into your...
-    scene.text(`The man's breathing suddenly stops as he starts pumping his warm seed into your pussy. Once he's finished, the man pulls out of you, causing his cum to leak out. "That was amazing! You're one sexy girl ${((st as any).NikoSlutName || '')}. I can't wait to use your services again."`);
+    scene.text(`The man's breathing suddenly stops as he starts pumping his warm seed into your pussy. Once he's finished, the man pulls out of you, causing his cum to leak out. "That was amazing! You're one sexy girl ${((st as any).NikoSlutName ?? '')}. I can't wait to use your services again."`);
     scene.text('The man watches his cum leaking out of you as he pulls up his pants before walking back into the diner as Niko approaches you. "Are you ready for another customer, or would you like to clean up first?"');
     scene.actions([
       { label: 'Wash up first', goto: ['NikoSlut', 'Ladies Restroom'] },
@@ -362,7 +362,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/npc/3.jpg');
   // TODO-QSP: dynamic text: A biker approaches Niko. "I want to fuck <<$NikoSlutName>>''s pussy in the restr...
-  scene.text(`A biker approaches Niko. "I want to fuck ${((s as any).NikoSlutName || '')}'s pussy in the restroom."`);
+  scene.text(`A biker approaches Niko. "I want to fuck ${((s as any).NikoSlutName ?? '')}'s pussy in the restroom."`);
   scene.text('Niko nods. "Sure thing, let\'s have the money first."');
   scene.text('The trucker gives Niko the money before leading you to the restroom.');
   // TODO-QSP: end
@@ -374,7 +374,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/3/Undress' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
     scene.text('As soon as you enter the restroom, the man starts kissing your chest as he undresses you. You let him undress you as he runs his hands over your body, gently rubbing and squeezing your breasts and buttocks. After a few seconds, you\'re completely naked as the man takes off his pants while staring at your nude body before he approaches you and starts rubbing your pussy.');
     // TODO-QSP: dynamic text: "So <<$NikoSlutName>>, are you ready to get your pussy fucked?" he asks with a g...
-    scene.text(`"So ${((st as any).NikoSlutName || '')}, are you ready to get your pussy fucked?" he asks with a grin.`);
+    scene.text(`"So ${((st as any).NikoSlutName ?? '')}, are you ready to get your pussy fucked?" he asks with a grin.`);
     scene.actions([
       { label: 'Ride his cock', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'vaginal', 10, 'sub', 'prostitution');
@@ -395,7 +395,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     scene.text('You increase the pace of your thrusts, feeling his cock pushing its way deeper inside you as the man starts breathing heavily. "Oh fuck, I\'m gonna cum!"');
     scene.text('You look back at him and stare him in the eyes. "Cum baby, cum!" The man squints his eyes and starts groaning as you feel the condom inside you expanding as he fills it with warm cum. You stare into his eyes, enjoying the look of blissful pleasure his eyes display.');
     // TODO-QSP: dynamic text: "That was incredible, <<$NikoSlutName>>! You''re one sexy girl," he says after c...
-    scene.text(`"That was incredible, ${((st as any).NikoSlutName || '')}! You're one sexy girl," he says after catching his breath. He then kisses you on the cheek before getting dressed and leaving the restroom.`);
+    scene.text(`"That was incredible, ${((st as any).NikoSlutName ?? '')}! You're one sexy girl," he says after catching his breath. He then kisses you on the cheek before getting dressed and leaving the restroom.`);
     scene.actions([
       { label: 'Remain in restroom', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'restore');
@@ -416,7 +416,7 @@ function enterCustomer3(s: GameState, scene: SceneBuilder): void {
     scene.text('You increase the pace of your thrusts, feeling his cock pushing its way deeper inside you as the man starts breathing heavily. "Oh fuck, I\'m gonna cum!"');
     scene.text('You look back at him and stare him in the eyes. "Do it! Cum inside me!" The man squints his eyes and starts pumping his warm cum into your pussy. You close your eyes and focus on the throbbing of his cock inside you.');
     // TODO-QSP: dynamic text: "That was incredible, <<$NikoSlutName>>! You''re one sexy girl," he says after c...
-    scene.text(`"That was incredible, ${((st as any).NikoSlutName || '')}! You're one sexy girl," he says after catching his breath. He then kisses you on the cheek before getting dressed and leaving the restroom.`);
+    scene.text(`"That was incredible, ${((st as any).NikoSlutName ?? '')}! You're one sexy girl," he says after catching his breath. He then kisses you on the cheek before getting dressed and leaving the restroom.`);
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'restore');
@@ -497,7 +497,7 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/npc/4.jpg');
   // TODO-QSP: dynamic text: A biker approaches Niko. "I want to fuck <<$NikoSlutName>> out back."
-  scene.text(`A biker approaches Niko. "I want to fuck ${((s as any).NikoSlutName || '')} out back."`);
+  scene.text(`A biker approaches Niko. "I want to fuck ${((s as any).NikoSlutName ?? '')} out back."`);
   scene.text('"Sure thing," Niko responds. "But I\'ll be keeping an eye on things."');
   scene.text('"Well you better not be keeping an eye on my dick, or we\'re gonna have a problem," the biker responds and they both laugh as the man pays Niko before taking you to the back of the diner while Niko follows.');
   // TODO-QSP: end
@@ -585,7 +585,7 @@ function enterCustomer4(s: GameState, scene: SceneBuilder): void {
     scene.text('You start rocking your hips up and down to help stimulate him when he starts groaning. You can feel his dick throbbing inside you as it fills your womb with his warm seed and continue to stare into his eyes and admire the blissful look in his eyes as he reaches his climax.');
     scene.text('"That was the best fuck, I\'ve had in a long time… Your pussy is fine, girl." he says while catching his breath. He then pulls his pants up and walks back into the diner as Niko then approaches you.');
     // TODO-QSP: dynamic text: "Well done <<$pcs_nickname>>. You should probably get washed up for the next cus...
-    scene.text(`"Well done ${((st as any).pcs_nickname || '')}. You should probably get washed up for the next customer."`);
+    scene.text(`"Well done ${((st as any).pcs_nickname ?? '')}. You should probably get washed up for the next customer."`);
     scene.actions([
       { label: 'Wash up first', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'restore');
@@ -950,7 +950,7 @@ function enterCustomer7(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean forward and whisper in his ear. "I want to ride your cock…"');
     scene.text('The man gets noticeably excited. "Now that\'s a good girl."');
     // TODO-QSP: dynamic text: You remove your pants as the trucker lays on the ground before mounting him and ...
-    scene.text(`You remove your pants as the trucker lays on the ground before mounting him and guiding his dick into your pussy. You start riding him at a moderate pace before he suddenly lifts you up by the legs, pushing his dick deeper inside you as he whispers in your ear. "How does it feel, ${((st as any).NikoSlutName || '')}? Good?"`);
+    scene.text(`You remove your pants as the trucker lays on the ground before mounting him and guiding his dick into your pussy. You start riding him at a moderate pace before he suddenly lifts you up by the legs, pushing his dick deeper inside you as he whispers in your ear. "How does it feel, ${((st as any).NikoSlutName ?? '')}? Good?"`);
     scene.text('You meekly nod your head, enjoying the pleasure of having his dick deep inside you.');
     if (((st as any).mc_inventory ?? 0)?.['equipped_condoms'] >= 1  &&  (!((st as any).preziktype ?? 0))) {
       scene.actions([
@@ -1088,7 +1088,7 @@ function enterCustomer8(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/cum/swallow4.mp4');
     scene.text('After a few seconds, the man groans as his dick starts throbbing in your mouth, filling it with his warm cum, which you let slide down your throat and into your belly.');
     // TODO-QSP: dynamic text: The man takes a few seconds to catch his breath. "You were outstanding, <<$NikoS...
-    scene.text(`The man takes a few seconds to catch his breath. "You were outstanding, ${((st as any).NikoSlutName || '')}. I look forward to seeing you again soon." He then buttons his pants before leaving the restroom.`);
+    scene.text(`The man takes a few seconds to catch his breath. "You were outstanding, ${((st as any).NikoSlutName ?? '')}. I look forward to seeing you again soon." He then buttons his pants before leaving the restroom.`);
     scene.actions([
       { label: 'Stand up', goto: ['NikoSlut', 'Mens Restroom'] },
     ]);
@@ -1100,7 +1100,7 @@ function enterCustomer8(s: GameState, scene: SceneBuilder): void {
     scene.text('You take his dick into your mouth, firmly wrapping your lips around it before licking and sucking it. The man begins moaning frequently, clearly enjoying your performance.');
     scene.text('After a few more seconds, the man groans as his dick starts throbbing in your mouth, filling it with his warm cum, which you let leak out of your mouth and onto the floor.');
     // TODO-QSP: dynamic text: The man takes a few seconds to catch his breath. "You were outstanding, <<$NikoS...
-    scene.text(`The man takes a few seconds to catch his breath. "You were outstanding, ${((st as any).NikoSlutName || '')}. I look forward to seeing you again soon." He then buttons his pants before leaving the restroom.`);
+    scene.text(`The man takes a few seconds to catch his breath. "You were outstanding, ${((st as any).NikoSlutName ?? '')}. I look forward to seeing you again soon." He then buttons his pants before leaving the restroom.`);
     scene.actions([
       { label: 'Stand up', goto: ['NikoSlut', 'Mens Restroom'] },
     ]);
@@ -1205,7 +1205,7 @@ function enterCustomer9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/highway/borisdiner/npc/9.jpg');
   // TODO-QSP: dynamic text: A trucker approaches Niko. "I''d like to borrow <<$NikoSlutName>> for a few minu...
-  scene.text(`A trucker approaches Niko. "I'd like to borrow ${((s as any).NikoSlutName || '')} for a few minutes."`);
+  scene.text(`A trucker approaches Niko. "I'd like to borrow ${((s as any).NikoSlutName ?? '')} for a few minutes."`);
   // TODO-QSP: dynamic text: "Sure. '+$func('money', 'string_profit', 2000)+' and you can borrow her for a fe...
   scene.text('"Sure. \'+$func(\'money\', \'string_profit\', 2000)+\' and you can borrow her for a few minutes."');
   scene.text('"I guess I can spare a few rubles…" the trucker says and hands Niko the money before wrapping his arm around your waist and leading you to the restroom.');
@@ -1262,7 +1262,7 @@ function enterCustomer9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/diner/6/ride2.jpg');
     scene.text('You start riding his cock at an increased pace while he pulls your shirt down, exposing your breast and squeezing it as you continue riding him.');
     // TODO-QSP: dynamic text: After a few minutes, the trucker groans, filling the condom with his warm seed. ...
-    scene.text(`After a few minutes, the trucker groans, filling the condom with his warm seed. You focus on the condom expanding inside you until the man finishes. "You were great ${((st as any).NikoSlutName || '')}, I'll definitely be visiting you again." He then pulls up his pants and leaves the restroom.`);
+    scene.text(`After a few minutes, the trucker groans, filling the condom with his warm seed. You focus on the condom expanding inside you until the man finishes. "You were great ${((st as any).NikoSlutName ?? '')}, I'll definitely be visiting you again." He then pulls up his pants and leaves the restroom.`);
     scene.actions([
       { label: 'Head back to Niko', goto: ['NikoSlut', 'Customers'] },
     ]);
@@ -1277,7 +1277,7 @@ function enterCustomer9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/cum81.mp4');
     scene.text('You start riding his cock at an increased pace while he pulls your shirt down, exposing your breast and squeezing it as you continue riding him.');
     // TODO-QSP: dynamic text: After a few minutes, the trucker groans, filling your womb with his warm seed. A...
-    scene.text(`After a few minutes, the trucker groans, filling your womb with his warm seed. As soon as the man finishes, he squeezes your breast. "You were great ${((st as any).NikoSlutName || '')}, I'll definitely be visiting you again." He then pulls up his pants and leaves the restroom.`);
+    scene.text(`After a few minutes, the trucker groans, filling your womb with his warm seed. As soon as the man finishes, he squeezes your breast. "You were great ${((st as any).NikoSlutName ?? '')}, I'll definitely be visiting you again." He then pulls up his pants and leaves the restroom.`);
     scene.actions([
       { label: 'Wash up first', goto: ['NikoSlut', 'Mens Restroom'] },
       { label: 'Head back to Niko', goto: ['NikoSlut', 'Customers'] },
@@ -1366,7 +1366,7 @@ function enterBikerAttack(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/highway/borisdiner/npc/11.jpg');
   scene.text('A suspicious looking biker approaches you. "Hey bitch, you\'re coming with me!" he says firmly.');
   // TODO-QSP: dynamic text: Niko stands up. "If you want <<$NikoSlutName>>''s services, then you speak with ...
-  scene.text(`Niko stands up. "If you want ${((s as any).NikoSlutName || '')}'s services, then you speak with me."`);
+  scene.text(`Niko stands up. "If you want ${((s as any).NikoSlutName ?? '')}'s services, then you speak with me."`);
   scene.text('The biker pushes him back onto his seat. "I don\'t talk to boys, now get lost. She\'s the one I want."');
   scene.text('Niko gets up and immediately lunges at the man, but he quickly rams his fist into Niko\'s face, sending him face first onto the ground. You try to back away when the biker grabs you by the hair. "You\'re coming with me bitch. I need a new fuck toy and you\'ll do nicely," he says sternly and starts pulling you outside when Niko reaches into his pocket and pulls out a knife before lunging at the man again, only to get caught by the throat. The biker twists Niko\'s wrist, causing him to drop the knife while you try to break free. "You tried to use a knife on me, boy? Big mistake."');
   // TODO-QSP: end
@@ -1672,7 +1672,7 @@ function enterTruckers(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why don\'t you sit down with me and have a meal? On me," he offers.');
     } else {
       // TODO-QSP: dynamic text: You approach the trucker and he immediately notices you and gives you a warm smi...
-      scene.text(`You approach the trucker and he immediately notices you and gives you a warm smile. "${((s as any).NikoSlutName || '')}! It's great to see you again. How are you doing this fine day?"`);
+      scene.text(`You approach the trucker and he immediately notices you and gives you a warm smile. "${((s as any).NikoSlutName ?? '')}! It's great to see you again. How are you doing this fine day?"`);
       scene.text('"I\'m doing well," you reply.');
       scene.text('"Why don\'t you sit down with me and have a meal? On me," he offers.');
     }
@@ -1708,7 +1708,7 @@ function enterTruckers(s: GameState, scene: SceneBuilder): void {
               scene.text('You walk up to the trucker as he looks you over. "What brings a cute girl like yourself out here? Shouldn\'t you be in the town instead of out here with a bunch of old truckers?" He chuckles. "I\'m just kidding. Make yourself at home and steer clear of the bikers that come around here at night. A young girl like you doesn\'t want to get tangled with them."');
             } else {
               // TODO-QSP: dynamic text: You walk up to the trucker as he looks you over. "If it isn''t <<$NikoSlutName>>...
-              scene.text(`You walk up to the trucker as he looks you over. "If it isn't ${((s as any).NikoSlutName || '')}. What brings you out here without your boyfriend? Are you here on business or just to get yourself a good meal before heading back to town?"`);
+              scene.text(`You walk up to the trucker as he looks you over. "If it isn't ${((s as any).NikoSlutName ?? '')}. What brings you out here without your boyfriend? Are you here on business or just to get yourself a good meal before heading back to town?"`);
               scene.text('"I\'m just passing through." you reply and the trucker nods.');
               scene.text('"Well order yourself a good meal and steer clear of the bikers that come around here at night. A young girl like you doesn\'t want to get tangled with them."');
             }
@@ -1718,7 +1718,7 @@ function enterTruckers(s: GameState, scene: SceneBuilder): void {
               scene.text('You see one of the truckers checking you out as you approach. "Whoa, what\'s a pretty thing like yourself doing here? Should you be playing with your friends?" You shake your head and walk away, feeling a bit annoyed at his comments.');
             } else {
               // TODO-QSP: dynamic text: You see one of the truckers checking you out as you approach. "Whoa, it''s <<$Ni...
-              scene.text(`You see one of the truckers checking you out as you approach. "Whoa, it's ${((s as any).NikoSlutName || '')}. Didn't think I'd see you here without that boy you travel with. If you're here for business then I'm afraid I can't stay long. I need to get back on the road and make a few deliveries. Maybe another time sweetheart." He waves at you and goes back to eating his food.`);
+              scene.text(`You see one of the truckers checking you out as you approach. "Whoa, it's ${((s as any).NikoSlutName ?? '')}. Didn't think I'd see you here without that boy you travel with. If you're here for business then I'm afraid I can't stay long. I need to get back on the road and make a few deliveries. Maybe another time sweetheart." He waves at you and goes back to eating his food.`);
             }
           }
         }
@@ -1751,7 +1751,7 @@ function enterBikers(s: GameState, scene: SceneBuilder): void {
       scene.text('"I knew that would make you laugh and I always like to see a pretty girl laugh. Let me treat you to a meal. I\'ll get you a big burger."');
     } else {
       // TODO-QSP: dynamic text: As you approach the biker, his eyes light up. "<<$NikoSlutName>>, it''s good to ...
-      scene.text(`As you approach the biker, his eyes light up. "${((s as any).NikoSlutName || '')}, it's good to see you again. Here take a seat." He moves his duffel bag off the seat next to him and gives you a warm smile as you sit next to him. "Do you hear that?"`);
+      scene.text(`As you approach the biker, his eyes light up. "${((s as any).NikoSlutName ?? '')}, it's good to see you again. Here take a seat." He moves his duffel bag off the seat next to him and gives you a warm smile as you sit next to him. "Do you hear that?"`);
       scene.text('You listen for a second before you hear a funny voice. "Hey there, pretty lady. I\'d ask you to bone, but that would be a total bone head decision." You look over your shoulder and giggle when you see a little skeleton figure that the biker is holding.');
       scene.text('"I knew that would make you laugh and I always like to see a pretty girl laugh. Let me treat you to a meal. I\'ll get you a big burger."');
     }
@@ -1809,7 +1809,7 @@ function enterFriendlyMeal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/food/boris_meal2.jpg');
   // TODO-QSP: dynamic text: The <<$VKPartner_text>> orders you a burger and you both chat until the food arr...
-  scene.text(`The ${((s as any).VKPartner_text || '')} orders you a burger and you both chat until the food arrives. You and the ${((s as any).VKPartner_text || '')} then spend the next few minutes eating while discussing current events until you both finish your meals.`);
+  scene.text(`The ${((s as any).VKPartner_text ?? '')} orders you a burger and you both chat until the food arrives. You and the ${((s as any).VKPartner_text ?? '')} then spend the next few minutes eating while discussing current events until you both finish your meals.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['NikoSlut', 'Diner Interior'] },
@@ -1830,7 +1830,7 @@ function enterYurikIn(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).NikoEv ?? 0) > 21  &&  ((s as any).YurikEv ?? 0)?.['Romance'] === 1) {
         // TODO-QSP: dynamic text: You approach Yurik and he turns to face you before giving you a smile. "<<$pcs_f...
-        scene.text(`You approach Yurik and he turns to face you before giving you a smile. "${((s as any).pcs_firstname || '')}, the love of my life! Did you stop by to pay me a visit or do you need something? Anything my kitten wants, she gets."`);
+        scene.text(`You approach Yurik and he turns to face you before giving you a smile. "${((s as any).pcs_firstname ?? '')}, the love of my life! Did you stop by to pay me a visit or do you need something? Anything my kitten wants, she gets."`);
         scene.actions([
           { label: 'Eat with Yurik', goto: ['NikoSlut', 'Yurik Dinner'] },
         ]);

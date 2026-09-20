@@ -51,7 +51,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
   if (((s as any).photographyEv ?? 0) >= 2  &&  ((s as any).camera_locations ?? 0)?.[String((s as any).loc ?? 0)] !== '') {
     if (((s as any).camera_found ?? 0)?.[String((s as any).camera_event ?? 0)] !== 1) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Photograph the ' + String(((s as any).camera_description || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Photograph the ' + String(((s as any).camera_description ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).camera_found = (st as any).camera_found ?? {})[String((st as any).camera_event ?? 0)] = 1;
     (st as any).loc = ((st as any).camera_return_loc ?? 0);
     (st as any).loc_arg = ((st as any).camera_return_loc_arg ?? 0);
@@ -372,7 +372,7 @@ function enterPavLakeSonia(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/lake/photography/photo2.jpg');
     // TODO-QSP: dynamic text: She covers herself up and looks at you in surprise. "What the fuck, <<$pcs_nickn...
-    scene.text(`She covers herself up and looks at you in surprise. "What the fuck, ${((st as any).pcs_nickname || '')}?! What are you doing?!"`);
+    scene.text(`She covers herself up and looks at you in surprise. "What the fuck, ${((st as any).pcs_nickname ?? '')}?! What are you doing?!"`);
     scene.text('"Sorry," you smile. "I was just taking your photo. You\'re just so beautiful and I couldn\'t help myself…"');
     scene.text('She smiles at the compliment. "Really?"');
     scene.text('You nod as you take another photo. "Yes. Now why don\'t you stop covering up?"');

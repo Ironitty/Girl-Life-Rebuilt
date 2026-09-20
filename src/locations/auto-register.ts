@@ -6,6 +6,13 @@ const modules = import.meta.glob<{ default?: LocationDef; locations?: LocationDe
   { eager: true }
 );
 
+function resolve(v: unknown): unknown {
+  if (typeof v === 'function') {
+    try { return (v as () => unknown)(); } catch { return v; }
+  }
+  return v;
+}
+
 function isLocationDef(v: unknown): v is LocationDef {
   if (typeof v !== 'object' || v === null) return false;
   const o = v as Record<string, unknown>;
@@ -19,14 +26,17 @@ for (const [path, mod] of Object.entries(modules)) {
 
   const toRegister: LocationDef[] = [];
 
-  if (mod.default && isLocationDef(mod.default)) {
-    toRegister.push(mod.default);
-  } else if (mod.locations && Array.isArray(mod.locations)) {
-    toRegister.push(...mod.locations);
+  const resolvedDefault = resolve(mod.default);
+  const resolvedLocations = resolve(mod.locations);
+  if (resolvedDefault && isLocationDef(resolvedDefault)) {
+    toRegister.push(resolvedDefault);
+  } else if (resolvedLocations && Array.isArray(resolvedLocations)) {
+    toRegister.push(...resolvedLocations.map(resolve).filter(isLocationDef));
   } else {
     for (const v of Object.values(mod)) {
-      if (isLocationDef(v)) {
-        toRegister.push(v);
+      const resolved = resolve(v);
+      if (isLocationDef(resolved)) {
+        toRegister.push(resolved);
       }
     }
   }

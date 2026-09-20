@@ -407,7 +407,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You go over to Rima who smiles affably as she greets you.');
   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. My shift is almost over. Do you want to do something?"
-  scene.text(`"Hi ${((s as any).pcs_nickname || '')}. My shift is almost over. Do you want to do something?"`);
+  scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}. My shift is almost over. Do you want to do something?"`);
   scene.actions([
     { label: '"Sorry, I can\'t right now"', goto: ['shop_moncheri', 'start'] },
     { label: '"Sure. How about we go to my place?"', handler: (st: GameState) => {

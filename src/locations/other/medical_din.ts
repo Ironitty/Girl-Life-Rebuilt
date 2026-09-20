@@ -70,7 +70,7 @@ function enterBirthControlShot(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'pay', 2750);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBirthControlShot2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Everything looks great," she says and gives you a reassuring smile as she stick...
-    scene.text(`"Everything looks great," she says and gives you a reassuring smile as she sticks a needle in your arm and depresses the plunger. "All done! You should be good for three months, give or take. It depends on body type, hormone levels and so on. If you want to be perfectly safe, we recommend you come back for another treatment one week before the three months are over. Have a nice day, Miss ${((s as any).pcs_lastname || '')}!"`);
+    scene.text(`"Everything looks great," she says and gives you a reassuring smile as she sticks a needle in your arm and depresses the plunger. "All done! You should be good for three months, give or take. It depends on body type, hormone levels and so on. If you want to be perfectly safe, we recommend you come back for another treatment one week before the three months are over. Have a nice day, Miss ${((s as any).pcs_lastname ?? '')}!"`);
     scene.text('You thank her and wish her the same while you gather your things.');
   } else {
     qspCall(s, 'money', 'pay', 650);

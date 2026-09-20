@@ -221,7 +221,7 @@ function enterNatWakeupSex1(s: GameState, scene: SceneBuilder): void {
 function enterMarishaEvMorning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   // TODO-QSP: dynamic text: You wake up feeling relaxed then look over to see Marisha already up. She gives ...
-  scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname || '')}. See you later." She then leaves as you continue getting up.`);
+  scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname ?? '')}. See you later." She then leaves as you continue getting up.`);
   ((s as any).MarishaQW = (s as any).MarishaQW ?? {})['marisha_sleepover'] = 0;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end

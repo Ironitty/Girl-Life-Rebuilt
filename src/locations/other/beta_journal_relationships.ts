@@ -17,7 +17,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>');
   if (((s as any).panel_show ?? 0) !== 1  ||  (!((s as any).panel_show ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 1 & gs ''<<$loc_id>>'', ''init''">Show Family</a>
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id || '')}/u0027, /u0027init/u0027); return false;">Show Family</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id ?? '')}/u0027, /u0027init/u0027); return false;">Show Family</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 1) {
       scene.text('<i>Show Family</i>');
@@ -26,7 +26,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 2) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 2 & gs ''<<$loc_id>>'', ''init''">Show Pavlovsk NPCs<...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.2; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id || '')}/u0027, /u0027init/u0027); return false;">Show Pavlovsk NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.2; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id ?? '')}/u0027, /u0027init/u0027); return false;">Show Pavlovsk NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 2) {
       scene.text('<i>Show Pavlovsk NPCs</i>');
@@ -35,7 +35,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 3) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 3 & gs ''<<$loc_id>>'', ''init''">Show Gadukino NPCs<...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.3; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id || '')}/u0027, /u0027init/u0027); return false;">Show Gadukino NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.3; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id ?? '')}/u0027, /u0027init/u0027); return false;">Show Gadukino NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 3) {
       scene.text('<i>Show Gadukino NPCs</i>');
@@ -44,7 +44,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 4) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 4 & gs ''<<$loc_id>>'', ''init''">Show St Petersburg ...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.4; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id || '')}/u0027, /u0027init/u0027); return false;">Show St Petersburg NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.4; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id ?? '')}/u0027, /u0027init/u0027); return false;">Show St Petersburg NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 4) {
       scene.text('<i>Show St Petersburg NPCs</i>');
@@ -53,7 +53,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 5) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 5 & gs ''<<$loc_id>>'', ''init''">Show Pushkin NPCs</...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.5; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id || '')}/u0027, /u0027init/u0027); return false;">Show Pushkin NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.5; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id ?? '')}/u0027, /u0027init/u0027); return false;">Show Pushkin NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 5) {
       scene.text('<i>Show Pushkin NPCs</i>');
@@ -62,7 +62,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).panel_show ?? 0) !== 6) {
     // TODO-QSP: dynamic text: <a href="exec:panel_show = 6 & gs ''<<$loc_id>>'', ''init''">Show School NPCs</a...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.6; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id || '')}/u0027, /u0027init/u0027); return false;">Show School NPCs</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.panel_show = s.6; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id ?? '')}/u0027, /u0027init/u0027); return false;">Show School NPCs</a>`);
   } else {
     if (((s as any).panel_show ?? 0) === 6) {
       scene.text('<i>Show Gadukino NPCs</i>');
@@ -127,22 +127,22 @@ function enterRelSpouseKids(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID9 ?? 0)] === 'husband') {
       // TODO-QSP: dynamic text: You have been married for <<daystart - spouseVars[''marry_day'']>> days. Your hu...
-      scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc9 || '')} is ${((s as any).npcheight9 || '')} and ${((s as any).npcbuild9 || '')} with ${((s as any).npchair9 || '')} hair. ${((s as any).npcdesc9 || '')} is usually wearing ${((s as any).npcClo9 || '')}. Member ${((s as any).dick_desc9 || '')} cock and ${((s as any).dick_girth9 || '')}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? ''}.`);
+      scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc9 ?? '')} is ${((s as any).npcheight9 ?? '')} and ${((s as any).npcbuild9 ?? '')} with ${((s as any).npchair9 ?? '')} hair. ${((s as any).npcdesc9 ?? '')} is usually wearing ${((s as any).npcClo9 ?? '')}. Member ${((s as any).dick_desc9 ?? '')} cock and ${((s as any).dick_girth9 ?? '')}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? ''}.`);
     } else {
       // TODO-QSP: dynamic text: Your <<$npcrelat9>> <<$npcdesc9>> is <<$npcheight9>> and <<$npcbuild9>> with <<$...
-      scene.text(`Your ${((s as any).npcrelat9 || '')} ${((s as any).npcdesc9 || '')} is ${((s as any).npcheight9 || '')} and ${((s as any).npcbuild9 || '')} with ${((s as any).npchair9 || '')} hair. ${((s as any).npcdesc9 || '')} is usually wearing ${((s as any).npcClo9 || '')}. Your relationship is ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? ''} after ${((s as any).npc_dates ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? ''} dates and ${((s as any).daystart ?? '') - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID9 ?? 0)]} days dating.`);
+      scene.text(`Your ${((s as any).npcrelat9 ?? '')} ${((s as any).npcdesc9 ?? '')} is ${((s as any).npcheight9 ?? '')} and ${((s as any).npcbuild9 ?? '')} with ${((s as any).npchair9 ?? '')} hair. ${((s as any).npcdesc9 ?? '')} is usually wearing ${((s as any).npcClo9 ?? '')}. Your relationship is ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? ''} after ${((s as any).npc_dates ?? 0)?.[String((s as any).npcID9 ?? 0)] ?? ''} dates and ${((s as any).daystart ?? '') - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID9 ?? 0)]} days dating.`);
     }
     if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID9 ?? 0)] > 1) {
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID9 ?? 0)] === 1) {
         // TODO-QSP: dynamic text: <<$Xec9>> is timid and lacks confidence.
-        scene.text(`${((s as any).Xec9 || '')} is timid and lacks confidence.`);
+        scene.text(`${((s as any).Xec9 ?? '')} is timid and lacks confidence.`);
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID9 ?? 0)] === 0) {
           // TODO-QSP: dynamic text: <<$Xec9>> has a cheerful and sociable personality.
-          scene.text(`${((s as any).Xec9 || '')} has a cheerful and sociable personality.`);
+          scene.text(`${((s as any).Xec9 ?? '')} has a cheerful and sociable personality.`);
         } else {
           // TODO-QSP: dynamic text: <<$Xec9>> is short-tempered and strict.
-          scene.text(`${((s as any).Xec9 || '')} is short-tempered and strict.`);
+          scene.text(`${((s as any).Xec9 ?? '')} is short-tempered and strict.`);
         }
       }
     }
@@ -297,7 +297,7 @@ function enterRelGadukino(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal', 'relindex', 'A174');
   }
   // TODO-QSP: dynamic text: <a href="exec:pavlovsk_show = 0 & gs ''<<$loc_id>>'', ''init''">Hide Gadukino NP...
-  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pavlovsk_show = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id || '')}/u0027, /u0027init/u0027); return false;">Hide Gadukino NPCs</a>`);
+  scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { s.pavlovsk_show = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027${((s as any).loc_id ?? '')}/u0027, /u0027init/u0027); return false;">Hide Gadukino NPCs</a>`);
   // TODO-QSP: end
   scene.build();
 }
@@ -626,7 +626,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcPreview(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/characters/shared/headshots_main/${((s as any).rel_id || '')}.jpg`);
+  scene.img(`images/characters/shared/headshots_main/${((s as any).rel_id ?? '')}.jpg`);
   // TODO-QSP: dynamic text: <th width="30%"><<$npc_firstname[''A<<rel_id>>'']>> <<$npc_lastname[''A<<rel_id>...
   scene.text(`<th width="30%">${qspUntranslated(s, "npc_firstname['A<<rel_id", { location: "beta_journal_relationships" })}']>> ${qspUntranslated(s, "npc_lastname['A<<rel_id", { location: "beta_journal_relationships" })}']>> (${qspUntranslated(s, "npc_nickname['A<<rel_id", { location: "beta_journal_relationships" })}']>>):`);
   qspCall(s, 'journal', 'relindex', 'A' + ((s as any).rel_id ?? 0) + '');

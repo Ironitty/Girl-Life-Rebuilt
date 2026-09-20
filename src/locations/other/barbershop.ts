@@ -51,7 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk up to Mr. Syomin, the owner of the barbershop.');
     scene.text('"Hello Mr. Syomin", you greet him.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>! What can I do for you today?", he asks you in his usua...
-    scene.text(`"Hello ${((st as any).pcs_nickname || '')}! What can I do for you today?", he asks you in his usual soothing voice.`);
+    scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}! What can I do for you today?", he asks you in his usual soothing voice.`);
     scene.text('"I was wondering if you\'re looking for some help around here"');
     scene.text('"Well, I don\'t think you have experience as a hairdresser…" He thinks for a second. "…, but my back isn\'t the best anymore, so I could use some help keeping the shop clean. It\'s not much work, but I\'d be happy if you could come in once a day for about an hour. Just come by, when you\'re done with school and when I\'m still open, obviously."');
     scene.text('You smile cheerfully. "That sound great! What would I have to do?"');
@@ -71,7 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Think about it', handler: (st: GameState) => {
     scene.text('"I guess I\'ll think about it some more.", you answer.');
     // TODO-QSP: dynamic text: "Sure <<$pcs_nickname>>, come back when you want to work."
-    scene.text(`"Sure ${((st as any).pcs_nickname || '')}, come back when you want to work."`);
+    scene.text(`"Sure ${((st as any).pcs_nickname ?? '')}, come back when you want to work."`);
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -601,7 +601,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Restore your hair to its natural colour', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I want to go back to my natural hair colour." you say as you pick at your hair ...
-    scene.text(`"I want to go back to my natural hair colour." you say as you pick at your hair in the mirror, "I don't think ${((st as any).pcs_haircolor || '')} is working for me."`);
+    scene.text(`"I want to go back to my natural hair colour." you say as you pick at your hair in the mirror, "I don't think ${((st as any).pcs_haircolor ?? '')} is working for me."`);
     scene.text('"Sure thing!", he says, "Why don\'t you take a seat?"');
     scene.text('"We\'ll be done in no time!", he says and points your over to sit down on one of the seats.');
     scene.actions([

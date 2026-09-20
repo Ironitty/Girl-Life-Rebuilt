@@ -726,7 +726,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
+  scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
   qspCall(s, 'homes_properties', 'get_internet_enabled_properties', 'home', 'hasaccess');
   (s as any).count = 0;
   if (((s as any).count ?? 0) > 0) {
@@ -763,7 +763,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'count'
     if (((s as any).title ?? 0) !== '') {
       // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-      scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
+      scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
     }
     // TODO-QSP: killvar 'line'
     // TODO-QSP: killvar 'title'
@@ -790,7 +790,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
+  scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
   (s as any).title = '<center><h4>Metered Internet</h4></center>';
   if (((s as any).subscription ?? 0)?.['mobile'] === 1) {
     (s as any).line = '<tr><td align="center">You have an active mobile internet subscription for unlimited use, you can\'t buy extra minutes </td></tr>';
@@ -825,7 +825,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
+  scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
   // TODO-QSP: dynamic text: <center>You have <b><<subscription[''metered_mobile'']>></b> minutes for mobile ...
   scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_mobile'] ?? ''}</b> minutes for mobile internet use</center>`);
   (s as any).title = '<center><h4>Mobile Calls and Texts</h4></center>';
@@ -850,7 +850,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
+  scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
   (s as any).title = '<center><h4>Metered Calls and Texts</h4></center>';
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
     // TODO-QSP: $line += '<tr><td>You have an active mobile subscription with unlimited minutes and texts, you can''...
@@ -881,7 +881,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
+  scene.text(`${((s as any).title ?? '')}${((s as any).tables ?? '')}${((s as any).line ?? '')}${((s as any).tablec ?? '')}`);
   // TODO-QSP: dynamic text: <center>You have <b><<subscription[''metered_calls'']>> minutes</b> for mobile c...
   scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_calls'] ?? ''} minutes</b> for mobile calls and <b>${((s as any).subscription ?? 0)?.['metered_calls-sms_limit'] ?? ''} text messages</b></center>`);
   // TODO-QSP: end
@@ -900,7 +900,7 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/anya/anyabusywork.jpg');
   qspCall(s, 'sister_chat', 'checks');
   // TODO-QSP: dynamic text: "Don''t disturb me at work, <<$pcs_nickname>>! Can''t you see that I have custom...
-  scene.text(`"Don't disturb me at work, ${((s as any).pcs_nickname || '')}! Can't you see that I have customers?"`);
+  scene.text(`"Don't disturb me at work, ${((s as any).pcs_nickname ?? '')}! Can't you see that I have customers?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {

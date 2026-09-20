@@ -86,7 +86,7 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (2);
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
-  scene.img('images/pc/items/accessories/books/kamasutra/ik' + ((s as any).kamasutra_page || '') + '.jpg');
+  scene.img('images/pc/items/accessories/books/kamasutra/ik' + ((s as any).kamasutra_page ?? '') + '.jpg');
   if (((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).family_trip ?? 0) === 1) {
     scene.actions([
       { label: 'Masturbate', goto: ['selfplay', 'start'] },

@@ -564,7 +564,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'npc_relationship', 'modify', 'A140', 1);
                       }
                       // TODO-QSP: dynamic text: As you approach them, several of them give you approving looks. "Looking good <<...
-                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname || '')}! Where did you buy that uniform?" Stasya comments.`);
+                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname ?? '')}! Where did you buy that uniform?" Stasya comments.`);
                       // TODO-QSP: dynamic text: "Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, '+iif(np...
                       scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor ') : ('')) + 'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
                     } else {
@@ -657,7 +657,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                         }
                       }
                       // TODO-QSP: dynamic text: As you approach them, several of them give you approving looks. "Looking good <<...
-                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname || '')}! Where did you buy that uniform?" Stasya comments.`);
+                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname ?? '')}! Where did you buy that uniform?" Stasya comments.`);
                       // TODO-QSP: dynamic text: "Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, '+iif(np...
                       scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, ' + ((((s as any).npc_grupTipe ?? 0)?.['A25'] !== 5) ? ('Sonia, ') : ('')) + 'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, ' + ((((s as any).npc_grupTipe ?? 0)?.['A5'] !== 5) ? ('Fedor ') : ('')) + 'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
                     } else {

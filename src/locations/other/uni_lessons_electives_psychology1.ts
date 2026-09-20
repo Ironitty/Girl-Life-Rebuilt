@@ -205,7 +205,7 @@ function enterPsychology_101TalkKendra_1(s: GameState, scene: SceneBuilder): voi
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   if (((s as any).pcs_hotcat ?? 0) < 5) {
     // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
-    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"No. Not interested. Maybe if you do something about all of... \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
     scene.text('You\'re taken aback by her comment. "What?"');
     scene.text('She rolls her eyes, believing your shocked silence to be stupidity. "Just go away."');
@@ -213,7 +213,7 @@ function enterPsychology_101TalkKendra_1(s: GameState, scene: SceneBuilder): voi
   } else {
     (s as any).meet_kendra = 1;
     // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
-    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('She eyes you like a pair of shoes she might buy. "I\'m Kendra, but you can call me Mistress," she replies in an exotic accent. "If you like, I can train you to become one of my slaves."');
     scene.text('You\'re taken aback by her comment. "Slaves?"');
     scene.text('She smiles. "Yes, I have many sex slaves here, and I can train you to serve me well. If you\'re interested, come to my dorm room. It\'s on the eighth floor of the east dorm, room 808."');
@@ -275,7 +275,7 @@ function enterPsychology_102TalkKendra_1(s: GameState, scene: SceneBuilder): voi
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   if (((s as any).pcs_hotcat ?? 0) < 5) {
     // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
-    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"No. Not interested. Maybe if you do something about all of... \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
     scene.text('You\'re taken aback by her comment. "What?"');
     scene.text('She rolls her eyes, believing your shocked silence to be stupidity. "Just go away."');
@@ -283,7 +283,7 @@ function enterPsychology_102TalkKendra_1(s: GameState, scene: SceneBuilder): voi
   } else {
     (s as any).meet_kendra = 1;
     // TODO-QSP: dynamic text: There''s something about this ebony girl that intrigues you, so you decide to si...
-    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('She eyes you like a pair of shoes she might buy. "I\'m Kendra, but you can call me Mistress," she replies in an exotic accent. "If you like, I can train you to become one of my slaves."');
     scene.text('You\'re taken aback by her comment. "Slaves?"');
     scene.text('She smiles. "Yes, I have many sex slaves here, and I can train you to serve me well. If you\'re interested, come to my dorm room. It\'s on the eighth floor of the east dorm, room 808."');

@@ -150,12 +150,12 @@ function enterLocMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] > 2) {
     if (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npcID ?? 0)] === 'gaming') {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + '\'s gaming room', goto: ['lover_home', 'gaming_room'] },
+        { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc ?? '') ?? '') + '\'s gaming room', goto: ['lover_home', 'gaming_room'] },
       ]);
     } else {
       if (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npcID ?? 0)] === 'gym') {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + '\'s home gym', goto: ['lover_home', 'home_gym'] },
+          { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc ?? '') ?? '') + '\'s home gym', goto: ['lover_home', 'home_gym'] },
         ]);
       }
     }
@@ -201,7 +201,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'lover_schedule', 'is_free', ((s as any).npcID ?? 0))) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNeighborhoodImage(s, scene); (s as any).locArgs = __savedLocArgs; }
       // TODO-QSP: dynamic text: You knock on <<$npcdesc>>''s door and he lets you in.
-      scene.text(`You knock on ${((s as any).npcdesc || '')}'s door and he lets you in.`);
+      scene.text(`You knock on ${((s as any).npcdesc ?? '')}'s door and he lets you in.`);
       scene.actions([
 { label: 'Enter', goto: ['lover_home', 'hallway'] },
 ]);
@@ -213,7 +213,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNeighborhoodImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: You knock on <<$npcdesc>>''s door but there is no answer.
-  scene.text(`You knock on ${((s as any).npcdesc || '')}'s door but there is no answer.`);
+  scene.text(`You knock on ${((s as any).npcdesc ?? '')}'s door but there is no answer.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -238,7 +238,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] > 2) {
     if (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npcID ?? 0)] === 'gaming') {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + '\'s gaming room', goto: ['lover_home', 'gaming_room'] },
+        { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc ?? '') ?? '') + '\'s gaming room', goto: ['lover_home', 'gaming_room'] },
       ]);
     } else {
       if (((s as any).npc_apt_spare ?? 0)?.[String((s as any).npcID ?? 0)] === 'gym') {
@@ -279,21 +279,21 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_magik ?? 0) >= 6  &&  ((s as any).spellbefshild ?? 0) === 1  &&  ((s as any).tobiQW ?? 0) === 0  &&  ((s as any).npc_living_together ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     qspGoto(s, 'tobiQW', 'start');
   }
-  scene.text(`<center><b>${((s as any).npcdesc || '')}'s Bedroom</b></center>`);
+  scene.text(`<center><b>${((s as any).npcdesc ?? '')}'s Bedroom</b></center>`);
   // TODO-QSP: $npc_apt_bedroom[$npcID]
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
     // TODO-QSP: dynamic text: <<$npcdesc>>''s bedroom is basically his entire apartment. The only other room i...
-    scene.text(`${((s as any).npcdesc || '')}'s bedroom is basically his entire apartment. The only other room is the bathroom. A typical studio apartment.`);
+    scene.text(`${((s as any).npcdesc ?? '')}'s bedroom is basically his entire apartment. The only other room is the bathroom. A typical studio apartment.`);
   } else {
     if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
       // TODO-QSP: dynamic text: <<$npcdesc>>''s bedroom is a small cozy little space with a twin bed and all of ...
-      scene.text(`${((s as any).npcdesc || '')}'s bedroom is a small cozy little space with a twin bed and all of his belongings tucked around it.`);
+      scene.text(`${((s as any).npcdesc ?? '')}'s bedroom is a small cozy little space with a twin bed and all of his belongings tucked around it.`);
     } else {
       if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 4) {
       } else {
         if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 5) {
           // TODO-QSP: dynamic text: <<$npcdesc>>''s bedroom is fairly large and comfortably fits a queen sized bed.
-          scene.text(`${((s as any).npcdesc || '')}'s bedroom is fairly large and comfortably fits a queen sized bed.`);
+          scene.text(`${((s as any).npcdesc ?? '')}'s bedroom is fairly large and comfortably fits a queen sized bed.`);
         } else {
           if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 6) {
           }
@@ -335,43 +335,43 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the bathroom', goto: ['lover_home', 'bedroom'] },
     ]);
   }
-  scene.text(`<center><b>${((s as any).npcdesc || '')}'s Bathroom</b></center>`);
+  scene.text(`<center><b>${((s as any).npcdesc ?? '')}'s Bathroom</b></center>`);
   // TODO-QSP: $npc_apt_bathroom[$npcID]
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] >= 2  &&  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] <= 5  &&  ((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 4) {
     if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       // TODO-QSP: dynamic text: <<$npcdesc>>''s bathroom is small but nice. It is noticeably clean and neat.
-      scene.text(`${((s as any).npcdesc || '')}'s bathroom is small but nice. It is noticeably clean and neat.`);
+      scene.text(`${((s as any).npcdesc ?? '')}'s bathroom is small but nice. It is noticeably clean and neat.`);
       scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is there for you to use if you want to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a> your hair or put on your makeup.');
     } else {
       if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         // TODO-QSP: dynamic text: <<$npcdesc>>''s bathroom is small and noticeably messy, with various stains cove...
-        scene.text(`${((s as any).npcdesc || '')}'s bathroom is small and noticeably messy, with various stains covering the porcelain and toiletries scattered haphazardly across the sink.`);
+        scene.text(`${((s as any).npcdesc ?? '')}'s bathroom is small and noticeably messy, with various stains covering the porcelain and toiletries scattered haphazardly across the sink.`);
         scene.text('A dirty <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is there for you to use if you want to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a> your hair or put on your makeup.');
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>>''s bathroom is what you''d expect from him. Not super clean, but no...
-        scene.text(`${((s as any).npcdesc || '')}'s bathroom is what you'd expect from him. Not super clean, but not super messy either. A boy's bathroom.`);
+        scene.text(`${((s as any).npcdesc ?? '')}'s bathroom is what you'd expect from him. Not super clean, but not super messy either. A boy's bathroom.`);
         scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is there for you to use if you want to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a> your hair or put on your makeup.');
       }
     }
   } else {
     if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 4) {
       // TODO-QSP: dynamic text: <<$npcdesc>>''s bathroom has the belongings of multiple people scattered around ...
-      scene.text(`${((s as any).npcdesc || '')}'s bathroom has the belongings of multiple people scattered around the room.`);
+      scene.text(`${((s as any).npcdesc ?? '')}'s bathroom has the belongings of multiple people scattered around the room.`);
       scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is there for you to use if you want to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a> your hair or put on your makeup.');
     } else {
       if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 6) {
         if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
           // TODO-QSP: dynamic text: <<$npcdesc>>''s bathroom is luxurious. It is noticeably clean and neat.
-          scene.text(`${((s as any).npcdesc || '')}'s bathroom is luxurious. It is noticeably clean and neat.`);
+          scene.text(`${((s as any).npcdesc ?? '')}'s bathroom is luxurious. It is noticeably clean and neat.`);
           scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is there for you to use if you want to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a> your hair or put on your makeup.');
         } else {
           if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
             // TODO-QSP: dynamic text: <<$npcdesc>>''s bathroom is luxurious and noticeably messy, with various stains ...
-            scene.text(`${((s as any).npcdesc || '')}'s bathroom is luxurious and noticeably messy, with various stains covering the porcelain and toiletries scattered haphazardly across the sink.`);
+            scene.text(`${((s as any).npcdesc ?? '')}'s bathroom is luxurious and noticeably messy, with various stains covering the porcelain and toiletries scattered haphazardly across the sink.`);
             scene.text('A dirty <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is there for you to use if you want to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a> your hair or put on your makeup.');
           } else {
             // TODO-QSP: dynamic text: <<$npcdesc>>''s bathroom luxurious.
-            scene.text(`${((s as any).npcdesc || '')}'s bathroom luxurious.`);
+            scene.text(`${((s as any).npcdesc ?? '')}'s bathroom luxurious.`);
             scene.text('The <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027start/u0027); return false;">mirror</a> is there for you to use if you want to <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027mirror/u0027, /u0027brush/u0027); return false;">brush</a> your hair or put on your makeup.');
           }
         }
@@ -392,19 +392,19 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', '');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  scene.text(`<center><b>${((s as any).npcdesc || '')}'s Kitchen</b></center>`);
+  scene.text(`<center><b>${((s as any).npcdesc ?? '')}'s Kitchen</b></center>`);
   // TODO-QSP: $npc_apt_kitchen[$npcID]
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
     if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
       // TODO-QSP: dynamic text: <<$npcdesc>>''s kitchen a neatly kept corner of his room with all of the applian...
-      scene.text(`${((s as any).npcdesc || '')}'s kitchen a neatly kept corner of his room with all of the appliances and dishes well organized in an efficient manner.`);
+      scene.text(`${((s as any).npcdesc ?? '')}'s kitchen a neatly kept corner of his room with all of the appliances and dishes well organized in an efficient manner.`);
     } else {
       if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
         // TODO-QSP: dynamic text: <<$npcdesc>>''s kitchen is a disorganized mess in the corner of his room with ap...
-        scene.text(`${((s as any).npcdesc || '')}'s kitchen is a disorganized mess in the corner of his room with appliances and dishes seemingly thrown at random all over the place.`);
+        scene.text(`${((s as any).npcdesc ?? '')}'s kitchen is a disorganized mess in the corner of his room with appliances and dishes seemingly thrown at random all over the place.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>>''s kitchen is little more than a corner of his room.
-        scene.text(`${((s as any).npcdesc || '')}'s kitchen is little more than a corner of his room.`);
+        scene.text(`${((s as any).npcdesc ?? '')}'s kitchen is little more than a corner of his room.`);
       }
     }
     scene.text('It has a kettle, burners, pots and pans, an oven, and everything you\'d need to make a simple meal.');
@@ -412,14 +412,14 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
       if (((s as any).npc_neat ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>>''s kitchen is a cramped room with little counter space and a table ...
-        scene.text(`${((s as any).npcdesc || '')}'s kitchen is a cramped room with little counter space and a table that barely fits, but he seems to make it work. All of the appliances and dishes well organized in an efficient manner which probably helps a lot when you need to cook something.`);
+        scene.text(`${((s as any).npcdesc ?? '')}'s kitchen is a cramped room with little counter space and a table that barely fits, but he seems to make it work. All of the appliances and dishes well organized in an efficient manner which probably helps a lot when you need to cook something.`);
       } else {
         if (((s as any).npc_messy ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
           // TODO-QSP: dynamic text: <<$npcdesc>>''s kitchen is a cramped room with little counter space and a table ...
-          scene.text(`${((s as any).npcdesc || '')}'s kitchen is a cramped room with little counter space and a table that barely fits, but he seems to make it work. Though the way all of the appliances and dishes are seemingly thrown at random around the room probably doesn't help.`);
+          scene.text(`${((s as any).npcdesc ?? '')}'s kitchen is a cramped room with little counter space and a table that barely fits, but he seems to make it work. Though the way all of the appliances and dishes are seemingly thrown at random around the room probably doesn't help.`);
         } else {
           // TODO-QSP: dynamic text: <<$npcdesc>>''s kitchen is a cramped room with little counter space and a table ...
-          scene.text(`${((s as any).npcdesc || '')}'s kitchen is a cramped room with little counter space and a table that barely fits, but he seems to make it work.`);
+          scene.text(`${((s as any).npcdesc ?? '')}'s kitchen is a cramped room with little counter space and a table that barely fits, but he seems to make it work.`);
         }
       }
     } else {
@@ -427,7 +427,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 5) {
           // TODO-QSP: dynamic text: <<$npcdesc>>''s kitchen is nice with quality appliances and plenty of counter sp...
-          scene.text(`${((s as any).npcdesc || '')}'s kitchen is nice with quality appliances and plenty of counter space to work with.`);
+          scene.text(`${((s as any).npcdesc ?? '')}'s kitchen is nice with quality appliances and plenty of counter space to work with.`);
         } else {
           if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 6) {
           }
@@ -442,7 +442,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).lover_home_trash ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Take out ' + String(((s as any).npcdesc || '') ?? '') + '\'s trash',  },
+      { label: '', labelFn: (s: GameState) => 'Take out ' + String(((s as any).npcdesc ?? '') ?? '') + '\'s trash',  },
     ]);
   }
   // TODO-QSP: end
@@ -460,21 +460,21 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
-  scene.text(`<center><b>${((s as any).npcdesc || '')}'s Living Room</b></center>`);
+  scene.text(`<center><b>${((s as any).npcdesc ?? '')}'s Living Room</b></center>`);
   // TODO-QSP: $npc_apt_livingroom[$npcID]
   if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
     // TODO-QSP: dynamic text: <<$npcdesc>> has a tiny TV and a couch in the corner of his bedroom.
-    scene.text(`${((s as any).npcdesc || '')} has a tiny TV and a couch in the corner of his bedroom.`);
+    scene.text(`${((s as any).npcdesc ?? '')} has a tiny TV and a couch in the corner of his bedroom.`);
   } else {
     if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 3) {
       // TODO-QSP: dynamic text: <<$npcdesc>> doesn''t have much in his living room, but at least he''s got a cou...
-      scene.text(`${((s as any).npcdesc || '')} doesn't have much in his living room, but at least he's got a couch and a TV.`);
+      scene.text(`${((s as any).npcdesc ?? '')} doesn't have much in his living room, but at least he's got a couch and a TV.`);
     } else {
       if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 4) {
       } else {
         if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 5) {
           // TODO-QSP: dynamic text: <<$npcdesc>> has a comfy couch and a nice big TV.
-          scene.text(`${((s as any).npcdesc || '')} has a comfy couch and a nice big TV.`);
+          scene.text(`${((s as any).npcdesc ?? '')} has a comfy couch and a nice big TV.`);
         } else {
           if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 6) {
           }
@@ -495,10 +495,10 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
 function enterGamingRoom(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gaming_room']; enterLocInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npcdesc || '')}'s Gaming Room</b></center>`);
+  scene.text(`<center><b>${((s as any).npcdesc ?? '')}'s Gaming Room</b></center>`);
   // TODO-QSP: $npc_apt_spare[$npcID]
   // TODO-QSP: dynamic text: <<$npcdesc>> has a nice desk, chair, and computer.
-  scene.text(`${((s as any).npcdesc || '')} has a nice desk, chair, and computer.`);
+  scene.text(`${((s as any).npcdesc ?? '')} has a nice desk, chair, and computer.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Change rooms', handler: (st: GameState) => {
@@ -511,10 +511,10 @@ function enterGamingRoom(s: GameState, scene: SceneBuilder): void {
 function enterHomeGym(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'home_gym']; enterLocInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npcdesc || '')}'s Home Gym</b></center>`);
+  scene.text(`<center><b>${((s as any).npcdesc ?? '')}'s Home Gym</b></center>`);
   // TODO-QSP: $npc_apt_spare[$npcID]
   // TODO-QSP: dynamic text: <<$npcdesc>> has a home gym.
-  scene.text(`${((s as any).npcdesc || '')} has a home gym.`);
+  scene.text(`${((s as any).npcdesc ?? '')} has a home gym.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Change rooms', handler: (st: GameState) => {

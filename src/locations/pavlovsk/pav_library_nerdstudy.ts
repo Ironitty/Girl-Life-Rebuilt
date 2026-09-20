@@ -132,7 +132,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).npc_rel ?? 0)?.['A2'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
         // TODO-QSP: dynamic text: "There you are <<$pcs_nickname>>. How''s it going?" Artem greets you. "I figure ...
-        scene.text(`"There you are ${((st as any).pcs_nickname || '')}. How's it going?" Artem greets you. "I figure we can get a head-start on Yenotin's lesson while we talk." he says, moving the textbook towards you so you can look at it. While you work, Artem keeps up a lively conversation, talking about a range of different topics.`);
+        scene.text(`"There you are ${((st as any).pcs_nickname ?? '')}. How's it going?" Artem greets you. "I figure we can get a head-start on Yenotin's lesson while we talk." he says, moving the textbook towards you so you can look at it. While you work, Artem keeps up a lively conversation, talking about a range of different topics.`);
       } else {
         if (((st as any).npc_rel ?? 0)?.['A2'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
           scene.text('You try to chat with Artem, but he doesn\'t seem all that interested in the conversation. His answers are short and he doesn\'t even bother to stop writing in his notebook as you talk.');
@@ -182,7 +182,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big153.jpg');
     if (((st as any).npc_rel ?? 0)?.['A153'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
       // TODO-QSP: dynamic text: You greet Gerasim with a smile and make a point to ask him how his day is going,...
-      scene.text(`You greet Gerasim with a smile and make a point to ask him how his day is going, subtly hinting to the fact that you know other students like to make him do their school work. With a shy smile, Gerasim shrugs his shoulders. "I'm fine." he says, his smile growing. "Thanks for worrying about me though ${((st as any).pcs_nickname || '')}." You engage in some idle banter for a while.`);
+      scene.text(`You greet Gerasim with a smile and make a point to ask him how his day is going, subtly hinting to the fact that you know other students like to make him do their school work. With a shy smile, Gerasim shrugs his shoulders. "I'm fine." he says, his smile growing. "Thanks for worrying about me though ${((st as any).pcs_nickname ?? '')}." You engage in some idle banter for a while.`);
     } else {
       if (((st as any).npc_rel ?? 0)?.['A153'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
         scene.text('Gerasim isn\'t really interested in talking to you, but you insist and try to keep up a conversation until he finally stops you. "Hey, I really need to study. Maybe we can talk some other time?" he says halfheartedly with an awkward laugh, then focuses on studying.');
@@ -231,7 +231,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big6.jpg');
     if (((st as any).npc_rel ?? 0)?.['A6'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
       // TODO-QSP: dynamic text: "You really have to read this book <<$pcs_nickname>>! I''m pretty sure it''s one...
-      scene.text(`"You really have to read this book ${((st as any).pcs_nickname || '')}! I'm pretty sure it's one you'd enjoy." Petka says excitedly. He starts to tell you about an interesting part he just read, but stops himself with a laugh. "Don't worry, I won't spoil it for you." The two of you chat about some recent books you have read.`);
+      scene.text(`"You really have to read this book ${((st as any).pcs_nickname ?? '')}! I'm pretty sure it's one you'd enjoy." Petka says excitedly. He starts to tell you about an interesting part he just read, but stops himself with a laugh. "Don't worry, I won't spoil it for you." The two of you chat about some recent books you have read.`);
     } else {
       if (((st as any).npc_rel ?? 0)?.['A6'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
         scene.text('"Can we talk later? I really want to finish studying this chapter before we call it a night." Petka says, only briefly looking up from his book to address you before burying his nose right back into it.');
@@ -257,10 +257,10 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_rel ?? 0)?.['A16'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
       if (((st as any).NatbelQW ?? 0)?.['chrispaid'] < 3) {
         // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Have you seen this new makeup line coming out? It''s exp...
-        scene.text(`"Hey ${((st as any).pcs_nickname || '')}! Have you seen this new makeup line coming out? It's expensive but I looove the colors!" Natasha says as she holds up the magazine ad for said makeup. She talks about how she can't afford nice things like this and this ends up bringing her down. You quickly change the subject and start complimenting her on her sense of style and grades and reminding her she's a top student in school, which brings a smile to her face.`);
+        scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}! Have you seen this new makeup line coming out? It's expensive but I looove the colors!" Natasha says as she holds up the magazine ad for said makeup. She talks about how she can't afford nice things like this and this ends up bringing her down. You quickly change the subject and start complimenting her on her sense of style and grades and reminding her she's a top student in school, which brings a smile to her face.`);
       } else {
         // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Have you seen this new makeup line coming out? It''s exp...
-        scene.text(`"Hey ${((st as any).pcs_nickname || '')}! Have you seen this new makeup line coming out? It's expensive but I looove the colors!" Natasha says as she holds up the magazine ad for said makeup. She talks about how she still finds it difficult to afford nice things like this and this ends up bringing her down until you remind her that she's got rid of all her debts and now has some money and you're happy to help her out. She smiles at this but you know that she doesn't want to keep relying on you so you change the subject and start complimenting her on her sense of style and grades and reminding her she's a top student in school, which brings a smile to her face.`);
+        scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}! Have you seen this new makeup line coming out? It's expensive but I looove the colors!" Natasha says as she holds up the magazine ad for said makeup. She talks about how she still finds it difficult to afford nice things like this and this ends up bringing her down until you remind her that she's got rid of all her debts and now has some money and you're happy to help her out. She smiles at this but you know that she doesn't want to keep relying on you so you change the subject and start complimenting her on her sense of style and grades and reminding her she's a top student in school, which brings a smile to her face.`);
       }
     } else {
       if (((st as any).npc_rel ?? 0)?.['A16'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
@@ -310,7 +310,7 @@ function enterNerdStudyNight2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big240.jpg');
     if (((st as any).npc_rel ?? 0)?.['A240'] >= 60  &&  ((st as any).grupTipe ?? 0) === 3) {
       // TODO-QSP: dynamic text: As you approach Natalia, she closes her notebook and waves at you. "Hey <<$pcs_n...
-      scene.text(`As you approach Natalia, she closes her notebook and waves at you. "Hey ${((st as any).pcs_nickname || '')}, come and have a seat." You sit next to Natalia and discuss current events while occasionally gossiping about your classmates.`);
+      scene.text(`As you approach Natalia, she closes her notebook and waves at you. "Hey ${((st as any).pcs_nickname ?? '')}, come and have a seat." You sit next to Natalia and discuss current events while occasionally gossiping about your classmates.`);
     } else {
       if (((st as any).npc_rel ?? 0)?.['A240'] <= 20  ||  ((st as any).fame ?? 0)?.['pav_slut'] >= 250) {
         scene.text('You try to talk to Natalia, but the conversation becomes completely one-sided, with you doing all the talking while Natalia busies herself with her notebook, keeping others and especially you, from seeing what she is doing.');

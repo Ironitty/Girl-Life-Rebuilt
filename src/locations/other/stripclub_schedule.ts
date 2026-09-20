@@ -236,7 +236,7 @@ function enterSetScheduleBase(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=    '</tr>'
   // TODO-QSP: $temp_table +=  '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table || '')}`);
+  scene.text(`${((s as any).temp_table ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }

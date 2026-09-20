@@ -19,9 +19,9 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/meynolds/vika_qw_30.jpg');
   scene.text('As soon as you walk in the room, Vicky throws herself onto Vanya. Wraps her legs around his waist and hugs him around the neck. They start making out. Vanya holds Vicky\'s ass and starts squeezing it. While you watch them, you start feeling aroused. They finally stop…');
   // TODO-QSP: dynamic text: "I suppose we surprised you a bit there?" Vicky giggles. "Don''t be shy, <<$pcs_...
-  scene.text(`"I suppose we surprised you a bit there?" Vicky giggles. "Don't be shy, ${((s as any).pcs_nickname || '')}!"`);
+  scene.text(`"I suppose we surprised you a bit there?" Vicky giggles. "Don't be shy, ${((s as any).pcs_nickname ?? '')}!"`);
   // TODO-QSP: dynamic text: "Yeah, don''t worry, <<$pcs_nickname>>!" Says Vanya. "This is all natural, you n...
-  scene.text(`"Yeah, don't worry, ${((s as any).pcs_nickname || '')}!" Says Vanya. "This is all natural, you need some foreplay to reach orgasm!" He adds grinning.`);
+  scene.text(`"Yeah, don't worry, ${((s as any).pcs_nickname ?? '')}!" Says Vanya. "This is all natural, you need some foreplay to reach orgasm!" He adds grinning.`);
   scene.text('"Why are you standing!" Asks Vicky. "Make yourself comfortable! Relax!" She drags Vanya and you down onto the enormous bed.');
   scene.text('The three of you mess around for a bit, laughing, squealing and growling. Vicky and Vanya put on a show where Vanya plays a bear growling and chasing Vicky around the bed. The neatly laid bed turns into a complete mess after a few seconds. All of a sudden the growling stops and you see Vicky pulling up her T-shirt, revealing hers small perky breasts. She\'s not wearing a bra and she\'s slowly pulling the shirt off, teasing both you and Vanya.');
   scene.text('Vanya, seeing an opportunity decides to help out. But Vicky seems to deliberately prevent him and instead he starts touching her breasts. As you watch on your arousal intensifies.');
@@ -35,7 +35,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_qw_35.jpg');
     scene.text('Finally removing the t-shirt, she says…');
     // TODO-QSP: dynamic text: "Hold on a second I''ll put a bra on so <<$pcs_nickname>> doesn''t get too turne...
-    scene.text(`"Hold on a second I'll put a bra on so ${((st as any).pcs_nickname || '')} doesn't get too turned on."`);
+    scene.text(`"Hold on a second I'll put a bra on so ${((st as any).pcs_nickname ?? '')} doesn't get too turned on."`);
     scene.text('She jumps away from the bed, opens the dresser drawer and bends over, revealing her tight round ass. After finding a bra, she turns her back to you, and all of a sudden, throws a shirt over Vanyas head, quickly puts on a bra, and once again puts her t-shirt on. But not before she lets you notice that the bra is funny looking. It is bright orange and has Mickey Mouse prints on it.');
     scene.text('"Let\'s drink and play cards!!!" Vicky proclaims.');
     scene.text('She rummages through the wardrobe and pulls out a bottle of champagne.');
@@ -44,7 +44,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.text('She runs out of the room and brings back some glasses. Vanya opens a bottle and pours the bubbly liquid. It\'s a French champagne, with a delicate aroma, sparkling in myriads of tiny bubbles. You toast and take a sip from your glass. It tastes like wine and sparkling soda. The three of you talk and drink. Vanya is telling funny stories about some encounters he\'s had in his life. While he\'s telling his stories Vicky moves over to him placing her legs over his. Vanya places his hand onto her thigh.');
     scene.text('You start feeling a bit buzzed, getting that good and fun feeling.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, come and join us here on the bed, we''re about to start." Vi...
-    scene.text(`"${((st as any).pcs_nickname || '')}, come and join us here on the bed, we're about to start." Vicky calls you over.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, come and join us here on the bed, we're about to start." Vicky calls you over.`);
     scene.text('You jump onto the bed and wait for Vanya to shuffle the cards.');
     qspCall(st, 'arousal', 'foreplay', 10, 'group');
     qspCall(st, 'stat', '');
@@ -63,7 +63,7 @@ function enterEndGame(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Noticing you, Tamara leans over, rubbing against your breasts…');
   // TODO-QSP: dynamic text: "You can come over and visit us any time you want, <<$pcs_nickname>>. We can sit...
-  scene.text(`"You can come over and visit us any time you want, ${((s as any).pcs_nickname || '')}. We can sit down and have a chat over a cup of tea."`);
+  scene.text(`"You can come over and visit us any time you want, ${((s as any).pcs_nickname ?? '')}. We can sit down and have a chat over a cup of tea."`);
   scene.text('"Of course, aunt Tamara! I\'ll be sure to come by."');
   scene.text('Tamara smiles and adds…');
   scene.text('"You don\'t need an invitation from my girls, you can come by any time you want by yourself."');
@@ -229,7 +229,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).zz_stage ?? 0) < 16) {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip0.mp4');
     // TODO-QSP: dynamic text: "You''ve won, <<$pcs_nickname>>. Pick your prize." Says Vicky.
-    scene.text(`"You've won, ${((s as any).pcs_nickname || '')}. Pick your prize." Says Vicky.`);
+    scene.text(`"You've won, ${((s as any).pcs_nickname ?? '')}. Pick your prize." Says Vicky.`);
     scene.text('You start thinking…');
     scene.text('"Hmm… Can I pick anything? Anything I want?"');
     scene.text('"Well, yeah! Anything but murder!"');
@@ -245,9 +245,9 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
       if (((s as any).zz_stage ?? 0) === 27) {
       } else {
         if (((s as any).zz_stage ?? 0) === 16  ||  ((s as any).zz_stage ?? 0) === 22  ||  ((s as any).zz_stage ?? 0) === 25  ||  (((s as any).zz_stage ?? 0) >= 28  &&  ((s as any).zz_stage ?? 0) < 31)) {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage || '') + '.mp4');
+          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage ?? '') + '.mp4');
         } else {
-          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage || '') + '.jpg');
+          scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip' + ((s as any).zz_stage ?? '') + '.jpg');
         }
       }
       if (((s as any).zz_stage ?? 0) === 16) {
@@ -379,7 +379,7 @@ function enterPlayGameWish1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Still panting, tired but happy, you relax. Lying on the messy bed, the three of you hug each other carefully, gently stroking each other, slowly cooling down.');
       // TODO-QSP: dynamic text: "That was amazing, <<$pcs_nickname>>!" Whispers Vicky. "I hope you''re not mad a...
-      scene.text(`"That was amazing, ${((s as any).pcs_nickname || '')}!" Whispers Vicky. "I hope you're not mad at us, Vanya and I wanted to have a threesome for the longest time. We had a feeling you would be up for it, but we didn't dare to ask you. We didn't know how you would react."`);
+      scene.text(`"That was amazing, ${((s as any).pcs_nickname ?? '')}!" Whispers Vicky. "I hope you're not mad at us, Vanya and I wanted to have a threesome for the longest time. We had a feeling you would be up for it, but we didn't dare to ask you. We didn't know how you would react."`);
       scene.text('You respond by gently kissing them both.');
       scene.text('You forget about the time while lying there all together, intertwined in an intricate tangle, slowly cooling off.');
       scene.text('All of a sudden you hear a gentle knock on the door.');
@@ -416,7 +416,7 @@ function enterPlayGameWish2(s: GameState, scene: SceneBuilder): void {
     scene.text('You start getting excited and you are already passionately responding on your own initiative, feeling up her ass.');
     scene.text('You kiss enthusiastically, forgetting about time, about Vanya sitting next to you, completely surrendering to each other.');
     // TODO-QSP: dynamic text: "Wow! Well, who would have thought you were a good kisser, <<$pcs_nickname>>! I ...
-    scene.text(`"Wow! Well, who would have thought you were a good kisser, ${((st as any).pcs_nickname || '')}! I never thought you were cool enough to know how to kiss" Says a delightedly flushed Vicky.`);
+    scene.text(`"Wow! Well, who would have thought you were a good kisser, ${((st as any).pcs_nickname ?? '')}! I never thought you were cool enough to know how to kiss" Says a delightedly flushed Vicky.`);
     scene.actions([
       { label: 'Next game', goto: ['mey_vika_events', 'play_game'] },
       { label: 'Go', goto: ['mey_vika_events', 'end_game'] },
@@ -436,7 +436,7 @@ function enterPlayGameWish3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well, I lost, and will have to fulfill my promise." You lean to Vanya kissing him on the lips. Kissing someone else\'s boyfriend fills you with excitement. Your private parts start pulsating, the juices start flowing and you feel your panties getting wet. His tongue intertwines in your mouth, you suck each other lips. Vanya holds you close to him and can you feel his erect cock pressing against you. You begin grabbing his ass, and at the end of your make out session you bite his lip.');
   scene.text('Vicky heartily applauds.');
   // TODO-QSP: dynamic text: "Wow! Well, you surprised me, <<$pcs_nickname>>! I never thought you were so coo...
-  scene.text(`"Wow! Well, you surprised me, ${((s as any).pcs_nickname || '')}! I never thought you were so cool! While I was watching the two of you I wanted to make out with you too, you little tease."`);
+  scene.text(`"Wow! Well, you surprised me, ${((s as any).pcs_nickname ?? '')}! I never thought you were so cool! While I was watching the two of you I wanted to make out with you too, you little tease."`);
   qspCall(s, 'arousal', 'foreplay', 10);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -477,7 +477,7 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
       scene.text('"Katja, do you know where they\'re heading?" You ask, nodding towards the couple?');
       if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
         // TODO-QSP: dynamic text: "There''s not much to say, <<$pcs_nickname>>." Says Katja smiling.
-        scene.text(`"There's not much to say, ${((s as any).pcs_nickname || '')}." Says Katja smiling.`);
+        scene.text(`"There's not much to say, ${((s as any).pcs_nickname ?? '')}." Says Katja smiling.`);
         scene.text('"As far as I know they go for a walk in the park. Though they walk on the off-beat tracks, attempting to stay hidden, away from all the prying eyes." Katja continues.');
         ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 1;
         scene.actions([
@@ -508,7 +508,7 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
           if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 27  &&  ((s as any).mey_vika ?? 0)?.['qw_day'] !== ((s as any).daystart ?? 0)) {
             ((s as any).mey_vika = (s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
             // TODO-QSP: dynamic text: "My mother was quite intrigued by you, <<$pcs_nickname>>… That friend of yours, ...
-            scene.text(`"My mother was quite intrigued by you, ${((s as any).pcs_nickname || '')}… That friend of yours, ${((s as any).pcs_nickname || '')}? Why doesn't she visit us more often?"`);
+            scene.text(`"My mother was quite intrigued by you, ${((s as any).pcs_nickname ?? '')}… That friend of yours, ${((s as any).pcs_nickname ?? '')}? Why doesn't she visit us more often?"`);
             scene.text('You start feeling a bit ashamed because Vicky needed to remind you and you promise that you will definitely visit in the near future.');
             scene.actions([
               { label: 'Visit aunt Tamara', goto: ['mey_tamara_events', 'next_meet'] },
@@ -519,7 +519,7 @@ function enterNearSchool(s: GameState, scene: SceneBuilder): void {
               ((s as any).mey_vika = (s as any).mey_vika ?? {})['qw_day'] = ((s as any).daystart ?? 0);
               ((s as any).mey_vika = (s as any).mey_vika ?? {})['key'] = 1;
               // TODO-QSP: dynamic text: "My mother likes you very much, <<$pcs_nickname>>, and the three of us hit it of...
-              scene.text(`"My mother likes you very much, ${((s as any).pcs_nickname || '')}, and the three of us hit it off, so here's the key to our house. Don't worry about anything, our house is your house. Here you go, come visit any time you like!"`);
+              scene.text(`"My mother likes you very much, ${((s as any).pcs_nickname ?? '')}, and the three of us hit it off, so here's the key to our house. Don't worry about anything, our house is your house. Here you go, come visit any time you like!"`);
               scene.actions([
                 { label: 'Depart', goto: ['gschool_grounds', 'main'] },
               ]);
@@ -543,7 +543,7 @@ function enterBeachStalk(s: GameState, scene: SceneBuilder): void {
   scene.text('<br>"Katja, do you know where they\'re heading?" You ask, nodding towards the couple?');
   if (((s as any).npc_rel ?? 0)?.['A14'] >= 60) {
     // TODO-QSP: dynamic text: "There''s not much to say, <<$pcs_nickname>>." Says Katja smiling.
-    scene.text(`"There's not much to say, ${((s as any).pcs_nickname || '')}." Says Katja smiling.`);
+    scene.text(`"There's not much to say, ${((s as any).pcs_nickname ?? '')}." Says Katja smiling.`);
     scene.text('"As far as I know they go for a walk in the park. Though they walk on the off-beat tracks, attempting to stay hidden, away from all the prying eyes." Katja continues.');
     scene.text('You say your thanks and after a brief chat with Katja, you decide to follow the couple. She said they go to the park so you start heading there to see if you can find them.');
     ((s as any).mey_vika = (s as any).mey_vika ?? {})['mey_vika_qw'] = 1;
@@ -904,7 +904,7 @@ function enterParkQw(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/building/gschool.jpg');
   // TODO-QSP: dynamic text: After school ends you meet Vicky and Vanya outside. They once again invite you t...
-  scene.text(`After school ends you meet Vicky and Vanya outside. They once again invite you to the café, but remembering what happened the previous time you tell them that you don't have any money. You politely decline, even in spite being sure they would put on a new show for you.<br>"Then let's go for a walk together!" Vicky offers. <br>"What do you say, ${((s as any).pcs_nickname || '')}?"`);
+  scene.text(`After school ends you meet Vicky and Vanya outside. They once again invite you to the café, but remembering what happened the previous time you tell them that you don't have any money. You politely decline, even in spite being sure they would put on a new show for you.<br>"Then let's go for a walk together!" Vicky offers. <br>"What do you say, ${((s as any).pcs_nickname ?? '')}?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Decline', handler: (st: GameState) => {
@@ -968,7 +968,7 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'mood', 'raise', 'tiny');
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_1.jpg');
     // TODO-QSP: dynamic text: Entering the sauna by yourselves, you quickly get changed and head towards the r...
-    scene.text(`Entering the sauna by yourselves, you quickly get changed and head towards the rocks to splash some water over them. Steam fills the room as you sit down on the bench next to Vicky, who is watching you with a smile on her face. "Hey ${((st as any).pcs_nickname || '')}, there are better ways we could turn the heat up in here, make it even steamier since Vanya is gone," she says mischievously.`);
+    scene.text(`Entering the sauna by yourselves, you quickly get changed and head towards the rocks to splash some water over them. Steam fills the room as you sit down on the bench next to Vicky, who is watching you with a smile on her face. "Hey ${((st as any).pcs_nickname ?? '')}, there are better ways we could turn the heat up in here, make it even steamier since Vanya is gone," she says mischievously.`);
     scene.text('"What do you mean?" you ask, looking around for something you might have missed.');
     scene.text('Both Vanya and myself have been seeing you around in the park and at school, and we have talked about asking if you would be interested in a threesome together at some point…" Vicky says as she reaches over and puts a soft hand over your thigh. "… and I like you, maybe even more than a friend."');
     scene.text('By this time, her face is very close to yours and you can feel your cheeks getting really red, and not from the heat rocks. "I don\'t know… I…"');
@@ -1044,7 +1044,7 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.img('images/locations/pavlovsk/resident/meynolds/sex/wintalt_10.jpg');
     // TODO-QSP: dynamic text: "Yes, it was… we should definitely do this again. What do you think, <<$pcs_nick...
-    scene.text(`"Yes, it was… we should definitely do this again. What do you think, ${((st as any).pcs_nickname || '')}? Is this arrangement to your liking? Maybe even Vanya can have some fun with you too, but we can work that out later," Vicky says to you, while you slide up behind her and run your hands over her body once more.`);
+    scene.text(`"Yes, it was… we should definitely do this again. What do you think, ${((st as any).pcs_nickname ?? '')}? Is this arrangement to your liking? Maybe even Vanya can have some fun with you too, but we can work that out later," Vicky says to you, while you slide up behind her and run your hands over her body once more.`);
     scene.text('"Yeah, I\'d be up for this again. And I\'ll think about Vanya\'s involvement," you say, sticking your tongue out at him playfully before giving Vicky one last passionate kiss.');
     scene.text('"I promise I won\'t bite… unless you ask nicely," he responds with a playful wink in kind.');
     scene.text('You spend the next few minutes getting cleaned up and dressed, before leaving the sauna.');
@@ -1052,7 +1052,7 @@ function enterSaunaEvent(s: GameState, scene: SceneBuilder): void {
     scene.text('"We should hang out at my place sometime. I\'ll introduce you to my mother. I\'m sure she\'ll be delighted to get to know you."');
     scene.text('You answer that you\'ll definitely think about it and thank her for the invitation.');
     // TODO-QSP: dynamic text: "Don''t forget about it now, <<$pcs_nickname>>!" Vicky presses on.
-    scene.text(`"Don't forget about it now, ${((st as any).pcs_nickname || '')}!" Vicky presses on.`);
+    scene.text(`"Don't forget about it now, ${((st as any).pcs_nickname ?? '')}!" Vicky presses on.`);
     scene.text('"Of course I won\'t, Vicky!" you sincerely reply.');
     qspCall(st, 'arousal', 'kiss', 3, 'lesbian');
     ((st as any).mey_vika = (st as any).mey_vika ?? {})['mey_vika_qw'] = 20;
@@ -1154,7 +1154,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/meynolds/vika_beach6.jpg');
     scene.text('Vicky turns toward you…');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you also need to use suntan lotion. The sun is scorching hot...
-    scene.text(`"${((st as any).pcs_nickname || '')}, you also need to use suntan lotion. The sun is scorching hot!"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, you also need to use suntan lotion. The sun is scorching hot!"`);
     if (((st as any).pcs_tan ?? 0) <= 10) {
       scene.text('"We\'re both really pale. You will get a sunburn for sure."');
     } else {
@@ -1179,7 +1179,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"Don\'t worry we\'re all alone here." and in one motion Vicky drops her bikini bottom…');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, could you apply lotion on my butt, I don''t want to look lik...
-    scene.text(`"${((st as any).pcs_nickname || '')}, could you apply lotion on my butt, I don't want to look like a red-assed baboon."`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, could you apply lotion on my butt, I don't want to look like a red-assed baboon."`);
     scene.text('"What if Vanya sees us?"');
     scene.text('Vicky starts laughing…');
     scene.text('"It\'s not like he hasn\'t seen it before."');
@@ -1221,7 +1221,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
     scene.text('The couple look at each other as they\'ve come to a silent agreement that it\'s time to finally make you orgasm. Vanya brusquely thrusts his cock inside of you. You gasp as he enters you and not before long you\'re yelling loudly unable to hold back anymore, you orgasm violently just like a fountain, your knees buckling from the pressure. Vicky forces herself onto Vanya\'s cock, sucking him until he erupts in her mouth…');
     scene.text('Exhausted, and still shivering, you lie between Vanya and Vicky. They hug you, kissing and caressing your body.');
     // TODO-QSP: dynamic text: "That was wonderful, <<$pcs_nickname>>." whispers Vicky. "I hope you''re not mad...
-    scene.text(`"That was wonderful, ${((st as any).pcs_nickname || '')}." whispers Vicky. "I hope you're not mad at us? Vanya and I have for the longest time wanted to experience a threesome. We really got fond of you, but we did not dare to ask you. We didn't know how you would react."`);
+    scene.text(`"That was wonderful, ${((st as any).pcs_nickname ?? '')}." whispers Vicky. "I hope you're not mad at us? Vanya and I have for the longest time wanted to experience a threesome. We really got fond of you, but we did not dare to ask you. We didn't know how you would react."`);
     scene.text('Your only response is you gently kissing them both.');
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal', 10, ((st as any).npcID ?? 0), 'group');
@@ -1247,7 +1247,7 @@ function enterBeachEvent0(s: GameState, scene: SceneBuilder): void {
       scene.text('"We should hang out at my place sometime. I\'ll introduce you to my mother. I\'m sure she\'ll be delighted to get to know you."');
       scene.text('You answer that you\'ll definitely think about it and thank her for the invitation.');
       // TODO-QSP: dynamic text: "Don''t forget about it now, <<$pcs_nickname>>!" Vicky presses on.
-      scene.text(`"Don't forget about it now, ${((st as any).pcs_nickname || '')}!" Vicky presses on.`);
+      scene.text(`"Don't forget about it now, ${((st as any).pcs_nickname ?? '')}!" Vicky presses on.`);
       scene.text('"Of course I won\'t, Vicky!" You sincerely reply.');
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBeachEnder(s, scene); (st as any).locArgs = __savedLocArgs; }
     }
@@ -1295,7 +1295,7 @@ function enterBeachEvent1(s: GameState, scene: SceneBuilder): void {
   scene.text('Arriving at the beach, you start looking for Vicky and Vanya.');
   scene.text('They\'ve found a comfortable spot where they can sunbathe and drink the beer that they brought in a hefty bag. Noticing you, they wave you over.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Come here and join us, the more the merrier! We have cold be...
-  scene.text(`"${((s as any).pcs_nickname || '')}! Come here and join us, the more the merrier! We have cold beer!"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}! Come here and join us, the more the merrier! We have cold beer!"`);
   scene.text('"You\'re getting drunk when it\'s this hot outside?" You ask a bit concerned.');
   scene.text('"Don\'t be a buzzkill! You should try some yourself." A sweaty Vanya says, handing you a beer.');
   scene.text('The beer is still cold, despite the heat.');
@@ -1495,7 +1495,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.text('Having escaped from the room like a speeding bullet, you\'re now in "your" room. You slam the door shut, dive on your bed and cover your head with a blanket, curling up, feeling ashamed from the incident.');
     scene.text('Half an hour later you hear a gentle knock on the door and the soft voice of Tamara.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, dear, will you let me in if it''s okay?"
-    scene.text(`"${((st as any).pcs_nickname || '')}, dear, will you let me in if it's okay?"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, dear, will you let me in if it's okay?"`);
     scene.text('You nod, realizing that since aunt Tamara is standing behind a closed door she can\'t seeing you nod.');
     scene.text('"Of course. I\'ll open the door…" You answer in a husky voice.');
     scene.text('Aunt Tamara is still wearing the same robe as before. You can\'t believe that her warm and endearing smile was completely different just a few minutes ago. Like a superior mistress.');
@@ -1628,7 +1628,7 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
     scene.text('"Look at my breast jiggling as I jump around." Says Vicky, turning her back to you.');
     scene.text('She bends over and pulls off her pants. Then she strips off her socks as well.');
     // TODO-QSP: dynamic text: "You should take your clothes off too, <<$pcs_nickname>>. You''ll feel much more...
-    scene.text(`"You should take your clothes off too, ${((st as any).pcs_nickname || '')}. You'll feel much more free!"`);
+    scene.text(`"You should take your clothes off too, ${((st as any).pcs_nickname ?? '')}. You'll feel much more free!"`);
     scene.text('You too, strip and you start jumping, laughing together with Vicky.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -1653,7 +1653,7 @@ function enterGym0(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/gym10.jpg');
     scene.text('Vicky makes you do a few yoga poses, as you\'re about to finish she says…');
     // TODO-QSP: dynamic text: "Time to hit the shower! Won''t you join me, <<$pcs_nickname>>?"
-    scene.text(`"Time to hit the shower! Won't you join me, ${((st as any).pcs_nickname || '')}?"`);
+    scene.text(`"Time to hit the shower! Won't you join me, ${((st as any).pcs_nickname ?? '')}?"`);
     if (((st as any).mesec ?? 0) === 0  &&  ((st as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((st as any).mey_vika ?? 0)?.['bath_qw'] === 1  &&  ((st as any).mey_vika ?? 0)?.['bath_qw_day'] !== ((st as any).daystart ?? 0)) {
     }
     scene.actions([
@@ -1769,11 +1769,11 @@ function enterBathQw0(s: GameState, scene: SceneBuilder): void {
   scene.text('You grab the large floor scrubbing machine located right at the entrance. You drag it outside, quickly figuring out how to turn it on, pour water into the tank, splash some detergent in the compartment and begin to diligently scrub the floors.');
   scene.text('You sweat and pant by the time you\'re finished with the housework on the first floor. After dragging the machine up the stairs you continue on in the hallway. When you\'re done cleaning the second floor hall, you start dragging the heavy scrubbing machine back to the closet on the first floor. All of a sudden Vicky pops up from her room. She\'s dressed in shorts and a short top. Seeing you, she comes towards you and grabs the other handle of the machine, saying…');
   // TODO-QSP: dynamic text: "Let me help you out, <<$pcs_nickname>>! This fucking thing weighs like a fuckin...
-  scene.text(`"Let me help you out, ${((s as any).pcs_nickname || '')}! This fucking thing weighs like a fucking mammoth!"`);
+  scene.text(`"Let me help you out, ${((s as any).pcs_nickname ?? '')}! This fucking thing weighs like a fucking mammoth!"`);
   scene.text('The two of you easily drag the machine back to the kitchen and put it back in the closet.');
   scene.text('Vicky grabs her nose…');
   // TODO-QSP: dynamic text: "You smell really bad, <<$pcs_nickname>>! You need a bath, you smell like an ani...
-  scene.text(`"You smell really bad, ${((s as any).pcs_nickname || '')}! You need a bath, you smell like an animal at the zoo! Let me fix you a bath! Come on, the bathtub is already filling up." Vicky grabs your hand and starts pulling you along, not paying attention if you're having any objections.`);
+  scene.text(`"You smell really bad, ${((s as any).pcs_nickname ?? '')}! You need a bath, you smell like an animal at the zoo! Let me fix you a bath! Come on, the bathtub is already filling up." Vicky grabs your hand and starts pulling you along, not paying attention if you're having any objections.`);
   if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
     scene.actions([
       { label: 'Take a bath', handler: (st: GameState) => {
@@ -1802,7 +1802,7 @@ function enterBathQw1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Standing in the hallway in her shorts and a short top Vicky confronts you, pointing at the stairs.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! No excuses you''re taking a bath now! Come with me!"
-  scene.text(`"${((s as any).pcs_nickname || '')}! No excuses you're taking a bath now! Come with me!"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}! No excuses you're taking a bath now! Come with me!"`);
   if (((s as any).mesec ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
     scene.actions([
       { label: 'Take a bath', handler: (st: GameState) => {
@@ -1915,7 +1915,7 @@ function enterBangKatya(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).zz_stage ?? 0))) {
     scene.text('Later that evening you hear Vanya and Vicky conspiring about something.');
     // TODO-QSP: dynamic text: "Are you up for some fun, <<$pcs_nickname>>?" Asks Vicky.
-    scene.text(`"Are you up for some fun, ${((s as any).pcs_nickname || '')}?" Asks Vicky.`);
+    scene.text(`"Are you up for some fun, ${((s as any).pcs_nickname ?? '')}?" Asks Vicky.`);
     scene.text('"Well, it all depends on what you have in mind…"');
     if (((s as any).katjaQW ?? 0)?.['Slut'] < 20) {
       scene.text('"We were thinking about playing a prank on my prude sister Katja!"');
@@ -1997,7 +1997,7 @@ function enterBangKatya2(s: GameState, scene: SceneBuilder): void {
         scene.text('"To be honest… it was the best sleep I\'ve ever had in my life…"');
         scene.text('Vicky doesn\'t even bat an eye. This girl doesn\'t know what shame is, there is no way to embarrass her.');
         // TODO-QSP: dynamic text: "What are you worrying about? We''re at home! And the only ones knowing about it...
-        scene.text(`"What are you worrying about? We're at home! And the only ones knowing about it is us! You don't have to worry about ${((st as any).pcs_nickname || '')} or Vanya saying anything I got them wrapped around my finger. And don't be such a prude. They did a damn good job at pleasing you and you still complain."`);
+        scene.text(`"What are you worrying about? We're at home! And the only ones knowing about it is us! You don't have to worry about ${((st as any).pcs_nickname ?? '')} or Vanya saying anything I got them wrapped around my finger. And don't be such a prude. They did a damn good job at pleasing you and you still complain."`);
       } else {
         scene.text('Katja blushes even more, although you think it\'s impossible, she turns even more red just like a strawberry.');
         scene.text('She licks her lips.');

@@ -87,7 +87,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Set purse', goto: ['intro_character_custom', 'modpur'] },
     { label: 'Set items', goto: ['intro_character_custom', 'modite'] },
     { label: 'Set clothes', goto: ['intro_character_custom', 'modclo_menu'] },
-    { label: '', labelFn: (s: GameState) => 'Set money (' + String(qspFunc(s, 'money', 'format', ((s as any).money || '')) ?? '') + ')', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Set money (' + String(qspFunc(s, 'money', 'format', ((s as any).money ?? '')) ?? '') + ')', handler: (st: GameState) => {
     (st as any).money = 0;
     qspGoto(st, 'intro_character_custom', 'start');
   } },
@@ -1046,10 +1046,10 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_mass ?? 0)?.['bust_gen'] === ((s as any).temp_val ?? 0)) {
     // TODO-QSP: dynamic text: <<$temp_label>> - Currently set
-    scene.text(`${((s as any).temp_label || '')} - Currently set`);
+    scene.text(`${((s as any).temp_label ?? '')} - Currently set`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:pcs_mass[''bust_gen''] = <<temp_val>> & gt ''intro_character_custo...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027bust_gen/u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label || '')}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027bust_gen/u0027 = ${((s as any).temp_val ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label ?? '')}</a>`);
   }
   (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
   if (((s as any).temp_idx ?? 0) < 9) {
@@ -1096,10 +1096,10 @@ function enterModapp(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_mass ?? 0)?.['butt_gen'] === ((s as any).temp_val ?? 0)) {
     // TODO-QSP: dynamic text: <<$temp_label>> - Currently set
-    scene.text(`${((s as any).temp_label || '')} - Currently set`);
+    scene.text(`${((s as any).temp_label ?? '')} - Currently set`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:pcs_mass[''butt_gen''] = <<temp_val>> & gt ''intro_character_custo...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027butt_gen/u0027 = ${((s as any).temp_val || '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label || '')}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { (s.pcs_mass ??= {})/u0027butt_gen/u0027 = ${((s as any).temp_val ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_custom/u0027, /u0027modapp/u0027); return false;">${((s as any).temp_label ?? '')}</a>`);
   }
   (s as any).temp_idx = ((s as any).temp_idx ?? 0) + (1);
   if (((s as any).temp_idx ?? 0) < 9) {
@@ -1139,7 +1139,7 @@ function enterSetgenbsize(s: GameState, scene: SceneBuilder): void {
 function enterModite(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => 'Fake passport (' + String(((s as any).fakepassport || '') ?? '') + '/1)', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => 'Fake passport (' + String(((s as any).fakepassport ?? '') ?? '') + '/1)', handler: (st: GameState) => {
     if ((!((st as any).fakepassport ?? 0))) {
       (st as any).fakepassport = 1;
     } else {
@@ -1260,9 +1260,9 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.text('You do not own a purse.');
   } else {
     (s as any).bag = 1;
-    scene.img(`images/pc/items/${((s as any).currentpursetype || '')}/purses/${((s as any).currentpursenumber || '')}.jpg`);
+    scene.img(`images/pc/items/${((s as any).currentpursetype ?? '')}/purses/${((s as any).currentpursenumber ?? '')}.jpg`);
     // TODO-QSP: dynamic text: Your current purse is <<$currentpursetype>>_<<currentpursenumber>>.
-    scene.text(`Your current purse is ${((s as any).currentpursetype || '')}_${((s as any).currentpursenumber || '')}.`);
+    scene.text(`Your current purse is ${((s as any).currentpursetype ?? '')}_${((s as any).currentpursenumber ?? '')}.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1273,7 +1273,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/gm.png');
     (st as any).i = 1;
     // TODO-QSP: :loopgmpurses
-    scene.img(`images/pc/items/gm/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/gm/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopgmpurses'
@@ -1283,7 +1283,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/sports.png');
     (st as any).i = 1;
     // TODO-QSP: :loopdanilovichpurses
-    scene.img(`images/pc/items/danilovich/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/danilovich/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 60) {
       // TODO-QSP: jump 'loopdanilovichpurses'
@@ -1293,7 +1293,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/dolls/shop_name.png');
     (st as any).i = 1;
     // TODO-QSP: :loopdollspurses
-    scene.img(`images/pc/items/dolls/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/dolls/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopdollspurses'
@@ -1303,7 +1303,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/bomba/shop_name.png');
     (st as any).i = 1;
     // TODO-QSP: :loopbombapurses
-    scene.img(`images/pc/items/bomba/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/bomba/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopbombapurses'
@@ -1313,7 +1313,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista.png');
     (st as any).i = 1;
     // TODO-QSP: :loopfashionistapurses
-    scene.img(`images/pc/items/fashionista/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/fashionista/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopfashionistapurses'
@@ -1323,7 +1323,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/coco/shop_name.png');
     (st as any).i = 1;
     // TODO-QSP: :loopcocopurses
-    scene.img(`images/pc/items/coco/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/coco/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 60) {
       // TODO-QSP: jump 'loopcocopurses'
@@ -1333,7 +1333,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/pussycat.png');
     (st as any).i = 1;
     // TODO-QSP: :loopkatspurses
-    scene.img(`images/pc/items/cats/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/cats/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopkatspurses'
@@ -1343,7 +1343,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/flamingos/shop_name.png');
     (st as any).i = 1;
     // TODO-QSP: :loopflamingospurses
-    scene.img(`images/pc/items/flamingos/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/flamingos/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 20) {
       // TODO-QSP: jump 'loopflamingospurses'
@@ -1353,7 +1353,7 @@ function enterModpur(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/moncheri.png');
     (st as any).i = 1;
     // TODO-QSP: :loopmoncheripurses
-    scene.img(`images/pc/items/moncheri/purses/${((st as any).i || '')}.jpg`);
+    scene.img(`images/pc/items/moncheri/purses/${((st as any).i ?? '')}.jpg`);
     (st as any).i = ((st as any).i ?? 0) + (1);
     if (((st as any).i ?? 0) <= 40) {
       // TODO-QSP: jump 'loopmoncheripurses'
@@ -1646,7 +1646,7 @@ function enterBirthday(s: GameState, scene: SceneBuilder): void {
 
 function enterModgrup(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your current social group is <<$soc_grup>>.
-  scene.text(`Your current social group is ${((s as any).soc_grup || '')}.`);
+  scene.text(`Your current social group is ${((s as any).soc_grup ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Nerd', handler: (st: GameState) => {

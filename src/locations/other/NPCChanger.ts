@@ -94,7 +94,7 @@ function enterNpcdisplay(s: GameState, scene: SceneBuilder): void {
     scene.text('');
   } else {
     // TODO-QSP: dynamic text: $npc_firstname['A<<n>>']
-    scene.text(`$npc_firstname['A${((s as any).n || '')}']`);
+    scene.text(`$npc_firstname['A${((s as any).n ?? '')}']`);
   }
   if (((s as any).npc_firstname ?? 0)['A' + ((s as any).n ?? 0)] === ((s as any).npc_nickname ?? 0)['A' + ((s as any).n ?? 0)]  ||  !isNaN(qspUntranslated(s, "npc_nickname[\u00002\u0000]", { location: "NPCChanger" })) && qspUntranslated(s, "npc_nickname[\u00002\u0000]", { location: "NPCChanger" }) !== '') {
     scene.text('');

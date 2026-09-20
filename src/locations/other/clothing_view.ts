@@ -683,7 +683,7 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
       (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = /u0027viewClothing/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027clothing_view/u0027, /u0027view_lists_list/u0027, /u0027wardrobe/u0027); return false;">Set here as default wardrobe page</a>';
     }
     // TODO-QSP: dynamic text: <center><<$wardrobeSetDefault>></center>
-    scene.text(`<center>${((s as any).wardrobeSetDefault || '')}</center>`);
+    scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
   } else {
     if (Number((s as any).locArgs?.[1] ?? 0) === 'resize'  ||  Number((s as any).locArgs?.[1] ?? 0) === ''  &&  ((s as any).ward_list_page ?? 0) === 'resize') {
       (s as any).ward_list_page = 'resize';
@@ -769,8 +769,8 @@ function enterViewListsList(s: GameState, scene: SceneBuilder): void {
 { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'wardrobe', 'wardrobe_exit_check_outfit');
     dynamicGoto(st, 'prevLoc', 'prevArg');
-  } },,
-{ label: 'Your Clothes', goto: ['wardrobe', 'main'] },,
+  } },
+{ label: 'Your Clothes', goto: ['wardrobe', 'main'] },
 { label: 'Your sets', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },
 ]);
   return;

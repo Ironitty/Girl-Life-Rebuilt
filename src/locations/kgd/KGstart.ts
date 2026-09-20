@@ -10,11 +10,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).KFOnLineReaga ?? 0) > 0) {
     scene.text('Welcome to Vertep World!');
     // TODO-QSP: dynamic text: You can play for <<KFOnLineReaga>> more days, but can extend the duration of you...
-    scene.text(`You can play for ${((s as any).KFOnLineReaga || '')} more days, but can extend the duration of your playtime at any time via online banking (1000₽ for 30 days)`);
+    scene.text(`You can play for ${((s as any).KFOnLineReaga ?? '')} more days, but can extend the duration of your playtime at any time via online banking (1000₽ for 30 days)`);
     if (((s as any).KGOLpers ?? 0) > 0) {
       scene.text('You can enter the game with your current character, or delete them.');
       // TODO-QSP: dynamic text: <<$KGOLname>> - <<KGOLlvl>> <<$KGOLrace>> <<$KGOLklass>>
-      scene.text(`${((s as any).KGOLname || '')} - ${((s as any).KGOLlvl || '')} ${((s as any).KGOLrace || '')} ${((s as any).KGOLklass || '')}`);
+      scene.text(`${((s as any).KGOLname ?? '')} - ${((s as any).KGOLlvl ?? '')} ${((s as any).KGOLrace ?? '')} ${((s as any).KGOLklass ?? '')}`);
       scene.actions([
         { label: 'Play', goto: ['KGOLgame', ''] },
         { label: 'Delete a character', handler: (st: GameState) => {
@@ -31,7 +31,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspGoto(st, 'KGstart', '');
     }
     // TODO-QSP: dynamic text: Your character''s name is: <<$KGOLname>>
-    scene.text(`Your character's name is: ${((st as any).KGOLname || '')}`);
+    scene.text(`Your character's name is: ${((st as any).KGOLname ?? '')}`);
     scene.text('Please select a player race:');
     scene.actions([
       { label: 'Human', handler: (st: GameState) => {
@@ -141,7 +141,7 @@ function enterKGOLklassvibor2(s: GameState, scene: SceneBuilder): void {
   (s as any).KGOLbrona = 0;
   (s as any).KGOLwpower = 0;
   // TODO-QSP: dynamic text: <<$KGOLname>> <<$KGOLrace>> <<$KGOLklass>> <<KGOLlvl>> level
-  scene.text(`${((s as any).KGOLname || '')} ${((s as any).KGOLrace || '')} ${((s as any).KGOLklass || '')} ${((s as any).KGOLlvl || '')} level`);
+  scene.text(`${((s as any).KGOLname ?? '')} ${((s as any).KGOLrace ?? '')} ${((s as any).KGOLklass ?? '')} ${((s as any).KGOLlvl ?? '')} level`);
   if (((s as any).KGOLklass ?? 0) === 'Warrior') {
     (s as any).KGOLstren = 30;
     (s as any).KGOLspeed = 20;

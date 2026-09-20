@@ -19,7 +19,7 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('In the room is a woman wearing a skimpy dress with a collar and leash. Anna picks up the handle of the leash and makes the woman kneel down, Anna stands tall and looks at you full of confidence. You sense that the show is started.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> meet slut jeanine, slut meet <<$pcs_nickname>>. Presentation ...
-  scene.text(`"${((s as any).pcs_nickname || '')} meet slut jeanine, slut meet ${((s as any).pcs_nickname || '')}. Presentation done, Shall we begin? Good."`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')} meet slut jeanine, slut meet ${((s as any).pcs_nickname ?? '')}. Presentation done, Shall we begin? Good."`);
   scene.text('You barely have the time to realize you are now in the middle of a BDSM session.');
   scene.text('"What do we have here? A happy hooker? And tell me slut, why are you smiling? Did your last client pay you that well? Or are you just happy to see your Mistress? You may answer." There is strength in the way Anna delivers these words.');
   scene.text('"Mistress! this slut is happy to see The Mistress!" The woman replies enthusiastically.');
@@ -31,7 +31,7 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Anna turns the woman around and exposes her breasts to the woman who\'s smile broadens. Anna quite suddenly becomes deadly serious.');
     scene.text('"Although understandable, I did not give you permission to smile." She practically shouts at the woman.');
     // TODO-QSP: dynamic text: "You are embarrassing me in front of my friend and that is not right. You deserv...
-    scene.text(`"You are embarrassing me in front of my friend and that is not right. You deserve a small punishment, don't you agree ${((st as any).pcs_nickname || '')}?"`);
+    scene.text(`"You are embarrassing me in front of my friend and that is not right. You deserve a small punishment, don't you agree ${((st as any).pcs_nickname ?? '')}?"`);
     qspCall(st, 'arousal', 'voyeur', 5, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -44,7 +44,7 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Anna spends some time verbally abusing the woman and making a show of her dominant position. The woman is sheepish and completely compliant, you might think she could not enjoy such treatment but also remember how happy she was to see Anna.');
     scene.text('Finally Anna tells the woman it is time for her punishment and shows her an outfit to change into, she also picks up an odd looking gag and throws it on the floor next to the woman. "Wear this!"');
     // TODO-QSP: dynamic text: The woman immediately strips and starts to put on the outfit which is nothing mo...
-    scene.text(`The woman immediately strips and starts to put on the outfit which is nothing more than a corset, gloves boots. She can't fasten the corset up on her own but struggles trying to, Anna looks to you and smiles, ${((st as any).pcs_nickname || '')} will help you with your corset seeing as you are too usless to do it yourself."`);
+    scene.text(`The woman immediately strips and starts to put on the outfit which is nothing more than a corset, gloves boots. She can't fasten the corset up on her own but struggles trying to, Anna looks to you and smiles, ${((st as any).pcs_nickname ?? '')} will help you with your corset seeing as you are too usless to do it yourself."`);
     scene.text('You walk over to the woman and fasten up the corset, it fits perfectly and you guess it to be hers understanding more about how the session is organised.');
     scene.text('While you were busy Anna had also changed into her second outfit she is holding a rubber tube and bulb pump. which she attaches to the woman\'s gag.');
     scene.text('"This is an inflatable cock gag, as I pump this bulb the rubber cock inside this slut\'s month gets bigger and harder. That makes this dirty sluts pussy get wet."');
@@ -74,11 +74,11 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Anna spends some time verbally abusing the woman and making a show of her dominant position. The woman is sheepish and completely compliant, you might think she could not enjoy such treatment but also remember how happy she was to see Anna.');
     scene.text('Finally Anna tells the woman it is time for her punishment and shows her an outfit to change into. "Wear this!"');
     // TODO-QSP: dynamic text: The woman immediately strips and starts to put on the outfit which is nothing mo...
-    scene.text(`The woman immediately strips and starts to put on the outfit which is nothing more than a corset, gloves boots. She can't fasten the corset up on her own but struggles trying to, Anna looks to you and smiles, ${((st as any).pcs_nickname || '')} will help you with your corset seeing as you are too usless to do it yourself."`);
+    scene.text(`The woman immediately strips and starts to put on the outfit which is nothing more than a corset, gloves boots. She can't fasten the corset up on her own but struggles trying to, Anna looks to you and smiles, ${((st as any).pcs_nickname ?? '')} will help you with your corset seeing as you are too usless to do it yourself."`);
     scene.text('You walk over to the woman and fasten up the corset, it fits perfectly and you guess it to be hers understanding more about how the session is organised.');
     scene.text('While you were busy Anna had also changed into her second outfit she drags the poor soul on to the bed, bending her over to give you a full view and motions for you to sit on a chair facing them.');
     // TODO-QSP: dynamic text: "This is old school punishment <<$pcs_nickname>>. I start easy and then a bit ha...
-    scene.text(`"This is old school punishment ${((st as any).pcs_nickname || '')}. I start easy and then a bit hard until soon I will be slapping her very hard. These kinds of slut need to be disciplined or they will become disobedient." Anna says this while slapping the women's butt noticeable harder each stroke while the woman counts each strike.`);
+    scene.text(`"This is old school punishment ${((st as any).pcs_nickname ?? '')}. I start easy and then a bit hard until soon I will be slapping her very hard. These kinds of slut need to be disciplined or they will become disobedient." Anna says this while slapping the women's butt noticeable harder each stroke while the woman counts each strike.`);
     qspCall(st, 'arousal', 'voyeur', 5, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -107,11 +107,11 @@ function enterLesSex(s: GameState, scene: SceneBuilder): void {
     scene.text('Anna spends some time verbally abusing the woman and making a show of her dominant position. The woman is sheepish and completely compliant, you might think she could not enjoy such treatment but also remember how happy she was to see Anna.');
     scene.text('Finally Anna tells the woman it is time for her punishment and shows her an outfit to change into. "Wear this!"');
     // TODO-QSP: dynamic text: The woman immediately strips and starts to put on the outfit which is nothing mo...
-    scene.text(`The woman immediately strips and starts to put on the outfit which is nothing more than a corset, gloves boots. She can't fasten the corset up on her own but struggles trying to, Anna looks to you and smiles, ${((st as any).pcs_nickname || '')} will help you with your corset seeing as you are too usless to do it yourself."`);
+    scene.text(`The woman immediately strips and starts to put on the outfit which is nothing more than a corset, gloves boots. She can't fasten the corset up on her own but struggles trying to, Anna looks to you and smiles, ${((st as any).pcs_nickname ?? '')} will help you with your corset seeing as you are too usless to do it yourself."`);
     scene.text('You walk over to the woman and fasten up the corset, it fits perfectly and you guess it to be hers understanding more about how the session is organised.');
     scene.text('While you were busy Anna had also changed into her second outfit she drags the poor soul on to the bed, bending her over to give you a full view and motions for you to sit on a chair facing them.');
     // TODO-QSP: dynamic text: "This is just like the punishments you might get at school <<$pcs_nickname>>. Ex...
-    scene.text(`"This is just like the punishments you might get at school ${((st as any).pcs_nickname || '')}. Except I start easy and then a bit hard until soon I will be hitting her very hard. These kinds of slut need to be disciplined or they will become disobedient." Anna says this while caning the women's butt noticeable harder each stroke while the woman counts each strike.`);
+    scene.text(`"This is just like the punishments you might get at school ${((st as any).pcs_nickname ?? '')}. Except I start easy and then a bit hard until soon I will be hitting her very hard. These kinds of slut need to be disciplined or they will become disobedient." Anna says this while caning the women's butt noticeable harder each stroke while the woman counts each strike.`);
     qspCall(st, 'arousal', 'voyeur', 5, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -146,7 +146,7 @@ function enterLesSex2(s: GameState, scene: SceneBuilder): void {
   scene.text('The woman looks at Anna like a kitten begging for attention, Anna takes her time thinking about it (or is she just acting?) before she pushed the vibrator back and turns it back on again.');
   scene.text('She leaves it going while she stands next to the regular hotel chair you are sat in and explains how the woman and her Mistress play with chastity and denial. Her only releases come as a treat when she is brought to visit Anna. After quite a lot of chatting and a lot of moaning the woman is a wreck having cum so many times you stopped even noticing.');
   // TODO-QSP: dynamic text: "A choice for you <<$pcs_nickname>>, she''s got one more orgasm in her before sh...
-  scene.text(`"A choice for you ${((s as any).pcs_nickname || '')}, she's got one more orgasm in her before she completely loses her mind. You can do it, or she can." she says as she holds up the vibrator still buzzing and whirring in her hand.`);
+  scene.text(`"A choice for you ${((s as any).pcs_nickname ?? '')}, she's got one more orgasm in her before she completely loses her mind. You can do it, or she can." she says as she holds up the vibrator still buzzing and whirring in her hand.`);
   qspCall(s, 'arousal', 'voyeur_sex', 5, 'lesbian');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -195,14 +195,14 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
   ((s as any).AnnaQW = (s as any).AnnaQW ?? {})['trust'] = ((s as any).AnnaQW['trust'] ?? 0) + (1);
   scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem0.jpg');
   // TODO-QSP: dynamic text: You look good <<$pcs_nickname>>"
-  scene.text(`You look good ${((s as any).pcs_nickname || '')}"`);
+  scene.text(`You look good ${((s as any).pcs_nickname ?? '')}"`);
   scene.text('Oh thanks. Do you think pink makes me look dominant though?"');
   scene.text('"Absolutely not, another color would make you look more confident but honestly it doesn\'t matter. You could be dress as a fairy and still your subs have to obey, no matter what."');
   scene.text('"Got it, but these are a bit transparent and very small."');
   scene.text('"I know, I wanted something to look at too." She laughs. You\'re not sure if she is serious or if it relates to the session.');
   scene.text('An older man walks in, he looks down at all times and quickly strips off his expensive suit and sits in front of Anna in just his shirt and boxer shorts.');
   // TODO-QSP: dynamic text: "Before the presentation <<$pcs_nickname>>." She continues ignoring the man comp...
-  scene.text(`"Before the presentation ${((s as any).pcs_nickname || '')}." She continues ignoring the man completely, "Is there anything you would like to ask? Something you may want to improve or a last minute tip?"`);
+  scene.text(`"Before the presentation ${((s as any).pcs_nickname ?? '')}." She continues ignoring the man completely, "Is there anything you would like to ask? Something you may want to improve or a last minute tip?"`);
   // TODO-QSP: end
   scene.actions([
     { label: '"Control"', handler: (st: GameState) => {
@@ -210,7 +210,7 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem1a.jpg');
     // TODO-QSP: dynamic text: Anna stretches her leg towards the man, and puts her heel on his crotch. "This i...
-    scene.text(`Anna stretches her leg towards the man, and puts her heel on his crotch. "This is worm, worm She is ${((st as any).pcs_nickname || '')}, a new Mistress". She smiles at you.`);
+    scene.text(`Anna stretches her leg towards the man, and puts her heel on his crotch. "This is worm, worm She is ${((st as any).pcs_nickname ?? '')}, a new Mistress". She smiles at you.`);
     scene.text('"Control you say? Ok. First of all do not think you have the power of life and death of the sub. That\'s totally forbidden. As you can imagine there would be no benefit to you there, that means that the basic needs of the sub must be satisfied: food, water, sleep, etc."');
     scene.text('"Second, no one is psychic. With time a sub can easily understand the Dominant\'s intentions, but orders have to be explicitly stated before they can be executed. This can be in advance, like worm here knowing that he must not make eye contact."');
     scene.text('"Third… erm, maybe you can answer this: Who do you think has the most control into a BDSM relationship?" Anna is clearly expecting an answer from you.');
@@ -233,7 +233,7 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem1a.jpg');
     // TODO-QSP: dynamic text: "Exactly <<$pcs_nickname>>. She smiles.
-    scene.text(`"Exactly ${((st as any).pcs_nickname || '')}. She smiles.`);
+    scene.text(`"Exactly ${((st as any).pcs_nickname ?? '')}. She smiles.`);
     scene.text('"subs have say as to what the session will be, but they have the most powerful decision: to continue or not."');
     scene.text('"This can even apply to a contract. Of course this will end all the benefits for both parties and that relationship would be completely destroyed."');
     scene.text('That is why a Dom must respect their sub\'s needs and limits, they must also take the time and effort to understand what their sub needs. That way the sub will never have the desire to use their power, that is dominance."');
@@ -250,7 +250,7 @@ function enterSlaveM(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem1b.jpg');
     // TODO-QSP: dynamic text: Anna stretches her leg towards the man, and puts her heel on his crotch. "This i...
-    scene.text(`Anna stretches her leg towards the man, and puts her heel on his crotch. "This is worm, worm She is ${((st as any).pcs_nickname || '')}, a new Mistress". She smiles at you.`);
+    scene.text(`Anna stretches her leg towards the man, and puts her heel on his crotch. "This is worm, worm She is ${((st as any).pcs_nickname ?? '')}, a new Mistress". She smiles at you.`);
     scene.text('"Obedience you say?" She looks toward the man lifting her foot away from him. "Stand up Worm." He quickly stands up. "Lean over the chair now." He does as she says.');
     scene.text('Anna smiles at you as she stands up and places her knee on his back forcing him lower across the chair. "Well there\'s a lot to cover on that subject Sweetie. We\'ll just cover some basics for now."');
     scene.text('"Firstly there is discipline, a basic element of BDSM. Discipline, in turn is split into two areas: to take something, for example restriction; or to give something, for example a punishment."');
@@ -361,7 +361,7 @@ function enterSlaveM2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem4c.jpg');
     // TODO-QSP: dynamic text: "Very good <<$pcs_nickname>>, now the fleshier bits near his butt and middle of ...
-    scene.text(`"Very good ${((st as any).pcs_nickname || '')}, now the fleshier bits near his butt and middle of his back either side of his spine are less sensitive."`);
+    scene.text(`"Very good ${((st as any).pcs_nickname ?? '')}, now the fleshier bits near his butt and middle of his back either side of his spine are less sensitive."`);
     scene.text('"These bits by his shoulders will hurt a bit more." She says pushing her heel into his shoulder. "And the back of his kidneys down here can hurt lot so be careful there."');
     scene.text('"That\'s pain covered, now for a bit of humiliation." Anna says as she helps you back on to the ground.');
     qspCall(st, 'arousal', 'BDSM_give', 5);
@@ -385,7 +385,7 @@ function enterSlaveM3(s: GameState, scene: SceneBuilder): void {
   scene.text('The man crawls over to her and starts to lick her boots clean holding them steady in his hands. It is clear he has been trained on how to do this.');
   scene.text('Anna chats with you about current affairs and the weather. After a she is satisfied that her boots are clean she points at you.');
   // TODO-QSP: dynamic text: "Now clean Mistress <<$pcs_nickname>>''s."
-  scene.text(`"Now clean Mistress ${((s as any).pcs_nickname || '')}'s."`);
+  scene.text(`"Now clean Mistress ${((s as any).pcs_nickname ?? '')}'s."`);
   qspCall(s, 'arousal', 'erotic', 5);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -402,11 +402,11 @@ function enterSlaveM3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/male/slavem7.jpg');
     scene.text('The man stands as does Anna, "Come her Sweetie." She points to the floor just behind the man and you walk where she is pointing.');
     // TODO-QSP: dynamic text: "Bend Worm" The man bends forwards legs slightly apart. "OK <<$pcs_nickname>> gr...
-    scene.text(`"Bend Worm" The man bends forwards legs slightly apart. "OK ${((st as any).pcs_nickname || '')} grab his balls in your hand."`);
+    scene.text(`"Bend Worm" The man bends forwards legs slightly apart. "OK ${((st as any).pcs_nickname ?? '')} grab his balls in your hand."`);
     scene.text('You are shocked and hesitate. "Not too tight but let him know you are fully in control."');
     scene.text('You reach under his butt and grab hold of his balls as instructed, the man is clearly uncomfortable.');
     // TODO-QSP: dynamic text: "Mistress <<$pcs_nickname>> owns them as much as I do. Do you understand Worm?" ...
-    scene.text(`"Mistress ${((st as any).pcs_nickname || '')} owns them as much as I do. Do you understand Worm?" The man nods obediently.`);
+    scene.text(`"Mistress ${((st as any).pcs_nickname ?? '')} owns them as much as I do. Do you understand Worm?" The man nods obediently.`);
     scene.text('"You can let go now Sweetie, worm kneel by my desk."');
     qspCall(st, 'arousal', 'BDSM_give', 5);
     qspCall(st, 'stat', '');
@@ -444,7 +444,7 @@ function enterSlaveF(s: GameState, scene: SceneBuilder): void {
     { label: 'Lie on the bed', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/female/slavef4a.jpg');
     // TODO-QSP: dynamic text: Anna lies next to you nearest the tied up woman, looking at er she says: "Nice b...
-    scene.text(`Anna lies next to you nearest the tied up woman, looking at er she says: "Nice butt, almost a shame to whip it. Let's admire it for a minute while we relax and have a smoke, what do you think ${((st as any).pcs_nickname || '')}?"`);
+    scene.text(`Anna lies next to you nearest the tied up woman, looking at er she says: "Nice butt, almost a shame to whip it. Let's admire it for a minute while we relax and have a smoke, what do you think ${((st as any).pcs_nickname ?? '')}?"`);
     scene.text('You know this is performance and not to go off script, besides Anna\'s hand is on your thigh ready to guide you if you do. "That sounds like a great idea."');
     qspCall(st, 'arousal', 'erotic', 2);
     qspCall(st, 'stat', '');
@@ -515,7 +515,7 @@ function enterSlaveF1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/female/slavef5.jpg');
     scene.text('Anna quickly gets to her feet and quickly unties the woman\'s wrist cuffs helping her to her knees on the floor.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> why don''t you sit on that chair?" She suggests as she remove...
-    scene.text(`"${((st as any).pcs_nickname || '')} why don't you sit on that chair?" She suggests as she removes the outer mask revealing a second mask that covers all but the woman's mouth and eyes.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')} why don't you sit on that chair?" She suggests as she removes the outer mask revealing a second mask that covers all but the woman's mouth and eyes.`);
     scene.text('As you sit down Anna holds her foot out to the woman: "Take my shoes off slut!"');
     qspCall(st, 'arousal', 'erotic', 5);
     qspCall(st, 'stat', '');
@@ -536,7 +536,7 @@ function enterSlaveF1(s: GameState, scene: SceneBuilder): void {
     scene.text('With the cigarette in your mouth you grab the woman\'s head and Anna forces both feet on her face.');
     scene.text('"So your friend is a man wanted you to punish her because you are a woman?" You probe.');
     // TODO-QSP: dynamic text: "Very good <<$pcs_nickname>>, that''s part of it. I''m also very good at this" S...
-    scene.text(`"Very good ${((st as any).pcs_nickname || '')}, that's part of it. I'm also very good at this" She laughs as she says this. "Now suck my toe bitch!" She barks.`);
+    scene.text(`"Very good ${((st as any).pcs_nickname ?? '')}, that's part of it. I'm also very good at this" She laughs as she says this. "Now suck my toe bitch!" She barks.`);
     qspCall(st, 'arousal', 'BDSM_give', 5);
     qspCall(st, 'stat', '');
     scene.actions([
@@ -646,7 +646,7 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
     (st as any).IgorevnaBDSM_session_librarian = 3;
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/annahurt.jpg');
     // TODO-QSP: dynamic text: You have nothing to say, and that could have hurt Anna more than before; probabl...
-    scene.text(`You have nothing to say, and that could have hurt Anna more than before; probably it wasn't your intention, or probably that's the reason… it doesn't matter. Anna fills the empty silence this time… it could be the last.  "…I never had an intention toward you ${((st as any).pcs_firstname || '')} either good or bad. I looked at you as a person with a thirst for knowledge who could have some benefit from whatever kind of relationship you were looking for… a simple word of comfort There's really not much to add…`);
+    scene.text(`You have nothing to say, and that could have hurt Anna more than before; probably it wasn't your intention, or probably that's the reason… it doesn't matter. Anna fills the empty silence this time… it could be the last.  "…I never had an intention toward you ${((st as any).pcs_firstname ?? '')} either good or bad. I looked at you as a person with a thirst for knowledge who could have some benefit from whatever kind of relationship you were looking for… a simple word of comfort There's really not much to add…`);
     scene.actions([
       { label: '…', goto: ['pav_hotel', ''] },
     ]);
@@ -673,7 +673,7 @@ function enterAnnaPathChoice(s: GameState, scene: SceneBuilder): void {
           { label: 'Mmmmm… mmmm… i\'m not sure… what do you suggest me?', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/session_start0na.jpg');
-    scene.text(`<center><b> "Hehehe…${((st as any).pcs_nickname || '')}, it's not the we are on the cafe'…" </b></center>`);
+    scene.text(`<center><b> "Hehehe…${((st as any).pcs_nickname ?? '')}, it's not the we are on the cafe'…" </b></center>`);
     scene.actions([
       { label: 'Well… how could the flog be "soft"?…', goto: ['hotel_anna', 'Anna_sub_session'] },
       { label: 'Well… you really have a great bum…', goto: ['hotel_anna_sex', 'Anna_dom_session'] },
@@ -747,9 +747,9 @@ function enterLibrarian1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian3.jpg');
     // TODO-QSP: 'RUUMBLE!!! ' + $func('wrap', 'accent', '"<<$pcs_nickname>>!"') + '<br>' + $func('wrap', 'v_neg', '…...
     if (((st as any).Anna_librarian_brat ?? 0) === 2) {
-      scene.text(`<center><b>"${((st as any).pcs_nickname || '')}! What are you doing? Are you trying to be the "brat" of the year?"</b></center>`);
+      scene.text(`<center><b>"${((st as any).pcs_nickname ?? '')}! What are you doing? Are you trying to be the "brat" of the year?"</b></center>`);
     } else {
-      scene.text(`<center><b>"${((st as any).pcs_nickname || '')}! Do you mind to pay attention on what you are doing?"</b></center>`);
+      scene.text(`<center><b>"${((st as any).pcs_nickname ?? '')}! Do you mind to pay attention on what you are doing?"</b></center>`);
     }
     scene.actions([
       { label: '…', goto: ['hotel_anna_sex', 'librarian2'] },
@@ -1002,13 +1002,13 @@ function enterLibrarianEnd(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><b> "See… it wasn\'t difficult after all." </b></center>');
       } else {
         if (((s as any).Anna_librarian_brat ?? 0) === 2  ||  ((s as any).Anna_librarian_brat ?? 0) === 3) {
-          scene.text(`<center><b> "Well ${((s as any).pcs_nickname || '')}…impression?"</b></center>`);
+          scene.text(`<center><b> "Well ${((s as any).pcs_nickname ?? '')}…impression?"</b></center>`);
         } else {
           if (((s as any).Anna_librarian_brat ?? 0) === 4  ||  ((s as any).Anna_librarian_brat ?? 0) === 5) {
-            scene.text(`<center><b> "Well ${((s as any).pcs_nickname || '')}…impression?"</b></center>`);
+            scene.text(`<center><b> "Well ${((s as any).pcs_nickname ?? '')}…impression?"</b></center>`);
           } else {
             if (((s as any).Anna_librarian_brat ?? 0) === 6) {
-              scene.text(`<center><b> "How are you, ${((s as any).pcs_nickname || '')}?" </b></center>`);
+              scene.text(`<center><b> "How are you, ${((s as any).pcs_nickname ?? '')}?" </b></center>`);
             } else {
               scene.text('');
             }
@@ -1027,7 +1027,7 @@ function enterLibrarianEnd(s: GameState, scene: SceneBuilder): void {
           scene.text('<center><b> "…I cannot say i\'m pleased with your work, but you managed to improve your performance… and that means you understand something before the discipline. It\'s a point by your side…" </b></center>');
         } else {
           if (((s as any).Anna_librarian_brat ?? 0) === 4) {
-            scene.text(`<center><b> "${((s as any).pcs_nickname || '')}…"</b></center>`);
+            scene.text(`<center><b> "${((s as any).pcs_nickname ?? '')}…"</b></center>`);
           } else {
             scene.text('');
           }
@@ -1046,13 +1046,13 @@ function enterLibrarianEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian2.jpg');
     // TODO-QSP: dynamic text: She carefully move toward you, and give you a quick hug… just the time to whispe...
-    scene.text(`She carefully move toward you, and give you a quick hug… just the time to whisper in your hear: "Let it flow." After that she return to sit… Now she's looking at you, you got her attention but she doesn't add a single word; while all you want is to shout at her all your pain, you lost your barrier and tears start to flow…<br>"…why?…how could you do that to me?…"<br> "…Did you lost your trust in me ${((st as any).pcs_nickname || '')}?"  Anna knows the answer, but she want to hear that from you<br>"…how could I trust you?…after… after…"You are hiding the truth from yourself… it comes to your mind that she stop, she didn't finished your punishment… was that only mercy? You wonder "……"<br> "Follow me ${((st as any).pcs_nickname || '')}Again Anna stand up, she give you another hug and both move in the main room…`);
+    scene.text(`She carefully move toward you, and give you a quick hug… just the time to whisper in your hear: "Let it flow." After that she return to sit… Now she's looking at you, you got her attention but she doesn't add a single word; while all you want is to shout at her all your pain, you lost your barrier and tears start to flow…<br>"…why?…how could you do that to me?…"<br> "…Did you lost your trust in me ${((st as any).pcs_nickname ?? '')}?"  Anna knows the answer, but she want to hear that from you<br>"…how could I trust you?…after… after…"You are hiding the truth from yourself… it comes to your mind that she stop, she didn't finished your punishment… was that only mercy? You wonder "……"<br> "Follow me ${((st as any).pcs_nickname ?? '')}Again Anna stand up, she give you another hug and both move in the main room…`);
     scene.actions([
       { label: '…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian12.jpg');
     // TODO-QSP: dynamic text: Anna help you lay on the sofa with your belly down… ' + $func('wrap', 'accent', ...
-    scene.text(`Anna help you lay on the sofa with your belly down…  "I'll be gentle ${((st as any).pcs_nickname || '')}…you aren't the only one with a thin skin<br>"N-no?…and… who?…AHHHHHAAAAHHHNNNNA!…"<br>"…I'm sorry ${((st as any).pcs_nickname || '')}…i had to expose your butt…" Anna distract your attention to expose your butt, knowing it could be really sensible…"It's cold at the beginning… it will end soon…" <br>You feel something slowly falling along your skin…"…SSSSHHH… AAHHH… AHHH… AAHH… Aah… aa…"<br>"I'm sure you feel better soon… it's a good cream<br>"…I-i…"The cold change to heat… but it's not pain… it's similar to pleasure; you wonder how's that possible, but you are mainly focused on Anna's hands…"…A-anna…"<br>"Ssssh… You make your part in that too Once your butt finish to catch the cream Anna help you to dress and lead you to the exit.`);
+    scene.text(`Anna help you lay on the sofa with your belly down…  "I'll be gentle ${((st as any).pcs_nickname ?? '')}…you aren't the only one with a thin skin<br>"N-no?…and… who?…AHHHHHAAAAHHHNNNNA!…"<br>"…I'm sorry ${((st as any).pcs_nickname ?? '')}…i had to expose your butt…" Anna distract your attention to expose your butt, knowing it could be really sensible…"It's cold at the beginning… it will end soon…" <br>You feel something slowly falling along your skin…"…SSSSHHH… AAHHH… AHHH… AAHH… Aah… aa…"<br>"I'm sure you feel better soon… it's a good cream<br>"…I-i…"The cold change to heat… but it's not pain… it's similar to pleasure; you wonder how's that possible, but you are mainly focused on Anna's hands…"…A-anna…"<br>"Ssssh… You make your part in that too Once your butt finish to catch the cream Anna help you to dress and lead you to the exit.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_hotel', ''] },
     ]);
@@ -1098,10 +1098,10 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b> "Let\'s see… you were a good girl, you earned a simple reminding spanking." </b></center>');
   } else {
     if (((s as any).Anna_librarian_brat ?? 0) === 1) {
-      scene.text(`<center><b> "Almost perfect ${((s as any).pcs_nickname || '')}, few slap shouldn't be a problem…" </b></center>`);
+      scene.text(`<center><b> "Almost perfect ${((s as any).pcs_nickname ?? '')}, few slap shouldn't be a problem…" </b></center>`);
     } else {
       if (((s as any).Anna_librarian_brat ?? 0) === 2) {
-        scene.text(`<center><b> "…There's something I cannot let it pass ${((s as any).pcs_nickname || '')}…" </b></center>`);
+        scene.text(`<center><b> "…There's something I cannot let it pass ${((s as any).pcs_nickname ?? '')}…" </b></center>`);
       } else {
         if (((s as any).Anna_librarian_brat ?? 0) === 3) {
           scene.text('<center><b> "…I\'ll consider that it\'s your first time… but everything has its limits…" </b></center>');
@@ -1110,7 +1110,7 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
             scene.text('<center><b> "Here start the Discipline." </b></center>');
           } else {
             if (((s as any).Anna_librarian_brat ?? 0) === 5) {
-              scene.text(`<center><b> "Really bad ${((s as any).pcs_nickname || '')}, really bad…" </b></center>`);
+              scene.text(`<center><b> "Really bad ${((s as any).pcs_nickname ?? '')}, really bad…" </b></center>`);
             } else {
               if (((s as any).Anna_librarian_brat ?? 0) === 6) {
                 // TODO-QSP: 'There''s silence, and you start to feel worried… suddenly…' + $func('wrap', 'accent', ' "Fifteen st...
@@ -1128,7 +1128,7 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
       { label: '…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
-    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname || '')}, we practically finished." </b></center>`);
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname ?? '')}, we practically finished." </b></center>`);
     scene.actions([
       { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
     ]);
@@ -1140,7 +1140,7 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
         { label: '…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
-    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname || '')}." </b></center>`);
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname ?? '')}." </b></center>`);
     scene.actions([
       { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
     ]);
@@ -1152,7 +1152,7 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
           { label: '…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
-    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname || '')}." </b></center>`);
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname ?? '')}." </b></center>`);
     scene.actions([
       { label: 'Bend over', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1171,7 +1171,7 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
             { label: '…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarian9.jpg');
-    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname || '')}." </b></center>`);
+    scene.text(`<center><b> "…OTK: over the knee… Put your belly on my knees, ${((st as any).pcs_nickname ?? '')}." </b></center>`);
     scene.actions([
       { label: '…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1218,7 +1218,7 @@ function enterLibrarianBratEnd(s: GameState, scene: SceneBuilder): void {
       { label: '…R-r… r-e… r-re…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/librarian/annalibrarianbg2.jpg');
-    scene.text(`<center><b> "Ssshh… Don't say it ${((st as any).pcs_nickname || '')}, there's no need; we finished. Stay silent, I need silence right now…"</b></center>`);
+    scene.text(`<center><b> "Ssshh… Don't say it ${((st as any).pcs_nickname ?? '')}, there's no need; we finished. Stay silent, I need silence right now…"</b></center>`);
     scene.actions([
       { label: '…', goto: ['hotel_anna_sex', 'librarian_end'] },
     ]);
@@ -1271,7 +1271,7 @@ function enterAnnaDomSession(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     (st as any).Anna_see_abrat = ((st as any).Anna_see_abrat ?? 0) + (1);
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom1.jpg');
-    scene.text(`<center><b> "${((st as any).pcs_nickname || '')}…"</b></center>`);
+    scene.text(`<center><b> "${((st as any).pcs_nickname ?? '')}…"</b></center>`);
     scene.actions([
       { label: 'Ok… ok… now go change…(ufffff!)', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -1408,7 +1408,7 @@ function enterAnnaDomSession3(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).Anna_tame_maid ?? 0) === 1) {
       scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom5c.jpg');
-      scene.text(`<center><b> "${((s as any).pcs_nickname || '')}!!!"</b></center>`);
+      scene.text(`<center><b> "${((s as any).pcs_nickname ?? '')}!!!"</b></center>`);
     } else {
       scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/dom5a.jpg');
       if (((s as any).Anna_tame_maid ?? 0) === 9) {
@@ -1497,7 +1497,7 @@ function enterAnnaDomSession4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch2.jpg');
     // TODO-QSP: dynamic text: You didn''t expect Anna to let you "work" on her boobs… you blush a little when ...
-    scene.text(`You didn't expect Anna to let you "work" on her boobs… you blush a little when you approach them, but you try to focus on the task. They are soft and tender at the touch and stay perfectly in place; when it comes to tight the latches the boobs squeeze out and you stare at them for a while. You don't want to hurt Anna, and try to be gentle; Anna catches your reluctancy to tight them a little more she give you a nod to understand you have the last word on the tightness. She doesn't complain, even gagged she could make some noise to let you understand if something is going wrong, but she let you "do the work" in peace. Some time pass with your eyes glued on her…"Mmwe… fffhhpp… mmmooofffne…" You free Anna's mouth…"Mmmmmm… thank you ${((st as any).pcs_nickname || '')}The session end and you are free to go home… and you go home with a nice image impressed on your mind…`);
+    scene.text(`You didn't expect Anna to let you "work" on her boobs… you blush a little when you approach them, but you try to focus on the task. They are soft and tender at the touch and stay perfectly in place; when it comes to tight the latches the boobs squeeze out and you stare at them for a while. You don't want to hurt Anna, and try to be gentle; Anna catches your reluctancy to tight them a little more she give you a nod to understand you have the last word on the tightness. She doesn't complain, even gagged she could make some noise to let you understand if something is going wrong, but she let you "do the work" in peace. Some time pass with your eyes glued on her…"Mmwe… fffhhpp… mmmooofffne…" You free Anna's mouth…"Mmmmmm… thank you ${((st as any).pcs_nickname ?? '')}The session end and you are free to go home… and you go home with a nice image impressed on your mind…`);
     scene.actions([
       { label: 'Free Anna and go home', goto: ['pav_hotel', ''] },
     ]);
@@ -1513,7 +1513,7 @@ function enterAnnaDomSession4(s: GameState, scene: SceneBuilder): void {
       (st as any).Anna_see_adom = 0;
     }
     scene.img('images/characters/pavlovsk/resident/Anna/sessionpracticend/dom/latch1b.jpg');
-    scene.text(`<center><b> "${((st as any).pcs_nickname || '')}! What did I told you!"</b></center>`);
+    scene.text(`<center><b> "${((st as any).pcs_nickname ?? '')}! What did I told you!"</b></center>`);
     scene.actions([
       { label: '…', handler: (st: GameState) => {
     qspCall(st, 'stat', '');

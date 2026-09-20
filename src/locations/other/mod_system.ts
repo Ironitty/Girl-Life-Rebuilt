@@ -90,7 +90,7 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs $mod_su_name, iif(modARGS[0]=0, $modARGS[0], modARGS[0]), iif(modARGS[1]=0, $modARGS[1], modARGS[...
     } else {
       if (((s as any).mod_warning ?? 0)) {
-        scene.text(`WARNING: ${((s as any).mod_su_name || '')} is not found!`);
+        scene.text(`WARNING: ${((s as any).mod_su_name ?? '')} is not found!`);
       }
     }
   }

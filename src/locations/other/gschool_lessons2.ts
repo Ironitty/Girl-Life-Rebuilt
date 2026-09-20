@@ -109,7 +109,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/flashboobs1.jpg');
     // TODO-QSP: dynamic text: You notice Artem glancing over at you a few times and decide to play with him. T...
-    scene.text(`You notice Artem glancing over at you a few times and decide to play with him. The next time he looks over at you while Mr. Ivanov's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize || '')} breasts.`);
+    scene.text(`You notice Artem glancing over at you a few times and decide to play with him. The next time he looks over at you while Mr. Ivanov's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize ?? '')} breasts.`);
     scene.text('A few of the other students notice what you\'re doing: Sonia grins, Zinaida gives you a slightly disgusted look before turning away, Anushka and Alyona smile about it and Lizaveta starts texting on her phone. Vasily tries to take a picture, but you close your shirt before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -290,7 +290,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
     // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
@@ -307,7 +307,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'pussy');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You can feel the excitement in your pussy as you imagine yourself baring it in class to take a selfie of it. Maybe you\'ll share it, maybe not, but either way it should be fun and could be fun to send to someone later to tease them with it. You glance around and when everyone is busy, you pull up your skirt and pull your panties aside until your pussy is exposed.');
       scene.text('You take a few quick selfies of your exposed pussy until you get one you really like. You save that one to your phone and delete the rest.');
@@ -326,7 +326,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Regular selfie', handler: (st: GameState) => {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which keep before deleting the rest. You manage to take them without Mr. Ivanov even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -341,7 +341,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You get Vasily''s attention by smiling at him when he looks in your direction before you lean back ...
     scene.text('He watches you intently while you bite your lower lip, looking all coy and seductive to him. Once you finish your stretch, you pretend to act all innocent, like you didn\'t do anything.');
     // TODO-QSP: dynamic text: He glances around before leaning over. "Come on, don''t be like that, <<$pcs_nic...
-    scene.text(`He glances around before leaning over. "Come on, don't be like that, ${((st as any).pcs_nickname || '')}. Show me a little more…"`);
+    scene.text(`He glances around before leaning over. "Come on, don't be like that, ${((st as any).pcs_nickname ?? '')}. Show me a little more…"`);
     scene.text('Before you can decide what to do, Sonia, who watched it all, gets your attention.');
     scene.actions([
       { label: 'Sonia\'s suggestion', handler: (st: GameState) => {
@@ -410,7 +410,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/teasep3.jpg');
     scene.text('Just then, he reaches over, grabs the front of your panties and tries to pull them down to get a look at your pussy. You grab his hand just in time to stop him from doing it.');
     // TODO-QSP: dynamic text: "Come on, <<$pcs_nickname>>, show me your pussy," he whispers as he keeps trying...
-    scene.text(`"Come on, ${((st as any).pcs_nickname || '')}, show me your pussy," he whispers as he keeps trying to tug your panties down.`);
+    scene.text(`"Come on, ${((st as any).pcs_nickname ?? '')}, show me your pussy," he whispers as he keeps trying to tug your panties down.`);
     qspCall(st, 'willpower', 'exhib', 'resist', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -467,7 +467,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 5);
     scene.img('images/locations/pavlovsk/school/classroom/teaseb2.jpg');
     // TODO-QSP: dynamic text: You glance around and wait until no one but the two of them are looking before y...
-    scene.text(`You glance around and wait until no one but the two of them are looking before you lean back and pull up your shirt to expose your bare ${((st as any).titsize || '')} breasts. Your nipples get hard from the excitement as Vasily stares at your bare breasts, looking almost entranced by them.`);
+    scene.text(`You glance around and wait until no one but the two of them are looking before you lean back and pull up your shirt to expose your bare ${((st as any).titsize ?? '')} breasts. Your nipples get hard from the excitement as Vasily stares at your bare breasts, looking almost entranced by them.`);
     scene.actions([
       { label: 'Put them away', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/teaseb3.jpg');
@@ -493,10 +493,10 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
       scene.text('Today\'s lessons doesn\'t particularly interest you and you find yourself drifting off constantly. After a while, you notice Mr. Ivanov has stopped talking and is looking at you intently, asking you to pay attention. This is apparently the third time he has asked; you missed the first two while you were lost in your own thoughts. The whole class is looking at you.');
       if (((st as any).grupTipe ?? 0) === 3) {
         // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, please pay attention, this is very important. Today''s ...
-        scene.text(`"Miss ${((st as any).pcs_lastname || '')}, please pay attention, this is very important. Today's topic is going to be on the exam."`);
+        scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, please pay attention, this is very important. Today's topic is going to be on the exam."`);
       } else {
         // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, if you don''t want to listen and learn, then I suggest ...
-        scene.text(`"Miss ${((st as any).pcs_lastname || '')}, if you don't want to listen and learn, then I suggest you stop coming to class. Now stop wasting my time and pay attention!"`);
+        scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, if you don't want to listen and learn, then I suggest you stop coming to class. Now stop wasting my time and pay attention!"`);
       }
       qspCall(st, 'willpower', 'misc', 'self', 'medium');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -518,7 +518,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh please do continue your super fascinating lesson! I don\'t think there\'s enough condescending arrogance in your voice though," you answer boldly.');
     scene.text('Some of your classmates burst into loud laughter while others are stunned into silence. Mr. Ivanov turns and gives the rest of class a hard look. "SILENCE!" he loudly booms before turning back to you.');
     // TODO-QSP: dynamic text: "You think you''re being funny, Miss <<$pcs_lastname>>? Well you''re taking your...
-    scene.text(`"You think you're being funny, Miss ${((st as any).pcs_lastname || '')}? Well you're taking your smart mouth to the principal right now!"`);
+    scene.text(`"You think you're being funny, Miss ${((st as any).pcs_lastname ?? '')}? Well you're taking your smart mouth to the principal right now!"`);
     qspCall(st, 'willpower', 'misc', 'resist', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -614,14 +614,14 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
             scene.text('You\'re snapped back to consciousness when you hear Mr. Ivanov call your name. Everyone looks at you expectantly, and you realize that you were just asked a question about the topic.');
             scene.text('Taking your best guess at what the teacher might be asking, the entire class is shocked as you somehow manage to produce the correct answer, since it must\'ve been obvious to everyone that you were sleeping.');
             // TODO-QSP: dynamic text: "Very good, Miss <<$pcs_lastname>>, but please keep your head up and listen," Mr...
-            scene.text(`"Very good, Miss ${((st as any).pcs_lastname || '')}, but please keep your head up and listen," Mr. Ivanov replies.`);
+            scene.text(`"Very good, Miss ${((st as any).pcs_lastname ?? '')}, but please keep your head up and listen," Mr. Ivanov replies.`);
           } else {
             scene.img('images/locations/pavlovsk/school/classroom/sleeping.jpg');
             scene.text('You\'re far too tired to pay attention in class today. You don\'t even know what the lesson is about as you keep dozing off.');
             scene.text('You\'re snapped back to consciousness when you hear Mr. Ivanov call your name. Everyone looks at you expectantly, and you realize that you were just asked a question about the topic.');
             scene.text('Taking your best guess at what the teacher might be asking, the entire class is shocked as you somehow manage to produce the correct answer, since it must\'ve been obvious to everyone that you were sleeping.');
             // TODO-QSP: dynamic text: Mr. Ivanov stands in front of you, bewildered. "Lucky guess, <<$pcs_lastname>>. ...
-            scene.text(`Mr. Ivanov stands in front of you, bewildered. "Lucky guess, ${((st as any).pcs_lastname || '')}. Now keep your head up and pay attention!" he says, clearly annoyed that you answered correctly.`);
+            scene.text(`Mr. Ivanov stands in front of you, bewildered. "Lucky guess, ${((st as any).pcs_lastname ?? '')}. Now keep your head up and pay attention!" he says, clearly annoyed that you answered correctly.`);
           }
         } else {
           qspCall(st, 'mood', 'lower', 'tiny');
@@ -701,12 +701,12 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You decide to have some fun. You quickly slide the phone between your legs and snap some photos under your skirt.');
     // TODO-QSP: dynamic text: When Mr. Ivanov arrives at your desk, he gives you a stern look. "I''m not going...
-    scene.text(`When Mr. Ivanov arrives at your desk, he gives you a stern look. "I'm not going to ask twice, ${((st as any).pcs_lastname || '')}. Hand it over!"`);
+    scene.text(`When Mr. Ivanov arrives at your desk, he gives you a stern look. "I'm not going to ask twice, ${((st as any).pcs_lastname ?? '')}. Hand it over!"`);
     scene.text('You give him a sly smile as you hand over your phone with the last picture you took still on the screen.');
     if (((st as any).grupTipe ?? 0) === 3) {
       scene.text('He looks at the screen and shakes his head before stuffing your phone in his pocket.');
       // TODO-QSP: dynamic text: "You''re better than this, Miss <<$pcs_lastname>>. I urge you not to start down ...
-      scene.text(`"You're better than this, Miss ${((st as any).pcs_lastname || '')}. I urge you not to start down this path," he says before returning to the front of the class and continuing his lesson.`);
+      scene.text(`"You're better than this, Miss ${((st as any).pcs_lastname ?? '')}. I urge you not to start down this path," he says before returning to the front of the class and continuing his lesson.`);
     } else {
       // TODO-QSP: 'He looks at the screen and doesn''t react at first. He walks back to the front of the class, looks ...
     }
@@ -737,7 +737,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.text('You deftly shove the phone in your bra, and smile fiendishly as you see the indecisiveness on your teacher\'s face.');
     scene.text('You pretend it\'s a perfectly normal place to store your phone. "Is there a problem, Mr. Ivanov? Go ahead, take my phone if it\'s not allowed," you say in a cute voice as you thrust your chest forward, the outline of your phone visible through the fabric.');
     // TODO-QSP: dynamic text: Realizing he can''t retrieve your phone without causing any awkward situations, ...
-    scene.text(`Realizing he can't retrieve your phone without causing any awkward situations, he returns to the front of the class in defeat. "I expected nothing less from you, Miss ${((st as any).pcs_lastname || '')}. You never fail to fall to your lowest potential."`);
+    scene.text(`Realizing he can't retrieve your phone without causing any awkward situations, he returns to the front of the class in defeat. "I expected nothing less from you, Miss ${((st as any).pcs_lastname ?? '')}. You never fail to fall to your lowest potential."`);
     scene.text('You pull your phone back out as he resumes his lesson, looking somewhat annoyed.');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -753,7 +753,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/takephone.jpg');
     scene.text('You decide it\'s not worth the conflict, and silently hand your phone to Mr. Ivanov.');
     // TODO-QSP: dynamic text: "I''ll be holding onto this, <<$pcs_lastname>>. Now pay attention and you might ...
-    scene.text(`"I'll be holding onto this, ${((st as any).pcs_lastname || '')}. Now pay attention and you might actually learn something for once!" he says as he walks back to the front of the class.`);
+    scene.text(`"I'll be holding onto this, ${((st as any).pcs_lastname ?? '')}. Now pay attention and you might actually learn something for once!" he says as he walks back to the front of the class.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
     qspCall(st, 'gschool_lessonsev2', 'geography');
@@ -860,7 +860,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/flashboobs1.jpg');
     // TODO-QSP: dynamic text: You notice Fedor glancing over at you a few times and decide to play with him. T...
-    scene.text(`You notice Fedor glancing over at you a few times and decide to play with him. The next time he looks over at you while Miss Orlov's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize || '')} breasts.`);
+    scene.text(`You notice Fedor glancing over at you a few times and decide to play with him. The next time he looks over at you while Miss Orlov's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize ?? '')} breasts.`);
     scene.text('A few of the other students notice what you\'re doing and most of them either grin, smile or laugh at your antics. All but Lesco of course, who stares with his mouth open.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -1042,7 +1042,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
     // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
@@ -1059,7 +1059,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'pussy');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You can feel the excitement in your pussy as you imagine yourself baring it in class to take a selfie of it. Maybe you\'ll share it, maybe not, but either way it should be fun and could be fun to send to someone later to tease them with it. You glance around and when everyone is busy, you pull up your skirt and pull your panties aside until your pussy is exposed.');
       scene.text('You take a few quick selfies of your exposed pussy until you get one you really like. You save that one to your phone and delete the rest.');
@@ -1078,7 +1078,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Regular selfie', handler: (st: GameState) => {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Miss Orlov even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -1096,7 +1096,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/classroom/sleeping.jpg');
       scene.text('Today\'s lesson doesn\'t particularly interest you and you find yourself drifting off constantly. After a while, you notice Miss Orlov has stopped talking and is looking at you intently, asking you to pay attention. This is apparently the third time she has asked; you missed the first two while you were lost in your own thoughts. The whole class is looking at you.');
       // TODO-QSP: dynamic text: "Please pay attention, Miss <<$pcs_lastname>>, this is very important. Today''s ...
-      scene.text(`"Please pay attention, Miss ${((st as any).pcs_lastname || '')}, this is very important. Today's topic is going to be on the exam."`);
+      scene.text(`"Please pay attention, Miss ${((st as any).pcs_lastname ?? '')}, this is very important. Today's topic is going to be on the exam."`);
       qspCall(st, 'willpower', 'misc', 'self', 'medium');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
@@ -1117,7 +1117,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe if you spoke louder and with more confidence, I might not fall asleep!" you answer boldly.');
     scene.text('Miss Orlov seems a bit stunned by your comment and takes a minute to regain her composure.');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, please go to the principal," she quietly tells you.
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, please go to the principal," she quietly tells you.`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, please go to the principal," she quietly tells you.`);
     qspCall(st, 'willpower', 'misc', 'resist', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -1180,7 +1180,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
           scene.text('You\'re snapped back to consciousness when you hear Miss Orlov call your name. Everyone is looking at you expectantly, and you realize that you were just asked a question about the topic.');
           scene.text('You take your best guess at what they might be asking and some of the other students snicker when you say something that\'s obviously wrong.');
           // TODO-QSP: dynamic text: "You''re a smart girl, Miss <<$pcs_lastname>>. I know you know this stuff. You o...
-          scene.text(`"You're a smart girl, Miss ${((st as any).pcs_lastname || '')}. I know you know this stuff. You only have to apply yourself and the sky is the limit for you, so please pay attention," Miss Orlov says, trying to encourage you.`);
+          scene.text(`"You're a smart girl, Miss ${((st as any).pcs_lastname ?? '')}. I know you know this stuff. You only have to apply yourself and the sky is the limit for you, so please pay attention," Miss Orlov says, trying to encourage you.`);
           scene.text('It was an embarrassing experience having everyone staring at you, but the sudden adrenaline surge helps you to stay awake for the rest of the period.');
         }
         scene.actions([
@@ -1194,7 +1194,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/pavlovsk/school/classroom/sleeping.jpg');
           scene.text('You fall asleep, but are suddenly awoken by a loud noise. You jerk up and look around. All the other students are gone, but you notice Miss Orlov standing near her desk staring at you. She looks… different. Is that a leather skirt and bra?');
           // TODO-QSP: dynamic text: "This is the last time you fall asleep in my class, <<$pcs_lastname>>! Now come ...
-          scene.text(`"This is the last time you fall asleep in my class, ${((st as any).pcs_lastname || '')}! Now come up here for your punishment!" You sit thinking about how this can't be real when she slaps her desk. "Now, ${((st as any).pcs_nickname || '')}!"`);
+          scene.text(`"This is the last time you fall asleep in my class, ${((st as any).pcs_lastname ?? '')}! Now come up here for your punishment!" You sit thinking about how this can't be real when she slaps her desk. "Now, ${((st as any).pcs_nickname ?? '')}!"`);
           scene.actions([
             { label: 'Walk up to her desk', goto: ['gschool_lessons2', 'arina_dream'] },
           ]);
@@ -1224,7 +1224,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
       scene.text('You hear someone clear their throat and glance up to see Miss Orlov looking at you.');
       // TODO-QSP: dynamic text: "Please put your phone away and pay attention, Miss <<$pcs_lastname>>," she says...
-      scene.text(`"Please put your phone away and pay attention, Miss ${((st as any).pcs_lastname || '')}," she says rather timidly.`);
+      scene.text(`"Please put your phone away and pay attention, Miss ${((st as any).pcs_lastname ?? '')}," she says rather timidly.`);
       qspCall(st, 'willpower', 'misc', 'self', 'medium');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
@@ -1262,7 +1262,7 @@ function enterScience(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You decide to have some fun. You quickly slide the phone between your legs and snap some photos under your skirt.');
     // TODO-QSP: dynamic text: Miss Orlov arrives at your desk, her hand outstretched. "Hand it over please, Mi...
-    scene.text(`Miss Orlov arrives at your desk, her hand outstretched. "Hand it over please, Miss ${((st as any).pcs_lastname || '')}. This is very important and you need to pay attention."`);
+    scene.text(`Miss Orlov arrives at your desk, her hand outstretched. "Hand it over please, Miss ${((st as any).pcs_lastname ?? '')}. This is very important and you need to pay attention."`);
     scene.text('You hand over your phone with a sly smile with the last picture you took still on the screen.');
     scene.text('Miss Orlov looks at what\'s on the screen and she blushes deep red before quickly turning your phone off. She hurries back to the front of the class, tosses your phone in her desk and takes a moment to compose herself before she continues the lesson feeling somewhat flustered.');
     scene.actions([
@@ -1418,7 +1418,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/flashboobs1.jpg');
     // TODO-QSP: dynamic text: You notice Petka glancing over at you a few times and decide to play with him. T...
-    scene.text(`You notice Petka glancing over at you a few times and decide to play with him. The next time he looks over at you while Mr. Vasilyev's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize || '')} breasts.`);
+    scene.text(`You notice Petka glancing over at you a few times and decide to play with him. The next time he looks over at you while Mr. Vasilyev's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize ?? '')} breasts.`);
     scene.text('A few of the other students notice what you\'re doing and most of them either grin, smile or laugh at your antics. All but Lesco of course, who stares with his mouth open. Lavrenti tries to take a picture, but you close your shirt before he gets his phone up.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -1600,7 +1600,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
     // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? (' You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
@@ -1617,7 +1617,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'pussy');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You can feel the excitement in your pussy as you imagine yourself baring it in class to take a selfie of it. Maybe you\'ll share it, maybe not, but either way it should be fun and could be fun to send to someone later to tease them with it. You glance around and when everyone is busy, you pull up your skirt and pull your panties aside until your pussy is exposed.');
       scene.text('You take a few quick selfies of your exposed pussy until you get one you really like. You save that one to your phone and delete the rest.');
@@ -1636,7 +1636,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Regular selfie', handler: (st: GameState) => {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Mr. Vasilyev even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -1651,7 +1651,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You get Lavrenti''s attention by smiling at him when he looks in your direction before you lean bac...
     scene.text('He watches you intently while you bite your lower lip looking all coy and seductive to him. Once you finish your stretch, you pretend to act all innocent, like you didn\'t do anything.');
     // TODO-QSP: dynamic text: Lavrenti glances around before leaning over. "Come on, don''t be like that, <<$p...
-    scene.text(`Lavrenti glances around before leaning over. "Come on, don't be like that, ${((st as any).pcs_nickname || '')}. Show me a little more…"`);
+    scene.text(`Lavrenti glances around before leaning over. "Come on, don't be like that, ${((st as any).pcs_nickname ?? '')}. Show me a little more…"`);
     scene.text('Before you can decide what to do, Katja, who watched it all, gets your attention.');
     scene.actions([
       { label: 'Katja\'s suggestion', handler: (st: GameState) => {
@@ -1721,7 +1721,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/teasep3.jpg');
     scene.text('Just then, he reaches over, grabs the front of your panties and tries to pull them down to get a look at your pussy. You grab his hand just in time to stop him from doing it.');
     // TODO-QSP: dynamic text: "Come on, <<$pcs_nickname>>! Show me your pussy," he whispers at you as he keeps...
-    scene.text(`"Come on, ${((st as any).pcs_nickname || '')}! Show me your pussy," he whispers at you as he keeps trying to tug your panties down.`);
+    scene.text(`"Come on, ${((st as any).pcs_nickname ?? '')}! Show me your pussy," he whispers at you as he keeps trying to tug your panties down.`);
     qspCall(st, 'willpower', 'exhib', 'resist', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -1779,7 +1779,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/teaseb2.jpg');
     // TODO-QSP: dynamic text: You glance around and wait until no one but the two of them are looking before y...
-    scene.text(`You glance around and wait until no one but the two of them are looking before you lean back and pull up your shirt to expose your bare ${((st as any).titsize || '')} breasts. Your nipples get hard from the excitement as Lavrenti stares at your bare breasts, looking almost entranced by them.`);
+    scene.text(`You glance around and wait until no one but the two of them are looking before you lean back and pull up your shirt to expose your bare ${((st as any).titsize ?? '')} breasts. Your nipples get hard from the excitement as Lavrenti stares at your bare breasts, looking almost entranced by them.`);
     scene.actions([
       { label: 'Put them away', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/teaseb3.jpg');
@@ -1804,7 +1804,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/classroom/caughtsleeping.jpg');
       scene.text('Today\'s lesson doesn\'t particularly interest you and you find yourself drifting off constantly. After a while, you notice Mr. Vasilyev has stopped talking and is looking at you intently, asking you to pay attention. This is apparently the third time he has asked; you missed the first two while you were lost in your own thoughts. The whole class is looking at you.');
       // TODO-QSP: dynamic text: Mr. Vasilyev tries to convince you of the importance of today''s lesson. "Please...
-      scene.text(`Mr. Vasilyev tries to convince you of the importance of today's lesson. "Please pay attention, Miss ${((st as any).pcs_lastname || '')}, this is very important. Today's topic is going to be on the exam."`);
+      scene.text(`Mr. Vasilyev tries to convince you of the importance of today's lesson. "Please pay attention, Miss ${((st as any).pcs_lastname ?? '')}, this is very important. Today's topic is going to be on the exam."`);
       qspCall(st, 'willpower', 'misc', 'self', 'medium');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
@@ -1825,7 +1825,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('"Of course. Please continue your incredibly fascinating speech about how music is your passion. Remind me why I should care?" you answer boldly.');
     scene.text('The whole class is stunned into silence at you insulting Mr. Vasilyev, who just stares at you unimpressed with his arms folded.');
     // TODO-QSP: dynamic text: "I won''t tolerate such disrespectful behavior in my class, Miss <<$pcs_lastname...
-    scene.text(`"I won't tolerate such disrespectful behavior in my class, Miss ${((st as any).pcs_lastname || '')}. Now get out and report to the principal now!"`);
+    scene.text(`"I won't tolerate such disrespectful behavior in my class, Miss ${((st as any).pcs_lastname ?? '')}. Now get out and report to the principal now!"`);
     qspCall(st, 'willpower', 'misc', 'self', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -1844,7 +1844,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/payattention.jpg');
     scene.text('"What good would that do? I\'m not interrupting your class. Go back to your boring lecture and leave me alone!" you answer brashly, having no intention of getting up.');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, you will get out of my class NOW!" he demands while poi...
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, you will get out of my class NOW!" he demands while pointing at the door. You scoff and begrudgingly leave the class.`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, you will get out of my class NOW!" he demands while pointing at the door. You scoff and begrudgingly leave the class.`);
     scene.actions([
       { label: 'Go to the principal\'s office', goto: ['gschool_office', 'principal'] },
     ]);
@@ -1981,7 +1981,7 @@ function enterMusic(s: GameState, scene: SceneBuilder): void {
     scene.text('You deftly shove the phone in your bra, and smile fiendishly as you see the flabbergasted look on your teacher\'s face.');
     scene.text('You pretend it\'s a perfectly normal place to store your phone and mock him in a cute voice. "Is there a problem, Mr. Vasilyev? Go ahead, take my phone if it\'s not allowed." You thrust your chest forward, the outline of your phone visible through the fabric.');
     // TODO-QSP: dynamic text: Mr. Vasilyev is stunned by your move. "You know that this isn''t appropriate, Mi...
-    scene.text(`Mr. Vasilyev is stunned by your move. "You know that this isn't appropriate, Miss ${((st as any).pcs_lastname || '')}. Please hand it over."`);
+    scene.text(`Mr. Vasilyev is stunned by your move. "You know that this isn't appropriate, Miss ${((st as any).pcs_lastname ?? '')}. Please hand it over."`);
     scene.text('You have no intention of doing so and wiggle your chest. He soon admits defeat and returns to his lesson as you pull your phone back out and return to your game.');
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -2103,7 +2103,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/flashboobs1.jpg');
     // TODO-QSP: dynamic text: You notice Lesco glancing over at you a few times and decide to play with him. T...
-    scene.text(`You notice Lesco glancing over at you a few times and decide to play with him. The next time he looks over at you while Miss Orlov's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize || '')} breasts.`);
+    scene.text(`You notice Lesco glancing over at you a few times and decide to play with him. The next time he looks over at you while Miss Orlov's back is turned, you pull your shirt open and his mouth drops open in shock as he stares at your exposed ${((st as any).titsize ?? '')} breasts.`);
     scene.text('A few of the other students notice what you\'re doing and most of them either grin, smile or laugh at your antics. All but Lesco of course, who continues to stare at you with his mouth open.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -2284,7 +2284,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'tits');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Feeling particularly brash, you decide taking a selfie of your bare breasts in the middle of class is a great idea. Maybe you\'ll share it, maybe not, but either way it should be fun and might be useful for teasing someone later. You glance around and when everyone is busy, you pull open your shirt and expose your breasts.');
     // TODO-QSP: dynamic text: You take a few quick selfies of your exposed breasts until you get one you reall...
     scene.text('You take a few quick selfies of your exposed breasts until you get one you really like. ' + ((qspFunc(s, 'pcs_has_attr', 'body_tits_at_least_F_cup')) ? ('You fight with your blouse to cover yourself back up. Once it\'s finally back in place, you take a look around and see a few grinning faces among your classmates. ') : ('')) + 'You save that one to your phone and delete the rest.');
@@ -2301,7 +2301,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'fame', 'pav', 'sex', 3);
     qspCall(st, 'stat', '');
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom', 'pussy');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     if (((st as any).pantyworntype ?? 0) !== 'none') {
       scene.text('You can feel the excitement in your pussy as you imagine yourself baring it in class to take a selfie of it. Maybe you\'ll share it, maybe not, but either way it should be fun and could be fun to send to someone later to tease them with it. You glance around and when everyone is busy, you pull up your skirt and pull your panties aside until your pussy is exposed.');
       scene.text('You take a few quick selfies of your exposed pussy until you get one you really like. You save that one to your phone and delete the rest.');
@@ -2320,7 +2320,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Regular selfie', handler: (st: GameState) => {
     (st as any).temp_phone_img = qspFunc(s, 'phone_selfies', 'selfie_image', 'school_classroom');
-    scene.img(`${((st as any).temp_phone_img || '')}`);
+    scene.img(`${((st as any).temp_phone_img ?? '')}`);
     scene.text('Just a cute selfie. Nothing too daring, yet it gives you something to do. You take several selfies of yourself until you find one you like, which you keep before deleting the rest. You manage to take them without Miss Orlov even noticing.');
     scene.actions([
       { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
@@ -2358,7 +2358,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.text('"Maybe if you spoke louder and with more confidence, I might not fall asleep!" you answer boldly.');
     scene.text('Miss Orlov is stunned by your comment and takes a minute to regain her composure.');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, please go to the principal," she quietly asks.
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, please go to the principal," she quietly asks.`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, please go to the principal," she quietly asks.`);
     qspCall(st, 'willpower', 'misc', 'resist', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -2422,7 +2422,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
           scene.text('You\'re snapped back to consciousness when you hear Miss Orlov call your name. Everyone is looking at you expectantly, and realize that you were just asked a question about the topic.');
           scene.text('You take your best guess at what they might be asking and some of the other students snicker when you say something that\'s obviously wrong.');
           // TODO-QSP: dynamic text: "You''re a smart girl, Miss <<$pcs_lastname>>. I know you know this stuff. You o...
-          scene.text(`"You're a smart girl, Miss ${((st as any).pcs_lastname || '')}. I know you know this stuff. You only have to apply yourself and the sky is the limit for you, so please pay attention." Miss Orlov says, trying to encourage you.`);
+          scene.text(`"You're a smart girl, Miss ${((st as any).pcs_lastname ?? '')}. I know you know this stuff. You only have to apply yourself and the sky is the limit for you, so please pay attention." Miss Orlov says, trying to encourage you.`);
           scene.text('It was an embarrassing experience having everyone staring at you, but the sudden adrenaline surge helps you to stay awake for the rest of the period.');
         }
         scene.actions([
@@ -2436,7 +2436,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/pavlovsk/school/classroom/sleeping.jpg');
           scene.text('You fall asleep, but are suddenly awoken by a loud noise. You jerk up and look around. All the other students are gone, but you notice Miss Orlov standing near her desk staring at you. She looks… different. Is that a leather skirt and bra?');
           // TODO-QSP: dynamic text: "This is the last time you fall asleep in my class, <<$pcs_lastname>>! Now come ...
-          scene.text(`"This is the last time you fall asleep in my class, ${((st as any).pcs_lastname || '')}! Now come up here for your punishment!" You sit thinking about how this can't be real when she slaps her desk. "Now, ${((st as any).pcs_nickname || '')}!"`);
+          scene.text(`"This is the last time you fall asleep in my class, ${((st as any).pcs_lastname ?? '')}! Now come up here for your punishment!" You sit thinking about how this can't be real when she slaps her desk. "Now, ${((st as any).pcs_nickname ?? '')}!"`);
           scene.actions([
             { label: 'Walk up to her desk', goto: ['gschool_lessons2', 'arina_dream'] },
           ]);
@@ -2465,7 +2465,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
       // TODO-QSP: dynamic text: You hear someone clear their throat and glance up to see Miss Orlov looking at y...
-      scene.text(`You hear someone clear their throat and glance up to see Miss Orlov looking at you. "Please put your phone away and pay attention, Miss ${((st as any).pcs_lastname || '')}."`);
+      scene.text(`You hear someone clear their throat and glance up to see Miss Orlov looking at you. "Please put your phone away and pay attention, Miss ${((st as any).pcs_lastname ?? '')}."`);
       qspCall(st, 'willpower', 'misc', 'self', 'medium');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
@@ -2505,7 +2505,7 @@ function enterBiology(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/upskirtselfie.jpg');
     scene.text('You decide to have some fun. You quickly slide the phone between your legs and snap some photos under your skirt.');
     // TODO-QSP: dynamic text: Miss Orlov arrives at your desk, her hand outstretched. "Hand it over please, Mi...
-    scene.text(`Miss Orlov arrives at your desk, her hand outstretched. "Hand it over please, Miss ${((st as any).pcs_lastname || '')}. This is very important and you need to pay attention."`);
+    scene.text(`Miss Orlov arrives at your desk, her hand outstretched. "Hand it over please, Miss ${((st as any).pcs_lastname ?? '')}. This is very important and you need to pay attention."`);
     scene.text('You hand over your phone with a sly smile with the last picture you took still on the screen.');
     scene.text('Miss Orlov looks at what\'s on the screen and she blushes deep red before quickly turning your phone off. She hurries back to the front of the class, tosses your phone in her desk and takes a moment to compose herself before she continues the lesson feeling somewhat flustered.');
     scene.actions([
@@ -2631,7 +2631,7 @@ function enterArinaDream(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/teacher/arina/sex/dream/dream6.jpg');
     scene.text('She suddenly gets up, turns around and sits on your face. She starts grinds against your face as you continue licking her pussy.');
     // TODO-QSP: dynamic text: "Oh god yes, <<$pcs_nickname>> yes! Eat my pussy, I love it!"
-    scene.text(`"Oh god yes, ${((st as any).pcs_nickname || '')} yes! Eat my pussy, I love it!"`);
+    scene.text(`"Oh god yes, ${((st as any).pcs_nickname ?? '')} yes! Eat my pussy, I love it!"`);
     scene.text('She suddenly cums and her juices flow out of her pussy, covering your face and filling your mouth. You drink it down, but it seems to be never ending. Then it just suddenly stops and she climbs off of you.');
     qspCall(st, 'arousal', 'cuni_give', 3, 'sub');
     qspCall(st, 'arousal', 'end');

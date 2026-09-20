@@ -127,7 +127,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).tempnpcid ?? 0) > 0) {
         // TODO-QSP: $ARGS[1] = 'A<<tempnpcid>>'
         // TODO-QSP: dynamic text: <br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade ...
-        scene.text(`<br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade from ${((s as any).locArgs?.[1] ?? '')} to A${((s as any).tempnpcid || '')}</font></b>`);
+        scene.text(`<br><b><font color="teal">DEVELOPER WARNING: Legacy name cum_call needs upgrade from ${((s as any).locArgs?.[1] ?? '')} to A${((s as any).tempnpcid ?? '')}</font></b>`);
       } else {
         // TODO-QSP: $ARGS[1] = 'D1'
       }

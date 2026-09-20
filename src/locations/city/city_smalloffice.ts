@@ -35,7 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: Still smiling he says, "<<$pcs_nickname>>, want to grab a cup of coffee?"
-    scene.text(`Still smiling he says, "${((st as any).pcs_nickname || '')}, want to grab a cup of coffee?"`);
+    scene.text(`Still smiling he says, "${((st as any).pcs_nickname ?? '')}, want to grab a cup of coffee?"`);
     scene.actions([
       { label: 'Decline', handler: (st: GameState) => {
     (st as any).jouryQwNo = 1;
@@ -61,7 +61,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).borodachQW ?? 0) > 0  &&  ((s as any).borodachSex ?? 0) > 0  &&  ((s as any).hour ?? 0) >= 19) {
     // TODO-QSP: dynamic text: The security guard, Sasha, smiles and says, "Hi <<$pcs_nickname>>!"
-    scene.text(`The security guard, Sasha, smiles and says, "Hi ${((s as any).pcs_nickname || '')}!"`);
+    scene.text(`The security guard, Sasha, smiles and says, "Hi ${((s as any).pcs_nickname ?? '')}!"`);
   }
   if (((s as any).borodachQW ?? 0) > 0  &&  ((s as any).hour ?? 0) >= 19) {
     scene.actions([
@@ -102,15 +102,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).picrand = (Math.floor(Math.random() * 3) + 0);
     if ((!((st as any).picrand ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/office/sex/gua...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/city/residential/office/sex/guard/hj.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/office/sex/guard/hj.jpg"></center>`);
     }
     if (((st as any).picrand ?? 0) === 1) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/office/sex/gua...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/city/residential/office/sex/guard/hj1.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/office/sex/guard/hj1.jpg"></center>`);
     }
     if (((st as any).picrand ?? 0) === 2) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/residential/office/sex/gua...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/city/residential/office/sex/guard/hj2.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/city/residential/office/sex/guard/hj2.jpg"></center>`);
     }
     scene.text('You put your hand on his crotch and feel his erection harden. Your thin fingers slide over his hardon and find the zipper. You unzip him and get his cock out of his pants. Sasha relaxes on the couch waiting for you to continue what you started.');
     qspCall(st, 'arousal', 'foreplay', 5);
@@ -160,7 +160,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod, "Yes, the pay is pretty bad but I need the job…"');
     scene.text('"By the way, I\'m Sasha, and you\'re?"');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>." you politely answer.
-    scene.text(`"${((st as any).pcs_nickname || '')}." you politely answer.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}." you politely answer.`);
     scene.text('"Nice name… I was just thinking about heading on a break, would you like to join me for a drink?"');
     qspCall(st, 'willpower', 'drink', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -317,7 +317,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave', goto: ['city_smalloffice', 'start'] },
     ]);
-  } },,
+  } },
 { label: 'Yes', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
@@ -368,7 +368,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/office/clener2.jpg');
     if (((st as any).jouryQw ?? 0) > 7  &&  ((st as any).hour ?? 0) >= 9  &&  ((st as any).hour ?? 0) <= 16  &&  ((st as any).jourySex ?? 0) > 0  &&  (!((st as any).jouryResult ?? 0))) {
       // TODO-QSP: dynamic text: You enter a booth and begin scrubbing the toilet bowl. The toilet door slams as ...
-      scene.text(`You enter a booth and begin scrubbing the toilet bowl. The toilet door slams as somebody comes in, you turn around and see Yuri standing there. He, quickly comes over to you, "${((st as any).pcs_nickname || '')}, don't approach me at the office, well, you know, I don't want the rest of the office to gossip about me seeing the cleaner."`);
+      scene.text(`You enter a booth and begin scrubbing the toilet bowl. The toilet door slams as somebody comes in, you turn around and see Yuri standing there. He, quickly comes over to you, "${((st as any).pcs_nickname ?? '')}, don't approach me at the office, well, you know, I don't want the rest of the office to gossip about me seeing the cleaner."`);
       scene.actions([
 { label: 'You\'re ashamed of me?', handler: (st: GameState) => {
     scene.text('You let go off your cleaning stuff and look straight into Yuri\'s eyes, asking him, "Are you ashamed of me?"');
@@ -412,7 +412,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).StasikValera ?? 0) > 0  &&  (!((st as any).svQW ?? 0))) {
       // TODO-QSP: dynamic text: You clean the toilet and all of a sudden you hear the toilet door as someone wal...
-      scene.text(`You clean the toilet and all of a sudden you hear the toilet door as someone walks in, as you turn around you see a man. To your surprise, it is Stasik, with him is his friend Valera that you've met at the beach. Stasik also apparently recognizes you, walking up to you, "Hi ${((st as any).pcs_nickname || '')}, you work here as a cleaner?"`);
+      scene.text(`You clean the toilet and all of a sudden you hear the toilet door as someone walks in, as you turn around you see a man. To your surprise, it is Stasik, with him is his friend Valera that you've met at the beach. Stasik also apparently recognizes you, walking up to you, "Hi ${((st as any).pcs_nickname ?? '')}, you work here as a cleaner?"`);
       scene.actions([
 { label: 'Explain', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -551,7 +551,7 @@ function enterBorodachSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A39');
     scene.img('images/shared/sex/vag/miss/vag.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> lays you on the sofa, spreads your legs and pulls out his <<dick>> ...
-    scene.text(`${((st as any).boydesc || '')} lays you on the sofa, spreads your legs and pulls out his ${((st as any).dick || '')} cm dick, his fingers begin to caress your pussy, preparing it for entry.`);
+    scene.text(`${((st as any).boydesc ?? '')} lays you on the sofa, spreads your legs and pulls out his ${((st as any).dick ?? '')} cm dick, his fingers begin to caress your pussy, preparing it for entry.`);
     qspCall(st, 'dinsex', 'boy_puts_condom');
     qspCall(st, 'arousal', 'vaginal_finger', 5);
     qspCall(st, 'dinsex', 'vaginal_sex', 15);
@@ -605,7 +605,7 @@ function enterOhrbj(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Suck him', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 4) + 1);
-    scene.img(`images/locations/city/residential/office/sex/guard/bj${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/city/residential/office/sex/guard/bj${((st as any).picrand ?? '')}.jpg`);
     // TODO-QSP: dynamic text: You wrap your <<$pc_desc[''lips'']>> lips around his strong and warm 15 cm cock ...
     scene.text(`You wrap your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his strong and warm 15 cm cock and quickly begin by sucking the head, caressing it with your tongue and lips. Sasha groans, "I'm going to come."`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
@@ -625,7 +625,7 @@ function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_manage', '');
     qspCall(st, 'stat', '');
     (st as any).picrand = (Math.floor(Math.random() * 4) + 1);
-    scene.img(`images/locations/city/residential/office/sex/guard/bjcum${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/city/residential/office/sex/guard/bjcum${((st as any).picrand ?? '')}.jpg`);
     // TODO-QSP: dynamic text: You redouble your efforts, sucking his hard cock with your <<$pc_desc[''lips'']>...
     scene.text(`You redouble your efforts, sucking his hard cock with your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Hot sperm hits your mouth, again and again. You continue to suck, ignoring your mouth full of viscous sperm. Until he finally nothing left.`);
     qspCall(st, 'arousal', 'bj', 5, 'sub');
@@ -635,7 +635,7 @@ function enterOhrbjcum(s: GameState, scene: SceneBuilder): void {
     (st as any).borodachSexDay = ((st as any).daystart ?? 0);
     qspCall(st, 'stat', '');
     (st as any).picrand = (Math.floor(Math.random() * 3) + 1);
-    scene.img(`images/locations/city/residential/office/sex/guard/swallow${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/city/residential/office/sex/guard/swallow${((st as any).picrand ?? '')}.jpg`);
     scene.text('You open your sperm filled mouth and show off your hard work, then swallow it.');
     qspCall(st, 'arousal', 'bj', 1, 'sub');
     qspCall(st, 'arousal', 'end');
@@ -670,7 +670,7 @@ function enterOhrsex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A39');
     scene.img('images/shared/sex/vag/miss/vag.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> lays you on the sofa, spreads your legs and pulls out his <<dick>> ...
-    scene.text(`${((st as any).boydesc || '')} lays you on the sofa, spreads your legs and pulls out his ${((st as any).dick || '')} centimeter dick. His fingers begin to caress your pussy, preparing it for entry.`);
+    scene.text(`${((st as any).boydesc ?? '')} lays you on the sofa, spreads your legs and pulls out his ${((st as any).dick ?? '')} centimeter dick. His fingers begin to caress your pussy, preparing it for entry.`);
     qspCall(st, 'arousal', 'vaginal_finger', 5);
     qspCall(st, 'arousal', 'vaginal', 15, 'sub');
     qspCall(st, 'arousal', 'end');

@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).stallionQ = 4;
   scene.text('You enter the men\'s restroom. It appears empty. You move into a stall and sit down. As you relieve yourself, you hear chuckling in the next stall.');
   // TODO-QSP: dynamic text: After a second, you hear a strange man''s voice. "<<$pcs_nickname>>. My <<$pcs_n...
-  scene.text(`After a second, you hear a strange man's voice. "${((s as any).pcs_nickname || '')}. My ${((s as any).pcs_nickname || '')}. Show me more of that cute vagina of yours."`);
+  scene.text(`After a second, you hear a strange man's voice. "${((s as any).pcs_nickname ?? '')}. My ${((s as any).pcs_nickname ?? '')}. Show me more of that cute vagina of yours."`);
   qspCall(s, 'willpower', 'misc', 'self', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
@@ -29,7 +29,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'willpower', 'pay', 'self');
     scene.text('You jump out of your stall and move to open the other one, but it opens before you reach it. Out of it comes a naked middle aged man.');
     // TODO-QSP: dynamic text: "I''ve been watching you, <<$pcs_nickname>> <<$pcs_lastname>>. You think it''s a...
-    scene.text(`"I've been watching you, ${((st as any).pcs_nickname || '')} ${((st as any).pcs_lastname || '')}. You think it's a coincidence you are here? I've been planning things out. Preparing.`);
+    scene.text(`"I've been watching you, ${((st as any).pcs_nickname ?? '')} ${((st as any).pcs_lastname ?? '')}. You think it's a coincidence you are here? I've been planning things out. Preparing.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterFight(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -67,7 +67,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
   (s as any).guy = ((s as any).guy ?? 0) + (1);
   scene.text('The man pushes you down, and you fall on your ass. He advances towards you, grabs a hold of your clothes and rips them open. He falls on top of you. You feel his hot breath against your face as he ruthlessly grabs your arms. You feel his penis poking you in the leg.');
   // TODO-QSP: dynamic text: "So you know what''s coming next, don''t you my little <<$pcs_nickname>>?"
-  scene.text(`"So you know what's coming next, don't you my little ${((s as any).pcs_nickname || '')}?"`);
+  scene.text(`"So you know what's coming next, don't you my little ${((s as any).pcs_nickname ?? '')}?"`);
   if (((s as any).pcs_horny ?? 0) < 30) {
     scene.text('You feel his cock stab you in your unprepared vagina, not even the slightest slowed down by the lack of lubrication. It\'s rough and raw, pulling at your skin and pressing against your sensitive flesh painfully. You can\'t help but cry out.');
   } else {
@@ -95,16 +95,16 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_magik ?? 0) < 3) {
         // TODO-QSP: dynamic text: "Is that magic I feel in you, <<$pcs_nickname>>? It''s not going to protect you....
-        scene.text(`"Is that magic I feel in you, ${((s as any).pcs_nickname || '')}? It's not going to protect you. I have some magic of my own."`);
+        scene.text(`"Is that magic I feel in you, ${((s as any).pcs_nickname ?? '')}? It's not going to protect you. I have some magic of my own."`);
         scene.text('You feel a tingling in your body as he does something to you.');
       } else {
         if (((s as any).pcs_magik ?? 0) < 7) {
           // TODO-QSP: dynamic text: "Don''t think I don''t feel the magic in you, <<$pcs_nickname>>. It''s not going...
-          scene.text(`"Don't think I don't feel the magic in you, ${((s as any).pcs_nickname || '')}. It's not going to protect you. I have some magic of my own."`);
+          scene.text(`"Don't think I don't feel the magic in you, ${((s as any).pcs_nickname ?? '')}. It's not going to protect you. I have some magic of my own."`);
           scene.text('You feel a tingling in your body as he works some fertility magic upon you.');
         } else {
           // TODO-QSP: dynamic text: "Your magic is strong, <<$pcs_nickname>>, but it is not going to protect you. Mi...
-          scene.text(`"Your magic is strong, ${((s as any).pcs_nickname || '')}, but it is not going to protect you. Mine is much stronger."`);
+          scene.text(`"Your magic is strong, ${((s as any).pcs_nickname ?? '')}, but it is not going to protect you. Mine is much stronger."`);
           scene.text('You feel a tingling in your body. He places a powerful enchantment on you, increasing your fertility and binding your life force to the fruit of your womb. You realize with horror that he has practically guaranteed all sexual encounters will result in pregnancy in the future. Furthermore, your life is now tied to your womb. An abortion will result in your death.');
         }
       }
@@ -112,7 +112,7 @@ function enterRape(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'What have you done to me?', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I have given you a gift, sweet <<$pcs_nickname>>. I have turned you into a broo...
-    scene.text(`"I have given you a gift, sweet ${((st as any).pcs_nickname || '')}. I have turned you into a broodmare," he replies as he continues to repeatedly thrust into you.`);
+    scene.text(`"I have given you a gift, sweet ${((st as any).pcs_nickname ?? '')}. I have turned you into a broodmare," he replies as he continues to repeatedly thrust into you.`);
   } },
     ]);
   }
@@ -190,7 +190,7 @@ function enterFinish(s: GameState, scene: SceneBuilder): void {
   scene.text('Stallion moans, "I\'m cumming!"');
   scene.text('He twitches on top of you, and you feel him fill you with his seed.');
   // TODO-QSP: dynamic text: "Give birth to a cute baby for me, <<$pcs_nickname>>. But don''t you dare kill i...
-  scene.text(`"Give birth to a cute baby for me, ${((s as any).pcs_nickname || '')}. But don't you dare kill it. You won't survive it long. Ta ta!" He says, pulling out.`);
+  scene.text(`"Give birth to a cute baby for me, ${((s as any).pcs_nickname ?? '')}. But don't you dare kill it. You won't survive it long. Ta ta!" He says, pulling out.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['stallion', 'end'] },
@@ -243,7 +243,7 @@ function enterAwaken(s: GameState, scene: SceneBuilder): void {
     (s as any).stallionQ = 5;
   }
   // TODO-QSP: dynamic text: There is a note next to your clothing. ''<<$temp[1]>>You were a pretty good fuck...
-  scene.text(`There is a note next to your clothing. '${qspUntranslated(s, "temp[1]", { location: "stallion" })}You were a pretty good fuck. I'll be keeping my eye on you. I look forward to see you growing large with my baby. If you go get an abortion to stop it, ${((s as any).temp || '')}. Go to the cops if you want, you'll never stop me. The door is unlocked, you can leave now. -Stallion`);
+  scene.text(`There is a note next to your clothing. '${qspUntranslated(s, "temp[1]", { location: "stallion" })}You were a pretty good fuck. I'll be keeping my eye on you. I look forward to see you growing large with my baby. If you go get an abortion to stop it, ${((s as any).temp ?? '')}. Go to the cops if you want, you'll never stop me. The door is unlocked, you can leave now. -Stallion`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },

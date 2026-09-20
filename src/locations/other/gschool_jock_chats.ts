@@ -18,7 +18,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
     scene.text('Lazar smirks when he sees you. "Back for more? I know, it was amazing."');
     scene.text('You only let out a short "Mmhmm" as you roll your eyes.');
     // TODO-QSP: dynamic text: Lazar breaks out in a smile. "No worries <<$pcs_nickname>>! I''m sure we''ll hoo...
-    scene.text(`Lazar breaks out in a smile. "No worries ${((s as any).pcs_nickname || '')}! I'm sure we'll hook up again."`);
+    scene.text(`Lazar breaks out in a smile. "No worries ${((s as any).pcs_nickname ?? '')}! I'm sure we'll hook up again."`);
     scene.text('You notice several others paying attention to what he says and aren\'t happy about him bragging publicly about banging you. You try and change the topic, but all you get from him is sexual banter.');
     // TODO-QSP: $func('npc_reactions', 'general', 'A149')
   } else {
@@ -50,7 +50,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
         if (((s as any).grupTipe ?? 0) === 1) {
           if (((s as any).npc_rel ?? 0)?.['A149'] >= 50) {
             // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>. So I''ve been noticing you eyeballing me…" Lazar winks.
-            scene.text(`"Hey, ${((s as any).pcs_nickname || '')}. So I've been noticing you eyeballing me…" Lazar winks.`);
+            scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}. So I've been noticing you eyeballing me…" Lazar winks.`);
             scene.text('You laugh. "Nice line, Lazar… Is that how you get the ladies interested in you?"');
             scene.text('He confidently continues. "You know it. And it works like a charm every time. You just wait, you\'ll fall for me too."');
             scene.text('You end up talking about a variety of topics, mostly sports.');
@@ -62,7 +62,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
               scene.text('"Good. Keep it that way or else we might have a problem…" he says as he brushes past you.');
             } else {
               // TODO-QSP: dynamic text: "I didn''t take you for one of them girls, <<$pcs_nickname>>?" Lazar smiles.
-              scene.text(`"I didn't take you for one of them girls, ${((s as any).pcs_nickname || '')}?" Lazar smiles.`);
+              scene.text(`"I didn't take you for one of them girls, ${((s as any).pcs_nickname ?? '')}?" Lazar smiles.`);
               scene.text('"What?" you ask, surprised.');
               scene.text('"Didn\'t take you for one of my fan girls, that\'s all," he winks.');
               scene.text('You roll your eyes and shake your head. You know he\'s full of himself, even if he is the most gifted athlete in school and cute to boot.');
@@ -74,20 +74,20 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 2) {
             if (((s as any).npc_rel ?? 0)?.['A149'] >= 50) {
               // TODO-QSP: dynamic text: "Did you see that move I made at the last game, <<$pcs_nickname>>?" Lazar boasts...
-              scene.text(`"Did you see that move I made at the last game, ${((s as any).pcs_nickname || '')}?" Lazar boasts.`);
+              scene.text(`"Did you see that move I made at the last game, ${((s as any).pcs_nickname ?? '')}?" Lazar boasts.`);
               scene.text('"I heard about it…" you inform him.');
               scene.text('You start talking about his last game, but soon move on to a variety of other topics.');
             } else {
               if (((s as any).npc_rel ?? 0)?.['A149'] <= 20) {
                 // TODO-QSP: dynamic text: "Well well, if it isn''t <<$pcs_nickname>>…" Lazar smirks as he stands with his ...
-                scene.text(`"Well well, if it isn't ${((s as any).pcs_nickname || '')}…" Lazar smirks as he stands with his arms crossed.`);
+                scene.text(`"Well well, if it isn't ${((s as any).pcs_nickname ?? '')}…" Lazar smirks as he stands with his arms crossed.`);
                 scene.text('You sigh. "What now, Lazar? I don\'t have time for your games today…"');
                 // TODO-QSP: dynamic text: He huffs. "Somebody''s been talking shit behind my back to some girls, but I hav...
-                scene.text(`He huffs. "Somebody's been talking shit behind my back to some girls, but I haven't figured out who it is yet. I wanted you to know that I'm keeping my eyes on you, ${((s as any).pcs_nickname || '')}…"`);
+                scene.text(`He huffs. "Somebody's been talking shit behind my back to some girls, but I haven't figured out who it is yet. I wanted you to know that I'm keeping my eyes on you, ${((s as any).pcs_nickname ?? '')}…"`);
                 scene.text('"Okay…" you say as you roll your eyes. "What does that have to do with me?"');
               } else {
                 // TODO-QSP: dynamic text: "Did you hear my own little cheer squad at the last game, <<$pcs_nickname>>?" La...
-                scene.text(`"Did you hear my own little cheer squad at the last game, ${((s as any).pcs_nickname || '')}?" Lazar boasts.`);
+                scene.text(`"Did you hear my own little cheer squad at the last game, ${((s as any).pcs_nickname ?? '')}?" Lazar boasts.`);
                 scene.text('"I heard many boys are out to get at your level, <i>Mister Superstar</i>. Watch out, you might lose that cheer squad of yours!" you jokingly reply.');
                 scene.text('Lazar bursts out in laughter. "No no, I\'m not worried. That only makes me want to improve even more…"');
               }
@@ -97,7 +97,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
             if (((s as any).grupTipe ?? 0) === 3) {
               if (((s as any).npc_rel ?? 0)?.['A149'] >= 50) {
                 // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>. So I''ve been noticing you''ve been eying me…" Lazar wi...
-                scene.text(`"Hey, ${((s as any).pcs_nickname || '')}. So I've been noticing you've been eying me…" Lazar winks.`);
+                scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}. So I've been noticing you've been eying me…" Lazar winks.`);
                 scene.text('You blush. "No I haven\'t!"');
                 scene.text('He confidently continues. "Are you saying I\'m not good looking?"');
                 scene.text('You start to stammer and he laughs, showing he\'s just messing with you. You then proceed to talk about a variety of topics, mostly sports.');
@@ -109,7 +109,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
                   scene.text('He then returns to ignoring you and you walk away.');
                 } else {
                   // TODO-QSP: dynamic text: "Well well, if it isn''t <<$pcs_nickname>>…" Lazar smirks, bringing everyone''s ...
-                  scene.text(`"Well well, if it isn't ${((s as any).pcs_nickname || '')}…" Lazar smirks, bringing everyone's attention to you.`);
+                  scene.text(`"Well well, if it isn't ${((s as any).pcs_nickname ?? '')}…" Lazar smirks, bringing everyone's attention to you.`);
                   scene.text('You glance around, waiting for someone to start picking on you. "Hi, I just wanted to say hi."');
                   scene.text('He smirks. "Of course you did…" Just the way he says it makes it sound like a forgone conclusion you would want to talk to him.');
                   scene.text('"Okay…" you reply, not sure how to respond. He starts talking to some of the others and seems friendly enough, even if he and the others don\'t pay much attention to you. At least no one is picking on you.');
@@ -120,7 +120,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
               if (((s as any).grupTipe ?? 0) === 4) {
                 if (((s as any).npc_rel ?? 0)?.['A149'] >= 50) {
                   // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>. So I''ve been noticing you''ve been eying me…" Lazar wi...
-                  scene.text(`"Hey, ${((s as any).pcs_nickname || '')}. So I've been noticing you've been eying me…" Lazar winks.`);
+                  scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}. So I've been noticing you've been eying me…" Lazar winks.`);
                   scene.text('You laugh. "You wish… Are any of the girls dumb enough to fall for that?"');
                   scene.text('He confidently continues. "Nothing to fall for, it\'s a simple fact. You don\'t have to hide it."');
                   scene.text('He lifts up his shirt and shows off his six pack, which gets the attention of most of the girls. You have to admit that he has a great body…');
@@ -133,7 +133,7 @@ function enterLazar(s: GameState, scene: SceneBuilder): void {
                     scene.text('He then returns to ignoring you and you walk away.');
                   } else {
                     // TODO-QSP: dynamic text: "Well well, if it isn''t <<$pcs_nickname>>. Get lost? Or maybe you''re too drunk...
-                    scene.text(`"Well well, if it isn't ${((s as any).pcs_nickname || '')}. Get lost? Or maybe you're too drunk to find the stairwell?" Lazar asks with a laugh, bringing everyone's attention to you.`);
+                    scene.text(`"Well well, if it isn't ${((s as any).pcs_nickname ?? '')}. Get lost? Or maybe you're too drunk to find the stairwell?" Lazar asks with a laugh, bringing everyone's attention to you.`);
                     scene.text('You sigh. "I just wanted to say hi."');
                     scene.text('He smirks. "Of course you do." Just the way he says it makes it sound like a forgone conclusion you would want to talk to him.');
                     scene.text('"Okay…" you reply, not sure how to respond. He starts talking to some of the others and seems friendly enough, even if he and the others don\'t pay much attention to you.');
@@ -194,7 +194,7 @@ function enterSvyatoslav(s: GameState, scene: SceneBuilder): void {
         scene.text('"Well, isn\'t this a surprise? Are you here to wish me good luck in the next race?" Svyatoslav curiously asks.');
         scene.text('Seeing him excited and not wanting to hurt his feelings, you just nod. "Yeah… That\'s exactly what I wanted to say…"');
         // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>! I''ll be sure to win this time!" he boastfully replie...
-        scene.text(`"Thanks ${((s as any).pcs_nickname || '')}! I'll be sure to win this time!" he boastfully replies.`);
+        scene.text(`"Thanks ${((s as any).pcs_nickname ?? '')}! I'll be sure to win this time!" he boastfully replies.`);
         scene.text('The two of you then talk about the many times he fails to beat Ivan or Lazar in one of the various sports at school.');
         // TODO-QSP: $func('npc_reactions', 'general', 'A8')
       } else {
@@ -297,13 +297,13 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel ?? 0)?.['A165'] >= 50  &&  ((s as any).fame ?? 0)?.['pav_slut'] < 225) {
     if (((s as any).grupTipe ?? 0) === 2) {
       // TODO-QSP: dynamic text: Vanya is having a hard time stopping himself from laughing. "<<$pcs_nickname>>, ...
-      scene.text(`Vanya is having a hard time stopping himself from laughing. "${((s as any).pcs_nickname || '')}, did you hear about the prank I pulled on the football coach?"`);
+      scene.text(`Vanya is having a hard time stopping himself from laughing. "${((s as any).pcs_nickname ?? '')}, did you hear about the prank I pulled on the football coach?"`);
       scene.text('"No. What did you do this time?" you curiously ask.');
       scene.text('"During one of the training sessions, I unscrewed the top from a water bottle thinking one of the boys would drink it, but here comes the coach! Just as he\'s about to drink, the top falls off and water splashes all over him!"');
       scene.text('Unable to help himself, he bursts out into laughter.');
     } else {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You need to help me hide!" Vanya says alarmingly as he looks...
-      scene.text(`"${((s as any).pcs_nickname || '')}! You need to help me hide!" Vanya says alarmingly as he looks around.`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}! You need to help me hide!" Vanya says alarmingly as he looks around.`);
       scene.text('"What\'s wrong?!" you reply in a panic. "Who\'s after you?!"');
       scene.text('Vanya cracks up. "Just kidding! I just wanted to see your reaction."');
       scene.text('"Don\'t you get tired of playing games all the time, Vanya?" you reprimand him.');
@@ -341,7 +341,7 @@ function enterVanya(s: GameState, scene: SceneBuilder): void {
           scene.text('"Gross, I was just kidding!" he scorns. "Like I would share Vicky with a slut like you!"');
         } else {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>! Check this out!" Vanya yells as he throws a crumbled pap...
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}! Check this out!" Vanya yells as he throws a crumbled paper ball at Vitek's head.`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}! Check this out!" Vanya yells as he throws a crumbled paper ball at Vitek's head.`);
           scene.text('Vitek quickly spins around and glares, trying to figure out who threw it.');
           scene.text('"Who did that?!" he yells. "Tell me who the fuck it was!"');
           scene.text('"So easily agitated…" Vanya comments while you burst out in laughter over the stupid face Vitek is making.');
@@ -365,24 +365,24 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)?.['pav_slut'] > 225) {
     if (((s as any).npc_rel ?? 0)?.['A150'] >= 50) {
       // TODO-QSP: dynamic text: You approach Erast and tap his shoulder. "Oh… Hello <<$pcs_nickname>>," he says ...
-      scene.text(`You approach Erast and tap his shoulder. "Oh… Hello ${((s as any).pcs_nickname || '')}," he says gently.`);
+      scene.text(`You approach Erast and tap his shoulder. "Oh… Hello ${((s as any).pcs_nickname ?? '')}," he says gently.`);
       scene.text('"Hi Erast. I just wanted to talk to you," you reply with a smile.');
       scene.text('You start talking about different things, but see him glancing at the others, as if he\'s worried about being seen with you.');
       scene.text('"Am I not worthy to look at?" you ask jokingly, but you exactly know what\'s going on.');
       scene.text('"What? No. I mean, yes. You look…" He starts to check you out. You can tell he likes you, but unlike the others, he isn\'t undressing you with his eyes and remains a gentleman, despite your reputation.');
       scene.text('"Look, I get it. Don\'t worry," you reply before grabbing your things and leaving, not wanting to make him feel more uncomfortable than he does now.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I…" He starts saying something, but you can''t hear the end ...
-      scene.text(`"${((s as any).pcs_nickname || '')}, I…" He starts saying something, but you can't hear the end of it.`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}, I…" He starts saying something, but you can't hear the end of it.`);
     } else {
       if (((s as any).npc_rel ?? 0)?.['A150'] <= 20) {
         scene.text('You approach Erast and tap his shoulder. When he turns, you can easily tell he\'s not happy to see you at all.');
         // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. Sorry, but I was about to leave and do some important th...
-        scene.text(`"Hi, ${((s as any).pcs_nickname || '')}. Sorry, but I was about to leave and do some important things…" he mutters.`);
+        scene.text(`"Hi, ${((s as any).pcs_nickname ?? '')}. Sorry, but I was about to leave and do some important things…" he mutters.`);
         scene.text('"I just wanted to…" You would continue your sentence, but he\'s already gone. It\'s obvious he didn\'t want to be seen with you.');
         scene.text('There are a few minutes until the end of the break, so you decide to spend some time on your phone before going on your way.');
       } else {
         // TODO-QSP: dynamic text: You approach Erast and tap his shoulder. "Oh hi, <<$pcs_nickname>>. Am I in your...
-        scene.text(`You approach Erast and tap his shoulder. "Oh hi, ${((s as any).pcs_nickname || '')}. Am I in your way?" he asks.`);
+        scene.text(`You approach Erast and tap his shoulder. "Oh hi, ${((s as any).pcs_nickname ?? '')}. Am I in your way?" he asks.`);
         scene.text('"What do you mean?" you ask confusedly.');
         scene.text('"I don\'t know. Maybe you were looking for the toilets to retouch your makeup or something and I was in your way?"');
         scene.text('He doesn\'t want to be rude, but you understand he was referring to your reputation and the rumors about what you do in the toilets.');
@@ -396,10 +396,10 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A150'] >= 50) {
         scene.text('"Here\'s the resident big guy of our school!" you say jokingly when you approach Erast, who is watching something on his phone.');
         // TODO-QSP: dynamic text: You can see him blushing when he looks up and notices you. "Hello <<$pcs_nicknam...
-        scene.text(`You can see him blushing when he looks up and notices you. "Hello ${((s as any).pcs_nickname || '')}, how are you doing today?"`);
+        scene.text(`You can see him blushing when he looks up and notices you. "Hello ${((s as any).pcs_nickname ?? '')}, how are you doing today?"`);
         scene.text('"I\'m fine, thanks for asking. You know, I came here to get some pointers as I\'ve been struggling with my training recently. I have to pay attention to my shape and some good tips are always useful."');
         // TODO-QSP: dynamic text: "You already look good <<$pcs_nickname>>," he says politely, but his face turns ...
-        scene.text(`"You already look good ${((s as any).pcs_nickname || '')}," he says politely, but his face turns red. Before you can react, he starts talking about aerobic and anaerobic techniques which he thinks would help you with your goal.`);
+        scene.text(`"You already look good ${((s as any).pcs_nickname ?? '')}," he says politely, but his face turns red. Before you can react, he starts talking about aerobic and anaerobic techniques which he thinks would help you with your goal.`);
         scene.text('You listen to him very carefully and try to remember as much as you can, which isn\'t easy since he\'s so passionate about this topic that he often uses technical terms you don\'t understand.');
         // TODO-QSP: $func('npc_reactions', 'general', 'A150')
         scene.text('When you realize the bell is about to ring, you thank him for his useful tips and you both head to the classroom for the next lesson.');
@@ -407,17 +407,17 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.['A150'] <= 20) {
           scene.text('"Hey Erast!" you greet him, but he\'s so focused on watching something on his phone that he doesn\'t even notice you. You poke him and greet him again.');
           // TODO-QSP: dynamic text: "Oh.. Hello <<$pcs_nickname>>. Sorry, I didn''t notice you were talking to me." ...
-          scene.text(`"Oh.. Hello ${((s as any).pcs_nickname || '')}. Sorry, I didn't notice you were talking to me." He glances at you before immediately staring at the screen again.`);
+          scene.text(`"Oh.. Hello ${((s as any).pcs_nickname ?? '')}. Sorry, I didn't notice you were talking to me." He glances at you before immediately staring at the screen again.`);
           scene.text('"Okay, no problem. What are you watching anyway? You seem to be lost in it," you say as you have a look at the video he\'s watching.');
           scene.text('"Oh, he\'s my favorite bodybuilder. He just uploaded this new motivational video on his channel. It\'s really worth watching. So inspirational."');
           // TODO-QSP: $func('npc_reactions', 'general', 'A150')
           scene.text('You sit next to him and exchange the occasional word while watching the video, but he\'s not interested in chatting. Soon, you hear the bell signaling the end of the break.');
           // TODO-QSP: dynamic text: "See you later, <<$pcs_nickname>>," he says before putting his phone in his pock...
-          scene.text(`"See you later, ${((s as any).pcs_nickname || '')}," he says before putting his phone in his pocket and leaving.`);
+          scene.text(`"See you later, ${((s as any).pcs_nickname ?? '')}," he says before putting his phone in his pocket and leaving.`);
         } else {
           scene.text('"I can\'t believe it!" you say when you approach Erast, who is watching something on his phone.');
           // TODO-QSP: dynamic text: "Whoa, what''s wrong <<$pcs_nickname>>?" he asks. You can see by his expression ...
-          scene.text(`"Whoa, what's wrong ${((s as any).pcs_nickname || '')}?" he asks. You can see by his expression that he doesn't understand what your problem is.`);
+          scene.text(`"Whoa, what's wrong ${((s as any).pcs_nickname ?? '')}?" he asks. You can see by his expression that he doesn't understand what your problem is.`);
           scene.text('"You know, I\'ve been trying to pay more attention to my shape lately and I feel like I\'m not getting the results I should, according to my training plan," you explain as you get your plan out of your pocket and show it to him.');
           scene.text('"It\'s not a horse race," he quickly replies. "People usually think they get the required result within weeks when it actually needs months, even years sometimes."');
           scene.text('"Years?" you ask in despair before asking if he could explain some things to you.');
@@ -431,10 +431,10 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
       if (((s as any).grupTipe ?? 0) === 2) {
         if (((s as any).npc_rel ?? 0)?.['A150'] >= 50) {
           // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>…" Erast greets you with a smile when you approach him.
-          scene.text(`"Hi ${((s as any).pcs_nickname || '')}…" Erast greets you with a smile when you approach him.`);
+          scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}…" Erast greets you with a smile when you approach him.`);
           scene.text('"Hey Erast! I\'ve been looking for you all day! Could you give me some more tips on strength and conditioning? I think I might be doing something wrong since I\'m not gaining as much as I think I should."');
           // TODO-QSP: dynamic text: "Gladly," he replies. "You know <<$pcs_nickname>>, you should try to increase yo...
-          scene.text(`"Gladly," he replies. "You know ${((s as any).pcs_nickname || '')}, you should try to increase your training volume and decrease between-set rest intervals."`);
+          scene.text(`"Gladly," he replies. "You know ${((s as any).pcs_nickname ?? '')}, you should try to increase your training volume and decrease between-set rest intervals."`);
           scene.text('"Also, get enough sleep. Your muscles need enough recovery time," he adds. He clearly knows a lot about strength and conditioning and could continue talking about it for hours, but the bell rings after only a few minutes.');
           scene.text('"Thanks Erast, that\'s really helpful. See you later."');
           scene.text('"Don\'t sweat it. Come and find me if you have more questions."');
@@ -443,7 +443,7 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).npc_rel ?? 0)?.['A150'] <= 20) {
             // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, what''s up?" Erast asks as you approach him.
-            scene.text(`"Hi ${((s as any).pcs_nickname || '')}, what's up?" Erast asks as you approach him.`);
+            scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}, what's up?" Erast asks as you approach him.`);
             scene.text('"Hey Erast! I was wondering if you could give me some new tips on boxing. You might have learned something new while boxing with Ivan which would be useful for me too."');
             scene.text('"Oh, boxing\'s not my greatest asset, to be honest. Ivan or Vitek can give you better advice, I guess. You should watch their next match at the community center if you\'re so interested."');
             scene.text('"Well, I\'m not, but it helps me to improve my balance and posture," you reply.');
@@ -454,12 +454,12 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.text('"Hi Erast, what\'s that?" you ask when you see he is completely immersed in his notes.');
             // TODO-QSP: dynamic text: "Oh, hello <<$pcs_nickname>>. Sorry I didn''t notice you," he replies. "I''m try...
-            scene.text(`"Oh, hello ${((s as any).pcs_nickname || '')}. Sorry I didn't notice you," he replies. "I'm trying to improve my training plan and make it more varied," he says and shows you his notes.`);
+            scene.text(`"Oh, hello ${((s as any).pcs_nickname ?? '')}. Sorry I didn't notice you," he replies. "I'm trying to improve my training plan and make it more varied," he says and shows you his notes.`);
             scene.text('"Wow, this is… this is really interesting," you reply. You\'ve always known that he\'s very committed to sport, but this new plan is very detailed, even for him.');
             scene.text('You start chatting, mostly about training and exchanging some tips on working out, stretching and different warm-up techniques.');
             // TODO-QSP: $func('npc_reactions', 'general', 'A150')
             // TODO-QSP: dynamic text: "Look, <<$pcs_nickname>>, I still have to do some things before the next lesson....
-            scene.text(`"Look, ${((s as any).pcs_nickname || '')}, I still have to do some things before the next lesson. Talk to you later," he says and gives you a little wave while he's leaving.`);
+            scene.text(`"Look, ${((s as any).pcs_nickname ?? '')}, I still have to do some things before the next lesson. Talk to you later," he says and gives you a little wave while he's leaving.`);
             scene.text('"Sure, later then." When he leaves, you look at the clock and see that you don\'t have much time to left before the next lesson starts, so you head to your classroom.');
           }
         }
@@ -467,7 +467,7 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
         if (((s as any).grupTipe ?? 0) === 3) {
           if (((s as any).npc_rel ?? 0)?.['A150'] >= 50) {
             // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>," Erast politely greets when he notices you. "How''ve y...
-            scene.text(`"Hello ${((s as any).pcs_nickname || '')}," Erast politely greets when he notices you. "How've you been doing?"`);
+            scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}," Erast politely greets when he notices you. "How've you been doing?"`);
             scene.text('"Fine, thanks for asking. Lately, I\'ve been reading a lot. Luckily there are more and more new books out and I can borrow some old ones too, some of which I haven\'t even heard of."');
             scene.text('The last part makes Erast smile. "It\'s still hard to imagine there are books you haven\'t heard of. There should be a book about how to manage your time between working out and studying. I\'m still falling more and more behind."');
             scene.text('"Yes, studying is important…" you reply and suddenly don\'t know what to say. You know he\'s not the brightest, but despite being in a different clique, he\'s always been kind and polite to you and you don\'t want him to feel bad about it.');
@@ -477,23 +477,23 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).npc_rel ?? 0)?.['A150'] <= 20) {
               // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>… Is there anything I can help with?" Erast asks when he...
-              scene.text(`"Hello ${((s as any).pcs_nickname || '')}… Is there anything I can help with?" Erast asks when he notices you approaching him.`);
+              scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}… Is there anything I can help with?" Erast asks when he notices you approaching him.`);
               scene.text('He seems a bit confused because you don\'t know each other that well. You hesitate before spitting it out: "Hey… So, I wanted to ask…"');
               scene.text('You don\'t finish your sentence before he interrupts you. "Uhm, look, the thing is that I\'m very busy now. Yeah, I\'m busy, sooo maybe another time?"');
               scene.text('You get the hint and don\'t want to be pushy, so you just say you\'ll try to find him at a more suitable time.');
               // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, yeah, do that… Now if you''ll excuse me…" he says polit...
-              scene.text(`"Okay ${((s as any).pcs_nickname || '')}, yeah, do that… Now if you'll excuse me…" he says politely but firmly and goes about his own business.`);
+              scene.text(`"Okay ${((s as any).pcs_nickname ?? '')}, yeah, do that… Now if you'll excuse me…" he says politely but firmly and goes about his own business.`);
               scene.text('You realize there\'s still time, so you check your schedule to see what your next lesson is before heading to your classroom.');
             } else {
               // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>… What''s up?" Erast asks when he notices you approachin...
-              scene.text(`"Hello ${((s as any).pcs_nickname || '')}… What's up?" Erast asks when he notices you approaching him.`);
+              scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}… What's up?" Erast asks when he notices you approaching him.`);
               scene.text('"Hi Erast," you reply. "I just thought I would come and chat was all."');
               // TODO-QSP: dynamic text: He looks surprised, but eventually starts to talk about his training routines. "...
-              scene.text(`He looks surprised, but eventually starts to talk about his training routines. "You know ${((s as any).pcs_nickname || '')}, it's very important to do something for your body every single day."`);
+              scene.text(`He looks surprised, but eventually starts to talk about his training routines. "You know ${((s as any).pcs_nickname ?? '')}, it's very important to do something for your body every single day."`);
               scene.text('"I know, I know…" you sigh. It\'s clear you don\'t have a lot in common, but you\'re able to have a nice chat with each other.');
               // TODO-QSP: $func('npc_reactions', 'general', 'A150')
               // TODO-QSP: dynamic text: Before the break is over, he grabs his things. "Alright <<$pcs_nickname>>, I hav...
-              scene.text(`Before the break is over, he grabs his things. "Alright ${((s as any).pcs_nickname || '')}, I have a few things I need to do before the lesson. Thanks for the chat."`);
+              scene.text(`Before the break is over, he grabs his things. "Alright ${((s as any).pcs_nickname ?? '')}, I have a few things I need to do before the lesson. Thanks for the chat."`);
               scene.text('"Of course. See you later." You quickly check your notes from the previous lesson and revise them before going to the classroom.');
             }
           }
@@ -501,7 +501,7 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 4) {
             if (((s as any).npc_rel ?? 0)?.['A150'] >= 50) {
               // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>." Erast politely greets when he notices you. "How''ve y...
-              scene.text(`"Hello ${((s as any).pcs_nickname || '')}." Erast politely greets when he notices you. "How've you been doing?"`);
+              scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}." Erast politely greets when he notices you. "How've you been doing?"`);
               scene.text('"You know me Erast. Same old, same old. Another day, the same shit." you reply while you sit on the floor next to him.');
               scene.text('He\'s not the person who completely understands your lifestyle, but he\'s polite and kind enough to fully accept your choice and you enjoy chatting with him.');
               scene.text('"How\'s your training going lately?" you ask and he starts talking about his training schedule and plan he\'s been doing for a while. He enjoys talking to you about it, although you\'re not sure whether it\'s because of you or because he\'s so obsessed with this topic.');
@@ -513,15 +513,15 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
               if (((s as any).npc_rel ?? 0)?.['A150'] <= 20) {
                 scene.text('"Here\'s our big boy, the one and only Erast!" you say mockingly as you approach him.');
                 // TODO-QSP: dynamic text: "What do you want <<$pcs_nickname>>?" He doesn''t seem amused.
-                scene.text(`"What do you want ${((s as any).pcs_nickname || '')}?" He doesn't seem amused.`);
+                scene.text(`"What do you want ${((s as any).pcs_nickname ?? '')}?" He doesn't seem amused.`);
                 scene.text('"Agghh, don\'t be a pussy! Come on, you\'re no fun. How can you be bigger than Mother Russia, but as soft as a teddy bear?"');
                 scene.text('You see his face turning red and can\'t decide whether it\'s because of the shame or the anger he feels. You realize you might have gone too far again and clearly don\'t want to put up a fight with him.');
                 scene.text('"Relax, I\'m just joking. Don\'t take everything so seriously!" you say, trying to ease the tension.');
                 // TODO-QSP: dynamic text: "Whatever <<$pcs_nickname>>. Have your fun," He says before turning and leaving....
-                scene.text(`"Whatever ${((s as any).pcs_nickname || '')}. Have your fun," He says before turning and leaving. You giggle at your victory before leaving to do something else until the bell rings.`);
+                scene.text(`"Whatever ${((s as any).pcs_nickname ?? '')}. Have your fun," He says before turning and leaving. You giggle at your victory before leaving to do something else until the bell rings.`);
               } else {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, what''s up?" Erast asks when he notices you.
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}, what's up?" Erast asks when he notices you.`);
+                scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}, what's up?" Erast asks when he notices you.`);
                 scene.text('"Where do I begin? You know how it is, party here, a bit of mischief and mayhem there." You can see by his expression that he actually doesn\'t understand what you mean.');
                 scene.text('"If you say so," he shrugs before pausing, unsure of what to say. He opens his mouth to speak, but he\'s just trying to find the words.');
                 scene.text('"How about you?" you ask before the conversation turns awkward for both of you.');
@@ -534,25 +534,25 @@ function enterErast(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).npc_rel ?? 0)?.['A150'] >= 50) {
               // TODO-QSP: dynamic text: Erast politely greets you. "Hello <<$pcs_nickname>>, what''s up?"
-              scene.text(`Erast politely greets you. "Hello ${((s as any).pcs_nickname || '')}, what's up?"`);
+              scene.text(`Erast politely greets you. "Hello ${((s as any).pcs_nickname ?? '')}, what's up?"`);
               scene.text('"I\'m bored and I thought we could chat? I feel like this day is never going to end!" you reply with some sorrow in your voice.');
               scene.text('Knowing you don\'t really have any friends and you aren\'t on speaking terms with many of your classmates, he smiles. "Sure, I can check this video later."');
               scene.text('He puts his phone away and you chat for a while, occasionally changing subjects to things you don\'t completely understand. You don\'t mind; You\'re just happy you don\'t have to spend the break alone.');
               // TODO-QSP: $func('npc_reactions', 'general', 'A150')
               scene.text('"Okay Erast, I should let you do your things before the next lesson starts," you tell him with a smile.');
               // TODO-QSP: dynamic text: "See you later <<$pcs_nickname>>," he replies before heading to the toilet. You ...
-              scene.text(`"See you later ${((s as any).pcs_nickname || '')}," he replies before heading to the toilet. You grab your things and go to your classroom to wait for the bell.`);
+              scene.text(`"See you later ${((s as any).pcs_nickname ?? '')}," he replies before heading to the toilet. You grab your things and go to your classroom to wait for the bell.`);
             } else {
               if (((s as any).npc_rel ?? 0)?.['A150'] <= 20) {
                 scene.text('"Hello Erast, how\'re you doing today?" you ask as you approach him.');
                 // TODO-QSP: dynamic text: "Oh, hello <<$pcs_nickname>>… Sorry I don''t want to be rude, but I was just abo...
-                scene.text(`"Oh, hello ${((s as any).pcs_nickname || '')}… Sorry I don't want to be rude, but I was just about to go to the toilet." You get the feeling he's just using this as an excuse and is trying to avoid talking to you.`);
+                scene.text(`"Oh, hello ${((s as any).pcs_nickname ?? '')}… Sorry I don't want to be rude, but I was just about to go to the toilet." You get the feeling he's just using this as an excuse and is trying to avoid talking to you.`);
                 scene.text('"Okay, I just…" you start, but he\'s already left. He clearly isn\'t interested in having you as company, but at least he\'s not as rude to you as the others.');
                 scene.text('You spend the rest of the break alone wondering if anything interesting will happen today or it\'ll be just another hellish day for you.');
               } else {
                 scene.text('"Hello Erast, how\'re you doing today?" you ask as you approach him.');
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, what''s up?"
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}, what's up?"`);
+                scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}, what's up?"`);
                 scene.text('"As you\'re really good at skating, I was wondering if you could give me some advice about keeping my balance and posture?" you ask him nicely.');
                 scene.text('He looks at his watch and glances at the others before he sighs. "Okay, I can give you some tips…" he says reluctantly and you realize that he would prefer spending the break with someone else.');
                 // TODO-QSP: $func('npc_reactions', 'general', 'A150')
@@ -622,7 +622,7 @@ function enterChristina(s: GameState, scene: SceneBuilder): void {
           scene.text('"What do you want? I\'m busy," she says, not even looking at you.');
           scene.text('You take a deep breath. "Lariska. I want Lariska."');
           // TODO-QSP: dynamic text: Surprised, she finally looks at you. "No, <<$pcs_nickname>>. She''s mine, and I ...
-          scene.text(`Surprised, she finally looks at you. "No, ${((s as any).pcs_nickname || '')}. She's mine, and I don't want you filling her head with nonsense."`);
+          scene.text(`Surprised, she finally looks at you. "No, ${((s as any).pcs_nickname ?? '')}. She's mine, and I don't want you filling her head with nonsense."`);
           scene.text('"Well, the thing is you don\'t really have a choice. Not a good one anyway." Pulling out your phone and checking to make sure nobody\'s looking, you show her a picture of her blowing the coach.');
           scene.text('Her face turns bright red with anger and she hisses at you. "You fucking bitch! How did you get that?! If you show anybody…"');
           scene.text('"I won\'t… if you tell Lariska it\'s okay to hang out with me outside of school. I mean, I would hate to see these pictures fall into Lizaveta\'s hands…"');
@@ -806,12 +806,12 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
     if (((s as any).AlbinaQW ?? 0)?.['StarletsJoined'] > 0  &&  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0) {
       if ((Math.floor(Math.random() * 2) + 1) === 1) {
         // TODO-QSP: dynamic text: You approach Albina and she gives you a small smile. "Hey <<$pcs_nickname>>, how...
-        scene.text(`You approach Albina and she gives you a small smile. "Hey ${((s as any).pcs_nickname || '')}, how are you enjoying the Starlets?"`);
+        scene.text(`You approach Albina and she gives you a small smile. "Hey ${((s as any).pcs_nickname ?? '')}, how are you enjoying the Starlets?"`);
         scene.text('You open your mouth to answer, but she cuts you off before you can speak. "Just keep coming to dance practice, okay?"');
         scene.text('She gives you another small smile before walking away.');
       } else {
         // TODO-QSP: dynamic text: You approach Albina, who is lost in her thoughts. "Oh hey <<$pcs_nickname>>…" sh...
-        scene.text(`You approach Albina, who is lost in her thoughts. "Oh hey ${((s as any).pcs_nickname || '')}…" she says glumly when she notices you.`);
+        scene.text(`You approach Albina, who is lost in her thoughts. "Oh hey ${((s as any).pcs_nickname ?? '')}…" she says glumly when she notices you.`);
         scene.text('"Is everything okay? Something on your mind?" you ask concerned.');
         scene.text('She sighs in response. "Yeah, it\'s… it\'s nothing. Just keep coming to dance practice, okay?"');
         scene.text('She gives you a weak smile before walking away, lost in her thoughts again.');
@@ -823,11 +823,11 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         if (((s as any).npc_had_sex ?? 0)?.['A23']) {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," Albina smiles at you. "I wanted to thank you again for ...
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}," Albina smiles at you. "I wanted to thank you again for what you did. I don't want to get into any mushy bullshit, but I just wanted to let you know I… <i>appreciated</i> it."`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," Albina smiles at you. "I wanted to thank you again for what you did. I don't want to get into any mushy bullshit, but I just wanted to let you know I… <i>appreciated</i> it."`);
           scene.text('Her eyes drift down between your legs and she winks at you while giving her lips a subtle lick. "It meant a lot."');
         } else {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," Albina smiles at you. "I wanted to thank you again for ...
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}," Albina smiles at you. "I wanted to thank you again for what you did. I don't want to get into any mushy bullshit, but I just wanted to let you know I appreciated it. It meant a lot."`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," Albina smiles at you. "I wanted to thank you again for what you did. I don't want to get into any mushy bullshit, but I just wanted to let you know I appreciated it. It meant a lot."`);
         }
         scene.text('"It was no problem, Albina. You\'re my friend. That\'s what friends do," you reply.');
         scene.text('She smiles. "Also, I\'m disbanding the Starlets," she says. "Too many bad memories, you know?"');
@@ -860,10 +860,10 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
               scene.text('"Hey Albina!" you wave.');
               scene.text('She suddenly grabs you by the arm and yanks you over to the side of the hallway.');
               // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" she hisses in a hushed tone. "There are some <i>nasty</i> f...
-              scene.text(`"${((s as any).pcs_nickname || '')}!" she hisses in a hushed tone. "There are some <i>nasty</i> fucking rumors going around about you! Everything from cock hungry slut to a straight up hooker!"`);
+              scene.text(`"${((s as any).pcs_nickname ?? '')}!" she hisses in a hushed tone. "There are some <i>nasty</i> fucking rumors going around about you! Everything from cock hungry slut to a straight up hooker!"`);
               scene.text('"They\'re just rumors Albina," you try to reassure her.');
               // TODO-QSP: dynamic text: "They don''t sound like <i>just</i> rumors <<$pcs_nickname>>…" She glares at you...
-              scene.text(`"They don't sound like <i>just</i> rumors ${((s as any).pcs_nickname || '')}…" She glares at you for a moment before sighing. "Look, I'm not trying to slut shame you or anything like that. I know I'm not one to talk. But seriously, be careful okay?"`);
+              scene.text(`"They don't sound like <i>just</i> rumors ${((s as any).pcs_nickname ?? '')}…" She glares at you for a moment before sighing. "Look, I'm not trying to slut shame you or anything like that. I know I'm not one to talk. But seriously, be careful okay?"`);
               // TODO-QSP: $func('npc_reactions', 'general', 'A23')
               scene.text('She gives you a worried look and hugs you tight before you part ways for your next class.');
             } else {
@@ -879,7 +879,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
             if (((s as any).fame ?? 0)?.['pav_slut'] >= 75) {
               if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
                 // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, I''ve been hearing some weird rumors about you lately," ...
-                scene.text(`"Hey ${((s as any).pcs_nickname || '')}, I've been hearing some weird rumors about you lately," she says with a bemused look. "Everyone's saying you're 'easy' and suck dick in the boys bathroom! I don't know what's going on, but… be careful, okay?"`);
+                scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, I've been hearing some weird rumors about you lately," she says with a bemused look. "Everyone's saying you're 'easy' and suck dick in the boys bathroom! I don't know what's going on, but… be careful, okay?"`);
                 scene.text('"They\'re just rumors, Albina," you try to reassure her.');
                 // TODO-QSP: $func('npc_reactions', 'general', 'A23')
                 scene.text('"This might end up worse than you think…" she says with a worried look before walking away.');
@@ -983,7 +983,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
                       scene.text('Albina shakes her head as you approach.');
                       scene.text('"What\'s up?" you ask and she scoffs.');
                       // TODO-QSP: dynamic text: "What''s up? You used to be cool <<$pcs_nickname>>, but then you started hanging...
-                      scene.text(`"What's up? You used to be cool ${((s as any).pcs_nickname || '')}, but then you started hanging out with <i>them</i>."`);
+                      scene.text(`"What's up? You used to be cool ${((s as any).pcs_nickname ?? '')}, but then you started hanging out with <i>them</i>."`);
                       scene.text('It\'s clear she has no interest in speaking to you despite your attempts, so you just leave her alone.');
                     } else {
                       scene.text('Albina looks up from her as you approach and pulls you in close.');
@@ -1038,13 +1038,13 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
                         scene.text('"You know you remind me of a character from LOL?" you tell her and she looks at you in confusion.');
                         scene.text('"League of Legends? The online strategy game?" you continue and she looks even more confused.');
                         // TODO-QSP: dynamic text: Before you can explain, she puts a finger against your lips and shushes you. "I ...
-                        scene.text(`Before you can explain, she puts a finger against your lips and shushes you. "I don't play any of that dumb geeky shit, ${((s as any).pcs_nickname || '')}. I only play fighting games like Tekken and Mortal Kombat."`);
+                        scene.text(`Before you can explain, she puts a finger against your lips and shushes you. "I don't play any of that dumb geeky shit, ${((s as any).pcs_nickname ?? '')}. I only play fighting games like Tekken and Mortal Kombat."`);
                         scene.text('You nod and end up chatting about fighting games instead, comparing your favorite characters and moves.');
                         // TODO-QSP: $func('npc_reactions', 'general', 'A23')
                       } else {
                         if (((s as any).npc_rel ?? 0)?.['A23'] <= 20) {
                           // TODO-QSP: dynamic text: Albina rolls her eyes and crosses her arms. "This isn''t your stop, <<$pcs_nickn...
-                          scene.text(`Albina rolls her eyes and crosses her arms. "This isn't your stop, ${((s as any).pcs_nickname || '')}. The train to Geeksville terminates over there."`);
+                          scene.text(`Albina rolls her eyes and crosses her arms. "This isn't your stop, ${((s as any).pcs_nickname ?? '')}. The train to Geeksville terminates over there."`);
                           scene.text('She motions towards the door to the classroom that the nerds hang out in. "So get back on board and piss off!"');
                         } else {
                           scene.text('Albina sighs before she starts chatting with you. She doesn\'t dislike you, but it\'s obvious that she\'s just humouring you with conversation.');
@@ -1119,7 +1119,7 @@ function enterAlbinaTampon(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Albina," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Albina," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2  ||  ((s as any).npc_rel ?? 0)?.['A23'] >= 70) {
       // TODO-QSP: dynamic text: She gives you a sympathetic look. "Sorry <<$pcs_nickname>>, but I don''t have an...
-      scene.text(`She gives you a sympathetic look. "Sorry ${((s as any).pcs_nickname || '')}, but I don't have any. I'm on birth control and don't get periods…"`);
+      scene.text(`She gives you a sympathetic look. "Sorry ${((s as any).pcs_nickname ?? '')}, but I don't have any. I'm on birth control and don't get periods…"`);
       scene.text('"Oh…" you nod understandingly.');
       scene.text('"I\'d help if I could, I really would," she says with an apologetic smile.');
     } else {
@@ -1165,7 +1165,7 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('"Hey Veronika, how are you doing?" you ask as you sit next to her.');
         // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>…" she greets you indifferently. "As a matter of fact, I''...
-        scene.text(`"Hey ${((s as any).pcs_nickname || '')}…" she greets you indifferently. "As a matter of fact, I'm busy now so if you'll excuse me…"`);
+        scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}…" she greets you indifferently. "As a matter of fact, I'm busy now so if you'll excuse me…"`);
         scene.text('With that, she takes her backpack and walks over to the other jocks. She doesn\'t take part in the conversation, but it seems it\'s still a better option than being seen with you.');
         scene.text('As you still have a lot of time before the next lesson starts, you retouch your makeup and refresh yourself.');
       }
@@ -1183,12 +1183,12 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.['A141'] <= 20) {
           scene.text('"Hi Veronika!" you greet her with a wave as you see her in the hallway.');
           // TODO-QSP: dynamic text: She pretends she didn''t hear you. After a while, when she realizes it''s gettin...
-          scene.text(`She pretends she didn't hear you. After a while, when she realizes it's getting awkward, she finally replies. "Oh, sorry ${((s as any).pcs_nickname || '')}. I was lost in my thoughts and I didn't notice you…" she says rigidly.`);
+          scene.text(`She pretends she didn't hear you. After a while, when she realizes it's getting awkward, she finally replies. "Oh, sorry ${((s as any).pcs_nickname ?? '')}. I was lost in my thoughts and I didn't notice you…" she says rigidly.`);
           scene.text('You sigh and as soon as you start to talk to her, she looks at you and puckers her brows, as if she doesn\'t understand why you started talking to her in the first place.');
           scene.text('"I have other things to do…" she says without any hesitation and leaves you to go on her business.');
         } else {
           // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, do you want something?" she asks in her cold voice whe...
-          scene.text(`"Hello ${((s as any).pcs_nickname || '')}, do you want something?" she asks in her cold voice when she sees you approaching.`);
+          scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}, do you want something?" she asks in her cold voice when she sees you approaching.`);
           scene.text('"Hi Veronika. I just thought we could chat and catch up?" you reply as you touch her shoulder as a sign of a friendly welcome. She immediately pulls back from you since she doesn\'t like the idea of physical contact, especially with someone she\'s not close to.');
           scene.text('The two of you start talking about things that have happened lately in Pavlovsk, occasionally discussing ice skating and school PE lessons too. She talks to you without interest or concern, but at least she tolerates you enough to have a word or two.');
           // TODO-QSP: $func('npc_reactions', 'general', 'A141')
@@ -1199,14 +1199,14 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
       if (((s as any).grupTipe ?? 0) === 2) {
         if (((s as any).npc_rel ?? 0)?.['A141'] >= 50) {
           // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, I was hoping we would talk today," Veronika says when ...
-          scene.text(`"Hello ${((s as any).pcs_nickname || '')}, I was hoping we would talk today," Veronika says when she sees you.`);
+          scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}, I was hoping we would talk today," Veronika says when she sees you.`);
           scene.text('"Hey Veronika. As a matter of fact, so was I," you reply.');
           scene.text('"I wanted to ask if you could come and see my skating routine. I\'ve been practicing some new moves lately," she says with hope in her eyes, as there aren\'t a lot of people who\'d be interested in it.');
           scene.text('"Yes, of course! Who wouldn\'t like to steal some of your moves or pick up new skills!" you wink. She is an exceptional skater and some say she might qualify for the next Winter Olympic Games, so you could learn a lot from her.');
           scene.text('"Oh, really? You\'ll come? Wonderful! I can show you many moves which would be helpful to you, too!" She seems like a little kid as she replies.');
           scene.text('"I wouldn\'t miss the chance to see another practice of the Ice Queen," you smile as you refer to her infamous nickname.');
           // TODO-QSP: dynamic text: "You too, <<$pcs_nickname>>?" She rolls her eyes, but smiles. She knows you''re ...
-          scene.text(`"You too, ${((s as any).pcs_nickname || '')}?" She rolls her eyes, but smiles. She knows you're just joking, unlike many of the other students who regularly mock her with it.`);
+          scene.text(`"You too, ${((s as any).pcs_nickname ?? '')}?" She rolls her eyes, but smiles. She knows you're just joking, unlike many of the other students who regularly mock her with it.`);
           scene.text('"Come on now, you\'re really acting like your nickname now…" you reply jokingly as you poke her shoulder.');
           scene.text('Both of you burst into laughter and start talking about different topics before you hear the ring.');
           // TODO-QSP: $func('npc_reactions', 'general', 'A141')
@@ -1219,12 +1219,12 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
             scene.text('"And… Is there anything that\'s happened to you lately?" you ask, still trying to strike up a conversation.');
             scene.text('She reluctantly tells you about her practice sessions and the competitions she\'s entered lately, but you get the feeling she\'s not willing to go into details. She\'s trying to keep it as simple and short as possible.');
             // TODO-QSP: dynamic text: "Look, <<$pcs_nickname>>… I have to do something important, so if you don''t min...
-            scene.text(`"Look, ${((s as any).pcs_nickname || '')}… I have to do something important, so if you don't mind…" She doesn't even finish the sentence before she starts walking away.`);
+            scene.text(`"Look, ${((s as any).pcs_nickname ?? '')}… I have to do something important, so if you don't mind…" She doesn't even finish the sentence before she starts walking away.`);
             scene.text('"Yeah, no wonder everyone calls you Ice Queen behind your back…" you reply, not caring if she hears you or not. Once she\'s left, you head to the classroom for your next lesson.');
           } else {
             scene.text('"Hey Veronika, what\'s up?" you ask as you approach her.');
             // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, I''m trying to find some new moves and figures I could do...
-            scene.text(`"Hi ${((s as any).pcs_nickname || '')}, I'm trying to find some new moves and figures I could do on the ice," she says as she draws a skating figure in her notepad.`);
+            scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}, I'm trying to find some new moves and figures I could do on the ice," she says as she draws a skating figure in her notepad.`);
             scene.text('"Care to share? I can always use some help when it comes to balance and agility. You apparently know one or two things about those."');
             scene.text('She glances at you with her blank, indifferent stare before you start talking about different techniques and moves. You try to pay attention to what she says since she\'s more experienced than anyone else. In fact, she has every chance to be a professional skater.');
             scene.text('"Thanks Veronika. I\'m sure many of these will be useful and your advice can come in handy anytime." You feel you\'ve learned something and it was good to talk to her. Despite her nickname, she can be talkative too.');
@@ -1237,7 +1237,7 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
         if (((s as any).grupTipe ?? 0) === 3) {
           if (((s as any).npc_rel ?? 0)?.['A141'] >= 50) {
             // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>," Veronika greets you with a slight wave when she sees ...
-            scene.text(`"Hello ${((s as any).pcs_nickname || '')}," Veronika greets you with a slight wave when she sees you approaching.`);
+            scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}," Veronika greets you with a slight wave when she sees you approaching.`);
             scene.text('"Hey Veronika, I just wanted to chat," you reply.');
             scene.text('As you sit next to her, she starts talking mainly about her practicing and some of her previous competitions. She does almost all the talking, but you don\'t mind. It\'s hard to get a conversation like this out of her.');
             scene.text('She\'s talking about some of her moves on the ice when you interrupt her. "Look, this is all very interesting. Not many know this, but physics actually plays a huge part in skating."');
@@ -1269,7 +1269,7 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_rel ?? 0)?.['A141'] >= 50) {
               scene.text('As you\'re wandering the hallway, you see Veronika leaning against the wall and decide to chat with her.');
               // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, I see you have nothing better to do so you came to tal...
-              scene.text(`"Hello ${((s as any).pcs_nickname || '')}, I see you have nothing better to do so you came to talk to me?" she asks with a little smile.`);
+              scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}, I see you have nothing better to do so you came to talk to me?" she asks with a little smile.`);
               scene.text('"Don\'t be silly. I\'ll talk to the Queen of the Ice whenever I feel like it." You squat next to her. "Don\'t even think for a second that just because you stand and I squat, I\'d ever look up to you!" you jokingly add.');
               scene.text('You both smile and start chatting. She mostly talks about her recent results and how much she has been improved lately, but complains about your PE lessons as she doesn\'t think the level of the PE education is good enough.');
               scene.text('You listen to her and occasionally ask her about the upcoming competitions. After a while, you share some of your latest stories with her and also complain a lot about school, but for different reasons.');
@@ -1280,24 +1280,24 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
               if (((s as any).npc_rel ?? 0)?.['A141'] <= 20) {
                 scene.text('"Well, well, look who\'s here…" you say as you approach Veronika.');
                 // TODO-QSP: dynamic text: She looks up and notices you. "What do you want, <<$pcs_firstname>>?" she asks w...
-                scene.text(`She looks up and notices you. "What do you want, ${((s as any).pcs_firstname || '')}?" she asks with a cold, almost freezing tone in her voice. "Shouldn't you be somewhere else? Like drinking in a stairway, smoking in the park or whatever it is you gopniks do these days?"`);
+                scene.text(`She looks up and notices you. "What do you want, ${((s as any).pcs_firstname ?? '')}?" she asks with a cold, almost freezing tone in her voice. "Shouldn't you be somewhere else? Like drinking in a stairway, smoking in the park or whatever it is you gopniks do these days?"`);
                 scene.text('"Brrrr… Am I the only one who feels a little icy here?" you say mockingly as you lean against the wall and cross your arms. "Your problem is that there\'s no one in the world who\'d ever want to heat you up a little, if you know what I mean…"');
                 // TODO-QSP: dynamic text: She rolls her eyes, but you must admit that she takes your mockery quite well. H...
-                scene.text(`She rolls her eyes, but you must admit that she takes your mockery quite well. However, she isn't amused at all. "You know ${((s as any).pcs_nickname || '')}, I could insult you too. But that's what mirrors are for…" she says as she turns around and joins the other jocks.`);
+                scene.text(`She rolls her eyes, but you must admit that she takes your mockery quite well. However, she isn't amused at all. "You know ${((s as any).pcs_nickname ?? '')}, I could insult you too. But that's what mirrors are for…" she says as she turns around and joins the other jocks.`);
                 scene.text('"Get back here, bitch!" you snarl while clenching your fist, but realize it wouldn\'t be worth it. You return to the other gopniks and try to calm down.');
               } else {
                 scene.text('As you\'re wandering through the hallway, you see Veronika sitting on the floor checking her phone. You walk up to her and, without greeting her, sit down and start chatting.');
                 // TODO-QSP: $func('npc_reactions', 'general', 'A141')
                 scene.text('"Ugh, where do I begin? What does one need to suffer?" you say before complaining about anything that comes to mind. You complain about school, your fellow gopniks and your parents.');
                 // TODO-QSP: dynamic text: She listens to you for some time before finally speaking up. "Hey <<$pcs_nicknam...
-                scene.text(`She listens to you for some time before finally speaking up. "Hey ${((s as any).pcs_nickname || '')}, why do you tell me these things? We're barely on speaking terms anyway and what you're talking about is something I'm not interested in at all…" she says with a cold tone.`);
+                scene.text(`She listens to you for some time before finally speaking up. "Hey ${((s as any).pcs_nickname ?? '')}, why do you tell me these things? We're barely on speaking terms anyway and what you're talking about is something I'm not interested in at all…" she says with a cold tone.`);
                 scene.text('"Suuuure, whatever. Jog on, even better, skate on. Queen of the Ice, huh? More like Queen of Boredom…" you mutter as you stand up and go back to your fellow gopniks to wait for the bell.');
               }
             }
           } else {
             if (((s as any).npc_rel ?? 0)?.['A141'] >= 50) {
               // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>…" Veronika greets you as you walk towards her. "Are you lo...
-              scene.text(`"Hi ${((s as any).pcs_nickname || '')}…" Veronika greets you as you walk towards her. "Are you looking for me?"`);
+              scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}…" Veronika greets you as you walk towards her. "Are you looking for me?"`);
               scene.text('"Hi Veronika, yes, yes, I was looking for you. It\'s always good to see you and talk," you happily reply.');
               // TODO-QSP: $func('npc_reactions', 'general', 'A141')
               scene.text('She starts talking about her skating routines, techniques and dreams of entering the Winter Olympic Games. Even though you\'re not an expert of this topic, she\'s happy to talk about it as she knows you always listen to her.');
@@ -1313,7 +1313,7 @@ function enterVeronika(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.text('"Hey Veronika!" you greet her as you approach.');
                 // TODO-QSP: dynamic text: "Oh… Hi <<$pcs_nickname>>…" she replies indifferently.
-                scene.text(`"Oh… Hi ${((s as any).pcs_nickname || '')}…" she replies indifferently.`);
+                scene.text(`"Oh… Hi ${((s as any).pcs_nickname ?? '')}…" she replies indifferently.`);
                 scene.text('You sit next to her and try to strike up a conversation, but you end up doing most of the talking. She gives you a one-word answer every now and then, but mostly just nods or grunts. She doesn\'t seem to enjoy the conversation and doesn\'t try to hide that fact.');
                 scene.text('In spite of that, she spends some time with you, listening to you talk about your problems at school and how the others pick you on almost every time.');
                 // TODO-QSP: $func('npc_reactions', 'general', 'A141')
@@ -1449,7 +1449,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
     if (((s as any).grupTipe ?? 0) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A19'] >= 60) {
         // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she greets you.
-        scene.text(`"Hey ${((s as any).pcs_nickname || '')}," she greets you.`);
+        scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," she greets you.`);
         scene.text('"Hi Lina," you reply. "What\'s new with you?"');
         // TODO-QSP: $func('npc_reactions', 'general', 'A19')
         scene.text('The two of you spend the break chatting about various things until it ends.');
@@ -1460,7 +1460,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
           scene.text('Your laugh causes her face to turn bright red. "You fucking bitch! You\'ll get yours someday!"');
         } else {
           // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>. Did you see the last track race?"
-          scene.text(`"Hey, ${((s as any).pcs_nickname || '')}. Did you see the last track race?"`);
+          scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}. Did you see the last track race?"`);
           scene.text('"Sorry, Lina. I don\'t really watch those."');
           scene.text('"Oh. You should come watch some time. You might like it."');
           scene.text('"Maybe."');
@@ -1484,7 +1484,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
             scene.text('"Come face me then and I\'ll show you who\'s the worse athlete!" you fire back, but deciding this conversation has lasted long enough, you walk away.');
           } else {
             // TODO-QSP: dynamic text: "What do you want, <<$pcs_nickname>>? Christina is looking for me…" Lina says ir...
-            scene.text(`"What do you want, ${((s as any).pcs_nickname || '')}? Christina is looking for me…" Lina says irritatingly.`);
+            scene.text(`"What do you want, ${((s as any).pcs_nickname ?? '')}? Christina is looking for me…" Lina says irritatingly.`);
             scene.text('"I wanted to ask you if you had the notes from the class. I need to copy them," you tell her.');
             scene.text('She quickly excuses herself. "We\'ll do it later. I have to find Christina right away or else she\'ll get mad…"');
           }
@@ -1517,7 +1517,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_rel ?? 0)?.['A19'] >= 60) {
               if (((s as any).pcs_tattoos ?? 0)?.['total'] === 0) {
                 // TODO-QSP: dynamic text: "Why don''t you have any tattoos, <<$pcs_nickname>>?"
-                scene.text(`"Why don't you have any tattoos, ${((s as any).pcs_nickname || '')}?"`);
+                scene.text(`"Why don't you have any tattoos, ${((s as any).pcs_nickname ?? '')}?"`);
                 scene.text('"I don\'t know," you say with a shrug.');
                 scene.text('"I\'m surprised the other gopniks let you hang around without at least one. Like an initiation or something."');
                 scene.text('"We aren\'t a gang, Lina," you reply with a laugh.');
@@ -1530,7 +1530,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
                 scene.text('"Does getting a tattoo hurt?"');
                 scene.text('"A little. Why, are you thinking about getting one?"');
                 // TODO-QSP: dynamic text: "Hell no. Christina would beat my ass if I did. She says…" She goes on a tirade ...
-                scene.text(`"Hell no. Christina would beat my ass if I did. She says…" She goes on a tirade about Christina's views on tattoos and the people who get them when she remembers who she's talking to. "Err… sorry ${((s as any).pcs_nickname || '')}."`);
+                scene.text(`"Hell no. Christina would beat my ass if I did. She says…" She goes on a tirade about Christina's views on tattoos and the people who get them when she remembers who she's talking to. "Err… sorry ${((s as any).pcs_nickname ?? '')}."`);
                 scene.text('"You should make your own mind up about things, Lina."');
                 scene.text('You spend the rest of your break trying to get her to open her mind to new ideas, but you\'re pretty sure it had no effect.');
                 // TODO-QSP: $func('npc_reactions', 'general', 'A19')
@@ -1564,7 +1564,7 @@ function enterLina(s: GameState, scene: SceneBuilder): void {
               if (((s as any).npc_rel ?? 0)?.['A19'] <= 20) {
                 scene.text('"So, where\'s the old ball and chain?" you ask teasingly.');
                 // TODO-QSP: dynamic text: "Oh shut up, <<$pcs_nickname>>! Don''t you have anything better to do? At least ...
-                scene.text(`"Oh shut up, ${((s as any).pcs_nickname || '')}! Don't you have anything better to do? At least I have a friend unlike <i>some</i> people…" she fires back.`);
+                scene.text(`"Oh shut up, ${((s as any).pcs_nickname ?? '')}! Don't you have anything better to do? At least I have a friend unlike <i>some</i> people…" she fires back.`);
               } else {
                 scene.text('Lina sees you walking over to her and looks uncomfortable.');
                 scene.text('"How are you, Lina?" you ask while giving her your best smile.');
@@ -1675,7 +1675,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
         scene.text('Pulling out the volleyball she dropped outside your parents apartment the other day, you hand it to her. "You dropped this, Lariska."');
         scene.text('When she sees the ball, her eyes grow wide and she looks around fearfully. Seeing that Christina is engrossed in her conversation with Lina, she snatches the ball and stuffs it out of sight.');
         // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>. If Christina finds out I was there instead of th...
-        scene.text(`"I'm sorry, ${((s as any).pcs_nickname || '')}. If Christina finds out I was there instead of the sports center like I told her I would be…"`);
+        scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? '')}. If Christina finds out I was there instead of the sports center like I told her I would be…"`);
         scene.text('"Then why were you there?" you ask her teasingly, pretty sure you already know the answer.');
         scene.text('Her face turns bright red. "I-I… Uh… I…" she stammers as she tries to think of an excuse, unwilling to admit the truth.');
         scene.text('"Relax," you say laughing. "I beat the shit out of her, so she knows better than to deny me something I want. Just ask her about it the next time you get a chance, okay?"');
@@ -1688,7 +1688,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
           scene.text('Pulling out the volleyball she dropped outside your parents apartment the other day, you hand it to her. "You dropped this, Lariska."');
           scene.text('When she sees the ball, her eyes grow wide and she looks around fearfully. Seeing that Christina is engrossed in her conversation with Lina, she snatches the ball and stuffs it out of sight.');
           // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>. If Christina finds out I was there instead of th...
-          scene.text(`"I'm sorry, ${((s as any).pcs_nickname || '')}. If Christina finds out I was there instead of the sports center like I told her I would be…"`);
+          scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? '')}. If Christina finds out I was there instead of the sports center like I told her I would be…"`);
           scene.text('"Then why were you there?" you ask her teasingly, pretty sure you already know the answer.');
           scene.text('Her face turns bright red. "I-I… Uh… I…" she stammers as she tries to think of an excuse, unwilling to admit the truth.');
           scene.text('"Relax," you say laughing. "I already talked to her and she agreed to let you hang out with me outside of school. I promise. Just ask her about it the next time you get a chance, okay?"');
@@ -1700,14 +1700,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
           scene.text('Pulling out the volleyball she dropped outside your parents apartment the other day, you hand it to her. "You dropped this, Lariska."');
           scene.text('When she sees the ball, her eyes go wide and she looks around fearfully. Seeing that Christina is engrossed in her conversation with Lina, she snatches the ball and stuffs it out of sight.');
           // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>. If Christina finds out I was there instead of th...
-          scene.text(`"I'm sorry, ${((s as any).pcs_nickname || '')}. If Christina finds out I was there instead of the sports center like I told her I would be…"`);
+          scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? '')}. If Christina finds out I was there instead of the sports center like I told her I would be…"`);
           scene.text('"Then why were you there?" you ask her teasingly, pretty sure you already know the answer.');
           scene.text('Her face turns bright red. "I-I… Uh… I…" she stammers as she tries to think of an excuse, unwilling to admit the truth.');
           scene.text('"Relax," you say laughing. "I\'m pretty sure I already know," you say with a twinkle in your eye.');
           scene.text('Her face flushes again. "Don\'t tell Christina I was there! She doesn\'t like me hanging around you. She hates you, always has."');
           scene.text('"I know, though I have no idea why. But don\'t worry, I\'ll figure out a way for her to agree to let us hang out. Or eliminate the need for her approval."');
           // TODO-QSP: dynamic text: Her eyes grow wide. "Just be careful, <<$pcs_nickname>>. I don''t want her to hu...
-          scene.text(`Her eyes grow wide. "Just be careful, ${((s as any).pcs_nickname || '')}. I don't want her to hurt you because of me."`);
+          scene.text(`Her eyes grow wide. "Just be careful, ${((s as any).pcs_nickname ?? '')}. I don't want her to hurt you because of me."`);
           scene.text('"I can take it, sweetie. Especially when it\'s worth it." You give her a sweet smile and head off to class.');
         }
       }
@@ -1718,14 +1718,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
           ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 5;
           qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
           // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>. I guess Christina won''t stop me from hanging out with...
-          scene.text(`"Okay, ${((s as any).pcs_nickname || '')}. I guess Christina won't stop me from hanging out with you now," she smiles shyly. "Do you want to come over after school and work on our homework together?"`);
+          scene.text(`"Okay, ${((s as any).pcs_nickname ?? '')}. I guess Christina won't stop me from hanging out with you now," she smiles shyly. "Do you want to come over after school and work on our homework together?"`);
           scene.text('You smile in response. "Sure. I\'ll meet up with you after school!"');
           scene.text('She blushes a little. "Good, I\'m looking forward to it!"');
           // TODO-QSP: $func('npc_reactions', 'general', 'A13')
         } else {
           scene.text('"Hey Lariska! How\'s your day going?"');
           // TODO-QSP: dynamic text: "I''m sorry <<$pcs_nickname>>, but I already told you that Christina doesn''t wa...
-          scene.text(`"I'm sorry ${((s as any).pcs_nickname || '')}, but I already told you that Christina doesn't want me hanging out with you."`);
+          scene.text(`"I'm sorry ${((s as any).pcs_nickname ?? '')}, but I already told you that Christina doesn't want me hanging out with you."`);
           scene.text('"I know, but I\'m working on it. In the meantime, I was just saying hi."');
           scene.text('She gives you a sad smile. "O-Oh. I\'m sorry, I just keep thinking about it. Hopefully you\'ll manage to convince her."');
           scene.text('"Hang in there, sweetie. I\'ll convince her, I promise."');
@@ -1736,7 +1736,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
           ((s as any).LariskaQW = (s as any).LariskaQW ?? {})['story'] = 5;
           qspCall(s, 'npc_relationship', 'modify', 'A13', 'like');
           // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>. I guess Christina won''t stop me from hanging out with ...
-          scene.text(`"Okay ${((s as any).pcs_nickname || '')}. I guess Christina won't stop me from hanging out with you now," she smiles shyly. "Do you want to come over after school and work on our homework together?"`);
+          scene.text(`"Okay ${((s as any).pcs_nickname ?? '')}. I guess Christina won't stop me from hanging out with you now," she smiles shyly. "Do you want to come over after school and work on our homework together?"`);
           scene.text('You smile in response. "Sure thing, Lariska. I\'ll meet up with you after school!"');
           scene.text('She blushes a little. "Good, I\'m looking forward to it!"');
           // TODO-QSP: $func('npc_reactions', 'general', 'A13')
@@ -1765,14 +1765,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
           scene.text('Seeing you in the hallway, Lariska can\'t help but scowl. "Why are <i>you</i> here? The boys bathroom is that way, I\'m sure they\'re missing you right now."');
           scene.text('You respond by giving her your best sultry look. "I take care of girls too. Wanna try?"');
           // TODO-QSP: dynamic text: She gives you a shocked look as her face turns bright red. "Go away, <<$pcs_nick...
-          scene.text(`She gives you a shocked look as her face turns bright red. "Go away, ${((s as any).pcs_nickname || '')}!"`);
+          scene.text(`She gives you a shocked look as her face turns bright red. "Go away, ${((s as any).pcs_nickname ?? '')}!"`);
         }
       }
     } else {
       if (((s as any).grupTipe ?? 0) === 1) {
         if (((s as any).npc_rel ?? 0)?.['A13'] >= 50) {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, have you seen Christina around?" Lariska asks.
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}, have you seen Christina around?" Lariska asks.`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, have you seen Christina around?" Lariska asks.`);
           scene.text('"No, why?" You can sense the desperation in her demeanor.');
           scene.text('She dismayingly looks at you. "Well Lina was running after her and I don\'t want to be left out…"');
           scene.text('"Listen Lariska," you say as you grab hold of her. "You don\'t need to run after anyone. You\'re fine on your own, okay? Now stop worrying and head to class instead."');
@@ -1787,7 +1787,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
             scene.text('"Okay… Who\'s actually the bitch here?" You walk away before this gets heated.');
           } else {
             // TODO-QSP: dynamic text: Lariska smiles. "Hey <<$pcs_nickname>>! I need help with a thing and I think you...
-            scene.text(`Lariska smiles. "Hey ${((s as any).pcs_nickname || '')}! I need help with a thing and I think you're the perfect person that can help me out."`);
+            scene.text(`Lariska smiles. "Hey ${((s as any).pcs_nickname ?? '')}! I need help with a thing and I think you're the perfect person that can help me out."`);
             scene.text('"What do you need help with?" you curiously ask.');
             scene.text('"Well… I need to impress Christina and need your help with coming up with something fitting…" she replies before she starts on a long tirade about what might impress Christina.');
             scene.text('Feeling your braincells slowly dying, you interrupt her instead. "Well, I\'ve got to head to class. Got this thing to do. Bye!"');
@@ -1797,7 +1797,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
         if (((s as any).grupTipe ?? 0) === 2) {
           if (((s as any).npc_rel ?? 0)?.['A13'] >= 50) {
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, have you seen Christina around?" Lariska asks.
-            scene.text(`"Hey ${((s as any).pcs_nickname || '')}, have you seen Christina around?" Lariska asks.`);
+            scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, have you seen Christina around?" Lariska asks.`);
             scene.text('"No, why?" You can sense the desperation in her demeanor.');
             scene.text('She dismayingly looks at you. "Well Lina was running after her and I don\'t want to be left out…"');
             scene.text('"Listen Lariska," you say as you grab hold of her. "You don\'t need to run after anyone. You\'re fine on your own, okay? Now stop worrying and head to class instead."');
@@ -1812,7 +1812,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
               scene.text('"Don\'t start what you can\'t finish then," you say, walking away before she can respond.');
             } else {
               // TODO-QSP: dynamic text: Lariska smiles. "Hey <<$pcs_nickname>>! I need help with a thing and I think you...
-              scene.text(`Lariska smiles. "Hey ${((s as any).pcs_nickname || '')}! I need help with a thing and I think you're the perfect person that can help me out."`);
+              scene.text(`Lariska smiles. "Hey ${((s as any).pcs_nickname ?? '')}! I need help with a thing and I think you're the perfect person that can help me out."`);
               scene.text('"What do you need help with?" you curiously ask.');
               scene.text('"Well… I need to impress Christina and need your help with coming up with something fitting…" she replies before she starts on a long tirade about what might impress Christina.');
               scene.text('Feeling your braincells slowly dying, you interrupt her instead. "Well, I\'ve got to head to class. Got this thing to do. Bye!"');
@@ -1822,7 +1822,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 3) {
             if (((s as any).npc_rel ?? 0)?.['A13'] >= 50) {
               // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. When are you going to stop staring at books and come pla...
-              scene.text(`"Hey ${((s as any).pcs_nickname || '')}. When are you going to stop staring at books and come play some sports with us?"`);
+              scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}. When are you going to stop staring at books and come play some sports with us?"`);
               scene.text('"No thank you, Lariska. I want to go to university, so I have to keep studying."');
               scene.text('"There\'s nothing wrong with studying, but you have to go outside once in a while too."');
               scene.text('You tell her a bit about the last book you read, but you can see her eyes glazing over. "Okay, I need to head to class," you say, letting her off the hook.');
@@ -1837,7 +1837,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.text('"Hey Lariska. Why can\'t you trust atoms?"');
                 // TODO-QSP: dynamic text: "Huh? What are you talking about, <<$pcs_nickname>>?"
-                scene.text(`"Huh? What are you talking about, ${((s as any).pcs_nickname || '')}?"`);
+                scene.text(`"Huh? What are you talking about, ${((s as any).pcs_nickname ?? '')}?"`);
                 scene.text('"They make up everything!"');
                 scene.text('"Right… I gotta go. Christina needs me."');
                 scene.text('Standing up, she walks away before you can tell her any more jokes.');
@@ -1849,7 +1849,7 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
                 scene.text('Lariska sees you walking towards her and stands up, looking nervous.');
                 scene.text('"Hey, Lariska."');
                 // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. You know Christina will throw a fit if she sees you talk...
-                scene.text(`"Hi, ${((s as any).pcs_nickname || '')}. You know Christina will throw a fit if she sees you talking to me."`);
+                scene.text(`"Hi, ${((s as any).pcs_nickname ?? '')}. You know Christina will throw a fit if she sees you talking to me."`);
                 scene.text('"Fuck her. I\'m not afraid."');
                 scene.text('Your attitude seems to embolden her a bit, as she stands a bit straighter and actually talks to you for a while.');
                 // TODO-QSP: $func('npc_reactions', 'general', 'A13')
@@ -1859,14 +1859,14 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
                   scene.text('Lariska sees you walking towards her and stands up, looking nervous.');
                   scene.text('"Hey Lariska."');
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. Sorry, can''t chat. Christina needs me."
-                  scene.text(`"Hi ${((s as any).pcs_nickname || '')}. Sorry, can't chat. Christina needs me."`);
+                  scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}. Sorry, can't chat. Christina needs me."`);
                   scene.text('She then runs off, looking for her idol.');
                   // TODO-QSP: $OpenInnerThought + 'Well that was rude, bitch!' + $CloseInnerThought
                 } else {
                   scene.text('Lariska sees you walking towards her and stands up, looking nervous.');
                   scene.text('"Hey Lariska."');
                   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. Sorry, I don''t think you''re supposed to be here." She l...
-                  scene.text(`"Hi ${((s as any).pcs_nickname || '')}. Sorry, I don't think you're supposed to be here." She looks around, like she's afraid and needs protection.`);
+                  scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}. Sorry, I don't think you're supposed to be here." She looks around, like she's afraid and needs protection.`);
                   scene.text('"I just wanted to chat with you. I won\'t bite… much."');
                   scene.text('Her face turns bright red and she starts shuffling her feet while giving you a pleading look. "I\'m sorry, but I\'ll get in trouble if Christina sees me talking to you…"');
                   scene.text('"Okay, okay. I\'ll just head to class then. See you around." She gives you a brief, shy smile before you walk away.');
@@ -1884,12 +1884,12 @@ function enterLariska(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).npc_rel ?? 0)?.['A13'] <= 20) {
                   scene.text('"So where\'s the old ball and chain?" you ask teasingly.');
                   // TODO-QSP: dynamic text: "Oh shut up, <<$pcs_nickname>>! Don''t you have anything better to do? At least ...
-                  scene.text(`"Oh shut up, ${((s as any).pcs_nickname || '')}! Don't you have anything better to do? At least I have friends!" she fires back.`);
+                  scene.text(`"Oh shut up, ${((s as any).pcs_nickname ?? '')}! Don't you have anything better to do? At least I have friends!" she fires back.`);
                   scene.text('You start laughing. "Yeah, <i>friends</i>."');
                   scene.text('Rolling your eyes at her, you walk away.');
                 } else {
                   // TODO-QSP: dynamic text: "What are you doing here, <<$pcs_nickname>>? You don''t have friends here."
-                  scene.text(`"What are you doing here, ${((s as any).pcs_nickname || '')}? You don't have friends here."`);
+                  scene.text(`"What are you doing here, ${((s as any).pcs_nickname ?? '')}? You don't have friends here."`);
                   scene.text('"Just because I\'m not in your little social club doesn\'t mean I don\'t have friends."');
                   scene.text('"That\'s exactly what that means. If you actually tried to get along with people, maybe they would start accepting you."');
                   scene.text('Shrugging, you just give her a smile and walk away.');
@@ -1994,7 +1994,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)?.['pav_slut'] < 225  &&  ((s as any).IvanShowerQW ?? 0) === 1) {
     (s as any).IvanShowerQW = 11;
     // TODO-QSP: dynamic text: Ivan thinks for a second before he speaks. "<<$pcs_nickname>>, I''d like to talk...
-    scene.text(`Ivan thinks for a second before he speaks. "${((s as any).pcs_nickname || '')}, I'd like to talk to you about what happened in the shower. You're a great girl, and I had a great time, but I'm not ready for a relationship."`);
+    scene.text(`Ivan thinks for a second before he speaks. "${((s as any).pcs_nickname ?? '')}, I'd like to talk to you about what happened in the shower. You're a great girl, and I had a great time, but I'm not ready for a relationship."`);
     scene.text('He offers you a small smile. "I need to put all my energy into my athletics since I have a good shot at getting to the National Championships this year. I really can\'t afford to be distracted by girls, even one as attractive as you. So how about we just stick to fooling around a little?"');
     scene.actions([
       { label: 'Discuss', handler: (st: GameState) => {
@@ -2028,7 +2028,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.['A3'] <= 20) {
           scene.text('"Hello handsome!" you greet Ivan as you approach him in the corridor.');
           // TODO-QSP: dynamic text: "What do you want <<$pcs_nickname>>?" he asks, barely looking at you. "Whatever ...
-          scene.text(`"What do you want ${((s as any).pcs_nickname || '')}?" he asks, barely looking at you. "Whatever it is, I'm not interested," he adds in a cold tone.`);
+          scene.text(`"What do you want ${((s as any).pcs_nickname ?? '')}?" he asks, barely looking at you. "Whatever it is, I'm not interested," he adds in a cold tone.`);
           scene.text('"Well, I thought we could spend some time together?" you reply as you bite your lip. "We could sneak out of school using the back door, if you know what I mean…" you wink and slap your ass playfully.');
           scene.text('"Don\'t even dream about it. I have no desire to catch something from a slut like you!" he replies before heading off towards the other jocks.');
           scene.text('Hurt by the rejection, you don\'t feel like doing anything during the break, so you head to the classroom.');
@@ -2045,7 +2045,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
           scene.text('As you come out into the corridor, you see Ivan standing a little further away from the others. You decide to approach him and talk.');
           scene.text('"Hi Ivan. I see you\'re spending your break alone. Wouldn\'t it be much nicer in the company of a pretty girl?" you wink at him, not noticing that you also blush a little.');
           // TODO-QSP: dynamic text: "Oh, hi <<$pcs_nickname>>. Are you volunteering?" he replies with a friendly smi...
-          scene.text(`"Oh, hi ${((s as any).pcs_nickname || '')}. Are you volunteering?" he replies with a friendly smile on his face. "Maybe I should, but I don't have that luxury."`);
+          scene.text(`"Oh, hi ${((s as any).pcs_nickname ?? '')}. Are you volunteering?" he replies with a friendly smile on his face. "Maybe I should, but I don't have that luxury."`);
           scene.text('For the next few minutes, you talk mainly about why he doesn\'t have time for a serious relationship. With all the training and helping at home, he doesn\'t have time to get to date anyone.');
           scene.text('"I can\'t let anything hold me back. It\'s the only thing that can help me achieve my goals and give my family everything they deserve," he says. You can tell he\'s very determined and that he doesn\'t take things lightly.');
           scene.text('"Still, sometimes you have to let go a little. You know, make friends. I don\'t even see you with anyone else but Fedor. Go out and have fun. Enjoy life, especially while you\'re young. Or even ask a girl out on a date…" you add quietly, trying to avoid his gaze.');
@@ -2055,7 +2055,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: $func('npc_reactions', 'general', 'A3')
           if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).IvanShowerYes ?? 0) === 1) {
             // TODO-QSP: dynamic text: As you walk away Ivan suddenly jogs up beside you and leans over as he whispers ...
-            scene.text(`As you walk away Ivan suddenly jogs up beside you and leans over as he whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname || '')}."`);
+            scene.text(`As you walk away Ivan suddenly jogs up beside you and leans over as he whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname ?? '')}."`);
             scene.actions([
               { label: 'Tell Ivan you\'re bored', goto: ['IvanEv', 'ivan_bored'] },
               { label: 'Tell him not today', handler: (st: GameState) => {
@@ -2071,7 +2071,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).IvanShowerYes ?? 0) === 0  &&  ((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).ShowerIvan ?? 0) < 3) {
               // TODO-QSP: dynamic text: "Well, I guess that means no more fun," you sigh and start walking towards the c...
-              scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname || '')}, want to meet up with me in the showers after school?"`);
+              scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname ?? '')}, want to meet up with me in the showers after school?"`);
               scene.actions([
                 { label: 'Decline', handler: (st: GameState) => {
     scene.text(`<center><b>${'Ivan Prokhorov'}</b></center>`);
@@ -2110,7 +2110,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A3'] <= 20) {
             scene.text('You see Ivan talking to Fedor and decide to approach them. "Hi Ivan, do you have a minute?"');
             // TODO-QSP: dynamic text: As he turns around, he notices it''s you talking to him. "Hi <<$pcs_nickname>>. ...
-            scene.text(`As he turns around, he notices it's you talking to him. "Hi ${((s as any).pcs_nickname || '')}. Is it important? Fedor and I are discussing an important thing," he says before turning back to Fedor.`);
+            scene.text(`As he turns around, he notices it's you talking to him. "Hi ${((s as any).pcs_nickname ?? '')}. Is it important? Fedor and I are discussing an important thing," he says before turning back to Fedor.`);
             scene.text('"I just thought we could have a little chat? You\'re always talking to Fedor anyway. You need a change, don\'t you?" you ask in a playful, flirtatious tone.');
             scene.text('He\'s clearly not impressed by your desperate attempt. He turns back to you and looks you in the eye. "I told you I\'m busy. Maybe some other time…"');
             scene.text('With that, he starts talking to Fedor again. You feel very awkward and stand there, unsure of what to do.');
@@ -2118,7 +2118,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.text('"Hey Ivan, are you busy?" you ask as you approach him in the hallway.');
             // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, I''m looking for Fedor…" he says, then looks around the h...
-            scene.text(`"Hi ${((s as any).pcs_nickname || '')}, I'm looking for Fedor…" he says, then looks around the hallway with a searching eye, but doesn't see him anywhere.`);
+            scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}, I'm looking for Fedor…" he says, then looks around the hallway with a searching eye, but doesn't see him anywhere.`);
             scene.text('He sits down and continues. "… but I can\'t find him anywhere. I guess that makes me yours," he says with a friendly smile.');
             scene.text('You sit next to him and start chatting. He\'s mostly listens to you as you tell him what\'s been happening to you lately. You talk about the last party you had, the school, share some gossip, and take the opportunity to complain about how there\'s not much to do around town.');
             scene.text('"I don\'t have much free time anyway…" he says in a slightly tired voice. You wait for him to continue, but he doesn\'t seem to be in much of a talking mood. Although he listens to what you have to say, he doesn\'t add much to it.');
@@ -2131,7 +2131,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
         if (((s as any).grupTipe ?? 0) === 2) {
           if (((s as any).npc_rel ?? 0)?.['A3'] >= 60) {
             // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>, I hope you''re looking for me?" Ivan asks when he sees...
-            scene.text(`"Hello ${((s as any).pcs_nickname || '')}, I hope you're looking for me?" Ivan asks when he sees you approaching.`);
+            scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}, I hope you're looking for me?" Ivan asks when he sees you approaching.`);
             scene.text('You lean against the wall and start talking. "How are things going?" you ask curiously, hoping that he has something interesting to share.');
             scene.text('"Just the usual," he replies and you discuss the events of the past few days before something occurs to Ivan. "Oh, look at this!" he says excitedly before pulling out his phone and starting a video.');
             scene.text('"Let me guess, your last sparring with Vitek?" you ask as you put your hand on his shoulder and lean closer to him to get a better look at the phone screen. "Let\'s see if I can steal a trick or two."');
@@ -2142,7 +2142,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: $func('npc_reactions', 'general', 'A3')
             if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).IvanShowerYes ?? 0) === 1) {
               // TODO-QSP: dynamic text: As you walk away Ivan suddenly jogs up beside you and leans over as he whispers ...
-              scene.text(`As you walk away Ivan suddenly jogs up beside you and leans over as he whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname || '')}."`);
+              scene.text(`As you walk away Ivan suddenly jogs up beside you and leans over as he whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname ?? '')}."`);
               scene.actions([
                 { label: 'Tell Ivan you\'re bored', goto: ['IvanEv', 'ivan_bored'] },
                 { label: 'Tell him not today', handler: (st: GameState) => {
@@ -2158,7 +2158,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).IvanShowerYes ?? 0) === 0  &&  ((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).ShowerIvan ?? 0) < 3) {
                 // TODO-QSP: dynamic text: "Well, I guess that means no more fun," you sigh and start walking towards the c...
-                scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname || '')}, want to meet up with me in the showers after school?"`);
+                scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname ?? '')}, want to meet up with me in the showers after school?"`);
                 scene.actions([
                   { label: 'Decline', handler: (st: GameState) => {
     scene.text(`<center><b>${'Ivan Prokhorov'}</b></center>`);
@@ -2198,12 +2198,12 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
               scene.text('As you step out into the corridor, you spot Ivan and approach him.');
               scene.text('"Hey Ivan," you greet him with a friendly smile. "I hope you can spare a minute. Since you\'re pretty good at boxing, I\'d like to ask you for some advice on how to improve my endurance and speed. Besides agility, these are the ones I should improve a lot."');
               // TODO-QSP: dynamic text: Ivan closes the locker door and turns to you. "Listen, <<$pcs_nickname>>, I''m s...
-              scene.text(`Ivan closes the locker door and turns to you. "Listen, ${((s as any).pcs_nickname || '')}, I'm sorry, but I don't have time right now. Maybe you should ask someone else," he replies indifferently before turning and walking towards the others.`);
+              scene.text(`Ivan closes the locker door and turns to you. "Listen, ${((s as any).pcs_nickname ?? '')}, I'm sorry, but I don't have time right now. Maybe you should ask someone else," he replies indifferently before turning and walking towards the others.`);
               scene.text('As he leaves, you wonder if he really doesn\'t have time or if he just didn\'t feel like talking to you. Since you have a lot of time until your next class, you organize your locker and throw out some old things you don\'t need anymore.');
             } else {
               scene.text('"Hey Ivan, what\'s up?" you ask him as you approach.');
               // TODO-QSP: dynamic text: He turns to you as he closes the locker door. "Oh, hello <<$pcs_nickname>>. Noth...
-              scene.text(`He turns to you as he closes the locker door. "Oh, hello ${((s as any).pcs_nickname || '')}. Nothing special. I was just putting away my boxing gear and wondering if I should practice my fist pumping today or go for a run."`);
+              scene.text(`He turns to you as he closes the locker door. "Oh, hello ${((s as any).pcs_nickname ?? '')}. Nothing special. I was just putting away my boxing gear and wondering if I should practice my fist pumping today or go for a run."`);
               scene.text('"Someone\'s very dedicated today!" you say jokingly as you playfully touch his shoulders. "Sometimes it doesn\'t hurt to take a break. You know it\'s not good for your body to exercise all the time," you continue, taking the words a little more seriously.');
               scene.text('"I can\'t slack off. I have to do my best every day," he says before telling you how important boxing is to him. It\'s a good chance for him to break out so he can help his mom financially and provide his family a better life.');
               scene.text('You put your hand on his shoulder understandingly and try to say a few words, but he cuts you off. "I\'m sorry, but I have to go now. I have to discuss a few things with Fedor."');
@@ -2215,18 +2215,18 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
           if (((s as any).grupTipe ?? 0) === 3) {
             if (((s as any).npc_rel ?? 0)?.['A3'] >= 60) {
               // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," Ivan greets you as he sees you approaching.
-              scene.text(`"Hey ${((s as any).pcs_nickname || '')}," Ivan greets you as he sees you approaching.`);
+              scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}," Ivan greets you as he sees you approaching.`);
               scene.text('"Hey Ivan, what\'s up? How was your last training match?" you ask curiously.');
               scene.text('He puts his bag on the floor and sits on it before pulling out his phone and beckoning you to lean closer. "I\'ll show you. I\'ll analyze it with the coach and see what mistakes I made."');
               scene.text('For the next few minutes, you watch the video together, sometimes pausing to analyze a punch. "You see, when you hit at that angle, you can put a lot more power into it," you comment while imitating the punch.');
               // TODO-QSP: dynamic text: "Look at that! Little <<$pcs_nickname>> is starting to box?" he laughs while jok...
-              scene.text(`"Look at that! Little ${((s as any).pcs_nickname || '')} is starting to box?" he laughs while jokingly punching you on the shoulder. "Who would think that physics and maths would make someone a boxing coach?"`);
+              scene.text(`"Look at that! Little ${((s as any).pcs_nickname ?? '')} is starting to box?" he laughs while jokingly punching you on the shoulder. "Who would think that physics and maths would make someone a boxing coach?"`);
               scene.text('You talk for the rest of the break, although it\'s mainly Ivan who does the talking. He explains the training plans he\'s been working on with Fedor to improve his pace and agility.');
               scene.text('When he hears the bell ring, he turns to you. "Don\'t forget to give the girls tips on how to improve their squats. You know, to get achieve the perfect shape," he winks.');
               // TODO-QSP: $func('npc_reactions', 'general', 'A3')
               if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).IvanShowerYes ?? 0) === 1) {
                 // TODO-QSP: dynamic text: "Ah, you never change," you reply while rolling your eyes before grabbing your s...
-                scene.text(`"Ah, you never change," you reply while rolling your eyes before grabbing your stuff and heading to the classroom together, with Ivan when he leans toward you and whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname || '')}."`);
+                scene.text(`"Ah, you never change," you reply while rolling your eyes before grabbing your stuff and heading to the classroom together, with Ivan when he leans toward you and whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname ?? '')}."`);
                 scene.actions([
                   { label: 'Tell Ivan you\'re bored', goto: ['IvanEv', 'ivan_bored'] },
                   { label: 'Tell him not today', handler: (st: GameState) => {
@@ -2242,7 +2242,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).IvanShowerYes ?? 0) === 0  &&  ((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).ShowerIvan ?? 0) < 3) {
                   // TODO-QSP: dynamic text: "Well, I guess that means no more fun," you sigh and start walking towards the c...
-                  scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname || '')}, want to meet up with me in the showers after school?"`);
+                  scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname ?? '')}, want to meet up with me in the showers after school?"`);
                   scene.actions([
                     { label: 'Decline', handler: (st: GameState) => {
     scene.text(`<center><b>${'Ivan Prokhorov'}</b></center>`);
@@ -2275,7 +2275,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
               } else {
                 scene.text('As you walk through the hallway, you spot Ivan and decide to approach him and try to strike up a conversation. "Hi Ivan, how are you today?"');
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, fine…" he replies as he looks around. When he sees that e...
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}, fine…" he replies as he looks around. When he sees that everyone is busy or talking to someone, he sits on the floor and gestures for you to sit next to him.`);
+                scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}, fine…" he replies as he looks around. When he sees that everyone is busy or talking to someone, he sits on the floor and gestures for you to sit next to him.`);
                 scene.text('You start chatting about everything from school, to sports and reading. After a while, he starts talking about how he tried to help his younger siblings learn.');
                 scene.text('"It\'s important that they get a good education. I want them to achieve something in life," he says with a serious look in his eyes.');
                 scene.text('"That\'s very thoughtful of you. If you want, I can share some tips." you reply. For the next few minutes, you share a few tips on how he can help them as much as possible and how he could make learning enjoyable for them.');
@@ -2287,7 +2287,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
             if (((s as any).grupTipe ?? 0) === 4) {
               if (((s as any).npc_rel ?? 0)?.['A3'] >= 60) {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," Ivan greets you as you walk towards him.
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}," Ivan greets you as you walk towards him.`);
+                scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}," Ivan greets you as you walk towards him.`);
                 scene.text('"What\'s up, Prince of Boxers? Do you still have time to chat despite all the training and the crowds of cheerleaders?" you ask jokingly as you do shadowboxing next to him.');
                 scene.text('"I always have time for you," he replies as he winks at you. He starts to talk about everything that comes to his mind, but mostly about boxing, running, and the workouts he and Fedor have been doing together lately.');
                 scene.text('"You\'ll end up joining us if you become such a pro at fighting. Think about it," you say with a wistful sigh before you start talking about how many adventures he could have with you and your fellow gopniks. "I\'d challenge you to a fight sometime, though." you say, filled with self-confidence. "I bet I could kick your ass."');
@@ -2299,7 +2299,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
                   scene.text(`<center><b>${'Ivan Prokhorov'}</b></center>`);
                   scene.img('images/characters/pavlovsk/school/boy/ivan/School/ivan2.jpg');
                   // TODO-QSP: dynamic text: "Well, I guess that means no more fun," you sigh and start walking towards the c...
-                  scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, with Ivan when he leans toward you and whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname || '')}."`);
+                  scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, with Ivan when he leans toward you and whispers in your ear. "Tell me you're bored, ${((s as any).pcs_nickname ?? '')}."`);
                   scene.actions([
                     { label: 'Tell Ivan you\'re bored', goto: ['IvanEv', 'ivan_bored'] },
                     { label: 'Tell him not today', handler: (st: GameState) => {
@@ -2315,7 +2315,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).IvanShowerYes ?? 0) === 0  &&  ((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).ShowerIvan ?? 0) < 3) {
                     // TODO-QSP: dynamic text: "Well, I guess that means no more fun," you sigh and start walking towards the c...
-                    scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname || '')}, want to meet up with me in the showers after school?"`);
+                    scene.text(`"Well, I guess that means no more fun," you sigh and start walking towards the classroom together, Ivan suddenly stops you. "${((s as any).pcs_nickname ?? '')}, want to meet up with me in the showers after school?"`);
                     scene.actions([
                       { label: 'Decline', handler: (st: GameState) => {
     scene.text(`<center><b>${'Ivan Prokhorov'}</b></center>`);
@@ -2356,7 +2356,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
                   scene.text('As you get closer, Ivan just looks at you. Without uttering a word to you, he walks towards the men\'s toilet.');
                   scene.text('"Hey, Ivan. I just thought we could have a little chat?" you call after him, confused and a little bit embarrassed.');
                   // TODO-QSP: dynamic text: "You thought wrong, <<$pcs_nickname>>. We have nothing to talk about anyway. We ...
-                  scene.text(`"You thought wrong, ${((s as any).pcs_nickname || '')}. We have nothing to talk about anyway. We don't really have much in common, in case you haven't noticed," he replies without even looking back.`);
+                  scene.text(`"You thought wrong, ${((s as any).pcs_nickname ?? '')}. We have nothing to talk about anyway. We don't really have much in common, in case you haven't noticed," he replies without even looking back.`);
                   scene.text('You stand there alone while the other jocks look at you. You feel a little humiliated as ou look at them.');
                   scene.text('"Mind your own business!" you snarl before storming off to spend the rest of your break somewhere else.');
                 } else {
@@ -2372,7 +2372,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).npc_rel ?? 0)?.['A3'] >= 60) {
                 // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>," Ivan greets you as you approach him.
-                scene.text(`"Hi ${((s as any).pcs_nickname || '')}," Ivan greets you as you approach him.`);
+                scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}," Ivan greets you as you approach him.`);
                 scene.text('You give him a friendly smile. "Hi Ivan. I don\'t really have much to do and I saw you were standing here all alone, so I thought we could talk? What\'s been going on with you lately?" you ask as you lean against the wall.');
                 // TODO-QSP: $func('npc_reactions', 'general', 'A3')
                 scene.text('He leans against the wall with you and spends the next few minutes talking about the boxing techniques he\'s trying to master, the training sessions he\'s had with Fedor, and of course a few fights with Vitek.');
@@ -2390,7 +2390,7 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.text('You see Ivan looking at something on his phone and decide to approach him. "Hi Ivan, what are you looking at?" you ask as you lean over and look at the screen.');
                   // TODO-QSP: dynamic text: "Oh, hello <<$pcs_nickname>>, nothing important. I''m looking at some new boxing...
-                  scene.text(`"Oh, hello ${((s as any).pcs_nickname || '')}, nothing important. I'm looking at some new boxing gear. You know, it's very important to have the right grip so you don't get hurt."`);
+                  scene.text(`"Oh, hello ${((s as any).pcs_nickname ?? '')}, nothing important. I'm looking at some new boxing gear. You know, it's very important to have the right grip so you don't get hurt."`);
                   scene.text('For the next few minutes, you look at the range of products in an online shop together. He sometimes comments on what different products are good for.');
                   // TODO-QSP: $func('npc_reactions', 'general', 'A3')
                   scene.text('Although you don\'t really talk, he tolerates you enough not to send you away.');

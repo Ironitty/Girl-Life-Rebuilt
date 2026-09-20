@@ -23,7 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}`);
     // TODO-QSP: dynamic text: "Hi! My name is <<$pcs_nickname>>." you answer. "School just ended so I was tryi...
-    scene.text(`"Hi! My name is ${((st as any).pcs_nickname || '')}." you answer. "School just ended so I was trying to figure out what to do for the rest of the day."`);
+    scene.text(`"Hi! My name is ${((st as any).pcs_nickname ?? '')}." you answer. "School just ended so I was trying to figure out what to do for the rest of the day."`);
     // TODO-QSP: dynamic text: "Oh really." After a moment of silence <<$npc_firstname[$boy]>> finally speaks u...
     scene.text(`"Oh really." After a moment of silence ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} finally speaks up; "Don't take this the wrong way but what school do you attend?" he asks.`);
     scene.actions([
@@ -152,7 +152,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Answer him', handler: (st: GameState) => {
     scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}`);
     // TODO-QSP: dynamic text: You give him a contemptuous look. "Oh, you have us all figured out do you? My na...
-    scene.text(`You give him a contemptuous look. "Oh, you have us all figured out do you? My name is ${((st as any).pcs_nickname || '')}, not that it is any of your business."`);
+    scene.text(`You give him a contemptuous look. "Oh, you have us all figured out do you? My name is ${((st as any).pcs_nickname ?? '')}, not that it is any of your business."`);
     if (((st as any).loc ?? 0) === 'pav_residential'  ||  ((st as any).loc ?? 0) === 'pav_commercial') {
       scene.text('"Well, I spotted you while I was on my way to a friends place and your looks caught my attention. Simply said, I want to add another trophy to my trophy wall." he impudently answers.');
       scene.text('You snap and get up in his face, "How about I cut off your balls and add them to my collection."');
@@ -250,11 +250,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}`);
     scene.text('All of a sudden you get a bubbly feeling in your stomach thinking if he\'s really asking your name?');
     // TODO-QSP: dynamic text: You break out in a smile telling him, "My name is <<$pcs_nickname>>."
-    scene.text(`You break out in a smile telling him, "My name is ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`You break out in a smile telling him, "My name is ${((st as any).pcs_nickname ?? '')}."`);
     // TODO-QSP: dynamic text: "What a beautiful name and a loving smile." <<$npc_firstname[$boy]>> tells you.
     scene.text(`"What a beautiful name and a loving smile." ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} tells you.`);
     // TODO-QSP: dynamic text: You start blushing as <<$npc_firstname[$boy]>> compliments you… "So what do you ...
-    scene.text(`You start blushing as ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} compliments you… "So what do you say ${((st as any).pcs_nickname || '')} would you like to go on a date with me?"`);
+    scene.text(`You start blushing as ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} compliments you… "So what do you say ${((st as any).pcs_nickname ?? '')} would you like to go on a date with me?"`);
     scene.actions([
       { label: 'Decline', goto: ['dateM', 'decline'] },
       { label: 'I would love to', handler: (st: GameState) => {
@@ -324,7 +324,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$npc_firstname[$boy]>>! And yours?" he asks you confidently, seeing a glimmer...
     scene.text(`"${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}! And yours?" he asks you confidently, seeing a glimmer of hope.`);
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>." you answer.
-    scene.text(`"${((st as any).pcs_nickname || '')}." you answer.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}." you answer.`);
     // TODO-QSP: dynamic text: "Just as I expected a beautiful name for a beautiful girl…" <<$npc_firstname[$bo...
     scene.text(`"Just as I expected a beautiful name for a beautiful girl…" ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} quickly replies.`);
     scene.actions([
@@ -472,7 +472,7 @@ function enterDatepark(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/date/parkice.jpg');
     // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> runs away to the pushcart and comes back with two ice c...
-    scene.text(`${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} runs away to the pushcart and comes back with two ice creams. "Here you go, ${((st as any).pcs_nickname || '')} I hope you'll enjoy it."`);
+    scene.text(`${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} runs away to the pushcart and comes back with two ice creams. "Here you go, ${((st as any).pcs_nickname ?? '')} I hope you'll enjoy it."`);
     // TODO-QSP: dynamic text: You nod and thank him. The two of you continue talking while eating the ice crea...
     scene.text(`You nod and thank him. The two of you continue talking while eating the ice cream. As you finish ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} asks, "Shall we move on?"`);
     scene.actions([
@@ -532,12 +532,12 @@ function enterDatepark(s: GameState, scene: SceneBuilder): void {
       { label: 'Give blowjob', handler: (st: GameState) => {
     scene.img('images/locations/shared/date/parkbj.jpg');
     // TODO-QSP: dynamic text: "Enough teasing, I want you to blow me <<$pcs_nickname>>, I don''t want to cum b...
-    scene.text(`"Enough teasing, I want you to blow me ${((st as any).pcs_nickname || '')}, I don't want to cum before you've had a taste of my cock."`);
+    scene.text(`"Enough teasing, I want you to blow me ${((st as any).pcs_nickname ?? '')}, I don't want to cum before you've had a taste of my cock."`);
     scene.text('You comply and start sucking on the head, smacking loudly. You are working calmly and methodically for some minutes and in the end you\'re able to fit him into your mouth entirely.');
     qspCall(st, 'arousal', 'bj', 6, 'exhibitionism');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>>, you''re really a good little cocksucker. How about you...
-    scene.text(`"Damn, ${((st as any).pcs_nickname || '')}, you're really a good little cocksucker. How about you get on all fours so I can enjoy that little pussy of yours?"`);
+    scene.text(`"Damn, ${((st as any).pcs_nickname ?? '')}, you're really a good little cocksucker. How about you get on all fours so I can enjoy that little pussy of yours?"`);
     scene.actions([
       { label: 'Doggy', handler: (st: GameState) => {
     scene.img('images/locations/shared/date/parkdoggy.jpg');
@@ -561,7 +561,7 @@ function enterDatepark(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} can't contain himself anymore, he's loudly groaning and as soon he pulls out of you he cums coating your pussy lips.`);
     scene.text('Both of you fall down to the ground, breathing heavily, trying to come to your senses. After a while you into his eyes and start laughing.');
     // TODO-QSP: dynamic text: "That was great <<$pcs_nickname>>. We''ll have to do this again." You get up and...
-    scene.text(`"That was great ${((st as any).pcs_nickname || '')}. We'll have to do this again." You get up and clean yourself, straightening out your clothes the best you can. "Shall we head back?" you ask.`);
+    scene.text(`"That was great ${((st as any).pcs_nickname ?? '')}. We'll have to do this again." You get up and clean yourself, straightening out your clothes the best you can. "Shall we head back?" you ask.`);
     scene.actions([
       { label: 'Walk back', goto: ['dateM', 'walk_back'] },
     ]);
@@ -862,7 +862,7 @@ function enterDatecafe(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "How about a coffee?" you ask <<$npc_firstname[$boy]>>.
   scene.text(`"How about a coffee?" you ask ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}.`);
   // TODO-QSP: dynamic text: "Great idea <<$pcs_nickname>> I know a great place."
-  scene.text(`"Great idea ${((s as any).pcs_nickname || '')} I know a great place."`);
+  scene.text(`"Great idea ${((s as any).pcs_nickname ?? '')} I know a great place."`);
   scene.text('The two of you enter the café and find a secluded spot where you can be left alone.');
   // TODO-QSP: end
   scene.actions([
@@ -871,7 +871,7 @@ function enterDatecafe(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/date/cafetalk.jpg');
     // TODO-QSP: dynamic text: "This is a nice spot. So tell me about yourself <<$pcs_nickname>>?" <<$npc_first...
-    scene.text(`"This is a nice spot. So tell me about yourself ${((st as any).pcs_nickname || '')}?" ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} asks as soon as you sit down.`);
+    scene.text(`"This is a nice spot. So tell me about yourself ${((st as any).pcs_nickname ?? '')}?" ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} asks as soon as you sit down.`);
     // TODO-QSP: dynamic text: You tell him a little about your family, where you''re from and the likes. All w...
     scene.text(`You tell him a little about your family, where you're from and the likes. All while ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} carefully listens to your every word just like he's analyzing you in his head.`);
     scene.text('The conversation takes a deeper meaning as he keeps probing you with more serious questions about you.');
@@ -1039,7 +1039,7 @@ function enterDatebar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "How about going to a bar?" you ask <<$npc_firstname[$boy]>>.
   scene.text(`"How about going to a bar?" you ask ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}.`);
   // TODO-QSP: dynamic text: "Great idea <<$pcs_nickname>> I know a great bar with great drinks and lightning...
-  scene.text(`"Great idea ${((s as any).pcs_nickname || '')} I know a great bar with great drinks and lightning."`);
+  scene.text(`"Great idea ${((s as any).pcs_nickname ?? '')} I know a great bar with great drinks and lightning."`);
   scene.text('The two of you enter this buzzing hip bar and find a spot where you have a great overview over the place.');
   // TODO-QSP: end
   scene.actions([
@@ -1120,7 +1120,7 @@ function enterBartalk(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/shared/date/bardrink.jpg');
     // TODO-QSP: dynamic text: "Damn <<$pcs_nickname>> you really know how to move. I bet all that dancing made...
-    scene.text(`"Damn ${((st as any).pcs_nickname || '')} you really know how to move. I bet all that dancing made you even thirstier."`);
+    scene.text(`"Damn ${((st as any).pcs_nickname ?? '')} you really know how to move. I bet all that dancing made you even thirstier."`);
     scene.text('You nod and he quickly gets up and gets more drinks.');
     scene.text('You chug the drink down, quenching some of the thirst. "Look at you go. I love a girl that can keep a drink down."');
     scene.text('By now you\'re feeling quite tipsy and feeling your inhibitions fading away. You panic a little at the feeling and feel you must get a breather before you lose control.');
@@ -1141,7 +1141,7 @@ function enterBartalk(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} doesn't seem to mind your brashness. He begins grabbing you all over your body, adding even more to your arousal.`);
     scene.text('As you\'re kissing you feel his fingers playing with your wet clit through the panties.');
     // TODO-QSP: dynamic text: "Get down on your knees <<$pcs_nickname>>."
-    scene.text(`"Get down on your knees ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`"Get down on your knees ${((st as any).pcs_nickname ?? '')}."`);
     qspCall(st, 'arousal', 'foreplay', 2);
     qspCall(st, 'stat', '');
     qspCall(st, 'willpower', 'bj', 'resist');
@@ -1198,7 +1198,7 @@ function enterBartalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/date/barcream.jpg');
     scene.text('Your knees are still shaking as he finishes, you don\'t even care that he has cum inside of you. You grab some toilet paper and begin wiping the cum dripping out of your pussy.');
     // TODO-QSP: dynamic text: "That was great <<$pcs_nickname>>." <<$npc_firstname[$boy]>> compliments you. "Y...
-    scene.text(`"That was great ${((st as any).pcs_nickname || '')}." ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} compliments you. "You were not bad yourself" you tell him.`);
+    scene.text(`"That was great ${((st as any).pcs_nickname ?? '')}." ${((st as any).npc_firstname ?? 0)?.[String((st as any).boy ?? 0)] ?? ''} compliments you. "You were not bad yourself" you tell him.`);
     scene.actions([
       { label: 'Finish the date', goto: ['dateM', 'barend'] },
     ]);

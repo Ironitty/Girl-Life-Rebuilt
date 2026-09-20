@@ -10,9 +10,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).people = (Math.floor(Math.random() * 15) + 1);
   if (((s as any).people ?? 0) <= 5) {
     scene.text('<center><b>Pharmacy</b></center>');
-    scene.img(`images/locations/pavlovsk/pharmacy/aptekabusy${((s as any).people || '')}.jpg`);
+    scene.img(`images/locations/pavlovsk/pharmacy/aptekabusy${((s as any).people ?? '')}.jpg`);
     // TODO-QSP: dynamic text: There is <<people>> ' + iif(people < 2 or people > 4, 'people' , 'man' ) + ' in ...
-    scene.text('There is ' + ((s as any).people || '') + ' \' + iif(people < 2 or people > 4, \'people\' , \'man\' ) + \' in line as you walk up to the counter to check out.');
+    scene.text('There is ' + ((s as any).people ?? '') + ' \' + iif(people < 2 or people > 4, \'people\' , \'man\' ) + \' in line as you walk up to the counter to check out.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -43,7 +43,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     (s as any).pharma_day = ((s as any).daystart ?? 0);
     (s as any).pharma_picrand = (Math.floor(Math.random() * 4) + 1);
   }
-  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand || '') + '.jpg');
+  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand ?? '') + '.jpg');
   scene.text('A young woman in a white coat stands behind the counter. She smiles as you approach. "Hello, what can I help you with?"');
   if (((s as any).KandidNapr ?? 0) === 1) {
     scene.actions([
@@ -79,7 +79,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).pharma_day = ((s as any).daystart ?? 0);
     (s as any).pharma_picrand = (Math.floor(Math.random() * 4) + 1);
   }
-  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand || '') + '.jpg');
+  scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand ?? '') + '.jpg');
   scene.text('A young woman in a white coat stands behind the counter. She smiles as you approach. "Hello, what can I help you with?"');
   if (((s as any).KandidNapr ?? 0) === 1) {
     scene.actions([
@@ -108,7 +108,7 @@ function enterBuyAntifungal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'pay', 1050);
     (s as any).Kandidoz = 0;
     qspCall(s, 'stat', '');
-    scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand || '') + '.jpg');
+    scene.img('images/locations/pavlovsk/pharmacy/apteka_worker_' + ((s as any).pharma_picrand ?? '') + '.jpg');
     scene.text('You bought 1 <b>Antifungal medication</b>.');
     scene.text('You put the money on the counter before immediately opening the package and swallowing the tablet. A while later, you start feeling better.');
     scene.actions([

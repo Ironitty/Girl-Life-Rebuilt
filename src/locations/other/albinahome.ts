@@ -36,7 +36,7 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
         if (((s as any).locat ?? 0)?.['zoya'] === 8  ||  ((s as any).locat ?? 0)?.['zoya'] === 9) {
           scene.text('You hear the latch unlocking before the door is opened by the maid.');
           // TODO-QSP: dynamic text: "Hello Miss <<$pcs_firstname>>," she smiles. "Miss Albina isn''t home right now,...
-          scene.text(`"Hello Miss ${((s as any).pcs_firstname || '')}," she smiles. "Miss Albina isn't home right now, but should return by 5pm. Ms. Zoya said that you're free to come in and wait for her if you wish."`);
+          scene.text(`"Hello Miss ${((s as any).pcs_firstname ?? '')}," she smiles. "Miss Albina isn't home right now, but should return by 5pm. Ms. Zoya said that you're free to come in and wait for her if you wish."`);
           scene.actions([
             { label: 'Leave', handler: (st: GameState) => {
     scene.text('You shake your head. "No, that\'s okay. I\'ll just come back later."');
@@ -52,7 +52,7 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll come in and wait then, if that\'s okay?" you reply.');
     scene.text('The maid smiles and stands aside to let you enter.');
     // TODO-QSP: dynamic text: "Please follow me, Miss <<$pcs_firstname>>."
-    scene.text(`"Please follow me, Miss ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`"Please follow me, Miss ${((st as any).pcs_firstname ?? '')}."`);
     if (((st as any).locat ?? 0)?.['zoya'] === 8) {
       qspGoto(st, 'albina_mother_events', 'zoya_sunbathing_solo1');
     } else {
@@ -69,7 +69,7 @@ function enterDoorBell(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.text('A few seconds later, you hear the click of the latch unlocking before the door opens to reveal the maid.');
               // TODO-QSP: dynamic text: "Hello Miss <<$pcs_firstname>>," she says with a polite smile.
-              scene.text(`"Hello Miss ${((s as any).pcs_firstname || '')}," she says with a polite smile.`);
+              scene.text(`"Hello Miss ${((s as any).pcs_firstname ?? '')}," she says with a polite smile.`);
               scene.text('"Hi. Is Albina home?" you politely ask.');
               if (((s as any).locat ?? 0)?.['A23'] !== 1) {
                 if (((s as any).locat ?? 0)?.['A23'] === 2) {
@@ -128,7 +128,7 @@ function enterMaidGreet(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.img('images/locations/pavlovsk/resident/albinahome/maid.jpg');
         // TODO-QSP: dynamic text: "Please make yourself at home, Miss <<$pcs_firstname>>. I will let Miss Albina k...
-        scene.text(`"Please make yourself at home, Miss ${((s as any).pcs_firstname || '')}. I will let Miss Albina know that you have arrived," she says before excusing herself.`);
+        scene.text(`"Please make yourself at home, Miss ${((s as any).pcs_firstname ?? '')}. I will let Miss Albina know that you have arrived," she says before excusing herself.`);
         scene.actions([
           { label: 'Continue', goto: ['albinahome', 'hallway'] },
         ]);
@@ -150,7 +150,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('You have been asked not to wander around the house alone, so you\'re limited in where you can go.');
   if (((s as any).hour ?? 0) >= 21) {
     // TODO-QSP: dynamic text: The maid approaches with a polite smile. "My apologies Miss <<$pcs_firstname>>, ...
-    scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname || '')}, but it is time for you to leave. You may visit again tomorrow."`);
+    scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname ?? '')}, but it is time for you to leave. You may visit again tomorrow."`);
     scene.text('You nod and gather your belongings before the maid shows you to the door.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -274,7 +274,7 @@ function enterBedroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/albinaroom.jpg');
     if (((s as any).hour ?? 0) >= 21) {
       // TODO-QSP: dynamic text: "It''s getting pretty late, <<$pcs_nickname>>," Albina says. "You should probabl...
-      scene.text(`"It's getting pretty late, ${((s as any).pcs_nickname || '')}," Albina says. "You should probably get going."`);
+      scene.text(`"It's getting pretty late, ${((s as any).pcs_nickname ?? '')}," Albina says. "You should probably get going."`);
       scene.text('You check the time on your phone and sigh. "Yeah, I probably should…"');
       scene.text('You give Albina a hug goodbye before leaving.');
       scene.actions([
@@ -428,7 +428,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('The well equipped kitchen is just as well appointed as the rest of the house, with shiny varnished wood used throughout its furnishings.');
   if (((s as any).hour ?? 0) >= 21) {
     // TODO-QSP: dynamic text: The maid approaches with a polite smile. "My apologies Miss <<$pcs_firstname>>, ...
-    scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname || '')}, but it is time for you to leave. You may visit again tomorrow."`);
+    scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname ?? '')}, but it is time for you to leave. You may visit again tomorrow."`);
     scene.text('You nod and gather your belongings before the maid shows you to the door.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -487,7 +487,7 @@ function enterPoolSide(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).hour ?? 0) >= 21) {
       // TODO-QSP: dynamic text: The maid approaches with a polite smile. "My apologies Miss <<$pcs_firstname>>, ...
-      scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname || '')}, but it is time for you to leave. You may visit again tomorrow."`);
+      scene.text(`The maid approaches with a polite smile. "My apologies Miss ${((s as any).pcs_firstname ?? '')}, but it is time for you to leave. You may visit again tomorrow."`);
       scene.text('You nod and gather your belongings before the maid shows you to the door.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -551,7 +551,7 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
     scene.text('Albina is training in her room, doing some stretching exercises.');
     scene.text('She\'s wearing skin-tight yoga pants that show off her toned body quite well.');
     // TODO-QSP: dynamic text: Oh hey <<$pcs_nickname>>!" she says with a smile when she sees you.
-    scene.text(`Oh hey ${((s as any).pcs_nickname || '')}!" she says with a smile when she sees you.`);
+    scene.text(`Oh hey ${((s as any).pcs_nickname ?? '')}!" she says with a smile when she sees you.`);
     scene.actions([
       { label: 'Ask why she doesn\'t train at a gym', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['SportHome'] = 1;
@@ -579,7 +579,7 @@ function enterDancing(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/train.mp4');
     scene.text('You enter the room to find Albina doing some stretching exercises in her yoga pants.');
     // TODO-QSP: dynamic text: She smiles at you. "Hey <<$pcs_nickname>>! I was just about to head down to the ...
-    scene.text(`She smiles at you. "Hey ${((s as any).pcs_nickname || '')}! I was just about to head down to the gym to do my dancing exercises. Want me to teach you some things?"`);
+    scene.text(`She smiles at you. "Hey ${((s as any).pcs_nickname ?? '')}! I was just about to head down to the gym to do my dancing exercises. Want me to teach you some things?"`);
     scene.actions([
       { label: 'No thanks', handler: (st: GameState) => {
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['SportDay'] = ((st as any).daystart ?? 0);
@@ -662,7 +662,7 @@ function enterPoledancing(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_stren ?? 0) < 40  &&  ((s as any).pcs_dancero ?? 0) >= 40) {
       scene.text('You try your best to follow Albina\'s instructions, but end up smacking your head on the pole instead and falling to the floor.');
       // TODO-QSP: dynamic text: You''re flat on your back and see Albina kneeling over you. "Are you okay, <<$pc...
-      scene.text(`You're flat on your back and see Albina kneeling over you. "Are you okay, ${((s as any).pcs_nickname || '')}? It looks like you're still too weak for pole dancing, so we need to develop your strength instead."`);
+      scene.text(`You're flat on your back and see Albina kneeling over you. "Are you okay, ${((s as any).pcs_nickname ?? '')}? It looks like you're still too weak for pole dancing, so we need to develop your strength instead."`);
       scene.text('You nod at her, and she pulls you to your feet before checking your head. "It might bruise, but otherwise, you look fine."');
       scene.actions([
         { label: 'Develop strength (2:00)', handler: (st: GameState) => {
@@ -708,7 +708,7 @@ function enterPoledancing(s: GameState, scene: SceneBuilder): void {
 
 function enterPostWorkoutShower(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "You''re looking a little sweaty there, <<$pcs_nickname>>. You should go and hav...
-  scene.text(`"You're looking a little sweaty there, ${((s as any).pcs_nickname || '')}. You should go and have a shower. Mama wouldn't like it if you got sweat marks all over the furniture. Meet me in my bedroom when you're done."`);
+  scene.text(`"You're looking a little sweaty there, ${((s as any).pcs_nickname ?? '')}. You should go and have a shower. Mama wouldn't like it if you got sweat marks all over the furniture. Meet me in my bedroom when you're done."`);
   qspCall(s, 'din_van', 'shower');
   // TODO-QSP: end
   scene.build();

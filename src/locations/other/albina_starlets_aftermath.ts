@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('"Is this your car? And since when could you drive?" you ask.');
       scene.text('She laughs in response. "No, this is one of my father\'s cars that I… borrowed. And before you ask, no, I don\'t have a licence, but the police around here don\'t give a shit."');
       // TODO-QSP: dynamic text: She stops at a red light and turns to you, looking rather happy. "You don''t kno...
-      scene.text(`She stops at a red light and turns to you, looking rather happy. "You don't know what good you've done, ${((st as any).pcs_nickname || '')}. I didn't think Chernov would have acted this fast with those leads."`);
+      scene.text(`She stops at a red light and turns to you, looking rather happy. "You don't know what good you've done, ${((st as any).pcs_nickname ?? '')}. I didn't think Chernov would have acted this fast with those leads."`);
       scene.text('"Wait, <i>you</i> were his \'anonymous source\' that exposed the Starlets? Why?" you ask in surprise.');
       scene.text('"Me? No. Well, not exactly…"');
       scene.text('"Who then? What aren\'t you telling me here?" you ask, but she looks away meekly as the light turns green and she continues driving in silence.');
@@ -31,7 +31,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('"Is this your car? And since when could you drive?" you ask.');
       scene.text('She laughs in response. "No, this is one of my father\'s cars that I… borrowed. And before you ask, no, I don\'t have a licence, but the police around here don\'t give a shit."');
       // TODO-QSP: dynamic text: She stops at a red light and turns to you. "I really wish you had told that man ...
-      scene.text(`She stops at a red light and turns to you. "I really wish you had told that man everything he was asking for ${((st as any).pcs_nickname || '')}," she says It would have been very helpful to me."`);
+      scene.text(`She stops at a red light and turns to you. "I really wish you had told that man everything he was asking for ${((st as any).pcs_nickname ?? '')}," she says It would have been very helpful to me."`);
       scene.text('"What do you mean \'helpful to you?\' He was trying to get me to speak out against the Starlets!" you reply.');
       scene.text('Yeah, because he was given the evidence he needed."');
       scene.text('"What? How? By who?" you ask in confusion.');

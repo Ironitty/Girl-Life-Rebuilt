@@ -95,7 +95,7 @@ function enterTraining1(s: GameState, scene: SceneBuilder): void {
   scene.text('After 4 hours, the chief lifeguard calls an end to your training session.');
   scene.text('"Good job… Oh, my apologies. I haven\'t even asked you what your name is!" she smiles.');
   // TODO-QSP: dynamic text: You smile in return. "<<$pcs_firstname>>, but people just call me <<$pcs_nicknam...
-  scene.text(`You smile in return. "${((s as any).pcs_firstname || '')}, but people just call me ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`You smile in return. "${((s as any).pcs_firstname ?? '')}, but people just call me ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('"You can call me Maria. You can go and shower now, but be back tomorrow at the same time to finish your training."');
   // TODO-QSP: end
   scene.actions([
@@ -134,7 +134,7 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the empty pool with Maria, where you continue practicing what you\'ve already learned while also learning some more advanced techniques and the dangers around the pool that aren\'t related to the water itself.');
   scene.text('At the end of the session, Maria beckons you over.');
   // TODO-QSP: dynamic text: "Excellent work, <<$pcs_nickname>>. You''ve done all the required training and I...
-  scene.text(`"Excellent work, ${((s as any).pcs_nickname || '')}. You've done all the required training and I don't see any reasons why I shouldn't hire you. You can start next week. You can keep the uniform by the way. It's yours now."`);
+  scene.text(`"Excellent work, ${((s as any).pcs_nickname ?? '')}. You've done all the required training and I don't see any reasons why I shouldn't hire you. You can start next week. You can keep the uniform by the way. It's yours now."`);
   scene.text('You just give her nod before making your way to the locker room.');
   if (((s as any).pcs_hotcat ?? 0) >= 6) {
     scene.text('As you walk around the edge of the pool, you notice a cute, slightly muscular boy in red trunks checking you out.');
@@ -143,9 +143,9 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"Hey there, I\'m Vadim," he says with a flirty smile. "You must be the new girl Maria hired, no?"');
     // TODO-QSP: dynamic text: "That''s me," you reply. "I''m <<$pcs_nickname>>."
-    scene.text(`"That's me," you reply. "I'm ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"That's me," you reply. "I'm ${((s as any).pcs_nickname ?? '')}."`);
     // TODO-QSP: dynamic text: "A beautiful name for a beautiful girl," he smiles. "I''ll be seeing you around,...
-    scene.text(`"A beautiful name for a beautiful girl," he smiles. "I'll be seeing you around, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"A beautiful name for a beautiful girl," he smiles. "I'll be seeing you around, ${((s as any).pcs_nickname ?? '')}."`);
     if (qspFunc(s, 'pcs_has_attr', ' || ', 'body_ass_big', 'body_ass_heart', 'body_ass_bubble')) {
       scene.text('As you walk away, you sense him checking out your ass.');
     }
@@ -154,7 +154,7 @@ function enterTraining2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Excuse me, are you Vadim by any chance?" you ask and he stops to look at you.');
     scene.text('"Yeah, that\'s me. Who\'s asking?" he replies before he notices your outfit. "Oh. You\'re that new girl Maria hired, aren\'t you?"');
     // TODO-QSP: dynamic text: "That''s me," you smile. "I''m <<$pcs_nickname>>."
-    scene.text(`"That's me," you smile. "I'm ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"That's me," you smile. "I'm ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"Cool…" he says flatly. "I\'ll see you around I guess…"');
     scene.text('He brushes past you and starts flirting with some pretty girls in the pool, leaving you feeling a little insulted by how dismissive he was of you.');
   }
@@ -199,7 +199,7 @@ function enterStaffLockerRoom(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'pav_pool_lifeguard', 'cash');
     if (((st as any).temp_pay ?? 0) > 0) {
       // TODO-QSP: dynamic text: You collect your wages for the day (<<$func(''money'', ''string_profit'', temp_p...
-      scene.text(`You collect your wages for the day (${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))}) before leaving.`);
+      scene.text(`You collect your wages for the day (${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))}) before leaving.`);
     } else {
       scene.text('You head for the exit.');
     }
@@ -915,7 +915,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/shower/grope1.mp4');
     scene.text('You and Vadim embrace each other under the shower and he starts eagerly groping at your breasts before you guide his hand down to your clit. He smiles and starts teasing you as you in turn reach down and start jerking his cock in your hand.');
     // TODO-QSP: dynamic text: To your disappointment, it doesn''t grow that much bigger as he gets hard and yo...
-    scene.text(`To your disappointment, it doesn't grow that much bigger as he gets hard and you glance down to see that he's sporting a rather average ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock.`);
+    scene.text(`To your disappointment, it doesn't grow that much bigger as he gets hard and you glance down to see that he's sporting a rather average ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'bj', 3);
@@ -1029,7 +1029,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.text('He looks surprised. "Oh. Uh… I\'ve never fucked a girl in the ass before."');
     scene.text('"There\'s a first time for everything," you reply as you space your legs apart and bend over before pushing your ass out and spreading your cheeks, exposing your asshole.');
     // TODO-QSP: dynamic text: You feel him fumble around a little before he presses the tip of his <<dick>>cm ...
-    scene.text(`You feel him fumble around a little before he presses the tip of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock against your asshole and slowly pushes forward.`);
+    scene.text(`You feel him fumble around a little before he presses the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your asshole and slowly pushes forward.`);
     scene.text('You wince a little in pain as your asshole stretches, but his cock is small enough for you to comfortably take it without lube.');
     scene.text('He starts slowly fucking you, but gradually picks up the pace as time goes on.');
     scene.text('"Fuck, I never knew an asshole could be so tight!"');
@@ -1055,9 +1055,9 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/shower/bj4.mp4');
     // TODO-QSP: dynamic text: He doesn''t waste any time and immediately pushes you down onto your knees with ...
-    scene.text(`He doesn't waste any time and immediately pushes you down onto your knees with his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock in your face.`);
+    scene.text(`He doesn't waste any time and immediately pushes you down onto your knees with his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock in your face.`);
     // TODO-QSP: dynamic text: You take it into your mouth and start sucking, occasionally popping it out of yo...
-    scene.text(`You take it into your mouth and start sucking, occasionally popping it out of your mouth and licking the shaft. Vadim just groan loudly in pleasure as you suck on his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock.`);
+    scene.text(`You take it into your mouth and start sucking, occasionally popping it out of your mouth and licking the shaft. Vadim just groan loudly in pleasure as you suck on his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock.`);
     scene.text('After a few minutes, he pulls his dick out of your mouth and pulls you to your feet.');
     scene.text('"So which hole will it be today?" he asks with a knowing grin.');
     scene.actions([
@@ -1079,7 +1079,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/shower/doggy4.mp4');
     scene.text('"Hurry up and fuck my pussy!" you tell him, barely able to hide your frustration.');
     // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
-    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock against your slit before sliding it inside you.`);
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your slit before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck it!"');
     scene.text('You just roll your eyes and soon grow bored, despite Vadim\'s eagerness and the arousal of teasing your clit.');
@@ -1138,7 +1138,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/anal/shower9.mp4');
     scene.text('"Hurry up and fuck my ass!" you tell him, barely able to hide your frustration.');
     // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
-    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock against your asshole before sliding it inside you.`);
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your asshole before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck your slutty ass!"');
     scene.text('You just roll your eyes and soon grow bored, despite Vadim\'s eagerness and the arousal of teasing your clit.');
@@ -1171,7 +1171,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/shower/doggy4.mp4');
     scene.text('"Hurry up and fuck my pussy!" you tell him, barely able to hide your frustration.');
     // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
-    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock against your slit before sliding it inside you.`);
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your slit before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck it!"');
     scene.text('You just roll your eyes and soon grow bored, despite Vadim\'s eagerness and the arousal of teasing your clit.');
@@ -1230,7 +1230,7 @@ function enterVadimShowerSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/anal/shower9.mp4');
     scene.text('"Hurry up and fuck my ass!" you tell him, barely able to hide your frustration.');
     // TODO-QSP: dynamic text: You spin around and bend over for him as he eagerly rubs the tip of his <<dick>>...
-    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock against your asshole before sliding it inside you.`);
+    scene.text(`You spin around and bend over for him as he eagerly rubs the tip of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock against your asshole before sliding it inside you.`);
     scene.text('As he starts thrusting, you reach down and start rubbing your clit to feel some kind of pleasure, which Vadim notices.');
     scene.text('"That\'s right, slut! Tease your pussy as I fuck your slutty ass!"');
     scene.text('You just roll your eyes and soon grow bored despite Vadim\'s eagerness and the arousal of teasing your clit.');

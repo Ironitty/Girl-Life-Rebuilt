@@ -122,6 +122,7 @@ export const initialState = {
 
   trait_vars: {},
   arch_vars: {},
+  mc_inventory: {},
   arch_effects: {},
   skill_levels: {},
   fame: {},
@@ -277,6 +278,7 @@ export const initialState = {
 
   npcIndex: [],
   npcID: [],
+  npc_usedname: {},
   numnpc: 0,
   VKWoods: 0,
   picpRand: 0,
@@ -357,6 +359,10 @@ export const initialState = {
     purseNumber: 0,
   })),
   wardrobeDefaultPage: 'default1',
+  wardrobeDefaultPagePref: '',
+  wloc: '',
+  kamasutra_page: 0,
+  brothel_vars: {},
   defaultSportNumber: 0,
   defaultSchoolNumber: 0,
 

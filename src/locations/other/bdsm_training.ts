@@ -519,7 +519,7 @@ function enterDom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/suburb/bdsm_club/r2_2.jpg');
     scene.text('"Hello." you say to her, confidently.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>." She replies. "We were not formally introduced, I am M...
-    scene.text(`"Hello ${((st as any).pcs_nickname || '')}." She replies. "We were not formally introduced, I am Mistress Elektra, you may call me Elektra."`);
+    scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}." She replies. "We were not formally introduced, I am Mistress Elektra, you may call me Elektra."`);
     scene.text('She raises the whip and cracks it against the floor dramatically.');
     scene.text('"This is a simple listing of rules and such, I always found it terribly boring, so I find it more useful to demonstrate."');
     scene.text('"As you were told last time a sub can earn tips and one way is to help me in these sessions. Follow me."');

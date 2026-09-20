@@ -171,7 +171,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet1.jpg');
     // TODO-QSP: dynamic text: You slide up your top and show off your <a href="exec:gs ''obj_din'', ''show_tit...
-    scene.text(`You slide up your top and show off your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_tits/u0027); return false;">${((st as any).titsize || '')}</a> breasts.`);
+    scene.text(`You slide up your top and show off your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027obj_din/u0027, /u0027show_tits/u0027); return false;">${((st as any).titsize ?? '')}</a> breasts.`);
     scene.text('The owner licks his lips, "Hmm, he was definitely not lying about your top half. Ok, show me the rest."');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet9.jpg');
     scene.text('You take off your pants and show your fully nude body to the owner.');
@@ -194,7 +194,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pet shop/pet5.jpg');
     // TODO-QSP: dynamic text: The man unbuttons his pants and takes out his erect <<dick>> cm penis, "Now, I n...
-    scene.text(`The man unbuttons his pants and takes out his erect ${((st as any).dick || '')} cm penis, "Now, I need you to sit on your knees and suck this cock if you want to get to the last ingredient."`);
+    scene.text(`The man unbuttons his pants and takes out his erect ${((st as any).dick ?? '')} cm penis, "Now, I need you to sit on your knees and suck this cock if you want to get to the last ingredient."`);
     scene.text('You are almost certain you are being conned now, but the pussy licking you received just moments ago made you so horny that you couldn\'t stop now, even if you wanted.');
     scene.text('You do as you are told and take the dick in your mouth');
     scene.text('You start pleasuring him to the best of your abilities.');

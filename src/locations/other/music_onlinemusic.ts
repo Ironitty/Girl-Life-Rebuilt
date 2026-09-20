@@ -33,12 +33,12 @@ function enterLiveStream(s: GameState, scene: SceneBuilder): void {
       scene.img('images/pc/activities/music/gomixer_hero.jpg');
       scene.text('You set up your webcamera and start the streaming app on your computer. After settling down comfortably, you start to stream.');
       // TODO-QSP: dynamic text: Your fans tipped you <<$func(''money'', ''string_profit'', ml_superchats)>> for ...
-      scene.text(`Your fans tipped you ${qspFunc(s, 'money', 'string_profit', ((s as any).ml_superchats || ''))} for your performance.`);
+      scene.text(`Your fans tipped you ${qspFunc(s, 'money', 'string_profit', ((s as any).ml_superchats ?? ''))} for your performance.`);
     } else {
       scene.img('images/pc/activities/music/gomixer_hero.jpg');
       scene.text('You set up your phone on a little tri-pod and log into your account. After settling down comfortably, you start to stream.');
       // TODO-QSP: dynamic text: Your fans tipped you <<$func(''money'', ''string_profit'', ml_superchats)>> for ...
-      scene.text(`Your fans tipped you ${qspFunc(s, 'money', 'string_profit', ((s as any).ml_superchats || ''))} for your performance.`);
+      scene.text(`Your fans tipped you ${qspFunc(s, 'money', 'string_profit', ((s as any).ml_superchats ?? ''))} for your performance.`);
     }
   } else {
     (s as any).ml_streamtime = (Math.floor(Math.random() * 60) + 1);

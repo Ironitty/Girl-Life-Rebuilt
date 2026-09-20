@@ -64,7 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You watch the cars drive off before turning back to the guys. Vitek is clearly angry that his plan to get back at Fedor failed, but there\'s nothing he can do about it without getting on Vadim\'s bad side himself.');
       scene.text('He angrily turns to Dan and Vasily. "Come on guys, let\'s get out of here. I need a beer."');
       // TODO-QSP: dynamic text: As they leave, Fedor comes over to you. "Thank you, <<$pcs_firstname>>, thank yo...
-      scene.text(`As they leave, Fedor comes over to you. "Thank you, ${((st as any).pcs_firstname || '')}, thank you! Thank you so much, you saved me! I'll pay you back, I promise! I can't pay it all at once, but I'll try to save up."`);
+      scene.text(`As they leave, Fedor comes over to you. "Thank you, ${((st as any).pcs_firstname ?? '')}, thank you! Thank you so much, you saved me! I'll pay you back, I promise! I can't pay it all at once, but I'll try to save up."`);
       scene.text('You assure him that\'s not necessary and get ready to leave the school grounds.');
       scene.actions([
         { label: 'Leave the school courtyard', goto: ['pav_residential', ''] },

@@ -24,17 +24,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).week ?? 0) === 5  &&  (((s as any).hour ?? 0) === 20  &&  ((s as any).minut ?? 0) > 30))  ||  (((s as any).week ?? 0) === 6  &&  (((s as any).hour ?? 0) === 17  &&  ((s as any).minut ?? 0) > 30))) {
     if (((s as any).AlbinaQW ?? 0)?.['know_stripper'] === 1) {
       // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, but I have to go to work."
-      scene.text(`"Sorry ${((s as any).pcs_nickname || '')}, but I have to go to work."`);
+      scene.text(`"Sorry ${((s as any).pcs_nickname ?? '')}, but I have to go to work."`);
       scene.text('She opens her wardrobe and pulls out a skimpy looking outfit that she places in a bag before slinging it over her shoulder.');
       scene.text('"Maybe I\'ll come with you," you reply with a smile and she laughs.');
       // TODO-QSP: dynamic text: "You''re not getting a friends discount. Not even at the bar," she jokes as you ...
-      scene.text(`"You're not getting a friends discount. Not even at the bar," she jokes as you both head out of her room. "See you around, ${((s as any).pcs_nickname || '')}," she says before heading to the elevator.`);
+      scene.text(`"You're not getting a friends discount. Not even at the bar," she jokes as you both head out of her room. "See you around, ${((s as any).pcs_nickname ?? '')}," she says before heading to the elevator.`);
       scene.actions([
         { label: 'Leave', goto: ['uni_dorm', 'seventh_floor'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, but I have somewhere I need to be."
-      scene.text(`"Sorry ${((s as any).pcs_nickname || '')}, but I have somewhere I need to be."`);
+      scene.text(`"Sorry ${((s as any).pcs_nickname ?? '')}, but I have somewhere I need to be."`);
       scene.text('She opens her wardrobe and stuffs something inside a bag that she then slings over her shoulder before hurrying you over to the door.');
       scene.text('"What\'s the rush about?" you ask, but she avoids answering.');
       scene.text('"No time to explain, I need to go now!"');
@@ -48,7 +48,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.img('images/locations/city/island/university/dorm/albinaroom/room.jpg');
       // TODO-QSP: dynamic text: Albina glances at her phone and notices the time. "Sorry <<$pcs_nickname>>, but ...
-      scene.text(`Albina glances at her phone and notices the time. "Sorry ${((s as any).pcs_nickname || '')}, but I need to leave before I'm late for lunch with Mama."`);
+      scene.text(`Albina glances at her phone and notices the time. "Sorry ${((s as any).pcs_nickname ?? '')}, but I need to leave before I'm late for lunch with Mama."`);
       scene.text('You nod your head. "Sure. We\'ll talk some other time."');
       scene.text('She walks you out of her room and to the elevator. You take it down to the first floor and she bids you farewell before walking out.');
       scene.actions([
@@ -60,7 +60,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           scene.img('images/locations/city/island/university/dorm/albinaroom/room.jpg');
           // TODO-QSP: dynamic text: Albina texts someone on her phone before looking at you. "Sorry <<$pcs_nickname>...
-          scene.text(`Albina texts someone on her phone before looking at you. "Sorry ${((s as any).pcs_nickname || '')}, but I've been invited somewhere."`);
+          scene.text(`Albina texts someone on her phone before looking at you. "Sorry ${((s as any).pcs_nickname ?? '')}, but I've been invited somewhere."`);
           scene.text('"Where?" you ask.');
           scene.text('She smiles. "If you need to know, I\'m going on a booty call."');
           scene.text('"With Ermias?" you ask with a smile.');
@@ -73,7 +73,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           // TODO-QSP: dynamic text: Albina texts someone on her phone before looking at you. "Sorry <<$pcs_nickname>...
-          scene.text(`Albina texts someone on her phone before looking at you. "Sorry ${((s as any).pcs_nickname || '')}, but I need to… be somewhere else."`);
+          scene.text(`Albina texts someone on her phone before looking at you. "Sorry ${((s as any).pcs_nickname ?? '')}, but I need to… be somewhere else."`);
           scene.text('You look back at her. "Where?"');
           scene.text('She smiles. "I\'m going on a booty call."');
           scene.text('"Oh? Who with?" you ask.');
@@ -94,7 +94,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           scene.img('images/locations/city/island/university/dorm/albinaroom/room.jpg');
           // TODO-QSP: dynamic text: Albina glances at her phone and notices the time. "It''s getting late, <<$pcs_ni...
-          scene.text(`Albina glances at her phone and notices the time. "It's getting late, ${((s as any).pcs_nickname || '')}. Time for you to go."`);
+          scene.text(`Albina glances at her phone and notices the time. "It's getting late, ${((s as any).pcs_nickname ?? '')}. Time for you to go."`);
           scene.text('You nod your head. "Sure. We\'ll talk some other time."');
           scene.text('She walks you to the door and closes it behind you.');
           scene.actions([
@@ -393,7 +393,7 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
         if (((st as any).albplay ?? 0) === 1) {
           scene.text('Although you try your best, Albina proves a worthy opponent and barely defeats you.');
           // TODO-QSP: dynamic text: "You''re my bitch now, <<$pcs_nickname>>!" she laughs as you both undress and Al...
-          scene.text(`"You're my bitch now, ${((st as any).pcs_nickname || '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
+          scene.text(`"You're my bitch now, ${((st as any).pcs_nickname ?? '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
           scene.actions([
             { label: 'Get fucked with the strapon', goto: ['albina_sex_scenes', 'receive_strapon'] },
           ]);
@@ -401,7 +401,7 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
           if ((!((st as any).albplay ?? 0))) {
             scene.text('Although you try your best, Albina simply outplays you at every turn. You stand no chance, and she easily beats you.');
             // TODO-QSP: dynamic text: "You''re my bitch now, <<$pcs_nickname>>!" she laughs as you both undress and Al...
-            scene.text(`"You're my bitch now, ${((st as any).pcs_nickname || '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
+            scene.text(`"You're my bitch now, ${((st as any).pcs_nickname ?? '')}!" she laughs as you both undress and Albina slides the harness on with a smirk on her face.`);
             scene.actions([
               { label: 'Get fucked with the strapon', goto: ['albina_sex_scenes', 'receive_strapon'] },
             ]);
@@ -415,7 +415,7 @@ function enterGameBet(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/albinahome/game.jpg');
     scene.text('You\'re not sure why, but part of you <i>wants</i> her to use the strap-on on you, so you purposefully lose the game.');
     // TODO-QSP: dynamic text: Albina looks at you suspiciously with a raised brow before smiling. "You''re my ...
-    scene.text(`Albina looks at you suspiciously with a raised brow before smiling. "You're my bitch now, ${((st as any).pcs_nickname || '')}!"`);
+    scene.text(`Albina looks at you suspiciously with a raised brow before smiling. "You're my bitch now, ${((st as any).pcs_nickname ?? '')}!"`);
     scene.text('You both undress and Albina slides the harness on with a smirk on her face.');
     scene.actions([
       { label: 'Get fucked with the strapon', goto: ['albina_sex_scenes', 'receive_strapon'] },

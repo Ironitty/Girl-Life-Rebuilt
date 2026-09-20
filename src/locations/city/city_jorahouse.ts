@@ -211,7 +211,7 @@ function enterEv13(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', 100);
   (s as any).pose = 3;
   (s as any).picrand = (Math.floor(Math.random() * 3) + 7);
-  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
   scene.text('Jora fucks you in your pussy.');
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'stat', '');
@@ -241,7 +241,7 @@ function enterEv14(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 30, ((s as any).npcID ?? 0), 'sub', 'rough');
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 3) + 11);
-  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: end
   scene.actions([
     { label: '…', handler: (st: GameState) => {
@@ -268,13 +268,13 @@ function enterEv15(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID ?? 0), 'sub');
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 3) + 15);
-  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
     scene.text('Jora discharges himself on your face');
     (st as any).picrand = (Math.floor(Math.random() * 3) + 18);
-    scene.img(`images/characters/city/jora/sex/klof${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/jora/sex/klof${((st as any).picrand ?? '')}.jpg`);
     scene.text('You get dressed and get ready to go home.');
     scene.text('Jora hands you money, "Earned yourself a crumb."');
     qspCall(st, 'arousal', 'end');
@@ -303,7 +303,7 @@ function enterEv16(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', 100);
   (s as any).pose = 3;
   (s as any).picrand = (Math.floor(Math.random() * 3) + 7);
-  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
   scene.text('Semyon fucks you in your pussy.');
   qspCall(s, 'arousal', 'vaginal', 30, ((s as any).npcID1 ?? 0), 'sub');
   qspCall(s, 'stat', '');
@@ -333,7 +333,7 @@ function enterEv17(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 30, ((s as any).npcID1 ?? 0), 'sub', 'rough');
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 3) + 11);
-  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -361,7 +361,7 @@ function enterEv18(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID1 ?? 0), 'sub');
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 3) + 15);
-  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/characters/city/jora/sex/klof${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -397,15 +397,15 @@ function enterEv19(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = (Math.floor(Math.random() * 3) + 1);
   if (((s as any).picrand ?? 0) === 1) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/city/jora/sex/klof21.jpg"></ce...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/city/jora/sex/klof21.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/jora/sex/klof21.jpg"></center>`);
   }
   if (((s as any).picrand ?? 0) === 2) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/city/jora/sex/klof22.jpg"></ce...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/city/jora/sex/klof22.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/jora/sex/klof22.jpg"></center>`);
   }
   if (((s as any).picrand ?? 0) === 3) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/city/jora/sex/klof23.jpg"></ce...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/city/jora/sex/klof23.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/city/jora/sex/klof23.jpg"></center>`);
   }
   scene.text('Jora brutally fucks you in your mouth and Semyon drills your pussy.');
   qspCall(s, 'arousal', 'bj', 30, ((s as any).npcID ?? 0), 'sub', 'rough', 'deepthroat', 'group');
@@ -983,7 +983,7 @@ function enterEv43(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/jora/bas.jpg');
   scene.text('You change into your swimwear and wait for Jora.');
   // TODO-QSP: dynamic text: Jora finds you a spot by the pool and tells you, "Lie down <<$pcs_nickname>> wai...
-  scene.text(`Jora finds you a spot by the pool and tells you, "Lie down ${((s as any).pcs_nickname || '')} wait until more people gather." He goes for a swim.`);
+  scene.text(`Jora finds you a spot by the pool and tells you, "Lie down ${((s as any).pcs_nickname ?? '')} wait until more people gather." He goes for a swim.`);
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([

@@ -555,7 +555,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Buy a snack (' + String(qspFunc(s, 'money', 'string_price', ((st as any).snack_price || '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Buy a snack (' + String(qspFunc(s, 'money', 'string_price', ((st as any).snack_price ?? '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'pay', ((st as any).snack_price ?? 0), 'cash');
     qspCall(st, 'food', 'snack_stats');
@@ -579,7 +579,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Buy a juice (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price || '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Buy a juice (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price ?? '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'pay', ((st as any).drink_price ?? 0), 'cash');
     qspCall(st, 'beverage', 'juice_stats');
@@ -592,7 +592,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_pool', 'cafeteria'] },
     ]);
   } },
-        { label: '', labelFn: (s: GameState) => 'Buy a coffee (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price || '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Buy a coffee (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price ?? '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'pay', ((st as any).drink_price ?? 0), 'cash');
     qspCall(st, 'beverage', 'coffee_stats');
@@ -605,7 +605,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_pool', 'cafeteria'] },
     ]);
   } },
-        { label: '', labelFn: (s: GameState) => 'Buy a tea (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price || '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Buy a tea (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price ?? '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'pay', ((st as any).drink_price ?? 0), 'cash');
     qspCall(st, 'beverage', 'tea_stats');
@@ -618,7 +618,7 @@ function enterCafeteria(s: GameState, scene: SceneBuilder): void {
   }, goto: ['pav_pool', 'cafeteria'] },
     ]);
   } },
-        { label: '', labelFn: (s: GameState) => 'Buy an energy drink (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price || '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Buy an energy drink (' + String(qspFunc(s, 'money', 'string_price', ((st as any).drink_price ?? '')) ?? '') + ') (0:05)', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'money', 'pay', ((st as any).drink_price ?? 0), 'cash');
     qspCall(st, 'beverage', 'energy_drink_stats');
@@ -998,7 +998,7 @@ function enterLifeguardQuit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/lifeguard_office.jpg');
   scene.text('You make your way to Maria\'s office and knock on the door before entering.');
   // TODO-QSP: dynamic text: Maria smiles at you from behind her desk. "Hello <<$pcs_firstname>>. How can I h...
-  scene.text(`Maria smiles at you from behind her desk. "Hello ${((s as any).pcs_firstname || '')}. How can I help you?"`);
+  scene.text(`Maria smiles at you from behind her desk. "Hello ${((s as any).pcs_firstname ?? '')}. How can I help you?"`);
   scene.text('"I was thinking of moving on from this job," you reply.');
   scene.text('"I understand. This isn\'t the most glamorous job, especially for a young woman like yourself who probably has ambitions beyond this town, yes?"');
   scene.text('You just smile and nod as she types something into her computer.');
@@ -1031,7 +1031,7 @@ function enterLifeguardOffer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/lifeguard_office.jpg');
   // TODO-QSP: dynamic text: "I need to speak with you, <<$pcs_firstname>>," she says as she approaches you. ...
-  scene.text(`"I need to speak with you, ${((s as any).pcs_firstname || '')}," she says as she approaches you. "Come with me to my office."`);
+  scene.text(`"I need to speak with you, ${((s as any).pcs_firstname ?? '')}," she says as she approaches you. "Come with me to my office."`);
   scene.text('You follow her to her office and she motions for you to take a seat.');
   scene.text('"We need to discuss your employment here," she says and your heart starts racing as she sits across from you.');
   scene.text('"You\'ve been working with us far longer than I originally expected and have proven to be a most reliable employee, far better than the girl you\'re covering, which brings me to my next point."');

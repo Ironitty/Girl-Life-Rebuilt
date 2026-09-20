@@ -141,7 +141,7 @@ function enterWork_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
   // TODO-QSP: dynamic text: "Good job <<$pcs_nickname>>, but time has come to get to work darling."
-  scene.text(`"Good job ${((s as any).pcs_nickname || '')}, but time has come to get to work darling."`);
+  scene.text(`"Good job ${((s as any).pcs_nickname ?? '')}, but time has come to get to work darling."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Trade', handler: (st: GameState) => {
@@ -160,7 +160,7 @@ function enterWork_1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_4.jpg');
     // TODO-QSP: dynamic text: Arthur comes up behind you and firmly grabs a handful of your ass. "<<$pcs_nickn...
-    scene.text(`Arthur comes up behind you and firmly grabs a handful of your ass. "${((st as any).pcs_nickname || '')}, here you go, you earned this." He hands you ${qspFunc(s, 'money', 'string_profit', 1250)}.`);
+    scene.text(`Arthur comes up behind you and firmly grabs a handful of your ass. "${((st as any).pcs_nickname ?? '')}, here you go, you earned this." He hands you ${qspFunc(s, 'money', 'string_profit', 1250)}.`);
     scene.text('"I like helping you very much, thank you very much Arturik." You look at him with grateful eyes and take the money.');
     scene.text('"Well, you know, the sight of your beautiful eyes nearly overwhelm me every time I see them. So does your tight ass." He says, smiling lecherously at you');
     scene.text('You turn and give him a quick shake of your rump before departing.');
@@ -197,7 +197,7 @@ function enterWork_2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/arturqw_7.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> that looks perfect! Now that the accounts are taken care of, ...
-    scene.text(`"${((st as any).pcs_nickname || '')} that looks perfect! Now that the accounts are taken care of, I can relax." Arthur says, leaning back in his chair in a relaxed pose.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')} that looks perfect! Now that the accounts are taken care of, I can relax." Arthur says, leaning back in his chair in a relaxed pose.`);
     scene.text('"Yes, but you\'ve still got a lot I haven\'t finished yet. There is far more to do." You say, concerned.');
     scene.text('"Oh well, we will have time to figure it all out. Some other night, perhaps." He says nonchalantly.');
     scene.text('"Now let\'s go eat barbecue and drink Chacha brandy. Then I can grab you by that fine ass of yours." Arthur suggests as he walks over and begins roughly palming your ass.');

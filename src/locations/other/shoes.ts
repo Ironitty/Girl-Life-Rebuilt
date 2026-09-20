@@ -670,7 +670,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopdanilovich_shoe2
   if (qspFunc(s, 'shoes', 'can_wear', 'danilovich', ((s as any).i ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:gt ''shoe_view'', ''view_item'', ''wardrobe'', ''danilovich'', <<i...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shoe_view/u0027, /u0027view_item/u0027, /u0027wardrobe/u0027); return false;"><img height="250" src="images/pc/items/danilovich/shoes/${((s as any).i || '')}.jpg"/></a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027shoe_view/u0027, /u0027view_item/u0027, /u0027wardrobe/u0027); return false;"><img height="250" src="images/pc/items/danilovich/shoes/${((s as any).i ?? '')}.jpg"/></a>`);
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) <= 40) {

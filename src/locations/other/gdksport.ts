@@ -86,27 +86,27 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).gsAboBeg ?? 0) > 0  &&  ((s as any).npc_pregtalk ?? 0)?.['A131'] === 0) {
       if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg || '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg ?? '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'v_neg', '<br>You are too tired to do this. Re...
   } },
         ]);
       } else {
         if (((s as any).pcs_energy ?? 0) < 20) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg || '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg ?? '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
           ]);
         } else {
           if (((s as any).pcs_hydra ?? 0) < 20) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg || '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg ?? '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
             ]);
           } else {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg || '') ?? '') + ' lessons remaining (2:00)', goto: ['gdksport', 'racing2'] },
+              { label: '', labelFn: (s: GameState) => 'Take a track lesson. You have ' + String(((s as any).gsAboBeg ?? '') ?? '') + ' lessons remaining (2:00)', goto: ['gdksport', 'racing2'] },
             ]);
           }
         }
@@ -116,27 +116,27 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).gsAboDance ?? 0) > 0  &&  (((s as any).starlets_on ?? 0) === 0  ||  ((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] > 0  ||  ((s as any).hour ?? 0) < 15)) {
       if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance || '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance ?? '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'v_neg', '<br>You are too tired to do this. Re...
   } },
         ]);
       } else {
         if (((s as any).pcs_energy ?? 0) < 20) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance || '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance ?? '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
           ]);
         } else {
           if (((s as any).pcs_hydra ?? 0) < 20) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance || '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance ?? '') ?? '') + ' lessons remaining (2:00)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
             ]);
           } else {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance || '') ?? '') + ' lessons remaining (2:00)', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Take a dance lesson. You have ' + String(((s as any).gsAboDance ?? '') ?? '') + ' lessons remaining (2:00)', handler: (st: GameState) => {
     if ((!(Math.floor(Math.random() * 6) + 0))) {
       qspGoto(st, 'danceGev', '');
     } else {
@@ -232,7 +232,7 @@ function enterRacing1(s: GameState, scene: SceneBuilder): void {
   scene.text('Race training costs 300₽ for 30 lessons.');
   if (((s as any).gsAboBeg ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <<gsAboBeg>> lessons remaining.
-    scene.text(`You have ${((s as any).gsAboBeg || '')} lessons remaining.`);
+    scene.text(`You have ${((s as any).gsAboBeg ?? '')} lessons remaining.`);
   }
   if (((s as any).gsAboBeg ?? 0) <= 0) {
     scene.actions([
@@ -264,7 +264,7 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
   scene.text('Dance lessons cost 300₽ for 30 lessons.');
   if (((s as any).gsAboDance ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <<gsAboDance>> lessons remaining.
-    scene.text(`You have ${((s as any).gsAboDance || '')} lessons remaining.`);
+    scene.text(`You have ${((s as any).gsAboDance ?? '')} lessons remaining.`);
   }
   if (((s as any).gsAboDance ?? 0) <= 0) {
     scene.actions([
@@ -287,7 +287,7 @@ function enterDance1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Cancel lessons', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: Really cancel your remaining <<gsAboDance>> paid for lessons?
-    scene.text(`Really cancel your remaining ${((st as any).gsAboDance || '')} paid for lessons?`);
+    scene.text(`Really cancel your remaining ${((st as any).gsAboDance ?? '')} paid for lessons?`);
     scene.actions([
       { label: 'Cancel lessons', handler: (st: GameState) => {
     (st as any).gsAboDance = 0;
@@ -425,7 +425,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You enter the shower and turn the water on. As you start lathering up your body with a washcloth, you suddenly hear the door creak open and remember that you agreed not to lock it for Ivan.');
     // TODO-QSP: dynamic text: You look around and see him standing there looking at you with a smile. "Hey <<$...
-    scene.text(`You look around and see him standing there looking at you with a smile. "Hey ${((s as any).pcs_nickname || '')}. The men's shower is full, so I thought I could join you instead?"`);
+    scene.text(`You look around and see him standing there looking at you with a smile. "Hey ${((s as any).pcs_nickname ?? '')}. The men's shower is full, so I thought I could join you instead?"`);
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -455,7 +455,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).kotovVSprohorov ?? 0) === 1  ||  (((s as any).IvanShowerQW ?? 0) === 2  &&  (Math.floor(Math.random() * 4) + 0) === 1))  &&  ((s as any).ShowerIvan ?? 0) < 3) {
       scene.text('You enter the shower and turn the water on. As you lather your body with a washcloth, you suddenly hear the door creak open and remember that you forgot to lock it.');
       // TODO-QSP: dynamic text: You look around and see Ivan standing in the doorway looking at you. "Hi <<$pcs_...
-      scene.text('You look around and see Ivan standing in the doorway looking at you. "Hi ' + ((s as any).pcs_nickname || '') + '. Can I join you? The men\'s shower is full\' + iif(IvanShowerQW = 2, \' again\', \') + \'."');
+      scene.text('You look around and see Ivan standing in the doorway looking at you. "Hi ' + ((s as any).pcs_nickname ?? '') + '. Can I join you? The men\'s shower is full\' + iif(IvanShowerQW = 2, \' again\', \') + \'."');
       (s as any).kotovVSprohorov = 2;
       (s as any).IvanShowerQW = 2;
       qspCall(s, 'willpower', 'bj', 'resist');
@@ -565,7 +565,7 @@ function enterShowerWithIvan(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A3');
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/shower/shower.jpg');
     // TODO-QSP: dynamic text: You take your washcloth and begin to lather Ivan''s body. As you move around him...
-    scene.text(`You take your washcloth and begin to lather Ivan's body. As you move around him, you notice his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock begin to get hard as Ivan caresses you.`);
+    scene.text(`You take your washcloth and begin to lather Ivan's body. As you move around him, you notice his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock begin to get hard as Ivan caresses you.`);
     scene.text('After a few minutes, you feel his hands on your shoulders as he gently but firmly pushes you down to your knees.');
     qspCall(st, 'arousal', 'foreplay', 5);
     qspCall(st, 'stat', '');
@@ -575,7 +575,7 @@ function enterShowerWithIvan(s: GameState, scene: SceneBuilder): void {
     ((st as any).ivanQW = (st as any).ivanQW ?? {})['sex'] = ((st as any).ivanQW['sex'] ?? 0) + (1);
     scene.img('images/shared/sex/blowjob/shover.jpg');
     // TODO-QSP: dynamic text: You slowly sink to your knees in front of Ivan and part your lips, letting his <...
-    scene.text(`You slowly sink to your knees in front of Ivan and part your lips, letting his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock slide into your mouth.`);
+    scene.text(`You slowly sink to your knees in front of Ivan and part your lips, letting his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock slide into your mouth.`);
     scene.text('Your lips tightly wrap around Ivan\'s solid rod and you start sucking before he suddenly pulls his dick out of your mouth and takes you by the hand, pulling you back up to your feet. He brings his lips to your breast and bliss sweeps over you as he suckles your stiff nipple.');
     scene.text('Releasing your nipple with a wet pop, he pushes you back onto your knees before sliding his cock back into your mouth.');
     qspCall(st, 'arousal', 'bj', 5, 'sub', 'deepthroat');
@@ -622,7 +622,7 @@ function enterShowerWithIvan(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/shared/sex/cum/mouth/cum49.jpg');
     // TODO-QSP: dynamic text: Expecting to feel his <<dick>>cm <<$dick_girth>> cock slide into your pussy at a...
-    scene.text(`Expecting to feel his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock slide into your pussy at any moment, you're surprised when you feel it pressing against your asshole instead.`);
+    scene.text(`Expecting to feel his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock slide into your pussy at any moment, you're surprised when you feel it pressing against your asshole instead.`);
     scene.text('"Wrong hole, Ivan!" you say, but he just snorts in response before he pushes the head of his cock into your ass, causing you to moan in a mixture of pain and pleasure.');
     scene.text('He takes it slow, giving you time to adjust before he pushes it in deeper, slowly working himself into your ass.');
     scene.text('You brace yourself against the wall with one hand while using the other to rub your clit. After a while, you feel your ass starting to get sore and your moans of pleasure start to turn into grunts of pain.');
@@ -667,7 +667,7 @@ function enterShowerWithIvan(s: GameState, scene: SceneBuilder): void {
     scene.text('As you bend over, you feel Ivan\'s hand stroking your ass before his finger starts to massage your anus.');
     scene.text('"Uh… That\'s my <i>other</i> hole, Ivan…" you tell him.');
     // TODO-QSP: dynamic text: "Yeah, I know," he snorts in response before he pushes the head of his <<dick>>c...
-    scene.text(`"Yeah, I know," he snorts in response before he pushes the head of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock into your ass, causing you to moan in a mixture of pain and pleasure. He takes it slow, giving you time to adjust before he pushes it in deeper, slowly working himself into your ass.`);
+    scene.text(`"Yeah, I know," he snorts in response before he pushes the head of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your ass, causing you to moan in a mixture of pain and pleasure. He takes it slow, giving you time to adjust before he pushes it in deeper, slowly working himself into your ass.`);
     scene.text('You brace yourself against the wall with one hand while using the other to rub your clit as you buck your hips back against him, fucking him as much as he is fucking you.');
     qspCall(st, 'arousal', 'anal', 5, 'sub', 'rough');
     qspCall(st, 'arousal', 'clit_finger', (-5));
@@ -727,11 +727,11 @@ function enterFedorFirstDate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fedorkozbreak ?? 0) === 1) {
     scene.text('You enter the sports club and see Fedor standing by the front door. He looks as though he\'s waiting for someone and as soon as he sees you, he flashes you a smile and approaches with an affable smile on his face.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>," he says with a warm smile. He pauses for a moment, t...
-    scene.text(`"Hello ${((s as any).pcs_firstname || '')}," he says with a warm smile. He pauses for a moment, then reaches into his pockets and pulls out 2 tickets. "Here's the deal. I know that we had a bit of a bumpy relationship before, but I'd like to try again. So what do you say? Wanna go on another date with me?"`);
+    scene.text(`"Hello ${((s as any).pcs_firstname ?? '')}," he says with a warm smile. He pauses for a moment, then reaches into his pockets and pulls out 2 tickets. "Here's the deal. I know that we had a bit of a bumpy relationship before, but I'd like to try again. So what do you say? Wanna go on another date with me?"`);
   } else {
     scene.text('You enter the sports club and see Fedor standing by the front door. He looks as though he\'s waiting for someone and as soon as he sees you, his eyes light up and he approaches you with an affable smile on his face.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>," he says with a warm smile. He pauses for a moment, t...
-    scene.text(`"Hello ${((s as any).pcs_firstname || '')}," he says with a warm smile. He pauses for a moment, then reaches into his pockets and pulls out 2 tickets. "Here's the deal. I have an extra ticket to the movies and I'd like know if you would be up for a good comedy?"`);
+    scene.text(`"Hello ${((s as any).pcs_firstname ?? '')}," he says with a warm smile. He pauses for a moment, then reaches into his pockets and pulls out 2 tickets. "Here's the deal. I have an extra ticket to the movies and I'd like know if you would be up for a good comedy?"`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -751,7 +751,7 @@ function enterFedorFirstDate(s: GameState, scene: SceneBuilder): void {
     scene.text('Fedor presents the tickets at the entrance and you walk into the theater. You look around and notice that the seats are mostly empty, so Fedor leads you to the front row and you both sit down.');
     scene.text('The lights dim and the movie starts. Fedor sits motionless and only occasionally glances at you. The movie is quite interesting and you can\'t help but laugh occasionally at the wackiness of it.');
     // TODO-QSP: dynamic text: When the movie ends, the lights turn on and Fedor walks you out. "You seem like ...
-    scene.text(`When the movie ends, the lights turn on and Fedor walks you out. "You seem like a cool girl, ${((st as any).pcs_firstname || '')}. Maybe we could go out together? What do you say?"`);
+    scene.text(`When the movie ends, the lights turn on and Fedor walks you out. "You seem like a cool girl, ${((st as any).pcs_firstname ?? '')}. Maybe we could go out together? What do you say?"`);
     scene.actions([
       { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A5', 20);

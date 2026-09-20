@@ -359,28 +359,28 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'nichChoreSkipInspect'
   }
   scene.actions([
-    { label: '', labelFn: (s: GameState) => String(((s as any).nichChoreActCaption || '') ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).nichChoreActCaption ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: :nichChoreSkipInspect
     qspCall(st, 'stat', '');
-    scene.img(`${((st as any).nichTempPic || '')}`);
+    scene.img(`${((st as any).nichTempPic ?? '')}`);
     // TODO-QSP: dynamic text: <<$nichChoreDesc>>
-    scene.text(`${((st as any).nichChoreDesc || '')}`);
+    scene.text(`${((st as any).nichChoreDesc ?? '')}`);
     if ((!((st as any).nichOutfitState ?? 0))) {
       scene.text('<b><font color = red>You have to change into an appropriate outfit before cleaning up.</font></b>');
     } else {
       if (((st as any).nichChoreState ?? 0)?.[String((st as any).nichChoreID ?? 0)] > 0) {
         if (((st as any).nichTimeDiligent ?? 0) > 0) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichTimeDiligent || '') ?? '') + ' minutes) Clean diligently', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichTimeDiligent ?? '') ?? '') + ' minutes) Clean diligently', handler: (st: GameState) => {
     qspGoto(st, 'nichChore', 'work', '3');
   } },
           ]);
         }
         scene.actions([
-          { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichtTimeQuick || '') ?? '') + ' minutes) Clean quickly', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichtTimeQuick ?? '') ?? '') + ' minutes) Clean quickly', handler: (st: GameState) => {
     qspGoto(st, 'nichChore', 'work', '1');
   } },
-          { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichTimeNormal || '') ?? '') + ' minutes) Clean normally', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => '(' + String(((st as any).nichTimeNormal ?? '') ?? '') + ' minutes) Clean normally', handler: (st: GameState) => {
     qspGoto(st, 'nichChore', 'work', '2');
   } },
         ]);
@@ -411,7 +411,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             scene.img('images/characters/city/tanya/encounter/dom1.jpg');
             scene.text('When you start cleaning Tanya approaches you from behind and smacks you on your butt.');
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, don''t miss that edge over there." she points at a small...
-            scene.text(`"Hey ${((s as any).pcs_nickname || '')}, don't miss that edge over there." she points at a small mess she obviously created on purpose.`);
+            scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, don't miss that edge over there." she points at a small mess she obviously created on purpose.`);
             scene.actions([
 { label: 'Comply', handler: (st: GameState) => {
     ((st as any).nichTanya = (st as any).nichTanya ?? {})['Dominance'] = ((st as any).nichTanya['Dominance'] ?? 0) + (2);
@@ -422,7 +422,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'nichChore', 'work', ARGS[1], 1
   } },
     ]);
-  } },,
+  } },
 { label: 'Tell her to stop this', handler: (st: GameState) => {
     ((st as any).nichTanya = (st as any).nichTanya ?? {})['Dominance'] = ((st as any).nichTanya['Dominance'] ?? 0) - (3);
     scene.text('She looks a little bit disappointed as you tell her that you are not in the mood for this right now and want to focus on your work.');
@@ -768,7 +768,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   (s as any).nichI = 0;
   // TODO-QSP: :nichChoreResultLoop
   if (((s as any).nichRand ?? 0) <= ((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]) {
-    scene.img(`${((s as any).nichTempPic || '')}`);
+    scene.img(`${((s as any).nichTempPic ?? '')}`);
     // TODO-QSP: $nichChoreDesc
   } else {
     (s as any).nichRand = ((s as any).nichRand ?? 0) - (((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]);

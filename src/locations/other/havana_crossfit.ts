@@ -24,7 +24,7 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/gym/crossfit/start.jpg');
   scene.text('This crossfit box might not look like it, but it\'s said to be one of the best in the region.');
   // TODO-QSP: dynamic text: Today''s exercise is <<$todays_crossfit_wod>>.
-  scene.text(`Today's exercise is ${((s as any).todays_crossfit_wod || '')}.`);
+  scene.text(`Today's exercise is ${((s as any).todays_crossfit_wod ?? '')}.`);
   scene.text('It consists of:');
   qspCall(s, 'havana_crossfit_funcs', '', ((s as any).todays_crossfit_wod ?? 0));
   if (((s as any).crossfit_first ?? 0) === 1) {
@@ -36,21 +36,21 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Start the exercise  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Start the exercise  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
     ]);
   } else {
     if (((s as any).pcs_energy ?? 0) < 20) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Start the exercise  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Start the exercise  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this exe...
   } },
       ]);
     } else {
       if (((s as any).pcs_hydra ?? 0) < 20) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Start the exercise  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Start the exercise  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this ex...
   } },
         ]);
@@ -71,7 +71,7 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
         { label: 'Check your score', handler: (st: GameState) => {
     (st as any).resultstring = qspFunc(s, 'havana_crossfit_funcs', 'recordstring', ((st as any).todays_crossfit_wod ?? 0), ((st as any).current_wod_score ?? 0));
     // TODO-QSP: dynamic text: You successfully finish the workout <<$pcs_nickname>> in <<$resultstring>>
-    scene.text(`You successfully finish the workout ${((st as any).pcs_nickname || '')} in ${((st as any).resultstring || '')}`);
+    scene.text(`You successfully finish the workout ${((st as any).pcs_nickname ?? '')} in ${((st as any).resultstring ?? '')}`);
     if (((st as any).personal_wod_record ?? 0)?.[String((st as any).todays_crossfit_wod ?? 0)] === 0) {
       ((st as any).personal_wod_record = (st as any).personal_wod_record ?? {})[String((st as any).todays_crossfit_wod ?? 0)] = ((st as any).current_wod_score ?? 0);
     } else {
@@ -90,10 +90,10 @@ function enterBox(s: GameState, scene: SceneBuilder): void {
         if (((st as any).box_wod_record_holder ?? 0)?.[String((st as any).todays_crossfit_wod ?? 0)] !== ((st as any).pcs_nickname ?? 0)) {
           (st as any).previous_record_holder = ((st as any).box_wod_record_holder ?? 0)?.[String((st as any).todays_crossfit_wod ?? 0)];
           // TODO-QSP: dynamic text: You beat <<$previous_record_holder>>''s record of <<$prevrecordstring>>
-          scene.text(`You beat ${((st as any).previous_record_holder || '')}'s record of ${((st as any).prevrecordstring || '')}`);
+          scene.text(`You beat ${((st as any).previous_record_holder ?? '')}'s record of ${((st as any).prevrecordstring ?? '')}`);
         } else {
           // TODO-QSP: dynamic text: You beat your own record of <<$prevrecordstring>>
-          scene.text(`You beat your own record of ${((st as any).prevrecordstring || '')}`);
+          scene.text(`You beat your own record of ${((st as any).prevrecordstring ?? '')}`);
         }
         ((st as any).box_wod_record = (st as any).box_wod_record ?? {})[String((st as any).todays_crossfit_wod ?? 0)] = ((st as any).current_wod_score ?? 0);
         // TODO-QSP: $box_wod_record_holder[$todays_crossfit_wod] = $pcs_nickname
@@ -126,11 +126,11 @@ function enterViewRecords(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :recordloop
   (s as any).crossfit_wod = ((s as any).crossfit_wods ?? 0)?.[String((s as any).record_table_counter ?? 0)];
   // TODO-QSP: dynamic text: <tr><td><<$crossfit_wod>></td>
-  scene.text(`<tr><td>${((s as any).crossfit_wod || '')}</td>`);
+  scene.text(`<tr><td>${((s as any).crossfit_wod ?? '')}</td>`);
   // TODO-QSP: dynamic text: <td>' + func('havana_crossfit_funcs', 'recordstring', $crossfit_wod, personal_wo...
-  scene.text('<td>' + qspFunc(s, 'havana_crossfit_funcs', 'recordstring', ((s as any).crossfit_wod || ''), ((s as any).personal_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? '') + '</td>');
+  scene.text('<td>' + qspFunc(s, 'havana_crossfit_funcs', 'recordstring', ((s as any).crossfit_wod ?? ''), ((s as any).personal_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? '') + '</td>');
   // TODO-QSP: dynamic text: <td>' + func('havana_crossfit_funcs', 'recordstring', $crossfit_wod, box_wod_rec...
-  scene.text('<td>' + qspFunc(s, 'havana_crossfit_funcs', 'recordstring', ((s as any).crossfit_wod || ''), ((s as any).box_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? '') + '</td>');
+  scene.text('<td>' + qspFunc(s, 'havana_crossfit_funcs', 'recordstring', ((s as any).crossfit_wod ?? ''), ((s as any).box_wod_record ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? '') + '</td>');
   // TODO-QSP: dynamic text: <td><<$box_wod_record_holder[$crossfit_wod]>></td></tr>
   scene.text(`<td>${((s as any).box_wod_record_holder ?? 0)?.[String((s as any).crossfit_wod ?? 0)] ?? ''}</td></tr>`);
   (s as any).record_table_counter = ((s as any).record_table_counter ?? 0) + (1);
@@ -155,9 +155,9 @@ function enterGirlmeet(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: As you enter the crossfit box, you notice <<$npcheight_pref>> girl with <<$npcbu...
-  scene.text(`As you enter the crossfit box, you notice ${((s as any).npcheight_pref || '')} girl with ${((s as any).npcbuild_pref || '')} body and ${((s as any).npchair || '')} hair. She is wearing ${((s as any).npcClo || '')}.`);
+  scene.text(`As you enter the crossfit box, you notice ${((s as any).npcheight_pref ?? '')} girl with ${((s as any).npcbuild_pref ?? '')} body and ${((s as any).npchair ?? '')} hair. She is wearing ${((s as any).npcClo ?? '')}.`);
   // TODO-QSP: dynamic text: She greets you with a smile. "Hey, I''m <<$boydesc>>. I heard you beat my old re...
-  scene.text(`She greets you with a smile. "Hey, I'm ${((s as any).boydesc || '')}. I heard you beat my old record. Very impressive!"`);
+  scene.text(`She greets you with a smile. "Hey, I'm ${((s as any).boydesc ?? '')}. I heard you beat my old record. Very impressive!"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Thank her', handler: (st: GameState) => {
@@ -176,7 +176,7 @@ function enterGirlmeet(s: GameState, scene: SceneBuilder): void {
     scene.img(`${((st as any).npc_pic ?? 0)?.[String((st as any).boy ?? 0)] ?? ''}`);
     scene.text('"Sorry, but I feel like I\'m leading you on when I didn\'t mean to…"');
     // TODO-QSP: dynamic text: <<$boydesc>> looks at you, a little disappointed. "Oh. Well, you can''t blame me...
-    scene.text(`${((st as any).boydesc || '')} looks at you, a little disappointed. "Oh. Well, you can't blame me for trying."`);
+    scene.text(`${((st as any).boydesc ?? '')} looks at you, a little disappointed. "Oh. Well, you can't blame me for trying."`);
     scene.text('The two of you say goodbye to each other.');
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {

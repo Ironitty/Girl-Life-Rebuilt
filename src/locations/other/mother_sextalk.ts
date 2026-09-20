@@ -33,7 +33,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vanrPar_suction_dildo ?? 0) === 1) {
     scene.text('She cuts you off by holding up a dildo in front of your face.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>. <b>What is this doing in the bathroom</b>?"
-    scene.text(`"${((s as any).pcs_firstname || '')}. <b>What is this doing in the bathroom</b>?"`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')}. <b>What is this doing in the bathroom</b>?"`);
     if (((s as any).pcs_inhib ?? 0) > 30) {
       scene.actions([
         { label: '"It\'s my dildo"', handler: (st: GameState) => {
@@ -52,7 +52,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"It\'s not mine! I don\'t know where it came from!" It\'s an obvious lie, made even more obvious by the fact that your face turns bright red when you say it, but as long as you deny it maybe you can get away with it? "Maybe it\'s An-"');
     // TODO-QSP: dynamic text: "Don''t you lie to me <<$pcs_firstname>>, <i>I am your mother.</i> I know it''s ...
-    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname || '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
+    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -61,7 +61,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"It\'s not mine! It must be Anya\'s!" you protest, trying to throw your sister under the bus. "She-"');
     // TODO-QSP: dynamic text: "Don''t you lie to me <<$pcs_firstname>>, <i>I am your mother.</i> I know it''s ...
-    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname || '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
+    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -70,7 +70,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('She cuts you off by holding up a pair of dildos in front of your face.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>. <b>What are these doing in the bathroom?</b>"
-    scene.text(`"${((s as any).pcs_firstname || '')}. <b>What are these doing in the bathroom?</b>"`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')}. <b>What are these doing in the bathroom?</b>"`);
     if (((s as any).pcs_inhib ?? 0) > 30) {
       scene.actions([
         { label: '"They\'re my dildos"', handler: (st: GameState) => {
@@ -85,7 +85,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"They\'re not mine! I don\'t know where they came from!" It\'s an obvious lie, made even more obvious by the fact that your face turns bright red when you say it, but as long as you deny it maybe you can get away with it? "Maybe they\'re An-"');
     // TODO-QSP: dynamic text: "Don''t you lie to me <<$pcs_firstname>>, <i>I am your mother.</i> I know they''...
-    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname || '')}, <i>I am your mother.</i> I know they're yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
+    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know they're yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -94,7 +94,7 @@ function enterBathroomDildoShriek1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"They\'re not mine! They must be Anya\'s!" you protest, trying to throw your sister under the bus. "She-"');
     // TODO-QSP: dynamic text: "Don''t you lie to me <<$pcs_firstname>>, <i>I am your mother.</i> I know they''...
-    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname || '')}, <i>I am your mother.</i> I know they're yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
+    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know they're yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseMultiple(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -117,7 +117,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('You\'re walking down the hall when you suddenly hear a shriek come from the bathroom. Not again… Right as you get to the door, it flies open to show your very angry mother.');
   // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?!"
-  scene.text(`"Again, ${((s as any).pcs_firstname || '')}?!"`);
+  scene.text(`"Again, ${((s as any).pcs_firstname ?? '')}?!"`);
   if (((s as any).motherKnowDildo ?? 0) === 1  ||  ((s as any).dildo_ownership ?? 0) === 1) {
     scene.actions([
       { label: '"Sorry…?"', handler: (st: GameState) => {
@@ -152,7 +152,7 @@ function enterBathroomDildoShriek2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"No…" you say dejectedly.');
     // TODO-QSP: dynamic text: "Honestly," she huffs, shaking her head in disappointment. "I expected more of y...
-    scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname ?? '')}."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding2(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -206,7 +206,7 @@ function enterBathroomDildoShriek3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('You\'re walking down the hall when you suddenly hear a shriek come from the bathroom. Not again! Right as you get to the door, it opens up to reveal your mother. She looks more exasperated than angry this time though.');
   // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?" she sighs before tossing your toy at you and puttin...
-  scene.text(`"Again, ${((s as any).pcs_firstname || '')}?" she sighs before tossing your toy at you and putting a hand to her forehead. "God, I hope you washed everything before I touched it. I'm not going to throw it away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving stuff like this lying around!"`);
+  scene.text(`"Again, ${((s as any).pcs_firstname ?? '')}?" she sighs before tossing your toy at you and putting a hand to her forehead. "God, I hope you washed everything before I touched it. I'm not going to throw it away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving stuff like this lying around!"`);
   scene.text('She shuts the door and you hear the faucet turn and water spray from the shower.');
   // TODO-QSP: end
   scene.actions([
@@ -228,7 +228,7 @@ function enterBathroomDildoShriek4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('You\'re walking down the hall when you suddenly hear a shriek come from the bathroom. Not again! Right as you get to the door, it flies open to show your very angry mother.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>, you disgusting whore! How dare you leave filth like this ly...
-  scene.text(`"${((s as any).pcs_firstname || '')}, you disgusting whore! How dare you leave filth like this lying around the house! This is going straight into the garbage!"`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')}, you disgusting whore! How dare you leave filth like this lying around the house! This is going straight into the garbage!"`);
   scene.text('She stomps straight past you to the front door and flings it open before going down the stairs.');
   // TODO-QSP: end
   scene.actions([
@@ -261,7 +261,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   scene.text('As you step into the hall, you see your mother there waiting for you. She looks pissed…');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>? Care to explain what I found in the bathroom this morning?"
-  scene.text(`"${((s as any).pcs_firstname || '')}? Care to explain what I found in the bathroom this morning?"`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')}? Care to explain what I found in the bathroom this morning?"`);
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1) {
     scene.text('She holds up a suction dildo in her hand. The one you stuck in the bathroom.');
   } else {
@@ -273,7 +273,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"It\'s not mine! I don\'t know where it came from!" It\'s an obvious lie, made even more obvious by the fact that your face turns bright red when you say it, but as long as you deny it maybe you can get away with it? "Maybe it\'s An-"');
     // TODO-QSP: dynamic text: "Don''t you lie to me <<$pcs_firstname>>, <i>I am your mother.</i> I know it''s ...
-    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname || '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
+    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -282,7 +282,7 @@ function enterBathroomDildos1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"It\'s not mine! It must be Anya\'s!" you protest, trying to throw your sister under the bus. "She-"');
     // TODO-QSP: dynamic text: "Don''t you lie to me <<$pcs_firstname>>, <i>I am your mother.</i> I know it''s ...
-    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname || '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
+    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -368,7 +368,7 @@ function enterBathroomDildos2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
     scene.text('"No…" you say dejectedly.');
     // TODO-QSP: dynamic text: "Honestly," she huffs, shaking her head in disappointment. "I expected more of y...
-    scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname ?? '')}."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding2(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -422,7 +422,7 @@ function enterBathroomDildos3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/home/korrpar.jpg');
   scene.text('As you step into the hall, you see your mother there waiting for you. She looks more exasperated than angry though.');
   // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?" She sighs and tosses your toy at you before putting...
-  scene.text(`"Again, ${((s as any).pcs_firstname || '')}?" She sighs and tosses your toy at you before putting a hand to her forehead. "God, I hope you washed everything before I touched it. I'm not going to throw it away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving stuff like this lying around!"`);
+  scene.text(`"Again, ${((s as any).pcs_firstname ?? '')}?" She sighs and tosses your toy at you before putting a hand to her forehead. "God, I hope you washed everything before I touched it. I'm not going to throw it away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving stuff like this lying around!"`);
   if (((s as any).locat ?? 0)?.['Mother'] === 11  ||  ((s as any).locat ?? 0)?.['Mother'] === 12) {
     scene.text('With that, she walks off into the kitchen.');
   } else {
@@ -511,12 +511,12 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1) {
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, what the hell is this?!"
-    scene.text(`"${((s as any).pcs_firstname || '')}, what the hell is this?!"`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')}, what the hell is this?!"`);
     scene.text('You wake up in a shock when your door bangs open and you see your mother standing in the doorway holding… a dildo?');
     scene.text('Oh <i>fuck</i>, it\'s the dildo you left in the bathroom!');
   } else {
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> what the hell are these?!"
-    scene.text(`"${((s as any).pcs_firstname || '')} what the hell are these?!"`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')} what the hell are these?!"`);
     scene.text('You wake up in a shock when your door bangs open and you see your mother standing in the doorway holding… a pair of dildos?');
     scene.text('Oh <i>fuck</i>, they\'re the dildos you left in the bathroom!');
   }
@@ -527,7 +527,7 @@ function enterDildoWakeup1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"What\'re you talkin\' about…?" you say blearily, feigning being drowsy from just having woken up. It\'s an obvious lie, made even more obvious by the fact that your face turns bright red when you say it. "Is that a dildo? I-"');
     // TODO-QSP: dynamic text: "Don''t you lie to me <<$pcs_firstname>>, <i>I am your mother.</i> I know it''s ...
-    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname || '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
+    scene.text(`"Don't you lie to me ${((st as any).pcs_firstname ?? '')}, <i>I am your mother.</i> I know it's yours because Anya isn't stupid enough to bring home another one of these after the last time I caught her with one, let alone stupid enough to leave it in the bathroom where Kolka or Vladimir could find it! What were you thinking?! You'll ruin your brother's innocence behaving like this, give your father a heart attack too! And you'll ruin yourself for marriage if you-" She cuts off suddenly with a horrified look on her face.`);
     scene.text('"My God… You haven\'t…"');
     scene.text('You can see where this is going and you don\'t like it.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterBathroomDildoResponseSingle(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -620,7 +620,7 @@ function enterDildoWakeup2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"No…" you say dejectedly.');
     // TODO-QSP: dynamic text: "Honestly," she huffs, shaking her head in disappointment. "I expected more of y...
-    scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`"Honestly," she huffs, shaking her head in disappointment. "I expected more of you, ${((st as any).pcs_firstname ?? '')}."`);
     scene.text('She walks out of your bedroom and shuts the door.');
     scene.actions([
       { label: 'Continue', goto: ['wakeup_events', 'event_end'] },
@@ -666,11 +666,11 @@ function enterDildoWakeup3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1) {
     scene.text('You wake up in shock to something made of rubber slapping you in the face. Startled, you sit up in bed and look around, seeing a dildo laying on your covers.');
     // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?" Looking up, you see your mother sighing in the door...
-    scene.text(`"Again, ${((s as any).pcs_firstname || '')}?" Looking up, you see your mother sighing in the doorway to your bedroom with a hand on her forehead. "God, I hope you washed everything before I touched it. I'm not going to throw it away this time because I know you're just going to buy another one, but please think of your brother and father and stop leaving it lying around like that."`);
+    scene.text(`"Again, ${((s as any).pcs_firstname ?? '')}?" Looking up, you see your mother sighing in the doorway to your bedroom with a hand on her forehead. "God, I hope you washed everything before I touched it. I'm not going to throw it away this time because I know you're just going to buy another one, but please think of your brother and father and stop leaving it lying around like that."`);
   } else {
     scene.text('You wake up in shock to something made of rubber slapping you in the face. Startled, you sit up in bed and look around, seeing a pair of dildos laying on your covers.');
     // TODO-QSP: dynamic text: "Again, <<$pcs_firstname>>?" Looking up, you see your mother sighing in the door...
-    scene.text(`"Again, ${((s as any).pcs_firstname || '')}?" Looking up, you see your mother sighing in the doorway to your bedroom with a hand on her forehead. "God, I hope you washed everything before I touched those. I'm not going to throw them away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving these lying around like that."`);
+    scene.text(`"Again, ${((s as any).pcs_firstname ?? '')}?" Looking up, you see your mother sighing in the doorway to your bedroom with a hand on her forehead. "God, I hope you washed everything before I touched those. I'm not going to throw them away this time because I know you're just going to buy more, but please think of your brother and father and stop leaving these lying around like that."`);
   }
   scene.text('She walks out of your bedroom and shuts the door.');
   // TODO-QSP: end
@@ -697,7 +697,7 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     // TODO-QSP: dynamic text: "I swear, <<$npc_nickname[''A29'']>>! It''s not mine! I don''t know where it cam...
     scene.text(`"I swear, ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}! It's not mine! I don't know where it came from!"`);
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind if I throw this straight into the garbage. And you w...
-    scene.text(`"Yeah? Then you won't mind if I throw this straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname || '')}!"`);
+    scene.text(`"Yeah? Then you won't mind if I throw this straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}!"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildo…</i>');
@@ -734,20 +734,20 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     if (((st as any).stat ?? 0)?.['vaginal_dildo'] === 0  ||  ((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.text('"No! I haven\'t! I… I didn\'t get to use it yet…"');
       // TODO-QSP: dynamic text: "You think I''m going to fall for an obvious lie like that, <<$pcs_firstname>>??...
-      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname || '')}??"`);
+      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname ?? '')}??"`);
       scene.text('"No! I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Yeah? Then you won''t mind getting a referral from the clinic. <i>Today</i> <<$...
-      scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname || '')}!"`);
+      scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}!"`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I have to do that too. I didn\'t even get to use it…</i>');
     } else {
       scene.text('At this point, you decide it\'s time to come clean. Well, at least about the ownership.');
       scene.text('"No! I haven\'t! I… I didn\'t get to use it yet…" You decide to double down on the lie instead.');
       // TODO-QSP: dynamic text: "You think I''m going to fall for an obvious lie like that, <<$pcs_firstname>>??...
-      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname || '')}??"`);
+      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname ?? '')}??"`);
       scene.text('"No! I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Then prove it. Get a new referral from the clinic. <i>Today</i> <<$pcs_firstnam...
-      scene.text(`"Then prove it. Get a new referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname || '')}. And I'm taking this. It's going in the trash right now."`);
+      scene.text(`"Then prove it. Get a new referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}. And I'm taking this. It's going in the trash right now."`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildo…</i>');
     }
@@ -776,10 +776,10 @@ function enterBathroomDildoResponseSingle(s: GameState, scene: SceneBuilder): vo
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"No! I haven\'t! I… I just suck on it in the shower…"');
     // TODO-QSP: dynamic text: "Do you really expect me to believe that, <<$pcs_firstname>>?"
-    scene.text(`"Do you really expect me to believe that, ${((st as any).pcs_firstname || '')}?"`);
+    scene.text(`"Do you really expect me to believe that, ${((st as any).pcs_firstname ?? '')}?"`);
     scene.text('"Yes! It\'s the truth!" you lie.');
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind getting a referral from the clinic. <i>Today</i> <<$...
-    scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildo…</i>');
@@ -854,7 +854,7 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     // TODO-QSP: dynamic text: "I swear <<$npc_nickname[''A29'']>>! They''re not mine! I don''t know where they...
     scene.text(`"I swear ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}! They're not mine! I don't know where they came from!"`);
     // TODO-QSP: dynamic text: "Yeah? Then you won''t mind if I throw these straight into the garbage. And you ...
-    scene.text(`"Yeah? Then you won't mind if I throw these straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`"Yeah? Then you won't mind if I throw these straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildos…</i>');
@@ -891,20 +891,20 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     if (((st as any).stat ?? 0)?.['vaginal_dildo'] === 0  ||  ((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.text('"No! I haven\'t! I… I didn\'t get to use them yet…"');
       // TODO-QSP: dynamic text: "You think I''m going to fall for an obvious lie like that, <<$pcs_firstname>>? ...
-      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname || '')}? There were <i>two of them</i> in there!"`);
+      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname ?? '')}? There were <i>two of them</i> in there!"`);
       scene.text('"I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Yeah? Then you won''t mind getting a referral from the clinic. <i>Today</i> <<$...
-      scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname || '')}."`);
+      scene.text(`"Yeah? Then you won't mind getting a referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I have to do that too. I didn\'t even get to use them…</i>');
     } else {
       scene.text('At this point, you decide it\'s time to come clean. Well, at least about the ownership.');
       scene.text('"No! I haven\'t! I… I didn\'t get to use it yet…" You decide to double down on the lie instead.');
       // TODO-QSP: dynamic text: "You think I''m going to fall for an obvious lie like that, <<$pcs_firstname>>??...
-      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname || '')}??"`);
+      scene.text(`"You think I'm going to fall for an obvious lie like that, ${((st as any).pcs_firstname ?? '')}??"`);
       scene.text('"I swear! It\'s true!"');
       // TODO-QSP: dynamic text: "Then prove it. Get a new referral from the clinic. <i>Today</i> <<$pcs_firstnam...
-      scene.text(`"Then prove it. Get a new referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname || '')}. And I'm taking these. They're going in the trash right now."`);
+      scene.text(`"Then prove it. Get a new referral from the clinic. <i>Today</i> ${((st as any).pcs_firstname ?? '')}. And I'm taking these. They're going in the trash right now."`);
       { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildos…</i>');
     }
@@ -933,10 +933,10 @@ function enterBathroomDildoResponseMultiple(s: GameState, scene: SceneBuilder): 
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('"No! I haven\'t! I… I just suck on them in the shower…"');
     // TODO-QSP: dynamic text: "Do you really expect me to believe that, <<$pcs_firstname>>?
-    scene.text(`"Do you really expect me to believe that, ${((st as any).pcs_firstname || '')}?`);
+    scene.text(`"Do you really expect me to believe that, ${((st as any).pcs_firstname ?? '')}?`);
     scene.text('"Yes! It\'s the truth!" you lie.');
     // TODO-QSP: dynamic text: There were <i>two of them</i> in there! Are you jerking one off while you suck o...
-    scene.text(`There were <i>two of them</i> in there! Are you jerking one off while you suck on the other? Besides, you shouldn't be doing that either!" she sputters. "Well, if you're telling the truth, then you won't mind if I throw these straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`There were <i>two of them</i> in there! Are you jerking one off while you suck on the other? Besides, you shouldn't be doing that either!" she sputters. "Well, if you're telling the truth, then you won't mind if I throw these straight into the garbage. And you won't mind getting a referral from the clinic either. <i>Today</i> ${((st as any).pcs_firstname ?? '')}."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDildoDumpsterEnding1(s, scene); (st as any).locArgs = __savedLocArgs; }
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0) {
       scene.text('<i>Great. Now I\'m going to get in even bigger trouble. <b>And</b> I lost my dildos…</i>');

@@ -551,9 +551,9 @@ function enterNinel(s: GameState, scene: SceneBuilder): void {
     scene.text('The doctor looks at you and gently places her hands on your shoulders.');
     scene.text('"No need to be shy. I\'m a doctor. What\'s your name?"');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>…"
-    scene.text(`"${((st as any).pcs_nickname || '')}…"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}…"`);
     // TODO-QSP: dynamic text: "Trust me, <<$pcs_nickname>>. I will heal you. First, you need to breathe deeply...
-    scene.text(`"Trust me, ${((st as any).pcs_nickname || '')}. I will heal you. First, you need to breathe deeply…"`);
+    scene.text(`"Trust me, ${((st as any).pcs_nickname ?? '')}. I will heal you. First, you need to breathe deeply…"`);
     scene.actions([
       { label: 'Breathe', handler: (st: GameState) => {
     qspCall(st, 'npcgeneratec', '', 1, 'Doctor Ninel', 32);
@@ -692,7 +692,7 @@ function enterNinel2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/clinic/sex/exam00.jpg');
     scene.text('Ninel looks up from some medical notes and smiles,');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>. Are you sick again?"
-    scene.text(`"Hello ${((st as any).pcs_nickname || '')}. Are you sick again?"`);
+    scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}. Are you sick again?"`);
     scene.text('You cough. "Yeah. Shall we?"');
     scene.text('"Sure. Undress, I need to examine you first."');
     scene.text('"Why? You\'re magic."');
@@ -819,7 +819,7 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/clinic/sex/exam10.jpg');
     scene.text('Ninel looks up from some medical notes and smiles.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>. Sick again?"
-    scene.text(`"Hello ${((st as any).pcs_nickname || '')}. Sick again?"`);
+    scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}. Sick again?"`);
     scene.text('"Oh doctor, my pussy is burning and leaking juices! Perhaps I\'m seriously ill…"');
     scene.text('"My poor child. Whatever are we going to do?"');
     scene.actions([
@@ -856,7 +856,7 @@ function enterNinel3(s: GameState, scene: SceneBuilder): void {
     scene.text('For a few seconds, you\'re competing with Ninel in screams of passion before you fall back on the couch, exhausted.');
     scene.text('"Thanks doc. That was great…"');
     // TODO-QSP: dynamic text: "Do come again, <<$pcs_nickname>>."
-    scene.text(`"Do come again, ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`"Do come again, ${((st as any).pcs_nickname ?? '')}."`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'vaginal_strap', 10, 'sub', 'lesbian');
     qspCall(st, 'arousal', 'end');
@@ -889,7 +889,7 @@ function enterGlavdoc(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You step into the office of the chief of staff.');
     // TODO-QSP: dynamic text: He looks up at you from his paperwork and smiles. "Ah, Ms. <<$pcs_lastname>>, ni...
-    scene.text(`He looks up at you from his paperwork and smiles. "Ah, Ms. ${((s as any).pcs_lastname || '')}, nice to see you! To what do I owe the pleasure?"`);
+    scene.text(`He looks up at you from his paperwork and smiles. "Ah, Ms. ${((s as any).pcs_lastname ?? '')}, nice to see you! To what do I owe the pleasure?"`);
   }
   if (((s as any).job_status ?? 0)?.['city_hospital_nurse'] === '') {
     if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_hospital_nurse') === 1) {
@@ -1322,7 +1322,7 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'small']; enterDonateMilkBottle(s, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You donated a <<temp_total_milk>> ml of milk and got paid <<$func(''money'', ''s...
-    scene.text(`You donated a ${((st as any).temp_total_milk || '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay || ''))}.`);
+    scene.text(`You donated a ${((st as any).temp_total_milk ?? '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay ?? ''))}.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1344,7 +1344,7 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'small']; enterDonateMilkBottle(s, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You donated a <<temp_total_milk>> ml of milk and got paid <<$func(''money'', ''s...
-    scene.text(`You donated a ${((st as any).temp_total_milk || '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay || ''))}.`);
+    scene.text(`You donated a ${((st as any).temp_total_milk ?? '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay ?? ''))}.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1362,7 +1362,7 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'medium']; enterDonateMilkBottle(s, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You donated a <<temp_total_milk>> ml of milk and got paid <<$func(''money'', ''s...
-    scene.text(`You donated a ${((st as any).temp_total_milk || '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay || ''))}.`);
+    scene.text(`You donated a ${((st as any).temp_total_milk ?? '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay ?? ''))}.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1384,7 +1384,7 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', 'medium']; enterDonateMilkBottle(s, scene); (st as any).locArgs = __savedLocArgs; }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You donated a <<temp_total_milk>> ml of milk and got paid <<$func(''money'', ''s...
-    scene.text(`You donated a ${((st as any).temp_total_milk || '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay || ''))}.`);
+    scene.text(`You donated a ${((st as any).temp_total_milk ?? '')} ml of milk and got paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_total_pay ?? ''))}.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1454,7 +1454,7 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: She looks astonished at the generous amount of milk as she stores away <<lact_ev...
         scene.text(`She looks astonished at the generous amount of milk as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
         // TODO-QSP: dynamic text: "I can''t believe you had that much inside you, Ms. <<$pcs_lastname>>!" she laug...
-        scene.text(`"I can't believe you had that much inside you, Ms. ${((st as any).pcs_lastname || '')}!" she laughs heartily and you feel yourself blushing.`);
+        scene.text(`"I can't believe you had that much inside you, Ms. ${((st as any).pcs_lastname ?? '')}!" she laughs heartily and you feel yourself blushing.`);
       } else {
         if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 10) {
           // TODO-QSP: dynamic text: She looks amazed at the copious amounts of milk as she stores away <<lact_ev[''p...
@@ -1469,7 +1469,7 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: She looks pleasantly satisfied at you as she stores away <<lact_ev[''poli_temp_v...
               scene.text(`She looks pleasantly satisfied at you as she stores away ${(((st as any).lact_ev ?? {})?.['poli_temp_var'] ?? 0)*50}ml of your breast milk in ${((st as any).lact_ev ?? 0)?.['poli_temp_var'] ?? ''} bottles.`);
               // TODO-QSP: dynamic text: "A very generous donation, Ms. <<$pcs_lastname>>."
-              scene.text(`"A very generous donation, Ms. ${((st as any).pcs_lastname || '')}."`);
+              scene.text(`"A very generous donation, Ms. ${((st as any).pcs_lastname ?? '')}."`);
             } else {
               if (((st as any).lact_ev ?? 0)?.['poli_temp_var'] >= 4) {
                 // TODO-QSP: dynamic text: She looks satisfied at you as she stores away <<lact_ev[''poli_temp_var'']*50>>m...
@@ -1544,7 +1544,7 @@ function enterMilkDonation(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).lact_ev ?? 0)?.['poli_donationsessioncount'] > 0) {
       // TODO-QSP: dynamic text: "Sorry Ms. <<$pcs_lastname>>, but we''re closing now."
-      scene.text(`"Sorry Ms. ${((s as any).pcs_lastname || '')}, but we're closing now."`);
+      scene.text(`"Sorry Ms. ${((s as any).pcs_lastname ?? '')}, but we're closing now."`);
       // TODO-QSP: dynamic text: You put your top back on and the employee hands you <<$func(''money'', ''string_...
       scene.text(`You put your top back on and the employee hands you ${qspFunc(s, 'money', 'string_profit', ((s as any).lact_ev ?? 0)?.['poli_donatemoney'] ?? '')} for your donated breast milk.`);
       scene.actions([

@@ -133,7 +133,7 @@ function enterBuyProperty(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Real Estate Agency</b></center>');
   scene.img('images/locations/city/citycenter/realestate/agenstvo_paperwork.jpg');
   // TODO-QSP: dynamic text: You spend half an hour filling in the paperwork to buy the <<$property_display>>...
-  scene.text(`You spend half an hour filling in the paperwork to buy the ${((s as any).property_display || '')}. ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price || ''))} has been removed from your bank account.`);
+  scene.text(`You spend half an hour filling in the paperwork to buy the ${((s as any).property_display ?? '')}. ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price ?? ''))} has been removed from your bank account.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['agentned', 'buy'] },
@@ -161,7 +161,7 @@ function enterSell(s: GameState, scene: SceneBuilder): void {
         (s as any).offer = ((s as any).property_sales_price ?? 0) + ((s as any).property_renovation_value ?? 0) + (((s as any).property_sales_price ?? 0) * (Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10)))) / 100 + (((s as any).property_renovation_value ?? 0) * (Math.floor(Math.random() * 11) + 0)) / 100;
         if (((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_apartment'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'village_cottage'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_house'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'matryona_mansion') {
           // TODO-QSP: dynamic text: We have found a buyer for your <<$property_display[agentned_i]>>. They will offe...
-          scene.text(`We have found a buyer for your ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''}. They will offer ${qspFunc(s, 'money', 'string_profit', ((s as any).offer || ''))}, minus 5% for fees and taxes to the value of ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 5 / 100)}, bringing the total to ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 95 / 100)}`);
+          scene.text(`We have found a buyer for your ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''}. They will offer ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? ''))}, minus 5% for fees and taxes to the value of ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 5 / 100)}, bringing the total to ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 95 / 100)}`);
           // TODO-QSP: dynamic "
           // TODO-QSP: act ""Sell the <<$property_display[agentned_i]>> for <<$func('money', 'string_profit', offer * 95 / ...
           // TODO-QSP: gt 'agentned', 'finalise_sale', '<<$property_code[agentned_i]>>', <<agentned_i>>, <<offer>>

@@ -361,12 +361,12 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $cycletemp[8] = ''
   }
   // TODO-QSP: dynamic text: You are currently <<$cycletemp[1]>><<$cycletemp[2]>><<$cycletemp[4]>> <<$cyclete...
-  scene.text(`You are currently ${qspUntranslated(s, "cycletemp[1]", { location: "fertility" })}${qspUntranslated(s, "cycletemp[2]", { location: "fertility" })}${qspUntranslated(s, "cycletemp[4]", { location: "fertility" })} ${qspUntranslated(s, "cycletemp[8]", { location: "fertility" })} Your womb damage is at ${((s as any).sterilewb || '')} and your Ovary damage is at ${((s as any).sterileov || '')}${qspUntranslated(s, "cycletemp[2]", { location: "fertility" })}. You have been cummed on or inside yourself ${((s as any).stat ?? 0)?.['cum_count'] ?? ''} times.`);
+  scene.text(`You are currently ${qspUntranslated(s, "cycletemp[1]", { location: "fertility" })}${qspUntranslated(s, "cycletemp[2]", { location: "fertility" })}${qspUntranslated(s, "cycletemp[4]", { location: "fertility" })} ${qspUntranslated(s, "cycletemp[8]", { location: "fertility" })} Your womb damage is at ${((s as any).sterilewb ?? '')} and your Ovary damage is at ${((s as any).sterileov ?? '')}${qspUntranslated(s, "cycletemp[2]", { location: "fertility" })}. You have been cummed on or inside yourself ${((s as any).stat ?? 0)?.['cum_count'] ?? ''} times.`);
   (s as any).cycletemp_cnt = 0;
   if (((s as any).cycletemp_cnt ?? 0) > 0) {
     (s as any).cycletemp = 0;
     // TODO-QSP: dynamic text: Potential Father List (of <<cycletemp_cnt>>):
-    scene.text(`Potential Father List (of ${((s as any).cycletemp_cnt || '')}):`);
+    scene.text(`Potential Father List (of ${((s as any).cycletemp_cnt ?? '')}):`);
     // TODO-QSP: :cumcpfloop
     if (((s as any).wombpotfath ?? 0)?.[String((s as any).cycletemp ?? 0)] !== 'unknown') {
       // TODO-QSP: $cycletemp[5] = $npc_usedname[$wombpotfath[cycletemp]]
@@ -374,7 +374,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $cycletemp[5] = ''
     }
     // TODO-QSP: dynamic text: Father <<cycletemp>>: <<$wombpotfath[cycletemp]>> - <<$cycletemp[5]>>
-    scene.text(`Father ${((s as any).cycletemp || '')}: ${((s as any).wombpotfath ?? 0)?.[String((s as any).cycletemp ?? 0)] ?? ''} - ${qspUntranslated(s, "cycletemp[5]", { location: "fertility" })}`);
+    scene.text(`Father ${((s as any).cycletemp ?? '')}: ${((s as any).wombpotfath ?? 0)?.[String((s as any).cycletemp ?? 0)] ?? ''} - ${qspUntranslated(s, "cycletemp[5]", { location: "fertility" })}`);
     (s as any).cycletemp = ((s as any).cycletemp ?? 0) + (1);
     if (((s as any).cycletemp ?? 0) < Object.keys((s as any).wombpotfath ?? {}).length) {
       // TODO-QSP: jump 'cumcpfloop'
@@ -386,7 +386,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cycletemp_cnt ?? 0) > 0) {
     (s as any).cycletemp = 0;
     // TODO-QSP: dynamic text: Sperm in your womb (of <<cycletemp_cnt>>):
-    scene.text(`Sperm in your womb (of ${((s as any).cycletemp_cnt || '')}):`);
+    scene.text(`Sperm in your womb (of ${((s as any).cycletemp_cnt ?? '')}):`);
     scene.text('<table border=1><tr><th>Index</th><th>ID</th><th>Owner</th><th>Potential Potency</th><th>Current Potency</th><th>Method of Acquisition</th><th>Contraception Type</th><th>Age in Hours</th><th>Aware</th></tr>');
     // TODO-QSP: :cumcswloop
     if (((s as any).cumarrdel ?? 0)?.[String((s as any).cycletemp ?? 0)] === 0) {
@@ -470,7 +470,7 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cycletemp_cnt ?? 0) > 0) {
     (s as any).cycletemp = 0;
     // TODO-QSP: dynamic text: Sperm spatter (of <<cycletemp_cnt>>):
-    scene.text(`Sperm spatter (of ${((s as any).cycletemp_cnt || '')}):`);
+    scene.text(`Sperm spatter (of ${((s as any).cycletemp_cnt ?? '')}):`);
     scene.text('<table border=1><tr><th>Index</th><th>ID</th><th>Sperm Owner</th><th>Potential Potency</th><th>Age in Hours</th><th>Aware</th><th>Volume (ml)</th><th>Location</th><th>Spread Value</th></tr>');
     // TODO-QSP: :cumcsbloop
     (s as any).cycletemp_vol = ((s as any).sparrvol ?? 0)?.[String((s as any).cycletemp ?? 0)] / 10;
@@ -563,10 +563,10 @@ function enterCumArrcheat(s: GameState, scene: SceneBuilder): void {
     (s as any).cycletemp = 0;
     if (((s as any).wombthfath ?? 0) !== 'unknown') {
       // TODO-QSP: dynamic text: Current father set as the father you think is of the children in the womb: <<$wo...
-      scene.text(`Current father set as the father you think is of the children in the womb: ${((s as any).wombthfath || '')}`);
+      scene.text(`Current father set as the father you think is of the children in the womb: ${((s as any).wombthfath ?? '')}`);
     }
     // TODO-QSP: dynamic text: Babies and Children (of <<cycletemp_cnt>>):
-    scene.text(`Babies and Children (of ${((s as any).cycletemp_cnt || '')}):`);
+    scene.text(`Babies and Children (of ${((s as any).cycletemp_cnt ?? '')}):`);
     scene.text('<table border=1><tr><th>Index</th><th>Name</th><th>Age</th><th>Born(M/D/Y)</th><th>Sex</th><th>Pregnancy Type</th><th>Biological Father</th><th>Believed Father</th><th>Eye Color</th><th>Hair Color</th><th>Type</th><th>Contraception Type</th></tr>');
     // TODO-QSP: :cumcbcloop
     if (((s as any).polkid ?? 0)?.[String((s as any).cycletemp ?? 0)] === 0) {

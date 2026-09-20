@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).i = (Math.floor(Math.random() * 2) + 1);
-  scene.img(`images/locations/shared/abduction/girltocar${((s as any).i || '')}.jpg`);
+  scene.img(`images/locations/shared/abduction/girltocar${((s as any).i ?? '')}.jpg`);
   scene.text('You suddenly hear what sounds like someone rushing up behind you, but before you can turn and look, you feel something hit your head hard. You stumble as your vision goes black…');
   // TODO-QSP: end
   scene.actions([
@@ -44,7 +44,7 @@ function enterAbdRoomFirstEntry(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdRoomFirstChaining(s: GameState, scene: SceneBuilder): void {
   (s as any).i = (Math.floor(Math.random() * 5) + 1);
-  scene.img(`images/locations/shared/abduction/sex/shackled${((s as any).i || '')}.jpg`);
+  scene.img(`images/locations/shared/abduction/sex/shackled${((s as any).i ?? '')}.jpg`);
   scene.text('You\'re thrown onto a dirty bed. The man forcibly undresses you before shackling your wrists and ankles. He then slaps a collar around your neck before chaining you to the wall.');
   scene.text('"You must have really pissed the wrong person off girl," he says.');
   scene.text('"What is this place? What are you going to do to me?" you ask.');
@@ -268,7 +268,7 @@ function enterAbdExam1(s: GameState, scene: SceneBuilder): void {
   scene.text('Obviously, he doesn\'t speak to you, but rather to the man sitting in the chair. "Wow, a nice catch indeed." the doctor exclaims.');
   scene.text('The doctor puts on a pair of rubber gloves and sits down on a small chair in front of you. He looks at your spread legs and what\'s between them.');
   // TODO-QSP: dynamic text: He continues to speak to the man. "She''s about <<age>> years old."
-  scene.text(`He continues to speak to the man. "She's about ${((s as any).age || '')} years old."`);
+  scene.text(`He continues to speak to the man. "She's about ${((s as any).age ?? '')} years old."`);
   if (((s as any).age ?? 0) < 18) {
     scene.text('"Geez, you like them young, don\'t you?"');
     scene.text('"Who wants to fuck some old meat? The customers just love how the young ones squeal." the man replies.');
@@ -276,16 +276,16 @@ function enterAbdExam1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('He continues to examine every inch of you. "Regarding her usage levels:"');
   // TODO-QSP: dynamic text: He shines a light in your mouth. "Her throat is <<$throattipe>>."
-  scene.text(`He shines a light in your mouth. "Her throat is ${((s as any).throattipe || '')}."`);
+  scene.text(`He shines a light in your mouth. "Her throat is ${((s as any).throattipe ?? '')}."`);
   // TODO-QSP: dynamic text: Next, he prods a finger around in your ass. "And her ass is <<$anustipe>>."
-  scene.text(`Next, he prods a finger around in your ass. "And her ass is ${((s as any).anustipe || '')}."`);
+  scene.text(`Next, he prods a finger around in your ass. "And her ass is ${((s as any).anustipe ?? '')}."`);
   scene.text('He pulls his finger out of your ass and finally reaches for your pussy.');
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     scene.text('"Oh, you\'ll like this. Her pussy is fresh. We have a virgin here."');
     scene.text('"Looks like we hit the jackpot once again dear Doctor," the man replies with a happy smile.');
   } else {
     // TODO-QSP: dynamic text: "And her pussy is <<$vaginatipe>>.
-    scene.text(`"And her pussy is ${((s as any).vaginatipe || '')}.`);
+    scene.text(`"And her pussy is ${((s as any).vaginatipe ?? '')}.`);
   }
   scene.text('The doctor finally takes his hands off of you and prepares several needles filled with unknown fluids.');
   // TODO-QSP: end
@@ -653,7 +653,7 @@ function enterAbdEscapeWindow3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'shoes', 'wear', 'last_worn');
   qspCall(s, 'purses', 'wear', 'last_worn');
   qspCall(s, 'coats', 'wear', 'last_worn');
-  scene.img(`images/locations/shared/abduction/midnowhere${((s as any).i || '')}.jpg`);
+  scene.img(`images/locations/shared/abduction/midnowhere${((s as any).i ?? '')}.jpg`);
   scene.text('Pulling on your clothes as you run, you finally think you\'re far enough away and try to find your bearings.');
   scene.text('Any underwear you had with you is lost, but that\'s a small price to pay for your freedom.');
   scene.text('Looking around, you discover that you\'re in the middle of nowhere.');
@@ -726,7 +726,7 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
       (s as any).pluralS = '';
     }
     // TODO-QSP: dynamic text: You have <b><<mc_inventory[''painkillers'']>></b> painkiller<<$pluralS>>.
-    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['painkillers'] ?? ''}</b> painkiller${((s as any).pluralS || '')}.`);
+    scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['painkillers'] ?? ''}</b> painkiller${((s as any).pluralS ?? '')}.`);
     if (((s as any).pain ?? 0)?.['total'] > 0) {
       // TODO-QSP: act $func('drugs', 'painkiller_act_str'):
       qspCall(s, 'drugs', 'painkiller');
@@ -817,7 +817,7 @@ function enterAbdexercise(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 30, 'stren');
   scene.img('images/pc/activities/exercises/push_nude.mp4');
   // TODO-QSP: dynamic text: You do push-ups for <<$timestring>> minutes, improving your strength.
-  scene.text(`You do push-ups for ${((s as any).timestring || '')} minutes, improving your strength.`);
+  scene.text(`You do push-ups for ${((s as any).timestring ?? '')} minutes, improving your strength.`);
   qspCall(s, 'exercise', 'pushups_inner');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -826,7 +826,7 @@ function enterAbdexercise(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'exercise', 'tier2', 30, 'vital');
     scene.img('images/pc/activities/exercises/abdominal_nude.mp4');
     // TODO-QSP: dynamic text: You do a series of abdominal exercises for <<$timestring>> minutes, improving yo...
-    scene.text(`You do a series of abdominal exercises for ${((st as any).timestring || '')} minutes, improving your endurance.`);
+    scene.text(`You do a series of abdominal exercises for ${((st as any).timestring ?? '')} minutes, improving your endurance.`);
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Finish', goto: ['abduction', 'abdFood'] },
@@ -850,7 +850,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
     (s as any).i = (Math.floor(Math.random() * 4) + 1);
     (s as any).gifornot = (Math.floor(Math.random() * 100) + 1);
     if (((s as any).gifornot ?? 0) > 50) {
-      scene.img(`images/locations/shared/abduction/sex/mouthgagblow${((s as any).i || '')}.jpg`);
+      scene.img(`images/locations/shared/abduction/sex/mouthgagblow${((s as any).i ?? '')}.jpg`);
     } else {
       scene.img('images/locations/shared/abduction/sex/mouthgagblow1.mp4');
     }
@@ -867,7 +867,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
       (s as any).cumnostd = 1;
       qspCall(s, 'cum_call', '', '', 'Master');
       (s as any).i = (Math.floor(Math.random() * 5) + 1);
-      scene.img(`images/locations/shared/abduction/sex/fucktiedpussy${((s as any).i || '')}.jpg`);
+      scene.img(`images/locations/shared/abduction/sex/fucktiedpussy${((s as any).i ?? '')}.jpg`);
       scene.text('Your hands are tied, and you\'re bent over the bed.');
       scene.text('The guy starts to penetrate your pussy without warning. A sharp pain shoots through your abdomen because your pussy isn\'t wet enough to receive a dick.');
       qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'bound', 'maso');
@@ -933,7 +933,7 @@ function enterAbdRape(s: GameState, scene: SceneBuilder): void {
             (s as any).i = (Math.floor(Math.random() * 4) + 1);
             (s as any).gifornot = 0;
             if (((s as any).gifornot ?? 0) > 50) {
-              scene.img(`images/locations/shared/abduction/sex/mouthgagblow${((s as any).i || '')}.jpg`);
+              scene.img(`images/locations/shared/abduction/sex/mouthgagblow${((s as any).i ?? '')}.jpg`);
             } else {
               scene.img('images/locations/shared/abduction/sex/mouthgagblow1.mp4');
             }

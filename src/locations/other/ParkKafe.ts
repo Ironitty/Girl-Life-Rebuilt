@@ -1040,7 +1040,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
     scene.text('Djibril gives you a huge grin and waves you over. You don\'t want to be rude, so you get up to walk over to their table.');
     scene.text('As you approach, Djibril speaks and gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look.');
     // TODO-QSP: dynamic text: "Hello again, <<$pcs_nickname>>. This is my dorm roommate, Farai. The rest are f...
-    scene.text(`"Hello again, ${((s as any).pcs_nickname || '')}. This is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna and Arendse."`);
+    scene.text(`"Hello again, ${((s as any).pcs_nickname ?? '')}. This is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna and Arendse."`);
     if (((s as any).npc_had_sex ?? 0)?.['A243'] !== 0  ||  ((s as any).ErmiasQW ?? 0)?.['dorm_bj'] === 1) {
       scene.text('You and Ermias knowingly grin at each other, but the rest of the group don\'t seem to notice.');
     }
@@ -1126,7 +1126,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/centralpark/cafe/africantable1.jpg');
       scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start talking amongst themselves. From their constant glances, you\'re sure that they\'re talking about you.');
       // TODO-QSP: dynamic text: Djibril gives you a huge grin and waves you over. "Hello again, <<$pcs_nickname>...
-      scene.text(`Djibril gives you a huge grin and waves you over. "Hello again, ${((s as any).pcs_nickname || '')}! We were about to head back to our dorm and were wondering if you'd like to come with us again?"`);
+      scene.text(`Djibril gives you a huge grin and waves you over. "Hello again, ${((s as any).pcs_nickname ?? '')}! We were about to head back to our dorm and were wondering if you'd like to come with us again?"`);
       scene.actions([
         { label: 'Accept', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
@@ -1191,7 +1191,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
         scene.text('Djibril gives you a huge grin and waves you over. As you approach their table, Djibril speaks and gestures to each of the others as he says their names. Some smile, or wave, while others look at you with that hungry sexual look.');
         // TODO-QSP: dynamic text: "Hello again <<$pcs_nickname>>, this is my dorm roommate, Farai. The rest are fr...
-        scene.text(`"Hello again ${((s as any).pcs_nickname || '')}, this is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna, and Arendse."`);
+        scene.text(`"Hello again ${((s as any).pcs_nickname ?? '')}, this is my dorm roommate, Farai. The rest are friends of mine that live in the dorms as well. This is Lebogang, Ermias, Haruna, and Arendse."`);
         if (((s as any).npc_had_sex ?? 0)?.['A243'] !== 0  ||  ((s as any).ErmiasQW ?? 0)?.['dorm_bj'] === 1) {
           scene.text('You and Ermias knowingly grin at each other, but the rest of the group don\'t seem to notice.');
         }
@@ -1259,7 +1259,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
           scene.img('images/locations/city/centralpark/cafe/djibril_talk.jpg');
           scene.text('You notice Djibril sitting with a few other young African men at another table. They see you and start talking amongst themselves.');
           // TODO-QSP: dynamic text: After a few minutes, Djibril heads over to your table as his friends head outsid...
-          scene.text(`After a few minutes, Djibril heads over to your table as his friends head outside. "Hello again ${((s as any).pcs_nickname || '')}, I didn't expect to see you here."`);
+          scene.text(`After a few minutes, Djibril heads over to your table as his friends head outside. "Hello again ${((s as any).pcs_nickname ?? '')}, I didn't expect to see you here."`);
           scene.text('You talk to him for a few minutes before one of his friends peeks their head back inside. "Come on, Djibril! Let\'s go!"');
           scene.text('He glances over at them, then looks back at you. "Sorry, I have to go, but it was nice meeting you again. Have a nice day."');
           scene.text('He turns and leaves to join his friends outside before stopping at the door. "Hey if you want, why don\'t you stop by my dorm some time?"');
@@ -1277,7 +1277,7 @@ function enterBlacks(s: GameState, scene: SceneBuilder): void {
               scene.text('You and Ermias knowingly grin at each other, but the rest of the group don\'t seem to notice.');
             }
             // TODO-QSP: dynamic text: You smile at him. "<<$pcs_firstname>> <<$pcs_lastname>>, but most people just ca...
-            scene.text(`You smile at him. "${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, but most people just call me ${((s as any).pcs_nickname || '')}."`);
+            scene.text(`You smile at him. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, but most people just call me ${((s as any).pcs_nickname ?? '')}."`);
             scene.text('He looks surprised. "Are you from Pavlovsk?" When you nod your head, he looks even more surprised. "Do you have an Aunt Luda, dating Olu?"');
             scene.text('Now it\'s your turn to look surprised. "Yes, how did you know that?"');
             scene.text('He shakes his head with a slight laugh. "He\'s my uncle. They told me about you. Small world, huh?"');
@@ -1369,10 +1369,10 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big127.jpg');
       scene.text('The two of you exchange glances and it doesn\'t take long before he walks over to your table to introduce himself, "Hi, I\'m Gosha!"');
       // TODO-QSP: dynamic text: You smile. "<<$pcs_firstname>>, but you can call me <<$pcs_nickname>>."
-      scene.text(`You smile. "${((s as any).pcs_firstname || '')}, but you can call me ${((s as any).pcs_nickname || '')}."`);
+      scene.text(`You smile. "${((s as any).pcs_firstname ?? '')}, but you can call me ${((s as any).pcs_nickname ?? '')}."`);
       scene.text('"Cute name!" he says as the two of you become acquainted with one another. You learn that he\'s a student at the nearby university and he invites you visit him. He smiles as he gives you directions to his dorm.');
       // TODO-QSP: dynamic text: "Well, I won''t disturb you anymore, <<$pcs_nickname>>! Don''t be a stranger and...
-      scene.text(`"Well, I won't disturb you anymore, ${((s as any).pcs_nickname || '')}! Don't be a stranger and come by!"`);
+      scene.text(`"Well, I won't disturb you anymore, ${((s as any).pcs_nickname ?? '')}! Don't be a stranger and come by!"`);
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).gosh = 1;
@@ -1382,7 +1382,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big127.jpg');
       scene.text('The two of you exchange glances and you swear you recognize him from somewhere. Then it hits you… it\'s Gosha! Just as you remember, he comes to the same realization. Before you know it, he\'s heading over.');
       // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>! I''m surprised to see you here."
-      scene.text(`"Hi, ${((s as any).pcs_nickname || '')}! I'm surprised to see you here."`);
+      scene.text(`"Hi, ${((s as any).pcs_nickname ?? '')}! I'm surprised to see you here."`);
       scene.actions([
         { label: 'Greet him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1394,7 +1394,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('You hit him jokingly on the shoulder. "Glad you\'re not offended. I would\'ve been so upset if you had been!"');
     if ((!((st as any).goshsex ?? 0))) {
       // TODO-QSP: dynamic text: "Are you here alone, <<$pcs_nickname>>?" he asks.
-      scene.text(`"Are you here alone, ${((st as any).pcs_nickname || '')}?" he asks.`);
+      scene.text(`"Are you here alone, ${((st as any).pcs_nickname ?? '')}?" he asks.`);
       scene.text('You nod. "I heard some great things about this park, so I was exploring."');
       scene.text('He breaks out in a wide smile. "Well, you\'re in luck then because I know every nook and cranny in this park. Let me show you around!"');
       scene.actions([
@@ -1408,7 +1408,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('"This is my favorite spot, here." He points towards a little hill overlooking the whole park.');
     scene.text('You\'re really enjoying yourself and time flies by quickly before you end up back at the café.');
     // TODO-QSP: dynamic text: "I''m sorry <<$pcs_nickname>>, but I''ve got to run! Hope to see you around agai...
-    scene.text(`"I'm sorry ${((st as any).pcs_nickname || '')}, but I've got to run! Hope to see you around again!" He excuses himself and disappears.`);
+    scene.text(`"I'm sorry ${((st as any).pcs_nickname ?? '')}, but I've got to run! Hope to see you around again!" He excuses himself and disappears.`);
     scene.actions([
       { label: 'Leave', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
@@ -1420,7 +1420,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/centralpark/cafe/parkcafe.jpg');
     scene.text('"I\'m sorry, but I can\'t today. I need to be on my way," you reply.');
     // TODO-QSP: dynamic text: "No worries, <<$pcs_nickname>>! Next time!" he responds, joyful as usual.
-    scene.text(`"No worries, ${((st as any).pcs_nickname || '')}! Next time!" he responds, joyful as usual.`);
+    scene.text(`"No worries, ${((st as any).pcs_nickname ?? '')}! Next time!" he responds, joyful as usual.`);
     scene.text('"I actually need to be heading off too," he says. "I\'ll see you around, okay?"');
     scene.text('You nod. "I\'ll see you around, Gosha!"');
     scene.text('He says his goodbyes and quickly leaves the café.');
@@ -1480,7 +1480,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/centralpark/cafe/fence.jpg');
     scene.text('"If you say so, but if we get caught I\'m blaming it all on you," you teasingly say.');
     // TODO-QSP: dynamic text: He grins as he goes through the fence and walks up a well worn path. "Hurry up, ...
-    scene.text(`He grins as he goes through the fence and walks up a well worn path. "Hurry up, ${((st as any).pcs_nickname || '')}, before someone sees us!"`);
+    scene.text(`He grins as he goes through the fence and walks up a well worn path. "Hurry up, ${((st as any).pcs_nickname ?? '')}, before someone sees us!"`);
     scene.text('As you hunker down to press yourself through the fence, you decide to have a bit of fun. "Help, I\'m stuck!" you yell out.');
     scene.text('Gosha starts looking nervously around and hastily walks back towards you. As he approaches, you press yourself through and stick out your tongue. He sighs when he sees that you\'re only joking around.');
     scene.actions([
@@ -1489,7 +1489,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/centralpark/cafe/secluded.jpg');
     // TODO-QSP: dynamic text: "Funny <<$pcs_nickname>>, real funny…" he mumbles.
-    scene.text(`"Funny ${((st as any).pcs_nickname || '')}, real funny…" he mumbles.`);
+    scene.text(`"Funny ${((st as any).pcs_nickname ?? '')}, real funny…" he mumbles.`);
     scene.text('You make a funny face in response and the two of you start laughing.');
     scene.text('"This way, then…" he says and the two of you head up the path. You walk through some thick bushes and up a small hill.');
     scene.text('When you reach the top, you stop by a clearing. "So what do you say? Great place, no?"');
@@ -1514,7 +1514,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('You pull down his pants and his cock pops out, ready for you. You look at him and lick your lips as you move in. You start playing with his head and he groans lightly.');
     scene.text('"Want me to keep going?" you playfully ask. The only response you get is him silently nodding his head, so you take his cock into your mouth and start sucking him off as Gosha grabs the back of your head to push you deeper.');
     // TODO-QSP: dynamic text: "Don''t stop, <<$pcs_nickname>>…" you hear him groan. He''s rock-hard and you ca...
-    scene.text(`"Don't stop, ${((st as any).pcs_nickname || '')}…" you hear him groan. He's rock-hard and you can feel that he's ready to cum.`);
+    scene.text(`"Don't stop, ${((st as any).pcs_nickname ?? '')}…" you hear him groan. He's rock-hard and you can feel that he's ready to cum.`);
     scene.text('You tease him a little more before he explodes in your mouth.');
     qspCall(st, 'arousal', 'bj', 15, 'sub');
     qspCall(st, 'cum_call', 'mouth', '127', 1);
@@ -1544,7 +1544,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.text('You can see he\'s clearly annoyed by your response, but keeps his mouth shut. "Let\'s head back then."');
     scene.text('The walk back is awkward with the two of you barely saying a word to each other.');
     // TODO-QSP: dynamic text: "I need to go and meet a friend. It was good seeing you, <<$pcs_nickname>>…" He ...
-    scene.text(`"I need to go and meet a friend. It was good seeing you, ${((st as any).pcs_nickname || '')}…" He gives you stand offish hug before he leaves.`);
+    scene.text(`"I need to go and meet a friend. It was good seeing you, ${((st as any).pcs_nickname ?? '')}…" He gives you stand offish hug before he leaves.`);
     scene.actions([
       { label: 'Head back to the café', goto: ['parkKafe', 'end', 'cafe'] },
     ]);
@@ -1580,7 +1580,7 @@ function enterTheBoy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/centralpark/cafe/parkcafe.jpg');
     scene.text('"I\'m sorry, but I can\'t today. I need to be on my way," you reply.');
     // TODO-QSP: dynamic text: "No worries, <<$pcs_nickname>>! Next time!" he responds, joyful as usual.
-    scene.text(`"No worries, ${((st as any).pcs_nickname || '')}! Next time!" he responds, joyful as usual.`);
+    scene.text(`"No worries, ${((st as any).pcs_nickname ?? '')}! Next time!" he responds, joyful as usual.`);
     scene.text('"I actually need to be heading off too," he says. "I\'ll see you around, okay?"');
     scene.text('You nod. "I\'ll see you around, Gosha!"');
     scene.text('He says his goodbyes and quickly leaves the café.');

@@ -604,7 +604,7 @@ function enterHisCondom(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
   // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
-  scene.text(`${(String((String(((s as any).bwa_boy || '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(((s as any).bwa_boy || '')).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy || '')).length)-1)))} takes his condom and puts it on his ${((s as any).dick || '')} centimeter dick.`);
+  scene.text(`${(String((String(((s as any).bwa_boy ?? '')).slice((1)-1, ((1)-1)+(1)))).toUpperCase())}${(String(((s as any).bwa_boy ?? '')).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy ?? '')).length)-1)))} takes his condom and puts it on his ${((s as any).dick ?? '')} centimeter dick.`);
   // TODO-QSP: end
   scene.build();
 }

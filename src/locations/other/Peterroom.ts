@@ -148,7 +148,7 @@ function enterKlap(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/peter/6.jpg');
   scene.text('Peter puts you on a leash and leads you into the bedroom. He pushes you onto the bed and ties your hands and feet to the headboard before fastening a ball gag into your mouth.');
   // TODO-QSP: dynamic text: "I love it when you moan <<$pcs_nickname>>, but I think you''re better off gagge...
-  scene.text(`"I love it when you moan ${((s as any).pcs_nickname || '')}, but I think you're better off gagged."`);
+  scene.text(`"I love it when you moan ${((s as any).pcs_nickname ?? '')}, but I think you're better off gagged."`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub', 'bound');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -205,7 +205,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/peter/mash.jpg');
     scene.text('You relax in the bath together for a while until Peter states that he has business to attend to elsewhere. You climb out of the bath and dry off before getting dressed. Peter then grabs his keys and locks up before you walk outside together. When you reach his car, he leans in to kiss you.');
     // TODO-QSP: dynamic text: "You''re a breath of fresh air, <<$pcs_nickname>>. You never fail to brighten my...
-    scene.text(`"You're a breath of fresh air, ${((st as any).pcs_nickname || '')}. You never fail to brighten my day," he says while gently stroking your cheek. "I hope I can see you again soon."`);
+    scene.text(`"You're a breath of fresh air, ${((st as any).pcs_nickname ?? '')}. You never fail to brighten my day," he says while gently stroking your cheek. "I hope I can see you again soon."`);
     scene.text('He climbs into his car and starts the engine, but just as he\'s about to drive off, he suddenly calls out to you. "Do you need a lift?"');
     if (qspFunc(s, 'homes_properties', 'has_access', 'city_house')) {
       scene.actions([
@@ -213,7 +213,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.text('You nod and get into the car next to him, giving him directions to your apartment complex.');
     // TODO-QSP: dynamic text: You spend the journey talking about the sex you just had and you eventually reac...
-    scene.text(`You spend the journey talking about the sex you just had and you eventually reach your apartment building. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((st as any).pcs_nickname || '')}." You smile at him and close the door before he drives off.`);
+    scene.text(`You spend the journey talking about the sex you just had and you eventually reach your apartment building. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((st as any).pcs_nickname ?? '')}." You smile at him and close the door before he drives off.`);
     qspGoto(st, 'city_residential', '');
   } },
       ]);
@@ -223,7 +223,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.text('You nod and get into the car next to him. "Just into the city center is fine, thanks."');
     // TODO-QSP: dynamic text: You spend the journey talking about the sex you just had and you reach the city ...
-    scene.text(`You spend the journey talking about the sex you just had and you reach the city center a few minutes later. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((st as any).pcs_nickname || '')}." You smile at him and close the door before he drives off.`);
+    scene.text(`You spend the journey talking about the sex you just had and you reach the city center a few minutes later. Peter leans over and gives your ass a firm squeeze as you climb out of the car. "Until next time, ${((st as any).pcs_nickname ?? '')}." You smile at him and close the door before he drives off.`);
     qspGoto(st, 'city_center', '');
   } },
     ]);

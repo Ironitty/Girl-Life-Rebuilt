@@ -608,7 +608,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 5, 'prostitution');
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: "Uhhh, I''m <<$pcs_firstname>>," you say. "And I''m here because…"
-  scene.text(`"Uhhh, I'm ${((s as any).pcs_firstname || '')}," you say. "And I'm here because…"`);
+  scene.text(`"Uhhh, I'm ${((s as any).pcs_firstname ?? '')}," you say. "And I'm here because…"`);
   // TODO-QSP: end
   scene.actions([
     { label: '"I want what\'s in that package."', handler: (st: GameState) => {

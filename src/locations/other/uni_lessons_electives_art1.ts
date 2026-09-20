@@ -306,9 +306,9 @@ function enterArt_101TalkErmias_1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('He looks up at you and smiles. "Hello there. I am Ermias Okeke. What is your name?"');
   // TODO-QSP: dynamic text: You return his smile. "I''m <<$pcs_firstname>> <<$pcs_lastname>>, but my friends...
-  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, but my friends just call me ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, but my friends just call me ${((s as any).pcs_nickname ?? '')}."`);
   // TODO-QSP: dynamic text: "It is nice to meet you, <<$pcs_nickname>>."
-  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
   // TODO-QSP: end
@@ -339,11 +339,11 @@ function enterArt_101TalkErmias_2(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit next to Ermias and spend most of the class quietly talking with him, although he seems far more interested in flirting with you than chatting.');
       if (((s as any).pcs_hotcat ?? 0) < 8) {
         // TODO-QSP: dynamic text: "You are a very cute girl, <<$pcs_nickname>>," he smiles.
-        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname || '')}," he smiles.`);
+        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname ?? '')}," he smiles.`);
       } else {
         if (((s as any).pcs_hotcat ?? 0) < 10) {
           // TODO-QSP: dynamic text: "You are a very pretty girl, <<$pcs_nickname>>," he smiles. "One of the pretties...
-          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname || '')}," he smiles. "One of the prettiest girls I have ever seen."`);
+          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname ?? '')}," he smiles. "One of the prettiest girls I have ever seen."`);
         } else {
           scene.text('"Has anyone ever told you that you are the most beautiful looking girl in the world?" he smiles. "I have never seen a girl as pretty as you."');
         }
@@ -358,7 +358,7 @@ function enterArt_101TalkErmias_2(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).ErmiasQW ?? 0)?.['first_visit'] === 0) {
       // TODO-QSP: dynamic text: "I hope you will come and visit me in my dorm soon, <<$pcs_nickname>>," he says ...
-      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname || '')}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
+      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname ?? '')}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
       scene.text('He spends some time flirting with you before the lecture starts.');
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A243'] === 0) {
@@ -388,9 +388,9 @@ function enterArt_102TalkErmias_1(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('He looks up at you and smiles. "Hello there. I am Ermias Okeke. What is your name?"');
   // TODO-QSP: dynamic text: You return his smile. "I''m <<$pcs_firstname>> <<$pcs_lastname>>, but my friends...
-  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, but my friends just call me ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, but my friends just call me ${((s as any).pcs_nickname ?? '')}."`);
   // TODO-QSP: dynamic text: "It is nice to meet you, <<$pcs_nickname>>."
-  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
   // TODO-QSP: end
@@ -421,11 +421,11 @@ function enterArt_102TalkErmias_2(s: GameState, scene: SceneBuilder): void {
       scene.text('You sit next to Ermias and spend most of the class quietly talking with him, although he seems far more interested in flirting with you than chatting.');
       if (((s as any).pcs_hotcat ?? 0) < 8) {
         // TODO-QSP: dynamic text: "You are a very cute girl, <<$pcs_nickname>>," he smiles.
-        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname || '')}," he smiles.`);
+        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname ?? '')}," he smiles.`);
       } else {
         if (((s as any).pcs_hotcat ?? 0) < 10) {
           // TODO-QSP: dynamic text: "You are a very pretty girl, <<$pcs_nickname>>," he smiles. "One of the pretties...
-          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname || '')}," he smiles. "One of the prettiest girls I have ever seen."`);
+          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname ?? '')}," he smiles. "One of the prettiest girls I have ever seen."`);
         } else {
           scene.text('"Has anyone ever told you that you are the most beautiful looking girl in the world?" he smiles. "I have never seen a girl as pretty as you."');
         }
@@ -440,7 +440,7 @@ function enterArt_102TalkErmias_2(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).ErmiasQW ?? 0)?.['first_visit'] === 0) {
       // TODO-QSP: dynamic text: "I hope you will come and visit me in my dorm soon, <<$pcs_nickname>>," he says ...
-      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname || '')}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
+      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname ?? '')}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
       scene.text('He spends some time flirting with you before the lecture starts.');
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A243'] === 0) {
@@ -1439,10 +1439,10 @@ function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_name_lower = (((((st as any).AlbinaQW ?? 0)?.['know_ermias_sex'] === 2  ||  ((st as any).ErmiasQW ?? 0)?.['meet'] === 1)) ? ('Ermias') : ('the black guy'));
     scene.img('images/shared/sex/vag/miss/africanmis1.mp4');
     // TODO-QSP: dynamic text: Your curiosity gets the better of you and you peek in further for a better view ...
-    scene.text(`Your curiosity gets the better of you and you peek in further for a better view as Albina gets on her back and grins as she spreads her legs. ${((st as any).temp_name || '')} steps between her legs and grinds the thick head of his cock between her wet pussy lips before he starts pushing it against her slit.`);
+    scene.text(`Your curiosity gets the better of you and you peek in further for a better view as Albina gets on her back and grins as she spreads her legs. ${((st as any).temp_name ?? '')} steps between her legs and grinds the thick head of his cock between her wet pussy lips before he starts pushing it against her slit.`);
     scene.text('Albina lets out some soft moans before his cock slides into her pussy, causing her to gasp before letting out a loud, pleasured moan.');
     // TODO-QSP: dynamic text: <<$temp_name>> grins. "You like how my black cock stretches your tight little wh...
-    scene.text(`${((st as any).temp_name || '')} grins. "You like how my black cock stretches your tight little white pussy? Beg me to fuck you, slut!"`);
+    scene.text(`${((st as any).temp_name ?? '')} grins. "You like how my black cock stretches your tight little white pussy? Beg me to fuck you, slut!"`);
     scene.text('"Please! Please fuck my little white pussy with your big black cock!" she squeals.');
     scene.text('"Good girl," he replies before he thrusts hard, shoving the entire length of his massive cock into her pussy, his balls slapping against her ass as he starts fucking her hard and fast.');
     scene.text('"Fuck, fuck, <i>FUUCKKK</i>!!!" Albina cries out as the pleasure overwhelms her and her legs grow weak.');
@@ -1458,16 +1458,16 @@ function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/island/university/lecture_hall/lecture_hall.jpg');
     scene.text('You\'ve seen enough and decide to leave them to it, heading back out to the hallway to wait for Albina.');
     // TODO-QSP: dynamic text: You''re waiting for quite some time before she finally leaves the classroom with...
-    scene.text(`You're waiting for quite some time before she finally leaves the classroom with ${((st as any).temp_name_lower || '')} in tow. She's clutching her stomach and winces a little in pain; you can guess why…`);
+    scene.text(`You're waiting for quite some time before she finally leaves the classroom with ${((st as any).temp_name_lower ?? '')} in tow. She's clutching her stomach and winces a little in pain; you can guess why…`);
     if (((st as any).AlbinaQW ?? 0)?.['Friends'] === 2  ||  ((st as any).npc_rel ?? 0)?.['A23'] >= 70) {
       // TODO-QSP: dynamic text: She seems surprised to see you. "Oh, <<$pcs_nickname>>. What are you doing here?...
-      scene.text(`She seems surprised to see you. "Oh, ${((st as any).pcs_nickname || '')}. What are you doing here?" she asks, looking a little flustered as ${((st as any).temp_name_lower || '')} grins.`);
+      scene.text(`She seems surprised to see you. "Oh, ${((st as any).pcs_nickname ?? '')}. What are you doing here?" she asks, looking a little flustered as ${((st as any).temp_name_lower ?? '')} grins.`);
       scene.text('"I was waiting for you," you reply. "I thought we could hang out or something?"');
       scene.text('She smiles. "I\'d love to, but I have places to be and things to do. We can hang out when I have some free time."');
       if (((st as any).ErmiasQW ?? 0)?.['meet'] === 1) {
         scene.text('"Okay, cool," you nod. "Hello Ermias."');
         // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>," he replies with a smile.
-        scene.text(`"Hello ${((st as any).pcs_nickname || '')}," he replies with a smile.`);
+        scene.text(`"Hello ${((st as any).pcs_nickname ?? '')}," he replies with a smile.`);
         scene.text('"Ermias was just… helping me clean up after the class," Albina says while blushing slightly. "Now if you\'ll both excuse me, I need to go before I\'m late."');
         scene.text('Ermias sends her on her way with a firm smack on the ass before he heads off in the opposite direction, leaving you alone in the hallway.');
       } else {
@@ -1478,17 +1478,17 @@ function enterAlbinaArt(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).npc_rel ?? 0)?.['A23'] > 20) {
         // TODO-QSP: dynamic text: She seems surprised to see you. "<<$pcs_nickname>>? What are you doing here?"
-        scene.text(`She seems surprised to see you. "${((st as any).pcs_nickname || '')}? What are you doing here?"`);
+        scene.text(`She seems surprised to see you. "${((st as any).pcs_nickname ?? '')}? What are you doing here?"`);
         scene.text('"You were taking your time back there. I just wanted to make sure that you were okay," you reply.');
         scene.text('"Oh, that\'s… sweet of you, but I\'m fine. Now if you\'ll excuse me, I need to go before I\'m late."');
         // TODO-QSP: dynamic text: <<$temp_name>> sends her on her way with a firm smack on the ass, causing Albina...
-        scene.text(`${((st as any).temp_name || '')} sends her on her way with a firm smack on the ass, causing Albina to whip around and shake her head, but you see a small smile creep onto her lips before she turns and walks away. ${((st as any).temp_name || '')} then heads off in the opposite direction, leaving you alone in the hallway.`);
+        scene.text(`${((st as any).temp_name ?? '')} sends her on her way with a firm smack on the ass, causing Albina to whip around and shake her head, but you see a small smile creep onto her lips before she turns and walks away. ${((st as any).temp_name ?? '')} then heads off in the opposite direction, leaving you alone in the hallway.`);
       } else {
         scene.text('She coldly glares at you when she sees you. "What the fuck do you want?"');
         scene.text('"Oh… Uhm… Nothing I guess? I just wanted to make sure you were okay was all…" you reply.');
         scene.text('She rolls her eyes. "Whatever…"');
         // TODO-QSP: dynamic text: "Friend of yours?" <<$temp_name_lower>> asks.
-        scene.text(`"Friend of yours?" ${((st as any).temp_name_lower || '')} asks.`);
+        scene.text(`"Friend of yours?" ${((st as any).temp_name_lower ?? '')} asks.`);
         scene.text('"Hardly," she scoffs. "She was just leaving."');
         scene.text('Getting the hint, you turn and walk away, leaving the two of them behind.');
       }

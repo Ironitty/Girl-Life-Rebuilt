@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   ((s as any).boyvstre = (s as any).boyvstre ?? {})[String((s as any).numnpc ?? 0)] = ((s as any).boyvstre[String((s as any).numnpc ?? 0)] ?? 0) + (1);
   qspCall(s, 'stat', '');
   scene.text(`<center><b>${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)] ?? ''}</b></center>`);
-  scene.img(`images/characters/shared/headshots_main/big${((s as any).numnpc || '')}.jpg`);
+  scene.img(`images/characters/shared/headshots_main/big${((s as any).numnpc ?? '')}.jpg`);
   // TODO-QSP: $bfTitle[numnpc] = 'date'
   if (((s as any).boytimes ?? 0)?.[String((s as any).numnpc ?? 0)] === 0) {
     // TODO-QSP: $bfRelationship[numnpc] = 'He made a pretty good impression the first time you met so you gave him y...
@@ -193,7 +193,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You approach <<$nameBoyfrend[numnpc]>> and greet him<<$bfGreeting>>.
-  scene.text(`You approach ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)] ?? ''} and greet him${((s as any).bfGreeting || '')}.`);
+  scene.text(`You approach ${((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)] ?? ''} and greet him${((s as any).bfGreeting ?? '')}.`);
   if (((s as any).preg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) <= 1920  &&  ((s as any).npc_pregtalk ?? 0)?.[String((s as any).numnpc ?? 0)] === 0  &&  ((s as any).gnpcSex ?? 0)?.[String((s as any).numnpc ?? 0)] > 0  &&  ((s as any).knowpreg ?? 0) === 1) {
     if (((s as any).npc_usedname ?? 0)[((s as any).ChildFath ?? 0)[Object.keys((s as any).ChildFath ?? {}).length - 1]] !== ((s as any).nameBoyfrend ?? 0)?.[String((s as any).numnpc ?? 0)]) {
       (s as any).pregLie = '(Lie) ';
@@ -201,7 +201,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).pregLie = '';
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).pregLie || '') ?? '') + 'Tell him that he knocked you up', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).pregLie ?? '') ?? '') + 'Tell him that he knocked you up', handler: (st: GameState) => {
     qspCall(st, 'mood', 'lower', 'huge');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You tell <<$nameBoyfrend[numnpc]>> that he got you pregnant. His eyes nearly pop...
@@ -261,7 +261,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Blame him for your bad reputation', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You accuse <<$nameBoyfrend[numnpc]>> that he blabbed about your sexual relations...
-    scene.text(`You accuse ${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} that he blabbed about your sexual relationship and now and everyone thinks that you're a ${((st as any).gnikname || '')}.`);
+    scene.text(`You accuse ${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} that he blabbed about your sexual relationship and now and everyone thinks that you're a ${((st as any).gnikname ?? '')}.`);
     (st as any).reaktrand = (Math.floor(Math.random() * 3) + 0);
     if ((!((st as any).reaktrand ?? 0))) {
       // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> begins to apologize, he''s been drinking with a friend...
@@ -269,11 +269,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).reaktrand ?? 0) === 1) {
         // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> tries to comfort you, "<<$pcs_nickname>>, I would neve...
-        scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} tries to comfort you, "${((st as any).pcs_nickname || '')}, I would never do such a thing. Just ignore what those idiots say. They will soon find someone else to gossip about."`);
+        scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} tries to comfort you, "${((st as any).pcs_nickname ?? '')}, I would never do such a thing. Just ignore what those idiots say. They will soon find someone else to gossip about."`);
       } else {
         if (((st as any).reaktrand ?? 0) === 2) {
           // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> grins, "Relax, <<$pcs_nickname>>. It''s a fact that yo...
-          scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} grins, "Relax, ${((st as any).pcs_nickname || '')}. It's a fact that you're a ${((st as any).gnikname || '')}. So what?"`);
+          scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} grins, "Relax, ${((st as any).pcs_nickname ?? '')}. It's a fact that you're a ${((st as any).gnikname ?? '')}. So what?"`);
         }
       }
     }
@@ -376,7 +376,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> looks totally dejected as you tell him the bad news. Y...
       scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} looks totally dejected as you tell him the bad news. You really feel pity for him. When you finish your speech there's a moment of painful silence.`);
       // TODO-QSP: dynamic text: Then <<$nameBoyfrend[numnpc]>> takes a deep breath, looks you in the eyes and sa...
-      scene.text(`Then ${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} takes a deep breath, looks you in the eyes and says, "That's really hard on me, ${((st as any).pcs_firstname || '')}. But I respect your feelings. I like you, too… very much in fact! That's why I'm willing to be your friend, even if it means that we can't be a couple."`);
+      scene.text(`Then ${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} takes a deep breath, looks you in the eyes and says, "That's really hard on me, ${((st as any).pcs_firstname ?? '')}. But I respect your feelings. I like you, too… very much in fact! That's why I'm willing to be your friend, even if it means that we can't be a couple."`);
       // TODO-QSP: dynamic text: Wow, you didn''t expect that! Still, you feel touched by his devotion and give h...
       scene.text(`Wow, you didn't expect that! Still, you feel touched by his devotion and give him a bear hug, smiling from ear to ear. "Thank you, ${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''}! I'm so glad that you can understand me. I think we both need some time now to digest all that. Call me when you're feeling better."`);
     } else {
@@ -384,7 +384,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'mood', 'lower', 'small');
       qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> narrows his eyes, "Just friends, huh? That''s a pretty...
-      scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} narrows his eyes, "Just friends, huh? That's a pretty lame excuse, ${((st as any).pcs_firstname || '')}, you know that? If you want to break up with me then why don't you say so!"`);
+      scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} narrows his eyes, "Just friends, huh? That's a pretty lame excuse, ${((st as any).pcs_firstname ?? '')}, you know that? If you want to break up with me then why don't you say so!"`);
       // TODO-QSP: dynamic text: You try to explain to him, "No, that''s not what I mean, <<$nameBoyfrend[numnpc]...
       scene.text(`You try to explain to him, "No, that's not what I mean, ${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''}! I really like you…"`);
       scene.text('"You know what? You can stuff your friendship! I\'m outta here!", with these words he storms off.');
@@ -447,7 +447,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (st as any).bfWalk = ' hand in hand';
     }
     // TODO-QSP: dynamic text: You walk<<$bfWalk>> through the park while talking and having fun being together...
-    scene.text(`You walk${((st as any).bfWalk || '')} through the park while talking and having fun being together.`);
+    scene.text(`You walk${((st as any).bfWalk ?? '')} through the park while talking and having fun being together.`);
     if (((st as any).kotovLoveQW ?? 0) > 0) {
       ((st as any).otnBoyFrend = (st as any).otnBoyFrend ?? {})[String((st as any).numnpc ?? 0)] = 0;
       qspCall(st, 'mood', 'lower', 'small');
@@ -501,7 +501,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (st as any).bfDrinkSuffix = ', briefly forgetting the tensions in your relationship for the moment.';
     }
     // TODO-QSP: dynamic text: <<$nameBoyfrend[numnpc]>> pours some beer into glasses and you both start drinki...
-    scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} pours some beer into glasses and you both start drinking. He tells you many funny stories and you both laugh a lot while enjoying your drinks${((st as any).bfDrinkSuffix || '')}`);
+    scene.text(`${((st as any).nameBoyfrend ?? 0)?.[String((st as any).numnpc ?? 0)] ?? ''} pours some beer into glasses and you both start drinking. He tells you many funny stories and you both laugh a lot while enjoying your drinks${((st as any).bfDrinkSuffix ?? '')}`);
     if (((st as any).boytimes ?? 0)?.[String((st as any).numnpc ?? 0)] <= 4) {
       scene.text('You think you\'ve got to know him a lot better now especially in a loose atmosphere like this.');
     }

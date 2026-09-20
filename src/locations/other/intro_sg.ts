@@ -77,7 +77,7 @@ function enterIntroPavlovsk(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your Bedroom</b></center>');
   scene.img('images/characters/pavlovsk/resident/mom/prost4.jpg');
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling out. "<<$pcs_nickname>>, time to get ...
-  scene.text(`You suddenly hear a familiar voice yelling out. "${((s as any).pcs_nickname || '')}, time to get up! You can't spend the whole day laying around!"`);
+  scene.text(`You suddenly hear a familiar voice yelling out. "${((s as any).pcs_nickname ?? '')}, time to get up! You can't spend the whole day laying around!"`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetMotherNickname(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -93,7 +93,7 @@ function enterIntroPavlovsk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$npc_nickname[''A29'']>>!" you exclaim as you feel a slightly cold breeze hit...
     scene.text(`"${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!" you exclaim as you feel a slightly cold breeze hit your body.`);
     // TODO-QSP: dynamic text: "No excuses, <<$pcs_nickname>>! The summer holidays will be over before you know...
-    scene.text(`"No excuses, ${((st as any).pcs_nickname || '')}! The summer holidays will be over before you know it and you mustn't get used to sleeping in, otherwise you won't be able to get up early when school starts again. From now on, set your alarm to wake up at a reasonable time," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
+    scene.text(`"No excuses, ${((st as any).pcs_nickname ?? '')}! The summer holidays will be over before you know it and you mustn't get used to sleeping in, otherwise you won't be able to get up early when school starts again. From now on, set your alarm to wake up at a reasonable time," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
     scene.actions([
       { label: 'Get up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -168,7 +168,7 @@ function enterIntroGadukino(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Your Grandparents\' Cottage</h4></center>');
   scene.img('images/characters/pavlovsk/resident/mom/prost4.jpg');
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling. "<<$pcs_nickname>>, time to get up. ...
-  scene.text(`You suddenly hear a familiar voice yelling. "${((s as any).pcs_nickname || '')}, time to get up. You can't spend the whole day lying around!"`);
+  scene.text(`You suddenly hear a familiar voice yelling. "${((s as any).pcs_nickname ?? '')}, time to get up. You can't spend the whole day lying around!"`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetMotherNickname(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -185,10 +185,10 @@ function enterIntroGadukino(s: GameState, scene: SceneBuilder): void {
     scene.text(`"${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!" you exclaim as you feel a slight cold breeze hit your body.`);
     if (((st as any).month ?? 0) === 6) {
       // TODO-QSP: dynamic text: "Listen! I''m heading back to Pavlovsk this morning, and I don''t want to hear e...
-      scene.text(`"Listen! I'm heading back to Pavlovsk this morning, and I don't want to hear excuses, ${((st as any).pcs_nickname || '')}. You said you'd help out your grandparents during the summer holidays, so set your alarm so you can wake up at a reasonable time from now on," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
+      scene.text(`"Listen! I'm heading back to Pavlovsk this morning, and I don't want to hear excuses, ${((st as any).pcs_nickname ?? '')}. You said you'd help out your grandparents during the summer holidays, so set your alarm so you can wake up at a reasonable time from now on," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
     } else {
       // TODO-QSP: dynamic text: "Listen! I''m heading back to Pavlovsk this morning, and I don''t want to hear e...
-      scene.text(`"Listen! I'm heading back to Pavlovsk this morning, and I don't want to hear excuses, ${((st as any).pcs_nickname || '')}. The summer holidays will be over soon, and you need to get used to waking up early for school. Set your alarm so you can wake up at a reasonable time from now on," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
+      scene.text(`"Listen! I'm heading back to Pavlovsk this morning, and I don't want to hear excuses, ${((st as any).pcs_nickname ?? '')}. The summer holidays will be over soon, and you need to get used to waking up early for school. Set your alarm so you can wake up at a reasonable time from now on," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
     }
     scene.actions([
       { label: 'Get up', handler: (st: GameState) => {
@@ -277,7 +277,7 @@ function enterIntroPushkin(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your Bedroom</b></center>');
   scene.img('images/characters/pavlovsk/resident/mom/prost4.jpg');
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling out. "<<$pcs_nickname>>, time to get ...
-  scene.text(`You suddenly hear a familiar voice yelling out. "${((s as any).pcs_nickname || '')}, time to get up! I won't have you making Vladimir late for work!"`);
+  scene.text(`You suddenly hear a familiar voice yelling out. "${((s as any).pcs_nickname ?? '')}, time to get up! I won't have you making Vladimir late for work!"`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetMotherNickname(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -293,7 +293,7 @@ function enterIntroPushkin(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$npc_nickname[''A29'']>>!" you exclaim as you feel a slightly cold breeze hit...
     scene.text(`"${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!" you exclaim as you feel a slightly cold breeze hit your body.`);
     // TODO-QSP: dynamic text: "No excuses, <<$pcs_nickname>>! Your stepfather only has this morning free to dr...
-    scene.text(`"No excuses, ${((st as any).pcs_nickname || '')}! Your stepfather only has this morning free to drive you and your stuff over to Pushkin. You can sleep when you get there," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
+    scene.text(`"No excuses, ${((st as any).pcs_nickname ?? '')}! Your stepfather only has this morning free to drive you and your stuff over to Pushkin. You can sleep when you get there," your ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} says as she stares at you expectantly.`);
     scene.actions([
       { label: 'Get up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -365,7 +365,7 @@ function enterIntroSharing(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your Bedroom</b></center>');
   scene.img('images/characters/pavlovsk/resident/mom/prost4.jpg');
   // TODO-QSP: dynamic text: You suddenly hear a familiar voice yelling. "<<$pcs_firstname>> <<$pcs_lastname>...
-  scene.text(`You suddenly hear a familiar voice yelling. "${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}! Get out of my house!"`);
+  scene.text(`You suddenly hear a familiar voice yelling. "${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}! Get out of my house!"`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetMotherNickname(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -380,7 +380,7 @@ function enterIntroSharing(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$npc_nickname[''A29'']>>!" you exclaim as you feel a slightly cold breeze hit...
     scene.text(`"${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''}!" you exclaim as you feel a slightly cold breeze hit your body.`);
     // TODO-QSP: dynamic text: "No excuses, <<$pcs_firstname>>! You have 5 minutes to pack up and get out befor...
-    scene.text(`"No excuses, ${((st as any).pcs_firstname || '')}! You have 5 minutes to pack up and get out before I drag you out of here, dressed or not. It's not like the whole of Pavlosk hasn't already seen you naked anyway!"`);
+    scene.text(`"No excuses, ${((st as any).pcs_firstname ?? '')}! You have 5 minutes to pack up and get out before I drag you out of here, dressed or not. It's not like the whole of Pavlosk hasn't already seen you naked anyway!"`);
     scene.actions([
       { label: 'Get up', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;

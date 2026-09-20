@@ -209,7 +209,7 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
   scene.text('She quickly shoos you out and slams the door as you rush to the next room and find the same thing again. You rush through the corridors, but all the doors look the same and you start to panic.');
   scene.text('Just as you\'re about to give up and cry, someone pats you on the shoulder. You turn and see a still naked Vika, her face covered in cum.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, wait! Relax! You promised to keep quiet…" she whispers.
-  scene.text(`"${((s as any).pcs_nickname || '')}, wait! Relax! You promised to keep quiet…" she whispers.`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}, wait! Relax! You promised to keep quiet…" she whispers.`);
   scene.text('"Where\'s the way out, whore?!" you scream.');
   scene.text('Vika just looks at you, her lips trembling as her eyes slowly tear up.');
   scene.text('"There," she says as she points at one of the doors, barely hiding the fact that she\'s about to burst into tears.');

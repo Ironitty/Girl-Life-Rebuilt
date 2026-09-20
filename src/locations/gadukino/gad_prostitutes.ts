@@ -72,7 +72,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     qspCall(st, 'miroslava', 'miraclothes');
     // TODO-QSP: dynamic text: You call her over to you. Mira hurries over and looks at you with downcast eyes....
-    scene.text(`You call her over to you. Mira hurries over and looks at you with downcast eyes. "Hi, ${((st as any).pcs_nickname || '')}. Are you having a good night?"`);
+    scene.text(`You call her over to you. Mira hurries over and looks at you with downcast eyes. "Hi, ${((st as any).pcs_nickname ?? '')}. Are you having a good night?"`);
     // TODO-QSP: dynamic text: You look at her angrily. "A better question, my lovely whore, is ''Are you havin...
     scene.text(`You look at her angrily. "A better question, my lovely whore, is 'Are you having a good night'? I want ${qspFunc(s, 'money', 'string_profit', 200)} per customer you have each night." You tell her earnestly.`);
     scene.text('Mira looks up in shock and with a hurt look on her face. "What are you talking about? Do you think I am a hooker?"');
@@ -114,7 +114,7 @@ function enterMiraRebels(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('After Mira is done with her preaching, you try to think of something witty to say or raise your hand to slap her back, but you just can\'t bring yourself to do it.');
   // TODO-QSP: dynamic text: Mira sees the defeated look in your eyes and knows that she has won. She pulls y...
-  scene.text(`Mira sees the defeated look in your eyes and knows that she has won. She pulls you into an embrace and whispers, "It's alright, ${((s as any).pcs_nickname || '')}. We can just be friends again. And if you want to, maybe you can come work with me instead?"`);
+  scene.text(`Mira sees the defeated look in your eyes and knows that she has won. She pulls you into an embrace and whispers, "It's alright, ${((s as any).pcs_nickname ?? '')}. We can just be friends again. And if you want to, maybe you can come work with me instead?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_prostitutes', 'start'] },

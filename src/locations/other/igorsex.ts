@@ -39,7 +39,7 @@ function enterDinSex(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/tinydick.jpg');
     // TODO-QSP: dynamic text: You get down on your knees in front of him, playing with his small hard cock. Yo...
-    scene.text(`You get down on your knees in front of him, playing with his small hard cock. You lick the head as Igor breathes hard and sharp. "Don't stop ${((st as any).pcs_nickname || '')}, I'm right on the edge!"`);
+    scene.text(`You get down on your knees in front of him, playing with his small hard cock. You lick the head as Igor breathes hard and sharp. "Don't stop ${((st as any).pcs_nickname ?? '')}, I'm right on the edge!"`);
     qspCall(st, 'arousal', 'bj', 2);
     qspCall(st, 'stat', '');
     if (((st as any).stat ?? 0)?.['think_virgin'] === 0  &&  ((st as any).IgorQW ?? 0)?.['sex'] >= 1) {
@@ -307,7 +307,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/shlepaet_1.mp4');
     scene.text('Naked, he lays down on his stomach on his bed.');
     // TODO-QSP: dynamic text: You start kneading his firm ass cheeks, spanking him a few times. "Please <<$pcs...
-    scene.text(`You start kneading his firm ass cheeks, spanking him a few times. "Please ${((st as any).pcs_nickname || '')}, I beg you, be gentle! This is my first time."`);
+    scene.text(`You start kneading his firm ass cheeks, spanking him a few times. "Please ${((st as any).pcs_nickname ?? '')}, I beg you, be gentle! This is my first time."`);
     scene.text('"Shut up and don\'t whine or I\'ll pound your ass until you can\'t sit down."');
     qspCall(st, 'arousal', 'foreplay_give', 5, 'dom');
     qspCall(st, 'stat', '');
@@ -323,7 +323,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/terpit.mp4');
     scene.text('You continue pressing a little harder before the strap-on slides into his ass. He groans loudly as you start pumping his ass.');
     // TODO-QSP: dynamic text: "Oh… Fuck <<$pcs_nickname>>, it hurts!!! Stop! Stop! You said you would take it ...
-    scene.text(`"Oh… Fuck ${((st as any).pcs_nickname || '')}, it hurts!!! Stop! Stop! You said you would take it slow!" Igor cries out, gripping the pillow.`);
+    scene.text(`"Oh… Fuck ${((st as any).pcs_nickname ?? '')}, it hurts!!! Stop! Stop! You said you would take it slow!" Igor cries out, gripping the pillow.`);
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
     qspCall(st, 'stat', '');
     qspCall(st, 'willpower', 'anal', 'force', 'medium');
@@ -342,7 +342,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/rough1.mp4');
     scene.text('"Shut up and don\'t be a pussy! I know you love this!" You keep pounding him without stopping while laying on top on him.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, please stop!" he begs.
-    scene.text(`"${((st as any).pcs_nickname || '')}, please stop!" he begs.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, please stop!" he begs.`);
     scene.text('"I said shut up, bitch!" you snarl before you grab him by the hips and pull him up onto all fours. You then firmly grab his hips and really start pounding his ass, causing him to cry out.');
     scene.text('"Relax your ass or it\'ll continue to hurt!" you tell him.');
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom', 'rough');
@@ -457,7 +457,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/shlepaet_1.mp4');
     scene.text('He lays down on his stomach on his bed and you start kneading his firm ass cheeks, spanking him a few times.');
     // TODO-QSP: dynamic text: "Please, <<$pcs_nickname>>, I want it now! Stop teasing me!"
-    scene.text(`"Please, ${((st as any).pcs_nickname || '')}, I want it now! Stop teasing me!"`);
+    scene.text(`"Please, ${((st as any).pcs_nickname ?? '')}, I want it now! Stop teasing me!"`);
     qspCall(st, 'arousal', 'foreplay_give', 2, 'dom');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -472,7 +472,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/terpit.mp4');
     scene.text('You continue pressing a little harder before the strap-on slides into his ass. He groans loudly as you start pumping his ass.');
     // TODO-QSP: dynamic text: "Oh… Fuck <<$pcs_nickname>>, that feels so good! Fuck me baby, fuck me!" he crie...
-    scene.text(`"Oh… Fuck ${((st as any).pcs_nickname || '')}, that feels so good! Fuck me baby, fuck me!" he cries out before biting the pillow.`);
+    scene.text(`"Oh… Fuck ${((st as any).pcs_nickname ?? '')}, that feels so good! Fuck me baby, fuck me!" he cries out before biting the pillow.`);
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
     qspCall(st, 'stat', '');
     qspCall(st, 'willpower', 'anal', 'force', 'medium');
@@ -519,7 +519,7 @@ function enterStrapOn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/igor/sex/home/trahaet1.mp4');
     scene.text('"Shut up and don\'t be a pussy! I know you love this!" You keep on pounding him without stopping while holding tightly to his hips so he can\'t pull away.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, please stop!" he begs as he tries to pull away, but you just...
-    scene.text(`"${((st as any).pcs_nickname || '')}, please stop!" he begs as he tries to pull away, but you just hold onto him tighter and pull him back, burying your strap-on balls deep in his ass, causing him to gasp in pain.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, please stop!" he begs as he tries to pull away, but you just hold onto him tighter and pull him back, burying your strap-on balls deep in his ass, causing him to gasp in pain.`);
     scene.text('"I said shut up, bitch!" You really start pounding his ass and he starts crying out. "Relax your ass or it\'ll continue to hurt!"');
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom', 'rough');
     qspCall(st, 'stat', '');
@@ -608,7 +608,7 @@ function enterDinSisterkomKrossdress(s: GameState, scene: SceneBuilder): void {
     scene.text('"What?! You want me to dress like a girl?!" he says indignantly.');
     scene.text('"Come on, don\'t be such a bore! Let\'s have some fun!" you say playfully and giggle sweetly.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you…" he begins before falling silent. "Fine. If it will mak...
-    scene.text(`"${((st as any).pcs_nickname || '')}, you…" he begins before falling silent. "Fine. If it will make you happy…"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, you…" he begins before falling silent. "Fine. If it will make you happy…"`);
     scene.text('"Alright!" you cry out in excitement.');
     scene.actions([
       { label: 'Put this on…', handler: (st: GameState) => {
@@ -623,7 +623,7 @@ function enterDinSisterkomKrossdress(s: GameState, scene: SceneBuilder): void {
     scene.text('"This is fucking insane!" Igor scowls.');
     scene.text('"Don\'t be like that! This is you, this is sooo you!" you reply with a smile.');
     // TODO-QSP: dynamic text: "Fuck you, <<$pcs_nickname>>!" he says says before he starts checking himself in...
-    scene.text(`"Fuck you, ${((st as any).pcs_nickname || '')}!" he says says before he starts checking himself in the mirror.`);
+    scene.text(`"Fuck you, ${((st as any).pcs_nickname ?? '')}!" he says says before he starts checking himself in the mirror.`);
     scene.text('"You\'re so sexy!" you say with a laugh.');
     scene.text('"Oh, I get it now!" he responds.');
     scene.actions([
@@ -894,7 +894,7 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
     scene.text('He lays on his back on the chaise lounge as you see him biting his lip. You push up his dress and expose his panties, his little hard dick straining against the fabric. You pull his panties down and toss them aside before you grab some lube and lube up your dildo before getting on your knees between his legs.');
     scene.text('You rub the tip of your lubed dildo against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     // TODO-QSP: dynamic text: He lets out a slight hiss followed by a long low moan as you grab his hips and p...
-    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of the ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dildo slides up his ass, which only makes him moan louder.`);
+    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of the ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dildo slides up his ass, which only makes him moan louder.`);
     scene.text('You start slowly fucking him and see the tip of his hard dick is getting wet with precum.');
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
     qspCall(st, 'stat', '');
@@ -937,7 +937,7 @@ function enterStraponCrossdressBj(s: GameState, scene: SceneBuilder): void {
     scene.text('He goes over and kneels on the chaise lounge, bending forward as he rests his elbows on the back of the lounge. You push up his dress and expose his panties, his little hard dick straining against the fabric. You pull his panties down and toss them aside before you grab some lube and lube up your dick before getting on the lounge behind him. You scoot up close behind him as you stroke the slick dildo with your hand.');
     scene.text('You rub the tip against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     // TODO-QSP: dynamic text: He lets out a slight hiss followed by a long low moan as you grab his hips so he...
-    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips so he can't pull away. You then push more of the ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dildo up his ass and start slowly fucking him as he starts moaning louder.`);
+    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips so he can't pull away. You then push more of the ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dildo up his ass and start slowly fucking him as he starts moaning louder.`);
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1048,7 +1048,7 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
     scene.text('He lays on his back on the chaise lounge as you see him biting his lip. You push up his dress and expose his panties, his little hard dick straining against the fabric. You pull his panties down and toss them aside before you grab some lube and lube up your dick before getting on your knees between his legs.');
     scene.text('You rub the tip of your lubed dick against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     // TODO-QSP: dynamic text: He lets out a slight hiss followed by a long low moan as you grab his hips and p...
-    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of your ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dick slides up his ass, which only makes him moan louder.`);
+    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of your ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dick slides up his ass, which only makes him moan louder.`);
     scene.text('You start slowly fucking him and see the tip of his hard dick is getting wet with precum.');
     qspCall(st, 'arousal', 'magicd_anal', 3, 'dom');
     qspCall(st, 'stat', '');
@@ -1132,7 +1132,7 @@ function enterStraponCrossdressBjMagic(s: GameState, scene: SceneBuilder): void 
     scene.text('He goes over and kneels on the chaise lounge, bending forward as he rests his elbows on the back of the lounge. You push up his dress and expose his panties, his little hard dick straining against the fabric. You pull his panties down and toss them aside before you grab some lube and lube up your dick before getting on the lounge behind him. You scoot up close behind him as you stroke your slick dick with your hand.');
     scene.text('You rub the tip against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     // TODO-QSP: dynamic text: He lets out a slight hiss followed by a long low moan as you grab his hips so he...
-    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips so he can't pull away. You then push more of your ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dick up his ass and start slowly fucking him as he starts moaning louder.`);
+    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips so he can't pull away. You then push more of your ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dick up his ass and start slowly fucking him as he starts moaning louder.`);
     qspCall(st, 'arousal', 'magicd_anal', 3, 'dom');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1317,7 +1317,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
     scene.text('He quickly gets up to lay on his back on the chaise lounge, eagerly lifting his legs up and spreading them slightly. You push up his dress and expose his panties, his little hard dick straining against the fabric. You grab some lube and lube up your dildo before getting on your knees between his legs.');
     scene.text('You rub the tip of your lubed dildo against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     // TODO-QSP: dynamic text: He lets out a slight hiss followed by a long low moan as you grab his hips and p...
-    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of the ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dildo slides up his ass, which only makes him moan louder.`);
+    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of the ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dildo slides up his ass, which only makes him moan louder.`);
     scene.text('You start slowly fucking him and see the tip of his hard dick is getting wet with precum.');
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
     qspCall(st, 'stat', '');
@@ -1365,7 +1365,7 @@ function enterStraponCrossdressBjSecond(s: GameState, scene: SceneBuilder): void
     scene.text('You rub the tip against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     scene.text('He lets out a long low moan and you grab his hips so he can\'t pull away, but it doesn\'t feel like he\'s trying; he seems eager to get fucked by you.');
     // TODO-QSP: dynamic text: You push more of the <<dick_length1>>cm <<$dick_girth1>> dildo into his ass, whi...
-    scene.text(`You push more of the ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dildo into his ass, which only makes him moan louder before you start slowly fucking him as he starts moaning louder.`);
+    scene.text(`You push more of the ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dildo into his ass, which only makes him moan louder before you start slowly fucking him as he starts moaning louder.`);
     qspCall(st, 'arousal', 'anal_strap_give', 3, 'dom');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1473,7 +1473,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
     scene.text('He quickly gets up to lay on his back on the chaise lounge, eagerly lifting his legs up and spreading them slightly. You push up his dress and expose his panties, his little hard dick straining against the fabric. You grab some lube and lube up your dildo before getting on your knees between his legs.');
     scene.text('You rub the tip of your lubed dildo against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     // TODO-QSP: dynamic text: He lets out a slight hiss followed by a long low moan as you grab his hips and p...
-    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of your ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dick slides up his ass, which only makes him moan louder.`);
+    scene.text(`He lets out a slight hiss followed by a long low moan as you grab his hips and pull him back as more of your ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dick slides up his ass, which only makes him moan louder.`);
     scene.text('You start slowly fucking him and see the tip of his hard dick is getting wet with precum.');
     qspCall(st, 'arousal', 'magicd_anal', 3, 'dom');
     qspCall(st, 'stat', '');
@@ -1562,7 +1562,7 @@ function enterStraponCrossdressBjMagicSecond(s: GameState, scene: SceneBuilder):
     scene.text('You rub the tip against his asshole until you\'re sure it\'s lubed as well before you thrust your hips forward to pop the tip of it into his ass.');
     scene.text('He lets out a long low moan and you grab his hips so he can\'t pull away, but it doesn\'t feel like he\'s trying; he seems eager to get fucked by you.');
     // TODO-QSP: dynamic text: You push more of your <<dick_length1>>cm <<$dick_girth1>> dick into his ass, whi...
-    scene.text(`You push more of your ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} dick into his ass, which only makes him moan louder before you start slowly fucking him as he starts moaning louder.`);
+    scene.text(`You push more of your ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dick into his ass, which only makes him moan louder before you start slowly fucking him as he starts moaning louder.`);
     qspCall(st, 'arousal', 'magicd_anal', 3, 'dom');
     qspCall(st, 'stat', '');
     scene.actions([

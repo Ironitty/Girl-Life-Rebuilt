@@ -41,7 +41,7 @@ function enterWatchFilm(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Leave the cinema', goto: ['pav_park', 'start'] },
     ]);
-  } },,
+  } },
 { label: 'Agree', goto: ['gevent', '2'] },
 ]);
     return;

@@ -45,7 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text(`You enter your own chatroom on the website. You currently have ${((st as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers and ${((st as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers.`);
     if (((st as any).totFollowersLost ?? 0) >= 1) {
       // TODO-QSP: dynamic text: You''ve lost <<totFollowersLost>> due to inactivity
-      scene.text(`You've lost ${((st as any).totFollowersLost || '')} due to inactivity`);
+      scene.text(`You've lost ${((st as any).totFollowersLost ?? '')} due to inactivity`);
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -127,7 +127,7 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pantyworntype ?? 0) === 'none') {
     (s as any).img_source = ((s as any).img_source ?? 0) + (2);
   }
-  scene.img('images/pc/items/accessories/computer/camwhore' + ((s as any).img_source || '') + '.jpg');
+  scene.img('images/pc/items/accessories/computer/camwhore' + ((s as any).img_source ?? '') + '.jpg');
   if (Number((s as any).locArgs?.[1] ?? 0) !== 'start') {
     qspCall(s, 'komp_cam_MFC_requests', '');
   }
@@ -219,7 +219,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  scene.img('images/pc/items/accessories/computer/webcam/strip' + ((s as any).video_source || '') + '.mp4');
+  scene.img('images/pc/items/accessories/computer/webcam/strip' + ((s as any).video_source ?? '') + '.mp4');
   scene.text('Turning on some music you dance erotically hoping to entice some viewers.');
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
     // TODO-QSP: $camGirl['MFC_donate_message']
@@ -395,7 +395,7 @@ function enterAnyaInterrupted(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/camwhore2.jpg');
   // TODO-QSP: dynamic text: Suddenly you hear the handle of your door creak, and an annoyed voice shouting: ...
-  scene.text(`Suddenly you hear the handle of your door creak, and an annoyed voice shouting: "${((s as any).pcs_nickname || '')}, what the hell!? Why is the door locked? Let me in!"`);
+  scene.text(`Suddenly you hear the handle of your door creak, and an annoyed voice shouting: "${((s as any).pcs_nickname ?? '')}, what the hell!? Why is the door locked? Let me in!"`);
   scene.text('Oh crap, it\'s your sister! "Sorry everyone, the show\'s over!" you whisper to the camera and you close the stream and hide the website. You quickly put your clothes back on and open your door, trying to avoid the scrutinizing gaze of your sister.');
   scene.text('When she\'s no longer paying attention to you, you open the site again and find yourself in the main lobby of MyFreeCams. You\'re a bit bummed that you couldn\'t get more out of that session, but cash in your earnings.');
   qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You can\'t watch porn with your sister in the room');

@@ -332,11 +332,11 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pattest ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <b><<pattest>></b> unused paternity test'+iif(pattest > 1, 's ', ' ')+'...
-    scene.text('You have <b>' + ((s as any).pattest || '') + '</b> unused paternity test\'+iif(pattest > 1, \'s \', \' \')+\'in your purse.');
+    scene.text('You have <b>' + ((s as any).pattest ?? '') + '</b> unused paternity test\'+iif(pattest > 1, \'s \', \' \')+\'in your purse.');
   }
   if (((s as any).used_pattest ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <b><<used_pattest>></b> <a href="exec:dynamic $test_purse">used</a> pat...
-    scene.text('You have <b>' + ((s as any).used_pattest || '') + '</b> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $test_purse */ return s; }); return false;">used</a> paternity test\'+iif(used_pattest > 1, \'s \', \' \')+\'in your purse.');
+    scene.text('You have <b>' + ((s as any).used_pattest ?? '') + '</b> <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic $test_purse */ return s; }); return false;">used</a> paternity test\'+iif(used_pattest > 1, \'s \', \' \')+\'in your purse.');
   }
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
     // TODO-QSP: dynamic text: You also have '+iif($pursepantytype ! '', '<a href="exec:view''<<func(''$panty_i...
@@ -794,7 +794,7 @@ function enterDTabletkieda(s: GameState, scene: SceneBuilder): void {
               (s as any).pillprob = 'that the pills seem to be smaller than normal.';
             }
             // TODO-QSP: dynamic text: Upon taking a closer look at your birth control pills, you notice <<$pillprob>>
-            scene.text(`Upon taking a closer look at your birth control pills, you notice ${((s as any).pillprob || '')}`);
+            scene.text(`Upon taking a closer look at your birth control pills, you notice ${((s as any).pillprob ?? '')}`);
             if (((s as any).ptype ?? 0) > 0) {
               (s as any).tabletkioddk = 1;
             }
@@ -891,7 +891,7 @@ function enterDCycreportChoice(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDCycreportUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><b>Current Status:</b></center>');
   // TODO-QSP: dynamic text: <center><<$cycreport_txt>></center>
-  scene.text(`<center>${((s as any).cycreport_txt || '')}</center>`);
+  scene.text(`<center>${((s as any).cycreport_txt ?? '')}</center>`);
   scene.text('</td></tr></table></center><center><table cellspacing="0" cellpadding="20" valign="top"><tr><td width="250" valign="top">');
   if (((s as any).cycreport_txt ?? 0) !== 'In labour'  &&  (!((s as any).succubusflag ?? 0))) {
     scene.text('<center><b>Change Status because:</b></center>');
@@ -984,7 +984,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
           scene.text('<td width="250" cellspacing="0" cellpadding="0" valign="top">');
           scene.text('How many days ago was it you had your last period?');
           // TODO-QSP: dynamic text: Currently: <<pertemp>>
-          scene.text(`Currently: ${((s as any).pertemp || '')}`);
+          scene.text(`Currently: ${((s as any).pertemp ?? '')}`);
           // TODO-QSP: dynamic text: <a href="exec: pertemp += 1 & gs ''din_bad'', ''d_cycreport_actor'', 4">+1</a> <...
           scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().4 ?? /u0027/u0027)); return false;">+1</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().4 ?? /u0027/u0027)); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().4 ?? /u0027/u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().4 ?? /u0027/u0027)); return false;">Reset</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.daylastperiod = (daystart - pertemp); return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_update/u0027); return false;">Accept</a>');
           scene.text('</td></tr></table></center>');
@@ -1015,7 +1015,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
               scene.text('<td width="250" cellspacing="0" cellpadding="0" valign="top">');
               scene.text('How many days ago was it you had your last period?');
               // TODO-QSP: dynamic text: Currently: <<pertemp>>
-              scene.text(`Currently: ${((s as any).pertemp || '')}`);
+              scene.text(`Currently: ${((s as any).pertemp ?? '')}`);
               // TODO-QSP: dynamic text: <a href="exec: pertemp += 1 & gs ''din_bad'', ''d_cycreport_actor'', 6">+1</a> <...
               scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().6 ?? /u0027/u0027)); return false;">+1</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().6 ?? /u0027/u0027)); return false;">+5</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp +=s.10; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().6 ?? /u0027/u0027)); return false;">+10</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.pertemp = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_actor/u0027, String(window.__gameStore.getState().6 ?? /u0027/u0027)); return false;">Reset</a> <a href="#" onclick="window.__gameStore.setState((s) => { s.daylastperiod = daystart - pertemp; return s; }); window.__gameStore.getState().doGoto(/u0027din_bad/u0027, /u0027d_cycreport_update/u0027); return false;">Accept</a>');
               scene.text('</td></tr></table></center>');
@@ -1063,7 +1063,7 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 0) {
                   // TODO-QSP: dynamic text: <<$npc_usedname[$cumfthname[tempcurr]]>> (<<$cumfthname[tempcurr]>>) - <<cumtime...
-                  scene.text(`${((s as any).npc_usedname ?? 0)?.[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '']} (${((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''}) - ${((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''} ${((s as any).cum || '')}`);
+                  scene.text(`${((s as any).npc_usedname ?? 0)?.[((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? '']} (${((s as any).cumfthname ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''}) - ${((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] ?? ''} ${((s as any).cum ?? '')}`);
                   (s as any).sumcum = ((s as any).sumcum ?? 0) + (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)]);
                 }
                 if (((s as any).tempcurr ?? 0) < ((s as any).tempmax ?? 0)) {
@@ -1074,9 +1074,9 @@ function enterDCycreportActor(s: GameState, scene: SceneBuilder): void {
                   (s as any).cum = 's\' else $cum = \'';
                 }
                 // TODO-QSP: dynamic text: <br>You think you have had <<sumcum>> load<<$cum>> of cum shot<<$cum>> in your w...
-                scene.text(`<br>You think you have had ${((s as any).sumcum || '')} load${((s as any).cum || '')} of cum shot${((s as any).cum || '')} in your womb altogether that could have gotten you pregnant.`);
+                scene.text(`<br>You think you have had ${((s as any).sumcum ?? '')} load${((s as any).cum ?? '')} of cum shot${((s as any).cum ?? '')} in your womb altogether that could have gotten you pregnant.`);
                 // TODO-QSP: dynamic text: You suspect the father being: <<$wombthfath>><br>
-                scene.text(`You suspect the father being: ${((s as any).wombthfath || '')}<br>`);
+                scene.text(`You suspect the father being: ${((s as any).wombthfath ?? '')}<br>`);
                 (s as any).tempcurr = 0;
                 // TODO-QSP: :pickfathloop
                 if (((s as any).cumtime ?? 0)?.[String((s as any).tempcurr ?? 0)] > 0) {

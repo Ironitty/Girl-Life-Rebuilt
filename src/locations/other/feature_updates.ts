@@ -42,13 +42,13 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_icon_red = '<span style="display:inline-block;background:' + ((s as any).theme_hex ?? 0)?.['v_neg'] + ';border-radius:12px;height:80px;padding:5%;box-sizing:border-box;"><img src="images/system/icons/jobs/city_cafe_waitress.png" style="width:100%;height:100%;display:block;"></span>';
     scene.text('<center><table cellpadding="10"><tr>');
     // TODO-QSP: dynamic text: <td align="center"><b>Shift today</b><br><<$temp_icon_today>></td>
-    scene.text(`<td align="center"><b>Shift today</b><br>${((s as any).temp_icon_today || '')}</td>`);
+    scene.text(`<td align="center"><b>Shift today</b><br>${((s as any).temp_icon_today ?? '')}</td>`);
     // TODO-QSP: dynamic text: <td align="center"><b>Arrive now</b><br><<$temp_icon_blue>></td>
-    scene.text(`<td align="center"><b>Arrive now</b><br>${((s as any).temp_icon_blue || '')}</td>`);
+    scene.text(`<td align="center"><b>Arrive now</b><br>${((s as any).temp_icon_blue ?? '')}</td>`);
     // TODO-QSP: dynamic text: <td align="center"><b>Working</b><br><<$temp_icon_green>></td>
-    scene.text(`<td align="center"><b>Working</b><br>${((s as any).temp_icon_green || '')}</td>`);
+    scene.text(`<td align="center"><b>Working</b><br>${((s as any).temp_icon_green ?? '')}</td>`);
     // TODO-QSP: dynamic text: <td align="center"><b>Missed</b><br><<$temp_icon_red>></td>
-    scene.text(`<td align="center"><b>Missed</b><br>${((s as any).temp_icon_red || '')}</td>`);
+    scene.text(`<td align="center"><b>Missed</b><br>${((s as any).temp_icon_red ?? '')}</td>`);
     scene.text('</tr></table></center>');
     scene.text('<center><b>Difficulty Settings</b></center>');
     scene.text('The difficulty settings have been greatly expanded, and moved into their own tab in the settings menu. You can now individually customize skill gain rate, skill degradation rate, income and expenditure multipliers, event mood multipliers, random event changes, and more.');

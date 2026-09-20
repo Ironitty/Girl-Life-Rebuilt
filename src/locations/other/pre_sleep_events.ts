@@ -249,7 +249,7 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
 
 function enterMagbstchoice(s: GameState, scene: SceneBuilder): void {
   (s as any).tittmp = ((s as any).tits ?? 0) + 1;
-  scene.img(`images/pc/body/tits/t${((s as any).tittmp || '')}.jpg`);
+  scene.img(`images/pc/body/tits/t${((s as any).tittmp ?? '')}.jpg`);
   scene.text('You have an odd dream where you are looking at your naked chest in a mirror and your breasts seem larger…');
   scene.text('As the dream starts to drift away, you find yourself gazing at the reflection of your breasts and think:');
   // TODO-QSP: end

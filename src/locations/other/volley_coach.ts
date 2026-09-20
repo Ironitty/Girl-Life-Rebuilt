@@ -74,31 +74,31 @@ function enterCoachTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A69'] <= 0) {
       ((s as any).pcs_usedname = (s as any).pcs_usedname ?? {})['A69'] = ((s as any).pcs_lastname ?? 0);
       // TODO-QSP: dynamic text: "Ugh, what do you want <<$pcs_lastname>>?"
-      scene.text(`"Ugh, what do you want ${((s as any).pcs_lastname || '')}?"`);
+      scene.text(`"Ugh, what do you want ${((s as any).pcs_lastname ?? '')}?"`);
     } else {
       if (((s as any).npc_rel ?? 0)?.['A69'] < 20) {
         ((s as any).pcs_usedname = (s as any).pcs_usedname ?? {})['A69'] = ((s as any).pcs_lastname ?? 0);
         // TODO-QSP: dynamic text: "What do you want <<$pcs_lastname>>? I''m very busy with the team."
-        scene.text(`"What do you want ${((s as any).pcs_lastname || '')}? I'm very busy with the team."`);
+        scene.text(`"What do you want ${((s as any).pcs_lastname ?? '')}? I'm very busy with the team."`);
       } else {
         if (((s as any).npc_rel ?? 0)?.['A69'] < 40) {
           ((s as any).pcs_usedname = (s as any).pcs_usedname ?? {})['A69'] = ((s as any).pcs_lastname ?? 0);
           // TODO-QSP: dynamic text: "Yes, <<$pcs_lastname>>?"
-          scene.text(`"Yes, ${((s as any).pcs_lastname || '')}?"`);
+          scene.text(`"Yes, ${((s as any).pcs_lastname ?? '')}?"`);
         } else {
           if (((s as any).npc_rel ?? 0)?.['A69'] < 60) {
             ((s as any).pcs_usedname = (s as any).pcs_usedname ?? {})['A69'] = ((s as any).pcs_firstname ?? 0);
             // TODO-QSP: dynamic text: "Yes, <<$pcs_firstname>>?"
-            scene.text(`"Yes, ${((s as any).pcs_firstname || '')}?"`);
+            scene.text(`"Yes, ${((s as any).pcs_firstname ?? '')}?"`);
           } else {
             if (((s as any).npc_rel ?? 0)?.['A69'] < 80) {
               ((s as any).pcs_usedname = (s as any).pcs_usedname ?? {})['A69'] = ((s as any).pcs_firstname ?? 0);
               // TODO-QSP: dynamic text: "What do you need, <<$pcs_firstname>>?"
-              scene.text(`"What do you need, ${((s as any).pcs_firstname || '')}?"`);
+              scene.text(`"What do you need, ${((s as any).pcs_firstname ?? '')}?"`);
             } else {
               ((s as any).pcs_usedname = (s as any).pcs_usedname ?? {})['A69'] = ((s as any).pcs_nickname ?? 0);
               // TODO-QSP: dynamic text: "What can I help you with, <<$pcs_nickname>>?"
-              scene.text(`"What can I help you with, ${((s as any).pcs_nickname || '')}?"`);
+              scene.text(`"What can I help you with, ${((s as any).pcs_nickname ?? '')}?"`);
             }
           }
         }
@@ -108,19 +108,19 @@ function enterCoachTalk(s: GameState, scene: SceneBuilder): void {
     if (((s as any).vballVars ?? 0)?.['coachsex'] > 0) {
       if (((s as any).vballVars ?? 0)?.['coachsex'] === 1) {
         // TODO-QSP: dynamic text: "Of course, <<$pcs_lastname>>.
-        scene.text(`"Of course, ${((s as any).pcs_lastname || '')}.`);
+        scene.text(`"Of course, ${((s as any).pcs_lastname ?? '')}.`);
       } else {
         if (((s as any).vballVars ?? 0)?.['coachsex'] === 2) {
           // TODO-QSP: dynamic text: "Yes, <<$pcs_lastname>>?"
-          scene.text(`"Yes, ${((s as any).pcs_lastname || '')}?"`);
+          scene.text(`"Yes, ${((s as any).pcs_lastname ?? '')}?"`);
         } else {
           if (((s as any).vballVars ?? 0)?.['coachsex'] === 3) {
             // TODO-QSP: dynamic text: "Yes, <<$pcs_firstname>>?"
-            scene.text(`"Yes, ${((s as any).pcs_firstname || '')}?"`);
+            scene.text(`"Yes, ${((s as any).pcs_firstname ?? '')}?"`);
           } else {
             if (((s as any).vballVars ?? 0)?.['coachsex'] === 4) {
               // TODO-QSP: dynamic text: "Yes, <<$pcs_nickname>>?"
-              scene.text(`"Yes, ${((s as any).pcs_nickname || '')}?"`);
+              scene.text(`"Yes, ${((s as any).pcs_nickname ?? '')}?"`);
             }
           }
         }
@@ -147,7 +147,7 @@ function enterCoachTalk(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "What is it <<$pcs_lastname>>? Did you need help with something?"
-    scene.text(`"What is it ${((s as any).pcs_lastname || '')}? Did you need help with something?"`);
+    scene.text(`"What is it ${((s as any).pcs_lastname ?? '')}? Did you need help with something?"`);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -160,7 +160,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask him about his personal life', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I don''t think that''s any of your business <<$pcs_lastname>>."
-    scene.text(`"I don't think that's any of your business ${((st as any).pcs_lastname || '')}."`);
+    scene.text(`"I don't think that's any of your business ${((st as any).pcs_lastname ?? '')}."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -174,7 +174,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
       ((st as any).vballVars = (st as any).vballVars ?? {})['coach_speak'] = 1;
     }
     // TODO-QSP: dynamic text: You decide to talk to him about the rumours that he played on the European champ...
-    scene.text(`You decide to talk to him about the rumours that he played on the European championship winning team, but the subject seems to be painful. "${((st as any).pcs_lastname || '')}, I won't dredge up the past just to satisfy your curiosity," he tells you.`);
+    scene.text(`You decide to talk to him about the rumours that he played on the European championship winning team, but the subject seems to be painful. "${((st as any).pcs_lastname ?? '')}, I won't dredge up the past just to satisfy your curiosity," he tells you.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     ]);
@@ -210,7 +210,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
     }
     ((st as any).vballVars = (st as any).vballVars ?? {})['coach_wife'] = 2;
     // TODO-QSP: dynamic text: Seeing that the subject upset Mikhail, you attempt to cheer him up. Chirping all...
-    scene.text(`Seeing that the subject upset Mikhail, you attempt to cheer him up. Chirping all sorts of nonsense, you eventually ask about his wife. "${((st as any).pcs_lastname || '')}, do you have nothing better to do than ask me about stuff that doesn't concern you?" You continue to pester him and say that you are very interested. He finally gives up and tells you a little more, though you can tell there is a lot he is still holding back.`);
+    scene.text(`Seeing that the subject upset Mikhail, you attempt to cheer him up. Chirping all sorts of nonsense, you eventually ask about his wife. "${((st as any).pcs_lastname ?? '')}, do you have nothing better to do than ask me about stuff that doesn't concern you?" You continue to pester him and say that you are very interested. He finally gives up and tells you a little more, though you can tell there is a lot he is still holding back.`);
     if (((st as any).pcs_horny ?? 0) > 80  ||  ((st as any).fame ?? 0)?.['pav_slut'] > 50) {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
       scene.text('"I\'m not afraid, and I doubt she is prettier than me," you retort, making Mikhail smile.');
@@ -321,7 +321,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
           ((st as any).vballVars = (st as any).vballVars ?? {})['coach_lust'] = ((st as any).vballVars['coach_lust'] ?? 0) + ((Math.floor(Math.random() * 3) + 1));
           scene.text('You see his gaze roam up and down your body and for a moment, you think he might be considering it before he suddenly looks away.');
           // TODO-QSP: dynamic text: "No, you just need rest. Don''t… bother me right now <<$pcs_lastname>>."
-          scene.text(`"No, you just need rest. Don't… bother me right now ${((st as any).pcs_lastname || '')}."`);
+          scene.text(`"No, you just need rest. Don't… bother me right now ${((st as any).pcs_lastname ?? '')}."`);
           scene.text('He immediately turns back towards whatever he was working on on his desk.');
           scene.text('<i>Ugh. So close,</i> you sigh internally as you leave his office.');
           scene.actions([
@@ -329,7 +329,7 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           // TODO-QSP: dynamic text: "No <<$pcs_lastname>>, you just need rest. Go home. Don''t bother me with this."
-          scene.text(`"No ${((st as any).pcs_lastname || '')}, you just need rest. Go home. Don't bother me with this."`);
+          scene.text(`"No ${((st as any).pcs_lastname ?? '')}, you just need rest. Go home. Don't bother me with this."`);
           scene.text('He doesn\'t even give you another look as he continues looking at his stats.');
           scene.actions([
             { label: 'Continue', goto: ['gdksport', 'start'] },
@@ -358,13 +358,13 @@ function enterCoachTalkMenu(s: GameState, scene: SceneBuilder): void {
     if (((st as any).vballVars ?? 0)?.['coachsex'] === 0) {
       ((st as any).vballVars = (st as any).vballVars ?? {})['coach_lust'] = ((st as any).vballVars['coach_lust'] ?? 0) + (1);
       // TODO-QSP: dynamic text: Coach looks at you, "<<$pcs_lastname>>. Here''s your stats, now go out there and...
-      scene.text(`Coach looks at you, "${((st as any).pcs_lastname || '')}. Here's your stats, now go out there and work harder."`);
+      scene.text(`Coach looks at you, "${((st as any).pcs_lastname ?? '')}. Here's your stats, now go out there and work harder."`);
     } else {
       // TODO-QSP: dynamic text: Coach looks at you "Hey <<$pcs_nickname>>. Checking up on your stats?."
-      scene.text(`Coach looks at you "Hey ${((st as any).pcs_nickname || '')}. Checking up on your stats?."`);
+      scene.text(`Coach looks at you "Hey ${((st as any).pcs_nickname ?? '')}. Checking up on your stats?."`);
     }
     // TODO-QSP: dynamic text: "Your volleyball skill is <<pcs_vball>>, the team has played <<vballVars[''losse...
-    scene.text(`"Your volleyball skill is ${((st as any).pcs_vball || '')}, the team has played ${(((st as any).vballVars ?? {})?.['losses'] ?? 0) + (((st as any).vballVars ?? {})?.['wins'] ?? 0)} games: Won - ${((st as any).vballVars ?? 0)?.['wins'] ?? ''}, lost - ${((st as any).vballVars ?? 0)?.['losses'] ?? ''}."`);
+    scene.text(`"Your volleyball skill is ${((st as any).pcs_vball ?? '')}, the team has played ${(((st as any).vballVars ?? {})?.['losses'] ?? 0) + (((st as any).vballVars ?? {})?.['wins'] ?? 0)} games: Won - ${((st as any).vballVars ?? 0)?.['wins'] ?? ''}, lost - ${((st as any).vballVars ?? 0)?.['losses'] ?? ''}."`);
   } },
   ]);
   scene.build();
@@ -412,7 +412,7 @@ function enterJoinTeam1(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'calendar', 'add', 'volleyball_tournament');
       ((st as any).grupvalue = (st as any).grupvalue ?? {})[2] = ((st as any).grupvalue[2] ?? 0) + (3);
       // TODO-QSP: dynamic text: You appeal to the coach and ask him to at least give you a chance to prove yours...
-      scene.text(`You appeal to the coach and ask him to at least give you a chance to prove yourself. Since he likes you, he decides to give you a break. "Okay, ${((st as any).pcs_nickname || '')}, I do have an opening for a sub. You're on the team as a substitute player.`);
+      scene.text(`You appeal to the coach and ask him to at least give you a chance to prove yourself. Since he likes you, he decides to give you a break. "Okay, ${((st as any).pcs_nickname ?? '')}, I do have an opening for a sub. You're on the team as a substitute player.`);
       scene.actions([
         { label: 'Leave', goto: ['gdksport', 'start'] },
       ]);
@@ -447,7 +447,7 @@ function enterJoinTeam1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener6.jpg');
     scene.text('You accept the substitute position and the coach nods his head in confirmation.');
     // TODO-QSP: dynamic text: "Okay, welcome to the team <<$pcs_lastname>>. Remember, tournament matches are o...
-    scene.text(`"Okay, welcome to the team ${((st as any).pcs_lastname || '')}. Remember, tournament matches are on Saturdays. Don't forget to show up!"`);
+    scene.text(`"Okay, welcome to the team ${((st as any).pcs_lastname ?? '')}. Remember, tournament matches are on Saturdays. Don't forget to show up!"`);
     scene.actions([
       { label: 'Leave', goto: ['volley_coach', 'coach_office'] },
     ]);
@@ -466,7 +466,7 @@ function enterJoinTeam1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener6.jpg');
     scene.text('You happily accept, "Oh Mikhail! Thank you so much, I won\'t let you down." The coach grins at you and nods his head in confirmation.');
     // TODO-QSP: dynamic text: "Okay, welcome to the team <<$pcs_lastname>>. Remember, tournament matches are o...
-    scene.text(`"Okay, welcome to the team ${((st as any).pcs_lastname || '')}. Remember, tournament matches are on Saturdays. Don't forget to show up!"`);
+    scene.text(`"Okay, welcome to the team ${((st as any).pcs_lastname ?? '')}. Remember, tournament matches are on Saturdays. Don't forget to show up!"`);
     scene.actions([
       { label: 'Leave', goto: ['gdksport', 'start'] },
     ]);
@@ -487,7 +487,7 @@ function enterJoinTeam1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener5.jpg');
     // TODO-QSP: dynamic text: Mikhail smiles at you, gives a thumbs up, and says, "<<$pcs_lastname>>, I want t...
-    scene.text(`Mikhail smiles at you, gives a thumbs up, and says, "${((st as any).pcs_lastname || '')}, I want to congratulate you, I think. I've decided to make you a first string regular. From now on, you'll be starting."`);
+    scene.text(`Mikhail smiles at you, gives a thumbs up, and says, "${((st as any).pcs_lastname ?? '')}, I want to congratulate you, I think. I've decided to make you a first string regular. From now on, you'll be starting."`);
     scene.text('"But," he adds, shaking his finger at you admonishingly. "You still need to keep practicing, and less drinking!"');
     scene.text('You squeal happily and threw your arms around the Mikhail\'s neck. "Now we have them… I always… Yes we like…" The excitement of the unexpected announcement left you unable to speak and Mikhail just smiles at you and says "Go."');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterCoachTalkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -534,7 +534,7 @@ function enterLariskaJoin(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just give her a chance!" you plead. "She won\'t let you down, I promise."');
     scene.text('You manage to convince Mikhail to let Lariska join the team.');
     // TODO-QSP: dynamic text: When you came out of the coach''s office, Lariska hugs you and says, "Thank you,...
-    scene.text(`When you came out of the coach's office, Lariska hugs you and says, "Thank you, ${((st as any).pcs_nickname || '')}!"`);
+    scene.text(`When you came out of the coach's office, Lariska hugs you and says, "Thank you, ${((st as any).pcs_nickname ?? '')}!"`);
     scene.actions([
       { label: 'Leave', goto: ['gdksport', 'start'] },
     ]);
@@ -567,7 +567,7 @@ function enterLariskaJoin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You take an aggressive approach, and although he doesn\'t like it, you manage to convince Mikhail to let you both play.');
     // TODO-QSP: dynamic text: When you come out of the coach''s office, Lariska hugs you and says, "Thank you,...
-    scene.text(`When you come out of the coach's office, Lariska hugs you and says, "Thank you, ${((st as any).pcs_nickname || '')}!"`);
+    scene.text(`When you come out of the coach's office, Lariska hugs you and says, "Thank you, ${((st as any).pcs_nickname ?? '')}!"`);
     scene.actions([
       { label: 'Leave', goto: ['gdksport', 'start'] },
     ]);
@@ -595,7 +595,7 @@ function enterLariskaJoin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You manage to convince Mikhail to let Lariska join the team.');
     // TODO-QSP: dynamic text: When you come out of the coach''s office, Lariska hugs you and says, "Thank you,...
-    scene.text(`When you come out of the coach's office, Lariska hugs you and says, "Thank you, ${((st as any).pcs_nickname || '')}!"`);
+    scene.text(`When you come out of the coach's office, Lariska hugs you and says, "Thank you, ${((st as any).pcs_nickname ?? '')}!"`);
     scene.actions([
       { label: 'Leave', goto: ['gdksport', 'start'] },
     ]);
@@ -625,12 +625,12 @@ function enterMassageStart(s: GameState, scene: SceneBuilder): void {
   scene.text(`You follow ${((s as any).npc_nickname ?? 0)?.['A69'] ?? ''} into the back of his office. It has a massage table on it as well as a multitude of medical supplies for various kinds of sports injuries.`);
   if (((s as any).vballVars ?? 0)?.['coach_lust'] < 60  &&  ((s as any).vballVars ?? 0)?.['coachsex'] < 2) {
     // TODO-QSP: dynamic text: "Lay down on the table <<$pcs_lastname>>," he says, turning away for a moment to...
-    scene.text(`"Lay down on the table ${((s as any).pcs_lastname || '')}," he says, turning away for a moment to get something.`);
+    scene.text(`"Lay down on the table ${((s as any).pcs_lastname ?? '')}," he says, turning away for a moment to get something.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNormalMassageStart(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeMassageStart2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     // TODO-QSP: dynamic text: "Take off your clothes and lay down on the table <<$pcs_lastname>>," he says, tu...
-    scene.text(`"Take off your clothes and lay down on the table ${((s as any).pcs_lastname || '')}," he says, turning away for a moment to get something.`);
+    scene.text(`"Take off your clothes and lay down on the table ${((s as any).pcs_lastname ?? '')}," he says, turning away for a moment to get something.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeMassageStart1(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
@@ -665,7 +665,7 @@ function enterNormalMassage1(s: GameState, scene: SceneBuilder): void {
         ((st as any).vballVars = (st as any).vballVars ?? {})['coach_mass_orgasm'] = ((st as any).vballVars['coach_mass_orgasm'] ?? 0) + (1);
         scene.text('Despite the fact that it\'s just a massage you can\'t help but be aroused. Arousal builds to excitement, excitement turns to pure pleasure, and before you know it you\'re biting down hard on the towel beneath you, trying to keep from crying out as you shudder in orgasm.');
         // TODO-QSP: dynamic text: "Are you feeling okay <<$pcs_lastname>>? Something wrong?" You simply shake your...
-        scene.text(`"Are you feeling okay ${((st as any).pcs_lastname || '')}? Something wrong?" You simply shake your head in response, not trusting yourself to speak. Did he really make you come from just a massage?`);
+        scene.text(`"Are you feeling okay ${((st as any).pcs_lastname ?? '')}? Something wrong?" You simply shake your head in response, not trusting yourself to speak. Did he really make you come from just a massage?`);
       }
       scene.actions([
         { label: 'Finish', goto: ['volley_coach', 'cloth_massage_end'] },
@@ -680,11 +680,11 @@ function enterNormalMassage1(s: GameState, scene: SceneBuilder): void {
           if (((st as any).vballVars ?? 0)?.['coach_mass_orgasm'] > 0) {
             scene.text('Eventually you can\'t take it anymore, and you find yourself orgasming under his touch. <i>Again</i>. Even as every muscle in your body clenches in your climax, he doesn\'t let up.');
             // TODO-QSP: dynamic text: "You''re <i>very tight</i> <<$pcs_lastname>>. You should do more stretches befor...
-            scene.text(`"You're <i>very tight</i> ${((st as any).pcs_lastname || '')}. You should do more stretches before and after practice, loosen your muscles up some more."`);
+            scene.text(`"You're <i>very tight</i> ${((st as any).pcs_lastname ?? '')}. You should do more stretches before and after practice, loosen your muscles up some more."`);
             scene.text('<i>How does he do this?</i>');
           } else {
             // TODO-QSP: dynamic text: Eventually you can''t take it anymore, and you find yourself orgasming under his...
-            scene.text(`Eventually you can't take it anymore, and you find yourself orgasming under his touch. Again. Even as every muscle in your body clenches up again, he doesn't let up. "You're very <i>tight</i> ${((st as any).pcs_lastname || '')}. You need to loosen up some more." Breathing slowly, you choose not to respond.`);
+            scene.text(`Eventually you can't take it anymore, and you find yourself orgasming under his touch. Again. Even as every muscle in your body clenches up again, he doesn't let up. "You're very <i>tight</i> ${((st as any).pcs_lastname ?? '')}. You need to loosen up some more." Breathing slowly, you choose not to respond.`);
           }
           ((st as any).vballVars = (st as any).vballVars ?? {})['coach_mass_orgasm'] = ((st as any).vballVars['coach_mass_orgasm'] ?? 0) + (1);
         }
@@ -745,7 +745,7 @@ function enterClothMassageEnd(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/gym/volley_coach/massage_room.jpg');
     scene.text('"Much better," you say, stretching your arms behind your back so your breasts push out against your top, heavily emphasizing your stiff nipples. "Thanks for the massage Coach."');
     // TODO-QSP: dynamic text: "You''re welcome <<$pcs_lastname>>. Now hit the showers."
-    scene.text(`"You're welcome ${((st as any).pcs_lastname || '')}. Now hit the showers."`);
+    scene.text(`"You're welcome ${((st as any).pcs_lastname ?? '')}. Now hit the showers."`);
     scene.actions([
       { label: 'Yes Coach', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'end');
@@ -756,12 +756,12 @@ function enterClothMassageEnd(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You yelp when you feel a hand fiercely slap across your ass, jumping on contact....
       scene.text(`You yelp when you feel a hand fiercely slap across your ass, jumping on contact. You glare back at ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''}. His expression is neutral but for a childish glint in his eye.`);
       // TODO-QSP: dynamic text: "I can play games too, <<$pcs_lastname>>."
-      scene.text(`"I can play games too, ${((st as any).pcs_lastname || '')}."`);
+      scene.text(`"I can play games too, ${((st as any).pcs_lastname ?? '')}."`);
       scene.text('"It was worth a shot," before exiting out the door.');
     } else {
       scene.text('Looking back over your shoulder you can see his gaze roaming your body, obviously tempted by your offer.');
       // TODO-QSP: dynamic text: "Nobody likes a tease, <<$pcs_lastname>>," he sighs.
-      scene.text(`"Nobody likes a tease, ${((st as any).pcs_lastname || '')}," he sighs.`);
+      scene.text(`"Nobody likes a tease, ${((st as any).pcs_lastname ?? '')}," he sighs.`);
       scene.text('"The tightness in your pants say otherwise," you reply slyly, slipping out the door.');
     }
     scene.actions([
@@ -836,7 +836,7 @@ function enterNudeMassageStart2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/undress/top1.mp4');
     scene.text('While his back is turned, you pull your top over your head and let it fall to the ground. Coach Mikhail turns back and freezes in shock as soon as he lays his eyes on your bare breasts.');
     // TODO-QSP: dynamic text: "W-what are you doing <<$pcs_lastname>>?" he stammers, belatedly turning his hea...
-    scene.text(`"W-what are you doing ${((st as any).pcs_lastname || '')}?" he stammers, belatedly turning his head away.`);
+    scene.text(`"W-what are you doing ${((st as any).pcs_lastname ?? '')}?" he stammers, belatedly turning his head away.`);
     scene.actions([
       { label: 'Act innocent', handler: (st: GameState) => {
     scene.img('images/shared/sex/massage/panties_off.mp4');
@@ -1003,7 +1003,7 @@ function enterOrgasmMassageEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/gym/volley_coach/massage_room.jpg');
   scene.text('As you catch your breath, Coach Mikhail wipes his hands on a towel and tosses it into a bin.');
   // TODO-QSP: dynamic text: "That''s it for today, <<$pcs_lastname>>," he grunts. "Hit the showers. I''ll cl...
-  scene.text(`"That's it for today, ${((s as any).pcs_lastname || '')}," he grunts. "Hit the showers. I'll clean this up later."`);
+  scene.text(`"That's it for today, ${((s as any).pcs_lastname ?? '')}," he grunts. "Hit the showers. I'll clean this up later."`);
   scene.text('With that, he leaves you naked and alone.');
   // TODO-QSP: end
   scene.actions([
@@ -1015,7 +1015,7 @@ function enterOrgasmMassageEnd(s: GameState, scene: SceneBuilder): void {
 function enterAfterMassageBj1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/massage/bj_start1.mp4');
   // TODO-QSP: dynamic text: "Surely you''re not finished yet, are you <<$pcs_lastname>>?" Coach Mikhail asks...
-  scene.text(`"Surely you're not finished yet, are you ${((s as any).pcs_lastname || '')}?" Coach Mikhail asks, smirking as he drops his trousers right to let his huge and fully erect cock flop down in front of your face. "You can keep going a little longer…"`);
+  scene.text(`"Surely you're not finished yet, are you ${((s as any).pcs_lastname ?? '')}?" Coach Mikhail asks, smirking as he drops his trousers right to let his huge and fully erect cock flop down in front of your face. "You can keep going a little longer…"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tiredly obey', handler: (st: GameState) => {
@@ -1062,7 +1062,7 @@ function enterAfterMassageBjCum1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/facial/facial40.jpg');
     scene.text('Your head hangs over the side of the massage table, panting with exhaustion, unable even to summon the energy to complain when Coach Mikhail unceremoniously wipes his cock with your hair.');
     // TODO-QSP: dynamic text: "Hit the showers <<$pcs_lastname>>," he says as finishes cleaning himself. Witho...
-    scene.text(`"Hit the showers ${((st as any).pcs_lastname || '')}," he says as finishes cleaning himself. Without another word, he gets dressed and leaves you lying on his massage table with his cum dripping down your face.`);
+    scene.text(`"Hit the showers ${((st as any).pcs_lastname ?? '')}," he says as finishes cleaning himself. Without another word, he gets dressed and leaves you lying on his massage table with his cum dripping down your face.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['volley_coach', 'massage_room'] },
@@ -1098,7 +1098,7 @@ function enterReliefOffer(s: GameState, scene: SceneBuilder): void {
           if (((st as any).vballVars ?? 0)?.['coach_lust'] >= 40  &&  ((st as any).npc_rel ?? 0)?.['A69'] >= 80) {
             scene.text('You see him hesitate, seriously considering doing something with you. A moment later, he puts his hands on your shoulders and gently pushes you away.');
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>. We can''t do this."
-            scene.text(`"${((st as any).pcs_nickname || '')}. We can't do this."`);
+            scene.text(`"${((st as any).pcs_nickname ?? '')}. We can't do this."`);
             scene.text('"Why not?"');
             scene.text('"We just… can\'t." He takes a further step away from you. "You need to go. Now."');
             scene.text('You sigh in dejection, moving out the door without another word.');
@@ -1107,7 +1107,7 @@ function enterReliefOffer(s: GameState, scene: SceneBuilder): void {
             ]);
           } else {
             // TODO-QSP: dynamic text: "What are you doing <<$pcs_lastname>>?"
-            scene.text(`"What are you doing ${((st as any).pcs_lastname || '')}?"`);
+            scene.text(`"What are you doing ${((st as any).pcs_lastname ?? '')}?"`);
             scene.actions([
               { label: 'Nothing', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley_coach/massage_room.jpg');
@@ -1115,7 +1115,7 @@ function enterReliefOffer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You''re cut off when <<$npc_nickname[''A69'']>> abruptly pushes you back.
     scene.text(`You're cut off when ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''} abruptly pushes you back.`);
     // TODO-QSP: dynamic text: "Enough <<$pcs_lastname>>. Get out."
-    scene.text(`"Enough ${((st as any).pcs_lastname || '')}. Get out."`);
+    scene.text(`"Enough ${((st as any).pcs_lastname ?? '')}. Get out."`);
     scene.text('"But-"');
     scene.text('"<b>Out.</b>');
     scene.text('You sigh in dejection, moving out the door without another word.');
@@ -1129,7 +1129,7 @@ function enterReliefOffer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You''re cut off when <<$npc_nickname[''A69'']>> abruptly pushes you back.
     scene.text(`You're cut off when ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''} abruptly pushes you back.`);
     // TODO-QSP: dynamic text: "Enough <<$pcs_lastname>>. Get out."
-    scene.text(`"Enough ${((st as any).pcs_lastname || '')}. Get out."`);
+    scene.text(`"Enough ${((st as any).pcs_lastname ?? '')}. Get out."`);
     scene.text('"But-"');
     scene.text('"<b>Out.</b>');
     scene.text('You sigh in dejection, moving out the door without another word.');
@@ -1146,11 +1146,11 @@ function enterReliefOffer(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'npc_relationship', 'modify', 'A69', (-15));
       scene.text('He immediately jerks back, shoving you away.');
       // TODO-QSP: dynamic text: "What the hell <<$pcs_lastname>>!"
-      scene.text(`"What the hell ${((st as any).pcs_lastname || '')}!"`);
+      scene.text(`"What the hell ${((st as any).pcs_lastname ?? '')}!"`);
       scene.text('"I told you what I was doing," you smile back. "I\'m sedu-"');
       scene.text('"ENOUGH!" he shouts, shocking you backwards.');
       // TODO-QSP: dynamic text: "You don''t know what you''re starting here. I''m a married man. You''re <<age>>...
-      scene.text(`"You don't know what you're starting here. I'm a married man. You're ${((st as any).age || '')}. You can't do this. Now get out."`);
+      scene.text(`"You don't know what you're starting here. I'm a married man. You're ${((st as any).age ?? '')}. You can't do this. Now get out."`);
       scene.text('"But-"');
       scene.text('"OUT!"');
       scene.text('Taken aback by his anger, you shrink away and leave his office. You can only hope this hasn\'t damaged your relationship with him too much.');
@@ -1187,7 +1187,7 @@ function enterReliefHandjob1(s: GameState, scene: SceneBuilder): void {
     ((st as any).vballVars = (st as any).vballVars ?? {})['sex_pos'] = 'handjob';
     scene.img('images/shared/sex/foreplay/standing.mp4');
     // TODO-QSP: dynamic text: You slip your hand into his waistband and draw out his <<dick>>cm cock. At the s...
-    scene.text(`You slip your hand into his waistband and draw out his ${((st as any).dick || '')}cm cock. At the same time, you lean into him, drawing a kiss from his lips. You slowly jerk up and down the length of his manhood while your tongues explore each other's mouths.`);
+    scene.text(`You slip your hand into his waistband and draw out his ${((st as any).dick ?? '')}cm cock. At the same time, you lean into him, drawing a kiss from his lips. You slowly jerk up and down the length of his manhood while your tongues explore each other's mouths.`);
     scene.actions([
       { label: 'Keep jerking him off', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'hands', 'A69', 1);
@@ -1254,7 +1254,7 @@ function enterReliefBlowjob1(s: GameState, scene: SceneBuilder): void {
     ((st as any).vballVars = (st as any).vballVars ?? {})['sex_pos'] = 'blowjob';
     scene.img('images/shared/sex/blowjob/kotovbj2.mp4');
     // TODO-QSP: dynamic text: You kneel in front of <<$npc_nickname[''A69'']>>, pulling his pants with you on ...
-    scene.text(`You kneel in front of ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''}, pulling his pants with you on your way down to reveal a fully erect ${((st as any).dick || '')}cm cock.`);
+    scene.text(`You kneel in front of ${((st as any).npc_nickname ?? 0)?.['A69'] ?? ''}, pulling his pants with you on your way down to reveal a fully erect ${((st as any).dick ?? '')}cm cock.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterReliefBlowjob2(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
   ]);
@@ -1331,7 +1331,7 @@ function enterSeduceCoach1(s: GameState, scene: SceneBuilder): void {
     { label: 'Humbly listen', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/community/gym/volley/event/voltrenerspeak20.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I will not be drawn into talking about the championship. And...
-    scene.text(`"${((st as any).pcs_lastname || '')}, I will not be drawn into talking about the championship. And no, coaches don't get paid a lot. I spend my Sunday mornings training rich women in the fitness center. One lesson there pays more than a month working as a coach in our town."`);
+    scene.text(`"${((st as any).pcs_lastname ?? '')}, I will not be drawn into talking about the championship. And no, coaches don't get paid a lot. I spend my Sunday mornings training rich women in the fitness center. One lesson there pays more than a month working as a coach in our town."`);
     // TODO-QSP: $OpenInnerThought + '"Didn''t get anything out of him there, <<$pcs_lastname>>. Although, the classe...
     ((st as any).npc_rel = (st as any).npc_rel ?? {})['A69'] = ((st as any).npc_rel['A69'] ?? 0) + (3);
     scene.text('Seeing Mikhail a little upset by your questions, you decide to cheer him up.');
@@ -1352,7 +1352,7 @@ function enterSeduceCoach1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenerspeak10.jpg');
     scene.text('As soon as your lips wrap around his hard cock, Mikhail seems to panic and pushes your head away, hastily tucking his dick back into his pants.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, stop trying to molest me. I explained everything already, so...
-    scene.text(`"${((st as any).pcs_nickname || '')}, stop trying to molest me. I explained everything already, so be good. I can't allow this to happen, especially after what happened in the championship..." He abruptly breaks off and walks away.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, stop trying to molest me. I explained everything already, so be good. I can't allow this to happen, especially after what happened in the championship..." He abruptly breaks off and walks away.`);
     scene.text('You watch him walk with interest, while deciding that you need to go to the fitness center and try to learn something about this damned championship. Obviously something major happened there.');
     scene.actions([
       { label: 'Say goodbye', goto: ['gdksport', 'start'] },
@@ -1373,7 +1373,7 @@ function enterNudeMassageEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/gym/volley_coach/massage_room.jpg');
   scene.text('As you catch your breath, Coach Mikhail wipes his hands on a towel and tosses it into a bin.');
   // TODO-QSP: dynamic text: "That''s it for today, <<$pcs_lastname>>," he grunts. "Hit the showers. I''ll cl...
-  scene.text(`"That's it for today, ${((s as any).pcs_lastname || '')}," he grunts. "Hit the showers. I'll clean this up later."`);
+  scene.text(`"That's it for today, ${((s as any).pcs_lastname ?? '')}," he grunts. "Hit the showers. I'll clean this up later."`);
   scene.text('With that, he leaves you naked and alone.');
   // TODO-QSP: end
   scene.actions([
@@ -1564,7 +1564,7 @@ function enterMissVirginStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hngh-!"');
     scene.text('A small grunt is the only sign of discomfort you allow to show at the loss of your virginity. Even as Coach Mikhail pushes the entirety of his huge cock inside, you keep your teeth clenched, determined to muscle through the pain.');
     // TODO-QSP: dynamic text: "That''s a good girl, <<$pcs_lastname>>," he murmurs. "I knew you could handle i...
-    scene.text(`"That's a good girl, ${((st as any).pcs_lastname || '')}," he murmurs. "I knew you could handle it."`);
+    scene.text(`"That's a good girl, ${((st as any).pcs_lastname ?? '')}," he murmurs. "I knew you could handle it."`);
     scene.actions([
       { label: 'Continue', goto: ['volley_coach', 'miss_fuck1'] },
     ]);
@@ -1574,7 +1574,7 @@ function enterMissVirginStart(s: GameState, scene: SceneBuilder): void {
     scene.text('A gasp escapes your lips unbidden, not at the pain, but at the way your pussy <i>stretches</i> around his girth. How your lips feel like they are going to tear but just keep stretching instead, your whole body being skewered by his cock. That sensation is so foreign, so shocking, that the pain of losing your virginity is nothing but a backseat note in your mind.');
     scene.text('"Oh!" you gasp. "That\'s <i>big!</i>"');
     // TODO-QSP: dynamic text: "That''s a good girl, <<$pcs_lastname>>," he murmurs. "I knew you could handle i...
-    scene.text(`"That's a good girl, ${((st as any).pcs_lastname || '')}," he murmurs. "I knew you could handle it."`);
+    scene.text(`"That's a good girl, ${((st as any).pcs_lastname ?? '')}," he murmurs. "I knew you could handle it."`);
     scene.actions([
       { label: 'Continue', goto: ['volley_coach', 'miss_fuck1'] },
     ]);
@@ -1605,7 +1605,7 @@ function enterDoggyVirginStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hngh-!"');
     scene.text('A small grunt is the only sign of discomfort you allow to show at the loss of your virginity. Even as Coach Mikhail pushes the entirety of his huge cock inside, you keep your teeth clenched, determined to muscle through the pain.');
     // TODO-QSP: dynamic text: "That''s a good girl, <<$pcs_lastname>>," he murmurs. "I knew you could handle i...
-    scene.text(`"That's a good girl, ${((st as any).pcs_lastname || '')}," he murmurs. "I knew you could handle it."`);
+    scene.text(`"That's a good girl, ${((st as any).pcs_lastname ?? '')}," he murmurs. "I knew you could handle it."`);
     scene.actions([
       { label: 'Continue', goto: ['volley_coach', 'doggy_fuck1'] },
     ]);
@@ -1614,7 +1614,7 @@ function enterDoggyVirginStart(s: GameState, scene: SceneBuilder): void {
     scene.text('A gasp escapes your lips unbidden, not at the pain, but at the way your pussy <i>stretches</i> around his girth. How your lips feel like they are going to tear but just keep stretching instead, your whole body being skewered by his cock. That sensation is so foreign, so shocking, that the pain of losing your virginity is nothing but a backseat note in your mind.');
     scene.text('"Oh!" you gasp. "That\'s <i>big!</i>"');
     // TODO-QSP: dynamic text: "That''s a good girl, <<$pcs_lastname>>," he murmurs. "I knew you could handle i...
-    scene.text(`"That's a good girl, ${((st as any).pcs_lastname || '')}," he murmurs. "I knew you could handle it."`);
+    scene.text(`"That's a good girl, ${((st as any).pcs_lastname ?? '')}," he murmurs. "I knew you could handle it."`);
     scene.actions([
       { label: 'Continue', goto: ['volley_coach', 'doggy_fuck1'] },
     ]);
@@ -2187,7 +2187,7 @@ function enterMassageFuckEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'like');
     scene.text('The two of you get dressed without another word to each other, content in comfortable silence.');
     // TODO-QSP: dynamic text: "Hit the showers <<$pcs_lastname>>."
-    scene.text(`"Hit the showers ${((st as any).pcs_lastname || '')}."`);
+    scene.text(`"Hit the showers ${((st as any).pcs_lastname ?? '')}."`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['volley_coach', 'massage_room'] },
@@ -2205,7 +2205,7 @@ function enterMassageFuckEnd(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You both grin at that, finishing pulling on the last of your clothing.');
     // TODO-QSP: dynamic text: "Time to hit the showers, <<$pcs_lastname>>," he says, giving you a heavy swat o...
-    scene.text(`"Time to hit the showers, ${((st as any).pcs_lastname || '')}," he says, giving you a heavy swat on the ass on his way out the door.`);
+    scene.text(`"Time to hit the showers, ${((st as any).pcs_lastname ?? '')}," he says, giving you a heavy swat on the ass on his way out the door.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Finish', goto: ['volley_coach', 'massage_room'] },
@@ -2215,7 +2215,7 @@ function enterMassageFuckEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'love');
     scene.text('The two of you get dressed and you kiss him before he goes. As your lips part he gives you a heavy slap on the ass.');
     // TODO-QSP: dynamic text: "Hit the showers <<$pcs_lastname>>," he says, smirks and leaves.
-    scene.text(`"Hit the showers ${((st as any).pcs_lastname || '')}," he says, smirks and leaves.`);
+    scene.text(`"Hit the showers ${((st as any).pcs_lastname ?? '')}," he says, smirks and leaves.`);
     qspCall(st, 'arousal', 'kiss', 2);
     qspCall(st, 'arousal', 'end');
     scene.actions([

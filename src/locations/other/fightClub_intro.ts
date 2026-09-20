@@ -79,7 +79,7 @@ function enterOffice1(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter. The office is not large and is littered with pictures of boxers and trophies. Sitting at a tiny desk is a man who, at first glance, looks like an ex-boxer.');
   scene.text('His eyes light up when you enter and greet him.');
   // TODO-QSP: dynamic text: "Ah, you must be <<$pcs_nickname>>. The boss has already been raving about you. ...
-  scene.text(`"Ah, you must be ${((s as any).pcs_nickname || '')}. The boss has already been raving about you. I'm Oleg, I keep this place together.” He turns on his groaning chair and calls to the back. "Boss, ${((s as any).pcs_nickname || '')}'s here."`);
+  scene.text(`"Ah, you must be ${((s as any).pcs_nickname ?? '')}. The boss has already been raving about you. I'm Oleg, I keep this place together.” He turns on his groaning chair and calls to the back. "Boss, ${((s as any).pcs_nickname ?? '')}'s here."`);
   scene.text('"Send her in right away, Oleg!", comes back.');
   scene.text('"You heard him, Dove, just go through, he\'s waiting for you."');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -95,7 +95,7 @@ function enterOffice2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
   scene.text('Sultan Maskaev comes to meet you at the door. "Excellent. I\'m glad to see you, sweetie."');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you correct, slightly annoyed.
-  scene.text(`"${((s as any).pcs_nickname || '')}," you correct, slightly annoyed.`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}," you correct, slightly annoyed.`);
   scene.text('He grins. "I might as well call you a superstar, because you soon will be! Come on, have a seat."');
   scene.text('He\'s obviously turned on the charm, and he\'s got a lot of it. He is a bit too quick with his compliments. You want to slow down the things a bit. Your gaze falls on a picture on the wall.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -142,7 +142,7 @@ function enterOffice4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Only for the losers, and you, sweetie, are a winner - I\'ll make sure of that."');
   scene.text('You stare at him questioningly.');
   // TODO-QSP: dynamic text: "I didn''t just approach you because you''re talented, <<$pcs_nickname>>. You ha...
-  scene.text(`"I didn't just approach you because you're talented, ${((s as any).pcs_nickname || '')}. You have a pretty face and an amazing body. That's our capital, and I don't want to waste it. I'll build you up slowly, choose a few easy opponents first. You'll still be able to cash in big time. How does ${qspFunc(s, 'money', 'string_profit', 10000)} for your first fight sound?"`);
+  scene.text(`"I didn't just approach you because you're talented, ${((s as any).pcs_nickname ?? '')}. You have a pretty face and an amazing body. That's our capital, and I don't want to waste it. I'll build you up slowly, choose a few easy opponents first. You'll still be able to cash in big time. How does ${qspFunc(s, 'money', 'string_profit', 10000)} for your first fight sound?"`);
   scene.text('"10.000?"');
   scene.text('"And it\'ll be a walk in the park, I promise. So - shall we make this clear?"');
   scene.text('You look at him. He seems really confident in you.');

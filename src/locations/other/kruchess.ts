@@ -60,7 +60,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('On Saturdays, after a week\'s training, club members spend the whole day playing against each other.');
       if (((s as any).chess_win ?? 0) < 5) {
         // TODO-QSP: dynamic text: You have beaten Vitalik '+str(chess_win)+' times.
-        scene.text('You have beaten Vitalik ' + String(((s as any).chess_win || '')) + ' times.');
+        scene.text('You have beaten Vitalik ' + String(((s as any).chess_win ?? '')) + ' times.');
       } else {
         if (((s as any).chess_win ?? 0) >= 5  &&  ((s as any).chess_win ?? 0) < 10) {
           scene.text('You have beaten Vitalik 5 times. You cannot play against him anymore.');
@@ -93,7 +93,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       // TODO-QSP: dynamic text: You have won a total of '+str(chess_win)+' chess matches.
-      scene.text('You have won a total of ' + String(((s as any).chess_win || '')) + ' chess matches.');
+      scene.text('You have won a total of ' + String(((s as any).chess_win ?? '')) + ' chess matches.');
       if (((s as any).chess_win ?? 0) < 5) {
         // TODO-QSP: dynamic text: You are paired against Vitalik, the youngest boy in the club. Despite his age he...
         scene.text('You are paired against Vitalik, the youngest boy in the club. Despite his age he has already achieved rank 4, the lowest official chess rank corresponding to an ELO rating of 1000+.');

@@ -168,7 +168,7 @@ function enterMansionInterior1(s: GameState, scene: SceneBuilder): void {
 function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nerd_game ?? 0)?.['know_succubus_trap'] === 1) {
     // TODO-QSP: dynamic text: "Knowing the house is just an illusion, you''re not entirely surprised when it d...
-    scene.text(`"Knowing the house is just an illusion, you're not entirely surprised when it disappears and you suddenly find yourselves in a small stone room with no doors or windows," Feofan narrates. "${((s as any).pcs_nickname || '')}, I need you to roll a perception check."`);
+    scene.text(`"Knowing the house is just an illusion, you're not entirely surprised when it disappears and you suddenly find yourselves in a small stone room with no doors or windows," Feofan narrates. "${((s as any).pcs_nickname ?? '')}, I need you to roll a perception check."`);
     (s as any).temp = (Math.floor(Math.random() * 20) + 1);
     if (((s as any).temp ?? 0) === 20) {
       scene.text('You roll the dice and are pleased when the 20 shows up. Feofan checks his notes.');
@@ -190,7 +190,7 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
         scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
         scene.text('More dice are rolled and you discover that, while there are no more arrows, you have been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
         // TODO-QSP: dynamic text: "Just as you''re about to give up hope, a secret door opens and <<$pcs_nickname>...
-        scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname || '')}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
+        scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname ?? '')}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
       }
     }
     scene.actions([
@@ -229,7 +229,7 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
     scene.text('"You all carefully make your way into the house, but are surprised when it suddenly vanishes before your eyes and you find yourselves in a small stone room with no doors or windows," Feofan narrates.');
     scene.text('"God damn it, Petka! You\'re supposed to counter magical charms like this!" Artem sighs in frustration.');
     // TODO-QSP: dynamic text: Petka is about to reply, but Feofan clears his throat. "I need <<$pcs_nickname>>...
-    scene.text(`Petka is about to reply, but Feofan clears his throat. "I need ${((s as any).pcs_nickname || '')} to roll a perception check."`);
+    scene.text(`Petka is about to reply, but Feofan clears his throat. "I need ${((s as any).pcs_nickname ?? '')} to roll a perception check."`);
     (s as any).temp = (Math.floor(Math.random() * 20) + 1);
     if (((s as any).temp ?? 0) === 20) {
       scene.text('You roll the dice and are pleased when the 20 shows up. Feofan checks his notes.');
@@ -251,7 +251,7 @@ function enterMansionInterior2(s: GameState, scene: SceneBuilder): void {
         scene.text('"What the hell was that?" Petka asks. "Is there any more of those things?"');
         scene.text('More dice are rolled and you discover that, while there are no more arrows, you have been cursed with insatiable lust and will thus be weaker in any upcoming fights. There also doesn\'t appear to be any way out of the room in which you are trapped.');
         // TODO-QSP: dynamic text: "Just as you''re about to give up hope, a secret door opens and <<$pcs_nickname>...
-        scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname || '')}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
+        scene.text(`"Just as you're about to give up hope, a secret door opens and ${((s as any).pcs_nickname ?? '')}'s rogue hears a voice compelling her to follow the tunnel in front of her," Feofan narrates.`);
       }
     }
     scene.actions([
@@ -299,7 +299,7 @@ function enterMansionInterior3(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: iif(nerd_game['lust_curse'] = 1, '"<<$pcs_nickname>>''s rogue', '"Julia''s cleric') + ' suddenly hea...
   scene.text('"We need to let this magic guide us if we want to get out of here," Gerasim replies.');
   // TODO-QSP: dynamic text: "But it''s <i>dark magic</i>!" Artem retorts. "Just look at what it''s done to '...
-  scene.text('"But it\'s <i>dark magic</i>!" Artem retorts. "Just look at what it\'s done to \' + iif(nerd_game[\'lust_curse\'] = 1, \'' + ((s as any).pcs_nickname || '') + '!\', \'Julia!\') + \' This voice clearly intends to lure us into a trap!"');
+  scene.text('"But it\'s <i>dark magic</i>!" Artem retorts. "Just look at what it\'s done to \' + iif(nerd_game[\'lust_curse\'] = 1, \'' + ((s as any).pcs_nickname ?? '') + '!\', \'Julia!\') + \' This voice clearly intends to lure us into a trap!"');
   scene.text('"Look around us! We\'re already in the trap!" Gerasim points out. "The only way we\'re getting out of here is to let her follow the voice."');
   scene.text('Artem sighs before he reluctantly nods.');
   // TODO-QSP: end
@@ -309,14 +309,14 @@ function enterMansionInterior3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     if (((st as any).nerd_game ?? 0)?.['lust_curse'] === 1) {
       // TODO-QSP: dynamic text: "You all stand aside and allow <<$pcs_nickname>> to follow the voice," Feofan na...
-      scene.text(`"You all stand aside and allow ${((st as any).pcs_nickname || '')} to follow the voice," Feofan narrates. "Stumbling through the dimly lit cave, she leads you all to a previously hidden area where you find about half a dozen men also stumbling around in what appears to be some sort of trance. To your surprise, they're all naked and are begging to be allowed to please their mistress."`);
+      scene.text(`"You all stand aside and allow ${((st as any).pcs_nickname ?? '')} to follow the voice," Feofan narrates. "Stumbling through the dimly lit cave, she leads you all to a previously hidden area where you find about half a dozen men also stumbling around in what appears to be some sort of trance. To your surprise, they're all naked and are begging to be allowed to please their mistress."`);
       scene.text('"There\'s n- naked <i>men</i> here?" Petka asks, receiving a loud groan from the group in return.');
       scene.text('Feofan rolls his eyes. "Yes. Does that interest you?"');
       scene.text('A few of the group grin as Petka blushes in embarrassment.');
       scene.text('Both Petka and Julia roll their dice and their combined magical abilities are able to reveal that the men are under the cursed spell of a succubus\'s dark magic.');
       scene.text('"Let\'s try and avoid a fight here," Julia says. "These men are innocent victims of that foul creature. If we kill her, then we should break the spell she\'s placed on them. Just don\'t kill them!"');
       // TODO-QSP: dynamic text: "Just as Julia''s cleric explains this discovery, <<$pcs_nickname>>''s rogue fee...
-      scene.text(`"Just as Julia's cleric explains this discovery, ${((st as any).pcs_nickname || '')}'s rogue feels a sudden pulse of lust course through her as the eyes of the people in front of you glow bright red," Feofan narrates.`);
+      scene.text(`"Just as Julia's cleric explains this discovery, ${((st as any).pcs_nickname ?? '')}'s rogue feels a sudden pulse of lust course through her as the eyes of the people in front of you glow bright red," Feofan narrates.`);
       scene.text('"Must defend Mistress…" they all drone in unison as they turn to face you, grouping up to attack you.');
     } else {
       scene.text('"You all stand aside and allow Julia to follow the voice," Feofan narrates. "Stumbling through the dimly lit cave, she leads you all to a previously hidden area where you find about half a dozen men also stumbling around in what appears to to be some sort of trance. To your surprise, they\'re all naked and are begging to be allowed to please their mistress."');
@@ -379,7 +379,7 @@ function enterMansionInterior3(s: GameState, scene: SceneBuilder): void {
       scene.text('"As you search one of the bodies, you see a strange marking on their neck. It looks almost like a cattle branding, but it radiates with some kind of strange energy," Feofan tells you. "As you continue staring at it, it suddenly starts glowing and you feel yourself growing even more lustful. It\'s as if the marking can sense the curse flowing through you…"');
       scene.text('Julia succeeds on her dice roll and is able to explain that it\'s the unmistakable mark of a succubus and that the succubus must be very powerful if she had so many people under her control at once.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>> then hears the strange voice again, telling her that she''s e...
-      scene.text(`"${((st as any).pcs_nickname || '')} then hears the strange voice again, telling her that she's ever so close to finding her mistress and that she need only continue following the sound of her voice," Feofan adds.`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')} then hears the strange voice again, telling her that she's ever so close to finding her mistress and that she need only continue following the sound of her voice," Feofan adds.`);
     } else {
       scene.text('"As you search one of the bodies, you see a strange marking on their neck. It looks almost like a cattle branding," Feofan tells you.');
       scene.text('You decide to call Julia\'s character over to investigate and the marking suddenly starts glowing brightly as Julia\'s character enters some kind of hypnotic trance.');
@@ -402,7 +402,7 @@ function enterMansionInterior3(s: GameState, scene: SceneBuilder): void {
         scene.text('"As you search one of the bodies, you see a strange marking on their neck. It looks almost like a cattle branding, but it radiates with some kind of strange energy," Feofan tells you. "As you continue staring at it, it suddenly starts glowing and you feel yourself growing even more lustful. It\'s as if the marking can sense the curse flowing through you…"');
         scene.text('Julia succeeds on her dice roll and is able to explain that it\'s the unmistakable mark of a succubus and that the succubus must be very powerful if she had so many people under her control at once.');
         // TODO-QSP: dynamic text: "<<$pcs_nickname>> then hears the strange voice again, telling her that she''s e...
-        scene.text(`"${((st as any).pcs_nickname || '')} then hears the strange voice again, telling her that she's ever so close to finding her mistress and that she need only continue following the sound of her voice," Feofan adds.`);
+        scene.text(`"${((st as any).pcs_nickname ?? '')} then hears the strange voice again, telling her that she's ever so close to finding her mistress and that she need only continue following the sound of her voice," Feofan adds.`);
       } else {
         scene.text('"As you search one of the bodies, you see a strange marking on their neck. It looks almost like a cattle branding," Feofan tells you.');
         scene.text('You decide to call Julia\'s character over to investigate and the marking suddenly starts glowing brightly as Julia\'s character enters some kind of hypnotic trance.');
@@ -428,11 +428,11 @@ function enterMansionInterior4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
   // TODO-QSP: dynamic text: "Okay, when we left off, you''d just finished battling a group of strange men wh...
-  scene.text('"Okay, when we left off, you\'d just finished battling a group of strange men who were under the control of dark magic. You had just healed up and looted the area when \' + iif(nerd_game[\'lust_curse\'] = 1, \'' + ((s as any).pcs_nickname || '') + '\'s rogue\', \'Julia\'s cleric\') + \' started hearing the strange voice in her head again," Feofan explains.');
+  scene.text('"Okay, when we left off, you\'d just finished battling a group of strange men who were under the control of dark magic. You had just healed up and looted the area when \' + iif(nerd_game[\'lust_curse\'] = 1, \'' + ((s as any).pcs_nickname ?? '') + '\'s rogue\', \'Julia\'s cleric\') + \' started hearing the strange voice in her head again," Feofan explains.');
   if (((s as any).nerd_game ?? 0)?.['lust_curse'] === 1) {
     scene.text('"That\'s the voice of a succubus!" Julia points out. "Somewhere in this maze of a cave is a powerful lust demon waiting to take advantage of us!"');
     // TODO-QSP: dynamic text: "I know, but we have to keep doing what we''re doing and let <<$pcs_nickname>> f...
-    scene.text(`"I know, but we have to keep doing what we're doing and let ${((s as any).pcs_nickname || '')} follow her voice. It's a trap, but it's the only way we'll escape her lair," Gerasim replies.`);
+    scene.text(`"I know, but we have to keep doing what we're doing and let ${((s as any).pcs_nickname ?? '')} follow her voice. It's a trap, but it's the only way we'll escape her lair," Gerasim replies.`);
     scene.text('Julia seems very hesitant, likely roleplaying her character, but reluctantly agrees.');
   } else {
     scene.text('"I know this is likely us being lured into a trap, but we have to keep doing what we were before and let Julia follow the voice. It\'s the only way we\'ll escape from this place," Gerasim says.');
@@ -446,7 +446,7 @@ function enterMansionInterior4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     if (((st as any).nerd_game ?? 0)?.['lust_curse'] === 1) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>> follows the voice''s commands and leads you all even deeper i...
-      scene.text(`"${((st as any).pcs_nickname || '')} follows the voice's commands and leads you all even deeper into the cave," Feofan narrates.`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')} follows the voice's commands and leads you all even deeper into the cave," Feofan narrates.`);
       scene.text('"How far does this cave go?" Petka asks. "I feel like we\'ve been following this tunnel forever!"');
       scene.text('"I don\'t know," Gerasim replies. "But it\'s almost like I can <i>feel</i> the pain and suffering that happened within these walls."');
       scene.text('"As you round yet another corner, you\'re confronted by the sight of a man on his knees, weeping over the corpse of a woman. They both look like bandits," Feofan narrates.');
@@ -475,7 +475,7 @@ function enterMansionInterior4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well, I guess that answers that question," Zinaida says. "This succubus must be screwed in the head if she made this man rape his friend <i>to death</i>."');
     scene.text('"Exactly. We don\'t know what other horrors she\'s capable of, so we should proceed cautiously," Julia states before she says a prayer for the dead.');
     // TODO-QSP: dynamic text: "Leaving the two corpses behind, you allow the voice to continue commanding <<$p...
-    scene.text(`"Leaving the two corpses behind, you allow the voice to continue commanding ${((st as any).pcs_nickname || '')}. After another lengthy walk through the dim tunnels, the cave suddenly widens out and becomes somewhat brighter," Feofan narrates.`);
+    scene.text(`"Leaving the two corpses behind, you allow the voice to continue commanding ${((st as any).pcs_nickname ?? '')}. After another lengthy walk through the dim tunnels, the cave suddenly widens out and becomes somewhat brighter," Feofan narrates.`);
     scene.actions([
       { label: 'Move further in', goto: ['nerd_game_night1', 'succubus_meeting'] },
     ]);
@@ -546,7 +546,7 @@ function enterSuccubusMeeting(s: GameState, scene: SceneBuilder): void {
   scene.text('"She\'s… she\'s naked?!" Petka asks in shock. "I can see her boobs?"');
   scene.text('"Of course that\'s what you\'re taking away from this!" Gerasim replies. "I ask her what\'s going on."');
   // TODO-QSP: dynamic text: "The woman turns to you and snarls before climbing off the rock," Feofan replies...
-  scene.text(`"The woman turns to you and snarls before climbing off the rock," Feofan replies. "${((s as any).pcs_nickname || '')}'s character recognizes her instantly as the grieving woman from the tavern. Her pale skin and ruby red lips are unmistakable."`);
+  scene.text(`"The woman turns to you and snarls before climbing off the rock," Feofan replies. "${((s as any).pcs_nickname ?? '')}'s character recognizes her instantly as the grieving woman from the tavern. Her pale skin and ruby red lips are unmistakable."`);
   scene.text('"I raise my weapon at her," you reply. "And ask why she lured us here."');
   if (((s as any).nerd_game ?? 0)?.['know_succubus_trap'] === 1) {
     scene.text('"I\'m always in need of fresh prey and the villages around here prove useful for luring desperate fools like you in with the promise of easy gold."');
@@ -569,7 +569,7 @@ function enterSuccubusMeeting(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m your worst nightmare," she replies. "I\'ll make you wish you\'d never come here!" Something about the way Feofan describes her looks and mannerisms nags at you, like you should remember it…');
     } else {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>''s rogue then feels the effects of the curse growing even str...
-      scene.text(`"${((s as any).pcs_nickname || '')}'s rogue then feels the effects of the curse growing even stronger," Feofan explains. "She feels the urge to listen to the voice's every command…"`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}'s rogue then feels the effects of the curse growing even stronger," Feofan explains. "She feels the urge to listen to the voice's every command…"`);
       scene.text('"It\'s been a while since the cursed arrows gifted me a new pet. You\'re a cute little thing. I\'ll be sure to leave you alive…" the woman says with an evil smirk."');
       scene.text('"<i>She\'s</i> the succubus!" Julia replies and raises her weapon. "I\'ll strike you down in the name of the light, you foul beast!"');
       scene.text('"The woman transforms before you. Curled horns, bat like wings, and a long, arrowed tail all sprout from her body as her fingers transform into razor sharp claws," Feofans narrates. Something about the way Feofan describes her looks and mannerisms nags at you, like you should remember it…');
@@ -633,7 +633,7 @@ function enterSuccubusFight(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nerd_game ?? 0)?.['lust_curse'] === 1) {
     scene.text('"Your foul magic won\'t save you, beast!" Julia states. "I\'ll strike you down and bring justice to all those you have harmed!"');
     // TODO-QSP: dynamic text: "The succubus smirks and accepts your challenge," Feofan replies. "However, she ...
-    scene.text(`"The succubus smirks and accepts your challenge," Feofan replies. "However, she has a trick up her sleeve. ${((s as any).pcs_nickname || '')}'s rogue feels the sudden urge to give in to the voice in her head and submit to the succubus's will. Roll a constitution check, please."`);
+    scene.text(`"The succubus smirks and accepts your challenge," Feofan replies. "However, she has a trick up her sleeve. ${((s as any).pcs_nickname ?? '')}'s rogue feels the sudden urge to give in to the voice in her head and submit to the succubus's will. Roll a constitution check, please."`);
     (s as any).temp = (Math.floor(Math.random() * 20) + 1);
     if (((s as any).temp ?? 0) === 20) {
       scene.text('You roll your dice and are pleased when the 20 shows up. Feofan checks his notes.');
@@ -650,7 +650,7 @@ function enterSuccubusFight(s: GameState, scene: SceneBuilder): void {
         ((s as any).nerd_game = (s as any).nerd_game ?? {})['sveta_slave'] = 1;
         scene.text('You roll the dice, but score poorly. Feofan checks his notes.');
         // TODO-QSP: dynamic text: "Despite her best efforts, the voice is victorious and takes control of <<$pcs_n...
-        scene.text(`"Despite her best efforts, the voice is victorious and takes control of ${((s as any).pcs_nickname || '')}'s mind. She obediently walks over and kneels at the feet of the smirking succubus, joining the other mindless slaves surrounding you."`);
+        scene.text(`"Despite her best efforts, the voice is victorious and takes control of ${((s as any).pcs_nickname ?? '')}'s mind. She obediently walks over and kneels at the feet of the smirking succubus, joining the other mindless slaves surrounding you."`);
         scene.text('"One down, four to go. I look forward to watching you all break. Or you could just give up and <i>die</i>," the succubus snarls.');
       }
     }
@@ -680,12 +680,12 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nerd_game ?? 0)?.['sveta_slave'] === 1) {
       scene.text('"As the battle rages on around you, all you can do is obediently remain on your knees as the succubus overwhelms your mind with lustful thoughts and desires that you feel a powerful, overwhelming urge to satisfy," Feofan explains to you. "As time goes on, you also feel the desire to please your new Mistress."');
       // TODO-QSP: dynamic text: "We have to hurry and break the spell before we lose <<$pcs_nickname>> to her fo...
-      scene.text(`"We have to hurry and break the spell before we lose ${((s as any).pcs_nickname || '')} to her forever!" Gerasim exclaims.`);
+      scene.text(`"We have to hurry and break the spell before we lose ${((s as any).pcs_nickname ?? '')} to her forever!" Gerasim exclaims.`);
       scene.text('You\'re forced to listen to the group battle both the succubus and her minions without you and are a little disappointed that you couldn\'t take part.');
       scene.text('"Your thoughts suddenly clear and you find yourself back in the cave, surrounded by corpses as you spot the wounded succubus, having returned to her human form, trying to crawl away from your teammates," Feofan says to you.');
     } else {
       // TODO-QSP: dynamic text: "As the battle commences, the succubus takes flight and watches as her horde of ...
-      scene.text(`"As the battle commences, the succubus takes flight and watches as her horde of brainshwashed minions attack you," Feofan narrates. "As you prepare to fight them off, ${((s as any).pcs_nickname || '')} still feels the urge to submit, but is able to fight it off and join the rest of the group in combat."`);
+      scene.text(`"As the battle commences, the succubus takes flight and watches as her horde of brainshwashed minions attack you," Feofan narrates. "As you prepare to fight them off, ${((s as any).pcs_nickname ?? '')} still feels the urge to submit, but is able to fight it off and join the rest of the group in combat."`);
       scene.text('As you fight off the army of minions, the succubus suddenly swoops down and takes a swipe at Gerasim\'s ranger with her claws, causing him to take damage, but he counterattacks and is able to force the succubus to the ground to battle you on equal footing.');
       (s as any).temp = (Math.floor(Math.random() * 20) + 1);
       if (((s as any).temp ?? 0) === 20) {
@@ -724,7 +724,7 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Don\'t let her fool you. This show of weakness is just that - a show. She\'ll kill us all in the blink of an eye when we turn our backs," Julia states.');
     scene.text('"What do we do then?" Gerasim asks. "I\'m fairly certain that we can\'t kill a demon as powerful as her, even in her weakened state."');
     // TODO-QSP: dynamic text: "No, we can''t, but we can destroy her physical form and thus banish her back to...
-    scene.text(`"No, we can't, but we can destroy her physical form and thus banish her back to the demonic realm from which she came from," Julia explains. "I say we let ${((st as any).pcs_nickname || '')} deal the blow. It was her who suffered the most under her foul magic after all."`);
+    scene.text(`"No, we can't, but we can destroy her physical form and thus banish her back to the demonic realm from which she came from," Julia explains. "I say we let ${((st as any).pcs_nickname ?? '')} deal the blow. It was her who suffered the most under her foul magic after all."`);
     scene.text('After a short discussion, the group all agree and await your response.');
     scene.actions([
       { label: 'Reluctantly do it', handler: (st: GameState) => {
@@ -776,7 +776,7 @@ function enterSuccubusFight1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Don\'t let her fool you. This show of weakness is just that - a show. She\'ll kill us all in the blink of an eye when we turn our backs," Julia states.');
       scene.text('"What do we do then?" Gerasim asks. "I\'m fairly certain that we can\'t kill a demon as powerful as her, even in her weakened state."');
       // TODO-QSP: dynamic text: "No, we can''t, but we can destroy her physical form and thus banish her back to...
-      scene.text(`"No, we can't, but we can destroy her physical form and thus banish her back to the demonic realm from which she came from," Julia explains. "I say we let ${((st as any).pcs_nickname || '')} deal the blow. It was her who suffered the most under her foul magic after all."`);
+      scene.text(`"No, we can't, but we can destroy her physical form and thus banish her back to the demonic realm from which she came from," Julia explains. "I say we let ${((st as any).pcs_nickname ?? '')} deal the blow. It was her who suffered the most under her foul magic after all."`);
       scene.text('After a short discussion, the group all agree and await your response.');
       scene.actions([
         { label: 'Reluctantly do it', handler: (st: GameState) => {
@@ -922,7 +922,7 @@ function enterCursedVillage1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     scene.text('"Yeah, we already killed them all, so they won\'t be following you any time soon," you add, which earns you a scornful reprisal from the rest of the group.');
     // TODO-QSP: dynamic text: "Was that really necessary, <<$pcs_nickname>>?" Julia scowls.
-    scene.text(`"Was that really necessary, ${((st as any).pcs_nickname || '')}?" Julia scowls.`);
+    scene.text(`"Was that really necessary, ${((st as any).pcs_nickname ?? '')}?" Julia scowls.`);
     scene.text('"Yeah, they\'ve been through enough. You didn\'t have to be that direct," Artem adds.');
     scene.text('Zinaida and Gerasim also voice their disapproval at your poor choice of words while Petka remains silent, causing you to blush a little in embarrassment before Feofan continues.');
     scene.text('"Approaching the edge of the village, you all see first hand the gruesome evidence of what happened here," Feofan narrates. "The corpses of both men and women litter the streets, with signs of violence present almost everywhere you look."');
@@ -1112,7 +1112,7 @@ function enterNecromancerAdventureStart(s: GameState, scene: SceneBuilder): void
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/community/library/events/nerd_game/playing.jpg');
     // TODO-QSP: dynamic text: Feofan next checks all your search results. "Most of you find nothing, except Zi...
-    scene.text(`Feofan next checks all your search results. "Most of you find nothing, except Zinaida's fighter who rolled surprisingly well." Zinaida for her part smiles in pride at that. "Finds a hidden cache of scrolls behind a loose stone in the floor near the altar. While ${((st as any).pcs_nickname || '')} finds a small hole in the back of the chapel, inside is an old cat. Now dead, it seems to have died of old age."`);
+    scene.text(`Feofan next checks all your search results. "Most of you find nothing, except Zinaida's fighter who rolled surprisingly well." Zinaida for her part smiles in pride at that. "Finds a hidden cache of scrolls behind a loose stone in the floor near the altar. While ${((st as any).pcs_nickname ?? '')} finds a small hole in the back of the chapel, inside is an old cat. Now dead, it seems to have died of old age."`);
     scene.text('Julia especially looks sad at the mention of the dead cat and says. "I bury the cat with full rites!" Most of the rest of the group moan at this, but follow her outside where she digs a small hole and then buries the cat, blessing it to a happy afterlife. Feofan goes into a lot of detail on the rite, so much so that Petka and Artem start to get annoyed it is taking so long.');
     scene.text('Artem jumps in as soon as he can. "With the cat buried we will go back inside and set up camp. Petka, your wizard should check those scrolls."');
     scene.actions([

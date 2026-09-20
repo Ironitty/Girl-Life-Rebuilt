@@ -221,7 +221,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (Number((s as any).locArgs?.[0] ?? 0) === 85) {
               // TODO-QSP: dynamic text: One of the viewers, noticing how drunk you are, asks in chat: "Hey, <<$pcs_nickn...
-              scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname || '')}! Show us something unusual! Anything!"`);
+              scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? '')}! Show us something unusual! Anything!"`);
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
                 ((s as any).temp = (s as any).temp ?? {})[1] = 1;
@@ -285,7 +285,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source || '') + '.jpg');
+      scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source ?? '') + '.jpg');
       scene.text('In your drunken stupor you find some rope and rubber bands and begin to bind your breasts, using the helpful advice of the chat to guide you.');
       scene.text('Your senses have been dulled by the excessive amount of alcohol you drank, but you\'re still conscious enough to make sure you don\'t bind your breasts too tightly.');
       scene.text('A few minutes later you decide your poor boobs have had enough, and untie them again. Your chat enjoyed seeing you like that, and you receive a few donations while you carefully rub some feeling back into your tingling breasts.');
@@ -524,7 +524,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source || '') + '.jpg');
+    scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source ?? '') + '.jpg');
     if (((st as any).analPlugIn ?? 0) === 1) {
       scene.text('You smile to yourself, he\'s going to love what you have in store for him!');
       scene.text('"I\'m sorry," you tell him, explicitly mentioning his username as well. "That\'s going to be a bit difficult…"');

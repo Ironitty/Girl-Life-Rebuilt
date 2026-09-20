@@ -111,11 +111,11 @@ function enterPs1(s: GameState, scene: SceneBuilder): void {
   scene.text('The inscription on the sign by the road reads, "Closed to the public".');
   if ((!((s as any).psiklik ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum0.jpg" ></cen...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/city/suburb/asylum0.jpg" ></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/suburb/asylum0.jpg" ></center>`);
   }
   if (((s as any).psiklik ?? 0) === 1) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum1.jpg" ></cen...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/city/suburb/asylum1.jpg" ></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/city/suburb/asylum1.jpg" ></center>`);
   }
   // TODO-QSP: end
   scene.actions([

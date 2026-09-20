@@ -57,13 +57,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Character Description</h1></center>');
   // TODO-QSP: $settings['table_start']
   // TODO-QSP: dynamic text: Your name is <<$pcs_firstname>> <<$pcs_lastname>>.
-  scene.text(`Your name is ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}.`);
+  scene.text(`Your name is ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}.`);
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     // TODO-QSP: dynamic text: Your friends and family call you <<$pcs_nickname>>.
-    scene.text(`Your friends and family call you ${((s as any).pcs_nickname || '')}.`);
+    scene.text(`Your friends and family call you ${((s as any).pcs_nickname ?? '')}.`);
   } else {
     // TODO-QSP: dynamic text: Your friends call you <<$pcs_nickname>>.
-    scene.text(`Your friends call you ${((s as any).pcs_nickname || '')}.`);
+    scene.text(`Your friends call you ${((s as any).pcs_nickname ?? '')}.`);
   }
   if (((s as any).start_type ?? 0)?.['cat'] === 'goodgirl') {
     scene.text('Your start background is: Good Girl');
@@ -111,14 +111,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucpcinfo ?? 0) >= 4) {
     scene.text('You are a Succubus.');
     // TODO-QSP: dynamic text: Succubus Level: <<succublvl>>
-    scene.text(`Succubus Level: ${((s as any).succublvl || '')}`);
+    scene.text(`Succubus Level: ${((s as any).succublvl ?? '')}`);
   }
   if (((s as any).age ?? 0) === ((s as any).vidage ?? 0)) {
     // TODO-QSP: dynamic text: You are <<age>> years old.
-    scene.text(`You are ${((s as any).age || '')} years old.`);
+    scene.text(`You are ${((s as any).age ?? '')} years old.`);
   } else {
     // TODO-QSP: dynamic text: You are <<age>> years old, but you appear to be <<vidage>>.
-    scene.text(`You are ${((s as any).age || '')} years old, but you appear to be ${((s as any).vidage || '')}.`);
+    scene.text(`You are ${((s as any).age ?? '')} years old, but you appear to be ${((s as any).vidage ?? '')}.`);
   }
   if (((s as any).birthday ?? 0) <= 9  &&  ((s as any).birthmonth ?? 0) <= 9) {
     (s as any).birthdayD = '0' + ((s as any).birthday ?? 0) + '.0' + ((s as any).birthmonth ?? 0) + '.' + ((s as any).birthyear ?? 0) + '.';
@@ -134,11 +134,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: Your date of birth is <<$birthdayD>>
-  scene.text(`Your date of birth is ${((s as any).birthdayD || '')}`);
+  scene.text(`Your date of birth is ${((s as any).birthdayD ?? '')}`);
   // TODO-QSP: dynamic text: You are <<pcs_hgt>>cm tall and <a href="exec:view $func(''$body_image'', ''body'...
-  scene.text(`You are ${((s as any).pcs_hgt || '')}cm tall and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027body/u0027) */ return s; }); return false;">${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}</a>.`);
+  scene.text(`You are ${((s as any).pcs_hgt ?? '')}cm tall and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027body/u0027) */ return s; }); return false;">${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}</a>.`);
   // TODO-QSP: dynamic text: Your breasts would be considered an EU <a href="exec:view $func(''$body_image'',...
-  scene.text(`Your breasts would be considered an EU <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027tits/u0027) */ return s; }); return false;">${((s as any).titsize || '')}</a>.`);
+  scene.text(`Your breasts would be considered an EU <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027tits/u0027) */ return s; }); return false;">${((s as any).titsize ?? '')}</a>.`);
   if (((s as any).preg ?? 0) === 1) {
     if (((s as any).denypreg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) > 2688) {
       scene.text('You seem to be putting on a bit of weight, your belly is definitely bigger.');
@@ -177,15 +177,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
   } else {
     // TODO-QSP: dynamic text: <<$hair>>
-    scene.text(`${((s as any).hair || '')}`);
+    scene.text(`${((s as any).hair ?? '')}`);
   }
   if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
-    scene.text(`Your curls are good for another ${((s as any).curly || '')} days.`);
+    scene.text(`Your curls are good for another ${((s as any).curly ?? '')} days.`);
   }
   if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
-    scene.text(`Your hair should be straight for another ${((s as any).straight || '')} days.`);
+    scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
   if (((s as any).pcs_mass ?? 0)?.['body'] < 10  &&  ((s as any).strenbuf ?? 0) > 0  &&  (!((s as any).dounspell ?? 0))) {
     // TODO-QSP: $func('wrap', 'neg b', 'You are showing signs of malnourishment. You should probably eat more and mo...
@@ -212,13 +212,13 @@ function enterDescription(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Character Description</h1></center>');
   // TODO-QSP: $settings['table_start']
   // TODO-QSP: dynamic text: Your name is <<$pcs_firstname>> <<$pcs_lastname>>.
-  scene.text(`Your name is ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}.`);
+  scene.text(`Your name is ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}.`);
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     // TODO-QSP: dynamic text: Your friends and family call you <<$pcs_nickname>>.
-    scene.text(`Your friends and family call you ${((s as any).pcs_nickname || '')}.`);
+    scene.text(`Your friends and family call you ${((s as any).pcs_nickname ?? '')}.`);
   } else {
     // TODO-QSP: dynamic text: Your friends call you <<$pcs_nickname>>.
-    scene.text(`Your friends call you ${((s as any).pcs_nickname || '')}.`);
+    scene.text(`Your friends call you ${((s as any).pcs_nickname ?? '')}.`);
   }
   if (((s as any).start_type ?? 0)?.['cat'] === 'goodgirl') {
     scene.text('Your start background is: Good Girl');
@@ -266,14 +266,14 @@ function enterDescription(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucpcinfo ?? 0) >= 4) {
     scene.text('You are a Succubus.');
     // TODO-QSP: dynamic text: Succubus Level: <<succublvl>>
-    scene.text(`Succubus Level: ${((s as any).succublvl || '')}`);
+    scene.text(`Succubus Level: ${((s as any).succublvl ?? '')}`);
   }
   if (((s as any).age ?? 0) === ((s as any).vidage ?? 0)) {
     // TODO-QSP: dynamic text: You are <<age>> years old.
-    scene.text(`You are ${((s as any).age || '')} years old.`);
+    scene.text(`You are ${((s as any).age ?? '')} years old.`);
   } else {
     // TODO-QSP: dynamic text: You are <<age>> years old, but you appear to be <<vidage>>.
-    scene.text(`You are ${((s as any).age || '')} years old, but you appear to be ${((s as any).vidage || '')}.`);
+    scene.text(`You are ${((s as any).age ?? '')} years old, but you appear to be ${((s as any).vidage ?? '')}.`);
   }
   if (((s as any).birthday ?? 0) <= 9  &&  ((s as any).birthmonth ?? 0) <= 9) {
     (s as any).birthdayD = '0' + ((s as any).birthday ?? 0) + '.0' + ((s as any).birthmonth ?? 0) + '.' + ((s as any).birthyear ?? 0) + '.';
@@ -289,11 +289,11 @@ function enterDescription(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: Your date of birth is <<$birthdayD>>
-  scene.text(`Your date of birth is ${((s as any).birthdayD || '')}`);
+  scene.text(`Your date of birth is ${((s as any).birthdayD ?? '')}`);
   // TODO-QSP: dynamic text: You are <<pcs_hgt>>cm tall and <a href="exec:view $func(''$body_image'', ''body'...
-  scene.text(`You are ${((s as any).pcs_hgt || '')}cm tall and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027body/u0027) */ return s; }); return false;">${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}</a>.`);
+  scene.text(`You are ${((s as any).pcs_hgt ?? '')}cm tall and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027body/u0027) */ return s; }); return false;">${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}</a>.`);
   // TODO-QSP: dynamic text: Your breasts would be considered an EU <a href="exec:view $func(''$body_image'',...
-  scene.text(`Your breasts would be considered an EU <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027tits/u0027) */ return s; }); return false;">${((s as any).titsize || '')}</a>.`);
+  scene.text(`Your breasts would be considered an EU <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: view $func(/u0027$body_image/u0027, /u0027tits/u0027) */ return s; }); return false;">${((s as any).titsize ?? '')}</a>.`);
   if (((s as any).preg ?? 0) === 1) {
     if (((s as any).denypreg ?? 0) === 1  &&  ((s as any).pregChem ?? 0) > 2688) {
       scene.text('You seem to be putting on a bit of weight, your belly is definitely bigger.');
@@ -332,15 +332,15 @@ function enterDescription(s: GameState, scene: SceneBuilder): void {
     scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
   } else {
     // TODO-QSP: dynamic text: <<$hair>>
-    scene.text(`${((s as any).hair || '')}`);
+    scene.text(`${((s as any).hair ?? '')}`);
   }
   if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
-    scene.text(`Your curls are good for another ${((s as any).curly || '')} days.`);
+    scene.text(`Your curls are good for another ${((s as any).curly ?? '')} days.`);
   }
   if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
-    scene.text(`Your hair should be straight for another ${((s as any).straight || '')} days.`);
+    scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
   if (((s as any).pcs_mass ?? 0)?.['body'] < 10  &&  ((s as any).strenbuf ?? 0) > 0  &&  (!((s as any).dounspell ?? 0))) {
     // TODO-QSP: $func('wrap', 'neg b', 'You are showing signs of malnourishment. You should probably eat more and mo...
@@ -360,7 +360,7 @@ function enterDescription(s: GameState, scene: SceneBuilder): void {
 
 function enterCurrentHome(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><h1><<$pcs_firstname>>''s Home Location</h1></center>
-  scene.text(`<center><h1>${((s as any).pcs_firstname || '')}'s Home Location</h1></center>`);
+  scene.text(`<center><h1>${((s as any).pcs_firstname ?? '')}'s Home Location</h1></center>`);
   // TODO-QSP: $settings['table_start']
   // TODO-QSP: dynamic text: Your current home is <<$home[''name'']>>.
   scene.text(`Your current home is ${((s as any).home ?? 0)?.['name'] ?? ''}.`);
@@ -440,7 +440,7 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_table += '</table>'
   // TODO-QSP: dynamic text: Attractiveness - <<pcs_apprnc>>
-  scene.text(`Attractiveness - ${((s as any).pcs_apprnc || '')}`);
+  scene.text(`Attractiveness - ${((s as any).pcs_apprnc ?? '')}`);
   if (((s as any).pcs_splcstng ?? 0) + ((s as any).pcs_humint ?? 0) + ((s as any).pcs_persuas ?? 0) + ((s as any).pcs_observ ?? 0) > 0) {
     scene.text('<h2>Mental Skills</h2>');
     (s as any).temp_table = '<table><tr><th align="left">Skill</th><td>-</td><th align="center"><font color="grey">base&nbsp;/&nbsp;mod</font></th><td>-</td><td>|</td><th>Progress</th><td>|</td><td><center>▲</center></td></tr>';
@@ -631,11 +631,11 @@ function enterSkills(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: 'Exhibitionist sex: ' + func('fetish', 'get_exp', 'exhibitionism')
   if (((s as any).SUB ?? 0) > 0) {
     // TODO-QSP: dynamic text: Submissiveness <<SUB>>
-    scene.text(`Submissiveness ${((s as any).SUB || '')}`);
+    scene.text(`Submissiveness ${((s as any).SUB ?? '')}`);
   }
   if (((s as any).pcs_dom ?? 0) > 0) {
     // TODO-QSP: dynamic text: Dominance <<pcs_dom>>
-    scene.text(`Dominance ${((s as any).pcs_dom || '')}`);
+    scene.text(`Dominance ${((s as any).pcs_dom ?? '')}`);
   }
   // TODO-QSP: 'Submissive sex: ' + func('fetish', 'get_exp', 'sub')
   // TODO-QSP: 'Dominant sex: ' + func('fetish', 'get_exp', 'dom')
@@ -830,7 +830,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You have rented an apartment in the city residential area, which is paid up for ...
       scene.text(`You have rented an apartment in the city residential area, which is paid up for <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment')}</b> days`);
       // TODO-QSP: dynamic text: The monthly rent for your city apartment is <<$func('money', 'string_price', ren...
-      scene.text(`The monthly rent for your city apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue || ''))}.`);
+      scene.text(`The monthly rent for your city apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue ?? ''))}.`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).rentdue ?? 0))) {
         scene.text(' You can make an advance <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().rentdue ?? /u0027/u0027)); return false;">payment</a>.');
       } else {
@@ -842,7 +842,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You have rented an apartment in Pushkin, and you''re paid up for <<func(''homes_...
       scene.text(`You have rented an apartment in Pushkin, and you're paid up for ${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')} days`);
       // TODO-QSP: dynamic text: The monthly rent for your Pushkin apartment is <<$func('money', 'string_price', ...
-      scene.text(`The monthly rent for your Pushkin apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue || ''))}.`);
+      scene.text(`The monthly rent for your Pushkin apartment is ${qspFunc(s, 'money', 'string_price', ((s as any).rentdue ?? ''))}.`);
       if (qspFunc(s, 'money', 'can_afford', ((s as any).rentdue ?? 0))) {
         scene.text(' You can make an advance <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027, String(window.__gameStore.getState().rentdue ?? /u0027/u0027)); return false;">payment</a>.');
       } else {
@@ -851,7 +851,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).accessible_property ?? 0)?.['city_apartment'] === 1  ||  ((s as any).accessible_property ?? 0)?.['old_town_apartment'] === 1) {
       // TODO-QSP: dynamic text: Utilities are due on the 25th of <<$monthName>>.
-      scene.text(`Utilities are due on the 25th of ${((s as any).monthName || '')}.`);
+      scene.text(`Utilities are due on the 25th of ${((s as any).monthName ?? '')}.`);
     }
   }
   if (((s as any).kid ?? 0) === 1) {
@@ -859,7 +859,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).kid ?? 0) > 1) {
       // TODO-QSP: dynamic text: You have <<kid>> children:
-      scene.text(`You have ${((s as any).kid || '')} children:`);
+      scene.text(`You have ${((s as any).kid ?? '')} children:`);
     }
   }
   if (((s as any).kid ?? 0) > 0) {
@@ -883,7 +883,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Win ?? 0) > 0  ||  ((s as any).Loss ?? 0) > 0) {
     // TODO-QSP: dynamic text: Wins in fights <<Win>>, losses in fights <<Loss>>
-    scene.text(`Wins in fights ${((s as any).Win || '')}, losses in fights ${((s as any).Loss || '')}`);
+    scene.text(`Wins in fights ${((s as any).Win ?? '')}, losses in fights ${((s as any).Loss ?? '')}`);
   }
   if (((s as any).kickbox ?? 0)?.['sash'] > 0) {
     if (((s as any).kickbox ?? 0)?.['sash'] === 1) {
@@ -952,12 +952,12 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).runnerQW ?? 0)?.['prof_stage'] === 14  &&  ((s as any).runnerQW ?? 0)?.['qualifiers'] >= 9) {
       // TODO-QSP: dynamic text: You qualified for the <<year>> St. Petersburg Track Championship, taking place t...
-      scene.text(`You qualified for the ${((s as any).year || '')} St. Petersburg Track Championship, taking place this season in the Petrovsky Stadium.`);
+      scene.text(`You qualified for the ${((s as any).year ?? '')} St. Petersburg Track Championship, taking place this season in the Petrovsky Stadium.`);
     }
   }
   if (((s as any).chess_win ?? 0) > 0  ||  ((s as any).chess_loss ?? 0) > 0) {
     // TODO-QSP: dynamic text: Chess Record: Win <<chess_win>>, Loss <<chess_loss>>
-    scene.text(`Chess Record: Win ${((s as any).chess_win || '')}, Loss ${((s as any).chess_loss || '')}`);
+    scene.text(`Chess Record: Win ${((s as any).chess_win ?? '')}, Loss ${((s as any).chess_loss ?? '')}`);
   }
   if (((s as any).chess_rank ?? 0) > 0) {
     if (((s as any).chess_rank ?? 0) === 1) {
@@ -1111,7 +1111,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).maxdamage ?? 0) > 0) {
     // TODO-QSP: dynamic text: The impact force on the dynamometer <<maxdamage>> kgN
-    scene.text(`The impact force on the dynamometer ${((s as any).maxdamage || '')} kgN`);
+    scene.text(`The impact force on the dynamometer ${((s as any).maxdamage ?? '')} kgN`);
   }
   if (((s as any).slavafuck ?? 0) > 0  ||  ((s as any).slava_bj ?? 0) > 0  ||  ((s as any).maxdamage ?? 0) > 0) {
   }
@@ -1121,7 +1121,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).strip_club ?? 0)?.['total_stripshows'] === 0  &&  ((s as any).hidden_stripdancesum ?? 0) > 0) {
       // TODO-QSP: dynamic text: You have danced <<hidden_stripdancesum>> times in the stripclub, but you do not ...
-      scene.text(`You have danced ${((s as any).hidden_stripdancesum || '')} times in the stripclub, but you do not remember it`);
+      scene.text(`You have danced ${((s as any).hidden_stripdancesum ?? '')} times in the stripclub, but you do not remember it`);
     } else {
       if (((s as any).strip_club ?? 0)?.['total_stripshows'] > 0  &&  ((s as any).hidden_stripdancesum ?? 0) > 0) {
         // TODO-QSP: dynamic text: You have danced <<strip_club[''total_stripshows''] + hidden_stripdancesum>> time...
@@ -1131,7 +1131,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).profiDanceTime ?? 0) > 0) {
     // TODO-QSP: dynamic text: You danced <<profiDanceTime>> times professionally.
-    scene.text(`You danced ${((s as any).profiDanceTime || '')} times professionally.`);
+    scene.text(`You danced ${((s as any).profiDanceTime ?? '')} times professionally.`);
   }
   if (((s as any).strip_club ?? 0)?.['total_stripshows'] > 0  ||  ((s as any).hidden_stripdancesum ?? 0) > 0  ||  ((s as any).profiDanceTime ?? 0) > 0) {
   }
@@ -1891,30 +1891,30 @@ function enterHusbCheatCount(s: GameState, scene: SceneBuilder): void {
   if (((s as any).husID ?? 0) !== '') {
     if (((s as any).girl_cheat ?? 0) > 0  &&  ((s as any).guy_cheat ?? 0) > 0) {
       // TODO-QSP: dynamic text: During your marriage you have cheated on your husband with <<guy_cheat>> guys an...
-      scene.text(`During your marriage you have cheated on your husband with ${((s as any).guy_cheat || '')} guys and ${((s as any).girl_cheat || '')} girls.`);
+      scene.text(`During your marriage you have cheated on your husband with ${((s as any).guy_cheat ?? '')} guys and ${((s as any).girl_cheat ?? '')} girls.`);
     } else {
       if (((s as any).guy_cheat ?? 0) > 0) {
         // TODO-QSP: dynamic text: During your marriage you have cheated on your husband with <<guy_cheat>> guys.
-        scene.text(`During your marriage you have cheated on your husband with ${((s as any).guy_cheat || '')} guys.`);
+        scene.text(`During your marriage you have cheated on your husband with ${((s as any).guy_cheat ?? '')} guys.`);
       } else {
         if (((s as any).girl_cheat ?? 0) > 0) {
           // TODO-QSP: dynamic text: During your marriage you have cheated on your husband with <<girl_cheat>> girls.
-          scene.text(`During your marriage you have cheated on your husband with ${((s as any).girl_cheat || '')} girls.`);
+          scene.text(`During your marriage you have cheated on your husband with ${((s as any).girl_cheat ?? '')} girls.`);
         }
       }
     }
   } else {
     if (((s as any).girl_cheat ?? 0) > 0  &&  ((s as any).guy_cheat ?? 0) > 0) {
       // TODO-QSP: dynamic text: During your marriage you have cheated on your wife with <<guy_cheat>> guys and <...
-      scene.text(`During your marriage you have cheated on your wife with ${((s as any).guy_cheat || '')} guys and ${((s as any).girl_cheat || '')} girls.`);
+      scene.text(`During your marriage you have cheated on your wife with ${((s as any).guy_cheat ?? '')} guys and ${((s as any).girl_cheat ?? '')} girls.`);
     } else {
       if (((s as any).guy_cheat ?? 0) > 0) {
         // TODO-QSP: dynamic text: During your marriage you have cheated on your wife with <<guy_cheat>> guys.
-        scene.text(`During your marriage you have cheated on your wife with ${((s as any).guy_cheat || '')} guys.`);
+        scene.text(`During your marriage you have cheated on your wife with ${((s as any).guy_cheat ?? '')} guys.`);
       } else {
         if (((s as any).girl_cheat ?? 0) > 0) {
           // TODO-QSP: dynamic text: During your marriage you have cheated on your wife with <<girl_cheat>> girls.
-          scene.text(`During your marriage you have cheated on your wife with ${((s as any).girl_cheat || '')} girls.`);
+          scene.text(`During your marriage you have cheated on your wife with ${((s as any).girl_cheat ?? '')} girls.`);
         }
       }
     }
@@ -2476,7 +2476,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
         }
         // TODO-QSP: $motherknows += '.'
         // TODO-QSP: dynamic text: <<$motherknows>>
-        scene.text(`${((s as any).motherknows || '')}`);
+        scene.text(`${((s as any).motherknows ?? '')}`);
       }
       if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).motherKnowDildo ?? 0) === 0  &&  (!((s as any).motherKnowRaped ?? 0))) {
         scene.text('Your mother thinks that you are a virgin.');
@@ -2588,14 +2588,14 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'pornhist', 'short');
     if ((!((s as any).pfilmSTOP ?? 0))) {
       // TODO-QSP: dynamic text: <font color="magenta"><<$pfname>></font> has starred in <b><<film>></b> porn fil...
-      scene.text(`<font color="magenta">${((s as any).pfname || '')}</font> has starred in <b>${((s as any).film || '')}</b> porn films:`);
+      scene.text(`<font color="magenta">${((s as any).pfname ?? '')}</font> has starred in <b>${((s as any).film ?? '')}</b> porn films:`);
     } else {
       // TODO-QSP: dynamic text: <font color="magenta"><<$pfname>></font> retired after <b><<film>></b> porn film...
-      scene.text(`<font color="magenta">${((s as any).pfname || '')}</font> retired after <b>${((s as any).film || '')}</b> porn films:`);
+      scene.text(`<font color="magenta">${((s as any).pfname ?? '')}</font> retired after <b>${((s as any).film ?? '')}</b> porn films:`);
     }
     scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">View detailed Filmography</a>');
     // TODO-QSP: dynamic text: <<$pfilmhistory>>
-    scene.text(`${((s as any).pfilmhistory || '')}`);
+    scene.text(`${((s as any).pfilmhistory ?? '')}`);
   }
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end
@@ -2619,20 +2619,20 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
     return;
   }
   // TODO-QSP: dynamic text: You have <<pcs_mana>> units of mana available to you.
-  scene.text(`You have ${((s as any).pcs_mana || '')} units of mana available to you.`);
+  scene.text(`You have ${((s as any).pcs_mana ?? '')} units of mana available to you.`);
   // TODO-QSP: </center>"
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).sucpcinfo ?? 0) >= 4  &&  ((s as any).sucskill ?? 0) >= 1) {
     scene.text('<center><b>Succubus Stats</b></center>');
     // TODO-QSP: dynamic text: Succubus Level = <<succublvl>>
-    scene.text(`Succubus Level = ${((s as any).succublvl || '')}`);
+    scene.text(`Succubus Level = ${((s as any).succublvl ?? '')}`);
     // TODO-QSP: dynamic text: Succubus XP = <<succubxp>>
-    scene.text(`Succubus XP = ${((s as any).succubxp || '')}`);
+    scene.text(`Succubus XP = ${((s as any).succubxp ?? '')}`);
     // TODO-QSP: dynamic text: "Food" Energy Reserve = <<0 - succhungry>> day(s)
     scene.text(`"Food" Energy Reserve = ${0 - ((s as any).succhungry ?? '')} day(s)`);
     // TODO-QSP: dynamic text: Stored Sexual Energy = <<sucexcess>>
-    scene.text(`Stored Sexual Energy = ${((s as any).sucexcess || '')}`);
+    scene.text(`Stored Sexual Energy = ${((s as any).sucexcess ?? '')}`);
     // TODO-QSP: dynamic text: Sexual Energy Storage Capacity = <<sucstorecap>>
-    scene.text(`Sexual Energy Storage Capacity = ${((s as any).sucstorecap || '')}`);
+    scene.text(`Sexual Energy Storage Capacity = ${((s as any).sucstorecap ?? '')}`);
     if (((s as any).sucskill ?? 0) >= 2) {
       scene.text('You have learned to increase your storage capacity and to store energy before using it.');
     }

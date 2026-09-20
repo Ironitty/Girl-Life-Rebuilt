@@ -114,7 +114,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027shortcut/u0027); return false;">Gala Contract</a>: Gala offers a special contract. Meet her in the living room.');
   scene.text('<i><b>Job performance</b></i>');
   // TODO-QSP: dynamic text: Overall performance (higher=better): <<nichPerformance>>
-  scene.text(`Overall performance (higher=better): ${((s as any).nichPerformance || '')}`);
+  scene.text(`Overall performance (higher=better): ${((s as any).nichPerformance ?? '')}`);
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichUtil/u0027, /u0027debug/u0027, /u0027evaluation/u0027); return false;">Get silent performance evaluation</a>');
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichNicholas/u0027, /u0027evaluation/u0027); return false;">Get detailed performance evaluation</a>');
   scene.text('<i><b>Chore state</b>: higher numbers are worse</i>');
@@ -269,7 +269,7 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/01.jpg');
   scene.text('"Master Nicholas, I would like to quit," you say as you approach Nicholas.');
   // TODO-QSP: dynamic text: "I see <<$pcs_nickname>>. I am sad to see you go, but I wish you the best of luc...
-  scene.text(`"I see ${((s as any).pcs_nickname || '')}. I am sad to see you go, but I wish you the best of luck."`);
+  scene.text(`"I see ${((s as any).pcs_nickname ?? '')}. I am sad to see you go, but I wish you the best of luck."`);
   scene.text('You bow as you head out of the room');
   // TODO-QSP: end
   scene.actions([
@@ -366,8 +366,8 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichtTimeQuick || '') ?? '') + ' minutes) Clean quickly', handler: (st: GameState) => {
-    scene.img(`${((st as any).nichTempPic || '')}`);
+        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichtTimeQuick ?? '') ?? '') + ' minutes) Clean quickly', handler: (st: GameState) => {
+    scene.img(`${((st as any).nichTempPic ?? '')}`);
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).nichtTimeQuick ?? 0));
     ((st as any).nichChoreState = (st as any).nichChoreState ?? {})[String((st as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
@@ -378,8 +378,8 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeNormal || '') ?? '') + ' minutes) Clean normally', handler: (st: GameState) => {
-    scene.img(`${((st as any).nichTempPic || '')}`);
+        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeNormal ?? '') ?? '') + ' minutes) Clean normally', handler: (st: GameState) => {
+    scene.img(`${((st as any).nichTempPic ?? '')}`);
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).nichTimeNormal ?? 0));
     ((st as any).nichChoreState = (st as any).nichChoreState ?? {})[String((st as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
@@ -389,8 +389,8 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } },
-        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeDiligently || '') ?? '') + ' minutes) Clean diligently', handler: (st: GameState) => {
-    scene.img(`${((st as any).nichTempPic || '')}`);
+        { label: '', labelFn: (s: GameState) => '(' + String(((s as any).nichTimeDiligently ?? '') ?? '') + ' minutes) Clean diligently', handler: (st: GameState) => {
+    scene.img(`${((st as any).nichTempPic ?? '')}`);
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).nichTimeDiligently ?? 0));
     ((st as any).nichChoreState = (st as any).nichChoreState ?? {})[String((st as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)

@@ -141,22 +141,22 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = (Math.floor(Math.random() * 5) + 0);
   if (((s as any).temp_rand ?? 0) === 1) {
     // TODO-QSP: dynamic text: "For an appointment with <<$temp_doc_desc>>, we have some options:"
-    scene.text(`"For an appointment with ${((s as any).temp_doc_desc || '')}, we have some options:"`);
+    scene.text(`"For an appointment with ${((s as any).temp_doc_desc ?? '')}, we have some options:"`);
   } else {
     if (((s as any).temp_rand ?? 0) === 2) {
       // TODO-QSP: dynamic text: "We currently have some available slots for an appointment with <<$temp_doc_desc...
-      scene.text(`"We currently have some available slots for an appointment with ${((s as any).temp_doc_desc || '')}:"`);
+      scene.text(`"We currently have some available slots for an appointment with ${((s as any).temp_doc_desc ?? '')}:"`);
     } else {
       if (((s as any).temp_rand ?? 0) === 3) {
         // TODO-QSP: dynamic text: "For your check-up with <<$temp_doc_desc>>, here are some possible times:"
-        scene.text(`"For your check-up with ${((s as any).temp_doc_desc || '')}, here are some possible times:"`);
+        scene.text(`"For your check-up with ${((s as any).temp_doc_desc ?? '')}, here are some possible times:"`);
       } else {
         if (((s as any).temp_rand ?? 0) === 4) {
           // TODO-QSP: dynamic text: The nurse smiles and says, "We have some openings left this week for your appoin...
-          scene.text(`The nurse smiles and says, "We have some openings left this week for your appointment with ${((s as any).temp_doc_desc || '')}:"`);
+          scene.text(`The nurse smiles and says, "We have some openings left this week for your appointment with ${((s as any).temp_doc_desc ?? '')}:"`);
         } else {
           // TODO-QSP: dynamic text: "For the appointment with <<$temp_doc_desc>> we have some options available:"
-          scene.text(`"For the appointment with ${((s as any).temp_doc_desc || '')} we have some options available:"`);
+          scene.text(`"For the appointment with ${((s as any).temp_doc_desc ?? '')} we have some options available:"`);
         }
       }
     }
@@ -175,10 +175,10 @@ function enterRequestAppointmentOffer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).same_day_offer_index ?? 0) >= 0) {
     if (((s as any).same_day_free ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Actually, it looks like something opened up for later today, too. You''re welco...
-      scene.text(`"Actually, it looks like something opened up for later today, too. You're welcome to wait for ${((s as any).temp_doc_desc || '')}, free of charge, if you'd rather not book ahead."`);
+      scene.text(`"Actually, it looks like something opened up for later today, too. You're welcome to wait for ${((s as any).temp_doc_desc ?? '')}, free of charge, if you'd rather not book ahead."`);
     } else {
       // TODO-QSP: dynamic text: "If you''d prefer not to wait for one of these, we also offer an expedited appoi...
-      scene.text(`"If you'd prefer not to wait for one of these, we also offer an expedited appointment with ${((s as any).temp_doc_desc || '')} today, for a fee."`);
+      scene.text(`"If you'd prefer not to wait for one of these, we also offer an expedited appointment with ${((s as any).temp_doc_desc ?? '')} today, for a fee."`);
     }
   }
   if (((s as any).appointment_selected_index ?? 0) >= 0) {
@@ -281,7 +281,7 @@ function enterAttendAppointment(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: act "Go to your appointment with <<$appt_attend_desc>>":
   if (((s as any).appt_attend_wait ?? 0) < -4) {
     // TODO-QSP: dynamic text: "You are late!" the nurse says, looking unimpressed. "Let me see if <<$appt_atte...
-    scene.text(`"You are late!" the nurse says, looking unimpressed. "Let me see if ${((s as any).appt_attend_desc || '')} can still fit you in."`);
+    scene.text(`"You are late!" the nurse says, looking unimpressed. "Let me see if ${((s as any).appt_attend_desc ?? '')} can still fit you in."`);
     (s as any).appt_attend_outcome = qspFunc(s, 'appointments', 'check_in', ((s as any).appt_attend_category ?? 0), ((s as any).appt_attend_recur ?? 0));
     if (((s as any).appt_attend_outcome ?? 0) === 'missed') {
       scene.text('"I\'m sorry, but your slot has already been given to someone else," the nurse tells you. "You will need to make a new appointment."');
@@ -297,7 +297,7 @@ function enterAttendAppointment(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, 'appointments', 'resolve', ((s as any).appt_attend_category ?? 0));
     // TODO-QSP: dynamic text: You approach the receptionist and politely explain that you have an appointment ...
-    scene.text(`You approach the receptionist and politely explain that you have an appointment with ${((s as any).appt_attend_desc || '')}.`);
+    scene.text(`You approach the receptionist and politely explain that you have an appointment with ${((s as any).appt_attend_desc ?? '')}.`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).appt_attend_category ?? 0), ((s as any).appt_attend_wait ?? 0)]; enterWaitForAppointment(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
@@ -377,7 +377,7 @@ function enterWaitForAppointmentWait(s: GameState, scene: SceneBuilder): void {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWaitingGenericScene(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Wait (' + String(((s as any).tmp_minut || '') ?? '') + ')', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Wait (' + String(((s as any).tmp_minut ?? '') ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + (((st as any).tmp_minut ?? 0));
     // TODO-QSP: gt 'clinic_functions' , 'wait_for_appointment_wait', $tmp_do...
   } },
@@ -605,10 +605,10 @@ function enterDentistInspection(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_missing_teeth ?? 0) === 1) {
       // TODO-QSP: dynamic text: The dentist examines you and says it will cost ' + $func('money', 'string_price'...
-      scene.text(`The dentist examines you and says it will cost ' + $func('money', 'string_price', zubpay) + ' to replace your tooth${((s as any).tmp_brace_txt || '')}.`);
+      scene.text(`The dentist examines you and says it will cost ' + $func('money', 'string_price', zubpay) + ' to replace your tooth${((s as any).tmp_brace_txt ?? '')}.`);
     } else {
       // TODO-QSP: dynamic text: The dentist examines you and says it will cost ' + $func('money', 'string_price'...
-      scene.text(`The dentist examines you and says it will cost ' + $func('money', 'string_price', zubpay) + ' to fill the gaps${((s as any).tmp_brace_txt || '')}.`);
+      scene.text(`The dentist examines you and says it will cost ' + $func('money', 'string_price', zubpay) + ' to fill the gaps${((s as any).tmp_brace_txt ?? '')}.`);
     }
     scene.actions([
       { label: 'Sort out your missing teeth', handler: (st: GameState) => {
@@ -677,7 +677,7 @@ function enterDentistInspection(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Unfortunately your braces will have to stay on for approximately <<$tmp_brace_t...
-    scene.text(`"Unfortunately your braces will have to stay on for approximately ${((s as any).tmp_brace_txt || '')}." the dentist says.`);
+    scene.text(`"Unfortunately your braces will have to stay on for approximately ${((s as any).tmp_brace_txt ?? '')}." the dentist says.`);
   }
   // TODO-QSP: end
   scene.actions([

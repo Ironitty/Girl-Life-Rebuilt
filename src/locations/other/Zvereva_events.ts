@@ -38,7 +38,7 @@ function enterChristinaBu_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/nastymessage2.jpg');
     scene.text('As much as you want to say something, you know it won\'t do any good.');
     // TODO-QSP: dynamic text: She gives you a sweet, and entirely fake, smile when she sees you coming. "Oh, h...
-    scene.text(`She gives you a sweet, and entirely fake, smile when she sees you coming. "Oh, hi ${((st as any).pcs_nickname || '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
+    scene.text(`She gives you a sweet, and entirely fake, smile when she sees you coming. "Oh, hi ${((st as any).pcs_nickname ?? '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
     // TODO-QSP: 'You try to rub it off, but have no luck. ' + $OpenInnerThought + 'Why does she always pick on me? I...
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'building'] },
@@ -50,7 +50,7 @@ function enterChristinaBu_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/nastymessage2.jpg');
     scene.text('Though you know it won\'t stop her, you cannot resist standing up for yourself. "What the fuck, Christina! Does my locker look like a coloring book to you? Why can\'t you just leave my shit alone?"');
     // TODO-QSP: dynamic text: She gives you a sweet, and entirely fake, smile and says "Oh, hi <<$pcs_nickname...
-    scene.text(`She gives you a sweet, and entirely fake, smile and says "Oh, hi ${((st as any).pcs_nickname || '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
+    scene.text(`She gives you a sweet, and entirely fake, smile and says "Oh, hi ${((st as any).pcs_nickname ?? '')}. Don't mind me, I was just giving your locker some much needed pop! We wouldn't want anybody to think you were supposed to be treated normal, after all." Putting her marker away, she half waves and walks away.`);
     // TODO-QSP: 'You try to rub it off, but have no luck. ' + $OpenInnerThought + 'Fucking bitch, someday I''ll get ...
     scene.actions([
       { label: 'Continue', goto: ['gschool_grounds', 'building'] },

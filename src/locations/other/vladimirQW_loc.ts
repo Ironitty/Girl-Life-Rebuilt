@@ -62,10 +62,10 @@ function enterQwvladdy(s: GameState, scene: SceneBuilder): void {
 function enterQwnamedy(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end & !! --- qwnamedy ---
   scene.actions([
-    { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname || '') ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).pcs_nickname ?? '') ?? ''), handler: (st: GameState) => {
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['stage'] = 10;
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you introduce yourself.
-    scene.text(`"${((st as any).pcs_nickname || '')}," you introduce yourself.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}," you introduce yourself.`);
     scene.text('Vladimir smiled. "A beautiful name that suits you perfectly. Unfortunately I have to go, but I would like to see you again. If you leave me your phone number, I could call you tomorrow. I could take you out to dinner at a restaurant."');
     scene.actions([
       { label: 'No (Go)', handler: (st: GameState) => {
@@ -95,7 +95,7 @@ function enterQwnamedy(s: GameState, scene: SceneBuilder): void {
 function enter2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You answer the phone to hear a male voice speaking, "Hello <<$pcs_nickname>>, th...
-  scene.text(`You answer the phone to hear a male voice speaking, "Hello ${((s as any).pcs_nickname || '')}, this is Vladimir. We met at the park, if you remember?"`);
+  scene.text(`You answer the phone to hear a male voice speaking, "Hello ${((s as any).pcs_nickname ?? '')}, this is Vladimir. We met at the park, if you remember?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Hello, of course I remember', handler: (st: GameState) => {
@@ -138,7 +138,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You answer the phone to hear a male voice on the other end, "Hello <<$pcs_nickna...
-  scene.text(`You answer the phone to hear a male voice on the other end, "Hello ${((s as any).pcs_nickname || '')}, this is Vladimir. I happen to own a boat and wondered if you would like a ride on it?"`);
+  scene.text(`You answer the phone to hear a male voice on the other end, "Hello ${((s as any).pcs_nickname ?? '')}, this is Vladimir. I happen to own a boat and wondered if you would like a ride on it?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {
@@ -171,7 +171,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
 function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You pick up the phone to hear a male voice speaking, "Hello <<$pcs_nickname>>, i...
-  scene.text(`You pick up the phone to hear a male voice speaking, "Hello ${((s as any).pcs_nickname || '')}, it's Vladimir. I was wondering if you have time to meet up?"`);
+  scene.text(`You pick up the phone to hear a male voice speaking, "Hello ${((s as any).pcs_nickname ?? '')}, it's Vladimir. I was wondering if you have time to meet up?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Oh, I have a lot to do today, I\'m sorry', handler: (st: GameState) => {

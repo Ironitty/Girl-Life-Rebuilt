@@ -505,13 +505,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('</center>');
   // TODO-QSP: view $func('$face_image')
   scene.actions([
-{ label: '<b>Continue</b>', goto: ['intro_overview', 'leave'] },,
-{ label: '<b>Skip Intro</b>', goto: ['intro_overview', 'quick_leave'] },,
+{ label: '<b>Continue</b>', goto: ['intro_overview', 'leave'] },
+{ label: '<b>Skip Intro</b>', goto: ['intro_overview', 'quick_leave'] },
 { label: 'Change theme', handler: (st: GameState) => {
     (st as any).themes_menu_ret_loc = 'intro_overview';
     (st as any).themes_menu_ret_arg = '';
     qspGoto(st, 'themes', 'menu');
-  } },,
+  } },
 { label: 'Return to Start', handler: (st: GameState) => {
     scene.actions([
       { label: 'Return to Start', goto: ['start', ''] },

@@ -952,7 +952,7 @@ function enterFloor3Event_12(s: GameState, scene: SceneBuilder): void {
     scene.text('As you get to the stairwell landing, the door of one of the apartments suddenly opens and you see a naked girl standing there, her perky breasts and neatly trimmed bush on full display.');
     scene.text('"Oh hey there. Sorry, I thought you were someone else. I\'m Alli," she smiles as she casually reaches out to shake your hand. "Are you one of my neighbours?"');
     // TODO-QSP: dynamic text: "Yeah, I''m <<$pcs_nickname>>. I live up on the fifth floor."
-    scene.text(`"Yeah, I'm ${((s as any).pcs_nickname || '')}. I live up on the fifth floor."`);
+    scene.text(`"Yeah, I'm ${((s as any).pcs_nickname ?? '')}. I live up on the fifth floor."`);
     scene.text('"Cool," she replies. "I\'d say I live here, but I spend most of my time working at the porn studio and doing other stuff, so I only come here to crash," she smiles.');
     scene.text('"You\'re a porn star?" you ask and she smiles.');
     scene.text('"I wouldn\'t say a star since I only just started, but yes, I do work in porn and I don\'t care what anyone thinks. I signed up at the local studio on my 18th birthday and never looked back."');
@@ -1212,11 +1212,11 @@ function enterFloor4Event_13(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod. "Yeah?"');
     scene.text('The guy looks visibly delighted. "Wonderful, it\'s always nice meeting new people. By the way, I\'m Tryndin. You are?"');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big77.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-    scene.text(`"${((st as any).pcs_nickname || '')}," you reply.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}," you reply.`);
     scene.text('He nods his head and turns towards a nearby door. The door has number 37 on it. Digging in his pocket, he pulls out a set of keys and unlocks the door. "That\'s a pretty name. I live in this apartment here. I need to get going, but I hope to see you around." As he opens the door, an elderly woman looks out at him, and then at you, giving you a disapproving look. "Mother, stop hanging around the front door!" he says in an annoyed tone before he closes the door.');
     scene.actions([
       { label: 'Continue', goto: ['city_apt_building', 'floor_4'] },

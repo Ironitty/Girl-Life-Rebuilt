@@ -91,7 +91,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).desc_txt5 = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027VTB Bank is closed right now. It opens Monday to Saturday at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 9, 0)+/u0027/u0027 */ return s; }); return false;">VTB Bank</a>';
   }
   // TODO-QSP: dynamic text: <br>Across from the station is a small <a href="exec:minut += 1 & gt ''pav_clini...
-  scene.text(`<br>Across from the station is a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_clinic/u0027, /u0027/u0027); return false;">Avicenna clinic</a>. ${((s as any).Pharmname || '')} The building next door is shared by the local ${((s as any).desc_txt4 || '')} and a ${((s as any).desc_txt5 || '')}.`);
+  scene.text(`<br>Across from the station is a small <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pav_clinic/u0027, /u0027/u0027); return false;">Avicenna clinic</a>. ${((s as any).Pharmname ?? '')} The building next door is shared by the local ${((s as any).desc_txt4 ?? '')} and a ${((s as any).desc_txt5 ?? '')}.`);
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027shop/u0027, /u0027start/u0027); return false;">Pyaterochka</a>, a popular discount supermarket chain';
@@ -99,7 +99,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).desc_txt3 = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027Pyaterochka, which is closed right now. It will reopen at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 8, 0)+/u0027/u0027 */ return s; }); return false;">Pyaterochka</a>, a popular discount supermarket chain';
   }
   // TODO-QSP: dynamic text: <br>Of course, right after you visit the bank, you can spend your money at <<$de...
-  scene.text(`<br>Of course, right after you visit the bank, you can spend your money at ${((s as any).desc_txt3 || '')}.`);
+  scene.text(`<br>Of course, right after you visit the bank, you can spend your money at ${((s as any).desc_txt3 ?? '')}.`);
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 17) {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027barbershop/u0027, /u0027start/u0027); return false;">A Cut Above</a>, the only barber shop in the area, <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027shop_coco_carmen/u0027, /u0027start/u0027); return false;">Coco Carmen</a> the trendy clothes shop and <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.3; return s; }); window.__gameStore.getState().doGoto(/u0027shop_allure/u0027, /u0027start/u0027); return false;">Allure</a>, the swimwear chain';
@@ -107,7 +107,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).desc_txt1 = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027A Cut Above, which is closed right now. It will reopen at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 8, 0)+/u0027/u0027 */ return s; }); return false;">A Cut Above</a>, the only barber shop in the area, <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027Coco Carmen, which is closed right now. It will reopen at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 8, 0)+/u0027/u0027 */ return s; }); return false;">Coco Carmen</a> the trendy clothes shop and <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027Allure, which is closed right now. It will reopen at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 8, 0)+/u0027/u0027 */ return s; }); return false;">Allure</a>, the swimwear chain';
   }
   // TODO-QSP: dynamic text: <br>The rest of the street is filled with smaller locally owned businesses, most...
-  scene.text(`<br>The rest of the street is filled with smaller locally owned businesses, most notable being ${((s as any).desc_txt1 || '')}.`);
+  scene.text(`<br>The rest of the street is filled with smaller locally owned businesses, most notable being ${((s as any).desc_txt1 ?? '')}.`);
   if ((((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) <= 17)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 17)  &&  ((s as any).lari_gm ?? 0) !== ((s as any).daystart ?? 0)) {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
       scene.text('You see <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027gschool_socialchg1/u0027, /u0027lariska_gm_1/u0027); return false;">Lariska</a> going inside Coco Carmen.');
@@ -124,7 +124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).desc_txt2 = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: msg /u0027vocational school, which is closed right now. It will reopen again at /u0027+func(/u0027time/u0027, /u0027get_time_string/u0027, 7, 0)+/u0027/u0027 */ return s; }); return false;">vocational school</a>.';
   }
   // TODO-QSP: dynamic text: <br>If you continue past the shops, you''ll eventually find a <<$desc_txt2>>
-  scene.text(`<br>If you continue past the shops, you'll eventually find a ${((s as any).desc_txt2 || '')}`);
+  scene.text(`<br>If you continue past the shops, you'll eventually find a ${((s as any).desc_txt2 ?? '')}`);
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
     scene.actions([
       { label: '<b>Go to the hostel</b>', goto: ['ETO_hostel', 'town_hostel'] },

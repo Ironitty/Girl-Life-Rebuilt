@@ -16,12 +16,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re a little surprised and wonder who it could be, but then you see Alexander, the nightclub owner, enter the room. He greets you as he sits down on a chair.');
     scene.text('Alexei pours alcohol into three glasses and hands them out. All of you spend some time drinking and talking together. Before long, Alexander asked you to call him by his nickname, Sasha.');
     // TODO-QSP: dynamic text: After a while, Alexei puts the bottle aside to pull out his dick from his pants....
-    scene.text(`After a while, Alexei puts the bottle aside to pull out his dick from his pants. "Come over here ${((s as any).pcs_firstname || '')}", he commands. You look at him in surprise then glance at Sasha. Alexei urges you on, "C'mon and get over here. Don't worry since everything is fine."`);
+    scene.text(`After a while, Alexei puts the bottle aside to pull out his dick from his pants. "Come over here ${((s as any).pcs_firstname ?? '')}", he commands. You look at him in surprise then glance at Sasha. Alexei urges you on, "C'mon and get over here. Don't worry since everything is fine."`);
   } else {
     scene.text('You see Alexander, the nightclub owner, enter the room. He greets you as he sits down on a chair.');
     scene.text('Alexei pours alcohol in three glasses in which you spend some time drinking, talking, and laughing together.');
     // TODO-QSP: dynamic text: After a while, Alexei puts the bottle aside to pull out his dick from his pants....
-    scene.text(`After a while, Alexei puts the bottle aside to pull out his dick from his pants. "Get over here ${((s as any).pcs_firstname || '')}", he commands.`);
+    scene.text(`After a while, Alexei puts the bottle aside to pull out his dick from his pants. "Get over here ${((s as any).pcs_firstname ?? '')}", he commands.`);
   }
   scene.actions([
     { label: 'Get on your knees and give head', handler: (st: GameState) => {

@@ -514,7 +514,7 @@ function enterAsianStudies_101Events(s: GameState, scene: SceneBuilder): void {
                   scene.text('Once Professor Da ends her lecture, most of the students get up and leaves, as does Professor Da, but you notice one Asian girl and several Russian boys stay behind.');
                   scene.text('You had noticed how the boys had been talking and flirting with her during class earlier.');
                   scene.actions([
-{ label: 'Leave', goto: ['uni_lessons', 'short_break'] },,
+{ label: 'Leave', goto: ['uni_lessons', 'short_break'] },
 { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/locations/city/island/university/classroom/electives/asian_studies/naked_asiang.jpg');
     scene.text('They\'re talking softly to each other and she seems slightly embarrassed, but also seems to be loving the attention.');

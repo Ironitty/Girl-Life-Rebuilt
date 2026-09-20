@@ -214,7 +214,7 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).dirttarelka ?? 0) > 0) {
       // TODO-QSP: dynamic text: There are <b><<dirttarelka>></b> dirty dishes in the sink. <a href="exec:gs ''ki...
-      scene.text(`There are <b>${((s as any).dirttarelka || '')}</b> dirty dishes in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027dirtarm/u0027); return false;">Wash the dishes</a>.`);
+      scene.text(`There are <b>${((s as any).dirttarelka ?? '')}</b> dirty dishes in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027dirtarm/u0027); return false;">Wash the dishes</a>.`);
     }
     if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
       // TODO-QSP: 'Under the sink is some dishwashing detergent, which is enough for <b><<mc_inventory[''dish_soap'']>...
@@ -229,7 +229,7 @@ function enterYkitchen(s: GameState, scene: SceneBuilder): void {
         (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
       }
       // TODO-QSP: dynamic text: There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inve...
-      scene.text('There\'s enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot || '') + '');
+      scene.text('There\'s enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot ?? '') + '');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
         scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');

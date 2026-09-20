@@ -222,7 +222,7 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
     ((s as any).ml_guitar = (s as any).ml_guitar ?? {})['carried'] = 1;
     scene.text('Jimmy disappears into the back of the shop with your guitar before returning 10 minutes later. "That\'s it all set up, but if you need to tweak anything, just bring it in and we\'ll do it for you, free of charge."');
     // TODO-QSP: dynamic text: He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', '') + iif(ml_hardcase =...
-    scene.text('He puts the guitar in \' + iif(ml_gigbag = 1, \'a gigbag\', \') + iif(ml_hardcase = 1, \'its case\', \') + \' and hands it to you. "All the best, ' + ((s as any).pcs_nickname || '') + '."');
+    scene.text('He puts the guitar in \' + iif(ml_gigbag = 1, \'a gigbag\', \') + iif(ml_hardcase = 1, \'its case\', \') + \' and hands it to you. "All the best, ' + ((s as any).pcs_nickname ?? '') + '."');
   }
   // TODO-QSP: end
   scene.actions([

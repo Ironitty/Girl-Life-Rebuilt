@@ -126,7 +126,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((st as any).bikeaction || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((st as any).bikeaction ?? '') ?? ''), handler: (st: GameState) => {
     if (((st as any).BikeLoc ?? 0) === 2) {
       (st as any).minut = ((st as any).minut ?? 0) + 12;
       qspCall(st, 'exp_gain', 'run', (Math.floor(Math.random() * 2) + 0));
@@ -173,7 +173,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((st as any).bikeaction || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((st as any).bikeaction ?? '') ?? ''), handler: (st: GameState) => {
     if (((st as any).BikeLoc ?? 0) === 1) {
       (st as any).minut = ((st as any).minut ?? 0) + 12;
       qspCall(st, 'exp_gain', 'run', (Math.floor(Math.random() * 2) + 0));
@@ -209,7 +209,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((st as any).bikeaction || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((st as any).bikeaction ?? '') ?? ''), handler: (st: GameState) => {
     if (((st as any).BikeLoc ?? 0) === 1) {
       (st as any).minut = ((st as any).minut ?? 0) + 44;
       qspCall(st, 'exp_gain', 'run', (Math.floor(Math.random() * 4) + 0));

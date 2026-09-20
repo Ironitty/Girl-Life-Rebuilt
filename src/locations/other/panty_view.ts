@@ -361,7 +361,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
   scene.actions([
 { label: 'Return', handler: (st: GameState) => {
     // TODO-QSP: gt 'panty_view', 'view_grid', $shop_utils_view['link']
-  } },,
+  } },
 { label: 'Wear', handler: (st: GameState) => {
     // TODO-QSP: xgt 'panty_view', 'view_item_wear_single'
   } },

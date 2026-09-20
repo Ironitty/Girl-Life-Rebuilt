@@ -32,7 +32,7 @@ function enterSexafterstrip1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/dance/dance5.jpg');
   scene.text('You tiredly sit down on the edge of the table to rest and have a smoke. During the dance you captivated the guys attention, but when you are approached by Igor, you notice that they are now completely naked.');
   // TODO-QSP: dynamic text: -<<$pcs_nickname>>, we demand to continue the activities, " he said, smiling and...
-  scene.text(`-${((s as any).pcs_nickname || '')}, we demand to continue the activities, " he said, smiling and pointing to his dick.`);
+  scene.text(`-${((s as any).pcs_nickname ?? '')}, we demand to continue the activities, " he said, smiling and pointing to his dick.`);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -244,7 +244,7 @@ function enterSexafterstrip3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/dance/dance6.jpg');
   scene.text('You tiredly sit down on the edge of the table to rest and have a smoke. Igor comes over to you naked.');
   // TODO-QSP: dynamic text: -<<$pcs_nickname>>, that was really cool, " he said, smiling. - Want to continue...
-  scene.text(`-${((s as any).pcs_nickname || '')}, that was really cool, " he said, smiling. - Want to continue?`);
+  scene.text(`-${((s as any).pcs_nickname ?? '')}, that was really cool, " he said, smiling. - Want to continue?`);
   scene.text('- Of course you reply, smiling right back.');
   // TODO-QSP: gs 'arousal', 'foreplay', 5, $npcID[2], 'sub'
   qspCall(s, 'stat', '');
@@ -294,7 +294,7 @@ function enterHuntersexnude(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/hunters/hantersrelax1.4.jpg');
   scene.text('You approached the guys with a playful smile…');
   // TODO-QSP: dynamic text: - You know what to do <<$pcs_nickname>>, - said Andrei smiling.
-  scene.text(`- You know what to do ${((s as any).pcs_nickname || '')}, - said Andrei smiling.`);
+  scene.text(`- You know what to do ${((s as any).pcs_nickname ?? '')}, - said Andrei smiling.`);
   // TODO-QSP: gs 'arousal', 'foreplay', 5, $npcID[1], 'sub'
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -340,7 +340,7 @@ function enterSluthomesex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomesex1.jpg');
   scene.text('When you reached the couch, he immediately began to undress you.');
   // TODO-QSP: dynamic text: - You know what to do <<$pcs_nickname>>, - said <<$boydesc>> smiling.
-  scene.text(`- You know what to do ${((s as any).pcs_nickname || '')}, - said ${((s as any).boydesc || '')} smiling.`);
+  scene.text(`- You know what to do ${((s as any).pcs_nickname ?? '')}, - said ${((s as any).boydesc ?? '')} smiling.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1703,7 +1703,7 @@ function enterSluthomeOralCum2(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeORAL3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeoral3.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> pushes his whole weight against your head, forcing you to swallow m...
-  scene.text(`${((s as any).boydesc || '')} pushes his whole weight against your head, forcing you to swallow more of his ${((s as any).dick || '')} cm dick.`);
+  scene.text(`${((s as any).boydesc ?? '')} pushes his whole weight against your head, forcing you to swallow more of his ${((s as any).dick ?? '')} cm dick.`);
   if (((s as any).dick ?? 0) > ((s as any).pcs_throat ?? 0)) {
     scene.text('Immediately your gag reflex kicks in you feel tears forming in your eyes.');
   }
@@ -1730,7 +1730,7 @@ function enterSluthomeORAL3(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeOralCum3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeoralcum3.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> pushes his whole weight against your head, forcing you to swallow m...
-  scene.text(`${((s as any).boydesc || '')} pushes his whole weight against your head, forcing you to swallow more of his ${((s as any).dick || '')} cm dick.`);
+  scene.text(`${((s as any).boydesc ?? '')} pushes his whole weight against your head, forcing you to swallow more of his ${((s as any).dick ?? '')} cm dick.`);
   qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
   if (((s as any).dick ?? 0) > ((s as any).pcs_throat ?? 0)) {
     scene.text('Immediately your gag reflex kicks in you feel tears forming in your eyes.');
@@ -1739,7 +1739,7 @@ function enterSluthomeOralCum3(s: GameState, scene: SceneBuilder): void {
     scene.text('Fortunately your throat is well trained and you swallow the guy\'s whole dick without any difficulties.');
   }
   // TODO-QSP: dynamic text: <<$boydesc>> he began to move faster and you realized that he was already ready ...
-  scene.text(`${((s as any).boydesc || '')} he began to move faster and you realized that he was already ready to cum…`);
+  scene.text(`${((s as any).boydesc ?? '')} he began to move faster and you realized that he was already ready to cum…`);
   qspCall(s, 'dinsex', 'dinrandswallow');
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
@@ -1779,9 +1779,9 @@ function enterSluthomeOralCum4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_call', 'stomach', ((s as any).boy ?? 0), 1);
   scene.img('images/locations/gadukino/sex/hunter/sluthomeoralcum4.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You are on your knees in front of the guy with your mouth open. <<$boydesc>> fie...
-  scene.text(`You are on your knees in front of the guy with your mouth open. ${((s as any).boydesc || '')} fiercely rubs his ${((s as any).dick || '')} member in front of your face…`);
+  scene.text(`You are on your knees in front of the guy with your mouth open. ${((s as any).boydesc ?? '')} fiercely rubs his ${((s as any).dick ?? '')} member in front of your face…`);
   // TODO-QSP: dynamic text: Soon a jet of sperm hits you in the mouth, then a second and a third. The sperm ...
-  scene.text(`Soon a jet of sperm hits you in the mouth, then a second and a third. The sperm fills your mouth and runs down your chin, dripping down onto your breasts and stomach. ${((s as any).boydesc || '')} has you clean his dick before putting it back in his pants and going about their business, leaving you alone to freshen up.`);
+  scene.text(`Soon a jet of sperm hits you in the mouth, then a second and a third. The sperm fills your mouth and runs down your chin, dripping down onto your breasts and stomach. ${((s as any).boydesc ?? '')} has you clean his dick before putting it back in his pants and going about their business, leaving you alone to freshen up.`);
   // TODO-QSP: dynamic text: <<$textsexhunter[3]>>
   scene.text(`${qspUntranslated(s, "textsexhunter[3]", { location: "huntersex" })}`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
@@ -1796,7 +1796,7 @@ function enterSluthomeOralCum4(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeTanga(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthometanga.jpg');
   // TODO-QSP: dynamic text: - <<$pcs_nickname>>, let''s take off your panties - said <<$boydesc>>. - Then th...
-  scene.text(`- ${((s as any).pcs_nickname || '')}, let's take off your panties - said ${((s as any).boydesc || '')}. - Then the real fun can begin.`);
+  scene.text(`- ${((s as any).pcs_nickname ?? '')}, let's take off your panties - said ${((s as any).boydesc ?? '')}. - Then the real fun can begin.`);
   scene.text('You quickly sat down on the bed and pulled off your last piece of clothing. He did promise you some fun…');
   qspCall(s, 'underwear', 'remove');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
@@ -1810,7 +1810,7 @@ function enterSluthomeTanga(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeAnalDog1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeanaldog1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> bends you over the couch and begins pound your ass…
-  scene.text(`${((s as any).boydesc || '')} bends you over the couch and begins pound your ass…`);
+  scene.text(`${((s as any).boydesc ?? '')} bends you over the couch and begins pound your ass…`);
   if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
@@ -1845,7 +1845,7 @@ function enterSluthomeAnalDogCum1(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeAnalDog2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeanaldog2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You bend over the couch as position yourself so <<$boydesc>> could go into your ...
-  scene.text(`You bend over the couch as position yourself so ${((s as any).boydesc || '')} could go into your ass deeper…`);
+  scene.text(`You bend over the couch as position yourself so ${((s as any).boydesc ?? '')} could go into your ass deeper…`);
   if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
@@ -1880,7 +1880,7 @@ function enterSluthomeAnalDogCum2(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeAnalCow1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeanalcow1.' + (Math.floor(Math.random() * 3) + 1) + '.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> he lies on his back, you climb on top of him…
-  scene.text(`${((s as any).boydesc || '')} he lies on his back, you climb on top of him…`);
+  scene.text(`${((s as any).boydesc ?? '')} he lies on his back, you climb on top of him…`);
   if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
@@ -1915,7 +1915,7 @@ function enterSluthomeAnalCowCum1(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeAnalCow2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeanalcow2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> he lies on his back, you climb on top of him…
-  scene.text(`${((s as any).boydesc || '')} he lies on his back, you climb on top of him…`);
+  scene.text(`${((s as any).boydesc ?? '')} he lies on his back, you climb on top of him…`);
   if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
   }
@@ -1969,7 +1969,7 @@ function enterSluthomeAnalCowCum2(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeAnalSide1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeanalside1.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> puts you on the side, and begins to penetrate your ass.
-  scene.text(`${((s as any).boydesc || '')} puts you on the side, and begins to penetrate your ass.`);
+  scene.text(`${((s as any).boydesc ?? '')} puts you on the side, and begins to penetrate your ass.`);
   (s as any).pose = 0;
   if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
@@ -2005,7 +2005,7 @@ function enterSluthomeAnalSideCum1(s: GameState, scene: SceneBuilder): void {
 function enterSluthomeAnalSide2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/hunter/sluthomeanalside2.' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> puts you on the side, and begins to penetrate your ass.
-  scene.text(`${((s as any).boydesc || '')} puts you on the side, and begins to penetrate your ass.`);
+  scene.text(`${((s as any).boydesc ?? '')} puts you on the side, and begins to penetrate your ass.`);
   (s as any).pose = 0;
   if ((!((s as any).boyAsexa ?? 0))) {
     (s as any).boyAsexa = 1;
@@ -2747,7 +2747,7 @@ function enterHuntersgrDPVaAOs(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
   scene.img('images/locations/gadukino/sex/dance/hantersgrdpvaaos.jpg');
   // TODO-QSP: dynamic text: After a while <<$boydesc2>> moaned and you felt like your ass fills with heat. H...
-  scene.text(`After a while ${((s as any).boydesc2 || '')} moaned and you felt like your ass fills with heat. He gets up and walks away.`);
+  scene.text(`After a while ${((s as any).boydesc2 ?? '')} moaned and you felt like your ass fills with heat. He gets up and walks away.`);
   qspCall(s, 'boyStat', 'A174');
   qspCall(s, 'oral', 'start');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).dirty_dickB ?? 0) > 0) {
@@ -3390,7 +3390,7 @@ function enterHuntersgr2DPVaA(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'boy_wants_anal', ((s as any).boydesc2 ?? 0), 'lubri');
   qspCall(s, 'dinsex2', 'doublepenetration', 10, 'sub', 'gangbang');
   // TODO-QSP: dynamic text: After a while <<$boydesc2>> moaned and you felt like your ass fills with heat. H...
-  scene.text(`After a while ${((s as any).boydesc2 || '')} moaned and you felt like your ass fills with heat. He finished and went outside, you stayed with Andrei`);
+  scene.text(`After a while ${((s as any).boydesc2 ?? '')} moaned and you felt like your ass fills with heat. He finished and went outside, you stayed with Andrei`);
   qspCall(s, 'cum_call', 'anus', ((s as any).boy2 ?? 0), 1);
   qspCall(s, 'stat', '');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRng_12(s, scene); (s as any).locArgs = __savedLocArgs; }

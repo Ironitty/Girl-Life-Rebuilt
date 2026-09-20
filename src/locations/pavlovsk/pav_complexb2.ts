@@ -296,7 +296,7 @@ function enterPodObjava(s: GameState, scene: SceneBuilder): void {
 function enterAnushkaFirst(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   // TODO-QSP: dynamic text: As you walk into the building, you nearly run into Anushka. "Hey <<$pcs_nickname...
-  scene.text(`As you walk into the building, you nearly run into Anushka. "Hey ${((s as any).pcs_nickname || '')}, what's up?"`);
+  scene.text(`As you walk into the building, you nearly run into Anushka. "Hey ${((s as any).pcs_nickname ?? '')}, what's up?"`);
   scene.text('You\'re a little surprised to see her, but not disappointed. "Bored and just killing time, you know?"');
   scene.text('She nods and finishes checking the mail. "Yeah, I know the feeling. Want to come up to my place and hang out?"');
   // TODO-QSP: end

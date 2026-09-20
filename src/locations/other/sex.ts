@@ -86,7 +86,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sxbj = 1;
   }
-  scene.img(`images/locations/shared/sex/sexrand/minet${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/sexrand/minet${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('You take his member in your hand and pull his foreskin back, exposing the shiny head underneath. Giving him a sweet smile, you close your lips around it and run your tongue over the tip. You then continue to suck his cock vigorously, teasing him with your tongue and fondling his balls with your fingers. He moans blissfully while you service him with your mouth, not taking his eyes off you.');
   } else {
@@ -125,7 +125,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'dinsex2', 'stamina_npc');
   (s as any).pos = 2;
-  scene.img(`images/locations/shared/sex/sexrand/kuni${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/sexrand/kuni${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('He places gentle kisses and licks all across your thighs, slowly working his way to your sweet slit. When he reaches it, he eagerly thrusts his tongue inside you as far it will go, lapping up your juices enthusiastically.');
   } else {
@@ -168,7 +168,7 @@ function enterVag(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sxsex = 1;
   }
-  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
   } else {
@@ -213,7 +213,7 @@ function enterNae(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sxsex = 1;
   }
-  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
   } else {
@@ -258,7 +258,7 @@ function enterRak(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sxsex = 1;
   }
-  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
   } else {
@@ -303,7 +303,7 @@ function enterBok(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sxsex = 1;
   }
-  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/sexrand/${((s as any).locArgs?.[0] ?? '')}${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('He slowly penetrates you and keeps thrusting until most of his length is buried inside you. You eagerly kiss him when you see the look of ecstasy on his face and wrap your arms around him while he thrusts his hips against yours.');
   } else {
@@ -348,7 +348,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).sxanal = 1;
   }
-  scene.img(`images/locations/shared/sex/sexrand/anal${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/sexrand/anal${((s as any).picrand ?? '')}.jpg`);
   if (((s as any).textrand ?? 0) === 1) {
     scene.text('You spread your buttocks enticingly, inviting the man to fuck your ass. He does not hesitate and guides his cock to your puckered sphincter, slowly penetrating you further and further. He\'s a bit rough about it, making you squeal loudly with every thrust.');
   } else {

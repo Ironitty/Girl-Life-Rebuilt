@@ -124,13 +124,13 @@ function enterRegistr(s: GameState, scene: SceneBuilder): void {
   scene.text('As you approach the counter there are two women chatting with each other, and laughing.');
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).bumtolik ?? 0) < 5) {
     // TODO-QSP: dynamic text: You clear you throat, "Hello, my name is <<$pcs_firstname>>, I found a note that...
-    scene.text(`You clear you throat, "Hello, my name is ${((s as any).pcs_firstname || '')}, I found a note that you were looking for volunteers…"`);
+    scene.text(`You clear you throat, "Hello, my name is ${((s as any).pcs_firstname ?? '')}, I found a note that you were looking for volunteers…"`);
     scene.text('One of the women cheerfully replies, "Welcome to our little humble shelter. As you\'ve probably noticed the place is run down and we\'re really in need of some volunteers." They point further down the corridor, "What you see here is just a small part of the operation that we provide. We also help out with the elderly and the less fortunate outside the shelter."');
     scene.text('Nodding, "I\'m not afraid to get dirty and I\'m sure that I\'ll manage fine…"');
     scene.text('The woman behind the counter continues, "In addition, since I assume that you are still in high school, the law states that you can only volunteer outside school hours, or during the weekends."');
   } else {
     // TODO-QSP: dynamic text: You clear your throat, "Hello, my name is <<$pcs_firstname>>, I met a girl named...
-    scene.text(`You clear your throat, "Hello, my name is ${((s as any).pcs_firstname || '')}, I met a girl named Olga who said that you were in need of volunteers. I would like to sign up…"`);
+    scene.text(`You clear your throat, "Hello, my name is ${((s as any).pcs_firstname ?? '')}, I met a girl named Olga who said that you were in need of volunteers. I would like to sign up…"`);
     scene.text('The woman rushes over, "Hello! We are very pleased to have you here. Just be aware, the work is hard and ungrateful, what you see here is just a small part of it, also help out with the elderly and the less fortunate outside the shelter."');
   }
   // TODO-QSP: end
@@ -201,9 +201,9 @@ function enterOlga(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/mercyclinic/bukli_olga.jpg');
   if (((s as any).bumtolik ?? 0) === 5) {
     // TODO-QSP: dynamic text: You manage to find Olga and walk up to her, "Hi Olga! I don''t know if you remem...
-    scene.text(`You manage to find Olga and walk up to her, "Hi Olga! I don't know if you remember me, it's ${((s as any).pcs_nickname || '')}. You told me about this place and that you were looking volunteers and I decided to see if I could help out. The women at the reception told me that I would find you here."`);
+    scene.text(`You manage to find Olga and walk up to her, "Hi Olga! I don't know if you remember me, it's ${((s as any).pcs_nickname ?? '')}. You told me about this place and that you were looking volunteers and I decided to see if I could help out. The women at the reception told me that I would find you here."`);
     // TODO-QSP: dynamic text: Olga looks at you, "<<$pcs_nickname>>…, good afternoon! Glad to have you on boar...
-    scene.text(`Olga looks at you, "${((s as any).pcs_nickname || '')}…, good afternoon! Glad to have you on board! Well as you can see we are swamped so any help is very welcome!" Smiling, she continues, "Since you got sent here that means I'll be your mentor, feel free to ask me whenever you have a question."`);
+    scene.text(`Olga looks at you, "${((s as any).pcs_nickname ?? '')}…, good afternoon! Glad to have you on board! Well as you can see we are swamped so any help is very welcome!" Smiling, she continues, "Since you got sent here that means I'll be your mentor, feel free to ask me whenever you have a question."`);
     scene.text('You nod, "I will do that!"');
     scene.text('Olga, still smiling, "Good, lets start off with a tour. If we start off here, the storage room. Every donation we receive ends up here and gets sorted depending on where they need to end up. Next up the managers\' office!"');
     scene.actions([
@@ -213,7 +213,7 @@ function enterOlga(s: GameState, scene: SceneBuilder): void {
     scene.text('You look around, "Is there someone named Olga here?!"');
     scene.text('A woman looks up, "Right here, honey! And who might you be?"');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>" you answer, "The woman at the counter told me to find you."
-    scene.text(`"${((s as any).pcs_nickname || '')}" you answer, "The woman at the counter told me to find you."`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}" you answer, "The woman at the counter told me to find you."`);
     scene.text('Olga crosses her arms, "Is that so?! They are keen on sending everyone to me. Well, nothing to worry about, and since you were looking specifically for me, you\'re a new volunteer?"');
     scene.text('You nod.');
     scene.text('Olga smiles, "Good, well, lets start off with a tour. If we start off here, the storage room. Every donation we receive ends up here and gets sorted depending on where they need to end up. Next up the managers\' office!"');
@@ -233,10 +233,10 @@ function enterSec(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/mercyclinic/bukli_sec.jpg');
   if (((s as any).bumtolik ?? 0) === 5) {
     // TODO-QSP: dynamic text: Olga knocks on the door and walks right in, "<<$pcs_nickname>>, meet our office ...
-    scene.text(`Olga knocks on the door and walks right in, "${((s as any).pcs_nickname || '')}, meet our office manager Jeanne. She is responsible for everything operational here. If you run into any issues take it up with her and she'll sort it out. Jeanne, this is ${((s as any).pcs_nickname || '')} and is our new volunteer."`);
+    scene.text(`Olga knocks on the door and walks right in, "${((s as any).pcs_nickname ?? '')}, meet our office manager Jeanne. She is responsible for everything operational here. If you run into any issues take it up with her and she'll sort it out. Jeanne, this is ${((s as any).pcs_nickname ?? '')} and is our new volunteer."`);
     scene.text('Jeanne gives you a warm smile, "Welcome, I hope you won\'t mind the state of our shelter, it\'s a bit on the run down side. And I hope that Olga doesn\'t end up being a bad influence…" she teasingly looks at Olga.');
     // TODO-QSP: dynamic text: Before you''re able to say anything Olga chimes in, "See, <<$pcs_nickname>> this...
-    scene.text(`Before you're able to say anything Olga chimes in, "See, ${((s as any).pcs_nickname || '')} this is the thanks I get for recruiting volunteers. It's clear we're not welcome here so let us move on…"`);
+    scene.text(`Before you're able to say anything Olga chimes in, "See, ${((s as any).pcs_nickname ?? '')} this is the thanks I get for recruiting volunteers. It's clear we're not welcome here so let us move on…"`);
     scene.text('You manage to give a friendly nod before the two of you leave the office, "Next stop, the coordinators\' office!"');
     scene.actions([
       { label: 'Head to the coordinator', goto: ['buklinik', 'dir'] },
@@ -244,7 +244,7 @@ function enterSec(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).bumtolik ?? 0) > 5) {
       // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>! Is there anything I can help you with?"
-      scene.text(`"Hello, ${((s as any).pcs_nickname || '')}! Is there anything I can help you with?"`);
+      scene.text(`"Hello, ${((s as any).pcs_nickname ?? '')}! Is there anything I can help you with?"`);
       scene.actions([
         { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
       ]);
@@ -265,7 +265,7 @@ function enterDir(s: GameState, scene: SceneBuilder): void {
     scene.text('Vera sighs, "Again Olga?! Haven\'t I told you to knock when you\'re about to enter the and I told you, just call me Vera."');
     scene.text('Olga brushes her off, "Yeah, yeah…" turning to you, "Vera is not only the head coordinator, but also the mastermind behind everything. She is one of the founders of the organization."');
     // TODO-QSP: dynamic text: You politely greet her, "My name is <<$pcs_nickname>> and I''ll do my best to he...
-    scene.text(`You politely greet her, "My name is ${((s as any).pcs_nickname || '')} and I'll do my best to help everyone out!"`);
+    scene.text(`You politely greet her, "My name is ${((s as any).pcs_nickname ?? '')} and I'll do my best to help everyone out!"`);
     scene.text('Vera smiles, "Glad to hear that you\'re excited! You\'ve probably heard that we could use all the hands we can get hold of."');
     scene.text('The three of you chat for a while and after a while Olga pushes you to continue on with the tour…');
     scene.actions([
@@ -274,7 +274,7 @@ function enterDir(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).bumtolik ?? 0) > 5) {
       // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>! Is there anything I can help you with?"
-      scene.text(`"Hello, ${((s as any).pcs_nickname || '')}! Is there anything I can help you with?"`);
+      scene.text(`"Hello, ${((s as any).pcs_nickname ?? '')}! Is there anything I can help you with?"`);
       scene.actions([
         { label: 'Head back to the corridor', goto: ['buklinik', 'holl'] },
       ]);
@@ -349,41 +349,41 @@ function enterOlga2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/mercyclinic/bukli_olga.jpg');
   if (((s as any).bumtolik ?? 0) > 5) {
     // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>! Is there anything I can help you with?"
-    scene.text(`"Hello, ${((s as any).pcs_nickname || '')}! Is there anything I can help you with?"`);
+    scene.text(`"Hello, ${((s as any).pcs_nickname ?? '')}! Is there anything I can help you with?"`);
   }
   if (((s as any).buklinikDay ?? 0) === ((s as any).daystart ?? 0)) {
     scene.text('"All the assignments are done for today. We can finally let our guard down…"');
   }
   if (((s as any).bumtolik ?? 0) >= 7  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I need your help in the <a href="exec:gt ''buklinik_event'',...
-    scene.text(`"${((s as any).pcs_nickname || '')}, I need your help in the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027pos6/u0027); return false;">canteen</a> today."`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, I need your help in the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027pos6/u0027); return false;">canteen</a> today."`);
   }
   if (((s as any).bumtolik ?? 0) >= 8  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, here is the address to one the <a href="exec:gt ''buklinik_e...
-    scene.text(`"${((s as any).pcs_nickname || '')}, here is the address to one the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027pos8/u0027); return false;">elderly gentlemen</a> we're helping out. Would you be so kind and help him out with some housework?`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, here is the address to one the <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027pos8/u0027); return false;">elderly gentlemen</a> we're helping out. Would you be so kind and help him out with some housework?`);
   }
   if (((s as any).bumtolik ?? 0) === 9  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I''ll need some help to persuade an alcoholic to stop wander...
-    scene.text(`"${((s as any).pcs_nickname || '')}, I'll need some help to persuade an alcoholic to stop wandering the streets, and stay <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027pos9/u0027); return false;">here</a>."`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, I'll need some help to persuade an alcoholic to stop wandering the streets, and stay <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027pos9/u0027); return false;">here</a>."`);
   }
   if (((s as any).bumtolik ?? 0) === 10  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('"We need a babysitter for one very <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027event0/u0027); return false;">weird</a> man. Don\'t worry, he\'s totally harmless."');
   }
   if (((s as any).bumtolik ?? 0) === 11  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, would you be kind and visit <a href="exec:gt ''buklinik_even...
-    scene.text(`"${((s as any).pcs_nickname || '')}, would you be kind and visit <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().0 ?? /u0027/u0027)); return false;">Michael</a>?"`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, would you be kind and visit <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().0 ?? /u0027/u0027)); return false;">Michael</a>?"`);
   }
   if (((s as any).bumtolik ?? 0) === 12  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<a href="exec:gt ''buklinik_event'',''entrance'',1">Michael</a> is asking for y...
-    scene.text(`"<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Michael</a> is asking for you, ${((s as any).pcs_nickname || '')}. You must've made some impression."`);
+    scene.text(`"<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().1 ?? /u0027/u0027)); return false;">Michael</a> is asking for you, ${((s as any).pcs_nickname ?? '')}. You must've made some impression."`);
   }
   if (((s as any).bumtolik ?? 0) === 13  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, <a href="exec:gt ''buklinik_event'',''entrance'',2">Michael<...
-    scene.text(`"${((s as any).pcs_nickname || '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().2 ?? /u0027/u0027)); return false;">Michael</a> won't stop nagging us about you… Could you please visit him?"`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().2 ?? /u0027/u0027)); return false;">Michael</a> won't stop nagging us about you… Could you please visit him?"`);
   }
   if (((s as any).bumtolik ?? 0) === 14  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, <a href="exec:gt ''buklinik_event'',''entrance'',3">Michael<...
-    scene.text(`"${((s as any).pcs_nickname || '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().3 ?? /u0027/u0027)); return false;">Michael</a> is expecting you."`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().3 ?? /u0027/u0027)); return false;">Michael</a> is expecting you."`);
   }
   if (((s as any).bumtolik ?? 0) === 15  &&  ((s as any).buklinikDay ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('"Why the hell is <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027buklinik_event/u0027, /u0027entrance/u0027, String(window.__gameStore.getState().4 ?? /u0027/u0027)); return false;">Michael</a> always asking for you?');

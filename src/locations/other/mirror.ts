@@ -103,11 +103,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$pcs_apprnc_text>>
-    scene.text(`${((s as any).pcs_apprnc_text || '')}`);
+    scene.text(`${((s as any).pcs_apprnc_text ?? '')}`);
     // TODO-QSP: dynamic text: <<$hair>>
-    scene.text(`${((s as any).hair || '')}`);
+    scene.text(`${((s as any).hair ?? '')}`);
     // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>. You have ' + iif(pcs_eyesize > 1, '<<$pc_desc[''ey...
-    scene.text('' + ((s as any).pc_descFull ?? 0)?.['makeup'] ?? '' + '. You have \' + iif(pcs_eyesize > 1, \'' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' \', \') + \'' + ((s as any).pc_desc ?? 0)?.['eye colour'] ?? '' + ' eyes ' + ((s as any).pcs_lashes_txt || '') + '.');
+    scene.text('' + ((s as any).pc_descFull ?? 0)?.['makeup'] ?? '' + '. You have \' + iif(pcs_eyesize > 1, \'' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' \', \') + \'' + ((s as any).pc_desc ?? 0)?.['eye colour'] ?? '' + ' eyes ' + ((s as any).pcs_lashes_txt ?? '') + '.');
     if (((s as any).glass ?? 0) > 0) {
       // TODO-QSP: dynamic text: You are wearing <<$pc_descWordy[''vision'']>>.
       scene.text(`You are wearing ${((s as any).pc_descWordy ?? 0)?.['vision'] ?? ''}.`);
@@ -172,31 +172,31 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$pcs_apprnc_text>>
-    scene.text(`${((s as any).pcs_apprnc_text || '')}`);
+    scene.text(`${((s as any).pcs_apprnc_text ?? '')}`);
     // TODO-QSP: dynamic text: <<$hair>>
-    scene.text(`${((s as any).hair || '')}`);
+    scene.text(`${((s as any).hair ?? '')}`);
     // TODO-QSP: dynamic text: <<$pc_descFull[''makeup'']>>. Your ' + iif(pcs_eyesize > 1, '<<$pc_desc[''eye si...
-    scene.text('' + ((s as any).pc_descFull ?? 0)?.['makeup'] ?? '' + '. Your \' + iif(pcs_eyesize > 1, \'' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' \', \') + \'eyes are ' + ((s as any).pc_desc ?? 0)?.['eye colour'] ?? '' + ' ' + ((s as any).pcs_lashes_txt || '') + '.');
+    scene.text('' + ((s as any).pc_descFull ?? 0)?.['makeup'] ?? '' + '. Your \' + iif(pcs_eyesize > 1, \'' + ((s as any).pc_desc ?? 0)?.['eye size'] ?? '' + ' \', \') + \'eyes are ' + ((s as any).pc_desc ?? 0)?.['eye colour'] ?? '' + ' ' + ((s as any).pcs_lashes_txt ?? '') + '.');
     if (((s as any).glass ?? 0) > 0) {
       // TODO-QSP: dynamic text: You are wearing <<$pc_descWordy[''vision'']>>.
       scene.text(`You are wearing ${((s as any).pc_descWordy ?? 0)?.['vision'] ?? ''}.`);
     }
     // TODO-QSP: dynamic text: You have <<$pcs_lipbalm_str>> <<$pc_desc[''lip size'']>> lips.
-    scene.text(`You have ${((s as any).pcs_lipbalm_str || '')} ${((s as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips.`);
+    scene.text(`You have ${((s as any).pcs_lipbalm_str ?? '')} ${((s as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips.`);
     // TODO-QSP: $pcs_teeth_txt
     // TODO-QSP: dynamic text: <<$pc_descFull[''skin'']>>
     scene.text(`${((s as any).pc_descFull ?? 0)?.['skin'] ?? ''}`);
     if (((s as any).curly ?? 0) > 0  &&  (!((s as any).defcurly ?? 0))) {
       // TODO-QSP: dynamic text: <br>Your curly hair will last for another <<curly>> days.
-      scene.text(`<br>Your curly hair will last for another ${((s as any).curly || '')} days.`);
+      scene.text(`<br>Your curly hair will last for another ${((s as any).curly ?? '')} days.`);
     }
     if (((s as any).straight ?? 0) > 0  &&  ((s as any).defcurly ?? 0) === 1) {
       // TODO-QSP: dynamic text: <br>Your straightened hair will last for another <<straight>> days.
-      scene.text(`<br>Your straightened hair will last for another ${((s as any).straight || '')} days.`);
+      scene.text(`<br>Your straightened hair will last for another ${((s as any).straight ?? '')} days.`);
     }
     if (((s as any).hbraids ?? 0) > 0) {
       // TODO-QSP: dynamic text: <br>Your braided hair will last for another <<hbraids>> days.
-      scene.text(`<br>Your braided hair will last for another ${((s as any).hbraids || '')} days.`);
+      scene.text(`<br>Your braided hair will last for another ${((s as any).hbraids ?? '')} days.`);
     }
     if (((s as any).pcs_haircol ?? 0) !== ((s as any).nathcol ?? 0)) {
       if (((s as any).dyefade ?? 0) > 0  &&  ((s as any).dyefade ?? 0) < 7) {
@@ -285,7 +285,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['cosmetics'] = ((st as any).mc_inventory['cosmetics'] ?? 0) - (1);
     (st as any).pcs_makeup = 2;
     // TODO-QSP: dynamic text: <<$makeupLight>>
-    scene.text(`${((st as any).makeupLight || '')}`);
+    scene.text(`${((st as any).makeupLight ?? '')}`);
     scene.actions([
       { label: 'Continue', goto: ['mirror', 'start'] },
     ]);
@@ -300,7 +300,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['cosmetics'] = ((st as any).mc_inventory['cosmetics'] ?? 0) - (2);
     (st as any).pcs_makeup = 3;
     // TODO-QSP: dynamic text: <<$makeupNatural>>
-    scene.text(`${((st as any).makeupNatural || '')}`);
+    scene.text(`${((st as any).makeupNatural ?? '')}`);
     scene.actions([
       { label: 'Continue', goto: ['mirror', 'start'] },
     ]);
@@ -317,7 +317,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).vidageday = ((st as any).vidageday ?? 0) - (1);
     (st as any).pcs_makeup = 4;
     // TODO-QSP: dynamic text: <<$makeupHeavy>>
-    scene.text(`${((st as any).makeupHeavy || '')}`);
+    scene.text(`${((st as any).makeupHeavy ?? '')}`);
     scene.actions([
       { label: 'Continue', goto: ['mirror', 'start'] },
     ]);
@@ -333,7 +333,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).vidageday = ((st as any).vidageday ?? 0) - (1);
     (st as any).pcs_makeup = 6;
     // TODO-QSP: dynamic text: <<$makeupBimbo>>
-    scene.text(`${((st as any).makeupBimbo || '')}`);
+    scene.text(`${((st as any).makeupBimbo ?? '')}`);
     scene.actions([
       { label: 'Continue', goto: ['mirror', 'start'] },
     ]);
@@ -349,7 +349,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (st as any).vidageday = ((st as any).vidageday ?? 0) - (1);
     (st as any).pcs_makeup = 7;
     // TODO-QSP: dynamic text: <<$makeupGoth>>
-    scene.text(`${((st as any).makeupGoth || '')}`);
+    scene.text(`${((st as any).makeupGoth ?? '')}`);
     scene.actions([
       { label: 'Continue', goto: ['mirror', 'start'] },
     ]);
@@ -363,7 +363,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['cosmetics'] = ((st as any).mc_inventory['cosmetics'] ?? 0) - (3);
     (st as any).pcs_makeup = 0;
     // TODO-QSP: dynamic text: <<$makeupSmeared>>
-    scene.text(`${((st as any).makeupSmeared || '')}`);
+    scene.text(`${((st as any).makeupSmeared ?? '')}`);
     scene.actions([
       { label: 'Continue', goto: ['mirror', 'start'] },
     ]);
@@ -426,7 +426,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic "
       // TODO-QSP: "
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Apply ' + String(((s as any).temp_routine_name || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Apply ' + String(((s as any).temp_routine_name ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: gt 'mirror', 'works_routine', <<temp_routine_index>>
   } },
       ]);
@@ -509,12 +509,12 @@ function enterRoutineManage(s: GameState, scene: SceneBuilder): void {
     ((st as any).makeup = (st as any).makeup ?? {})['routine_' + String(((st as any).temp_routine_index ?? 0)) + '_name'] = 'routine ' + ((st as any).temp_routine_index ?? 0) + '';
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-    { label: '', labelFn: (s: GameState) => String(((s as any).temp_routine_index || '') ?? '') + '. Remove ""' + String(((s as any).temp_routine_name || '') ?? '') + '""', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).temp_routine_index ?? '') ?? '') + '. Remove ""' + String(((s as any).temp_routine_name ?? '') ?? '') + '""', handler: (st: GameState) => {
     qspCall(st, 'array', 'remove_element', 'makeup', 'routine_' + ((st as any).temp_routine_index ?? 0) + '');
     qspCall(st, 'array', 'remove_element', 'makeup', 'routine_' + ((st as any).temp_routine_index ?? 0) + '_name');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
-    { label: '', labelFn: (s: GameState) => String(((s as any).temp_routine_index || '') ?? '') + '. Rename ""' + String(((s as any).temp_routine_name || '') ?? '') + '""', handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).temp_routine_index ?? '') ?? '') + '. Rename ""' + String(((s as any).temp_routine_name ?? '') ?? '') + '""', handler: (st: GameState) => {
     ((st as any).makeup = (st as any).makeup ?? {})['routine_' + String(((st as any).temp_routine_index ?? 0)) + '_name'] = 0;
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterRoutineManage(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -549,27 +549,27 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 1) {
       // TODO-QSP: dynamic text:  <<$temp_prefix>>Light make-up<<$temp_postfix>>
-      scene.text(` ${((s as any).temp_prefix || '')}Light make-up${((s as any).temp_postfix || '')}`);
+      scene.text(` ${((s as any).temp_prefix ?? '')}Light make-up${((s as any).temp_postfix ?? '')}`);
     } else {
       if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 2) {
         // TODO-QSP: dynamic text:  <<$temp_prefix>>Vibrant make-up<<$temp_postfix>>
-        scene.text(` ${((s as any).temp_prefix || '')}Vibrant make-up${((s as any).temp_postfix || '')}`);
+        scene.text(` ${((s as any).temp_prefix ?? '')}Vibrant make-up${((s as any).temp_postfix ?? '')}`);
       } else {
         if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 3) {
           // TODO-QSP: dynamic text:  <<$temp_prefix>>Thick make-up<<$temp_postfix>>
-          scene.text(` ${((s as any).temp_prefix || '')}Thick make-up${((s as any).temp_postfix || '')}`);
+          scene.text(` ${((s as any).temp_prefix ?? '')}Thick make-up${((s as any).temp_postfix ?? '')}`);
         } else {
           if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 4) {
             // TODO-QSP: dynamic text:  <<$temp_prefix>>Smeared make-up<<$temp_postfix>>
-            scene.text(` ${((s as any).temp_prefix || '')}Smeared make-up${((s as any).temp_postfix || '')}`);
+            scene.text(` ${((s as any).temp_prefix ?? '')}Smeared make-up${((s as any).temp_postfix ?? '')}`);
           } else {
             if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 5) {
               // TODO-QSP: dynamic text:  <<$temp_prefix>>Bimbo make-up<<$temp_postfix>>
-              scene.text(` ${((s as any).temp_prefix || '')}Bimbo make-up${((s as any).temp_postfix || '')}`);
+              scene.text(` ${((s as any).temp_prefix ?? '')}Bimbo make-up${((s as any).temp_postfix ?? '')}`);
             } else {
               if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_makeup'] === 6) {
                 // TODO-QSP: dynamic text:  <<$temp_prefix>>Goth make-up<<$temp_postfix>>
-                scene.text(` ${((s as any).temp_prefix || '')}Goth make-up${((s as any).temp_postfix || '')}`);
+                scene.text(` ${((s as any).temp_prefix ?? '')}Goth make-up${((s as any).temp_postfix ?? '')}`);
               }
             }
           }
@@ -588,7 +588,7 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text:  <<$temp_prefix>>Lipbalm<<$temp_postfix>>
-    scene.text(` ${((s as any).temp_prefix || '')}Lipbalm${((s as any).temp_postfix || '')}`);
+    scene.text(` ${((s as any).temp_prefix ?? '')}Lipbalm${((s as any).temp_postfix ?? '')}`);
   }
   if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] > 0) {
     if (Number((s as any).locArgs?.[2] ?? 0) === ''  &&  ((s as any).lashextensionstyle ?? 0) <= 0  &&  ((s as any).pcs_lashes ?? 0) < ((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] + 2) {
@@ -602,11 +602,11 @@ function enterRoutineDescription(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 1) {
       // TODO-QSP: dynamic text:  <<$temp_prefix>>False lashes<<$temp_postfix>>
-      scene.text(` ${((s as any).temp_prefix || '')}False lashes${((s as any).temp_postfix || '')}`);
+      scene.text(` ${((s as any).temp_prefix ?? '')}False lashes${((s as any).temp_postfix ?? '')}`);
     } else {
       if (((s as any).makeup ?? 0)['routine_' + Number((s as any).locArgs?.[1] ?? 0) + '_lashes'] === 2) {
         // TODO-QSP: dynamic text:  <<$temp_prefix>>Mink false lashes<<$temp_postfix>>
-        scene.text(` ${((s as any).temp_prefix || '')}Mink false lashes${((s as any).temp_postfix || '')}`);
+        scene.text(` ${((s as any).temp_prefix ?? '')}Mink false lashes${((s as any).temp_postfix ?? '')}`);
       }
     }
   }

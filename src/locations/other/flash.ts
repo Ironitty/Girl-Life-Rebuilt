@@ -151,10 +151,10 @@ function enterGetImage(s: GameState, scene: SceneBuilder): void {
 
 function enterDisplayImage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).flash_video ?? 0) !== '') {
-    scene.img(`${((s as any).flash_video || '')}`);
+    scene.img(`${((s as any).flash_video ?? '')}`);
   } else {
     if (((s as any).flash_image ?? 0) !== '') {
-      scene.img(`${((s as any).flash_image || '')}`);
+      scene.img(`${((s as any).flash_image ?? '')}`);
     }
   }
   // TODO-QSP: end

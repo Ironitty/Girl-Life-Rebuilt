@@ -19,12 +19,12 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
   scene.text('"Uhm, hi, I\'m looking for the guitar lessons?" you call out as you step into the room.');
   scene.text('The man looks up, then smiles as he sees you "Please, come in. I\'m Viktor Zenchuk, and yes, this is where I teach guitar. Would you be interested?"');
   // TODO-QSP: dynamic text: You shift on your feet "I''m <<$pcs_firstname>>, and yes, I think. Can you pleas...
-  scene.text(`You shift on your feet "I'm ${((s as any).pcs_firstname || '')}, and yes, I think. Can you please tell me a bit more?"`);
+  scene.text(`You shift on your feet "I'm ${((s as any).pcs_firstname ?? '')}, and yes, I think. Can you please tell me a bit more?"`);
   scene.text(' "Sure. I assume you are a beginner…" he looks at you, and you nod "Then obviously we would start at the basics. The instrument, chords, some basic theory. We would meet once a week, here.');
   // TODO-QSP: dynamic text: If you have a guitar, that''s great, if not, you can use mine. But you will real...
   scene.text('If you have a guitar, that\'s great, if not, you can use mine. But you will really need to get a guitar to practice at home. The lessons cost ' + qspFunc(s, 'money', 'string_price', 500) + ', but if you are under 18\' +iif(vidage < 18, \', which I assume you are,\', \')+ \' then it\'s only ' + qspFunc(s, 'money', 'string_price', 300) + '."');
   // TODO-QSP: dynamic text: He looks at you "So, <<$pcs_firstname>>, do you think you would be interested in...
-  scene.text(`He looks at you "So, ${((s as any).pcs_firstname || '')}, do you think you would be interested in taking lessons?"`);
+  scene.text(`He looks at you "So, ${((s as any).pcs_firstname ?? '')}, do you think you would be interested in taking lessons?"`);
   qspCall(s, 'npc_relationship', 'set', 'ML1', 45);
   ((s as any).ml_guitarlesson = (s as any).ml_guitarlesson ?? {})['enquired'] = 1;
   // TODO-QSP: end
@@ -46,7 +46,7 @@ function enterEnquiry(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You hesitate for a moment "I would be, but I have to talk with my <<$npc_nicknam...
     scene.text(`You hesitate for a moment "I would be, but I have to talk with my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} first."`);
     // TODO-QSP: dynamic text: The teacher nods "That''s understandable. Just come in when you know and we can ...
-    scene.text(`The teacher nods "That's understandable. Just come in when you know and we can set up the lesson" He smiles at you "It was a pleasure to meet you, ${((st as any).pcs_firstname || '')}, and I'm looking forward to seeing you again."`);
+    scene.text(`The teacher nods "That's understandable. Just come in when you know and we can set up the lesson" He smiles at you "It was a pleasure to meet you, ${((st as any).pcs_firstname ?? '')}, and I'm looking forward to seeing you again."`);
     scene.actions([
       { label: 'Leave', goto: ['pav_commclubs', ''] },
     ]);
@@ -109,7 +109,7 @@ function enterGoodbye(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ml_guitarlesson ?? 0)?.['lessonday'] < 8) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetdate(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: You agree to meet for your next lesson on <<$ml_guitarlesson[''lessonday'']>> at...
-    scene.text(`You agree to meet for your next lesson on ${((s as any).ml_guitarlesson ?? 0)?.['lessonday'] ?? ''} at ${((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] ?? ''}:00 next week, on ${((s as any).newday || '')}/${((s as any).newmonth || '')}. The teacher enters it in the diary and you say goodbye before you leave.`);
+    scene.text(`You agree to meet for your next lesson on ${((s as any).ml_guitarlesson ?? 0)?.['lessonday'] ?? ''} at ${((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] ?? ''}:00 next week, on ${((s as any).newday ?? '')}/${((s as any).newmonth ?? '')}. The teacher enters it in the diary and you say goodbye before you leave.`);
     qspCall(s, 'calendar', 'add', 'guitar_lesson');
   } else {
     scene.text('You are not sure when it would be a good day right now, so you agree to decide on a day later, you say goodbye and leave.');

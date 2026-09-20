@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/hostel/stop.jpg');
     scene.text('You and your pupil fall into an easy rhythm, chatting between breaths as you make your way around the park path.');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, you are so beautiful, and we are all very fond of you!"...
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, you are so beautiful, and we are all very fond of you!" the student says earnestly.`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, you are so beautiful, and we are all very fond of you!" the student says earnestly.`);
     scene.text('You smile at the compliment. "Thank you! That\'s nice to hear."');
     scene.actions([
       { label: 'Complete run', goto: ['pav_park', 'start'] },
@@ -70,7 +70,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/hostel/stop3.jpg');
     scene.text('You run together at a comfortable pace, stopping occasionally to catch your breath and chat.');
     // TODO-QSP: dynamic text: During one of your breaks, your pupil looks at you hesitantly. "<<$pcs_nickname>...
-    scene.text(`During one of your breaks, your pupil looks at you hesitantly. "${((st as any).pcs_nickname || '')}, would it be okay if I took a picture of you?"`);
+    scene.text(`During one of your breaks, your pupil looks at you hesitantly. "${((st as any).pcs_nickname ?? '')}, would it be okay if I took a picture of you?"`);
     scene.text('"What are you planning to do with my photo?" you ask, raising an eyebrow.');
     scene.text('The pupil blushes furiously. "I would never use it to… you know… masturbate or anything!"');
     scene.text('You laugh. "I never suggested you would!"');

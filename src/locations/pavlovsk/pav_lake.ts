@@ -26,7 +26,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>A small lake, located not far from Pavlovsk. You\'re not sure whether Pavlovsk was built near the lake on purpose or not. The lake froze over when winter arrived and it\'s currently being used as a skating rink.</center>');
     if (((s as any).pcs_icesktng ?? 0) > 0) {
       // TODO-QSP: dynamic text: Your ice skating skill is <<pcs_icesktng>>.
-      scene.text(`Your ice skating skill is ${((s as any).pcs_icesktng || '')}.`);
+      scene.text(`Your ice skating skill is ${((s as any).pcs_icesktng ?? '')}.`);
     }
   } else {
     if (((s as any).season ?? 0) === 'spring') {
@@ -450,7 +450,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npcStat', '', ((s as any).lbz_npc ?? 0));
         scene.text('A rather cute looking guy sits down next to you as you sunbathe.');
         // TODO-QSP: dynamic text: "Hey there beautiful, I''m <<$boydesc>>. What''s your name?" he asks in an attem...
-        scene.text(`"Hey there beautiful, I'm ${((s as any).boydesc || '')}. What's your name?" he asks in an attempt to chat you up.`);
+        scene.text(`"Hey there beautiful, I'm ${((s as any).boydesc ?? '')}. What's your name?" he asks in an attempt to chat you up.`);
         qspCall(s, 'LakeBoyZ', 'gL_boy_z');
         scene.actions([
           { label: 'Move away from him', goto: ['pav_lake', ''] },
@@ -459,7 +459,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_QW ?? 0)?.['A113'] >= 1) {
           scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
           // TODO-QSP: dynamic text: While you''re sunbathing, you see Vadim Bely and his brother sitting not far fro...
-          scene.text(`While you're sunbathing, you see Vadim Bely and his brother sitting not far from you. The brother points at you, and seconds later Vadim walks over and sits down next to you. He idly scratches his tattoo covered belly as he speaks to you. "Hello ${((s as any).pcs_nickname || '')}, want to go for a ride with me?"`);
+          scene.text(`While you're sunbathing, you see Vadim Bely and his brother sitting not far from you. The brother points at you, and seconds later Vadim walks over and sits down next to you. He idly scratches his tattoo covered belly as he speaks to you. "Hello ${((s as any).pcs_nickname ?? '')}, want to go for a ride with me?"`);
           scene.text('The greedy look in his eyes tells you that when he says \'ride\', he doesn\'t just mean in his car.');
           scene.actions([
 { label: 'Get dressed and go with him', handler: (st: GameState) => {
@@ -561,7 +561,7 @@ function enterSwimming(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'raise', 'tiny');
     }
     // TODO-QSP: dynamic text: After a few minutes, you feel the piercing gaze of several nearby women on you. ...
-    scene.text(`After a few minutes, you feel the piercing gaze of several nearby women on you. They're making an effort of whispering to one another, yet loud enough so you can hear them. "Look at that ${((s as any).pcs_lastname || '')} slut! She has no decency whatsoever, shamelessly flaunting her naked body like that!" The men at the lake are much more appreciative, and openly stare at your attractive body. You can see bulges forming in the shorts of some of them.`);
+    scene.text(`After a few minutes, you feel the piercing gaze of several nearby women on you. They're making an effort of whispering to one another, yet loud enough so you can hear them. "Look at that ${((s as any).pcs_lastname ?? '')} slut! She has no decency whatsoever, shamelessly flaunting her naked body like that!" The men at the lake are much more appreciative, and openly stare at your attractive body. You can see bulges forming in the shorts of some of them.`);
   }
   if (((s as any).deodorant_on ?? 0) === 1) {
     qspCall(s, 'sweat', 'remove_deo');

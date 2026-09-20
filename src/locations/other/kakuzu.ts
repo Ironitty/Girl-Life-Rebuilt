@@ -52,7 +52,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).tobiQW ?? 0) === 2) {
     // TODO-QSP: dynamic text: You have <<srodpaper>> sheets of paper to determine the affinity of the elements...
-    scene.text(`You have ${((s as any).srodpaper || '')} sheets of paper to determine the affinity of the elements. If you run out of paper, you have to buy more at Kakuzu 10000₽ a sheet.`);
+    scene.text(`You have ${((s as any).srodpaper ?? '')} sheets of paper to determine the affinity of the elements. If you run out of paper, you have to buy more at Kakuzu 10000₽ a sheet.`);
   }
   if (((s as any).tobiQW ?? 0) === 1) {
     scene.actions([

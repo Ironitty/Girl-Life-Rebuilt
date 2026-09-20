@@ -15,9 +15,9 @@ function enterPlan(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Detention</b></center>');
   scene.img('images/characters/shared/headshots_main/big144.jpg');
   // TODO-QSP: dynamic text: Valentin sits across from you while Anushka takes the seat next to you. She slid...
-  scene.text(`Valentin sits across from you while Anushka takes the seat next to you. She slides her arm around your shoulders and pulls you close to her. "${((s as any).pcs_nickname || '')}, we need your help with a plan."`);
+  scene.text(`Valentin sits across from you while Anushka takes the seat next to you. She slides her arm around your shoulders and pulls you close to her. "${((s as any).pcs_nickname ?? '')}, we need your help with a plan."`);
   // TODO-QSP: dynamic text: "What plan?" you ask. You look from her to Valentin, then back. Anushka''s answe...
-  scene.text(`"What plan?" you ask. You look from her to Valentin, then back. Anushka's answer comes so fast that you're certain she was waiting for that exact question. "We want to drug Mr ${((s as any).rand_teacher || '')}… You know, so we can go have fun." You're almost certain you misheard her, but she casually ignores your shocked expression and explains the part she expects you to play. "I'll go up and distract him. When I do, we need you to drop these in his drink." She places several pills in your hand.`);
+  scene.text(`"What plan?" you ask. You look from her to Valentin, then back. Anushka's answer comes so fast that you're certain she was waiting for that exact question. "We want to drug Mr ${((s as any).rand_teacher ?? '')}… You know, so we can go have fun." You're almost certain you misheard her, but she casually ignores your shocked expression and explains the part she expects you to play. "I'll go up and distract him. When I do, we need you to drop these in his drink." She places several pills in your hand.`);
   scene.text('You look at the pills, turning them uncertainly in your fingers before looking up at them again. "What exactly will these do to him?"');
   scene.text('Valentin answers before Anushka can. "They\'ll make him tired is all. He\'ll sleep for a few hours and feel a little groggy for the rest of the day, but nothing serious. We\'re not trying to kill him, just make detention a less boring. Are you in or not?"');
   qspCall(s, 'willpower', 'crime', 'resist');
@@ -59,12 +59,12 @@ function enterPlan(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'kiss', 3);
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: She walks up to the side of the teacher''s desk where Mr <<$rand_teacher>> is si...
-    scene.text(`She walks up to the side of the teacher's desk where Mr ${((st as any).rand_teacher || '')} is sitting, his unguarded drink conveniently located at the opposite end. You causally stroll over and sit down on the edge of the table, using your body to block his drink from view from the rest of the room as Mr ${((st as any).rand_teacher || '')} looks at the two of you questioningly. "Can I help you girls?"`);
+    scene.text(`She walks up to the side of the teacher's desk where Mr ${((st as any).rand_teacher ?? '')} is sitting, his unguarded drink conveniently located at the opposite end. You causally stroll over and sit down on the edge of the table, using your body to block his drink from view from the rest of the room as Mr ${((st as any).rand_teacher ?? '')} looks at the two of you questioningly. "Can I help you girls?"`);
     scene.text('Anushka leans forward and pulls her shirt apart and bra slightly down, which nearly exposes her nipples and definitely gives him a better view of her cleavage. However, her mock-anxious tone is what takes the cake. "Sir, what do you think that spot is? Should I be worried?"');
     scene.text('He seems flustered by her actions, but quickly gets himself under control. "What spot? I don\'t see anything."');
     scene.text('She leans in a bit closer and pushes her breasts together even more. "Right there… between my breasts."');
     // TODO-QSP: dynamic text: He leans in slightly closer to get a better look, and as he does, you drop the p...
-    scene.text(`He leans in slightly closer to get a better look, and as he does, you drop the powdered pills in his drink. Anushka gives you an almost imperceptible nod before she lets go of her shirt to hide her cleavage again. "Oh… it's gone!" She turns to you. "See? I told you it was just some lint." She gives Mr ${((st as any).rand_teacher || '')} another look and smiles. "Thanks anyway." Anushka gets up and walks back to your table with you following right behind her. He looks at the two of you for a second before shaking his head. He takes a big gulp from his cup, then another one a few minutes later. Within half an hour, he is slumped back in his chair, snoring, and saliva is running down his chin.`);
+    scene.text(`He leans in slightly closer to get a better look, and as he does, you drop the powdered pills in his drink. Anushka gives you an almost imperceptible nod before she lets go of her shirt to hide her cleavage again. "Oh… it's gone!" She turns to you. "See? I told you it was just some lint." She gives Mr ${((st as any).rand_teacher ?? '')} another look and smiles. "Thanks anyway." Anushka gets up and walks back to your table with you following right behind her. He looks at the two of you for a second before shaking his head. He takes a big gulp from his cup, then another one a few minutes later. Within half an hour, he is slumped back in his chair, snoring, and saliva is running down his chin.`);
     scene.actions([
       { label: 'Go to the Teachers\' Lounge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -225,7 +225,7 @@ function enterHerTurn(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Detention</b></center>');
     scene.img('images/locations/pavlovsk/school/detention/sex/detcvag.jpg');
     // TODO-QSP: dynamic text: She''s right… you''re sopping wet and ready. As you lower yourself down, she gui...
-    scene.text(`She's right… you're sopping wet and ready. As you lower yourself down, she guides his cock into your pussy. You feel his ${((st as any).dick1 || '')}cm ${((st as any).dick_girth1 || '')} cock slowly filling and stretching you open, moaning softly as it does.`);
+    scene.text(`She's right… you're sopping wet and ready. As you lower yourself down, she guides his cock into your pussy. You feel his ${((st as any).dick1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} cock slowly filling and stretching you open, moaning softly as it does.`);
     scene.text('You lift yourself up and begin riding his dick. As if that stimulation wasn\'t enough for you, Anushka leans forward and starts licking your clit while he bucks his hips up to fuck you from below. You\'re totally lost in pleasure with your body unable to keep up with all the sensations. All control over the situation has completely passed to your companions, and as they keep going, you can feel yourself getting close already.');
     scene.text('Just when you\'re right on the edge and release is finally within your grasp, Anushka pulls you off his cock and takes your place. She slams her pussy down and impales herself time and time again. You\'re certain she did it on purpose, but you still return the favor by licking her clit as he fucks her.');
     qspCall(st, 'arousal', 'vaginal', 15, ((st as any).npcID1 ?? 0), 'group');
@@ -250,7 +250,7 @@ function enterHerTurn(s: GameState, scene: SceneBuilder): void {
     scene.text('She gets up and has you get in her place, straddling your face almost as soon as you\'re on your back. You have no reservations about giving her pussy a through licking after the enthusiasm she treated you to, so you go to town immediately. Meanwhile, she lifts up your legs and spreads them apart to have Valentin kneel down between them.');
     qspCall(st, 'arousal', 'auto_lube', 'anal');
     // TODO-QSP: dynamic text: You feel him rubbing the tip of his dick against your asshole before pushing the...
-    scene.text(`You feel him rubbing the tip of his dick against your asshole before pushing the tip of his ${((st as any).dick1 || '')}cm ${((st as any).dick_girth1 || '')} cock into your anus.`);
+    scene.text(`You feel him rubbing the tip of his dick against your asshole before pushing the tip of his ${((st as any).dick1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} cock into your anus.`);
     scene.text('Not knowing how much experience you have, he starts off slow to allow you to get used to it. As soon as he feels you relax, he starts hammering your ass just as hard and fast as he was pounding Anushka\'s. She grinds her pussy against your face as he claims your ass, each of them taking turns playing with your nipples. This adds another instrument to the orchestra of pain and pleasure that fills your mind. You\'ve completely lost all sense of time by now, but you don\'t really care.');
     qspCall(st, 'arousal', 'anal', 15, ((st as any).npcID1 ?? 0), 'group');
     qspCall(st, 'arousal', 'cuni_give', (-15), ((st as any).npcID ?? 0), 'group', 'lesbian');
@@ -262,7 +262,7 @@ function enterHerTurn(s: GameState, scene: SceneBuilder): void {
     scene.text('Through the haze of pleasure, you hear Valentin panting and grunting. Anushka climbs off your face and pulls him away from you, which leaves your ass suddenly feeling empty. She kneels down in front of him while pulling you down to join her. She grabs his dick and rapidly starts jerking it. A few seconds later, a stream of cum spurts out and hits you in the face. The next spurt she aims at her own face followed by your tits, then her own tits. She spreads his spunk between the two of you, coating both of your tits and faces with his sticky cum.');
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0));
     // TODO-QSP: dynamic text: When he''s finished, she diligently licks you clean and you return the favor. Wh...
-    scene.text(`When he's finished, she diligently licks you clean and you return the favor. When all the cum has been collected, she gives you a deep and passionate kiss, both of you making sure to share the cum you licked up together. With that done, the three of you get dressed. As Valentin unlocks the lounge door, he gives you a smirk. "Okay, I admit it, you're not as much of a killjoy as I thought, ${((st as any).pcs_nickname || '')}. Nush was right; you're a pretty cool chick, not to mention a damn good fuck!" You blush and give Anushka a sideways glance to find her grinning at you.`);
+    scene.text(`When he's finished, she diligently licks you clean and you return the favor. When all the cum has been collected, she gives you a deep and passionate kiss, both of you making sure to share the cum you licked up together. With that done, the three of you get dressed. As Valentin unlocks the lounge door, he gives you a smirk. "Okay, I admit it, you're not as much of a killjoy as I thought, ${((st as any).pcs_nickname ?? '')}. Nush was right; you're a pretty cool chick, not to mention a damn good fuck!" You blush and give Anushka a sideways glance to find her grinning at you.`);
     qspCall(st, 'arousal', 'kiss', 5, ((st as any).npcID ?? 0));
     qspCall(st, 'arousal', 'end');
     scene.text('Going back to the library, you see that the teacher is still out like a light and all the other students are gone. There\'s less than an hour of detention left, so the three of you leave the school. Once outside, you each go your separate ways.');
@@ -312,7 +312,7 @@ function enterHerTurn(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/detention/sex/detccum.jpg');
     scene.text('As Anushka\'s orgasm finishes, you hear Valentin pant and grunt as her ass squeezes and twitches around his cock. You know he\'s getting close and it seems Anushka does as well. She quickly climbs off him and kneels down in front of him, pulling you down as well so you can join her. She grabs his dick and rapidly starts jerking it. A few seconds later, a stream of cum spurts out and hits you in the face. The next spurt she aims at her own face followed by your tits, then her own tits. She spreads his spunk between the two of you, coating both of your tits and faces with his sticky cum.');
     // TODO-QSP: dynamic text: When he''s finished, she diligently licks you clean and you return the favor. Wh...
-    scene.text(`When he's finished, she diligently licks you clean and you return the favor. When all the cum has been collected, she gives you a deep and passionate kiss, both of you making sure to share the cum you licked up together. With that done, the three of you get dressed. As Valentin unlocks the lounge door, he gives you a smirk. "Okay, I admit it. You're not as much of a killjoy as I thought, ${((st as any).pcs_nickname || '')}. Nush was right; you're a pretty cool chick. Not to mention you really know how to suck cock." You give Anushka a sideways glance and find her grinning at you.`);
+    scene.text(`When he's finished, she diligently licks you clean and you return the favor. When all the cum has been collected, she gives you a deep and passionate kiss, both of you making sure to share the cum you licked up together. With that done, the three of you get dressed. As Valentin unlocks the lounge door, he gives you a smirk. "Okay, I admit it. You're not as much of a killjoy as I thought, ${((st as any).pcs_nickname ?? '')}. Nush was right; you're a pretty cool chick. Not to mention you really know how to suck cock." You give Anushka a sideways glance and find her grinning at you.`);
     qspCall(st, 'arousal', 'kiss', 5, ((st as any).npcID ?? 0));
     qspCall(st, 'arousal', 'end');
     scene.text('Going back to the library, you see that the teacher is still out like a light and all the other students are gone. There\'s less than an hour of detention left, so the three of you leave the school. Once outside, you each go your separate ways.');
@@ -346,7 +346,7 @@ function enterWedgieFight(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big134.jpg');
     scene.text('He knocks and waits until he\'s told to enter before dragging you both in. Once inside, he releases the two of you and addresses the principal. "These two were trying to pull each other\'s clothes off in the middle of the library!"');
     // TODO-QSP: dynamic text: The principal seems a little surprised by this. "Miss Konstantinov! I''ve come t...
-    scene.text(`The principal seems a little surprised by this. "Miss Konstantinov! I've come to expect this kind of behavior from you, but <b>you</b> Miss ${((st as any).pcs_lastname || '')}? I'd hoped you would know better. It seems that hope was in vain." She nods to the teacher. "I'll deal with them." He leaves the office and closes the door behind him.`);
+    scene.text(`The principal seems a little surprised by this. "Miss Konstantinov! I've come to expect this kind of behavior from you, but <b>you</b> Miss ${((st as any).pcs_lastname ?? '')}? I'd hoped you would know better. It seems that hope was in vain." She nods to the teacher. "I'll deal with them." He leaves the office and closes the door behind him.`);
     scene.actions([
       { label: 'Punishment', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'foreplay', (-5), 'humiliation');
@@ -370,7 +370,7 @@ function enterWedgieFight(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/detention/ffspank4.jpg');
     scene.text('After a while, Miss Volkov either loses interest or forgets about you. Either way, she stops paying attention to you. Sometime later, Anushka gives you a quick grin and leans over, like she wants to say something. When you lean closer to hear, you\'re surprised when she kisses you instead. It\'s a soft, quick kiss, but you can feel some real passion behind it. A few hours later, Miss Volkov finally speaks to you again. "Alright you two, you can get dressed and go home. I don\'t want to see you in here again."');
     // TODO-QSP: dynamic text: You quickly gather up your clothes and get dressed again. As the two of you head...
-    scene.text(`You quickly gather up your clothes and get dressed again. As the two of you head out, Anushka turns to you. "Hey ${((st as any).pcs_nickname || '')}, you want to come by my place?"`);
+    scene.text(`You quickly gather up your clothes and get dressed again. As the two of you head out, Anushka turns to you. "Hey ${((st as any).pcs_nickname ?? '')}, you want to come by my place?"`);
     scene.actions([
       { label: 'Can\'t', handler: (st: GameState) => {
     scene.text('You shake your head. "Sorry Nush, I have some things I need to do. Maybe some other time."');
@@ -432,7 +432,7 @@ function enterTemptation(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Detention</b></center>');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     // TODO-QSP: dynamic text: You look around. When you''re sure that there is no one watching, you get up and...
-    scene.text(`You look around. When you're sure that there is no one watching, you get up and quickly slip in behind one of the shelves, making your way over to where you saw Anushka. As you get close, you spot her much further back in the library, silently waving at you. You follow her to the very back of the library, far away from everyone else, where she gives you a grin that you're all too aware means she's cooking up trouble. "${((st as any).pcs_nickname || '')}! Let's have some fun."`);
+    scene.text(`You look around. When you're sure that there is no one watching, you get up and quickly slip in behind one of the shelves, making your way over to where you saw Anushka. As you get close, you spot her much further back in the library, silently waving at you. You follow her to the very back of the library, far away from everyone else, where she gives you a grin that you're all too aware means she's cooking up trouble. "${((st as any).pcs_nickname ?? '')}! Let's have some fun."`);
     scene.actions([
       { label: 'What kind of fun?', handler: (st: GameState) => {
     scene.text('<center><b>Detention</b></center>');
@@ -462,7 +462,7 @@ function enterTemptation(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/anushka/getnaked.jpg');
     scene.text('You blush at the thought and bite your lip. It could be fun and you actually would like to, but you\'re still not completely sold. "I don\'t know, Nush… What if we get caught?"');
     // TODO-QSP: dynamic text: She can see your reluctance, but also your willingness. She steps up close and s...
-    scene.text(`She can see your reluctance, but also your willingness. She steps up close and starts pulling your shirt up. "You worry too much, ${((st as any).pcs_nickname || '')}. You've got to live in the moment. Besides, it'll be so much fun."`);
+    scene.text(`She can see your reluctance, but also your willingness. She steps up close and starts pulling your shirt up. "You worry too much, ${((st as any).pcs_nickname ?? '')}. You've got to live in the moment. Besides, it'll be so much fun."`);
     scene.text('As she pulls your shirt over your head, you nod your head slightly. "Okay, let\'s do this," you say as you start taking off the rest of your clothes.');
     scene.actions([
       { label: 'Get naked', goto: ['anushka', 'naked'] },
@@ -707,7 +707,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You know it can be a touchy subject, but you\'re just too curious. "Um Nush, do you ever worry, you know… about your reputation?"');
     // TODO-QSP: dynamic text: She laughs. "Which one? Where I''m a nympho? A slut? A whore? A lesbian? Or do y...
-    scene.text(`She laughs. "Which one? Where I'm a nympho? A slut? A whore? A lesbian? Or do you mean that I'm a party girl that spends all her time getting drunk or stoned and wasting her life away? Or maybe how I'm the band whore? You'll need to be a bit more specific there, ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`She laughs. "Which one? Where I'm a nympho? A slut? A whore? A lesbian? Or do you mean that I'm a party girl that spends all her time getting drunk or stoned and wasting her life away? Or maybe how I'm the band whore? You'll need to be a bit more specific there, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"Uh… All of it, I guess?" You\'re not sure what else to say, since her reputation is based on all of that and more.');
     scene.text('She shakes her head. "Nope, not even in the slightest. Half of it isn\'t even true anyway, and the stuff that is shouldn\'t be an issue. If I feel like fucking someone, then I do. Just because I like it." she shrugs slightly before continuing. "While I party a lot and screw around, that\'s not what makes me, <b>me</b>. All that is just small parts of me. I do what I want, and that makes <b>me</b> happy. Those who understand that are my friends. The rest… Well, fuck\'em."');
     scene.actions([
@@ -773,7 +773,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
         { label: 'Niko', handler: (st: GameState) => {
     scene.text('"Niko," you tell her.');
     // TODO-QSP: dynamic text: She looks at you, concerned. "<<$pcs_nickname>>, he''s bad news, and I don''t me...
-    scene.text(`She looks at you, concerned. "${((st as any).pcs_nickname || '')}, he's bad news, and I don't mean in the 'fun bad boy' sort of way. I mean he isn't what he seems." Noticing her bad mouthing your boyfriend is clearly annoying you, she holds up her hand. "Hey, it's your life so do what you want. Just… just be careful with him.`);
+    scene.text(`She looks at you, concerned. "${((st as any).pcs_nickname ?? '')}, he's bad news, and I don't mean in the 'fun bad boy' sort of way. I mean he isn't what he seems." Noticing her bad mouthing your boyfriend is clearly annoying you, she holds up her hand. "Hey, it's your life so do what you want. Just… just be careful with him.`);
     scene.actions([
       { label: 'Talk about something else', goto: ['anushka', 'chatwhilewaiting'] },
     ]);
@@ -797,7 +797,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
         scene.text('She arches a slender brow. "Fedor? Really? Come on now, if you were going to date a jock why not go for one of the better athletes like Lazar or Ivan? I mean <b>Fedor</b>? He\'s like an Ivan-lite," she says with a giggle.');
         scene.text('You\'re mad at her for talking smack about your boyfriend, but she can\'t keep a straight face and you realize that she\'s just yanking your chain. "Yeah, I like him. He\'s sweet."');
         // TODO-QSP: dynamic text: She snorts. "Yeah sure he is… Uh-huh. Be honest <<$pcs_nickname>>, it''s because...
-        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((st as any).pcs_nickname || '')}, it's because he has a really big dick, isn't it?" she asks with a grin while pretending to hold a really big imaginary dick between her legs.`);
+        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((st as any).pcs_nickname ?? '')}, it's because he has a really big dick, isn't it?" she asks with a grin while pretending to hold a really big imaginary dick between her legs.`);
         scene.text('You roll your eyes. "I just like him, okay?" As you think about it, you bite your lip and add "Well, maybe it is pretty big…"');
         scene.text('She laughs. "I knew it! Hmm, you think he\'d be up for a threesome?" she asks as she winks and makes a kissy face at you.');
         scene.actions([
@@ -838,10 +838,10 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
         scene.text('She arches a slender brow. "Fedor? Really? Come on now, if you were going to date a jock why not go for one of the better athletes like Lazar or Ivan? I mean, <b>Fedor</b>? He\'s like an Ivan-lite," she says with a giggle.');
         scene.text('You\'re mad at her for talking smack about your boyfriend, but she can\'t keep a straight face and you realize she\'s just yanking your chain. "Yeah, I like him. He\'s sweet."');
         // TODO-QSP: dynamic text: She snorts. "Yeah sure he is… Uh-huh. Be honest <<$pcs_nickname>>, it''s because...
-        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((st as any).pcs_nickname || '')}, it's because he has a really big dick, isn't it?" she says with a grin while pretending to hold a really big imaginary dick between her legs.`);
+        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((st as any).pcs_nickname ?? '')}, it's because he has a really big dick, isn't it?" she says with a grin while pretending to hold a really big imaginary dick between her legs.`);
         scene.text('You roll your eyes. "I just like him, okay?" Thinking about it, you bite your lip and add "Well, maybe it is pretty big…"');
         // TODO-QSP: dynamic text: She laughs. "I knew it!" She pretends to hump the air doggystyle while talking i...
-        scene.text(`She laughs. "I knew it!" She pretends to hump the air doggystyle while talking in a gruff voice trying to sound like Fedor. "Yeah, take my big dick ${((st as any).pcs_nickname || '')}! Take it!" She switches to a girly voice and tries to sound like you. "Yes… yes… Fedor fuck me with your big dick… YES!" She bursts out laughing and you can't help but to join in.`);
+        scene.text(`She laughs. "I knew it!" She pretends to hump the air doggystyle while talking in a gruff voice trying to sound like Fedor. "Yeah, take my big dick ${((st as any).pcs_nickname ?? '')}! Take it!" She switches to a girly voice and tries to sound like you. "Yes… yes… Fedor fuck me with your big dick… YES!" She bursts out laughing and you can't help but to join in.`);
         scene.actions([
           { label: 'Talk about something else', goto: ['anushka', 'chatwhilewaiting'] },
         ]);
@@ -980,7 +980,7 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     scene.text('You listen, but don\'t hear anything. "No, I don\'t hear anything."');
     scene.text('She grins at you. "Yeah, that means the janitor\'s moved on, so we can head out. Come on, let\'s go." She gets up and heads for the door. She opens it slowly and looks out both ways before she steps out and hurries down the hall with you following just behind her.');
     // TODO-QSP: dynamic text: The two of you quickly make your way back to the library where you stashed your ...
-    scene.text(`The two of you quickly make your way back to the library where you stashed your clothes and start to get dressed again. Just as the two of you get your clothes back on, the bell that signals detention is over starts ringing. She looks at you and smiles. "Perfect timing as always. I'll see you later ${((st as any).pcs_nickname || '')}, unless you want to come over?"`);
+    scene.text(`The two of you quickly make your way back to the library where you stashed your clothes and start to get dressed again. Just as the two of you get your clothes back on, the bell that signals detention is over starts ringing. She looks at you and smiles. "Perfect timing as always. I'll see you later ${((st as any).pcs_nickname ?? '')}, unless you want to come over?"`);
     scene.actions([
       { label: 'Can\'t today', goto: ['gschool_grounds', 'main'] },
       { label: 'Go with Anushka', handler: (st: GameState) => {

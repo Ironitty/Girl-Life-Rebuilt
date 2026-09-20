@@ -33,7 +33,7 @@ function enterPornstarConvo(s: GameState, scene: SceneBuilder): void {
   ((s as any).hunterVars = (s as any).hunterVars ?? {})['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (7);
   ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (5);
   // TODO-QSP: dynamic text: "I recently downloaded some porn, and guess who was getting fucked in the video....
-  scene.text(`"I recently downloaded some porn, and guess who was getting fucked in the video. Trust me, it was ${((s as any).pcs_firstname || '')}." you overhear Andrei.`);
+  scene.text(`"I recently downloaded some porn, and guess who was getting fucked in the video. Trust me, it was ${((s as any).pcs_firstname ?? '')}." you overhear Andrei.`);
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
   // TODO-QSP: end
   scene.build();

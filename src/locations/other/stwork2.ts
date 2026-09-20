@@ -26,7 +26,7 @@ function enterStripShowStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/stripclub_stage.jpg');
   scene.text('The music starts blaring as the DJ announces you to the crowd.');
   // TODO-QSP: dynamic text: "Give it up for... <<$pcs_strippername>>!!!"
-  scene.text(`"Give it up for... ${((s as any).pcs_strippername || '')}!!!"`);
+  scene.text(`"Give it up for... ${((s as any).pcs_strippername ?? '')}!!!"`);
   scene.text('It\'s now or never. You take a deep breath and strut out onto the stage.');
   qspCall(s, 'jobs', 'clock', 'city_strip_stripper');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterStripHub2(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -83,7 +83,7 @@ function enterStripHub(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: There are men sitting in front of the stage <<$pubhot>>
-  scene.text(`There are men sitting in front of the stage ${((s as any).pubhot || '')}`);
+  scene.text(`There are men sitting in front of the stage ${((s as any).pubhot ?? '')}`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripHub2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -321,17 +321,17 @@ function enterStripClothes(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: $temp_bottom_desc[1] = 'them'
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Take off your ' + String(((st as any).temp_bottom_desc || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Take off your ' + String(((st as any).temp_bottom_desc ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'clothing', 'strip');
     scene.img('images/locations/city/redlight/stripclub/sveta_clothed3.jpg');
     if (((st as any).strip_club ?? 0)?.['cust_angry'] === 0) {
       qspCall(st, 'mood', 'raise', 'tiny');
       // TODO-QSP: dynamic text: The positive responses make you smile as you unzip your <<$temp_bottom_desc>> an...
-      scene.text(`The positive responses make you smile as you unzip your ${((st as any).temp_bottom_desc || '')} and let ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} drop to your ankles before kicking ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} off and looking several customers straight in the eye as you roll around on the stage in your underwear. Some of them throw some bills your way, so you make sure to some extra attention to them.`);
+      scene.text(`The positive responses make you smile as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} drop to your ankles before kicking ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} off and looking several customers straight in the eye as you roll around on the stage in your underwear. Some of them throw some bills your way, so you make sure to some extra attention to them.`);
     } else {
       qspCall(st, 'mood', 'lower', 'tiny');
       // TODO-QSP: dynamic text: The negative comments make you feel a bit uncomfortable as you unzip your <<$tem...
-      scene.text(`The negative comments make you feel a bit uncomfortable as you unzip your ${((st as any).temp_bottom_desc || '')} and let ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} drop to your ankles before kicking ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} off, looking several customers straight in the eye as you roll around on the stage in your underwear.`);
+      scene.text(`The negative comments make you feel a bit uncomfortable as you unzip your ${((st as any).temp_bottom_desc ?? '')} and let ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} drop to your ankles before kicking ${qspUntranslated(s, "temp_bottom_desc[1]", { location: "stwork2" })} off, looking several customers straight in the eye as you roll around on the stage in your underwear.`);
     }
     qspCall(st, 'stat', '');
     scene.actions([
@@ -509,7 +509,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
   scene.text('The security guard ushers you into Sasha\'s office before closing the door behind you. Sasha smiles at you as he sits behind his desk.');
   if (((s as any).strip_club ?? 0)?.['manager_bonus'] === 0) {
     // TODO-QSP: dynamic text: "I heard that you''ve had a pretty good night, <<$pcs_strippername>>. How about ...
-    scene.text(`"I heard that you've had a pretty good night, ${((s as any).pcs_strippername || '')}. How about a little bonus to top it off?" he asks.`);
+    scene.text(`"I heard that you've had a pretty good night, ${((s as any).pcs_strippername ?? '')}. How about a little bonus to top it off?" he asks.`);
     scene.text('"What kind of bonus?" you ask while raising an eyebrow.');
     scene.text('He grins. "Here\'s the deal. Every week, I choose a girl who earns a bonus. Emphasis on <i>earns</i>..."');
     scene.text('"Let me guess. You want me to have sex with you?" you retort and he snorts.');
@@ -522,7 +522,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "<<$func(''money'', ''string_profit'', 1000)>>," he replies while motioning you ...
     scene.text(`"${qspFunc(s, 'money', 'string_profit', 1000)}," he replies while motioning you over to him.`);
     // TODO-QSP: dynamic text: You nod before you walk over and kneel in front of him as he unzips his pants an...
-    scene.text(`You nod before you walk over and kneel in front of him as he unzips his pants and pulls his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock out.`);
+    scene.text(`You nod before you walk over and kneel in front of him as he unzips his pants and pulls his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock out.`);
     scene.text('"Get to work," he orders while snapping his fingers.');
     scene.text('You obediently take his fat, veiny cock into your mouth, feeling it grow hard as you take it into your throat and work it with your tongue. "That\'s it, keep going..." he says softly.');
     scene.actions([
@@ -537,7 +537,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       scene.text(`You nod and undress your top half, exposing your ${((st as any).pc_descWordy ?? 0)?.['breast'] ?? ''} to a grinning Sasha. You then obediently wrap your breasts around his warm, twitching cock and start titfucking him while continuing to suck on the head.`);
       scene.text('A few minutes later, he finally reaches climax and grunts loudly as cum spurts out of his dick and splatters over your breasts. You release your grip on his dick and sit back on your knees as Sasha looks down at you.');
       // TODO-QSP: dynamic text: "Good job <<$pcs_nickname>>, you more than earned this," he says as he counts ou...
-      scene.text(`"Good job ${((st as any).pcs_nickname || '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
+      scene.text(`"Good job ${((st as any).pcs_nickname ?? '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
       scene.text('You just smile at him and get up to clean yourself up before taking the money. After counting it, Sasha sends you on your way with a slap on the ass. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry to the dressing room.');
       qspCall(st, 'arousal', 'bj', (-2));
       qspCall(st, 'arousal', 'titjob', (-2));
@@ -550,7 +550,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
       scene.text('You spend the next few minutes sucking his dick, listening to him moan before he suddenly grabs your head and holds you down on his cock as his cum starts shooting into your mouth. You\'re forced to swallow it to stop yourself from choking as he groans loudly.');
       scene.text('When he finally finishes and releases his grip on your head, allowing you pull yourself off of his cock, you gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as you slowly jerk his slowly softening cock in your hand.');
       // TODO-QSP: dynamic text: "Good job <<$pcs_strippername>>, you more than earned this," he says as he count...
-      scene.text(`"Good job ${((st as any).pcs_strippername || '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
+      scene.text(`"Good job ${((st as any).pcs_strippername ?? '')}, you more than earned this," he says as he counts out a wad of cash and hands it to you. "Keep up the good work and there will be more bonuses in the future."`);
       scene.text('You just smile at him before getting up and taking the money. After counting it, Sasha sends you on your way with a slap on the ass. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry to the dressing room.');
       qspCall(st, 'arousal', 'bj', (-2));
       qspCall(st, 'cum_call', 'mouth_swallow', 'A292', 0, 0, 10000, 40);
@@ -576,7 +576,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/blowjob/bimbo.knees5.jpg');
     scene.text('"Interested in a little bonus, are we?" he asks rhetorically with a grin before snapping his fingers and pointing to his crotch.');
     // TODO-QSP: dynamic text: You obediently walk over and kneel in front of him before unzipping his pants an...
-    scene.text(`You obediently walk over and kneel in front of him before unzipping his pants and taking his already rock hard ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your mouth.`);
+    scene.text(`You obediently walk over and kneel in front of him before unzipping his pants and taking his already rock hard ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock into your mouth.`);
     scene.text('"Eager today, aren\'t we?" he laughs as you start sucking.');
     if ((!(Math.floor(Math.random() * 3) + 0))) {
       scene.text('Just as you\'re getting into it, you hear a knock at the door and freeze as Sasha looks down at you. "Don\'t stop," he orders before telling the person to enter.');
@@ -593,7 +593,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/mouth/cum13.jpg');
     scene.text('He finally finishes and releases his grip on your head, allowing you pull yourself off of his cock. You gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as he counts your money.');
     // TODO-QSP: dynamic text: "Nice work, <<$pcs_strippername>>. Good to see you aren''t afraid of performing ...
-    scene.text(`"Nice work, ${((st as any).pcs_strippername || '')}. Good to see you aren't afraid of performing in front of an audience. Maybe a career in porn is in your future?"`);
+    scene.text(`"Nice work, ${((st as any).pcs_strippername ?? '')}. Good to see you aren't afraid of performing in front of an audience. Maybe a career in porn is in your future?"`);
     scene.text('You just smile at him before getting up and taking the money. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to the dressing room.');
     scene.actions([
       { label: 'Return to the dressing room', goto: ['stwork2', 'strip_show_end'] },
@@ -613,7 +613,7 @@ function enterManagerBonus(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/mouth/cum13.jpg');
     scene.text('He finally finishes and releases his grip on your head, allowing you pull yourself off of his cock. You gasp for air and wipe the saliva from your mouth before looking up to see him grinning down at you as he counts your money.');
     // TODO-QSP: dynamic text: "Nice work, <<$pcs_strippername>>. It''s nice to see young girls with a good wor...
-    scene.text(`"Nice work, ${((st as any).pcs_strippername || '')}. It's nice to see young girls with a good work ethic," he laughs.`);
+    scene.text(`"Nice work, ${((st as any).pcs_strippername ?? '')}. It's nice to see young girls with a good work ethic," he laughs.`);
     scene.text('You just smile at him before getting up and taking the money. Heading out into the hallway, the security guard flashes you a knowing smile as you hurry back to the dressing room.');
     scene.actions([
       { label: 'Return to the dressing room', goto: ['stwork2', 'strip_show_end'] },
@@ -870,7 +870,7 @@ function enterPr5(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Hey Jade!" you say with a smile and she bounces up to you, causing her fake breasts to jiggle.');
       // TODO-QSP: dynamic text: "Hi <<$pcs_strippername>>! I''m <i>soooo</i> happy that we get to dance together...
-      scene.text(`"Hi ${((s as any).pcs_strippername || '')}! I'm <i>soooo</i> happy that we get to dance together! This man is <i>sooo nice</i>! He gives me <i>ssoooo</i> much money just for being <i>me</i>!"`);
+      scene.text(`"Hi ${((s as any).pcs_strippername ?? '')}! I'm <i>soooo</i> happy that we get to dance together! This man is <i>sooo nice</i>! He gives me <i>ssoooo</i> much money just for being <i>me</i>!"`);
       scene.text('"Really? I wonder why...?" you reply, knowing she\'s too dimwitted to pick up on your sarcasm.');
     }
     scene.text('Glancing behind her, you see an overweight patron in a suit clapping his hands excitedly. "Ah! She\'s here! Now we can really get the party started!"');
@@ -952,7 +952,7 @@ function enterPr8(s: GameState, scene: SceneBuilder): void {
   if (((s as any).film ?? 0) > 0) {
     scene.text('You meet your patron in one of the private rooms and are surprised to see that it\'s a co-worker... of sorts. You recognise him as one of the talent scouts from the porn studio who you\'ve seen a few times while at the studio.');
     // TODO-QSP: dynamic text: "Oh. Hello <<$pfname>>," he smiles. "Or do you prefer <<$pcs_strippername>> when...
-    scene.text(`"Oh. Hello ${((s as any).pfname || '')}," he smiles. "Or do you prefer ${((s as any).pcs_strippername || '')} when working here?"`);
+    scene.text(`"Oh. Hello ${((s as any).pfname ?? '')}," he smiles. "Or do you prefer ${((s as any).pcs_strippername ?? '')} when working here?"`);
     scene.text('You give him a flirty smile as you seductively walk over to him. "Any special requests?"');
     scene.text('He grins. "A few, but I\'m not allowed to film you."');
     scene.text('The music starts playing and you dance and grind on the man for the next few minutes.');

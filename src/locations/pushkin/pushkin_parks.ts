@@ -81,15 +81,15 @@ function enterLug(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcgeneratec', '', 0, '', 'like');
       qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
       // TODO-QSP: dynamic text: You notice <<$npcheight_pref>>, <<$npcbuild>>, <<$npchair>> haired guy coming to...
-      scene.text(`You notice ${((s as any).npcheight_pref || '')}, ${((s as any).npcbuild || '')}, ${((s as any).npchair || '')} haired guy coming towards you. He is wearing wearing ${((s as any).npcClo || '')}.`);
+      scene.text(`You notice ${((s as any).npcheight_pref ?? '')}, ${((s as any).npcbuild ?? '')}, ${((s as any).npchair ?? '')} haired guy coming towards you. He is wearing wearing ${((s as any).npcClo ?? '')}.`);
       // TODO-QSP: dynamic text: The guy introduces himself as <<$boydesc>> and asks for your telephone number.
-      scene.text(`The guy introduces himself as ${((s as any).boydesc || '')} and asks for your telephone number.`);
+      scene.text(`The guy introduces himself as ${((s as any).boydesc ?? '')} and asks for your telephone number.`);
       scene.actions([
         { label: 'Tell him your number', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
     (st as any).stopboy = 0;
     // TODO-QSP: dynamic text: <<$boydesc>> thanks you and leaves.
-    scene.text(`${((st as any).boydesc || '')} thanks you and leaves.`);
+    scene.text(`${((st as any).boydesc ?? '')} thanks you and leaves.`);
     scene.actions([
       { label: 'Complete outing', goto: ['pushkin_parks', 'lug'] },
     ]);

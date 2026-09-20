@@ -285,7 +285,7 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "You''ve made <<film>> films."
-    scene.text(`"You've made ${((st as any).film || '')} films."`);
+    scene.text(`"You've made ${((st as any).film ?? '')} films."`);
     if (((st as any).porn_fame ?? 0) < 10) {
       scene.text('"Nobody knows your name. You\'re one of hundreds of amateur actresses whose fims are sold really cheap."');
     } else {
@@ -597,7 +597,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
                   scene.text('"You\'re just in time for your inspection. Off you go now," he says with a smile.');
                 } else {
                   // TODO-QSP: dynamic text: "You''re almost late, <<pfname>>! I suggest you be more careful in the future," ...
-                  scene.text(`"You're almost late, ${((s as any).pfname || '')}! I suggest you be more careful in the future," he says with a stern look. "Now move along and get yourself checked up."`);
+                  scene.text(`"You're almost late, ${((s as any).pfname ?? '')}! I suggest you be more careful in the future," he says with a stern look. "Now move along and get yourself checked up."`);
                 }
               }
               (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
@@ -1148,7 +1148,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
         (s as any).tmp = '"And they think I\'m doing this for free. If only they knew they were paying me in another way…"';
       }
       // TODO-QSP: dynamic text: <<$tmp>> you think to yourself as you smirk in satisfaction.
-      scene.text(`${((s as any).tmp || '')} you think to yourself as you smirk in satisfaction.`);
+      scene.text(`${((s as any).tmp ?? '')} you think to yourself as you smirk in satisfaction.`);
     } else {
       if (((s as any).knowpreg ?? 0) === 0  &&  ((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).pillcon2 ?? 0) < 1000) {
         ((s as any).pornDanger = (s as any).pornDanger ?? {})[String((s as any).film ?? 0)] = 1;
@@ -1159,7 +1159,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
             (s as any).tmp = 'You didn\'t even get paid to risk pregnancy! You\'ll likely never see the guy again.';
           }
           // TODO-QSP: dynamic text: With a growing sense of horror, you realize that you aren''t on the shot and hav...
-          scene.text(`With a growing sense of horror, you realize that you aren't on the shot and have no idea when you last took a birth control pill. ${((s as any).tmp || '')}`);
+          scene.text(`With a growing sense of horror, you realize that you aren't on the shot and have no idea when you last took a birth control pill. ${((s as any).tmp ?? '')}`);
         } else {
           // TODO-QSP: !{If she has birth control and deliberately isn''t using it, obviously she wants to get pregnant or ...
           if (((s as any).pfcash ?? 0) > 0) {

@@ -427,7 +427,7 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
     (st as any).lastwornclothingnumber = 0;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You quickly get into the car and put on the dress the man gave you. You give you...
-    scene.text(`You quickly get into the car and put on the dress the man gave you. You give your ${((st as any).titsize || '')} breasts a squeeze through the fabric, adjusting the dress a bit so it fits well around them for the photo shoot.`);
+    scene.text(`You quickly get into the car and put on the dress the man gave you. You give your ${((st as any).titsize ?? '')} breasts a squeeze through the fabric, adjusting the dress a bit so it fits well around them for the photo shoot.`);
     scene.actions([
       { label: 'Pose for the camera', handler: (st: GameState) => {
     (st as any).kidalob = 1;

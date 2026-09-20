@@ -182,7 +182,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
 function enterSchool1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/tanga2.jpg');
   // TODO-QSP: dynamic text: Katja blushes in embarrassment and covers her eyes, "You''re such a bad influenc...
-  scene.text(`Katja blushes in embarrassment and covers her eyes, "You're such a bad influence, ${((s as any).pcs_nickname || '')}! I always wear shorts since the boys in this school are all perverts."`);
+  scene.text(`Katja blushes in embarrassment and covers her eyes, "You're such a bad influence, ${((s as any).pcs_nickname ?? '')}! I always wear shorts since the boys in this school are all perverts."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -230,7 +230,7 @@ function enterSchool3(s: GameState, scene: SceneBuilder): void {
         ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (1);
       }
       // TODO-QSP: dynamic text: Blushing, Katja pulls away from you and buttons her shirt back up, looking aroun...
-      scene.text(`Blushing, Katja pulls away from you and buttons her shirt back up, looking around to see if anyone has seen you. "${((st as any).pcs_nickname || '')}, are you crazy?! Someone could have seen us! What would they say?!"`);
+      scene.text(`Blushing, Katja pulls away from you and buttons her shirt back up, looking around to see if anyone has seen you. "${((st as any).pcs_nickname ?? '')}, are you crazy?! Someone could have seen us! What would they say?!"`);
     }
     scene.actions([
       { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },

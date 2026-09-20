@@ -29,7 +29,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).DimaLoveIgor ?? 0) === 1  &&  (!((s as any).meetDiana ?? 0))) {
               (s as any).meetDiana = 1;
               // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, can you set up a meeting with Diana and me? I''d really ...
-              scene.text(`"Hey ${((s as any).pcs_nickname || '')}, can you set up a meeting with Diana and me? I'd really liked that."`);
+              scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, can you set up a meeting with Diana and me? I'd really liked that."`);
               scene.text('OMG, this is so awesome. You barely contain yourself as you respond. "I\'ll try, but she can be a bit shy."');
             }
             if (((s as any).meetDianahelp ?? 0) > 0) {
@@ -54,14 +54,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).IvanShowerQW ?? 0) === 1) {
                   (s as any).IvanShowerQW = 11;
                   // TODO-QSP: dynamic text: Ivan thinks for a moment, before he says: "<<$pcs_nickname>>, I would like to ta...
-                  scene.text(`Ivan thinks for a moment, before he says: "${((s as any).pcs_nickname || '')}, I would like to talk to you about what happened in the shower. You're a great girl, and I had a great time, but I'm not ready for a relationship. I need to put all my energy into my athletics, I think I have a good shot at getting to the Russian National Championships this year. I really cannot afford to be distracted by girls, even girls as attractive as you. So how about we just stick to fooling around a little?"`);
+                  scene.text(`Ivan thinks for a moment, before he says: "${((s as any).pcs_nickname ?? '')}, I would like to talk to you about what happened in the shower. You're a great girl, and I had a great time, but I'm not ready for a relationship. I need to put all my energy into my athletics, I think I have a good shot at getting to the Russian National Championships this year. I really cannot afford to be distracted by girls, even girls as attractive as you. So how about we just stick to fooling around a little?"`);
                   scene.actions([
                     { label: 'Discuss', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
-    scene.img(`images/characters/shared/headshots_main/big${((st as any).numnpc || '')}.jpg`);
+    scene.img(`images/characters/shared/headshots_main/big${((st as any).numnpc ?? '')}.jpg`);
     scene.text('You nod at what Ivan says. "Sure Ivan I understand, I am ok with just being friends, really close friends who sometimes fool around in the shower." You say in your best sexy voice with a wink.');
     // TODO-QSP: dynamic text: He gives you a one armed hug. "<<$pcs_nickname>> your the best, not only are you...
-    scene.text(`He gives you a one armed hug. "${((st as any).pcs_nickname || '')} your the best, not only are you smoking hot but you are a super cool chick too. If you want to hang out some time you can stop by my place." He pauses a moment and then looks around and leans in close. "Or if you get a little bored during lunch break, you can let me know too." He says with a suggestive tone and waggled eyebrows.`);
+    scene.text(`He gives you a one armed hug. "${((st as any).pcs_nickname ?? '')} your the best, not only are you smoking hot but you are a super cool chick too. If you want to hang out some time you can stop by my place." He pauses a moment and then looks around and leans in close. "Or if you get a little bored during lunch break, you can let me know too." He says with a suggestive tone and waggled eyebrows.`);
     scene.text('You laugh at his silly antics, it is nice to have found a fun guy to hang out with, perhaps you will stop by his place, or maybe even take him up on his offer to make lunch break less boring. "Sure Ivan, I\'ll think about it."');
     if (((st as any).loc ?? 0) !== 'pav_disco') {
       scene.actions([
@@ -89,7 +89,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).IvanShowerQW ?? 0) === 11  &&  ((s as any).loc ?? 0) !== 'pav_disco') {
                       if ((!(Math.floor(Math.random() * 5) + 0))) {
                         // TODO-QSP: dynamic text: You start to talk to Ivan when he leans in closes and whispers in your ear. "Tel...
-                        scene.text(`You start to talk to Ivan when he leans in closes and whispers in your ear. "Tell me you're bored ${((s as any).pcs_nickname || '')}."`);
+                        scene.text(`You start to talk to Ivan when he leans in closes and whispers in your ear. "Tell me you're bored ${((s as any).pcs_nickname ?? '')}."`);
                         scene.actions([
                           { label: 'Leave', goto: ['gschool_lessons', 'short_break'] },
                           { label: 'Go with him', goto: ['IvanEv', 'Ivan_bored'] },

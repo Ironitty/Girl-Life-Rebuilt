@@ -63,7 +63,7 @@ function enterLeiTalk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('You slide around the table to talk to the girl.');
   // TODO-QSP: dynamic text: "Hey, I don''t think we''ve met before," you say. "I''m <<$pcs_firstname>>."
-  scene.text(`"Hey, I don't think we've met before," you say. "I'm ${((s as any).pcs_firstname || '')}."`);
+  scene.text(`"Hey, I don't think we've met before," you say. "I'm ${((s as any).pcs_firstname ?? '')}."`);
   scene.text('She puts down her phone to look at you.');
   scene.text('"I\'m Lei." Despite her looks, she speaks Russian flawlessly without even hint of an accent.');
   // TODO-QSP: end
@@ -107,7 +107,7 @@ function enterLeiTalk2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/work/lei/face.jpg');
   scene.text('"Hey Lei, how\'s it going."');
   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>."
-  scene.text(`"Hey ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}."`);
   scene.text('"Wanna hang?"');
   scene.text('"Sure."');
   scene.text('You start talking about stuff with her.');

@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).static_num = 'A' + ((s as any).numnpc ?? 0) + '';
   scene.text(`<center><b>${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "Snpc" })}']>> ${qspUntranslated(s, "npc_lastname['A<<numnpc", { location: "Snpc" })}']>></b></center>`);
-  scene.img(`images/characters/shared/headshots_main/big${((s as any).numnpc || '')}.jpg`);
+  scene.img(`images/characters/shared/headshots_main/big${((s as any).numnpc ?? '')}.jpg`);
   // TODO-QSP: $func('npc_notes', numnpc)
   if (((s as any).npc_rel ?? 0)['A' + ((s as any).numnpc ?? 0)] < 20) {
     scene.text('They really don\'t like you.');
@@ -47,7 +47,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     scene.text(`<center><b>${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "Snpc" })}']>> ${qspUntranslated(s, "npc_lastname['A<<numnpc", { location: "Snpc" })}']>></b></center>`);
-    scene.img(`images/characters/shared/headshots_main/big${((st as any).numnpc || '')}.jpg`);
+    scene.img(`images/characters/shared/headshots_main/big${((st as any).numnpc ?? '')}.jpg`);
     if (((st as any).loc ?? 0) !== 'pav_disco') {
       // TODO-QSP: dynamic text: You chat a bit with <<$npc_firstname[''A<<numnpc>>'']>> <<$npc_lastname[''A<<num...
       scene.text(`You chat a bit with ${qspUntranslated(s, "npc_firstname['A<<numnpc", { location: "Snpc" })}']>> ${qspUntranslated(s, "npc_lastname['A<<numnpc", { location: "Snpc" })}']>>`);

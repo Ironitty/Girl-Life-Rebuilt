@@ -876,7 +876,7 @@ function enterDebutEnding(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('All the pictures taken, the staff begin striking the set and a manager comes out with your pay.');
   // TODO-QSP: dynamic text: They hand you an envelope containing <<$func(''money'', ''string_profit'', model...
-  scene.text(`They hand you an envelope containing ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))}, double the going rate for a standard nude shoot, as promised.`);
+  scene.text(`They hand you an envelope containing ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))}, double the going rate for a standard nude shoot, as promised.`);
   scene.text('And with that, your nude debut shoot is concluded.');
   // TODO-QSP: end
   scene.actions([

@@ -25,14 +25,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: By lattice policeman came and Anatoly Borisovich. The policeman immediately step...
-    scene.text(`By lattice policeman came and Anatoly Borisovich. The policeman immediately stepped aside and host bystroezhki said. "${((s as any).pcs_nickname || '')}, ${((s as any).pcs_nickname || '')}, well, how could you?"`);
+    scene.text(`By lattice policeman came and Anatoly Borisovich. The policeman immediately stepped aside and host bystroezhki said. "${((s as any).pcs_nickname ?? '')}, ${((s as any).pcs_nickname ?? '')}, well, how could you?"`);
     scene.actions([
       { label: 'Tell him how everything was.', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/ilyushkin/event/kpz.jpg');
     // TODO-QSP: dynamic text: You were telling Ilyushkin tried to persuade you to have sex and you refused him...
-    scene.text(`You were telling Ilyushkin tried to persuade you to have sex and you refused him as he naplel you tales about your raise and gave you the keys. As you took the envelope and gave it to Ilyushkin. Anatoly Borisovich sad you looked through the bars. "${((st as any).pcs_nickname || '')}. Ilyushkin showed himself a true professional and honest person. He made his way to the main managers of the lower classes. And you mean to tell me that he was tempted by what is 650000? Risking all, his position, his career, reputation, only to have that would steal the money and annoy you? You just dishwasher. What sense would he do that? Besides Ilyushkin decent salary and maybe soon it will become director of the branch. "`);
+    scene.text(`You were telling Ilyushkin tried to persuade you to have sex and you refused him as he naplel you tales about your raise and gave you the keys. As you took the envelope and gave it to Ilyushkin. Anatoly Borisovich sad you looked through the bars. "${((st as any).pcs_nickname ?? '')}. Ilyushkin showed himself a true professional and honest person. He made his way to the main managers of the lower classes. And you mean to tell me that he was tempted by what is 650000? Risking all, his position, his career, reputation, only to have that would steal the money and annoy you? You just dishwasher. What sense would he do that? Besides Ilyushkin decent salary and maybe soon it will become director of the branch. "`);
     scene.actions([
       { label: 'Convinced of his innocence', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;

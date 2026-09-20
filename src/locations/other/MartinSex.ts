@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).MartinSexTalk ?? 0) === 0  &&  (!((s as any).MartinSex ?? 0))) {
     scene.text('You approach Martin as he\'s cleaning the floor. The bartender raises his head when he notices you.');
     // TODO-QSP: dynamic text: "Oh, I didn''t think you were still here, <<$pcs_firstname>>."
-    scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname || '')}."`);
+    scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname ?? '')}."`);
     // TODO-QSP: dynamic text: You pout your <<$pc_desc[''lip size'']>> lips. "If you are that unhappy about it...
     scene.text(`You pout your ${((s as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips. "If you are that unhappy about it, maybe you want me to leave?"`);
     scene.text('He gives you a half-smile. "No, of course not."');
@@ -26,7 +26,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A216', (Math.floor(Math.random() * 2) + 1));
     scene.text('So, you take the opportunity and do just that: You have normal old chat with your favorite barkeeper.');
     // TODO-QSP: dynamic text: Every now and then, you get a little flirty or add a double entendre, but you ke...
-    scene.text('Every now and then, you get a little flirty or add a double entendre, but you keep the conversation light and friendly overall, same as you would during your regular visits and talks. You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby || '') + ',\', \') + \' and talk about a few other trivial things.');
+    scene.text('Every now and then, you get a little flirty or add a double entendre, but you keep the conversation light and friendly overall, same as you would during your regular visits and talks. You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby ?? '') + ',\', \') + \' and talk about a few other trivial things.');
     scene.text('After about half an hour, you decide that you should let Martin finish up for the night. After a brief but friendly goodnight, you leave your friend to himself and exit the bar.');
     scene.actions([
       { label: 'Leave', goto: ['city_industrial', ''] },
@@ -73,7 +73,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('But… you are just friends, right? You like hanging out at the bar, like that Martin has an open ear for you, treats you the same as his regulars. Okay, maybe he is a little more protective of you than of his other regulars every now and then, but he is a good man, a good friend, and it might be a mistake to risk all that for… what?');
     scene.text('Your inability to answer that question makes the decision for you, and you just have a normal chat with Martin.');
     // TODO-QSP: dynamic text: Every now and then, you get a little flirty or add a double entendre, but you ke...
-    scene.text('Every now and then, you get a little flirty or add a double entendre, but you keep the conversation light and friendly overall, same as you would during your regular visits and talks. You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby || '') + ',\', \') + \' and talk about a few other trivial things, doing your best to ignore his occasional glance at your ' + ((st as any).pc_desc ?? 0)?.['breast'] ?? '' + ' breasts.');
+    scene.text('Every now and then, you get a little flirty or add a double entendre, but you keep the conversation light and friendly overall, same as you would during your regular visits and talks. You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby ?? '') + ',\', \') + \' and talk about a few other trivial things, doing your best to ignore his occasional glance at your ' + ((st as any).pc_desc ?? 0)?.['breast'] ?? '' + ' breasts.');
     scene.text('After about half an hour, you decide that you should let Martin finish up for the night. After a brief but friendly goodnight, you leave the bar with a tingly stomach - whether it\'s purely from lustful longing or more, you\'re not sure, but you know that the only way to find out is to talk to Martin when he\'s alone again.');
     scene.text('<i>Maybe tomorrow</i>, you think to yourself.');
     scene.actions([
@@ -130,7 +130,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Could he be right? Maybe it really isn\'t a good idea to act on this. He is old enough to be your father, after all; and right now, you are friends and everything is fine - why risk that for a bit of fun?');
     scene.text('"I understand… I guess." You step back. Of course, you feel a little rejected, but your mind is working hard to convince you that it\'s better this way.');
     // TODO-QSP: dynamic text: "Good," Martin gives a sigh of relief. You could tell that he was holding himsel...
-    scene.text(`"Good," Martin gives a sigh of relief. You could tell that he was holding himself back, but the sigh gives you an impression of how much of an effort that really was for him. "I don't want this to stand between us, ${((st as any).pcs_firstname || '')}, I just… Uh…" He trails off, unsure what to say.`);
+    scene.text(`"Good," Martin gives a sigh of relief. You could tell that he was holding himself back, but the sigh gives you an impression of how much of an effort that really was for him. "I don't want this to stand between us, ${((st as any).pcs_firstname ?? '')}, I just… Uh…" He trails off, unsure what to say.`);
     scene.text('"It\'s okay," you assure him. "I… I guess I better get going."');
     scene.text('"Yeah, I should finish this up anyway," he agrees awkwardly, nodding to the mop in his hand. "See you soon?"');
     scene.text('"Sure, I\'ll be around."');
@@ -149,9 +149,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Well, if he wants some teenage drama, he can have it!');
     scene.text('"Fine, you know what? Fuck this." You turn around, walking towards the door, barely able to contain your anger.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>," Martin begins, his voice taking on his most calming tone, ...
-    scene.text(`"${((st as any).pcs_firstname || '')}," Martin begins, his voice taking on his most calming tone, but instead of calming you, it is the pinprick needed to set you off.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}," Martin begins, his voice taking on his most calming tone, but instead of calming you, it is the pinprick needed to set you off.`);
     // TODO-QSP: dynamic text: In the blink of an eye, you are face to face with him again, yelling at him unre...
-    scene.text(`In the blink of an eye, you are face to face with him again, yelling at him unrestrainedly. "No! Apparently, you think I'm too young and too dumb to know what I want, so you don't get to '${((st as any).pcs_firstname || '')}' me! I don't need another stepdad who knows what's best for me!"`);
+    scene.text(`In the blink of an eye, you are face to face with him again, yelling at him unrestrainedly. "No! Apparently, you think I'm too young and too dumb to know what I want, so you don't get to '${((st as any).pcs_firstname ?? '')}' me! I don't need another stepdad who knows what's best for me!"`);
     scene.text('Before Martin could utter even another word, you had stormed out of the bar, livid at his paternalism and, deep down, below the layers of fury, wounded by his rejection.');
     scene.actions([
       { label: 'Get out of the bar', goto: ['city_industrial', ''] },
@@ -207,10 +207,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Martin?"');
     scene.text('Martin doesn\'t seem startled when you call out to him - on the contrary, it seems like he was just waiting for you to address him, and now that you have, he turns to face you, looking friendly as ever - well, maybe he seems a little more on edge than usual.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>. Still here?"
-    scene.text(`"Hello ${((st as any).pcs_firstname || '')}. Still here?"`);
+    scene.text(`"Hello ${((st as any).pcs_firstname ?? '')}. Still here?"`);
     scene.text('"Yeah, I waited for you to close the bar so we could talk. I…" You don\'t really know what you want to tell him. Part of you feels that apologizing may not be the worst thing to do, but another insists that you have nothing to apologize for. "I wanted to tell you that I understand… I guess. Or, well, no, I don\'t, but at least I\'m trying to understand what you meant last time."');
     // TODO-QSP: dynamic text: "Good," Martin gives a sigh of relief. You could tell that he was a little on ed...
-    scene.text(`"Good," Martin gives a sigh of relief. You could tell that he was a little on edge, but the sigh gave away how uncertain he was about what you were gonna do or say. "I'm sorry too, ${((st as any).pcs_firstname || '')}, if I offended you. I probably chose my words poorly and I don't want this to stand between us, I just don't want you to do something you'll regret."`);
+    scene.text(`"Good," Martin gives a sigh of relief. You could tell that he was a little on edge, but the sigh gave away how uncertain he was about what you were gonna do or say. "I'm sorry too, ${((st as any).pcs_firstname ?? '')}, if I offended you. I probably chose my words poorly and I don't want this to stand between us, I just don't want you to do something you'll regret."`);
     scene.text('"I get it," you hear yourself say. Do you really, though?');
     scene.text('Neither of you has anything more to say, it seems. You spend a few minutes in silence, looking at each other. No, it sure isn\'t the same it was before. You can definitely sense that tension that lead to this mess in the first place.');
     scene.text('But the silence isn\'t nearly as bad as it could be, or maybe should be. Clearing the air was cathartic, and while you cannot just launch into one of your casual banters, you\'ll be fine, given a little time.');
@@ -234,7 +234,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).MartinSexTalk ?? 0) === 2  &&  (!((s as any).MartinSex ?? 0))) {
         scene.text('You approach Martin as he\'s cleaning the floor. The bartender raises his head when he notices you.');
         // TODO-QSP: dynamic text: "Oh, I didn''t think you were still here, <<$pcs_firstname>>."
-        scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname || '')}."`);
+        scene.text(`"Oh, I didn't think you were still here, ${((s as any).pcs_firstname ?? '')}."`);
         // TODO-QSP: dynamic text: You pout your <<$pc_desc[''lip size'']>> lips. "If you are that unhappy about it...
         scene.text(`You pout your ${((s as any).pc_desc ?? 0)?.['lip size'] ?? ''} lips. "If you are that unhappy about it, maybe you want me to leave?"`);
         scene.text('He gives you a half-smile. "No, of course not."');
@@ -288,7 +288,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t know if you want to have the final word, though. Shouldn\'t you go into this with some kind of plan, an idea of how to convince him? Hell, are you even sure you want more from him? Isn\'t it enough to be friend with him?');
     scene.text('Your inability to answer these questions makes the decision for you, and you just have a normal chat with Martin.');
     // TODO-QSP: dynamic text: Every now and then, you get a little flirty or add a double entendre, but you ke...
-    scene.text('Every now and then, you get a little flirty or add a double entendre, but you keep the conversation light and friendly overall, same as you would during your regular visits and talks. You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby || '') + ',\', \') + \' and talk about a few other trivial things, doing your best to ignore his occasional glance at your ' + ((st as any).pc_desc ?? 0)?.['breast'] ?? '' + ' breasts.');
+    scene.text('Every now and then, you get a little flirty or add a double entendre, but you keep the conversation light and friendly overall, same as you would during your regular visits and talks. You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby ?? '') + ',\', \') + \' and talk about a few other trivial things, doing your best to ignore his occasional glance at your ' + ((st as any).pc_desc ?? 0)?.['breast'] ?? '' + ' breasts.');
     scene.text('After about half an hour, you decide that you should let Martin finish up for the night. After a brief but friendly goodnight, you leave the bar with a tingly stomach - whether it\'s from nervousness, desire or something else, you can\'t tell, but you probably won\'t find out unless you talk about this with Martin.');
     scene.text('<i>Maybe tomorrow</i>, you think to yourself.');
     scene.actions([
@@ -327,7 +327,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Deciding to act before you can change your mind, you close the gap between the two of you and kiss Martin.');
     scene.text('He was probably prepared for you bringing up your mutual attraction, but it seems he didn\'t think you would be this forward. He doesn\'t push you away, but he isn\'t really kissing you back either. However, as you\'re pressing up against him, you can feel a slight bulge forming in his crotch that gives you a small sense of accomplishment and reassurance.');
     // TODO-QSP: dynamic text: When you break the kiss, Martin looks at in silence for a moment. "<<$pcs_firstn...
-    scene.text(`When you break the kiss, Martin looks at in silence for a moment. "${((st as any).pcs_firstname || '')}, we talked about this. It-"`);
+    scene.text(`When you break the kiss, Martin looks at in silence for a moment. "${((st as any).pcs_firstname ?? '')}, we talked about this. It-"`);
     scene.text('"No," you interrupt him, "<b>you</b> talked about this. I tried to tell you that I didn\'t care what you were saying." You grin.');
     scene.text('Again, he musters you in silence for a long moment. He seems to be struggling with himself, weighing his obvious desire to give in against his better judgment.');
     scene.text('"Are you sure you want this?" He asks finally.');
@@ -365,7 +365,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: "Still here, <<$pcs_firstname>>?"
-        scene.text(`"Still here, ${((s as any).pcs_firstname || '')}?"`);
+        scene.text(`"Still here, ${((s as any).pcs_firstname ?? '')}?"`);
         scene.text('"So it would seem," you smile and approach him. "Would you like me to leave?"');
         scene.text('"No." In the blink of an eye, Martin has pulled you close and gives you a kiss. "Can\'t you tell?"');
         scene.text('You laugh in surprise, but also because you <b>can</b> tell that he has a bulge in his pants.');
@@ -398,7 +398,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('But you decide not to indulge him today. After all, you are a respectable woman who would <b>never</b> have sex in a public place, right?');
     scene.text('So instead, you just have a normal chat with Martin. Well, as normal as can be in this situation.');
     // TODO-QSP: dynamic text: You catch up on the day-to-day' + iif($MartinHobby!'', ', your <<$MartinHobby>>,...
-    scene.text('You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby || '') + ',\', \') + \' and talk about a few other trivial things, but this conversation is at regular intervals interrupted by double entendres, kisses, you giving Martin generous looks at your ' + ((st as any).pc_desc ?? 0)?.['breast'] ?? '' + ' cleavage and ' + ((st as any).bodyVars ?? 0)?.['desc'] ?? '' + ' ass, and other things you cannot or will not do while the bar is open.');
+    scene.text('You catch up on the day-to-day\' + iif($MartinHobby!\', \', your ' + ((st as any).MartinHobby ?? '') + ',\', \') + \' and talk about a few other trivial things, but this conversation is at regular intervals interrupted by double entendres, kisses, you giving Martin generous looks at your ' + ((st as any).pc_desc ?? 0)?.['breast'] ?? '' + ' cleavage and ' + ((st as any).bodyVars ?? 0)?.['desc'] ?? '' + ' ass, and other things you cannot or will not do while the bar is open.');
     scene.text('After about half an hour of talking, among other things, you decide that you should let Martin finish up for the night. After a final goodnight kiss, you leave the bar with a tingly stomach, your mind still lingering at the bulge in his pants and all the things you could do with him instead of talking…');
     qspCall(st, 'arousal', 'kiss', 5);
     qspCall(st, 'stat', '');
@@ -446,7 +446,7 @@ function enterMartinTease1(s: GameState, scene: SceneBuilder): void {
   scene.text('You are not in the mood to play hard-to-get; in fact, now that you think about it, maybe the easiest way to get Martin to drop this "you deserve better" spiel is to be <i>easy</i>.');
   scene.text('You bend over and take off your lower garment.');
   // TODO-QSP: dynamic text: Martin is utterly perplexed by that. "<<$pcs_firstname>>, what are you-"
-  scene.text(`Martin is utterly perplexed by that. "${((s as any).pcs_firstname || '')}, what are you-"`);
+  scene.text(`Martin is utterly perplexed by that. "${((s as any).pcs_firstname ?? '')}, what are you-"`);
   scene.text('"Oops, I seem to have accidentally pulled my panties down," you say innocently, giving him a broad smile.');
   // TODO-QSP: dynamic text: Most of your crotch is revealed to him, but your <<$pc_desc[''pussy'']>> pussy i...
   scene.text(`Most of your crotch is revealed to him, but your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy is only vaguely perceptible. Still, you can already tell that the situation is entirely different from how it was a minute ago - the suave barkeeper is on the defensive. And you are just getting started…`);
@@ -484,7 +484,7 @@ function enterMartinTease1(s: GameState, scene: SceneBuilder): void {
     scene.text(`Plus, Martin isn't the only one getting turned on by this, and both of you can see it. "This ${((st as any).pc_desc ?? 0)?.['pubes'] ?? ''} ${((st as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy could be yours."`);
     scene.text('Maybe something you said shook him out of his reverie, or maybe enough time has passed for him to snap out of it, but Martin seems to have regained the ability to speak. But he just loves saying things you don\'t want to hear, doesn\'t he?');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, I''m trying to be <b>sensible</b> here. This is not a good ...
-    scene.text(`"${((st as any).pcs_firstname || '')}, I'm trying to be <b>sensible</b> here. This is not a good idea. You should cover yourself and go."`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, I'm trying to be <b>sensible</b> here. This is not a good idea. You should cover yourself and go."`);
     scene.text('It\'s telling that his mouth says one thing while his eyes are transfixed with your glistening pussy.');
     qspCall(st, 'arousal', 'foreplay', 1, 'exhibitionism');
     qspCall(st, 'stat', '');
@@ -496,7 +496,7 @@ function enterMartinTease1(s: GameState, scene: SceneBuilder): void {
     scene.text('Pride - it is most men\'s sore spot and your final remarks were squarely aimed at Martin\'s sense of pride. You might as well have asked him if he couldn\'t get it up. It was a dangerous game to play.');
     scene.text('But it worked: Before you know it, Martin has closed the gap between you and is kissing you, hard.');
     // TODO-QSP: dynamic text: His hands are roaming your body, pawing at your breasts, brushing against your a...
-    scene.text(`His hands are roaming your body, pawing at your breasts, brushing against your ass and pussy. Then, all of a sudden, Martin pulls you closer to the edge, his pants miraculously already undone, his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick revealed in all its glory.`);
+    scene.text(`His hands are roaming your body, pawing at your breasts, brushing against your ass and pussy. Then, all of a sudden, Martin pulls you closer to the edge, his pants miraculously already undone, his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick revealed in all its glory.`);
     scene.text('"Alright, niña," he growls, "you asked for a fuck, you\'ll get a fuck."');
     qspCall(st, 'arousal', 'foreplay', 2, 'exhibitionism');
     qspCall(st, 'stat', '');
@@ -522,7 +522,7 @@ function enterMartinTease2(s: GameState, scene: SceneBuilder): void {
   scene.text('Without waiting for Martin\'s reply, you stretch and bend over the counter slightly, reaching for a glass and an open bottle of white wine. You didn\'t even know Martin had wine.');
   scene.text('The trick in all this was to make it look natural while carefully shifting around just enough so he could…');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>," you can hear him swallow from across the room, "are you we...
-  scene.text(`"${((s as any).pcs_firstname || '')}," you can hear him swallow from across the room, "are you wearing underwear?"`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')}," you can hear him swallow from across the room, "are you wearing underwear?"`);
   scene.text('Bingo.');
   scene.text('You look at him, glass of wine in hand and standing on your tiptoes, your pantiless crotch just barely visible to him, and take a sip.');
   scene.text('"I must have forgotten to put it on," you note innocently.');
@@ -563,7 +563,7 @@ function enterMartinTease2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You don''t wait for a reply. You simply lift your <<$pc_desc[''legs'']>> leg up ...
     scene.text(`You don't wait for a reply. You simply lift your ${((st as any).pc_desc ?? 0)?.['legs'] ?? ''} leg up over the stool next to you, giving him a spectacular view at your ${((st as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy.`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, stop." Martin has found his voice again, it seems - not tha...
-    scene.text(`"${((st as any).pcs_firstname || '')}, stop." Martin has found his voice again, it seems - not that he's using it to say something helpful. "This is wrong."`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, stop." Martin has found his voice again, it seems - not that he's using it to say something helpful. "This is wrong."`);
     scene.text('"Really?" You look at your leg, confused. "Yeah, I guess you\'re right."');
     scene.text('You momentarily see something like hope or relief flare up in his eyes. You are not feeling very merciful tonight, though:');
     // TODO-QSP: dynamic text: You put one of your hands on your ass and pull slightly, completely revealing wh...
@@ -586,13 +586,13 @@ function enterMartinTease2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bar/sex/bar/martin/tease/nopanties_tease5.jpg');
     scene.text('Ridding yourself of what little items you have still left on you, you put your leg up on the bar and bend over. Your ass and pussy aren\'t just visible to Martin - they are also very much accessible.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>-" But you cut him off.
-    scene.text(`"${((st as any).pcs_firstname || '')}-" But you cut him off.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}-" But you cut him off.`);
     scene.text('"If you are gonna say anything but \'I want to fuck you so bad right now\', I\'m going to scream." You\'re not sound very playful now, to be honest. All the cards are on the table, and you went about a million extra miles to show Martin just how much you want him. If he doesn\'t finally take a hint, you\'re going to-');
     scene.text('But before you can even finish the thought, Martin kissing you, hard, his hands are roaming your body and exploring every mound and every crevice.');
     scene.text('"Alright, you asked for it," he growls, "but I\'m not gonna play nice."');
     scene.text('"I never wanted you to," you moan, his fingers stroking your pussy and clit.');
     // TODO-QSP: dynamic text: You don''t know if his zipper exploded at your last words or if he was just that...
-    scene.text(`You don't know if his zipper exploded at your last words or if he was just that damn good with his hands that you didn't even notice when he opened it to reveal his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick, but you cannot wait to feel him inside you and, judging by how he's now taking position behind you, neither can he.`);
+    scene.text(`You don't know if his zipper exploded at your last words or if he was just that damn good with his hands that you didn't even notice when he opened it to reveal his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick, but you cannot wait to feel him inside you and, judging by how he's now taking position behind you, neither can he.`);
     qspCall(st, 'arousal', 'foreplay', 1, 'exhibitionism');
     qspCall(st, 'arousal', 'kiss', 1);
     qspCall(st, 'stat', '');

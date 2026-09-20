@@ -223,7 +223,7 @@ function enterCoolkid(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing be...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing behind you and turn to see Vicky, Andrey and Stasya giving you friendly smiles. "Hey, ${((s as any).pcs_nickname || '')}, we've been talking, and you seem to have the right attitude to be one of us. So what do you say? Do you want to join the popular clique?" Vicky asks, and the three of them just wait for your response.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing behind you and turn to see Vicky, Andrey and Stasya giving you friendly smiles. "Hey, ${((s as any).pcs_nickname ?? '')}, we've been talking, and you seem to have the right attitude to be one of us. So what do you say? Do you want to join the popular clique?" Vicky asks, and the three of them just wait for your response.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
@@ -280,10 +280,10 @@ function enterCoolkidWarn1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing be...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing behind you and turn to see Vicky, Andrey and Stasya giving you friendly smiles. "Hey, ${((s as any).pcs_nickname || '')}, is everything okay?"`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing behind you and turn to see Vicky, Andrey and Stasya giving you friendly smiles. "Hey, ${((s as any).pcs_nickname ?? '')}, is everything okay?"`);
   scene.text('Before you can answer, Stasya chimes in. "You haven\'t been setting the right example of late. You\'re acting more like the losers than us, so do you want to keep hanging around with us?"');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "Cool it, Stasya! Look, <<$pcs_n...
-  scene.text(`You are again interrupted before you can speak. "Cool it, Stasya! Look, ${((s as any).pcs_nickname || '')}, if you want to hang out with us, just act like you normally do, okay? That's all we're saying." Vicky says before the bell rings, and you all hurry to class. You can't help but worry. Your recent activity has made the other cool kids question whether you belong in the group or not…`);
+  scene.text(`You are again interrupted before you can speak. "Cool it, Stasya! Look, ${((s as any).pcs_nickname ?? '')}, if you want to hang out with us, just act like you normally do, okay? That's all we're saying." Vicky says before the bell rings, and you all hurry to class. You can't help but worry. Your recent activity has made the other cool kids question whether you belong in the group or not…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -298,10 +298,10 @@ function enterCoolkidWarn2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vicky, Andrey and Stasya. "Hey, ${((s as any).pcs_nickname || '')}, we talked about this before, but you still seem to be not getting with the program," Vicky says with disdain.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vicky, Andrey and Stasya. "Hey, ${((s as any).pcs_nickname ?? '')}, we talked about this before, but you still seem to be not getting with the program," Vicky says with disdain.`);
   scene.text('Before you can answer, Stasya chimes in. "I told you she doesn\'t want to be one of us! I don\'t know why we ever let her hang out with us in the first place."');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "<<$pcs_nickname>>, you need to ...
-  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname || '')}, you need to get your act together, or you're out, simple as that," Andrey says before the bell rings and you all hurry to class. You can't help but worry. Your recent activity has made the other cool kids question whether you belong in the group. You need to improve your standing with them or risk being kicked out…`);
+  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname ?? '')}, you need to get your act together, or you're out, simple as that," Andrey says before the bell rings and you all hurry to class. You can't help but worry. Your recent activity has made the other cool kids question whether you belong in the group. You need to improve your standing with them or risk being kicked out…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -316,10 +316,10 @@ function enterCoolkidSlutWarn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vicky, Andrey and Stasya. "What's going on with you, ${((s as any).pcs_nickname || '')}? We've all heard the rumors about your sexual exploits. Of course, we all like sex but come on, this is getting out of hand." Vicky says with a hint of disdain.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vicky, Andrey and Stasya. "What's going on with you, ${((s as any).pcs_nickname ?? '')}? We've all heard the rumors about your sexual exploits. Of course, we all like sex but come on, this is getting out of hand." Vicky says with a hint of disdain.`);
   scene.text('Before you can answer, Stasya chimes in. "Maybe she just wants to be a slut."');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "<<$pcs_nickname>>, you need to ...
-  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname || '')}, you need to start using a little discretion, or you're out," Andrey says before the bell rings and you all hurry to class. You can't help but worry. Your recent activity has made the other cool kids question whether you belong in the group. You better fix things fast, or you risk being kicked out…`);
+  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname ?? '')}, you need to start using a little discretion, or you're out," Andrey says before the bell rings and you all hurry to class. You can't help but worry. Your recent activity has made the other cool kids question whether you belong in the group. You better fix things fast, or you risk being kicked out…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -333,7 +333,7 @@ function enterJock(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joinjock.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "Hey, ${((s as any).pcs_nickname || '')}, we've been talking, and you seem to have the right attitude to be one of us. So what do you say? Do you want to join us and become a jock?" They seem to be waiting for your response.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "Hey, ${((s as any).pcs_nickname ?? '')}, we've been talking, and you seem to have the right attitude to be one of us. So what do you say? Do you want to join us and become a jock?" They seem to be waiting for your response.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
@@ -390,7 +390,7 @@ function enterJockWarn1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "Hey, ${((s as any).pcs_nickname || '')}, is everything okay with you?" Lariska asks.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "Hey, ${((s as any).pcs_nickname ?? '')}, is everything okay with you?" Lariska asks.`);
   scene.text('Before you can answer, Lina chimes in. "You haven\'t been putting your all into sports, and you\'re starting to act like some others, so does that mean you don\'t want to hang around with us anymore?"');
   scene.text('The bell rings, and you all hurry to class, but you can\'t help but worry. It seems your recent activity has made the other jocks question whether you belong in the group or not…');
   // TODO-QSP: end
@@ -407,10 +407,10 @@ function enterJockWarn2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "${((s as any).pcs_nickname || '')}, we talked about this before, but you still seem to be not getting the idea." Lariska scoffs.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "${((s as any).pcs_nickname ?? '')}, we talked about this before, but you still seem to be not getting the idea." Lariska scoffs.`);
   scene.text('Before you can answer, Lina chimes. "Christina says she doesn\'t want you to be one of us and that we should have never let you hang out with us in the first place."');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "<<$pcs_nickname>>, you need to ...
-  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname || '')}, you need to get your act together, or you're out, simple as that," Lina says before the bell rings and you all hurry to class. You can't help but worry. Your recent activity has made the other jocks question whether you belong in the group. You better fix things fast or risk becoming kicked out…`);
+  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname ?? '')}, you need to get your act together, or you're out, simple as that," Lina says before the bell rings and you all hurry to class. You can't help but worry. Your recent activity has made the other jocks question whether you belong in the group. You better fix things fast or risk becoming kicked out…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -425,7 +425,7 @@ function enterJockSlutWarn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "What's going on with you, ${((s as any).pcs_nickname || '')}? We've all heard the rumors about your sexual exploits. Sex is fun, but what are you going to do next? Fuck the whole football team?"`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Lariska and Lina giving you friendly smiles. "What's going on with you, ${((s as any).pcs_nickname ?? '')}? We've all heard the rumors about your sexual exploits. Sex is fun, but what are you going to do next? Fuck the whole football team?"`);
   scene.text('Before you can answer, Lina chimes. "You need to start using a little discretion, or you\'re out." The bell then rings, and you all hurry to class, but you can\'t help but worry. Your recent activity has made the other jocks question whether you belong in the group. So you better fix things fast or risk being kicked out…');
   // TODO-QSP: end
   scene.actions([
@@ -440,7 +440,7 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joinnerd.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up, all giving you friendly smiles. "Hey, ${((s as any).pcs_nickname || '')}, we've been talking, and we like you. You are into the same things we are, often dress like us."`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up, all giving you friendly smiles. "Hey, ${((s as any).pcs_nickname ?? '')}, we've been talking, and we like you. You are into the same things we are, often dress like us."`);
   scene.text('Then Artem followed by Petka start to chant. "One of us, one of us." This gets a laugh from a few of the others, while Feofan smiles and then adds. "So what do you say? Want to be one of the proud, one of the few, one of the nerds? As a bonus you could join us for a DnD game night as well."');
   scene.text('They seem to be waiting on your response.');
   // TODO-QSP: end
@@ -463,7 +463,7 @@ function enterNerd(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/joinnerd.jpg');
     scene.text('You nod your head. "Yes, I would love to hang out with you guys! A game night sounds like a lot of fun."');
     // TODO-QSP: dynamic text: They all start speaking at once, excited about you joining them. Feofan then spe...
-    scene.text(`They all start speaking at once, excited about you joining them. Feofan then speaks up. "That's great, ${((st as any).pcs_nickname || '')}! Meet us at the community center library tonight at 20:00. See you then." Then, they all start leaving and going to class, saying they look forward to seeing you tonight.`);
+    scene.text(`They all start speaking at once, excited about you joining them. Feofan then speaks up. "That's great, ${((st as any).pcs_nickname ?? '')}! Meet us at the community center library tonight at 20:00. See you then." Then, they all start leaving and going to class, saying they look forward to seeing you tonight.`);
     if (((st as any).grupTipe ?? 0)?.['joined_nerds'] === 0) {
       ((st as any).grupTipe = (st as any).grupTipe ?? {})['joined_nerds'] = 1;
     }
@@ -504,10 +504,10 @@ function enterNerdWarn1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up and giving you friendly smiles. "Hey, ${((s as any).pcs_nickname || '')}, is everything okay with you?"`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up and giving you friendly smiles. "Hey, ${((s as any).pcs_nickname ?? '')}, is everything okay with you?"`);
   scene.text('Before you can answer, Julia chimes in. "You\'re acting a lot like the others. Does that mean you don\'t want to hang out with us anymore?"');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "Look, <<$pcs_nickname>>. We lik...
-  scene.text(`You are again interrupted before you can speak. "Look, ${((s as any).pcs_nickname || '')}. We like you and want you to stay, but if you want to hang out with us, just act like you want to hang out with us? That's all we're saying." Feofan says before the bell rings, and you all hurry to class. You can't help but worry. It seems your recent activity has made the other nerds question whether you belong in the group or not…`);
+  scene.text(`You are again interrupted before you can speak. "Look, ${((s as any).pcs_nickname ?? '')}. We like you and want you to stay, but if you want to hang out with us, just act like you want to hang out with us? That's all we're saying." Feofan says before the bell rings, and you all hurry to class. You can't help but worry. It seems your recent activity has made the other nerds question whether you belong in the group or not…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -522,10 +522,10 @@ function enterNerdWarn2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up and giving you friendly smiles. "${((s as any).pcs_nickname || '')}, we talked about this, but you're still acting out," Artem says with disdain.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up and giving you friendly smiles. "${((s as any).pcs_nickname ?? '')}, we talked about this, but you're still acting out," Artem says with disdain.`);
   scene.text('Before you can answer, Julia chimes in. "Yeah, we\'re all worried about you. What\'s wrong? Is there anything we can do to help? Please just ask."');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "<<$pcs_nickname>>, I don''t kno...
-  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname || '')}, I don't know what's wrong, but if you don't want to hang out with us, just say so. In any case, we hope things get better for you." Deofan says before the bell rings, and you all hurry to class. You can't help but worry. Your recent activity has made the other nerds question whether you belong in the group. You better fix things fast or risk being kicked out…`);
+  scene.text(`You are again interrupted before you can speak. "${((s as any).pcs_nickname ?? '')}, I don't know what's wrong, but if you don't want to hang out with us, just say so. In any case, we hope things get better for you." Deofan says before the bell rings, and you all hurry to class. You can't help but worry. Your recent activity has made the other nerds question whether you belong in the group. You better fix things fast or risk being kicked out…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -540,9 +540,9 @@ function enterNerdSlutWarn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up and giving you friendly smiles. "Hey, ${((s as any).pcs_nickname || '')}, what's going on with you? We've all heard some pretty disturbing rumors about you… If they're even half true… I just don't know what to say. You always seemed like such a nice girl." Feofan says with a hint of disappointment.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see a group of nerds bunched up and giving you friendly smiles. "Hey, ${((s as any).pcs_nickname ?? '')}, what's going on with you? We've all heard some pretty disturbing rumors about you… If they're even half true… I just don't know what to say. You always seemed like such a nice girl." Feofan says with a hint of disappointment.`);
   // TODO-QSP: dynamic text: Before you can answer, Petka chimes in. "<<$pcs_nickname>>, you need to get your...
-  scene.text(`Before you can answer, Petka chimes in. "${((s as any).pcs_nickname || '')}, you need to get yourself under control, or you won't be able to hang out with us anymore." The bell rings, and you all hurry to class, but you can't help but worry. Your recent activity has made the other nerds question whether you belong in the group. You better fix things fast or risk being kicked out…`);
+  scene.text(`Before you can answer, Petka chimes in. "${((s as any).pcs_nickname ?? '')}, you need to get yourself under control, or you won't be able to hang out with us anymore." The bell rings, and you all hurry to class, but you can't help but worry. Your recent activity has made the other nerds question whether you belong in the group. You better fix things fast or risk being kicked out…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -556,7 +556,7 @@ function enterGopnik(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joingopnik.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vitek and Lena. Vitek gives you a hungry once-over, and Lena gives you a smirk. "Hey, ${((s as any).pcs_nickname || '')}, we've been talking, and you seem like you have the right attitude to hang with us. So what do you say? Want to come to one of our exclusive parties tonight?" They seem to be waiting on your response.`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vitek and Lena. Vitek gives you a hungry once-over, and Lena gives you a smirk. "Hey, ${((s as any).pcs_nickname ?? '')}, we've been talking, and you seem like you have the right attitude to hang with us. So what do you say? Want to come to one of our exclusive parties tonight?" They seem to be waiting on your response.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'No', handler: (st: GameState) => {
@@ -597,10 +597,10 @@ function enterGopnikWarn1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/events/joincool.jpg');
   // TODO-QSP: dynamic text: You walk down the hallway and stop at your locker. You sense someone standing ne...
-  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vitek, Lena, Lera and Dan. Vitek gives you a once-over. "What the fuck is up with you, ${((s as any).pcs_nickname || '')}?"`);
+  scene.text(`You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vitek, Lena, Lera and Dan. Vitek gives you a once-over. "What the fuck is up with you, ${((s as any).pcs_nickname ?? '')}?"`);
   scene.text('Before you can answer, Lena chimes in. "You\'ve been acting like a little submissive bitch lately. Grow a fucking pair and get your shit together!"');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "Look, <<$pcs_nickname>>. If you...
-  scene.text(`You are again interrupted before you can speak. "Look, ${((s as any).pcs_nickname || '')}. If you want to hang out with us, just act like it, okay? That's all we're saying." Lera says before the bell rings, and the group disperses. You can't help but worry. It seems your recent activity has made the other Gopnik question whether you belong in the group or not…`);
+  scene.text(`You are again interrupted before you can speak. "Look, ${((s as any).pcs_nickname ?? '')}. If you want to hang out with us, just act like it, okay? That's all we're saying." Lera says before the bell rings, and the group disperses. You can't help but worry. It seems your recent activity has made the other Gopnik question whether you belong in the group or not…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -617,7 +617,7 @@ function enterGopnikWarn2(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk down the hallway and stop at your locker. You sense someone standing next to you and turn to see Vitek, Lena, Lera and Dan. Lena shoves you into your locker. "What the fuck bitch? You deaf or something, or do you just think you\'re too good for us?"');
   scene.text('Before you can answer, Dan chimes in. "I told you she didn\'t belong. This bitch is too soft," he says as he plays with your hair. "I don\'t know why we let Vasily talk us into letting her hang out with us anyway. I mean, maybe if she sucked a few more cocks we could look the other way…" he laughs.');
   // TODO-QSP: dynamic text: You are again interrupted before you can speak. "Cool it, Dan. <<$pcs_nickname>>...
-  scene.text(`You are again interrupted before you can speak. "Cool it, Dan. ${((s as any).pcs_nickname || '')}, get your shit together, or you're out, simple as that." Vitek says before the bell rings, and the group disperses. You can't help but worry. Your recent activity has made the other Gopnik question whether you belong in the group. You better fix things fast, or you risk being kicked out…`);
+  scene.text(`You are again interrupted before you can speak. "Cool it, Dan. ${((s as any).pcs_nickname ?? '')}, get your shit together, or you're out, simple as that." Vitek says before the bell rings, and the group disperses. You can't help but worry. Your recent activity has made the other Gopnik question whether you belong in the group. You better fix things fast, or you risk being kicked out…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', handler: (st: GameState) => {
@@ -635,7 +635,7 @@ function enterGopnikSlutWarn(s: GameState, scene: SceneBuilder): void {
   scene.text('Before you can answer, Lera chimes in. "Maybe she just wants to be a slut."');
   scene.text('You are again interrupted before you can speak. "We don\'t need another Nush. One slut is enough." Pauline says in reply.');
   // TODO-QSP: dynamic text: Lera fires back. "Hey, she isn''t a slut! She just likes to fuck. It''s not like...
-  scene.text(`Lera fires back. "Hey, she isn't a slut! She just likes to fuck. It's not like she lets just anyone fuck her. Not like ${((s as any).pcs_nickname || '')} here." She gives Dan a pointed look, which makes him give Lera a sour look in return.`);
+  scene.text(`Lera fires back. "Hey, she isn't a slut! She just likes to fuck. It's not like she lets just anyone fuck her. Not like ${((s as any).pcs_nickname ?? '')} here." She gives Dan a pointed look, which makes him give Lera a sour look in return.`);
   scene.text('Pauline rolls her eyes. "Whatever. If you want to lick her ass so bad, go ahead and do it, you carpet muncher."');
   scene.text('Before Lera can reply, Lena steps between the girls. "That\'s enough. We\'re not here to bitch about this shit." She then turns to you. "And you, chill the fuck out and stop being the town bicycle, or you\'re out, got it?" They then turn and walk off, still chatting as the bell rings. You can\'t help but worry. Your recent activity has made the other Gopnik question whether you belong in the group. You better fix things fast, or you risk being kicked out…');
   // TODO-QSP: end

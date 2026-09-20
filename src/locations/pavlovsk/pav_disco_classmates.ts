@@ -412,7 +412,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener2.jpg');
       scene.text('You go up to Mikhail Nikolayevich and politely say hello.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I was told you were here... Are you really that stupid? Ther...
-      scene.text(`"${((s as any).pcs_lastname || '')}, I was told you were here... Are you really that stupid? There's a game tomorrow!"`);
+      scene.text(`"${((s as any).pcs_lastname ?? '')}, I was told you were here... Are you really that stupid? There's a game tomorrow!"`);
       scene.text('"I... err... was... erm... dropping off a book for a friend," you mumble.');
       if (((s as any).alko ?? 0) > 1) {
         scene.text('"You\'ve been drinking! If you can\'t even take the team seriously, then you\'re not playing tomorrow."');
@@ -441,17 +441,17 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_vball ?? 0) < 35) {
         // TODO-QSP: dynamic text: The coach looks at you with mild condescension. "<<$pcs_lastname>>, well done. Y...
-        scene.text(`The coach looks at you with mild condescension. "${((s as any).pcs_lastname || '')}, well done. You're getting a hang of the basics. You don't really belong here though... although, what do I know?"`);
+        scene.text(`The coach looks at you with mild condescension. "${((s as any).pcs_lastname ?? '')}, well done. You're getting a hang of the basics. You don't really belong here though... although, what do I know?"`);
       } else {
         if (((s as any).pcs_vball ?? 0) < 60) {
           // TODO-QSP: dynamic text: The coach looks at you disapprovingly. "<<$pcs_lastname>>, you were pretty good ...
-          scene.text(`The coach looks at you disapprovingly. "${((s as any).pcs_lastname || '')}, you were pretty good in training, but places like this set back your development. You should go home."`);
+          scene.text(`The coach looks at you disapprovingly. "${((s as any).pcs_lastname ?? '')}, you were pretty good in training, but places like this set back your development. You should go home."`);
         } else {
           if (((s as any).pcs_vball ?? 0) < 80) {
             scene.text('The coach looks at you with condemnation. "What are you doing here?"');
             scene.text('"What are you doing here?" You turn the question back onto him.');
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don''t piss me off. What I do is my business, and what you a...
-            scene.text(`"${((s as any).pcs_lastname || '')}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
+            scene.text(`"${((s as any).pcs_lastname ?? '')}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
             if (((s as any).pcs_horny ?? 0) > 79) {
               ((s as any).vballVars = (s as any).vballVars ?? {})['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
               scene.text('"Is that the truth, Mr. Nikolayevich? Are you here because of me?" You move closer to the coach and flutter your eyes at him.');
@@ -461,10 +461,10 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             // TODO-QSP: dynamic text: The coach looks at you with condemnation. "<<$pcs_lastname>>, you here again? Th...
-            scene.text(`The coach looks at you with condemnation. "${((s as any).pcs_lastname || '')}, you here again? This is not the place for someone who wants to be on the team."`);
+            scene.text(`The coach looks at you with condemnation. "${((s as any).pcs_lastname ?? '')}, you here again? This is not the place for someone who wants to be on the team."`);
             scene.text('"Mr. Nikolayevich, you never said anything about not going out on a Friday."');
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>, are you thick? When does the team play?"
-            scene.text(`"${((s as any).pcs_lastname || '')}, are you thick? When does the team play?"`);
+            scene.text(`"${((s as any).pcs_lastname ?? '')}, are you thick? When does the team play?"`);
             scene.text('"Saturday," you respond, sheepishly.');
             scene.text('"So on Friday I expect my candidates to be home getting some sleep, not hanging out here. Clear? You have some skill — sort out your attitude and you might yet make the team."');
           }
@@ -482,7 +482,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
 function enterCoachSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_lastname>>, let''s find somewhere a bit more private." You are about to ...
-  scene.text(`"${((s as any).pcs_lastname || '')}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
+  scene.text(`"${((s as any).pcs_lastname ?? '')}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Follow him', handler: (st: GameState) => {

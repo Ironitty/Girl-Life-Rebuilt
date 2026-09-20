@@ -57,7 +57,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).stol = 'a new <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">table</a>';
   }
   // TODO-QSP: dynamic text: <<$zal>>. <<$divan>> sits next to the <<$zal2>>. In front of the sofa is <<$temp...
-  scene.text(`${((s as any).zal || '')}. ${((s as any).divan || '')} sits next to the ${((s as any).zal2 || '')}. In front of the sofa is ${((s as any).temp_TV_text || '')}, while ${((s as any).stol || '')} sits in front of the window. ${((s as any).komp || '')}`);
+  scene.text(`${((s as any).zal ?? '')}. ${((s as any).divan ?? '')} sits next to the ${((s as any).zal2 ?? '')}. In front of the sofa is ${((s as any).temp_TV_text ?? '')}, while ${((s as any).stol ?? '')} sits in front of the window. ${((s as any).komp ?? '')}`);
   if (((s as any).mishka ?? 0) > 0) {
     // TODO-QSP: iif(mishka = 1, 'Your teddy bear is', 'Your <<mishka>> teddy bears are') + 'sitting on a shelf.'
   }

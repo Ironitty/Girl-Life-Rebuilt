@@ -228,7 +228,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
   ((s as any).sisterQW = (s as any).sisterQW ?? {})['ask_virgin'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/resident/anya/home/sister_chat.jpg');
   // TODO-QSP: dynamic text: "What about you, <<$pcs_nickname>>? Have you popped your cherry yet?"
-  scene.text(`"What about you, ${((s as any).pcs_nickname || '')}? Have you popped your cherry yet?"`);
+  scene.text(`"What about you, ${((s as any).pcs_nickname ?? '')}? Have you popped your cherry yet?"`);
   if (((s as any).virgin_stats ?? 0)?.['taker_ID'] === 'A16') {
     scene.actions([
       { label: 'Tell Anya about Natasha', handler: (st: GameState) => {
@@ -249,7 +249,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_07.jpg');
     // TODO-QSP: dynamic text: Anya clearly didn''t expect your outburst. "Sorry <<$pcs_nickname>>, but sex wit...
-    scene.text(`Anya clearly didn't expect your outburst. "Sorry ${((st as any).pcs_nickname || '')}, but sex with a girl doesn't count. You'll meet the right guy one day…"`);
+    scene.text(`Anya clearly didn't expect your outburst. "Sorry ${((st as any).pcs_nickname ?? '')}, but sex with a girl doesn't count. You'll meet the right guy one day…"`);
     scene.text('You\'ve heard enough at this point. "Really?! Maybe you should look in the mirror there! <i>I like girls</i> and I shared a special moment with my <i>girlfriend</i>, but you\'re clearly not interested, so I\'m not going to waste my breath!"');
     scene.text('Before Anya can say anything, you storm out of the room, slamming the door behind you to prevent any further discussion.');
     scene.actions([
@@ -290,7 +290,7 @@ function enterVirginAsk(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     scene.img('images/characters/pavlovsk/resident/anya/home/sisboyqw_07.jpg');
     // TODO-QSP: dynamic text: Anya clearly didn''t expect your outburst. "Sorry <<$pcs_nickname>>, but sex wit...
-    scene.text(`Anya clearly didn't expect your outburst. "Sorry ${((st as any).pcs_nickname || '')}, but sex with a girl doesn't count. You'll meet the right guy one day…"`);
+    scene.text(`Anya clearly didn't expect your outburst. "Sorry ${((st as any).pcs_nickname ?? '')}, but sex with a girl doesn't count. You'll meet the right guy one day…"`);
     scene.text('You\'ve heard enough at this point. "Well you\'re clearly not interested, so I\'m not going to waste my breath!"');
     scene.text('Before Anya can say anything, you storm out of the room, slamming the door behind you to prevent any further discussion.');
     scene.actions([
@@ -379,7 +379,7 @@ function enterFirstTime(s: GameState, scene: SceneBuilder): void {
     scene.text('"I have a few girlfriends who said their first time was like that too," Anya says, nodding sagely. "My first time, there was a little prick of pain, but I only remember feeling good after that."');
     scene.text('"You were lucky then," you say, pouting as Anya laughs.');
     // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>. They all said that it gets a lot better after t...
-    scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}. They all said that it gets a lot better after the first time. You just need a little more pussy practice."`);
+    scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}. They all said that it gets a lot better after the first time. You just need a little more pussy practice."`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSexTalkContinue(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       { label: 'It was okay', handler: (st: GameState) => {
@@ -581,7 +581,7 @@ function enterBlackSex(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).DjibrilQW ?? 0)?.['anya_count'] !== 0) {
         // TODO-QSP: dynamic text: "Getting fucked by Djibril was a great way to satisfy my curiosity about black g...
-        scene.text(`"Getting fucked by Djibril was a great way to satisfy my curiosity about black guys. Thanks for introducing me to him, ${((s as any).pcs_nickname || '')}."`);
+        scene.text(`"Getting fucked by Djibril was a great way to satisfy my curiosity about black guys. Thanks for introducing me to him, ${((s as any).pcs_nickname ?? '')}."`);
         scene.text('"Anything for my big slut of a big sister," you reply with a grin.');
         scene.text('"Hey!" she giggles and you laugh before the two of you talk about what it was like and why it\'s taboo.');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexTalkContinue(s, scene); (s as any).locArgs = __savedLocArgs; }

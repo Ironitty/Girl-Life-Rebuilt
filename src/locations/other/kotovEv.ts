@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big9.jpg');
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 200  &&  ((s as any).kotovsluttalk ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: Vitek scowls at you and tells you: "<<$pcs_nickname>>, what is this shit I hear?...
-    scene.text(`Vitek scowls at you and tells you: "${((s as any).pcs_nickname || '')}, what is this shit I hear? I thought you were my girl, but then I hear people talking about you being a ${((s as any).gnikname || '')}! Apparently the whole town knows it, too… all the guys were laughing at me! What do you have to say for yourself, you bitch!?"`);
+    scene.text(`Vitek scowls at you and tells you: "${((s as any).pcs_nickname ?? '')}, what is this shit I hear? I thought you were my girl, but then I hear people talking about you being a ${((s as any).gnikname ?? '')}! Apparently the whole town knows it, too… all the guys were laughing at me! What do you have to say for yourself, you bitch!?"`);
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('He frowns while he thinks it over, but your sweet talking seems to have an effect on him. He\'s not as angry any more. In an attempt to win him over again, you whisper: "Come on Vitek, relax… we can go somewhere a bit more quiet later and I\'ll make you feel better, okay?"');
     scene.text('Vitek clenches his fist, and angrily says: "Those bastards! I\'ll knock their teeth out, if I hear anyone talk about you like that again! You hear me!?"');
     // TODO-QSP: dynamic text: Then he puts his hand on your shoulder in an endearing way (for his doing, anywa...
-    scene.text(`Then he puts his hand on your shoulder in an endearing way (for his doing, anyway) and promises you: "Don't worry ${((st as any).pcs_nickname || '')}, I will make sure those rumors stop right now. I'll see you later."`);
+    scene.text(`Then he puts his hand on your shoulder in an endearing way (for his doing, anyway) and promises you: "Don't worry ${((st as any).pcs_nickname ?? '')}, I will make sure those rumors stop right now. I'll see you later."`);
     scene.text('He kisses your cheek and leaves you alone, and almost immediately afterwards you notice that people treat you differently. No one dares to make remarks about your reputation any more and some even look scared when you walk past, asking you to forgive them. You nearly can\'t believe it, but Vitek actually intimidated everyone to the point where no one dares to bring it up any more.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -68,7 +68,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'gdksport') {
     if ((!((s as any).kotovKnowSport ?? 0))) {
       // TODO-QSP: dynamic text: Vitek smiles when he sees you and puts his arms around you, hugging you tightly ...
-      scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname || '')}, what brings you here?"`);
+      scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname ?? '')}, what brings you here?"`);
       scene.actions([
         { label: '"What are you doing here?"', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
@@ -97,7 +97,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).kotovKnowSport ?? 0) > 0) {
         // TODO-QSP: dynamic text: Vitek smiles when he sees you and puts his arms around you, hugging you tightly ...
-        scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname || '')}. It's nice seeing you, but the training starts soon!"`);
+        scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname ?? '')}. It's nice seeing you, but the training starts soon!"`);
         scene.actions([
           { label: 'Let him go to his training', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -108,7 +108,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).loc ?? 0) === 'pav_park') {
       // TODO-QSP: dynamic text: Vitek sees you walk by, and waves his hand: "Hey <<$pcs_nickname>>! Come on, joi...
-      scene.text(`Vitek sees you walk by, and waves his hand: "Hey ${((s as any).pcs_nickname || '')}! Come on, join me!"`);
+      scene.text(`Vitek sees you walk by, and waves his hand: "Hey ${((s as any).pcs_nickname ?? '')}! Come on, join me!"`);
       qspCall(s, 'willpower', 'misc', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
@@ -131,7 +131,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     // TODO-QSP: dynamic text: Vitek pours some beer into a plastic cup and offers it to you: "Here, <<$pcs_nic...
-    scene.text(`Vitek pours some beer into a plastic cup and offers it to you: "Here, ${((st as any).pcs_nickname || '')}. Let's have some beers together!"`);
+    scene.text(`Vitek pours some beer into a plastic cup and offers it to you: "Here, ${((st as any).pcs_nickname ?? '')}. Let's have some beers together!"`);
     qspCall(st, 'willpower', 'misc', 'resist', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -160,7 +160,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     // TODO-QSP: dynamic text: You enjoyed your time with Vitek, but you have to get on with your day. Vitek is...
-    scene.text(`You enjoyed your time with Vitek, but you have to get on with your day. Vitek is a bit disappointed to see you leave and hugs you tightly, while kissing you on your lips. You kiss him back, and can't help but feel a bit more aroused when he lets you go. He smiles at you and says: "${((st as any).pcs_nickname || '')}, babe… want to go to my place for a while?"`);
+    scene.text(`You enjoyed your time with Vitek, but you have to get on with your day. Vitek is a bit disappointed to see you leave and hugs you tightly, while kissing you on your lips. You kiss him back, and can't help but feel a bit more aroused when he lets you go. He smiles at you and says: "${((st as any).pcs_nickname ?? '')}, babe… want to go to my place for a while?"`);
     qspCall(st, 'willpower', 'misc', 'resist', 'medium');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([

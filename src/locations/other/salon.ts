@@ -78,22 +78,22 @@ function enterReceptionist(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) >= 21) {
     // TODO-QSP: dynamic text: "It''s after hours, <<$pcs_firstname>>. You should go home."
-    scene.text(`"It's after hours, ${((s as any).pcs_firstname || '')}. You should go home."`);
+    scene.text(`"It's after hours, ${((s as any).pcs_firstname ?? '')}. You should go home."`);
   } else {
     if (((s as any).masseuse ?? 0)?.['salon_state'] === 'fired') {
       scene.text('"Hello, what can I help you with today?"');
     } else {
       if (((s as any).masseuse ?? 0)?.['salon_state'] === 'resigned') {
         // TODO-QSP: dynamic text: "Hello again, <<$pcs_firstname>>. What can I help you with?"
-        scene.text(`"Hello again, ${((s as any).pcs_firstname || '')}. What can I help you with?"`);
+        scene.text(`"Hello again, ${((s as any).pcs_firstname ?? '')}. What can I help you with?"`);
       } else {
         if (((s as any).week ?? 0) === 5  &&  ((s as any).job_bonus_pay ?? 0)?.['city_salon_masseuse'] > 0) {
           // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>! Are you here to pick up your paycheck?"
-          scene.text(`"Hello ${((s as any).pcs_firstname || '')}! Are you here to pick up your paycheck?"`);
+          scene.text(`"Hello ${((s as any).pcs_firstname ?? '')}! Are you here to pick up your paycheck?"`);
         } else {
           if (((s as any).job_status ?? 0)?.['city_salon_masseuse'] === 'employed') {
             // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>! Are you scheduled for a shift today? Or are you here ...
-            scene.text(`"Hello ${((s as any).pcs_firstname || '')}! Are you scheduled for a shift today? Or are you here for some discount services?"`);
+            scene.text(`"Hello ${((s as any).pcs_firstname ?? '')}! Are you scheduled for a shift today? Or are you here for some discount services?"`);
           }
         }
       }
@@ -927,7 +927,7 @@ function enterPayday(s: GameState, scene: SceneBuilder): void {
       if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] >= ((s as any).masseuse ?? 0)?.['shifts_required']) {
         if (((s as any).job_shifts_this_period ?? 0)?.['city_salon_masseuse'] > ((s as any).masseuse ?? 0)?.['shifts_required']) {
           // TODO-QSP: dynamic text: "By the way, thank you for covering those extra shifts this week, <<$pcs_firstna...
-          scene.text(`"By the way, thank you for covering those extra shifts this week, ${((s as any).pcs_firstname || '')}. Really helpful for us."`);
+          scene.text(`"By the way, thank you for covering those extra shifts this week, ${((s as any).pcs_firstname ?? '')}. Really helpful for us."`);
           scene.text('"No problem, Xian," you say while taking the envelope. "I could use the extra cash."');
         }
       }
@@ -1355,29 +1355,29 @@ function enterHairRemoval(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/salon/depilation.jpg');
   if (((s as any).pcs_leghair ?? 0) > 2  &&  qspFunc(s, 'money', 'can_afford', ((s as any).partialservice ?? 0))) {
     // TODO-QSP: dynamic text: Get your legs waxed <a href="exec: gs ''money'', ''pay'', <<partialservice>> & g...
-    scene.text(`Get your legs waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice || ''))}</a> `);
+    scene.text(`Get your legs waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}</a> `);
   } else {
     if (((s as any).pcs_leghair ?? 0) > 2) {
       // TODO-QSP: dynamic text: Get your legs waxed (' + $func('wrap', 'neg', '<<$func(''money'', ''string_price...
-      scene.text(`Get your legs waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).partialservice || ''))}') + ') `);
+      scene.text(`Get your legs waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}') + ') `);
     }
   }
   if (((s as any).pcs_pubes ?? 0) > 2  &&  qspFunc(s, 'money', 'can_afford', ((s as any).partialservice ?? 0))) {
     // TODO-QSP: dynamic text: Get your pubic area waxed <a href="exec: gs ''money'', ''pay'', <<partialservice...
-    scene.text(`Get your pubic area waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice || ''))}</a> `);
+    scene.text(`Get your pubic area waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}</a> `);
   } else {
     if (((s as any).pcs_pubes ?? 0) > 2) {
       // TODO-QSP: dynamic text: Get your pubic area waxed (' + $func('wrap', 'neg', '<<$func(''money'', ''string...
-      scene.text(`Get your pubic area waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).partialservice || ''))}') + ') `);
+      scene.text(`Get your pubic area waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).partialservice ?? ''))}') + ') `);
     }
   }
   if (((s as any).pcs_pubes ?? 0) > 2  &&  ((s as any).pcs_leghair ?? 0) > 2  &&  qspFunc(s, 'money', 'can_afford', ((s as any).fullservice ?? 0))) {
     // TODO-QSP: dynamic text: Get your body waxed <a href="exec: gs ''money'', ''pay'', <<fullservice>> & gt '...
-    scene.text(`Get your body waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).fullservice || ''))}</a> `);
+    scene.text(`Get your body waxed <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027money/u0027, /u0027pay/u0027); return false;">${qspFunc(s, 'money', 'string_price', ((s as any).fullservice ?? ''))}</a> `);
   } else {
     if (((s as any).pcs_pubes ?? 0) > 2  &&  ((s as any).pcs_leghair ?? 0) > 2) {
       // TODO-QSP: dynamic text: Get your body waxed (' + $func('wrap', 'neg', '<<$func(''money'', ''string_price...
-      scene.text(`Get your body waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).fullservice || ''))}') + ') `);
+      scene.text(`Get your body waxed (' + $func('wrap', 'neg', '${qspFunc(s, 'money', 'string_price', ((s as any).fullservice ?? ''))}') + ') `);
     }
   }
   // TODO-QSP: end
@@ -1866,7 +1866,7 @@ function enterMassage(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: "Looking to receive instead of give today <<$pcs_firstname>>?"
-    scene.text(`"Looking to receive instead of give today ${((s as any).pcs_firstname || '')}?"`);
+    scene.text(`"Looking to receive instead of give today ${((s as any).pcs_firstname ?? '')}?"`);
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
@@ -2410,7 +2410,7 @@ function enterMakeup(s: GameState, scene: SceneBuilder): void {
 function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2000]; enterDiscount(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: <br>We currently offer five levels of cosmetic tattoos: light, vibrant, sultry, ...
-  scene.text(`<br>We currently offer five levels of cosmetic tattoos: light, vibrant, sultry, professional and celebrity.<br>Please keep in mind that these procedures are permanent.<br>Also, be aware that after procedure using regular cosmetics will be difficult.<br>Price is set at ${qspFunc(s, 'money', 'string_price', ((s as any).salon_rate || ''))}`);
+  scene.text(`<br>We currently offer five levels of cosmetic tattoos: light, vibrant, sultry, professional and celebrity.<br>Please keep in mind that these procedures are permanent.<br>Also, be aware that after procedure using regular cosmetics will be difficult.<br>Price is set at ${qspFunc(s, 'money', 'string_price', ((s as any).salon_rate ?? ''))}`);
   if (qspFunc(s, 'money', 'can_afford', ((s as any).salon_rate ?? 0))) {
     if (((s as any).cosmetic_tattoo ?? 0) === 5) {
       scene.text('You already have the heaviest cosmetic tattoo that is on offer.');
@@ -2418,7 +2418,7 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).arch_vars ?? 0)?.['main_active'] === 'bimbo'  ||  ((s as any).inhib_lvl ?? 0) >= 10) {
         if (((s as any).cosmetic_tattoo ?? 0) < 1) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Get light cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate || '')) ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Get light cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate ?? '')) ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', ((st as any).salon_rate ?? 0));
     qspGoto(st, 'salon', 'cosmetic_tattoo_operation', '1');
   } },
@@ -2426,7 +2426,7 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 2) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Get vibrant cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate || '')) ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Get vibrant cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate ?? '')) ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', ((st as any).salon_rate ?? 0));
     qspGoto(st, 'salon', 'cosmetic_tattoo_operation', '2');
   } },
@@ -2434,7 +2434,7 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 3) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Get sultry cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate || '')) ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Get sultry cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate ?? '')) ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', ((st as any).salon_rate ?? 0));
     qspGoto(st, 'salon', 'cosmetic_tattoo_operation', '3');
   } },
@@ -2442,7 +2442,7 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 4) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Get professional cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate || '')) ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Get professional cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate ?? '')) ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', ((st as any).salon_rate ?? 0));
     qspGoto(st, 'salon', 'cosmetic_tattoo_operation', '4');
   } },
@@ -2450,7 +2450,7 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cosmetic_tattoo ?? 0) < 5) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Get celebrity(bimbo) cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate || '')) ?? ''), handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Get celebrity(bimbo) cosmetic tattoo - ' + String(qspFunc(s, 'money', 'string_price', ((s as any).salon_rate ?? '')) ?? ''), handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', ((st as any).salon_rate ?? 0));
     qspGoto(st, 'salon', 'cosmetic_tattoo_operation', '5');
   } },
@@ -2472,7 +2472,7 @@ function enterCosmeticTattooStart(s: GameState, scene: SceneBuilder): void {
 
 function enterCosmeticTattooOperation(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_tattoo = ((s as any).locArgs?.[1] ?? 0);
-  scene.img(`images/locations/city/citycenter/mall/salon/ct${((s as any).temp_tattoo || '')}.jpg`);
+  scene.img(`images/locations/city/citycenter/mall/salon/ct${((s as any).temp_tattoo ?? '')}.jpg`);
   if (((s as any).temp_tattoo ?? 0) === 1) {
     scene.text('The technician works away with the needle for 45 minutes until your light cosmetic tattoo is completed.');
   } else {

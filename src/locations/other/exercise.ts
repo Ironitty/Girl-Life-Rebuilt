@@ -825,7 +825,7 @@ function enterButt(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You do squats for <<$timestring>> minutes, strengthening your thighs and sculpti...
-  scene.text(`You do squats for ${((s as any).timestring || '')} minutes, strengthening your thighs and sculpting your butt.`);
+  scene.text(`You do squats for ${((s as any).timestring ?? '')} minutes, strengthening your thighs and sculpting your butt.`);
   qspCall(s, 'stat', '');
   if (((s as any).exer_auto ?? 0) === 1) {
     scene.actions([
@@ -864,7 +864,7 @@ function enterHula(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You improve your dexterity by using your hula hoop for <<$timestring>> minutes.
-  scene.text(`You improve your dexterity by using your hula hoop for ${((s as any).timestring || '')} minutes.`);
+  scene.text(`You improve your dexterity by using your hula hoop for ${((s as any).timestring ?? '')} minutes.`);
   qspCall(s, 'stat', '');
   if (((s as any).exer_auto ?? 0) === 1) {
     scene.actions([
@@ -913,7 +913,7 @@ function enterYoga(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You spend <<$timestring>> minutes stretching and straining your muscles in vario...
-  scene.text(`You spend ${((s as any).timestring || '')} minutes stretching and straining your muscles in various poses, improving your will and flexibility.`);
+  scene.text(`You spend ${((s as any).timestring ?? '')} minutes stretching and straining your muscles in various poses, improving your will and flexibility.`);
   qspCall(s, 'stat', '');
   if (((s as any).exer_auto ?? 0) === 1) {
     scene.actions([
@@ -944,7 +944,7 @@ function enterRope(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You jump rope for <<$timestring>> minutes, improving your speed.
-  scene.text(`You jump rope for ${((s as any).timestring || '')} minutes, improving your speed.`);
+  scene.text(`You jump rope for ${((s as any).timestring ?? '')} minutes, improving your speed.`);
   qspCall(s, 'stat', '');
   if (((s as any).exer_auto ?? 0) === 1) {
     scene.actions([
@@ -975,7 +975,7 @@ function enterPress(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You do a series of abdominal exercises for <<$timestring>> minutes, improving yo...
-  scene.text(`You do a series of abdominal exercises for ${((s as any).timestring || '')} minutes, improving your endurance.`);
+  scene.text(`You do a series of abdominal exercises for ${((s as any).timestring ?? '')} minutes, improving your endurance.`);
   qspCall(s, 'stat', '');
   if (((s as any).exer_auto ?? 0) === 1) {
     scene.actions([
@@ -1006,7 +1006,7 @@ function enterPush(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You do push-ups for <<$timestring>> minutes, improving your strength.
-  scene.text(`You do push-ups for ${((s as any).timestring || '')} minutes, improving your strength.`);
+  scene.text(`You do push-ups for ${((s as any).timestring ?? '')} minutes, improving your strength.`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPushupsInner(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   if (((s as any).exer_auto ?? 0) === 1) {
@@ -1031,7 +1031,7 @@ function enterPushupsInner(s: GameState, scene: SceneBuilder): void {
   (s as any).pushnum = 10 * (((s as any).pcs_stren ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_sleep ?? 0) + ((s as any).temp_energy_bonus ?? 0)) / 33 + (Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10)));
   (s as any).pushnum = Math.max(((s as any).pushnum ?? 0), (Math.floor(Math.random() * 5) + 1));
   // TODO-QSP: dynamic text: <br>You managed to do <<pushnum>> push-ups. Your previous record is <<pushrecord...
-  scene.text(`<br>You managed to do ${((s as any).pushnum || '')} push-ups. Your previous record is ${((s as any).pushrecord || '')}.`);
+  scene.text(`<br>You managed to do ${((s as any).pushnum ?? '')} push-ups. Your previous record is ${((s as any).pushrecord ?? '')}.`);
   if (((s as any).pushrecord ?? 0) < ((s as any).pushnum ?? 0)) {
     (s as any).pushrecord = ((s as any).pushnum ?? 0);
     scene.text('This is a new record!');

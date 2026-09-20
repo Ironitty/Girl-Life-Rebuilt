@@ -108,7 +108,7 @@ function enterTopicMenu(s: GameState, scene: SceneBuilder): void {
 function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).region ?? 0) === 'city') {
     // TODO-QSP: dynamic text: "What do you do for money, <<$pcs_nickname>>?" she asks. "Don''t tell me you sti...
-    scene.text(`"What do you do for money, ${((s as any).pcs_nickname || '')}?" she asks. "Don't tell me you still rely on your parents?"`);
+    scene.text(`"What do you do for money, ${((s as any).pcs_nickname ?? '')}?" she asks. "Don't tell me you still rely on your parents?"`);
     if (((s as any).job_status ?? 0)?.['pav_hotel_maid'] === 'employed') {
       scene.actions([
         { label: 'Work as a maid', handler: (st: GameState) => {
@@ -144,7 +144,7 @@ function enterJobTalk1(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: "What do you do for money, <<$pcs_nickname>>?" she asks. "I used to get money fo...
-    scene.text(`"What do you do for money, ${((s as any).pcs_nickname || '')}?" she asks. "I used to get money for things from Starlets. Whatever my father didn't steal from me anyway. But that's dried up now and I can't rely on Mama forever. Don't tell me that everything you had came from Starlets?"`);
+    scene.text(`"What do you do for money, ${((s as any).pcs_nickname ?? '')}?" she asks. "I used to get money for things from Starlets. Whatever my father didn't steal from me anyway. But that's dried up now and I can't rely on Mama forever. Don't tell me that everything you had came from Starlets?"`);
     if (((s as any).job_status ?? 0)?.['pav_hotel_maid'] === 'employed') {
       scene.actions([
         { label: 'Work as a maid', handler: (st: GameState) => {
@@ -224,7 +224,7 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t know what Mama would think if she ever found out I dance there," she replies. "I want to be a nurse to make her proud and her learning of my current… employment would make her… <i>not</i> proud of me."');
     scene.text('"That\'s exactly my problem," you reply. "It doesn\'t matter what I do with my life, my mother will always judge me for daring to have sex! It\'s pretty tiresome and I don\'t have the energy for it. If she hates me for being a stripper, then so be it."');
     // TODO-QSP: dynamic text: "Damn <<$pcs_nickname>>, remind me not to get on your bad side!"
-    scene.text(`"Damn ${((st as any).pcs_nickname || '')}, remind me not to get on your bad side!"`);
+    scene.text(`"Damn ${((st as any).pcs_nickname ?? '')}, remind me not to get on your bad side!"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -235,7 +235,7 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('Her jaw drops. "You\'re a stripper?!"');
     scene.text('You laugh nervously. "Y-Yeah. I needed money and it\'s… an easy job," you reply.');
     // TODO-QSP: dynamic text: "Don''t be so embarrassed, <<$pcs_nickname>>. I''m a stripper too."
-    scene.text(`"Don't be so embarrassed, ${((st as any).pcs_nickname || '')}. I'm a stripper too."`);
+    scene.text(`"Don't be so embarrassed, ${((st as any).pcs_nickname ?? '')}. I'm a stripper too."`);
     scene.text('"Really?" you ask, suddenly feeling a little relieved.');
     scene.text('"Yeah! Strange that we\'ve never seen each other there. Maybe that will change?"');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -269,7 +269,7 @@ function enterStripperTalk1(s: GameState, scene: SceneBuilder): void {
         scene.text('She grins. "Maybe I\'ll come visit you at work one night…"');
         scene.text('"Please don\'t…" you reply uncomfortably and she pats you on the shoulder.');
         // TODO-QSP: dynamic text: "Don''t panic, <<$pcs_nickname>>, I''m just kidding!"
-        scene.text(`"Don't panic, ${((st as any).pcs_nickname || '')}, I'm just kidding!"`);
+        scene.text(`"Don't panic, ${((st as any).pcs_nickname ?? '')}, I'm just kidding!"`);
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
       }
     } else {
@@ -389,10 +389,10 @@ function enterPornstarTalk1(s: GameState, scene: SceneBuilder): void {
 function enterAlbinaPornRant1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).AlbinaQW ?? 0)?.['StarletsWhore'] > 0) {
     // TODO-QSP: dynamic text: "After everything you and I went through, you let yourself get talked into being...
-    scene.text(`"After everything you and I went through, you let yourself get talked into being fucked on camera just for some cash?" she sneers back. "I can't believe you'd stoop to doing something so disgusting, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"After everything you and I went through, you let yourself get talked into being fucked on camera just for some cash?" she sneers back. "I can't believe you'd stoop to doing something so disgusting, ${((s as any).pcs_nickname ?? '')}."`);
   } else {
     // TODO-QSP: dynamic text: "After everything I protected you from, you let yourself get talked into being f...
-    scene.text(`"After everything I protected you from, you let yourself get talked into being fucked on camera just for some cash?" she sneers back. "I can't believe you'd stoop to doing something so disgusting, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"After everything I protected you from, you let yourself get talked into being fucked on camera just for some cash?" she sneers back. "I can't believe you'd stoop to doing something so disgusting, ${((s as any).pcs_nickname ?? '')}."`);
   }
   // TODO-QSP: end
   scene.build();
@@ -641,7 +641,7 @@ function enterPornstarTalk4_5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: cla  & *nl
   scene.text('She opens her mouth like she\'s about to say something, but it dies in her throat and she looks away, seemingly ashamed. She chews on her lip for a few seconds while avoiding eye contact with you.');
   // TODO-QSP: dynamic text: "Sorry..." she mumbles. "I shouldn''t be so quick to judge you. I just... You''r...
-  scene.text(`"Sorry..." she mumbles. "I shouldn't be so quick to judge you. I just... You're my friend, ${((s as any).pcs_nickname || '')}, and I don't want to see you getting hurt is all."`);
+  scene.text(`"Sorry..." she mumbles. "I shouldn't be so quick to judge you. I just... You're my friend, ${((s as any).pcs_nickname ?? '')}, and I don't want to see you getting hurt is all."`);
   scene.text('"I know, but I can look after myself. It\'s sweet that you care, though. It\'s good to know you have my back if something ever did go wrong."');
   scene.text('She gives you a small smile. "You know it! Should we talk about something else now?"');
   scene.text('"Yeah," you smile back.');
@@ -652,7 +652,7 @@ function enterPornstarTalk4_5(s: GameState, scene: SceneBuilder): void {
 
 function enterUnderwearTalk(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, where do you buy your panties?" she asks.
-  scene.text(`"Hey ${((s as any).pcs_nickname || '')}, where do you buy your panties?" she asks.`);
+  scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}, where do you buy your panties?" she asks.`);
   if (((s as any).trait_vars ?? 0)?.['panty_preference'] === 3) {
     scene.actions([
       { label: 'I don\'t wear underwear', handler: (st: GameState) => {
@@ -989,7 +989,7 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
       { label: 'It\'s stylish', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     // TODO-QSP: dynamic text: "Bush is so unfashionable," you say while rolling your eyes. "So 20th century. I...
-    scene.text(`"Bush is so unfashionable," you say while rolling your eyes. "So 20th century. It's ${((st as any).year || '')} for goodness' sake! Who the hell still has bush?"`);
+    scene.text(`"Bush is so unfashionable," you say while rolling your eyes. "So 20th century. It's ${((st as any).year ?? '')} for goodness' sake! Who the hell still has bush?"`);
     scene.text('"Pfft-! You\'re just like Katja," she snickers. "But I won\'t complain that you see it my way either. Smooth pussy revolution!" she cheers, high-fiving you.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
@@ -1056,7 +1056,7 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
           { label: 'Shaving makes me feel young', handler: (st: GameState) => {
     scene.text('"I\'ve tried going clean shaven before, but it just made me feel like a little girl. Like I\'m back in primary school." You wrinkle your nose in disgust. "No thanks. Now I always keep a little hair down there."');
     // TODO-QSP: dynamic text: "That''s old fashioned thinking," she insists. "Plenty of women go full Brazilia...
-    scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian and it doesn't make them any girlier. You need to get with the times. It's ${((st as any).year || '')}, bitch!"`);
+    scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian and it doesn't make them any girlier. You need to get with the times. It's ${((st as any).year ?? '')}, bitch!"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
         ]);
@@ -1076,7 +1076,7 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
             { label: 'Shaving makes me feel young', handler: (st: GameState) => {
     scene.text('"I\'ve tried going clean shaven before, but it just made me feel like a little girl. Like I\'m back in primary school." You wrinkle your nose in disgust. "No thanks. I\'ll keep some bush down there like a woman."');
     // TODO-QSP: dynamic text: "That''s old fashioned thinking," she insists. "Plenty of women go full Brazilia...
-    scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian. You need to get with the times. It's ${((st as any).year || '')}, bitch!"`);
+    scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian. You need to get with the times. It's ${((st as any).year ?? '')}, bitch!"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
           ]);
@@ -1084,17 +1084,17 @@ function enterPubeTalk2(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_pubes ?? 0) <= 30) {
             if (((s as any).region ?? 0) === 'pav') {
               // TODO-QSP: dynamic text: "I''ve seen you in the locker room too, <<$pcs_nickname>>," she says with a hint...
-              scene.text(`"I've seen you in the locker room too, ${((s as any).pcs_nickname || '')}," she says with a hint of disgust. "Your pussy looks like a fucking hamster!"`);
+              scene.text(`"I've seen you in the locker room too, ${((s as any).pcs_nickname ?? '')}," she says with a hint of disgust. "Your pussy looks like a fucking hamster!"`);
             } else {
               // TODO-QSP: dynamic text: "I''ve seen your pussy too, <<$pcs_nickname>>," she says with a hint of disgust....
-              scene.text(`"I've seen your pussy too, ${((s as any).pcs_nickname || '')}," she says with a hint of disgust. "A furball like that must itch like hell!"`);
+              scene.text(`"I've seen your pussy too, ${((s as any).pcs_nickname ?? '')}," she says with a hint of disgust. "A furball like that must itch like hell!"`);
             }
           } else {
             if (((s as any).region ?? 0) === 'pav') {
               scene.text('"What about you?" she remarks with a raised eyebrow. "The locker room makes it pretty obvious <i>you</i> aren\'t waxing. I mean, do you shave at all?!"');
             } else {
               // TODO-QSP: dynamic text: "Do you even shave at all, <<$pcs_nickname>>?" she asks with a hint of disgust. ...
-              scene.text(`"Do you even shave at all, ${((s as any).pcs_nickname || '')}?" she asks with a hint of disgust. "I've seen the fucking jungle you have down there."`);
+              scene.text(`"Do you even shave at all, ${((s as any).pcs_nickname ?? '')}?" she asks with a hint of disgust. "I've seen the fucking jungle you have down there."`);
             }
           }
         }
@@ -1146,7 +1146,7 @@ function enterGrowPubesChat2(s: GameState, scene: SceneBuilder): void {
     { label: 'Makes me feel young', handler: (st: GameState) => {
     scene.text('"It makes me feel like a little girl," you say, wrinkling your nose. "Everything all smooth down there… Ugh. It makes me feel like I\'m back in primary school. I\'m tired of it. I want to feel like a woman instead of a girl, thank you very much."');
     // TODO-QSP: dynamic text: "That''s old fashioned thinking," she insists. "Plenty of women go full Brazilia...
-    scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian. You need to get with the times. It's ${((st as any).year || '')}, bitch!"`);
+    scene.text(`"That's old fashioned thinking," she insists. "Plenty of women go full Brazilian. You need to get with the times. It's ${((st as any).year ?? '')}, bitch!"`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSmallTalk(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Tired of pleasing guys', handler: (st: GameState) => {
@@ -1203,7 +1203,7 @@ function enterMaidConversation(s: GameState, scene: SceneBuilder): void {
     scene.text('"Not that it would work anyway. She bats for the other team, if you know what I mean…" she says with a wink. "Mama says I shouldn\'t disturb her when she\'s doing her work, but we like chatting with each other. That\'s when I found out about her… secret girlfriend."');
     scene.text('You laugh. "A <i>secret</i> girlfriend? You mean she has a proper one as well?"');
     // TODO-QSP: dynamic text: She gives you a hard stare. "It''s not funny, <<$pcs_nickname>>! She''s already ...
-    scene.text(`She gives you a hard stare. "It's not funny, ${((st as any).pcs_nickname || '')}! She's already been disowned by her parents for coming out as a lesbian and she doesn't want anyone else, <i>especially</i> her boss, finding out. I shouldn't have even outed her like that, especially not behind her back."`);
+    scene.text(`She gives you a hard stare. "It's not funny, ${((st as any).pcs_nickname ?? '')}! She's already been disowned by her parents for coming out as a lesbian and she doesn't want anyone else, <i>especially</i> her boss, finding out. I shouldn't have even outed her like that, especially not behind her back."`);
     scene.text('You blush as you apologize before she changes the subject.');
     ((st as any).AlbinaQW = (st as any).AlbinaQW ?? {})['Maid'] = 1;
     scene.actions([
@@ -1387,7 +1387,7 @@ function enterLoverNikoTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Niko', handler: (st: GameState) => {
     scene.text('"Niko," you tell her.');
     // TODO-QSP: dynamic text: She gives you a concerned look. "<<$pcs_nickname>>, he''s bad news. He isn''t wh...
-    scene.text(`She gives you a concerned look. "${((st as any).pcs_nickname || '')}, he's bad news. He isn't what he seems, so just… Just be careful with him, okay?"`);
+    scene.text(`She gives you a concerned look. "${((st as any).pcs_nickname ?? '')}, he's bad news. He isn't what he seems, so just… Just be careful with him, okay?"`);
     scene.text('"What do you mean?" you ask curiously, but she just dismisses the question and changes the subject.');
     scene.actions([
       { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
@@ -1432,7 +1432,7 @@ function enterLoverVitekTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Vitek', handler: (st: GameState) => {
     scene.text('"Vitek," you reply.');
     // TODO-QSP: dynamic text: She''s taken aback in surprise. "Really <<$pcs_nickname>>, <i>really</i>? Of all...
-    scene.text(`She's taken aback in surprise. "Really ${((st as any).pcs_nickname || '')}, <i>really</i>? Of all the boys in school, you go for the wannabe tough guy with tiny dick syndrome? With the amount of steroids he's probably jacked up on, I'd be surprised if his dick hasn't shrivelled back up inside him yet!"`);
+    scene.text(`She's taken aback in surprise. "Really ${((st as any).pcs_nickname ?? '')}, <i>really</i>? Of all the boys in school, you go for the wannabe tough guy with tiny dick syndrome? With the amount of steroids he's probably jacked up on, I'd be surprised if his dick hasn't shrivelled back up inside him yet!"`);
     scene.text('You\'re about to speak, but she scoffs in disgust and quickly changes the subject.');
     scene.actions([
       { label: 'Stop talking', goto: ['albina_chat', 'chat_exit'] },
@@ -1511,7 +1511,7 @@ function enterLoverKolkaTalk(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Albina holds up her hand, cutting you off.');
     // TODO-QSP: dynamic text: "TMI <<$pcs_nickname>>," she says, grimacing. "Way TMI. Keep your weird family b...
-    scene.text(`"TMI ${((st as any).pcs_nickname || '')}," she says, grimacing. "Way TMI. Keep your weird family business to yourself."`);
+    scene.text(`"TMI ${((st as any).pcs_nickname ?? '')}," she says, grimacing. "Way TMI. Keep your weird family business to yourself."`);
     scene.text('"But you aske—"');
     scene.text('"<i>No,</i>" she says firmly. "We\'re never talking about this again."');
     scene.actions([
@@ -1531,7 +1531,7 @@ function enterLoverKolkaTalk(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Albina holds up her hand, cutting you off.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she says, grimacing. "That''s fucking disgusting."
-    scene.text(`"${((st as any).pcs_nickname || '')}," she says, grimacing. "That's fucking disgusting."`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}," she says, grimacing. "That's fucking disgusting."`);
     scene.text('"But you aske-"');
     scene.text('"<i>No,</i>" she says firmly. "I\'m just going to pretend you never told me that. Keep your weird family business to yourself. We\'re never talking about this again."');
     scene.actions([
@@ -1547,10 +1547,10 @@ function enterLoverKolkaTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"It\'s just casual," you say, trying to justify yourself. "Totally physical, purely for pleasure purposes only. You know, for a little brother, he\'s got a surprisingly good coc-"');
     scene.text('Albina holds up her hand, cutting you off.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she grimaces. "That''s fucking disgusting."
-    scene.text(`"${((st as any).pcs_nickname || '')}," she grimaces. "That's fucking disgusting."`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}," she grimaces. "That's fucking disgusting."`);
     scene.text('"What? It\'s not like we\'re gonna get married. Is it so wrong to have a little fun together and-"');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she says, firmly interrupting you again. "I''m going to pre...
-    scene.text(`"${((st as any).pcs_nickname || '')}," she says, firmly interrupting you again. "I'm going to pretend you never said that. And I don't want to hear about it ever again."`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}," she says, firmly interrupting you again. "I'm going to pretend you never said that. And I don't want to hear about it ever again."`);
     scene.text('"Bu-"');
     scene.text('"<i>Ever. Again.</i>"');
     scene.actions([
@@ -1566,7 +1566,7 @@ function enterLoverKolkaTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('""I\'ve recently realized that I see him as more than just my brother. I let him into the shower with me and one thing led to another and-"');
     scene.text('Albina holds up her hand, cutting you off.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she grimaces. "That''s fucking disgusting."
-    scene.text(`"${((st as any).pcs_nickname || '')}," she grimaces. "That's fucking disgusting."`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}," she grimaces. "That's fucking disgusting."`);
     scene.text('"Albina, I <i>love</i> him. He means everything to me and I want to spend the rest of my life-"');
     scene.text('"Okay, <i>stop</i>." She firmly interrupts you again. "If that\'s how you really feel I… I\'m not going to harp on you for it, but I\'m also going to pretend you never said it. I don\'t want to hear about it ever again."');
     scene.text('"Bu-"');
@@ -1853,7 +1853,7 @@ function enterNikoHelpTalk(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
     // TODO-QSP: dynamic text: You feel her wrap an arm around you. "What''s up, <<$pcs_nickname>>? You''re loo...
-    scene.text(`You feel her wrap an arm around you. "What's up, ${((st as any).pcs_nickname || '')}? You're looking pretty glum."`);
+    scene.text(`You feel her wrap an arm around you. "What's up, ${((st as any).pcs_nickname ?? '')}? You're looking pretty glum."`);
     scene.text('You collect your thoughts before replying. "Ever since I broke up with Niko, he\'s been raping me at lunchtime and I…"');
     scene.text('Her face contorts in rage. "That slimy little motherfucker\'s been doing <b>WHAT</b>?! Don\'t worry, I\'ll sort him out…"');
     scene.text('She doesn\'t elaborate on what she\'s planning when you ask, but you give her a tight hug. "Thanks Albina, I just don\'t know what to do!"');
@@ -1931,12 +1931,12 @@ function enterArtemThreesome1(s: GameState, scene: SceneBuilder): void {
       scene.text('She shrugs. "It was okay, I guess. Why?"');
       scene.text('"He was asking if you were up for another threesome," you reply.');
       // TODO-QSP: dynamic text: "I don''t know, <<$pcs_nickname>>…" she says somewhat hesitantly. "I''m sure he'...
-      scene.text(`"I don't know, ${((s as any).pcs_nickname || '')}…" she says somewhat hesitantly. "I'm sure he's a nice guy, but you know how rough I love it and he doesn't strike me as the dominant type who's capable of giving me a good pounding."`);
+      scene.text(`"I don't know, ${((s as any).pcs_nickname ?? '')}…" she says somewhat hesitantly. "I'm sure he's a nice guy, but you know how rough I love it and he doesn't strike me as the dominant type who's capable of giving me a good pounding."`);
       scene.text('You give her your best puppy eyes. "Do it for me then? <i>Please</i>?"');
       scene.text('She rolls her eyes and smiles at your antics. "Okay fine, but only for you. The puppy eyes won\'t work a second time, though."');
       scene.text('"You\'ll have fun," you say. "I\'ll make sure of it."');
       // TODO-QSP: dynamic text: She smiles again. "I''ll hold you to that, <<$pcs_nickname>>. Bring him here aga...
-      scene.text(`She smiles again. "I'll hold you to that, ${((s as any).pcs_nickname || '')}. Bring him here again on Sunday night and we'll see."`);
+      scene.text(`She smiles again. "I'll hold you to that, ${((s as any).pcs_nickname ?? '')}. Bring him here again on Sunday night and we'll see."`);
     }
   }
   // TODO-QSP: end
@@ -2005,7 +2005,7 @@ function enterBlackGuy(s: GameState, scene: SceneBuilder): void {
     scene.text('"Great. I\'ve just outed myself as a BBC slut in front of my friend."');
     scene.text('"I\'m not going to judge you," you reply. "Like you said, I\'m your friend, and friends don\'t judge."');
     // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, but it still feels embarrassing to have told you that...
-    scene.text(`"Thanks ${((s as any).pcs_nickname || '')}, but it still feels embarrassing to have told you that."`);
+    scene.text(`"Thanks ${((s as any).pcs_nickname ?? '')}, but it still feels embarrassing to have told you that."`);
   }
   // TODO-QSP: end
   scene.actions([

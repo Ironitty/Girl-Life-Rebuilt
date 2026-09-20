@@ -565,7 +565,7 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).ribakSex ?? 0) > 0) {
       // TODO-QSP: dynamic text: You walk over to the man, who happily greets you. "Hey <<$ribakName>>, want more...
-      scene.text(`You walk over to the man, who happily greets you. "Hey ${((s as any).ribakName || '')}, want more of my cock?"`);
+      scene.text(`You walk over to the man, who happily greets you. "Hey ${((s as any).ribakName ?? '')}, want more of my cock?"`);
       if (((s as any).ribakName ?? 0) === 'whore') {
         scene.actions([
           { label: 'Money first', handler: (st: GameState) => {
@@ -884,13 +884,13 @@ function enterWalklake2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/sex/stas/stasValera.jpg');
     scene.text('You watch the two men whispering to each other before one of them walks up to you. "Hey beautiful, I\'m Stasik, and this is my friend Valera. What\'s your name?" he asks with a smile.');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname || '') ?? ''), goto: ['city_lake', 'stasValera'] },
+      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname ?? '') ?? ''), goto: ['city_lake', 'stasValera'] },
       { label: 'I have to go', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
     qspCall(st, 'stat', '');
     scene.text('You don\'t want to talk with them and start walking out of the water as Stasik tries to persuade you. "Come on, babe. Do we look like savages? We just wanted to talk, but I understand if you\'re frightened. I just wanted to ask you your name."');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname || '') ?? ''), goto: ['city_lake', 'stasValera'] },
+      { label: '', labelFn: (s: GameState) => String(((st as any).pcs_nickname ?? '') ?? ''), goto: ['city_lake', 'stasValera'] },
       { label: 'Leave', goto: ['city_lake', 'start'] },
     ]);
   } },
@@ -968,7 +968,7 @@ function enterStasValera(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/stas/talk1.jpg');
   // TODO-QSP: dynamic text: "My name is <<$pcs_nickname>>." you reply and Stasik smiles. "Nice to meet you, ...
-  scene.text(`"My name is ${((s as any).pcs_nickname || '')}." you reply and Stasik smiles. "Nice to meet you, ${((s as any).pcs_nickname || '')}." Valera also comes over and greets you.`);
+  scene.text(`"My name is ${((s as any).pcs_nickname ?? '')}." you reply and Stasik smiles. "Nice to meet you, ${((s as any).pcs_nickname ?? '')}." Valera also comes over and greets you.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat with them', handler: (st: GameState) => {
@@ -1144,7 +1144,7 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/stas/undress.jpg');
     // TODO-QSP: dynamic text: Once the men recover, they start getting dressed before Stasik helps you to your...
-    scene.text(`Once the men recover, they start getting dressed before Stasik helps you to your feet. "You're a cool girl ${((st as any).pcs_nickname || '')}, let us walk you home."`);
+    scene.text(`Once the men recover, they start getting dressed before Stasik helps you to your feet. "You're a cool girl ${((st as any).pcs_nickname ?? '')}, let us walk you home."`);
     if (((st as any).home ?? 0)?.['current'] === 'city_apartment') {
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
@@ -2141,7 +2141,7 @@ function enterBonfire(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/bonfire.jpg');
     scene.text('As you follow your new friend over to the fire pit, he asks, "Hey what\'s your name? Mine is Gregor"');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you responded, as the two of you reach the party.
-    scene.text(`"${((st as any).pcs_firstname || '')}." you responded, as the two of you reach the party.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}." you responded, as the two of you reach the party.`);
     scene.text('You set down your things, and are handed a beer and a stick with a marshmallow on it.');
     scene.text('You enjoy the next couple of hours with Gregor and his friends, laughing, flirting and dancing.');
     scene.text('You finally succeed in roasting a marshmallow and enjoy a tasty smore as the party winds down.');
@@ -2251,9 +2251,9 @@ function enterAndreiRape(s: GameState, scene: SceneBuilder): void {
     scene.text('"Who… who are you?" you ask feebly as you sit in the sand next to him.');
     scene.text('"My name is Andrew." he grins. "And yours?"');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you answer and he smiles.
-    scene.text(`"${((st as any).pcs_firstname || '')}." you answer and he smiles.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}." you answer and he smiles.`);
     // TODO-QSP: dynamic text: "So did you like our little game, <<$pcs_firstname>>? Want to catch an even bigg...
-    scene.text(`"So did you like our little game, ${((st as any).pcs_firstname || '')}? Want to catch an even bigger thrill? Then come back tomorrow." he says suavely while pulling his shorts back on.`);
+    scene.text(`"So did you like our little game, ${((st as any).pcs_firstname ?? '')}? Want to catch an even bigger thrill? Then come back tomorrow." he says suavely while pulling his shorts back on.`);
     scene.actions([
       { label: 'Leave the beach', goto: ['city_lake', 'start'] },
     ]);

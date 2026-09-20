@@ -26,10 +26,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sex_ev ?? 0)?.['boy_asleep'] === 0) {
     // TODO-QSP: dynamic text: A quiet lapses between you and <<$npcdesc>>. In the silence, you find your thoug...
-    scene.text(`A quiet lapses between you and ${((s as any).npcdesc || '')}. In the silence, you find your thoughts wandering...`);
+    scene.text(`A quiet lapses between you and ${((s as any).npcdesc ?? '')}. In the silence, you find your thoughts wandering...`);
   } else {
     // TODO-QSP: dynamic text: With <<$npcdesc>> snoring to your side, you find yourself suddenly alone with yo...
-    scene.text(`With ${((s as any).npcdesc || '')} snoring to your side, you find yourself suddenly alone with your thoughts...`);
+    scene.text(`With ${((s as any).npcdesc ?? '')} snoring to your side, you find yourself suddenly alone with your thoughts...`);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTopMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -70,9 +70,9 @@ function enterTopMenu(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc || '') ?? '') + ' came inside you...', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).npcdesc ?? '') ?? '') + ' came inside you...', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: Thoughts drift to when <<$npcdesc>> came inside you...
-    scene.text(`Thoughts drift to when ${((st as any).npcdesc || '')} came inside you...`);
+    scene.text(`Thoughts drift to when ${((st as any).npcdesc ?? '')} came inside you...`);
     qspGoto(st, 'sex_ev_reflection', 'creampie_menu');
   } },
     ]);
@@ -90,10 +90,10 @@ function enterWhatDidIDo(s: GameState, scene: SceneBuilder): void {
   scene.text('The thought circles through your head relentlessly, bouncing off every wall in your brain.');
   if (((s as any).sex_ev ?? 0)?.['deflowered'] === 1) {
     // TODO-QSP: dynamic text: This went further with <<$npcdesc>> ' + iif(daystage < 4, 'today', 'tonight') + ...
-    scene.text('This went further with ' + ((s as any).npcdesc || '') + ' \' + iif(daystage < 4, \'today\', \'tonight\') + \' than you ever meant it to. However it turned out, you never planned on doing anything like this with ' + ((s as any).npcdesc || '') + '. You certainly didn\'t plan on losing your virginity to him! The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...');
+    scene.text('This went further with ' + ((s as any).npcdesc ?? '') + ' \' + iif(daystage < 4, \'today\', \'tonight\') + \' than you ever meant it to. However it turned out, you never planned on doing anything like this with ' + ((s as any).npcdesc ?? '') + '. You certainly didn\'t plan on losing your virginity to him! The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...');
   } else {
     // TODO-QSP: dynamic text: This went further with <<$npcdesc>> ' + iif(daystage < 4, 'today', 'tonight') + ...
-    scene.text('This went further with ' + ((s as any).npcdesc || '') + ' \' + iif(daystage < 4, \'today\', \'tonight\') + \' than you ever meant it to. However it turned out, you never planned on doing anything like this with ' + ((s as any).npcdesc || '') + '. The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...');
+    scene.text('This went further with ' + ((s as any).npcdesc ?? '') + ' \' + iif(daystage < 4, \'today\', \'tonight\') + \' than you ever meant it to. However it turned out, you never planned on doing anything like this with ' + ((s as any).npcdesc ?? '') + '. The pulsing ache in your pussy that is all that remains of your torn hymen leaves an echoing ache in your chest that you can only describe as regret...');
   }
   scene.text('What happened?');
   scene.text('Did you lead him on? Give him the wrong idea? Should you just have spoken up more?');
@@ -143,7 +143,7 @@ function enterLostVirgin(s: GameState, scene: SceneBuilder): void {
         scene.text('You aren\'t on birth control.');
         if (((st as any).stat ?? 0)?.['preg_risk'] === 'safe') {
           // TODO-QSP: dynamic text: It ought to be a safe time in your cycle, but the unprotected nut <<$npcdesc>> b...
-          scene.text(`It ought to be a safe time in your cycle, but the unprotected nut ${((st as any).npcdesc || '')} bust inside you weighs heavy on your mind anyways.`);
+          scene.text(`It ought to be a safe time in your cycle, but the unprotected nut ${((st as any).npcdesc ?? '')} bust inside you weighs heavy on your mind anyways.`);
         } else {
           if (((st as any).stat ?? 0)?.['preg_risk'] === 'prob_safe') {
             scene.text('You aren\'t sure exactly where you are at in your cycle, but you know you\'re coming up on your fertile window soon. This adds even more weight to your already heavy thoughts.');
@@ -155,7 +155,7 @@ function enterLostVirgin(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: You let <<$npcdesc>> cum inside you.
-        scene.text(`You let ${((st as any).npcdesc || '')} cum inside you.`);
+        scene.text(`You let ${((st as any).npcdesc ?? '')} cum inside you.`);
         scene.text('Thankfully, you came prepared on birth control, but there are other things that can hurt you without getting you pregnant. Birth control is only half of safe sex...');
       }
     }
@@ -171,7 +171,7 @@ function enterGladDeflowered(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sex_ev_pillow_talk', 'pillow_picture1', 'happy2', 'jpg');
   scene.text('Searching your heart you are startled to realize... you\'re <i>glad</i> this happened.');
   // TODO-QSP: dynamic text: As reluctant as you were at the start, you''re actually happy that <<$npcdesc>> ...
-  scene.text(`As reluctant as you were at the start, you're actually happy that ${((s as any).npcdesc || '')} pushed you into sleeping with him. How it happened doesn't matter as much as <i>that</i> it happened. You're not a virgin anymore and that's news!`);
+  scene.text(`As reluctant as you were at the start, you're actually happy that ${((s as any).npcdesc ?? '')} pushed you into sleeping with him. How it happened doesn't matter as much as <i>that</i> it happened. You're not a virgin anymore and that's news!`);
   scene.text('The full meaning of that didn\'t hit you until now and fills you with an odd sense of giddiness.');
   qspGoto(s, 'sex_ev_reflection', 'top_menu');
   // TODO-QSP: end
@@ -242,7 +242,7 @@ function enterVirginWhore(s: GameState, scene: SceneBuilder): void {
 function enterCatchingFeelings(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cum_loc ?? 0)?.['vagina'] > 0) {
     // TODO-QSP: dynamic text: As you lay there next to <<$npcdesc>> looking at him, his cum dripping from your...
-    scene.text(`As you lay there next to ${((s as any).npcdesc || '')} looking at him, his cum dripping from your pussy, your heart flutters inside your chest. It makes you realize with a start-`);
+    scene.text(`As you lay there next to ${((s as any).npcdesc ?? '')} looking at him, his cum dripping from your pussy, your heart flutters inside your chest. It makes you realize with a start-`);
   }
   scene.text('<i>I think I\'m falling for him...</i>');
   // TODO-QSP: end
@@ -255,7 +255,7 @@ function enterCreampieMenu(s: GameState, scene: SceneBuilder): void {
       { label: 'Your first creampie', handler: (st: GameState) => {
     qspCall(st, 'sex_ev_pillow_talk', 'pillow_picture1', 7);
     // TODO-QSP: dynamic text: <i><<$npcdesc>> came inside me...</i> you think to yourself. <i>Nobody''s ever c...
-    scene.text(`<i>${((st as any).npcdesc || '')} came inside me...</i> you think to yourself. <i>Nobody's ever cum inside you before...</i>`);
+    scene.text(`<i>${((st as any).npcdesc ?? '')} came inside me...</i> you think to yourself. <i>Nobody's ever cum inside you before...</i>`);
     qspGoto(st, 'sex_ev_reflection', 'first_creampie_reflect');
   } },
     ]);
@@ -303,7 +303,7 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
       { label: 'Warm', handler: (st: GameState) => {
     scene.text('It was... <i>warm...</i>');
     // TODO-QSP: dynamic text: That''s the thing that stuck with you the most. How you felt <<$npcdesc>>''s coc...
-    scene.text(`That's the thing that stuck with you the most. How you felt ${((st as any).npcdesc || '')}'s cock throb inside you and then all of a sudden you felt that heat spreading through the inside of your hips. And how it drained from you the moment he pulled out, that warmth trickling from your snatch down your thighs...`);
+    scene.text(`That's the thing that stuck with you the most. How you felt ${((st as any).npcdesc ?? '')}'s cock throb inside you and then all of a sudden you felt that heat spreading through the inside of your hips. And how it drained from you the moment he pulled out, that warmth trickling from your snatch down your thighs...`);
     qspGoto(st, 'sex_ev_reflection', 'top_menu');
   } },
       { label: 'Amazing', handler: (st: GameState) => {
@@ -318,7 +318,7 @@ function enterFirstCreampieReflect(s: GameState, scene: SceneBuilder): void {
       { label: '<i>Interesting</i>', handler: (st: GameState) => {
     scene.text('It was... <i>interesting...</i>');
     // TODO-QSP: dynamic text: You find it hard to describe how it made you feel. One second, <<$npcdesc>> was ...
-    scene.text(`You find it hard to describe how it made you feel. One second, ${((st as any).npcdesc || '')} was pulsing inside you, the next you felt yourself getting <i>filled</i> by something. Almost like you were getting... <i>inflated?</i>`);
+    scene.text(`You find it hard to describe how it made you feel. One second, ${((st as any).npcdesc ?? '')} was pulsing inside you, the next you felt yourself getting <i>filled</i> by something. Almost like you were getting... <i>inflated?</i>`);
     scene.text('Thinking about it those terms makes it really hard to decide if you found it pleasurable or not. If nothing else, your first creampie was certainly <i>a</i> feeling...');
     qspGoto(st, 'sex_ev_reflection', 'top_menu');
   } },
@@ -370,7 +370,7 @@ function enterGeneralCreampieReflect(s: GameState, scene: SceneBuilder): void {
     { label: 'Warm', handler: (st: GameState) => {
     scene.text('It was... <i>warm...</i>');
     // TODO-QSP: dynamic text: That''s the thing that stuck with you the most. How you felt <<$npcdesc>>''s coc...
-    scene.text(`That's the thing that stuck with you the most. How you felt ${((st as any).npcdesc || '')}'s cock throb inside you and then all of a sudden you felt that heat spreading through the inside of your hips. And how it drained from you the moment he pulled out, that warmth trickling from your snatch down your thighs...`);
+    scene.text(`That's the thing that stuck with you the most. How you felt ${((st as any).npcdesc ?? '')}'s cock throb inside you and then all of a sudden you felt that heat spreading through the inside of your hips. And how it drained from you the moment he pulled out, that warmth trickling from your snatch down your thighs...`);
     qspGoto(st, 'sex_ev_reflection', 'top_menu');
   } },
     { label: 'Amazing', handler: (st: GameState) => {
@@ -385,7 +385,7 @@ function enterGeneralCreampieReflect(s: GameState, scene: SceneBuilder): void {
     { label: '<i>Interesting</i>', handler: (st: GameState) => {
     scene.text('It was... <i>interesting...</i>');
     // TODO-QSP: dynamic text: You find it hard to describe how it made you feel. One second, <<$npcdesc>> was ...
-    scene.text(`You find it hard to describe how it made you feel. One second, ${((st as any).npcdesc || '')} was pulsing inside you, the next you felt yourself getting <i>filled</i> by something. Almost like you were getting... <i>inflated?</i>`);
+    scene.text(`You find it hard to describe how it made you feel. One second, ${((st as any).npcdesc ?? '')} was pulsing inside you, the next you felt yourself getting <i>filled</i> by something. Almost like you were getting... <i>inflated?</i>`);
     scene.text('Thinking about it those terms makes it really hard to decide if you found it pleasurable or not. But it certainly was <i>a</i> feeling...');
     qspGoto(st, 'sex_ev_reflection', 'top_menu');
   } },

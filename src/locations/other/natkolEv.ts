@@ -18,10 +18,10 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['KolkaSex'] === 0) {
     scene.text('"Today I want you to do something different for me, Natasha. You did promise to do anything that I wanted, remember?"');
     // TODO-QSP: dynamic text: "Y-Yes <<$pcs_nickname>>."
-    scene.text(`"Y-Yes ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"Y-Yes ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('"Good, then undress, and I\'ll arrange for a special guest. Don\'t worry it\'ll stay between the three of us."');
     // TODO-QSP: dynamic text: You take out your phone and call your brother while you watch Natasha undress. A...
-    scene.text(`You take out your phone and call your brother while you watch Natasha undress. After a couple of rings, your brother picks up. "Hello, ${((s as any).pcs_nickname || '')} what's up?" He asks.`);
+    scene.text(`You take out your phone and call your brother while you watch Natasha undress. After a couple of rings, your brother picks up. "Hello, ${((s as any).pcs_nickname ?? '')} what's up?" He asks.`);
     scene.text('You tell him. "Hey Kolka, come up to apartment #19, I have a special surprise for you."');
     scene.text('He pauses for a moment, obviously wondering what it could be. "What is it?" He asks.');
     scene.text('You giggle slightly as you look at Natasha\'s now naked body. "I promise you will enjoy it."');
@@ -29,9 +29,9 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Today we are going to train my brother some more, you would like that, wouldn\'t you?" You ask her.');
     // TODO-QSP: dynamic text: Her eyes drop a bit, and she nods. "Y-Yes <<$pcs_nickname>>." She begins to undr...
-    scene.text(`Her eyes drop a bit, and she nods. "Y-Yes ${((s as any).pcs_nickname || '')}." She begins to undress without you even having to ask.`);
+    scene.text(`Her eyes drop a bit, and she nods. "Y-Yes ${((s as any).pcs_nickname ?? '')}." She begins to undress without you even having to ask.`);
     // TODO-QSP: dynamic text: You take out your phone and call your brother while you watch Natasha undress. A...
-    scene.text(`You take out your phone and call your brother while you watch Natasha undress. After a couple of rings, your brother picks up. "Hello ${((s as any).pcs_nickname || '')}, whats up?" He asks.`);
+    scene.text(`You take out your phone and call your brother while you watch Natasha undress. After a couple of rings, your brother picks up. "Hello ${((s as any).pcs_nickname ?? '')}, whats up?" He asks.`);
     scene.text('You tell him. "Hey Kolka, come up to Natasha\'s, we have another lesson for you."');
     scene.text('"Ok, I\'ll be right up." He tells you eagerly before hanging up, you can just imagine him running up the stairs.');
   }
@@ -279,7 +279,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
     scene.text('Natasha immediately starts rubbing her soaked pussy on Kolka\'s dick. "P-Please put it in… I-I need it. I want you inside me now."');
     scene.text('You run your hand over Natasha\'s body and give Kolka a nod "Ok Kolka, put it in, you should never leave a girl hanging when she needs it this bad."');
     // TODO-QSP: dynamic text: "I won''t <<$pcs_nickname>>. She can ride my dick all she wants." He tells you a...
-    scene.text(`"I won't ${((st as any).pcs_nickname || '')}. She can ride my dick all she wants." He tells you as he guides his dick inside her wet pussy.`);
+    scene.text(`"I won't ${((st as any).pcs_nickname ?? '')}. She can ride my dick all she wants." He tells you as he guides his dick inside her wet pussy.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natride02.mp4');
@@ -311,7 +311,7 @@ function enterPenetration(s: GameState, scene: SceneBuilder): void {
     scene.text('"Time for you to do some work too Natasha. Get on all fours and fuck yourself on Kolka\'s dick."');
     scene.text('Kolka grabs Natasha by the hips and pulls her up until she\'s sitting on her hands and knees, keeping his dick inside of her pussy.');
     // TODO-QSP: dynamic text: Once she''s positioned properly, he urges her on. "Come on Natasha you heard <<$...
-    scene.text(`Once she's positioned properly, he urges her on. "Come on Natasha you heard ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`Once she's positioned properly, he urges her on. "Come on Natasha you heard ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('Not skipping a beat Natasha starts to fuck Kolka\'s dick as hard as she can. Each time she bottoms out you hear an audible slap as his balls hit her pussy, followed by her moans of pleasure.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -355,7 +355,7 @@ function enterNatkolkaanalprep(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Would you like to fuck Natasha\'s cute little asshole again?" You ask Kolka.');
     // TODO-QSP: dynamic text: "Of course <<$pcs_nickname>>." He says with a big grin on his face at the prospe...
-    scene.text(`"Of course ${((s as any).pcs_nickname || '')}." He says with a big grin on his face at the prospect of fucking her tight asshole again.`);
+    scene.text(`"Of course ${((s as any).pcs_nickname ?? '')}." He says with a big grin on his face at the prospect of fucking her tight asshole again.`);
     scene.text('"Present your ass to him. Time for some more training, Natasha."');
     scene.text('Natasha hesitantly gets on all fours and Kolka immediately starts playing with her asshole, testing it with a finger.');
     scene.text('"Wow, It\'s always so tight. You like having my finger in there, don\'t you, Natasha?" He asks her.');
@@ -382,7 +382,7 @@ function enterNatkolkaanalprep(s: GameState, scene: SceneBuilder): void {
     scene.text('"It looks like Kolka earned a reward." You say, looking in Natasha\'s eyes.');
     if (((st as any).NatbelQW ?? 0)?.['anal'] === 0) {
       // TODO-QSP: dynamic text: "Y-Yeah, I''ll try it, <<$pcs_nickname>>." She says, still out of breath.
-      scene.text(`"Y-Yeah, I'll try it, ${((st as any).pcs_nickname || '')}." She says, still out of breath.`);
+      scene.text(`"Y-Yeah, I'll try it, ${((st as any).pcs_nickname ?? '')}." She says, still out of breath.`);
     } else {
       if (((st as any).NatbelQW ?? 0)?.['anal'] < 5) {
         scene.text('"Y-Yeah, he can fuck my ass again." She says, still out of breath.');
@@ -953,7 +953,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: act iif($temp_loc = 'pussy' or $temp_loc = 'anus', 'Eat Kolka''s cum out of Natasha''s <<$temp_loc>>...
     if (((s as any).temp_loc ?? 0) === 'labia'  ||  ((s as any).temp_loc ?? 0) === 'pussy'  ||  ((s as any).temp_loc ?? 0) === 'anus') {
       qspCall(s, 'npcStat', 'A16');
-      scene.img(`images/shared/sex/cum/eat/eat_cum_${((s as any).temp_loc || '')}.mp4`);
+      scene.img(`images/shared/sex/cum/eat/eat_cum_${((s as any).temp_loc ?? '')}.mp4`);
       // TODO-QSP: 'After Kolka closes the door you move closer to Natasha who''s still recovering her breath on the be...
       // TODO-QSP: dynamic text: This goes on for about three minutes until you''re satisfied you got most of you...
       scene.text('This goes on for about three minutes until you\'re satisfied you got most of your snack ' + ((((s as any).temp_loc ?? 0)==='labia') ? ('off') : ('out of')) + ' the Natasha-shaped cum dispenser who is now lying there, chest heaving, with eyes glazed over and only able to produce incoherent groaning noises. If you weren\'t so absorbed in getting to the cum, you would have noticed she came twice in these last three minutes. You feel a tinge of pity for the poor girl after you ' + ((((s as any).temp_loc ?? 0)==='labia') ? ('get up') : ('push her off you')) + ' and see the state she\'s in. Pulling the bed covers over her naked body, you give her a small kiss on the lips and leave her room, hoping she has some nice dreams in her orgasm-induced coma.');
@@ -966,9 +966,9 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
         { label: 'Leave the apartment', goto: ['pod_ezd', 'etaj_4'] },
       ]);
     } else {
-      scene.img(`images/shared/sex/cum/eat/eat_cum_${((s as any).temp_loc || '')}.mp4`);
+      scene.img(`images/shared/sex/cum/eat/eat_cum_${((s as any).temp_loc ?? '')}.mp4`);
       // TODO-QSP: dynamic text: After Kolka closes the door you move closer to Natasha who''s still recovering h...
-      scene.text(`After Kolka closes the door you move closer to Natasha who's still recovering her breath on the bed. His cum is slowly starting to slide down her skin, which simply becomes too much for you to bear. You jump on the bed, startling her and dive mouth first towards her cum covered ${((s as any).temp_loc || '')}. Natasha is in no condition to stop you so all you hear are strained moans of protest and pleasure as you happily slurp and lick the spunk off her body.`);
+      scene.text(`After Kolka closes the door you move closer to Natasha who's still recovering her breath on the bed. His cum is slowly starting to slide down her skin, which simply becomes too much for you to bear. You jump on the bed, startling her and dive mouth first towards her cum covered ${((s as any).temp_loc ?? '')}. Natasha is in no condition to stop you so all you hear are strained moans of protest and pleasure as you happily slurp and lick the spunk off her body.`);
       scene.text('You continue to give her a thorough tongue cleaning for the next two minutes until you find no more stray drops, while your Natasha-shaped cum platter is just lying there giggling, with eyes glazed over and clearly enjoying your ministrations. When you pull away from her you see a teasing look on Natasha\'s face which makes you blush a little realizing you lost control there for a moment. Fortunately she doesn\'t say anything, gives you a quick peck on the cheek and carries on getting dressed like nothing happened.');
       qspCall(s, 'arousal', 'foreplay_give', 2, 'lesbian', 'dom');
       qspCall(s, 'arousal', 'kiss', 1, 'lesbian');

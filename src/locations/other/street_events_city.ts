@@ -71,7 +71,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
 { label: 'Ignore her', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
-  } },,
+  } },
 { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
@@ -91,7 +91,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-  } },,
+  } },
 { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
@@ -111,7 +111,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-  } },,
+  } },
 { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
@@ -131,7 +131,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-  } },,
+  } },
 { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
@@ -151,7 +151,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-  } },,
+  } },
 { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((st as any).noMoney || ''), curActs: [] };

@@ -16,7 +16,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/police/a1.jpg');
   scene.text('The doorbell rings, and you open the door like any other person would. You\'re a bit surprised to see a neatly dressed girl standing in the doorway.');
   // TODO-QSP: dynamic text: "Hello, <<$pcs_nickname>>!" she says, with a disdainful look in her eyes.
-  scene.text(`"Hello, ${((s as any).pcs_nickname || '')}!" she says, with a disdainful look in her eyes.`);
+  scene.text(`"Hello, ${((s as any).pcs_nickname ?? '')}!" she says, with a disdainful look in her eyes.`);
   scene.text('"Uhh… hello. Do I know you?" you ask.');
   scene.text('"No, but I know you", she smiles mysteriously. Then she suddenly snaps a handcuff around your wrist. As she cuffs your other wrist, she laughs: "And I have a feeling you will get to know me soon enough!"');
   scene.text('"Wait, what\'s happening?!" you ask, more intently.');

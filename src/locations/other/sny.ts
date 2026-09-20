@@ -412,7 +412,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     { label: 'wait', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/newyear/sex/pett2.jpg');
     // TODO-QSP: dynamic text: After he rubs your clit, you start moaning. You feel your pussy getting wet, and...
-    scene.text('After he rubs your clit, you start moaning. You feel your pussy getting wet, and he can feel your wetness through your panties after several minutes of this. He gets up and pulls you around to the front of the couch, turning you to face the couch with your back to him. He\'+ iif($pantyworntype ! \'none\', \' pulls down your panties and \', \')+\'pushes you down on your knees, bending you over till your body is resting on the couch. He slips his ' + ((st as any).dick || '') + 'cm ' + ((st as any).dick_girth || '') + ' cock into your wet pussy and starts fucking you slow and gentle.');
+    scene.text('After he rubs your clit, you start moaning. You feel your pussy getting wet, and he can feel your wetness through your panties after several minutes of this. He gets up and pulls you around to the front of the couch, turning you to face the couch with your back to him. He\'+ iif($pantyworntype ! \'none\', \' pulls down your panties and \', \')+\'pushes you down on your knees, bending you over till your body is resting on the couch. He slips his ' + ((st as any).dick ?? '') + 'cm ' + ((st as any).dick_girth ?? '') + ' cock into your wet pussy and starts fucking you slow and gentle.');
     qspCall(st, 'arousal', 'vaginal', 5);
     qspCall(st, 'arousal', 'foreplay', (-5));
     qspCall(st, 'stat', '');
@@ -436,7 +436,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['gangbang_count'] = ((st as any).stat['gangbang_count'] ?? 0) + (1);
     scene.img('images/shared/sex/group/gang23.jpg');
     // TODO-QSP: dynamic text: You wrap your lips around Gosha''s <<dick1>>cm <<$dick_girth1>> dick and start s...
-    scene.text(`You wrap your lips around Gosha's ${((st as any).dick1 || '')}cm ${((st as any).dick_girth1 || '')} dick and start sucking it.`);
+    scene.text(`You wrap your lips around Gosha's ${((st as any).dick1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} dick and start sucking it.`);
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'sub');
     qspCall(st, 'stat', '');
     scene.actions([

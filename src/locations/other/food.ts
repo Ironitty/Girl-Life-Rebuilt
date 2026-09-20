@@ -81,7 +81,7 @@ function enterPiroshText(s: GameState, scene: SceneBuilder): void {
     scene.text('You buy some vegetarian Piroshki.');
   } else {
     // TODO-QSP: dynamic text: You enjoy some vegetarian Piroshki, and<<$mtxt>>
-    scene.text(`You enjoy some vegetarian Piroshki, and${((s as any).mtxt || '')}`);
+    scene.text(`You enjoy some vegetarian Piroshki, and${((s as any).mtxt ?? '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -130,7 +130,7 @@ function enterGolubText(s: GameState, scene: SceneBuilder): void {
     scene.text('You buy some well-made Golubtsy in a tomato sauce. The portion is of moderate size.');
   } else {
     // TODO-QSP: dynamic text: You enjoy some well made Golubtsy in a tomato sauce. The portions were moderate ...
-    scene.text(`You enjoy some well made Golubtsy in a tomato sauce. The portions were moderate and${((s as any).mtxt || '')}`);
+    scene.text(`You enjoy some well made Golubtsy in a tomato sauce. The portions were moderate and${((s as any).mtxt ?? '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -179,7 +179,7 @@ function enterPozharText(s: GameState, scene: SceneBuilder): void {
     scene.text('You buy Pozharsky cutlets. The portions are of moderate size.');
   } else {
     // TODO-QSP: dynamic text: You thoroughly enjoy the nicely cooked Pozharsky Cutlets. The portions were mode...
-    scene.text(`You thoroughly enjoy the nicely cooked Pozharsky Cutlets. The portions were moderate and${((s as any).mtxt || '')}`);
+    scene.text(`You thoroughly enjoy the nicely cooked Pozharsky Cutlets. The portions were moderate and${((s as any).mtxt ?? '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -228,7 +228,7 @@ function enterReubenText(s: GameState, scene: SceneBuilder): void {
     scene.text('You buy a Reuben sandwich. It is quite large.');
   } else {
     // TODO-QSP: dynamic text: You had trouble finishing the Reuben sandwich, but you enjoyed it immensely. The...
-    scene.text(`You had trouble finishing the Reuben sandwich, but you enjoyed it immensely. The portion was fairly large and${((s as any).mtxt || '')}`);
+    scene.text(`You had trouble finishing the Reuben sandwich, but you enjoyed it immensely. The portion was fairly large and${((s as any).mtxt ?? '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -277,7 +277,7 @@ function enterBlinyText(s: GameState, scene: SceneBuilder): void {
     scene.text('You buy some bliny. The portions are fairly small.');
   } else {
     // TODO-QSP: dynamic text: You eat some bliny. The portions are fairly small and<<$mtxt>>
-    scene.text(`You eat some bliny. The portions are fairly small and${((s as any).mtxt || '')}`);
+    scene.text(`You eat some bliny. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -323,7 +323,7 @@ function enterVarenfanText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/varenikifancy.jpg');
   // TODO-QSP: dynamic text: You sit and eat a plate of yummy Vareniki with potatoes. The portions are fairly...
-  scene.text(`You sit and eat a plate of yummy Vareniki with potatoes. The portions are fairly moderate and${((s as any).mtxt || '')}`);
+  scene.text(`You sit and eat a plate of yummy Vareniki with potatoes. The portions are fairly moderate and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -368,7 +368,7 @@ function enterSalfanText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/salmonfancy.jpg');
   // TODO-QSP: dynamic text: You thoroughly enjoy the massive fresh salmon steak. The meal was simply colossa...
-  scene.text(`You thoroughly enjoy the massive fresh salmon steak. The meal was simply colossal and${((s as any).mtxt || '')}`);
+  scene.text(`You thoroughly enjoy the massive fresh salmon steak. The meal was simply colossal and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -413,7 +413,7 @@ function enterStrofanText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/stroganofffancy.jpg');
   // TODO-QSP: dynamic text: You are loving the delicious Beef Stroganoff. You enjoy it immensely. The portio...
-  scene.text(`You are loving the delicious Beef Stroganoff. You enjoy it immensely. The portion was fairly moderate and${((s as any).mtxt || '')}`);
+  scene.text(`You are loving the delicious Beef Stroganoff. You enjoy it immensely. The portion was fairly moderate and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -458,7 +458,7 @@ function enterBorfanText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/borschtfancy.jpg');
   // TODO-QSP: dynamic text: You have a steaming hot bowl of Borscht. The portions are fairly small and<<$mtx...
-  scene.text(`You have a steaming hot bowl of Borscht. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You have a steaming hot bowl of Borscht. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -503,7 +503,7 @@ function enterBlifanText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/blinifancy.jpg');
   // TODO-QSP: dynamic text: You eat a petite caviar bliny appetiser. The portions are fairly small and<<$mtx...
-  scene.text(`You eat a petite caviar bliny appetiser. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You eat a petite caviar bliny appetiser. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -548,7 +548,7 @@ function enterRyesnaText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/ryesnack.jpg');
   // TODO-QSP: dynamic text: You have a tasty bowl of toasted rye snacks. The portions are fairly small and<<...
-  scene.text(`You have a tasty bowl of toasted rye snacks. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You have a tasty bowl of toasted rye snacks. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -593,7 +593,7 @@ function enterCrispsText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/crisps.jpg');
   // TODO-QSP: dynamic text: You enjoy the salty flavour of a bowl of crisps. The portions are fairly small a...
-  scene.text(`You enjoy the salty flavour of a bowl of crisps. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You enjoy the salty flavour of a bowl of crisps. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -638,7 +638,7 @@ function enterOnringText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/onionrings.jpg');
   // TODO-QSP: dynamic text: You push yourself to eat the dry fatty onion rings. The portions are fairly smal...
-  scene.text(`You push yourself to eat the dry fatty onion rings. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You push yourself to eat the dry fatty onion rings. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -683,7 +683,7 @@ function enterVegburgText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/vegieburger.jpg');
   // TODO-QSP: dynamic text: You eat the delicious veggieburger. The portions are fairly small and<<$mtxt>>
-  scene.text(`You eat the delicious veggieburger. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You eat the delicious veggieburger. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -728,7 +728,7 @@ function enterTurburgText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/turkeyburger.jpg');
   // TODO-QSP: dynamic text: You enjoy the turkey burger. The portions are fairly small and<<$mtxt>>
-  scene.text(`You enjoy the turkey burger. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You enjoy the turkey burger. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -773,7 +773,7 @@ function enterBatfishText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/batteredfish.jpg');
   // TODO-QSP: dynamic text: You eat the fish, but it has little flavour. The portions were moderate and<<$mt...
-  scene.text(`You eat the fish, but it has little flavour. The portions were moderate and${((s as any).mtxt || '')}`);
+  scene.text(`You eat the fish, but it has little flavour. The portions were moderate and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -818,7 +818,7 @@ function enterCheeseburgerText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/cheeseburger.jpg');
   // TODO-QSP: dynamic text: You are a little sickened by the greasy looking cheeseburger and fries in front ...
-  scene.text(`You are a little sickened by the greasy looking cheeseburger and fries in front of you. The meal was simply colossal and${((s as any).mtxt || '')}`);
+  scene.text(`You are a little sickened by the greasy looking cheeseburger and fries in front of you. The meal was simply colossal and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -863,7 +863,7 @@ function enterSnackText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/snack_1.jpg');
   // TODO-QSP: dynamic text: You enjoy a small tasty, but somewhat fattening, snack. It wasn''t very much foo...
-  scene.text(`You enjoy a small tasty, but somewhat fattening, snack. It wasn't very much food, and${((s as any).mtxt || '')}`);
+  scene.text(`You enjoy a small tasty, but somewhat fattening, snack. It wasn't very much food, and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -906,7 +906,7 @@ function enterLightSnackText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/snack_1.jpg');
   // TODO-QSP: dynamic text: You enjoy a small tasty, but somewhat fattening, snack. It wasn''t very much foo...
-  scene.text(`You enjoy a small tasty, but somewhat fattening, snack. It wasn't very much food, and${((s as any).mtxt || '')}`);
+  scene.text(`You enjoy a small tasty, but somewhat fattening, snack. It wasn't very much food, and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -946,7 +946,7 @@ function enterFastFoodText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/food.jpg');
   // TODO-QSP: dynamic text: You happily eat some fast food. The portions are quite generous and<<$mtxt>>
-  scene.text(`You happily eat some fast food. The portions are quite generous and${((s as any).mtxt || '')}`);
+  scene.text(`You happily eat some fast food. The portions are quite generous and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -990,7 +990,7 @@ function enterSmallMealText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/food_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You happily eat your meal. The portions are fairly small and<<$mtxt>>
-  scene.text(`You happily eat your meal. The portions are fairly small and${((s as any).mtxt || '')}`);
+  scene.text(`You happily eat your meal. The portions are fairly small and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -1034,7 +1034,7 @@ function enterMediumMealText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/food_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You thoroughly enjoy the nicely cooked meal. The portions were moderate and<<$mt...
-  scene.text(`You thoroughly enjoy the nicely cooked meal. The portions were moderate and${((s as any).mtxt || '')}`);
+  scene.text(`You thoroughly enjoy the nicely cooked meal. The portions were moderate and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -1078,7 +1078,7 @@ function enterLargeMealText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/food_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You are almost overwhelmed by the delicious meal laid before you and enjoy it im...
-  scene.text(`You are almost overwhelmed by the delicious meal laid before you and enjoy it immensely. The meal was simply colossal and${((s as any).mtxt || '')}`);
+  scene.text(`You are almost overwhelmed by the delicious meal laid before you and enjoy it immensely. The meal was simply colossal and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -1122,7 +1122,7 @@ function enterBaggedLunchText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/bagged_lunch.jpg');
   // TODO-QSP: dynamic text: You eat the lunch you packed from home. There was nothing fancy about it and<<$m...
-  scene.text(`You eat the lunch you packed from home. There was nothing fancy about it and${((s as any).mtxt || '')}`);
+  scene.text(`You eat the lunch you packed from home. There was nothing fancy about it and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -1164,7 +1164,7 @@ function enterHotelFoodText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/pavlovsk/hotel/roomservice.jpg');
   // TODO-QSP: dynamic text: The maid brings you a decent meal, <<$mtxt>>
-  scene.text(`The maid brings you a decent meal, ${((s as any).mtxt || '')}`);
+  scene.text(`The maid brings you a decent meal, ${((s as any).mtxt ?? '')}`);
   scene.text('You accompany it with a mug of tea.');
   // TODO-QSP: end
   scene.build();
@@ -1210,7 +1210,7 @@ function enterHealthyMealText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/eating-salad.jpg');
   // TODO-QSP: dynamic text: You enjoy a crisp salad of fresh greens and<<$mtxt>>
-  scene.text(`You enjoy a crisp salad of fresh greens and${((s as any).mtxt || '')}`);
+  scene.text(`You enjoy a crisp salad of fresh greens and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -1254,7 +1254,7 @@ function enterJerkyText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/gadukino/hunters/jerky_mix.jpg');
   // TODO-QSP: dynamic text: You munch on some dried meat and trail mix. Not a full hot meal by any means but...
-  scene.text(`You munch on some dried meat and trail mix. Not a full hot meal by any means but it's better than nothing, and${((s as any).mtxt || '')}`);
+  scene.text(`You munch on some dried meat and trail mix. Not a full hot meal by any means but it's better than nothing, and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -1298,7 +1298,7 @@ function enterMeatStewText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/gadukino/hunters/soup.jpg');
   // TODO-QSP: dynamic text: You thoroughly enjoy the nicely cooked meat stew, and<<$mtxt>>
-  scene.text(`You thoroughly enjoy the nicely cooked meat stew, and${((s as any).mtxt || '')}`);
+  scene.text(`You thoroughly enjoy the nicely cooked meat stew, and${((s as any).mtxt ?? '')}`);
   scene.text('You accompany it with a mug of tea.');
   // TODO-QSP: end
   scene.build();
@@ -1343,7 +1343,7 @@ function enterMushSoupText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/gadukino/hunters/soup.jpg');
   // TODO-QSP: dynamic text: You thoroughly enjoy some warm mushroom soup, and<<$mtxt>>
-  scene.text(`You thoroughly enjoy some warm mushroom soup, and${((s as any).mtxt || '')}`);
+  scene.text(`You thoroughly enjoy some warm mushroom soup, and${((s as any).mtxt ?? '')}`);
   scene.text('You accompany it with a mug of tea.');
   // TODO-QSP: end
   scene.build();
@@ -1389,7 +1389,7 @@ function enterBilberryText(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAftermeal(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/gadukino/forest/bilberry.jpg');
   // TODO-QSP: dynamic text: You ate a few berries, and<<$mtxt>>
-  scene.text(`You ate a few berries, and${((s as any).mtxt || '')}`);
+  scene.text(`You ate a few berries, and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }

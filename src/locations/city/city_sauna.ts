@@ -220,7 +220,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).succubusQW ?? 0) === 2) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((s as any).sleep_txt || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((s as any).sleep_txt ?? '') ?? ''), handler: (st: GameState) => {
     qspGoto(st, 'pre_sleep', 'start');
   } },
       ]);
@@ -229,7 +229,7 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
         scene.text('<br>You don\'t have enough money to sleep here tonight.');
       } else {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => String(((s as any).sleep_txt || '') ?? ''), handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => String(((s as any).sleep_txt ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'shortgs', 'autosave');
     if (((st as any).workDolg ?? 0) > 0) {
       qspCall(st, 'money', 'debt_add', 'workDolg', 850);

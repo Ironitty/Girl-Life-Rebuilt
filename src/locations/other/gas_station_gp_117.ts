@@ -371,7 +371,7 @@ function enterGas(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'pay', ((st as any).zprpay ?? 0));
     scene.img('images/locations/shared/gas/zapr1.jpg');
     // TODO-QSP: dynamic text: You fill the tank and pay <<$func(''money'', ''string_price'', zprpay)>>.
-    scene.text(`You fill the tank and pay ${qspFunc(s, 'money', 'string_price', ((st as any).zprpay || ''))}.`);
+    scene.text(`You fill the tank and pay ${qspFunc(s, 'money', 'string_price', ((st as any).zprpay ?? ''))}.`);
     scene.actions([
       { label: 'Disengage from the pump', goto: ['gas_station_gp_117', 'outside'] },
     ]);

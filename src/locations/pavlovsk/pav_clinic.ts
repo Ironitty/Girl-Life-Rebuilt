@@ -44,7 +44,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.text('"Yeah, my water broke". you tell her in between the waves of pain coursing through your abdomen. You take deep, regular breaths and sit down in the next available chair.');
           scene.text('"Could you get me a wheelchair?" you ask. "Of course, one is comming right up." the Nurse answers.');
           // TODO-QSP: dynamic text: "Thanks" you say. "This is not your first one." the nurse states more as a fact ...
-          scene.text(`"Thanks" you say. "This is not your first one." the nurse states more as a fact than as a question. "No, it's actually my ${qspFunc(s, 'string', 'parse_number', ((s as any).kid || ''), 'rank')}." you say with a little smile, placing your hand on your bulging belly. Just the thought of holding another baby in your arms soon makes you happy.`);
+          scene.text(`"Thanks" you say. "This is not your first one." the nurse states more as a fact than as a question. "No, it's actually my ${qspFunc(s, 'string', 'parse_number', ((s as any).kid ?? ''), 'rank')}." you say with a little smile, placing your hand on your bulging belly. Just the thought of holding another baby in your arms soon makes you happy.`);
           (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * 5) + 3));
           qspCall(s, 'stat', '');
           scene.text('Soon another Nurse comes with a wheelchair and brings you to the delivery room in the maternity ward.');
@@ -135,7 +135,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hello sir," you answer. "I see you\'re looking for a cleaner, and I would like to apply."');
     scene.text('He looks at you, thinking for a second before he opens a desk drawer and pulls out a form. "I see. Fill this out, please."');
     // TODO-QSP: dynamic text: You nod and fill out the form, indicating that you''re applying for the part-tim...
-    scene.text(`You nod and fill out the form, indicating that you're applying for the part-time cleaning job vacancy. He quickly checks to make sure you filled everything out correctly, then gives you a satisfied smile. "It looks like everything in order, Miss ${((st as any).pcs_lastname || '')}. Please follow me and I'll show you where we keep our cleaning supplies."`);
+    scene.text(`You nod and fill out the form, indicating that you're applying for the part-time cleaning job vacancy. He quickly checks to make sure you filled everything out correctly, then gives you a satisfied smile. "It looks like everything in order, Miss ${((st as any).pcs_lastname ?? '')}. Please follow me and I'll show you where we keep our cleaning supplies."`);
     scene.text('You follow him to the maintenance closet, where he shows you the cleaning supplies you will need. He shakes your hand and wishes you a good day before returning to his office, assuming you will find your own way out.');
     scene.actions([
       { label: 'Leave', goto: ['pav_clinic', ''] },
@@ -371,7 +371,7 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
         }
       }
       // TODO-QSP: dynamic text: He looks up from his desk when you enter his office and recognizes you immediate...
-      scene.text(`He looks up from his desk when you enter his office and recognizes you immediately. "Ah, hello ${((s as any).pcs_nickname || '')}. Did you come for a check-up?"`);
+      scene.text(`He looks up from his desk when you enter his office and recognizes you immediately. "Ah, hello ${((s as any).pcs_nickname ?? '')}. Did you come for a check-up?"`);
       scene.text('You nod and take a seat. "Hello, Dr. Petrovich. Yes, I\'m here for a check-up."');
       // TODO-QSP: $gyn1
       scene.text('You smile at him. "It\'s true, Dr. Petrovich. I am."');
@@ -388,7 +388,7 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
           (s as any).gyn2 = 'In a way, you feel touched that he\'s so concerned for his patients. You don\'t mind answering him, and you might as well be frank. "Doctor, I really just love having sex. I don\'t even care about getting paid, it just seems like I can\'t ever get enough dick. You understand, right?"';
         }
         // TODO-QSP: dynamic text: He looks up from his desk when you enter his office and recognizes you immediate...
-        scene.text(`He looks up from his desk when you enter his office and recognizes you immediately. "Ah, hello ${((s as any).pcs_nickname || '')}. Back for another check-up?"`);
+        scene.text(`He looks up from his desk when you enter his office and recognizes you immediately. "Ah, hello ${((s as any).pcs_nickname ?? '')}. Back for another check-up?"`);
         scene.text('You nod and take a seat. "Hello, Dr. Petrovich. Yes, I\'m here for a check-up."');
         // TODO-QSP: $gyn1
         scene.text('"Yes, doctor. I am," you tell him.');
@@ -402,7 +402,7 @@ function enterPetrovich1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hello, young lady. I\'m Dr. Petrovich. Do you have specific complaints, or are you simply here for a check-up?" he asks asks as he walks into the examination room.');
     } else {
       // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>. What brings you in today?" Dr. Petrovich says with a smil...
-      scene.text(`"Hi ${((s as any).pcs_nickname || '')}. What brings you in today?" Dr. Petrovich says with a smile.`);
+      scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}. What brings you in today?" Dr. Petrovich says with a smile.`);
     }
   }
   if (Number((s as any).locArgs?.[1] ?? 0) !== 'referral_only') {
@@ -523,7 +523,7 @@ function enterPetrovichCheckup(s: GameState, scene: SceneBuilder): void {
   scene.text('He also warms it more often now, and it feels moist and warm on your nipples. To your embarrassment, you can feel your nipples starting to get hard. You\'re not quite sure, but you\'re fairly sure Dr. Petrovich was just having fun for the last few minutes of the examination.');
   scene.text('He nods. "Well, so far everything is okay."');
   // TODO-QSP: dynamic text: You notice that there''s a certain sparkle in his eyes when he looks at your <<$...
-  scene.text(`You notice that there's a certain sparkle in his eyes when he looks at your ${((s as any).titsize || '')} breasts with interest. You feel embarrassed at your nipples hardening even further, and try to think of bad things.`);
+  scene.text(`You notice that there's a certain sparkle in his eyes when he looks at your ${((s as any).titsize ?? '')} breasts with interest. You feel embarrassed at your nipples hardening even further, and try to think of bad things.`);
   scene.text('To your relief, the tingle you started to feel in your pussy goes away.');
   scene.text('"Please undress and sit in that chair. I will be back momentarily," he tells you as he steps towards the door and leaves.');
   // TODO-QSP: end
@@ -563,7 +563,7 @@ function enterPetrovichCheckup(s: GameState, scene: SceneBuilder): void {
       scene.text('You feel very relieved, and thank him profusely. "Thank you doctor, that\'s great news. Thanks again for the check-up."');
     } else {
       // TODO-QSP: dynamic text: The doctor frowns when he gives you the bad news. "I''m afraid I found something...
-      scene.text(`The doctor frowns when he gives you the bad news. "I'm afraid I found something irregular. You ${((st as any).gpoli_sick || '')}."`);
+      scene.text(`The doctor frowns when he gives you the bad news. "I'm afraid I found something irregular. You ${((st as any).gpoli_sick ?? '')}."`);
       if (((st as any).Venera ?? 0) > 0  ||  ((st as any).Kandidoz ?? 0) > 10) {
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
       }
@@ -619,7 +619,7 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
       scene.text('He nods and waves his hand. "It\'s all good. Just don\'t forget to use protection. It\'s still dangerous out there."');
     } else {
       // TODO-QSP: dynamic text: The doctor frowns when he gives you the bad news. "I''m afraid I found something...
-      scene.text(`The doctor frowns when he gives you the bad news. "I'm afraid I found something irregular. You ${((st as any).gpoli_sick || '')}."`);
+      scene.text(`The doctor frowns when he gives you the bad news. "I'm afraid I found something irregular. You ${((st as any).gpoli_sick ?? '')}."`);
       if (((st as any).Venera ?? 0) > 0  ||  ((st as any).Kandidoz ?? 0) > 10) {
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
       }
@@ -642,7 +642,7 @@ function enterPetrovichCheckupProst(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You gladly pay him the ' + $func('money', 'string_price', 1000) + ' and thank hi...
     scene.text('You gladly pay him the 1000₽ and thank him again.');
     // TODO-QSP: dynamic text: He counts out the money and puts it away. "Anytime, <<$pcs_nickname>>. Make sure...
-    scene.text(`He counts out the money and puts it away. "Anytime, ${((st as any).pcs_nickname || '')}. Make sure you tell your friends about me if they need a check-up!"`);
+    scene.text(`He counts out the money and puts it away. "Anytime, ${((st as any).pcs_nickname ?? '')}. Make sure you tell your friends about me if they need a check-up!"`);
     scene.actions([
       { label: 'Go back', goto: ['pav_clinic', 'Petrovich1'] },
     ]);
@@ -811,7 +811,7 @@ function enterPetrovichDrug(s: GameState, scene: SceneBuilder): void {
     scene.text('He also warms it more often now, and it feels moist and warm on your nipples. To your embarrassment, you can feel your nipples starting to get hard. You\'re not quite sure, but you\'re fairly sure Dr. Petrovich was just having fun for the last few minutes of the examination.');
     scene.text('He nods. "Well, so far everything is okay."');
     // TODO-QSP: dynamic text: You notice that there''s a certain sparkle in his eyes when he looks at your <<$...
-    scene.text(`You notice that there's a certain sparkle in his eyes when he looks at your ${((st as any).titsize || '')} breasts with interest. You feel embarrassed at your nipples hardening even further, and try to think of bad things.`);
+    scene.text(`You notice that there's a certain sparkle in his eyes when he looks at your ${((st as any).titsize ?? '')} breasts with interest. You feel embarrassed at your nipples hardening even further, and try to think of bad things.`);
     scene.text('To your relief, the tingle you started to feel in your pussy goes away.');
     scene.text('"Please undress and sit in that chair. I will be back momentarily," he tells you as he steps towards the door and leaves.');
     scene.actions([
@@ -850,17 +850,17 @@ function enterPetrovichDrug(s: GameState, scene: SceneBuilder): void {
       scene.text('Your heart begins to race when you hear that. Your mother can\'t find out! She would kill you!');
       scene.text('"Wait!" you quickly blurt out. "Could you please just give me the shot without telling her? Please?"');
       // TODO-QSP: dynamic text: He looks at you sternly and shakes his head. "I''m sorry <<$pcs_nickname>>, but ...
-      scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((st as any).pcs_nickname || '')}, but you're not an adult. I need her permission to treat you, those are the rules."`);
+      scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((st as any).pcs_nickname ?? '')}, but you're not an adult. I need her permission to treat you, those are the rules."`);
     } else {
       // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, you have a problem. You <<$gpoli_sick>> as well as bein...
-      scene.text(`"Well ${((st as any).pcs_nickname || '')}, you have a problem. You ${((st as any).gpoli_sick || '')} as well as being addicted to cocaine. I'll have to write a note for your mother. I can't treat you without her permission."`);
+      scene.text(`"Well ${((st as any).pcs_nickname ?? '')}, you have a problem. You ${((st as any).gpoli_sick ?? '')} as well as being addicted to cocaine. I'll have to write a note for your mother. I can't treat you without her permission."`);
       if (((st as any).Venera ?? 0) > 0  ||  ((st as any).Kandidoz ?? 0) > 10) {
         { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterStdCheck(s, scene); (st as any).locArgs = __savedLocArgs; }
       }
       scene.text('Your heart begins to race when you hear that. Your mother can\'t find out! She would kill you!');
       scene.text('"Wait!" you quickly blurt out. "Could you please just give me the cure without telling her? Please?"');
       // TODO-QSP: dynamic text: He looks at you sternly and shakes his head. "I''m sorry <<$pcs_nickname>>, but ...
-      scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((st as any).pcs_nickname || '')}, but you're not an adult. I need her permission to treat you. You've been a very bad girl, you know…"`);
+      scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((st as any).pcs_nickname ?? '')}, but you're not an adult. I need her permission to treat you. You've been a very bad girl, you know…"`);
     }
     scene.actions([
       { label: 'Offer him money', goto: ['pav_clinic', 'spravka_money_pale'] },
@@ -926,7 +926,7 @@ function enterReferral(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'re a bit nervous as you enter the gynecologist\'s office. Your mother expects you to get a referral from him that states you\'re still a virgin, except there\'s one small problem… you\'re not a virgin any more! Maybe you can work something out with him?');
         if (((s as any).job_status ?? 0)?.['pav_clinic_cleaner'] === 'employed') {
           // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>. What brings you in today?" Dr. Petrovich asks with a s...
-          scene.text(`"Hello ${((s as any).pcs_nickname || '')}. What brings you in today?" Dr. Petrovich asks with a smile.`);
+          scene.text(`"Hello ${((s as any).pcs_nickname ?? '')}. What brings you in today?" Dr. Petrovich asks with a smile.`);
           scene.text('"Hello, doctor. It\'s time for my monthly check-up again. My mother needs a referral from you to make sure I\'m still a virgin," you reply.');
           scene.text('"Ah, yes. For… school, right? Let\'s take a look," he replies with a chuckle.');
         } else {
@@ -942,7 +942,7 @@ function enterReferral(s: GameState, scene: SceneBuilder): void {
     scene.text('The doctor breathes on his stethoscope to warm it up. "Lift your shirt, please."');
     scene.text('He sees your hesitation, and reassures you. "I\'m just doing some basic check-ups while you\'re here. Now… your shirt, please?"');
     // TODO-QSP: dynamic text: You expose your <<$titsize>> breasts to him when you lift your shirt up. You''re...
-    scene.text(`You expose your ${((st as any).titsize || '')} breasts to him when you lift your shirt up. You're no medical professional, but you're fairly certain that he's not supposed to put the stethoscope on your breast like that!`);
+    scene.text(`You expose your ${((st as any).titsize ?? '')} breasts to him when you lift your shirt up. You're no medical professional, but you're fairly certain that he's not supposed to put the stethoscope on your breast like that!`);
     scene.text('You decide to humour him and just let him play with your breasts for several minutes, after which he happily nods. "Everything seems to be in order."');
     scene.text('There\'s an eager sparkle in his eyes when he looks at your bare breasts. "Now get undressed and have a seat in the chair, please. You can put your feet in the stirrups."');
     scene.actions([
@@ -1014,10 +1014,10 @@ function enterReferral2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"Wait!" you quickly blurt out. "Could you please just write down that I\'m still a virgin so I don\'t get in trouble? Please?"');
     // TODO-QSP: dynamic text: He looks at you sternly and shakes his head. "I''m sorry <<$pcs_nickname>>, I ca...
-    scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((s as any).pcs_nickname || '')}, I can't do that, that's fraud! Do you have any idea how much trouble I could get into?"`);
+    scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((s as any).pcs_nickname ?? '')}, I can't do that, that's fraud! Do you have any idea how much trouble I could get into?"`);
   } else {
     // TODO-QSP: dynamic text: The doctor frowns when he gives you the results. "I''m afraid I have some bad ne...
-    scene.text(`The doctor frowns when he gives you the results. "I'm afraid I have some bad news, ${((s as any).pcs_nickname || '')}. You ${((s as any).gpoli_sick || '')}.`);
+    scene.text(`The doctor frowns when he gives you the results. "I'm afraid I have some bad news, ${((s as any).pcs_nickname ?? '')}. You ${((s as any).gpoli_sick ?? '')}.`);
     if (((s as any).Venera ?? 0) > 0  ||  ((s as any).Kandidoz ?? 0) > 10) {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStdCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
@@ -1029,7 +1029,7 @@ function enterReferral2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('"Wait!" you quickly blurt out. "Could you please just write down that I\'m still a virgin so I don\'t get in trouble? Please?"');
     // TODO-QSP: dynamic text: He looks at you sternly and shakes his head. "I''m sorry <<$pcs_nickname>>, but ...
-    scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((s as any).pcs_nickname || '')}, but you're not an adult. I need her permission to treat you. And I can't lie on a referral, that's fraud! Do you have any idea how much trouble I could get into?"`);
+    scene.text(`He looks at you sternly and shakes his head. "I'm sorry ${((s as any).pcs_nickname ?? '')}, but you're not an adult. I need her permission to treat you. And I can't lie on a referral, that's fraud! Do you have any idea how much trouble I could get into?"`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1175,7 +1175,7 @@ function enterSpravkaArrange(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You frown. You really don''t want to have sex with him and decide to try one mor...
     scene.text(`You frown. You really don't want to have sex with him and decide to try one more time. "I can't do that, doctor. Please, show some compassion… Could you give me a break, just this once? I just need some time to figure out how to tell my ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} about all this!"`);
     // TODO-QSP: dynamic text: His gaze is stone cold, without any sign of compassion. "So be it. Sorry <<$pcs_...
-    scene.text(`His gaze is stone cold, without any sign of compassion. "So be it. Sorry ${((st as any).pcs_nickname || '')}, but that's not how it works. I'm running a big enough risk as it is. If you're not helping me, I'm not helping you."`);
+    scene.text(`His gaze is stone cold, without any sign of compassion. "So be it. Sorry ${((st as any).pcs_nickname ?? '')}, but that's not how it works. I'm running a big enough risk as it is. If you're not helping me, I'm not helping you."`);
     scene.actions([
       { label: 'Try to negotiate', goto: ['pav_clinic', 'spravka_arrange'] },
       { label: 'Just accept the referral as is', goto: ['pav_clinic', 'badend'] },
@@ -1436,12 +1436,12 @@ function enterSpravkaArrangePale(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"Can I, I mean… Can we, er… How… Is there something I can do for you? My mother really can\'t find out!" you sob in desperation. You\'re terrified at the thought of what your mother would do if she knew.');
     // TODO-QSP: dynamic text: The doctor knows he has you cornered. "We all need things, <<$pcs_nickname>>. If...
-    scene.text(`The doctor knows he has you cornered. "We all need things, ${((s as any).pcs_nickname || '')}. If you help me with my needs, I can help you with yours."`);
+    scene.text(`The doctor knows he has you cornered. "We all need things, ${((s as any).pcs_nickname ?? '')}. If you help me with my needs, I can help you with yours."`);
     scene.text('He continues: "My wife is away on a business trip and won\'t be home for weeks. I\'m a man with needs and my job is very stressful as you can imagine. I need you to help me relax, relieve the tension, so to speak. What do you say?"');
     scene.text('"What do you…" you hesitate. You know exactly what he\'s suggesting, but you can\'t say it.');
     scene.text('The doctor puts his hands on your hips and smiles at you confidently. "A beautiful girl like you always has other options."');
     // TODO-QSP: dynamic text: He gropes your <<$titsize>> breasts for a while before he undoes his belt.
-    scene.text(`He gropes your ${((s as any).titsize || '')} breasts for a while before he undoes his belt.`);
+    scene.text(`He gropes your ${((s as any).titsize ?? '')} breasts for a while before he undoes his belt.`);
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -1624,7 +1624,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/clinic/mward/old_nurse.jpg');
     // TODO-QSP: dynamic text: "Hello <<$pcs_firstname>>, how can I help you?" the nurse asks with a smile.
-    scene.text(`"Hello ${((st as any).pcs_firstname || '')}, how can I help you?" the nurse asks with a smile.`);
+    scene.text(`"Hello ${((st as any).pcs_firstname ?? '')}, how can I help you?" the nurse asks with a smile.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_clinic', 'maternity_ward'] },
       { label: 'Donate your breast milk (0:15)', handler: (st: GameState) => {
@@ -1677,7 +1677,7 @@ function enterMaternityWard(s: GameState, scene: SceneBuilder): void {
         scene.text(`Donated milk volume in liter: ${((st as any).pcs_gpoli_totalmilkdonation ?? '')/1000}.${((st as any).pcs_gpoli_totalmilkdonation ?? '') % 1000}l`);
       }
       // TODO-QSP: dynamic text: Donation count: <<pcs_gpoli_totalmilkdonation_count>>
-      scene.text(`Donation count: ${((st as any).pcs_gpoli_totalmilkdonation_count || '')}`);
+      scene.text(`Donation count: ${((st as any).pcs_gpoli_totalmilkdonation_count ?? '')}`);
       // TODO-QSP: dynamic text: Average milk volume per donation in ml: <<pcs_gpoli_totalmilkdonation/pcs_gpoli_...
       scene.text(`Average milk volume per donation in ml: ${((st as any).pcs_gpoli_totalmilkdonation ?? '')/((st as any).pcs_gpoli_totalmilkdonation_count ?? '')}`);
       // TODO-QSP: 'Paid money: '+$func('money', 'string_profit', (pcs_gpoli_totalmilkdonation/50)*100)
@@ -2198,7 +2198,7 @@ function enterMaternityWardDonation(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_gpoli_donationsessioncount ?? 0) > 0) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_firstname>>, we are closing now.
-      scene.text(`Sorry ${((s as any).pcs_firstname || '')}, we are closing now.`);
+      scene.text(`Sorry ${((s as any).pcs_firstname ?? '')}, we are closing now.`);
       // TODO-QSP: dynamic text: You put your top back on and the nurse hands you '+$func('money', 'string_profit...
       scene.text('You put your top back on and the nurse hands you \'+$func(\'money\', \'string_profit\', mward_donatemoney)+\' for your donated breast milk.');
       scene.actions([

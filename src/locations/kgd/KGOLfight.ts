@@ -53,30 +53,30 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`Circle of Fire causes ${((s as any).KGOLspell9 ?? '') * 50} damage to the enemy.`);
   }
   // TODO-QSP: dynamic text: <<$KGOLname>>
-  scene.text(`${((s as any).KGOLname || '')}`);
+  scene.text(`${((s as any).KGOLname ?? '')}`);
   // TODO-QSP: dynamic text: Health: <<KGHP>>
-  scene.text(`Health: ${((s as any).KGHP || '')}`);
+  scene.text(`Health: ${((s as any).KGHP ?? '')}`);
   // TODO-QSP: dynamic text: Mana: <<KGMana>>
-  scene.text(`Mana: ${((s as any).KGMana || '')}`);
+  scene.text(`Mana: ${((s as any).KGMana ?? '')}`);
   // TODO-QSP: dynamic text: <<$KGname>>
-  scene.text(`${((s as any).KGname || '')}`);
+  scene.text(`${((s as any).KGname ?? '')}`);
   // TODO-QSP: dynamic text: Health: <<KGHPV>>
-  scene.text(`Health: ${((s as any).KGHPV || '')}`);
+  scene.text(`Health: ${((s as any).KGHPV ?? '')}`);
   // TODO-QSP: dynamic text: Mana: <<KGManaV>>
-  scene.text(`Mana: ${((s as any).KGManaV || '')}`);
+  scene.text(`Mana: ${((s as any).KGManaV ?? '')}`);
   if (((s as any).KGOLhirka ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your rejuvenation tonic will automatically restore up to <<KGOLhirka>> health.
-    scene.text(`Your rejuvenation tonic will automatically restore up to ${((s as any).KGOLhirka || '')} health.`);
+    scene.text(`Your rejuvenation tonic will automatically restore up to ${((s as any).KGOLhirka ?? '')} health.`);
   }
   // TODO-QSP: dynamic text: Distance: <<KGOLdist>> meter(s)
-  scene.text(`Distance: ${((s as any).KGOLdist || '')} meter(s)`);
+  scene.text(`Distance: ${((s as any).KGOLdist ?? '')} meter(s)`);
   if (((s as any).KGOLtimer ?? 0) > 0) {
     // TODO-QSP: dynamic text: Divine Protection will last for <<KGOLtimer>> more rounds.
-    scene.text(`Divine Protection will last for ${((s as any).KGOLtimer || '')} more rounds.`);
+    scene.text(`Divine Protection will last for ${((s as any).KGOLtimer ?? '')} more rounds.`);
   }
   if (((s as any).KGOLcooldown ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your skill(s) will finish cooldown in <<KGOLcooldown>> rounds.
-    scene.text(`Your skill(s) will finish cooldown in ${((s as any).KGOLcooldown || '')} rounds.`);
+    scene.text(`Your skill(s) will finish cooldown in ${((s as any).KGOLcooldown ?? '')} rounds.`);
   }
   if (((s as any).KGHP ?? 0) <= 0) {
     (s as any).KGOLloss = ((s as any).KGOLloss ?? 0) + (1);
@@ -97,9 +97,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).KGOLexp = ((s as any).KGOLexp ?? 0) + (((s as any).KGOLPrizeExp ?? 0));
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + (100);
     // TODO-QSP: dynamic text: <<$KGname>> has fallen.
-    scene.text(`${((s as any).KGname || '')} has fallen.`);
+    scene.text(`${((s as any).KGname ?? '')} has fallen.`);
     // TODO-QSP: dynamic text: You have won the fight and earned <<KGOLPrizeM>> coins and <<KGOLPrizeExp>> expe...
-    scene.text(`You have won the fight and earned ${((s as any).KGOLPrizeM || '')} coins and ${((s as any).KGOLPrizeExp || '')} experience.`);
+    scene.text(`You have won the fight and earned ${((s as any).KGOLPrizeM ?? '')} coins and ${((s as any).KGOLPrizeExp ?? '')} experience.`);
     if (((s as any).KGOLennumBoss ?? 0) === 1  &&  (!((s as any).boss5lvl ?? 0))) {
       (s as any).boss5lvl = 1;
       (s as any).KGOLhirka = ((s as any).KGOLhirka ?? 0) + (5000);
@@ -306,7 +306,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).KGMana = ((st as any).KGMana ?? 0) - (((st as any).KGOLspell5 ?? 0));
     (st as any).KGOLdist = ((st as any).KGOLdist ?? 0) + ((Math.floor(Math.random() * (((st as any).KGOLspell5 ?? 0) * 50 - ((st as any).KGOLspell5 ?? 0) * 10 + 1)) + (((st as any).KGOLspell5 ?? 0) * 10)));
     // TODO-QSP: dynamic text: A wave of energy bursts from within you, throwing the enemy back. The distance b...
-    scene.text(`A wave of energy bursts from within you, throwing the enemy back. The distance between you is now ${((st as any).KGOLdist || '')} meter(s).`);
+    scene.text(`A wave of energy bursts from within you, throwing the enemy back. The distance between you is now ${((st as any).KGOLdist ?? '')} meter(s).`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'curloc');
@@ -424,12 +424,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Opponent\'s turn');
     if (((s as any).KGOLdist ?? 0) <= ((s as any).KGOLneedDist ?? 0)) {
       // TODO-QSP: dynamic text: <<$KGname>> attacks you.
-      scene.text(`${((s as any).KGname || '')} attacks you.`);
+      scene.text(`${((s as any).KGname ?? '')} attacks you.`);
       qspCall(s, 'KGOLexpa', 'KGOLatkV');
     } else {
       (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) - ((Math.floor(Math.random() * (((s as any).KGOLspeedV ?? 0)/10 - ((s as any).KGOLspeedV ?? 0)/20 + 1)) + (((s as any).KGOLspeedV ?? 0)/20)));
       // TODO-QSP: dynamic text: <<$KGname>> moves towards you.
-      scene.text(`${((s as any).KGname || '')} moves towards you.`);
+      scene.text(`${((s as any).KGname ?? '')} moves towards you.`);
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {

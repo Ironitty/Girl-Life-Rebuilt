@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/brosil.jpg');
     scene.text('You want to talk to Andrei, but he cuts in before you can say anything.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, It''s over between us," he says firmly and walks away.
-    scene.text(`"${((s as any).pcs_nickname || '')}, It's over between us," he says firmly and walks away.`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, It's over between us," he says firmly and walks away.`);
     scene.text('"Well, maybe it\'s for the best," you think as you leave in the other direction.');
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['AndreiLove'] = 0;
@@ -58,7 +58,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>Andrei</b></center>');
       scene.img('images/characters/shared/headshots_main/big172.jpg');
       // TODO-QSP: dynamic text: Andrei is the leader of the group of hunters that frequent the woods and swamp b...
-      scene.text(`Andrei is the leader of the group of hunters that frequent the woods and swamp by Gadukino while living close by. He's ${((s as any).boyage || '')} years old and divorced.`);
+      scene.text(`Andrei is the leader of the group of hunters that frequent the woods and swamp by Gadukino while living close by. He's ${((s as any).boyage ?? '')} years old and divorced.`);
       if (((s as any).hunterVars ?? 0)?.['AndreiQw'] < 0) {
         scene.text('You and him have a bad relationship, because you offended him in the past.');
       } else {

@@ -140,7 +140,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).schoolname = 'your old school.';
   }
   // TODO-QSP: dynamic text: <br>In the center of Pavlovsk is the town square, which features the <a href="ex...
-  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname || '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
+  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
   // TODO-QSP: dynamic text: Connected to the town center is the old palace grounds, which have been turned i...
   scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027start/u0027); return false;">public park</a>.');
   // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''pav_lake''">lake</a> is also nearby, which ...
@@ -206,7 +206,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-      scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
+      scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
   if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 9) {
@@ -398,7 +398,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).schoolname = 'your old school.';
   }
   // TODO-QSP: dynamic text: <br>In the center of Pavlovsk is the town square, which features the <a href="ex...
-  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname || '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
+  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.2; return s; }); window.__gameStore.getState().doGoto(/u0027pav_commcenter/u0027, /u0027/u0027); return false;">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.4; return s; }); window.__gameStore.getState().doGoto(/u0027pav_pool/u0027, /u0027building/u0027); return false;">swimming pool</a>.`);
   // TODO-QSP: dynamic text: Connected to the town center is the old palace grounds, which have been turned i...
   scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="#" onclick="window.__gameStore.setState((s) => { s.minut +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pav_park/u0027, /u0027start/u0027); return false;">public park</a>.');
   // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''pav_lake''">lake</a> is also nearby, which ...
@@ -464,7 +464,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-      scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
+      scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
   if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 9) {

@@ -377,7 +377,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
     (st as any).damage = (Math.floor(Math.random() * (((st as any).pcs_stren ?? 0) + ((st as any).stKo ?? 0) - ((st as any).pcs_stren ?? 0) - ((st as any).stKo ?? 0) + 1)) + (((st as any).pcs_stren ?? 0) - ((st as any).stKo ?? 0)));
     qspCall(st, 'exercise', 'tier2', 5, 'stren');
     // TODO-QSP: dynamic text: An LED screen lights up and shows you your score: <<damage>>
-    scene.text(`An LED screen lights up and shows you your score: ${((st as any).damage || '')}`);
+    scene.text(`An LED screen lights up and shows you your score: ${((st as any).damage ?? '')}`);
     if (((st as any).damage ?? 0) > ((st as any).maxdamage ?? 0)) {
       (st as any).maxdamage = qspUntranslated(s, "damage & 'Congratulations! A new personal best!'", { location: "city_park" });
     } else {

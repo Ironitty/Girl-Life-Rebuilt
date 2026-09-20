@@ -134,9 +134,9 @@ function enterStart0(s: GameState, scene: SceneBuilder): void {
 
 function enterStart1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>! I was hoping you''d come by again, cutie! Want to go ha...
-  scene.text(`"Hey, ${((s as any).pcs_nickname || '')}! I was hoping you'd come by again, cutie! Want to go have a beer with me?" Vasan asks you. He's clearly happy to see you.`);
+  scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}! I was hoping you'd come by again, cutie! Want to go have a beer with me?" Vasan asks you. He's clearly happy to see you.`);
   // TODO-QSP: dynamic text: <<$gopnik>>
-  scene.text(`${((s as any).gopnik || '')}`);
+  scene.text(`${((s as any).gopnik ?? '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you\'d like to, but have no time', handler: (st: GameState) => {
@@ -170,7 +170,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
 
 function enterStart2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>! I was hoping you''d come by again, cutie! Want to go ha...
-  scene.text(`"Hey, ${((s as any).pcs_nickname || '')}! I was hoping you'd come by again, cutie! Want to go have a beer with me?" Vasan asks you. He's clearly happy to see you. ${((s as any).gopnik || '')}`);
+  scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}! I was hoping you'd come by again, cutie! Want to go have a beer with me?" Vasan asks you. He's clearly happy to see you. ${((s as any).gopnik ?? '')}`);
   scene.text('"Or if you\'re feeling brave… want to make some money? We could go to the park and try to rob some careless suckers? All you have to do is distract them! No one will even know you had anything to do with it!" he continues, with a sly grin on his face. "The pay isn\'t great, but it\'s an easy way to make some money together!"');
   // TODO-QSP: end
   scene.actions([
@@ -229,7 +229,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
         (st as any).randmon = (Math.floor(Math.random() * 451) + 50);
         qspCall(st, 'money', 'earn', ((st as any).randmon ?? 0), 'cash');
         // TODO-QSP: dynamic text: You and the guys had a pretty good day, and they managed to steal several wallet...
-        scene.text(`You and the guys had a pretty good day, and they managed to steal several wallets and cell phones while you distracted the marks. After Vasan sells the lot to the pawn shop, he gives you your share: ${qspFunc(s, 'money', 'string_profit', ((st as any).randmon || ''))}.`);
+        scene.text(`You and the guys had a pretty good day, and they managed to steal several wallets and cell phones while you distracted the marks. After Vasan sells the lot to the pawn shop, he gives you your share: ${qspFunc(s, 'money', 'string_profit', ((st as any).randmon ?? ''))}.`);
         scene.actions([
           { label: 'Say goodbye and go back home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -259,7 +259,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
 
 function enterStart4(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>! I was hoping you''d come by again, cutie! Want to go ha...
-  scene.text(`"Hey, ${((s as any).pcs_nickname || '')}! I was hoping you'd come by again, cutie! Want to go have a beer with me?" Vasan asks you. He's clearly happy to see you. ${((s as any).gopnik || '')}`);
+  scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}! I was hoping you'd come by again, cutie! Want to go have a beer with me?" Vasan asks you. He's clearly happy to see you. ${((s as any).gopnik ?? '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you have no time', handler: (st: GameState) => {
@@ -326,9 +326,9 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
     (s as any).goptalk2 = 'Want to put that tongue of yours to work?';
   }
   // TODO-QSP: dynamic text: <<$gopnik>>
-  scene.text(`${((s as any).gopnik || '')}`);
+  scene.text(`${((s as any).gopnik ?? '')}`);
   // TODO-QSP: dynamic text: "Hey, <<$goptalk>>! <<$goptalk2>>" one of them shouts, getting a good laugh out ...
-  scene.text(`"Hey, ${((s as any).goptalk || '')}! ${((s as any).goptalk2 || '')}" one of them shouts, getting a good laugh out of his friends. They all look at you intently.`);
+  scene.text(`"Hey, ${((s as any).goptalk ?? '')}! ${((s as any).goptalk2 ?? '')}" one of them shouts, getting a good laugh out of his friends. They all look at you intently.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Wait until one of them approaches you', handler: (st: GameState) => {
@@ -360,7 +360,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
           { label: 'Explain you have no money', handler: (st: GameState) => {
     scene.text('"Guys, please! I have no money!" you cry out, with tears in your eyes.');
     // TODO-QSP: dynamic text: Vasan punches you in the stomach and smirks: "I don''t think you understand the ...
-    scene.text(`Vasan punches you in the stomach and smirks: "I don't think you understand the situation you're in, ${((st as any).pcs_nickname || '')}. Either you pay us, or you're in serious trouble!"`);
+    scene.text(`Vasan punches you in the stomach and smirks: "I don't think you understand the situation you're in, ${((st as any).pcs_nickname ?? '')}. Either you pay us, or you're in serious trouble!"`);
     scene.text('Ignoring your weak whimpering, he nods to the other guys: "She\'s yours, guys. Do what you want with her. Make sure she gets the message."');
     scene.actions([
       { label: 'Let them drag you to a car', goto: ['gopnew', 'degrading'] },
@@ -424,7 +424,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
             { label: 'Explain you have no money', handler: (st: GameState) => {
     scene.text('"Guys, please! I have no money!" you cry out, with tears in your eyes.');
     // TODO-QSP: dynamic text: Vasan punches you in the stomach and smirks: "I don''t think you understand the ...
-    scene.text(`Vasan punches you in the stomach and smirks: "I don't think you understand the situation you're in, ${((st as any).pcs_nickname || '')}. Either you pay us, or you're in serious trouble!"`);
+    scene.text(`Vasan punches you in the stomach and smirks: "I don't think you understand the situation you're in, ${((st as any).pcs_nickname ?? '')}. Either you pay us, or you're in serious trouble!"`);
     scene.text('Ignoring your weak whimpering, he nods to the other guys: "She\'s yours, guys. Do what you want with her. Make sure she gets the message."');
     scene.actions([
       { label: 'Let them drag you to a car', goto: ['gopnew', 'degrading'] },
@@ -442,7 +442,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
 function enterStart6(s: GameState, scene: SceneBuilder): void {
   (s as any).gnewQW = 6;
   // TODO-QSP: dynamic text: <<$gopnik>>
-  scene.text(`${((s as any).gopnik || '')}`);
+  scene.text(`${((s as any).gopnik ?? '')}`);
   scene.text('"Hey, slut! Get over here!" one of them shouts.');
   if (((s as any).GLust ?? 0) <= 0) {
     scene.text('When you approach them, he gives you a dismissive nod, noticing you didn\'t ignore him. "Good, you listened. Now get out of here, before we change our minds."');
@@ -481,7 +481,7 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
 function enterStart7(s: GameState, scene: SceneBuilder): void {
   (s as any).gnewQW = 7;
   // TODO-QSP: dynamic text: <<$gopnik>>
-  scene.text(`${((s as any).gopnik || '')}`);
+  scene.text(`${((s as any).gopnik ?? '')}`);
   scene.text('"It\'s that whore, guys! Hey whore, get over here!" one of them shouts loudly, catching the attention of everyone nearby.');
   scene.text('All the bystanders in the area quickly walk away, when they notice it\'s you they\'re talking to. They want no part in what\'s about to happen.');
   if (((s as any).gopdolg ?? 0) > 0  &&  ((s as any).gopdaydolg ?? 0) > ((s as any).daystart ?? 0)) {
@@ -494,7 +494,7 @@ function enterStart7(s: GameState, scene: SceneBuilder): void {
           { label: 'Give him the money', handler: (st: GameState) => {
     (st as any).temp_paid = qspFunc(s, 'money', 'debt_pay', 'gopdolg', 0, 'cash');
     // TODO-QSP: dynamic text: You give the guy <<$func(''money'', ''string_debt_reduction'', temp_paid)>>. He ...
-    scene.text(`You give the guy ${qspFunc(s, 'money', 'string_debt_reduction', ((st as any).temp_paid || ''))}. He counts the money, almost disappointed to see it's all there.`);
+    scene.text(`You give the guy ${qspFunc(s, 'money', 'string_debt_reduction', ((st as any).temp_paid ?? ''))}. He counts the money, almost disappointed to see it's all there.`);
     scene.actions([
       { label: 'Quickly go away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -602,7 +602,7 @@ function enterPivas(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'drugs', 'alcohol', 'beer');
               scene.text('You sit down next to Vasan and share a beer with him.');
               // TODO-QSP: dynamic text: <<$gopnik>>
-              scene.text(`${((s as any).gopnik || '')}`);
+              scene.text(`${((s as any).gopnik ?? '')}`);
               if (((s as any).gnewQW ?? 0) > 1) {
                 if (((s as any).VasanTut ?? 0) === 2  ||  ((s as any).BerezaTut ?? 0) === 2  ||  ((s as any).VitekTut ?? 0) === 2  ||  ((s as any).KostilTut ?? 0) === 2  ||  ((s as any).UdmurtTut ?? 0) === 2  ||  ((s as any).SeriTut ?? 0) === 2) {
                   qspGoto(s, 'gopnew', 'sexstart');
@@ -621,7 +621,7 @@ function enterPivas(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).gnewQW ?? 0))) {
         (s as any).gnewQW = 1;
         // TODO-QSP: dynamic text: You walk towards the group of guys, and the one who walked you there introduces ...
-        scene.text(`You walk towards the group of guys, and the one who walked you there introduces you to them. "Hey guys, this is ${((s as any).pcs_nickname || '')}. ${((s as any).pcs_nickname || '')}, these are my friends: Bereza, Konstantin and Kostil. I'm Vasan."`);
+        scene.text(`You walk towards the group of guys, and the one who walked you there introduces you to them. "Hey guys, this is ${((s as any).pcs_nickname ?? '')}. ${((s as any).pcs_nickname ?? '')}, these are my friends: Bereza, Konstantin and Kostil. I'm Vasan."`);
         scene.text('You look at him and his friends. The guy who talked to you, Vasan, is fairly burly and muscular. Bereza is a tall blonde guy, Konstantin is rather short and stocky, and Kostil is fairly skinny.');
         scene.text('After the introductions are over, he pulls a beer bottle from his bag and takes a swig from it, and then passes it around.');
         scene.text('While you\'re drinking, two more men approach. Vasan whispers: "The short stocky guy is Udmurt. We don\'t know the bald man\'s name… everyone calls him Gray. Be careful around those guys, they have connections."');
@@ -661,7 +661,7 @@ function enterPivas(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'drugs', 'alcohol', 'beer');
                 scene.text('You sit down next to Vasan and share a beer with him.');
                 // TODO-QSP: dynamic text: <<$gopnik>>
-                scene.text(`${((s as any).gopnik || '')}`);
+                scene.text(`${((s as any).gopnik ?? '')}`);
                 if (((s as any).gnewQW ?? 0) > 1) {
                   if (((s as any).VasanTut ?? 0) === 2  ||  ((s as any).BerezaTut ?? 0) === 2  ||  ((s as any).VitekTut ?? 0) === 2  ||  ((s as any).KostilTut ?? 0) === 2  ||  ((s as any).UdmurtTut ?? 0) === 2  ||  ((s as any).SeriTut ?? 0) === 2) {
                     qspGoto(s, 'gopnew', 'sexstart');
@@ -963,11 +963,11 @@ function enterDolg(s: GameState, scene: SceneBuilder): void {
   (s as any).gopdaydolg = ((s as any).daystart ?? 0) + 10;
   scene.img('images/locations/city/residential/street/gopnews.jpg');
   // TODO-QSP: dynamic text: Vasan says: "After 10 days, you will give us… let''s say we''re even at <<$func(...
-  scene.text(`Vasan says: "After 10 days, you will give us… let's say we're even at ${qspFunc(s, 'money', 'string_debt', ((s as any).gopdolg || ''))}. I don't care how you get it, or where you get it, but you <b>will</b> get it if you know what's good for you. If you can't pay you're ours."`);
+  scene.text(`Vasan says: "After 10 days, you will give us… let's say we're even at ${qspFunc(s, 'money', 'string_debt', ((s as any).gopdolg ?? ''))}. I don't care how you get it, or where you get it, but you <b>will</b> get it if you know what's good for you. If you can't pay you're ours."`);
   // TODO-QSP: dynamic text: You feel dazzled when you hear the amount - <<$func(''money'', ''string_debt'', ...
-  scene.text(`You feel dazzled when you hear the amount - ${qspFunc(s, 'money', 'string_debt', ((s as any).gopdolg || ''), 1)}! How the hell are you supposed to gather than in ten days?`);
+  scene.text(`You feel dazzled when you hear the amount - ${qspFunc(s, 'money', 'string_debt', ((s as any).gopdolg ?? ''), 1)}! How the hell are you supposed to gather than in ten days?`);
   // TODO-QSP: dynamic text: "We will find you if you don''t pay, <<$pcs_nickname>>. Don''t bother trying to ...
-  scene.text(`"We will find you if you don't pay, ${((s as any).pcs_nickname || '')}. Don't bother trying to hide from us," Konstantin says with a mean grin on his face."`);
+  scene.text(`"We will find you if you don't pay, ${((s as any).pcs_nickname ?? '')}. Don't bother trying to hide from us," Konstantin says with a mean grin on his face."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave while you can', handler: (st: GameState) => {
@@ -984,7 +984,7 @@ function enterDolg(s: GameState, scene: SceneBuilder): void {
     scene.text('"Come on, please! Surely we can work something out!" you beg.');
     scene.text('"How about you pay us directly with your body? I guess I wouldn\'t mind a good fuck every now and then, and neither would my buddies! Fine… forget about the money, but you\'re ours to fuck whenever we want. Deal?" Vasan grins.');
     // TODO-QSP: dynamic text: The large bulge in his groin tells you he wants you to start ''paying'' right aw...
-    scene.text(`The large bulge in his groin tells you he wants you to start 'paying' right away, if you say yes. It might be your only way out, though… how are you going to gather ${qspFunc(s, 'money', 'string_debt', ((st as any).gopdolg || ''))} in ten days?`);
+    scene.text(`The large bulge in his groin tells you he wants you to start 'paying' right away, if you say yes. It might be your only way out, though… how are you going to gather ${qspFunc(s, 'money', 'string_debt', ((st as any).gopdolg ?? ''))} in ten days?`);
     scene.actions([
       { label: 'Refuse, maybe you can get the money after all', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1078,7 +1078,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                   } else {
                     if (((s as any).VitekTut ?? 0) === 2) {
                       // TODO-QSP: dynamic text: Konstantin mentions: "I could go for a fuck… how about it, <<$pcs_nickname>>?"
-                      scene.text(`Konstantin mentions: "I could go for a fuck… how about it, ${((s as any).pcs_nickname || '')}?"`);
+                      scene.text(`Konstantin mentions: "I could go for a fuck… how about it, ${((s as any).pcs_nickname ?? '')}?"`);
                       scene.actions([
                         { label: 'Go with Konstantin', handler: (st: GameState) => {
     (st as any).VitekTut = 3;
@@ -1088,7 +1088,7 @@ function enterSexstart(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).KostilTut ?? 0) === 2) {
                         // TODO-QSP: dynamic text: Kostil has a serious boner tenting in his pants. When he sees you look at it, he...
-                        scene.text(`Kostil has a serious boner tenting in his pants. When he sees you look at it, he hisses: "This is all your fault, ${((s as any).pcs_nickname || '')}… how about you take care of it?"`);
+                        scene.text(`Kostil has a serious boner tenting in his pants. When he sees you look at it, he hisses: "This is all your fault, ${((s as any).pcs_nickname ?? '')}… how about you take care of it?"`);
                         scene.actions([
                           { label: 'Go with Kostil', handler: (st: GameState) => {
     (st as any).KostilTut = 3;
@@ -1251,9 +1251,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 6) + 1);
-  scene.img(`images/locations/city/residential/street/sex/gopslut${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/city/residential/street/sex/gopslut${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: dynamic text: <<$boydesc>> guides you to a secluded area between some buildings, where he know...
-  scene.text(`${((s as any).boydesc || '')} guides you to a secluded area between some buildings, where he knows you won't be disturbed.`);
+  scene.text(`${((s as any).boydesc ?? '')} guides you to a secluded area between some buildings, where he knows you won't be disturbed.`);
   scene.text('He unceremoniously pushes you down and quickly pulls your clothes to the side, not even bothering to undress you while he fucks you quickly.');
   (s as any).horand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
@@ -1264,7 +1264,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('You orgasm with him, holding your hand over your mouth to stop yourself from crying out.');
   }
   // TODO-QSP: dynamic text: <<$boydesc>> wipes his cock on your ass cheeks and tucks it back into his pants....
-  scene.text(`${((s as any).boydesc || '')} wipes his cock on your ass cheeks and tucks it back into his pants. After that, he goes back to drinking beer with his friends, not paying any more attention to you.`);
+  scene.text(`${((s as any).boydesc ?? '')} wipes his cock on your ass cheeks and tucks it back into his pants. After that, he goes back to drinking beer with his friends, not paying any more attention to you.`);
   qspCall(s, 'arousal', 'vaginal', 15, 'sub', 'humiliation');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1281,9 +1281,9 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', '', ((s as any).guygop ?? 0));
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 10) + 13);
-  scene.img(`images/shared/sex/blowjob/bj${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/shared/sex/blowjob/bj${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: dynamic text: <<$boydesc>> guides you to a quiet area, and waits impatiently for you to pull h...
-  scene.text(`${((s as any).boydesc || '')} guides you to a quiet area, and waits impatiently for you to pull his cock out of his pants. He groans contently when you begin to suck him off diligently. A few minutes later, he groans that he's about to cum.`);
+  scene.text(`${((s as any).boydesc ?? '')} guides you to a quiet area, and waits impatiently for you to pull his cock out of his pants. He groans contently when you begin to suck him off diligently. A few minutes later, he groans that he's about to cum.`);
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'humiliation');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1291,15 +1291,15 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     { label: 'Let him cum in your mouth', handler: (st: GameState) => {
     qspCall(st, 'boyStat', '', ((st as any).guygop ?? 0));
     (st as any).picrand = (Math.floor(Math.random() * 10) + 20);
-    scene.img(`images/shared/sex/cum/mouth/cum${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/shared/sex/cum/mouth/cum${((st as any).picrand ?? '')}.jpg`);
     scene.text('Several powerful jets of sperm land in your mouth, and you keep sucking until you\'re sure he\'s finished.');
     // TODO-QSP: dynamic text: You show him the load you caught in your mouth, earning yourself a satisfied gri...
-    scene.text(`You show him the load you caught in your mouth, earning yourself a satisfied grin from ${((st as any).boydesc || '')}.`);
+    scene.text(`You show him the load you caught in your mouth, earning yourself a satisfied grin from ${((st as any).boydesc ?? '')}.`);
     scene.actions([
       { label: 'Swallow his load', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
     // TODO-QSP: dynamic text: You swallow <<$boydesc>>''s sperm diligently after which he wipes his dick on yo...
-    scene.text(`You swallow ${((st as any).boydesc || '')}'s sperm diligently after which he wipes his dick on your lips, making you lick the last remains off. Once he's satisfied, he pulls his pants up again and returns to his friends.`);
+    scene.text(`You swallow ${((st as any).boydesc ?? '')}'s sperm diligently after which he wipes his dick on your lips, making you lick the last remains off. Once he's satisfied, he pulls his pants up again and returns to his friends.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -1310,7 +1310,7 @@ function enter11(s: GameState, scene: SceneBuilder): void {
       { label: 'Spit it out', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth', ((st as any).boy ?? 0));
     // TODO-QSP: dynamic text: You wait for <<$boydesc>> to turn his back on you, and discreetly spit the semen...
-    scene.text(`You wait for ${((st as any).boydesc || '')} to turn his back on you, and discreetly spit the semen onto the ground. He doesn't seem to care what you do with it, he's already walking away from you.`);
+    scene.text(`You wait for ${((st as any).boydesc ?? '')} to turn his back on you, and discreetly spit the semen onto the ground. He doesn't seem to care what you do with it, he's already walking away from you.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -1324,16 +1324,16 @@ function enter11(s: GameState, scene: SceneBuilder): void {
     (st as any).bjrand = (Math.floor(Math.random() * 2) + 0);
     if ((!((st as any).bjrand ?? 0))) {
       // TODO-QSP: dynamic text: You catch his signals on time, and even manage to move out of the way while you ...
-      scene.text(`You catch his signals on time, and even manage to move out of the way while you jerk him to an orgasm. ${((st as any).boydesc || '')}'s sperm flies past you and lands on the ground, a short distance away.`);
+      scene.text(`You catch his signals on time, and even manage to move out of the way while you jerk him to an orgasm. ${((st as any).boydesc ?? '')}'s sperm flies past you and lands on the ground, a short distance away.`);
     } else {
       if (((st as any).bjrand ?? 0) === 1) {
         qspCall(st, 'boyStat', '', ((st as any).guygop ?? 0));
         (st as any).spafinloc = 11;
         qspCall(st, 'cum_manage', '');
         (st as any).picrand = (Math.floor(Math.random() * 5) + 11);
-        scene.img(`images/shared/sex/cum/facial/facial${((st as any).picrand || '')}.jpg`);
+        scene.img(`images/shared/sex/cum/facial/facial${((st as any).picrand ?? '')}.jpg`);
         // TODO-QSP: dynamic text: You''re too late to avoid getting <<$boydesc>>''s sperm on you, and his load end...
-        scene.text(`You're too late to avoid getting ${((st as any).boydesc || '')}'s sperm on you, and his load ends up all over your face.`);
+        scene.text(`You're too late to avoid getting ${((st as any).boydesc ?? '')}'s sperm on you, and his load ends up all over your face.`);
         scene.text('He wipes the last remains of sperm off onto your cheek, and makes you lick his cock clean before tucking it back into his pants. Then he leaves, no longer caring about what you do.');
       }
     }
@@ -1354,9 +1354,9 @@ function enter12(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_manage', '');
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 6) + 1);
-  scene.img(`images/locations/city/residential/street/sex/gopslut${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/city/residential/street/sex/gopslut${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: dynamic text: <<$boydesc>> guides you to a secluded area between some buildings, where he know...
-  scene.text(`${((s as any).boydesc || '')} guides you to a secluded area between some buildings, where he knows you won't be disturbed.`);
+  scene.text(`${((s as any).boydesc ?? '')} guides you to a secluded area between some buildings, where he knows you won't be disturbed.`);
   scene.text('He unceremoniously pushes you down and quickly pulls your clothes to the side, not even bothering to undress you while he slides his cock inside your ass. He\'s going a bit faster than you would like, and you have to do your best to keep quiet and not alert anyone.');
   (s as any).horand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
@@ -1367,7 +1367,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
     scene.text('You orgasm with him, holding your hand over your mouth to stop yourself from crying out.');
   }
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out right before he orgasms, and ends up spraying his sperm a...
-  scene.text(`${((s as any).boydesc || '')} pulls out right before he orgasms, and ends up spraying his sperm all over your ass cheeks. He wipes his cock clean on an unsoiled spot on your ass and tucks it back into his pants, returning to his friends for another beer. He no longer cares what you do or where you go next.`);
+  scene.text(`${((s as any).boydesc ?? '')} pulls out right before he orgasms, and ends up spraying his sperm all over your ass cheeks. He wipes his cock clean on an unsoiled spot on your ass and tucks it back into his pants, returning to his friends for another beer. He no longer cares what you do or where you go next.`);
   qspCall(s, 'arousal', 'anal', 15, 'sub', 'humiliation');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1410,7 +1410,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     (s as any).picrand = (Math.floor(Math.random() * 11) + 1);
-    scene.img(`images/shared/sex/group/tri${((s as any).picrand || '')}.jpg`);
+    scene.img(`images/shared/sex/group/tri${((s as any).picrand ?? '')}.jpg`);
     // TODO-QSP: dynamic text: <<$namgop[0]>>. The guys make you kneel before them, and begin to slap their coc...
     scene.text(`${qspUntranslated(s, "namgop[0]", { location: "gopnew" })}. The guys make you kneel before them, and begin to slap their cocks against your face impatiently. You do your best to pay attention to all of them, sucking them off one by one and jerking off those you can't put in your mouth.`);
     scene.text('They cum all over your face and in your mouth, and your face looks like a mess by the time they finally let you go.');
@@ -1469,7 +1469,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       }
       qspCall(s, 'stat', '');
       (s as any).picrand = (Math.floor(Math.random() * 14) + 2);
-      scene.img(`images/shared/sex/group/gang${((s as any).picrand || '')}.jpg`);
+      scene.img(`images/shared/sex/group/gang${((s as any).picrand ?? '')}.jpg`);
       // TODO-QSP: dynamic text: <<$namgop[0]>>. The guys begin to fuck you in all of your holes at the same time...
       scene.text(`${qspUntranslated(s, "namgop[0]", { location: "gopnew" })}. The guys begin to fuck you in all of your holes at the same time!`);
       (s as any).horand = (Math.floor(Math.random() * 100) + 1);
@@ -1529,7 +1529,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   (s as any).picrand = (Math.floor(Math.random() * 14) + 2);
-  scene.img(`images/shared/sex/group/gang${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/shared/sex/group/gang${((s as any).picrand ?? '')}.jpg`);
   // TODO-QSP: dynamic text: <<$namgop[0]>>. The guys begin to fuck you in all of your holes at the same time...
   scene.text(`${qspUntranslated(s, "namgop[0]", { location: "gopnew" })}. The guys begin to fuck you in all of your holes at the same time!`);
   scene.text('They swap positions from time to time, making sure to finish in your mouth or on your face.');

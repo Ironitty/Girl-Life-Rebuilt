@@ -262,7 +262,7 @@ function enterPoster(s: GameState, scene: SceneBuilder): void {
   scene.text('<i>It doesn\'t look like a glamorous job, but at least it\'s honest work.</i>');
   ((s as any).job_hiring_step = (s as any).job_hiring_step ?? {})['pav_hotel_maid'] = 1;
   scene.actions([
-{ label: 'Go back', goto: ['pav_hotel', ''] },,
+{ label: 'Go back', goto: ['pav_hotel', ''] },
 { label: 'Go to the reception', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_hotelReception', ''] },
@@ -490,7 +490,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You tell <<$npc_nickname[''A217'']>> you love going to the city and spending you...
         scene.text(`You tell ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} you love going to the city and spending your money at the shopping center. You ask him if he wants to join you the next time you go.`);
         // TODO-QSP: dynamic text: "I''m sorry <<$pcs_firstname>>, but I can never go back to the city."
-        scene.text(`"I'm sorry ${((st as any).pcs_firstname || '')}, but I can never go back to the city."`);
+        scene.text(`"I'm sorry ${((st as any).pcs_firstname ?? '')}, but I can never go back to the city."`);
         scene.text('He takes a sip of his beer and suddenly looks very depressed.');
         scene.text('It looks like you really hit a nerve there. You wonder what that\'s about.');
       } else {
@@ -526,7 +526,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((st as any).talkrand ?? 0) === 6) {
                   // TODO-QSP: dynamic text: "You will never disobey me, right <<$pcs_firstname>>? Your face is so pretty… I ...
-                  scene.text(`"You will never disobey me, right ${((st as any).pcs_firstname || '')}? Your face is so pretty… I really don't want to mess that up…"`);
+                  scene.text(`"You will never disobey me, right ${((st as any).pcs_firstname ?? '')}? Your face is so pretty… I really don't want to mess that up…"`);
                   // TODO-QSP: dynamic text: "What are you saying, <<$npc_nickname[''A217'']>>? Stop that! You''re scaring me...
                   scene.text(`"What are you saying, ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}? Stop that! You're scaring me…"`);
                   scene.text('"What? I give you a compliment and you get <i>scared</i>? You don\'t have to fear me, I wouldn\'t hurt a fly."');
@@ -560,7 +560,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
         scene.text('"You\'re lucky we\'re in a public place right now or I would fucking murder you!"');
       }
       // TODO-QSP: dynamic text: "Go away, <<$pcs_firstname>>! I''m too angry right now. We can discuss this late...
-      scene.text(`"Go away, ${((st as any).pcs_firstname || '')}! I'm too angry right now. We can discuss this later."`);
+      scene.text(`"Go away, ${((st as any).pcs_firstname ?? '')}! I'm too angry right now. We can discuss this later."`);
       (st as any).pavldaystart2 = ((st as any).daystart ?? 0);
     } else {
       if ((!((st as any).pavtalk ?? 0))) {
@@ -568,7 +568,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I…" you start, but he immediately interrupts you.
         scene.text(`"${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}, I…" you start, but he immediately interrupts you.`);
         // TODO-QSP: dynamic text: "I hope you learned your lesson, <<$pcs_firstname>>. I''m sorry I had to do that...
-        scene.text(`"I hope you learned your lesson, ${((st as any).pcs_firstname || '')}. I'm sorry I had to do that, but you need to understand the situation here."`);
+        scene.text(`"I hope you learned your lesson, ${((st as any).pcs_firstname ?? '')}. I'm sorry I had to do that, but you need to understand the situation here."`);
         scene.text('You were hoping you could have an honest conversation with him about the incident, but it\'s clear that that\'s not possible, at least not yet.');
         (st as any).pavtalk = 1;
         (st as any).pavldaystart2 = ((st as any).daystart ?? 0);
@@ -585,7 +585,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: "<<$npc_nickname[''A217'']>>, I need to talk…" you start, but he immediately int...
             scene.text(`"${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''}, I need to talk…" you start, but he immediately interrupts you.`);
             // TODO-QSP: dynamic text: "I think I made myself clear, <<$pcs_firstname>>. Get back to work."
-            scene.text(`"I think I made myself clear, ${((st as any).pcs_firstname || '')}. Get back to work."`);
+            scene.text(`"I think I made myself clear, ${((st as any).pcs_firstname ?? '')}. Get back to work."`);
             scene.text('For the first time since you met him, you can see a glimpse of insecurity in his eyes. You might be getting through to him.');
             (st as any).pavtalk = 3;
           } else {
@@ -595,7 +595,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
               scene.text('"I\'m very sorry for my behaviour. I don\'t know what came over me. I had a very bad day and your request was just the final drop. I hope you can forgive me and we can still work together."');
               scene.text('"I was really shocked by the way you treated me and I need assurances it won\'t happen again," you reply.');
               // TODO-QSP: dynamic text: "Of course, <<$pcs_firstname>>. From here on out, I will treat you with the resp...
-              scene.text(`"Of course, ${((st as any).pcs_firstname || '')}. From here on out, I will treat you with the respect you deserve. And I was not kidding about the money. I'll need a bigger share in the future."`);
+              scene.text(`"Of course, ${((st as any).pcs_firstname ?? '')}. From here on out, I will treat you with the respect you deserve. And I was not kidding about the money. I'll need a bigger share in the future."`);
               scene.text('"Okay. I will see what I can do about that."');
               (st as any).minut = ((st as any).minut ?? 0) + 4;
               qspCall(st, 'npc_relationship', 'set', 'A217', 7);
@@ -622,7 +622,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, I''ve got a guy who''s willing to pay a LOT of money for a ...
-    scene.text(`"${((st as any).pcs_firstname || '')}, I've got a guy who's willing to pay a LOT of money for a threesome with a set of twins. Do you happen to know a pair of twins who'd be down to make some quick cash?" ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} asks, looking hopeful.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, I've got a guy who's willing to pay a LOT of money for a threesome with a set of twins. Do you happen to know a pair of twins who'd be down to make some quick cash?" ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} asks, looking hopeful.`);
     scene.text('You think for a moment before responding. "No, I don\'t. However, a lot of people say my sister and I look alike. If I wear my hair like hers and we put on enough make up, we could probably pass as twins."');
     scene.text('"That\'s a great idea! Do you think she would be willing to do this?" he asks, suddenly very excited at the prospect.');
     if (((st as any).sisterLesb ?? 0) < 5) {
@@ -635,7 +635,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
       scene.text('You feel a tingling in your loins just thinking about your sister.');
       scene.text('"Of course she will!" you blurt out without thinking.');
       // TODO-QSP: dynamic text: "That''s fantastic, <<$pcs_firstname>>! Once you''re ready, bring her over and I...
-      scene.text(`"That's fantastic, ${((st as any).pcs_firstname || '')}! Once you're ready, bring her over and I'll introduce you to the client."`);
+      scene.text(`"That's fantastic, ${((st as any).pcs_firstname ?? '')}! Once you're ready, bring her over and I'll introduce you to the client."`);
       // TODO-QSP: dynamic text: Realizing the commitment you just made, worry begins to seep into you. You hope ...
       scene.text(`Realizing the commitment you just made, worry begins to seep into you. You hope your sister is really up for it, because you fear how ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} will react if you can't deliver.`);
       (st as any).TwinQW = 1;
@@ -654,7 +654,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, have you heard the circus is in town?"
-    scene.text(`"${((st as any).pcs_firstname || '')}, have you heard the circus is in town?"`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, have you heard the circus is in town?"`);
     // TODO-QSP: dynamic text: You look at <<$npc_nickname[''A217'']>> with a surprised stare. "I didn''t know ...
     scene.text(`You look at ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} with a surprised stare. "I didn't know you were a fan of the circus. You want to go see a show or something?"`);
     scene.text('"What? No, don\'t be silly, girl! A circus here means at least 50 guys in town who are looking for a good time after the shows."');
@@ -686,7 +686,7 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/pavlin/pavlin.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, I received a request for a pregnant girl today. A pregnant ...
-    scene.text(`"${((st as any).pcs_firstname || '')}, I received a request for a pregnant girl today. A pregnant girl! How the hell am I going to find a girl that's pregnant and willing to do this shit?" he says while shaking his head.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, I received a request for a pregnant girl today. A pregnant girl! How the hell am I going to find a girl that's pregnant and willing to do this shit?" he says while shaking his head.`);
     if (((st as any).knowpreg ?? 0) === 1  &&  ((st as any).pregChem ?? 0) >= 3600) {
       // TODO-QSP: dynamic text: You feel anger towards <<$npc_nickname[''A217'']>> rising up inside you. "Do you...
       scene.text(`You feel anger towards ${((st as any).npc_nickname ?? 0)?.['A217'] ?? ''} rising up inside you. "Do you ever pay attention to me? Can't you see I am pregnant?" you say while gesturing at your swollen belly.`);

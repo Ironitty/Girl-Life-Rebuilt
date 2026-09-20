@@ -55,7 +55,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'jobs', 'set_fired', 'city_diner_secretary');
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You write a statement of resignation and quickly get it signed by your boss. He ...
-    scene.text(`You write a statement of resignation and quickly get it signed by your boss. He writes out a paycheck of ${qspFunc(s, 'money', 'string_profit', ((st as any).pay || ''))} to you says, "It's over ${((st as any).pcs_nickname || '')}, get out of here."`);
+    scene.text(`You write a statement of resignation and quickly get it signed by your boss. He writes out a paycheck of ${qspFunc(s, 'money', 'string_profit', ((st as any).pay ?? ''))} to you says, "It's over ${((st as any).pcs_nickname ?? '')}, get out of here."`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);

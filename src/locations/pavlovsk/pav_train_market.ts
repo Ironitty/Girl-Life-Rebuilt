@@ -58,7 +58,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Return', goto: ['pav_train_market', 'start'] },
     ]);
-  } },,
+  } },
 { label: 'Go with him', goto: ['gevent', '3'] },
 ]);
       return;
@@ -138,7 +138,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         (st as any).gobQW = 2;
         (st as any).minut = ((st as any).minut ?? 0) + 5;
         // TODO-QSP: dynamic text: The man greets you and introduces himself as Roman. You tell him that your name ...
-        scene.text(`The man greets you and introduces himself as Roman. You tell him that your name is ${((st as any).pcs_nickname || '')} and after a brief chat, he says he wants to see what you have for sale.`);
+        scene.text(`The man greets you and introduces himself as Roman. You tell him that your name is ${((st as any).pcs_nickname ?? '')} and after a brief chat, he says he wants to see what you have for sale.`);
       }
     }
     if (((st as any).mc_inventory ?? 0)?.['tapestry'] > 1) {
@@ -953,7 +953,7 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Someone suddenly calls out to you.');
       // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>! Do you want a fresh, juicy tangerine?"
-      scene.text(`"Hey, ${((s as any).pcs_nickname || '')}! Do you want a fresh, juicy tangerine?"`);
+      scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}! Do you want a fresh, juicy tangerine?"`);
       scene.actions([
         { label: 'Go and see Arthur', goto: ['arturRinok', 'start'] },
       ]);

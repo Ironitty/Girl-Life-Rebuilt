@@ -177,7 +177,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    scene.img(`images/pc/body/cum/cumface/${((st as any).cum_face_image || '')}.jpg`);
+    scene.img(`images/pc/body/cum/cumface/${((st as any).cum_face_image ?? '')}.jpg`);
     scene.text('The man cums on your face.');
     qspCall(st, 'cum_call', 'face', 'stranger');
     qspCall(st, 'arousal', 'end');
@@ -341,7 +341,7 @@ function enterPickupMail(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_mail_counter ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <<temp_mail_counter>> pieces of mail left to pickup.
-    scene.text(`You have ${((s as any).temp_mail_counter || '')} pieces of mail left to pickup.`);
+    scene.text(`You have ${((s as any).temp_mail_counter ?? '')} pieces of mail left to pickup.`);
   } else {
     scene.text('You have collected all your mail.');
   }

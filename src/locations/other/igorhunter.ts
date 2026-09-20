@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/brosil.jpg');
     scene.text('You want to talk to Igor, but he cuts you off with an angry look.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I realized that our love wasn''t real, and we need to break ...
-    scene.text(`"${((s as any).pcs_nickname || '')}, I realized that our love wasn't real, and we need to break up," he says. As you try to find words to answer, he turns and resolutely walks away.`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, I realized that our love wasn't real, and we need to break up," he says. As you try to find words to answer, he turns and resolutely walks away.`);
     scene.text('"This may well be for the best," you think as you leave in the other direction.');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['IgorLove'] = 0;
@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
       scene.text('You walk up to Igor to spend time together, but he suddenly kisses you and whispers,');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let''s make love."
-      scene.text(`"${((s as any).pcs_nickname || '')}, let's make love."`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}, let's make love."`);
       ((s as any).hunterVars = (s as any).hunterVars ?? {})['Igorsex'] = ((s as any).hunterVars['Igorsex'] ?? 0) + ((Math.floor(Math.random() * 25) + 12));
       qspCall(s, 'arousal', 'foreplay', 5);
       qspCall(s, 'stat', '');
@@ -124,7 +124,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><b>Igor Anisimov</b></center>');
         scene.img('images/characters/shared/headshots_main/big173.jpg');
         // TODO-QSP: dynamic text: Igor is a hunter along with Sergei and Andrei and is here visiting Andrei. He''s...
-        scene.text(`Igor is a hunter along with Sergei and Andrei and is here visiting Andrei. He's ${((s as any).boyage || '')} years old. He is not married and lives in the City Center…`);
+        scene.text(`Igor is a hunter along with Sergei and Andrei and is here visiting Andrei. He's ${((s as any).boyage ?? '')} years old. He is not married and lives in the City Center…`);
         if (((s as any).hunterVars ?? 0)?.['IgorQW'] < 0) {
           scene.text('You and he have a bad relationship because you\'ve offended him in the past.');
         } else {
@@ -151,10 +151,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       } else {
                         if (((s as any).hunterVars ?? 0)?.['IgorLove'] === 2) {
                           // TODO-QSP: dynamic text: <<$boydesc>> is your boyfriend.
-                          scene.text(`${((s as any).boydesc || '')} is your boyfriend.`);
+                          scene.text(`${((s as any).boydesc ?? '')} is your boyfriend.`);
                         } else {
                           // TODO-QSP: dynamic text: <<$boydesc>> is your husband.
-                          scene.text(`${((s as any).boydesc || '')} is your husband.`);
+                          scene.text(`${((s as any).boydesc ?? '')} is your husband.`);
                         }
                       }
                     }

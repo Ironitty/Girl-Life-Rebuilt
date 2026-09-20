@@ -17,7 +17,7 @@ function enterIvanVitekFight1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'gdksport') {
     scene.text('When you enter the sports center, Ivan sees you come in. Even though he\'s getting ready for a training session and is only wearing his boxing shorts, he comes over for a quick chat.');
     // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>!" he grins, happy to see you. "Here to do some training?"
-    scene.text(`"Hi ${((s as any).pcs_nickname || '')}!" he grins, happy to see you. "Here to do some training?"`);
+    scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}!" he grins, happy to see you. "Here to do some training?"`);
     scene.text('You smile at him and nod. "Yeah, I am. What are you doing here?"');
     scene.text('He nods over at a hall. "I\'ve been training for a boxing match. It\'s coming up fast, and I\'m pretty excited about it!"');
     if ((!((s as any).kotovVSprohorov ?? 0))) {
@@ -30,7 +30,7 @@ function enterIvanVitekFight1(s: GameState, scene: SceneBuilder): void {
     scene.text('Several guys are hitting old punching bags, practicing their swings or working on speed bags. Others are practicing their punches in front of a mirror, studying their own patterns and looking for ways to improve. You\'re the only girl in the hall, for some reason.');
     scene.text('Vitek is already waiting in the ring, dressed in boxing shorts, gloves and a headgear.');
     // TODO-QSP: dynamic text: "So you decided to show up after all, huh?" he snarks at Ivan. "What''s this? Yo...
-    scene.text(`"So you decided to show up after all, huh?" he snarks at Ivan. "What's this? You planning to let ${((st as any).pcs_nickname || '')} fight for you?"`);
+    scene.text(`"So you decided to show up after all, huh?" he snarks at Ivan. "What's this? You planning to let ${((st as any).pcs_nickname ?? '')} fight for you?"`);
     scene.text('Ivan smirks at him and quickly puts on his headgear and gloves before getting in the ring. Most of the other guys come over to watch them spar.');
     scene.actions([
       { label: 'Watch them', handler: (st: GameState) => {
@@ -125,7 +125,7 @@ function enterTraining(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/ivan/training/train1.jpg');
   scene.text('You see Ivan near the punching bags, who turns to you when you get close.');
   // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>!" he grins, happy to see you. "What are you doing here?"
-  scene.text(`"Hi ${((s as any).pcs_nickname || '')}!" he grins, happy to see you. "What are you doing here?"`);
+  scene.text(`"Hi ${((s as any).pcs_nickname ?? '')}!" he grins, happy to see you. "What are you doing here?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Say goodbye and let him train', goto: ['gdksport', 'start'] },
@@ -389,7 +389,7 @@ function enterLockerRoomFuck(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/community/locker/training_sex3.jpg');
     scene.text('You feel him squirt some liquid onto your asshole before his fingers work it in. Once your ass is lubed up, you feel the tip of his dick press against your asshole.');
     // TODO-QSP: dynamic text: Moments later, he pushes the head of his <<dick>>cm <<$dick_girth>> cock inside ...
-    scene.text(`Moments later, he pushes the head of his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock inside you before he slowly slides most of the length of his shaft up your ass.`);
+    scene.text(`Moments later, he pushes the head of his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock inside you before he slowly slides most of the length of his shaft up your ass.`);
     scene.text('He moans in pleasure and you groan slightly in pain while also moaning in pleasure. As he starts to slowly fuck your ass, your groans slowly turn into moans of pleasure.');
     qspCall(st, 'arousal', 'anal', 2, 'lube', 'sub');
     qspCall(st, 'stat', '');
@@ -503,7 +503,7 @@ function enterIvanBored(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/school/bbivanbj.jpg');
     scene.text('Once inside, Ivan starts to passionately kiss you while pulling your clothes off. You return his kiss and help remove your clothes as he backs up and pulls you into one of the stalls.');
     // TODO-QSP: dynamic text: Once your clothes are removed, he gently pushes you down to your knees before he...
-    scene.text(`Once your clothes are removed, he gently pushes you down to your knees before he pulls his pants down and sits on the toilet. He then guides your head to his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock and you part your lips and take it into your mouth.`);
+    scene.text(`Once your clothes are removed, he gently pushes you down to your knees before he pulls his pants down and sits on the toilet. He then guides your head to his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock and you part your lips and take it into your mouth.`);
     scene.text('You wrap your lips tightly around his shaft and start sucking while using your tongue to tease the head. He moans and grabs your hair, but restrains himself from forcing your head down.');
     scene.text('After a few minutes, he stands up and pulls you up with him before he quickly turns you around.');
     qspCall(st, 'arousal', 'kiss', 1, 'sub');
@@ -527,7 +527,7 @@ function enterIvanBored(s: GameState, scene: SceneBuilder): void {
     scene.text('He rubs the tip of his dick against your asshole before you feel a sharp pain as he pushes it in. With only your saliva as lubrication, it doesn\'t slide in very easily.');
     scene.text('You bite your lip and cry out a little in pain, so he relaxes a little and rubs your back as he takes it slow, giving your ass time to stretch and adjust.');
     // TODO-QSP: dynamic text: He then slowly thrusts his <<dick>>cm <<$dick_girth>> cock into your ass, pushin...
-    scene.text(`He then slowly thrusts his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock into your ass, pushing it just a little deeper each time as you start rubbing your clit until the pleasure overcomes the pain enough for you to enjoy it.`);
+    scene.text(`He then slowly thrusts his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock into your ass, pushing it just a little deeper each time as you start rubbing your clit until the pleasure overcomes the pain enough for you to enjoy it.`);
     qspCall(st, 'arousal', 'anal', 2, 'sub', 'rough');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -565,7 +565,7 @@ function enterIvanBored(s: GameState, scene: SceneBuilder): void {
     scene.text('You both start to get dressed, him faster than you since you\'re still unsteady on your feet. Once he\'s done, he helps you gather the rest of your clothes from where he tossed them.');
     scene.text('As you\'re seeing to the final adjustments, he goes to the bathroom door and looks out both ways down the hall before motioning you over just as the bell rings.');
     // TODO-QSP: dynamic text: As you''re about to leave, he suddenly squeezes your ass. "That was great, <<$pc...
-    scene.text(`As you're about to leave, he suddenly squeezes your ass. "That was great, ${((st as any).pcs_nickname || '')}. Maybe we can do it again sometime, or maybe I'll come see you in the shower at the community center one night..."`);
+    scene.text(`As you're about to leave, he suddenly squeezes your ass. "That was great, ${((st as any).pcs_nickname ?? '')}. Maybe we can do it again sometime, or maybe I'll come see you in the shower at the community center one night..."`);
     scene.text('He grins and winks at you before giving your ass a hard slap and rushing off to class. You only have time to nod in agreement, biting your lip as you watch him go. You then hurry to class yourself.');
     scene.actions([
       { label: 'Continue', goto: ['gschool_lessons', 'short_break'] },
@@ -621,7 +621,7 @@ function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discobj2.jpg');
     scene.text('As he moans, you pick up the pace a little and start bobbing your head back and forth as you keep your lips wrapped tightly around the shaft, steadily sucking his dick.');
     // TODO-QSP: dynamic text: "Damn <<$pcs_nickname>>, that feels so good!" he grunts.
-    scene.text(`"Damn ${((st as any).pcs_nickname || '')}, that feels so good!" he grunts.`);
+    scene.text(`"Damn ${((st as any).pcs_nickname ?? '')}, that feels so good!" he grunts.`);
     qspCall(st, 'arousal', 'bj', 2, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -728,7 +728,7 @@ function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/ivan/sex/disco/restroom/discoanal2.jpg');
     // TODO-QSP: dynamic text: He starts working his <<dick>>cm <<$dick_girth>> cock deeper into your ass, taki...
-    scene.text(`He starts working his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock deeper into your ass, taking it slow and giving you time to get used to the feeling of his dick in your ass.`);
+    scene.text(`He starts working his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock deeper into your ass, taking it slow and giving you time to get used to the feeling of his dick in your ass.`);
     scene.text('It quickly starts feeling really good for you and you start to moan louder as he slowly, but steadily fucks your ass.');
     qspCall(st, 'arousal', 'anal', 2, 'lube', 'sub', 'rough');
     qspCall(st, 'stat', '');
@@ -757,7 +757,7 @@ function enterIvanBoredDisco(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives your ass another smack and laughs. "I never get tired of that sight."');
     scene.text('He puts his dick back into his pants as you start getting dressed, his cum still leaking out of your asshole.');
     // TODO-QSP: dynamic text: Once you''re mostly dressed, he gives your ass a hard slap. "That was great, <<$...
-    scene.text(`Once you're mostly dressed, he gives your ass a hard slap. "That was great, ${((st as any).pcs_nickname || '')}. Maybe we can do this again sometime? Anyway, I should get going. Need to check in on my brother and sister and make sure they went to bed on time."`);
+    scene.text(`Once you're mostly dressed, he gives your ass a hard slap. "That was great, ${((st as any).pcs_nickname ?? '')}. Maybe we can do this again sometime? Anyway, I should get going. Need to check in on my brother and sister and make sure they went to bed on time."`);
     scene.text('He starts towards the door before he turns his head. "Thanks for the fun."');
     scene.text('With that, he walks out and leaves.');
     qspCall(st, 'arousal', 'anal', 1, 'lube', 'sub');

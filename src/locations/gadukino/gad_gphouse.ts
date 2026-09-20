@@ -408,10 +408,10 @@ function enterFamilyTrip(s: GameState, scene: SceneBuilder): void {
 
 function enterFamilyTripAskGoHome(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>Your mother, Natasha ${((s as any).pcs_lastname || '')}</b></center>`);
+  scene.text(`<center><b>Your mother, Natasha ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   // TODO-QSP: dynamic text: <<$npc_nickname[''A29'']>> asks, "<<$pcs_nickname>>, are you coming home with us...
-  scene.text(`${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} asks, "${((s as any).pcs_nickname || '')}, are you coming home with us or are you going to stay in the village with your grandparents?"`);
+  scene.text(`${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} asks, "${((s as any).pcs_nickname ?? '')}, are you coming home with us or are you going to stay in the village with your grandparents?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Stay with your grandparents', handler: (st: GameState) => {
@@ -580,7 +580,7 @@ function enterSchoolStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your grandmother</b></center>');
   scene.img('images/locations/gadukino/village/grandmahelp.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>, your mother called. School starts soon, and you must head b...
-  scene.text(`"${((s as any).pcs_firstname || '')}, your mother called. School starts soon, and you must head back to Pavlovsk to get ready."`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')}, your mother called. School starts soon, and you must head back to Pavlovsk to get ready."`);
   scene.text('"As much as we loved having you around and seeing you more, this is it for now."');
   scene.text('"You are always welcome to come and visit on weekends or breaks from school."');
   scene.text('"And if you want to, you can always stay with us again next summer."');
@@ -613,7 +613,7 @@ function enterWasLostYesterday(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big32.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>, your grandfather and I were so worried when you didn''t com...
-  scene.text(`"${((s as any).pcs_firstname || '')}, your grandfather and I were so worried when you didn't come home from the forest."`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')}, your grandfather and I were so worried when you didn't come home from the forest."`);
   scene.text('"We are so glad you are back safe and sound. Go have a hot meal and shower and relax."');
   scene.text('"Also, don\'t worry about any chores today. Just focus on recovering."');
   // TODO-QSP: end
@@ -631,7 +631,7 @@ function enterNudityTroubleKicked(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/grandparents/grandma.jpg');
   // TODO-QSP: dynamic text: Your grandmother looks at you coldly from across the room. She is speaking softl...
-  scene.text(`Your grandmother looks at you coldly from across the room. She is speaking softly, but somehow that is more unnerving than usual, "I've been more than fair to you, ${((s as any).pcs_firstname || '')}, and given you more chances than maybe even your mother."`);
+  scene.text(`Your grandmother looks at you coldly from across the room. She is speaking softly, but somehow that is more unnerving than usual, "I've been more than fair to you, ${((s as any).pcs_firstname ?? '')}, and given you more chances than maybe even your mother."`);
   scene.text('"If you won\'t at least try to act like a decent lady around here, you are no longer welcome. So take your things and leave. Come back when you\'ve learned at least some basic decency."');
   // TODO-QSP: end
   scene.actions([
@@ -670,17 +670,17 @@ function enterGrandpaDisapointment(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/grandparents/grandpa.jpg');
   scene.text('Your grandfather scowls at you as you walk by.');
   // TODO-QSP: dynamic text: <br>"<<$pcs_firstname>>. I am disappointed in you," he says flatly.
-  scene.text(`<br>"${((s as any).pcs_firstname || '')}. I am disappointed in you," he says flatly.`);
+  scene.text(`<br>"${((s as any).pcs_firstname ?? '')}. I am disappointed in you," he says flatly.`);
   scene.text('"What? Why?" you ask, taken aback a bit by his demeanour.');
   scene.text('"Yesterday, I asked you to help me, and you agreed. And here we are today, and I find that you did not."');
   scene.text('"Oh n-no, Grandpa," you stutter, "I forgot all about it! I\'m sorry!"');
   scene.text('"Quiet, child. I wasn\'t done speaking. You promised to help and did not, which means you lied."');
   scene.text('<br>You stare at him, crestfallen.');
   // TODO-QSP: dynamic text: <br>"And I don''t want your apologies. A <<$pcs_lastname>> keeps their word, or ...
-  scene.text(`<br>"And I don't want your apologies. A ${((s as any).pcs_lastname || '')} keeps their word, or their word is worth nothing."`);
+  scene.text(`<br>"And I don't want your apologies. A ${((s as any).pcs_lastname ?? '')} keeps their word, or their word is worth nothing."`);
   scene.text('Your eyes tear up a bit as your grandfather berates you. "Yes, sir," you mumble quietly.');
   // TODO-QSP: dynamic text: "I would rather you tell me flat-out if you do not want to help, <<$pcs_firstnam...
-  scene.text(`"I would rather you tell me flat-out if you do not want to help, ${((s as any).pcs_firstname || '')}. At least that makes you honest, even if lazy."`);
+  scene.text(`"I would rather you tell me flat-out if you do not want to help, ${((s as any).pcs_firstname ?? '')}. At least that makes you honest, even if lazy."`);
   scene.text('"Grandpa, I honestly just forg-" you begin, but he cuts you off.');
   scene.text('"Hush, child. I don\'t care for excuses. Now go on. Some of us have work to do."');
   scene.text('<br>You silently turn and walk away, feeling guilty.');
@@ -699,7 +699,7 @@ function enterGrandmaDisapointment(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/grandparents/grandma.jpg');
   // TODO-QSP: dynamic text: Grandma frowns at you as you walk by. "<<$pcs_nickname>>, you said you would hel...
-  scene.text(`Grandma frowns at you as you walk by. "${((s as any).pcs_nickname || '')}, you said you would help me yesterday, and you did not."`);
+  scene.text(`Grandma frowns at you as you walk by. "${((s as any).pcs_nickname ?? '')}, you said you would help me yesterday, and you did not."`);
   scene.text('You cringe as you remember what you told her you would do. "I\'m sorry, Grandma, I forgot all about it…"');
   scene.text('"I am an old woman, child. It is difficult for me to do many things I once could. But I can still do them if I know I have to."');
   scene.text('Feeling guilty, you look at the ground as she continues, "But it is even harder for me if I expected help and did not receive it."');
@@ -722,11 +722,11 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/gadukino/village/grandmahelp.jpg');
   // TODO-QSP: dynamic text: Upon entering the house, you let out a screech as you catch sight of your grandm...
-  scene.text(`Upon entering the house, you let out a screech as you catch sight of your grandmother, throwing yourself at her, wrapping your arms around her neck. She embraces you tightly. She starts by saying "Dear ${((s as any).pcs_nickname || '')}, you're only skin and bones, but don't worry, a few months here and you'll be looking your usual self again."`);
+  scene.text(`Upon entering the house, you let out a screech as you catch sight of your grandmother, throwing yourself at her, wrapping your arms around her neck. She embraces you tightly. She starts by saying "Dear ${((s as any).pcs_nickname ?? '')}, you're only skin and bones, but don't worry, a few months here and you'll be looking your usual self again."`);
   scene.text('"But look at you, you sure have grown up. A young woman." she says proudly. She continues "Grandpa and I keep getting older and older and need some help around the house. What do you say youngling? You will not have to do much. Here\'s the deal, you lend us a helping hand on the farm as much as possible, and we will pay you for each chore you do. It will be a great life lesson, you will learn about hard work. What do you say?"');
   scene.text('"Of course I\'ll help out, Grandma." you answer.');
   // TODO-QSP: dynamic text: "I''m glad to hear that <<$pcs_nickname>>, here is little something anyways just...
-  scene.text(`"I'm glad to hear that ${((s as any).pcs_nickname || '')}, here is little something anyways just for visiting," Grandma says and gives you ${qspFunc(s, 'money', 'string_profit', 3000)}.`);
+  scene.text(`"I'm glad to hear that ${((s as any).pcs_nickname ?? '')}, here is little something anyways just for visiting," Grandma says and gives you ${qspFunc(s, 'money', 'string_profit', 3000)}.`);
   scene.text('"Thanks Babushka!" you kiss her on the cheek before you head on out.');
   if ((((s as any).kanikuli ?? 0) === 4  ||  ((s as any).kanikuli ?? 0) === 5)  &&  ((((s as any).month ?? 0) === 6  ||  ((s as any).month ?? 0) === 7)  ||  (((s as any).month ?? 0) === 8  &&  ((s as any).day ?? 0) <= 25))) {
     scene.text('"Will you be staying with us during the summer or will you be traveling back and forth with your parents?" she asks.');
@@ -796,7 +796,7 @@ function enterMiraVisit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('You notice Mira coming towards your grandparents home.');
   // TODO-QSP: dynamic text: You step out on the porch and greet Mira. She replies "Hi <<$pcs_nickname>>, I w...
-  scene.text(`You step out on the porch and greet Mira. She replies "Hi ${((s as any).pcs_nickname || '')}, I was really bored being all alone at home. Do you want to do something?"`);
+  scene.text(`You step out on the porch and greet Mira. She replies "Hi ${((s as any).pcs_nickname ?? '')}, I was really bored being all alone at home. Do you want to do something?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_gphouse', 'main'] },

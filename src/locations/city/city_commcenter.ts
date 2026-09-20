@@ -255,7 +255,7 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/industrial/community/secretary_class.jpg');
     // TODO-QSP: dynamic text: "Congratulations, <<$pcs_nickname>>. It seems that you''ve earned your certifica...
-    scene.text(`"Congratulations, ${((st as any).pcs_nickname || '')}. It seems that you've earned your certification," your instructor says.`);
+    scene.text(`"Congratulations, ${((st as any).pcs_nickname ?? '')}. It seems that you've earned your certification," your instructor says.`);
     scene.text('She pulls a document out of her briefcase, fills in your name and signs it before sending you to reception with it.');
     scene.text('With the receptionist\'s signature and the community center\'s seal, you are now officially qualified for secretary work!');
     scene.actions([

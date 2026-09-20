@@ -103,12 +103,12 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_booking_debt ?? 0)?.['pav_factory'] === 1) {
     scene.text('As you walk in, the foreman, Stepan Sergeyevich, waves you over to his desk. He looks up from his paperwork with a slight frown.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I noticed you missed your shift. We all have our off days, b...
-    scene.text(`"${((s as any).pcs_lastname || '')}, I noticed you missed your shift. We all have our off days, but this is a factory — the machines don't wait. Try not to let it happen again."`);
+    scene.text(`"${((s as any).pcs_lastname ?? '')}, I noticed you missed your shift. We all have our off days, but this is a factory — the machines don't wait. Try not to let it happen again."`);
   } else {
     if (((s as any).job_booking_debt ?? 0)?.['pav_factory'] === 2) {
       scene.text('The foreman is waiting for you as you walk in. His expression is stern, and he doesn\'t bother with pleasantries.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, this is the second time you''ve missed work. I warned you be...
-      scene.text(`"${((s as any).pcs_lastname || '')}, this is the second time you've missed work. I warned you before. One more absence and I'll have no choice but to let you go. The factory can't run with unreliable workers."`);
+      scene.text(`"${((s as any).pcs_lastname ?? '')}, this is the second time you've missed work. I warned you before. One more absence and I'll have no choice but to let you go. The factory can't run with unreliable workers."`);
       scene.text('He taps his pen on the desk, staring at you intently. "Do I make myself clear?"');
     }
   }
@@ -129,12 +129,12 @@ function enterFired(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_termination_reason ?? 0)?.['pav_factory'] === 'no_show') {
     scene.text('The foreman is standing behind his desk, arms crossed. He doesn\'t ask you to sit down.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I gave you fair warning — more than once. You''ve missed too...
-    scene.text(`"${((s as any).pcs_lastname || '')}, I gave you fair warning — more than once. You've missed too many shifts, and I can't keep making excuses for you to the management."`);
+    scene.text(`"${((s as any).pcs_lastname ?? '')}, I gave you fair warning — more than once. You've missed too many shifts, and I can't keep making excuses for you to the management."`);
     scene.text('He slides a form across the desk. "You\'re terminated, effective immediately. Your outstanding wages are forfeited, as per your contract. I\'m sorry it came to this."');
   } else {
     scene.text('The foreman calls you into his office. His tone is businesslike.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I''m afraid we have to let you go. It''s nothing personal — ...
-    scene.text(`"${((s as any).pcs_lastname || '')}, I'm afraid we have to let you go. It's nothing personal — just the way things are."`);
+    scene.text(`"${((s as any).pcs_lastname ?? '')}, I'm afraid we have to let you go. It's nothing personal — just the way things are."`);
   }
   qspCall(s, 'jobs', 'cleanup_job', 'pav_factory');
   // TODO-QSP: end
@@ -154,7 +154,7 @@ function enterScheduleChange(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/stepan/nachalnik.jpg');
   scene.text('As you walk into the factory, the foreman, Stepan Sergeyevich, intercepts you near the entrance. He\'s holding a clipboard and has a satisfied look on his face.');
   // TODO-QSP: dynamic text: "<<$pcs_lastname>>, just the person I wanted to see. Happy birthday — well, bela...
-  scene.text(`"${((s as any).pcs_lastname || '')}, just the person I wanted to see. Happy birthday — well, belated or otherwise." He glances at his clipboard. "According to our records, you're now eighteen, which means we can finally move you to the main shift."`);
+  scene.text(`"${((s as any).pcs_lastname ?? '')}, just the person I wanted to see. Happy birthday — well, belated or otherwise." He glances at his clipboard. "According to our records, you're now eighteen, which means we can finally move you to the main shift."`);
   // TODO-QSP: dynamic text: He leads you to the schedule board and taps the first line. "Starting now, you''...
   scene.text('He leads you to the schedule board and taps the first line. "Starting now, you\'ll be working the first shift — weekdays from 8:00 to 16:00. Full eight hours, full pay. The rate stays the same — <b>₽</b>150 per hour — but you\'ll be earning twice as much per day."');
   scene.text('"Don\'t be late," he adds with a slight grin, before heading back to his office.');

@@ -112,19 +112,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 20) {
                     // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. It sounds almost...
-                    scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. It sounds almost like he is saying "<b>Hello ${((s as any).pcs_nickname || '')}!</b>"`);
+                    scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. It sounds almost like he is saying "<b>Hello ${((s as any).pcs_nickname ?? '')}!</b>"`);
                   } else {
                     if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 30) {
                       // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is clearly sa...
-                      scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is clearly saying "<b>Hello ${((s as any).pcs_nickname || '')}!</b>"`);
+                      scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is clearly saying "<b>Hello ${((s as any).pcs_nickname ?? '')}!</b>"`);
                     } else {
                       if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 35) {
                         // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is saying "<b...
-                        scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>${((s as any).pcs_nickname || '')} very pretty!</b>"`);
+                        scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>${((s as any).pcs_nickname ?? '')} very pretty!</b>"`);
                       } else {
                         if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 40) {
                           // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is saying "<b...
-                          scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Great body, ${((s as any).pcs_nickname || '')}!</b>"`);
+                          scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Great body, ${((s as any).pcs_nickname ?? '')}!</b>"`);
                         } else {
                           if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 50) {
                             // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is saying "<b...
@@ -490,19 +490,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 20) {
                     // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. It sounds almost...
-                    scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. It sounds almost like he is saying "<b>Hello ${((s as any).pcs_nickname || '')}!</b>"`);
+                    scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. It sounds almost like he is saying "<b>Hello ${((s as any).pcs_nickname ?? '')}!</b>"`);
                   } else {
                     if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 30) {
                       // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is clearly sa...
-                      scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is clearly saying "<b>Hello ${((s as any).pcs_nickname || '')}!</b>"`);
+                      scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is clearly saying "<b>Hello ${((s as any).pcs_nickname ?? '')}!</b>"`);
                     } else {
                       if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 35) {
                         // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is saying "<b...
-                        scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>${((s as any).pcs_nickname || '')} very pretty!</b>"`);
+                        scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>${((s as any).pcs_nickname ?? '')} very pretty!</b>"`);
                       } else {
                         if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 40) {
                           // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is saying "<b...
-                          scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Great body, ${((s as any).pcs_nickname || '')}!</b>"`);
+                          scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Great body, ${((s as any).pcs_nickname ?? '')}!</b>"`);
                         } else {
                           if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 50) {
                             // TODO-QSP: dynamic text: When <<$ParrotQW[''Name2'']>> sees you, he starts ''speaking''. He is saying "<b...

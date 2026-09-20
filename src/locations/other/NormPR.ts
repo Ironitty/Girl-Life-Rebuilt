@@ -41,7 +41,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).loc = 'NormPR';
   (s as any).prosti = 0;
   qspCall(s, 'stat', '');
-  scene.img(`images/locations/shared/sex/car/sexcar${((s as any).picpRand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/car/sexcar${((s as any).picpRand ?? '')}.jpg`);
   (s as any).prostRand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).prostRand ?? 0) <= 50) {
     (s as any).picpRand = (Math.floor(Math.random() * 7) + 3);

@@ -17,7 +17,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
   scene.text('Since he doesn\'t notice any clear objections from you, captain Katalkin\'s groping grows bolder.');
   // TODO-QSP: dynamic text: His hands now ravage your body as he roughly squeezes your <<$titsize>> breasts ...
-  scene.text(`His hands now ravage your body as he roughly squeezes your ${((s as any).titsize || '')} breasts and pinches your nipples before he pulls you up and reaches behind you, pawing at your ass as he pulls your clothes to the side for better access.`);
+  scene.text(`His hands now ravage your body as he roughly squeezes your ${((s as any).titsize ?? '')} breasts and pinches your nipples before he pulls you up and reaches behind you, pawing at your ass as he pulls your clothes to the side for better access.`);
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([

@@ -390,7 +390,7 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
   if (((s as any).drugVars ?? 0)?.['heroin_whore'] > 0) {
     scene.text('"Bobka, please! You remember me, right? I\'m good for it, you can trust me!" you beg, but he gives you a wicked grin.');
     // TODO-QSP: dynamic text: "Come on, <<$pcs_nickname>>! You know I don''t do credit!" he snorts.
-    scene.text(`"Come on, ${((s as any).pcs_nickname || '')}! You know I don't do credit!" he snorts.`);
+    scene.text(`"Come on, ${((s as any).pcs_nickname ?? '')}! You know I don't do credit!" he snorts.`);
     qspCall(s, 'willpower', 'drugs', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -483,12 +483,12 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: bobrand: <<bobrand>>
-    scene.text(`bobrand: ${((st as any).bobrand || '')}`);
+    scene.text(`bobrand: ${((st as any).bobrand ?? '')}`);
     scene.text('<center><b>Local drug den</b></center>');
     scene.img('images/locations/city/residential/den/narkopriton.jpg');
     scene.text('You keep begging Bobka to give you some heroin as you follow him to an empty room.');
     // TODO-QSP: dynamic text: He just laughs at you. <<$bobtalk>>
-    scene.text(`He just laughs at you. ${((st as any).bobtalk || '')}`);
+    scene.text(`He just laughs at you. ${((st as any).bobtalk ?? '')}`);
     qspCall(st, 'willpower', 'bj', 'resist');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.actions([
@@ -508,7 +508,7 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((st as any).bobtext || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((st as any).bobtext ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: drugVars['heroin_whore'] += 1
     // TODO-QSP: gt 'city_bobka', bobrand
   } },
@@ -591,9 +591,9 @@ function enterDrugslut(s: GameState, scene: SceneBuilder): void {
     scene.text('You grab the syringe off the ground and use it without a second thought, injecting it into your arm with a shaky hand.');
     scene.text('He shakes his head, almost as if he is disappointed in you. "I reckon I\'m going to see you around more often! My name is Bobka. Who are you?"');
     // TODO-QSP: dynamic text: The drugs are quickly clouding your mind, and you barely register him talking. "...
-    scene.text(`The drugs are quickly clouding your mind, and you barely register him talking. "${((st as any).pcs_nickname || '')}…" you mutter softly.`);
+    scene.text(`The drugs are quickly clouding your mind, and you barely register him talking. "${((st as any).pcs_nickname ?? '')}…" you mutter softly.`);
     // TODO-QSP: dynamic text: He laughs. "I think we''ll be seeing more of you here, <<$pcs_nickname>>…"
-    scene.text(`He laughs. "I think we'll be seeing more of you here, ${((st as any).pcs_nickname || '')}…"`);
+    scene.text(`He laughs. "I think we'll be seeing more of you here, ${((st as any).pcs_nickname ?? '')}…"`);
     scene.text('When the fog in your mind clears, Bobka is gone and you\'re by yourself in the room.');
     qspCall(st, 'arousal', 'end');
     scene.actions([

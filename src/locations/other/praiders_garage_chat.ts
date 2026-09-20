@@ -29,7 +29,7 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well listen here then because I have a lot of proof that she\'s a lesbian. The biggest one is that she turned me down. She also hangs with Anushka all the time and I\'ve seen her throwing looks at her, not to mention how they act together. Last but not least, I\'ve heard that her mother was one of the biggest muff divers back in the days, that old whore."');
     scene.text('"She might be into girls, but I\'m pretty sure she\'s into guys as well," you reply while crossing your arms.');
     // TODO-QSP: dynamic text: "Trust me, <<$pcs_nickname>>. Just watch and you''ll see. She''s a dyke." He get...
-    scene.text(`"Trust me, ${((st as any).pcs_nickname || '')}. Just watch and you'll see. She's a dyke." He gets up and walks over to grab a beer before coming back.`);
+    scene.text(`"Trust me, ${((st as any).pcs_nickname ?? '')}. Just watch and you'll see. She's a dyke." He gets up and walks over to grab a beer before coming back.`);
     scene.actions([
       { label: 'Ask him some questions', goto: ['praiders_garage_chat', 'chat_radomir1'] },
     ]);
@@ -76,12 +76,12 @@ function enterChatRadomir(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'npc_relationship', 'modify', 'A154', 'like');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     if (((st as any).NikoVolkovQW ?? 0) >= 5  &&  ((st as any).gopnikbandQW ?? 0)?.['niko_present'] === 1) {
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((st as any).week || '')}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((st as any).week ?? '')}.jpg`);
       scene.text('Interested in his advances, you decide to return his flirting, turning to face him before placing your hand on his thigh. "Pretty, huh? So you\'re interested in me?"');
       scene.text('"I might be," Radomir replies. "You know, you remind me of a girl we had back at our last concert. She was a pretty girl that really knew how to follow instructions, and was very obedient. She was very smart, and I believe that you\'re smart too. Maybe we can spend a little time together after the show? You\'re far hotter than the other girls."');
       scene.text('He reaches up to run his hand through your hair. "I just love your hair," he says as his firm touch leaves your body feeling hot, which is only heightened by his compliments and the attention he\'s giving you. He then leans in close and you feel the heat of his breath across your neck as his hand slides up your thigh.');
       // TODO-QSP: dynamic text: The sensuous moment is then interrupted by Niko wrapping his arm around your sho...
-      scene.text(`The sensuous moment is then interrupted by Niko wrapping his arm around your shoulder before he drops down between you and Radomir. "Hey ${((st as any).pcs_nickname || '')}, you wouldn't be drinking without me, would you?"`);
+      scene.text(`The sensuous moment is then interrupted by Niko wrapping his arm around your shoulder before he drops down between you and Radomir. "Hey ${((st as any).pcs_nickname ?? '')}, you wouldn't be drinking without me, would you?"`);
       scene.text('You look back at Niko before replying. "Oh, I was just chatting about the band. It\'s good to see you."');
       scene.text('Niko leans in closer before giving you a kiss on the lips, making sure to let Radomir see. He then goes to get himself a drink. You wink at Radomir and proceed to ask him some questions.');
       qspCall(st, 'arousal', 'foreplay', 1, 'exhibitionism');
@@ -457,7 +457,7 @@ function enterChatAnushka1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     scene.text('You decide to ask about Valentin. "So tell me more about Val."');
     // TODO-QSP: dynamic text: "You''re looking a little tense, <<$pcs_nickname>>," Anushka says as she eyes yo...
-    scene.text(`"You're looking a little tense, ${((st as any).pcs_nickname || '')}," Anushka says as she eyes you up and down. She has a devious sparkle in her eyes that makes you worried about what her intentions are.`);
+    scene.text(`"You're looking a little tense, ${((st as any).pcs_nickname ?? '')}," Anushka says as she eyes you up and down. She has a devious sparkle in her eyes that makes you worried about what her intentions are.`);
     scene.text('"I\'m fine… What does that have to do with Val?"');
     scene.text('"I\'m just looking out for a friend," she says, her hand over her heart to show some sincerity. "You just look like you need some <i>fun</i> in your life… and I have just what you need!" She gestures over at Valentin, as if showing off a product. "For the low, low price of totally free, you can spread those legs and take a ride on the Val rocket!"');
     scene.text('You can\'t help but laugh at Anushka\'s showmanship, or lack of it. "What are you doing? Are you his pimp? Or was he just too scared to come ask me himself?"');
@@ -620,7 +620,7 @@ function enterChatValentin(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           // TODO-QSP: dynamic text: "Did you enjoy the music, <<$pcs_nickname>>?" Valentin eagerly asks.
-          scene.text(`"Did you enjoy the music, ${((s as any).pcs_nickname || '')}?" Valentin eagerly asks.`);
+          scene.text(`"Did you enjoy the music, ${((s as any).pcs_nickname ?? '')}?" Valentin eagerly asks.`);
           scene.text('You nod. "Yeah, you seem to have really improved since last time."');
           scene.text('"It\'s looking better and better. If we keep this up, we\'ve got a chance to make it big, at least on a national level." His eyes fill with pride.');
           scene.text('"You\'ll need to keep it up and play at more venues over in St. Petersburg. You\'ll never get discovered if you keep playing around here," you comment, trying to keep him leveled.');
@@ -680,7 +680,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     if (((st as any).npc_rel ?? 0)?.['A158'] < 60) {
       // TODO-QSP: dynamic text: He shakes his head. "Look, you seem like a nice girl <<$pcs_nickname>>, but we''...
-      scene.text(`He shakes his head. "Look, you seem like a nice girl ${((st as any).pcs_nickname || '')}, but we're not exactly friends. I'm not going to tell a friend's story to someone I barely know. If you want to know, then ask them."`);
+      scene.text(`He shakes his head. "Look, you seem like a nice girl ${((st as any).pcs_nickname ?? '')}, but we're not exactly friends. I'm not going to tell a friend's story to someone I barely know. If you want to know, then ask them."`);
       scene.text('"No one wants to talk about it…" you inform him.');
       scene.text('He shrugs and gets up. "Not my problem." He then walks off and you\'re soon engaged in a group discussion about something that happened at school.');
       scene.actions([
@@ -688,7 +688,7 @@ function enterChatValentin1(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: He sighs. "Look, it isn''t really my story to tell. You seem like a cool chick a...
-      scene.text(`He sighs. "Look, it isn't really my story to tell. You seem like a cool chick and all ${((st as any).pcs_nickname || '')}, but you should really ask them."`);
+      scene.text(`He sighs. "Look, it isn't really my story to tell. You seem like a cool chick and all ${((st as any).pcs_nickname ?? '')}, but you should really ask them."`);
       scene.text('You lean in close, putting on your charm. "You know no one wants to talk about it, so come on and tell me. I know you want to. Please?" you ask him sweetly.');
       scene.text('He glances at you and can\'t help but smile. "Okay fine, but you didn\'t hear it from me."');
       scene.text('You nod. "I promise."');
@@ -857,12 +857,12 @@ function enterChatArkadi(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big156.jpg');
   // TODO-QSP: dynamic text: You take a seat next to Arkadi as everyone spreads out. He seems pretty pumped a...
-  scene.text(`You take a seat next to Arkadi as everyone spreads out. He seems pretty pumped as you sit next to him - you think he might be on drugs. "I'm fucking buzzing, ${((s as any).pcs_nickname || '')}! I'm going to explode with energy!" He looks around as if he's looking for something or someone. Before you can initiate a conversation, he continues talking about how he needs to see a city friend that will hook him up with something. He's a little arrogant as you speak, rarely listening to what you have to say.`);
+  scene.text(`You take a seat next to Arkadi as everyone spreads out. He seems pretty pumped as you sit next to him - you think he might be on drugs. "I'm fucking buzzing, ${((s as any).pcs_nickname ?? '')}! I'm going to explode with energy!" He looks around as if he's looking for something or someone. Before you can initiate a conversation, he continues talking about how he needs to see a city friend that will hook him up with something. He's a little arrogant as you speak, rarely listening to what you have to say.`);
   ((s as any).gopnikbandQW = (s as any).gopnikbandQW ?? {})['arkob'] = 0;
   if (((s as any).gopnikbandQW ?? 0)?.['arkob'] === 1  &&  ((s as any).gopnikbandQW ?? 0)?.['roman_present'] === 1) {
     scene.text('"I notice you and Roman hanging out sometimes," you comment.');
     // TODO-QSP: dynamic text: "Yeah, he''s my brother in arms. No one likes to fight as much as that kid. I''m...
-    scene.text(`"Yeah, he's my brother in arms. No one likes to fight as much as that kid. I'm telling you ${((s as any).pcs_nickname || '')}, he would fit right in with the crowd I hung out with in the city. He's mean, he can fight and he can take a beating."`);
+    scene.text(`"Yeah, he's my brother in arms. No one likes to fight as much as that kid. I'm telling you ${((s as any).pcs_nickname ?? '')}, he would fit right in with the crowd I hung out with in the city. He's mean, he can fight and he can take a beating."`);
     scene.text('"The two of you fight or something?" you pry.');
     scene.text('"Yeah, he was really cocky when I was new in class, always clowning around trying to show off his \'feathers\'. I had it one day and told him to meet me outside after school and we would talk it out."');
     scene.actions([
@@ -893,7 +893,7 @@ function enterChatArkadi(s: GameState, scene: SceneBuilder): void {
       scene.text('"A cool dude who supplies me with what I need to work properly," he winks.');
       scene.text('"You mean alcohol and drugs?" you ask curiously, knowing Lavrenti has a reputation for always having both.');
       // TODO-QSP: dynamic text: "Listen here, <<$pcs_nickname>>," He grabs you by the arms. "I need that stuff t...
-      scene.text(`"Listen here, ${((s as any).pcs_nickname || '')}," He grabs you by the arms. "I need that stuff to function properly. There's nothing wrong with that…" He squeezes your arm even harder.`);
+      scene.text(`"Listen here, ${((s as any).pcs_nickname ?? '')}," He grabs you by the arms. "I need that stuff to function properly. There's nothing wrong with that…" He squeezes your arm even harder.`);
       scene.text('You shake your head. "No, no. Nothing wrong with that…"');
       scene.actions([
         { label: 'Ask him some questions', goto: ['praiders_garage_chat', 'chat_arkadi1'] },
@@ -1197,7 +1197,7 @@ function enterChatLenalera(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: "I can''t wait for their next gig. The last one was a blast. You remember it, Le...
-    scene.text(`"I can't wait for their next gig. The last one was a blast. You remember it, Lera?" Lena says and Lera nods, but before she can respond, Lena continues. "Pity you missed it, ${((s as any).pcs_nickname || '')}," she says in a slightly smug tone.`);
+    scene.text(`"I can't wait for their next gig. The last one was a blast. You remember it, Lera?" Lena says and Lera nods, but before she can respond, Lena continues. "Pity you missed it, ${((s as any).pcs_nickname ?? '')}," she says in a slightly smug tone.`);
     scene.text('You can only nod in response.');
     scene.actions([
       { label: 'Ask them some questions', goto: ['praiders_garage_chat', 'chat_lenalera1'] },
@@ -1584,7 +1584,7 @@ function enterChatRoman(s: GameState, scene: SceneBuilder): void {
   if (((s as any).gopnikbandQW ?? 0)?.['roman_chat'] === 1) {
     scene.img('images/characters/shared/headshots_main/big157.jpg');
     // TODO-QSP: dynamic text: Roman is ecstatic as you slide over to him. "You should''ve seen it, <<$pcs_nick...
-    scene.text(`Roman is ecstatic as you slide over to him. "You should've seen it, ${((s as any).pcs_nickname || '')}! That was one of the greatest moments in my life!"`);
+    scene.text(`Roman is ecstatic as you slide over to him. "You should've seen it, ${((s as any).pcs_nickname ?? '')}! That was one of the greatest moments in my life!"`);
     scene.text('"What happened?" Your eyes widen as you ask.');
     scene.text('"Well just before I got here, there was a guy following me. I didn\'t really know who it was, but he kept following me, so I hid and watched him pass by…" He takes a pause.');
     scene.text('"What happened after?" You\'re sitting on the edge as your eyes plead for him to continue.');
@@ -1682,7 +1682,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
     scene.text('"The music\'s okay. You can sit and listen to it, but that\'s about it. I don\'t mind hanging around here and going to their concerts because I might get lucky," he explains.');
     scene.text('"Do you think they can make it big?" you continue.');
     // TODO-QSP: dynamic text: "What''s with all these questions, <<$pcs_nickname>>? I don''t know and I don''t...
-    scene.text(`"What's with all these questions, ${((st as any).pcs_nickname || '')}? I don't know and I don't really care, okay?! So either change the subject or I'll shut you up with my cock!" He starts laughing.`);
+    scene.text(`"What's with all these questions, ${((st as any).pcs_nickname ?? '')}? I don't know and I don't really care, okay?! So either change the subject or I'll shut you up with my cock!" He starts laughing.`);
     scene.actions([
       { label: 'Hang out', handler: (st: GameState) => { qspGoto(st, 'praiders_garage', ((st as any).hangout_rand ?? '')); } },
     ]);
@@ -1694,7 +1694,7 @@ function enterChatRoman1(s: GameState, scene: SceneBuilder): void {
 function enterChatNiko(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NikoPayback ?? 0) > 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? '')}.jpg`);
     scene.text('As you approach Niko, he immediately notices you before placing his leg on the seat next to him. "Fuck off! We have nothing to talk about."');
     scene.actions([
       { label: 'Hang out', handler: (st: GameState) => { qspGoto(st, 'praiders_garage', ((st as any).hangout_rand ?? '')); } },
@@ -1730,7 +1730,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npc_relationship', 'modify', 'A189', 'like');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
+  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? '')}.jpg`);
   scene.text('Now you just have to decide what you want to ask. Since people are starting to leave, you might not have time to ask about much.');
   if (((s as any).gopnikbandQW ?? 0)?.['niko_talk_1'] === 0) {
     scene.actions([
@@ -1739,7 +1739,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).anushkaQW ?? 0)?.['rad_date'] === 0) {
       ((st as any).anushkaQW = (st as any).anushkaQW ?? {})['rad_date'] = 1;
     }
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
     scene.text('"What are your thoughts on Radomir?" you ask, curious about the man behind the vocals ');
     scene.text('"The guy can really carry his own around here, but don\'t let his big head intimidate you," Niko replies. "The guy thinks that rocking out with a guitar makes him a tough guy, but it doesn\'t. It just shows how weak he is. How much he worries about how others see him."');
     scene.text('You nod. "Thick headed, huh? It\'s said that fame can really get to your head, but what do you really know about him?"');
@@ -1782,7 +1782,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.text('You\'re unsure if his words are true. "Well, I\'m not really dating anyone right now, so we\'ll just have to see."');
             // TODO-QSP: dynamic text: Niko''s eyes glimmer with hope as his smile widens. "Simply considering is enoug...
-            scene.text(`Niko's eyes glimmer with hope as his smile widens. "Simply considering is enough to keep me hopeful. I can take very good care of you, ${((st as any).pcs_nickname || '')}. You need only place your trust in me."`);
+            scene.text(`Niko's eyes glimmer with hope as his smile widens. "Simply considering is enough to keep me hopeful. I can take very good care of you, ${((st as any).pcs_nickname ?? '')}. You need only place your trust in me."`);
             scene.text('You coyly smile back at him as you notice everyone else start standing up, signaling the end of the party.');
           }
         }
@@ -1798,7 +1798,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Valentin', handler: (st: GameState) => {
     ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['niko_talk_2'] = 1;
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
     scene.text('"What do you know about Valentin?" you ask.');
     scene.text('"Plays in the band, but seems to consider himself a guardian of the girls here when he isn\'t gushing over Nush."');
     scene.text('"Really?" you reply. Do you think he has a crush on her?"');
@@ -1820,7 +1820,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Arkadi', handler: (st: GameState) => {
     ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['niko_talk_3'] = 1;
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
     scene.text('Interested in learning more about Arkadi, you decide to ask Niko. "What are your thoughts on Arkadi?"');
     scene.text('"The guy can break someone\'s jaw with less effort then it would take him to count, but he always whines about how tough the city life is. I get it, the city is big, and it\'s easy for your life to get fucked up, but we aren\'t in the city, so I don\'t need to keep hearing about it."');
     scene.text('"That seems a bit hostile. Is there a story of yours in the city?" you respond.');
@@ -1843,7 +1843,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
       scene.text('"She fucks most of them. She even tries to seduce me, but I\'m happily taken."');
       scene.text('"I hope I\'m not having some competition?" you ask coyly.');
       // TODO-QSP: dynamic text: "There''s no beauty more refined than yours, <<$pcs_nickname>>," he seductively ...
-      scene.text(`"There's no beauty more refined than yours, ${((st as any).pcs_nickname || '')}," he seductively replies. "You have nothing to fear. My eyes are glued to you, and you alone."`);
+      scene.text(`"There's no beauty more refined than yours, ${((st as any).pcs_nickname ?? '')}," he seductively replies. "You have nothing to fear. My eyes are glued to you, and you alone."`);
     } else {
       scene.text('"She fucks most of them, but thinks she\'s too good for me. The cocky little bitch will learn eventually," he says as he angrily slams his beer on the table.');
     }
@@ -1857,7 +1857,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Alyona', handler: (st: GameState) => {
     ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['niko_talk_5'] = 1;
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
     scene.text('Noticing Alyona slamming down multiple beers, you curiously decide to ask Niko his opinion. "What\'s her problem?"');
     scene.text('Niko shrugs. "She has some fucked up shit going on at home, and takes it out on anyone that gets in her way."');
     scene.text('"I see…" you reply. "It must be pretty bad if she gets that upset."');
@@ -1899,7 +1899,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask about Lera', handler: (st: GameState) => {
     ((st as any).gopnikbandQW = (st as any).gopnikbandQW ?? {})['niko_talk_7'] = 1;
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
     scene.text('"So what\'s going on with Lera?" you ask. "I saw her earlier and she looked pissed."');
     scene.text('He shakes his head with a grin. "Who knows? When she isn\'t gripping Lena\'s tits, then she\'s moping around, snapping at anyone that tries to talk to her."');
     scene.text('"Some of the guys say that she\'s a lesbian, but that\'s just an exaggeration right?"');
@@ -1908,7 +1908,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     scene.text('"Simple, he replies. "She won\'t go out with me."');
     scene.text('You give him a sarcastic grin. "Is that all it takes to become a lesbian? Because we might have more lesbians in school than I thought."');
     // TODO-QSP: dynamic text: Niko makes an exaggerated emote of being stabbed in the head and falling over. "...
-    scene.text(`Niko makes an exaggerated emote of being stabbed in the head and falling over. "Oh, you wound me, ${((st as any).pcs_nickname || '')}! But in all honesty, she seems to be obsessed with Lena, and does does everything she wants to do, even if it means fucking the guys together."`);
+    scene.text(`Niko makes an exaggerated emote of being stabbed in the head and falling over. "Oh, you wound me, ${((st as any).pcs_nickname ?? '')}! But in all honesty, she seems to be obsessed with Lena, and does does everything she wants to do, even if it means fucking the guys together."`);
     scene.text('"Oh, so she sleeps with multiple guys?"');
     scene.text('Niko shakes his head. "Only when Lena is involved. She\'s full on lezzy, and it\'s pretty fucking lame."');
     scene.text('You give him a coy grin. "Not a fan of lesbians, huh?"');
@@ -1920,7 +1920,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
     if (((st as any).NikoVolkovQW ?? 0) >= 5) {
       scene.text('Noticing his demeanor rapidly changing, you coyly respond. "Am I really that special?"');
       // TODO-QSP: dynamic text: He brings his face closer to yours. "Of course you are, <<$pcs_firstname>>. Ther...
-      scene.text(`He brings his face closer to yours. "Of course you are, ${((st as any).pcs_firstname || '')}. There's no one more perfect than you, and no girl that I'd rather be with." He then gently grips your cheek before giving you a passionate kiss as the party around you begins to wrap up.`);
+      scene.text(`He brings his face closer to yours. "Of course you are, ${((st as any).pcs_firstname ?? '')}. There's no one more perfect than you, and no girl that I'd rather be with." He then gently grips your cheek before giving you a passionate kiss as the party around you begins to wrap up.`);
     } else {
       scene.text('Noticing his demeanor rapidly changing, you coyly respond. "Is that so?"');
       scene.text('He brings his face closer to yours. "Give me a chance and find out."');
@@ -2016,7 +2016,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
             scene.text('He remains silent for a few seconds before he responds. "He might be able to help us. He\'s a strong man who\'s feared in this town. If anyone can restore your reputation, it\'s him."');
             scene.text('"Don\'t put yourself in danger for me!" you exclaim, not wanting him to get mixed up with this terrifying man. "We can find another way to restore my reputation, we just need to work together."');
             // TODO-QSP: dynamic text: Niko slowly nods his head. "You''re probably right. I''m just weighing our optio...
-            scene.text(`Niko slowly nods his head. "You're probably right. I'm just weighing our options for now. Nothing's set in stone, but trust me ${((st as any).pcs_nickname || '')}, I <i>will</i> restore your reputation and make things right. I promise." He then leans over and gives you a soft kiss on the lips before handing you his beer to share.`);
+            scene.text(`Niko slowly nods his head. "You're probably right. I'm just weighing our options for now. Nothing's set in stone, but trust me ${((st as any).pcs_nickname ?? '')}, I <i>will</i> restore your reputation and make things right. I promise." He then leans over and gives you a soft kiss on the lips before handing you his beer to share.`);
           } else {
             scene.text('You\'re curious Niko\'s interest in this crime lord. "So what interest do you have in him exactly? Has he made you some kind of offer or something?"');
             scene.text('Niko quickly shakes his head. "No way! He\'s not interested in a small fry like me, but his connections can open so many doors to the right person. It\'s just really hard to get close to him."');
@@ -2068,7 +2068,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 if (((st as any).VK ?? 0) === 7) {
-                  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+                  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
                   scene.text('With seemingly nothing going on, you decide to talk to Niko. "This day is such a drag. Have you heard anything interesting?"');
                   scene.text('Niko nods. "Have you heard of the new night club opening up in the city?"');
                   scene.text('You shake your head. "No, can\'t say I have."');
@@ -2088,7 +2088,7 @@ function enterChatNiko1(s: GameState, scene: SceneBuilder): void {
                   scene.text('With Niko\'s comment seeming a bit out of character, you decide to press him a bit. "So you\'re into fashion now? Is there some secret life you\'re keeping from everyone here?"');
                   scene.text('He continues chuckling. "I\'m not going all faggy on you. I just saw some sick drips and wanted to get my hand on them. It\'s always good to look slick for a date. That\'s all I\'m saying." He then goes back to drinking his beer.');
                 } else {
-                  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+                  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
                   scene.text('With the day being so slow, you decide to make small talk. "What\'s the word around town?"');
                   scene.text('Niko shrugs. "Not much really. Today has been such a drag. I had to fight to keep myself awake during history class."');
                   scene.text('"Not a fan of history, huh?" you reply and he shakes his head.');

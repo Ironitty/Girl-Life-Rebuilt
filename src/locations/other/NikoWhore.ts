@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
+  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? '')}.jpg`);
   scene.text('Niko wraps his arm around your neck and leads you to the locker room. When you enter, he closes the door and takes a quick look around to see if anyone is present before he walks up behind you and whispers in your ear. "Take off your clothes."');
   scene.text('You obediently do as he asks and he collects your clothes and puts them in a bag. You can\'t help but feel nervous.');
   // TODO-QSP: end
@@ -37,7 +37,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/locker2.mp4');
     // TODO-QSP: dynamic text: You immediately understand what he wants and start sucking his dick, trying your...
-    scene.text(`You immediately understand what he wants and start sucking his dick, trying your best to please him as he looks down at you. "You're doing great ${((st as any).pcs_nickname || '')}, keep it up."`);
+    scene.text(`You immediately understand what he wants and start sucking his dick, trying your best to please him as he looks down at you. "You're doing great ${((st as any).pcs_nickname ?? '')}, keep it up."`);
     scene.text('His approval gives you a warm feeling in your heart.');
     scene.actions([
       { label: 'Make him cum', handler: (st: GameState) => {
@@ -79,7 +79,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/locker5.mp4');
     scene.text('You lower your head in submission and Dan quickly turns you around and unbuttons his pants before sliding his dick into your ass, causing a sharp pain to shoot through you. Dan wastes no time and starts fucking your ass, gradually picking up the pace. He continues fucking your ass when his phone starts ringing.');
     // TODO-QSP: dynamic text: He doesn''t stop fucking you as he answers his phone. "I can''t right now. I''m ...
-    scene.text(`He doesn't stop fucking you as he answers his phone. "I can't right now. I'm too busy fucking ${((st as any).pcs_nickname || '')}'s ass." Your eyes widen as Dan continues. "Yeah, I'm in the locker room. Sure, you can come."`);
+    scene.text(`He doesn't stop fucking you as he answers his phone. "I can't right now. I'm too busy fucking ${((st as any).pcs_nickname ?? '')}'s ass." Your eyes widen as Dan continues. "Yeah, I'm in the locker room. Sure, you can come."`);
     (st as any).orgasm_txt = '';
     qspCall(st, 'arousal', 'anal', 5, 'sub');
     qspCall(st, 'stat', '');
@@ -102,9 +102,9 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     if (((st as any).kotovLoveQW ?? 0) > 0) {
       (st as any).kotovLoveQW = (-1);
       // TODO-QSP: dynamic text: Vitek and Vasily enter the room and Vitek starts shouting. "What the fuck do you...
-      scene.text(`Vitek and Vasily enter the room and Vitek starts shouting. "What the fuck do you think you're doing? ${((st as any).pcs_firstname || '')} is mine!" Dan suddenly rams his dick deep into your ass, causing you to scream as he fills your ass with his cum. Vitek suddenly wraps his hand around Dan's throat. "Answer my fucking question! What are you doing fucking my girl?"`);
+      scene.text(`Vitek and Vasily enter the room and Vitek starts shouting. "What the fuck do you think you're doing? ${((st as any).pcs_firstname ?? '')} is mine!" Dan suddenly rams his dick deep into your ass, causing you to scream as he fills your ass with his cum. Vitek suddenly wraps his hand around Dan's throat. "Answer my fucking question! What are you doing fucking my girl?"`);
       // TODO-QSP: dynamic text: Dan chokes on his words as he tries to explain. "<<$pcs_firstname>> is a… whore ...
-      scene.text(`Dan chokes on his words as he tries to explain. "${((st as any).pcs_firstname || '')} is a… whore and I can… grr… prove it. Check this out…" Dan reaches into his pocket, pulls out his phone and taps the screen a few times. He holds his phone up so Vitek can see. A video plays where you hear sucking sounds, followed by a groan. You then hear yourself…`);
+      scene.text(`Dan chokes on his words as he tries to explain. "${((st as any).pcs_firstname ?? '')} is a… whore and I can… grr… prove it. Check this out…" Dan reaches into his pocket, pulls out his phone and taps the screen a few times. He holds his phone up so Vitek can see. A video plays where you hear sucking sounds, followed by a groan. You then hear yourself…`);
       scene.text('"I love you Nikolai! I love you with all my heart!" You realize that Dan must have recorded you sucking Niko\'s dick in the hallway after school. Vitek watches the video for a few more seconds before releasing Dan\'s throat and turning to you, his face seething with rage. "You fucking worthless whore!" He then lifts his hand and smacks you hard, knocking you to the ground before kicking a nearby garbage can in rage before Dan places his hand on his shoulder.');
       scene.text('"It\'s alright Vitek, you don\'t need her. You never did." Vitek takes a few seconds to calm himself before brushing Dan\'s hand off his shoulder as he unbuttons his pants. He walks up to you and pushes his dick against your lips.');
       scene.text('"What are you waiting for, whore? Start sucking." You meekly nod before wrapping your lips around his dick.');
@@ -136,19 +136,19 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
       scene.text('Vitek grabs your hair, forcing his dick down your throat as he fills your mouth with his cum. You swallow as much as you can before Vasily pulls your head up to his dick and cums on your face. You take a few seconds to catch your breath as you listen to them talk.');
       scene.text('"I told you she was a freak! She loves getting fucked. She was basically begging me to fuck her ass!" Dan laughs.');
       // TODO-QSP: dynamic text: "Come on guys, we already have Sonia. We don''t need <<$pcs_nickname>> too," Vas...
-      scene.text(`"Come on guys, we already have Sonia. We don't need ${((st as any).pcs_nickname || '')} too," Vasily responds.`);
+      scene.text(`"Come on guys, we already have Sonia. We don't need ${((st as any).pcs_nickname ?? '')} too," Vasily responds.`);
       scene.text('"She might be Sonia 2.0! It would be wrong for us <i>not</i> to show her off. Now is the perfect time too. I saw the teachers leaving the cafeteria while I was on my way here," Dan adds.');
       // TODO-QSP: dynamic text: "Sounds good to me. You hear that <<$pcs_nickname>>? You''re gonna get what a wh...
-      scene.text(`"Sounds good to me. You hear that ${((st as any).pcs_nickname || '')}? You're gonna get what a whore like you deserves. Now get up! You're coming with us!" Vitek says while roughly pulling you to your feet.`);
+      scene.text(`"Sounds good to me. You hear that ${((st as any).pcs_nickname ?? '')}? You're gonna get what a whore like you deserves. Now get up! You're coming with us!" Vitek says while roughly pulling you to your feet.`);
     } else {
       scene.text('Vitek grabs your hair, forcing his dick down your throat as he fills you throat with his cum. You swallow as much as you can before Vasily pulls your head to his dick then begins cumming on your face, covering your face in his warm cum. You take a few seconds catching your breath as you listen to them talk.');
       scene.text('"I told you she was a freak! She loves getting fucked. She was basically begging me to fuck her ass!" Dan laughs.');
       // TODO-QSP: dynamic text: "Come on guys, we already have Sonia. We don''t need <<$pcs_nickname>> too," Vas...
-      scene.text(`"Come on guys, we already have Sonia. We don't need ${((st as any).pcs_nickname || '')} too," Vasily responds.`);
+      scene.text(`"Come on guys, we already have Sonia. We don't need ${((st as any).pcs_nickname ?? '')} too," Vasily responds.`);
       scene.text('"She might be Sonia 2.0! It would be wrong for us <i>not</i> to show her off. Now is the perfect time too. The boys are still on the stairwell," Dan adds.');
       if (((st as any).pcs_hotcat ?? 0) >= 7  &&  ((st as any).pcs_bmi ?? 0) <= 25) {
         // TODO-QSP: dynamic text: "That sounds like a great idea. <<$pcs_nickname>> is much hotter than Sonia anyw...
-        scene.text(`"That sounds like a great idea. ${((st as any).pcs_nickname || '')} is much hotter than Sonia anyway. Let's do it," Vitek responds before pulling you to your feet. "You're coming with us."`);
+        scene.text(`"That sounds like a great idea. ${((st as any).pcs_nickname ?? '')} is much hotter than Sonia anyway. Let's do it," Vitek responds before pulling you to your feet. "You're coming with us."`);
       } else {
         scene.text('"That sounds like a great idea. She looks like an overgrown pig, but we can always fuck her from behind. Alright, let\'s do it," Vitek responds before pulling you to your feet. "You\'re coming with us."');
       }
@@ -167,9 +167,9 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/wos.jpg');
     scene.text('"Please don\'t! I\'ll do anything! Just let me go!" you plead before Vitek roughly pulls on your collar and starts walking you out of the locker room.');
     // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, you''ll get used to it. Imagine it, every boy i...
-    scene.text(`"Don't worry ${((st as any).pcs_nickname || '')}, you'll get used to it. Imagine it, every boy in school will be giving you a lot of attention. You'll be <i>very</i> popular!" Dan laughs.`);
+    scene.text(`"Don't worry ${((st as any).pcs_nickname ?? '')}, you'll get used to it. Imagine it, every boy in school will be giving you a lot of attention. You'll be <i>very</i> popular!" Dan laughs.`);
     // TODO-QSP: dynamic text: You look back at Vasily and he whispers in your ear. "I''m sorry <<$pcs_nickname...
-    scene.text(`You look back at Vasily and he whispers in your ear. "I'm sorry ${((st as any).pcs_nickname || '')}, but I can't help you. It's too late." He follows closely behind in silence.`);
+    scene.text(`You look back at Vasily and he whispers in your ear. "I'm sorry ${((st as any).pcs_nickname ?? '')}, but I can't help you. It's too late." He follows closely behind in silence.`);
     scene.actions([
       { label: 'Continue walking', handler: (st: GameState) => {
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (2);
@@ -178,7 +178,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('Your heart is pounding and tears stream down your eyes. You close your eyes, trying to wake up from this nightmare when you hear the sounds of chatting and laughter, informing you that you\'re passing the cafeteria.');
     if (((st as any).fedorKozlovQW ?? 0) > 1  ||  ((st as any).fedorKozlovQW ?? 0) < -10) {
       // TODO-QSP: dynamic text: You suddenly hear Fedor shouting. "What are you guys doing with <<$pcs_nickname>...
-      scene.text(`You suddenly hear Fedor shouting. "What are you guys doing with ${((st as any).pcs_nickname || '')}?" Dan laughs as he replies. "Didn't ${((st as any).pcs_nickname || '')} tell you? She wants to join Sonia as our fuck puppet." Fedor looks at you with concerning eyes. "They're lying, aren't they?"`);
+      scene.text(`You suddenly hear Fedor shouting. "What are you guys doing with ${((st as any).pcs_nickname ?? '')}?" Dan laughs as he replies. "Didn't ${((st as any).pcs_nickname ?? '')} tell you? She wants to join Sonia as our fuck puppet." Fedor looks at you with concerning eyes. "They're lying, aren't they?"`);
       if (((st as any).fedorKozlovQW ?? 0) < -10) {
         scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/Outcast/outcast2.jpg');
       } else {
@@ -194,20 +194,20 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/fedor.jpg');
     // TODO-QSP: dynamic text: You run to Fedor and jump into his arms as he stares into your eyes. "Don''t wor...
-    scene.text(`You run to Fedor and jump into his arms as he stares into your eyes. "Don't worry ${((st as any).pcs_nickname || '')}. I'll keep you safe."`);
+    scene.text(`You run to Fedor and jump into his arms as he stares into your eyes. "Don't worry ${((st as any).pcs_nickname ?? '')}. I'll keep you safe."`);
     scene.text('"Hey, she\'s ours now! Give her back!" Vitek shouts, but Fedor stands his ground.');
     scene.text('"No, she\'s mine!"');
     scene.text('Vitek walks up to him. "What did you say, punk?"');
     // TODO-QSP: dynamic text: Dan approaches them. "Hey, I''m sure that Fedor is just misunderstanding what''s...
-    scene.text(`Dan approaches them. "Hey, I'm sure that Fedor is just misunderstanding what's going on. Let me explain. ${((st as any).pcs_nickname || '')} has been a very naughty girl, fucking other students."`);
+    scene.text(`Dan approaches them. "Hey, I'm sure that Fedor is just misunderstanding what's going on. Let me explain. ${((st as any).pcs_nickname ?? '')} has been a very naughty girl, fucking other students."`);
     // TODO-QSP: dynamic text: Fedor is taken aback. "Bullshit! I know <<$pcs_nickname>> and she''s better than...
-    scene.text(`Fedor is taken aback. "Bullshit! I know ${((st as any).pcs_nickname || '')} and she's better than that."`);
+    scene.text(`Fedor is taken aback. "Bullshit! I know ${((st as any).pcs_nickname ?? '')} and she's better than that."`);
     scene.text('Dan snorts. "Oh really? Watch this and decide for yourself."');
     // TODO-QSP: dynamic text: He shows Fedor the video of you sucking off Niko and confessing your love to him...
-    scene.text(`He shows Fedor the video of you sucking off Niko and confessing your love to him. Fedor's face grows pale. "Why ${((st as any).pcs_nickname || '')}?… Why?"`);
+    scene.text(`He shows Fedor the video of you sucking off Niko and confessing your love to him. Fedor's face grows pale. "Why ${((st as any).pcs_nickname ?? '')}?… Why?"`);
     scene.text('You lower your head. "I…" You can\'t collect your words as Fedor clenches his fist.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, promise me right here and now, that you will never see Niko ...
-    scene.text(`"${((st as any).pcs_nickname || '')}, promise me right here and now, that you will never see Niko ever again!"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, promise me right here and now, that you will never see Niko ever again!"`);
     scene.actions([
       { label: 'I promise [<font color=#c600ff>Break up with Niko</font>]', handler: (st: GameState) => {
     (st as any).NikoBreakup = 1;
@@ -224,7 +224,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/characters/pavlovsk/school/boy/ivan/School/jocks.jpg');
       // TODO-QSP: dynamic text: Fedor suddenly pulls you behind him. "<<$pcs_nickname>> is not going with you an...
-      scene.text(`Fedor suddenly pulls you behind him. "${((st as any).pcs_nickname || '')} is not going with you and that's final!"`);
+      scene.text(`Fedor suddenly pulls you behind him. "${((st as any).pcs_nickname ?? '')} is not going with you and that's final!"`);
       scene.text('In response, Vitek rams his fist into Fedor\'s stomach, knocking him back and bringing him to his knees. You quickly sneak away as the gopniks surround Fedor. Shortly after, you hear someone shouting. "What the fuck is going on here?" You see Ivan and a few of the other jocks walking out of the cafeteria as Vitek shouts at them.');
       scene.text('"Get lost! This doesn\'t concern you."');
       scene.text('Ivan gets up in Vitek\'s face. "When you attack my friend, then it does concern me." The jocks surround the gopniks as Vitek looks around in silence before speaking.');
@@ -257,7 +257,7 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/wos.jpg');
     scene.text('Vitek grabs you by the hair. "You\'ve wasted enough of our time. Let\'s get moving."');
     // TODO-QSP: dynamic text: "It''s time to show you off <<$pcs_nickname>>. Aren''t you excited?" Dan asks as...
-    scene.text(`"It's time to show you off ${((st as any).pcs_nickname || '')}. Aren't you excited?" Dan asks as they walk you towards the stairwell.`);
+    scene.text(`"It's time to show you off ${((st as any).pcs_nickname ?? '')}. Aren't you excited?" Dan asks as they walk you towards the stairwell.`);
     qspCall(st, 'arousal', 'flash', 2, 'sub', 'humiliation', 'exhibitionism');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -281,14 +281,14 @@ function enterLockerRoom(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/fedor.jpg');
     // TODO-QSP: dynamic text: You run to Fedor and jump into his arms as he stares into your eyes. "Don''t wor...
-    scene.text(`You run to Fedor and jump into his arms as he stares into your eyes. "Don't worry ${((st as any).pcs_nickname || '')}. I'll keep you safe."`);
+    scene.text(`You run to Fedor and jump into his arms as he stares into your eyes. "Don't worry ${((st as any).pcs_nickname ?? '')}. I'll keep you safe."`);
     scene.text('"Hey, she\'s ours now! Give her back!" Vitek shouts, but Fedor stands his ground.');
     scene.text('"No, she\'s mine!"');
     scene.text('Vitek walks up to him. "What did you say, punk?"');
     // TODO-QSP: dynamic text: Dan approaches them. "Hey, I''m sure that Fedor is just misunderstanding what''s...
-    scene.text(`Dan approaches them. "Hey, I'm sure that Fedor is just misunderstanding what's going on. Let me explain. ${((st as any).pcs_nickname || '')} has been a very naughty girl, fucking other students."`);
+    scene.text(`Dan approaches them. "Hey, I'm sure that Fedor is just misunderstanding what's going on. Let me explain. ${((st as any).pcs_nickname ?? '')} has been a very naughty girl, fucking other students."`);
     // TODO-QSP: dynamic text: Fedor is taken aback. "Bullshit! I know <<$pcs_nickname>> and she''s better than...
-    scene.text(`Fedor is taken aback. "Bullshit! I know ${((st as any).pcs_nickname || '')} and she's better than that."`);
+    scene.text(`Fedor is taken aback. "Bullshit! I know ${((st as any).pcs_nickname ?? '')} and she's better than that."`);
     scene.text('Dan snorts. "Oh really? Watch this and decide for yourself."');
     scene.actions([
       { label: 'See what happens', handler: (st: GameState) => {
@@ -360,10 +360,10 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
   scene.text('Christina laughs. "You\'re both so stupid! I knew she was a fucking whore all along, you just have to look at how she acts. So weak and pathetic and eager to please any boy that paid any attention to her." You hear several of the other girls agree with her.');
   if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).pcs_bmi ?? 0) <= 25) {
     // TODO-QSP: dynamic text: "Fuck yeah! I''ve been wanting to fuck <<$pcs_nickname>> since I first saw her d...
-    scene.text(`"Fuck yeah! I've been wanting to fuck ${((s as any).pcs_nickname || '')} since I first saw her drop that chalk in math class!" Roman laughs.`);
+    scene.text(`"Fuck yeah! I've been wanting to fuck ${((s as any).pcs_nickname ?? '')} since I first saw her drop that chalk in math class!" Roman laughs.`);
   } else {
     // TODO-QSP: dynamic text: "I always thought about what it would be like to fuck <<$pcs_firstname>> since I...
-    scene.text(`"I always thought about what it would be like to fuck ${((s as any).pcs_firstname || '')} since I first saw her drop that chalk in math class. If only she wasn't so ugly…" Roman laughs.`);
+    scene.text(`"I always thought about what it would be like to fuck ${((s as any).pcs_firstname ?? '')} since I first saw her drop that chalk in math class. If only she wasn't so ugly…" Roman laughs.`);
   }
   scene.text('"So another girl turning into a slut…" Lizaveta says as she shakes her head. "Why do so many girls have no self respect? The boys are gonna love this." She takes out her phone and starts recording you.');
   // TODO-QSP: end
@@ -375,25 +375,25 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     scene.img(`${qspFunc(s, '$face_image', '')}`);
     if (((st as any).npc_grupTipe ?? 0)?.['A25'] === 5) {
       // TODO-QSP: dynamic text: You reach the stairwell, where Vitek pushes you forward. "Hey boys! Look who''s ...
-      scene.text(`You reach the stairwell, where Vitek pushes you forward. "Hey boys! Look who's decided to join Sonia as the school whore! ${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}!" he shouts out and the gopniks get noticeably excited as they start talking to each other.`);
+      scene.text(`You reach the stairwell, where Vitek pushes you forward. "Hey boys! Look who's decided to join Sonia as the school whore! ${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}!" he shouts out and the gopniks get noticeably excited as they start talking to each other.`);
       if (((st as any).pcs_hotcat ?? 0) > 6) {
         // TODO-QSP: dynamic text: "So <<$pcs_nickname>> decided to join the party? She looks good enough. Ever bee...
-        scene.text(`"So ${((st as any).pcs_nickname || '')} decided to join the party? She looks good enough. Ever been with a real man before?" Radomir asks with a grin.`);
+        scene.text(`"So ${((st as any).pcs_nickname ?? '')} decided to join the party? She looks good enough. Ever been with a real man before?" Radomir asks with a grin.`);
         scene.text('"She\'s better looking than Sonia, I\'ll give her that," Valentin adds.');
       } else {
         // TODO-QSP: dynamic text: "So <<$pcs_nickname>> decided to join the party? She''s always looked so trashy ...
-        scene.text(`"So ${((st as any).pcs_nickname || '')} decided to join the party? She's always looked so trashy though. Like one of those trailer park girls," Radomir says insultingly.`);
+        scene.text(`"So ${((st as any).pcs_nickname ?? '')} decided to join the party? She's always looked so trashy though. Like one of those trailer park girls," Radomir says insultingly.`);
         scene.text('"Yeah, I\'ve seen better looking bitches in the chess club," Valentin adds.');
       }
     } else {
       // TODO-QSP: dynamic text: You reach the stairwell, where Vitek pushes you forward. "Hey boys! Look who''s ...
-      scene.text(`You reach the stairwell, where Vitek pushes you forward. "Hey boys! Look who's decided to become the school whore! ${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}!" he shouts out and the gopniks get noticeably excited as they start talking to each other.`);
+      scene.text(`You reach the stairwell, where Vitek pushes you forward. "Hey boys! Look who's decided to become the school whore! ${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}!" he shouts out and the gopniks get noticeably excited as they start talking to each other.`);
       if (((st as any).pcs_hotcat ?? 0) >= 6) {
         // TODO-QSP: dynamic text: "So <<$pcs_nickname>> decided to join the party? She looks good enough. Ever bee...
-        scene.text(`"So ${((st as any).pcs_nickname || '')} decided to join the party? She looks good enough. Ever been with a real man before?" Radomir asks with a grin.`);
+        scene.text(`"So ${((st as any).pcs_nickname ?? '')} decided to join the party? She looks good enough. Ever been with a real man before?" Radomir asks with a grin.`);
       } else {
         // TODO-QSP: dynamic text: "So <<$pcs_nickname>> decided to join the party? She''s so fucking ugly I imagin...
-        scene.text(`"So ${((st as any).pcs_nickname || '')} decided to join the party? She's so fucking ugly I imagine the only way she can get any attention is to give it away to anyone willing to have a go," Radomir says insultingly.`);
+        scene.text(`"So ${((st as any).pcs_nickname ?? '')} decided to join the party? She's so fucking ugly I imagine the only way she can get any attention is to give it away to anyone willing to have a go," Radomir says insultingly.`);
         scene.text('"Yeah, I\'ve seen better looking bitches skulking around in the city alleyways," Valentin adds.');
       }
     }
@@ -415,7 +415,7 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big24.jpg');
     scene.text('Katyusha stands up and roughly shoves Dan. "Watch it or I\'ll make you eat something of your own."');
     // TODO-QSP: dynamic text: Dan puts his hands up and she walks up the stairs, seemingly to eat in peace. He...
-    scene.text(`Dan puts his hands up and she walks up the stairs, seemingly to eat in peace. He snickers once she walks away as Pauline pulls out her phone and starts recording you. "Don't worry ${((st as any).pcs_nickname || '')}, we'll make you a star… Now smile for the camera!" she says in a patronizing tone.`);
+    scene.text(`Dan puts his hands up and she walks up the stairs, seemingly to eat in peace. He snickers once she walks away as Pauline pulls out her phone and starts recording you. "Don't worry ${((st as any).pcs_nickname ?? '')}, we'll make you a star… Now smile for the camera!" she says in a patronizing tone.`);
     scene.actions([
       { label: 'Lower your head', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'flash', 3, 'sub', 'humiliation', 'exhibitionism');
@@ -430,7 +430,7 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/exposed1.jpg');
     // TODO-QSP: dynamic text: "Alright, let''s not keep everyone waiting. If <<$pcs_nickname>> wants some dick...
-    scene.text(`"Alright, let's not keep everyone waiting. If ${((st as any).pcs_nickname || '')} wants some dick, then let's get her some dick," she says before pushing you over to the boys, who quickly start fondling your body. You can feel yourself trembling as some of the boys run their hands across your body and Dan spanks your ass.`);
+    scene.text(`"Alright, let's not keep everyone waiting. If ${((st as any).pcs_nickname ?? '')} wants some dick, then let's get her some dick," she says before pushing you over to the boys, who quickly start fondling your body. You can feel yourself trembling as some of the boys run their hands across your body and Dan spanks your ass.`);
     scene.text('"Alright, who wants to fuck this slut?" he asks and your jaw opens in shock and your entire body trembles. Everything you had; your friends, your dignity and your reputation are now gone.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -439,7 +439,7 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_rel ?? 0)?.['A144'] >= 60) {
       scene.text('Anushka gets up and walks down the stairs. "Okay, that\'s enough! Show\'s over, get lost!"');
       // TODO-QSP: dynamic text: Roman steps up to her. "Fuck you bitch! Why do you care? Are you jealous of <<$p...
-      scene.text(`Roman steps up to her. "Fuck you bitch! Why do you care? Are you jealous of ${((st as any).pcs_nickname || '')}? Wish that you were in her place? I always knew you were a slut!"`);
+      scene.text(`Roman steps up to her. "Fuck you bitch! Why do you care? Are you jealous of ${((st as any).pcs_nickname ?? '')}? Wish that you were in her place? I always knew you were a slut!"`);
       scene.text('Anushka slaps him across the face, causing him to recoil back before immediately winding his hand back to slap her, but Valentin quickly grabs Roman by the wrist, stopping him while Arkadi speaks up.');
       scene.text('"Come on, back off man. There\'s no need for that."');
       scene.text('"Watch it. You\'re talking about our girl there," Radomir adds in a stern tone.');
@@ -521,7 +521,7 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_rel ?? 0)?.['A144'] >= 60) {
       scene.text('Anushka holds out her hand to you. "Come on, let\'s get out of here!"');
       // TODO-QSP: dynamic text: Dan walks in front of her. "Leave it, Nush. <<$pcs_nickname>> likes it. She want...
-      scene.text(`Dan walks in front of her. "Leave it, Nush. ${((st as any).pcs_nickname || '')} likes it. She wants to stay." He turns towards you. "Don't you, slut?"`);
+      scene.text(`Dan walks in front of her. "Leave it, Nush. ${((st as any).pcs_nickname ?? '')} likes it. She wants to stay." He turns towards you. "Don't you, slut?"`);
       qspCall(st, 'willpower', 'sex', 'resist', 'hard');
       if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
         scene.actions([
@@ -536,7 +536,7 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     // TODO-QSP: dynamic text: You stare at Anushka, too terrified to speak. "<<$pcs_nickname>>! Say something!...
-    scene.text(`You stare at Anushka, too terrified to speak. "${((st as any).pcs_nickname || '')}! Say something!"`);
+    scene.text(`You stare at Anushka, too terrified to speak. "${((st as any).pcs_nickname ?? '')}! Say something!"`);
     scene.text('You want to speak, but your body won\'t let you. Taking your silence as acceptance, Anushka just sighs in a defeated tone and gives you a look of pity as Dan laughs. "See, what did I tell you? Now stop being such a buzz kill and either join in or piss off!"');
     scene.text('"Fuck you, asshole!" she replies and Dan grins.');
     scene.text('"Anywhere, anytime sweet cheeks."');
@@ -568,7 +568,7 @@ function enterExposed(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big158.jpg');
     // TODO-QSP: dynamic text: You stare at Anushka, too terrified to speak. "<<$pcs_nickname>>! Say something!...
-    scene.text(`You stare at Anushka, too terrified to speak. "${((st as any).pcs_nickname || '')}! Say something!"`);
+    scene.text(`You stare at Anushka, too terrified to speak. "${((st as any).pcs_nickname ?? '')}! Say something!"`);
     scene.text('You want to speak, but your body won\'t let you. Taking your silence as acceptance, Anushka just sighs in a defeated tone and gives you a look of pity as Dan laughs. "See, what did I tell you? Now stop being such a buzz kill and either join in or piss off!"');
     scene.text('"Fuck you, asshole!" she replies and Dan grins.');
     scene.text('"Anywhere, any time, sweet cheeks."');
@@ -684,7 +684,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/stair1.mp4');
     // TODO-QSP: dynamic text: Radomir crawls out from under you and the other boys quickly approach you with t...
-    scene.text(`Radomir crawls out from under you and the other boys quickly approach you with their dicks in their hands. You obediently start sucking them one by one as you hear Lena sarcastically ask "Is that enough dick for you, ${((st as any).pcs_nickname || '')}? Or do you need more?"`);
+    scene.text(`Radomir crawls out from under you and the other boys quickly approach you with their dicks in their hands. You obediently start sucking them one by one as you hear Lena sarcastically ask "Is that enough dick for you, ${((st as any).pcs_nickname ?? '')}? Or do you need more?"`);
     scene.text('You try to ignore her as you continue sucking dick, doing your best not to leave anyone out. After a few seconds, Roman leans down to look you in the eyes. "You ready to ride my dick, bitch?"');
     scene.actions([
       { label: 'Meekly nod', handler: (st: GameState) => {
@@ -726,7 +726,7 @@ function enterNoEscape(s: GameState, scene: SceneBuilder): void {
     scene.text('Dan looks at him. "What? You passing up free pussy?"');
     scene.text('Radomir laughs. "I\'ve got standards man. I only fuck prime pussy, not some ugly slut like this." He shakes his head. "If I look at her much longer, I think I\'m going to lose my lunch." Several of the others laugh as Radomir walks off and Roman forces you to your knees.');
     // TODO-QSP: dynamic text: The other boys quickly approach you with their dicks in their hands and you obed...
-    scene.text(`The other boys quickly approach you with their dicks in their hands and you obediently start sucking them one by one as you hear Lena sarcastically ask "Is that enough dick for you, ${((s as any).pcs_nickname || '')}? Or do you need more?"`);
+    scene.text(`The other boys quickly approach you with their dicks in their hands and you obediently start sucking them one by one as you hear Lena sarcastically ask "Is that enough dick for you, ${((s as any).pcs_nickname ?? '')}? Or do you need more?"`);
     scene.text('You try to ignore her as you continue sucking dick, doing your best not to leave anyone out. After a few more seconds, Roman leans down to look you in the eyes. "You ready to ride my dick, bitch?"');
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(s, 'stat', '');
@@ -769,7 +769,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock2.mp4');
   // TODO-QSP: dynamic text: As soon as you reach the locker room, Dan shoves you into the crowd. Roman catch...
-  scene.text(`As soon as you reach the locker room, Dan shoves you into the crowd. Roman catches you and turns you around. You feel his dick entering your pussy and his pace begins increasing as he holds onto your waist, pushing you against his crotch. Roman leans forward and whispers in your ear. "How does my dick feel ${((s as any).pcs_nickname || '')}? Isn't it the biggest dick you've ever had?"`);
+  scene.text(`As soon as you reach the locker room, Dan shoves you into the crowd. Roman catches you and turns you around. You feel his dick entering your pussy and his pace begins increasing as he holds onto your waist, pushing you against his crotch. Roman leans forward and whispers in your ear. "How does my dick feel ${((s as any).pcs_nickname ?? '')}? Isn't it the biggest dick you've ever had?"`);
   (s as any).orgasm_txt = '';
   // TODO-QSP: end
   scene.actions([
@@ -777,7 +777,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     (st as any).inhib_exp = ((st as any).inhib_exp ?? 0) + (1);
     scene.img('images/shared/sex/cum/cum5.mp4');
     // TODO-QSP: dynamic text: You meekly nod, not wanting to upset him. After a few more seconds, Roman pulls ...
-    scene.text(`You meekly nod, not wanting to upset him. After a few more seconds, Roman pulls out of you and groans as he covers your back in his cum. He finishes by giving your ass a firm smack. "Damn ${((st as any).pcs_nickname || '')}, you have a tight pussy. We have to do this again sometime."`);
+    scene.text(`You meekly nod, not wanting to upset him. After a few more seconds, Roman pulls out of you and groans as he covers your back in his cum. He finishes by giving your ass a firm smack. "Damn ${((st as any).pcs_nickname ?? '')}, you have a tight pussy. We have to do this again sometime."`);
     scene.text('"Don\'t hog her to yourself!" Arkadi suddenly shouts out and Roman laughs as he pulls up his pants and pushes you toward the other boys, causing you to fall on your knees in front of them.');
     (st as any).orgasm_txt = '';
     qspCall(st, 'cum_call', 'back', 'A157', 1);
@@ -791,10 +791,10 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock3.mp4');
     scene.text('You wrap your lips around the first dick you see and use your hands to jerk off the others. Valentin brushes your hair out of your face. "That\'s a good girl. Just like that." You look up and he gives you an approving smile. You can hear some of the other gopniks talking about you.');
     // TODO-QSP: dynamic text: "I never thought that <<$pcs_nickname>> would end up being a whore. Did you?" Ar...
-    scene.text(`"I never thought that ${((st as any).pcs_nickname || '')} would end up being a whore. Did you?" Arkadi asks.`);
+    scene.text(`"I never thought that ${((st as any).pcs_nickname ?? '')} would end up being a whore. Did you?" Arkadi asks.`);
     scene.text('"Well all girls are sluts. Some are just better at hiding it," Radomir responds.');
     // TODO-QSP: dynamic text: "Come on guys, let''s not talk about <<$pcs_nickname>> like she isn''t here," La...
-    scene.text(`"Come on guys, let's not talk about ${((st as any).pcs_nickname || '')} like she isn't here," Lavrenti adds.`);
+    scene.text(`"Come on guys, let's not talk about ${((st as any).pcs_nickname ?? '')} like she isn't here," Lavrenti adds.`);
     scene.text('"Are you her boyfriend now? If you want to ask her out, she\'s right down there," Lena laughs.');
     scene.text('"You can give her a kiss, but you might want to use this to wipe off the cum first… Unless you\'re into that kind of thing," Lera adds and holds a tissue in front of him, which he swats away.');
     scene.text('"Shut it! That\'s not what I meant."');
@@ -817,10 +817,10 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Take his load', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/cum/facial5.mp4');
     // TODO-QSP: dynamic text: You quickly pull off Dan and drop to your knees as he covers your face in his cu...
-    scene.text(`You quickly pull off Dan and drop to your knees as he covers your face in his cum. Once he's finished, he pulls his pants up and smiles. "You're a nasty little slut, aren't you ${((st as any).pcs_nickname || '')}?" He then casually walks toward the door, turning to Vasily on the way. "You just gonna stand there? Go on, help yourself."`);
+    scene.text(`You quickly pull off Dan and drop to your knees as he covers your face in his cum. Once he's finished, he pulls his pants up and smiles. "You're a nasty little slut, aren't you ${((st as any).pcs_nickname ?? '')}?" He then casually walks toward the door, turning to Vasily on the way. "You just gonna stand there? Go on, help yourself."`);
     scene.text('Vasily lowers his head, obviously lost in thought before Lena approaches him. "Go on Shulga. What are you waiting for?"');
     // TODO-QSP: dynamic text: Lera stands right beside him. "Maybe he''s in love with our little whore? Is tha...
-    scene.text(`Lera stands right beside him. "Maybe he's in love with our little whore? Is that true Shulga? Do you loooovvve ${((st as any).pcs_nickname || '')}? Do you want her to have your babies?"`);
+    scene.text(`Lera stands right beside him. "Maybe he's in love with our little whore? Is that true Shulga? Do you loooovvve ${((st as any).pcs_nickname ?? '')}? Do you want her to have your babies?"`);
     scene.text('Vasily shakes his head before responding. "No, of course not. I could never love a whore!" He then quickly approaches you.');
     qspCall(st, 'cum_call', 'face', 'A10', 1);
     qspCall(st, 'stat', '');
@@ -828,7 +828,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Let Vasily fuck you', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock5.mp4');
     // TODO-QSP: dynamic text: Vasily spreads your legs and pushes his dick inside you, causing a wave of pleas...
-    scene.text(`Vasily spreads your legs and pushes his dick inside you, causing a wave of pleasure to shoot through you. He stares you in the eyes with a very sad look on his face. "I wish things ended up differently ${((st as any).pcs_nickname || '')}, but there's no turning back now," he softly whispers before he starts fucking you, his frown disappearing as he starts getting into it.`);
+    scene.text(`Vasily spreads your legs and pushes his dick inside you, causing a wave of pleasure to shoot through you. He stares you in the eyes with a very sad look on his face. "I wish things ended up differently ${((st as any).pcs_nickname ?? '')}, but there's no turning back now," he softly whispers before he starts fucking you, his frown disappearing as he starts getting into it.`);
     (st as any).orgasm_txt = '';
     qspCall(st, 'arousal', 'vaginal', 5, 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(st, 'stat', '');
@@ -836,7 +836,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Make Vasily cum', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/cum110.mp4');
     // TODO-QSP: dynamic text: You continue staring into Vasily''s eyes as you hear him groan. He pulls out of ...
-    scene.text(`You continue staring into Vasily's eyes as you hear him groan. He pulls out of you and shoots his cum over your chest as you instinctively stroke his cock. He takes a few seconds to catch his breath before whispering in your ear. "You're so beautiful ${((st as any).pcs_nickname || '')}. Too bad it had to come to this, but you'll get used to it."`);
+    scene.text(`You continue staring into Vasily's eyes as you hear him groan. He pulls out of you and shoots his cum over your chest as you instinctively stroke his cock. He takes a few seconds to catch his breath before whispering in your ear. "You're so beautiful ${((st as any).pcs_nickname ?? '')}. Too bad it had to come to this, but you'll get used to it."`);
     scene.text('He climbs off you and pulls his pants up, giving Vitek a high five before leaving the locker room. Vitek then lifts you up. "You better be ready bitch, because I\'m ready for seconds." He pushes you onto your knees and has you lube his dick before he shoves it into your ass.');
     (st as any).orgasm_txt = '';
     qspCall(st, 'cum_call', 'breasts', 'A11', 1);
@@ -861,7 +861,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/lock6.mp4');
     // TODO-QSP: dynamic text: Valentin walks up to you. "I guess I''m up. Don''t worry <<$pcs_nickname>>, I''l...
-    scene.text(`Valentin walks up to you. "I guess I'm up. Don't worry ${((st as any).pcs_nickname || '')}, I'll make this quick." He pushes his cock inside your pussy, causing a jolt of pain as your sore pussy is once again used. Valentin continuously rams his cock into your pussy, slamming the head of his dick against your g-spot. You don't have enough breath to moan, but with Valentin's rough thrusts, you can feel Vitek's cum leaking out of your ass as you hear Lera say "Damn, look at this dirty bitch leaking like an overfilled water balloon!"`);
+    scene.text(`Valentin walks up to you. "I guess I'm up. Don't worry ${((st as any).pcs_nickname ?? '')}, I'll make this quick." He pushes his cock inside your pussy, causing a jolt of pain as your sore pussy is once again used. Valentin continuously rams his cock into your pussy, slamming the head of his dick against your g-spot. You don't have enough breath to moan, but with Valentin's rough thrusts, you can feel Vitek's cum leaking out of your ass as you hear Lera say "Damn, look at this dirty bitch leaking like an overfilled water balloon!"`);
     scene.text('The girls giggle as Valentin pulls out of you. "Open your mouth, slut!"');
     (st as any).orgasm_txt = '';
     qspCall(st, 'arousal', 'vaginal', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang');
@@ -870,7 +870,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
       { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/shared/sex/cum/mouth/cum1,3.mp4');
     // TODO-QSP: dynamic text: You obediently open your mouth and Valentin grabs your head and holds it to his ...
-    scene.text(`You obediently open your mouth and Valentin grabs your head and holds it to his dick before jerking off. He shoots his load onto your tongue; the taste is horrible, but you know that you have no choice. After Valentin finishes, he gently brushes your cheek. "That's how you do it, ${((st as any).pcs_nickname || '')}." He then zips up his pants and walks out of the locker room, leaving you on the floor.`);
+    scene.text(`You obediently open your mouth and Valentin grabs your head and holds it to his dick before jerking off. He shoots his load onto your tongue; the taste is horrible, but you know that you have no choice. After Valentin finishes, he gently brushes your cheek. "That's how you do it, ${((st as any).pcs_nickname ?? '')}." He then zips up his pants and walks out of the locker room, leaving you on the floor.`);
     qspCall(st, 'cum_call', 'mouth_swallow', 'A158', 1);
     qspCall(st, 'arousal', 'bj', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(st, 'stat', '');
@@ -881,7 +881,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     scene.text('"And I\'ll be sure that the whole school remembers that you\'re nothing more than a filthy whore!" Lera adds.');
     scene.text('"Don\'t worry girls, I\'ll make sure that no one forgets," Pauline says as she continues to record you. She even pushes your ass cheeks apart to record the cum leaking out of it.');
     // TODO-QSP: dynamic text: Lena looks at you for a few seconds. "Would you boys like to fuck <<$pcs_nicknam...
-    scene.text(`Lena looks at you for a few seconds. "Would you boys like to fuck ${((st as any).pcs_nickname || '')} too?" She turns to the door where three underclass boys are peeking.`);
+    scene.text(`Lena looks at you for a few seconds. "Would you boys like to fuck ${((st as any).pcs_nickname ?? '')} too?" She turns to the door where three underclass boys are peeking.`);
     qspCall(st, 'arousal', 'flash', (-5), 'sub', 'exhibitionism', 'humiliation', 'gangbang');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -925,7 +925,7 @@ function enterLockerRoom2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('' + qspFunc(s, '$face_image', '') + '');
     // TODO-QSP: dynamic text: You can feel your consciousness fading in and out. You can hear some words, but ...
-    scene.text(`You can feel your consciousness fading in and out. You can hear some words, but they too seem to fade in and out… "You'll be a star, ${((st as any).pcs_nickname || '')}. An even bigger whore than Sonia."… "You look all tuckered out. Had a good time?…" "I think we broke our new toy already…" … "It looks like she passed out… Too much fun maybe."…`);
+    scene.text(`You can feel your consciousness fading in and out. You can hear some words, but they too seem to fade in and out… "You'll be a star, ${((st as any).pcs_nickname ?? '')}. An even bigger whore than Sonia."… "You look all tuckered out. Had a good time?…" "I think we broke our new toy already…" … "It looks like she passed out… Too much fun maybe."…`);
     scene.text('You hear footsteps as they leave the room and everything starts to fade until you hear… "How could they do this to her?"…"Oh wow, she looks… Sticky."…" This isn\'t the time for jokes, Vicky! We need to do something! We can\'t just leave her like this!" …');
     scene.actions([
       { label: '…', handler: (st: GameState) => {
@@ -989,7 +989,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/hallway/wos2.jpg');
     // TODO-QSP: dynamic text: One of the boys walks alongside you. "Hey <<$pcs_firstname>>, I saw the pictures...
-    scene.text(`One of the boys walks alongside you. "Hey ${((st as any).pcs_firstname || '')}, I saw the pictures. You have such a gorgeous body. Can I fuck it?"`);
+    scene.text(`One of the boys walks alongside you. "Hey ${((st as any).pcs_firstname ?? '')}, I saw the pictures. You have such a gorgeous body. Can I fuck it?"`);
     scene.text('Roman suddenly pushes him aside. "Don\'t listen to him. He doesn\'t know how to treat a babe as fine as yourself. Why don\'t you join me in the restroom where we can get to know each other better?"');
     scene.actions([
       { label: 'Accept his offer', handler: (st: GameState) => {
@@ -1015,7 +1015,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck Roman\'s balls', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/restroom/2.jpg');
     // TODO-QSP: dynamic text: You obediently start licking Roman''s balls before wrapping your lips around the...
-    scene.text(`You obediently start licking Roman's balls before wrapping your lips around them and sucking firmly. After a few seconds, he scoffs. "Easy ${((st as any).pcs_nickname || '')}, not so hard."`);
+    scene.text(`You obediently start licking Roman's balls before wrapping your lips around them and sucking firmly. After a few seconds, he scoffs. "Easy ${((st as any).pcs_nickname ?? '')}, not so hard."`);
     scene.text('You quickly stop before sucking again, but more gently this time.');
     qspCall(st, 'arousal', 'bj', (-5), 'sub');
     qspCall(st, 'arousal', 'end');
@@ -1041,7 +1041,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
       { label: 'Ride him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/restroom/6.jpg');
     // TODO-QSP: dynamic text: Even though the pain is quite severe, you do as he says, not wanting to disappoi...
-    scene.text(`Even though the pain is quite severe, you do as he says, not wanting to disappoint him. Feeling his dry dick grinding against your inner ass, you close your eyes and try to think of anything other than the pain. To your relief, you hear Roman groan and feel his warm cum filling your ass. You focus on it as he continues pumping you with his cum. Once he's finished, he pushes you off of him. "You were great, ${((st as any).pcs_nickname || '')}. We should do this again sometime."`);
+    scene.text(`Even though the pain is quite severe, you do as he says, not wanting to disappoint him. Feeling his dry dick grinding against your inner ass, you close your eyes and try to think of anything other than the pain. To your relief, you hear Roman groan and feel his warm cum filling your ass. You focus on it as he continues pumping you with his cum. Once he's finished, he pushes you off of him. "You were great, ${((st as any).pcs_nickname ?? '')}. We should do this again sometime."`);
     scene.text('He gives you a wink as he gets dressed before leaving you alone in the restroom. A few seconds later, you suddenly hear someone speaking. "There you are! I\'ve been looking all over for you."');
     qspCall(st, 'cum_call', 'anus', 'A189', 1);
     qspCall(st, 'arousal', 'anal', 5, 'sub');
@@ -1052,7 +1052,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/sad2.jpg');
     // TODO-QSP: dynamic text: You turn to see Niko standing over you. "I''ve been so worried about you! I hear...
-    scene.text(`You turn to see Niko standing over you. "I've been so worried about you! I heard what happened yesterday and I'm so sorry! Don't worry, you're safe with me ${((st as any).pcs_firstname || '')}." He then hugs you.`);
+    scene.text(`You turn to see Niko standing over you. "I've been so worried about you! I heard what happened yesterday and I'm so sorry! Don't worry, you're safe with me ${((st as any).pcs_firstname ?? '')}." He then hugs you.`);
     scene.actions([
       { label: 'Return the hug', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1081,7 +1081,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/cum/mouth/cum1.11.mp4');
     scene.text('You continue firmly sucking Niko\'s dick while staring into his eyes, enjoying the pleased look that he\'s giving you. His eyes suddenly squint as he groans, filling your mouth with his warm cum.');
     // TODO-QSP: dynamic text: Once he''s finished, you eagerly swallow it all, enjoying the warmth of it slidi...
-    scene.text(`Once he's finished, you eagerly swallow it all, enjoying the warmth of it sliding down your throat as he places his hand on your cheek and gently strokes it with his thumb. "You're so perfect, ${((st as any).pcs_firstname || '')}. I'm so lucky to have you and don't worry, I'll find a way to fix what happened yesterday. Meet me after school and we'll go out on a nice walk. We'll discuss what to do next then." He then kisses you on your forehead before zipping his pants up and leaving the restroom.`);
+    scene.text(`Once he's finished, you eagerly swallow it all, enjoying the warmth of it sliding down your throat as he places his hand on your cheek and gently strokes it with his thumb. "You're so perfect, ${((st as any).pcs_firstname ?? '')}. I'm so lucky to have you and don't worry, I'll find a way to fix what happened yesterday. Meet me after school and we'll go out on a nice walk. We'll discuss what to do next then." He then kisses you on your forehead before zipping his pants up and leaving the restroom.`);
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     qspCall(st, 'outfit', 'restore');
@@ -1099,7 +1099,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/sad2.jpg');
     scene.text('You pull away from him. "Where the fuck were you yesterday?!" you exclaim. "You left me cuffed on the floor and I was raped and humiliated!"');
     // TODO-QSP: dynamic text: He sighs. "I totally forgot <<$pcs_firstname>>, I''m sorry. I know that''s no ex...
-    scene.text(`He sighs. "I totally forgot ${((st as any).pcs_firstname || '')}, I'm sorry. I know that's no excuse, but we can make things better."`);
+    scene.text(`He sighs. "I totally forgot ${((st as any).pcs_firstname ?? '')}, I'm sorry. I know that's no excuse, but we can make things better."`);
     scene.text('"Make things better?!" you quickly shout back. "How the fuck can you make things better? Everyone thinks I\'m just a cheap whore now! I\'ve lost everything!"');
     scene.text('He smirks. "I know someone that can restore your reputation for you." You recoil in shock and he grins. "Let\'s talk about this at my place tonight."');
     scene.actions([
@@ -1110,7 +1110,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
     scene.text('You lower your posture. "Alright, what do I have to lose? I doubt things can get any worse."');
     // TODO-QSP: dynamic text: Niko wraps his arms around you and brings his face to yours. "Come on <<$pcs_fir...
-    scene.text(`Niko wraps his arms around you and brings his face to yours. "Come on ${((st as any).pcs_firstname || '')}. That attitude won't solve anything. Meet me after school and we'll work on fixing your reputation. Trust me and try to cheer up." You nod your head while giving him a warm smile.`);
+    scene.text(`Niko wraps his arms around you and brings his face to yours. "Come on ${((st as any).pcs_firstname ?? '')}. That attitude won't solve anything. Meet me after school and we'll work on fixing your reputation. Trust me and try to cheer up." You nod your head while giving him a warm smile.`);
     scene.actions([
       { label: 'Kiss him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1175,7 +1175,7 @@ function enterWalkOfShame(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/hallway/wos4.jpg');
     // TODO-QSP: dynamic text: You continue quickly walking through the hall as the students continue whisperin...
-    scene.text(`You continue quickly walking through the hall as the students continue whispering about you when you suddenly hear someone calling you out. "Hey ${((st as any).pcs_nickname || '')}, are you alright? I've been so worried about you!"`);
+    scene.text(`You continue quickly walking through the hall as the students continue whispering about you when you suddenly hear someone calling you out. "Hey ${((st as any).pcs_nickname ?? '')}, are you alright? I've been so worried about you!"`);
     scene.actions([
       { label: 'Look up', goto: ['NikoWhore', 'Walk Of Shame 2'] },
     ]);
@@ -1190,7 +1190,7 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
   (s as any).location_type = 'public_indoors';
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
+  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? '')}.jpg`);
   scene.text('You look up to see Niko with a very distressed look on his face. "Please tell me you\'re okay."');
   scene.text('You take a few seconds to collect your thoughts before responding. "I… I\'m scared Niko. I don\'t think things will ever be normal for me again. I\'m just a whore to everyone. What do I do Niko? What do I do?"');
   scene.text('Tears are streaming down your face as Niko holds you in his arms. "I\'m sorry about what happened to you. I wish I was there to prevent it, but I\'ll always be here for you when you need me. Remember that. I will always be here for you." You start weeping in his arms as he holds you tighter.');
@@ -1209,7 +1209,7 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
     scene.text('You tighten your arms around Niko as he firmly kisses your neck. "Everything will be alright. I\'ll find a way to fix this, just follow my lead and everything will be alright, okay?"');
     scene.text('"I\'ll do whatever you say Nikolai, just please stay with me. I need you now more than ever."');
     // TODO-QSP: dynamic text: He smiles softly. "Don''t worry <<$pcs_firstname>>, I''m not going anywhere. Now...
-    scene.text(`He smiles softly. "Don't worry ${((st as any).pcs_firstname || '')}, I'm not going anywhere. Now let's get you to class."`);
+    scene.text(`He smiles softly. "Don't worry ${((st as any).pcs_firstname ?? '')}, I'm not going anywhere. Now let's get you to class."`);
     scene.actions([
       { label: 'Go to class', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -1221,10 +1221,10 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
     { label: 'Push him away', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     qspCall(st, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week || '')}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((st as any).week ?? '')}.jpg`);
     scene.text('You pull away from him. "Where the fuck were you yesterday?!" you exclaim. "You left me cuffed on the floor and I was raped and humiliated!"');
     // TODO-QSP: dynamic text: He sighs. "I totally forgot <<$pcs_firstname>>, I''m sorry. I know that''s no ex...
-    scene.text(`He sighs. "I totally forgot ${((st as any).pcs_firstname || '')}, I'm sorry. I know that's no excuse, but we can make things better."`);
+    scene.text(`He sighs. "I totally forgot ${((st as any).pcs_firstname ?? '')}, I'm sorry. I know that's no excuse, but we can make things better."`);
     scene.text('"Make things better?" you quickly shout back. "How the fuck can you make things better? Everyone thinks I\'m just a cheap whore now! I\'ve lost everything!"');
     scene.text('He smirks. "I know someone that can restore your reputation for you." You recoil in shock and he grins. "Let\'s talk about this at my place tonight."');
     scene.actions([
@@ -1234,7 +1234,7 @@ function enterWalkOfShame2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
     scene.text('You lower your posture. "Alright, what do I have to lose? I doubt things can get any worst."');
     // TODO-QSP: dynamic text: Niko wraps his arms around you and brings his face to yours before responding. "...
-    scene.text(`Niko wraps his arms around you and brings his face to yours before responding. "Come on ${((st as any).pcs_firstname || '')}. That attitude won't solve anything. Meet me after school and we'll work on fixing your reputation. Trust me and try to cheer up." You nod your head while giving him a warm smile.`);
+    scene.text(`Niko wraps his arms around you and brings his face to yours before responding. "Come on ${((st as any).pcs_firstname ?? '')}. That attitude won't solve anything. Meet me after school and we'll work on fixing your reputation. Trust me and try to cheer up." You nod your head while giving him a warm smile.`);
     scene.actions([
       { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(st, 'stat', '');

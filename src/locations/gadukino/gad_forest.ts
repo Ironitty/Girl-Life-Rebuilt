@@ -74,7 +74,7 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
   if ((! qspFunc(s, 'miroslava_schedule', 'is_here'))  &&  qspFunc(s, 'miroslava_schedule', 'was_here')) {
     qspCall(s, 'miroslava', 'miraclothes');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I''m going to head home now, but we can hang out again later...
-    scene.text(`"${((s as any).pcs_nickname || '')}, I'm going to head home now, but we can hang out again later," Mira said as she began walking out of the forest.`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}, I'm going to head home now, but we can hang out again later," Mira said as she began walking out of the forest.`);
     scene.actions([
       { label: 'Convince her to stay with you', handler: (st: GameState) => {
     ((st as any).MiraVars = (st as any).MiraVars ?? {})['follower'] = 1;
@@ -184,11 +184,11 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((!((st as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
     if (((st as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
+      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
     }
     scene.text('You remove your sack and change back into your regular clothes.');
     scene.actions([
@@ -242,11 +242,11 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((!((st as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
     if (((st as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
+      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
     }
     scene.text('You decide to change back into your clothes rather than try to get home through the village naked.');
     scene.actions([
@@ -307,11 +307,11 @@ function enterForestEdge(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'clothing', 'wear', 'gm_outfits', 2);
       if ((!((st as any).PCloSkirt ?? 0))) {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
       }
       if (((st as any).PCloSkirt ?? 0) > 0) {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-        scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
+        scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
       }
       scene.text('You begin to panic a little. You have nowhere to go and no one to help you. You are stuck naked in the woods.');
       scene.text('As you look around frantically, you spot a sweatshirt someone must have lost. You quickly put it on, thinking about how lucky you are.');
@@ -614,11 +614,11 @@ function enterStripping(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((!((st as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
     if (((st as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
+      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
     }
     scene.text('You quickly get undressed, leaving your clothes in a neat pile on the ground.');
     if (((st as any).forest_args1 ?? 0) === 'gad_swamp_woods') {
@@ -650,11 +650,11 @@ function enterDressing(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((!((st as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
     if (((st as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
+      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
     }
     scene.text('You change back into your clothes.');
     if (((st as any).forest_args1 ?? 0) === 'gad_swamp_woods') {
@@ -679,11 +679,11 @@ function enterDressing(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if ((!((st as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
     if (((st as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
+      scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/nudeforest1.\'+rand(1, 2)+\'.jpg"></center>');
     }
     scene.text('You wear your abandoned clothing and get rid of the hessian sack the hunters gave you.');
     if (((st as any).forest_args1 ?? 0) === 'gad_swamp_woods') {
@@ -747,11 +747,11 @@ function enterWalking(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((st as any).clothingworntype ?? 0) !== 'nude') {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miraforest'+rand...
-          scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/characters/gadukino/mira/miraforest\'+rand(1, 3)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/characters/gadukino/mira/miraforest\'+rand(1, 3)+\'.jpg"></center>');
         }
         if (((st as any).clothingworntype ?? 0) === 'nude') {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miraforest_nude'...
-          scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/characters/gadukino/mira/miraforest_nude\'+rand(1, 3)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/characters/gadukino/mira/miraforest_nude\'+rand(1, 3)+\'.jpg"></center>');
         }
         scene.text('You spend an hour walking with Mira through the woods, chatting and enjoying the sounds of the forest and the fresh air.');
       }
@@ -781,19 +781,19 @@ function enterWalking(s: GameState, scene: SceneBuilder): void {
       if (((st as any).month ?? 0) >= 4  &&  ((st as any).month ?? 0) <= 10) {
         if ((((st as any).clothingworntype ?? 0) !== 'nude'  &&  ((st as any).PSwim ?? 0) === 0)  &&  (!((st as any).PCloSkirt ?? 0))) {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest0.'+ra...
-          scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/gulforest0.\'+rand(1, 2)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/gulforest0.\'+rand(1, 2)+\'.jpg"></center>');
         }
         if ((((st as any).clothingworntype ?? 0) !== 'nude'  &&  ((st as any).PSwim ?? 0) === 0)  &&  ((st as any).pantyworntype ?? 0) !== 'none'  &&  ((st as any).PCloSkirt ?? 0) > 0) {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest1.'+ra...
-          scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/gulforest1.\'+rand(1, 3)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/gulforest1.\'+rand(1, 3)+\'.jpg"></center>');
         }
         if ((((st as any).clothingworntype ?? 0) !== 'nude'  &&  ((st as any).PSwim ?? 0) === 0)  &&  ((st as any).pantyworntype ?? 0) === 'none'  &&  ((st as any).PCloSkirt ?? 0) > 0) {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest_tanga...
-          scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/gulforest_tanga0.\'+rand(1, 2)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/gulforest_tanga0.\'+rand(1, 2)+\'.jpg"></center>');
         }
         if (((st as any).clothingworntype ?? 0) === 'nude') {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest_nude0...
-          scene.text('<center><img ' + ((st as any).set_imgh || '') + ' src="images/locations/gadukino/forest/gulforest_nude0.\'+rand(1, 4)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((st as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/gulforest_nude0.\'+rand(1, 4)+\'.jpg"></center>');
         }
         scene.text('You spend an hour walking through the woods, enjoying the sounds of the forest and the fresh air.');
       } else {
@@ -871,7 +871,7 @@ function enterPicking(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
         // TODO-QSP: dynamic text: After searching for mushrooms and berries for half an hour, you found <<new_bole...
-        scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus || '')} kg of mushrooms and ${((s as any).new_bilberry || '')} kg of berries.`);
+        scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus ?? '')} kg of mushrooms and ${((s as any).new_bilberry ?? '')} kg of berries.`);
       } else {
         if (((s as any).mushroom_pickers ?? 0) === ((s as any).mushroom_pickers_check ?? 0)) {
           (s as any).new_boletus = ((s as any).new_boletus ?? 0) + (0);
@@ -884,21 +884,21 @@ function enterPicking(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
             // TODO-QSP: dynamic text: After searching for mushrooms and berries for half an hour, you found <<new_bole...
-            scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus || '')} kg of mushrooms and ${((s as any).new_bilberry || '')} kg of berries.`);
+            scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus ?? '')} kg of mushrooms and ${((s as any).new_bilberry ?? '')} kg of berries.`);
           } else {
             if (((s as any).new_boletus ?? 0) === 0  &&  ((s as any).new_bilberry ?? 0) > 0) {
               qspCall(s, 'mood', 'raise', 'tiny');
               qspCall(s, 'stat', '');
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'berry']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
               // TODO-QSP: dynamic text: After searching for mushrooms and berries for half an hour, you found <<new_bilb...
-              scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_bilberry || '')} kg of berries.`);
+              scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_bilberry ?? '')} kg of berries.`);
             } else {
               if (((s as any).new_boletus ?? 0) > 0  &&  (!((s as any).new_bilberry ?? 0))) {
                 qspCall(s, 'mood', 'raise', 'tiny');
                 qspCall(s, 'stat', '');
                 { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).forest_args1 ?? 0), 'mushroom']; enterPickingClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
                 // TODO-QSP: dynamic text: After searching for mushrooms and berries for half an hour, you found <<new_bole...
-                scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus || '')} kg of mushrooms.`);
+                scene.text(`After searching for mushrooms and berries for half an hour, you found ${((s as any).new_boletus ?? '')} kg of mushrooms.`);
               } else {
                 if (((s as any).new_boletus ?? 0) === 0  &&  (!((s as any).new_bilberry ?? 0))) {
                   qspCall(s, 'mood', 'lower', 'tiny');
@@ -937,28 +937,28 @@ function enterPickingClothes(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  Number((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
       if (((s as any).clothingworntype ?? 0) !== 'nude') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom'+ra...
-        scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/characters/gadukino/mira/miramushroom\'+rand(1, 2)+\'.jpg"></center>');
+        scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/characters/gadukino/mira/miramushroom\'+rand(1, 2)+\'.jpg"></center>');
       }
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom_nud...
-        scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/characters/gadukino/mira/miramushroom_nude\'+rand(1, 2)+\'.jpg"></center>');
+        scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/characters/gadukino/mira/miramushroom_nude\'+rand(1, 2)+\'.jpg"></center>');
       }
     } else {
       if (((s as any).clothingworntype ?? 0) === 'nude') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom4.'+ran...
-        scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/gadukino/forest/mushroom4.\'+rand(1, 3)+\'.jpg"></center>');
+        scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/mushroom4.\'+rand(1, 3)+\'.jpg"></center>');
       }
       if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom1.jpg">...
-        scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/mushroom1.jpg"></center>`);
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/mushroom1.jpg"></center>`);
       }
       if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom2.jpg">...
-        scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/mushroom2.jpg"></center>`);
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/mushroom2.jpg"></center>`);
       }
       if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom3.jpg">...
-        scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/mushroom3.jpg"></center>`);
+        scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/mushroom3.jpg"></center>`);
       }
     }
   } else {
@@ -966,28 +966,28 @@ function enterPickingClothes(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  Number((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
         if (((s as any).clothingworntype ?? 0) !== 'nude') {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom'+ra...
-          scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/characters/gadukino/mira/miramushroom\'+rand(1, 2)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/characters/gadukino/mira/miramushroom\'+rand(1, 2)+\'.jpg"></center>');
         }
         if (((s as any).clothingworntype ?? 0) === 'nude') {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom_nud...
-          scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/characters/gadukino/mira/miramushroom_nude\'+rand(1, 2)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/characters/gadukino/mira/miramushroom_nude\'+rand(1, 2)+\'.jpg"></center>');
         }
       } else {
         if (((s as any).clothingworntype ?? 0) === 'nude') {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/mushroom4.'+ran...
-          scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/gadukino/forest/mushroom4.\'+rand(1, 3)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/mushroom4.\'+rand(1, 3)+\'.jpg"></center>');
         }
         if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/blueberry_picki...
-          scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/gadukino/forest/blueberry_picking_\'+rand(3, 6)+\'.jpg"></center>');
+          scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/blueberry_picking_\'+rand(3, 6)+\'.jpg"></center>');
         }
         if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/blueberry_picki...
-          scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/blueberry_picking_2.jpg"></center>`);
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/blueberry_picking_2.jpg"></center>`);
         }
         if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
           // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/blueberry_picki...
-          scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/blueberry_picking_1.jpg"></center>`);
+          scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/blueberry_picking_1.jpg"></center>`);
         }
       }
     }
@@ -1000,28 +1000,28 @@ function enterPickingClothesEmpty(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'miroslava_schedule', 'is_here')  &&  Number((s as any).locArgs?.[1] ?? 0) === 'forest_edge') {
     if (((s as any).clothingworntype ?? 0) !== 'nude') {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom3.jp...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/gadukino/mira/miramushroom3.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/miramushroom3.jpg"></center>`);
     }
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/gadukino/mira/miramushroom_nud...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/gadukino/mira/miramushroom_nude3.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/characters/gadukino/mira/miramushroom_nude3.jpg"></center>`);
     }
   } else {
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  (!((s as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest2.jpg"...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/gulforest2.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/gulforest2.jpg"></center>`);
     }
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest3.jpg"...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/gulforest3.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/gadukino/forest/gulforest3.jpg"></center>`);
     }
     if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest_tanga...
-      scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/gadukino/forest/gulforest_tanga1.\'+rand(1, 2)+\'.jpg"></center>');
+      scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/gulforest_tanga1.\'+rand(1, 2)+\'.jpg"></center>');
     }
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/gulforest_nude1...
-      scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/locations/gadukino/forest/gulforest_nude1.\'+rand(1, 4)+\'.jpg"></center>');
+      scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/locations/gadukino/forest/gulforest_nude1.\'+rand(1, 4)+\'.jpg"></center>');
     }
   }
   // TODO-QSP: end

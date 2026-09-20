@@ -71,7 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'miroslava', 'miraclothes');
     scene.text('You went out into the yard and noticed Mira standing there.');
     // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, hi. I hope you don''t mind me visiting. I was bored bein...
-    scene.text(`"Oh, ${((s as any).pcs_nickname || '')}, hi. I hope you don't mind me visiting. I was bored being home alone," she said, smiling.`);
+    scene.text(`"Oh, ${((s as any).pcs_nickname ?? '')}, hi. I hope you don't mind me visiting. I was bored being home alone," she said, smiling.`);
     ((s as any).MiraVars = (s as any).MiraVars ?? {})['guestday'] = ((s as any).daystart ?? 0);
     ((s as any).MiraVars = (s as any).MiraVars ?? {})['guest'] = 1;
     qspCall(s, 'stat', '');
@@ -154,7 +154,7 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: $temp_text += '.'
     // TODO-QSP: dynamic text: <<$temp_text>>
-    scene.text(`${((s as any).temp_text || '')}`);
+    scene.text(`${((s as any).temp_text ?? '')}`);
   }
   if (((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) >= 20) {
     scene.text('You can\'t store anymore mushrooms and berries.');
@@ -164,7 +164,7 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).fish_stored ?? 0) > 0) {
     // TODO-QSP: dynamic text: You currently are storing <b><<fish_stored>></b> kg of preserved fish.
-    scene.text(`You currently are storing <b>${((s as any).fish_stored || '')}</b> kg of preserved fish.`);
+    scene.text(`You currently are storing <b>${((s as any).fish_stored ?? '')}</b> kg of preserved fish.`);
   }
   if (((s as any).fish_stored ?? 0) >= 10) {
     scene.text('You can\'t store anymore preserved fish.');
@@ -183,15 +183,15 @@ function enterRootCellar(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).boletus ?? 0) > 0) {
     // TODO-QSP: dynamic text: You currently are carrying <b><<boletus>></b> kg of raw mushrooms.
-    scene.text(`You currently are carrying <b>${((s as any).boletus || '')}</b> kg of raw mushrooms.`);
+    scene.text(`You currently are carrying <b>${((s as any).boletus ?? '')}</b> kg of raw mushrooms.`);
   }
   if (((s as any).boletus_cooked ?? 0) > 0) {
     // TODO-QSP: dynamic text: You currently are carrying <b><<boletus_cooked>></b> kg of cooked mushrooms.
-    scene.text(`You currently are carrying <b>${((s as any).boletus_cooked || '')}</b> kg of cooked mushrooms.`);
+    scene.text(`You currently are carrying <b>${((s as any).boletus_cooked ?? '')}</b> kg of cooked mushrooms.`);
   }
   if (((s as any).bilberry ?? 0) > 0) {
     // TODO-QSP: dynamic text: You currently are carrying <b><<bilberry>></b> kg of raw berries.
-    scene.text(`You currently are carrying <b>${((s as any).bilberry || '')}</b> kg of raw berries.`);
+    scene.text(`You currently are carrying <b>${((s as any).bilberry ?? '')}</b> kg of raw berries.`);
   }
   if ((((s as any).boletus_stored ?? 0) + ((s as any).bilberry_stored ?? 0) < 20)  &&  (((s as any).boletus ?? 0) > 0  ||  ((s as any).bilberry ?? 0) > 0)) {
     if (((s as any).boletus ?? 0) > 0) {

@@ -1363,7 +1363,7 @@ function enterHighFashion(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend the duration of the shoot changing in and out of designer bodices, corsets, and other tops, all of which conspicuously lack any kind of bottom, leaving your pussy exposed.');
     scene.text('Your manager was right. <i>Definitely</i> not suited for every day use.');
     // TODO-QSP: dynamic text: Two hours later, you''ve modelled and been photographed in every item of clothin...
-    scene.text(`Two hours later, you've modelled and been photographed in every item of clothing requested by the client and are handed ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} in payment for the job.`);
+    scene.text(`Two hours later, you've modelled and been photographed in every item of clothing requested by the client and are handed ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} in payment for the job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1598,11 +1598,11 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think I shall make zis into a sculpture. This piece must be chiseled from marble to truly encapsulate ze glory of zis zubject!" She snaps her fingers twice and staff come out to begin collecting the equipment and putting it away. The woman herself walks over and reaches into her purse.');
     if (((st as any).fine_art_deal ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Zis is for ze job," she says, placing wad of <<$func(''money'', ''string_profit...
-      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} into your hand. "And zis, is for your contribution to art!" she says, placing in your other hand a large stack of bills equaling to ${qspFunc(s, 'money', 'string_profit', 30000)}. "Zis vill be a famous piece to go down in the history of ze world! Do not forget and take pride in your part of what began here today!"`);
+      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} into your hand. "And zis, is for your contribution to art!" she says, placing in your other hand a large stack of bills equaling to ${qspFunc(s, 'money', 'string_profit', 30000)}. "Zis vill be a famous piece to go down in the history of ze world! Do not forget and take pride in your part of what began here today!"`);
     }
     if (((st as any).fine_art_deal ?? 0) === 2) {
       // TODO-QSP: dynamic text: "Zis is for ze job," she says, placing wad of <<$func(''money'', ''string_profit...
-      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} into your hand. "And be proud," she says, placing her other hand on your shoulder. "Zis vill be a famous piece to go down in the history of ze world! One day, vhen you see ze statue, remember and be proud of ze young woman whose loss of virtue vas immortalized in stone. Remember and <i>be proud.</i>"`);
+      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} into your hand. "And be proud," she says, placing her other hand on your shoulder. "Zis vill be a famous piece to go down in the history of ze world! One day, vhen you see ze statue, remember and be proud of ze young woman whose loss of virtue vas immortalized in stone. Remember and <i>be proud.</i>"`);
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1629,7 +1629,7 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
       scene.text('You hold the position with Alexander, feeling his thick cock extending out under you, brushing against your thighs and stomach. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.');
       scene.text('90 minutes pass before she is finished sketching. When she is finished, she compares her sketch to a nearby computer screen, still trying to decide which form she wants her art to take. Shaking her head, she calls an end to the shoot and you are allowed to break from your position, stretching your stiff muscles.');
       // TODO-QSP: dynamic text: The woman steps forward, reaching into her purse to pull out <<$func(''money'', ...
-      scene.text(`The woman steps forward, reaching into her purse to pull out ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))}, which she places in your hand.`);
+      scene.text(`The woman steps forward, reaching into her purse to pull out ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))}, which she places in your hand.`);
       scene.text('"I am disappointed with your commitment," she says. "Great people should be willing to sacrifice for the sake of great art. I vish you vere one of those people." She shakes her head and walks away, snapping her fingers twice and causing her crew to start packing up equipment.');
       // TODO-QSP: dynamic text: You watch them leave, the money from the job in hand and your ' + iif(stat['thin...
       scene.text('You watch them leave, the money from the job in hand and your ' + ((((s as any).stat ?? 0)?.['think_virgin'] === 1) ? ('virginity') : ('dignity')) + ' still intact.');
@@ -1670,7 +1670,7 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
           }
         }
         // TODO-QSP: dynamic text: "Zis is for ze job," she says, placing wad of <<$func(''money'', ''string_profit...
-        scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} into your hand. "And zis, is for your contribution to art!," she says, placing another ${qspFunc(s, 'money', 'string_profit', 2000)} on top. "It iz always so much better to be able to work with models who do as instructed. Zo many do not understand ze nature of art. Take zis with my compliments." With that, she snaps her fingers twice and her crew immediately starts packing up equipment.`);
+        scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} into your hand. "And zis, is for your contribution to art!," she says, placing another ${qspFunc(s, 'money', 'string_profit', 2000)} on top. "It iz always so much better to be able to work with models who do as instructed. Zo many do not understand ze nature of art. Take zis with my compliments." With that, she snaps her fingers twice and her crew immediately starts packing up equipment.`);
         if (((s as any).pcs_vag ?? 0) <= 10) {
           scene.text('You watch them leave, the money from the job in hand, feeling good about the day\'s work. Though your pussy is a bit sore.');
         } else {
@@ -1740,7 +1740,7 @@ function enterModernArt(s: GameState, scene: SceneBuilder): void {
     scene.text('The shoot finally ends and you and the other model untangle each other from one another, stretching to ease your cramped muscles. The two of you briefly share a look together, before blushing hard and both looking away.');
     scene.text('"Thanks guys! You two were great! I\'m like, totally gonna get an A from my professor for this." The shoot over, the client departs and you collect your money from the manager with the other model. Holding your cash, you glance at each other one more time before blushing again and both making excuses about needing to be elsewhere in the studio. This isn\'t something that\'s going to be forgotten any time soon…');
     // TODO-QSP: dynamic text: You earned <<$func(''money'', ''string_profit'', modelpayfin)>> for this job.
-    scene.text(`You earned ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} for this job.`);
+    scene.text(`You earned ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} for this job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1785,7 +1785,7 @@ function enterAphroditeAdvert(s: GameState, scene: SceneBuilder): void {
     scene.text('The next two hours are spent being posed, positioned, and re-positioned into various arrangements and groupings, ensuring that the advertising department has a diverse set of options to work with.');
     scene.text('When the shoot ends, a manager calls for all you girls to line up, handing each of you an envelope of cash as you walk by him.');
     // TODO-QSP: dynamic text: You are paid <<$func(''money'', ''string_profit'', modelpayfin)>> for the job to...
-    scene.text(`You are paid ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} for the job today, which isn't very much as far as the usual payment goes at the studio. But the manager did tell you up front, this job doesn't pay out so much in money for you as it does for publicity.`);
+    scene.text(`You are paid ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} for the job today, which isn't very much as far as the usual payment goes at the studio. But the manager did tell you up front, this job doesn't pay out so much in money for you as it does for publicity.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1827,7 +1827,7 @@ function enterIndependentArt(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/art3.jpg');
     scene.text('You go to the designated set where you find several other girls dressed in graceful and sophisticated clothing that is also completely sheer. At your approach, you are directed to put on one of these outfits yourself and get your hair done by the team of the makeup artists present.');
     // TODO-QSP: dynamic text: The next two hours after that are spent being posed quite elegantly, as promised...
-    scene.text(`The next two hours after that are spent being posed quite elegantly, as promised by the request. The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} for the job.`);
+    scene.text(`The next two hours after that are spent being posed quite elegantly, as promised by the request. The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} for the job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1867,7 +1867,7 @@ function enterDesignerWedding(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/wedding.jpg');
     scene.text('You go to set 12 where you put on the "dress" which really <i>is</i> just stockings, gloves, and a veil. You and the photographer spend about an hour in a few poses, including a few that have pulled back the bra and panties before wrapping up.');
     // TODO-QSP: dynamic text: The shoot ends and you go back to the manager who pays you <<$func(''money'', ''...
-    scene.text(`The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} for the job.`);
+    scene.text(`The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} for the job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -2033,7 +2033,7 @@ function enterTopless1_1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/down.jpg');
     // TODO-QSP: dynamic text: You get dressed again while they load everything back into the van and then you ...
-    scene.text(`You get dressed again while they load everything back into the van and then you all drive back to the studio. They drop you on the curb with your pay of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} for today's work. You can see there's even a little extra!`);
+    scene.text(`You get dressed again while they load everything back into the van and then you all drive back to the studio. They drop you on the curb with your pay of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} for today's work. You can see there's even a little extra!`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspGoto(st, 'city_center', '');
@@ -2174,7 +2174,7 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/citycenter/down.jpg');
     // TODO-QSP: dynamic text: When it''s all over, the shuttle takes you and the other models back to the stud...
-    scene.text(`When it's all over, the shuttle takes you and the other models back to the studio and drop you on the curb with your ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} earnings.`);
+    scene.text(`When it's all over, the shuttle takes you and the other models back to the studio and drop you on the curb with your ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} earnings.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2303,7 +2303,7 @@ function enterTennis(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'fame', 'city', 'modelling', 'small');
     }
     // TODO-QSP: dynamic text: Eventually the shoot is over and they thank you for agreeing to do the shoot for...
-    scene.text(`Eventually the shoot is over and they thank you for agreeing to do the shoot for them. They thank you even more when they play it back in slow motion. After they're done time warp ogling your bouncing breasts, they pay you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} and thank you one more time when they play the recordings back again.`);
+    scene.text(`Eventually the shoot is over and they thank you for agreeing to do the shoot for them. They thank you even more when they play it back in slow motion. After they're done time warp ogling your bouncing breasts, they pay you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} and thank you one more time when they play the recordings back again.`);
     scene.actions([
       { label: 'Back to the studio', goto: ['foto', 'studio'] },
     ]);
@@ -2396,7 +2396,7 @@ function enterTopless2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('The shoot is over and you get dressed while the rest of the crew packs up. Since it looks like they\'ll be a while, you tell them you can just find you way back from here and you\'ll see them later.');
     // TODO-QSP: dynamic text: Just before you leave, a staff member comes over and pays you <<$func(''money'',...
-    scene.text(`Just before you leave, a staff member comes over and pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} for the day's work.`);
+    scene.text(`Just before you leave, a staff member comes over and pays you ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} for the day's work.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2500,7 +2500,7 @@ function enterBeach2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('It\'s an hour later by the time you get back to the studio. The rest of the crew still has to unload but you\'re free to go as soon as you get paid.');
     // TODO-QSP: dynamic text: The one of the staff counts out your <<$func(''money'', ''string_profit'', model...
-    scene.text(`The one of the staff counts out your ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} and you happily pocket it along with the additional ${qspFunc(s, 'money', 'string_profit', 1000)} you got as a bonus.`);
+    scene.text(`The one of the staff counts out your ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} and you happily pocket it along with the additional ${qspFunc(s, 'money', 'string_profit', 1000)} you got as a bonus.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2589,7 +2589,7 @@ function enterPool2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('After the shoot, they drop you back outside the studio while they unload.');
     // TODO-QSP: dynamic text: The photographer pays you out <<$func(''money'', ''string_profit'', modelpayfin)...
-    scene.text(`The photographer pays you out ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} and once the money is in your hand, you're free to go.`);
+    scene.text(`The photographer pays you out ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} and once the money is in your hand, you're free to go.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2766,13 +2766,13 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((st as any).age ?? 0) < 18) {
       // TODO-QSP: dynamic text: Another hour later, the show is over, the clothes are taken back, and you''re le...
-      scene.text(`Another hour later, the show is over, the clothes are taken back, and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad. But at the same time, this kind of thing has the tendency to circle around and you <i>really</i> hope nobody in Pavlovsk hears about this…`);
+      scene.text(`Another hour later, the show is over, the clothes are taken back, and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad. But at the same time, this kind of thing has the tendency to circle around and you <i>really</i> hope nobody in Pavlovsk hears about this…`);
       scene.actions([
         { label: 'Back in the studio', goto: ['foto', 'studio'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: Another hour later, the show is over and you''re left naked in the studio, count...
-      scene.text(`Another hour later, the show is over and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad.`);
+      scene.text(`Another hour later, the show is over and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad.`);
       scene.actions([
         { label: 'Back in the studio', goto: ['foto', 'studio'] },
       ]);
@@ -2875,7 +2875,7 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', ((st as any).modelpayfin ?? 0));
     ((st as any).modelfoto = (st as any).modelfoto ?? {})['earnings'] = ((st as any).modelfoto['earnings'] ?? 0) + (((st as any).modelpayfin ?? 0));
     // TODO-QSP: dynamic text: Eventually, the shoot is over and they leave you with chattering teeth, really h...
-    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} in your shiving hands. But you have to admit photos do look pretty nice.`);
+    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} in your shiving hands. But you have to admit photos do look pretty nice.`);
     scene.actions([
       { label: 'Back to the studio', goto: ['foto', 'studio'] },
     ]);
@@ -2948,7 +2948,7 @@ function enterWet2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', ((st as any).modelpayfin ?? 0));
     ((st as any).modelfoto = (st as any).modelfoto ?? {})['earnings'] = ((st as any).modelfoto['earnings'] ?? 0) + (((st as any).modelpayfin ?? 0));
     // TODO-QSP: dynamic text: Eventually, the shoot is over and they leave you with chattering teeth, really h...
-    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin || ''))} in your shiving hands. But you have to admit photos do look pretty nice.`);
+    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((st as any).modelpayfin ?? ''))} in your shiving hands. But you have to admit photos do look pretty nice.`);
     scene.actions([
       { label: 'Back to the studio', goto: ['foto', 'studio'] },
     ]);

@@ -47,21 +47,21 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Looks</h1></center>');
   // TODO-QSP: $settings['table_start']
   (s as any).img_temp = qspFunc(s, '$face_image', '');
-  scene.img(`${((s as any).img_temp || '')}`);
+  scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
     // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
     scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
   } else {
     // TODO-QSP: dynamic text: <<$hair>>
-    scene.text(`${((s as any).hair || '')}`);
+    scene.text(`${((s as any).hair ?? '')}`);
   }
   if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
-    scene.text(`Your curls are good for another ${((s as any).curly || '')} days.`);
+    scene.text(`Your curls are good for another ${((s as any).curly ?? '')} days.`);
   }
   if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
-    scene.text(`Your hair should be straight for another ${((s as any).straight || '')} days.`);
+    scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
   // TODO-QSP: dynamic text: <<$pc_descFull[''lip'']>>
   scene.text(`${((s as any).pc_descFull ?? 0)?.['lip'] ?? ''}`);
@@ -86,21 +86,21 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Looks</h1></center>');
   // TODO-QSP: $settings['table_start']
   (s as any).img_temp = qspFunc(s, '$face_image', '');
-  scene.img(`${((s as any).img_temp || '')}`);
+  scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).face_style ?? 0)?.['avatar_hair'] !== '') {
     // TODO-QSP: dynamic text: Your hair: <<$face_style[''avatar_hair'']>>.
     scene.text(`Your hair: ${((s as any).face_style ?? 0)?.['avatar_hair'] ?? ''}.`);
   } else {
     // TODO-QSP: dynamic text: <<$hair>>
-    scene.text(`${((s as any).hair || '')}`);
+    scene.text(`${((s as any).hair ?? '')}`);
   }
   if (((s as any).defcurly ?? 0) === 0  &&  ((s as any).curly ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your curls are good for another <<curly>> days.
-    scene.text(`Your curls are good for another ${((s as any).curly || '')} days.`);
+    scene.text(`Your curls are good for another ${((s as any).curly ?? '')} days.`);
   }
   if (((s as any).defcurly ?? 0) === 1  &&  ((s as any).straight ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your hair should be straight for another <<straight>> days.
-    scene.text(`Your hair should be straight for another ${((s as any).straight || '')} days.`);
+    scene.text(`Your hair should be straight for another ${((s as any).straight ?? '')} days.`);
   }
   // TODO-QSP: dynamic text: <<$pc_descFull[''lip'']>>
   scene.text(`${((s as any).pc_descFull ?? 0)?.['lip'] ?? ''}`);
@@ -127,7 +127,7 @@ function enterBody(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).img_temp = qspFunc(s, '$body_image', '', 'body');
   }
-  scene.img(`${((s as any).img_temp || '')}`);
+  scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).modApi_body_image_msg ?? 0) === '') {
   }
   // TODO-QSP: $settings['table_end']
@@ -233,13 +233,13 @@ function enterShoes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).modApi_shoes_image ?? 0) !== '') {
     (s as any).img_temp = ((s as any).modApi_shoes_image ?? 0);
   }
-  scene.img(`${((s as any).img_temp || '')}`);
+  scene.img(`${((s as any).img_temp ?? '')}`);
   if (((s as any).modApi_shoes_image_msg ?? 0) === '') {
     // TODO-QSP: dynamic text: <<$body_image_msg>>
-    scene.text(`${((s as any).body_image_msg || '')}`);
+    scene.text(`${((s as any).body_image_msg ?? '')}`);
   } else {
     // TODO-QSP: dynamic text: <<$modApi_shoes_image_msg>>
-    scene.text(`${((s as any).modApi_shoes_image_msg || '')}`);
+    scene.text(`${((s as any).modApi_shoes_image_msg ?? '')}`);
   }
   // TODO-QSP: $settings['table_end']
   // TODO-QSP: end

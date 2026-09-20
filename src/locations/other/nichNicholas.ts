@@ -142,7 +142,7 @@ function enterApproach(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/01.jpg');
   scene.text('You wait for Nicholas to notice you, then you approach him and curtsy.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what do you want?"
-  scene.text(`"${((s as any).pcs_nickname || '')}, what do you want?"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}, what do you want?"`);
   if (((s as any).nichEvaluationLast ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).nichWork ?? 0) === 2) {
     scene.actions([
       { label: 'Evaluation', handler: (st: GameState) => {
@@ -314,7 +314,7 @@ function enterFlirt(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'nichNicholas', 'sex');
   } },
     ]);
-  } },,
+  } },
 { label: 'This is going too far', handler: (st: GameState) => {
     (st as any).nichSex = (-1);
     scene.text('"I am sorry, master Nicholas. But I can\'t do that."');
@@ -331,7 +331,7 @@ function enterFlirt(s: GameState, scene: SceneBuilder): void {
             return;
           } else {
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don''t think this would be appropriate. I suggest you get ...
-            scene.text(`"${((s as any).pcs_nickname || '')}, I don't think this would be appropriate. I suggest you get back to your work."`);
+            scene.text(`"${((s as any).pcs_nickname ?? '')}, I don't think this would be appropriate. I suggest you get back to your work."`);
             scene.actions([
               { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc');
@@ -766,7 +766,7 @@ function enterEvaluation(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).nichDebug ?? 0) === 1) {
     // TODO-QSP: dynamic text: DEBUG: nichTempEval = <<nichTempEval>>
-    scene.text(`DEBUG: nichTempEval = ${((s as any).nichTempEval || '')}`);
+    scene.text(`DEBUG: nichTempEval = ${((s as any).nichTempEval ?? '')}`);
   }
   (s as any).nichPerformance = ((s as any).nichPerformance ?? 0) + (((s as any).nichTempEval ?? 0));
   (s as any).nichPerformance = Math.min(100, Math.max(0, ((s as any).nichPerformance ?? 0)));

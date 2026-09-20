@@ -199,7 +199,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Fuck her pussy', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 3) + 49);
-    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand ?? '')}.jpg`);
     scene.text('You grab the whip from the table and plunge the handle into her pussy and start fucking her hard with it, she starts screaming and moaning, she quickly has an orgasm.');
     qspCall(st, 'arousal', 'anal_dildo_give', 10, 'lesbian', 'dom');
     qspCall(st, 'stat', '');
@@ -226,7 +226,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Pussy play', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 3) + 46);
-    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand ?? '')}.jpg`);
     scene.text('You order Masha to lick your pussy and she puts her tongue to work on your pussy, her nimble tongue nearly brings you to orgasm with in a few minutes.');
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'cuni', 10, 'lesbian', 'dom');
@@ -243,14 +243,14 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Mark strapon', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 2) + 53);
-    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand ?? '')}.jpg`);
     scene.text('You tell her to and order her to bring you the strapon, Masha hurries to bring it to you and helps you put it. When you are wearing the strapon, you immediately plunge it into her mouth and start fucking her mouth, Masha begins to suck it as if it was a real dick.');
     qspCall(st, 'arousal', 'foreplay', 10, 'lesbian', 'dom');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'In pussy', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 6) + 57);
-    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand ?? '')}.jpg`);
     scene.text('You get bored fucking her mouth and pull it out, you move her to a better position and plunge the full shaft of the dildo into her pussy and you start hammering her. Masha moans and actively humps against you as you fuck her, soon her body starts to spasm and she has a screaming orgasm.');
     qspCall(st, 'arousal', 'vaginal_strap_give', 10, 'lesbian', 'dom');
     qspCall(st, 'arousal', 'end');
@@ -260,7 +260,7 @@ function enterMasha(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'In the ass', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 2) + 55);
-    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/masha/sex/r${((st as any).picrand ?? '')}.jpg`);
     scene.text('You get bored fucking her mouth and pull it out, you move her to a better position and plunge the full shaft of the dildo into her anus. You have a bit of trouble forcing it into her ass, as the only lubricant is her saliva, but you not only manage to get it fully in, but you shove the full length of the shaft deep into her ass. You begin to jack hammer her ass, she humps back against you fucking her, with cries of both pain and pleasure. It doesn\'t take long until she starts having a screaming orgasm.');
     qspCall(st, 'arousal', 'anal_strap_give', 10, 'lesbian', 'dom');
     qspCall(st, 'arousal', 'end');

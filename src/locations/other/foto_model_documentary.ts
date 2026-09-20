@@ -988,7 +988,7 @@ function enter1stDocumentaryEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well, that\'s the end of the interview. Thank you so much for your time and for answering our questions! I\'m sure the viewers will love what you had to say."');
   scene.text('"No problem! You were a very good interviewer."');
   // TODO-QSP: dynamic text: After exchanging a few more pleasantries, they hand you an envelope filled with ...
-  scene.text(`After exchanging a few more pleasantries, they hand you an envelope filled with bills that count out to ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} and call the next girl in from the side.`);
+  scene.text(`After exchanging a few more pleasantries, they hand you an envelope filled with bills that count out to ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? ''))} and call the next girl in from the side.`);
   ((s as any).foto = (s as any).foto ?? {})['1st_documentary'] = 1;
   // TODO-QSP: end
   scene.actions([

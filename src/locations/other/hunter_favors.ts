@@ -28,7 +28,7 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <<$boydesc>> approaches you. "Hey, I need your help with something."
-    scene.text(`${((s as any).boydesc || '')} approaches you. "Hey, I need your help with something."`);
+    scene.text(`${((s as any).boydesc ?? '')} approaches you. "Hey, I need your help with something."`);
     qspCall(s, 'willpower', 'misc', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -52,11 +52,11 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
     if ((!((st as any).campfire ?? 0))) {
       if (((st as any).hunterVars ?? 0)?.['collective_opinion'] >= 15) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he says. "The fire is out. Can you please ensure it keeps g...
-        scene.text(`"${((st as any).pcs_nickname || '')}," he says. "The fire is out. Can you please ensure it keeps going while we are outside?"`);
+        scene.text(`"${((st as any).pcs_nickname ?? '')}," he says. "The fire is out. Can you please ensure it keeps going while we are outside?"`);
       }
       if (((st as any).hunterVars ?? 0)?.['collective_opinion'] < 15) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he uses his stern voice. "The fire is out. You can at least...
-        scene.text(`"${((st as any).pcs_nickname || '')}," he uses his stern voice. "The fire is out. You can at least keep the fire going. No way you are that much of a whiny princess."`);
+        scene.text(`"${((st as any).pcs_nickname ?? '')}," he uses his stern voice. "The fire is out. You can at least keep the fire going. No way you are that much of a whiny princess."`);
       }
       scene.actions([
         { label: 'Further', handler: (st: GameState) => {
@@ -67,11 +67,11 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
       if (((st as any).dirty_swamphouse ?? 0) > 5) {
         if (((st as any).hunterVars ?? 0)?.['collective_opinion'] >= 15) {
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he says. "The hut is a mess. Could you take care of it, ple...
-          scene.text(`"${((st as any).pcs_nickname || '')}," he says. "The hut is a mess. Could you take care of it, please?"`);
+          scene.text(`"${((st as any).pcs_nickname ?? '')}," he says. "The hut is a mess. Could you take care of it, please?"`);
         }
         if (((st as any).hunterVars ?? 0)?.['collective_opinion'] < 15) {
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he uses his stern voice. "The house is a mess. Take care of...
-          scene.text(`"${((st as any).pcs_nickname || '')}," he uses his stern voice. "The house is a mess. Take care of it."`);
+          scene.text(`"${((st as any).pcs_nickname ?? '')}," he uses his stern voice. "The house is a mess. Take care of it."`);
         }
         scene.actions([
           { label: 'Clean the hut', handler: (st: GameState) => {
@@ -82,11 +82,11 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
         if (((st as any).dirty_swamp_yard ?? 0) > 5) {
           if (((st as any).hunterVars ?? 0)?.['collective_opinion'] >= 15) {
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he says. "The yard is a mess. Can you please take care of i...
-            scene.text(`"${((st as any).pcs_nickname || '')}," he says. "The yard is a mess. Can you please take care of it?"`);
+            scene.text(`"${((st as any).pcs_nickname ?? '')}," he says. "The yard is a mess. Can you please take care of it?"`);
           }
           if (((st as any).hunterVars ?? 0)?.['collective_opinion'] < 15) {
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he says sternly. "What the hell is all this trash doing out...
-            scene.text(`"${((st as any).pcs_nickname || '')}," he says sternly. "What the hell is all this trash doing out there? Go and pick it all."`);
+            scene.text(`"${((st as any).pcs_nickname ?? '')}," he says sternly. "What the hell is all this trash doing out there? Go and pick it all."`);
           }
           scene.actions([
             { label: 'Clean the yard', handler: (st: GameState) => {
@@ -97,11 +97,11 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
           if (((st as any).mushroom_soup ?? 0) + ((st as any).meat_stew ?? 0) < 4) {
             if (((st as any).hunterVars ?? 0)?.['collective_opinion'] >= 15) {
               // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he says. "We don''t have anything for dinner. Could you ple...
-              scene.text(`"${((st as any).pcs_nickname || '')}," he says. "We don't have anything for dinner. Could you please cook something?"`);
+              scene.text(`"${((st as any).pcs_nickname ?? '')}," he says. "We don't have anything for dinner. Could you please cook something?"`);
             }
             if (((st as any).hunterVars ?? 0)?.['collective_opinion'] < 15) {
               // TODO-QSP: dynamic text: "<<$pcs_nickname>>," he says sternly. "We have nothing to eat for dinner, you us...
-              scene.text(`"${((st as any).pcs_nickname || '')}," he says sternly. "We have nothing to eat for dinner, you useless bitch. Go make something before we starve."`);
+              scene.text(`"${((st as any).pcs_nickname ?? '')}," he says sternly. "We have nothing to eat for dinner, you useless bitch. Go make something before we starve."`);
             }
             if (((st as any).boletus ?? 0) > 0) {
               scene.actions([
@@ -145,7 +145,7 @@ function enterHousekeepingRequest(s: GameState, scene: SceneBuilder): void {
       { label: '"What?! Do I look like a servant to you?', handler: (st: GameState) => {
     scene.img('images/pc/reactions/speak_to_the_hand.jpg');
     // TODO-QSP: dynamic text: You walk away from <<$boydesc>>
-    scene.text(`You walk away from ${((st as any).boydesc || '')}`);
+    scene.text(`You walk away from ${((st as any).boydesc ?? '')}`);
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['collective_opinion'] = ((st as any).hunterVars['collective_opinion'] ?? 0) - (10);
     scene.actions([
       { label: 'Continue', goto: ['gad_swamp_yard', 'start'] },
@@ -256,7 +256,7 @@ function enterCreeksideGangbangRequest(s: GameState, scene: SceneBuilder): void 
   scene.img('images/locations/gadukino/sex/hunter/backwaterrelax2.jpg');
   scene.text('You\'re sitting down in the meadow near the road, relaxing, enjoying the nice weather, when Andrei, Sergei, and Igor suddenly approach you. They quickly surround you, not letting you move away.');
   // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>, we''ve been talking with each other, and we feel that y...
-  scene.text(`"Hey, ${((s as any).pcs_nickname || '')}, we've been talking with each other, and we feel that you need to repay us somehow for the lessons. So what do you say?"`);
+  scene.text(`"Hey, ${((s as any).pcs_nickname ?? '')}, we've been talking with each other, and we feel that you need to repay us somehow for the lessons. So what do you say?"`);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'willpower', 'gangbang', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -265,7 +265,7 @@ function enterCreeksideGangbangRequest(s: GameState, scene: SceneBuilder): void 
     scene.img('images/locations/gadukino/sex/hunter/backwaterrelax3.jpg');
     scene.text('You politely refuse, saying you don\'t owe them anything, but the men don\'t accept a no, and you can see they\'re clearly not satisfied with your answer.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, don''t fuck around with us. Deep inside, you know you need ...
-    scene.text(`"${((st as any).pcs_firstname || '')}, don't fuck around with us. Deep inside, you know you need to repay us," said Andrei, grabbing you by the hair.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, don't fuck around with us. Deep inside, you know you need to repay us," said Andrei, grabbing you by the hair.`);
     (st as any).minut = ((st as any).minut ?? 0) + 5;
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['collective_opinion'] = ((st as any).hunterVars['collective_opinion'] ?? 0) - (25);
     ((st as any).hunterVars = (st as any).hunterVars ?? {})['sexual_comfort'] = ((st as any).hunterVars['sexual_comfort'] ?? 0) + (15);
@@ -393,7 +393,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/gadukino/sex/hunter/bound_fucked_mouth1.jpg');
     // TODO-QSP: dynamic text: You notice <<$boydesc>> walking towards you. Without saying a word, he slackens ...
-    scene.text(`You notice ${((s as any).boydesc || '')} walking towards you. Without saying a word, he slackens your ties and pushes you down to your knees before tightening them back.`);
+    scene.text(`You notice ${((s as any).boydesc ?? '')} walking towards you. Without saying a word, he slackens your ties and pushes you down to your knees before tightening them back.`);
     scene.text('He does not waste too much time unzipping his cock and pushing it on your face. You comply and start sucking his dick.');
     scene.text('After a minute grabs your head and starts fucking your mouth. You struggle between breathing and trying not to puke as his cock rams in and out of your throat.');
     scene.actions([
@@ -440,9 +440,9 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     ((s as any).hunterVars = (s as any).hunterVars ?? {})['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (5);
     scene.img('images/locations/gadukino/sex/hunter/bound_fucked2.jpg');
     // TODO-QSP: dynamic text: You notice <<$boydesc>> walking towards you. Without saying a word, he unzips an...
-    scene.text(`You notice ${((s as any).boydesc || '')} walking towards you. Without saying a word, he unzips and bends you over.`);
+    scene.text(`You notice ${((s as any).boydesc ?? '')} walking towards you. Without saying a word, he unzips and bends you over.`);
     // TODO-QSP: dynamic text: He rubs the tip of his dick against your wet pussy lips a few times before pushi...
-    scene.text(`He rubs the tip of his dick against your wet pussy lips a few times before pushing in. You cannot help but gasp as ${((s as any).boydesc || '')}'s cock fills your pussy.`);
+    scene.text(`He rubs the tip of his dick against your wet pussy lips a few times before pushing in. You cannot help but gasp as ${((s as any).boydesc ?? '')}'s cock fills your pussy.`);
     scene.text('After letting you settle into the sensation for a second, he slowly starts pumping your pussy. You are screaming and moaning as he picks his pace up in a minute.');
     qspCall(s, 'dinsex', 'vaginal_sex', 10, 'bound');
     scene.actions([
@@ -457,12 +457,12 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/sex/hunter/bound_fucked.mp4');
     // TODO-QSP: dynamic text: You cannot get enough of the sensation of <<$boydesc>>''s cock sliding inside yo...
-    scene.text(`You cannot get enough of the sensation of ${((st as any).boydesc || '')}'s cock sliding inside you. So you start pumping your hips to get more of his cock.`);
+    scene.text(`You cannot get enough of the sensation of ${((st as any).boydesc ?? '')}'s cock sliding inside you. So you start pumping your hips to get more of his cock.`);
     // TODO-QSP: dynamic text: <<$boydesc>> starts fucking you harder before he buries his cock into the hilt i...
-    scene.text(`${((st as any).boydesc || '')} starts fucking you harder before he buries his cock into the hilt inside you.`);
+    scene.text(`${((st as any).boydesc ?? '')} starts fucking you harder before he buries his cock into the hilt inside you.`);
     qspCall(st, 'dinsex', 'sexcum');
     // TODO-QSP: dynamic text: After catching his breath, <<$boydesc>> gives your ass a fondle before walking a...
-    scene.text(`After catching his breath, ${((st as any).boydesc || '')} gives your ass a fondle before walking away, leaving you hanging.`);
+    scene.text(`After catching his breath, ${((st as any).boydesc ?? '')} gives your ass a fondle before walking away, leaving you hanging.`);
     scene.actions([
       { label: 'Further', goto: ['hunter_favors', 'yard_bondage'] },
     ]);
@@ -479,13 +479,13 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/gadukino/sex/hunter/bound_fucked1.jpg');
     // TODO-QSP: dynamic text: You are overwhelmed by <<$boydesc>> pumping your pussy while you are bound, help...
-    scene.text(`You are overwhelmed by ${((st as any).boydesc || '')} pumping your pussy while you are bound, helpless and naked like this.`);
+    scene.text(`You are overwhelmed by ${((st as any).boydesc ?? '')} pumping your pussy while you are bound, helpless and naked like this.`);
     scene.text('You decide to give in and enjoy the sensation of being casually fucked like a blow-up doll.');
     scene.text('He roughly grabs your ass to brace himself as he picks his pace even further, pounding your pussy with near fury.');
     scene.text('Sounds of his hips rhythmically slamming against your ass fills your surroundings, mixed with the lewd smacking sounds of his cock pumping in your pussy and your loud moans and screams.');
     scene.text('As you start feeling his cock throbbing in your pussy, he pulls out and blows his load all over your ass and pussy.');
     // TODO-QSP: dynamic text: Without saying anything, <<$boydesc>> zips up and walks away, leaving you with c...
-    scene.text(`Without saying anything, ${((st as any).boydesc || '')} zips up and walks away, leaving you with cum running down your legs.`);
+    scene.text(`Without saying anything, ${((st as any).boydesc ?? '')} zips up and walks away, leaving you with cum running down your legs.`);
     scene.actions([
       { label: 'Further', goto: ['hunter_favors', 'yard_bondage'] },
     ]);
@@ -584,7 +584,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/sex/hunter/unbound_fucked2.jpg');
     scene.text('You do not notice Igor approaching you from behind before he starts stroking your body as he rubs his cock over your pussy lips.');
     // TODO-QSP: dynamic text: "You are driving me crazy, <<$pcs_nickname>>," he says. "I cannot help it any lo...
-    scene.text(`"You are driving me crazy, ${((s as any).pcs_nickname || '')}," he says. "I cannot help it any longer. I need to have you."`);
+    scene.text(`"You are driving me crazy, ${((s as any).pcs_nickname ?? '')}," he says. "I cannot help it any longer. I need to have you."`);
     scene.text('You turn your head to give him a kiss as he undoes the last of the ropes.');
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
@@ -611,7 +611,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/unbound_nude.jpg');
     scene.text('After a couple of seconds catching your breath, you both get up. Before you walk away, Igor asks:');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, can I ask you for a favor? We all have gotten used to seeing...
-    scene.text(`"${((st as any).pcs_nickname || '')}, can I ask you for a favor? We all have gotten used to seeing you in the nude."`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, can I ask you for a favor? We all have gotten used to seeing you in the nude."`);
     scene.text('"So," he says", Can you just walk around like that all the time?"');
     scene.text('"You mean, never wear clothes around and stay naked the whole time?" you ask, surprised.');
     scene.text('"Yes, at least while it is only us around," he says. "So what do you say?"');
@@ -633,7 +633,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('"Well," you respond. "At this point, we are well past the point of being shy about a bit of nudity. So sure, why not?" you reply.');
     // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>," he says before walking away
-    scene.text(`"Thanks, ${((st as any).pcs_nickname || '')}," he says before walking away`);
+    scene.text(`"Thanks, ${((st as any).pcs_nickname ?? '')}," he says before walking away`);
     scene.actions([
       { label: 'Further', goto: ['gad_swamp_yard', 'start'] },
     ]);
@@ -647,7 +647,7 @@ function enterYardBondage(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('"Well," you respond. "Do I look like some sex toy to you?" you reply. "What is next? You just randomly fuck me whenever?"');
     // TODO-QSP: dynamic text: "You are not exactly all pure and innocent, <<$pcs_firstname>>," he says. "I thi...
-    scene.text(`"You are not exactly all pure and innocent, ${((st as any).pcs_firstname || '')}," he says. "I think you are just being a bitchy cocktease", and walks away`);
+    scene.text(`"You are not exactly all pure and innocent, ${((st as any).pcs_firstname ?? '')}," he says. "I think you are just being a bitchy cocktease", and walks away`);
     scene.actions([
       { label: 'Further', goto: ['gad_swamp_yard', 'start'] },
     ]);

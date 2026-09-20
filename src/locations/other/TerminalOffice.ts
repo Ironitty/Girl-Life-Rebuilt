@@ -113,7 +113,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
     // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_home'] + ' trinkets stored in your home. You...
-    scene.text('You have \' + mc_inventory[\'trinkets_home\'] + \' trinkets stored in your home. You\'re only able to store ' + ((s as any).TovarLimitHomeRepository || '') + ' trinkets.');
+    scene.text('You have \' + mc_inventory[\'trinkets_home\'] + \' trinkets stored in your home. You\'re only able to store ' + ((s as any).TovarLimitHomeRepository ?? '') + ' trinkets.');
     (s as any).MaxQuantityHome = ((s as any).TovarLimitHomeRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0);
   }
   if (((s as any).YouCanGar ?? 0) > 0) {
@@ -122,7 +122,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     } else {
       (s as any).DoNotBuy = ((s as any).DoNotBuy ?? 0) - (1);
       // TODO-QSP: dynamic text: You have ' + mc_inventory['trinkets_garage'] + ' trinkets stored in the garage. ...
-      scene.text('You have \' + mc_inventory[\'trinkets_garage\'] + \' trinkets stored in the garage. You\'re only able to store ' + ((s as any).TovarLimitGarageRepository || '') + ' trinkets.');
+      scene.text('You have \' + mc_inventory[\'trinkets_garage\'] + \' trinkets stored in the garage. You\'re only able to store ' + ((s as any).TovarLimitGarageRepository ?? '') + ' trinkets.');
       (s as any).MaxQuantityGarage = ((s as any).TovarLimitGarageRepository ?? 0) - (((s as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0);
     }
   }
@@ -153,7 +153,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', ((st as any).MaxCost ?? 0), 'cash');
       // TODO-QSP: dynamic text: You''ve purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
-      scene.text(`You've purchased ${((st as any).BuyQuantity || '')} trinkets, worth ${((st as any).MaxCost || '')}.`);
+      scene.text(`You've purchased ${((st as any).BuyQuantity ?? '')} trinkets, worth ${((st as any).MaxCost ?? '')}.`);
       if (((st as any).BuyQuantity ?? 0) >= ((st as any).MaxQuantityHome ?? 0)) {
         ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((st as any).MaxQuantityHome ?? 0);
         (st as any).BuyQuantity = ((st as any).BuyQuantity ?? 0) - (((st as any).MaxQuantityHome ?? 0));
@@ -170,7 +170,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BuyQuantity ?? 0) > 0) {
         ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_garage'] = (((st as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0) + ((st as any).BuyQuantity ?? 0);
         // TODO-QSP: dynamic text: You''ll store <<BuyQuantity>> trinkets in the garage.
-        scene.text(`You'll store ${((st as any).BuyQuantity || '')} trinkets in the garage.`);
+        scene.text(`You'll store ${((st as any).BuyQuantity ?? '')} trinkets in the garage.`);
       }
       if (((st as any).YouCanGar ?? 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 100, 'cash') === 1) {
         scene.text('You\'ve purchased plenty of trinkets, but you\'ve been thinking about expanding your business. But where could you store them all? Maybe you should ask your stepfather if you could use some free space in his garage…');
@@ -196,18 +196,18 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
     } else {
       qspCall(st, 'money', 'pay', ((st as any).MaxCost ?? 0), 'cash');
       // TODO-QSP: dynamic text: You''ve purchased <<BuyQuantity>> trinkets, worth <<MaxCost>>.
-      scene.text(`You've purchased ${((st as any).BuyQuantity || '')} trinkets, worth ${((st as any).MaxCost || '')}.`);
+      scene.text(`You've purchased ${((st as any).BuyQuantity ?? '')} trinkets, worth ${((st as any).MaxCost ?? '')}.`);
       if (((st as any).BuyQuantity ?? 0) >= ((st as any).MaxQuantityHome ?? 0)) {
         ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((st as any).MaxQuantityHome ?? 0);
         (st as any).BuyQuantity = ((st as any).BuyQuantity ?? 0) - (((st as any).MaxQuantityHome ?? 0));
         if (((st as any).YouCanGar ?? 0) > 0) {
           // TODO-QSP: dynamic text: You''ll store <<MaxQuantityHome>> trickets at home.
-          scene.text(`You'll store ${((st as any).MaxQuantityHome || '')} trickets at home.`);
+          scene.text(`You'll store ${((st as any).MaxQuantityHome ?? '')} trickets at home.`);
         }
       } else {
         if (((st as any).YouCanGar ?? 0) > 0) {
           // TODO-QSP: dynamic text: You''ll store <<BuyQuantity>> trickets at home.
-          scene.text(`You'll store ${((st as any).BuyQuantity || '')} trickets at home.`);
+          scene.text(`You'll store ${((st as any).BuyQuantity ?? '')} trickets at home.`);
         }
         ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = (((st as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0) + ((st as any).BuyQuantity ?? 0);
         (st as any).BuyQuantity = 0;
@@ -215,7 +215,7 @@ function enter11BuyGoods(s: GameState, scene: SceneBuilder): void {
       if (((st as any).BuyQuantity ?? 0) > 0) {
         ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_garage'] = (((st as any).mc_inventory ?? {})?.['trinkets_garage'] ?? 0) + ((st as any).BuyQuantity ?? 0);
         // TODO-QSP: dynamic text: You''ll store <<BuyQuantity>> trinkets in the garage.
-        scene.text(`You'll store ${((st as any).BuyQuantity || '')} trinkets in the garage.`);
+        scene.text(`You'll store ${((st as any).BuyQuantity ?? '')} trinkets in the garage.`);
       }
       if (((st as any).YouCanGar ?? 0) === 0  &&  qspFunc(s, 'money', 'can_afford', 100, 'cash') === 1) {
         scene.text('You\'ve purchased plenty of trinkets, but you\'ve been thinking about expanding your business. But where could you store them all? Maybe you should ask your stepfather if you could use some free space in his garage…');

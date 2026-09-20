@@ -125,7 +125,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'city_pussycats_clerk');
     // TODO-QSP: dynamic text: The manager counts <<$func(''money'', ''string_profit'', temp_pay)>> and hands i...
-    scene.text(`The manager counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))} and hands it to you. With that done, he goes back to looking at the monitor of his computer.`);
+    scene.text(`The manager counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))} and hands it to you. With that done, he goes back to looking at the monitor of his computer.`);
     qspGoto(st, 'shop_pussycats', 'start');
   } },
     ]);
@@ -143,7 +143,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'jobs', 'check_employment_possible', 'city_pussycats_clerk', ((s as any).temp_switch_to ?? 0)) === 1) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).temp_switch_label || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).temp_switch_label ?? '') ?? ''), handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/manager_andrew.jpg');
     scene.text('"Mr. Sobulyagin, I was wondering if I could switch to a different schedule?"');
     scene.text('He considers it for a moment. "Sure, I can arrange that. Let me just settle your current pay first."');
@@ -189,7 +189,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'city_pussycats_clerk');
     if (((st as any).temp_pay ?? 0) > 0) {
       // TODO-QSP: dynamic text: Mr. Sobulyagin counts <<$func(''money'', ''string_profit'', temp_pay)>> and hand...
-      scene.text(`Mr. Sobulyagin counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))} and hands it over to you.`);
+      scene.text(`Mr. Sobulyagin counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))} and hands it over to you.`);
     }
     qspCall(st, 'jobs', 'set_terminated', 'city_pussycats_clerk');
     scene.actions([
@@ -217,9 +217,9 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'city_pussycats_clerk');
     if (((st as any).temp_pay ?? 0) > 0) {
       // TODO-QSP: dynamic text: For your remaining shifts you get paid <<$func(''money'', ''string_profit'', tem...
-      scene.text(`For your remaining shifts you get paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))}`);
+      scene.text(`For your remaining shifts you get paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))}`);
       // TODO-QSP: dynamic text: Mr. Sobulyagin counts <<$func(''money'', ''string_profit'', temp_pay)>> and hand...
-      scene.text(`Mr. Sobulyagin counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))} and hands it over to you.`);
+      scene.text(`Mr. Sobulyagin counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))} and hands it over to you.`);
     }
     qspCall(st, 'jobs', 'set_fired', 'city_pussycats_clerk');
     scene.actions([
@@ -284,9 +284,9 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'city_pussycats_clerk');
     if (((st as any).temp_pay ?? 0) > 0) {
       // TODO-QSP: dynamic text: For your remaining shifts you get paid <<$func(''money'', ''string_profit'', tem...
-      scene.text(`For your remaining shifts you get paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))}`);
+      scene.text(`For your remaining shifts you get paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))}`);
       // TODO-QSP: dynamic text: Mr. Sobulyagin counts <<$func(''money'', ''string_profit'', temp_pay)>> and hand...
-      scene.text(`Mr. Sobulyagin counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))} and hands it over to you.`);
+      scene.text(`Mr. Sobulyagin counts ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))} and hands it over to you.`);
     }
     qspCall(st, 'jobs', 'set_fired', 'city_pussycats_clerk');
     scene.actions([
@@ -331,9 +331,9 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
     (st as any).temp_pay = qspFunc(s, 'jobs', 'paycheck', 'city_pussycats_clerk');
     if (((st as any).temp_pay ?? 0) > 0) {
       // TODO-QSP: dynamic text: For your remaining shifts you get paid <<$func(''money'', ''string_profit'', tem...
-      scene.text(`For your remaining shifts you get paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))}`);
+      scene.text(`For your remaining shifts you get paid ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))}`);
       // TODO-QSP: dynamic text: Mr. Sobulyagin counts out <<$func(''money'', ''string_profit'', temp_pay)>> and ...
-      scene.text(`Mr. Sobulyagin counts out ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay || ''))} and hands it over to you.`);
+      scene.text(`Mr. Sobulyagin counts out ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_pay ?? ''))} and hands it over to you.`);
     }
     qspCall(st, 'jobs', 'set_fired', 'city_pussycats_clerk');
     scene.actions([
@@ -476,7 +476,7 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
     { label: 'Get on your knees', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/cats/sex/bj1.jpg');
     // TODO-QSP: dynamic text: Falling to your knees, you see he''s already unzipped his pants, pulled his cock...
-    scene.text(`Falling to your knees, you see he's already unzipped his pants, pulled his cock out, and started stroking his ${((st as any).dick || '')} cm ${((st as any).dick_girth || '')} cock. It looks enormous in your small hands as you give it a few tentative pumps before opening your mouth. You start off by gently licking the head then move on to licking the entire shaft up and down.`);
+    scene.text(`Falling to your knees, you see he's already unzipped his pants, pulled his cock out, and started stroking his ${((st as any).dick ?? '')} cm ${((st as any).dick_girth ?? '')} cock. It looks enormous in your small hands as you give it a few tentative pumps before opening your mouth. You start off by gently licking the head then move on to licking the entire shaft up and down.`);
     qspCall(st, 'arousal', 'bj', 3, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -504,7 +504,7 @@ function enterFired1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/cats/sex/bj5.jpg');
     scene.text('He starts grunting louder. "Open your mouth and stick out your tongue." You do as he commands and he takes over jerking his cock. Suddenly, he is shooting ropes of his hot cum in your mouth and all over your tongue. After a few moments, his cock stops twitching and spurting cum. He lets go of his cock as it starts to go limp. "Now swallow." You do as you\'re told and swallow his whole load.');
     // TODO-QSP: dynamic text: "You did very well, <<$pcs_nickname>>! You''ve shown me how hard of a worker you...
-    scene.text(`"You did very well, ${((st as any).pcs_nickname || '')}! You've shown me how hard of a worker you are and how badly you want this job, so I'll give you another chance." As he zips up his pants you look up to see him smiling down at you. "You've done enough for today, so you're free to go home if you want. Just make sure to not miss work anymore!" With these words he walks out of the office leaving you to put yourself in order.`);
+    scene.text(`"You did very well, ${((st as any).pcs_nickname ?? '')}! You've shown me how hard of a worker you are and how badly you want this job, so I'll give you another chance." As he zips up his pants you look up to see him smiling down at you. "You've done enough for today, so you're free to go home if you want. Just make sure to not miss work anymore!" With these words he walks out of the office leaving you to put yourself in order.`);
     qspCall(st, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', goto: ['shop_pussycats', 'start'] },
@@ -537,7 +537,7 @@ function enterFired2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A101');
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired1.jpg');
     // TODO-QSP: dynamic text: Falling to your knees you see he''s already unzipped his pants, pulled his cock ...
-    scene.text(`Falling to your knees you see he's already unzipped his pants, pulled his cock out, and started stroking his ${((st as any).dick || '')} cm ${((st as any).dick_girth || '')} cock. It looks enormous in your small hands as you give it a few tentative pumps before opening your mouth. You start off by gently licking the head before you start sucking.`);
+    scene.text(`Falling to your knees you see he's already unzipped his pants, pulled his cock out, and started stroking his ${((st as any).dick ?? '')} cm ${((st as any).dick_girth ?? '')} cock. It looks enormous in your small hands as you give it a few tentative pumps before opening your mouth. You start off by gently licking the head before you start sucking.`);
     qspCall(st, 'arousal', 'bj', 3, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -562,7 +562,7 @@ function enterFired2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A101');
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired4.jpg');
     // TODO-QSP: dynamic text: With a hard thrust he shoves his <<dick>> cm <<$dick_girth>> cock deep inside yo...
-    scene.text(`With a hard thrust he shoves his ${((st as any).dick || '')} cm ${((st as any).dick_girth || '')} cock deep inside you. The sudden forceful pain causes you to cry out and try to squirm away, but your hips are pressed against the edge of the desk while his hands hold them in place. He quickly forces his cock, balls deep into your ass, and the more you cry out and resist the more he seems to like it. While he is fucking you, he reaches up and pulls your top off, leaving your breasts exposed.`);
+    scene.text(`With a hard thrust he shoves his ${((st as any).dick ?? '')} cm ${((st as any).dick_girth ?? '')} cock deep inside you. The sudden forceful pain causes you to cry out and try to squirm away, but your hips are pressed against the edge of the desk while his hands hold them in place. He quickly forces his cock, balls deep into your ass, and the more you cry out and resist the more he seems to like it. While he is fucking you, he reaches up and pulls your top off, leaving your breasts exposed.`);
     qspCall(st, 'arousal', 'anal', 5, 'sub', 'maso', 'rough');
     qspCall(st, 'pain', '', 7, 'asshole', 'stretch');
     qspCall(st, 'stat', '');
@@ -581,7 +581,7 @@ function enterFired2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired6.jpg');
     scene.text('He starts grunting louder then, finally, he pulls his cock out of your ass and you sigh in relief. He takes a step back from you. "Get on your knees and finish me off." You turn around and do as he says. You take his dick in your mouth and start sucking it. You try not to think about where it just was, but at least the pain has stopped. Suddenly he pulls his cock out of your mouth and starts shooting ropes of his hot cum all over your face and tits. After a few moments, his cock stops twitching and spurting cum on you. He lets go of his cock as it begins to go limp.');
     // TODO-QSP: dynamic text: "You did very well, <<$pcs_nickname>>! You''ve shown me how badly you want this ...
-    scene.text(`"You did very well, ${((st as any).pcs_nickname || '')}! You've shown me how badly you want this job, so I'll give you another chance." As he zips his pants, you look up to see him smiling down at you. "You've done enough for today, so you're free to go home if you want. Just make sure to not miss work anymore!"`);
+    scene.text(`"You did very well, ${((st as any).pcs_nickname ?? '')}! You've shown me how badly you want this job, so I'll give you another chance." As he zips his pants, you look up to see him smiling down at you. "You've done enough for today, so you're free to go home if you want. Just make sure to not miss work anymore!"`);
     scene.text('You stand up slowly because your anus hurts <i>a lot</i>, almost feeling like someone has lit it on fire. You start to head towards the door, but he stops you. "Hey, don\'t you think you should thank me for giving you another chance," he asks as he smiles smugly.');
     scene.text('"Thank you very much," You say while trying your hardest to keep a smile on your face.');
     qspCall(st, 'arousal', 'end');
@@ -618,7 +618,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A101');
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired1.jpg');
     // TODO-QSP: dynamic text: Falling to your knees you see he''s already unzipped his pants, pulled his cock ...
-    scene.text(`Falling to your knees you see he's already unzipped his pants, pulled his cock out, and started stroking his ${((st as any).dick || '')} cm ${((st as any).dick_girth || '')} cock. It looks enormous in your small hands as you give it a few tentative pumps before opening your mouth. You start off by gently licking the head before you start sucking.`);
+    scene.text(`Falling to your knees you see he's already unzipped his pants, pulled his cock out, and started stroking his ${((st as any).dick ?? '')} cm ${((st as any).dick_girth ?? '')} cock. It looks enormous in your small hands as you give it a few tentative pumps before opening your mouth. You start off by gently licking the head before you start sucking.`);
     qspCall(st, 'arousal', 'bj', 3, 'sub');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -643,7 +643,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'boyStat', 'A101');
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired4.jpg');
     // TODO-QSP: dynamic text: With a hard thrust he shoves his <<dick>> cm <<$dick_girth>> cock deep inside yo...
-    scene.text(`With a hard thrust he shoves his ${((st as any).dick || '')} cm ${((st as any).dick_girth || '')} cock deep inside you. The sudden forceful pain causes you to cry out and try to squirm away, but your hips are pressed against the edge of the desk while his hands hold them in place. He quickly forces his cock, balls deep into your ass, and the more you cry out and resist the more he seems to like it. While he is fucking you, he reaches up and pulls your top off, leaving your breasts exposed.`);
+    scene.text(`With a hard thrust he shoves his ${((st as any).dick ?? '')} cm ${((st as any).dick_girth ?? '')} cock deep inside you. The sudden forceful pain causes you to cry out and try to squirm away, but your hips are pressed against the edge of the desk while his hands hold them in place. He quickly forces his cock, balls deep into your ass, and the more you cry out and resist the more he seems to like it. While he is fucking you, he reaches up and pulls your top off, leaving your breasts exposed.`);
     qspCall(st, 'arousal', 'anal', 5, 'sub', 'maso', 'rough');
     qspCall(st, 'pain', '', 7, 'asshole', 'stretch');
     qspCall(st, 'stat', '');
@@ -662,7 +662,7 @@ function enterRehired(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/cats/sex/fired6.jpg');
     scene.text('He starts grunting louder then, finally, he pulls his cock out of your ass, and you sigh in relief. He takes a step back from you. "Get on your knees and finish me off." You turn around and do as he says. You take his dick in your mouth and start sucking it. You try not to think about where it just was, but at least the pain has stopped. Suddenly, he pulls his cock out of your mouth and starts shooting ropes of his hot cum all over your face and tits. After a few moments, his cock stops twitching and spurting cum on you. He lets go of his cock as it begins to go limp.');
     // TODO-QSP: dynamic text: "You did very well, <<$pcs_nickname>>! You''ve shown me how badly you want this ...
-    scene.text(`"You did very well, ${((st as any).pcs_nickname || '')}! You've shown me how badly you want this job, so I'll give you another chance." As he zips his pants, you look up to see him smiling down at you. "You've done enough for today, so you're free to go home if you want. Just make sure to not miss work anymore!"`);
+    scene.text(`"You did very well, ${((st as any).pcs_nickname ?? '')}! You've shown me how badly you want this job, so I'll give you another chance." As he zips his pants, you look up to see him smiling down at you. "You've done enough for today, so you're free to go home if you want. Just make sure to not miss work anymore!"`);
     scene.text('You stand up slowly because your anus hurts <i>a lot</i>, almost feeling like someone has lit it on fire. You start to head towards the door, but he stops you. "Hey, don\'t you think you should thank me for giving you another chance," he asks, smiling smugly.');
     scene.text('"Thank you very much," You say trying your hardest to keep a smile on your face.');
     qspCall(st, 'arousal', 'end');

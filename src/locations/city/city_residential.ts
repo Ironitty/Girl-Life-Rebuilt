@@ -47,7 +47,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (qspFunc(s, 'homes_properties', 'has_access', 'city_apartment')) {
       // TODO-QSP: dynamic text: Something is written on the wall near the entrance to your building. It reads:<b...
-      scene.text(`Something is written on the wall near the entrance to your building. It reads:<b>"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} from apartment 42 is a cheap slut!"</b>`);
+      scene.text(`Something is written on the wall near the entrance to your building. It reads:<b>"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} from apartment 42 is a cheap slut!"</b>`);
     }
   }
   qspCall(s, 'stat', '');
@@ -150,7 +150,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-      scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
+      scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
   // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''metro'', ''residential''">Metro</a> station...
@@ -298,7 +298,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (qspFunc(s, 'homes_properties', 'has_access', 'city_apartment')) {
       // TODO-QSP: dynamic text: Something is written on the wall near the entrance to your building. It reads:<b...
-      scene.text(`Something is written on the wall near the entrance to your building. It reads:<b>"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} from apartment 42 is a cheap slut!"</b>`);
+      scene.text(`Something is written on the wall near the entrance to your building. It reads:<b>"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')} from apartment 42 is a cheap slut!"</b>`);
     }
   }
   qspCall(s, 'stat', '');
@@ -401,7 +401,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-      scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
+      scene.text(`<table BORDER=1>${((s as any).show_table ?? '')}</tr></table>`);
     }
   }
   // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt ''metro'', ''residential''">Metro</a> station...

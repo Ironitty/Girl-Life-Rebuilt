@@ -25,10 +25,10 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :model_loop
   if (((s as any).model ?? 0)?.['rank'] === (11 - ((s as any).model_i ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''sveta''"><<model_i>>. <<$model[''firstname''...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027sveta/u0027); return false;">${((s as any).model_i || '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${(String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1)))}.</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027sveta/u0027); return false;">${((s as any).model_i ?? '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${(String(((s as any).model ?? 0)?.['lastname'] ?? '').slice((1)-1, ((1)-1)+(1)))}.</a>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:gt ''foto_albums'', ''<<$temp_base_ranking_link[model_i]>>''"><<mo...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}/u0027); return false;">${((s as any).model_i || '')}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027foto_albums/u0027, /u0027${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}/u0027); return false;">${((s as any).model_i ?? '')}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}</a>`);
   }
   (s as any).model_i = ((s as any).model_i ?? 0) + (1);
   if (((s as any).model_i ?? 0) < 11) {

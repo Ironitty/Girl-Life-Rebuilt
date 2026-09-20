@@ -42,7 +42,7 @@ function enterSuck(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).pdsxbj ?? 0))) {
     (s as any).pdsxbj = 1;
   }
-  scene.img(`images/locations/shared/sex/pod/minet${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/pod/minet${((s as any).picrand ?? '')}.jpg`);
   scene.text('You look the other girl deep in the eyes as the two of you suck the man\'s cock, touching her tongue with yours when you reach around his shaft.');
   scene.text('The two of you then take turns sucking him off while the other licks and sucks on his balls.');
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'group');
@@ -78,7 +78,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).pdsxsex ?? 0))) {
     (s as any).pdsxsex = 1;
   }
-  scene.img(`images/locations/shared/sex/pod/uvag${((s as any).picrand || '')}.jpg`);
+  scene.img(`images/locations/shared/sex/pod/uvag${((s as any).picrand ?? '')}.jpg`);
   scene.text('The man eagerly penetrates your pussy before he thrusts his length inside you over and over, bringing you pleasure.');
   qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'group');
   qspCall(s, 'stat', '');
@@ -112,7 +112,7 @@ function enterAss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).picrand ?? 0) === 12) {
     scene.img('images/locations/shared/sex/sexdvanadva/uanal12.jpg');
   } else {
-    scene.img(`images/locations/shared/sex/pod/uanal${((s as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/shared/sex/pod/uanal${((s as any).picrand ?? '')}.jpg`);
   }
   scene.text('The man slowly works the tip of his cock inside your ass before he halts so you can get used to the sensation.');
   scene.text('He then starts thrusting his length inside you, fucking you ntensely with little regard for your feelings.');
@@ -148,14 +148,14 @@ function enterVoy(s: GameState, scene: SceneBuilder): void {
   }
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     (s as any).pos = 4;
-    scene.img(`images/locations/shared/sex/pod/vag${((s as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/shared/sex/pod/vag${((s as any).picrand ?? '')}.jpg`);
     scene.text('While the other girl is enjoying getting her pussy fucked, you find that she\'ll do whatever you want her to do.');
     scene.text('She eagerly licks your pussy when you sit on her face while the guy rams his cock inside her repeatedly.');
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom', 'group');
     qspCall(s, 'stat', '');
   } else {
     (s as any).pos = 5;
-    scene.img(`images/locations/shared/sex/pod/anal${((s as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/shared/sex/pod/anal${((s as any).picrand ?? '')}.jpg`);
     scene.text('While the other girl is enjoying getting her ass fucked, you find that she\'ll do whatever you want her to do.');
     scene.text('She eagerly licks your pussy when you sit on her face while the guy rams his cock inside her repeatedly.');
     qspCall(s, 'arousal', 'cuni', 10, 'lesbian', 'dom', 'group');
@@ -179,7 +179,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).pdsxanal = 0;
   (s as any).sexstart = 0;
   if (((s as any).pos ?? 0) === 1) {
-    scene.img(`images/locations/shared/sex/pod/cum${((s as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/shared/sex/pod/cum${((s as any).picrand ?? '')}.jpg`);
     scene.text('The man shoots his load over you and the other girl\'s faces. The two of you giggle and lick his cock clean, kissing each other in the process.');
     qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);

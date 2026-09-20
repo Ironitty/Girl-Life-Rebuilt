@@ -73,7 +73,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You are greeted by a middle aged woman. "Hello, how may I help you?" She asks politely.');
   // TODO-QSP: dynamic text: "Hello, I am <<$pcs_firstname>> <<$pcs_lastname>>. I am part of the ballet schoo...
-  scene.text(`"Hello, I am ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}. I am part of the ballet school intake." you give her a smile and hand over the school's letter as proof.`);
+  scene.text(`"Hello, I am ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}. I am part of the ballet school intake." you give her a smile and hand over the school's letter as proof.`);
   scene.text('The woman smiles warmly, "Ah you are the new students for this year?" she claps her hands and then takes yours, "Come, come we must measure your feet and order your shoes"');
   scene.text('Before you say anything she\'s dragging you through the shop towards the back we are greeted by a wall of shoes and there are pictures on the wall signed by dancers with shoes next to them. You look at the woman.');
   scene.text('"Yes, they are all dancers who are or have been clients of our establishment", she noticed your gaze and explained with pride."We will only provide the best for the school."');
@@ -81,7 +81,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('For the next hour, Madam Pushkina bombards you with questions of whether you want leather or cotton fabric, how many satin shoes and a myriad other questions before she finally relents.');
   scene.text('"Of course, as you are aware the school is sponsoring these costs, but only for the first year she says and you will need to manage your own equipment after this.", Madame Pushkina advises.');
   // TODO-QSP: dynamic text: "Is there anything else you need? No? Good, I will see you again in two weeks fo...
-  scene.text(`"Is there anything else you need? No? Good, I will see you again in two weeks for your final shoe fitting. I would like to extend my congratulations and wish you a successful career Ms. ${((s as any).pcs_lastname || '')}."`);
+  scene.text(`"Is there anything else you need? No? Good, I will see you again in two weeks for your final shoe fitting. I would like to extend my congratulations and wish you a successful career Ms. ${((s as any).pcs_lastname ?? '')}."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },

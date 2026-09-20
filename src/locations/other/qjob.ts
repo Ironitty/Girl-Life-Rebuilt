@@ -162,7 +162,7 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     (st as any).picrand = (Math.floor(Math.random() * 5) + 6);
-    scene.img(`images/locations/city/citycenter/photo/photoshoot/f${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/city/citycenter/photo/photoshoot/f${((st as any).picrand ?? '')}.jpg`);
     scene.text('You\'re too baffled to complain, even if you wanted to. The photographer enjoys the two of you, still giving commands from time to time. Your tongue feels tired from all the licking by the time it\'s over.');
     scene.text('The three of you lay exhaustedly on the floor, and only slowly get up. "That was great! I loved how feisty this one was… Same time next week?" the other girl asks the photographer as you all get dressed.');
     scene.text('The photographer laughs as she gives you your paycheck. "Absolutely! I love my job…"');

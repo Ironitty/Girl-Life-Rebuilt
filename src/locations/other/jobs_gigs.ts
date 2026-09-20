@@ -188,7 +188,7 @@ function enterDispEvt2(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><h2>Current Task List</h2></center>');
       (s as any).evtheader = '<tr><th>Date</th><th>Task</th><th>Pay</th><th>Time</th><th>Duration</th><th>Location</th><th>Cancel Job</th></tr>';
       // TODO-QSP: dynamic text: <center><table width="90%" align="center" width="90%" cellspacing="5" cellpaddin...
-      scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="5" cellpadding="5" valign="top">${((s as any).evtheader || '')}${((s as any).evtbody || '')}</table></center>`);
+      scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="5" cellpadding="5" valign="top">${((s as any).evtheader ?? '')}${((s as any).evtbody ?? '')}</table></center>`);
     } else {
       scene.text('You haven\'t taken on any jobs yet.');
     }
@@ -253,7 +253,7 @@ function enterDelEvt(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Delete: <<evt_event[evt_idx]>>
     scene.text(`Delete: ${((s as any).evt_event ?? 0)?.[String((s as any).evt_idx ?? 0)] ?? ''}`);
     // TODO-QSP: dynamic text: Index: <<evt_idx>>
-    scene.text(`Index: ${((s as any).evt_idx || '')}`);
+    scene.text(`Index: ${((s as any).evt_idx ?? '')}`);
     // TODO-QSP: dynamic text: Desc: <<$evt_desc[evt_idx]>>
     scene.text(`Desc: ${((s as any).evt_desc ?? 0)?.[String((s as any).evt_idx ?? 0)] ?? ''}`);
     scene.actions([
@@ -272,7 +272,7 @@ function enterDelEvt(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: <<evt_idx>> - Invalid record - please check your index
-    scene.text(`${((s as any).evt_idx || '')} - Invalid record - please check your index`);
+    scene.text(`${((s as any).evt_idx ?? '')} - Invalid record - please check your index`);
   }
   // TODO-QSP: end
   scene.build();

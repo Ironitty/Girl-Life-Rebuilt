@@ -61,7 +61,7 @@ function enterSetTalkActs(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/grandma.jpg');
     scene.text('You sit next to grandma, eager to have her tell you more about the village.');
     // TODO-QSP: dynamic text: "Don''t you remember <<$pcs_nickname>>? You''ve visited us many times," said gra...
-    scene.text(`"Don't you remember ${((st as any).pcs_nickname || '')}? You've visited us many times," said grandma.`);
+    scene.text(`"Don't you remember ${((st as any).pcs_nickname ?? '')}? You've visited us many times," said grandma.`);
     scene.text('"The last time I visited here, I was really young. Of course, I remember some of the houses, but the clearest memory I have is going swimming with Mitka," you reply.');
     scene.text('"And look how big you\'ve become! Just look at you." grandma smiled.');
     scene.text('She begins telling you about the village.');
@@ -113,7 +113,7 @@ function enterSetTalkActs(s: GameState, scene: SceneBuilder): void {
         scene.text('"I had a friend when I was younger," she says in an ominous voice. "Her husband died at her house. He was a drunken bastard. He got drunk one day and died of alcohol poisoning in the very same house."');
         scene.text('"One day, she came home from work, and the floorboards suddenly started creaking! And through the glass panes in the hallway door, she could see the silhouette of a man. It looked remarkably like her late husband!"');
         // TODO-QSP: dynamic text: "She was terrified! She quickly left her house and only returned when I promised...
-        scene.text(`"She was terrified! She quickly left her house and only returned when I promised to go with her… but of course, we found nothing. Do you believe in ghosts, ${((st as any).pcs_nickname || '')}? Because ever since then, I do…"`);
+        scene.text(`"She was terrified! She quickly left her house and only returned when I promised to go with her… but of course, we found nothing. Do you believe in ghosts, ${((st as any).pcs_nickname ?? '')}? Because ever since then, I do…"`);
       } else {
         if (((st as any).temp ?? 0) === 2) {
           scene.text('"I wasn\'t born in Gadukino. I grew up in a different village", your grandmother begins. "This is a true story, by the way!"');
@@ -121,7 +121,7 @@ function enterSetTalkActs(s: GameState, scene: SceneBuilder): void {
           scene.text('"His one surviving sister was terrified. She was a friend, but her parents wouldn\'t let her leave the house."');
           scene.text('"It was well into the winter then, and people could only go to other towns by sleigh. So for forty days, they waited… just when they were about to accept that the legend might not be true, they found one of her relatives. Dead. Muzhik, I believe his name was, was found frozen solid, basically a block of ice! He\'d tried to attend his cousin\'s funeral, but it cost him his life!"');
           // TODO-QSP: dynamic text: "Death is not to be trifled with, <<$pcs_nickname>>… her parents were smart to h...
-          scene.text(`"Death is not to be trifled with, ${((st as any).pcs_nickname || '')}… her parents were smart to hide her. Otherwise, she might've died instead!"`);
+          scene.text(`"Death is not to be trifled with, ${((st as any).pcs_nickname ?? '')}… her parents were smart to hide her. Otherwise, she might've died instead!"`);
         } else {
           if (((st as any).temp ?? 0) === 3) {
             scene.text('"This really happened!" your grandmother reassures you. "When I was young, your age… it was just after the war. Then, no one believed in superstition or anything like that. Those were tough times. All anyone cared about was how to get their next meal on the table for their family."');
@@ -148,13 +148,13 @@ function enterSetTalkActs(s: GameState, scene: SceneBuilder): void {
                   scene.text('"I remember sitting down as we are right now," your grandma starts, but suddenly as if she remembered something, she sadly sighs. "There are no more matches…"');
                   scene.text('You look at her perplexed, questioning what she\'s talking about. "We do have matches in the kitchen, or if you want, I can run over to the store to buy some."');
                   // TODO-QSP: dynamic text: "You don''t get it, <<$pcs_nickname>>. The matches today are not as good as thos...
-                  scene.text(`"You don't get it, ${((st as any).pcs_nickname || '')}. The matches today are not as good as those made long ago. I miss those matches we had during the Great Patriotic War before they had to move the factory to the far east… Those matches were magical, not like this crap we have now… Ugh…"`);
+                  scene.text(`"You don't get it, ${((st as any).pcs_nickname ?? '')}. The matches today are not as good as those made long ago. I miss those matches we had during the Great Patriotic War before they had to move the factory to the far east… Those matches were magical, not like this crap we have now… Ugh…"`);
                 } else {
                   if (((st as any).temp ?? 0) === 7) {
                     scene.text('"One day, my mother, rest her soul, sent us four siblings out to the forest for berry gathering", your grandma begins. "We took our berry collectors and headed out. We reached the forest entrance quickly and decided that it would be best to split up to complete the task faster. Since we were familiar with the area, we all dispersed to our cherished spots and began gathering berries."');
                     scene.text('"My favourite spot was a plot surrounded by dense bushes, and in the middle of the plot, there was a huge stump. It was a great spot, and as I approached, I noticed a vast number of ripe strawberries. I rejoiced over the thought that I would gather more than my brothers, slowly gathering the berries and putting them in my berry collector. Then, suddenly, I hear some rustling behind the bushes. I turn towards the sound, but I\'m met with silence. I didn\'t notice anyone, but I still couldn\'t get rid of the eerie feeling."');
                     // TODO-QSP: dynamic text: "I shook off the eerie feeling and returned to gathering strawberries again. All...
-                    scene.text(`"I shook off the eerie feeling and returned to gathering strawberries again. All of a sudden, I get this strange feeling… I look up, and I see a person squatting on the stump. He's completely still and just stares at me. I got terrified and ran away, screaming and crying towards my brothers. They tried to stop and calm me down, but I kept running. My brothers started running after me, trying to keep up. I could hear my oldest brother shouting to run towards the kolkhoz. You see ${((st as any).pcs_firstname || '')}, a long time ago we had central collective farms called kolkhoz."`);
+                    scene.text(`"I shook off the eerie feeling and returned to gathering strawberries again. All of a sudden, I get this strange feeling… I look up, and I see a person squatting on the stump. He's completely still and just stares at me. I got terrified and ran away, screaming and crying towards my brothers. They tried to stop and calm me down, but I kept running. My brothers started running after me, trying to keep up. I could hear my oldest brother shouting to run towards the kolkhoz. You see ${((st as any).pcs_firstname ?? '')}, a long time ago we had central collective farms called kolkhoz."`);
                     scene.text('"We were lucky that the farms were close to the forest and didn\'t have to run through the woods for long. I kept looking back to see if this person was following us, but there was no sign of him. We knew we were safe when we saw the brigade\'s farmers. My brothers and I ran to the foreman and explained what had happened. He immediately grabbed the phone and called someone. The other farmers reassured us that we were safe now. After we had calmed down, we got sent home. Our mother met us at home. She fed us and comforted me."');
                     scene.text('"The following day, we were informed that some people found dismantled railroad rails not far from the train station Ratomka. Apparently, it was done by the man I encountered in the forest. I didn\'t know it then, but before the war, our area was prone to sabotage by infiltrators. Staying hidden was easy, as the territory is covered by forest, stretching to the border."');
                     scene.text('"Ever since that day, the fear I experienced never disappeared, as I\'ve felt it throughout my life. I\'ll carry on this fear for the remaining days of my life…"');
@@ -252,7 +252,7 @@ function enterGetRandomChoreAct(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "There is nothing to do today, <<$pcs_nickname>>. Take the day off.
-    scene.text(`"There is nothing to do today, ${((st as any).pcs_nickname || '')}. Take the day off.`);
+    scene.text(`"There is nothing to do today, ${((st as any).pcs_nickname ?? '')}. Take the day off.`);
     scene.actions([
       { label: 'Continue', goto: ['gp_elene', 'talk'] },
     ]);
@@ -377,7 +377,7 @@ function enterCheckForChores(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreCleanfloor(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "There is always something to do, <<$pcs_nickname>>. I''ve gotten quite old, and...
-  scene.text(`"There is always something to do, ${((s as any).pcs_nickname || '')}. I've gotten quite old, and my strength is not what it used to be. Could you help me out by cleaning the floor?"`);
+  scene.text(`"There is always something to do, ${((s as any).pcs_nickname ?? '')}. I've gotten quite old, and my strength is not what it used to be. Could you help me out by cleaning the floor?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_clean_floor'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -426,7 +426,7 @@ function enterSetReportCleanfloorAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreWashclothes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Of course, <<$pcs_nickname>>, you can help me wash your grandfather''s dirty cl...
-  scene.text(`"Of course, ${((s as any).pcs_nickname || '')}, you can help me wash your grandfather's dirty clothes?"`);
+  scene.text(`"Of course, ${((s as any).pcs_nickname ?? '')}, you can help me wash your grandfather's dirty clothes?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_wash_clothes'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -470,7 +470,7 @@ function enterSetReportWashclothesAct(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/grandma.jpg');
     scene.text('"Grandma, I finished washing Grandpa\'s dirty clothes," you tell her.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>. I have no idea how that man gets so dirty!"
-    scene.text(`"Thank you, ${((st as any).pcs_nickname || '')}. I have no idea how that man gets so dirty!"`);
+    scene.text(`"Thank you, ${((st as any).pcs_nickname ?? '')}. I have no idea how that man gets so dirty!"`);
     scene.text('You and your grandmother share a laugh, and you give her a hug before moving on.');
     scene.actions([
       { label: 'Continue', goto: ['gp_elene', 'talk'] },
@@ -484,7 +484,7 @@ function enterSetReportWashclothesAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreMilkcows(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, go to the barn and milk the cows."
-  scene.text(`"${((s as any).pcs_nickname || '')}, go to the barn and milk the cows."`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}, go to the barn and milk the cows."`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_milk_cow'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -531,7 +531,7 @@ function enterSetReportMilkcowAct(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/grandma.jpg');
     scene.text('"Grandma, I milked Dawn and put the milk away," you tell her.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>. She''s such a sweet thing, isn''t she?" your gran...
-    scene.text(`"Thank you, ${((st as any).pcs_nickname || '')}. She's such a sweet thing, isn't she?" your grandmother asks fondly.`);
+    scene.text(`"Thank you, ${((st as any).pcs_nickname ?? '')}. She's such a sweet thing, isn't she?" your grandmother asks fondly.`);
     scene.text('"Um, yes, she is very nice for a cow," you smile. "She\'s the nicest cow I know."');
     scene.text('Grandma nods sagely at that, and you grin and continue on with your day.');
     scene.actions([
@@ -546,7 +546,7 @@ function enterSetReportMilkcowAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreGroceries(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Oh yes, <<$pcs_nickname>>. I was going to go down to the store today to buy som...
-  scene.text(`"Oh yes, ${((s as any).pcs_nickname || '')}. I was going to go down to the store today to buy some groceries, but my knees are aching. Do you think you could go down there and get them for me? I have a list of what we need, and the grocer will come by later to collect the money."`);
+  scene.text(`"Oh yes, ${((s as any).pcs_nickname ?? '')}. I was going to go down to the store today to buy some groceries, but my knees are aching. Do you think you could go down there and get them for me? I have a list of what we need, and the grocer will come by later to collect the money."`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_groceries'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -597,13 +597,13 @@ function enterSetReportGroceriesAct(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/grandma.jpg');
     scene.text('You show Grandma your sacks of groceries and tell her the grocer will be by later.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>. He''s a nice young man. I''ve known him since he ...
-    scene.text(`"Thank you, ${((st as any).pcs_nickname || '')}. He's a nice young man. I've known him since he was a child, you know."`);
+    scene.text(`"Thank you, ${((st as any).pcs_nickname ?? '')}. He's a nice young man. I've known him since he was a child, you know."`);
     scene.text('"Yes, he\'s very nice," you say, "but where do you want me to put this stuff?"');
     scene.text('"Oh yes, yes," she says as if she forgot you were standing there with arms full of groceries. "Just put them in the kitchen, little one. I will put them away in a minute."');
     scene.text('You lug the bags into the kitchen and heft them on the table before returning to Grandma.');
     scene.text('"Anything else you need, Grandma?" you ask.');
     // TODO-QSP: dynamic text: "No, that is all, <<$pcs_nickname>>," she says and gives you a gentle pat on the...
-    scene.text(`"No, that is all, ${((st as any).pcs_nickname || '')}," she says and gives you a gentle pat on the back.`);
+    scene.text(`"No, that is all, ${((st as any).pcs_nickname ?? '')}," she says and gives you a gentle pat on the back.`);
     scene.actions([
       { label: 'Continue', goto: ['gp_elene', 'talk'] },
     ]);
@@ -616,7 +616,7 @@ function enterSetReportGroceriesAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreCanMushrooms(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "I need to get some of these mushrooms canned, <<$pcs_nickname>>, so we can stor...
-  scene.text(`"I need to get some of these mushrooms canned, ${((s as any).pcs_nickname || '')}, so we can store them. Can you please help me prepare them?"`);
+  scene.text(`"I need to get some of these mushrooms canned, ${((s as any).pcs_nickname ?? '')}, so we can store them. Can you please help me prepare them?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_can_mushrooms'] = 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHelpCanMushroomsAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -651,7 +651,7 @@ function enterSetHelpCanMushroomsAct(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/village/canned_mushrooms.jpg');
     scene.text('Finally, you help Grandma take them out of the canner and set them aside to cool.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>," she says. "It is important to save food up for t...
-    scene.text(`"Thank you, ${((st as any).pcs_nickname || '')}," she says. "It is important to save food up for the hard winter months. Sure, now you can walk to the store and get whatever you want, but it wasn't always that way!"`);
+    scene.text(`"Thank you, ${((st as any).pcs_nickname ?? '')}," she says. "It is important to save food up for the hard winter months. Sure, now you can walk to the store and get whatever you want, but it wasn't always that way!"`);
     scene.actions([
       { label: 'Finish', goto: ['gp_elene', 'return'] },
     ]);
@@ -668,7 +668,7 @@ function enterSetHelpCanMushroomsAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreCanBerries(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "It is time to can these berries, <<$pcs_nickname>>. Can you please help me? My ...
-  scene.text(`"It is time to can these berries, ${((s as any).pcs_nickname || '')}. Can you please help me? My fingers aren't as spry as they used to be."`);
+  scene.text(`"It is time to can these berries, ${((s as any).pcs_nickname ?? '')}. Can you please help me? My fingers aren't as spry as they used to be."`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_can_berries'] = 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHelpCanBerriesAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -718,7 +718,7 @@ function enterSetHelpCanBerriesAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreCanVeggies(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "We have had good luck with the garden this year, <<$pcs_nickname>>. But now we ...
-  scene.text(`"We have had good luck with the garden this year, ${((s as any).pcs_nickname || '')}. But now we need to can these vegetables before they spoil. Can you help me, please?"`);
+  scene.text(`"We have had good luck with the garden this year, ${((s as any).pcs_nickname ?? '')}. But now we need to can these vegetables before they spoil. Can you help me, please?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_can_veggies'] = 1;
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHelpCanVeggiesAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -752,7 +752,7 @@ function enterSetHelpCanVeggiesAct(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/village/canned_veggies.jpg');
     scene.text('Finally, you help Grandma take the last jars out of the canner and set them aside to cool.');
     // TODO-QSP: dynamic text: "You know, <<$pcs_nickname>>, if you know how to can your own food, you can surv...
-    scene.text(`"You know, ${((st as any).pcs_nickname || '')}, if you know how to can your own food, you can survive years of poor harvests," she says.`);
+    scene.text(`"You know, ${((st as any).pcs_nickname ?? '')}, if you know how to can your own food, you can survive years of poor harvests," she says.`);
     scene.text('"Your grandfather and I had many hard times when we were younger, but saving our crops when we could, kept us from starving to death in the bad times. You would do well to remember that, young lady!"');
     scene.actions([
       { label: 'Finish', goto: ['gp_elene', 'return'] },
@@ -770,7 +770,7 @@ function enterSetHelpCanVeggiesAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreFeedchickens(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Of course, <<$pcs_nickname>>. Would you be kind and feed the chickens?"
-  scene.text(`"Of course, ${((s as any).pcs_nickname || '')}. Would you be kind and feed the chickens?"`);
+  scene.text(`"Of course, ${((s as any).pcs_nickname ?? '')}. Would you be kind and feed the chickens?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_feed_chickens'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -817,7 +817,7 @@ function enterSetReportFeedchickensAct(s: GameState, scene: SceneBuilder): void 
     scene.img('images/locations/gadukino/grandparents/grandma.jpg');
     scene.text('"I fed the chickens, Grandma," you tell her.');
     // TODO-QSP: dynamic text: "Good, thank you, <<$pcs_nickname>>," she says. "A fat chicken is a happy chicke...
-    scene.text(`"Good, thank you, ${((st as any).pcs_nickname || '')}," she says. "A fat chicken is a happy chicken, and happy chickens lay the best eggs."`);
+    scene.text(`"Good, thank you, ${((st as any).pcs_nickname ?? '')}," she says. "A fat chicken is a happy chicken, and happy chickens lay the best eggs."`);
     scene.text('She nods to herself as if she has said something sagacious.');
     scene.text('"Um, well, I\'m happy to help, Grandma," you say and hug her quickly.');
     scene.actions([
@@ -832,7 +832,7 @@ function enterSetReportFeedchickensAct(s: GameState, scene: SceneBuilder): void 
 
 function enterChoreCheckplants(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, can you please go work in the garden?"
-  scene.text(`"${((s as any).pcs_nickname || '')}, can you please go work in the garden?"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}, can you please go work in the garden?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_work_in_garden'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -881,10 +881,10 @@ function enterSetReportCheckplantsAct(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/grandma.jpg');
     scene.text('"I finished working in the garden, Grandma."');
     // TODO-QSP: dynamic text: "Good, thank you, <<$pcs_nickname>>," she says. "Did you pull out all the weeds?...
-    scene.text(`"Good, thank you, ${((st as any).pcs_nickname || '')}," she says. "Did you pull out all the weeds?"`);
+    scene.text(`"Good, thank you, ${((st as any).pcs_nickname ?? '')}," she says. "Did you pull out all the weeds?"`);
     scene.text('"Yes, I did," you say, "and I watered all the plants and checked for pests and everything."');
     // TODO-QSP: dynamic text: "Good, good," she nods. "It is crucial to take care of your garden, <<$pcs_nickn...
-    scene.text(`"Good, good," she nods. "It is crucial to take care of your garden, ${((st as any).pcs_nickname || '')}. It is how we provide for ourselves when no one else will."`);
+    scene.text(`"Good, good," she nods. "It is crucial to take care of your garden, ${((st as any).pcs_nickname ?? '')}. It is how we provide for ourselves when no one else will."`);
     scene.text('You nod at her advice, and she smiles.');
     scene.text('"You know, you remind me very much of your mother," she says. "She and Luda always talked about the garden when they were your age."');
     if (((st as any).npc_QW ?? 0)?.['A29'] < 2) {
@@ -899,7 +899,7 @@ function enterSetReportCheckplantsAct(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You grin, thinking of how <<$npc_nickname[''A29'']>> must have been at your age.
     scene.text(`You grin, thinking of how ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} must have been at your age.`);
     // TODO-QSP: dynamic text: "Anyway," she continues, "thank you for doing that for me, <<$pcs_nickname>>. My...
-    scene.text(`"Anyway," she continues, "thank you for doing that for me, ${((st as any).pcs_nickname || '')}. My old bones complain when I do it."`);
+    scene.text(`"Anyway," she continues, "thank you for doing that for me, ${((st as any).pcs_nickname ?? '')}. My old bones complain when I do it."`);
     scene.text('She gives you a peck on the cheek and sends you on your way.');
     scene.actions([
       { label: 'Continue', goto: ['gp_elene', 'talk'] },
@@ -913,7 +913,7 @@ function enterSetReportCheckplantsAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreWaterplants(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "Dear <<$pcs_nickname>>, could you go and water the plants in the garden?"
-  scene.text(`"Dear ${((s as any).pcs_nickname || '')}, could you go and water the plants in the garden?"`);
+  scene.text(`"Dear ${((s as any).pcs_nickname ?? '')}, could you go and water the plants in the garden?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_water_garden'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -962,7 +962,7 @@ function enterSetReportWaterplantsAct(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/grandparents/grandma.jpg');
     scene.text('"I watered all the plants in the garden, Grandma," you tell her.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>," she says. "A healthy plant is always thirsty. So...
-    scene.text(`"Thank you, ${((st as any).pcs_nickname || '')}," she says. "A healthy plant is always thirsty. So you should have some water, too, if you want to be a healthy girl."`);
+    scene.text(`"Thank you, ${((st as any).pcs_nickname ?? '')}," she says. "A healthy plant is always thirsty. So you should have some water, too, if you want to be a healthy girl."`);
     scene.text('"Maybe I will. Is there anything else you need?"');
     scene.text('"No, sweet child. That is enough for today," she says and gives you a gentle pat on the arm.');
     scene.actions([
@@ -977,7 +977,7 @@ function enterSetReportWaterplantsAct(s: GameState, scene: SceneBuilder): void {
 
 function enterChoreCollectstrawberries(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> dear, the strawberries are ripe for picking. Could you go ove...
-  scene.text(`"${((s as any).pcs_nickname || '')} dear, the strawberries are ripe for picking. Could you go over to the plot and pick them today?"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')} dear, the strawberries are ripe for picking. Could you go over to the plot and pick them today?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_collect_strawberries'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -1035,7 +1035,7 @@ function enterSetReportCollectstrawberriesAct(s: GameState, scene: SceneBuilder)
     scene.text('You walk up to Grandma and give her the basket of strawberries.');
     scene.text('"I picked all the strawberries I could find, Grandma," you say.');
     // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>," she exclaims, "don''t these just look wonderful? They a...
-    scene.text(`"Oh, ${((st as any).pcs_nickname || '')}," she exclaims, "don't these just look wonderful? They are plump and juicy this year."`);
+    scene.text(`"Oh, ${((st as any).pcs_nickname ?? '')}," she exclaims, "don't these just look wonderful? They are plump and juicy this year."`);
     scene.text('You smile and say, "They taste pretty good too!"');
     scene.text('Your grandmother gives you a rueful look and says, "I don\'t remember asking you to eat the strawberries, child."');
     scene.text('She cannot hold the charade, though, and breaks into a smile. "I never could resist eating a few fresh off the plant either."');
@@ -1051,7 +1051,7 @@ function enterSetReportCollectstrawberriesAct(s: GameState, scene: SceneBuilder)
 
 function enterChoreCollectfruit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> dear, the fruits are ripe, and it is time to start collecting...
-  scene.text(`"${((s as any).pcs_nickname || '')} dear, the fruits are ripe, and it is time to start collecting them. Could you go and do it today?"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')} dear, the fruits are ripe, and it is time to start collecting them. Could you go and do it today?"`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_collect_fruit'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -1109,7 +1109,7 @@ function enterSetReportCollectfruitAct(s: GameState, scene: SceneBuilder): void 
     scene.text('You walk up to Grandma and give her the basket of fruit.');
     scene.text('"I gathered all the fruits I could reach," you say.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>," she says. "I cannot reach or bend like I used to...
-    scene.text(`"Thank you, ${((st as any).pcs_nickname || '')}," she says. "I cannot reach or bend like I used to, so you have done me a great favor."`);
+    scene.text(`"Thank you, ${((st as any).pcs_nickname ?? '')}," she says. "I cannot reach or bend like I used to, so you have done me a great favor."`);
     scene.text('You smile and hug your grandmother and go on about your day.');
     scene.actions([
       { label: 'Continue', goto: ['gp_elene', 'talk'] },
@@ -1123,7 +1123,7 @@ function enterSetReportCollectfruitAct(s: GameState, scene: SceneBuilder): void 
 
 function enterChoreHarvestgarden(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> dear, could you go to the garden today? It''s time to collect...
-  scene.text(`"${((s as any).pcs_nickname || '')} dear, could you go to the garden today? It's time to collect the harvest."`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')} dear, could you go to the garden today? It's time to collect the harvest."`);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_harvest_garden'] = 1;
   // TODO-QSP: end
   scene.actions([
@@ -1176,7 +1176,7 @@ function enterSetReportHarvestgardenAct(s: GameState, scene: SceneBuilder): void
     scene.text('"Yes, child," she says. "We have been blessed with a healthy garden this year. But, unfortunately, there were many times in the past we were not so lucky."');
     scene.text('Your smile falters a bit, unsure of how to take that.');
     // TODO-QSP: dynamic text: "Oh, don''t worry yourself, little <<$pcs_nickname>>," she says, cupping your ch...
-    scene.text(`"Oh, don't worry yourself, little ${((st as any).pcs_nickname || '')}," she says, cupping your cheek with her hand. "Forgive an old woman of her thoughtful ways. We are lucky to have such a kind granddaughter to help us bring in the harvest."`);
+    scene.text(`"Oh, don't worry yourself, little ${((st as any).pcs_nickname ?? '')}," she says, cupping your cheek with her hand. "Forgive an old woman of her thoughtful ways. We are lucky to have such a kind granddaughter to help us bring in the harvest."`);
     scene.text('You place your youthful hand over her wizened old one and smile at her. "I am happy to help, Grandma. Is there anything else you need?"');
     scene.text('"No, child, you have done more than your fair share today. Of course, soon, we will have to preserve these vegetables to keep them from spoiling, but for now, you can rest."');
     scene.actions([
@@ -1193,7 +1193,7 @@ function enterChoreGathermushrooms(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_gather_mushrooms'] = 1;
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_mushroom_quantity'] = (Math.floor(Math.random() * 2) + 1);
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, it''s mushroom season. Would you mind going into the forest ...
-  scene.text(`"${((s as any).pcs_nickname || '')}, it's mushroom season. Would you mind going into the forest to pick some for us?"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}, it's mushroom season. Would you mind going into the forest to pick some for us?"`);
   scene.text('"How much do we need, Grandma?" you ask.');
   // TODO-QSP: dynamic text: "Oh, I would say you should be able to find at least <<grandmaQW[''chore_mushroo...
   scene.text(`"Oh, I would say you should be able to find at least ${((s as any).grandmaQW ?? 0)?.['chore_mushroom_quantity'] ?? ''} kilos," Grandma replies.`);
@@ -1275,7 +1275,7 @@ function enterChoreGatherberries(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_gather_berries'] = 1;
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_berry_quantity'] = (Math.floor(Math.random() * 2) + 1);
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, the wild berries are ripe for picking. We should gather them...
-  scene.text(`"${((s as any).pcs_nickname || '')}, the wild berries are ripe for picking. We should gather them now while we can."`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}, the wild berries are ripe for picking. We should gather them now while we can."`);
   scene.text('"How much do you want, Grandma?" you ask.');
   // TODO-QSP: dynamic text: "<<grandmaQW[''chore_berry_quantity'']>> kilos will be a good start," Grandma re...
   scene.text(`"${((s as any).grandmaQW ?? 0)?.['chore_berry_quantity'] ?? ''} kilos will be a good start," Grandma replies.`);
@@ -1315,7 +1315,7 @@ function enterSetReportGatherberriesAct(s: GameState, scene: SceneBuilder): void
     scene.text('You walk over to Grandma and set the heavy basket of berries on the ground next to her.');
     scene.text('"Grandma, I got all the berries!"');
     // TODO-QSP: dynamic text: "Oh, thank you, <<$pcs_nickname>>," Grandma replied. "Those look fine if a littl...
-    scene.text(`"Oh, thank you, ${((st as any).pcs_nickname || '')}," Grandma replied. "Those look fine if a little late. They will have to go down in the root cellar until we are ready to can them."`);
+    scene.text(`"Oh, thank you, ${((st as any).pcs_nickname ?? '')}," Grandma replied. "Those look fine if a little late. They will have to go down in the root cellar until we are ready to can them."`);
     scene.text('You heft the basket up and carry it into the kitchen. Then, walking back to Grandma, you ask, "Do you think that will be enough for the winter?"');
     scene.text('"Oh no, dear," your Grandma says, "the winter is long and cold, and you must gather as much as you can while you can."');
     scene.text('Seeing the dismayed look on your face, she adds, "But that is enough for today! I know it is harder work than it seems. You can rest now, child."');
@@ -1339,7 +1339,7 @@ function enterSetReportGatherberriesAct(s: GameState, scene: SceneBuilder): void
     scene.text('You walk over to Grandma and set the heavy basket of berries on the ground next to her.');
     scene.text('"Grandma, I got all the berries!"');
     // TODO-QSP: dynamic text: "Oh, thank you, <<$pcs_nickname>>," Grandma replied. "Those look perfect. They w...
-    scene.text(`"Oh, thank you, ${((st as any).pcs_nickname || '')}," Grandma replied. "Those look perfect. They will have to go down in the root cellar until we are ready to can them."`);
+    scene.text(`"Oh, thank you, ${((st as any).pcs_nickname ?? '')}," Grandma replied. "Those look perfect. They will have to go down in the root cellar until we are ready to can them."`);
     scene.text('You heft the basket up and carry it into the kitchen. Then, walking back over to Grandma, you ask, "Do you think that will be enough for the winter?"');
     scene.text('"Oh no, dear," your Grandma says, "the winter is long and cold, and you must gather as much as you can while you can."');
     scene.text('Seeing the dismayed look on your face, she adds, "But that is enough for today! I know it is harder work than it seems. You can rest now, child."');
@@ -1360,7 +1360,7 @@ function enterChoreGatherboth(s: GameState, scene: SceneBuilder): void {
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_mushroom_quantity'] = (Math.floor(Math.random() * 2) + 1);
   ((s as any).grandmaQW = (s as any).grandmaQW ?? {})['chore_berry_quantity'] = (Math.floor(Math.random() * 2) + 1);
   // TODO-QSP: dynamic text: "This is the time of year that the forest provides us with its gifts, <<$pcs_nic...
-  scene.text(`"This is the time of year that the forest provides us with its gifts, ${((s as any).pcs_nickname || '')}. Can you go and harvest some mushrooms and berries for us?"`);
+  scene.text(`"This is the time of year that the forest provides us with its gifts, ${((s as any).pcs_nickname ?? '')}. Can you go and harvest some mushrooms and berries for us?"`);
   scene.text('"How much of each should I get?" you ask.');
   // TODO-QSP: dynamic text: "If you could, try to find <<grandmaQW[''chore_mushroom_quantity'']>> kilos of m...
   scene.text(`"If you could, try to find ${((s as any).grandmaQW ?? 0)?.['chore_mushroom_quantity'] ?? ''} kilos of mushrooms and ${((s as any).grandmaQW ?? 0)?.['chore_berry_quantity'] ?? ''} kilos of berries," Grandma replies. "It is important to stock up while we can."`);
@@ -1405,7 +1405,7 @@ function enterSetReportGatherbothAct(s: GameState, scene: SceneBuilder): void {
     scene.text('You bring your basket, heavy with mushrooms and berries from the forest, over to your grandmother.');
     scene.text('"Grandma, here are the mushrooms and berries, just like you asked!"');
     // TODO-QSP: dynamic text: "Oh, thank you, <<$pcs_nickname>>. I was starting to think you had forgotten abo...
-    scene.text(`"Oh, thank you, ${((st as any).pcs_nickname || '')}. I was starting to think you had forgotten about me. They will have to go down in the root cellar until we are ready to can them," your Grandma replied.`);
+    scene.text(`"Oh, thank you, ${((st as any).pcs_nickname ?? '')}. I was starting to think you had forgotten about me. They will have to go down in the root cellar until we are ready to can them," your Grandma replied.`);
     scene.text('"Do I need to go out on another run, or do you think that\'s enough?"');
     scene.text('"Well, little one," your Grandma says, "There is a difference between enough and enough for today."');
     scene.text('"Oh…" you say, unsure what to make of her response.');
@@ -1436,7 +1436,7 @@ function enterSetReportGatherbothAct(s: GameState, scene: SceneBuilder): void {
     scene.text('You bring your basket, heavy with mushrooms and berries from the forest, over to your grandmother.');
     scene.text('"Grandma, here are the mushrooms and berries, just like you asked!"');
     // TODO-QSP: dynamic text: "Oh, thank you very much, <<$pcs_nickname>>. They will have to go down in the ro...
-    scene.text(`"Oh, thank you very much, ${((st as any).pcs_nickname || '')}. They will have to go down in the root cellar until we are ready to can them," your Grandma replied.`);
+    scene.text(`"Oh, thank you very much, ${((st as any).pcs_nickname ?? '')}. They will have to go down in the root cellar until we are ready to can them," your Grandma replied.`);
     scene.text('"Do I need to go out on another run, or do you think that\'s enough?"');
     scene.text('"Well, little one," your Grandma says, "There is a difference between enough and enough for today."');
     scene.text('"Oh…" you say, unsure what to make of her response.');

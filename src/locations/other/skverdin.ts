@@ -28,23 +28,23 @@ function enterDPpHand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/handjob/hj.jpg');
   // TODO-QSP: dynamic text: You clasp your fingers around his erect <<dick>>cm cock and pull back the foresk...
-  scene.text(`You clasp your fingers around his erect ${((s as any).dick || '')}cm cock and pull back the foreskin to reveal the purple head, then start to slowly move your hand back and forth.`);
+  scene.text(`You clasp your fingers around his erect ${((s as any).dick ?? '')}cm cock and pull back the foreskin to reveal the purple head, then start to slowly move your hand back and forth.`);
   qspCall(s, 'arousal', 'hj', 2, 'sub');
   qspCall(s, 'stat', '');
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     if ((!(Math.floor(Math.random() * 5) + 0))) {
       // TODO-QSP: dynamic text: <<$boydesc>> takes you by the shoulders and pushes down, trying to force you to ...
-      scene.text(`${((s as any).boydesc || '')} takes you by the shoulders and pushes down, trying to force you to kneel.`);
+      scene.text(`${((s as any).boydesc ?? '')} takes you by the shoulders and pushes down, trying to force you to kneel.`);
     } else {
       // TODO-QSP: dynamic text: <<$boydesc>> says impatiently, "<<$pcs_nickname>>, put your mouth on it."
-      scene.text(`${((s as any).boydesc || '')} says impatiently, "${((s as any).pcs_nickname || '')}, put your mouth on it."`);
+      scene.text(`${((s as any).boydesc ?? '')} says impatiently, "${((s as any).pcs_nickname ?? '')}, put your mouth on it."`);
     }
     scene.actions([
       { label: 'Squat down', goto: ['skverdin', 'd_pp_squat'] },
     ]);
   } else {
     // TODO-QSP: dynamic text: <<$boydesc>> stands still and looks down at you expectantly.
-    scene.text(`${((s as any).boydesc || '')} stands still and looks down at you expectantly.`);
+    scene.text(`${((s as any).boydesc ?? '')} stands still and looks down at you expectantly.`);
     qspCall(s, 'willpower', 'hj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -89,7 +89,7 @@ function enterDPpSquat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/squat.jpg');
   // TODO-QSP: dynamic text: You squat down on your haunches and find yourself face to face with his erect <<...
-  scene.text(`You squat down on your haunches and find yourself face to face with his erect ${((s as any).dick || '')}cm cock.`);
+  scene.text(`You squat down on your haunches and find yourself face to face with his erect ${((s as any).dick ?? '')}cm cock.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Suck his cock', goto: ['skverdin', 'd_pp_bj'] },
@@ -102,27 +102,27 @@ function enterDPpBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/park/sex/ppbj.jpg');
   // TODO-QSP: dynamic text: You wrap your lips around his hard <<dick>>cm cock and suck it carefully, explor...
-  scene.text(`You wrap your lips around his hard ${((s as any).dick || '')}cm cock and suck it carefully, exploring it with your tongue.`);
+  scene.text(`You wrap your lips around his hard ${((s as any).dick ?? '')}cm cock and suck it carefully, exploring it with your tongue.`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).tiprand = (Math.floor(Math.random() * 100) + 1);
   if (((s as any).tiprand ?? 0) === 100) {
     // TODO-QSP: dynamic text: Suddenly, he laughs and calls out, "Shit, <<$boydesc>>, you can''t even last fif...
-    scene.text(`Suddenly, he laughs and calls out, "Shit, ${((s as any).boydesc || '')}, you can't even last fifteen minutes before some slut is already sucking you off." His friend laughs and turns to him, "What are you waiting for? Come over!" The second guy immediately approaches and pulls his dick out of his pants.`);
+    scene.text(`Suddenly, he laughs and calls out, "Shit, ${((s as any).boydesc ?? '')}, you can't even last fifteen minutes before some slut is already sucking you off." His friend laughs and turns to him, "What are you waiting for? Come over!" The second guy immediately approaches and pulls his dick out of his pants.`);
     scene.actions([
       { label: 'Oh my god!', goto: ['skverdin', 'd_pp_double'] },
     ]);
   } else {
     if (((s as any).tiprand ?? 0) >= 90) {
       // TODO-QSP: dynamic text: <<$boydesc>> suddenly pulls his member out of your mouth and begins to lift you ...
-      scene.text(`${((s as any).boydesc || '')} suddenly pulls his member out of your mouth and begins to lift you up, turning you around so your back is to him.`);
+      scene.text(`${((s as any).boydesc ?? '')} suddenly pulls his member out of your mouth and begins to lift you up, turning you around so your back is to him.`);
       scene.actions([
         { label: 'Bend over', goto: ['skverdin', 'd_pp_sex'] },
       ]);
     } else {
       if (((s as any).tiprand ?? 0) >= 70) {
         // TODO-QSP: dynamic text: <<$boydesc>> whispers to you, "<<$pcs_nickname>>, isn''t your mouth getting tire...
-        scene.text(`${((s as any).boydesc || '')} whispers to you, "${((s as any).pcs_nickname || '')}, isn't your mouth getting tired? Want to switch positions?"`);
+        scene.text(`${((s as any).boydesc ?? '')} whispers to you, "${((s as any).pcs_nickname ?? '')}, isn't your mouth getting tired? Want to switch positions?"`);
         scene.actions([
           { label: 'Bend over', goto: ['skverdin', 'd_pp_sex'] },
           { label: 'Continue sucking', goto: ['skverdin', 'd_pp_bjcum'] },
@@ -170,7 +170,7 @@ function enterDPpSex(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: <<$boydesc>> pulls out of you and turns you around to face him, then pushes you ...
-    scene.text(`${((s as any).boydesc || '')} pulls out of you and turns you around to face him, then pushes you down to your knees.`);
+    scene.text(`${((s as any).boydesc ?? '')} pulls out of you and turns you around to face him, then pushes you down to your knees.`);
     scene.actions([
       { label: 'Squat down', goto: ['skverdin', 'd_pp_squat'] },
     ]);
@@ -193,7 +193,7 @@ function enterDPpDouble(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck both members', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/ppbjdouble2.jpg');
     // TODO-QSP: dynamic text: You take turns polishing both cocks with your wet lips and tongue, alternating b...
-    scene.text(`You take turns polishing both cocks with your wet lips and tongue, alternating between their purple heads. Soon ${((st as any).boydesc || '')} groans, "Open your mouth, slut!"`);
+    scene.text(`You take turns polishing both cocks with your wet lips and tongue, alternating between their purple heads. Soon ${((st as any).boydesc ?? '')} groans, "Open your mouth, slut!"`);
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID ?? 0), 'sub', 'group');
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'sub', 'group');
     qspCall(st, 'stat', '');
@@ -201,7 +201,7 @@ function enterDPpDouble(s: GameState, scene: SceneBuilder): void {
       { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/ppbjdouble3.jpg');
     // TODO-QSP: dynamic text: You obediently open your already tired mouth and <<$boydesc>> shoots thick white...
-    scene.text(`You obediently open your already tired mouth and ${((st as any).boydesc || '')} shoots thick white cum directly onto your wet and slightly swollen lips. His friend hisses "My turn!" and grabs you by the hair, turning your face toward his cock.`);
+    scene.text(`You obediently open your already tired mouth and ${((st as any).boydesc ?? '')} shoots thick white cum directly onto your wet and slightly swollen lips. His friend hisses "My turn!" and grabs you by the hair, turning your face toward his cock.`);
     qspCall(st, 'arousal', 'bj', 3, ((st as any).npcID ?? 0), 'sub', 'group');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID ?? 0), 0, 0, 0, 20);
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID ?? 0), 0, 0, 0, 20);
@@ -210,7 +210,7 @@ function enterDPpDouble(s: GameState, scene: SceneBuilder): void {
       { label: 'Turn your face', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/sex/ppbjdouble4.jpg');
     // TODO-QSP: dynamic text: You turn your face and immediately get hit with a second load of cum directly in...
-    scene.text(`You turn your face and immediately get hit with a second load of cum directly into your open mouth. You instinctively flinch and a large glob of sperm falls out of your mouth and splatters on your clothes. ${((st as any).boydesc || '')} laughs, "Damn! You're a sniper - loaded that cumslut's mouth perfectly!"`);
+    scene.text(`You turn your face and immediately get hit with a second load of cum directly into your open mouth. You instinctively flinch and a large glob of sperm falls out of your mouth and splatters on your clothes. ${((st as any).boydesc ?? '')} laughs, "Damn! You're a sniper - loaded that cumslut's mouth perfectly!"`);
     qspCall(st, 'arousal', 'bj', 2, ((st as any).npcID1 ?? 0), 'sub', 'group');
     qspCall(st, 'cum_call', 'face', ((st as any).npcID1 ?? 0), 0, 0, 0, 15);
     qspCall(st, 'cum_call', 'mouth', ((st as any).npcID1 ?? 0), 0, 0, 0, 15);
@@ -236,7 +236,7 @@ function enterDPpGoend(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/sex/ppendno.jpg');
   }
   // TODO-QSP: dynamic text: You begin to clean yourself up. <<$boydesc>> has already buttoned his pants. "We...
-  scene.text(`You begin to clean yourself up. ${((s as any).boydesc || '')} has already buttoned his pants. "Well, catch you later ${((s as any).pcs_nickname || '')}. I still have things to do, but hope to see you again soon."`);
+  scene.text(`You begin to clean yourself up. ${((s as any).boydesc ?? '')} has already buttoned his pants. "Well, catch you later ${((s as any).pcs_nickname ?? '')}. I still have things to do, but hope to see you again soon."`);
   qspCall(s, 'cum_cleanup', 'external');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end

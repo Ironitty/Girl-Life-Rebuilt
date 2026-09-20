@@ -226,7 +226,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).textRefuse = ((s as any).placerStringParameter ?? 0)?.['text_friend_refuse'];
   if (((s as any).placerParameter ?? 0)?.['friend_index'] > 0) {
     // TODO-QSP: dynamic text: You arrive at one of the smaller plazas in the park, together with <<$placerStri...
-    scene.text(`You arrive at one of the smaller plazas in the park, together with ${((s as any).placerStringParameter ?? 0)?.['ev_name_om'] ?? ''}. ${((s as any).textEvent || '')}`);
+    scene.text(`You arrive at one of the smaller plazas in the park, together with ${((s as any).placerStringParameter ?? 0)?.['ev_name_om'] ?? ''}. ${((s as any).textEvent ?? '')}`);
     if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 0) {
       if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1  &&  ((s as any).placerStringParameter ?? 0)?.['text_start_meet'] === '') {
         ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guy looks at you, and for a second you think he\'s going to say something. However, when he gets closer, he wrinkles his nose and turns away.';
@@ -240,7 +240,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 1  &&  ((s as any).placerParameter ?? 0)?.['number_of_man'] > 0) {
         // TODO-QSP: dynamic text: You give the <<$textSomeone>> a cute smile as you walk past with your friend.
-        scene.text(`You give the ${((s as any).textSomeone || '')} a cute smile as you walk past with your friend.`);
+        scene.text(`You give the ${((s as any).textSomeone ?? '')} a cute smile as you walk past with your friend.`);
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
           // TODO-QSP: dynamic text: You don''t think you''ve ever seen him before. He approaches you and says: "<<$p...
           scene.text(`You don't think you've ever seen him before. He approaches you and says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
@@ -257,7 +257,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((st as any).placerParameter ?? 0)?.['friend_dom'] >= 80) {
         qspCall(st, 'stat', '');
         // TODO-QSP: dynamic text: <<$ev_name>> hisses in your ear: "I don''t want to hang out with strangers, <<$p...
-        scene.text(`${((st as any).ev_name || '')} hisses in your ear: "I don't want to hang out with strangers, ${((st as any).pcs_nickname || '')}! They could be dangerous! If you want to stay here, I'm leaving."`);
+        scene.text(`${((st as any).ev_name ?? '')} hisses in your ear: "I don't want to hang out with strangers, ${((st as any).pcs_nickname ?? '')}! They could be dangerous! If you want to stay here, I'm leaving."`);
         qspCall(st, 'willpower', 'misc', 'self', 'hard');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
@@ -292,10 +292,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 0) {
       // TODO-QSP: dynamic text: You stroll through the park by yourself, enjoying its beauty. <<$textEvent>>
-      scene.text(`You stroll through the park by yourself, enjoying its beauty. ${((s as any).textEvent || '')}`);
+      scene.text(`You stroll through the park by yourself, enjoying its beauty. ${((s as any).textEvent ?? '')}`);
       if (((s as any).placerParameter ?? 0)?.['want_to_meet'] === 1) {
         // TODO-QSP: dynamic text: You give the <<$textSomeone>> a cute smile as you walk past. 
-        scene.text(`You give the ${((s as any).textSomeone || '')} a cute smile as you walk past. `);
+        scene.text(`You give the ${((s as any).textSomeone ?? '')} a cute smile as you walk past. `);
         if (((s as any).placerParameter ?? 0)?.['number_of_man'] === 1) {
           // TODO-QSP: dynamic text: You don''t think you''ve ever seen him before. He approaches you and says: "<<$p...
           scene.text(`You don't think you've ever seen him before. He approaches you and says: "${((s as any).placerStringParameter ?? 0)?.['text_start_meet'] ?? ''}"`);
@@ -316,7 +316,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             ((s as any).placerStringParameter = (s as any).placerStringParameter ?? {})['text_friend_refuse'] = 'The guys look at you for a moment, but you see one of them shake his head. The guys then turn their backs to you, and pretend you\'re not there.';
           }
           // TODO-QSP: dynamic text: You give the <<$textSomeone>> a cute smile as you walk past.' & '<<$textRefuse>>
-          scene.text(`You give the ${((s as any).textSomeone || '')} a cute smile as you walk past.' & '${((s as any).textRefuse || '')}`);
+          scene.text(`You give the ${((s as any).textSomeone ?? '')} a cute smile as you walk past.' & '${((s as any).textRefuse ?? '')}`);
         }
       }
       scene.actions([

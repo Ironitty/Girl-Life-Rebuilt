@@ -14,7 +14,7 @@ function enterPos1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/industrial/mercyclinic/bukli_spal.jpg');
   // TODO-QSP: dynamic text: The succeeded clients look at you, "Good afternoon! I wanted to introduce myself...
-  scene.text(`The succeeded clients look at you, "Good afternoon! I wanted to introduce myself. My name is ${((s as any).pcs_nickname || '')} and I am the new volunteer. Don't hesitate to get in touch with me and I'll try my best to help you all."`);
+  scene.text(`The succeeded clients look at you, "Good afternoon! I wanted to introduce myself. My name is ${((s as any).pcs_nickname ?? '')} and I am the new volunteer. Don't hesitate to get in touch with me and I'll try my best to help you all."`);
   scene.text('The majority of them mumble between themselves before going back to loitering around. All except one. "Hey girl! The name\'s Vladimir! Why are you standing there all scared? Come in and sit with us. I\'ll introduce you to everyone."');
   // TODO-QSP: end
   scene.actions([
@@ -144,7 +144,7 @@ function enterPos9(s: GameState, scene: SceneBuilder): void {
   scene.text('You get close to a makeshift camp as one of the volunteers shouts, "Why did you leave?! Come with us, we\'ll take you back to the shelter."');
   scene.text('He shouts back, "Fuck off! Why would I?! I\'m fine here; I see lovely ladies jog past here every day. I won\'t return unless you\'ve got hot girls at that shit place."');
   // TODO-QSP: dynamic text: The volunteer turns to you, "We''ve been going back and forth with this old perv...
-  scene.text(`The volunteer turns to you, "We've been going back and forth with this old pervert for weeks. ${((s as any).pcs_nickname || '')}, do you have any idea how to lure him back?"`);
+  scene.text(`The volunteer turns to you, "We've been going back and forth with this old pervert for weeks. ${((s as any).pcs_nickname ?? '')}, do you have any idea how to lure him back?"`);
   scene.text('You notice the old man\'s eyes dart towards your hips and back; maybe someone could distract him with a panty flash, but they\'d have to be pretty horny to even consider it.');
   if (((s as any).pcs_horny ?? 0) > 50  &&  ((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).PCloSkirt ?? 0) > 1  &&  ((s as any).pcs_inhib ?? 0) > 20) {
     scene.actions([
@@ -267,7 +267,7 @@ function enterVika(s: GameState, scene: SceneBuilder): void {
   (s as any).VikaAge = ((s as any).age ?? 0) + 5;
   scene.img('images/characters/city/vika/0.jpg');
   // TODO-QSP: dynamic text: The nurse Vika is a little older than you, at <<VikaAge>> years.
-  scene.text(`The nurse Vika is a little older than you, at ${((s as any).VikaAge || '')} years.`);
+  scene.text(`The nurse Vika is a little older than you, at ${((s as any).VikaAge ?? '')} years.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat', handler: (st: GameState) => {
@@ -290,7 +290,7 @@ function enterVika(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/city/vika/2.jpg');
     // TODO-QSP: dynamic text: - Oh, right! well I ran. While, <<$pcs_nickname>>.
-    scene.text(`- Oh, right! well I ran. While, ${((st as any).pcs_nickname || '')}.`);
+    scene.text(`- Oh, right! well I ran. While, ${((st as any).pcs_nickname ?? '')}.`);
     scene.text('- So Far, Vika.');
     scene.text('Well, I guess I gotta go to Michael, see you.');
     scene.actions([
@@ -307,7 +307,7 @@ function enterMisha(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Michael A.</b></center>');
   scene.img('images/locations/city/industrial/mercyclinic/misha.jpg');
   // TODO-QSP: dynamic text: Michael was paralyzed after an illness, affecting his entire body. His fingers, ...
-  scene.text(`Michael was paralyzed after an illness, affecting his entire body. His fingers, toes, and head, are the only things he can move. He is ${((s as any).MishaAge || '')} years old. His spine is severely curved, preventing him from sitting in a regular chair.`);
+  scene.text(`Michael was paralyzed after an illness, affecting his entire body. His fingers, toes, and head, are the only things he can move. He is ${((s as any).MishaAge ?? '')} years old. His spine is severely curved, preventing him from sitting in a regular chair.`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEvent2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -376,7 +376,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
     scene.text('Once she rescued him, he greeted you:');
     scene.text('- Hello, my name is Michael.');
     // TODO-QSP: dynamic text: - Hello, I am <<$pcs_nickname>>. - you replied.
-    scene.text(`- Hello, I am ${((st as any).pcs_nickname || '')}. - you replied.`);
+    scene.text(`- Hello, I am ${((st as any).pcs_nickname ?? '')}. - you replied.`);
     scene.text('- Oh, I haven\'t even introduced myself. My name is Vika! - the girl interjected.');
     scene.text('- Do you have any experience? - Michael asked.');
     scene.text('- No, not really, - you simply answered.');
@@ -389,7 +389,7 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
     scene.text('- I hope you understand everything. If it were not for some personal stuff, we wouldn\'t need another nurse, - she said.');
     scene.text('- Understood, - you replied.');
     // TODO-QSP: dynamic text: - Well, okay, then. I''ll go now, Michael. - she kissed him on the forehead. - I...
-    scene.text(`- Well, okay, then. I'll go now, Michael. - she kissed him on the forehead. - I'll be back, ${((st as any).pcs_firstname || '')}. - she waved goodbye and closed the door.`);
+    scene.text(`- Well, okay, then. I'll go now, Michael. - she kissed him on the forehead. - I'll be back, ${((st as any).pcs_firstname ?? '')}. - she waved goodbye and closed the door.`);
     scene.text('- Here we are, all alone, - Michael said a little sadly.');
     scene.actions([
       { label: 'Don\'t worry; everything will be fine', goto: ['buklinik_event', 'hall'] },
@@ -413,7 +413,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   if (Number((s as any).locArgs?.[1] ?? 0) === 0) {
     scene.text('You arrive at the address and knock on the door. Vika opens it.');
     // TODO-QSP: dynamic text: - Oh, hey, <<$pcs_nickname>>! Do you mind if I call you that?
-    scene.text(`- Oh, hey, ${((s as any).pcs_nickname || '')}! Do you mind if I call you that?`);
+    scene.text(`- Oh, hey, ${((s as any).pcs_nickname ?? '')}! Do you mind if I call you that?`);
     scene.text('- No, not at all, - you reply with a smile.');
     scene.text('- And Misha, I told you he\'s a pleasant conversationalist. He likes you!');
     scene.text('- I enjoyed conversing with him too.');
@@ -422,21 +422,21 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   if (Number((s as any).locArgs?.[1] ?? 0) === 1) {
     scene.text('As usual, when you arrive to see Michael, Vika opens the door.');
     // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>. We''ve been waiting for you.
-    scene.text(`- Hi, ${((s as any).pcs_nickname || '')}. We've been waiting for you.`);
+    scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}. We've been waiting for you.`);
     scene.text('- Well, here I am, - you respond.');
     scene.text('- Let\'s go then. I\'m off! - she says cheerfully.');
   }
   if (Number((s as any).locArgs?.[1] ?? 0) === 2  ||  Number((s as any).locArgs?.[1] ?? 0) === 4) {
     scene.text('You arrive at Michael\'s place, and Vika opens the door.');
     // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>.
-    scene.text(`- Hi, ${((s as any).pcs_nickname || '')}.`);
+    scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}.`);
     scene.text('- Hi, - you reply.');
     scene.text('- Come in already!');
   }
   if (Number((s as any).locArgs?.[1] ?? 0) === 3) {
     scene.text('You arrive at Michael\'s, and the door is already open for you by Vika.');
     // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>.
-    scene.text(`- Hi, ${((s as any).pcs_nickname || '')}.`);
+    scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}.`);
     scene.text('- Hi, - you respond.');
     scene.text('- How are you feeling today? - she asks.');
     scene.text('- Thanks, I\'m feeling pretty normal, - you answer with a smile.');
@@ -445,14 +445,14 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
     if (((s as any).MishaLove ?? 0) === 1) {
       scene.text('You arrive at Michael\'s, and Vika opens the door for you.');
       // TODO-QSP: dynamic text: - Hi, <<$pcs_nickname>>.
-      scene.text(`- Hi, ${((s as any).pcs_nickname || '')}.`);
+      scene.text(`- Hi, ${((s as any).pcs_nickname ?? '')}.`);
       scene.text('- Hi, - you reply.');
       scene.text('- Come in already!');
     } else {
       if (((s as any).nanny_story ?? 0) === 1) {
         scene.text('You arrive at Michael\'s and knock on the door. No one answers. You knock for about two minutes until Vika finally opens it.');
         // TODO-QSP: dynamic text: - Oh, hey, <<$pcs_nickname>>! - she says.
-        scene.text(`- Oh, hey, ${((s as any).pcs_nickname || '')}! - she says.`);
+        scene.text(`- Oh, hey, ${((s as any).pcs_nickname ?? '')}! - she says.`);
         scene.text('- Hi! Why did it take so long to answer? - you ask.');
         scene.text('- It seemed like the knocking came from the neighbors\' door, not ours, she explains. Let\'s go already.');
         scene.text('You notice she looks a bit disheveled, which is unusual for her.');
@@ -532,7 +532,7 @@ function enterEvent2_MishaLoveFinished(s: GameState, scene: SceneBuilder): void 
   scene.text('- Well, she was going to America to study. - he said.');
   scene.text('- I\'m sorry, but I can\'t. - you told him.');
   // TODO-QSP: dynamic text: - <<$pcs_firstname>>, I love you with all my heart; please answer me! - he plead...
-  scene.text(`- ${((s as any).pcs_firstname || '')}, I love you with all my heart; please answer me! - he pleaded, and you looked into his eyes full of hope.`);
+  scene.text(`- ${((s as any).pcs_firstname ?? '')}, I love you with all my heart; please answer me! - he pleaded, and you looked into his eyes full of hope.`);
   scene.text('- I\'m sorry, Misha, I\'m sorry again, but no, you don\'t have to do this. - you said, holding back tears.');
   scene.text('And you went into the kitchen to wait for Vika. When she arrived, you were in a hurry to leave.');
   scene.text('<br><b>END of CURRENT STORY : YOURSELF</b>');

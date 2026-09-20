@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loop_sections
   if (((s as any).temp_ls_i ?? 0) < Object.keys((s as any).stat_order ?? {}).length) {
     // TODO-QSP: dynamic text: $func('stat_display_menu', 'section_table', temp_ls_i)
-    scene.text(qspFunc(s, 'stat_display_menu', 'section_table', ((s as any).temp_ls_i || '')));
+    scene.text(qspFunc(s, 'stat_display_menu', 'section_table', ((s as any).temp_ls_i ?? '')));
     (s as any).temp_ls_i = ((s as any).temp_ls_i ?? 0) + (1);
     // TODO-QSP: jump 'loop_sections'
   }

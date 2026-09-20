@@ -34,7 +34,7 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 8 & gt ''journal'', ''notification_log''">Notifications...
   // TODO-QSP: $tablebody += '</tr>'
   // TODO-QSP: dynamic text: <center><table width="90%" align="center" width="90%" cellspacing="0" cellpaddin...
-  scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody || '')}</tr></table></center>`);
+  scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? '')}</tr></table></center>`);
   if (((s as any).jumploc ?? 0) === 'worktab'  &&  ((s as any).jclose ?? 0) === 1) {
     (s as any).jclose = 0;
     (s as any).menutrack = 3;
@@ -363,7 +363,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$grupbar_name>>
-    scene.text(`${((s as any).grupbar_name || '')}`);
+    scene.text(`${((s as any).grupbar_name ?? '')}`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 4) {
       // TODO-QSP: jump 'grupbar_loop'
@@ -1051,22 +1051,22 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] === 'husband') {
         // TODO-QSP: dynamic text: You have been married for <<daystart - spouseVars[''marry_day'']>> days. Your hu...
-        scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 || '')} is ${((s as any).npcheight10 || '')} and ${((s as any).npcbuild10 || '')} with ${((s as any).npchair10 || '')} hair. ${((s as any).npcdesc10 || '')} is usually wearing ${((s as any).npcClo10 || '')}. Member ${((s as any).dick_desc10 || '')} cock and ${((s as any).dick_girth10 || '')}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''}.`);
+        scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Member ${((s as any).dick_desc10 ?? '')} cock and ${((s as any).dick_girth10 ?? '')}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''}.`);
       } else {
         // TODO-QSP: dynamic text: Your <<$npcrelat10>> <<$npcdesc10>> is <<$npcheight10>> and <<$npcbuild10>> with...
-        scene.text(`Your ${((s as any).npcrelat10 || '')} ${((s as any).npcdesc10 || '')} is ${((s as any).npcheight10 || '')} and ${((s as any).npcbuild10 || '')} with ${((s as any).npchair10 || '')} hair. ${((s as any).npcdesc10 || '')} is usually wearing ${((s as any).npcClo10 || '')}. Your relationship is ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} after ${((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} dates and ${((s as any).daystart ?? '') - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)]} days dating.`);
+        scene.text(`Your ${((s as any).npcrelat10 ?? '')} ${((s as any).npcdesc10 ?? '')} is ${((s as any).npcheight10 ?? '')} and ${((s as any).npcbuild10 ?? '')} with ${((s as any).npchair10 ?? '')} hair. ${((s as any).npcdesc10 ?? '')} is usually wearing ${((s as any).npcClo10 ?? '')}. Your relationship is ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} after ${((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} dates and ${((s as any).daystart ?? '') - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)]} days dating.`);
       }
       if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] > 1) {
         if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID10 ?? 0)] === 1) {
           // TODO-QSP: dynamic text: <<$Xec10>> is timid and lacks confidence.
-          scene.text(`${((s as any).Xec10 || '')} is timid and lacks confidence.`);
+          scene.text(`${((s as any).Xec10 ?? '')} is timid and lacks confidence.`);
         } else {
           if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID10 ?? 0)] === 0) {
             // TODO-QSP: dynamic text: <<$Xec10>> has a cheerful and sociable personality.
-            scene.text(`${((s as any).Xec10 || '')} has a cheerful and sociable personality.`);
+            scene.text(`${((s as any).Xec10 ?? '')} has a cheerful and sociable personality.`);
           } else {
             // TODO-QSP: dynamic text: <<$Xec10>> is short-tempered and strict.
-            scene.text(`${((s as any).Xec10 || '')} is short-tempered and strict.`);
+            scene.text(`${((s as any).Xec10 ?? '')} is short-tempered and strict.`);
           }
         }
       }
@@ -1117,7 +1117,7 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :jur_loop
   if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
     // TODO-QSP: dynamic text: <<$zapis[jur_temp]>> <a href="exec: dynamic ''killvar''''$zapis'''',<<jur_temp>>...
-    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp || '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">Delete</a>`);
+    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: dynamic /u0027killvar/u0027/u0027$zapis/u0027/u0027,${((s as any).jur_temp ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027/u0027, /u0027/u0027); return false;">Delete</a>`);
     (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
     // TODO-QSP: jump 'jur_loop'
   }

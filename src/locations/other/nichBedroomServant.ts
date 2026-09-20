@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('A luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a> is on the other side of the wardrobe.');
   scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>.');
   // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt ''nichBedroomServant'', ''desk''">de...
-  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp || '')}`);
+  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp ?? '')}`);
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('<br>Your hula hoop stands in a corner of the room. ');
   }
@@ -37,12 +37,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mishka ?? 0) > 0) {
     // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
-    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka || '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka ?? '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
     // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func(''money'', ''string_profit'', ...
-    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
+    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding ?? ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
   qspCall(s, 'music_actions', 'start');
@@ -184,7 +184,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('A luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a> is on the other side of the wardrobe.');
   scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>.');
   // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt ''nichBedroomServant'', ''desk''">de...
-  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp || '')}`);
+  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp ?? '')}`);
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('<br>Your hula hoop stands in a corner of the room. ');
   }
@@ -196,12 +196,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mishka ?? 0) > 0) {
     // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
-    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka || '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka ?? '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
     // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func(''money'', ''string_profit'', ...
-    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
+    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding ?? ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
   qspCall(s, 'music_actions', 'start');
@@ -343,7 +343,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   scene.text('A luxurious <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027divan/u0027, /u0027start/u0027); return false;">leather sofa</a> is on the other side of the wardrobe.');
   scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027TV/u0027, /u0027start/u0027); return false;">TV</a>.');
   // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt ''nichBedroomServant'', ''desk''">de...
-  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp || '')}`);
+  scene.text(`Under the window is a nice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027desk/u0027); return false;">desk</a>${((s as any).komp ?? '')}`);
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('<br>Your hula hoop stands in a corner of the room. ');
   }
@@ -355,12 +355,12 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mishka ?? 0) > 0) {
     // TODO-QSP: dynamic text: On one of the shelves, you''ve placed your <<mishka>> teddy bear'+iif(mishka = 1...
-    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka || '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
+    scene.text('On one of the shelves, you\'ve placed your ' + ((s as any).mishka ?? '') + ' teddy bear\'+iif(mishka = 1, \', \'s\')+\'.');
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
     // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func(''money'', ''string_profit'', ...
-    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
+    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding ?? ''))} (<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027nichBedroomServant/u0027, /u0027redeemSalary/u0027); return false;">redeem</a>).`);
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
   qspCall(s, 'music_actions', 'start');
@@ -535,7 +535,7 @@ function enterDesk(s: GameState, scene: SceneBuilder): void {
 function enterRedeemSalary(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).nichSalaryOutstanding ?? 0), 'bank');
   // TODO-QSP: dynamic text: Your salary of <<$func(''money'', ''string_profit'', nichSalaryOutstanding)>> is...
-  scene.text(`Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} is transferred to your bank account.`);
+  scene.text(`Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding ?? ''))} is transferred to your bank account.`);
   scene.actions([
     { label: 'Back', goto: ['nichBedroomServant', 'return'] },
   ]);

@@ -153,16 +153,16 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex2', 'stamina_npc');
   if ((!((s as any).sexdvoeloc ?? 0))) {
     if (((s as any).sexvar ?? 0) > 0) {
-      scene.img(`images/locations/shared/sex/sexdvoe/minet${((s as any).picrand || '')}.jpg`);
+      scene.img(`images/locations/shared/sex/sexdvoe/minet${((s as any).picrand ?? '')}.jpg`);
     } else {
-      scene.img(`images/locations/shared/sex/sexdvoe/cum${((s as any).picrand || '')}.jpg`);
+      scene.img(`images/locations/shared/sex/sexdvoe/cum${((s as any).picrand ?? '')}.jpg`);
     }
     scene.text('You try to suck both of their cocks, but they really do not fit inside your mouth at the same time.');
     qspCall(s, 'arousal', 'bj', 10);
     qspCall(s, 'stat', '');
   } else {
     if (((s as any).sexdvoeloc ?? 0) < 3) {
-      scene.img(`images/locations/shared/sex/sexdvoe/dp${((s as any).picrand || '')}.jpg`);
+      scene.img(`images/locations/shared/sex/sexdvoe/dp${((s as any).picrand ?? '')}.jpg`);
       if (((s as any).sameboy ?? 0) === 1) {
         scene.text('Both of them fuck you, one of them your ass, the other your pussy. The double friction gives you great pleasure as they are pumping in and out of your body in tandem.');
         // TODO-QSP: gs 'arousal', 'vaginal', 10, $npcID[0], 'sub'
@@ -199,7 +199,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       if (((s as any).sexdvoeloc ?? 0) < 5) {
-        scene.img(`images/locations/shared/sex/sexdvoe/vag${((s as any).picrand || '')}.jpg`);
+        scene.img(`images/locations/shared/sex/sexdvoe/vag${((s as any).picrand ?? '')}.jpg`);
         if (((s as any).sameboy ?? 0) === 1) {
           scene.text('While one guy is fucking your pussy, you diligently suck off the second.');
           // TODO-QSP: gs 'arousal', 'vaginal', 10, $npcID[1], 'sub'
@@ -235,7 +235,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        scene.img(`images/locations/shared/sex/sexdvoe/anal${((s as any).picrand || '')}.jpg`);
+        scene.img(`images/locations/shared/sex/sexdvoe/anal${((s as any).picrand ?? '')}.jpg`);
         if (((s as any).sameboy ?? 0) === 1) {
           scene.text('While one guy is fucking your ass, you diligently suck off the second.');
           // TODO-QSP: gs 'arousal', 'anal', 10, $npcID[0], 'sub'

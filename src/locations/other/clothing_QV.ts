@@ -99,7 +99,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
       if (((s as any).outfitfilter ?? 0)?.['include'] === 1  &&  ((s as any).outfitfilter ?? 0)?.['sport'] >= 0) {
         if (qspFunc(s, 'clothing', 'can_wear', 'danilovich', ((s as any).i ?? 0))) {
           // TODO-QSP: dynamic text: <a href="exec:gt ''clothing_QV'', ''change'', ''danilovich_outfits'', <<i>>"><im...
-          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing_QV/u0027, /u0027change/u0027, /u0027danilovich_outfits/u0027); return false;"><img height="250" src="images/pc/items/danilovich/outfits/${((s as any).i || '')}.jpg"/></a>`);
+          scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing_QV/u0027, /u0027change/u0027, /u0027danilovich_outfits/u0027); return false;"><img height="250" src="images/pc/items/danilovich/outfits/${((s as any).i ?? '')}.jpg"/></a>`);
         }
       }
     }
@@ -151,7 +151,7 @@ function enterCloak(s: GameState, scene: SceneBuilder): void {
   if (((s as any).coat ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     if (((s as any).coat_h ?? 0)?.[String((s as any).i ?? 0)] > 0) {
       // TODO-QSP: dynamic text: <a href="exec:gt ''clothing_QV'', ''change'', ''coat'', <<i>>"><img height="250"...
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing_QV/u0027, /u0027change/u0027, /u0027coat/u0027); return false;"><img height="250" src="images/pc/clothing/11coat/${((s as any).i || '')}.jpg"/></a>`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027clothing_QV/u0027, /u0027change/u0027, /u0027coat/u0027); return false;"><img height="250" src="images/pc/clothing/11coat/${((s as any).i ?? '')}.jpg"/></a>`);
     }
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
@@ -197,7 +197,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     if (((s as any).swimwear_description ?? 0) === '') {
       qspCall(s, 'clothing_descriptions', '');
       // TODO-QSP: dynamic text: <<$description>>
-      scene.text(`${((s as any).description || '')}`);
+      scene.text(`${((s as any).description ?? '')}`);
     } else {
       // TODO-QSP: $swimwear_description
     }

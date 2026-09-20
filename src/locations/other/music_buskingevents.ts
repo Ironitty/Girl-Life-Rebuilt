@@ -29,7 +29,7 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
   ((s as any).ml_busking = (s as any).ml_busking ?? {})['total_earnings'] = ((s as any).ml_busking['total_earnings'] ?? 0) + (((s as any).ml_tipsearned ?? 0));
   scene.img('images/pc/activities/music/guitarf' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You start to play the songs you know, pushing your open guitar case forward a li...
-  scene.text('You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.\' + iif(ml_online[\'account\'] = 1 and ml_online[\'active\'] = 1, \' You also set up the sign with the link to your webprofile.\', \') + \' After playing for an hour you have made ' + ((s as any).ml_tipsearned || '') + ' <b>P</b> in tips.');
+  scene.text('You start to play the songs you know, pushing your open guitar case forward a little in case people drop some change there.\' + iif(ml_online[\'account\'] = 1 and ml_online[\'active\'] = 1, \' You also set up the sign with the link to your webprofile.\', \') + \' After playing for an hour you have made ' + ((s as any).ml_tipsearned ?? '') + ' <b>P</b> in tips.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
@@ -73,13 +73,13 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A144'] > 50) {
       scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
       // TODO-QSP: dynamic text: When she notices that you saw her, she grins and walks over. "Wow, that was amaz...
-      scene.text(`When she notices that you saw her, she grins and walks over. "Wow, that was amazing, ${((s as any).pcs_nickname || '')}! You should come over and we can jam together some time."`);
+      scene.text(`When she notices that you saw her, she grins and walks over. "Wow, that was amazing, ${((s as any).pcs_nickname ?? '')}! You should come over and we can jam together some time."`);
       scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
     } else {
       if (((s as any).npc_rel ?? 0)?.['A144'] > 20) {
         scene.text('As you stop playing and get ready to pack up you spot Anushka standing not far from you, watching you quietly.');
         // TODO-QSP: dynamic text: When she notices that you saw her, she grins and walks over. "Wow, that was amaz...
-        scene.text(`When she notices that you saw her, she grins and walks over. "Wow, that was amazing, ${((s as any).pcs_nickname || '')}!"`);
+        scene.text(`When she notices that you saw her, she grins and walks over. "Wow, that was amazing, ${((s as any).pcs_nickname ?? '')}!"`);
         scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
       } else {
         scene.text('You start losing yourself in the music, occasionally glancing up to look at the people passing by as several leave some rubles in your case. You then see some movement that attracts your attention and spot Anushka watching you play. She seems to have a look of surprise as she bobs her head slightly to the music. You know she doesn\'t really like you, but maybe she at least respects your ability. When she sees you looking at her, she disappears into the crowd.');
@@ -91,13 +91,13 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A144'] > 50) {
         scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
         // TODO-QSP: dynamic text: When she notices that you saw her, she grins and walks over. "That was pretty da...
-        scene.text(`When she notices that you saw her, she grins and walks over. "That was pretty damn good, ${((s as any).pcs_nickname || '')}. You should come over and we can jam together some time."`);
+        scene.text(`When she notices that you saw her, she grins and walks over. "That was pretty damn good, ${((s as any).pcs_nickname ?? '')}. You should come over and we can jam together some time."`);
         scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
       } else {
         if (((s as any).npc_rel ?? 0)?.['A144'] > 20) {
           scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
           // TODO-QSP: dynamic text: When she notices that you saw her, she grins and walks over. "That was pretty da...
-          scene.text(`When she notices that you saw her, she grins and walks over. "That was pretty damn good, ${((s as any).pcs_nickname || '')}."`);
+          scene.text(`When she notices that you saw her, she grins and walks over. "That was pretty damn good, ${((s as any).pcs_nickname ?? '')}."`);
           scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
         } else {
           scene.text('You start losing yourself in the music, occasionally glancing up to look at the people passing by as some leave some rubles in your case. You then see some movement that attracts your attention and spot Anushka watching you play. She seems to have a look of mild surprise and respect? You know she doesn\'t really like you, but maybe she at least respects your ability. When she sees you looking at her, she disappears into the crowd.');
@@ -109,13 +109,13 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.['A144'] > 50) {
           scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
           // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "I didn''t know yo...
-          scene.text(`When she notices that you saw her, she smiles and walks over. "I didn't know you had turned into a wandering minstrel, ${((s as any).pcs_nickname || '')}. Not bad, not bad at all. You should come over sometime and we can play together. I can give you some tips if you like?"`);
+          scene.text(`When she notices that you saw her, she smiles and walks over. "I didn't know you had turned into a wandering minstrel, ${((s as any).pcs_nickname ?? '')}. Not bad, not bad at all. You should come over sometime and we can play together. I can give you some tips if you like?"`);
           scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
         } else {
           if (((s as any).npc_rel ?? 0)?.['A144'] > 20) {
             scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
             // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "I didn''t know yo...
-            scene.text(`When she notices that you saw her, she smiles and walks over. "I didn't know you had turned into a wandering minstrel, ${((s as any).pcs_nickname || '')}. Not bad, not bad at all."`);
+            scene.text(`When she notices that you saw her, she smiles and walks over. "I didn't know you had turned into a wandering minstrel, ${((s as any).pcs_nickname ?? '')}. Not bad, not bad at all."`);
             scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
           } else {
             scene.text('You start losing yourself in the music, occasionally glancing up to look at the people passing by as some leave some rubles in your case. You then see some movement that attracts your attention and spot Anushka watching you play. She seems to have a look of mild surprise and maybe even mild approval? You know she doesn\'t really like you, but maybe she at least respects your ability. When she sees you looking at her, she disappears into the crowd.');
@@ -126,13 +126,13 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
           if (((s as any).npc_rel ?? 0)?.['A144'] > 50) {
             scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
             // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "Not bad, <<$pcs_n...
-            scene.text(`When she notices that you saw her, she smiles and walks over. "Not bad, ${((s as any).pcs_nickname || '')}, not bad. I've heard better, but also heard worse too. You should come over sometime and we can play together. I can teach you a few things if you like?"`);
+            scene.text(`When she notices that you saw her, she smiles and walks over. "Not bad, ${((s as any).pcs_nickname ?? '')}, not bad. I've heard better, but also heard worse too. You should come over sometime and we can play together. I can teach you a few things if you like?"`);
             scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
           } else {
             if (((s as any).npc_rel ?? 0)?.['A144'] > 20) {
               scene.text('As you stop playing and get ready to pack up, you spot Anushka standing not far from you, watching you quietly.');
               // TODO-QSP: dynamic text: When she notices that you saw her, she smiles and walks over. "Not bad, <<$pcs_n...
-              scene.text(`When she notices that you saw her, she smiles and walks over. "Not bad, ${((s as any).pcs_nickname || '')}, not bad. I've heard better, but also heard worse too."`);
+              scene.text(`When she notices that you saw her, she smiles and walks over. "Not bad, ${((s as any).pcs_nickname ?? '')}, not bad. I've heard better, but also heard worse too."`);
               scene.text('The two of you talk for a few minutes about music before she says she needs to get going. She walks away with a smile and a wave.');
             } else {
               scene.text('You start losing yourself in the music, occasionally glancing up to look at the people passing by as a few leave some rubles in your case. You then see some movement that attracts your attention and spot Anushka watching you play. She seems to have a look of disdain on her face; you know she doesn\'t really like you, but had hoped she would respect your ability at least. When she sees you looking at her, she scoffs before walking away.');
@@ -173,7 +173,7 @@ function enterAnushka(s: GameState, scene: SceneBuilder): void {
 function enterLenaAndLera(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   // TODO-QSP: dynamic text: Lena and Lera harasses <<$pcs_nickname>>
-  scene.text(`Lena and Lera harasses ${((s as any).pcs_nickname || '')}`);
+  scene.text(`Lena and Lera harasses ${((s as any).pcs_nickname ?? '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {

@@ -734,7 +734,7 @@ function enterTenantMoveOutCheck(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_text = (String(((s as any).temp_text ?? 0)).slice((5)-1));
   }
   // TODO-QSP: dynamic text: <<$temp_text>>
-  scene.text(`${((s as any).temp_text || '')}`);
+  scene.text(`${((s as any).temp_text ?? '')}`);
   if (((s as any).accessible_property ?? 0)?.['accessible_home_count'] === 1  &&  (((s as any).home ?? 0)?.['current'] === ''  ||  qspFunc(s, 'homes_properties', 'is_homeless'))) {
     { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'home']; enterGetAccessibleProperties(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).accessible_property ?? 0)[((s as any).property_code ?? 0) + '-is-home'] === 1) {

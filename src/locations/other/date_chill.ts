@@ -12,7 +12,7 @@ function enterKnockStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center>$npc_apt_hall[$npcID]</center>');
   // TODO-QSP: dynamic text: You knock on the door and <<$npcdesc>> opens up.
-  scene.text(`You knock on the door and ${((s as any).npcdesc || '')} opens up.`);
+  scene.text(`You knock on the door and ${((s as any).npcdesc ?? '')} opens up.`);
   scene.text('"Hey, come on in."');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetReady1(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
@@ -23,7 +23,7 @@ function enterWithBoyStart(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center>$npc_apt_hall[$npcID]</center>');
   // TODO-QSP: dynamic text: You enter with <<$npcdesc>>.
-  scene.text(`You enter with ${((s as any).npcdesc || '')}.`);
+  scene.text(`You enter with ${((s as any).npcdesc ?? '')}.`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetReady1(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -115,7 +115,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('<center>$npc_apt_kitchen[$npcID]</center>');
     // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>''s fridge looking for things to drink.
-    scene.text(`You prowl through ${((st as any).npcdesc || '')}'s fridge looking for things to drink.`);
+    scene.text(`You prowl through ${((st as any).npcdesc ?? '')}'s fridge looking for things to drink.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -125,7 +125,7 @@ function enterGetReady2(s: GameState, scene: SceneBuilder): void {
         { label: 'Get some snacks', handler: (st: GameState) => {
     scene.text('<center>$npc_apt_kitchen[$npcID]</center>');
     // TODO-QSP: dynamic text: You prowl through <<$npcdesc>>''s cupboards looking for things to snack on.
-    scene.text(`You prowl through ${((st as any).npcdesc || '')}'s cupboards looking for things to snack on.`);
+    scene.text(`You prowl through ${((st as any).npcdesc ?? '')}'s cupboards looking for things to snack on.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSnackMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },
       ]);
@@ -140,7 +140,7 @@ function enterDrinkMenu(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask if he wants something', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Want me to get you something while I''m here?" you call back to <<$npcdesc>>.
-    scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc || '')}.`);
+    scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc ?? '')}.`);
     scene.text('"Could you grab me a soda?"');
     scene.text('"Sure thing," you say, taking cold can out of the fridge.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -174,7 +174,7 @@ function enterDrinkMenuEnd(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Ask if he wants something', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "Want me to get you something while I''m here?" you call back to <<$npcdesc>>.
-    scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc || '')}.`);
+    scene.text(`"Want me to get you something while I'm here?" you call back to ${((st as any).npcdesc ?? '')}.`);
     scene.text('"Could you grab me a soda?"');
     scene.text('"Sure thing," you say, taking cold can out of the fridge.');
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterDrinkMenu(s, scene); (st as any).locArgs = __savedLocArgs; }
@@ -261,10 +261,10 @@ function enterSettleDown1(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_apt_type ?? 0)?.[String((s as any).npcID ?? 0)] === 2) {
       // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>''s bed
-      scene.text(`You settle down on ${((s as any).npcdesc || '')}'s bed`);
+      scene.text(`You settle down on ${((s as any).npcdesc ?? '')}'s bed`);
     } else {
       // TODO-QSP: dynamic text: You settle down on <<$npcdesc>>''s couch.
-      scene.text(`You settle down on ${((s as any).npcdesc || '')}'s couch.`);
+      scene.text(`You settle down on ${((s as any).npcdesc ?? '')}'s couch.`);
     }
   }
   // TODO-QSP: end
@@ -426,7 +426,7 @@ function enterChillHj1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/sex/handjob/kotovhj.jpg');
     // TODO-QSP: dynamic text: All attention turns to <<$npcdesc>>''s cock as you seriously jerk him off. What ...
-    scene.text(`All attention turns to ${((st as any).npcdesc || '')}'s cock as you seriously jerk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
+    scene.text(`All attention turns to ${((st as any).npcdesc ?? '')}'s cock as you seriously jerk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
     scene.actions([
       { label: 'Try to make him cum', handler: (st: GameState) => {
     qspCall(st, 'date_chill', 'chill_cum');
@@ -444,7 +444,7 @@ function enterChillHjWatch1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/handjob/television1.mp4');
   // TODO-QSP: dynamic text: You gently jerk <<$npcdesc>>''s cock while you both continue watching the show.
-  scene.text(`You gently jerk ${((s as any).npcdesc || '')}'s cock while you both continue watching the show.`);
+  scene.text(`You gently jerk ${((s as any).npcdesc ?? '')}'s cock while you both continue watching the show.`);
   if ((Math.floor(Math.random() * 10) + 1) < ((s as any).npc_sexdrive ?? 0)?.[String((s as any).npcID ?? 0)]  ||  ((s as any).npc_two_pump ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -468,7 +468,7 @@ function enterChillBj1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You blow <<$npc_usedname[$npcID]>> seriously.
   scene.text(`You blow ${((s as any).npc_usedname ?? 0)?.[String((s as any).npcID ?? 0)] ?? ''} seriously.`);
   // TODO-QSP: dynamic text: All attention turns to <<$npcdesc>>''s cock as you seriously loudly and noisily ...
-  scene.text(`All attention turns to ${((s as any).npcdesc || '')}'s cock as you seriously loudly and noisily scuk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
+  scene.text(`All attention turns to ${((s as any).npcdesc ?? '')}'s cock as you seriously loudly and noisily scuk him off. What you put on the TV is still playing, but neither of you are watching anymore.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to make him cum', handler: (st: GameState) => {

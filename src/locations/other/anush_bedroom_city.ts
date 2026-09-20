@@ -102,7 +102,7 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
       if (((st as any).pcs_bmi ?? 0) < 16) {
         scene.text('"Wow, you have so many outfits. Can I try some on?" you ask her.');
         // TODO-QSP: dynamic text: Anushka smiles and nods. "Sure, let''s do it." She gets up to join you at the cl...
-        scene.text(`Anushka smiles and nods. "Sure, let's do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Unfortunately, her clothes don't fit well at all. In fact, they hang off your body, Anushka is a petite girl, but you're so skinny that even her clothes just hang off you. "Jesus ${((st as any).pcs_nickname || '')}, you need to eat something! Do you have some sort of eating disorder or something?" she asks as you check yourself out in the mirror on the door.`);
+        scene.text(`Anushka smiles and nods. "Sure, let's do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Unfortunately, her clothes don't fit well at all. In fact, they hang off your body, Anushka is a petite girl, but you're so skinny that even her clothes just hang off you. "Jesus ${((st as any).pcs_nickname ?? '')}, you need to eat something! Do you have some sort of eating disorder or something?" she asks as you check yourself out in the mirror on the door.`);
         scene.text('You shake your head, but do you? You know Anushka is petite, some might say on the skinny side, yet her clothes are too big. Seeing your reflection in the mirror while standing side by side with her, your exceptionally skinny build really stands out. She has curves in all the right places while all you have are bones protruding from under your skin. You both quickly give up on trying on her clothes since they don\'t look good on you.');
         scene.actions([
           { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -119,7 +119,7 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
           scene.text('"Wow, you have so many outfits. Can I try some on?" you ask her.');
           scene.text('Anushka smiles and nods. "Sure, let\'s do it." She gets up to join you at the closet and pulls out different outfits. She picks the ones that she apparently thinks will work best for you. Her clothes don\'t fit perfectly since you\'re taller than her, but other than that, they fit you pretty well and look good on you.');
           // TODO-QSP: dynamic text: As you check yourself out in the mirror on the door, she steps up next to you, s...
-          scene.text(`As you check yourself out in the mirror on the door, she steps up next to you, showing both of your reflections. "Looking good, ${((st as any).pcs_nickname || '')}."`);
+          scene.text(`As you check yourself out in the mirror on the door, she steps up next to you, showing both of your reflections. "Looking good, ${((st as any).pcs_nickname ?? '')}."`);
           scene.actions([
             { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
           ]);
@@ -137,7 +137,7 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
         scene.text('She gets up and joins you at the closet. She starts pulling out different outfits, most of which she discards. Finally, she pulls out a couple of clothes, and you notice all of them are baggy style clothes you\'ve never seen her wearing. You take them and try to put them on, but unfortunately, even her most oversized clothes are too small for you. You can squeeze into some of them, but you struggle to zip them up, and you can see your skin rolling over the side of the clothes in spots that are just too tight for you.');
         scene.text('When you try on a pair of cargo shorts, one of the buttons pops off and bounces across the floor, causing you to blush heavily. "Sorry, I… I shouldn\'t have tried to wear these. I can buy you a new pair or get this button fixed."');
         // TODO-QSP: dynamic text: She shakes her head and giggles slightly. "Don''t worry about it. I didn''t real...
-        scene.text(`She shakes her head and giggles slightly. "Don't worry about it. I didn't really like those shorts anyways." You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should lay off the sweets, ${((st as any).pcs_nickname || '')}," she says teasingly while poking you in the side.`);
+        scene.text(`She shakes her head and giggles slightly. "Don't worry about it. I didn't really like those shorts anyways." You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should lay off the sweets, ${((st as any).pcs_nickname ?? '')}," she says teasingly while poking you in the side.`);
         scene.text('"Hey, just because I\'m not as skinny as a rail doesn\'t mean the boys don\'t come running. I got myself a nice bubble butt, unlike your flat ass!" you reply, teasing her back for being skinny. The two of you laugh and put her clothes back away as you talk about where she gets her clothes from.');
         scene.actions([
           { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -153,7 +153,7 @@ function enterNushcloset(s: GameState, scene: SceneBuilder): void {
         scene.text('She gets up and joins you at the closet. She starts pulling out different outfits, almost all of which she discards. Finally, she pulls out a summer dress you\'ve never seen her in, likely because it looks far too big for her. "Here, you can try this, but I don\'t think it\'ll fit. That thing hangs off me like a tent."');
         scene.text('You take the dress and change out of your clothes. You try and get the dress on, but it won\'t go over your breasts. After a bit of struggling, it\'s obvious the thing isn\'t going to fit, no matter how badly you want to try it on.');
         // TODO-QSP: dynamic text: You sigh at the fact you''re just too big to wear her clothes and put your own c...
-        scene.text(`You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should try eating some veggies now and again and lay off the sweets, ${((st as any).pcs_nickname || '')}. The veggies won't kill you, I promise," she says teasingly.`);
+        scene.text(`You sigh at the fact you're just too big to wear her clothes and put your own clothes back on. She glances at you while grinning. "Maybe you should try eating some veggies now and again and lay off the sweets, ${((st as any).pcs_nickname ?? '')}. The veggies won't kill you, I promise," she says teasingly.`);
         scene.text('"Hey, just because I\'m not as skinny as a rail…" You trail off and force a smile; you know she\'s not trying to be mean, but her words still hurt. Instead of trying on her clothes, you end up talking about where she gets them.');
         scene.actions([
           { label: 'Stop trying on clothes', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -603,7 +603,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
         (st as any).minut = ((st as any).minut ?? 0) + 20;
         scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. Unfortunately, you still have a lot to learn - it takes you several minutes to hit the right notes and several more to play even a tiny bit of the song without making a mistake. Still, you\'re better than you used to be, and after about twenty minutes, you decide to stop.');
         // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe Anushka will be willing to help me out and teach me ...
-        scene.text(`${((st as any).OpenInnerThought || '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
+        scene.text(`${((st as any).OpenInnerThought ?? '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought ?? '')} you muse as you place the instrument back on its stand.`);
         scene.actions([
           { label: 'Put the guitar back', goto: ['anush_bedroom_city', 'anushroom'] },
         ]);
@@ -614,7 +614,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
           (st as any).minut = ((st as any).minut ?? 0) + 20;
           scene.text('You gently brush your fingers over the strings and slowly pick at them before you start playing a song you recently started learning. You keep making small mistakes here and there, but you\'re slowly but steadily getting the piece down. After about twenty minutes, you decide you\'ve messed around with the guitar enough.');
           // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe Anushka will be willing to help me out and teach me ...
-          scene.text(`${((st as any).OpenInnerThought || '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
+          scene.text(`${((st as any).OpenInnerThought ?? '')}"Maybe Anushka will be willing to help me out and teach me how to play?"${((st as any).CloseInnerThought ?? '')} you muse as you place the instrument back on its stand.`);
           scene.actions([
             { label: 'Put the guitar back', goto: ['anush_bedroom_city', 'anushroom'] },
           ]);
@@ -625,7 +625,7 @@ function enterGuitar(s: GameState, scene: SceneBuilder): void {
           scene.text('You pick up the guitar, run your hand along the neck and play a few chords, then flick your hair back and start playing the latest song you\'ve learned before switching to another piece. Your fingers dance gracefully over the strings, and you spend about twenty minutes just having fun playing songs.');
           if (((st as any).ml_guitar ?? 0)?.['hasguitar'] >= 1) {
             // TODO-QSP: dynamic text: <<$OpenInnerThought>>"Maybe I should come over with my guitar someday and see if...
-            scene.text(`${((st as any).OpenInnerThought || '')}"Maybe I should come over with my guitar someday and see if Nush wants to play together?"${((st as any).CloseInnerThought || '')} you muse as you place the instrument back on its stand.`);
+            scene.text(`${((st as any).OpenInnerThought ?? '')}"Maybe I should come over with my guitar someday and see if Nush wants to play together?"${((st as any).CloseInnerThought ?? '')} you muse as you place the instrument back on its stand.`);
           }
           scene.actions([
             { label: 'Put the guitar back', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -1083,7 +1083,7 @@ function enterNushGuitarPlayTogether(s: GameState, scene: SceneBuilder): void {
           (s as any).minut = ((s as any).minut ?? 0) + 60;
           qspCall(s, 'exp_gain', 'instrmusic', (Math.floor(Math.random() * 3) + 4));
           // TODO-QSP: dynamic text: You don''t make any mistakes and don''t have any trouble keeping up with her. In...
-          scene.text(`You don't make any mistakes and don't have any trouble keeping up with her. In fact, you feel confident that you outplayed her. You play together for about an hour before she stops. "Damn ${((s as any).pcs_nickname || '')}, I think you're better than I am!" she says with a smile.`);
+          scene.text(`You don't make any mistakes and don't have any trouble keeping up with her. In fact, you feel confident that you outplayed her. You play together for about an hour before she stops. "Damn ${((s as any).pcs_nickname ?? '')}, I think you're better than I am!" she says with a smile.`);
           scene.text('You return her smile. "Thanks. I\'ve been working hard on trying to master it."');
           scene.text('"Well, it sounds like it was time well spent. I had fun and think we should totally do this again." The two of you talk about your different styles of practicing and any tips or tricks you learned along the way that might help each other.');
           qspCall(s, 'stat', '');

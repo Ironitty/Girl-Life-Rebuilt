@@ -37,7 +37,7 @@ function enterStairwellChat(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).tryndinQW ?? 0)?.['stairwell_chat'] >= 8) {
                   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, we''ve been chatting here many times so I hope you don''t mi...
-                  scene.text(`"${((s as any).pcs_nickname || '')}, we've been chatting here many times so I hope you don't mind me asking but there is something that has been bugging me; where do I recognize you from? I swear I have seen you somewhere else that I can't just put my finger on."`);
+                  scene.text(`"${((s as any).pcs_nickname ?? '')}, we've been chatting here many times so I hope you don't mind me asking but there is something that has been bugging me; where do I recognize you from? I swear I have seen you somewhere else that I can't just put my finger on."`);
                   scene.text('You smile at the question and contemplate on just what you will tell him…');
                   if (((s as any).pcs_hotcat ?? 0) >= 6  &&  ((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
                     scene.actions([
@@ -82,7 +82,7 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big77.jpg');
   // TODO-QSP: dynamic text: Tryndin sees you and greets you, "Hello <<$pcs_nickname>>. How are you doing tod...
-  scene.text(`Tryndin sees you and greets you, "Hello ${((s as any).pcs_nickname || '')}. How are you doing today?"`);
+  scene.text(`Tryndin sees you and greets you, "Hello ${((s as any).pcs_nickname ?? '')}. How are you doing today?"`);
   if (((s as any).tryndinQW ?? 0)?.['stairwell_chat'] >= 1) {
     if (((s as any).cumloc ?? 0)[7] === 1  ||  ((s as any).cumloc ?? 0)[6] === 1) {
       scene.text('The two of you are having a great conversation before he suddenly notices semen on your clothes. As he comes to the realization, his eyes noticeably widen. "What\'s that? Cum?" he asks suspiciously.');
@@ -98,7 +98,7 @@ function enterTryndinmetro(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).cumloc ?? 0)[11] === 1) {
         // TODO-QSP: dynamic text: He looks at your face puzzled. "<<$pcs_nickname>>, your face is smeared with som...
-        scene.text(`He looks at your face puzzled. "${((s as any).pcs_nickname || '')}, your face is smeared with something." He stares at you, and after a moment, he realizes that's cum on your face. "What's that? Cum?" he asks suspiciously.`);
+        scene.text(`He looks at your face puzzled. "${((s as any).pcs_nickname ?? '')}, your face is smeared with something." He stares at you, and after a moment, he realizes that's cum on your face. "What's that? Cum?" he asks suspiciously.`);
         scene.actions([
           { label: 'Make an excuse', handler: (st: GameState) => {
     qspCall(st, 'stat', '');

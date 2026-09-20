@@ -17,7 +17,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Your stepfather, Vladimir Mikhailovich Scriabin</b></center>');
   scene.img('images/characters/shared/headshots_main/big28.jpg');
   // TODO-QSP: dynamic text: Your stepfather is a greying, slightly flabby man working as a truck driver. He ...
-  scene.text(`Your stepfather is a greying, slightly flabby man working as a truck driver. He is ${((s as any).fatherAge || '')} years old. Your mother divorced your biological father and married Vladimir when you were only one year old. You've never seen your biological father since their divorce, and as such you have no real memory of him.`);
+  scene.text(`Your stepfather is a greying, slightly flabby man working as a truck driver. He is ${((s as any).fatherAge ?? '')} years old. Your mother divorced your biological father and married Vladimir when you were only one year old. You've never seen your biological father since their divorce, and as such you have no real memory of him.`);
   qspCall(s, 'father', 'fatherRep');
   if (((s as any).locat ?? 0)?.['Stepdad'] !== 9) {
     qspGoto(s, 'gargazel', '');
@@ -65,7 +65,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'mouth_swallow', 'A28', 1);
     scene.img(`images/shared/sex/cum/mouth/cum1,${(Math.floor(Math.random() * 11) + 0)}.mp4`);
     // TODO-QSP: dynamic text: You continue to suck your stepfather''s dick as it continues throbbing. Suddenly...
-    scene.text(`You continue to suck your stepfather's dick as it continues throbbing. Suddenly, he arches his back and you feel cum begin to pour into your mouth. Although you try your best, the amount of cum flowing from your stepfathers dick is simply too much for you, and some of it instead flows out of your mouth and down your chin. Soon your ${((st as any).boydesc || '')} finishes and you pull his cock out of your sperm-smelling mouth. You can feel the taste of sperm in your mouth, and your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips are wet with cum.`);
+    scene.text(`You continue to suck your stepfather's dick as it continues throbbing. Suddenly, he arches his back and you feel cum begin to pour into your mouth. Although you try your best, the amount of cum flowing from your stepfathers dick is simply too much for you, and some of it instead flows out of your mouth and down your chin. Soon your ${((st as any).boydesc ?? '')} finishes and you pull his cock out of your sperm-smelling mouth. You can feel the taste of sperm in your mouth, and your ${((st as any).pc_desc ?? 0)?.['lips'] ?? ''} lips are wet with cum.`);
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'incest');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -84,11 +84,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).gar_rand1 = (Math.floor(Math.random() * 101) + 0);
     if (((st as any).gar_rand1 ?? 0) < 49) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/shared/sex/cum/facial/facial0,<<rand(0,8)...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/shared/sex/cum/facial/facial0,${(Math.floor(Math.random() * 9) + 0)}.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/facial/facial0,${(Math.floor(Math.random() * 9) + 0)}.jpg"></center>`);
     }
     if (((st as any).gar_rand1 ?? 0) >= 50) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/shared/sex/cum/facial/facial0,<<rand(0,8)...
-      scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/shared/sex/cum/facial/facial0,${(Math.floor(Math.random() * 9) + 0)}.jpg"></center>`);
+      scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/shared/sex/cum/facial/facial0,${(Math.floor(Math.random() * 9) + 0)}.jpg"></center>`);
     }
     scene.text('You stop sucking on your stepfather\'s cock just as he reaches orgasm, and a jet of sperm immediately hits you in the face. You squeeze your eyes shut for fear of getting cum in your eyes and feel another jet of hot sperm land on your face.');
     qspCall(st, 'arousal', 'bj', 10, 'sub', 'incest');
@@ -191,11 +191,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Your stepfather, Vladimir Mikhailovich Scriabin</b></center>');
     scene.img('images/characters/shared/headshots_main/big28.jpg');
     // TODO-QSP: dynamic text: Your stepfather is a greying, slightly flabby man who works as a truck driver. H...
-    scene.text(`Your stepfather is a greying, slightly flabby man who works as a truck driver. He is ${((s as any).fatherAge || '')} years old. Your mother divorced your biological father and married Vladimir when you were only one year old. You've never seen your biological father since their divorce, and as such you have no real memory of him.`);
+    scene.text(`Your stepfather is a greying, slightly flabby man who works as a truck driver. He is ${((s as any).fatherAge ?? '')} years old. Your mother divorced your biological father and married Vladimir when you were only one year old. You've never seen your biological father since their divorce, and as such you have no real memory of him.`);
     qspCall(s, 'father', 'fatherRep');
     if (((s as any).npc_rel ?? 0)?.['A28']<20) {
       // TODO-QSP: dynamic text: You approach your stepfather and uncle Misha and try to ask if you can join them...
-      scene.text(`You approach your stepfather and uncle Misha and try to ask if you can join them, but your stepfather cuts you off before you can even finish your sentence. "${((s as any).pcs_nickname || '')}, get out of here! This is a no bitch zone!" he shouts, laughing drunkenly as he waves you off. Uncle Misha finds your stepfather's degrading talk hilarious, and joins in. You're clearly not welcome in the garage.`);
+      scene.text(`You approach your stepfather and uncle Misha and try to ask if you can join them, but your stepfather cuts you off before you can even finish your sentence. "${((s as any).pcs_nickname ?? '')}, get out of here! This is a no bitch zone!" he shouts, laughing drunkenly as he waves you off. Uncle Misha finds your stepfather's degrading talk hilarious, and joins in. You're clearly not welcome in the garage.`);
       if (((s as any).sorryday ?? 0)!==((s as any).daystart ?? 0)) {
         qspCall(s, 'willpower', 'misc', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -223,7 +223,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).npc_rel ?? 0)?.['A28']>=20  &&  ((s as any).npc_rel ?? 0)?.['A28']<40) {
         // TODO-QSP: dynamic text: You ask your stepfather if you can join them, but he''ll have none of it. "<<$pc...
-        scene.text(`You ask your stepfather if you can join them, but he'll have none of it. "${((s as any).pcs_nickname || '')}, isn't it past your bedtime? *Hic!* Shoo, go home! *Hic!*"`);
+        scene.text(`You ask your stepfather if you can join them, but he'll have none of it. "${((s as any).pcs_nickname ?? '')}, isn't it past your bedtime? *Hic!* Shoo, go home! *Hic!*"`);
         if (((s as any).sorryday ?? 0)!==((s as any).daystart ?? 0)) {
           qspCall(s, 'willpower', 'misc', 'self');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -291,7 +291,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim33.jpg');
     // TODO-QSP: dynamic text: In a moment of horniness, you slowly and teasingly bend over with a playful smil...
-    scene.text(`In a moment of horniness, you slowly and teasingly bend over with a playful smile on your lips, providing uncle Misha with an amazing view of your ${((st as any).titsize || '')} breasts.`);
+    scene.text(`In a moment of horniness, you slowly and teasingly bend over with a playful smile on your lips, providing uncle Misha with an amazing view of your ${((st as any).titsize ?? '')} breasts.`);
     if ((((st as any).pcs_apprnc ?? 0) + (((st as any).npc_rel ?? 0)?.['A54']/10)) < 60) {
       (st as any).mishaLust = 2;
     }
@@ -353,12 +353,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       if (((st as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim35.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim35.jpg"></center>`);
         scene.text('Your stepfather is clearly embarrassed, and surprised you would do such a thing. He clears his throat loudly and looks at you disapprovingly, and the silence that follows makes you feel a bit uncomfortable. Uncle Misha just has a smug grin on his face.');
       }
       if (((st as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim34.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim34.jpg"></center>`);
         scene.text('Your stepfather is clearly embarrassed, and surprised you would do such a thing. He clears his throat loudly and looks at you disapprovingly, and the silence that follows makes you feel a bit uncomfortable. Neither of them seem to have noticed you\'re not wearing panties.');
       }
     } else {
@@ -377,7 +377,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim39.jpg');
     // TODO-QSP: dynamic text: Uncle Misha is onto your act, and decides to push you to your limits. He smiles ...
-    scene.text(`Uncle Misha is onto your act, and decides to push you to your limits. He smiles and says: "Oh really, ${((st as any).pcs_nickname || '')}? Why don't you show us, maybe we can help you. Isn't that right, Vladimir?" Too turned on to decline, you pull your panties to the side and show them your pussy. It's really not all that sore, but your arousal has coloured it nice and red and it makes your pussy lips look a bit more puffy. The guys didn't think you would actually follow through with this, and are flabbergasted when you do.`);
+    scene.text(`Uncle Misha is onto your act, and decides to push you to your limits. He smiles and says: "Oh really, ${((st as any).pcs_nickname ?? '')}? Why don't you show us, maybe we can help you. Isn't that right, Vladimir?" Too turned on to decline, you pull your panties to the side and show them your pussy. It's really not all that sore, but your arousal has coloured it nice and red and it makes your pussy lips look a bit more puffy. The guys didn't think you would actually follow through with this, and are flabbergasted when you do.`);
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');
@@ -394,7 +394,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'arousal', 'vaginal_finger', (-5), 'exhibitionism', 'rough');
           scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim40.jpg');
           // TODO-QSP: dynamic text: Slightly disappointed, you move away from the table. Lost in your own thoughts, ...
-          scene.text(`Slightly disappointed, you move away from the table. Lost in your own thoughts, you don't notice uncle Misha's legs and trip over them. Since you're not wearing any underwear, you're giving your uncle one hell of a show as you fall down onto your hands and knees. He immediately reaches out and runs his fingers over your wet pussy lips. He fingers you briefly, then returning his fingers to his nose to take a deep whiff. "You have nice holes, ${((st as any).pcs_nickname || '')}, young and juicy…" Realizing he won't do anything more with your stepfather right there in the room, you get up and fix your clothes before sitting back down at the table.`);
+          scene.text(`Slightly disappointed, you move away from the table. Lost in your own thoughts, you don't notice uncle Misha's legs and trip over them. Since you're not wearing any underwear, you're giving your uncle one hell of a show as you fall down onto your hands and knees. He immediately reaches out and runs his fingers over your wet pussy lips. He fingers you briefly, then returning his fingers to his nose to take a deep whiff. "You have nice holes, ${((st as any).pcs_nickname ?? '')}, young and juicy…" Realizing he won't do anything more with your stepfather right there in the room, you get up and fix your clothes before sitting back down at the table.`);
           qspCall(st, 'arousal', 'end');
           qspCall(st, 'stat', '');
         }
@@ -442,25 +442,25 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       if (((st as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim31.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim31.jpg"></center>`);
         scene.text('Trying to direct Uncle Misha\'s attention to something across the room, your stepfather signals you to cover yourself up with agitated hand movements.');
       }
       if (((st as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim52.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim52.jpg"></center>`);
         // TODO-QSP: dynamic text: Your stepfather notices what you''re trying to do. After he distracts uncle Mish...
-        scene.text(`Your stepfather notices what you're trying to do. After he distracts uncle Misha for long enough, he turns to you and whispers: "${((st as any).pcs_nickname || '')}, don't… just don't. You have no idea what you're getting yourself into." Intimidated by the gravity of his voice, you do as he says and cover up.`);
+        scene.text(`Your stepfather notices what you're trying to do. After he distracts uncle Misha for long enough, he turns to you and whispers: "${((st as any).pcs_nickname ?? '')}, don't… just don't. You have no idea what you're getting yourself into." Intimidated by the gravity of his voice, you do as he says and cover up.`);
       }
     } else {
       if (((st as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim20.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim20.jpg"></center>`);
         // TODO-QSP: dynamic text: Your stepfather realizes what you''re up to and pulls you closer to him, desire ...
-        scene.text(`Your stepfather realizes what you're up to and pulls you closer to him, desire burning in his eyes. He runs his hands over your ass cheeks and thighs, petting and kneading them, and then pushes your panties to the side. Two of his fingers are exploring your sphincter, rubbing and teasing you. "Is there something you want, ${((st as any).pcs_nickname || '')}?" he asks with a smug grin on his face, knowing he turned the tables on you. All you can do is whimper in response. He pulls away his hand just in time, before uncle Misha notices what's going on.`);
+        scene.text(`Your stepfather realizes what you're up to and pulls you closer to him, desire burning in his eyes. He runs his hands over your ass cheeks and thighs, petting and kneading them, and then pushes your panties to the side. Two of his fingers are exploring your sphincter, rubbing and teasing you. "Is there something you want, ${((st as any).pcs_nickname ?? '')}?" he asks with a smug grin on his face, knowing he turned the tables on you. All you can do is whimper in response. He pulls away his hand just in time, before uncle Misha notices what's going on.`);
       }
       if (((st as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim25.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim25.jpg"></center>`);
         scene.text('Noticing your stepfather\'s blush, you realize at least one person at the table noticed you\'re not wearing any underwear. When uncle Misha looks away, he quickly reaches for you and fingers your wet pussy. A needy moan escapes your lips as he pulls his hand way, and he quickly starts a conversation about wind shield wipers. Uncle Misha has no idea what just went down.');
       }
     }
@@ -603,7 +603,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'father', 'fatherRep');
     if (((st as any).npc_rel ?? 0)?.['A28'] < 20) {
       // TODO-QSP: dynamic text: You offer to help your stepfather out in the garage. He waves you away and grump...
-      scene.text(`You offer to help your stepfather out in the garage. He waves you away and grumpily says "Get out of the way ${((st as any).pcs_nickname || '')}, can't you see I'm busy? Besides, why would I want to be around you?"`);
+      scene.text(`You offer to help your stepfather out in the garage. He waves you away and grumpily says "Get out of the way ${((st as any).pcs_nickname ?? '')}, can't you see I'm busy? Besides, why would I want to be around you?"`);
       if (((st as any).sorryday ?? 0) !== ((st as any).daystart ?? 0)) {
         qspCall(st, 'willpower', 'misc', 'self');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -725,29 +725,29 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       if (((st as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim31.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim31.jpg"></center>`);
         // TODO-QSP: dynamic text: You notice your stepfather''s eyes darting down while you talk, and suddenly his...
-        scene.text(`You notice your stepfather's eyes darting down while you talk, and suddenly his face turns beet red. You look down and notice your skimpy underwear did a very poor job of hiding your pussy. Your stepfather is clearly embarrassed and surprised. He loudly clears his throat and says "${((st as any).pcs_nickname || '')} don't do that, that's no way for a lady to behave. And go put some normal underwear on."`);
+        scene.text(`You notice your stepfather's eyes darting down while you talk, and suddenly his face turns beet red. You look down and notice your skimpy underwear did a very poor job of hiding your pussy. Your stepfather is clearly embarrassed and surprised. He loudly clears his throat and says "${((st as any).pcs_nickname ?? '')} don't do that, that's no way for a lady to behave. And go put some normal underwear on."`);
       }
       if (((st as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim24.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim24.jpg"></center>`);
         // TODO-QSP: dynamic text: You notice your stepfather''s eyes darting down while you talk, and suddenly his...
-        scene.text(`You notice your stepfather's eyes darting down while you talk, and suddenly his face turns beet red. "What's wrong?" you ask him innocently, knowing full well you're not wearing underwear and that he has a great view of your bare pussy. You're not fooling him though, and he doesn't appreciate your teasing in the slightest. "${((st as any).pcs_nickname || '')}, stop that at once and go put some pants on."`);
+        scene.text(`You notice your stepfather's eyes darting down while you talk, and suddenly his face turns beet red. "What's wrong?" you ask him innocently, knowing full well you're not wearing underwear and that he has a great view of your bare pussy. You're not fooling him though, and he doesn't appreciate your teasing in the slightest. "${((st as any).pcs_nickname ?? '')}, stop that at once and go put some pants on."`);
       }
     }
     if (((st as any).fatherLust ?? 0) === 1) {
       if (((st as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim20.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim20.jpg"></center>`);
         // TODO-QSP: dynamic text: Your stepfather realizes what you''re up to and pulls you closer to him, desire ...
-        scene.text(`Your stepfather realizes what you're up to and pulls you closer to him, desire burning in his eyes. He runs his hands over your ass cheeks and thighs, petting and kneading them, and then pushes your panties to the side. Two of his fingers are exploring your sphincter, rubbing and teasing you. "Is there something you want, ${((st as any).pcs_nickname || '')}?" he asks with a smug grin on his face, knowing he turned the tables on you. All you can do is whimper in response.`);
+        scene.text(`Your stepfather realizes what you're up to and pulls you closer to him, desire burning in his eyes. He runs his hands over your ass cheeks and thighs, petting and kneading them, and then pushes your panties to the side. Two of his fingers are exploring your sphincter, rubbing and teasing you. "Is there something you want, ${((st as any).pcs_nickname ?? '')}?" he asks with a smug grin on his face, knowing he turned the tables on you. All you can do is whimper in response.`);
       }
       if (((st as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim26.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim26.jpg"></center>`);
         // TODO-QSP: dynamic text: Your stepfather gets a glimpse of your bare pussy and realizes what you''re up t...
-        scene.text(`Your stepfather gets a glimpse of your bare pussy and realizes what you're up to. "${((st as any).pcs_nickname || '')}… are you not wearing panties? Get down on the ground and spread your legs for me, Daddy has to know now." You do as he says, lie down on the ground and spread your legs wide. He kneels in front of you, pulls your clothes to the side and rubs your pussy and thighs with his rough calloused hands. "Just as I thought, you little minx!" he says with a grin on his face. After he had his fun he helps you get back up and even helps you straighten your clothes, his hands lingering on your hips and ass a few seconds longer than is needed.`);
+        scene.text(`Your stepfather gets a glimpse of your bare pussy and realizes what you're up to. "${((st as any).pcs_nickname ?? '')}… are you not wearing panties? Get down on the ground and spread your legs for me, Daddy has to know now." You do as he says, lie down on the ground and spread your legs wide. He kneels in front of you, pulls your clothes to the side and rubs your pussy and thighs with his rough calloused hands. "Just as I thought, you little minx!" he says with a grin on his face. After he had his fun he helps you get back up and even helps you straighten your clothes, his hands lingering on your hips and ass a few seconds longer than is needed.`);
       }
     }
     scene.actions([
@@ -793,22 +793,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
       if (((st as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim29.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim29.jpg"></center>`);
         scene.text('Even though your body is definitely having an effect on him your stepfather is clearly embarrassed, and surprised you would do such a thing. He clears his throat loudly and looks at you disapprovingly, and the silence that follows makes you feel uncomfortable.');
       }
       if (((st as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim27.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim27.jpg"></center>`);
         scene.text('The sight of your ass makes your stepfather uncomfortable. "Clumsy you say? It seems like that wrench is not the only thing you let slip today", he snarks, referring to your lack of underwear. His snarky tone and disapproving look make you feel a bit awkward.');
       }
     } else {
       if (((st as any).pantyworntype ?? 0) !== 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim29.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim29.jpg"></center>`);
       }
       if (((st as any).pantyworntype ?? 0) === 'none') {
         // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/resident/vladimir/sex...
-        scene.text(`<center><img ${((st as any).set_imgh || '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim27.jpg"></center>`);
+        scene.text(`<center><img ${((st as any).set_imgh ?? '')} src="images/characters/pavlovsk/resident/vladimir/sex/fatherim27.jpg"></center>`);
       }
       scene.text('Even though he did not expect this from you, you can tell by the spark in his eyes and his heavier breathing that he definitely likes what he sees.');
     }
@@ -829,7 +829,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/vladimir/sex/fatherim28.jpg');
     // TODO-QSP: dynamic text: In a moment of horniness, you slowly and teasingly bend over with a playful smil...
-    scene.text(`In a moment of horniness, you slowly and teasingly bend over with a playful smile on your lips, providing your stepfather with an amazing view of your ${((st as any).titsize || '')} breasts.`);
+    scene.text(`In a moment of horniness, you slowly and teasingly bend over with a playful smile on your lips, providing your stepfather with an amazing view of your ${((st as any).titsize ?? '')} breasts.`);
     if (((st as any).pcs_apprnc ?? 0) + (((st as any).npc_rel ?? 0)?.['A28']/10) < 60) {
       (st as any).fatherLust = 2;
     }

@@ -202,7 +202,7 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
       if (((st as any).obkvsdam ?? 0) > 1) {
         (st as any).predsum = 14000 + (((st as any).obkvsdam ?? 0)*1000);
         // TODO-QSP: dynamic text: Someone wants to stay in your apartment for a month! They''re offering you <<fun...
-        scene.text(`Someone wants to stay in your apartment for a month! They're offering you ${qspFunc(s, 'money', 'string_profit', ((st as any).predsum || ''))} in cash.`);
+        scene.text(`Someone wants to stay in your apartment for a month! They're offering you ${qspFunc(s, 'money', 'string_profit', ((st as any).predsum ?? ''))} in cash.`);
         scene.actions([
           { label: 'Accept the offer', handler: (st: GameState) => {
     qspCall(st, 'homes_properties', 'tenants_move_in', 'city_apartment', ((((st as any).month ?? 0) + 1 > 12) ? (1) : (((st as any).month ?? 0) + 1)), Math.min(((st as any).day ?? 0), ((st as any).monthsEnd ?? 0)?.[String((st as any).tenant_endmonth ?? 0)]));
@@ -480,7 +480,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 0;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
-    scene.text(`You find a guy named ${((st as any).npcdesc || '')} and send him your number after checking out his profile. You hope he'll call you!`);
+    scene.text(`You find a guy named ${((st as any).npcdesc ?? '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
@@ -492,7 +492,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 0;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
-    scene.text(`You find a guy named ${((st as any).npcdesc || '')} and send him your number after checking out his profile. You hope he'll call you!`);
+    scene.text(`You find a guy named ${((st as any).npcdesc ?? '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
@@ -504,7 +504,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     ((st as any).npc_rough = (st as any).npc_rough ?? {})[String((st as any).npcID ?? 0)] = 1;
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
-    scene.text(`You find a guy named ${((st as any).npcdesc || '')} and send him your number after checking out his profile. You hope he'll call you!`);
+    scene.text(`You find a guy named ${((st as any).npcdesc ?? '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
@@ -930,7 +930,7 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: gs 'money', 'pay', intinp * 10, 'bank'
         (st as any).internet = ((st as any).internet ?? 0) + (((st as any).intinp ?? 0));
         // TODO-QSP: dynamic text: You pay for <<intinp>> hours of prepaid internet access. You have a total of <<i...
-        scene.text(`You pay for ${((st as any).intinp || '')} hours of prepaid internet access. You have a total of ${((st as any).internet || '')} hours of internet access remaining.`);
+        scene.text(`You pay for ${((st as any).intinp ?? '')} hours of prepaid internet access. You have a total of ${((st as any).internet ?? '')} hours of internet access remaining.`);
         // TODO-QSP: dynamic text: <<$func(''money'', ''string_price'', intinp * 10)>> was removed from your accoun...
         scene.text(`${qspFunc(s, 'money', 'string_price', ((st as any).intinp ?? '') * 10)} was removed from your account to pay for it.`);
       }

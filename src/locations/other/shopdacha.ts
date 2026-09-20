@@ -11,7 +11,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/store/shopdacha.jpg');
   scene.text('In this storefront office, you can upgrade your existing properties or start a new construction project upon any land you may own.');
   // TODO-QSP: dynamic text: All payments must be made from you bank account. Current balance - <<karta>> <b>...
-  scene.text(`All payments must be made from you bank account. Current balance - ${((s as any).karta || '')} <b>₽</b>.`);
+  scene.text(`All payments must be made from you bank account. Current balance - ${((s as any).karta ?? '')} <b>₽</b>.`);
   if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) > 20) {
     scene.text('Shop closed.');
   } else {

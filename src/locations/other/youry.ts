@@ -25,7 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((st as any).hour ?? 0) > 16) {
       // TODO-QSP: dynamic text: You ring the doorbell, and it doesn''t take long for Yuri to open the door as he...
-      scene.text(`You ring the doorbell, and it doesn't take long for Yuri to open the door as he was expecting you, "Come in ${((st as any).pcs_firstname || '')} no need to be standing outside."`);
+      scene.text(`You ring the doorbell, and it doesn't take long for Yuri to open the door as he was expecting you, "Come in ${((st as any).pcs_firstname ?? '')} no need to be standing outside."`);
       scene.actions([
 { label: 'Enter apartment', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;

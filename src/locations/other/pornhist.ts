@@ -46,7 +46,7 @@ function enterShort(s: GameState, scene: SceneBuilder): void {
 
 function enterPdetail(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><h1>Filmography of <font color="magenta"><<$pfname>></font></h1></center...
-  scene.text(`<center><h1>Filmography of <font color="magenta">${((s as any).pfname || '')}</font></h1></center>`);
+  scene.text(`<center><h1>Filmography of <font color="magenta">${((s as any).pfname ?? '')}</font></h1></center>`);
   scene.text('<center><table width="90%" cellspacing="0" cellpadding="20" valign="top"><tr>');
   scene.text('<td cellspacing="0" cellpadding="0" valign="top">');
   (s as any).i = 1;
@@ -57,11 +57,11 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
       (s as any).fvvalue = ((s as any).i ?? 0);
     }
     // TODO-QSP: dynamic text: <b><a href="exec:$porntitle[fvvalue] = input(''<font color=#FF0000>WARNING!</fon...
-    scene.text(`<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $porntitle[fvvalue] = input(/u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, it will name the <b>first</b> unnamed movie! This action can be done only once!/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">${((s as any).i || '')}. Movie</a></b>`);
+    scene.text(`<b><a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $porntitle[fvvalue] = input(/u0027<font color=#FF0000>WARNING!</font> No matter where you clicked, it will name the <b>first</b> unnamed movie! This action can be done only once!/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027pornhist/u0027, /u0027pdetail/u0027); return false;">${((s as any).i ?? '')}. Movie</a></b>`);
   } else {
     if (((s as any).i ?? 0) === 1) {
       // TODO-QSP: dynamic text: <b><font color="brown"><<$porntitle[i]>><<$pfname>></font></b>
-      scene.text(`<b><font color="brown">${((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? ''}${((s as any).pfname || '')}</font></b>`);
+      scene.text(`<b><font color="brown">${((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? ''}${((s as any).pfname ?? '')}</font></b>`);
     } else {
       // TODO-QSP: dynamic text: <b><font color="brown"><<$porntitle[i]>></font></b>
       scene.text(`<b><font color="brown">${((s as any).porntitle ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font></b>`);
@@ -83,10 +83,10 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
   scene.text(` <b>Actress age:</b> <font size=2>${((s as any).pornfilmActAge ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font> <font size=2>(Appears: ${((s as any).pornfilmAppAge ?? 0)?.[String((s as any).i ?? 0)] ?? ''})</font>`);
   if (((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] === 'Fifty fans of') {
     // TODO-QSP: dynamic text:  <b>Actors:</b> <font size=2><<$pornfilmActor[i]>> <<$pfname>> and <<$pfname>> h...
-    scene.text(` <b>Actors:</b> <font size=2>${((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? ''} ${((s as any).pfname || '')} and ${((s as any).pfname || '')} herself</font>`);
+    scene.text(` <b>Actors:</b> <font size=2>${((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? ''} ${((s as any).pfname ?? '')} and ${((s as any).pfname ?? '')} herself</font>`);
   } else {
     // TODO-QSP: dynamic text:  <b>Actors:</b> <font size=2><<$pornfilmActor[i]>> and <<$pfname>></font>
-    scene.text(` <b>Actors:</b> <font size=2>${((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? ''} and ${((s as any).pfname || '')}</font>`);
+    scene.text(` <b>Actors:</b> <font size=2>${((s as any).pornfilmActor ?? 0)?.[String((s as any).i ?? 0)] ?? ''} and ${((s as any).pfname ?? '')}</font>`);
   }
   // TODO-QSP: dynamic text:  <b>Income:</b> <font size=2><<$func(''money'', ''string_profit'', pornfilmCash[...
   scene.text(` <b>Income:</b> <font size=2>${qspFunc(s, 'money', 'string_profit', ((s as any).pornfilmCash ?? 0)?.[String((s as any).i ?? 0)] ?? '')}</font>`);
@@ -129,7 +129,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text:  <b>Description:</b> <font size=2><<$pfilmtext>></font>
-  scene.text(` <b>Description:</b> <font size=2>${((s as any).pfilmtext || '')}</font>`);
+  scene.text(` <b>Description:</b> <font size=2>${((s as any).pfilmtext ?? '')}</font>`);
   if (((s as any).pornfilmstory ?? 0)?.[String((s as any).i ?? 0)] === '') {
     if ((!((s as any).firstvariable2 ?? 0))) {
       (s as any).firstvariable2 = 1;
@@ -141,7 +141,7 @@ function enterPdetail(s: GameState, scene: SceneBuilder): void {
     scene.text(` <b>Story:</b> <font color=#1B4532 size=2>${((s as any).pornfilmstory ?? 0)?.[String((s as any).i ?? 0)] ?? ''}</font>`);
   }
   // TODO-QSP: dynamic text:  <b>Tags: <font color=#541717 size=2><<$pfilmtags>></font></b>
-  scene.text(` <b>Tags: <font color=#541717 size=2>${((s as any).pfilmtags || '')}</font></b>`);
+  scene.text(` <b>Tags: <font color=#541717 size=2>${((s as any).pfilmtags ?? '')}</font></b>`);
   if (((s as any).pornDanger ?? 0)?.[String((s as any).i ?? 0)] === 1  &&  ((s as any).pfType ?? 0) === 1) {
     scene.text(' <font color="red" size=2><b>You were unprotected and fertile during the shoot.</b></font>');
   }

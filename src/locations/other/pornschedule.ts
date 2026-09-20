@@ -124,7 +124,7 @@ function enterPornTypeSelector(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Select new porn type for #<<temp_edit_session+1>> on the <<$ARGS[3]>>:
   scene.text(`Select new porn type for #${((s as any).temp_edit_session ?? '')+1} on the ${((s as any).locArgs?.[3] ?? '')}:`);
   // TODO-QSP: dynamic text: Current: <<$porndesc[pornplan[''<<temp_edit_day>>,<<temp_edit_session>>'']]>>
-  scene.text(`Current: ${qspUntranslated(s, "porndesc[pornplan['<<temp_edit_day", { location: "pornschedule" })},${((s as any).temp_edit_session || '')}']]>>`);
+  scene.text(`Current: ${qspUntranslated(s, "porndesc[pornplan['<<temp_edit_day", { location: "pornschedule" })},${((s as any).temp_edit_session ?? '')}']]>>`);
   (s as any).type_i = 1;
   (s as any).num_types = 0;
   // TODO-QSP: :type_loop
@@ -277,9 +277,9 @@ function enterContracting(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).pornofday ?? 0) !== '') {
         // TODO-QSP: dynamic text: <<$monthName[m1]>> <<d1>>, <<$weekName[w1]>>: 
-        scene.text(`${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? ''} ${((s as any).d1 || '')}, ${((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? ''}: `);
+        scene.text(`${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? ''} ${((s as any).d1 ?? '')}, ${((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? ''}: `);
         // TODO-QSP: dynamic text: <<$pornofday>>
-        scene.text(`${((s as any).pornofday || '')}`);
+        scene.text(`${((s as any).pornofday ?? '')}`);
         (s as any).pornofday = '';
       }
     }
@@ -313,14 +313,14 @@ function enterCanceling(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_nc_daystart = ((s as any).daystart ?? 0) + ((s as any).ps_i ?? 0);
   if (qspFunc(s, 'jobs', 'has_booking_for_day', 'city_pornstudio_actress', ((s as any).temp_nc_daystart ?? 0)) === 1) {
     // TODO-QSP: dynamic text: <<$monthName[m1]>> <<d1>>, <<$weekName[w1]>>: 
-    scene.text(`${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? ''} ${((s as any).d1 || '')}, ${((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? ''}: `);
+    scene.text(`${((s as any).monthName ?? 0)?.[String((s as any).m1 ?? 0)] ?? ''} ${((s as any).d1 ?? '')}, ${((s as any).weekName ?? 0)?.[String((s as any).w1 ?? 0)] ?? ''}: `);
   }
   (s as any).porns = 0;
   // TODO-QSP: :nopornplanloop
   (s as any).temp_nc_booking = qspFunc(s, 'jobs', 'get_booking_data', 'city_pornstudio_actress', ((s as any).temp_nc_daystart ?? 0), ((s as any).porns ?? 0));
   if (((s as any).temp_nc_booking ?? 0) !== '') {
     // TODO-QSP: dynamic text: <a href="exec:gs ''pornschedule'', ''do_cancel'', <<ps_i>>, <<porns>>"><<$pornde...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027do_cancel/u0027); return false;">${((s as any).porndesc ?? 0)?.[parseFloat(((s as any).temp_nc_booking || ''))]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027do_cancel/u0027); return false;">${((s as any).porndesc ?? 0)?.[parseFloat(((s as any).temp_nc_booking ?? ''))]}</a>`);
   }
   (s as any).porns = ((s as any).porns ?? 0) + (1);
   if (((s as any).porns ?? 0) < 4) {
@@ -363,7 +363,7 @@ function enterDisplaynum(s: GameState, scene: SceneBuilder): void {
     (s as any).pp5 = '<a href="#" onclick="window.__gameStore.setState((s) => { s.ppnum = s.5; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027displaynum/u0027); return false;"><font size=8>5</font></a>';
   }
   // TODO-QSP: dynamic text: <table border=0 cellspacing=10><tr><th><<$pp1>></th><th><<$pp2>></th><th><<$pp3>...
-  scene.text(`<table border=0 cellspacing=10><tr><th>${((s as any).pp1 || '')}</th><th>${((s as any).pp2 || '')}</th><th>${((s as any).pp3 || '')}</th><th>${((s as any).pp4 || '')}</th><th>${((s as any).pp5 || '')}</th></tr>`);
+  scene.text(`<table border=0 cellspacing=10><tr><th>${((s as any).pp1 ?? '')}</th><th>${((s as any).pp2 ?? '')}</th><th>${((s as any).pp3 ?? '')}</th><th>${((s as any).pp4 ?? '')}</th><th>${((s as any).pp5 ?? '')}</th></tr>`);
   scene.text('');
   scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027ppnum/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027displaynum/u0027); return false;">Clear participant limitations</a>');
   // TODO-QSP: end
@@ -469,7 +469,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <td align="center"><font size=5><<$option>></font></td>
-  scene.text(`<td align="center"><font size=5>${((s as any).option || '')}</font></td>`);
+  scene.text(`<td align="center"><font size=5>${((s as any).option ?? '')}</font></td>`);
   (s as any).d1 = ((s as any).d1 ?? 0) + (1);
   (s as any).p1 = ((s as any).p1 ?? 0) + (1);
   (s as any).w1 = ((s as any).w1 ?? 0) + (1);
@@ -512,7 +512,7 @@ function enterSelection(s: GameState, scene: SceneBuilder): void {
     (s as any).weekendfilter_link = '<a href="#" onclick="window.__gameStore.setState((s) => { s.weekendfilter = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">Restore weekends</a>';
   }
   // TODO-QSP: dynamic text: <<$weekdayfilter_link>> <<$weekendfilter_link>> <a href="exec:inversefilter = 1 ...
-  scene.text(`${((s as any).weekdayfilter_link || '')} ${((s as any).weekendfilter_link || '')} <a href="#" onclick="window.__gameStore.setState((s) => { s.inversefilter = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">Inverse selection</a><br>`);
+  scene.text(`${((s as any).weekdayfilter_link ?? '')} ${((s as any).weekendfilter_link ?? '')} <a href="#" onclick="window.__gameStore.setState((s) => { s.inversefilter = s.1; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">Inverse selection</a><br>`);
   scene.text('<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: killvar /u0027datefilter/u0027 */ /* TODO-QSP: killvar /u0027selected/u0027 */ s.weekdayfilter = s.0; s.weekendfilter = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027pornschedule/u0027, /u0027selection/u0027); return false;">Clear date filters</a>');
   // TODO-QSP: end
   scene.build();

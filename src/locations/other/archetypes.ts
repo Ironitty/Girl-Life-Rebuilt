@@ -1786,7 +1786,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         }
         (s as any).cc_prevcat = ((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)];
         // TODO-QSP: dynamic text: <div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px s...
-        scene.text(`<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">${((s as any).cc_prevcat || '')}</div>`);
+        scene.text(`<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">${((s as any).cc_prevcat ?? '')}</div>`);
         if (((s as any).cc_prevcat ?? 0) === 'Clothing') {
           scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Active whenever you\'re dressed. Style, cut, and coverage all shape your archetype scores.</i></p>');
         }

@@ -75,11 +75,11 @@ function enterDisplayVehicle(s: GameState, scene: SceneBuilder): void {
     scene.text('It appears the car you selected does not actually exist.');
   } else {
     // TODO-QSP: dynamic text: <center><b><<$CarName>></b></center>
-    scene.text(`<center><b>${((s as any).CarName || '')}</b></center>`);
-    scene.img(`images/pc/items/accessories/car/car${((s as any).autosalonF_carnum || '')}.jpg`);
+    scene.text(`<center><b>${((s as any).CarName ?? '')}</b></center>`);
+    scene.img(`images/pc/items/accessories/car/car${((s as any).autosalonF_carnum ?? '')}.jpg`);
     scene.actions([
       { label: 'Sit behind the wheel', handler: (st: GameState) => {
-    scene.img(`images/pc/items/accessories/car/salon${((st as any).autosalonF_carnum || '')}.jpg`);
+    scene.img(`images/pc/items/accessories/car/salon${((st as any).autosalonF_carnum ?? '')}.jpg`);
     scene.actions([
       { label: 'Return', goto: ['autosalonF', 'display_vehicle'] },
     ]);
@@ -145,7 +145,7 @@ function enterSetBuyAct(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'car_attributes', ARGS[1]
   if (qspFunc(s, 'money', 'can_afford', ((s as any).CarPrice ?? 0), 'bank') === 0) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Buy a ' + String(((s as any).CarName || '') ?? '') + '  [+$func(\'wrap\', \'neg\', \'(<<$func(\'money\'...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Buy a ' + String(((s as any).CarName ?? '') ?? '') + '  [+$func(\'wrap\', \'neg\', \'(<<$func(\'money\'...]', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noMoney || ''), curActs: [] };
   } },
     ]);

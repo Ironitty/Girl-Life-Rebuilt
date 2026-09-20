@@ -755,7 +755,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'familygruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup || '')}`);
+  scene.text(`${((s as any).textgrup ?? '')}`);
   scene.text('</table></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
@@ -786,7 +786,7 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'schoolgruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup || '')}`);
+  scene.text(`${((s as any).textgrup ?? '')}`);
   scene.text('</table></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
@@ -817,7 +817,7 @@ function enterTeacher(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'teachergruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup || '')}`);
+  scene.text(`${((s as any).textgrup ?? '')}`);
   scene.text('</table></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
@@ -848,7 +848,7 @@ function enterPavlovsk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'pavgruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup || '')}`);
+  scene.text(`${((s as any).textgrup ?? '')}`);
   scene.text('</table></center>');
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([

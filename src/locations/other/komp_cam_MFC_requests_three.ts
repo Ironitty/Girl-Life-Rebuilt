@@ -342,7 +342,7 @@ function enterShowVagina(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source || '') + '.jpg');
+      scene.img('images/pc/items/accessories/computer/camwhore' + ((st as any).img_source ?? '') + '.jpg');
     }
     scene.text('Aww, what a sweetheart! You smile at the camera and do what your client wants. He delivers on his promise as well, sending some tokens your way. The rest of the chat is thanking him too, everyone wanted to see that!');
     qspCall(st, 'arousal', 'porn', (-5));

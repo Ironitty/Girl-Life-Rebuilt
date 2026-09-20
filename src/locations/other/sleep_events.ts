@@ -218,7 +218,7 @@ function enterVibrOrgasm2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/sex/oface/o_face.jpg');
   // TODO-QSP: dynamic text: You abruptly wake up in the throes of an orgasm. As you recover, you check your ...
-  scene.text(`You abruptly wake up in the throes of an orgasm. As you recover, you check your alarm clock. It reads ${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}.`);
+  scene.text(`You abruptly wake up in the throes of an orgasm. As you recover, you check your alarm clock. It reads ${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
@@ -259,7 +259,7 @@ function enterMaleDreamEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('Still, it <i>was</i> a <i>very</i> pleasurable dream, even if you didn\'t get to cum during it and your chances of fucking a girl like that as a boy again are all but non-existent.');
   }
   // TODO-QSP: dynamic text: The dream is still playing vividly in your mind and you feel yourself getting ar...
-  scene.text(`The dream is still playing vividly in your mind and you feel yourself getting aroused by it as you glance over and check your alarm clock. It reads ${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}.`);
+  scene.text(`The dream is still playing vividly in your mind and you feel yourself getting aroused by it as you glance over and check your alarm clock. It reads ${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
@@ -285,7 +285,7 @@ function enterIvannaDream1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/ivanna3.jpg');
   scene.text('You dream about working a shift at the bar in the strip club when a naked Ivanna suddenly appears in front of you.');
   // TODO-QSP: dynamic text: "Let''s have some fun, <<$pcs_nickname>>," she smirks.
-  scene.text(`"Let's have some fun, ${((s as any).pcs_nickname || '')}," she smirks.`);
+  scene.text(`"Let's have some fun, ${((s as any).pcs_nickname ?? '')}," she smirks.`);
   scene.text('You suddenly find yourself in one of the strip club\'s private rooms eagerly riding a massive dick as the thick, warm shaft stretches your inner walls.');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
     scene.text('Even though you\'ve never had sex, the sensation of having a cock in your pussy feels <i>very</i> real. You can even feel it twitching inside you.');
@@ -315,7 +315,7 @@ function enterIvannaDreamOrgasm(s: GameState, scene: SceneBuilder): void {
   scene.text('You abruptly wake up in the throes of a powerful orgasm that all but overwhelms you, ' + ((((s as any).pantyworntype ?? 0) !== 'none') ? ('your legs and panties') : ('your legs and sheets')) + ' drenched with the juices trickling from your soaking wet pussy.');
   scene.text('You\'re not sure why you were having a wet dream about Ivanna in particular, or why she had a cock, but it felt very real for some reason, as if you were <i>actually</i> having sex.');
   // TODO-QSP: dynamic text: It''s still playing vividly in your mind as you glance over and check your alarm...
-  scene.text(`It's still playing vividly in your mind as you glance over and check your alarm clock. It reads ${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}.`);
+  scene.text(`It's still playing vividly in your mind as you glance over and check your alarm clock. It reads ${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back to sleep', handler: (st: GameState) => {
@@ -358,7 +358,7 @@ function enterWakeHorny2(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You glance at your alarm clock. It reads <b><<func(''time'', ''get_time_string''...
-  scene.text(`You glance at your alarm clock. It reads <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b>.`);
+  scene.text(`You glance at your alarm clock. It reads <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? ''), ((s as any).minut ?? ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b>.`);
   if (((s as any).SleepHorny ?? 0) === 1) {
     scene.text('Your wet dream and overall horniness rouse you from your sleep. From one moment to the next, you\'re wide awake and very much aware that your pussy is hot and wet.');
     scene.text('You could try and go back to sleep, but it\'s doubtful that you would find this kind of sleep very restful, not to mention the frustration that comes with ignoring your needs. Masturbating is an option though, and not the worst one in this situation. It might take some time, but you\'d be able to sleep like a baby after.');

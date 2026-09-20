@@ -30,17 +30,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: You''ve done it. You''ve survived until the end of the week. Then, <<$npc_firstn...
         scene.text(`You've done it. You've survived until the end of the week. Then, ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}. runs up to you and gives you a big hug. "What's that for?" you ask. "For being a friend and my dance partner," she says with a big smile.`);
         // TODO-QSP: dynamic text: It''s been great to meet you, <<$pcs_nickname>>. I hope we meet again and can wo...
-        scene.text(`It's been great to meet you, ${((s as any).pcs_nickname || '')}. I hope we meet again and can work together." You pretend to think for a moment and see the worried expression on her face. "Sure, it's been fantastic to meet you, and I'll keep in touch."`);
+        scene.text(`It's been great to meet you, ${((s as any).pcs_nickname ?? '')}. I hope we meet again and can work together." You pretend to think for a moment and see the worried expression on her face. "Sure, it's been fantastic to meet you, and I'll keep in touch."`);
       } else {
         if (((s as any).mayaqw ?? 0)?.['grave'] < 4) {
           // TODO-QSP: dynamic text: You''ve done it. You''ve survived until the end of the week. Then, <<$npc_firstn...
           scene.text(`You've done it. You've survived until the end of the week. Then, ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} comes up to you and gives you a quick hug. "What's that for?", you ask.`);
           scene.text('"For being my dance partner!" she says with a smile.');
           // TODO-QSP: dynamic text: "It''s been wonderful to meet you, <<$pcs_nickname>>. I hope we meet again and c...
-          scene.text(`"It's been wonderful to meet you, ${((s as any).pcs_nickname || '')}. I hope we meet again and can work together."`);
+          scene.text(`"It's been wonderful to meet you, ${((s as any).pcs_nickname ?? '')}. I hope we meet again and can work together."`);
           scene.text('"Sure, it\'s been great to meet you too, I\'ll keep in touch. Once I know my results, I\'ll let you know.');
           // TODO-QSP: dynamic text: "Yeah, and I''ll do the same, <<$pcs_nickname>>"
-          scene.text(`"Yeah, and I'll do the same, ${((s as any).pcs_nickname || '')}"`);
+          scene.text(`"Yeah, and I'll do the same, ${((s as any).pcs_nickname ?? '')}"`);
         }
       }
       // TODO-QSP: dynamic text: At that moment, <<$npc_firstname[''A284'']>> comes out of the examination room. ...
@@ -191,7 +191,7 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Now we''ve introduced yourselves. I will assign your study partner for this wee...
     scene.text(`"Now we've introduced yourselves. I will assign your study partner for this week." ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} starts calling out names, and the girls move into pairs as they're assigned.`);
     // TODO-QSP: dynamic text: "Hi <<$npc_firstname[''A274'']>>", you say to her as joins you as your dance par...
-    scene.text(`"Hi ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}", you say to her as joins you as your dance partner, "Good to see you again${((s as any).pcs_nickname || '')}, sorry about the interruption last night!"`);
+    scene.text(`"Hi ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}", you say to her as joins you as your dance partner, "Good to see you again${((s as any).pcs_nickname ?? '')}, sorry about the interruption last night!"`);
     // TODO-QSP: dynamic text: Before you can reply <<$npc_firstname[''A284'']>> moves to the front of the clas...
     scene.text(`Before you can reply ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} moves to the front of the class and claps her hands for attention. She nods to ${((s as any).npc_firstname ?? 0)?.['A285'] ?? ''}, who sits at the piano and starts playing. ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} starts a nearly flawless ballet routine demonstrating her elegance and mastery of what she teaches.`);
     // TODO-QSP: dynamic text: Once <<$npc_firstname[''A284'']>> stops her performance, she thanks <<$npc_first...
@@ -248,7 +248,7 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
     scene.text('The class concludes with you performing an adagio culminating in a ports de bras for your Reverence.');
     scene.text('As you finish the reverence, you realise your feet and body ache not so much from the dancing but from the demands of standing still during the performance. So you drag yourself up from the ground after removing the tape from around your toes and your ballet shoes, then stow them back in your bag after quickly checking if they\'re still safe to use.');
     // TODO-QSP: dynamic text:  <<$npc_firstname[''A274'']>> approaches you. "Don''t worry about the class, <<$...
-    scene.text(` ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} approaches you. "Don't worry about the class, ${((st as any).pcs_nickname || '')}. ${((st as any).npc_firstname ?? 0)?.['A284'] ?? ''} was too hard on everyone. You all performed as well as you could without having done this before." Her words comfort you, but you still have doubts about your abilities.`);
+    scene.text(` ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''} approaches you. "Don't worry about the class, ${((st as any).pcs_nickname ?? '')}. ${((st as any).npc_firstname ?? 0)?.['A284'] ?? ''} was too hard on everyone. You all performed as well as you could without having done this before." Her words comfort you, but you still have doubts about your abilities.`);
     scene.text('"Come on, we have to get ready!" she exclaims as you both hurry to get a shower before attending your next class.');
     scene.actions([
       { label: 'Go to the showers', handler: (st: GameState) => {
@@ -288,7 +288,7 @@ function enterFirstLesson(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'core_library', 'stage_title');
     scene.text('You\'ve just finished the Pilates class, and enter your classroom dressed in Ballet Blanc. It\'s the first time you\'ve seen the group dressed as if you\'re part of the corps which brings a sense of pride for being here.');
     // TODO-QSP: dynamic text:  <<$npc_firstname[''A274'']>> grabs your attention, "Hey, <<$pcs_nickname>>, let...
-    scene.text(` ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} grabs your attention, "Hey, ${((s as any).pcs_nickname || '')}, let's check you over quickly.". ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} quickly goes over your outfit and hair, ensuring that your presentation is perfect and you do the same for her.`);
+    scene.text(` ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} grabs your attention, "Hey, ${((s as any).pcs_nickname ?? '')}, let's check you over quickly.". ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} quickly goes over your outfit and hair, ensuring that your presentation is perfect and you do the same for her.`);
     scene.text('You sit down, put on your toe socks, and powder your feet before putting on your ballet shoes. You notice they\'re slightly damaged; they should be fine for the lesson, but you make a note to get your new shoes ready.');
     // TODO-QSP: dynamic text: It''s not ideal, but you have no choice. As you finish tying the ribbons, you se...
     scene.text(`It's not ideal, but you have no choice. As you finish tying the ribbons, you see ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} enter the room and start to inspect you all, trying to find faults. Still, your class passes with only minor criticisms.`);
@@ -372,7 +372,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'core_library', 'stage_title');
     if ((((s as any).hour ?? 0) > 5  ||  ((s as any).hour ?? 0) < 8)  &&  ((s as any).week ?? 0) !== 7) {
       // TODO-QSP: dynamic text: You can check your<a href="exec: gs ''<<$loc>>'', ''grade_check''">appearance</a...
-      scene.text(`You can check your<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027${((s as any).loc || '')}/u0027, /u0027grade_check/u0027); return false;">appearance</a>before leaving in the full length mirror.`);
+      scene.text(`You can check your<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027${((s as any).loc ?? '')}/u0027, /u0027grade_check/u0027); return false;">appearance</a>before leaving in the full length mirror.`);
     }
     qspCall(s, 'core_library', 'bathroom');
     scene.actions([
@@ -530,7 +530,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Class, listen up," <<$npc_firstname[''A284'']>> calls out. "You are going to te...
     scene.text(`"Class, listen up," ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} calls out. "You are going to team up with your dance partner to practice barre work and to do the pas de deux as your centers which will form your assessment."`);
     // TODO-QSP: dynamic text: You walk over to <<$npc_firstname[''A274'']>>, "Hey, <<$pcs_nickname>>, are you ...
-    scene.text(`You walk over to ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}, "Hey, ${((s as any).pcs_nickname || '')}, are you ready?". Then, you work with ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} to go through the various movements of Plié, Elevé, Battement Tendu and Rond de Jambe.`);
+    scene.text(`You walk over to ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}, "Hey, ${((s as any).pcs_nickname ?? '')}, are you ready?". Then, you work with ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} to go through the various movements of Plié, Elevé, Battement Tendu and Rond de Jambe.`);
     // TODO-QSP: dynamic text: Once you finish the Barre exercises, <<$npc_firstname[''A284'']>> switches on a ...
     scene.text(`Once you finish the Barre exercises, ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} switches on a projector. "Here are your movements for your pas de deux. Please continue to the center, and I will observe your performances."`);
     // TODO-QSP: dynamic text: You and <<$npc_firstname[''A274'']>> quickly study the chart and wait for <<$npc...
@@ -544,7 +544,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Once the performance is done, <<$npc_firstname[''A284'']>> and <<$npc_firstname[...
     scene.text(`Once the performance is done, ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} and ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}curtsy to each other, and ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} comes over to you. You hand over her towel and water bottle.`);
     // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>." She''s slightly out of breath from the grand allegr...
-    scene.text(`"Thanks, ${((s as any).pcs_nickname || '')}." She's slightly out of breath from the grand allegro and pirouettes she's just performed."`);
+    scene.text(`"Thanks, ${((s as any).pcs_nickname ?? '')}." She's slightly out of breath from the grand allegro and pirouettes she's just performed."`);
     // TODO-QSP: dynamic text: "Well done, <<$npc_firstname[''A274'']>>, that was a wonderful performance." <<$...
     scene.text(`"Well done, ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}, that was a wonderful performance." ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} sounds impressed with ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}'s performance. "You will go far with talent like that."`);
     // TODO-QSP: dynamic text: You momentarily look over the rest of the class and see <<$npc_firstname[''A276'...
@@ -554,7 +554,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You stand next to <<$npc_firstname[''A274'']>> as you work through your barre ex...
       scene.text(`You stand next to ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} as you work through your barre exercises. ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} leaves you alone today after yesterday's impromptu performance. You and ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} quickly finish your warm up and start to work through your pas de deux routine for your assessment.`);
       // TODO-QSP: dynamic text: "Remember <<$pcs_nickname>>, when doing your plié, your butt should be over your...
-      scene.text(`"Remember ${((s as any).pcs_nickname || '')}, when doing your plié, your butt should be over your heels and you should balance your weight on the second toe.", ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} chides you.`);
+      scene.text(`"Remember ${((s as any).pcs_nickname ?? '')}, when doing your plié, your butt should be over your heels and you should balance your weight on the second toe.", ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} chides you.`);
       // TODO-QSP: dynamic text: "Okay, let''s see you do your solo, and then you can watch me." You put on the r...
       scene.text(`"Okay, let's see you do your solo, and then you can watch me." You put on the routine you've been practicing for the assessment. "Remember: leg high and watch your lines!" ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} calls out.`);
       // TODO-QSP: dynamic text: You watch <<$npc_firstname[''A274'']>> effortlessly go through her routine. "Why...
@@ -576,12 +576,12 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: You quickly team up with <<$npc_firstname[''A274'']>> for today''s lesson, the f...
           scene.text(`You quickly team up with ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} for today's lesson, the first time you've had a proper chance to speak to her about the previous evening's events. "How are you feeling today, ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}?"`);
           // TODO-QSP: dynamic text: She gives you a small smile as you work through your barre exercises. "I''m bett...
-          scene.text(`She gives you a small smile as you work through your barre exercises. "I'm better, thank you${((s as any).pcs_nickname || '')}. Sorry about the scene last night."`);
+          scene.text(`She gives you a small smile as you work through your barre exercises. "I'm better, thank you${((s as any).pcs_nickname ?? '')}. Sorry about the scene last night."`);
           if (((s as any).mayaqw ?? 0)?.['grave'] === 4) {
             // TODO-QSP: dynamic text: "Don''t be silly <<$npc_firstname[''A274'']>>, you know where to find me if you ...
             scene.text(`"Don't be silly ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}, you know where to find me if you ever need help. You've helped me so much this week and I'd not have learned as much as I have without you," you reply.`);
             // TODO-QSP: dynamic text: "I never thought I''d meet someone like you, <<$pcs_nickname>>. Your company was...
-            scene.text(`"I never thought I'd meet someone like you, ${((s as any).pcs_nickname || '')}. Your company was welcome last night and you don't have to thank me about helping each other."`);
+            scene.text(`"I never thought I'd meet someone like you, ${((s as any).pcs_nickname ?? '')}. Your company was welcome last night and you don't have to thank me about helping each other."`);
             // TODO-QSP: dynamic text: Her words give you a warm feeling of having done something right. <<$npc_firstna...
             scene.text(`Her words give you a warm feeling of having done something right. ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} is dancing better than she has all week; even other students are noticing how graceful and elegant her divertissement performance is.`);
             // TODO-QSP: dynamic text: You take a breather and grab some water, then see <<$npc_firstname[''A275'']>> d...
@@ -591,7 +591,7 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: "It''s okay <<$npc_firstname[''A274'']>>, I understand the grief about losing yo...
               scene.text(`"It's okay ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}, I understand the grief about losing your mother. You'll do her proud this week, and even ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''}thinks you're one of the best in the class alongside Kima," you said to cheer her up.`);
               // TODO-QSP: dynamic text: "Shush<<$pcs_nickname>>, I''ve still a long way to go she replies. "It''s been a...
-              scene.text(`"Shush${((s as any).pcs_nickname || '')}, I've still a long way to go she replies. "It's been a hard few years and I've sacrificed everything to get here today. I owe it to her memory."`);
+              scene.text(`"Shush${((s as any).pcs_nickname ?? '')}, I've still a long way to go she replies. "It's been a hard few years and I've sacrificed everything to get here today. I owe it to her memory."`);
               // TODO-QSP: dynamic text: "She must have meant everything to you?" you ask. "Yes, but I never got a chance...
               scene.text(`"She must have meant everything to you?" you ask. "Yes, but I never got a chance to be close to her. She was always rehearsing or travelling." Before she can continue, you notice ${((s as any).npc_firstname ?? 0)?.['A284'] ?? ''} looking your way and continue your practice.`);
             }
@@ -599,16 +599,16 @@ function enterSecondLesson(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).ballet_day ?? 0) === 5) {
             // TODO-QSP: dynamic text: "This is it, <<$pcs_nickname>>, are you ready for tomorrow?" <<$npc_firstname[''...
-            scene.text(`"This is it, ${((s as any).pcs_nickname || '')}, are you ready for tomorrow?" ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} asks. You both feel the pressure, but know not to push yourselves too hard. Instead, you study and recite the routines.`);
+            scene.text(`"This is it, ${((s as any).pcs_nickname ?? '')}, are you ready for tomorrow?" ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} asks. You both feel the pressure, but know not to push yourselves too hard. Instead, you study and recite the routines.`);
             // TODO-QSP: dynamic text: Despite your nerves, you manage to complete your barre exercises and walk throug...
             scene.text(`Despite your nerves, you manage to complete your barre exercises and walk through the movements with only minor criticism from ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''}. Before long, you realise the time has flown by losing yourself into the lesson.`);
             if (((s as any).mayaqw ?? 0)?.['grave'] === 4) {
               // TODO-QSP: dynamic text: "This is it <<$pcs_nickname>>, it''s our big day tomorrow. Come by my room tonig...
-              scene.text(`"This is it ${((s as any).pcs_nickname || '')}, it's our big day tomorrow. Come by my room tonight if you want to talk or rehearse more for tomorrow. It's my turn to make the tea," she says with a laugh.`);
+              scene.text(`"This is it ${((s as any).pcs_nickname ?? '')}, it's our big day tomorrow. Come by my room tonight if you want to talk or rehearse more for tomorrow. It's my turn to make the tea," she says with a laugh.`);
               scene.text('You share her laugh. "Sure, I\'ll take you up on the offer."');
             } else {
               // TODO-QSP: dynamic text: "This is it<<$pcs_nickname>>, it''s our big day tomorrow. Come by my room tonigh...
-              scene.text(`"This is it${((s as any).pcs_nickname || '')}, it's our big day tomorrow. Come by my room tonight if you want to talk or rehearse more for tomorrow," she says with a smile.`);
+              scene.text(`"This is it${((s as any).pcs_nickname ?? '')}, it's our big day tomorrow. Come by my room tonight if you want to talk or rehearse more for tomorrow," she says with a smile.`);
             }
           }
         }
@@ -735,7 +735,7 @@ function enterAssessment(s: GameState, scene: SceneBuilder): void {
   scene.text(`You arrive at the ballet school and can sense an air of anticipation and nervousness among your classmates. ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} is standing close to you.`);
   scene.text('You notice on the door, someone pinned the old Russian proverb - Без труда́ не вытащишь и рыбку из пруда́ (You must work to pull the fish from the pond). An admonishment to all students to work hard to achieve their dreams.');
   // TODO-QSP: dynamic text: "Come on, <<$pcs_nickname>>." <<$npc_firstname[''A274'']>> draws your attention ...
-  scene.text(`"Come on, ${((s as any).pcs_nickname || '')}." ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} draws your attention to the task at hand. "Time to start warming up. We've got an hour to do some light warm-up exercises, then we'll need to get changed." You nod in agreement and enter the classroom set aside for the warm-ups. You approach the barres and start to exercise.`);
+  scene.text(`"Come on, ${((s as any).pcs_nickname ?? '')}." ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} draws your attention to the task at hand. "Time to start warming up. We've got an hour to do some light warm-up exercises, then we'll need to get changed." You nod in agreement and enter the classroom set aside for the warm-ups. You approach the barres and start to exercise.`);
   // TODO-QSP: dynamic text: You quickly go through the routine with <<$npc_firstname[''A274'']>> and grab a ...
   scene.text(`You quickly go through the routine with ${((s as any).npc_firstname ?? 0)?.['A274'] ?? ''} and grab a quick shower before getting changed into your Ballet Blanc outfit provided, check your tights before putting them on, and take out the new shoes you've kept for this moment.`);
   // TODO-QSP: dynamic text: Once you''re dressed, you check your makeup in the mirror and walk over to <<$np...
@@ -787,7 +787,7 @@ function enterAssessment(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Shortly after you finish your snacks and stretches, you''re called in before <<$...
     scene.text(`Shortly after you finish your snacks and stretches, you're called in before ${((st as any).npc_firstname ?? 0)?.['A274'] ?? ''}.`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, this is your solo performance. You unders...
-    scene.text(`"${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}, this is your solo performance. You understand what is required of you?" You realise it's the school's Ballet Mistress attending the solo performances. Thankfully, ${((st as any).npc_firstname ?? 0)?.['A283'] ?? ''} isn't assessing the solo exams.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}, this is your solo performance. You understand what is required of you?" You realise it's the school's Ballet Mistress attending the solo performances. Thankfully, ${((st as any).npc_firstname ?? 0)?.['A283'] ?? ''} isn't assessing the solo exams.`);
     scene.text('You curtsy and reply, "Yes, Mistress, I\'m ready."');
     scene.text('"Very well, let us begin." With that, she taps the table with something you can\'t see. Then, on the count of three, you start your performance. As the music starts, you perform the movements you have learned by rote over the last week. You feel you\'ve never performed so well in your life, and everything flows together in a way it never has before.');
     scene.text('At the end of the performance, you feel a sense of loss of something extraordinary. You realize the emotional high you\'ve been riding has come to a crashing end, and you barely retain your sense of poise and perform the great reverence to your examiners before you are given permission to leave.');

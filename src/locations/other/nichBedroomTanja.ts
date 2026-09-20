@@ -28,12 +28,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('The view is obscured by something. You can\'t see anything.');
     } else {
       if (((st as any).nichTanyaSpyCounter ?? 0) < 2) {
-        scene.img(`${((st as any).nichTempPic || '')}`);
+        scene.img(`${((st as any).nichTempPic ?? '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face. From your location you can\'t figure out who he is. Afraid of getting caught spying through the keyhole you turn away.');
         qspCall(st, 'arousal', 'voyeur_sex', (-5));
       } else {
         (st as any).nichNTRelation = 1;
-        scene.img(`${((st as any).nichTempPic || '')}`);
+        scene.img(`${((st as any).nichTempPic ?? '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face but from the clothes lying around, the body stature and the muffled sounds there is no doubt that Tanya is fucking her stepfather.');
         qspCall(st, 'arousal', 'voyeur_sex', (-5), 'incest');
       }
@@ -45,7 +45,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
-  } },,
+  } },
 { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
@@ -57,14 +57,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([
 { label: 'Spy', handler: (st: GameState) => {
     (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + ((st as any).nichTanya ?? 0)?.['BF'] + '');
-    scene.img(`${((st as any).nichTempPic || '')}`);
+    scene.img(`${((st as any).nichTempPic ?? '')}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
-  } },,
+  } },
 { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
@@ -141,12 +141,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('The view is obscured by something. You can\'t see anything.');
     } else {
       if (((st as any).nichTanyaSpyCounter ?? 0) < 2) {
-        scene.img(`${((st as any).nichTempPic || '')}`);
+        scene.img(`${((st as any).nichTempPic ?? '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face. From your location you can\'t figure out who he is. Afraid of getting caught spying through the keyhole you turn away.');
         qspCall(st, 'arousal', 'voyeur_sex', (-5));
       } else {
         (st as any).nichNTRelation = 1;
-        scene.img(`${((st as any).nichTempPic || '')}`);
+        scene.img(`${((st as any).nichTempPic ?? '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face but from the clothes lying around, the body stature and the muffled sounds there is no doubt that Tanya is fucking her stepfather.');
         qspCall(st, 'arousal', 'voyeur_sex', (-5), 'incest');
       }
@@ -158,7 +158,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
-  } },,
+  } },
 { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
@@ -170,14 +170,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([
 { label: 'Spy', handler: (st: GameState) => {
     (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + ((st as any).nichTanya ?? 0)?.['BF'] + '');
-    scene.img(`${((st as any).nichTempPic || '')}`);
+    scene.img(`${((st as any).nichTempPic ?? '')}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
-  } },,
+  } },
 { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
@@ -254,12 +254,12 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       scene.text('The view is obscured by something. You can\'t see anything.');
     } else {
       if (((st as any).nichTanyaSpyCounter ?? 0) < 2) {
-        scene.img(`${((st as any).nichTempPic || '')}`);
+        scene.img(`${((st as any).nichTempPic ?? '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face. From your location you can\'t figure out who he is. Afraid of getting caught spying through the keyhole you turn away.');
         qspCall(st, 'arousal', 'voyeur_sex', (-5));
       } else {
         (st as any).nichNTRelation = 1;
-        scene.img(`${((st as any).nichTempPic || '')}`);
+        scene.img(`${((st as any).nichTempPic ?? '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face but from the clothes lying around, the body stature and the muffled sounds there is no doubt that Tanya is fucking her stepfather.');
         qspCall(st, 'arousal', 'voyeur_sex', (-5), 'incest');
       }
@@ -271,7 +271,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
     qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
-  } },,
+  } },
 { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
@@ -283,14 +283,14 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       scene.actions([
 { label: 'Spy', handler: (st: GameState) => {
     (st as any).nichTempPic = qspFunc(s, 'nichUtil', 'tanyaPic', 'sexH', 'spy', 'bf' + ((st as any).nichTanya ?? 0)?.['BF'] + '');
-    scene.img(`${((st as any).nichTempPic || '')}`);
+    scene.img(`${((st as any).nichTempPic ?? '')}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([
       { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },
     ]);
-  } },,
+  } },
 { label: 'Walk away', handler: (st: GameState) => {
     qspGoto(st, 'nichApartment', 'return');
   } },

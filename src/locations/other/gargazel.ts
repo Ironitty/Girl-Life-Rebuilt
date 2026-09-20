@@ -37,11 +37,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
         (s as any).trinkets_can_take = 30 - (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0);
         // TODO-QSP: dynamic text: You can bring <<trinkets_can_take>> trinkets home and store them somewhere, unti...
-        scene.text(`You can bring ${((s as any).trinkets_can_take || '')} trinkets home and store them somewhere, until you have time to collect and sell them at the train station.`);
+        scene.text(`You can bring ${((s as any).trinkets_can_take ?? '')} trinkets home and store them somewhere, until you have time to collect and sell them at the train station.`);
         if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] > 0) {
           if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= ((s as any).trinkets_can_take ?? 0)) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Move ' + String(((s as any).trinkets_can_take || '') ?? '') + ' trinkets to your home', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Move ' + String(((s as any).trinkets_can_take ?? '') ?? '') + ' trinkets to your home', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_home'] = ((st as any).mc_inventory['trinkets_home'] ?? 0) + (((st as any).trinkets_can_take ?? 0));
     ((st as any).mc_inventory = (st as any).mc_inventory ?? {})['trinkets_garage'] = ((st as any).mc_inventory['trinkets_garage'] ?? 0) - (((st as any).trinkets_can_take ?? 0));

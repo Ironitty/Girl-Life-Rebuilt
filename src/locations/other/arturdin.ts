@@ -13,7 +13,7 @@ function enterFacefuck(s: GameState, scene: SceneBuilder): void {
   (s as any).artbj = ((s as any).artbj ?? 0) + (1);
   scene.img(`images/characters/pavlovsk/resident/arthur/sex/facefuck${(Math.floor(Math.random() * 6) + 0)}.jpg`);
   // TODO-QSP: dynamic text: <<$artbef>> You feel Arthur''s fingers lace tightly into your hair before he pus...
-  scene.text(`${((s as any).artbef || '')} You feel Arthur's fingers lace tightly into your hair before he pushes his huge dick roughly into your mouth, stretching your lips.`);
+  scene.text(`${((s as any).artbef ?? '')} You feel Arthur's fingers lace tightly into your hair before he pushes his huge dick roughly into your mouth, stretching your lips.`);
   if (((s as any).pcs_throat ?? 0) < ((s as any).dick ?? 0)) {
     scene.text('You choke as his member presses into the back of your throat, causing it to burn like fire. You gag and twist, trying desperately to escape from the giant lump of meat, but his grip is too firm.');
     scene.text('"Take it deep, slut! This is how I enjoy it!" Arthur says frankly.');
@@ -256,7 +256,7 @@ function enterAnalCum(s: GameState, scene: SceneBuilder): void {
     (st as any).spafinloc = 3;
     scene.img('images/characters/pavlovsk/resident/arthur/sex/analcreampi.jpg');
     // TODO-QSP: dynamic text: After what feels like an eternity <<$boydesc>> groans and you feel your ass fill...
-    scene.text(`After what feels like an eternity ${((st as any).boydesc || '')} groans and you feel your ass fill with heat as he dumps a load deep inside you.`);
+    scene.text(`After what feels like an eternity ${((st as any).boydesc ?? '')} groans and you feel your ass fill with heat as he dumps a load deep inside you.`);
     qspCall(st, 'arousal', 'anal', 5);
     qspCall(st, 'arousal', 'end');
     qspCall(st, 'cum_call', 'anus', 'A73', 1);

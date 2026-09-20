@@ -106,7 +106,7 @@ function enterSisterSleep_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re caught up in a fantasy and start lowering your face down to her pussy with your tongue out when she suddenly stirs…');
   scene.text('She sleepily rolls over and looks up at you as you hastily remove your hand and hide it behind your back.');
   // TODO-QSP: dynamic text: "What… What''s going on? <<$pcs_nickname>>? What are you doing?" she asks as she...
-  scene.text(`"What… What's going on? ${((s as any).pcs_nickname || '')}? What are you doing?" she asks as she sleepily sits up.`);
+  scene.text(`"What… What's going on? ${((s as any).pcs_nickname ?? '')}? What are you doing?" she asks as she sleepily sits up.`);
   scene.text('You sit in front of your sister on her bed, caught off guard and not knowing what to do.');
   qspCall(s, 'arousal', 'foreplay', 3, 'incest', 'lesbian');
   qspCall(s, 'stat', '');
@@ -484,7 +484,7 @@ function enterSisterStrapon(s: GameState, scene: SceneBuilder): void {
       scene.text('Anya monitors your actions and talks you through how to suck a cock. You lick the shaft from the base upwards and then suck the head. It isn\'t too big, maybe a bit above average size. Anya then grabs you by the hair and abruptly shoves the dildo down your throat, causing you to choke and thrash your arms in panic. She quickly pulls it out of you, ropes of your drool sticking to the shaft from your mouth as your eyes water.');
       scene.text('You cough and splutter. "What… What are you doing? You could have… killed me!"');
       // TODO-QSP: dynamic text: "Don''t be so dramatic, <<$pcs_nickname>>! I would never hurt you. You see guys ...
-      scene.text(`"Don't be so dramatic, ${((st as any).pcs_nickname || '')}! I would never hurt you. You see guys like this. It's called 'deepthroating.' I'm just helping you train your mouth and throat so you know how to give boys proper blowjobs."`);
+      scene.text(`"Don't be so dramatic, ${((st as any).pcs_nickname ?? '')}! I would never hurt you. You see guys like this. It's called 'deepthroating.' I'm just helping you train your mouth and throat so you know how to give boys proper blowjobs."`);
       scene.text('Without another word, she shoves the dildo back in your mouth and teaches you the finer arts of how to suck a cock, not to mention what to expect from the boys.');
     } else {
       scene.text('Anya monitors your actions and talks you through how to suck a cock. You lick the shaft from the base upwards and then suck the head. Anya then grabs you by the hair and abruptly shoves the dildo down your throat. This time, you expect it and are a bit more ready for it, but you still feel your mouth filling with drool and your eyes watering as she fucks your throat. She continues to teach you how to give blowjobs.');

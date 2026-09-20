@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).version = '<b>' + ((s as any).version_major ?? 0) + '.' + ((s as any).version_minor ?? 0) + '.' + ((s as any).version_revision ?? 0) + '.' + ((s as any).version_patch ?? 0) + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash ?? 0) + ' (dev build)') : ('')) + '</b><br>built on <b>' + ((s as any).builddate ?? 0) + '</b>';
   (s as any).opPRE = 1;
   // TODO-QSP: dynamic text: <center>Version <<$version>></center>
-  scene.text(`<center>Version ${((s as any).version || '')}</center>`);
+  scene.text(`<center>Version ${((s as any).version ?? '')}</center>`);
   scene.text('<center><font color="red"><b>Children under 18 years are strictly forbidden to play</b></font>');
   scene.img('images/system/1_openings/splashes/splash' + (Math.floor(Math.random() * 30) + 1) + '.jpg');
   scene.text('<center>Based on the Russian game ЭТО by DeGross.</center>');

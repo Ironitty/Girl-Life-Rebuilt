@@ -112,7 +112,7 @@ function enterPhoneInviteStart(s: GameState, scene: SceneBuilder): void {
         { label: 'It is what it is', handler: (st: GameState) => {
     scene.text('"That\'s okay. Maybe we can do something another day."');
     // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>."
-    scene.text(`"Thanks, ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`"Thanks, ${((st as any).pcs_nickname ?? '')}."`);
     scene.actions([
       { label: 'Hang up', handler: (st: GameState) => {
     dynamicGoto(st, 'prevLoc', 'prevArg');

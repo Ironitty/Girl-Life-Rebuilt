@@ -13,13 +13,13 @@ function enterGoingHomeTogether(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk across the school courtyard to meet up with Artem, who gives you a friendly nod as you approach. "You ready to go?"');
   scene.text('You smile. "Let\'s go study!"');
   // TODO-QSP: dynamic text: Just as you''re about to leave, Katja approaches you. "I thought we were going t...
-  scene.text(`Just as you're about to leave, Katja approaches you. "I thought we were going to do homework together today, ${((s as any).pcs_nickname || '')}?" she asks.`);
+  scene.text(`Just as you're about to leave, Katja approaches you. "I thought we were going to do homework together today, ${((s as any).pcs_nickname ?? '')}?" she asks.`);
   if (((s as any).artemQW ?? 0)?.['confidence'] < 10) {
     scene.text('Artem turns to you. "Oh…" he says before he looks at Katja, then back to you. "It\'s okay, you guys can go study. I\'ll see you later?"');
     scene.text('You can tell he\'s nervous since he\'s avoiding eye contact with Katja, who winks at you to signal that she\'s ready to put your plan into motion.');
   } else {
     // TODO-QSP: dynamic text: Artem turns to you. "Is that true, <<$pcs_nickname>>?"
-    scene.text(`Artem turns to you. "Is that true, ${((s as any).pcs_nickname || '')}?"`);
+    scene.text(`Artem turns to you. "Is that true, ${((s as any).pcs_nickname ?? '')}?"`);
     scene.text('He\'s avoiding eye contact with Katja, who winks at you to signal that she\'s ready to put your plan into motion.');
   }
   // TODO-QSP: end
@@ -79,7 +79,7 @@ function enterGoingHomeTogether(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"I\'m sorry, but I did promise to do homework with her today. We can hang out another time. I might come over when I\'ve finished our homework," you tell Artem.');
     // TODO-QSP: dynamic text: He looks a little down. "Well if you promised her, then you should keep it. See ...
-    scene.text(`He looks a little down. "Well if you promised her, then you should keep it. See you later, ${((st as any).pcs_nickname || '')}," he says and starts walking home alone.`);
+    scene.text(`He looks a little down. "Well if you promised her, then you should keep it. See you later, ${((st as any).pcs_nickname ?? '')}," he says and starts walking home alone.`);
     scene.text('"Why did you send him away?" Katja asks. "I thought the plan was to seduce him into a threesome?"');
     scene.text('"Not today. Maybe next time," you reply. "Let\'s go to your house."');
     scene.actions([
@@ -239,12 +239,12 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((st as any).artemQW ?? 0)?.['confidence'] < 20) {
             // TODO-QSP: dynamic text: Artem looks at you to see your reaction, and when you smile back seductively, he...
-            scene.text(`Artem looks at you to see your reaction, and when you smile back seductively, he grins. "I do like what I see, but are you sure about this, ${((st as any).pcs_nickname || '')}?"`);
+            scene.text(`Artem looks at you to see your reaction, and when you smile back seductively, he grins. "I do like what I see, but are you sure about this, ${((st as any).pcs_nickname ?? '')}?"`);
             scene.text('"Katja is my friend and I like to share with my friends. I told her how amazing you are in bed, and she wanted to experience that. So just relax and enjoy the experience."');
             // TODO-QSP: iif( katjaQW['QWstage'] = 5, 'You notice Katja''s hesitation. "Why don''t you get his cock out and p...
           } else {
             // TODO-QSP: dynamic text: Artem briefly looks at you to see your reaction, and when you just smiles back s...
-            scene.text(`Artem briefly looks at you to see your reaction, and when you just smiles back seductively, he grins. "I very much like what I see. This is a great view and I'm sure that things can only get better, but I'm a little surprised that ${((st as any).pcs_nickname || '')} wants to share me with you."`);
+            scene.text(`Artem briefly looks at you to see your reaction, and when you just smiles back seductively, he grins. "I very much like what I see. This is a great view and I'm sure that things can only get better, but I'm a little surprised that ${((st as any).pcs_nickname ?? '')} wants to share me with you."`);
             scene.text('"Katja is my friend and I like to share with my friends. I told her how amazing you are in bed, and she wanted to experience that. How could her deny her that?" you answer.');
             // TODO-QSP: '"Why don''t you get my cock out and play with it?" Artem continues. '+iif( katjaQW['QWstage'] = 5, ...
           }
@@ -263,12 +263,12 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((st as any).artemQW ?? 0)?.['confidence'] < 20) {
             // TODO-QSP: dynamic text: Artem looks at you to see your reaction, and when you smile back seductively, he...
-            scene.text(`Artem looks at you to see your reaction, and when you smile back seductively, he grins. "I do like what I see. Are you are you going to share all your friends with me, ${((st as any).pcs_nickname || '')}?"`);
+            scene.text(`Artem looks at you to see your reaction, and when you smile back seductively, he grins. "I do like what I see. Are you are you going to share all your friends with me, ${((st as any).pcs_nickname ?? '')}?"`);
             scene.text('"I like to share," you shrug. "I told her how amazing you are in bed, and she wanted to experience that. So just relax and enjoy the experience."');
             // TODO-QSP: iif( katjaQW['QWstage'] = 5, 'You notice Katja''s hesitation. "Why don''t you get his cock out and p...
           } else {
             // TODO-QSP: dynamic text: Artem briefly looks at you to see your reaction, and when you smile back seducti...
-            scene.text(`Artem briefly looks at you to see your reaction, and when you smile back seductively, he grins. "I very much like what I see. This is a great view and I'm sure that things can only get better. I look forward to you sharing me with the rest of your friends, ${((st as any).pcs_nickname || '')}."`);
+            scene.text(`Artem briefly looks at you to see your reaction, and when you smile back seductively, he grins. "I very much like what I see. This is a great view and I'm sure that things can only get better. I look forward to you sharing me with the rest of your friends, ${((st as any).pcs_nickname ?? '')}."`);
             scene.text('"I like to share," you shrug. "I told her how amazing you are in bed, and she wanted to experience that. How could her deny her that?" you reply.');
             // TODO-QSP: '"Why don''t you get my cock out and play with it, Katja?" he continues. '+iif( katjaQW['QWstage'] =...
           }
@@ -289,12 +289,12 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
       if (2*((st as any).npc_throat ?? 0)?.['A14'] < ((st as any).dick ?? 0)) {
         ((st as any).npc_throat = (st as any).npc_throat ?? {})['A14'] = ((st as any).npc_throat['A14'] ?? 0) + (2);
         // TODO-QSP: dynamic text: Katja tries to get Artem''s <<$dick_girth>> <<dick>> cm long dick into her mouth...
-        scene.text(`Katja tries to get Artem's ${((st as any).dick_girth || '')} ${((st as any).dick || '')} cm long dick into her mouth, but can't manage to get much more than the head inside before she starts sucking on it.`);
+        scene.text(`Katja tries to get Artem's ${((st as any).dick_girth ?? '')} ${((st as any).dick ?? '')} cm long dick into her mouth, but can't manage to get much more than the head inside before she starts sucking on it.`);
       } else {
         if (((st as any).npc_throat ?? 0)?.['A14'] < ((st as any).dick ?? 0)) {
           ((st as any).npc_throat = (st as any).npc_throat ?? {})['A14'] = ((st as any).npc_throat['A14'] ?? 0) + (1);
           // TODO-QSP: dynamic text: Katja tries to get all of Artem''s <<$dick_girth>> <<dick>> cm long dick into he...
-          scene.text(`Katja tries to get all of Artem's ${((st as any).dick_girth || '')} ${((st as any).dick || '')} cm long dick into her mouth, but is clearly having problems with her gag reflex when it hits her throat. However, she quickly gets into a rhythm that matches what she can take, only occasionally having to stop when she tries to take too much.`);
+          scene.text(`Katja tries to get all of Artem's ${((st as any).dick_girth ?? '')} ${((st as any).dick ?? '')} cm long dick into her mouth, but is clearly having problems with her gag reflex when it hits her throat. However, she quickly gets into a rhythm that matches what she can take, only occasionally having to stop when she tries to take too much.`);
           if (((st as any).artemQW ?? 0)?.['confidence'] >= 15) {
             ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 5));
             scene.text('"You really haven\'t sucked a cock before? That\'s hard to believe with how good you\'re doing," Artem says encouragingly.');
@@ -302,7 +302,7 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           // TODO-QSP: dynamic text: Katja takes all of Artem''s <<$dick_girth>> <<dick>> cm long dick into her mouth...
-          scene.text(`Katja takes all of Artem's ${((st as any).dick_girth || '')} ${((st as any).dick || '')} cm long dick into her mouth and down her throat without gagging. She then quickly gets into a rhythm where she moves from almost only sucking the tip to getting all the way to the base of his cock.`);
+          scene.text(`Katja takes all of Artem's ${((st as any).dick_girth ?? '')} ${((st as any).dick ?? '')} cm long dick into her mouth and down her throat without gagging. She then quickly gets into a rhythm where she moves from almost only sucking the tip to getting all the way to the base of his cock.`);
           if (((st as any).artemQW ?? 0)?.['confidence'] >= 15) {
             ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 10));
             scene.text('"Wow. You really haven\'t sucked a cock before?" Artem moans. "I don\'t believe that. You\'re sucking like a pro!"');
@@ -316,15 +316,15 @@ function enterFirstTimeSeduction(s: GameState, scene: SceneBuilder): void {
       if (((st as any).npc_throat ?? 0)?.['A14'] < 2*((st as any).dick ?? 0)) {
         ((st as any).npc_throat = (st as any).npc_throat ?? {})['A14'] = ((st as any).npc_throat['A14'] ?? 0) + (2);
         // TODO-QSP: dynamic text: Katja tries to get Artem''s <<$dick_girth>> <<dick>> cm long dick into her mouth...
-        scene.text(`Katja tries to get Artem's ${((st as any).dick_girth || '')} ${((st as any).dick || '')} cm long dick into her mouth, but can't manage to get much more than the head inside before she starts sucking on it.`);
+        scene.text(`Katja tries to get Artem's ${((st as any).dick_girth ?? '')} ${((st as any).dick ?? '')} cm long dick into her mouth, but can't manage to get much more than the head inside before she starts sucking on it.`);
       } else {
         if (((st as any).npc_throat ?? 0)?.['A14'] < ((st as any).dick ?? 0)) {
           ((st as any).npc_throat = (st as any).npc_throat ?? {})['A14'] = ((st as any).npc_throat['A14'] ?? 0) + (1);
           // TODO-QSP: dynamic text: Katja tries to get all of Artem''s <<$dick_girth>> <<dick>> cm long dick into he...
-          scene.text(`Katja tries to get all of Artem's ${((st as any).dick_girth || '')} ${((st as any).dick || '')} cm long dick into her mouth, but is clearly having problems with her gag reflex when it hits her throat. However, she quickly gets into a rhythm that matches what she can take, only occasionally having to stop when she tries to take too much.`);
+          scene.text(`Katja tries to get all of Artem's ${((st as any).dick_girth ?? '')} ${((st as any).dick ?? '')} cm long dick into her mouth, but is clearly having problems with her gag reflex when it hits her throat. However, she quickly gets into a rhythm that matches what she can take, only occasionally having to stop when she tries to take too much.`);
         } else {
           // TODO-QSP: dynamic text: Katja takes all of Artem''s <<$dick_girth>> <<dick>> cm long dick into her mouth...
-          scene.text(`Katja takes all of Artem's ${((st as any).dick_girth || '')} ${((st as any).dick || '')} cm long dick into her mouth and down her throat without gagging. She then quickly gets into a rhythm where she moves from almost only sucking the tip to getting all the way to the base of his cock.`);
+          scene.text(`Katja takes all of Artem's ${((st as any).dick_girth ?? '')} ${((st as any).dick ?? '')} cm long dick into her mouth and down her throat without gagging. She then quickly gets into a rhythm where she moves from almost only sucking the tip to getting all the way to the base of his cock.`);
           if (((st as any).artemQW ?? 0)?.['confidence'] >= 15) {
             ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 10));
             scene.text('"Wow, you\'re great! You\'re sucking my cock like a pro!" Artem grins.');
@@ -518,7 +518,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: dynamic text: Artem pulls out of you. "Come and take <<$pcs_nickname>>''s place, Katja. I''ll ...
-      scene.text(`Artem pulls out of you. "Come and take ${((st as any).pcs_nickname || '')}'s place, Katja. I'll show you a great first time". You get down on the floor next to the chair to give Katja some space.`);
+      scene.text(`Artem pulls out of you. "Come and take ${((st as any).pcs_nickname ?? '')}'s place, Katja. I'll show you a great first time". You get down on the floor next to the chair to give Katja some space.`);
       // TODO-QSP: dynamic text: She does as she''s told, but clearly looking '+iif(npc_vag['A14'] = 0, 'very', '...
       scene.text('She does as she\'s told, but clearly looking ' + ((((st as any).npc_vag ?? 0)?.['A14'] === 0) ? ('very') : ('a little')) + ' nervous.');
       scene.text('"Don\'t worry, Katja. Artem will be very careful, won\'t you?" you say while looking at Artem.');
@@ -542,7 +542,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
             ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - ((Math.floor(Math.random() * 6) + 5));
             ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) - (5);
             // TODO-QSP: dynamic text: "I''ve been fucked before by <<$pcs_nickname>> and having sex has nothing to do ...
-            scene.text(`"I've been fucked before by ${((st as any).pcs_nickname || '')} and having sex has nothing to do with if I'm a woman or not! What cave did you crawl out of?" she asks in a sharp voice. Artem is clearly taken aback by her outburst and freezes.`);
+            scene.text(`"I've been fucked before by ${((st as any).pcs_nickname ?? '')} and having sex has nothing to do with if I'm a woman or not! What cave did you crawl out of?" she asks in a sharp voice. Artem is clearly taken aback by her outburst and freezes.`);
             scene.text('"He didn\'t mean anything by it, Katja. It\'s just stupid talk that goes around in the boys world. Isn\'t it, Artem?" you quickly chime in to try and defuse the tension.');
             scene.text('"Sorry, it\'s just stupid tough talk that guys do. I shouldn\'t have said it." Artem replies.');
             scene.text('"Okay. Apology accepted. You can go ahead," Katja smiles.');
@@ -551,7 +551,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
           } else {
             ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) - (2);
             // TODO-QSP: dynamic text: "I''ve been fucked before by <<$pcs_nickname>> and having sex has nothing to do ...
-            scene.text(`"I've been fucked before by ${((st as any).pcs_nickname || '')} and having sex has nothing to do with if I'm a woman or not! What cave did you crawl out of?" she says in a sharp voice. Artem is clearly taken aback by her outburst and freezes.`);
+            scene.text(`"I've been fucked before by ${((st as any).pcs_nickname ?? '')} and having sex has nothing to do with if I'm a woman or not! What cave did you crawl out of?" she says in a sharp voice. Artem is clearly taken aback by her outburst and freezes.`);
             scene.text('"He didn\'t mean anything by it, Katja. It\'s just stupid talk that goes around in the boys world. Isn\'t it, Artem?" you quickly chime in to try and defuse the tension.');
             scene.text('"Sorry, it\'s just stupid tough talk that guys do. I shouldn\'t have said it." Artem replies.');
             scene.text('"Okay. Apology accepted. You can go ahead," Katja smiles.');
@@ -577,13 +577,13 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
           if (2*((st as any).npc_vag ?? 0)?.['A14'] < ((st as any).dick ?? 0)) {
             ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) - ((Math.floor(Math.random() * 6) + 0));
             // TODO-QSP: dynamic text: "Please be careful, Artem. I''ve been fucked by <<$pcs_nickname>> before, but yo...
-            scene.text(`"Please be careful, Artem. I've been fucked by ${((st as any).pcs_nickname || '')} before, but your cock seems very big," Katja says nervously.`);
+            scene.text(`"Please be careful, Artem. I've been fucked by ${((st as any).pcs_nickname ?? '')} before, but your cock seems very big," Katja says nervously.`);
             scene.text('"I promise I\'ll be as gentle as I can. You won\'t feel any pain," Artem answers.');
             scene.text('He slowly pushes his cock into her and is very careful when he can feel the resistance of her tight pussy, but he manages to push it all the way to the base without causing her any pain.');
             scene.text('He then stops. "I\'m all the way in, Katja. Let me know when you\'re ready for me to move."');
           } else {
             // TODO-QSP: dynamic text: "I''ve been fucked by <<$pcs_nickname>> before, so your cock doesn''t scare me,"...
-            scene.text(`"I've been fucked by ${((st as any).pcs_nickname || '')} before, so your cock doesn't scare me," Katja says.`);
+            scene.text(`"I've been fucked by ${((st as any).pcs_nickname ?? '')} before, so your cock doesn't scare me," Katja says.`);
             scene.text('Artem slowly pushes his cock into her and manages to push it all the way to the base without causing her any pain.');
             scene.text('He then stops. "I\'m now all the way in, Katja. Let me know when you\'re ready for me to move."');
           }
@@ -677,7 +677,7 @@ function enterFirstTimePussy(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: dynamic text: Artem pulls out of you. "Come and take <<$pcs_nickname>>''s place, Katja. I want...
-      scene.text(`Artem pulls out of you. "Come and take ${((st as any).pcs_nickname || '')}'s place, Katja. I want to try your tight pussy."`);
+      scene.text(`Artem pulls out of you. "Come and take ${((st as any).pcs_nickname ?? '')}'s place, Katja. I want to try your tight pussy."`);
       scene.text('You get down on the floor next to the chair to give Katja space.');
       // TODO-QSP: dynamic text: "Great. '+iif( katjaQW['slut'] > 80 , 'My extremely wet pussy need to be filled ...
       scene.text('"Great. ' + ((((st as any).katjaQW ?? 0)?.['slut'] > 80) ? ('My extremely wet pussy need to be filled by something hard,') : ('Let\'s get to it,')) + '" she says and takes your place on the chair.');
@@ -746,7 +746,7 @@ function enterFirstTimeOnTable(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/first_time_8.jpg');
   scene.text('"My pussy needs a break," Katja says and Artem pulls out.');
   // TODO-QSP: dynamic text: "Get your ass on the table <<$pcs_nickname>>," he orders. "Time for you to get f...
-  scene.text(`"Get your ass on the table ${((s as any).pcs_nickname || '')}," he orders. "Time for you to get fucked some more."`);
+  scene.text(`"Get your ass on the table ${((s as any).pcs_nickname ?? '')}," he orders. "Time for you to get fucked some more."`);
   scene.text('You take a pillow and lie down on your back on the table, your ass hanging over the edge as Artem thrusts his cock into you and starts to pound you.');
   scene.text('Katja doesn\'t want to be completely left out, so she crawls up on the table and starts to lick your breasts.');
   qspCall(s, 'arousal', 'vaginal', 3);
@@ -786,12 +786,12 @@ function enterFirstTimeKatjaTitjob(s: GameState, scene: SceneBuilder): void {
   scene.text('He pulls out of Katja and lies on his back on the floor as you and Katja get on your knees next to him. Katja looks like she has an idea.');
   if (((s as any).katjaQW ?? 0)?.['titjob'] === 0) {
     // TODO-QSP: dynamic text: "So I''ve heard of this thing called a titjob and I want to try it," she says. "...
-    scene.text(`"So I've heard of this thing called a titjob and I want to try it," she says. "Give his cock a few licks so it's slippery, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"So I've heard of this thing called a titjob and I want to try it," she says. "Give his cock a few licks so it's slippery, ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('You do that while she spits between her breasts to lube them up. She then moves between Artem\'s legs and leans forward to wrap her breasts around his dick. He let out a loud moan as she uses her hands to push her breasts together for a tight grip.');
     scene.text('You move in close to watch as she starts sliding breasts up and down along his shaft. It\'s clear that this is her first time doing this since her rhythm isn\'t perfect and his dick slips out from between her breasts a few times, but Artem does seem to enjoy it.');
   } else {
     // TODO-QSP: dynamic text: "I wanna give you a titjob Artem," Katja says. "Give his cock a few licks so it'...
-    scene.text(`"I wanna give you a titjob Artem," Katja says. "Give his cock a few licks so it's very slippery, ${((s as any).pcs_nickname || '')}."`);
+    scene.text(`"I wanna give you a titjob Artem," Katja says. "Give his cock a few licks so it's very slippery, ${((s as any).pcs_nickname ?? '')}."`);
     scene.text('You do that while she spits between her breasts to lube them up. She then moves between Artem\'s legs and leans forward to wrap her breasts around his dick. He let out a loud moan as she uses her hands to push her breasts together for a tight grip.');
     scene.text('You move in close to watch as she starts sliding breasts up and down along his shaft.');
     if (((s as any).katjaQW ?? 0)?.['titjob'] < 5) {
@@ -810,7 +810,7 @@ function enterFirstTimeKatjaTitjob(s: GameState, scene: SceneBuilder): void {
     scene.text('You then use your spit to make your breasts slippery before leaning down and wrapping them tightly around Artem\'s cock.');
     scene.text('You start sliding your breasts up and down along Artem\'s hard rod while Katja gets down next to you and helps you make your movements smooth.');
     // TODO-QSP: dynamic text: Artem starts moaning loudly. "Pleas stop <<$pcs_nickname>>, else you''ll make me...
-    scene.text(`Artem starts moaning loudly. "Pleas stop ${((st as any).pcs_nickname || '')}, else you'll make me cum before I can fuck your pussies one more time."`);
+    scene.text(`Artem starts moaning loudly. "Pleas stop ${((st as any).pcs_nickname ?? '')}, else you'll make me cum before I can fuck your pussies one more time."`);
     scene.text('You do as he says and let go of his cock.');
     qspCall(st, 'arousal', 'titjob', 2);
     qspCall(st, 'stat', '');
@@ -1024,7 +1024,7 @@ function enterHomeWorkAskKatja(s: GameState, scene: SceneBuilder): void {
   scene.text('Just as you reach Artem, Katja comes over to the two of you.');
   scene.text('"Are you going to do your homework? Why don\'t we go to my house to do it together, the three of us? We worked really well together last time," she says with a naughty wink in her eye.');
   // TODO-QSP: dynamic text: Artem looks at you a little excited, probably hoping for a repeat performance. "...
-  scene.text(`Artem looks at you a little excited, probably hoping for a repeat performance. "Sounds like a good idea. What do you think, ${((s as any).pcs_nickname || '')}?"`);
+  scene.text(`Artem looks at you a little excited, probably hoping for a repeat performance. "Sounds like a good idea. What do you think, ${((s as any).pcs_nickname ?? '')}?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Do homework with both Katja and Artem', handler: (st: GameState) => {
@@ -1116,7 +1116,7 @@ function enterHomeWorkAskArtem(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Sounds like a good idea," you answer, and the two of you walk over to Katja who is sitting and looking at her phone.');
     // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, hi Artem. What''s up?" she asks, looking up from her phon...
-    scene.text(`"Hi ${((st as any).pcs_nickname || '')}, hi Artem. What's up?" she asks, looking up from her phone as you approach.`);
+    scene.text(`"Hi ${((st as any).pcs_nickname ?? '')}, hi Artem. What's up?" she asks, looking up from her phone as you approach.`);
     scene.text('"Hi Katja, we were wondering if you would like to do homework with us today?" you ask.');
     scene.text('"Sure, sounds like a good idea! We had fun the last time, let\'s go to my house, nobody is home!" she answers.');
     scene.actions([
@@ -1144,7 +1144,7 @@ function enterHomeWorkAskPlayer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"Sounds like a good idea," you answer, and the two of you walk over to Katja, who is sitting and looking at her phone.');
     // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, hi Artem. What''s up!" she asks, looking up from her phon...
-    scene.text(`"Hi ${((st as any).pcs_nickname || '')}, hi Artem. What's up!" she asks, looking up from her phone as you approach.`);
+    scene.text(`"Hi ${((st as any).pcs_nickname ?? '')}, hi Artem. What's up!" she asks, looking up from her phone as you approach.`);
     scene.text('"Hi Katja, we where wondering if you would like to do homework with us today?" you ask.');
     scene.text('"Sure, sounds like a good idea! We had fun the last time! Let\'s go to my house, nobody is home!" she answers.');
     scene.actions([
@@ -1162,10 +1162,10 @@ function enterHomeWorkAskKatjaNoArtem(s: GameState, scene: SceneBuilder): void {
   scene.text('As you walk over to Katja, you see that her face is as red as a tomato and that she has problems keeping her body at rest, clear signs that she\'s very horny.');
   if (((s as any).katjaQW ?? 0)?.['slut'] >= 100) {
     // TODO-QSP: dynamic text: She confirms it immediately when you arrive. "Hi <<$pcs_nickname>>! Why don''t w...
-    scene.text(`She confirms it immediately when you arrive. "Hi ${((s as any).pcs_nickname || '')}! Why don't we do our homework with Artem, and have him fuck us afterwards?"`);
+    scene.text(`She confirms it immediately when you arrive. "Hi ${((s as any).pcs_nickname ?? '')}! Why don't we do our homework with Artem, and have him fuck us afterwards?"`);
   } else {
     // TODO-QSP: dynamic text: She confirms it immediately when you arrive. "Hi <<$pcs_nickname>>! Why don''t w...
-    scene.text(`She confirms it immediately when you arrive. "Hi ${((s as any).pcs_nickname || '')}! Why don't we do our homework with Artem, and maybe have some fun with him afterwards?"`);
+    scene.text(`She confirms it immediately when you arrive. "Hi ${((s as any).pcs_nickname ?? '')}! Why don't we do our homework with Artem, and maybe have some fun with him afterwards?"`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1305,7 +1305,7 @@ function enterHomeWork(s: GameState, scene: SceneBuilder): void {
         scene.text('Artem looks at you for confirmation, not seeming to be completely sure what her intentions are, but also ready to have a repeat performance.');
       } else {
         // TODO-QSP: dynamic text: "That sounds nice, but it''s up to you, <<$pcs_nickname>>," Artem says, but it''...
-        scene.text(`"That sounds nice, but it's up to you, ${((st as any).pcs_nickname || '')}," Artem says, but it's clear he's hoping for a repeat performance.`);
+        scene.text(`"That sounds nice, but it's up to you, ${((st as any).pcs_nickname ?? '')}," Artem says, but it's clear he's hoping for a repeat performance.`);
       }
       scene.actions([
         { label: 'Go to Katja\'s room for a threesome', goto: ['artem_katja_sex', 'after_home_work_start'] },
@@ -1317,7 +1317,7 @@ function enterHomeWork(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('"I\'m sorry Katja, but we have to run. Maybe some other time," you tell her, but the horny girl is clearly not accepting that.');
     // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>> don''t be such a bore, I''m sure that you and Artem h...
-    scene.text(`"Come on ${((st as any).pcs_nickname || '')} don't be such a bore, I'm sure that you and Artem have time to entertain me a little longer. I don't think whatever you are supposed to do can't wait until after we have a little fun," Katja says, really pulling out all her seduction tricks.`);
+    scene.text(`"Come on ${((st as any).pcs_nickname ?? '')} don't be such a bore, I'm sure that you and Artem have time to entertain me a little longer. I don't think whatever you are supposed to do can't wait until after we have a little fun," Katja says, really pulling out all her seduction tricks.`);
     scene.text('Artem looks on, clearly having caught on that Katja wants sex, but waiting for you to decide.');
     qspCall(st, 'willpower', 'sex', 'resist', 'easy');
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -1481,7 +1481,7 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
           scene.text('Artem puts his laptop away and says, "Nice, very nice."');
         } else {
           // TODO-QSP: dynamic text: Artem puts his laptop away and says, "That''s it, show me what you got. '+iif($b...
-          scene.text('Artem puts his laptop away and says, "That\'s it, show me what you got. \'+iif($braworntype =\'none\', \'No bras for me, very considerate.\', \'Why don\'t you also lose your bra, ' + ((st as any).pcs_nickname || '') + '?\')+\'"');
+          scene.text('Artem puts his laptop away and says, "That\'s it, show me what you got. \'+iif($braworntype =\'none\', \'No bras for me, very considerate.\', \'Why don\'t you also lose your bra, ' + ((st as any).pcs_nickname ?? '') + '?\')+\'"');
         }
       }
     }
@@ -1504,7 +1504,7 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
       scene.text('She then starts to moan very loudly, clearly exaggerated to prove a point. Artem just sits there, eating it all up with his eyes.');
     } else {
       // TODO-QSP: dynamic text: "Why don''t you taste Katja''s breast <<$pcs_nickname>>?" Artem says, more as a ...
-      scene.text(`"Why don't you taste Katja's breast ${((st as any).pcs_nickname || '')}?" Artem says, more as a command than as a suggestion. You do as he says and start to lick Katja's full breast.`);
+      scene.text(`"Why don't you taste Katja's breast ${((st as any).pcs_nickname ?? '')}?" Artem says, more as a command than as a suggestion. You do as he says and start to lick Katja's full breast.`);
       if (((st as any).katjaQW ?? 0)?.['slut'] < 100) {
         scene.text('"So you like watching your girlfriend servicing other girls? Naughty boy…" Katja says to Artem, who just nods in agreement.');
       } else {
@@ -1556,7 +1556,7 @@ function enterAfterHomeWorkStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Get his dick out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_6.jpg');
     // TODO-QSP: dynamic text: You remove Artem''s pants and get his <<dick>> cm long and <<$dick_girth>> dick ...
-    scene.text(`You remove Artem's pants and get his ${((st as any).dick || '')} cm long and ${((st as any).dick_girth || '')} dick out and start stroking it.`);
+    scene.text(`You remove Artem's pants and get his ${((st as any).dick ?? '')} cm long and ${((st as any).dick_girth ?? '')} dick out and start stroking it.`);
     scene.text('Katja moves her hand and starts to gently play with his balls, while you move your hand up and down his rock hard shaft.');
     scene.text('Artem is just sitting back, clearly feeling extremely good, but Katja wants to do more and says "Let\'s taste it."');
     ((st as any).katjaQW = (st as any).katjaQW ?? {})['horny'] = ((st as any).katjaQW['horny'] ?? 0) + ((Math.floor(Math.random() * 6) + 0));
@@ -1705,7 +1705,7 @@ function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
       scene.text('You can feel her shaking all over as her orgasm continues, and after a short while, she whimpers. "Stop… please stop… I can\'t… I can\'t take anymore…"');
       scene.text('You stop licking her pussy and Artem withdraws his cock from her pussy. Katja collapses on you.');
       // TODO-QSP: dynamic text: "Guess I get to fuck you now, <<$pcs_nickname>>" Artem says as Katja rolls off o...
-      scene.text(`"Guess I get to fuck you now, ${((st as any).pcs_nickname || '')}" Artem says as Katja rolls off of you.`);
+      scene.text(`"Guess I get to fuck you now, ${((st as any).pcs_nickname ?? '')}" Artem says as Katja rolls off of you.`);
     } else {
       ((st as any).katjaQW = (st as any).katjaQW ?? {})['slut'] = ((st as any).katjaQW['slut'] ?? 0) + (2);
       scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_10b.jpg');
@@ -1717,7 +1717,7 @@ function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
       { label: 'Get fucked', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/katja/after_home_work_11.jpg');
     // TODO-QSP: dynamic text: "My legs are getting tired, so it''s time for you to do some work," Artem says a...
-    scene.text(`"My legs are getting tired, so it's time for you to do some work," Artem says and lies down on the bed while his ${((st as any).dick || '')} cm shaft stands rigid, inviting you to climb on it.`);
+    scene.text(`"My legs are getting tired, so it's time for you to do some work," Artem says and lies down on the bed while his ${((st as any).dick ?? '')} cm shaft stands rigid, inviting you to climb on it.`);
     scene.text('Artem hold up his hands to support your legs as you sit down on his cock in reverse cowgirl.');
     scene.text('Katja then joins and start to lick your pussy as you begin to ride up and down Artem\'s cock.');
     qspCall(st, 'arousal', 'vaginal', 3, ((st as any).npcID ?? 0), 'group');
@@ -1823,7 +1823,7 @@ function enterAfterHomeWorkBed(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     if (((st as any).katjaQW ?? 0)?.['horny'] > 0) {
       // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>. I know he''s your boyfriend, and he does have a ...
-      scene.text(`"I'm sorry, ${((st as any).pcs_nickname || '')}. I know he's your boyfriend, and he does have a nice cock, but he needs to learn to pay better attention to his sex partners. I know he wanted to fuck you, but I didn't get to cum," she says, radiating frustration.`);
+      scene.text(`"I'm sorry, ${((st as any).pcs_nickname ?? '')}. I know he's your boyfriend, and he does have a nice cock, but he needs to learn to pay better attention to his sex partners. I know he wanted to fuck you, but I didn't get to cum," she says, radiating frustration.`);
       scene.actions([
         { label: 'Help Katja get the orgasm she deserves', goto: ['KatjaEvDin', 'kiss'] },
         { label: 'Talk about something else', goto: ['katjaHomeTalk', 'chat'] },

@@ -37,7 +37,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           scene.img('images/characters/pavlovsk/resident/mom/gotovka.jpg');
           // TODO-QSP: dynamic text: Your <<$npc_nickname[''A29'']>> turns to you. "Please set the table for breakfas...
-          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} turns to you. "Please set the table for breakfast, ${((s as any).pcs_nickname || '')}."`);
+          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} turns to you. "Please set the table for breakfast, ${((s as any).pcs_nickname ?? '')}."`);
           scene.text('You just sigh and grab the dishes.');
           scene.actions([
 { label: 'Set the table for breakfast', goto: ['kuhrPar', ''] },
@@ -56,11 +56,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 45)  ||  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) <= 15))  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
       // TODO-QSP: dynamic text: <a href="exec:gt''father''">Your stepfather</a><<$mombreak>>, <a href="exec:gt '...
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027father/u0027, /u0027/u0027); return false;">Your stepfather</a>${((s as any).mombreak || '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027sister_chat/u0027, /u0027talking/u0027); return false;">Anya</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> are sitting at the table eating breakfast. You could sit down and join them or just grab something and go.`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027father/u0027, /u0027/u0027); return false;">Your stepfather</a>${((s as any).mombreak ?? '')}, <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027sister_chat/u0027, /u0027talking/u0027); return false;">Anya</a> and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> are sitting at the table eating breakfast. You could sit down and join them or just grab something and go.`);
     } else {
       if (((((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 45)  ||  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) <= 15))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
         // TODO-QSP: dynamic text: <a href="exec:gt''father''">Your stepfather</a><<$mombreak>>, and <a href="exec:...
-        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027father/u0027, /u0027/u0027); return false;">Your stepfather</a>${((s as any).mombreak || '')}, and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> are sitting at the table eating breakfast. It seems your sister is sleeping in again. You could sit down and join them or just grab something and go.`);
+        scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027father/u0027, /u0027/u0027); return false;">Your stepfather</a>${((s as any).mombreak ?? '')}, and <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027brother/u0027, /u0027start/u0027); return false;">Kolka</a> are sitting at the table eating breakfast. It seems your sister is sleeping in again. You could sit down and join them or just grab something and go.`);
       } else {
         if (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) <= 30  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).locat ?? 0)?.['Anya'] === 12) {
           // TODO-QSP: dynamic text: <a href="exec:gt''father''">Your stepfather</a>, <a href="exec:gt''mother''"><<$...

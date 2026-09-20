@@ -33,27 +33,27 @@ function enterOleg(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).cumloc ?? 0)[13] > 0  ||  ((s as any).cumloc ?? 0)[11] > 0  ||  ((s as any).cumloc ?? 0)[16] > 0  ||  ((s as any).cumloc ?? 0)[10] >0  ||  ((s as any).cumloc ?? 0)[9] >0) {
     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Hello <<$pcs_firstname>>, I think you have spe...
-    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname || '')}, I think you have sperm on you. Please go wash it off."</a>`);
+    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname ?? '')}, I think you have sperm on you. Please go wash it off."</a>`);
     scene.actions([
       { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
     ]);
   } else {
     if (((s as any).cumloc ?? 0)[2] > 0  ||  ((s as any).cumloc ?? 0)[5] > 0  ||  ((s as any).cumloc ?? 0)[6] > 0  ||  ((s as any).cumloc ?? 0)[7] > 0) {
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Hello <<$pcs_firstname>>, I think you have spe...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname || '')}, I think you have sperm on your clothes. Please go change."</a>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname ?? '')}, I think you have sperm on your clothes. Please go change."</a>`);
       scene.actions([
         { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
       ]);
     } else {
       if ((((s as any).cumloc ?? 0)[14] > 0  ||  ((s as any).cumloc ?? 0)[15] > 0  ||  ((s as any).cumloc ?? 0)[1] > 0  ||  ((s as any).cumloc ?? 0)[4] > 0)  &&  ((s as any).clothingworntype ?? 0) === 'nude') {
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Hello <<$pcs_firstname>>, why are you naked? A...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname || '')}, why are you naked? And is that sperm on you? It's gross, please go wash yourself and put on some clothes."</a>`);
+        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname ?? '')}, why are you naked? And is that sperm on you? It's gross, please go wash yourself and put on some clothes."</a>`);
         scene.actions([
           { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Hello <<$pcs_firstname>>, what do you need?"</...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname || '')}, what do you need?"</a>`);
+        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hello ${((s as any).pcs_firstname ?? '')}, what do you need?"</a>`);
         if (((s as any).Oleg ?? 0)?.['serve'] === 1) {
           qspGoto(s, 'pav_shared_oleg', 'Oleg_Serve');
           scene.actions([
@@ -96,14 +96,14 @@ function enterOleg_Chat(s: GameState, scene: SceneBuilder): void {
         scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} is looking at your nude body with obvious shame, blurring.`);
         if (((s as any).pcs_bmi ?? 0) <= 15) {
           // TODO-QSP: dynamic text: He is not very content with the sight: <font color=#<<$Oleg[''font'']>>>"<<$pcs_...
-          scene.text(`He is not very content with the sight: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, you should eat more, it is unhealthy to be too thin."</font>`);
+          scene.text(`He is not very content with the sight: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, you should eat more, it is unhealthy to be too thin."</font>`);
         } else {
           if (((s as any).pcs_bmi ?? 0) <= 25) {
             // TODO-QSP: dynamic text: Even though he is ashamed, he is obviously pleased with the sight: <font color=#...
-            scene.text(`Even though he is ashamed, he is obviously pleased with the sight: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, you have a beautiful body you know… But please, put on some clothes!"</font>`);
+            scene.text(`Even though he is ashamed, he is obviously pleased with the sight: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, you have a beautiful body you know… But please, put on some clothes!"</font>`);
           } else {
             // TODO-QSP: dynamic text: He is not very content with the sight: <font color=#<<$Oleg[''font'']>>>"<<$pcs_...
-            scene.text(`He is not very content with the sight: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, you should eat less, it is unhealthy to be too fat."</font>`);
+            scene.text(`He is not very content with the sight: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, you should eat less, it is unhealthy to be too fat."</font>`);
           }
         }
         if (((s as any).pantyworntype ?? 0) !== 'none') {
@@ -113,10 +113,10 @@ function enterOleg_Chat(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).analPlugIn ?? 0) === 1) {
           scene.text('As you accidentally turn around, he gazes between your asscheeks on the plug stuck in your ass.');
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, are you wearing a sex toy ...
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, are you wearing a sex toy in your anus?"</font> (his blush turns dark red).`);
+          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, are you wearing a sex toy in your anus?"</font> (his blush turns dark red).`);
           if ((Math.floor(Math.random() * 101) + 0) < 30) {
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes <<$npc_firstname[$boy]>>, it is a buttplug. Will...
-            scene.text(`<font color=#${((s as any).pcs_font || '')}>"Yes ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, it is a buttplug. Will you help me with it? It seems to be stuck."</font>`);
+            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, it is a buttplug. Will you help me with it? It seems to be stuck."</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Wh… what do you mean?"</font>
             scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Wh… what do you mean?"</font>`);
             scene.actions([
@@ -155,7 +155,7 @@ function enterOleg_Chat(s: GameState, scene: SceneBuilder): void {
       if (((s as any).say ?? 0) === 2) {
         if (((s as any).age ?? 0) < 18) {
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, you said you are <<age>> y...
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, you said you are ${((s as any).age || '')} years old. Aren't you too young to live without parents?"</font>`);
+          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, you said you are ${((s as any).age ?? '')} years old. Aren't you too young to live without parents?"</font>`);
         }
       }
     }
@@ -208,9 +208,9 @@ function enterOleg_Chat(s: GameState, scene: SceneBuilder): void {
           (s as any).minut = ((s as any).minut ?? 0) + 3;
           if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 0) {
             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, didn''t you change your mi...
-            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, didn't you change your mind about easing off some of the rent?"</font>`);
+            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, didn't you change your mind about easing off some of the rent?"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What do you mean?"</font>
-            scene.text(`<font color=#${((s as any).pcs_font || '')}>"What do you mean?"</font>`);
+            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What do you mean?"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Well as we talked about it before, you know… t...
             scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Well as we talked about it before, you know… to cook for us or clean up a bit…"</font>`);
             scene.actions([
@@ -225,9 +225,9 @@ function enterOleg_Chat(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).shared_apt ?? 0)?.['servitudeLvl'] === 1) {
               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, didn''t you change your mi...
-              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, didn't you change your mind about easing off some more of the rent?"</font>`);
+              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, didn't you change your mind about easing off some more of the rent?"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What do you mean? I already clean and cook for you."...
-              scene.text(`<font color=#${((s as any).pcs_font || '')}>"What do you mean? I already clean and cook for you."</font>`);
+              scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What do you mean? I already clean and cook for you."</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Well we also talked about this before, you kno...
               scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Well we also talked about this before, you know… to help us ease a bit of stress if you know what I mean"</font>`);
               scene.actions([
@@ -375,14 +375,14 @@ function enterOleg_Chat(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).shared_apt ?? 0)?.['chatLvl'] === 10) {
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"O-OK… <<$pcs_firstname>>, I''ll help you."</fo...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"O-OK… ${((s as any).pcs_firstname || '')}, I'll help you."</font>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"O-OK… ${((s as any).pcs_firstname ?? '')}, I'll help you."</font>`);
       scene.img('images/locations/pavlovsk/resident/sharedapt/sex/buttplugpullout.mp4');
       scene.text('Hesitantly he grabs the plug and slowly pulls it out.');
       scene.text('It leaves your ass gaping.');
       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Thank you <<$npc_firstname[$boy]>>!"</font>
-      scene.text(`<font color=#${((s as any).pcs_font || '')}>"Thank you ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}!"</font>`);
+      scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Thank you ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}!"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"You''re welcome <<$pcs_firstname>>, but please...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"You're welcome ${((s as any).pcs_firstname || '')}, but please be careful next time…"</font>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"You're welcome ${((s as any).pcs_firstname ?? '')}, but please be careful next time…"</font>`);
       (s as any).analPlugIn = 0;
       (s as any).analPlugOut = 1;
       scene.actions([
@@ -393,37 +393,37 @@ function enterOleg_Chat(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).shared_apt ?? 0)?.['chatLvl'] === 20) {
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Come on <<$npc_firstname[$boy]>>, you can tell it to...
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"Come on ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, you can tell it to me. After all we have done together, you don't need to be ashamed."</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Come on ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, you can tell it to me. After all we have done together, you don't need to be ashamed."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I don''t know <<$pcs_firstname>>… I''ve never ...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I don't know ${((s as any).pcs_firstname || '')}… I've never told anyone about it."</font>`);
+        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I don't know ${((s as any).pcs_firstname ?? '')}… I've never told anyone about it."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Let it out, it will help you."</font>
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"Let it out, it will help you."</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Let it out, it will help you."</font>`);
         scene.text('<i>He lingers for a while, but then he opens his mouth, and finally decides to speak out.</i>');
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Well, I have this really dirty desire. I often...
         scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Well, I have this really dirty desire. I often watch this porn where the guy… you know… relieves himself."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Uhm… you mean like he takes a pee?"</font>
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"Uhm… you mean like he takes a pee?"</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Uhm… you mean like he takes a pee?"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Yes. But it''s not just that."</font>
         scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Yes. But it's not just that."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Huh?"</font>
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"Huh?"</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Huh?"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"He relieves himself onto the girl. And into."<...
         scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"He relieves himself onto the girl. And into."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"WHAT?"</font>
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"WHAT?"</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"WHAT?"</font>`);
         scene.text('<i>You shout in surprise. Who would thought such a shy, decent man would have this kind of kink?</i>');
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Please don''t get mad <<$pcs_firstname>>! I sh...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please don't get mad ${((s as any).pcs_firstname || '')}! I shouldn't have told you, I knew it!"</font>`);
+        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please don't get mad ${((s as any).pcs_firstname ?? '')}! I shouldn't have told you, I knew it!"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I am not mad at you <<$npc_firstname[$boy]>>. I am j...
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"I am not mad at you ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}. I am just surprised."</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I am not mad at you ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}. I am just surprised."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"OK…"</font>
         scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"OK…"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"So you''ve seen in a porn? And the guy just comes, p...
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"So you've seen in a porn? And the guy just comes, pissses himself on the girl and leaves or what?"</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"So you've seen in a porn? And the guy just comes, pissses himself on the girl and leaves or what?"</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"No, actually they first have sex, usually both...
         scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"No, actually they first have sex, usually both vaginal and anal, then he relieves himself on her and into some of her… holes."</font>`);
         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Aha…"</font>
-        scene.text(`<font color=#${((s as any).pcs_font || '')}>"Aha…"</font>`);
+        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Aha…"</font>`);
         scene.text('<i>You are still somehow shocked by all of this, not knowing what to say next.</i>');
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"So what do you think about it? About me?"</fon...
         scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"So what do you think about it? About me?"</font>`);
@@ -659,7 +659,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Oleg ?? 0)?.['mood'] >= 7) {
     ((s as any).Oleg = (s as any).Oleg ?? {})['served'] = 0;
     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Not now <<$pcs_firstname>>, I don''t have the ...
-    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname || '')}, I don't have the mood for it."</font>`);
+    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname ?? '')}, I don't have the mood for it."</font>`);
     scene.actions([
       { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
     ]);
@@ -667,7 +667,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
     if (((s as any).shared_apt ?? 0)?.['sexCh'] < 40) {
       ((s as any).Oleg = (s as any).Oleg ?? {})['served'] = 0;
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Not now <<$pcs_firstname>>, I am busy."</font>
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname || '')}, I am busy."</font>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Not now ${((s as any).pcs_firstname ?? '')}, I am busy."</font>`);
       scene.actions([
         { label: 'Leave', goto: ['pav_shared_apt', 'start'] },
       ]);
@@ -675,7 +675,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
       ((s as any).shared_apt = (s as any).shared_apt ?? {})['actionR'] = (Math.floor(Math.random() * 5) + 2);
       if (((s as any).shared_apt ?? 0)?.['actionR'] === 2) {
         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I am busy <<$pcs_firstname>>, but you can suck...
-        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I am busy ${((s as any).pcs_firstname || '')}, but you can suck my dick while I am working."</font>`);
+        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I am busy ${((s as any).pcs_firstname ?? '')}, but you can suck my dick while I am working."</font>`);
         scene.actions([
           { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A266', 1);
@@ -684,7 +684,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).shared_apt ?? 0)?.['actionR'] === 3) {
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Sure <<$pcs_firstname>>, I could use a blowjob...
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname || '')}, I could use a blowjob right now."</font>`);
+          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, I could use a blowjob right now."</font>`);
           scene.actions([
             { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A266', 1);
@@ -693,7 +693,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).shared_apt ?? 0)?.['actionR'] === 4) {
             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"All right, let''s have a sex. I would like to ...
-            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"All right, let's have a sex. I would like to fuck your pussy ${((s as any).pcs_firstname || '')}."</font>`);
+            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"All right, let's have a sex. I would like to fuck your pussy ${((s as any).pcs_firstname ?? '')}."</font>`);
             scene.actions([
               { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A266', 1);
@@ -704,7 +704,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
               if (((s as any).Oleg ?? 0)?.['anal'] === 0) {
                 if (((s as any).Oleg ?? 0)?.['doAnal'] === 1) {
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I''m not sure <<$pcs_firstname>>…"</font>
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I'm not sure ${((s as any).pcs_firstname || '')}…"</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I'm not sure ${((s as any).pcs_firstname ?? '')}…"</font>`);
                   scene.actions([
                     { label: 'It\'s your choice', goto: ['pav_shared_oleg', 'Oleg_Serve'] },
                     { label: 'You told me you wanted to try anal, didn\'t you?', handler: (st: GameState) => {
@@ -717,7 +717,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).Oleg ?? 0)?.['anal'] >= 1) {
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Sure <<$pcs_firstname>>, I would like to take ...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname || '')}, I would like to take your ass this time."</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sure ${((s as any).pcs_firstname ?? '')}, I would like to take your ass this time."</font>`);
                   scene.actions([
                     { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A266', 1);
@@ -730,7 +730,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).Oleg ?? 0)?.['piss'] === 0) {
                   if (((s as any).Oleg ?? 0)?.['doPiss'] === 1) {
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I''m not sure <<$pcs_firstname>>…"</font>
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I'm not sure ${((s as any).pcs_firstname || '')}…"</font>`);
+                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I'm not sure ${((s as any).pcs_firstname ?? '')}…"</font>`);
                     scene.actions([
                       { label: 'It\'s your choice', goto: ['pav_shared_oleg', 'Oleg_Serve'] },
                       { label: 'You told me you have this secret dream about pissing, do you?', handler: (st: GameState) => {
@@ -743,7 +743,7 @@ function enterOleg_Serve(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).Oleg ?? 0)?.['piss'] >= 1) {
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"<<$pcs_firstname>>, I have a full bladder. Do ...
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}, I have a full bladder. Do something about it, will you?"</font>`);
+                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}, I have a full bladder. Do something about it, will you?"</font>`);
                     scene.actions([
                       { label: 'Agree', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', 'A266', 1);
@@ -780,15 +780,15 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
     }
     if (((s as any).shared_apt ?? 0)?.['step'] > 0  &&  (!((s as any).cockHard ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"> <img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockflaccid.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"> <img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockflaccid.jpg"></center>`);
     }
     if (((s as any).shared_apt ?? 0)?.['step'] > 0  &&  ((s as any).cockHard ?? 0) === 1) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"> <img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"> <img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
     }
   } else {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
@@ -994,7 +994,7 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).failC ?? 0) >= 3) {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjfail.jpg');
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, if you can''t suck...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, if you can't suck a cock stop wasting my time. Get out!"</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, if you can't suck a cock stop wasting my time. Get out!"</font>`);
                   scene.actions([
                     { label: 'Crawl out from the table', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 6
@@ -1003,7 +1003,7 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
                 } else {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjfailtryagain.mp4');
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, what are you doing...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, what are you doing down there?"</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, what are you doing down there?"</font>`);
                   if (((s as any).orgB ?? 0) >= 100) {
                     scene.actions([
                       { label: 'Try to make him cum', handler: (st: GameState) => {
@@ -1032,7 +1032,7 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
               if (((s as any).shared_apt ?? 0)?.['step'] === 6) {
                 scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                 // TODO-QSP: dynamic text: You get up from your knees, looking at <<$npc_firstname[$boy]>>:<font color=#<<$...
-                scene.text(`You get up from your knees, looking at ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:<font color=#${((s as any).pcs_font || '')}>"I'm sorry I was unable to satisfy you."</font>.`);
+                scene.text(`You get up from your knees, looking at ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
                 // TODO-QSP: dynamic text: He doesn''t even look at you, again being deep in his thoughts and typing someth...
                 scene.text(`He doesn't even look at you, again being deep in his thoughts and typing something on his keyboard. <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Yea yea. Bye."</font>`);
                 qspCall(s, 'npc_relationship', 'modify', 'A266', (-3));
@@ -1045,11 +1045,11 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['step'] === 7) {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjdeepthroatpuke.mp4');
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Oh my god <<$pcs_firstname>>, what have you do...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh my god ${((s as any).pcs_firstname || '')}, what have you done??!!"</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh my god ${((s as any).pcs_firstname ?? '')}, what have you done??!!"</font>`);
                   // TODO-QSP: dynamic text: Cleaning your face and mouth with your clothes, all you can say is <font color=#...
-                  scene.text(`Cleaning your face and mouth with your clothes, all you can say is <font color=#${((s as any).pcs_font || '')}>"I'm sorry…"</font>.`);
+                  scene.text(`Cleaning your face and mouth with your clothes, all you can say is <font color=#${((s as any).pcs_font ?? '')}>"I'm sorry…"</font>.`);
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Please <<$pcs_firstname>> do something and cle...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please ${((s as any).pcs_firstname || '')} do something and clean it, it's gross!"</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please ${((s as any).pcs_firstname ?? '')} do something and clean it, it's gross!"</font>`);
                   qspCall(s, 'npc_relationship', 'modify', 'A266', (-5));
                   ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                   ((s as any).Oleg = (s as any).Oleg ?? {})['bjFail'] = ((s as any).Oleg['bjFail'] ?? 0) + (1);
@@ -1061,11 +1061,11 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['step'] === 8) {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/faint.jpg');
                     // TODO-QSP: dynamic text: You wake up being slapped in your face: <font color=#<<$Oleg[''font'']>>>"<<$pcs...
-                    scene.text(`You wake up being slapped in your face: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}! ${((s as any).pcs_firstname || '')}! Wake up!"</font>`);
+                    scene.text(`You wake up being slapped in your face: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}! ${((s as any).pcs_firstname ?? '')}! Wake up!"</font>`);
                     // TODO-QSP: dynamic text: Your vision slowly returns, but you are still very confused. <font color=#<<$pcs...
-                    scene.text(`Your vision slowly returns, but you are still very confused. <font color=#${((s as any).pcs_font || '')}>"Wh… what happened?</font>`);
+                    scene.text(`Your vision slowly returns, but you are still very confused. <font color=#${((s as any).pcs_font ?? '')}>"Wh… what happened?</font>`);
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I guess you took a bigger portion than you can...
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I guess you took a bigger portion than you can stand, ${((s as any).pcs_firstname || '')}."</font> is obviously worried about you.`);
+                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I guess you took a bigger portion than you can stand, ${((s as any).pcs_firstname ?? '')}."</font> is obviously worried about you.`);
                     qspCall(s, 'npc_relationship', 'modify', 'A266', 1);
                     ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                     ((s as any).Oleg = (s as any).Oleg ?? {})['bjFail'] = ((s as any).Oleg['bjFail'] ?? 0) + (1);
@@ -1079,9 +1079,9 @@ function enterOleg_SuckBellowTable(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).Oleg ?? 0)?.['mood'] <= 5) {
                         scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Thank you <<$pcs_firstname>>."</font>
-                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Thank you ${((s as any).pcs_firstname || '')}."</font>`);
+                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Thank you ${((s as any).pcs_firstname ?? '')}."</font>`);
                         // TODO-QSP: dynamic text: Cleaning your face and mouth off the cum: <font color=#<<$pcs_font>>>"You are we...
-                        scene.text(`Cleaning your face and mouth off the cum: <font color=#${((s as any).pcs_font || '')}>"You are welcome. Bye."</font>.`);
+                        scene.text(`Cleaning your face and mouth off the cum: <font color=#${((s as any).pcs_font ?? '')}>"You are welcome. Bye."</font>.`);
                         ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                         qspCall(s, 'npc_relationship', 'modify', 'A266', 1);
                       } else {
@@ -1369,7 +1369,7 @@ function enterOleg_Suck(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).failC ?? 0) >= 3) {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjfail.jpg');
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, if you can''t suck...
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, if you can't suck a cock stop wasting my time. Get out!"</font>`);
+                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, if you can't suck a cock stop wasting my time. Get out!"</font>`);
                     scene.actions([
                       { label: 'Get up', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 7
@@ -1378,7 +1378,7 @@ function enterOleg_Suck(s: GameState, scene: SceneBuilder): void {
                   } else {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjfailtryagain.mp4');
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, what are you doing...
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, what are you doing down there?"</font>`);
+                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, what are you doing down there?"</font>`);
                     if (((s as any).failC ?? 0) === 1) {
                       scene.text('He is getting nervous…');
                     }
@@ -1403,7 +1403,7 @@ function enterOleg_Suck(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).shared_apt ?? 0)?.['step'] === 7) {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                   // TODO-QSP: dynamic text: You get up from your knees, looking at <<$npc_firstname[$boy]>>:<font color=#<<$...
-                  scene.text(`You get up from your knees, looking at ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:<font color=#${((s as any).pcs_font || '')}>"I'm sorry I was unable to satisfy you."</font>.`);
+                  scene.text(`You get up from your knees, looking at ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:<font color=#${((s as any).pcs_font ?? '')}>"I'm sorry I was unable to satisfy you."</font>.`);
                   // TODO-QSP: dynamic text: He looks annoyed:<font color=#<<$Oleg[''font'']>>>"I see. Bye."</font>
                   scene.text(`He looks annoyed:<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I see. Bye."</font>`);
                   qspCall(s, 'npc_relationship', 'modify', 'A266', (-3));
@@ -1416,11 +1416,11 @@ function enterOleg_Suck(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).shared_apt ?? 0)?.['step'] === 8) {
                     scene.img('images/locations/pavlovsk/resident/sharedapt/sex/bjdeepthroatpuke.mp4');
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Oh my god <<$pcs_firstname>>, what have you do...
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh my god ${((s as any).pcs_firstname || '')}, what have you done??!!"</font>`);
+                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh my god ${((s as any).pcs_firstname ?? '')}, what have you done??!!"</font>`);
                     // TODO-QSP: dynamic text: Cleaning your face and mouth with your clothes, all you can say is <font color=#...
-                    scene.text(`Cleaning your face and mouth with your clothes, all you can say is <font color=#${((s as any).pcs_font || '')}>"I'm sorry…"</font>.`);
+                    scene.text(`Cleaning your face and mouth with your clothes, all you can say is <font color=#${((s as any).pcs_font ?? '')}>"I'm sorry…"</font>.`);
                     // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Please <<$pcs_firstname>> do something and cle...
-                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please ${((s as any).pcs_firstname || '')} do something and clean it, it's gross!"</font>`);
+                    scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please ${((s as any).pcs_firstname ?? '')} do something and clean it, it's gross!"</font>`);
                     qspCall(s, 'npc_relationship', 'modify', 'A266', (-5));
                     ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                     ((s as any).Oleg = (s as any).Oleg ?? {})['bjFail'] = ((s as any).Oleg['bjFail'] ?? 0) + (1);
@@ -1432,11 +1432,11 @@ function enterOleg_Suck(s: GameState, scene: SceneBuilder): void {
                     if (((s as any).shared_apt ?? 0)?.['step'] === 9) {
                       scene.img('images/locations/pavlovsk/resident/sharedapt/sex/faint.jpg');
                       // TODO-QSP: dynamic text: You wake up being slapped in your face: <font color=#<<$Oleg[''font'']>>>"<<$pcs...
-                      scene.text(`You wake up being slapped in your face: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname || '')}! ${((s as any).pcs_firstname || '')}! Wake up!"</font>`);
+                      scene.text(`You wake up being slapped in your face: <font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"${((s as any).pcs_firstname ?? '')}! ${((s as any).pcs_firstname ?? '')}! Wake up!"</font>`);
                       // TODO-QSP: dynamic text: Your vision slowly returns, but you are still very confused. <font color=#<<$pcs...
-                      scene.text(`Your vision slowly returns, but you are still very confused. <font color=#${((s as any).pcs_font || '')}>"Wh… what happened?</font>`);
+                      scene.text(`Your vision slowly returns, but you are still very confused. <font color=#${((s as any).pcs_font ?? '')}>"Wh… what happened?</font>`);
                       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I guess you took a bigger portion than you can...
-                      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I guess you took a bigger portion than you can stand, ${((s as any).pcs_firstname || '')}."</font> is obviously worried about you.`);
+                      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I guess you took a bigger portion than you can stand, ${((s as any).pcs_firstname ?? '')}."</font> is obviously worried about you.`);
                       qspCall(s, 'npc_relationship', 'modify', 'A266', 1);
                       ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                       ((s as any).Oleg = (s as any).Oleg ?? {})['bjFail'] = ((s as any).Oleg['bjFail'] ?? 0) + (1);
@@ -1450,9 +1450,9 @@ function enterOleg_Suck(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).Oleg ?? 0)?.['mood'] <= 5) {
                           scene.img('images/locations/pavlovsk/resident/sharedapt/sex/leave.jpg');
                           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Thank you <<$pcs_firstname>>."</font>
-                          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Thank you ${((s as any).pcs_firstname || '')}."</font>`);
+                          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Thank you ${((s as any).pcs_firstname ?? '')}."</font>`);
                           // TODO-QSP: dynamic text: Cleaning your face and mouth off the cum: <font color=#<<$pcs_font>>>"You are we...
-                          scene.text(`Cleaning your face and mouth off the cum: <font color=#${((s as any).pcs_font || '')}>"You are welcome. Bye."</font>.`);
+                          scene.text(`Cleaning your face and mouth off the cum: <font color=#${((s as any).pcs_font ?? '')}>"You are welcome. Bye."</font>.`);
                           qspCall(s, 'npc_relationship', 'modify', 'A266', 1);
                           ((s as any).shared_apt = (s as any).shared_apt ?? {})['step'] = 0;
                         } else {
@@ -1490,11 +1490,11 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
     }
     if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
     }
   } else {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
@@ -1522,7 +1522,7 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Hey, <<$pcs_firstname>>, what about the pantie...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname || '')}, what about the panties?"</font>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname ?? '')}, what about the panties?"</font>`);
       scene.text('You entirely forgot to take them off! Or maybe you didn\'t want to actually?');
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
@@ -1917,12 +1917,12 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: dynamic text: You expect <<$npc_firstname[$boy]>> to take his cock out of you any moment, but ...
                             scene.text(`You expect ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
                             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
-                            scene.text(`<font color=#${((s as any).pcs_font || '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
+                            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Sorry <<$pcs_firstname>>, I could''nt help mys...
-                            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sorry ${((s as any).pcs_firstname || '')}, I could'nt help myself."</font>`);
+                            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sorry ${((s as any).pcs_firstname ?? '')}, I could'nt help myself."</font>`);
                             if (((s as any).tabletkishot ?? 0) === 0  &&  ((s as any).pillcon ?? 0) < 0) {
                               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I am not on the pill <<$npc_firstname[$boy]>>!"</fon...
-                              scene.text(`<font color=#${((s as any).pcs_font || '')}>"I am not on the pill ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}!"</font>`);
+                              scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I am not on the pill ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}!"</font>`);
                               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Than you better do something about it. We''re ...
                               scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Than you better do something about it. We're done here."</font>`);
                               scene.text('He is obvously annoyed by this.');
@@ -2010,11 +2010,11 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
     }
     if (((s as any).shared_apt ?? 0)?.['step'] > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
     }
   } else {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
@@ -2042,7 +2042,7 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Hey, <<$pcs_firstname>>, what about the pantie...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname || '')}, what about the panties?"</font>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname ?? '')}, what about the panties?"</font>`);
       scene.text('You entirely forgot to take them off! Or maybe you didn\'t want to actually?');
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
@@ -2123,9 +2123,9 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic text: Without much care about your feelings he thrusts his <<npc_dick[$boy]>> cm long ...
           scene.text(`Without much care about your feelings he thrusts his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long thick dick through your sphincter.`);
           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-          scene.text(`<font color=#${((s as any).pcs_font || '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+          scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, don''t be like a s...
-          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, don't be like a small child, you can take it."</font>`);
+          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, don't be like a small child, you can take it."</font>`);
           qspCall(s, 'pain', '', 1, 'asshole', 'tear');
         }
         // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> begins to move inside you, ever-increasing the pace.
@@ -2181,9 +2181,9 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: dynamic text: Without much care about your feelings he thrusts his <<npc_dick[$boy]>> cm long ...
             scene.text(`Without much care about your feelings he thrusts his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long thick dick through your sphincter.`);
             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-            scene.text(`<font color=#${((s as any).pcs_font || '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, don''t be like a s...
-            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, don't be like a small child, you can take it."</font>`);
+            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, don't be like a small child, you can take it."</font>`);
             qspCall(s, 'pain', '', 1, 'asshole', 'tear');
           }
           scene.text('In a few moments he starts groaning, obviously enjoying the fuck.');
@@ -2237,9 +2237,9 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: dynamic text: Without much care about your feelings he thrusts his <<npc_dick[$boy]>> cm long ...
               scene.text(`Without much care about your feelings he thrusts his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long thick dick through your sphincter.`);
               // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-              scene.text(`<font color=#${((s as any).pcs_font || '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+              scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, don''t be like a s...
-              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, don't be like a small child, you can take it."</font>`);
+              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, don't be like a small child, you can take it."</font>`);
               qspCall(s, 'pain', '', 1, 'asshole', 'tear');
             }
             scene.text('In a few moments he starts groaning, obviously enjoying the fuck.');
@@ -2349,9 +2349,9 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
                   // TODO-QSP: dynamic text: Without much care about your feelings he thrusts his <<npc_dick[$boy]>> cm long ...
                   scene.text(`Without much care about your feelings he thrusts his ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm long thick dick through your sphincter.`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Ouuuch! <<$npc_firstname[$boy]>>, that hurt!"</font>
-                  scene.text(`<font color=#${((s as any).pcs_font || '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
+                  scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Ouuuch! ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}, that hurt!"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Come on <<$pcs_firstname>>, don''t be like a s...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname || '')}, don't be like a small child, you can take it."</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Come on ${((s as any).pcs_firstname ?? '')}, don't be like a small child, you can take it."</font>`);
                   qspCall(s, 'pain', '', 1, 'asshole', 'tear');
                 }
                 scene.text('In a few moments he starts groaning, obviously enjoying the fuck.');
@@ -2476,11 +2476,11 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
                             // TODO-QSP: dynamic text: You expect <<$npc_firstname[$boy]>> to take his cock out of you any moment, but ...
                             scene.text(`You expect ${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} to take his cock out of you any moment, but instead you hear his groans becoming louder.`);
                             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"What are you doing? You aren''t coming inside me, ar...
-                            scene.text(`<font color=#${((s as any).pcs_font || '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
+                            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"What are you doing? You aren't coming inside me, are you?"</font>`);
                             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Sorry <<$pcs_firstname>>, I could''nt help mys...
-                            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sorry ${((s as any).pcs_firstname || '')}, I could'nt help myself."</font>`);
+                            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Sorry ${((s as any).pcs_firstname ?? '')}, I could'nt help myself."</font>`);
                             // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I told you not to! I hate it when it slowly leaks ou...
-                            scene.text(`<font color=#${((s as any).pcs_font || '')}>"I told you not to! I hate it when it slowly leaks out of my anus for hours!"</font>`);
+                            scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I told you not to! I hate it when it slowly leaks out of my anus for hours!"</font>`);
                             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Oh jeez you are a girl, get used to it! We''re...
                             scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh jeez you are a girl, get used to it! We're done here."</font>`);
                             scene.text('He is obvously annoyed by your reaction.');
@@ -2567,15 +2567,15 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['imgh'] < 250) {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/nd.jpg"></center>`);
     }
     if (((s as any).shared_apt ?? 0)?.['step'] > 0  &&  (!((s as any).cockHard ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockflaccid.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockflaccid.jpg"></center>`);
     }
     if (((s as any).shared_apt ?? 0)?.['step'] > 0  &&  ((s as any).cockHard ?? 0) === 1) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/resident/sharedapt/nd/...
-      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/locations/pavlovsk/resident/sharedapt/nd/cockerect.jpg"></center>`);
     }
   } else {
     if (((s as any).shared_apt ?? 0)?.['step'] === 0) {
@@ -2602,7 +2602,7 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'panties', 'remove');
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Hey, <<$pcs_firstname>>, what about the pantie...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname || '')}, what about the panties?"</font>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Hey, ${((s as any).pcs_firstname ?? '')}, what about the panties?"</font>`);
       scene.text('You entirely forgot to take them off! Or maybe you didn\'t want to actually?');
       scene.text('You reach for the ribbon of the panties, slowly slipping them off, down your legs. You blush a little.');
     }
@@ -2610,9 +2610,9 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} takes you by the waist, kissing you.`);
     if (((s as any).Oleg ?? 0)?.['piss'] === 0) {
       // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Are you sure about this <<$pcs_firstname>>?"</...
-      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you sure about this ${((s as any).pcs_firstname || '')}?"</font>`);
+      scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you sure about this ${((s as any).pcs_firstname ?? '')}?"</font>`);
       // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yes. I''ll do it for you."</font>
-      scene.text(`<font color=#${((s as any).pcs_font || '')}>"Yes. I'll do it for you."</font>`);
+      scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yes. I'll do it for you."</font>`);
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -2679,10 +2679,10 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'pee', (-2), 'sub', 'humiliation');
               scene.img('images/locations/pavlovsk/resident/sharedapt/sex/nd/pissmouth.mp4');
               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"It''s time <<$pcs_firstname>>!"</font>
-              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"It's time ${((s as any).pcs_firstname || '')}!"</font>`);
+              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"It's time ${((s as any).pcs_firstname ?? '')}!"</font>`);
               scene.text('With these words he takes his cock out of your ass and pushes you onto your knees beside the plastic-covered bed.');
               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Oh my god <<$pcs_firstname>>, it''s coming! Br...
-              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh my god ${((s as any).pcs_firstname || '')}, it's coming! Brace for impact Mr Spock!"</font>`);
+              scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh my god ${((s as any).pcs_firstname ?? '')}, it's coming! Brace for impact Mr Spock!"</font>`);
               scene.text('As instructed you open your mouth, eyeing the tip of his cock, expecting the flow to start.');
               // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Aaaaaahh!"</font>
               scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Aaaaaahh!"</font>`);
@@ -2707,9 +2707,9 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'arousal', 'pee', (-2), 'sub', 'humiliation');
                 scene.img('images/locations/pavlovsk/resident/sharedapt/sex/nd/pisspussy.mp4');
                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"You thought your pussy is just for cum, did yo...
-                scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"You thought your pussy is just for cum, did you ${((s as any).pcs_firstname || '')}?!"</font>`);
+                scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"You thought your pussy is just for cum, did you ${((s as any).pcs_firstname ?? '')}?!"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Something like that, yes…"</font>
-                scene.text(`<font color=#${((s as any).pcs_font || '')}>"Something like that, yes…"</font>`);
+                scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Something like that, yes…"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"well, today it isn''t! Spread those lips for m...
                 scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"well, today it isn't! Spread those lips for me!"</font>`);
                 scene.text('His tone is again very strict and you feel as if you don\'t even have a choice anymore, spreading your pussy lips with hands, making the pussy gape a bit.');
@@ -2718,7 +2718,7 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Oh yeah! Take it like a good piss slut!"</font...
                 scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Oh yeah! Take it like a good piss slut!"</font>`);
                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Not too much, please!"</font>
-                scene.text(`<font color=#${((s as any).pcs_font || '')}>"Not too much, please!"</font>`);
+                scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Not too much, please!"</font>`);
                 scene.text('He hesitantly stops the stream, but still leaves your pussy filled to the edge of it.');
                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Now it''s time for the last delivery! Show me ...
                 scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Now it's time for the last delivery! Show me your assgape!"</font>`);
@@ -2734,9 +2734,9 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                   scene.img('images/locations/pavlovsk/resident/sharedapt/sex/nd/pissanus.mp4');
                   scene.text('You arch your back, pointing your ass high as possible, spreading your asscheeks with hands and giving him the best access to your gaping anus.');
                   // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"There is still at least a liter in there <<$pc...
-                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"There is still at least a liter in there ${((s as any).pcs_firstname || '')} and it's all going into your backdoor!"</font>`);
+                  scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"There is still at least a liter in there ${((s as any).pcs_firstname ?? '')} and it's all going into your backdoor!"</font>`);
                   // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"<i>Oh no…</i>"</font>
-                  scene.text(`<font color=#${((s as any).pcs_font || '')}>"<i>Oh no…</i>"</font>`);
+                  scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"<i>Oh no…</i>"</font>`);
                   scene.text('He thrusts his cock into your anus and shortly a warm feeling starts filling your belly, slowly expanding upwards to your stomach.');
                   // TODO-QSP: dynamic text: <<$npc_firstname[$boy]>> doesn''t stop pissing as he removes his cock out of you...
                   scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} doesn't stop pissing as he removes his cock out of your anus and penetrates it again, several times around.`);
@@ -2773,11 +2773,11 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                       scene.text(`${((s as any).npc_firstname ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} get's up, cleaning his hands with a towel, looking down at you lying there, breathing.`);
                       if (((s as any).Oleg ?? 0)?.['piss'] === 0) {
                         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Are you alright <<$pcs_firstname>>? I hope I w...
-                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you alright ${((s as any).pcs_firstname || '')}? I hope I wasn't too harsh on you. I was so aroused and drawn into it that I almost lost control over myself."</font>`);
+                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you alright ${((s as any).pcs_firstname ?? '')}? I hope I wasn't too harsh on you. I was so aroused and drawn into it that I almost lost control over myself."</font>`);
                         // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"I… I''m OK. I think."</font>
-                        scene.text(`<font color=#${((s as any).pcs_font || '')}>"I… I'm OK. I think."</font>`);
+                        scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"I… I'm OK. I think."</font>`);
                         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"So how was it <<$pcs_firstname>>?"</font>
-                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"So how was it ${((s as any).pcs_firstname || '')}?"</font>`);
+                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"So how was it ${((s as any).pcs_firstname ?? '')}?"</font>`);
                         scene.actions([
                           { label: 'The worst experience ever! Never speak of it again', handler: (st: GameState) => {
     (st as any).pissLike = (-1);
@@ -2798,7 +2798,7 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Are you alright <<$pcs_firstname>>? I hope I w...
-                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you alright ${((s as any).pcs_firstname || '')}? I hope I wasn't too harsh on you. I was so aroused and drawn into it that I almost lost control over myself."</font>`);
+                        scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Are you alright ${((s as any).pcs_firstname ?? '')}? I hope I wasn't too harsh on you. I was so aroused and drawn into it that I almost lost control over myself."</font>`);
                         scene.actions([
                           { label: 'I\'m fine', handler: (st: GameState) => {
     // TODO-QSP: shared_apt['step'] = 110
@@ -2809,9 +2809,9 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                       if (((s as any).shared_apt ?? 0)?.['step'] === 100) {
                         if (((s as any).pissLike ?? 0) === -1) {
                           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Please don''t be mad at me <<$pcs_firstname>>,...
-                          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please don't be mad at me ${((s as any).pcs_firstname || '')}, you were the one who initiated this, I just told you about it. I didn't force you or anything."</font>`);
+                          scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Please don't be mad at me ${((s as any).pcs_firstname ?? '')}, you were the one who initiated this, I just told you about it. I didn't force you or anything."</font>`);
                           // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"One more word and I will not just piss, but also shi...
-                          scene.text(`<font color=#${((s as any).pcs_font || '')}>"One more word and I will not just piss, but also shit on you!"</font>`);
+                          scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"One more word and I will not just piss, but also shit on you!"</font>`);
                           // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>><i>(gulp)</i></font>
                           scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}><i>(gulp)</i></font>`);
                           scene.actions([
@@ -2823,7 +2823,7 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                         } else {
                           if ((!((s as any).pissLike ?? 0))) {
                             // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"I am sorry <<$pcs_firstname>>, I never meant t...
-                            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I am sorry ${((s as any).pcs_firstname || '')}, I never meant to humiliate you or anything. I guess this was both first time and last time, was it?"</font>`);
+                            scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"I am sorry ${((s as any).pcs_firstname ?? '')}, I never meant to humiliate you or anything. I guess this was both first time and last time, was it?"</font>`);
                             scene.actions([
                               { label: 'Definitely!', handler: (st: GameState) => {
     // TODO-QSP: Oleg['piss'] = -2
@@ -2849,9 +2849,9 @@ function enterOleg_SexPiss(s: GameState, scene: SceneBuilder): void {
                                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"Awesome! And I thought I am the only one who l...
                                 scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"Awesome! And I thought I am the only one who likes this kinda stuff!"</font>`);
                                 // TODO-QSP: dynamic text: <font color=#<<$pcs_font>>>"Yup, who would say that."</font>
-                                scene.text(`<font color=#${((s as any).pcs_font || '')}>"Yup, who would say that."</font>`);
+                                scene.text(`<font color=#${((s as any).pcs_font ?? '')}>"Yup, who would say that."</font>`);
                                 // TODO-QSP: dynamic text: <font color=#<<$Oleg[''font'']>>>"You are such a cool girl <<$pcs_firstname>>!"<...
-                                scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"You are such a cool girl ${((s as any).pcs_firstname || '')}!"</font>`);
+                                scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font'] ?? ''}>"You are such a cool girl ${((s as any).pcs_firstname ?? '')}!"</font>`);
                                 scene.actions([
                                   { label: 'Yes', handler: (st: GameState) => {
     // TODO-QSP: Oleg['piss'] = 1

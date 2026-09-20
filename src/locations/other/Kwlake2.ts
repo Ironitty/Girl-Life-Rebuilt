@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at Kat\'s mysterious look and follow her lead, sitting down near him. Kat immediately pulls you in for a kiss, and slowly rubs your wet slit while the two of you make out.');
     scene.text('The man watches the two of you intently, and you notice a bulge forming in his groin.');
     // TODO-QSP: dynamic text: "Look at him!" Kat moans into your mouth between kisses. "Don''t you want him to...
-    scene.text(`"Look at him!" Kat moans into your mouth between kisses. "Don't you want him to fuck you, ${((st as any).pcs_nickname || '')}? Because I know I do…"`);
+    scene.text(`"Look at him!" Kat moans into your mouth between kisses. "Don't you want him to fuck you, ${((st as any).pcs_nickname ?? '')}? Because I know I do…"`);
     qspCall(st, 'arousal', 'kiss', (-5), 'lesbian');
     qspCall(st, 'arousal', 'vaginal_finger', 5, 'lesbian');
     qspCall(st, 'arousal', 'end');

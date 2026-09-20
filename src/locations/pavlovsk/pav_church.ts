@@ -98,7 +98,7 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
   (s as any).mom_church = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#CB00A2>"Natasha <<$pcs_lastname>>"</font></h4></b></...
-  scene.text(`<center><b><h4><font color=#CB00A2>"Natasha ${((s as any).pcs_lastname || '')}"</font></h4></b></center>`);
+  scene.text(`<center><b><h4><font color=#CB00A2>"Natasha ${((s as any).pcs_lastname ?? '')}"</font></h4></b></center>`);
   if (((s as any).VKChurchNo ?? 0) === 4  ||  ((s as any).VKChurchNo ?? 0) === 5) {
     scene.img('images/characters/pavlovsk/resident/mom/prost10.jpg');
   } else {
@@ -106,17 +106,17 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).motherKnowWhore ?? 0) === 0  &&  (!((s as any).VKChurchIntro ?? 0))) {
     // TODO-QSP: dynamic text: You suddenly hear someone calling you out. "<<$pcs_firstname>>? I never expected...
-    scene.text(`You suddenly hear someone calling you out. "${((s as any).pcs_firstname || '')}? I never expected you to come here without me dragging you."`);
+    scene.text(`You suddenly hear someone calling you out. "${((s as any).pcs_firstname ?? '')}? I never expected you to come here without me dragging you."`);
     scene.text('You turn to see your mother sitting in the middle row, who motions for you to sit next to her.');
   } else {
     if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).VKChurchNo ?? 0) < 4) {
       // TODO-QSP: dynamic text: You see your mother sitting in the middle row, who turns and notices you. "<<$pc...
-      scene.text(`You see your mother sitting in the middle row, who turns and notices you. "${((s as any).pcs_firstname || '')}, you're here! Come and take a seat." She motions for you to sit next to her.`);
+      scene.text(`You see your mother sitting in the middle row, who turns and notices you. "${((s as any).pcs_firstname ?? '')}, you're here! Come and take a seat." She motions for you to sit next to her.`);
     } else {
       if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).VKChurchNo ?? 0) === 4) {
         scene.text('You see your mother sitting in the middle row. She quickly notices you, gets up and walks over to you.');
         // TODO-QSP: dynamic text: "<<$pcs_firstname>>, we need to talk," she says sternly as she drags you out of ...
-        scene.text(`"${((s as any).pcs_firstname || '')}, we need to talk," she says sternly as she drags you out of the church.`);
+        scene.text(`"${((s as any).pcs_firstname ?? '')}, we need to talk," she says sternly as she drags you out of the church.`);
       } else {
         if (((s as any).motherKnowWhore ?? 0) > 0  ||  ((s as any).VKChurchNo ?? 0) === 5) {
           scene.text('You see your mother sitting in the middle row. She peeks over in your direction before turning away from you, as if you\'re not there.');
@@ -508,7 +508,7 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'stranger', (Math.floor(Math.random() * 28) + 18), 1, 1);
   scene.text('The service ends and you stand up to leave. As you near the entrance, a man approaches while gazing lecherously at you.');
   // TODO-QSP: dynamic text: "You''re <<$pcs_nickname>>, aren''t you?"
-  scene.text(`"You're ${((s as any).pcs_nickname || '')}, aren't you?"`);
+  scene.text(`"You're ${((s as any).pcs_nickname ?? '')}, aren't you?"`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexApproachRun(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
@@ -1112,7 +1112,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).VKChurchQW ?? 0) === 1) {
     scene.text('As the church ceremonies ends, you and your mother get up and collect your things before walking out of the church, where she places her hand on your shoulder.');
     // TODO-QSP: dynamic text: "I''m really happy that you decided to join me today, <<$pcs_nickname>>. You cam...
-    scene.text(`"I'm really happy that you decided to join me today, ${((s as any).pcs_nickname || '')}. You came here by your own choice and I'm proud of you. Now take this and get yourself some lunch."`);
+    scene.text(`"I'm really happy that you decided to join me today, ${((s as any).pcs_nickname ?? '')}. You came here by your own choice and I'm proud of you. Now take this and get yourself some lunch."`);
     // TODO-QSP: dynamic text: She hands you ' + $func('money', 'string_profit', 300) + ' and gently pats your ...
     scene.text('She hands you \' + $func(\'money\', \'string_profit\', 300) + \' and gently pats your shoulder before walking away.');
   } else {
@@ -1141,7 +1141,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
             scene.text('"How do you feel about these ceremonies? Be honest," your mother asks.');
             scene.text('You give her a smile. "I\'ve learned a lot since coming here and there\'s still more to learn. I\'ve been enjoying learning of our lord and savior."');
             // TODO-QSP: dynamic text: Your mother gives you a warm hug as she whispers in your ear. "I''m so proud of ...
-            scene.text(`Your mother gives you a warm hug as she whispers in your ear. "I'm so proud of you, ${((s as any).pcs_firstname || '')}. Your brother and sister can learn so much from you."`);
+            scene.text(`Your mother gives you a warm hug as she whispers in your ear. "I'm so proud of you, ${((s as any).pcs_firstname ?? '')}. Your brother and sister can learn so much from you."`);
             // TODO-QSP: dynamic text: She thens squeezes slightly tighter before releasing you and placing ' + $func('...
             scene.text('She thens squeezes slightly tighter before releasing you and placing \' + $func(\'money\', \'string_profit\', 500) + \' in your pocket. "A small reward for my loving daughter."');
             scene.text('She then waves with a big smile on her face as she walks away.');
@@ -1371,7 +1371,7 @@ function enterTalkPriest(s: GameState, scene: SceneBuilder): void {
     scene.text('You take the broom and begin your task, thankful that the church isn\'t a very large one. You diligently sweep the floor, making sure to get into all the corners. Once the sweeping is done, you mop the floor and then put everything away. You feel a sense of satisfaction and wellbeing at a job well done.');
     scene.text('As you close the closet door, you turn around to find the priest looking at you with a pleased expression.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_firstname>>. You did a fine job." he says. Surprisingly, you ...
-    scene.text(`"Thank you, ${((st as any).pcs_firstname || '')}. You did a fine job." he says. Surprisingly, you feel a flush of pleasure at the praise. You finish putting things away and leave.`);
+    scene.text(`"Thank you, ${((st as any).pcs_firstname ?? '')}. You did a fine job." he says. Surprisingly, you feel a flush of pleasure at the praise. You finish putting things away and leave.`);
     scene.actions([
       { label: 'Leave the church', goto: ['pav_church', 'start'] },
     ]);
@@ -1393,7 +1393,7 @@ function enterTalkPriest(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('The priest leads you to a bench in the Narthex and has you sit down with him.');
       // TODO-QSP: dynamic text: "I feel that you have lost your way <<$pcs_firstname>>," he begins softly. "Such...
-      scene.text(`"I feel that you have lost your way ${((st as any).pcs_firstname || '')}," he begins softly. "Such behavior can only lead to a life of misery and sin."`);
+      scene.text(`"I feel that you have lost your way ${((st as any).pcs_firstname ?? '')}," he begins softly. "Such behavior can only lead to a life of misery and sin."`);
       scene.text('"I know father," you reply with a sigh. "But I just can\'t seem to help it sometimes."');
       scene.actions([
         { label: 'Tease him', goto: ['pav_church', 'tease'] },
@@ -1433,7 +1433,7 @@ function enterTalkPriest(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "I''m sorry <<$pcs_firstname>>. It seems that I''m needed by Mrs. Seldipi," he s...
-      scene.text(`"I'm sorry ${((st as any).pcs_firstname || '')}. It seems that I'm needed by Mrs. Seldipi," he says with obvious regret. "I've enjoyed our chat. Please think on what we've discussed and we'll talk another time."`);
+      scene.text(`"I'm sorry ${((st as any).pcs_firstname ?? '')}. It seems that I'm needed by Mrs. Seldipi," he says with obvious regret. "I've enjoyed our chat. Please think on what we've discussed and we'll talk another time."`);
       scene.actions([
         { label: 'Leave the church', goto: ['pav_church', 'start'] },
       ]);
@@ -1467,7 +1467,7 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
     scene.text('You look the priest right in the eyes when his attention is on you, slowly leaning forward and allowing your breasts to be exposed. To your delight, you see his eyes dart to your breasts and stay there.');
     if (((s as any).kirillsex ?? 0) !== 0) {
       // TODO-QSP: dynamic text: "Very nice, <<$pcs_firstname>>." Father Kirill whispers as he reaches out and ca...
-      scene.text(`"Very nice, ${((s as any).pcs_firstname || '')}." Father Kirill whispers as he reaches out and caresses your breasts before pulling your top back into place, covering you once again. "Follow me."`);
+      scene.text(`"Very nice, ${((s as any).pcs_firstname ?? '')}." Father Kirill whispers as he reaches out and caresses your breasts before pulling your top back into place, covering you once again. "Follow me."`);
       qspCall(s, 'willpower', 'sex', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
@@ -1489,7 +1489,7 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "Very nice, <<$pcs_firstname>>." Father Kirill whispers with a smile as he reach...
-      scene.text(`"Very nice, ${((s as any).pcs_firstname || '')}." Father Kirill whispers with a smile as he reaches out and softly caresses your breasts before pulling your top back into place, covering you up once again.`);
+      scene.text(`"Very nice, ${((s as any).pcs_firstname ?? '')}." Father Kirill whispers with a smile as he reaches out and softly caresses your breasts before pulling your top back into place, covering you up once again.`);
       scene.text('"No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it," he murmurs as he fastens your buttons and sighs.');
       scene.text('"Thus it is written, and thus it behooved Christ to suffer, and to rise from the dead the third day," you reply looking at the telltale lump in Father Kirill\'s crotch, "It seems that Jesus is not the only one to rise from the dead," you add with a playful giggle.');
       scene.text('Father Kirill looks at you and opens his mouth to speak but no words come out. With a laugh, you jump up and skip out of the church with a final glance back at the dumbfounded cleric.');
@@ -1509,14 +1509,14 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).Churchbad ?? 0) <= 4  &&  ((s as any).Kirill ?? 0) <= 20) {
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>!" the priest hisses, his face twisted in r...
-        scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}!" the priest hisses, his face twisted in rage. "How dare you behave like this in the House of God! Get out now!"`);
+        scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}!" the priest hisses, his face twisted in rage. "How dare you behave like this in the House of God! Get out now!"`);
         scene.text('Stunned by his unexpected fury, you hastily cover yourself up and flee from the church.');
         scene.actions([
           { label: 'Leave the church', goto: ['pav_church', 'start'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>!" the priest hisses, his face flushed with...
-        scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}!" the priest hisses, his face flushed with embarrassment. "How could you behave like this in the House of God! Cover yourself up, now!"`);
+        scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}!" the priest hisses, his face flushed with embarrassment. "How could you behave like this in the House of God! Cover yourself up, now!"`);
         scene.text('Although it isn\'t the reaction you were expecting, it is a reaction. Looking up at the priest, you can tell that his embarrassment is changing to anger. You decide that it might be best if you leave.');
         scene.actions([
           { label: 'Leave the church', goto: ['pav_church', 'start'] },

@@ -61,7 +61,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     if (((st as any).film ?? 0) > 0) {
       // TODO-QSP: dynamic text: You walk into Dimitri''s office and he stares at you. "<<$pfname>>? What brings ...
-      scene.text(`You walk into Dimitri's office and he stares at you. "${((st as any).pfname || '')}? What brings you here?"`);
+      scene.text(`You walk into Dimitri's office and he stares at you. "${((st as any).pfname ?? '')}? What brings you here?"`);
     } else {
       scene.text('"You\'re not getting on camera Nick, no matter how hot, or desperate, the girl is," he says while looking you over.');
     }
@@ -186,7 +186,7 @@ function enterBomzstartqwestdi(s: GameState, scene: SceneBuilder): void {
         { label: 'Inquire', handler: (st: GameState) => {
     scene.text('"What kind of work are we talking about here?" you ask.');
     // TODO-QSP: dynamic text: "It doesn''t matter. I can''t use one of my girls for this, so you''re free to g...
-    scene.text(`"It doesn't matter. I can't use one of my girls for this, so you're free to go. I'll see you next time you're shooting, ${((st as any).pfname || '')}."`);
+    scene.text(`"It doesn't matter. I can't use one of my girls for this, so you're free to go. I'll see you next time you're shooting, ${((st as any).pfname ?? '')}."`);
     scene.text('Dimitri waves you out of his office and you leave the studio.');
     scene.actions([
       { label: 'Leave', goto: ['city_redlight', 'start'] },
@@ -283,7 +283,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-  } },,
+  } },
 { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     if (((st as any).start_type ?? 0)?.['magic'] === 'tg') {
@@ -307,7 +307,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('"I\'m sorry mister, but I don\'t have that kind of money."');
       qspGoto(st, 'city_trashplace', 'bomzstartqwestdi');
     }
-  } },,
+  } },
 { label: 'Chase him off', handler: (st: GameState) => {
     (st as any).bomzQW = (-10);
     qspCall(st, 'stat', '');

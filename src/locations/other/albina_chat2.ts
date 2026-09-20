@@ -33,7 +33,7 @@ function enterFirstModelTalk1(s: GameState, scene: SceneBuilder): void {
         { label: 'I didn\'t want people to know', handler: (st: GameState) => {
     scene.text('"I just didn\'t want to spread it around," you mumble. "Word gets around town fast, you know? Could you imagine what my mother would say if she found out?"');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she says, looking at you seriously. "I''ve kept secrets a l...
-    scene.text(`"${((st as any).pcs_nickname || '')}," she says, looking at you seriously. "I've kept secrets a lot worse than this over the years. I would've kept this one. Don't you trust me?"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}," she says, looking at you seriously. "I've kept secrets a lot worse than this over the years. I would've kept this one. Don't you trust me?"`);
     scene.text('She looks away from you, seeming genuinely offended that you didn\'t tell her until now.');
     qspCall(st, 'albina_chat', 'small_talk');
   } },
@@ -440,7 +440,7 @@ function enterFirstModelTalkNude3(s: GameState, scene: SceneBuilder): void {
     scene.text('"I didn\'t want to," you say. "I was… I had been working there for a while so they asked. I said no, but then they kept asking. Eventually they just… Talked me into it."');
     scene.text('You trail off and Albina\'s grin melts away, her expression becoming somber.');
     // TODO-QSP: dynamic text: "Oh. That''s… I''m sorry <<$pcs_nickname>>…" She looks away. "I didn''t… I didn'...
-    scene.text(`"Oh. That's… I'm sorry ${((st as any).pcs_nickname || '')}…" She looks away. "I didn't… I didn't realize it was like that…"`);
+    scene.text(`"Oh. That's… I'm sorry ${((st as any).pcs_nickname ?? '')}…" She looks away. "I didn't… I didn't realize it was like that…"`);
     scene.text('You sit in silence for a few moments before Albina turns back towards you tentatively.');
     scene.text('"Do you regret it?"');
     scene.actions([
@@ -513,7 +513,7 @@ function enterFirstModelTalkNude3(s: GameState, scene: SceneBuilder): void {
     scene.text('"I really needed the money," you say, uncomfortably. "I owed some people money and I was desperate. They pay double for your nude debut so I just thought…"');
     scene.text('You trail off and Albina\'s grin melts away, her expression becoming somber.');
     // TODO-QSP: dynamic text: "Oh. That''s… I''m sorry <<$pcs_nickname>>." She shuts the laptop and pushes it ...
-    scene.text(`"Oh. That's… I'm sorry ${((st as any).pcs_nickname || '')}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
+    scene.text(`"Oh. That's… I'm sorry ${((st as any).pcs_nickname ?? '')}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
     scene.text('"It\'s okay," you assure her. "I\'m over it now. It\'s in the past."');
     qspCall(st, 'albina_chat', 'small_talk');
   } },
@@ -532,10 +532,10 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
     if (((st as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
       scene.text('"I told you about why I started shaving, didn\'t I?" she asks in a flat tone, referring to what she told you while you were both drunk after the pool. "What you said reminds me of that."');
       // TODO-QSP: dynamic text: She shuts the screen of the laptop and pushes it away. "I''m sorry <<$pcs_nickna...
-      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((st as any).pcs_nickname || '')}," she says tenderly. "Maybe we should talk about something else?"`);
+      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((st as any).pcs_nickname ?? '')}," she says tenderly. "Maybe we should talk about something else?"`);
     } else {
       // TODO-QSP: dynamic text: "That''s really shitty, <<$pcs_nickname>>," she says before abruptly shutting th...
-      scene.text(`"That's really shitty, ${((st as any).pcs_nickname || '')}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
+      scene.text(`"That's really shitty, ${((st as any).pcs_nickname ?? '')}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
     }
     qspCall(st, 'albina_chat', 'small_talk');
   } },
@@ -546,10 +546,10 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
     if (((st as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
       scene.text('"I told you about why I started shaving, didn\'t I?" she asks in a flat tone, referring to what she told you while you were both drunk after the pool. "What you said reminds me of that."');
       // TODO-QSP: dynamic text: She shuts the screen of the laptop and pushes it away. "I''m sorry <<$pcs_nickna...
-      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((st as any).pcs_nickname || '')}," she says tenderly. "Maybe we should talk about something else?"`);
+      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((st as any).pcs_nickname ?? '')}," she says tenderly. "Maybe we should talk about something else?"`);
     } else {
       // TODO-QSP: dynamic text: "That''s really shitty, <<$pcs_nickname>>," she says before abruptly shutting th...
-      scene.text(`"That's really shitty, ${((st as any).pcs_nickname || '')}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
+      scene.text(`"That's really shitty, ${((st as any).pcs_nickname ?? '')}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
     }
     qspCall(st, 'albina_chat', 'small_talk');
   } },
@@ -664,9 +664,9 @@ function enterFirstModelTalkShy2(s: GameState, scene: SceneBuilder): void {
       { label: 'No (lie)', handler: (st: GameState) => {
     scene.text('"No!" you say quickly. "No way! I\'m not that desperate!"');
     // TODO-QSP: dynamic text: "Hmmm…" She looks at you suspiciously. "I don''t believe you. Why don''t we fire...
-    scene.text(`"Hmmm…" She looks at you suspiciously. "I don't believe you. Why don't we fire up my laptop and do a little search for your name online? '${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')} naked'"`);
+    scene.text(`"Hmmm…" She looks at you suspiciously. "I don't believe you. Why don't we fire up my laptop and do a little search for your name online? '${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')} naked'"`);
     // TODO-QSP: dynamic text: She reaches for her laptop and you slap her hand down to the bed. She turns slow...
-    scene.text(`She reaches for her laptop and you slap her hand down to the bed. She turns slowly, giving you a smug smirk. "Want to confess something ${((st as any).pcs_nickname || '')}?"`);
+    scene.text(`She reaches for her laptop and you slap her hand down to the bed. She turns slowly, giving you a smug smirk. "Want to confess something ${((st as any).pcs_nickname ?? '')}?"`);
     scene.text('"No," you insist, putting your nose up at her. "I just don\'t want you to see any other pictures of me. It\'s embarrassing."');
     scene.text('"Oh, I am <i>so</i> going to schlick off to naked pictures of you later!" she grins.');
     scene.text('"You are not!" you gasp, mouth open wide.');
@@ -704,7 +704,7 @@ function enterFirstModelTalkShy3(s: GameState, scene: SceneBuilder): void {
       { label: 'I was pressured into it', handler: (st: GameState) => {
     scene.text('"I didn\'t want to," you say. "I was… I had been working there for a while so they asked. I said no, but then they kept asking. Eventually they just… Talked me into it."');
     // TODO-QSP: dynamic text: You trail off and Albina''s grin melts away, her expression becoming somber. "Oh...
-    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((st as any).pcs_nickname || '')}…" She looks away. "I didn't… I didn't realize it was like that…"`);
+    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((st as any).pcs_nickname ?? '')}…" She looks away. "I didn't… I didn't realize it was like that…"`);
     scene.text('You sit in silence for a few seconds before Albina turns back towards you tentatively.');
     scene.text('"Do you regret it?"');
     scene.actions([
@@ -756,7 +756,7 @@ function enterFirstModelTalkShy3(s: GameState, scene: SceneBuilder): void {
     { label: 'I really needed the money (to pay off)', handler: (st: GameState) => {
     scene.text('"I really needed the money," you say, uncomfortably. "I owed some people money and I was desperate. They pay double for your nude debut so I just thought…"');
     // TODO-QSP: dynamic text: You trail off and Albina''s grin melts away, her expression becoming somber. "Oh...
-    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((st as any).pcs_nickname || '')}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
+    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((st as any).pcs_nickname ?? '')}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
     qspCall(st, 'albina_chat', 'small_talk');
   } },
   ]);
@@ -951,10 +951,10 @@ function enterFirstModelTalkNudeShyPubesShaved(s: GameState, scene: SceneBuilder
     if (((st as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
       scene.text('"I told you about why I started shaving, didn\'t I?" she asks referring to that story she told you while you were both drunk after the pool. "What you said reminds me of that."');
       // TODO-QSP: dynamic text: She shuts the screen of the laptop and pushes it away. "I''m sorry <<$pcs_nickna...
-      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((st as any).pcs_nickname || '')}," she says tenderly. "Maybe we should talk about something else?"`);
+      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((st as any).pcs_nickname ?? '')}," she says tenderly. "Maybe we should talk about something else?"`);
     } else {
       // TODO-QSP: dynamic text: "That''s really shitty, <<$pcs_nickname>>," she says before abruptly shutting th...
-      scene.text(`"That's really shitty, ${((st as any).pcs_nickname || '')}," she says before abruptly shutting the screen of the laptop. "Should we talk about something else?"`);
+      scene.text(`"That's really shitty, ${((st as any).pcs_nickname ?? '')}," she says before abruptly shutting the screen of the laptop. "Should we talk about something else?"`);
     }
     scene.text('You nod gratefully.');
     qspCall(st, 'albina_chat', 'small_talk');
@@ -1091,7 +1091,7 @@ function enterRecurrentPornTalkCasual(s: GameState, scene: SceneBuilder): void {
 function enterRecurrentPornTalk2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" Albina says slowly. "I need to ask you… Do you really think...
-  scene.text(`"${((s as any).pcs_nickname || '')}…" Albina says slowly. "I need to ask you… Do you really think shooting porn is worth the money?"`);
+  scene.text(`"${((s as any).pcs_nickname ?? '')}…" Albina says slowly. "I need to ask you… Do you really think shooting porn is worth the money?"`);
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecurrentPornTalk2Menu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
@@ -1123,7 +1123,7 @@ function enterRecurrentPornTalk2NeedMoney(s: GameState, scene: SceneBuilder): vo
     { label: '"I need the money"', handler: (st: GameState) => {
     scene.text('"I <i>need</i> the money, Albina," you reply uncomfortably. "I don\'t have a choice."');
     // TODO-QSP: dynamic text: "Yes you do," she says softly. "There are other things you can do for money, <<$...
-    scene.text(`"Yes you do," she says softly. "There are other things you can do for money, ${((st as any).pcs_nickname || '')}…"`);
+    scene.text(`"Yes you do," she says softly. "There are other things you can do for money, ${((st as any).pcs_nickname ?? '')}…"`);
     scene.text('"Not without a diploma," you say with a shake of your head. "Or a degree. Or a certification. Or working for 40 hours a week for shit pay. I don\'t have that time or experience. For porn, all I have to do is look pretty as I get fucked on camera. This is the best job I can get with what I have."');
     scene.text('Albina\'s eyes mist up with tears and she looks away, rubbing her eyes with the palm of her hand.');
     scene.text('You let the conversation die off and change subjects.');

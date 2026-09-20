@@ -68,14 +68,14 @@ function enterSetResizeAllAct(s: GameState, scene: SceneBuilder): void {
   } else {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tailor_total_resize_cost ?? 0)) === 0) {
       // TODO-QSP: dynamic text: You do not have enough money to resize all of your clothing. The total cost woul...
-      scene.text(`You do not have enough money to resize all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).tailor_total_resize_cost || ''))}.`);
+      scene.text(`You do not have enough money to resize all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).tailor_total_resize_cost ?? ''))}.`);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Resize all your clothes (0:10, ' + String(qspFunc(s, 'money', 'string_price', ((s as any).tailor_total_resize_cost || '')) ?? '') + ')', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Resize all your clothes (0:10, ' + String(qspFunc(s, 'money', 'string_price', ((s as any).tailor_total_resize_cost ?? '')) ?? '') + ')', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 10;
     qspCall(st, 'money', 'pay', ((st as any).tailor_total_resize_cost ?? 0));
     // TODO-QSP: dynamic text: You resize all clothing for <<$func(''money'', ''string_price'', tailor_total_re...
-    scene.text(`You resize all clothing for ${qspFunc(s, 'money', 'string_price', ((st as any).tailor_total_resize_cost || ''))}.`);
+    scene.text(`You resize all clothing for ${qspFunc(s, 'money', 'string_price', ((st as any).tailor_total_resize_cost ?? ''))}.`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterResizeAll(s, scene); (st as any).locArgs = __savedLocArgs; }
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterSetLeaveAct(s, scene); (st as any).locArgs = __savedLocArgs; }
   } },

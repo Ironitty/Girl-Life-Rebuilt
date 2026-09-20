@@ -185,7 +185,7 @@ function enterEtaj_2(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((st as any).mishahouse_count ?? 0) <= 0  &&  ((st as any).dyadyamishaevent ?? 0) >= 1  &&  ((st as any).week ?? 0) < 6  &&  ((st as any).hour ?? 0) >= 19  &&  ((st as any).hour ?? 0) <= 23  ||  ((st as any).mishahouse_count ?? 0) <= 0  &&  ((st as any).dyadyamishaevent ?? 0) >= 1  &&  ((st as any).week ?? 0) >= 6  &&  ((st as any).hour ?? 0) >= 10  &&  ((st as any).hour ?? 0) <= 23) {
               // TODO-QSP: dynamic text: You ring the bell and Uncle Misha opens the door. He says: "Sorry <<$pcs_nicknam...
-              scene.text(`You ring the bell and Uncle Misha opens the door. He says: "Sorry ${((st as any).pcs_nickname || '')}, I'm busy right now. Maybe come back tomorrow?"`);
+              scene.text(`You ring the bell and Uncle Misha opens the door. He says: "Sorry ${((st as any).pcs_nickname ?? '')}, I'm busy right now. Maybe come back tomorrow?"`);
             } else {
               scene.text('You ring the doorbell, but no one answers the door.');
             }
@@ -218,7 +218,7 @@ function enterEtaj2Paint(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: You paint: <<paint_blue>>
-    scene.text(`You paint: ${((s as any).paint_blue || '')}`);
+    scene.text(`You paint: ${((s as any).paint_blue ?? '')}`);
     scene.actions([
       { label: 'Shake your head and leave', goto: ['pod_ezd', 'etaj_2'] },
       { label: 'Cover it up', handler: (st: GameState) => {
@@ -551,7 +551,7 @@ function enterFloor2Event_1(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 2) + 0) === 0  &&  (((((s as any).PCloStyle ?? 0) === 4  ||  ((s as any).PCloProstitute ?? 0) === 1)  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 300)  ||  ((s as any).dyadyamishaevent ?? 0) >= 1  ||  ((s as any).PCloStyle2 ?? 0) === 3  ||  ((s as any).PCloStrip ?? 0) === 1)) {
       scene.text('You have a chat with Uncle Misha as he smokes his cigarette. You can tell he\'s undressing you in his mind, but in a way you find it kind of flattering. As he stubs out his cigarette and puffs away the last bits of smoke, he asks:');
       // TODO-QSP: dynamic text: "Say, <<$pcs_nickname>>, would you like to make an old man feel good? I could us...
-      scene.text(`"Say, ${((s as any).pcs_nickname || '')}, would you like to make an old man feel good? I could use a quick blowjob… there'll be ${qspFunc(s, 'money', 'string_profit', 100)} in it for you, for your troubles."`);
+      scene.text(`"Say, ${((s as any).pcs_nickname ?? '')}, would you like to make an old man feel good? I could use a quick blowjob… there'll be ${qspFunc(s, 'money', 'string_profit', 100)} in it for you, for your troubles."`);
       qspCall(s, 'willpower', 'bj', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
@@ -568,7 +568,7 @@ function enterFloor2Event_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/mishasmoke.jpg');
     scene.text('"Sorry Uncle Misha, but I can\'t right now. Maybe some other time?" you apologize. He doesn\'t seem to mind at all.');
     // TODO-QSP: dynamic text: "No problem <<$pcs_nickname>>, I''ll hold you to that!" he says as he gives you ...
-    scene.text(`"No problem ${((st as any).pcs_nickname || '')}, I'll hold you to that!" he says as he gives you a lewd grin. "In that case, I'd better get going. I'll talk to you later."`);
+    scene.text(`"No problem ${((st as any).pcs_nickname ?? '')}, I'll hold you to that!" he says as he gives you a lewd grin. "In that case, I'd better get going. I'll talk to you later."`);
     scene.actions([
       { label: 'Say goodbye', goto: ['pod_ezd', 'etaj_2'] },
     ]);
@@ -1213,9 +1213,9 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).fame ?? 0)?.['pav_sex'] < ((st as any).fame ?? 0)?.['pav_prostitute']) {
         // TODO-QSP: dynamic text: As you smoke the cigarette, you hear the boys whisper among themselves. "That''s...
-        scene.text('As you smoke the cigarette, you hear the boys whisper among themselves. "That\'s ' + ((st as any).pcs_nickname || '') + '! I heard she\'s a \'+func(\'gopsex\', \'hide\', \'gg_whore_text\')+\'. From what I\'ve been told, she\'ll let you do anything to her if the price is right. Let\'s see if she\'ll fuck us cheap!."');
+        scene.text('As you smoke the cigarette, you hear the boys whisper among themselves. "That\'s ' + ((st as any).pcs_nickname ?? '') + '! I heard she\'s a \'+func(\'gopsex\', \'hide\', \'gg_whore_text\')+\'. From what I\'ve been told, she\'ll let you do anything to her if the price is right. Let\'s see if she\'ll fuck us cheap!."');
         // TODO-QSP: dynamic text: One of the guys walks close to you and gestures for you to lean your head closer...
-        scene.text(`One of the guys walks close to you and gestures for you to lean your head closer to his. When you do, he pulls all of his money out of his pocket. He counts the crumpled bills and offers them to you, asking, "Is ${qspFunc(s, 'money', 'string_profit', ((st as any).rnd_money_sex || ''))} enough for two?"`);
+        scene.text(`One of the guys walks close to you and gestures for you to lean your head closer to his. When you do, he pulls all of his money out of his pocket. He counts the crumpled bills and offers them to you, asking, "Is ${qspFunc(s, 'money', 'string_profit', ((st as any).rnd_money_sex ?? ''))} enough for two?"`);
         scene.text('He never mentions what exactly he wants you to do for him and his friend, but their lecherous and lustful eyes keep roaming all over your body.');
         qspCall(st, 'willpower', 'prostitution', 'resist');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -1242,7 +1242,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(st, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
         // TODO-QSP: dynamic text: As you smoke the cigarette, you hear the boys whisper among themselves: "That''s...
-        scene.text(`As you smoke the cigarette, you hear the boys whisper among themselves: "That's ${((st as any).pcs_nickname || '')}. I heard she's a total fleshlight-wannabe. I bet she would start drooling and sucking us if we unzip and show her our dicks!"`);
+        scene.text(`As you smoke the cigarette, you hear the boys whisper among themselves: "That's ${((st as any).pcs_nickname ?? '')}. I heard she's a total fleshlight-wannabe. I bet she would start drooling and sucking us if we unzip and show her our dicks!"`);
         qspCall(st, 'willpower', 'gangbang', 'resist');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
@@ -1289,9 +1289,9 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
       if (((st as any).fame ?? 0)?.['pav_sex'] < ((st as any).fame ?? 0)?.['pav_prostitute']) {
         qspCall(st, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
         // TODO-QSP: dynamic text: You hear the boys trying to whisper among themselves. "That''s <<$pcs_nickname>>...
-        scene.text('You hear the boys trying to whisper among themselves. "That\'s ' + ((st as any).pcs_nickname || '') + '! I heard she\'s a \'+func(\'gopsex\', \'hide\', \'gg_whore_text\')+\'. Rumor says she\'ll let you do anything to her for rubles, I want to see if she\'ll fuck us cheap!"');
+        scene.text('You hear the boys trying to whisper among themselves. "That\'s ' + ((st as any).pcs_nickname ?? '') + '! I heard she\'s a \'+func(\'gopsex\', \'hide\', \'gg_whore_text\')+\'. Rumor says she\'ll let you do anything to her for rubles, I want to see if she\'ll fuck us cheap!"');
         // TODO-QSP: dynamic text: One of the guys walks closer to you and gestures for you to do the same. When yo...
-        scene.text(`One of the guys walks closer to you and gestures for you to do the same. When you do, he pulls all of his money out of his pocket. He counts the bills and offers them to you, asking somewhat excitedly: "Is ${qspFunc(s, 'money', 'string_profit', ((st as any).rnd_money_sex || ''))} enough for two?"`);
+        scene.text(`One of the guys walks closer to you and gestures for you to do the same. When you do, he pulls all of his money out of his pocket. He counts the bills and offers them to you, asking somewhat excitedly: "Is ${qspFunc(s, 'money', 'string_profit', ((st as any).rnd_money_sex ?? ''))} enough for two?"`);
         scene.text('He never mentions what exactly he wants you to do for him and his friend, but their lecherous and lustful gaze make you shudder.');
         qspCall(st, 'willpower', 'prostitution', 'resist');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
@@ -1319,7 +1319,7 @@ function enterBoysSmoke(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(st, 'exp_gain', 'prcptn', (Math.floor(Math.random() * 2) + 1));
         // TODO-QSP: dynamic text: You hear the boys whisper among themselves. "That''s <<$pcs_nickname>>. I heard ...
-        scene.text(`You hear the boys whisper among themselves. "That's ${((st as any).pcs_nickname || '')}. I heard she's a wanton slut that lives only for pleasing cocks. I bet she would start drooling and sucking if we just show her our dicks!"`);
+        scene.text(`You hear the boys whisper among themselves. "That's ${((st as any).pcs_nickname ?? '')}. I heard she's a wanton slut that lives only for pleasing cocks. I bet she would start drooling and sucking if we just show her our dicks!"`);
         qspCall(st, 'willpower', 'gangbang', 'resist');
         if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
           scene.actions([
@@ -1362,7 +1362,7 @@ function enterMishaBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/misha/sex/otsos_misha.jpg');
   // TODO-QSP: dynamic text: You give him a quick nod and take a seat on the steps. As he approaches you, he ...
-  scene.text(`You give him a quick nod and take a seat on the steps. As he approaches you, he pulls his erect ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick out through his opened zipper. You wrap your lips around the head of his cock and tease it with your tongue, putting your fingers around his shaft and beginning to gently stroke him while you suck. He doesn't last long at all, and within a few minutes, he spurts his load onto your tongue. You swallow it down and show him your open mouth, lifting your tongue and moving it to the sides to prove you swallowed it. "Well worth it. That was great, ${((s as any).pcs_nickname || '')}", he says while he hands you the money as promised. Then he excuses himself and turns to leave, saying. "Sorry girl, but I got things to do."`);
+  scene.text(`You give him a quick nod and take a seat on the steps. As he approaches you, he pulls his erect ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dick out through his opened zipper. You wrap your lips around the head of his cock and tease it with your tongue, putting your fingers around his shaft and beginning to gently stroke him while you suck. He doesn't last long at all, and within a few minutes, he spurts his load onto your tongue. You swallow it down and show him your open mouth, lifting your tongue and moving it to the sides to prove you swallowed it. "Well worth it. That was great, ${((s as any).pcs_nickname ?? '')}", he says while he hands you the money as promised. Then he excuses himself and turns to leave, saying. "Sorry girl, but I got things to do."`);
   qspCall(s, 'arousal', 'bj', 5, 'prostitution', 'exhibitionism');
   qspCall(s, 'cum_call', 'mouth', 'A54');
   qspCall(s, 'arousal', 'end');
@@ -1402,7 +1402,7 @@ function enterJuliamil(s: GameState, scene: SceneBuilder): void {
       { label: 'Kiss her back and show her your boobs', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia2.jpg');
     // TODO-QSP: dynamic text: You return her kiss, which makes her grow bolder and kiss you more enthusiastica...
-    scene.text(`You return her kiss, which makes her grow bolder and kiss you more enthusiastically. After an intense make-out session, she pulls her shirt down revealing her modest boobs. As you mimic her, she pulls you in for another deep kiss. Then she whispers in your ear: "${((st as any).pcs_nickname || '')}, I need you please, lick my pussy!"`);
+    scene.text(`You return her kiss, which makes her grow bolder and kiss you more enthusiastically. After an intense make-out session, she pulls her shirt down revealing her modest boobs. As you mimic her, she pulls you in for another deep kiss. Then she whispers in your ear: "${((st as any).pcs_nickname ?? '')}, I need you please, lick my pussy!"`);
     qspCall(st, 'arousal', 'foreplay', 2, 'lesbian');
     qspCall(st, 'stat', '');
     qspCall(st, 'willpower', 'cuni', 'force');
@@ -1420,7 +1420,7 @@ function enterJuliamil(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia5.jpg');
     scene.text('You expose your pussy and gently rub a finger over your clit, telling her. "No, you\'re going to lick me first."');
     // TODO-QSP: dynamic text: "No <<$pcs_nickname>>, please lick me, I''m begging you!"
-    scene.text(`"No ${((st as any).pcs_nickname || '')}, please lick me, I'm begging you!"`);
+    scene.text(`"No ${((st as any).pcs_nickname ?? '')}, please lick me, I'm begging you!"`);
     scene.text('You lay back and spread you legs. "Do as I say." You tell her and pull her head into your crotch, once there she starts to eagerly lick at your pussy.');
     qspCall(st, 'arousal', 'cuni', 5, 'lesbian');
     qspCall(st, 'stat', '');
@@ -1437,9 +1437,9 @@ function enterJuliamil(s: GameState, scene: SceneBuilder): void {
     scene.text('When you notice her pussy is getting soaked, you pull away from her. She opens her mouth to complain, but closes it again when she sees you were just grabbing the dildo and closes her eyes.');
     scene.text('Her juices have lubricated her pussy quite well, and you have no difficulty working the dildo all the way in. Fucking her pussy with it in a teasingly slow fashion, you stop moving it for a few seconds every time she begs or complains. Her pussy is so slick now, the juices are beginning to cover your fingers as they run down the dildo. She starts bucking against your hand holding the dildo, trying her best to stifle her moans and stay upright as her orgasm hits her hard.');
     // TODO-QSP: dynamic text: After a few seconds she looks into your eyes and whispers: "Wow, <<$pcs_nickname...
-    scene.text(`After a few seconds she looks into your eyes and whispers: "Wow, ${((st as any).pcs_nickname || '')}, that was amazing! I don't think I've ever orgasmed that hard before."`);
+    scene.text(`After a few seconds she looks into your eyes and whispers: "Wow, ${((st as any).pcs_nickname ?? '')}, that was amazing! I don't think I've ever orgasmed that hard before."`);
     // TODO-QSP: dynamic text: Then she notices the time: "Oh crap, I''m late! I''m so late! I''m sorry <<$pcs_...
-    scene.text(`Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry ${((st as any).pcs_nickname || '')}, I'll make it up to you! I promise! Maybe come visit me later at my place? If you bring some wine we could finish our homework quickly, and then have a good time?" she says with a wink.`);
+    scene.text(`Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry ${((st as any).pcs_nickname ?? '')}, I'll make it up to you! I promise! Maybe come visit me later at my place? If you bring some wine we could finish our homework quickly, and then have a good time?" she says with a wink.`);
     scene.text('Without waiting for a response, Julia quickly gathers her belongings and runs off. Despite not getting off yourself, that was a lot of fun.');
     qspCall(st, 'arousal', 'vaginal_dildo_give', 5, 'lesbian');
     qspCall(st, 'arousal', 'end');
@@ -1471,7 +1471,7 @@ function enterJuliamil(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia7.jpg');
     // TODO-QSP: dynamic text: Julia feels like she has completely lost control of the situation, begging and p...
-    scene.text(`Julia feels like she has completely lost control of the situation, begging and pleading whenever she talks now. "${((st as any).pcs_nickname || '')}, please lick my ass! It would feel so good, please!" You decide to enjoy your power trip a little more, and tell her, "Right after you suck your juices off this dildo and my fingers." Julia happily complies, lapping and sucking her own juices off your fingers and the dildo.`);
+    scene.text(`Julia feels like she has completely lost control of the situation, begging and pleading whenever she talks now. "${((st as any).pcs_nickname ?? '')}, please lick my ass! It would feel so good, please!" You decide to enjoy your power trip a little more, and tell her, "Right after you suck your juices off this dildo and my fingers." Julia happily complies, lapping and sucking her own juices off your fingers and the dildo.`);
     qspCall(st, 'arousal', 'foreplay', 2, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -1479,9 +1479,9 @@ function enterJuliamil(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/stairs/julia8.jpg');
     scene.text('Well fair\'s fair, she earned it. You turn her around and put your hands on her ass cheeks and pull them apart as you gently lick her asshole. Just when you were getting ready to really dig in, she is already bucking against your face, trying her best to stifle her moans and stay upright as her orgasm hits her hard.');
     // TODO-QSP: dynamic text: After a few seconds she looks into your eyes and whispers: "Wow, <<$pcs_nickname...
-    scene.text(`After a few seconds she looks into your eyes and whispers: "Wow, ${((st as any).pcs_nickname || '')}, that was amazing! I don't think I've ever orgasmed that hard before."`);
+    scene.text(`After a few seconds she looks into your eyes and whispers: "Wow, ${((st as any).pcs_nickname ?? '')}, that was amazing! I don't think I've ever orgasmed that hard before."`);
     // TODO-QSP: dynamic text: Then she notices the time: "Oh crap, I''m late! I''m so late! I''m sorry <<$pcs_...
-    scene.text(`Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry ${((st as any).pcs_nickname || '')}, I'll make it up to you! I promise! Maybe come visit me later at my place? If you bring some wine we could finish our homework quickly, and then have a good time?" she says with a wink.`);
+    scene.text(`Then she notices the time: "Oh crap, I'm late! I'm so late! I'm sorry ${((st as any).pcs_nickname ?? '')}, I'll make it up to you! I promise! Maybe come visit me later at my place? If you bring some wine we could finish our homework quickly, and then have a good time?" she says with a wink.`);
     scene.text('Without waiting for a response, Julia quickly gathers her belongings and runs off. Despite not getting off yourself, that was a lot of fun.');
     qspCall(st, 'arousal', 'rimming_give', 2, 'lesbian');
     qspCall(st, 'arousal', 'end');
@@ -1533,11 +1533,11 @@ function enterVasilySmoke(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You see Vasily standing in the stairwell, smoking a cigarette. You approach him and ask: "Hi Shulga, do you have a cigarette for me? I could really use a smoke right now."');
     // TODO-QSP: dynamic text: Vasily shakes his head, but gives you a horny grin: "Sorry <<$pcs_nickname>>, I'...
-    scene.text(`Vasily shakes his head, but gives you a horny grin: "Sorry ${((s as any).pcs_nickname || '')}, I'm just finishing my last one. I do have something else you can put your lips around though…"`);
+    scene.text(`Vasily shakes his head, but gives you a horny grin: "Sorry ${((s as any).pcs_nickname ?? '')}, I'm just finishing my last one. I do have something else you can put your lips around though…"`);
     scene.text('He idly runs his hand over his groin, and you can see the outline of his hard cock through the fabric of his pants quite clearly.');
     scene.text('You look at him with some doubt. "I don\'t know Shulga, people might see."');
     // TODO-QSP: dynamic text: He reassures you, "Don''t worry <<$pcs_nickname>>, you''ll be fine. I''ll keep a...
-    scene.text(`He reassures you, "Don't worry ${((s as any).pcs_nickname || '')}, you'll be fine. I'll keep an eye out, and there's no one here now, right? Just take it in your mouth. I know you're good at it, you can finish me off quickly."`);
+    scene.text(`He reassures you, "Don't worry ${((s as any).pcs_nickname ?? '')}, you'll be fine. I'll keep an eye out, and there's no one here now, right? Just take it in your mouth. I know you're good at it, you can finish me off quickly."`);
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -1591,12 +1591,12 @@ function enterVasilySmokeBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A11');
   scene.img('images/characters/pavlovsk/school/boy/vasya/sex/stairs/otsos' + (Math.floor(Math.random() * 2) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You sigh, and squat before <<$boydesc>>. While you take his <<dick>>cm <<$dick_g...
-  scene.text(`You sigh, and squat before ${((s as any).boydesc || '')}. While you take his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock out of his pants you say, "Okay Shulga, if it's quick. Just promise you'll tell me if you see or hear anyone, okay?" He nods his head in understanding.`);
+  scene.text(`You sigh, and squat before ${((s as any).boydesc ?? '')}. While you take his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock out of his pants you say, "Okay Shulga, if it's quick. Just promise you'll tell me if you see or hear anyone, okay?" He nods his head in understanding.`);
   // TODO-QSP: dynamic text: You know you have to be quick about this, so you take his <<dick>>cm <<$dick_gir...
-  scene.text(`You know you have to be quick about this, so you take his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock in your mouth without a second thought. Using all the tricks you know, you massage his balls and stroke his shaft with your delicate fingers while you suck and lick the head of his dick. He reaches his orgasm very quickly, shooting his load in your mouth.`);
+  scene.text(`You know you have to be quick about this, so you take his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock in your mouth without a second thought. Using all the tricks you know, you massage his balls and stroke his shaft with your delicate fingers while you suck and lick the head of his dick. He reaches his orgasm very quickly, shooting his load in your mouth.`);
   scene.text('You quickly swallow his semen and tuck his dick back into his pants after you lick it clean. You look at Vasily as you get back up and ask him, "There, satisfied?"');
   // TODO-QSP: dynamic text: He nods with a blissful look on his face: "Thanks <<$pcs_nickname>>, that felt g...
-  scene.text(`He nods with a blissful look on his face: "Thanks ${((s as any).pcs_nickname || '')}, that felt great. You're a really good friend. I need to get going though, I'll see you around."`);
+  scene.text(`He nods with a blissful look on his face: "Thanks ${((s as any).pcs_nickname ?? '')}, that felt great. You're a really good friend. I need to get going though, I'll see you around."`);
   qspCall(s, 'arousal', 'bj', 5);
   qspCall(s, 'cum_call', 'mouth', 'A11');
   qspCall(s, 'arousal', 'end');
@@ -1642,11 +1642,11 @@ function enterSmokeDanvas(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You see Dan and Vasily standing in the stairwell, smoking a cigarette. You approach them and ask: "Hi Shulga, do you have a cigarette for me? I could really use a smoke right now."');
     // TODO-QSP: dynamic text: Dan snorts and Vasily shakes his head, but gives you a horny grin: "Sorry <<$pcs...
-    scene.text(`Dan snorts and Vasily shakes his head, but gives you a horny grin: "Sorry ${((s as any).pcs_nickname || '')}, I'm just finishing my last one. I do have something else you can put your lips around though…"`);
+    scene.text(`Dan snorts and Vasily shakes his head, but gives you a horny grin: "Sorry ${((s as any).pcs_nickname ?? '')}, I'm just finishing my last one. I do have something else you can put your lips around though…"`);
     scene.text('He idly runs his hand over his groin, and you can see the outline of his hard cock through the fabric of his pants quite clearly.');
     scene.text('You look at him with some doubt: "I don\'t know Shulga, people might see."');
     // TODO-QSP: dynamic text: He reassures you: "Don''t worry <<$pcs_nickname>>, you''ll be fine. We''ll keep ...
-    scene.text(`He reassures you: "Don't worry ${((s as any).pcs_nickname || '')}, you'll be fine. We'll keep an eye out, and there's no one here now, right? Just take it in your mouth. I know you're good at it, you can finish me off quickly."`);
+    scene.text(`He reassures you: "Don't worry ${((s as any).pcs_nickname ?? '')}, you'll be fine. We'll keep an eye out, and there's no one here now, right? Just take it in your mouth. I know you're good at it, you can finish me off quickly."`);
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
@@ -1713,9 +1713,9 @@ function enterDanvasSmokeBj(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A10', 'a');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/danvas1.jpg');
   // TODO-QSP: dynamic text: You sigh, and squat between Dan and Vasily. While you take Vasily''s <<dick_leng...
-  scene.text(`You sigh, and squat between Dan and Vasily. While you take Vasily's ${((s as any).dick_length || '')}cm ${((s as any).dick_girth || '')} cock out of his pants you say, "Okay Shulga, if it's quick. Just promise you'll tell me if you see or hear anyone, okay?" He nods his head in understanding.`);
+  scene.text(`You sigh, and squat between Dan and Vasily. While you take Vasily's ${((s as any).dick_length ?? '')}cm ${((s as any).dick_girth ?? '')} cock out of his pants you say, "Okay Shulga, if it's quick. Just promise you'll tell me if you see or hear anyone, okay?" He nods his head in understanding.`);
   // TODO-QSP: dynamic text: You know you have to be quick about this, so take his <<dick_length>>cm <<$dick_...
-  scene.text(`You know you have to be quick about this, so take his ${((s as any).dick_length || '')}cm ${((s as any).dick_girth || '')} cock in your mouth without a second thought. Using all the tricks you know, you massage his balls and stroke his shaft with your delicate fingers while you suck and lick the head of his dick. Then Dan pulls his dick out and takes ahold of your hand and places it on his dick, so you start stroking it while sucking off Vasily.`);
+  scene.text(`You know you have to be quick about this, so take his ${((s as any).dick_length ?? '')}cm ${((s as any).dick_girth ?? '')} cock in your mouth without a second thought. Using all the tricks you know, you massage his balls and stroke his shaft with your delicate fingers while you suck and lick the head of his dick. Then Dan pulls his dick out and takes ahold of your hand and places it on his dick, so you start stroking it while sucking off Vasily.`);
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'group');
   qspCall(s, 'arousal', 'hj', (-5), ((s as any).npcID1 ?? 0), 'group');
   qspCall(s, 'stat', '');
@@ -1724,7 +1724,7 @@ function enterDanvasSmokeBj(s: GameState, scene: SceneBuilder): void {
     { label: 'Suck Dan too', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/danvas2.jpg');
     // TODO-QSP: dynamic text: You switch your attention to Dan and take his <<dick_length1>>cm <<$dick_girth1>...
-    scene.text(`You switch your attention to Dan and take his ${((st as any).dick_length1 || '')}cm ${((st as any).dick_girth1 || '')} cock in your mouth in your mouth and start sucking it, while you keep stroking Vasily's dick with your hand. The both start moaning loudly as you suck their dicks.`);
+    scene.text(`You switch your attention to Dan and take his ${((st as any).dick_length1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} cock in your mouth in your mouth and start sucking it, while you keep stroking Vasily's dick with your hand. The both start moaning loudly as you suck their dicks.`);
     qspCall(st, 'arousal', 'bj', 5, ((st as any).npcID1 ?? 0), 'group');
     qspCall(st, 'arousal', 'hj', (-5), ((st as any).npcID ?? 0), 'group');
     qspCall(st, 'stat', '');
@@ -1741,7 +1741,7 @@ function enterDanvasSmokeBj(s: GameState, scene: SceneBuilder): void {
       { label: 'Take their cum', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/danvas4.jpg');
     // TODO-QSP: dynamic text: You open your mouth and start jerking both of them, Vasily is the first one to s...
-    scene.text(`You open your mouth and start jerking both of them, Vasily is the first one to shoot his load all over your face with some of it going into your mouth. Just a few seconds later, Dan starts cumming on your face and in your mouth as well. Once you've milked the last of their cum out of their cocks, you stand up and start to reach into your purse to get something to clean their cum off your face. As you do Vasily grabs you hand and stops you. "Leave the cum on your face, ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`You open your mouth and start jerking both of them, Vasily is the first one to shoot his load all over your face with some of it going into your mouth. Just a few seconds later, Dan starts cumming on your face and in your mouth as well. Once you've milked the last of their cum out of their cocks, you stand up and start to reach into your purse to get something to clean their cum off your face. As you do Vasily grabs you hand and stops you. "Leave the cum on your face, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('You give him a curious look. "Why?" You ask.');
     scene.text('Dan answers, "Because it is fucking hot as hell to see a girl covered in your cum."');
     qspCall(st, 'arousal', 'hj', 5, ((st as any).npcID ?? 0), 'group');
@@ -1889,7 +1889,7 @@ function enterGopnikGroupChat(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hey guys, what are you doing?" You greet the group as you approach.');
       scene.text('One of the older guys looks at you and then the rest. "Who the fuck is this bitch?"');
       // TODO-QSP: dynamic text: Vasily answers before you can. "She is just some girl we go to school with." Wit...
-      scene.text(`Vasily answers before you can. "She is just some girl we go to school with." With that he gets up and walks over to you and leads you back to the stairs. "You should get going ${((s as any).pcs_nickname || '')}, this is no place for you." With that he prods you to go down the stairs.`);
+      scene.text(`Vasily answers before you can. "She is just some girl we go to school with." With that he gets up and walks over to you and leads you back to the stairs. "You should get going ${((s as any).pcs_nickname ?? '')}, this is no place for you." With that he prods you to go down the stairs.`);
       scene.actions([
         { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
       ]);
@@ -1898,12 +1898,12 @@ function enterGopnikGroupChat(s: GameState, scene: SceneBuilder): void {
         scene.text('You take a seat next to Lena and Lera. "Hey guys, what\'s up?" You ask them.');
         scene.text('Lera leans over and kisses you on the lips. "Just hanging out and having fun." She slurs; obviously she is pretty drunk already. Her breath smells like a distillery.');
         // TODO-QSP: dynamic text: Vasily offers you one of the beers. "Here <<$pcs_nickname>>."
-        scene.text(`Vasily offers you one of the beers. "Here ${((s as any).pcs_nickname || '')}."`);
+        scene.text(`Vasily offers you one of the beers. "Here ${((s as any).pcs_nickname ?? '')}."`);
       } else {
         scene.text('You take a seat next to Lena and Lera. "Hey guys, what\'s up?" You ask them.');
         scene.text('Lera says. "Just hanging out and having fun." She slurs; obviously she is pretty drunk already. Her breath smells like a distillery.');
         // TODO-QSP: dynamic text: Vasily offers you one of the beers. "Here <<$pcs_nickname>>."
-        scene.text(`Vasily offers you one of the beers. "Here ${((s as any).pcs_nickname || '')}."`);
+        scene.text(`Vasily offers you one of the beers. "Here ${((s as any).pcs_nickname ?? '')}."`);
       }
       qspCall(s, 'willpower', 'drink', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -2298,7 +2298,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev1_2.jpg');
     scene.text('You don\'t have the courage to refuse, and do as he says, showing them your tits.');
     // TODO-QSP: dynamic text: This brings an evil grin to his face, "Well well, look at that. You really are a...
-    scene.text(`This brings an evil grin to his face, "Well well, look at that. You really are an obedient little slut, aren't you ${((st as any).pcs_nickname || '')}? Now turn your back to my friend and bend over, he's going to fuck you."`);
+    scene.text(`This brings an evil grin to his face, "Well well, look at that. You really are an obedient little slut, aren't you ${((st as any).pcs_nickname ?? '')}? Now turn your back to my friend and bend over, he's going to fuck you."`);
     qspCall(st, 'arousal', 'flash', 3, 'sub', 'exhibitionism');
     qspCall(st, 'stat', '');
     qspCall(st, 'willpower', 'anal', 'resist');
@@ -2335,7 +2335,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <<$boydesc[2]>> grunts and grabs the lube out of your purse and he spreads some ...
         scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} grunts and grabs the lube out of your purse and he spreads some lube on his cock with his fingers before he moves his fingers to your clenched sphincter and slips two of his lubricated fingers in and out of your ass quickly, to give you the barest amount of lubrication.`);
         // TODO-QSP: dynamic text: His friend smirks at the two of you, and says, "I guess it''s true! <<$pcs_nickn...
-        scene.text(`His friend smirks at the two of you, and says, "I guess it's true! ${((st as any).pcs_nickname || '')} really is a buttslut, trained and ready to get fucked up her ass anywhere, anytime."`);
+        scene.text(`His friend smirks at the two of you, and says, "I guess it's true! ${((st as any).pcs_nickname ?? '')} really is a buttslut, trained and ready to get fucked up her ass anywhere, anytime."`);
       } else {
         // TODO-QSP: dynamic text: The <<$boydesc[2]>> spits on your ass and uses his fingers to rub his spit on yo...
         scene.text(`The ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} spits on your ass and uses his fingers to rub his spit on your anus.`);
@@ -2358,7 +2358,7 @@ function enterSexEv1(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: <<$boydesc[2]>> grunts and grabs the lube out of your purse and he spreads some ...
       scene.text(`${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} grunts and grabs the lube out of your purse and he spreads some lube on his cock with his fingers before he moves his fingers to your clenched sphincter and slips two of his lubricated fingers in and out of your ass quickly, to give you the barest amount of lubrication.`);
       // TODO-QSP: dynamic text: His friend smirks at the two of you, and says: "I guess it''s true! <<$pcs_nickn...
-      scene.text(`His friend smirks at the two of you, and says: "I guess it's true! ${((st as any).pcs_nickname || '')} really is a buttslut, trained and ready to get fucked up her ass anywhere, anytime."`);
+      scene.text(`His friend smirks at the two of you, and says: "I guess it's true! ${((st as any).pcs_nickname ?? '')} really is a buttslut, trained and ready to get fucked up her ass anywhere, anytime."`);
     } else {
       // TODO-QSP: dynamic text: The <<$boydesc[2]>> spits on your ass and uses his fingers to rub his spit on yo...
       scene.text(`The ${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })} spits on your ass and uses his fingers to rub his spit on your anus. You realize he's going to fuck your ass!`);
@@ -2501,14 +2501,14 @@ function enterSexEv2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_2.jpg');
     scene.text('You don\'t have the courage to refuse, so you slowly take off your jacket and begin to undo your pants. His hands explore your body as you undress.');
     // TODO-QSP: dynamic text: "<<$boydesc[2]>>, I told you man! Look how submissive <<$pcs_nickname>> is. She'...
-    scene.text(`"${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}, I told you man! Look how submissive ${((st as any).pcs_nickname || '')} is. She's going to do everything we say… isn't that right slut? Show us your tits!"`);
+    scene.text(`"${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}, I told you man! Look how submissive ${((st as any).pcs_nickname ?? '')} is. She's going to do everything we say… isn't that right slut? Show us your tits!"`);
     scene.actions([
       { label: 'Nod obediently and show him your boobs', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'flashlite', 3, 'sub');
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/stairs/event/sex/sex_ev2_3.jpg');
     // TODO-QSP: dynamic text: You nod obediently and pull up your shirt and take off your bra, showing him you...
-    scene.text(`You nod obediently and pull up your shirt and take off your bra, showing him your ${((st as any).titsize || '')} breasts. He immediately puts his hands on your tits, and pinches your nipples firmly.`);
+    scene.text(`You nod obediently and pull up your shirt and take off your bra, showing him your ${((st as any).titsize ?? '')} breasts. He immediately puts his hands on your tits, and pinches your nipples firmly.`);
     scene.text('He grins at your involuntary moans: "I know, slut, I know… you love it when guys play with your tits. Don\'t worry, we\'ll take good care of you."');
     // TODO-QSP: dynamic text: The older of the two looks at his younger friend and tells him, "<<$boydesc[2]>>...
     scene.text(`The older of the two looks at his younger friend and tells him, "${qspUntranslated(s, "boydesc[2]", { location: "pod_ezd" })}, tell her to suck us both. Don't worry, she'll do it."`);
@@ -2685,7 +2685,7 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
       scene.text('You quickly interrupt him: "Wait! I have some lubricant, use that! It\'ll feel better for both of us!"');
       scene.text('You give him the lubricant, and he spreads some onto his cock with his fingers before he moves them to your clenched sphincter and slips two of his fingers inside of your ass to spread the lubricant around.');
       // TODO-QSP: dynamic text: He smirks and says: "I guess it''s true… <<$pcs_nickname>> really is a skilled b...
-      scene.text(`He smirks and says: "I guess it's true… ${((st as any).pcs_nickname || '')} really is a skilled buttslut, trained and ready to get fucked in her ass at anytime, anywhere. She'll even provide the lube. Nice tight ass, by the way."`);
+      scene.text(`He smirks and says: "I guess it's true… ${((st as any).pcs_nickname ?? '')} really is a skilled buttslut, trained and ready to get fucked in her ass at anytime, anywhere. She'll even provide the lube. Nice tight ass, by the way."`);
     } else {
       if (((st as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
         (st as any).agape = 2;
@@ -2704,7 +2704,7 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_txt = 'You really don\'t want to let the guys see you\'re close to having your own orgasm from their rough fucking and try to hold it back as long as you can. You fail, and moan loudly as you orgasm while he savagely fucks your ass.';
         qspCall(st, 'arousal', 'anal', 3);
         // TODO-QSP: dynamic text: The boys laugh. "<<$pcs_nickname>> even orgasms from anal sex, amazing! She real...
-        scene.text(`The boys laugh. "${((st as any).pcs_nickname || '')} even orgasms from anal sex, amazing! She really must be the biggest slut in Pavlovsk!"`);
+        scene.text(`The boys laugh. "${((st as any).pcs_nickname ?? '')} even orgasms from anal sex, amazing! She really must be the biggest slut in Pavlovsk!"`);
       }
     }
     qspCall(st, 'stat', '');
@@ -2723,7 +2723,7 @@ function enterSexEv3(s: GameState, scene: SceneBuilder): void {
         (st as any).orgasm_txt = 'You move one hand down to your soaking pussy and begin to masturbate furiously, completely forgetting about the situation you\'re in. Without holding back at all, you loudly moan as your body spasms. Your ass is squeezing the guy\'s dick tightly, there\'s no way he did not notice you orgasming just now.';
         qspCall(st, 'arousal', 'masturbate', (-3));
         // TODO-QSP: dynamic text: The guy groans at his friend. "Whoa dude, she''s orgasming from getting fucked i...
-        scene.text(`The guy groans at his friend. "Whoa dude, she's orgasming from getting fucked in her ass!" he calls out while continuing to ram his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick into your ass.`);
+        scene.text(`The guy groans at his friend. "Whoa dude, she's orgasming from getting fucked in her ass!" he calls out while continuing to ram his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick into your ass.`);
       }
     }
     scene.text('His friend is looking at you getting fucked from across the hallway. You can see he\'s stroking his dick, content to just watch you get your ass fucked.');

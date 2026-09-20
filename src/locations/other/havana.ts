@@ -22,7 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You may buy ' + ((((s as any).abonement ?? 0) > 0) ? ('a subscription package') : ('an additional subscription package')) + ' for access to all available facilities at reception.');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
-    scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
+    scene.text(`Your existing subscription package is valid for ${((s as any).abonement ?? '')} more classes.`);
   }
   scene.text('<b>Benefits included in your subscription:</b>');
   scene.text('Running');
@@ -116,7 +116,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=  '</tr>'
   // TODO-QSP: $temp_table +=  '</table></center>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table || '')}`);
+  scene.text(`${((s as any).temp_table ?? '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -137,7 +137,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>Attention! Visitors to the sports section must wear appropriate clothing and shoes when using the facilities.</b>');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
-    scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
+    scene.text(`Your existing subscription package is valid for ${((s as any).abonement ?? '')} more classes.`);
   }
   if (((s as any).nichTanya ?? 0)?.['Known'] === 0  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
     scene.text('You notice <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027havana/u0027, /u0027fitgirl/u0027); return false;">a cute girl</a> in the locker room.');
@@ -212,13 +212,13 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
           if (((s as any).week ?? 0) === 6  &&  ((s as any).pcs_run ?? 0) >= 20  &&  ((s as any).runnerQW ?? 0)?.['comp_day'] !== ((s as any).daystart ?? 0)) {
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Enter competition race  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Enter competition race  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
             ]);
           }
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Go to team practice  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'Go to team practice  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
           ]);
@@ -226,13 +226,13 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_energy ?? 0) < 20) {
             if (((s as any).week ?? 0) === 6  &&  ((s as any).pcs_run ?? 0) >= 20  &&  ((s as any).runnerQW ?? 0)?.['comp_day'] !== ((s as any).daystart ?? 0)) {
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'Enter competition race  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'Enter competition race  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
               ]);
             }
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'Go to team practice  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'Go to team practice  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
             ]);
@@ -246,7 +246,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
                 ]);
               }
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'Go to team practice  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'Go to team practice  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
               ]);
@@ -400,7 +400,7 @@ function enterTanyaIntroduction(s: GameState, scene: SceneBuilder): void {
   scene.text('You follow her a few seconds later, but she\'s already started to dress herself.');
   scene.text('"So. Does cute girl have a name?" the girl asks.');
   // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>>," you reply while trying to find your panties.
-  scene.text(`"I'm ${((s as any).pcs_nickname || '')}," you reply while trying to find your panties.`);
+  scene.text(`"I'm ${((s as any).pcs_nickname ?? '')}," you reply while trying to find your panties.`);
   scene.text('"Looking for these?" she asks and you look up to see her twirling your panties on her finger.');
   scene.text('"Can I have them back please?" you ask while holding out your hand.');
   scene.text('"Nope. You seduced me. I\'ve never been with a girl before, so I think I\'ve earned this as a memento," she replies before she pockets them.');
@@ -424,7 +424,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   scene.text('There are a lot of different classes and clubs available at the fitness center, all designed to improve physical development.');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
-    scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
+    scene.text(`Your existing subscription package is valid for ${((s as any).abonement ?? '')} more classes.`);
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).week ?? 0) === 7) {
@@ -439,75 +439,75 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Aerobics (Burn fat)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Aerobics (Burn fat)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
-      { label: '', labelFn: (s: GameState) => 'Free weights (Build muscle)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Free weights (Build muscle)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
-      { label: '', labelFn: (s: GameState) => 'Cross trainer (endurance)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Cross trainer (endurance)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
-      { label: '', labelFn: (s: GameState) => 'Tennis practice (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Tennis practice (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
-      { label: '', labelFn: (s: GameState) => 'Tennis practice (reactions)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Tennis practice (reactions)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
-      { label: '', labelFn: (s: GameState) => 'Yoga (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Yoga (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
-      { label: '', labelFn: (s: GameState) => 'Go to the kickboxing gym  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam || '') ?? '') + '/<<...]', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Go to the kickboxing gym  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_stam ?? '') ?? '') + '/<<...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You''re too exhausted to do this. ...
   } },
     ]);
   } else {
     if (((s as any).pcs_energy ?? 0) < 20) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Aerobics (Burn fat)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Aerobics (Burn fat)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
-        { label: '', labelFn: (s: GameState) => 'Free weights (Build muscle)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Free weights (Build muscle)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
-        { label: '', labelFn: (s: GameState) => 'Cross trainer (endurance)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Cross trainer (endurance)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
-        { label: '', labelFn: (s: GameState) => 'Tennis practice (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Tennis practice (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
-        { label: '', labelFn: (s: GameState) => 'Tennis practice (reactions)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Tennis practice (reactions)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
-        { label: '', labelFn: (s: GameState) => 'Yoga (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Yoga (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
-        { label: '', labelFn: (s: GameState) => 'Go to the kickboxing gym  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy || '') ?? '') + '/...]', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Go to the kickboxing gym  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_energy ?? '') ?? '') + '/...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too hungry to do this.')
   } },
       ]);
     } else {
       if (((s as any).pcs_hydra ?? 0) < 20) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Aerobics (Burn fat)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Aerobics (Burn fat)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
-          { label: '', labelFn: (s: GameState) => 'Free weights (Build muscle)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Free weights (Build muscle)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
-          { label: '', labelFn: (s: GameState) => 'Cross trainer (endurance)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Cross trainer (endurance)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
-          { label: '', labelFn: (s: GameState) => 'Tennis practice (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Tennis practice (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
-          { label: '', labelFn: (s: GameState) => 'Tennis practice (reactions)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Tennis practice (reactions)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
-          { label: '', labelFn: (s: GameState) => 'Yoga (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Yoga (agility)  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
-          { label: '', labelFn: (s: GameState) => 'Go to the kickboxing gym  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra || '') ?? '') + '/2...]', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Go to the kickboxing gym  [+$func(\'wrap\', \'v_neg\', \'(' + String(((s as any).pcs_hydra ?? '') ?? '') + '/2...]', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You feel too thirsty to do this.')
   } },
         ]);
@@ -933,12 +933,12 @@ function enterFMR(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>!"
-    scene.text(`"Hey ${((s as any).pcs_nickname || '')}!"`);
+    scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}!"`);
     scene.text('You turn and see a man with several cameras hanging from his neck. You recognize him as one of Aphrodite\'s photographers. Now that you think about it, he\'s been hanging around some of the sports events in which you have participated.');
     scene.text('"The agency sent me to tell you that our sponsors want to give you an opportunity as a fitness model. It seems you\'re getting pretty famous!"');
     scene.text('You smile. The fitness gigs at the agency are paid based not only on your modeling experience, but also your relative sports fame and bodybuild.');
     // TODO-QSP: dynamic text: "Congratulations <<$pcs_nickname>>, you''ve earned it!" he smiles.
-    scene.text(`"Congratulations ${((s as any).pcs_nickname || '')}, you've earned it!" he smiles.`);
+    scene.text(`"Congratulations ${((s as any).pcs_nickname ?? '')}, you've earned it!" he smiles.`);
     scene.text('He then turns around and, after waving a final goodbye, leaves.');
     scene.actions([
       { label: 'Leave', goto: ['havana', 'start'] },
@@ -946,7 +946,7 @@ function enterFMR(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You see a man with several cameras hanging from his neck. You vaguely remember him hanging around some of the sports events in which you have participated. He smiles and quickly takes your hand in a handshake.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, isn''t it? I''m here to make a proposal. A serious business ...
-    scene.text(`"${((s as any).pcs_lastname || '')}, isn't it? I'm here to make a proposal. A serious business <i>career-oriented</i> proposal. Would you consider becoming a model?"`);
+    scene.text(`"${((s as any).pcs_lastname ?? '')}, isn't it? I'm here to make a proposal. A serious business <i>career-oriented</i> proposal. Would you consider becoming a model?"`);
     scene.text('You blink, utterly taken aback. You? A model?! You have the looks, and it\'s not that weird for a woman in the sports career to be offered a job in the model business, but are you going to trust this stranger?');
     scene.text('Sensing your hesitation, the man pushes a business card into your hands. "You don\'t need to give an answer right now. Ask around if you want, and when you\'ve made your decision, come and see us. If you pass some basic tests, you can start a new and very exciting career."');
     scene.text('After waving goodbye, the man leaves and you glance down at the card.');

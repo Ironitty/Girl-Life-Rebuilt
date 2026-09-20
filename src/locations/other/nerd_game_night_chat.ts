@@ -88,7 +88,7 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).npc_rel ?? 0)?.['A2'] < 60) {
             // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-            scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+            scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
           } else {
             if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
               ((s as any).artemQW = (s as any).artemQW ?? {})['knows_dorm_room_number'] = 1;
@@ -105,15 +105,15 @@ function enterArtem(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).npc_rel ?? 0)?.['A2'] < 60) {
             // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-            scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+            scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
           } else {
             if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).artemQW ?? 0)?.['knows_dorm_room_number'] === 0) {
               ((s as any).artemQW = (s as any).artemQW ?? {})['knows_dorm_room_number'] = 1;
               // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-              scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went. Just before he leaves, he tells you he's living on the second floor of the university dorm building and that you should come and visit him sometime.`);
+              scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went. Just before he leaves, he tells you he's living on the second floor of the university dorm building and that you should come and visit him sometime.`);
             } else {
               // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-              scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+              scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
             }
           }
         }
@@ -150,7 +150,7 @@ function enterPetka(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A6'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
         } else {
           scene.text('You greet Petka with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
         }
@@ -162,10 +162,10 @@ function enterPetka(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A6'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
         } else {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
         }
       }
     }
@@ -199,7 +199,7 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A12'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
         } else {
           scene.text('You greet Julia with a smile and make a point to ask her how the game was. With a shy smile, she tells you in great detail how the game went; she seems to have really enjoyed herself.');
         }
@@ -211,10 +211,10 @@ function enterJulia(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A12'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
         } else {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and tells you in great detail how the game went.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and tells you in great detail how the game went.`);
         }
       }
     }
@@ -248,7 +248,7 @@ function enterFeofan(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A152'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played. He seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played. He seems to really enjoy it and talks about it for some time.`);
         } else {
           scene.text('You greet Feofan with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
         }
@@ -260,10 +260,10 @@ function enterFeofan(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A152'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
         } else {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
         }
       }
     }
@@ -298,7 +298,7 @@ function enterGerasim(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A153'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
         } else {
           scene.text('You greet Gerasim with a smile and make a point to ask him how the game was. With a shy smile, he tells you in great detail how the game went; he seems to have really enjoyed himself.');
         }
@@ -310,10 +310,10 @@ function enterGerasim(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A153'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and talks about it for some time.`);
         } else {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," he says with a sheepish smile. You talk to him, mos...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," he says with a sheepish smile. You talk to him, mostly asking him about the game he just played; he seems to really enjoy it and tells you in great detail how the game went.`);
         }
       }
     }
@@ -348,7 +348,7 @@ function enterZinaida(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A142'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
         } else {
           scene.text('You greet Zinaida with a smile and make a point to ask her how the game was. With a shy smile, she tells you in great detail how the game went; she seems to have really enjoyed herself.');
         }
@@ -360,10 +360,10 @@ function enterZinaida(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_rel ?? 0)?.['A142'] < 60) {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and talks about it for some time.`);
         } else {
           // TODO-QSP: dynamic text: "Oh hey, <<$pcs_nickname>>," she says with a sheepish smile. You talk to her, mo...
-          scene.text(`"Oh hey, ${((s as any).pcs_nickname || '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and tells you in great detail how the game went.`);
+          scene.text(`"Oh hey, ${((s as any).pcs_nickname ?? '')}," she says with a sheepish smile. You talk to her, mostly asking her about the game she just played; she seems to really enjoy it and tells you in great detail how the game went.`);
         }
       }
     }

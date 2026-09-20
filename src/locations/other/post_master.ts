@@ -52,7 +52,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/postoffice/postmaster.jpg');
     scene.text('You enter the postmaster\'s office at an opportune time. It looks like he\'s not doing anything right now.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, can I help you?" he asks as soon as he sees you.
-    scene.text(`"${((st as any).pcs_firstname || '')}, can I help you?" he asks as soon as he sees you.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, can I help you?" he asks as soon as he sees you.`);
     scene.text('"I came to say that I can make it after all this Saturday!" you reply.');
     scene.text('"Ah, excellent news! I\'ll tell Aleksiy he can stay at home with his daughter," he says while quickly making a note. "Is there anything else I can do for you?"');
     scene.text('"No, that was it," you tell him. "See you on Saturday!"');
@@ -82,7 +82,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           if (qspFunc(s, 'jobs', 'is_arrival_time', 'pav_mailgirl') === 1) {
             scene.img('images/locations/shared/postoffice/postmaster.jpg');
             // TODO-QSP: dynamic text: "Hey there, <<$pcs_firstname>>!" the postmaster smiles when you enter the post o...
-            scene.text(`"Hey there, ${((s as any).pcs_firstname || '')}!" the postmaster smiles when you enter the post office. "Right on time. Please follow me."`);
+            scene.text(`"Hey there, ${((s as any).pcs_firstname ?? '')}!" the postmaster smiles when you enter the post office. "Right on time. Please follow me."`);
             scene.actions([
               { label: 'Follow him', goto: ['post_deliveries', 'start'] },
             ]);
@@ -92,7 +92,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               scene.img('images/locations/shared/postoffice/postmaster.jpg');
               // TODO-QSP: dynamic text: "You''re a bit early, <<$pcs_firstname>>!" the postmaster says when he sees you ...
-              scene.text(`"You're a bit early, ${((s as any).pcs_firstname || '')}!" the postmaster says when he sees you enter his office. "I don't have your mail yet, but I like the enthusiasm. Come see me between 11:00 and 12:00. I should have it ready then."`);
+              scene.text(`"You're a bit early, ${((s as any).pcs_firstname ?? '')}!" the postmaster says when he sees you enter his office. "I don't have your mail yet, but I like the enthusiasm. Come see me between 11:00 and 12:00. I should have it ready then."`);
               scene.actions([
                 { label: 'Leave him alone', goto: ['post_office', 'start'] },
               ]);
@@ -103,7 +103,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/shared/postoffice/postmaster.jpg');
                 // TODO-QSP: dynamic text: "You''re late, <<$pcs_firstname>>!" the postmaster scoffs when he sees you enter...
-                scene.text(`"You're late, ${((s as any).pcs_firstname || '')}!" the postmaster scoffs when he sees you enter his office. "I already called Aleksiy in to cover your shift. He wasn't happy, and neither am I. Don't make this a habit…"`);
+                scene.text(`"You're late, ${((s as any).pcs_firstname ?? '')}!" the postmaster scoffs when he sees you enter his office. "I already called Aleksiy in to cover your shift. He wasn't happy, and neither am I. Don't make this a habit…"`);
                 scene.text('You try to apologize, but he\'s not interested and tells you to leave him alone.');
                 scene.actions([
                   { label: 'Leave his office', goto: ['post_office', 'start'] },
@@ -119,12 +119,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.img('images/locations/shared/postoffice/postmaster.jpg');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," the postmaster says, looking up from his desk. What can I d...
-      scene.text(`"${((s as any).pcs_nickname || '')}," the postmaster says, looking up from his desk. What can I do for you?"`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}," the postmaster says, looking up from his desk. What can I do for you?"`);
       scene.text('With a sigh you tell him you wish to resign from the job: "Well, I\'m just calling in to resign. Thank you for the opportunity, but my circumstances have changed and I can no longer continue do do my shifts."');
       scene.text('"Are you sure about this? Aleksiy is really enjoying the time with his family."');
       scene.text('You nod and confirm, "Yes I\'m sure."');
       // TODO-QSP: dynamic text: "Well alright then; good luck with your future plans <<$pcs_nickname>>"
-      scene.text(`"Well alright then; good luck with your future plans ${((s as any).pcs_nickname || '')}"`);
+      scene.text(`"Well alright then; good luck with your future plans ${((s as any).pcs_nickname ?? '')}"`);
       scene.text('You thank him and leave.');
       scene.actions([
         { label: 'Leave', goto: ['post_office', 'start'] },
@@ -134,7 +134,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['pav_mailgirl'] === 'fired') {
     if (((s as any).job_termination_reason ?? 0)?.['pav_mailgirl'] === 'no_show') {
       // TODO-QSP: dynamic text: "<<$pcs_firstname>>…" the postmaster sighs when he sees you, shaking his head. "...
-      scene.text(`"${((s as any).pcs_firstname || '')}…" the postmaster sighs when he sees you, shaking his head. "I really wanted this to work out, but you left me no choice. You kept not showing up, and Aleksiy can't keep covering for you on short notice. I'm sorry, but I've had to let you go."`);
+      scene.text(`"${((s as any).pcs_firstname ?? '')}…" the postmaster sighs when he sees you, shaking his head. "I really wanted this to work out, but you left me no choice. You kept not showing up, and Aleksiy can't keep covering for you on short notice. I'm sorry, but I've had to let you go."`);
       scene.text('He looks genuinely disappointed. "I wish you\'d at least told me you couldn\'t make it. I would\'ve understood. But just not showing up? That\'s not how it works."');
     } else {
       scene.text('"You?! Get out of here!" he shouts angrily when you enter his office. "There\'s no job for you! Not now, not ever! That screw-up of yours ruined our perfect record!"');
@@ -157,17 +157,17 @@ function enterScolding(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/postoffice/postmaster.jpg');
   if (((s as any).job_booking_debt ?? 0)?.['pav_mailgirl'] === 1) {
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>," the postmaster says, looking up from his desk with a frown...
-    scene.text(`"${((s as any).pcs_firstname || '')}," the postmaster says, looking up from his desk with a frown. "You didn't show up on Saturday. I had to call Aleksiy in at the last minute, and he was <i>not</i> happy about it."`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')}," the postmaster says, looking up from his desk with a frown. "You didn't show up on Saturday. I had to call Aleksiy in at the last minute, and he was <i>not</i> happy about it."`);
     scene.text('He sighs. "Look, I understand things come up. But if you can\'t make it, <b>please let me know beforehand</b> so I can make arrangements. Don\'t just leave me hanging, okay?"');
   } else {
     if (((s as any).job_booking_debt ?? 0)?.['pav_mailgirl'] === 2) {
       // TODO-QSP: dynamic text: "<<$pcs_firstname>>!" the postmaster snaps when he sees you. "This is the second...
-      scene.text(`"${((s as any).pcs_firstname || '')}!" the postmaster snaps when he sees you. "This is the second time you've not shown up without telling me! Do you have any idea how difficult it is to find someone to cover for you on such short notice?"`);
+      scene.text(`"${((s as any).pcs_firstname ?? '')}!" the postmaster snaps when he sees you. "This is the second time you've not shown up without telling me! Do you have any idea how difficult it is to find someone to cover for you on such short notice?"`);
       scene.text('He shakes his head in frustration. "I\'m giving you another chance because you do good work when you actually show up. But I\'m warning you — don\'t make this a habit."');
     } else {
       if (((s as any).job_booking_debt ?? 0)?.['pav_mailgirl'] >= 3) {
         // TODO-QSP: dynamic text: "<<$pcs_firstname>>." The postmaster''s voice is ice cold. "You didn''t come in....
-        scene.text(`"${((s as any).pcs_firstname || '')}." The postmaster's voice is ice cold. "You didn't come in. Again. Without a word."`);
+        scene.text(`"${((s as any).pcs_firstname ?? '')}." The postmaster's voice is ice cold. "You didn't come in. Again. Without a word."`);
         scene.text('He leans forward, his expression dead serious. "This is your last warning. One more no-show and I\'m giving your job to someone who actually wants it. Aleksiy has been asking for his Saturday shifts back, and right now I\'m struggling to think of a reason not to let him."');
       }
     }
@@ -250,7 +250,7 @@ function enterVisitAfterRefusing2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/postoffice/postmaster.jpg');
   // TODO-QSP: dynamic text: The postmaster looks at you expectantly when he sees you. "Hello, <<$pcs_firstna...
-  scene.text(`The postmaster looks at you expectantly when he sees you. "Hello, ${((s as any).pcs_firstname || '')}. I hope you're here with good news?"`);
+  scene.text(`The postmaster looks at you expectantly when he sees you. "Hello, ${((s as any).pcs_firstname ?? '')}. I hope you're here with good news?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Decline the job', handler: (st: GameState) => {

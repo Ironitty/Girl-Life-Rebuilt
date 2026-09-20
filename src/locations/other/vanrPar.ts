@@ -174,7 +174,7 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       scene.actions([
-{ label: 'Scream', goto: ['brother_voyeur', 'brother_go_away'] },,
+{ label: 'Scream', goto: ['brother_voyeur', 'brother_go_away'] },
 { label: 'Let him look', goto: ['brother_voyeur', 'brother_voyeur_ev1'] },
 ]);
       return;
@@ -377,7 +377,7 @@ function enterStepdadSexPullout(s: GameState, scene: SceneBuilder): void {
     scene.text('Your stepfather steps out of the shower and starts getting dressed, but it looks like you\'ll have to wash yourself again before you can do the same.');
   } else {
     // TODO-QSP: dynamic text: "Ahh, my sweet <<$pcs_nickname>>! I''ve wanted to do that for quite a while," he...
-    scene.text(`"Ahh, my sweet ${((s as any).pcs_nickname || '')}! I've wanted to do that for quite a while," he admits, giving you a soft smile as he wipes the sweat from his forehead.`);
+    scene.text(`"Ahh, my sweet ${((s as any).pcs_nickname ?? '')}! I've wanted to do that for quite a while," he admits, giving you a soft smile as he wipes the sweat from his forehead.`);
     scene.text('He pinches your cheek fondly and gives you a slap on the ass before he steps out of the shower and gets dressed. He then leaves.');
     scene.text('Sweaty and covered in cum, it looks like you\'ll be needing another shower before you can leave too.');
   }

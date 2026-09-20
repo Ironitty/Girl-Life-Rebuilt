@@ -17,7 +17,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
     scene.text('Nadia waits with a warm smile.');
     // TODO-QSP: dynamic text: "Is there anything else I can help you with <<$pcs_firstname>>?"
-    scene.text(`"Is there anything else I can help you with ${((s as any).pcs_firstname || '')}?"`);
+    scene.text(`"Is there anything else I can help you with ${((s as any).pcs_firstname ?? '')}?"`);
   } else {
     if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
       scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pushkin/rasputin/nadia_1.jpg');
       scene.text('Nadia notices as you walk into the club. She smiles and greets you with a warm smile.');
       // TODO-QSP: dynamic text: "Hello, <<$pcs_firstname>>, how can I help you today?"
-      scene.text(`"Hello, ${((s as any).pcs_firstname || '')}, how can I help you today?"`);
+      scene.text(`"Hello, ${((s as any).pcs_firstname ?? '')}, how can I help you today?"`);
     }
   }
   if (((s as any).rasputin ?? 0)?.['hostEv'] === 0) {
@@ -40,7 +40,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The woman\'s eyes light up and she takes few steps closer to you.');
     scene.text('She smiles then answers your question.');
     // TODO-QSP: dynamic text: Of course, <<$pcs_firstname>>. I am Nadia Titova but you can call me Nadia. What...
-    scene.text(`Of course, ${((st as any).pcs_firstname || '')}. I am Nadia Titova but you can call me Nadia. What would you like to know?`);
+    scene.text(`Of course, ${((st as any).pcs_firstname ?? '')}. I am Nadia Titova but you can call me Nadia. What would you like to know?`);
     { const __savedLocArgs = (st as any).locArgs; (st as any).locArgs = ['', ]; enterOptions(s, scene); (st as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Nothing', handler: (st: GameState) => {

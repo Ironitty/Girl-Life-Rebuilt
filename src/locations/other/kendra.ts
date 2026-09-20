@@ -542,7 +542,7 @@ function enterKendraCouchStrapVag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D7', 'a');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap7.jpg');
   // TODO-QSP: dynamic text: She steps up behind you, placing one foot on the couch as she does. Her inner th...
-  scene.text(`She steps up behind you, placing one foot on the couch as she does. Her inner thigh brushes against your hip as you feel her slide the tip of the ${((s as any).dick1 || '')}cm ${((s as any).dick_girth1 || '')} dildo against your wet slit before she pushes it into you, causing you to moan as she starts fucking you with it. You can hear the built in vibrator on her harness vibrating as she fucks you.`);
+  scene.text(`She steps up behind you, placing one foot on the couch as she does. Her inner thigh brushes against your hip as you feel her slide the tip of the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo against your wet slit before she pushes it into you, causing you to moan as she starts fucking you with it. You can hear the built in vibrator on her harness vibrating as she fucks you.`);
   qspCall(s, 'arousal', 'vaginal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -566,7 +566,7 @@ function enterKendraCouchStrapAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/couch/strapon/couch_strap9.jpg');
   scene.text('You feel Kendra squirt some lube onto your ass before she starts rubbing the head of the dildo against your asshole. She then suddenly thrusts forward while using her hand to jerk you backwards.');
   // TODO-QSP: dynamic text: You yelp and try to pull away as the <<dick1>>cm <<$dick_girth1>> dildo stretche...
-  scene.text(`You yelp and try to pull away as the ${((s as any).dick1 || '')}cm ${((s as any).dick_girth1 || '')} dildo stretches your ass, but she quickly grabs onto you and holds you tightly. "Stop trying to pull away or we'll see just how long I can fuck your ass before I pass out." You stop resisting and she starts fucking your ass, the built in vibrator in her harness obviously making her really enjoy this.`);
+  scene.text(`You yelp and try to pull away as the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo stretches your ass, but she quickly grabs onto you and holds you tightly. "Stop trying to pull away or we'll see just how long I can fuck your ass before I pass out." You stop resisting and she starts fucking your ass, the built in vibrator in her harness obviously making her really enjoy this.`);
   qspCall(s, 'arousal', 'anal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -659,7 +659,7 @@ function enterKendraBedStrapVag(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D7', 'a');
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/strapon/bed_strap6.jpg');
   // TODO-QSP: dynamic text: She steps up behind you and you feel her slide the tip of the <<dick1>>cm <<$dic...
-  scene.text(`She steps up behind you and you feel her slide the tip of the ${((s as any).dick1 || '')}cm ${((s as any).dick_girth1 || '')} dildo against your wet slit. She pushes it into you, causing you to moan as she starts fucking you with it. You can hear the built in vibrator on her harness vibrating as she fucks you.`);
+  scene.text(`She steps up behind you and you feel her slide the tip of the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo against your wet slit. She pushes it into you, causing you to moan as she starts fucking you with it. You can hear the built in vibrator on her harness vibrating as she fucks you.`);
   qspCall(s, 'arousal', 'vaginal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -683,7 +683,7 @@ function enterKendraBedStrapAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/university/girl/kendra/sex/lezdom/bed/strapon/bed_strap8.jpg');
   scene.text('You feel Kendra squirt some lube onto your ass before she starts rubbing the head of the dildo against your asshole. She then suddenly thrusts forward while using her hand to jerk you backwards.');
   // TODO-QSP: dynamic text: You yelp and try to pull away as the <<dick1>>cm <<$dick_girth1>> dildo stretche...
-  scene.text(`You yelp and try to pull away as the ${((s as any).dick1 || '')}cm ${((s as any).dick_girth1 || '')} dildo stretches your ass, but she quickly grabs onto you and holds you tightly. "Stop acting like you don't love this! You wouldn't keep coming back if you weren't a complete buttslut." You stop resisting and she starts fucking your ass, the built in vibrator in her harness obviously making her really enjoy this.`);
+  scene.text(`You yelp and try to pull away as the ${((s as any).dick1 ?? '')}cm ${((s as any).dick_girth1 ?? '')} dildo stretches your ass, but she quickly grabs onto you and holds you tightly. "Stop acting like you don't love this! You wouldn't keep coming back if you weren't a complete buttslut." You stop resisting and she starts fucking your ass, the built in vibrator in her harness obviously making her really enjoy this.`);
   qspCall(s, 'arousal', 'anal_strap', 5, ((s as any).npcID ?? 0), ((s as any).npcID1 ?? 0), 'lesbian', 'sub', 'rough');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1124,7 +1124,7 @@ function enterKendraMaleSlave(s: GameState, scene: SceneBuilder): void {
     if (((st as any).kendra_male_slave ?? 0) === 1) {
       scene.text('She pulls his head away again before standing up. "Time to fuck your boy pussy," she tells him and he climbs on the couch. As he does, she turns him away from her and bends him over, presenting his ass to her. She gets up behind him and spits on his ass. "That\'s more than you deserve." She scoots forward a bit closer behind him before reaching down and doing something to the harness. You can hear the vibrating sound coming from it and a soft moan from her.');
       // TODO-QSP: dynamic text: Taking hold of the dildo with one hand to line it up, she sticks it between his ...
-      scene.text(`Taking hold of the dildo with one hand to line it up, she sticks it between his ass cheeks. He tenses up before she thrusts her hips forward, causing him to cry out in pain. "Shut up, bitch! We both know you love it, even ${((st as any).pcs_nickname || '')} knows you love getting your ass fucked by a big hard cock!" she says with a laugh before she grabs onto his hips and plunges herself all the way into him. She hangs onto his hips as she roughly hammers his ass with her fake cock. She starts moaning in pleasure as he grunts and hisses in pain. You can see his limp dick violently bouncing around with each savage thrust she takes.`);
+      scene.text(`Taking hold of the dildo with one hand to line it up, she sticks it between his ass cheeks. He tenses up before she thrusts her hips forward, causing him to cry out in pain. "Shut up, bitch! We both know you love it, even ${((st as any).pcs_nickname ?? '')} knows you love getting your ass fucked by a big hard cock!" she says with a laugh before she grabs onto his hips and plunges herself all the way into him. She hangs onto his hips as she roughly hammers his ass with her fake cock. She starts moaning in pleasure as he grunts and hisses in pain. You can see his limp dick violently bouncing around with each savage thrust she takes.`);
     } else {
       scene.text('She pulls his head away again before standing up. "Get on the couch, slut!" she tells him and he climbs on the couch. As he does, she turns him away from her and pushes him forward until his ass is facing her. She spits on his ass. "Never say I\'m not a kind mistress." She then scoots forward a bit closer behind him before reaching down and doing something to the harness and you can hear the vibrating sound coming from it and a soft moan from her.');
       scene.text('He tenses up as she lines the dildo up with his asshole. A few seconds later, she thrusts her hips forward and he cries out in pain. "Shut up, bitch! This is what you get for being so bad at eating pussy. Maybe this will motivate you better next time!" she says with an angry snarl before she grabs onto his hips and plunges herself all the way into him. She hangs onto his hips as she roughly hammers his ass with her fake cock. She starts moaning in pleasure as he grunts and hisses in pain. You can see his limp dick violently bouncing around with each savage thrust she takes.');

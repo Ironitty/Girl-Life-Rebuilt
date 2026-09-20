@@ -62,7 +62,7 @@ function enterZnakomstvo(s: GameState, scene: SceneBuilder): void {
     scene.text('You frantically try to think of something to say, and blush when you can\'t think of anything.');
     scene.text('Her smile widens when she sees how nervous you are, and she decides to help you out: "I\'m Katja, but my friends call me Kat! What\'s your name?"');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>", you exhale with relief. Feeling a lot more at ease, you hav...
-    scene.text(`"${((s as any).pcs_nickname || '')}", you exhale with relief. Feeling a lot more at ease, you have a nice conversation with her for another half hour while you enjoy the warmth of the sun together.`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}", you exhale with relief. Feeling a lot more at ease, you have a nice conversation with her for another half hour while you enjoy the warmth of the sun together.`);
     scene.text('Then she has to go, and says: "This was nice! Maybe I\'ll see you around here more often?"');
     scene.actions([
       { label: 'Finish', goto: ['Nudelake', ''] },
@@ -78,7 +78,7 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/lake/kat.jpg');
   scene.text('Kat already noticed you walking towards her, and gives you a little wave as you approach her.');
   // TODO-QSP: dynamic text: She smiles: "Hi <<$pcs_nickname>>, how''s it going?"
-  scene.text(`She smiles: "Hi ${((s as any).pcs_nickname || '')}, how's it going?"`);
+  scene.text(`She smiles: "Hi ${((s as any).pcs_nickname ?? '')}, how's it going?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['Nudelake', ''] },
@@ -149,7 +149,7 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
   scene.text('While you\'re sunbathing, you suddenly feel very dizzy and nauseated. You try to stand up and get help, but faint before you get very far.');
   scene.text('');
   // TODO-QSP: dynamic text: "Take it easy, <<$pcs_nickname>>!" you hear Kat''s voice in the darkness. "You''...
-  scene.text(`"Take it easy, ${((s as any).pcs_nickname || '')}!" you hear Kat's voice in the darkness. "You're safe, just relax!"`);
+  scene.text(`"Take it easy, ${((s as any).pcs_nickname ?? '')}!" you hear Kat's voice in the darkness. "You're safe, just relax!"`);
   scene.text('You slowly try to open your eyes, and are staring right into Kat\'s concerned face when you finally manage.');
   scene.text('"Easy now…", she gives you a reassuring smile. You notice you have a damp towel on your head, and that you\'re in the shade under a large tree at the edge of the beach. Kat must\'ve carried you here.');
   scene.text('"Wha… what happened?" you mutter.');

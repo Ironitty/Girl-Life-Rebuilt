@@ -208,9 +208,9 @@ function enterDrinkingBooze(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'set', 'A216', 10);
       scene.text('The bartender brings your drink and looks at you. "What\'s your name, girl?", he asks. You raise your eyebrow - didn\'t he just read it on your ID?');
       // TODO-QSP: dynamic text: "<<$pcs_firstname>>", you reply truthfully, taking a small sip from your beverag...
-      scene.text(`"${((s as any).pcs_firstname || '')}", you reply truthfully, taking a small sip from your beverage.`);
+      scene.text(`"${((s as any).pcs_firstname ?? '')}", you reply truthfully, taking a small sip from your beverage.`);
       // TODO-QSP: dynamic text: "Okay, <<$pcs_firstname>>. My name is Martin. This is my bar, and I don''t want ...
-      scene.text(`"Okay, ${((s as any).pcs_firstname || '')}. My name is Martin. This is my bar, and I don't want any trouble here." You notice a faint accent you cannot quite place - maybe Spanish? "I know most people who come here by name, and most of them are good, honest men and women, but we are a rowdy bunch and tend to act more stupid than usual when pretty young girls are around."`);
+      scene.text(`"Okay, ${((s as any).pcs_firstname ?? '')}. My name is Martin. This is my bar, and I don't want any trouble here." You notice a faint accent you cannot quite place - maybe Spanish? "I know most people who come here by name, and most of them are good, honest men and women, but we are a rowdy bunch and tend to act more stupid than usual when pretty young girls are around."`);
       scene.text('You consider his words and look around the room. He\'s right: Several men seem to be eying you.');
       scene.text('"So… you don\'t want me to come here again?", you ask carefully.');
       scene.text('"No, it means that, if you want to spend time here, I don\'t want you doing anything stupid so I don\'t have to step in." His words and look almost make you feel like a daughter getting peptalked by her father before a night out with friends, and just like a good dad\'s, his voice and features soften when he adds: "But if any of the guys gives you trouble, you just let me know. Got it?"');
@@ -287,7 +287,7 @@ function enterOrdering(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: iif(knowMartin=1, 'Martin', 'The burly barman') + ' musters you. "I think you''ve had enough."'
       scene.text('"I\'m fine", you assure him with a hint of a slur, "Just gimme one."');
       // TODO-QSP: dynamic text: "You can barely stand-up straight, ' + iif(knowMartin=1, '<<$pcs_firstname>>', '...
-      scene.text('"You can barely stand-up straight, \' + iif(knowMartin=1, \'' + ((s as any).pcs_firstname || '') + '\', \'girl\') + \'. And I sure as hell don\'t want a young woman like yourself to pass out in my bar. Go home, or at least sober up a bit."');
+      scene.text('"You can barely stand-up straight, \' + iif(knowMartin=1, \'' + ((s as any).pcs_firstname ?? '') + '\', \'girl\') + \'. And I sure as hell don\'t want a young woman like yourself to pass out in my bar. Go home, or at least sober up a bit."');
       scene.actions([
         { label: 'Can I have some water?', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 35) === 0) {
@@ -430,7 +430,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pcs_horny ?? 0) < 90) {
             (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((Math.floor(Math.random() * 3) + 1));
           }
-          scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand || '')}.jpg`);
+          scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand ?? '')}.jpg`);
           scene.text('"Coming right up." Only seconds later, Martin puts down a full glass in front of you before directing his attention elsewhere.');
           scene.text('As you forlornly muster the liquid, one of the many conversations in the bar piques your interest.');
           scene.text('"-and then the guy just straight-up fingered that women, right there in the metro," one man narrates.');
@@ -559,7 +559,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
                         ]);
                       } else {
                         if (((s as any).DrinkingRand ?? 0) === 12) {
-                          scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand || '')}.jpg`);
+                          scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand ?? '')}.jpg`);
                           scene.text('"Alright." Martin nods and prepares your beverage, then places it in front of you.');
                           scene.text('"Thank you," you smile at him and earn a half-smile in return before he leaves you to yourself.');
                           scene.text('"Well, I guess this place is okay, but I don\'t get why you insisted on bringing me here," you hear a male voice from nearby table.');
@@ -577,7 +577,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
                           ]);
                         } else {
                           if (((s as any).DrinkingRand ?? 0) === 13) {
-                            scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand || '')}.jpg`);
+                            scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand ?? '')}.jpg`);
                             scene.text('"Coming right up." Only seconds later, Martin puts down a full glass in front of you before directing his attention elsewhere.');
                             scene.text('As you muster the liquid that can only do so much to cure your boredom, you start listening in on a nearby conversation.');
                             scene.text('"…and the guy yelled at me for ten minutes! \'What do you mean, I can\'t buy a second car?! I demand to see your manager!\' It\'s good my boss showed up when he did, because I was about to punch him."');
@@ -590,7 +590,7 @@ function enterRandomDrinkEvents(s: GameState, scene: SceneBuilder): void {
                             ]);
                           } else {
                             if (((s as any).DrinkingRand ?? 0) === 14) {
-                              scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand || '')}.jpg`);
+                              scene.img(`images/locations/city/industrial/bar/bartalk${((s as any).pic_rand ?? '')}.jpg`);
                               scene.text('"Of course." With practiced ease, Martin prepares your beverage and puts down a full glass in front of you before another patron draws his attention.');
                               scene.text('While you enjoy your drink in solitude, you pick up a nearby conversation.');
                               scene.text('"… Speaking of which, I heard somebody got hurt at your plant last week."');

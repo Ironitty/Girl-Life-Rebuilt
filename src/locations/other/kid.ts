@@ -270,7 +270,7 @@ function enterKidlist(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).breastfeed = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
+  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/pc/body/tits/breast_feed.jpg');
   // TODO-QSP: dynamic text: You pick up <<$kidname[ks]>> from <<$kidPosPro[ks]>> crib and cuddle for a momen...
   scene.text(`You pick up ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} from ${((s as any).kidPosPro ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} crib and cuddle for a moment before exposing your breast.`);
@@ -292,10 +292,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You gently lay <<$kidname[ks]>> back <<$babyloc>>.
-  scene.text(`You gently lay ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} back ${((s as any).babyloc || '')}.`);
+  scene.text(`You gently lay ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} back ${((s as any).babyloc ?? '')}.`);
   (s as any).playWithKid = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
+  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/pc/activities/baby_play.jpg');
   // TODO-QSP: dynamic text: You get down on the floor with your <<$sdtext[ks]>> and begin to make face and n...
   scene.text(`You get down on the floor with your ${((s as any).sdtext ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} and begin to make face and noises to your little ${((s as any).polreb ?? 0)?.[String((s as any).ks ?? 0)] ?? ''}.`);
@@ -306,10 +306,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   (s as any).totplay = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
+  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/pc/activities/tot_play.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_mothername>>! <<$pcs_mothername>>! <<$pcs_mothername>>! <<$pcs_mothernam...
-  scene.text(`"${((s as any).pcs_mothername || '')}! ${((s as any).pcs_mothername || '')}! ${((s as any).pcs_mothername || '')}! ${((s as any).pcs_mothername || '')}!" Yells ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''}, "Come play with me!"`);
+  scene.text(`"${((s as any).pcs_mothername ?? '')}! ${((s as any).pcs_mothername ?? '')}! ${((s as any).pcs_mothername ?? '')}! ${((s as any).pcs_mothername ?? '')}!" Yells ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''}, "Come play with me!"`);
   // TODO-QSP: dynamic text: "Ok <<$kidname[ks]>>!" You reply.
   scene.text(`"Ok ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''}!" You reply.`);
   scene.text('You pull out a bin of blocks and spend a period of time playing and building with your child.');
@@ -320,7 +320,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   (s as any).tottv = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
+  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/shared/home/tv/kid_tv.jpg');
   // TODO-QSP: dynamic text: You pull <<$kidname[ks]>> up onto the couch with you and cuddle up to watch TV
   scene.text(`You pull ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} up onto the couch with you and cuddle up to watch TV`);
@@ -329,12 +329,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   (s as any).kidtv = qspUntranslated(s, "{", { location: "kid" });
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
+  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/shared/home/tv/kid_tv2.jpg');
   // TODO-QSP: dynamic text: You attempt to curl up on the couch with <<$kidname[ks]>>
   scene.text(`You attempt to curl up on the couch with ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''}`);
   // TODO-QSP: dynamic text: "<<$pcs_mothername>>! I''m trying to watch TV!" <<$kidname[ks]>> says.
-  scene.text(`"${((s as any).pcs_mothername || '')}! I'm trying to watch TV!" ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} says.`);
+  scene.text(`"${((s as any).pcs_mothername ?? '')}! I'm trying to watch TV!" ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} says.`);
   // TODO-QSP: dynamic text: "Well I am gonna watch with you." You reply, followed by tickling <<$kidname[ks]...
   scene.text(`"Well I am gonna watch with you." You reply, followed by tickling ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} to open up a spot on the couch for you to sit.`);
   scene.text('You watch a kids TV show about two American teenagers that barely catches your interest.');
@@ -346,14 +346,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $kidPosPronn[ks] = 'him'
   }
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname || '')}</b></center>`);
+  scene.text(`<center><b>${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} ${((s as any).pcs_lastname ?? '')}</b></center>`);
   scene.img('images/characters/pavlovsk/resident/kolka/event/homework/homework1.jpg');
   // TODO-QSP: dynamic text: You see that <<$kidname[ks]>> is working on a pile of homework. They give kids s...
   scene.text(`You see that ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} is working on a pile of homework. They give kids so much homework now days.`);
   // TODO-QSP: dynamic text: "Does my little darling want <<$pcs_mothername>> to help you with some of that?"...
-  scene.text(`"Does my little darling want ${((s as any).pcs_mothername || '')} to help you with some of that?" you ask`);
+  scene.text(`"Does my little darling want ${((s as any).pcs_mothername ?? '')} to help you with some of that?" you ask`);
   // TODO-QSP: dynamic text: <<$kidname[ks]>> replies, "<<$pcs_mothername>>?!… <<$pcs_mothername>> stop treat...
-  scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} replies, "${((s as any).pcs_mothername || '')}?!… ${((s as any).pcs_mothername || '')} stop treating me like a baby… but yes, I would like some help."`);
+  scene.text(`${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} replies, "${((s as any).pcs_mothername ?? '')}?!… ${((s as any).pcs_mothername ?? '')} stop treating me like a baby… but yes, I would like some help."`);
   scene.text('<br>');
   // TODO-QSP: dynamic text: You sit down at the table next to <<$kidname[ks]>> and begin to help <<$kidPosPr...
   scene.text(`You sit down at the table next to ${((s as any).kidname ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} and begin to help ${((s as any).kidPosPronn ?? 0)?.[String((s as any).ks ?? 0)] ?? ''} with the homework`);

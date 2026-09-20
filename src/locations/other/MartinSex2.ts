@@ -44,26 +44,26 @@ function enterMartinSexPrep(s: GameState, scene: SceneBuilder): void {
     scene.text('"Lie down," you say, sounding a little more forceful than you really wanted to, "I want to ride you."');
     scene.text('Martin smiles. "If you insist." He unceremoniously rids himself of his pants and lies down quickly, knowing better than to argue with a horny woman.');
     // TODO-QSP: dynamic text: Without delay, you climb on top of him, ' + iif($martinpos = 'rev_cowgirl', 'fac...
-    scene.text('Without delay, you climb on top of him, \' + iif($martinpos = \'rev_cowgirl\', \'facing away from him\', \'face to face with him\') + \', his ' + ((s as any).dick || '') + 'cm ' + ((s as any).dick_girth || '') + ' cock tantalizingly close to your wet pussy\' + iif($martinpos = \'rev_cowgirl\', \' and giving him a fantastic view of your ass\', \') + \' as you rub your slit along his length, sending ripples of pleasure through your body.');
+    scene.text('Without delay, you climb on top of him, \' + iif($martinpos = \'rev_cowgirl\', \'facing away from him\', \'face to face with him\') + \', his ' + ((s as any).dick ?? '') + 'cm ' + ((s as any).dick_girth ?? '') + ' cock tantalizingly close to your wet pussy\' + iif($martinpos = \'rev_cowgirl\', \' and giving him a fantastic view of your ass\', \') + \' as you rub your slit along his length, sending ripples of pleasure through your body.');
   } else {
     if (((s as any).martinpos ?? 0) === 'doggystyle') {
       // TODO-QSP: dynamic text: You bend over, giving Martin unrestricted access to your exposed pussy and a sex...
       scene.text(`You bend over, giving Martin unrestricted access to your exposed pussy and a sexy view of your ${((s as any).pc_desc ?? 0)?.['anus'] ?? ''} anus.`);
       scene.text('Martin smiles, clearly pleased with your shamelessness and urgency. He unceremoniously rids himself of his pants and comes up behind you, his erect penis so close to your wet folds you can feel the warmth it emanates. Not being able to see everything he does really turns you on.');
       // TODO-QSP: dynamic text: To say that you are ready would be an understatement, which is probably the reas...
-      scene.text(`To say that you are ready would be an understatement, which is probably the reason Martin… doesn't penetrate you. Instead, he rubs his dick up and down the length of your slit, spreading your juices all around your lips and teasing you with the tip of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock until you are about ready to scream.`);
+      scene.text(`To say that you are ready would be an understatement, which is probably the reason Martin… doesn't penetrate you. Instead, he rubs his dick up and down the length of your slit, spreading your juices all around your lips and teasing you with the tip of his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock until you are about ready to scream.`);
     } else {
       if (((s as any).martinpos ?? 0) === 'missionary') {
         scene.text('You get on your back and spread your legs, giving Martin a lovely view of your pussy and a smoldering \'come hither\' look.');
         scene.text('Martin smiles, clearly pleased with the urgency and horniness you\'re showing. He unceremoniously rids himself of his pants and comes up to you, his erect penis so close to your wet folds you can feel the warmth it emanates. Being face to face with him like this, nothing but air separating his dick from your wet hole, arouses you to no end.');
         // TODO-QSP: dynamic text: It''s painfully obvious how much you want him to fuck you, which is probably why...
-        scene.text(`It's painfully obvious how much you want him to fuck you, which is probably why Martin… doesn't penetrate you. Instead, he whips his dick against your slit, sending tiny shockwaves through your body each time he hits your clit and teasing you with the tip of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock until you are about ready to scream.`);
+        scene.text(`It's painfully obvious how much you want him to fuck you, which is probably why Martin… doesn't penetrate you. Instead, he whips his dick against your slit, sending tiny shockwaves through your body each time he hits your clit and teasing you with the tip of his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock until you are about ready to scream.`);
       } else {
         if (((s as any).martinpos ?? 0) === 'sideways') {
           scene.text('You lie down on your side, pulling on your ass and thigh to expose your wet pussy to Martin and looking at him with unashamed want.');
           scene.text('Martin smiles, your urgency pleasing and arousing him. He unceremoniously rids himself of his pants and comes up to you, his erect penis so close to your wet folds you can feel the warmth it emanates.');
           // TODO-QSP: dynamic text: To say that you are ready would be an understatement, but Martin doesn''t seem t...
-          scene.text(`To say that you are ready would be an understatement, but Martin doesn't seem to care because… he doesn't penetrate you. Instead, he flips you on your back, pushes your legs back and rubs the length of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick along your slit. You reach down to push his cock against your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} sex, increasing the friction of each thrust, both relishing and cursing this pleasurable torture.`);
+          scene.text(`To say that you are ready would be an understatement, but Martin doesn't seem to care because… he doesn't penetrate you. Instead, he flips you on your back, pushes your legs back and rubs the length of his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dick along your slit. You reach down to push his cock against your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} sex, increasing the friction of each thrust, both relishing and cursing this pleasurable torture.`);
         }
       }
     }
@@ -157,19 +157,19 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
     (s as any).pic_rand = (Math.floor(Math.random() * 3) + 1);
   }
   if (((s as any).martinpos ?? 0) === 'cowgirl') {
-    scene.img(`images/locations/city/industrial/bar/sex/bar/martin/cowgirl/cowgirl${((s as any).pic_rand || '')}.jpg`);
+    scene.img(`images/locations/city/industrial/bar/sex/bar/martin/cowgirl/cowgirl${((s as any).pic_rand ?? '')}.jpg`);
   } else {
     if (((s as any).martinpos ?? 0) === 'rev_cowgirl') {
-      scene.img(`images/locations/city/industrial/bar/sex/bar/martin/rev_cowgirl/rev_cowgirl${((s as any).pic_rand || '')}.jpg`);
+      scene.img(`images/locations/city/industrial/bar/sex/bar/martin/rev_cowgirl/rev_cowgirl${((s as any).pic_rand ?? '')}.jpg`);
     } else {
       if (((s as any).martinpos ?? 0) === 'doggystyle') {
-        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/doggystyle/doggy${((s as any).pic_rand || '')}.jpg`);
+        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/doggystyle/doggy${((s as any).pic_rand ?? '')}.jpg`);
       } else {
         if (((s as any).martinpos ?? 0) === 'missionary') {
-          scene.img(`images/locations/city/industrial/bar/sex/bar/martin/missionary/missionary${((s as any).pic_rand || '')}.jpg`);
+          scene.img(`images/locations/city/industrial/bar/sex/bar/martin/missionary/missionary${((s as any).pic_rand ?? '')}.jpg`);
         } else {
           if (((s as any).martinpos ?? 0) === 'sideways') {
-            scene.img(`images/locations/city/industrial/bar/sex/bar/martin/sideways/sideways${((s as any).pic_rand || '')}.jpg`);
+            scene.img(`images/locations/city/industrial/bar/sex/bar/martin/sideways/sideways${((s as any).pic_rand ?? '')}.jpg`);
           }
         }
       }
@@ -222,9 +222,9 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A216', (-2));
     scene.text('The trickle of blood from your broken hymen doesn\'t escape his sharp eyes, though, and he brings your carnal act to a grinding halt.');
     // TODO-QSP: dynamic text: "What…? <<$pcs_firstname>>, are you a virgin?!" He asks, aghast - he probably wo...
-    scene.text(`"What…? ${((s as any).pcs_firstname || '')}, are you a virgin?!" He asks, aghast - he probably wouldn't have agreed to being intimate with you if he had known this.`);
+    scene.text(`"What…? ${((s as any).pcs_firstname ?? '')}, are you a virgin?!" He asks, aghast - he probably wouldn't have agreed to being intimate with you if he had known this.`);
     // TODO-QSP: dynamic text: "<i>Was</i>," you correct proudly, "I <i>was</i> a virgin. Now I''m a woman." Yo...
-    scene.text(`"<i>Was</i>," you correct proudly, "I <i>was</i> a virgin. Now I'm a woman." You can feel some pain from having his throbbing ${((s as any).dick_girth || '')} cock where that small membrane used to be, but while neither of you move, it's bearable.`);
+    scene.text(`"<i>Was</i>," you correct proudly, "I <i>was</i> a virgin. Now I'm a woman." You can feel some pain from having his throbbing ${((s as any).dick_girth ?? '')} cock where that small membrane used to be, but while neither of you move, it's bearable.`);
     scene.text('You certainly don\'t want to stop, though - not halfway into your first time.');
     if ((((s as any).martinpos ?? 0) === 'cowgirl'  ||  ((s as any).martinpos ?? 0) === 'rev_cowgirl')) {
       scene.text('In fact, before Martin can get any ideas, like pulling out, you go back to impaling your pussy on your first proper cock, although you\'re not sure he\'s completely over the fact that he took your virginity.');
@@ -243,27 +243,27 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).tabletkishot ?? 0) < 1  &&  ((s as any).pillcon2 ?? 0) < 30000) {
     // TODO-QSP: dynamic text: The thought that you could get pregnant is still present in the back of your hea...
-    scene.text(`The thought that you could get pregnant is still present in the back of your head, now that Martin's dick is deep inside you, but you have long passed the point of no return. ${((s as any).OpenInnerThought || '')}I can always have him pull out, ${((s as any).CloseInnerThought || '')}you think to yourself and allow the thought to fade as you give in to the sensations that flood your senses.`);
+    scene.text(`The thought that you could get pregnant is still present in the back of your head, now that Martin's dick is deep inside you, but you have long passed the point of no return. ${((s as any).OpenInnerThought ?? '')}I can always have him pull out, ${((s as any).CloseInnerThought ?? '')}you think to yourself and allow the thought to fade as you give in to the sensations that flood your senses.`);
   }
   if (((s as any).martinpos ?? 0) === 'cowgirl') {
     // TODO-QSP: dynamic text: Feeling Martin''s <<dick>>cm <<$dick_girth>> cock slowly move inside you as you ...
-    scene.text(`Feeling Martin's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock slowly move inside you as you lift yourself up and fall back down is incredible; the control you have over the situation makes it even more satisfying. You moan softly as you ever so slightly speed up your movements, looking at Martin from under hooded eyes and enjoying the sight of his slightly parted lips, or the intense look with which he focuses on your swaying breasts - he is completely under your spell.`);
+    scene.text(`Feeling Martin's ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock slowly move inside you as you lift yourself up and fall back down is incredible; the control you have over the situation makes it even more satisfying. You moan softly as you ever so slightly speed up your movements, looking at Martin from under hooded eyes and enjoying the sight of his slightly parted lips, or the intense look with which he focuses on your swaying breasts - he is completely under your spell.`);
   } else {
     if (((s as any).martinpos ?? 0) === 'rev_cowgirl') {
       // TODO-QSP: dynamic text: Feeling Martin''s <<dick>>cm <<$dick_girth>> cock slowly move inside you as you ...
-      scene.text(`Feeling Martin's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock slowly move inside you as you lift yourself up and fall back down is incredible; the control you have over the situation makes it even more satisfying. You moan softly as you ever so slightly speed up your movements. You look back over your shoulder and he seems completely focused on where the two of you are connected, watching with lustful intensity as your ass sways before him and you take his cock inside your wet hole again and again.`);
+      scene.text(`Feeling Martin's ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock slowly move inside you as you lift yourself up and fall back down is incredible; the control you have over the situation makes it even more satisfying. You moan softly as you ever so slightly speed up your movements. You look back over your shoulder and he seems completely focused on where the two of you are connected, watching with lustful intensity as your ass sways before him and you take his cock inside your wet hole again and again.`);
     } else {
       if (((s as any).martinpos ?? 0) === 'doggystyle') {
         // TODO-QSP: dynamic text: Feeling Martin''s <<dick>>cm <<$dick_girth>> cock move inside you as he enters y...
-        scene.text(`Feeling Martin's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock move inside you as he enters you and withdraws is wonderful. You have little control over the situation, now that everything's said and done and the barkeeper is balls-deep inside you, and that is exactly what makes you moan so loud. You look back over your shoulder and he seems completely focused on where the two of you are connected, watching with lustful intensity as he shoves his cock inside your wet hole again and again, kneading your ass as he goes.`);
+        scene.text(`Feeling Martin's ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock move inside you as he enters you and withdraws is wonderful. You have little control over the situation, now that everything's said and done and the barkeeper is balls-deep inside you, and that is exactly what makes you moan so loud. You look back over your shoulder and he seems completely focused on where the two of you are connected, watching with lustful intensity as he shoves his cock inside your wet hole again and again, kneading your ass as he goes.`);
       } else {
         if (((s as any).martinpos ?? 0) === 'missionary') {
           // TODO-QSP: dynamic text: Feeling Martin''s <<dick>>cm <<$dick_girth>> cock move inside you as he enters y...
-          scene.text(`Feeling Martin's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock move inside you as he enters you and withdraws is wonderful. You have little control over the situation, now that everything's said and done and the barkeeper is balls-deep inside you, and that is exactly what makes you moan so loud. You look up at him and find his eyes moving back and forth between your face, your swaying breasts and the pussy he's fucking. But the moment he notices your gaze, he leans down and kisses you passionately without missing a beat.`);
+          scene.text(`Feeling Martin's ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock move inside you as he enters you and withdraws is wonderful. You have little control over the situation, now that everything's said and done and the barkeeper is balls-deep inside you, and that is exactly what makes you moan so loud. You look up at him and find his eyes moving back and forth between your face, your swaying breasts and the pussy he's fucking. But the moment he notices your gaze, he leans down and kisses you passionately without missing a beat.`);
         } else {
           if (((s as any).martinpos ?? 0) === 'sideways') {
             // TODO-QSP: dynamic text: Feeling Martin''s <<dick>>cm <<$dick_girth>> cock move inside you as he enters y...
-            scene.text(`Feeling Martin's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock move inside you as he enters you and withdraws is wonderful. You have little control over the situation, now that everything's said and done and the barkeeper is balls-deep inside you, and that is exactly what makes you moan so loud. You look up at him and find his eyes moving back and forth between your face, your swaying breasts and ass - you can see him and what he's doing to you and yet this position makes you feel wonderfully vulnerable and exposed.`);
+            scene.text(`Feeling Martin's ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock move inside you as he enters you and withdraws is wonderful. You have little control over the situation, now that everything's said and done and the barkeeper is balls-deep inside you, and that is exactly what makes you moan so loud. You look up at him and find his eyes moving back and forth between your face, your swaying breasts and ass - you can see him and what he's doing to you and yet this position makes you feel wonderfully vulnerable and exposed.`);
           }
         }
       }
@@ -305,9 +305,9 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).martinpos ?? 0) === 'cowgirl'  ||  ((st as any).martinpos ?? 0) === 'rev_cowgirl') {
       if (((st as any).martinpos ?? 0) === 'cowgirl') {
-        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/cowgirl/cowgirl${((st as any).pic_rand2 || '')}.jpg`);
+        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/cowgirl/cowgirl${((st as any).pic_rand2 ?? '')}.jpg`);
       } else {
-        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/rev_cowgirl/rev_cowgirl${((st as any).pic_rand2 || '')}.jpg`);
+        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/rev_cowgirl/rev_cowgirl${((st as any).pic_rand2 ?? '')}.jpg`);
       }
       // TODO-QSP: dynamic text: You are moving ever faster, trying to take Martin''s wonderful cock deeper into ...
       scene.text('You are moving ever faster, trying to take Martin\'s wonderful cock deeper into your ' + ((st as any).pc_desc ?? 0)?.['pussy'] ?? '' + ' pussy, fucking him harder, moaning louder as you go. It may have started off gently but there\'s no gentleness left to be found here anymore: You are riding this man in the middle of his bar, giving him a fantastic view of your \' + iif($martinpos = \'rev_cowgirl\', \'ass\', \'tits\') + \' in the same spot some guys talked about their shitty jobs and marital problems a few hours ago.');
@@ -322,7 +322,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
       (st as any).orgasm_txt = 'Your sense of \' + iif(dominance > 20, \'control over\', \'submission to\') + \' Martin and the intense feeling of him moving inside your ' + ((st as any).pc_desc ?? 0)?.['pussy'] + ' pussy drive you ever closer to the edge until you can no longer take it. You cum loudly, shivering all over, your pussy massaging Martin\'s cock with its contractions as if it wanted to squeeze the cum out of him. The orgasm lasts for what feels like an eternity, but when it has passed\' + iif($martinpos = \'rev_cowgirl\', \' and you look back at him\', \') + \', Martin gives you a smug, self-satisfied look that makes you chuckle. You\'re not done with each other yet, though, and before long, you\'ve resumed your fast, hard rhythm.';
       scene.text('And you could have resisted him; surely you could have stayed in control. But the simple fact of the matter was that you didn\'t want to. You were on top of him, you had proven to yourself and to him that you could make him do what you want. And now, you <b>want</b> him to take charge of you again.');
       // TODO-QSP: dynamic text: With no resistance from you, Martin grabs onto your hips and stops your movement...
-      scene.text('With no resistance from you, Martin grabs onto your hips and stops your movement, only the tip of his ' + ((st as any).dick_girth || '') + ' penis still inside your pussy. You want him inside you again, but he doesn\'t let you move, forcing you to look\' + iif($martinpos = \'rev_cowgirl\', \' over your shoulder\', \') + \' at your lover, feeling both aroused and vulnerable.');
+      scene.text('With no resistance from you, Martin grabs onto your hips and stops your movement, only the tip of his ' + ((st as any).dick_girth ?? '') + ' penis still inside your pussy. You want him inside you again, but he doesn\'t let you move, forcing you to look\' + iif($martinpos = \'rev_cowgirl\', \' over your shoulder\', \') + \' at your lover, feeling both aroused and vulnerable.');
       scene.text('"Do you want it?" He asks imperiously.');
       scene.text('"Yes, please," you pant.');
       scene.text('"Please what?"');
@@ -334,7 +334,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'stat', '');
     } else {
       if (((st as any).martinpos ?? 0) === 'doggystyle') {
-        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/doggystyle/doggy${((st as any).pic_rand2 || '')}.jpg`);
+        scene.img(`images/locations/city/industrial/bar/sex/bar/martin/doggystyle/doggy${((st as any).pic_rand2 ?? '')}.jpg`);
         scene.text('Martin is pounding you from behind like he\'s possessed. He may have started off gently but there\'s no gentleness left in him: Your lover is fucking you like a whore, right in the middle of his own establishment where only a few hours ago people were talking about their shitty jobs and martial problems.');
         scene.text('It only adds to the excitement of it all to know that this is a public place, even if nobody\'s here now.');
         if (((st as any).trait_vars ?? 0)?.['exhibitionist'] > 1  ||  qspFunc(s, 'fetish', 'get_pref', 'exhibitionism') > 50) {
@@ -356,7 +356,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'stat', '');
       } else {
         if (((st as any).martinpos ?? 0) === 'missionary') {
-          scene.img(`images/locations/city/industrial/bar/sex/bar/martin/missionary/missionary${((st as any).pic_rand2 || '')}.jpg`);
+          scene.img(`images/locations/city/industrial/bar/sex/bar/martin/missionary/missionary${((st as any).pic_rand2 ?? '')}.jpg`);
           // TODO-QSP: dynamic text: Martin is giving your <<$pc_desc[''pubes'']>> pussy a good pounding and what few...
           scene.text(`Martin is giving your ${((st as any).pc_desc ?? 0)?.['pubes'] ?? ''} pussy a good pounding and what few kisses he gives you are rough and demanding. He may have started off gently but there's no gentleness left in him: Your lover is fucking you possessively, right in the middle of his establishment where only a few hours ago people were talking about their shitty jobs and martial problems.`);
           scene.text('It only adds to the excitement of it all to know that this is a public place, even if nobody\'s here now.');
@@ -381,7 +381,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
           qspCall(st, 'stat', '');
         } else {
           if (((st as any).martinpos ?? 0) === 'sideways') {
-            scene.img(`images/locations/city/industrial/bar/sex/bar/martin/sideways/sideways${((st as any).pic_rand2 || '')}.jpg`);
+            scene.img(`images/locations/city/industrial/bar/sex/bar/martin/sideways/sideways${((st as any).pic_rand2 ?? '')}.jpg`);
             scene.text('Martin has been slowly picking up the pace but he is clearly getting frustrated. You don\'t know if it\'s the position, personal preference or something else entirely, but when he pulls you to your feet, these questions are quickly swept aside:');
             // TODO-QSP: dynamic text: In a few swift motions, he has lifted your <<$pc_desc[''legs'']>> leg and entere...
             scene.text(`In a few swift motions, he has lifted your ${((st as any).pc_desc ?? 0)?.['legs'] ?? ''} leg and entered you again from behind, fucking you sideways… only standing up. All this may have started off gently but there's no gentleness left in him: Martin is fucking you possessively, right in the middle of his establishment where only a few hours ago, people were talking about their shitty jobs and martial problems.`);
@@ -452,30 +452,30 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
       scene.text('"Did you enjoy yourself?" You ask coquettishly, leaning forward onto his chest.');
       scene.text('Martin smiles up at you, and pulls you down to give you a kiss. "I think you know the answer."');
       // TODO-QSP: dynamic text: "Perhaps…" You grin and lift yourself off, feeling his softening <<dick>>cm <<$d...
-      scene.text(`"Perhaps…" You grin and lift yourself off, feeling his softening ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock slide out of your ${((st as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy.`);
+      scene.text(`"Perhaps…" You grin and lift yourself off, feeling his softening ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock slide out of your ${((st as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy.`);
     } else {
       if (((st as any).martinpos ?? 0) === 'rev_cowgil') {
         scene.text('"Did you enjoy yourself?" You ask coquettishly, wiggling your butt as you look back over your shoulder.');
         scene.text('Martin smiles up at you, and gives your ass a resounding smack. "I think you know the answer."');
         // TODO-QSP: dynamic text: "Perhaps…" You grin and lift yourself off, feeling his softening <<dick>>cm <<$d...
-        scene.text(`"Perhaps…" You grin and lift yourself off, feeling his softening ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock slide out of your ${((st as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy.`);
+        scene.text(`"Perhaps…" You grin and lift yourself off, feeling his softening ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock slide out of your ${((st as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy.`);
       } else {
         if (((st as any).martinpos ?? 0) === 'doggystyle') {
           scene.text('Martin is still catching his breath when you look at him over your shoulder and grin when you see the expression of bliss on his face.');
           // TODO-QSP: dynamic text: "<<$pcs_firstname>>, you are something else." Martin chuckles and pats your ass.
-          scene.text(`"${((st as any).pcs_firstname || '')}, you are something else." Martin chuckles and pats your ass.`);
+          scene.text(`"${((st as any).pcs_firstname ?? '')}, you are something else." Martin chuckles and pats your ass.`);
           scene.text('"So, I guess it was good for you."');
         } else {
           if (((st as any).martinpos ?? 0) === 'missionary') {
             scene.text('You pull Martin in for a tender kiss, enjoying the afterglow of all the sex and orgasming.');
             // TODO-QSP: dynamic text: "<<$pcs_firstname>>, you are something else." Martin chuckles and gives you anot...
-            scene.text(`"${((st as any).pcs_firstname || '')}, you are something else." Martin chuckles and gives you another kiss.`);
+            scene.text(`"${((st as any).pcs_firstname ?? '')}, you are something else." Martin chuckles and gives you another kiss.`);
             scene.text('"So, I guess it was good for you."');
           } else {
             if (((st as any).martinpos ?? 0) === 'sideways') {
               scene.text('Martin lets go of your leg and both your feet stand firmly on the ground again. You feel sore, but if every workout was like this, you wouldn\'t mind feeling sore every night.');
               // TODO-QSP: dynamic text: "<<$pcs_firstname>>, you are something else." Martin chuckles and pats your ass.
-              scene.text(`"${((st as any).pcs_firstname || '')}, you are something else." Martin chuckles and pats your ass.`);
+              scene.text(`"${((st as any).pcs_firstname ?? '')}, you are something else." Martin chuckles and pats your ass.`);
               scene.text('"So, I guess it was good for you."');
             }
           }
@@ -501,7 +501,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
               if (((st as any).sexcontra ?? 0) === 5  &&  (!((st as any).preziktype ?? 0))) {
                 scene.text('"Shit, I think the condom slipped off," Martin curses under his breath.');
                 // TODO-QSP: dynamic text: "Don''t worry," you say with a comforting smile, "I''m on the pill." <<$OpenInne...
-                scene.text(`"Don't worry," you say with a comforting smile, "I'm on the pill." ${((st as any).OpenInnerThought || '')}Still need to get that condom out of my vagina though, ${((st as any).CloseInnerThought || '')} you think to yourself.`);
+                scene.text(`"Don't worry," you say with a comforting smile, "I'm on the pill." ${((st as any).OpenInnerThought ?? '')}Still need to get that condom out of my vagina though, ${((st as any).CloseInnerThought ?? '')} you think to yourself.`);
               } else {
                 if (((st as any).sexcontra ?? 0) === 7) {
                   scene.text('"Shit, I think the condom broke," Martin curses under his breath.');
@@ -555,7 +555,7 @@ function enterMartinSexDyn(s: GameState, scene: SceneBuilder): void {
 function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A216');
   (s as any).pic_rand = (Math.floor(Math.random() * 3) + 1);
-  scene.img(`images/locations/city/industrial/bar/sex/bar/martin/anal/anal_fore${((s as any).pic_rand || '')}.jpg`);
+  scene.img(`images/locations/city/industrial/bar/sex/bar/martin/anal/anal_fore${((s as any).pic_rand ?? '')}.jpg`);
   if (((s as any).cycle ?? 0) === 0  ||  ((s as any).MartinPussyLick ?? 0) === 1) {
     if ((!((s as any).cycle ?? 0))) {
       scene.text('Since you are on your period, regular sex would be a pretty messy option, so you do what any good girl who\'s not an anal virgin would for her lover:');
@@ -576,7 +576,7 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
       scene.text('You tell Martin to lay down and get on top of him, facing away from him, his dick tantalizingly close to your nether holes.');
     } else {
       // TODO-QSP: dynamic text: You bend over, wiggling your ass invitingly and spreading your cheeks a little t...
-      scene.text(`You bend over, wiggling your ass invitingly and spreading your cheeks a little to give Martin a good look at the ${((s as any).pcs_ass_txt || '')} hole he is about to fill.`);
+      scene.text(`You bend over, wiggling your ass invitingly and spreading your cheeks a little to give Martin a good look at the ${((s as any).pcs_ass_txt ?? '')} hole he is about to fill.`);
     }
   } else {
     if (((s as any).MartinSurpAnal ?? 0) === 1) {
@@ -598,7 +598,7 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
       scene.text('Martin is more teasing, first rubbing against your asshole for a while before pushing inside. You don\'t know if it\'s his experience or the way his finger or, after a minute, finger<b>s</b> feel, but you find your free hand wandering down to your pussy and stroking it absentmindedly, enjoying the sensations from your ass.');
       scene.text('If you were wet before, you are sopping wet now, quivering with excitement and more than ready to take a dick up your ass, or so you hope.');
       // TODO-QSP: dynamic text: It just so happens that the <<$dick_girth>> dick you''ve been stroking is ready ...
-      scene.text(`It just so happens that the ${((s as any).dick_girth || '')} dick you've been stroking is ready for penetration.`);
+      scene.text(`It just so happens that the ${((s as any).dick_girth ?? '')} dick you've been stroking is ready for penetration.`);
     } else {
       scene.text('You grab the lube from your bag and put a generous amount on your puckered hole, Martin\'s finger and your own hand. Your hand quickly finds Martin\'s penis and you immediately start coating it in lubricant. Martin is more teasing, first rubbing against your asshole for a while before pushing inside.');
       scene.text('After two or three minutes, you are content with how slick Martin\'s dick is, but he is still driving his finger, now joined by a second one, in and out of your anus, and you are enjoying the sensation. You don\'t even notice how one of your hands wanders down between your legs and starts rubbing your clit. You can hear yourself moan, and you\'re getting sopping wet…');
@@ -617,7 +617,7 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
       scene.text('That\'s when you realize that neither of you have any lube handy.');
       scene.text('That alone might not have been a problem, but even through the rose-tinted glasses of horniness, you realize that his dick may well be too big for your poor butthole.');
       // TODO-QSP: dynamic text: But you don''t let that frighten you and try to lubricate your ass and the tip o...
-      scene.text(`But you don't let that frighten you and try to lubricate your ass and the tip of his ${((s as any).dick_girth || '')} cock with a little bit of spit.`);
+      scene.text(`But you don't let that frighten you and try to lubricate your ass and the tip of his ${((s as any).dick_girth ?? '')} cock with a little bit of spit.`);
       scene.text('Martin seems to notice that you\'re a little worried because he not only does his spit-covered finger take your finger\'s place at and, after a few minutes of careful prodding, inside your rear entrance, but he also reaches around you and strokes your pussy to help you relax.');
       scene.text('You are enjoying what he\'s doing so much that it takes a minute or so before you remember to stroke the dick in your hand, getting him nice and hard for what you are about to do.');
     }
@@ -640,9 +640,9 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
     { label: 'Time for anal', handler: (st: GameState) => {
     (st as any).pic_rand = (Math.floor(Math.random() * 2) + 1);
     if (((st as any).martinpos ?? 0) === 'rev_cowgirl') {
-      scene.img(`images/locations/city/industrial/bar/sex/bar/martin/anal/anal_rev${((st as any).pic_rand || '')}.jpg`);
+      scene.img(`images/locations/city/industrial/bar/sex/bar/martin/anal/anal_rev${((st as any).pic_rand ?? '')}.jpg`);
     } else {
-      scene.img(`images/locations/city/industrial/bar/sex/bar/martin/anal/anal_doggy${((st as any).pic_rand || '')}.jpg`);
+      scene.img(`images/locations/city/industrial/bar/sex/bar/martin/anal/anal_doggy${((st as any).pic_rand ?? '')}.jpg`);
     }
     if (((st as any).martinpos ?? 0) === 'rev_cowgirl') {
       if (((st as any).anal_slip ?? 0) > 0) {
@@ -652,19 +652,19 @@ function enterMartinAnalDyn(s: GameState, scene: SceneBuilder): void {
           scene.text('Instead, you wiggle to and fro, ever so gentle pushing against Martin and inching along his cock with your ass, then rising again, enjoying the tingling sensation of him sliding out and the knowledge that you are in control, pleasuring him and yourself with your ass, cooing softly as you go.');
           scene.text('It takes a while like this, but after a few minutes of slow up-and-down, your butt cheeks meet his pelvis for the first time and you feel wonderfully full. Martin\'s groan causes you to look back at him and you grin when you see the expression on his face: It is one of pure bliss. The bartender seems completely overwhelmed by the fact that a young, beautiful woman is riding his dick with her ass.');
           // TODO-QSP: dynamic text: <<$OpenInnerThought>>You ain''t seen nothing yet<<$CloseInnerThought>>, you thin...
-          scene.text(`${((st as any).OpenInnerThought || '')}You ain't seen nothing yet${((st as any).CloseInnerThought || '')}, you think to yourself and lift yourself up. This time, however, you push down faster. Up again and, encouraged by the lack of pain the first time around, you slam your ass down, slapping against Martin's hips as you take him balls-deep.`);
+          scene.text(`${((st as any).OpenInnerThought ?? '')}You ain't seen nothing yet${((st as any).CloseInnerThought ?? '')}, you think to yourself and lift yourself up. This time, however, you push down faster. Up again and, encouraged by the lack of pain the first time around, you slam your ass down, slapping against Martin's hips as you take him balls-deep.`);
         } else {
           scene.text('Truth be told, even without the lube your asshole would have been wide enough to accommodate Martin\'s dick, but with the lube, you don\'t have to hold back: Feeling like a pornstar, you take his cock inside your ass and, without pausing, keep lowering yourself until you feel his hips against your ass cheeks.');
           scene.text('You feel incredibly full, and a single look over the shoulder confirms that Martin is no less pleased: He is looking at where you are connected, spell-bound by the sight of his cock hilted in your ass.');
           // TODO-QSP: dynamic text: <<$OpenInnerThought>>You ain''t seen nothing yet<<$CloseInnerThought>>, you thin...
-          scene.text(`${((st as any).OpenInnerThought || '')}You ain't seen nothing yet${((st as any).CloseInnerThought || '')}, you think to yourself and lift yourself up. This time, however, you push down faster. Up again and, encouraged by the lack of pain the first time around, you slam your ass down, slapping against Martin's hips as you take him balls-deep again.`);
+          scene.text(`${((st as any).OpenInnerThought ?? '')}You ain't seen nothing yet${((st as any).CloseInnerThought ?? '')}, you think to yourself and lift yourself up. This time, however, you push down faster. Up again and, encouraged by the lack of pain the first time around, you slam your ass down, slapping against Martin's hips as you take him balls-deep again.`);
         }
       } else {
         if (((st as any).pcs_ass ?? 0) >= ((st as any).dick ?? 0)) {
           scene.text('With your ass as prepared as it\'ll ever be tonight, you lower yourself onto his cock. You have to move carefully, given the lack of proper lubrication, but given your anal experience, his size really is a non-issue. All it takes is a little bit of time and moaning until his cock is completely inside your ass, your cheeks resting against Martin\'s pelvis.');
           scene.text('You feel incredibly full, and a single look over the shoulder confirms that Martin is no less pleased: He is looking at where you are connected, spell-bound by the sight of his cock hilted in your ass.');
           // TODO-QSP: dynamic text: <<$OpenInnerThought>>You ain''t seen nothing yet<<$CloseInnerThought>>, you thin...
-          scene.text(`${((st as any).OpenInnerThought || '')}You ain't seen nothing yet${((st as any).CloseInnerThought || '')}, you think to yourself and lift yourself up. This time, however, you push down faster. Up again and, encouraged by the lack of pain the first time around, you slam your ass down, slapping against Martin's hips as you take him balls-deep again.`);
+          scene.text(`${((st as any).OpenInnerThought ?? '')}You ain't seen nothing yet${((st as any).CloseInnerThought ?? '')}, you think to yourself and lift yourself up. This time, however, you push down faster. Up again and, encouraged by the lack of pain the first time around, you slam your ass down, slapping against Martin's hips as you take him balls-deep again.`);
         } else {
           qspGoto(st, 'MartinSex2', 'PainalDyn');
         }

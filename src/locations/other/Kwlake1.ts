@@ -83,7 +83,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/sex/kwlake1/kwlake6.jpg');
     scene.text('Then the guy groans for Kat to get on all fours, which she does without a doubt. Your eyes bulge when you see her take his cock in her ass without a complaint.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" Katja says intently.
-    scene.text(`"${((st as any).pcs_nickname || '')}!" Katja says intently.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}!" Katja says intently.`);
     scene.text('"Wa… what?" you mutter, lost in your own thoughts for a moment.');
     scene.text('"Get your ass over here and give me that piece of rock already!" Kat orders you, between moans. "I want you to feel what I feel…"');
     scene.text('You hand her the rock without a second thought, and wince slightly when she spits onto your anus and begins to rub the stone cock against your anus forcefully.');

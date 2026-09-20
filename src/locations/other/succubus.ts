@@ -22,20 +22,20 @@ function enterActive(s: GameState, scene: SceneBuilder): void {
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).succubusQW ?? 0) === 14  &&  ((s as any).scpopt ?? 0) === 1  &&  ((s as any).succhungry ?? 0) < 1) {
     // TODO-QSP: dynamic text: You sense <<$sucself1>> perk up, ready to spring forth…
-    scene.text(`You sense ${((s as any).sucself1 || '')} perk up, ready to spring forth…`);
+    scene.text(`You sense ${((s as any).sucself1 ?? '')} perk up, ready to spring forth…`);
     scene.actions([
       { label: 'Call your power and feed (Takes a lot of time)', handler: (st: GameState) => {
     (st as any).scpopt = 0;
   }, goto: ['succubus', 'init'] },
       { label: 'Try to control your urges', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You try to contain <<$sucself1>>…
-    scene.text(`You try to contain ${((st as any).sucself1 || '')}…`);
+    scene.text(`You try to contain ${((st as any).sucself1 ?? '')}…`);
     qspCall(st, 'willpower', 'misc', 'resist', 'easy');
     (st as any).will_cost = ((st as any).will_cost ?? 0) * ((st as any).succublvl ?? 0);
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       scene.text('<br>You don\'t have enough willpower to control your urges.');
       // TODO-QSP: dynamic text: <<$sucself1>> continues rising toward the surface of your being.
-      scene.text(`${((st as any).sucself1 || '')} continues rising toward the surface of your being.`);
+      scene.text(`${((st as any).sucself1 ?? '')} continues rising toward the surface of your being.`);
       (st as any).succonfail = 1;
       (st as any).scpopt = 0;
       qspGoto(st, 'succubus', 'init');
@@ -43,7 +43,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'willpower', 'pay', 'resist');
       qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: And you''re successful, <<$sucself1>> returns to your core.
-      scene.text(`And you're successful, ${((st as any).sucself1 || '')} returns to your core.`);
+      scene.text(`And you're successful, ${((st as any).sucself1 ?? '')} returns to your core.`);
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     (st as any).scpopt = 2;
@@ -59,7 +59,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).succonfail ?? 0) !== 1) {
         // TODO-QSP: dynamic text: You call <<$sucself1>> up from its resting place
-        scene.text(`You call ${((s as any).sucself1 || '')} up from its resting place`);
+        scene.text(`You call ${((s as any).sucself1 ?? '')} up from its resting place`);
       }
       scene.text('It fills you completely, suffusing through your being with power…');
       scene.text('<center><b>and hunger</b></center>');
@@ -104,12 +104,12 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Push it back down', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You try to contain <<$sucself1>>…
-    scene.text(`You try to contain ${((st as any).sucself1 || '')}…`);
+    scene.text(`You try to contain ${((st as any).sucself1 ?? '')}…`);
     qspCall(st, 'willpower', 'misc', 'resist', 'easy');
     // TODO-QSP: will_cost *= succublvl
     if (((st as any).pcs_willpwr ?? 0) < ((st as any).will_cost ?? 0)) {
       // TODO-QSP: dynamic text: And you fail, <<$sucself1>> continues rising toward the surface of your being.
-      scene.text(`And you fail, ${((st as any).sucself1 || '')} continues rising toward the surface of your being.`);
+      scene.text(`And you fail, ${((st as any).sucself1 ?? '')} continues rising toward the surface of your being.`);
       (st as any).succonfail = 1;
       (st as any).scpopt = 0;
       (st as any).succubusQW = 14;
@@ -118,7 +118,7 @@ function enterFirsttime(s: GameState, scene: SceneBuilder): void {
       qspCall(st, 'willpower', 'pay', 'resist');
       qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: And you''re successful, <<$sucself1>> returns to your core.
-      scene.text(`And you're successful, ${((st as any).sucself1 || '')} returns to your core.`);
+      scene.text(`And you're successful, ${((st as any).sucself1 ?? '')} returns to your core.`);
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     (st as any).scpopt = 2;
@@ -344,7 +344,7 @@ function enterRapistFight(s: GameState, scene: SceneBuilder): void {
       scene.text('You force him to the ground and immediately mount him, your now hair-trigger snatch sending you into orgasm.');
       scene.text('');
       // TODO-QSP: dynamic text: You ride him for some time, your power forcing him to cum <<$scxcum>> pulling ev...
-      scene.text(`You ride him for some time, your power forcing him to cum ${((st as any).scxcum || '')} pulling every drop of energy out of each eruption, with the rush causing you to orgasm as he does…`);
+      scene.text(`You ride him for some time, your power forcing him to cum ${((st as any).scxcum ?? '')} pulling every drop of energy out of each eruption, with the rush causing you to orgasm as he does…`);
       scene.text('');
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
@@ -457,7 +457,7 @@ function enterTatianaask(s: GameState, scene: SceneBuilder): void {
       scene.text('Something in you panics at this, and the fear overtakes your mind.');
     }
     // TODO-QSP: dynamic text: Distantly, you hear Tatiana mutter, "Huh, what''s this?" and her power pokes <<$...
-    scene.text(`Distantly, you hear Tatiana mutter, "Huh, what's this?" and her power pokes ${((s as any).sucself1 || '')}.`);
+    scene.text(`Distantly, you hear Tatiana mutter, "Huh, what's this?" and her power pokes ${((s as any).sucself1 ?? '')}.`);
     (s as any).sclocrt = 'succubus';
     (s as any).scargrt = 'tatianaask';
     (s as any).scsubloc = 'tatianasex';
@@ -567,15 +567,15 @@ function enterTatianasex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sucpcinfo ?? 0) < 4) {
     (s as any).tatisucsex = ((s as any).tatisucsex ?? 0) - (2);
     // TODO-QSP: dynamic text: Your power reaches through the connection to Tatiana, enflaming her lust even as...
-    scene.text(`Your power reaches through the connection to Tatiana, enflaming her lust even as ${((s as any).sucself1 || '')} grabs ahold of her power.`);
+    scene.text(`Your power reaches through the connection to Tatiana, enflaming her lust even as ${((s as any).sucself1 ?? '')} grabs ahold of her power.`);
     // TODO-QSP: dynamic text: At this point, you gain some control back and cause her power to cycle through y...
-    scene.text(`At this point, you gain some control back and cause her power to cycle through you, as ${((s as any).sucself1 || '')} cycles through her making her passion and yours move together.`);
+    scene.text(`At this point, you gain some control back and cause her power to cycle through you, as ${((s as any).sucself1 ?? '')} cycles through her making her passion and yours move together.`);
     scene.text('Tatiana quickly strips down and moves between your legs…');
   } else {
     // TODO-QSP: dynamic text: You take control of <<$sucself1>> and, as you softly kiss her, <<$sucself1>> gen...
-    scene.text(`You take control of ${((s as any).sucself1 || '')} and, as you softly kiss her, ${((s as any).sucself1 || '')} gently flows into Tatiana even as you coax her power to flow into you.`);
+    scene.text(`You take control of ${((s as any).sucself1 ?? '')} and, as you softly kiss her, ${((s as any).sucself1 ?? '')} gently flows into Tatiana even as you coax her power to flow into you.`);
     // TODO-QSP: dynamic text: With her power and <<$sucself1>> fully intertwined, you set up a gently flowing ...
-    scene.text(`With her power and ${((s as any).sucself1 || '')} fully intertwined, you set up a gently flowing cycle, making her passion and yours move together.`);
+    scene.text(`With her power and ${((s as any).sucself1 ?? '')} fully intertwined, you set up a gently flowing cycle, making her passion and yours move together.`);
     scene.text('Tatiana then kisses her way down your body, taking up position between your legs.');
   }
   // TODO-QSP: end
@@ -926,7 +926,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
     (s as any).sucselftmp = ((s as any).sucself1 ?? 0);
   }
   // TODO-QSP: dynamic text: You dream that you are arguing with <<$sucselftmp>>.
-  scene.text(`You dream that you are arguing with ${((s as any).sucselftmp || '')}.`);
+  scene.text(`You dream that you are arguing with ${((s as any).sucselftmp ?? '')}.`);
   scene.text('You don\'t know what it\'s about, but you think you <b><i>lost</i></b>…');
   (s as any).sucencntrand = (1 + ((s as any).succublvl ?? 0))/2 + (Math.floor(Math.random() * (((s as any).succublvl ?? 0) - 0 + 1)) + (0));
   (s as any).scfeed = (((s as any).succublvl ?? 0) * ((s as any).sucencntrand ?? 0)) + ((s as any).rand ?? 0)(1, (4 * ((s as any).sucencntrand ?? 0)));
@@ -1161,10 +1161,10 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
       (st as any).scwrdtmp = ', your hair is brushed, and you\'re wearing makeup.';
     }
     // TODO-QSP: dynamic text: Instead, you are fully dressed<<$scwrdtmp>>
-    scene.text(`Instead, you are fully dressed${((st as any).scwrdtmp || '')}`);
+    scene.text(`Instead, you are fully dressed${((st as any).scwrdtmp ?? '')}`);
     if (((st as any).scwalkmon ?? 0) > 0) {
       // TODO-QSP: dynamic text: You find <<$func(''money'', ''string_profit'', scwalkmon)>> stuffed in your clea...
-      scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((st as any).scwalkmon || ''))} stuffed in your cleavage (which you place in your wallet).`);
+      scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((st as any).scwalkmon ?? ''))} stuffed in your cleavage (which you place in your wallet).`);
       qspCall(st, 'money', 'earn', ((st as any).scwalkmon ?? 0), 'cash');
     }
     scene.text('And you feel absolutely <i>bursting</i> with energy.');

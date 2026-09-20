@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('A car suddenly pulls up next to you and a man wearing a suit and hat steps out. "Captain Chernov, Federal Security Service," he says and pulls out his badge.');
   scene.text('"What? Am I under arrest?" you ask in panicked surprise, but he just ignores you and continues.');
   // TODO-QSP: dynamic text: "You are <<$pcs_firstname>> <<$pcs_lastname>>, correct? Please come and sit in m...
-  scene.text(`"You are ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, correct? Please come and sit in my car. We need to have a little chat."`);
+  scene.text(`"You are ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, correct? Please come and sit in my car. We need to have a little chat."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Speak with Chernov', handler: (st: GameState) => {
@@ -24,7 +24,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/chernov.jpg');
     scene.text('He opens the back door and motions for you to step inside. You notice he\'s holstering a gun under his jacket and so decide to listen to him. You climb inside and he slides in after you, closing the door behind him. A second man sits silently behind the wheel as Chernov turns to you.');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, you are a member of the front that was pretending to be...
-    scene.text(`"Miss ${((st as any).pcs_lastname || '')}, you are a member of the front that was pretending to be Miss Barlovskaya's dance entourage. These criminal activities are about to be put on hold permanently, with or without your collaboration."`);
+    scene.text(`"Miss ${((st as any).pcs_lastname ?? '')}, you are a member of the front that was pretending to be Miss Barlovskaya's dance entourage. These criminal activities are about to be put on hold permanently, with or without your collaboration."`);
     scene.text('You freeze, your body stiff with worry as you wonder what he\'s about to do.');
     scene.text('"Our little talk here is quite important. This investigation will soon be the talk of the town, but I can keep your name out of it."');
     scene.actions([
@@ -45,7 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s the big deal anyway? What\'s so important about all this that the Security Service are involved?" you ask, causing Chernov to raise a brow.');
     scene.text('"You\'re a smart girl, huh? You know that slimeball Boris Barlovskay? He wishes to become the mayor, but we don\'t want the corrupt scumbag running the town in the interests of the criminal syndicates he\'s been associated with over the years. The only problem was that we\'ve never able to prove that he was dirty - until now."');
     // TODO-QSP: dynamic text: He places a hand gently on your shoulder. "We''re finally going to put him behin...
-    scene.text(`He places a hand gently on your shoulder. "We're finally going to put him behind bars where he belongs, but we could use your help, Miss ${((st as any).pcs_lastname || '')}, however small it seems."`);
+    scene.text(`He places a hand gently on your shoulder. "We're finally going to put him behind bars where he belongs, but we could use your help, Miss ${((st as any).pcs_lastname ?? '')}, however small it seems."`);
     scene.actions([
       { label: 'Write a statement', goto: ['albina_election_events', 'give_statement'] },
       { label: 'Refuse', goto: ['albina_election_events', 'refuse_statement'] },
@@ -79,7 +79,7 @@ function enterGiveStatement(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/misc/signature.jpg');
     scene.text('You quickly scribble a signature at the bottom and he lets you go without a fuss.');
     // TODO-QSP: dynamic text: "You''ve really helped us here, Miss <<$pcs_lastname>>. Thank you."
-    scene.text(`"You've really helped us here, Miss ${((st as any).pcs_lastname || '')}. Thank you."`);
+    scene.text(`"You've really helped us here, Miss ${((st as any).pcs_lastname ?? '')}. Thank you."`);
     scene.text('He motions for you to leave the car and it drives away as soon as you close the door.');
     scene.actions([
       { label: 'Call Albina', handler: (st: GameState) => {

@@ -516,7 +516,7 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
     if (((st as any).locat ?? 0)?.['katja'] === 24  ||  ((st as any).locat ?? 0)?.['katja'] === 31  ||  ((st as any).locat ?? 0)?.['katja'] === 35  ||  ((st as any).locat ?? 0)?.['katja'] === 51  ||  ((st as any).locat ?? 0)?.['katja'] === 52) {
       scene.img('images/characters/shared/headshots_main/big14.jpg');
       // TODO-QSP: dynamic text: Katja opens the door. "Hey <<$pcs_nickname>>, come on in!" She stands aside to l...
-      scene.text(`Katja opens the door. "Hey ${((st as any).pcs_nickname || '')}, come on in!" She stands aside to let you enter before closing the door behind you.`);
+      scene.text(`Katja opens the door. "Hey ${((st as any).pcs_nickname ?? '')}, come on in!" She stands aside to let you enter before closing the door behind you.`);
       scene.actions([
         { label: 'Enter', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -541,7 +541,7 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.img('images/characters/shared/headshots_main/big260.jpg');
           // TODO-QSP: dynamic text: Sofia opens the door. "Hey, <<$pcs_nickname>>! Katja is at the library right now...
-          scene.text(`Sofia opens the door. "Hey, ${((st as any).pcs_nickname || '')}! Katja is at the library right now and I have Maxim over, so I don't really have time to talk. See you later!" she says before closing the door.`);
+          scene.text(`Sofia opens the door. "Hey, ${((st as any).pcs_nickname ?? '')}! Katja is at the library right now and I have Maxim over, so I don't really have time to talk. See you later!" she says before closing the door.`);
         }
       } else {
         if ((((st as any).locat ?? 0)?.['katja'] === 32  ||  ((st as any).locat ?? 0)?.['katja'] === 33)  &&  ((st as any).katjaQW ?? 0)?.['kitchen_day'] !== ((st as any).daystart ?? 0)) {
@@ -579,7 +579,7 @@ function enterSecondFloor(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('You stand outside the dorm room, knocking on the door, hoping Artem will answer.');
         // TODO-QSP: dynamic text: He soon opens the door with a smile. "Oh hey <<$pcs_nickname>>. I was just study...
-        scene.text(`He soon opens the door with a smile. "Oh hey ${((st as any).pcs_nickname || '')}. I was just studying, but I can take a break."`);
+        scene.text(`He soon opens the door with a smile. "Oh hey ${((st as any).pcs_nickname ?? '')}. I was just studying, but I can take a break."`);
         scene.text('Once you\'re inside, he closes the door and heads to the couch to take a seat.');
         scene.actions([
           { label: 'Enter', handler: (st: GameState) => {
@@ -684,7 +684,7 @@ function enterSixthFloor(s: GameState, scene: SceneBuilder): void {
     if ((((st as any).week ?? 0) <= 4  &&  ((st as any).hour ?? 0) >= 16  &&  ((st as any).hour ?? 0) < 23  &&  (Math.floor(Math.random() * 2) + 1) === 2)  ||  (((st as any).week ?? 0) === 6  &&  ((st as any).hour ?? 0) >= 9  &&  ((st as any).hour ?? 0) < 23  &&  (Math.floor(Math.random() * 2) + 1) === 2)  ||  (((st as any).week ?? 0) === 7  &&  ((st as any).hour ?? 0) >= 9  &&  ((st as any).hour ?? 0) < 23  &&  (Math.floor(Math.random() * 3) + 1) >= 2)) {
       scene.img('images/characters/shared/headshots_main/big83.jpg');
       // TODO-QSP: dynamic text: Gosha opens the door. "Hey <<$pcs_nickname>>, why don''t you come in?"
-      scene.text(`Gosha opens the door. "Hey ${((st as any).pcs_nickname || '')}, why don't you come in?"`);
+      scene.text(`Gosha opens the door. "Hey ${((st as any).pcs_nickname ?? '')}, why don't you come in?"`);
       scene.text('He stands aside to let you enter before closing the door behind you.');
       scene.actions([
         { label: 'Enter', goto: ['gosha', 'gosha_room'] },
@@ -788,7 +788,7 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big23.jpg');
       if (((st as any).AlbinaQW ?? 0)?.['first_dorm_visit'] === 0) {
         // TODO-QSP: dynamic text: You knock on the door, and after a few seconds, Albina opens it. "<<$pcs_nicknam...
-        scene.text(`You knock on the door, and after a few seconds, Albina opens it. "${((st as any).pcs_nickname || '')}! You came! Come in, come in."`);
+        scene.text(`You knock on the door, and after a few seconds, Albina opens it. "${((st as any).pcs_nickname ?? '')}! You came! Come in, come in."`);
         scene.text('She stands aside to let you enter before closing the door behind you.');
         scene.actions([
           { label: 'Enter', handler: (st: GameState) => {
@@ -797,7 +797,7 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: You knock on the door, and after a few seconds, Albina opens it. "<<$pcs_nicknam...
-        scene.text(`You knock on the door, and after a few seconds, Albina opens it. "${((st as any).pcs_nickname || '')}! Come in, come in."`);
+        scene.text(`You knock on the door, and after a few seconds, Albina opens it. "${((st as any).pcs_nickname ?? '')}! Come in, come in."`);
         scene.text('She stands aside to let you enter before closing the door behind you.');
         scene.actions([
           { label: 'Enter', handler: (st: GameState) => {
@@ -821,7 +821,7 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
         if (((st as any).locat ?? 0)?.['A23'] === 18  &&  ((st as any).AlbinaQW ?? 0)?.['first_dorm_visit'] === 1) {
           scene.img('images/characters/shared/headshots_main/big23.jpg');
           // TODO-QSP: dynamic text: You knock on the door, and after a few seconds, Albina peeks her head through th...
-          scene.text(`You knock on the door, and after a few seconds, Albina peeks her head through the gap. "Oh hey ${((st as any).pcs_nickname || '')}."`);
+          scene.text(`You knock on the door, and after a few seconds, Albina peeks her head through the gap. "Oh hey ${((st as any).pcs_nickname ?? '')}."`);
           scene.text('"Hey. Are you okay?" you ask.');
           scene.text('"Yes, yes. You just caught me in the middle of a yoga session. Want to come in?"');
           scene.actions([
@@ -844,7 +844,7 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
               scene.img('images/characters/shared/headshots_main/big23.jpg');
               scene.text('Just as you\'re about to knock on the door, it flies open and Albina walks out with a large bag slung over her shoulder. She\'s in such a hurry that she almost collides with you.');
               // TODO-QSP: dynamic text: "Oh. Sorry, <<$pcs_nickname>>. I didn''t see you there."
-              scene.text(`"Oh. Sorry, ${((st as any).pcs_nickname || '')}. I didn't see you there."`);
+              scene.text(`"Oh. Sorry, ${((st as any).pcs_nickname ?? '')}. I didn't see you there."`);
               scene.text('"Clearly," you reply as you look at her bag. "Off to work?" you whisper and she nods.');
               scene.text('"Yes, and I\'m going to be late if I don\'t get a move on. I\'l talk to you later, yeah?"');
               scene.text('She hurries off without another word, leaving you alone in the hallway.');
@@ -857,10 +857,10 @@ function enterSeventhFloor(s: GameState, scene: SceneBuilder): void {
               scene.img('images/characters/shared/headshots_main/big23.jpg');
               scene.text('Just as you\'re about to knock on the door, it flies open and Albina walks out with a large bag slung over her shoulder. She\'s in such a hurry that she almost collides with you.');
               // TODO-QSP: dynamic text: "Oh. Sorry, <<$pcs_nickname>>. I didn''t see you there."
-              scene.text(`"Oh. Sorry, ${((st as any).pcs_nickname || '')}. I didn't see you there."`);
+              scene.text(`"Oh. Sorry, ${((st as any).pcs_nickname ?? '')}. I didn't see you there."`);
               scene.text('"Clearly," you reply as you look at her bag. "Why are you in such a rush?" you ask, but she brushes you aside.');
               // TODO-QSP: dynamic text: "I have somewhere I need to be and need to go now before I''m late. I''ll talk t...
-              scene.text(`"I have somewhere I need to be and need to go now before I'm late. I'll talk to you some other time, ${((st as any).pcs_nickname || '')}."`);
+              scene.text(`"I have somewhere I need to be and need to go now before I'm late. I'll talk to you some other time, ${((st as any).pcs_nickname ?? '')}."`);
               scene.text('She hurries off without another word, leaving you alone and confused in the hallway.');
               scene.actions([
                 { label: 'Leave', handler: (st: GameState) => {
@@ -1655,7 +1655,7 @@ function enterDormKitchen(s: GameState, scene: SceneBuilder): void {
         (s as any).edagot = '';
       }
       // TODO-QSP: dynamic text: Your shelf in the refrigerator holds enough food for <b><<mc_inventory[''food_ba...
-      scene.text('Your shelf in the refrigerator holds enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot || '') + '');
+      scene.text('Your shelf in the refrigerator holds enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot ?? '') + '');
     } else {
       scene.text('<center><b>Your shelf in the refrigerator is bare. There is nothing left for you to eat.</b></center>');
     }

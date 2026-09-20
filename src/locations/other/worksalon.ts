@@ -64,7 +64,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Masha gives you a body massage', handler: (st: GameState) => {
     qspCall(st, 'mood', 'raise', 'tiny');
     (st as any).picrand = (Math.floor(Math.random() * 2) + 8);
-    scene.img(`images/characters/city/masha/sex/s${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/characters/city/masha/sex/s${((st as any).picrand ?? '')}.jpg`);
     // TODO-QSP: 'Masha takes off her clothes, deftly leaps on the table and ' + iif(picrand = 8, 'straddles you. She...
     qspCall(st, 'arousal', 'massage', 30, 'dom');
     qspCall(st, 'stat', '');
@@ -340,7 +340,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enter0(s: GameState, scene: SceneBuilder): void {
   (s as any).salonpicrand = (Math.floor(Math.random() * 5) + 0);
   (s as any).picrand = ((s as any).salonpicrand ?? 0) + 30;
-  scene.img(`images/locations/city/citycenter/mall/salon/wmass${((s as any).salonpicrand || '')}.jpg`);
+  scene.img(`images/locations/city/citycenter/mall/salon/wmass${((s as any).salonpicrand ?? '')}.jpg`);
   scene.text('While massaging one of your clients, the guy flips over onto his back with a huge erection. He looks at you expectantly, obviously waiting for you to service him.');
   qspCall(s, 'stat', '');
   qspCall(s, 'willpower', 'bj', 'resist', 'easy');
@@ -397,7 +397,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
         { label: 'Use Masha', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'force');
     // TODO-QSP: dynamic text: You see that this could take a while, and you''re eager to end this. You grab Ma...
-    scene.text(`You see that this could take a while, and you're eager to end this. You grab Masha by the hair and force her mouth down on his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick. She happily starts sucking him off as you pull on her hair to make her head bob up and down. He begins to moan louder and before long blows his load in Masha's mouth. She swallows it down.`);
+    scene.text(`You see that this could take a while, and you're eager to end this. You grab Masha by the hair and force her mouth down on his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick. She happily starts sucking him off as you pull on her hair to make her head bob up and down. He begins to moan louder and before long blows his load in Masha's mouth. She swallows it down.`);
     scene.text('You pull her head up, and she shows him her tongue, confirming she swallowed it all. He grins and pulls out the money. "Well worth it girls."');
     scene.actions([
       { label: 'Leave', goto: ['worksalon', 'start'] },
@@ -412,7 +412,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     (st as any).sexstart = 1;
     (st as any).sexvar = 6;
     // TODO-QSP: dynamic text: You lower your mouth to his <<dick>>cm <<$dick_girth>> cock and slip your lips t...
-    scene.text(`You lower your mouth to his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock and slip your lips tightly around his shaft. You being to bob your head up and down, sucking him off as one of your hands plays with his balls.`);
+    scene.text(`You lower your mouth to his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock and slip your lips tightly around his shaft. You being to bob your head up and down, sucking him off as one of your hands plays with his balls.`);
     scene.text('He begins to moan quickly, and it doesn\'t take long before he is blowing his load in your mouth. Hot spurts of semen shoot into your mouth. You quickly swallow it all down, lifting your head up and sticking out your tongue to show him.');
     scene.text('With a grin, he pulls out the money and gives it to you. "Well worth the price."');
     qspCall(st, 'arousal', 'bj', 20, 'sub');
@@ -486,7 +486,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
     qspCall(s, 'boyStat', 'A71');
     // TODO-QSP: dynamic text: Bent over his desk waiting, you know what is about to happen and begin to rub yo...
-    scene.text(`Bent over his desk waiting, you know what is about to happen and begin to rub your clit to make yourself wet. Moments later, he walks in and takes off his pants. He walks right up behind you stroking his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock in his hand. He rubs the tip against your wet pussy a moment before pushing his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock balls deep into you. He begins to fuck your pussy hard, pounding into you, as you massage your clit. Slapping your ass hard, he says, "Yeah you like this, don't you slut? All you little whore's just love being fucked hard and rough." He pounds himself into you for some time before he grunts and you feel his sperm shooting deep inside your pussy. He pulls out and starts putting his pants back on. Noticing you still bent over his desk, he says, "Get the fuck out of here and get back to work slut."`);
+    scene.text(`Bent over his desk waiting, you know what is about to happen and begin to rub your clit to make yourself wet. Moments later, he walks in and takes off his pants. He walks right up behind you stroking his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock in his hand. He rubs the tip against your wet pussy a moment before pushing his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock balls deep into you. He begins to fuck your pussy hard, pounding into you, as you massage your clit. Slapping your ass hard, he says, "Yeah you like this, don't you slut? All you little whore's just love being fucked hard and rough." He pounds himself into you for some time before he grunts and you feel his sperm shooting deep inside your pussy. He pulls out and starts putting his pants back on. Noticing you still bent over his desk, he says, "Get the fuck out of here and get back to work slut."`);
     qspCall(s, 'arousal', 'vaginal', 15, 'sub');
     qspCall(s, 'stat', '');
     qspCall(s, 'cuminsidereact', '');
@@ -495,7 +495,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
     qspCall(s, 'boyStat', 'A71');
     // TODO-QSP: dynamic text: Bent over his desk waiting, you know what is about the happen and begin to rub y...
-    scene.text(`Bent over his desk waiting, you know what is about the happen and begin to rub your clit to make yourself wet. Moments later he walks in and takes off his pants. He walks right up behind you stroking his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock in his hand. He rubs the tip against your asshole a moment before pushing his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your ass. You cry out in pain. You don't think he is using any lube at all. He struggles for a bit before he can finally force himself balls deep into you. He begins to fuck your ass hard, pounding into you, as you massage your clit, trying to distract yourself from the pain. Slapping your ass hard he says, "Yeah you like this, don't you slut? All you little whore's just love being fucked hard and rough." He pounds himself into you for some time before he grunts and you feel his sperm shooting deep inside your ass. He pulls out and starts putting his pants back on. Noticing you still bent over his desk, he says, "Get the fuck out of here and get back to work slut."`);
+    scene.text(`Bent over his desk waiting, you know what is about the happen and begin to rub your clit to make yourself wet. Moments later he walks in and takes off his pants. He walks right up behind you stroking his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock in his hand. He rubs the tip against your asshole a moment before pushing his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} cock into your ass. You cry out in pain. You don't think he is using any lube at all. He struggles for a bit before he can finally force himself balls deep into you. He begins to fuck your ass hard, pounding into you, as you massage your clit, trying to distract yourself from the pain. Slapping your ass hard he says, "Yeah you like this, don't you slut? All you little whore's just love being fucked hard and rough." He pounds himself into you for some time before he grunts and you feel his sperm shooting deep inside your ass. He pulls out and starts putting his pants back on. Noticing you still bent over his desk, he says, "Get the fuck out of here and get back to work slut."`);
     qspCall(s, 'arousal', 'anal', 15, 'sub');
     qspCall(s, 'cum_call', 'anus', 'A71', 1);
     qspCall(s, 'stat', '');

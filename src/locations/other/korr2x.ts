@@ -24,7 +24,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).krolik ?? 0) === 1) {
     // TODO-QSP: dynamic text: Your rabbit <a href="exec:gt ''krol'', ''start''"><<$namekrol>></a> sits in it''...
-    scene.text(`Your rabbit <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027krol/u0027, /u0027start/u0027); return false;">${((s as any).namekrol || '')}</a> sits in it's cage on the floor.`);
+    scene.text(`Your rabbit <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027krol/u0027, /u0027start/u0027); return false;">${((s as any).namekrol ?? '')}</a> sits in it's cage on the floor.`);
   }
   if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 1) {
     // TODO-QSP: dynamic text: Your parrot <a href="exec:gt ''popu'', ''start''"><<$ParrotQW[''Name1'']>></a> s...

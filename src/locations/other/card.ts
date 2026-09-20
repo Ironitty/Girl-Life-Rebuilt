@@ -71,14 +71,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if ((!((st as any).card_deck ?? 0))) {
-      scene.img(`images/pc/items/accessories/cards/card/${((st as any).papkacard || '')}/${((st as any).papkacard || '')}${((st as any).numcard || '')}.jpg`);
+      scene.img(`images/pc/items/accessories/cards/card/${((st as any).papkacard ?? '')}/${((st as any).papkacard ?? '')}${((st as any).numcard ?? '')}.jpg`);
     } else {
       if (((st as any).card_deck ?? 0) === 1) {
-        scene.img(`images/pc/items/accessories/cards/card2/${((st as any).papkacard || '')}/${((st as any).papkacard || '')}${((st as any).numcard || '')}.jpg`);
+        scene.img(`images/pc/items/accessories/cards/card2/${((st as any).papkacard ?? '')}/${((st as any).papkacard ?? '')}${((st as any).numcard ?? '')}.jpg`);
       }
     }
     // TODO-QSP: dynamic text: Denomination card <<nomcard>>
-    scene.text(`Denomination card ${((st as any).nomcard || '')}`);
+    scene.text(`Denomination card ${((st as any).nomcard ?? '')}`);
     scene.actions([
       { label: 'Put the card back into the deck', goto: ['card', ''] },
     ]);

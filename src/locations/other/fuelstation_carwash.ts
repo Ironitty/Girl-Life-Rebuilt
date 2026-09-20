@@ -471,9 +471,9 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).i = (Math.floor(Math.random() * 3) + 0);
     if ((!((s as any).i ?? 0))) {
-      scene.img(`images/shared/sex/handjob/hj${((s as any).i || '')}.mp4`);
+      scene.img(`images/shared/sex/handjob/hj${((s as any).i ?? '')}.mp4`);
     } else {
-      scene.img(`images/shared/sex/handjob/handjob${((s as any).i || '')}.mp4`);
+      scene.img(`images/shared/sex/handjob/handjob${((s as any).i ?? '')}.mp4`);
     }
   }
   if (Number((s as any).locArgs?.[1] ?? 0) === 'Paid') {

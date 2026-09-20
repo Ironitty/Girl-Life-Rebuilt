@@ -12,10 +12,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).tmpl = ((Number((s as any).locArgs?.[1] ?? 0) === 0) ? (10) : (((s as any).locArgs?.[1] ?? 0)));
   (s as any).frost = 0;
   // TODO-QSP: dynamic text: Your one hand caress his <<dick>> cm cock, while the other cups his balls as you...
-  scene.text(`Your one hand caress his ${((s as any).dick || '')} cm cock, while the other cups his balls as you lick his cock.`);
+  scene.text(`Your one hand caress his ${((s as any).dick ?? '')} cm cock, while the other cups his balls as you lick his cock.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: <<$boydesc>> closes his eyes in pleasure as he enjoys the caress of your soft li...
-    scene.text(`${((s as any).boydesc || '')} closes his eyes in pleasure as he enjoys the caress of your soft lips.`);
+    scene.text(`${((s as any).boydesc ?? '')} closes his eyes in pleasure as he enjoys the caress of your soft lips.`);
     qspCall(s, 'arousal', 'bj', ((s as any).tmpl ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), 'sub');
   } else {
     if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
@@ -25,16 +25,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_hairbsh = 0;
       qspCall(s, 'arousal_funcs', 'stretch', 'oral', 1);
       // TODO-QSP: dynamic text: <<$boydesc>> grabs you by the hair and begins to mouth fuck you, the beating you...
-      scene.text(`${((s as any).boydesc || '')} grabs you by the hair and begins to mouth fuck you, the beating your throat takes causes tears to flow from your eyes.`);
+      scene.text(`${((s as any).boydesc ?? '')} grabs you by the hair and begins to mouth fuck you, the beating your throat takes causes tears to flow from your eyes.`);
       qspCall(s, 'arousal', 'bj', ((s as any).tmpl ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), 'sub', 'deepthroat', 'rough');
     } else {
       // TODO-QSP: dynamic text: <<$boydesc>> stares you in the eyes while you wrap your lips around his rock-har...
-      scene.text(`${((s as any).boydesc || '')} stares you in the eyes while you wrap your lips around his rock-hard cock.`);
+      scene.text(`${((s as any).boydesc ?? '')} stares you in the eyes while you wrap your lips around his rock-hard cock.`);
       qspCall(s, 'arousal', 'bj', ((s as any).tmpl ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0), ((s as any).locArgs?.[5] ?? 0), 'sub');
     }
   }
   // TODO-QSP: dynamic text: You hear <<$boydesc>> groaning loudly, you realize he must be edging and is read...
-  scene.text(`You hear ${((s as any).boydesc || '')} groaning loudly, you realize he must be edging and is ready to finish.`);
+  scene.text(`You hear ${((s as any).boydesc ?? '')} groaning loudly, you realize he must be edging and is ready to finish.`);
   // TODO-QSP: end
   scene.build();
 }

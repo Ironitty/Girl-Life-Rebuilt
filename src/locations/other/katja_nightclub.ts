@@ -198,7 +198,7 @@ function enterDanceApproach(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_talking_on__dance_floor.jpg');
         scene.text('You approach her from behind. "Hey Katja!" you shout so she can hear you over the music.');
         // TODO-QSP: dynamic text: She turns around. "Oh hi, <<$pcs_nickname>>!" she shouts back when she sees you....
-        scene.text(`She turns around. "Oh hi, ${((s as any).pcs_nickname || '')}!" she shouts back when she sees you. "You decided to come clubbing tonight as well? It's a great place to let loose. Why don't we dance?"`);
+        scene.text(`She turns around. "Oh hi, ${((s as any).pcs_nickname ?? '')}!" she shouts back when she sees you. "You decided to come clubbing tonight as well? It's a great place to let loose. Why don't we dance?"`);
         scene.actions([
           { label: 'Dance with Katja', goto: ['katja_nightclub', 'dance'] },
         ]);
@@ -242,7 +242,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
       scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
       // TODO-QSP: dynamic text: She turns to you with a huge smile on her face. "It''s great to see you here! We...
-      scene.text(`She turns to you with a huge smile on her face. "It's great to see you here! We're going to have so much fun! Get a drink and join me, ${((s as any).pcs_nickname || '')}!"`);
+      scene.text(`She turns to you with a huge smile on her face. "It's great to see you here! We're going to have so much fun! Get a drink and join me, ${((s as any).pcs_nickname ?? '')}!"`);
       scene.actions([
         { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
       ]);
@@ -255,7 +255,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
         scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
         // TODO-QSP: dynamic text: She turns to you and shouts back. "Oh hi, <<$pcs_nickname>>! You decided to come...
-        scene.text(`She turns to you and shouts back. "Oh hi, ${((s as any).pcs_nickname || '')}! You decided to come clubbing tonight as well? It's a great place to let loose. Have a drink with me!"`);
+        scene.text(`She turns to you and shouts back. "Oh hi, ${((s as any).pcs_nickname ?? '')}! You decided to come clubbing tonight as well? It's a great place to let loose. Have a drink with me!"`);
         scene.actions([
           { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
         ]);
@@ -266,7 +266,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
       scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
       // TODO-QSP: dynamic text: She turns to you with a huge smile on her face. "You need a drink too, <<$pcs_ni...
-      scene.text(`She turns to you with a huge smile on her face. "You need a drink too, ${((s as any).pcs_nickname || '')}? Great minds think alike."`);
+      scene.text(`She turns to you with a huge smile on her face. "You need a drink too, ${((s as any).pcs_nickname ?? '')}? Great minds think alike."`);
       scene.actions([
         { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
       ]);
@@ -279,7 +279,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
         scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
         // TODO-QSP: dynamic text: She turns to you. "Oh hi, <<$pcs_nickname>>! You thirsty too? Have a drink with ...
-        scene.text(`She turns to you. "Oh hi, ${((s as any).pcs_nickname || '')}! You thirsty too? Have a drink with me."`);
+        scene.text(`She turns to you. "Oh hi, ${((s as any).pcs_nickname ?? '')}! You thirsty too? Have a drink with me."`);
         scene.actions([
           { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
         ]);
@@ -554,7 +554,7 @@ function enterDanceEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Katja'] !== 53) {
     if (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)) {
       // TODO-QSP: dynamic text: "It''s getting late, <<$pcs_nickname>>. Let''s go home," Katja says as the song ...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. Let's go home," Katja says as the song ends. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? '')}. Let's go home," Katja says as the song ends. It looks like there's no way to convince her to stay.`);
       scene.actions([
         { label: 'Go home with Katja', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['on_date'] = 1
@@ -563,7 +563,7 @@ function enterDanceEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "It''s getting late, <<$pcs_nickname>>. I''m heading home," Katja says as she fi...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. I'm heading home," Katja says as she finishes her drink. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? '')}. I'm heading home," Katja says as she finishes her drink. It looks like there's no way to convince her to stay.`);
       if ((((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2)  ||  ((s as any).home ?? 0)?.['current'] === 'university_dorm') {
         scene.actions([
           { label: 'Suggest you go home together', handler: (st: GameState) => {
@@ -1193,7 +1193,7 @@ function enterBarEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Katja'] !== 53) {
     if (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)) {
       // TODO-QSP: dynamic text: "It''s getting late, <<$pcs_nickname>>. Let''s go home," Katja says after finish...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. Let's go home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? '')}. Let's go home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
       scene.actions([
         { label: 'Go home with Katja', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['on_date'] = 1
@@ -1202,7 +1202,7 @@ function enterBarEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "It''s getting late, <<$pcs_nickname>>. I''m heading home," Katja says after fin...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. I'm heading home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? '')}. I'm heading home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
       if ((((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2)  ||  ((s as any).home ?? 0)?.['current'] === 'university_dorm') {
         scene.actions([
           { label: 'Suggest you go home together', handler: (st: GameState) => {

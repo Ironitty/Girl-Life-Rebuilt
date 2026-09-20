@@ -21,7 +21,7 @@ function enterLesco(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       if (((s as any).npc_rel ?? 0)?.['A7'] >= 50) {
         // TODO-QSP: dynamic text: Lesco doesn''t look comfortable as you approach, but you think he''s too shy to ...
-        scene.text(`Lesco doesn't look comfortable as you approach, but you think he's too shy to say anything to chase you off. "Oh… Hey ${((s as any).pcs_nickname || '')}…" You engage in an awkward conversation with him as he avoids eye contact with you and gives you brief, one word answers.`);
+        scene.text(`Lesco doesn't look comfortable as you approach, but you think he's too shy to say anything to chase you off. "Oh… Hey ${((s as any).pcs_nickname ?? '')}…" You engage in an awkward conversation with him as he avoids eye contact with you and gives you brief, one word answers.`);
       } else {
         scene.text('He panics when he sees you walking over. "Get away from me! I have enough problems without being seen with the likes of you!" he exclaims as he quickly moves away from you.');
       }
@@ -113,7 +113,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
       if (((s as any).npc_rel ?? 0)?.['A159'] >= 50) {
         // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
-        scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname || '')}, you're smoking hot, you know that? I might just let you date me if you ask nicely."`);
+        scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? '')}, you're smoking hot, you know that? I might just let you date me if you ask nicely."`);
         scene.text('He gives you a creepy smile that shows his filthy teeth, which look like they haven\'t seen a toothbrush in years, if ever.');
         scene.text('"<i>You</i>? Dating <i>me</i>?" you snort before you burst out into a fit of laughter. "Petia, I wouldn\'t date you if my life depended on it. If we were the last people on Earth, I\'d rather jump off a cliff than spend a single moment alone with you!"');
         if (((s as any).tits ?? 0) >= 4) {
@@ -134,7 +134,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
         ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
         if (((s as any).npc_rel ?? 0)?.['A159'] >= 50) {
           // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
-          scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname || '')}, did I mention that you have an amazing looking body and look so hot when you work out in gym class? You're too good looking for those jacked up monkeys and should hook up with me instead."`);
+          scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? '')}, did I mention that you have an amazing looking body and look so hot when you work out in gym class? You're too good looking for those jacked up monkeys and should hook up with me instead."`);
           scene.text('He gives you a creepy smile that shows his filthy teeth, which look like they haven\'t seen a toothbrush in years, if ever.');
           scene.text('"<i>You</i>? Dating <i>me</i>?" you snort before you burst out into a fit of laughter. "Petia, I wouldn\'t date you if my life depended on it. If we were the last people on Earth, I would rather jump off a cliff than spend a single moment alone with you!""');
           if (((s as any).tits ?? 0) >= 4) {
@@ -155,7 +155,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
           ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
           if (((s as any).pcs_hotcat ?? 0) >= 6) {
             // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
-            scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname || '')}, you're pretty sexy for a nerd. How about we study together sometime?"`);
+            scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? '')}, you're pretty sexy for a nerd. How about we study together sometime?"`);
             scene.text('He gives you a creepy smile that shows his filthy teeth, which look like they haven\'t seen a toothbrush in years, if ever.');
             if (((s as any).tits ?? 0) >= 4) {
               scene.text('You notice him practically drooling while staring at your breasts and quickly cover them with your arm, causing him to quickly dart his eyes back up.');
@@ -177,12 +177,12 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
       if (((st as any).tits ?? 0) >= 4) {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort as you notice him staring at your breasts.');
         // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
-        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        scene.text(`"Thanks ${((st as any).pcs_nickname ?? '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       } else {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort.');
         // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
-        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        scene.text(`"Thanks ${((st as any).pcs_nickname ?? '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       }
       scene.actions([
@@ -207,7 +207,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.text('You notice Petia desperately walking up and down the classroom, trying to mooch some stuff from the other students in the classroom.');
               // TODO-QSP: dynamic text: When he sees you, he quickly starts walking towards you. "Hey <<$pcs_nickname>>,...
-              scene.text(`When he sees you, he quickly starts walking towards you. "Hey ${((s as any).pcs_nickname || '')}, do you have any money? I'm getting really hungry."`);
+              scene.text(`When he sees you, he quickly starts walking towards you. "Hey ${((s as any).pcs_nickname ?? '')}, do you have any money? I'm getting really hungry."`);
               scene.actions([
                 { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -220,12 +220,12 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
       if (((st as any).tits ?? 0) >= 4) {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort as you notice him staring at your breasts.');
         // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
-        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        scene.text(`"Thanks ${((st as any).pcs_nickname ?? '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       } else {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort.');
         // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
-        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        scene.text(`"Thanks ${((st as any).pcs_nickname ?? '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       }
       scene.actions([
@@ -257,7 +257,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
             ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
             if (((s as any).npc_rel ?? 0)?.['A159'] >= 50) {
               // TODO-QSP: dynamic text: Petia grins as you approach. He invades your personal space without a care as a ...
-              scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname || '')}, did I tell you that I like bad girls? I think we should date."`);
+              scene.text(`Petia grins as you approach. He invades your personal space without a care as a raunchy smell hits your nostrils. "Hey ${((s as any).pcs_nickname ?? '')}, did I tell you that I like bad girls? I think we should date."`);
               scene.text('He gives you a creepy smile that shows his filthy teeth, which look like they haven\'t seen a toothbrush in years, if ever.');
               scene.text('You shove him away from you. "What the fuck? Why would I date a fat, smelly loser like you? Get the fuck away from me before I knock those rotten teeth of yours out!"');
               scene.text('He quickly backs away, but you can feel his creepy gaze on the back of your head as you walk away. You turn around and glare at him, causing him to quickly look at the floor.');
@@ -290,12 +290,12 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
       if (((st as any).tits ?? 0) >= 4) {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort as you notice him staring at your breasts.');
         // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
-        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        scene.text(`"Thanks ${((st as any).pcs_nickname ?? '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       } else {
         scene.text('His eyes grow wide and he takes the money from you, letting his hand linger against yours way too long for comfort.');
         // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>, you''re the best!" he says with a grin and, is that l...
-        scene.text(`"Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
+        scene.text(`"Thanks ${((st as any).pcs_nickname ?? '')}, you're the best!" he says with a grin and, is that love in his eyes?`);
         scene.text('After another awkward moment, he leaves to go and buy lunch.');
       }
       scene.actions([
@@ -320,7 +320,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.text('You notice Petia desperately walking up and down the classroom, trying to mooch some stuff from the other students in the classroom.');
               // TODO-QSP: dynamic text: When he sees you, he quickly starts walking towards you. "Hey <<$pcs_nickname>>,...
-              scene.text(`When he sees you, he quickly starts walking towards you. "Hey ${((s as any).pcs_nickname || '')}, do you have any money? I'm getting really hungry."`);
+              scene.text(`When he sees you, he quickly starts walking towards you. "Hey ${((s as any).pcs_nickname ?? '')}, do you have any money? I'm getting really hungry."`);
               scene.actions([
                 { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
@@ -331,7 +331,7 @@ function enterPetia(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big159.jpg');
       scene.text('You feel sorry for him and do have the money to spare. "Here, go and get yourself some lunch."');
       // TODO-QSP: dynamic text: His eyes grow wide and he takes the money from your hand, letting his hand linge...
-      scene.text(`His eyes grow wide and he takes the money from your hand, letting his hand linger against yours way too long for comfort. "Thanks ${((st as any).pcs_nickname || '')}, you're the best!" he says with a grin and, is that love in his eyes? After another awkward moment, he leaves to go and buy lunch.`);
+      scene.text(`His eyes grow wide and he takes the money from your hand, letting his hand linger against yours way too long for comfort. "Thanks ${((st as any).pcs_nickname ?? '')}, you're the best!" he says with a grin and, is that love in his eyes? After another awkward moment, he leaves to go and buy lunch.`);
       scene.actions([
         { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
       ]);
@@ -398,13 +398,13 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_rel ?? 0)?.['A25'] <= 20) {
         scene.text('You see Sonia sitting by herself as usual and approach her with a friendly smile. She looks up and frowns.');
         // TODO-QSP: dynamic text: "What do you want, <<$pcs_nickname>>?"
-        scene.text(`"What do you want, ${((s as any).pcs_nickname || '')}?"`);
+        scene.text(`"What do you want, ${((s as any).pcs_nickname ?? '')}?"`);
         scene.text('You sit next to her. "I just wanted to talk."');
         scene.text('She\'s reluctant at first, but slowly starts to get engaged in the conversation. The two of you talk about fashion, makeup and eventually sex, discussing the different people you\'ve had sex with and who is better.');
       } else {
         scene.text('You see Sonia sitting by herself as usual and approach her with a friendly smile.');
         // TODO-QSP: dynamic text: She looks up and gives you a smile in return. "What''s up, <<$pcs_nickname>>?"
-        scene.text(`She looks up and gives you a smile in return. "What's up, ${((s as any).pcs_nickname || '')}?"`);
+        scene.text(`She looks up and gives you a smile in return. "What's up, ${((s as any).pcs_nickname ?? '')}?"`);
         scene.text('You sit next to her. "I just wanted to talk."');
         scene.text('She\'s reluctant at first, but quickly relaxes and gets into the conversation. The two of you talk about fashion, makeup and eventually sex, discussing the different people you\'ve had sex with and who is better.');
       }
@@ -417,19 +417,19 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
       ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
       if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
         // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-        scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname || '')}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
+        scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? '')}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
         scene.text('You sit next to her. "I don\'t care what the others think. You\'re my friend."');
         scene.text('She looks so happy that she almost tears up. The two of you engage in a friendly conversation about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
         scene.text('She then sighs, your presence clearly reminding her of who she once was and what she\'s lost.');
       } else {
         if (((s as any).npc_rel ?? 0)?.['A25'] <= 20) {
           // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-          scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens. "What do you want, ${((s as any).pcs_nickname || '')}?"`);
+          scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens. "What do you want, ${((s as any).pcs_nickname ?? '')}?"`);
           scene.text('You sit next to her. "I just wanted to talk."');
           scene.text('She\'s reluctant at first, but slowly starts to get engaged in the conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
         } else {
           // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-          scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Do you need something, ${((s as any).pcs_nickname || '')}?"`);
+          scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Do you need something, ${((s as any).pcs_nickname ?? '')}?"`);
           scene.text('You sit next to her and engage her in conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
         }
       }
@@ -441,18 +441,18 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
         ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
         if (((s as any).npc_rel ?? 0)?.['A25'] >= 60) {
           // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-          scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname || '')}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
+          scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? '')}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
           scene.text('You sit next to her. "I don\'t care what the others think. You\'re my friend."');
           scene.text('She looks so happy that she almost tears up. The two of you engage in a friendly conversation about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
         } else {
           if (((s as any).npc_rel ?? 0)?.['A25'] <= 20) {
             // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-            scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens. "What do you want, ${((s as any).pcs_nickname || '')}?"`);
+            scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens. "What do you want, ${((s as any).pcs_nickname ?? '')}?"`);
             scene.text('You sit next to her. "I just wanted to talk."');
             scene.text('She\'s reluctant at first, but slowly starts to get engaged in the conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
           } else {
             // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-            scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Do you need something, ${((s as any).pcs_nickname || '')}?"`);
+            scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Do you need something, ${((s as any).pcs_nickname ?? '')}?"`);
             scene.text('You sit next to her and engage her in conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
           }
         }
@@ -464,19 +464,19 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
           ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
           if (((s as any).npc_rel ?? 0)?.['A25'] >= 50) {
             // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-            scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname || '')}?" She then bites her lip and looks at the nerds on the other side of the classroom. You glance over and see several of them staring in disgust. "Aren't you worried what the others will say if they see you talking to me?"`);
+            scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? '')}?" She then bites her lip and looks at the nerds on the other side of the classroom. You glance over and see several of them staring in disgust. "Aren't you worried what the others will say if they see you talking to me?"`);
             scene.text('You sit next to her. "I don\'t care what the others think. You\'re my friend."');
             scene.text('She looks so happy that she almost tears up. The two of you engage in a friendly conversation about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
           } else {
             if (((s as any).npc_rel ?? 0)?.['A25'] <= 20) {
               // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-              scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens. "What do you want, ${((s as any).pcs_nickname || '')}?"`);
+              scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens. "What do you want, ${((s as any).pcs_nickname ?? '')}?"`);
               scene.text('You sit next to her. "I just wanted to talk."');
               scene.text('She\'s reluctant at first, but slowly starts to get engaged in the conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
               scene.text('You notice your fellow nerds occasionally glancing your way with looks ranging from disapproval to outright disgust.');
             } else {
               // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-              scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Do you need something, ${((s as any).pcs_nickname || '')}?"`);
+              scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Do you need something, ${((s as any).pcs_nickname ?? '')}?"`);
               scene.text('You sit next to her and engage her in conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
               scene.text('You notice your fellow nerds occasionally glancing your way with looks ranging from disapproval to outright disgust.');
             }
@@ -489,7 +489,7 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
             ((s as any).grupvalue = (s as any).grupvalue ?? {})[4] = ((s as any).grupvalue[4] ?? 0) - (1);
             if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
               // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-              scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname || '')}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
+              scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? '')}?" She then bites her lip. "Aren't you worried what the others will say if they see you talking to me?"`);
               scene.text('You sit next to her. "I don\'t care what the others think. You\'re my friend."');
               scene.text('She looks so happy that she almost tears up. The two of you engage in a friendly conversation about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
             } else {
@@ -499,24 +499,24 @@ function enterSonia(s: GameState, scene: SceneBuilder): void {
                 scene.text('She\'s reluctant at first, but slowly starts to get engaged in the conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
               } else {
                 // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-                scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Leave me alone, ${((s as any).pcs_nickname || '')}!" she says in a wary tone of voice, obviously expecting you to bully her.`);
+                scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and stiffens slightly. "Leave me alone, ${((s as any).pcs_nickname ?? '')}!" she says in a wary tone of voice, obviously expecting you to bully her.`);
                 scene.text('You sit next to her and engage her in conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
               }
             }
           } else {
             if (((s as any).npc_rel ?? 0)?.['A25'] >= 50) {
               // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual, except when you sit with her. As you ...
-              scene.text(`You see Sonia sitting by herself as usual, except when you sit with her. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname || '')}?"`);
+              scene.text(`You see Sonia sitting by herself as usual, except when you sit with her. As you approach her with a friendly smile, she looks up and gives you a friendly smile in return. "How's it going, ${((s as any).pcs_nickname ?? '')}?"`);
               scene.text('You sit next to her and the two of you engage in a friendly conversation about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
             } else {
               if (((s as any).npc_rel ?? 0)?.['A25'] <= 20) {
                 // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-                scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and frowns. "What do you want, ${((s as any).pcs_nickname || '')}?"`);
+                scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and frowns. "What do you want, ${((s as any).pcs_nickname ?? '')}?"`);
                 scene.text('You sit next to her. "I just wanted to talk."');
                 scene.text('She\'s reluctant at first, but slowly starts to get engaged in the conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
               } else {
                 // TODO-QSP: dynamic text: You see Sonia sitting by herself as usual. As you approach her with a friendly s...
-                scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and frowns. "Do you need something, ${((s as any).pcs_nickname || '')}?"`);
+                scene.text(`You see Sonia sitting by herself as usual. As you approach her with a friendly smile, she looks up and frowns. "Do you need something, ${((s as any).pcs_nickname ?? '')}?"`);
                 scene.text('You sit next to her and engage her in conversation. The two of you talk about fashion, makeup and many other things. She seems well versed in these subjects and discusses them with great enthusiasm.');
               }
             }
@@ -572,21 +572,21 @@ function enterSoniaTampon(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period just started  &&  I don\'t have a tampon. Can I borrow one?"'  ||  ((s as any).temp ?? 0)?.['tampon_ask'] === '"Sonia," you whisper. "My period is starting soon  &&  I don\'t have a tampon. Can I borrow one?"') {
     if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
       // TODO-QSP: dynamic text: "Don''t worry <<$pcs_nickname>>, I''ve got your back," she says, immediately dig...
-      scene.text(`"Don't worry ${((s as any).pcs_nickname || '')}, I've got your back," she says, immediately digging into her purse to produce one.`);
+      scene.text(`"Don't worry ${((s as any).pcs_nickname ?? '')}, I've got your back," she says, immediately digging into her purse to produce one.`);
       scene.text('"Thanks Sonia, you\'re a lifesaver."');
     } else {
       // TODO-QSP: dynamic text: "Sure thing <<$pcs_nickname>>," she says, immediately digging into her purse to ...
-      scene.text(`"Sure thing ${((s as any).pcs_nickname || '')}," she says, immediately digging into her purse to produce one.`);
+      scene.text(`"Sure thing ${((s as any).pcs_nickname ?? '')}," she says, immediately digging into her purse to produce one.`);
       scene.text('"Thanks Sonia, you\'re a lifesaver."');
     }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A25'] >= 70) {
       // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, I''ve only got tampons," she says, digging into her pu...
-      scene.text(`"Sorry ${((s as any).pcs_nickname || '')}, I've only got tampons," she says, digging into her purse to produce one. "But anything in an emergency, right?`);
+      scene.text(`"Sorry ${((s as any).pcs_nickname ?? '')}, I've only got tampons," she says, digging into her purse to produce one. "But anything in an emergency, right?`);
       scene.text('"Thanks Sonia, you\'re a lifesaver."');
     } else {
       // TODO-QSP: dynamic text: "Sure thing <<$pcs_nickname>>," she says, immediately digging into her purse. "B...
-      scene.text(`"Sure thing ${((s as any).pcs_nickname || '')}," she says, immediately digging into her purse. "But I've only got tampons. Sorry about that."`);
+      scene.text(`"Sure thing ${((s as any).pcs_nickname ?? '')}," she says, immediately digging into her purse. "But I've only got tampons. Sorry about that."`);
       scene.text('"Thanks Sonia, you\'re a lifesaver."');
     }
   }

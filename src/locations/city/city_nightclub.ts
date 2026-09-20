@@ -158,7 +158,7 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
     scene.text('You tell him that you\'re interested and he takes your details.');
     // TODO-QSP: dynamic text: "Great… <<$pcs_nickname>>. You can find me here, and I''ll place your details on...
-    scene.text(`"Great… ${((st as any).pcs_nickname || '')}. You can find me here, and I'll place your details on the door so you can get in, but you still have to do your makeup and dress for clubbing."`);
+    scene.text(`"Great… ${((st as any).pcs_nickname ?? '')}. You can find me here, and I'll place your details on the door so you can get in, but you still have to do your makeup and dress for clubbing."`);
     scene.actions([
       { label: 'Return', goto: ['city_nightclub', 'inside'] },
     ]);
@@ -186,7 +186,7 @@ function enterInside(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/nightclub/club11.jpg');
     scene.text('You tell him that you\'re interested and he takes your details.');
     // TODO-QSP: dynamic text: "Great… <<$pcs_nickname>>. You can find me here, and I''ll place your details on...
-    scene.text(`"Great… ${((st as any).pcs_nickname || '')}. You can find me here, and I'll place your details on the door so you can get in, but you still have to do your makeup and dress for clubbing."`);
+    scene.text(`"Great… ${((st as any).pcs_nickname ?? '')}. You can find me here, and I'll place your details on the door so you can get in, but you still have to do your makeup and dress for clubbing."`);
     scene.actions([
       { label: 'Return', goto: ['city_nightclub', 'inside'] },
     ]);
@@ -265,7 +265,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
         qspCall(st, 'npcgeneratec', '', 0);
         qspCall(st, 'npcStat', '', ((st as any).npclastgenerated ?? 0));
         // TODO-QSP: dynamic text: As you''re dancing, you feel someone groping your ass. You turn around and see <...
-        scene.text(`As you're dancing, you feel someone groping your ass. You turn around and see ${((st as any).npcheight_pref || '')}, ${((st as any).npcbuild || '')} guy with ${((st as any).npchair || '')} hair. He's wearing ${((st as any).npcClo || '')}.`);
+        scene.text(`As you're dancing, you feel someone groping your ass. You turn around and see ${((st as any).npcheight_pref ?? '')}, ${((st as any).npcbuild ?? '')} guy with ${((st as any).npchair ?? '')} hair. He's wearing ${((st as any).npcClo ?? '')}.`);
         scene.actions([
           { label: 'Stop dancing', goto: ['city_nightclub', 'inside'] },
           { label: 'Dance with him', goto: ['city_nightclub', 'dance_guy'] },
@@ -828,7 +828,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Stand up', goto: ['city_nightclubToilet', 'clubtoilet_men'] },
     ]);
-  } },,
+  } },
 { label: 'Let him cum on your face', handler: (st: GameState) => {
     (st as any).spafinloc = 11;
     qspCall(st, 'cum_manage', '');
@@ -998,7 +998,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).clubr ?? 0))) {
     // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, I want you to go around the city center and find some c...
-    scene.text(`"Okay ${((s as any).pcs_nickname || '')}, I want you to go around the city center and find some customers. Bring them to the door and give the bouncer a nod so he knows they're yours. See you in an hour."`);
+    scene.text(`"Okay ${((s as any).pcs_nickname ?? '')}, I want you to go around the city center and find some customers. Bring them to the door and give the bouncer a nod so he knows they're yours. See you in an hour."`);
     scene.actions([
       { label: 'Look for customers', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
@@ -1037,7 +1037,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).clubr ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, I want you to go around the club getting people to try ...
-      scene.text(`"Okay ${((s as any).pcs_nickname || '')}, I want you to go around the club getting people to try and hopefully switch to these drinks. You can't go wrong here, just smile and give out free drinks."`);
+      scene.text(`"Okay ${((s as any).pcs_nickname ?? '')}, I want you to go around the club getting people to try and hopefully switch to these drinks. You can't go wrong here, just smile and give out free drinks."`);
       scene.text('"No need to hold back since the suppliers are paying. I\'ll see you back here in an hour."');
       scene.actions([
         { label: 'Get to work', handler: (st: GameState) => {

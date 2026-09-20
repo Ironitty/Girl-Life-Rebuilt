@@ -26,7 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/pc/items/accessories/car/car${((s as any).car ?? 0)?.['ID'] ?? ''}.jpg`);
   if (((s as any).kanistra ?? 0) > 0) {
     // TODO-QSP: dynamic text: In the trunk ' + iif(kanistra = 1, 'is 1 canister', 'are <<kanistra>> canisters'...
-    scene.text('In the trunk \' + iif(kanistra = 1, \'is 1 canister\', \'are ' + ((s as any).kanistra || '') + ' canisters\') + \' of gasoline. Each canister contains 5 liters of gasoline.');
+    scene.text('In the trunk \' + iif(kanistra = 1, \'is 1 canister\', \'are ' + ((s as any).kanistra ?? '') + ' canisters\') + \' of gasoline. Each canister contains 5 liters of gasoline.');
     if (((s as any).car ?? 0)?.['tank'] - ((s as any).car ?? 0)?.['fuel'] >= 5) {
       scene.actions([
         { label: 'Pour gasoline into the tank', handler: (st: GameState) => {
@@ -565,7 +565,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[4]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
-    scene.text(`${((st as any).temptime || '')} minutes later, you arrive at your destination.`);
+    scene.text(`${((st as any).temptime ?? '')} minutes later, you arrive at your destination.`);
     qspCall(st, 'car_funcs', 'setloc', 'obekt', '', 'other');
     scene.actions([
       { label: 'Park and get out', goto: ['obekt', ''] },
@@ -589,7 +589,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[5]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
-    scene.text(`${((st as any).temptime || '')} minutes later, you arrive at your destination.`);
+    scene.text(`${((st as any).temptime ?? '')} minutes later, you arrive at your destination.`);
     qspCall(st, 'car_funcs', 'setloc', 'dachi', '', 'other');
     scene.actions([
       { label: 'Park and get out', goto: ['dachi', ''] },
@@ -613,7 +613,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[6]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
-    scene.text(`${((st as any).temptime || '')} minutes later, you arrive at your destination.`);
+    scene.text(`${((st as any).temptime ?? '')} minutes later, you arrive at your destination.`);
     qspCall(st, 'car_funcs', 'setloc', 'gadukino', '', 'gad');
     scene.actions([
       { label: 'Park and get out', goto: ['gadukino', ''] },
@@ -638,7 +638,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
     ((st as any).car = (st as any).car ?? {})['fuel'] = ((st as any).car['fuel'] ?? 0) - (1);
     ((st as any).car = (st as any).car ?? {})['current_condition'] = ((st as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((st as any).temptime ?? 0)[7]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
-    scene.text(`${((st as any).temptime || '')} minutes later, you arrive at your destination.`);
+    scene.text(`${((st as any).temptime ?? '')} minutes later, you arrive at your destination.`);
     qspCall(st, 'car_funcs', 'setloc', 'gas_station_gp_117', 'outside', 'other');
     scene.actions([
       { label: 'Park and get out', goto: ['gas_station_gp_117', 'outside'] },

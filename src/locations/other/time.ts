@@ -195,17 +195,17 @@ function enterToDate(s: GameState, scene: SceneBuilder): void {
   ((s as any).dateVars = (s as any).dateVars ?? {})['suffix'] = qspFunc(s, 'time', 'get_number_suffix', ((s as any).dateVars ?? 0)?.['day']);
   if (Number((s as any).locArgs?.[2] ?? 0) === 'test') {
     // TODO-QSP: dynamic text: new_daystart: <<ARGS[1]>> | old_daystart: <<daystart>>
-    scene.text(`new_daystart: ${((s as any).locArgs?.[1] ?? '')} | old_daystart: ${((s as any).daystart || '')}`);
+    scene.text(`new_daystart: ${((s as any).locArgs?.[1] ?? '')} | old_daystart: ${((s as any).daystart ?? '')}`);
     // TODO-QSP: dynamic text: new_day: <<dateVars[''day'']>> | old_day: <<day>>
-    scene.text(`new_day: ${((s as any).dateVars ?? 0)?.['day'] ?? ''} | old_day: ${((s as any).day || '')}`);
+    scene.text(`new_day: ${((s as any).dateVars ?? 0)?.['day'] ?? ''} | old_day: ${((s as any).day ?? '')}`);
     // TODO-QSP: dynamic text: new_month: <<dateVars[''month'']>> | old_month: <<month>>
-    scene.text(`new_month: ${((s as any).dateVars ?? 0)?.['month'] ?? ''} | old_month: ${((s as any).month || '')}`);
+    scene.text(`new_month: ${((s as any).dateVars ?? 0)?.['month'] ?? ''} | old_month: ${((s as any).month ?? '')}`);
     // TODO-QSP: dynamic text: new_year: <<dateVars[''year'']>> | old_year: <<year>>
-    scene.text(`new_year: ${((s as any).dateVars ?? 0)?.['year'] ?? ''} | old_year: ${((s as any).year || '')}`);
+    scene.text(`new_year: ${((s as any).dateVars ?? 0)?.['year'] ?? ''} | old_year: ${((s as any).year ?? '')}`);
     // TODO-QSP: dynamic text: new_week: <<dateVars[''week'']>> | old_week: <<week>>
-    scene.text(`new_week: ${((s as any).dateVars ?? 0)?.['week'] ?? ''} | old_week: ${((s as any).week || '')}`);
+    scene.text(`new_week: ${((s as any).dateVars ?? 0)?.['week'] ?? ''} | old_week: ${((s as any).week ?? '')}`);
     // TODO-QSP: dynamic text: new_odd_week: <<dateVars[''odd_week'']>> | old_odd_week: <<odd_week>>
-    scene.text(`new_odd_week: ${((s as any).dateVars ?? 0)?.['odd_week'] ?? ''} | old_odd_week: ${((s as any).odd_week || '')}`);
+    scene.text(`new_odd_week: ${((s as any).dateVars ?? 0)?.['odd_week'] ?? ''} | old_odd_week: ${((s as any).odd_week ?? '')}`);
     scene.text('Temp:');
     // TODO-QSP: dynamic text: mod_daystart: <<temp_timeVars[''mod_daystart'']>>
     scene.text(`mod_daystart: ${((s as any).temp_timeVars ?? 0)?.['mod_daystart'] ?? ''}`);
@@ -330,7 +330,7 @@ function enterToDaystart(s: GameState, scene: SceneBuilder): void {
   ((s as any).dateVars = (s as any).dateVars ?? {})['daystart'] = ((((s as any).temp_timeVars ?? {})?.['mod_daystart'] ?? 0) - (((s as any).temp_timeVars ?? {})?.['daystart_offset'] ?? 0));
   if (Number((s as any).locArgs?.[4] ?? 0) === 'test') {
     // TODO-QSP: dynamic text: new_daystart <<dateVars[''daystart'']>> | old_daystart <<daystart>>
-    scene.text(`new_daystart ${((s as any).dateVars ?? 0)?.['daystart'] ?? ''} | old_daystart ${((s as any).daystart || '')}`);
+    scene.text(`new_daystart ${((s as any).dateVars ?? 0)?.['daystart'] ?? ''} | old_daystart ${((s as any).daystart ?? '')}`);
     // TODO-QSP: dynamic text: mod_daystart: <<temp_timeVars[''mod_daystart'']>>
     scene.text(`mod_daystart: ${((s as any).temp_timeVars ?? 0)?.['mod_daystart'] ?? ''}`);
     // TODO-QSP: dynamic text: year_diff: <<temp_timeVars[''year_diff'']>>

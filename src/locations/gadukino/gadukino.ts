@@ -117,7 +117,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         (s as any).temp_npcid = ((s as any).lover ?? 0)?.[String((s as any).temp_i ?? 0)];
         if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
           // TODO-QSP: dynamic text: <b><a href="exec: gt ''lover_meet'', ''start'', ''<<$temp_npcid>>''"><<$npc_used...
-          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).temp_npcid || '')}/u0027); return false;">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a> is waiting in the street.</b>`);
+          scene.text(`<b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027lover_meet/u0027, /u0027start/u0027, /u0027${((s as any).temp_npcid ?? '')}/u0027); return false;">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a> is waiting in the street.</b>`);
         }
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
         if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {
@@ -338,13 +338,13 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
       scene.text('Your seduction and succubus powers were strong enough to get your victim hard. Still, they weren\'t enough to make him forget about his situation: He is giving you hateful looks, clearly pissed about his door and food and, oh yeah, you are raping him, but you simply ignore that.');
       scene.text('All you need is his sperm. You could care less about his happiness, and if he wants to complain about a woman like you fucking his brains out, that\'s his problem. Just as you\'re thinking, your powers surge and force him to come, unloading his jizz deep into your waiting cunt.');
       // TODO-QSP: dynamic text: You don''t know how long you go at it with him exactly. Still, after coming insi...
-      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum || '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix.`);
+      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum ?? '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix.`);
       scene.text('Then you head out the back door, making sure to break the handle on the way out - you\'re nothing if not consistent.');
     } else {
       scene.text('He was resisting you initially, but after a while, your powers break any resistance he had in him. By the time his first orgasm hits and he shoots his sperm into your needy cunt, he would have betrayed his own mother, much less broken his front door and laid his fridge at your feet, just to be inside you a little longer.');
       scene.text('However unsavoury the first few minutes of your meeting, this state of bliss you share with him pushes that memory into the far back of your mind and lets both of you enjoy the hard ride you\'re giving him.');
       // TODO-QSP: dynamic text: You don''t know how long you go at it with him exactly. Still, after coming insi...
-      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum || '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything, patting his head affectionately, and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix. There's nothing better than sex with a willing subject.`);
+      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((st as any).scxcum ?? '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything, patting his head affectionately, and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix. There's nothing better than sex with a willing subject.`);
       scene.text('Then you head out the back door. For a split second, you consider breaking that door, too… but why add insult to injury when he has pleased you?');
     }
     qspCall(st, 'stat', '');

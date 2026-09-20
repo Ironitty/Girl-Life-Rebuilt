@@ -72,7 +72,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
     if (((st as any).money ?? 0) !== 0) {
       scene.text('You count your money.');
       // TODO-QSP: dynamic text: "I only have <<$func(''money'', ''format'', money)>>. Do you have anything for t...
-      scene.text(`"I only have ${qspFunc(s, 'money', 'format', ((st as any).money || ''))}. Do you have anything for that amount?"`);
+      scene.text(`"I only have ${qspFunc(s, 'money', 'format', ((st as any).money ?? ''))}. Do you have anything for that amount?"`);
     } else {
       scene.text('Your purse is empty.');
       scene.text('"Well, I don\'t have anything…" you mumble.');

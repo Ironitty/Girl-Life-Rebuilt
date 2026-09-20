@@ -104,7 +104,7 @@ function enterVitekVsFedor(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Viktor [Vitek] Kotov'}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big9.jpg');
   // TODO-QSP: dynamic text: You approach Fedor and wrap your arms around him as he does the same, embracing ...
-  scene.text(`You approach Fedor and wrap your arms around him as he does the same, embracing you firmly. Suddenly, Vitek approaches Fedor from behind, violently shoving him back and saying in a menacing tone, "What do you think you're doing, punk? ${((s as any).pcs_firstname || '')} is <b>mine!</b>" Fedor turns his face to Vitek and firmly states, "${((s as any).pcs_firstname || '')} is with me now, so why don't you hit the road?" Vitek theatrically moves his hand to his ear and says in a threatening tone, "What did you just say!?" To which Fedor boldly replies, "You heard me." You can tell that Vitek is seething with rage now as his face turns red and the knuckles on his clenched fists turn a deathly white. Fedor moves his face even closer to Vitek's and repeats, clenching his fists: "You heard me. Get away from ${((s as any).pcs_firstname || '')}, Vitek."`);
+  scene.text(`You approach Fedor and wrap your arms around him as he does the same, embracing you firmly. Suddenly, Vitek approaches Fedor from behind, violently shoving him back and saying in a menacing tone, "What do you think you're doing, punk? ${((s as any).pcs_firstname ?? '')} is <b>mine!</b>" Fedor turns his face to Vitek and firmly states, "${((s as any).pcs_firstname ?? '')} is with me now, so why don't you hit the road?" Vitek theatrically moves his hand to his ear and says in a threatening tone, "What did you just say!?" To which Fedor boldly replies, "You heard me." You can tell that Vitek is seething with rage now as his face turns red and the knuckles on his clenched fists turn a deathly white. Fedor moves his face even closer to Vitek's and repeats, clenching his fists: "You heard me. Get away from ${((s as any).pcs_firstname ?? '')}, Vitek."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell Vitek you want to be with Fedor', handler: (st: GameState) => {
@@ -126,7 +126,7 @@ function enterVitekVsFedor(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/fvsv.jpg');
     scene.text('Vitek suddenly hits Fedor on the chin with a quick jab, which sends Fedor flying backwards, landing on the pavement. Vitek immediately climbs on top of him, grabbing him by the collar with his left hand while punching Fedor in the face with his right. Fedor tries to ball up and kick Vitek, but doesn\'t manage to faze him. Vitek gives him a hard kick in the ribs when he gets back up, which makes Fedor fall over, grasping his stomach. As Fedor tries to get up, Vitek kicks him in the head, which causes Fedor to fall over again. As Fedor hits the ground, you see Vasily and Dan coming around the corner; they run towards Vitek when they notice that he\'s fighting. "Vitek, what\'s going on?" Vasily asks. Vitek kicks the now-prone Fedor once more in his sides. "This fucker is trying to steal my girl!" He exclaims, pointing at Fedor.');
     // TODO-QSP: dynamic text: Feeling terrified that Vitek might hurt you too in his blind rage, you remain si...
-    scene.text(`Feeling terrified that Vitek might hurt you too in his blind rage, you remain silent. Dan moves over to Fedor as he struggles to remain conscious and asks, "Hasn't anyone told you that it's rude to steal someone's girl, Fedor? What do you have to say for yourself?" Fedor looks up, barely realizing what's going on anymore. His face is all busted up, but he's not willing to let it go: "${((st as any).pcs_firstname || '')} is my girl…" he groans. Vasily begins laughing like a jackal, while Vitek furiously shouts at Fedor once more, "You little shit! I'm going to…" Dan interrupts him: "Relax, Vitek. Look at his face. I think he realizes his mistake. Or do you want to make things even worse for yourself?" That last question was directed at Fedor.`);
+    scene.text(`Feeling terrified that Vitek might hurt you too in his blind rage, you remain silent. Dan moves over to Fedor as he struggles to remain conscious and asks, "Hasn't anyone told you that it's rude to steal someone's girl, Fedor? What do you have to say for yourself?" Fedor looks up, barely realizing what's going on anymore. His face is all busted up, but he's not willing to let it go: "${((st as any).pcs_firstname ?? '')} is my girl…" he groans. Vasily begins laughing like a jackal, while Vitek furiously shouts at Fedor once more, "You little shit! I'm going to…" Dan interrupts him: "Relax, Vitek. Look at his face. I think he realizes his mistake. Or do you want to make things even worse for yourself?" That last question was directed at Fedor.`);
     scene.text(`<center><b>${'Vasily [Shulga] Shulgin'}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big11.jpg');
     scene.actions([
@@ -144,7 +144,7 @@ function enterVitekVsFedor(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/fedor.jpg');
     // TODO-QSP: dynamic text: Dan replies: "We could ask Vadim Bely to take care of him. He''ll know how to pu...
-    scene.text(`Dan replies: "We could ask Vadim Bely to take care of him. He'll know how to punish Fedor in a way that he'll never forget." Vitek nods: "Good plan. Set it up, will you?" He then turns to Fedor "We're settling this tomorrow, kid. You better be here after school, it'll be ten times worse for you if you don't." He then waves for his friends to follow him "Come on guys. Let's go have some beers in the park, I need to relax. ${((st as any).pcs_nickname || '')}, if you want to join us, you know where we'll be." Vitek and Dan leave Fedor on the ground then head for the schoolyard exit, but as they pass Fedor, Vasily quickly kicks him in the ribs one more time, still laughing that signature jackal laugh of his. He then joins his friends, and moments later, they're gone.`);
+    scene.text(`Dan replies: "We could ask Vadim Bely to take care of him. He'll know how to punish Fedor in a way that he'll never forget." Vitek nods: "Good plan. Set it up, will you?" He then turns to Fedor "We're settling this tomorrow, kid. You better be here after school, it'll be ten times worse for you if you don't." He then waves for his friends to follow him "Come on guys. Let's go have some beers in the park, I need to relax. ${((st as any).pcs_nickname ?? '')}, if you want to join us, you know where we'll be." Vitek and Dan leave Fedor on the ground then head for the schoolyard exit, but as they pass Fedor, Vasily quickly kicks him in the ribs one more time, still laughing that signature jackal laugh of his. He then joins his friends, and moments later, they're gone.`);
     scene.actions([
       { label: 'Leave the school courtyard', goto: ['pav_residential', ''] },
     ]);
@@ -162,7 +162,7 @@ function enterStrelaChat(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/fedorupset.jpg');
   // TODO-QSP: dynamic text: You see Fedor sitting in a corner by himself. As you approach, Fedor turns to yo...
-  scene.text(`You see Fedor sitting in a corner by himself. As you approach, Fedor turns to you and says, "I'm sorry ${((s as any).pcs_firstname || '')}, but I… I can't talk right now."`);
+  scene.text(`You see Fedor sitting in a corner by himself. As you approach, Fedor turns to you and says, "I'm sorry ${((s as any).pcs_firstname ?? '')}, but I… I can't talk right now."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk away', goto: ['gschool_grounds', 'main'] },
@@ -175,7 +175,7 @@ function enterGorslut(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorsad.jpg');
   // TODO-QSP: dynamic text: Fedor looks clearly troubled: "<<$pcs_firstname>>, I''ve been hearing rumors abo...
-  scene.text(`Fedor looks clearly troubled: "${((s as any).pcs_firstname || '')}, I've been hearing rumors about you being a ${((s as any).gnikname || '')}. Please tell me that they are not true."`);
+  scene.text(`Fedor looks clearly troubled: "${((s as any).pcs_firstname ?? '')}, I've been hearing rumors about you being a ${((s as any).gnikname ?? '')}. Please tell me that they are not true."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell Fedor the truth', handler: (st: GameState) => {
@@ -245,7 +245,7 @@ function enterGorslut2(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorangry.jpg');
   // TODO-QSP: dynamic text: Fedor looks distraught: "<<$pcs_firstname>>, I trusted you with all my heart, an...
-  scene.text(`Fedor looks distraught: "${((s as any).pcs_firstname || '')}, I trusted you with all my heart, and you turn out to be just another ${((s as any).gnikname || '')}. I never should have trusted you… I see now that everything we had was a lie… Just stay away from me!" He turns around and walks away. Looks like he wants nothing more to do with you.`);
+  scene.text(`Fedor looks distraught: "${((s as any).pcs_firstname ?? '')}, I trusted you with all my heart, and you turn out to be just another ${((s as any).gnikname ?? '')}. I never should have trusted you… I see now that everything we had was a lie… Just stay away from me!" He turns around and walks away. Looks like he wants nothing more to do with you.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {
@@ -307,7 +307,7 @@ function enterPark(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/hold.jpg');
   // TODO-QSP: dynamic text: You wrap your arm around Fedor''s neck while enjoying his embrace and after a fe...
-  scene.text(`You wrap your arm around Fedor's neck while enjoying his embrace and after a few moments he asks you "Hey ${((s as any).pcs_nickname || '')}, would you like to go for a walk in the park?"`);
+  scene.text(`You wrap your arm around Fedor's neck while enjoying his embrace and after a few moments he asks you "Hey ${((s as any).pcs_nickname ?? '')}, would you like to go for a walk in the park?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Not now', handler: (st: GameState) => {
@@ -446,7 +446,7 @@ function enterPark3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/hold.jpg');
   // TODO-QSP: dynamic text: You wrap your arm around Fedor''s neck while enjoying his embrace and after a fe...
-  scene.text(`You wrap your arm around Fedor's neck while enjoying his embrace and after a few moments, he asks you, "Hey ${((s as any).pcs_nickname || '')}, would you like to go for another walk in the park?"`);
+  scene.text(`You wrap your arm around Fedor's neck while enjoying his embrace and after a few moments, he asks you, "Hey ${((s as any).pcs_nickname ?? '')}, would you like to go for another walk in the park?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Not now', handler: (st: GameState) => {
@@ -497,7 +497,7 @@ function enterFedorDate2(s: GameState, scene: SceneBuilder): void {
     (s as any).textEvent = '"Would you like some "Alone time" at my place?"';
   }
   // TODO-QSP: dynamic text: You continue to kiss Fedor passionately, neither of you willing to break it off....
-  scene.text(`You continue to kiss Fedor passionately, neither of you willing to break it off. After what felt like an hour ${((s as any).ev_name || '')} finishes kissing you and suggests: ${((s as any).textEvent || '')}.`);
+  scene.text(`You continue to kiss Fedor passionately, neither of you willing to break it off. After what felt like an hour ${((s as any).ev_name ?? '')} finishes kissing you and suggests: ${((s as any).textEvent ?? '')}.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'I can\'t right now', goto: ['FedorEv', 'No Date'] },
@@ -515,7 +515,7 @@ function enterFedorDate3(s: GameState, scene: SceneBuilder): void {
     scene.text('You look Fedor in the eyes, lean forward and give him a passionate kiss, feeling his warm lips on yours and his tongue enter your mouth and begin to softly massage yours. After a few seconds Fedor slowly pulls away and asks "Hello my love, I want to spend some time with you. Is there any place in particular that you would like to go?"');
   } else {
     // TODO-QSP: dynamic text: You look Fedor in the eyes, lean forward and give him a passionate kiss, feeling...
-    scene.text(`You look Fedor in the eyes, lean forward and give him a passionate kiss, feeling his warm lips on yours and his tongue enter your mouth and begin to softly massage yours. After a few seconds Fedor slowly pulls away and asks "Hey ${((s as any).pcs_firstname || '')} I want to spend some time with you. Is there any place in particular that you would like to go?"`);
+    scene.text(`You look Fedor in the eyes, lean forward and give him a passionate kiss, feeling his warm lips on yours and his tongue enter your mouth and begin to softly massage yours. After a few seconds Fedor slowly pulls away and asks "Hey ${((s as any).pcs_firstname ?? '')} I want to spend some time with you. Is there any place in particular that you would like to go?"`);
   }
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/kiss2.mp4');
   // TODO-QSP: end
@@ -560,7 +560,7 @@ function enterHome2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fedorKozlovQW ?? 0) === -15) {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedormisc/Outcast/hold.jpg');
     // TODO-QSP: dynamic text: "I would like to spend some alone time with you. How about we head down to your ...
-    scene.text(`"I would like to spend some alone time with you. How about we head down to your place and watch some movies?" Fedor smiles as he replies, "Sure thing, I always love spending time with you ${((s as any).pcs_firstname || '')}." You wrap your arms around his neck then walk with Fedor to his house.`);
+    scene.text(`"I would like to spend some alone time with you. How about we head down to your place and watch some movies?" Fedor smiles as he replies, "Sure thing, I always love spending time with you ${((s as any).pcs_firstname ?? '')}." You wrap your arms around his neck then walk with Fedor to his house.`);
   } else {
     scene.img('images/characters/city/boyfriend/boygo.jpg');
     scene.text('"Fedor leans forward and whispers in your ear, "My parents are out for the evening, so we have the whole place to ourselves, let\'s go." He then rests his arm on your shoulders as he leads you to his house.');

@@ -164,7 +164,7 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
     ((st as any).hotelRoomDays = (st as any).hotelRoomDays ?? {})['city'] = ((st as any).daystart ?? 0) + (((st as any).hotelRoomDays ?? {})?.['city'] ?? 0);
     scene.text('You pay for the room and she gives you the key in return.');
     // TODO-QSP: dynamic text: "Thank you ' + iif(pavHotelMaid = 0, 'miss', $pcs_nickname) +', I hope you enjoy...
-    scene.text('"Thank you ' + (((!((st as any).pavHotelMaid ?? 0))) ? ('miss') : (((st as any).pcs_nickname || ''))) + ', I hope you enjoy your stay!"');
+    scene.text('"Thank you ' + (((!((st as any).pavHotelMaid ?? 0))) ? ('miss') : (((st as any).pcs_nickname ?? ''))) + ', I hope you enjoy your stay!"');
     scene.actions([
       { label: 'Step away from the reception desk', goto: ['city_hotel', ''] },
     ]);

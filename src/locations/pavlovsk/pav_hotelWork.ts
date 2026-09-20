@@ -20,12 +20,12 @@ function enterSetHotelActs(s: GameState, scene: SceneBuilder): void {
       scene.text('You report in for work at the front desk and the brunette manning the desk quickly makes sure no customers will need her before motioning for you to follow.');
       scene.text('"Come with me. I\'ll show you to the locker room," she says as she stands up and walks into a room behind the desk. "I didn\'t catch your name last time. I\'m Elisabet."');
       // TODO-QSP: dynamic text: "I''m <<$pcs_nickname>>," you reply as she opens a wardrobe and pulls out a maid...
-      scene.text(`"I'm ${((st as any).pcs_nickname || '')}," you reply as she opens a wardrobe and pulls out a maid uniform.`);
+      scene.text(`"I'm ${((st as any).pcs_nickname ?? '')}," you reply as she opens a wardrobe and pulls out a maid uniform.`);
       scene.text('"This should be about your size. If it doesn\'t fit, then just grab another from here. We have a few different sizes." She gives you a friendly smile. "It\'s company policy that you need to wear it while you work, but you can put your own clothes in a locker for safekeeping. I have to get back to the desk now before I\'m missed. Good luck!"');
     } else {
       scene.text('You report in for work at the front desk.');
       // TODO-QSP: dynamic text: "Go and get changed, <<$pcs_nickname>>," Elisabet smiles. "I''ll put your name o...
-      scene.text(`"Go and get changed, ${((st as any).pcs_nickname || '')}," Elisabet smiles. "I'll put your name on the worksheet for today."`);
+      scene.text(`"Go and get changed, ${((st as any).pcs_nickname ?? '')}," Elisabet smiles. "I'll put your name on the worksheet for today."`);
     }
     scene.actions([
       { label: 'Change into the maid outfit', handler: (st: GameState) => {
@@ -233,7 +233,7 @@ function enterWork0(s: GameState, scene: SceneBuilder): void {
   if (((s as any).chai ?? 0) > 0) {
     qspCall(s, 'money', 'earn', ((s as any).chai ?? 0), 'cash');
     // TODO-QSP: dynamic text: While you''re cleaning the room, you find some money underneath a pillow. Looks ...
-    scene.text(`While you're cleaning the room, you find some money underneath a pillow. Looks like someone left you a ${qspFunc(s, 'money', 'string_profit', ((s as any).chai || ''))} tip!`);
+    scene.text(`While you're cleaning the room, you find some money underneath a pillow. Looks like someone left you a ${qspFunc(s, 'money', 'string_profit', ((s as any).chai ?? ''))} tip!`);
     (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
     (s as any).chai = 0;
   }
@@ -825,7 +825,7 @@ function enterWork4(s: GameState, scene: SceneBuilder): void {
 function enterTip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).chai ?? 0), 'cash');
   // TODO-QSP: dynamic text: You find <<$func(''money'', ''string_profit'', chai)>> in a jar on the table. Lo...
-  scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((s as any).chai || ''))} in a jar on the table. Looks like someone left you a tip!`);
+  scene.text(`You find ${qspFunc(s, 'money', 'string_profit', ((s as any).chai ?? ''))} in a jar on the table. Looks like someone left you a tip!`);
   (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
   (s as any).chai = 0;
   // TODO-QSP: end
@@ -877,9 +877,9 @@ function enterWork7(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'See what she wants', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: She notices you staring at her jiggling breasts as she approaches you and grins ...
-    scene.text(`She notices you staring at her jiggling breasts as she approaches you and grins when she sees your embarrassed look. She gives you ${qspFunc(s, 'money', 'string_profit', ((st as any).chai || ''))}.`);
+    scene.text(`She notices you staring at her jiggling breasts as she approaches you and grins when she sees your embarrassed look. She gives you ${qspFunc(s, 'money', 'string_profit', ((st as any).chai ?? ''))}.`);
     // TODO-QSP: dynamic text: She gives you a sexy smile as she hands over <<$func(''money'', ''string_profit'...
-    scene.text(`She gives you a sexy smile as she hands over ${qspFunc(s, 'money', 'string_profit', ((st as any).chai || ''))}. "Here, sweetie… For your discretion. You have a nice day now!"`);
+    scene.text(`She gives you a sexy smile as she hands over ${qspFunc(s, 'money', 'string_profit', ((st as any).chai ?? ''))}. "Here, sweetie… For your discretion. You have a nice day now!"`);
     scene.text('Still rendered speechless, you realize you really should say something now.');
     scene.text('"Tha-, erm… Thank you, miss!" you manage to mumble, trying to hide the deep red blush on your cheeks.');
     scene.text('She giggles as she turns around, giving you a lewd grin as she walks back to her room.');
@@ -1018,7 +1018,7 @@ function enterWork11(s: GameState, scene: SceneBuilder): void {
   if (((s as any).chai ?? 0) > 0) {
     qspCall(s, 'money', 'earn', ((s as any).chai ?? 0), 'cash');
     // TODO-QSP: dynamic text: While you move to pick up a tray, you find some money tucked under a plate. Look...
-    scene.text(`While you move to pick up a tray, you find some money tucked under a plate. Looks like someone left you a ${qspFunc(s, 'money', 'string_profit', ((s as any).chai || ''))} tip!`);
+    scene.text(`While you move to pick up a tray, you find some money tucked under a plate. Looks like someone left you a ${qspFunc(s, 'money', 'string_profit', ((s as any).chai ?? ''))} tip!`);
     (s as any).earned_tips = ((s as any).earned_tips ?? 0) + (((s as any).chai ?? 0));
     (s as any).chai = 0;
   }
@@ -1424,7 +1424,7 @@ function enterHotcouple(s: GameState, scene: SceneBuilder): void {
     scene.text('Motya presses his dick into your pussy. He\'s slow and careful not to push too hard.');
     scene.text('You let out a little moan as he slowly but surely invades your pussy, his shaft sinking in deeper before you suddenly let out a little grunt. You look into Motya\'s eyes and you both know that your virginity is no more.');
     // TODO-QSP: dynamic text: You can feel every inch of his <<dick>> cm dick inside you now as he gives you a...
-    scene.text(`You can feel every inch of his ${((st as any).dick || '')} cm dick inside you now as he gives you a little wink and starts moving.`);
+    scene.text(`You can feel every inch of his ${((st as any).dick ?? '')} cm dick inside you now as he gives you a little wink and starts moving.`);
     scene.text('As he\'s fucking you, Uliana gently rubs against your clit while kissing her husband.');
     scene.text('After a few minutes, you all change positions.');
     scene.actions([
@@ -1483,9 +1483,9 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
   (s as any).threesometojoin = 2;
   scene.text('"Okay girl, let me introduce myself first. I\'m Varsonofy Panteleimonovich Krestovozdvizhensky, but you can call me Pavlin. What may I call you?"');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>," you answer.
-  scene.text(`"${((s as any).pcs_firstname || '')}," you answer.`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')}," you answer.`);
   // TODO-QSP: dynamic text: "Welcome to my humble abode, Miss <<$pcs_firstname>>. Let me introduce you to my...
-  scene.text(`"Welcome to my humble abode, Miss ${((s as any).pcs_firstname || '')}. Let me introduce you to my good friend, Mr. Black."`);
+  scene.text(`"Welcome to my humble abode, Miss ${((s as any).pcs_firstname ?? '')}. Let me introduce you to my good friend, Mr. Black."`);
   scene.text('You look in the direction he gestures and see a big black dude sitting on a couch, already stroking his cock through his pants, his thick muscles evident through his fitted clothing.');
   scene.text('"Why hello there, honey. Are you here to entertain us tonight?" he asks in a deep, husky voice.');
   scene.text('"She sure is," Pavlin replies as he places both hands on your shoulders and forces you down onto your knees.');
@@ -1513,7 +1513,7 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
       scene.text('Your heart skips a beat as you feel the massive member rub up against your pussy, arousal and excitement already coursing through you.');
     }
     // TODO-QSP: dynamic text: He places one calloused hand on your back and starts pushing his massive <<dick>...
-    scene.text(`He places one calloused hand on your back and starts pushing his massive ${((st as any).dick || '')} cm cock inside your pussy.`);
+    scene.text(`He places one calloused hand on your back and starts pushing his massive ${((st as any).dick ?? '')} cm cock inside your pussy.`);
     scene.text('"Oh fuck!" you groan as he buries himself as deep inside you as he can in one thrust.');
     if (((st as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.text('As the massive dick slams into you, you yelp in pain as each thrust slams into your cervix, causing tears to start rolling down your cheeks.');
@@ -1534,11 +1534,11 @@ function enterFirsthotelprosevent(s: GameState, scene: SceneBuilder): void {
     scene.text('You suddenly feel the huge black cock slide out of your pussy, leaving your hole gaping wide and drooling with your arousal as well as a sense of emptiness. A moment later, you squeal as you feel three of his thick fingers drive into your gaping hole and thrust a few times, each pulling another gasp from you before he rubs them on your asshole as lube.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0  &&  qspFunc(s, 'pcs_has_attr', 'sex_anal_virgin')) {
       // TODO-QSP: dynamic text: "<<$openinnerthought>>He''s going to take that virginity too?! It''s the only on...
-      scene.text(`"${((st as any).openinnerthought || '')}He's going to take that virginity too?! It's the only one I have left!${((st as any).closeinnerthought || '')}"`);
+      scene.text(`"${((st as any).openinnerthought ?? '')}He's going to take that virginity too?! It's the only one I have left!${((st as any).closeinnerthought ?? '')}"`);
     }
     scene.text('The fear wells up inside you once again, but you push it down and reason with yourself as you brace for what\'s to come.');
     // TODO-QSP: dynamic text: You feel the impossibly large head of his cock push up against your back door be...
-    scene.text(`You feel the impossibly large head of his cock push up against your back door before he slowly he applies pressure, pushing his ${((st as any).dick || '')} cm dick into your ass.`);
+    scene.text(`You feel the impossibly large head of his cock push up against your back door before he slowly he applies pressure, pushing his ${((st as any).dick ?? '')} cm dick into your ass.`);
     scene.text('Your anus resists, but you eventually feel the head break through, stretching your sphincter as you let out a pained yelp, wincing as your eyes start to water again.');
     scene.text('Showing a bit of chivalry this time, Mr. Black waits a moment so you can get used to the feeling, but all too soon the mercy disappears as he starts pumping his dick into your ass, driving deeper with each thrust.');
     scene.text('The intense feeling melds into a mix of extreme pleasure and pain, and you can\'t decide If it\'s enjoyable or not. Before your mind can decide, Pavlin once again forces his dick back into your throat and starts face-fucking you at full force.');
@@ -1787,7 +1787,7 @@ function enterEnding2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hey!" you exclaim, instinctively reaching out to take it back, but the glare he shoots your way freezes you in your tracks.');
       scene.text('He rummages through your purse until he finds your wallet and takes all of your cash, giving it a disdainful glance before stuffing it into his pocket and roughly throwing your purse back at you.');
       // TODO-QSP: dynamic text: "What the hell? Only <<$func(''money'', ''format'', montake)>>? Our show is wort...
-      scene.text(`"What the hell? Only ${qspFunc(s, 'money', 'format', ((st as any).montake || ''))}? Our show is worth much more than this! The only thing you get for this chump change is one slap on the ass."`);
+      scene.text(`"What the hell? Only ${qspFunc(s, 'money', 'format', ((st as any).montake ?? ''))}? Our show is worth much more than this! The only thing you get for this chump change is one slap on the ass."`);
       scene.text('He forcefully turns you around and gives you a hard smack on the ass before gripping your arm and pushing you out the door.');
       (st as any).threesometojoin = 0;
       (st as any).pavhotprosQW = 2;

@@ -163,7 +163,7 @@ function enterSantehnikend2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/sex/s3.jpg');
   // TODO-QSP: dynamic text: You offer to issue the plumber a receipt of debt. He thinks for a moment and say...
-  scene.text(`You offer to issue the plumber a receipt of debt. He thinks for a moment and says, "Okay. Write a receipt. Next time I'm about, I'll look in and you give me the money. ${((s as any).textsan || '')} Then teking a pen and paper you write the plumber a receipt that you owe him ${qspFunc(s, 'money', 'string_price', 1500)}. Grisha takes the paper and puts it in his pocket. "If you have another leak, call me, here's my card."`);
+  scene.text(`You offer to issue the plumber a receipt of debt. He thinks for a moment and says, "Okay. Write a receipt. Next time I'm about, I'll look in and you give me the money. ${((s as any).textsan ?? '')} Then teking a pen and paper you write the plumber a receipt that you owe him ${qspFunc(s, 'money', 'string_price', 1500)}. Grisha takes the paper and puts it in his pocket. "If you have another leak, call me, here's my card."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Plumber leaves', handler: (st: GameState) => {
@@ -851,7 +851,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     if (((st as any).kanikuli ?? 0) === 0  &&  ((st as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((st as any).home ?? 0)?.['current'] === 'parents_home'  &&  ((st as any).gschoolVars ?? 0)?.['block'] === 0) {
       if (((st as any).class ?? 0)?.['school_grade_average'] >= 80) {
         // TODO-QSP: dynamic text: "So how are you doing in school, <<$pcs_nickname>>?" he asks.
-        scene.text(`"So how are you doing in school, ${((st as any).pcs_nickname || '')}?" he asks.`);
+        scene.text(`"So how are you doing in school, ${((st as any).pcs_nickname ?? '')}?" he asks.`);
         scene.text('You smile at him. "Really great. We were just learning something interesting the other day."');
         if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
           scene.text('You go on to talk about some of the stuff you\'ve learned recently in school. He nods, while your mother just listens in frosty silence.');
@@ -864,7 +864,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: "So how are you doing in school, <<$pcs_nickname>>?" he asks.
-        scene.text(`"So how are you doing in school, ${((st as any).pcs_nickname || '')}?" he asks.`);
+        scene.text(`"So how are you doing in school, ${((st as any).pcs_nickname ?? '')}?" he asks.`);
         scene.text('You glance at him. "Um… Okay, I guess…"');
         if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
           scene.text('You notice your mother frowning at you, so you quickly try to change the subject, but she won\'t let you.');
@@ -920,7 +920,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
       scene.text('"Of course my whore of a so called daughter thinks <i>this</i> is appropriate at the breakfast table! Go and put some clothes on, you shameless slut!" she growls before throwing you out of the room.');
     } else {
       // TODO-QSP: dynamic text: Your mother stands up from her seat, nearly knocking the chair over in the proce...
-      scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((st as any).pcs_nickname || '')}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
+      scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((st as any).pcs_nickname ?? '')}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -942,7 +942,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/shared/food/breakfast_' + (Math.floor(Math.random() * 2) + 0) + '.jpg');
     // TODO-QSP: dynamic text: You enjoy a quiet breakfast by yourself. The portions were moderate and<<$mtxt>>...
-    scene.text(`You enjoy a quiet breakfast by yourself. The portions were moderate and${((st as any).mtxt || '')} You accompany it with a mug of tea.`);
+    scene.text(`You enjoy a quiet breakfast by yourself. The portions were moderate and${((st as any).mtxt ?? '')} You accompany it with a mug of tea.`);
     scene.actions([
       { label: 'Get up from the table', handler: (st: GameState) => {
     qspCall(st, 'daily_routine', 'finish_step', ((st as any).loc ?? 0), ((st as any).loc_arg ?? 0));
@@ -980,7 +980,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/home/dinnerhome.jpg');
     // TODO-QSP: dynamic text: You sit down and join your family for dinner and your stepfather starts teasing ...
-    scene.text(`You sit down and join your family for dinner and your stepfather starts teasing you. "So. Do you have a boyfriend yet, ${((st as any).pcs_nickname || '')}?"`);
+    scene.text(`You sit down and join your family for dinner and your stepfather starts teasing you. "So. Do you have a boyfriend yet, ${((st as any).pcs_nickname ?? '')}?"`);
     if ((((st as any).motherKnowSpravka ?? 0) > 0  ||  ((st as any).motherKnowWhore ?? 0) > 0)  &&  (((st as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((st as any).npc_QW ?? 0)?.['A29'] === 1)) {
       scene.text('You\'re about to answer when your mother scoffs. "I\'m sure she\'s found herself <i>plenty</i> of boys by now."');
       scene.text('"Natasha!" your stepfather yells. "I know you have your... opinion on the matter, but that\'s hardly an appropriate reponse!"');
@@ -1015,7 +1015,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
           if (((st as any).npc_QW ?? 0)?.['A29'] === 2) {
             scene.text('You\'re about to respond when your mother interrupts you. "We\'ve spoken about this. It\'s okay if she starts dating so long as she\'s careful, but I\'d prefer if she focused on university first. She has plenty of time to settle down after that."');
             // TODO-QSP: dynamic text: "Is that what <<$pcs_nickname>> wants?" he asks. "Maybe she wants to settle down...
-            scene.text(`"Is that what ${((st as any).pcs_nickname || '')} wants?" he asks. "Maybe she wants to settle down and start a family of her own without worrying about university?"`);
+            scene.text(`"Is that what ${((st as any).pcs_nickname ?? '')} wants?" he asks. "Maybe she wants to settle down and start a family of her own without worrying about university?"`);
             scene.text('Your mother gives him a hard stare and he drops it before he starts talking about some of the stuff that happened at his work. All and all, you have a fairly enjoyable dinner.');
           } else {
             scene.text('You\'re about to respond when your mother interrupts you. "Of course not! She\'s still too young to be thinking about boys!"');
@@ -1045,7 +1045,7 @@ function enterParentsMealOptions(s: GameState, scene: SceneBuilder): void {
       scene.text('"Of course my whore of a so called daughter thinks <i>this</i> is appropriate at the dinner table! Go and put some clothes on, you shameless slut!" she growls before throwing you out of the room.');
     } else {
       // TODO-QSP: dynamic text: Your mother stands up from her seat, nearly knocking the chair over in the proce...
-      scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((st as any).pcs_nickname || '')}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
+      scene.text(`Your mother stands up from her seat, nearly knocking the chair over in the process. "What on God's earth are you doing, ${((st as any).pcs_nickname ?? '')}?! Have you have no shame?! Go and get dressed <i>immediately</i>, young lady!"`);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

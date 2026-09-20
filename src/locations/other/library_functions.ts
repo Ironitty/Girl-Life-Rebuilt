@@ -378,7 +378,7 @@ function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): vo
         scene.text('You read the final chapters of the adventure novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     } else {
       qspCall(st, 'mood', 'raise', 'tiny');
@@ -387,7 +387,7 @@ function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): vo
         scene.text('You read the final chapters of the adventure novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     }
     scene.actions([
@@ -438,7 +438,7 @@ function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the fantasy novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     } else {
       qspCall(st, 'mood', 'raise', 'tiny');
@@ -446,7 +446,7 @@ function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the fantasy novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     }
     scene.actions([
@@ -498,7 +498,7 @@ function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the romance novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     } else {
       qspCall(st, 'mood', 'raise', 'tiny');
@@ -507,7 +507,7 @@ function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the romance novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     }
     scene.actions([
@@ -560,7 +560,7 @@ function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the science book, completely immersed in the conclusions the authors make.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the book, completely immersed in absorbing...
-        scene.text(`For an hour you enthusiastically read the book, completely immersed in absorbing the knowledge within. By the end you've read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`For an hour you enthusiastically read the book, completely immersed in absorbing the knowledge within. By the end you've read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     } else {
       qspCall(st, 'mood', 'raise', 'tiny');
@@ -569,7 +569,7 @@ function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the science book.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     }
     scene.actions([
@@ -621,7 +621,7 @@ function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the science fiction novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     } else {
       qspCall(st, 'mood', 'raise', 'tiny');
@@ -630,7 +630,7 @@ function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the science fiction novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     }
     scene.actions([
@@ -678,7 +678,7 @@ function enterSetHomeReadArtemBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the book, completely immersed in the climactic ending to the authors entralling story');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the book, completely immersed in the autho...
-        scene.text(`For an hour you enthusiastically read the book, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`For an hour you enthusiastically read the book, completely immersed in the authors world. By the end you've read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     } else {
       qspCall(st, 'mood', 'raise', 'tiny');
@@ -686,7 +686,7 @@ function enterSetHomeReadArtemBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the book.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read || '')} pages.`);
+        scene.text(`Over the course of an hour you read ${((st as any).temp_pages_read ?? '')} pages.`);
       }
     }
     scene.actions([
@@ -873,11 +873,11 @@ function enterSetLoanActs(s: GameState, scene: SceneBuilder): void {
 function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lib_book_loaned ?? 0) !== '') {
     // TODO-QSP: dynamic text: You''ve currently borrowed <<$lib_book_loaned>>.
-    scene.text(`You've currently borrowed ${((s as any).lib_book_loaned || '')}.`);
+    scene.text(`You've currently borrowed ${((s as any).lib_book_loaned ?? '')}.`);
     if (((s as any).lib_debt ?? 0) <= 0) {
       (s as any).temp_loan_days_left = ((s as any).lib_debt ?? 0) / -50;
       // TODO-QSP: dynamic text: You have <<temp_loan_days_left>> days left before you need to return it.
-      scene.text(`You have ${((s as any).temp_loan_days_left || '')} days left before you need to return it.`);
+      scene.text(`You have ${((s as any).temp_loan_days_left ?? '')} days left before you need to return it.`);
     } else {
       scene.text('Your book is overdue!');
     }
@@ -942,7 +942,7 @@ function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
 function enterPayDebtAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lib_debt ?? 0) > 0) {
     // TODO-QSP: dynamic text: You owe an outstanding debt of <<$func(''money'', ''string_price'', lib_debt)>> ...
-    scene.text(`You owe an outstanding debt of ${qspFunc(s, 'money', 'string_price', ((s as any).lib_debt || ''))} to the library.`);
+    scene.text(`You owe an outstanding debt of ${qspFunc(s, 'money', 'string_price', ((s as any).lib_debt ?? ''))} to the library.`);
     if (qspFunc(s, 'money', 'can_afford', ((s as any).lib_debt ?? 0)) === 0) {
       scene.text('You don\'t have enough money to pay your debt!');
     } else {

@@ -88,7 +88,7 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Hello" you say.');
   scene.text('This causes her to jump a tad. "Oh, Hi" she says covering her nipples with her hands. "I\'m Ksenya." She stands up and offers a hand. "I\'ve seen you before" she replies. "Flashing people around the park here. It\'s really nice to come across someone who likes to flaunt what they got" she jokes. "Hey, um, I was wondering if you could help me with some pictures…, um." Since she didn\'t ask your name, she is confused.');
   // TODO-QSP: dynamic text: You realize her mistake and say, "I''m <<$pcs_firstname>>"
-  scene.text(`You realize her mistake and say, "I'm ${((s as any).pcs_firstname || '')}"`);
+  scene.text(`You realize her mistake and say, "I'm ${((s as any).pcs_firstname ?? '')}"`);
   scene.text('"Right, can I ask if you could help me with some pictures?" You see, I want to be a model, and I need some pictures. Can you help?" she asks."');
   // TODO-QSP: end
   scene.actions([
@@ -147,7 +147,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/park/ksenya/ksenya6.jpg');
   scene.text('As you did before you find Ksenya near the edge of the park, exposing herself. She gives you that same look, you just can\'t seem to place.');
   // TODO-QSP: dynamic text: "Hi, <<$pcs_firstname>>. It''s your turn, are you up for this?"
-  scene.text(`"Hi, ${((s as any).pcs_firstname || '')}. It's your turn, are you up for this?"`);
+  scene.text(`"Hi, ${((s as any).pcs_firstname ?? '')}. It's your turn, are you up for this?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'No, sorry', handler: (st: GameState) => {
@@ -195,7 +195,7 @@ function enterEvent3_1(s: GameState, scene: SceneBuilder): void {
   scene.text('You stand up completely naked, with everything but your shoes in the bag.');
   scene.text('"Oh crap, I packed my phone. I meant to give it to you, how are you going to take pictures of me now?" you tell her.');
   // TODO-QSP: dynamic text: "It''s OK <<$pcs_firstname>>, I can take the pictures on my phone and message th...
-  scene.text(`"It's OK ${((s as any).pcs_firstname || '')}, I can take the pictures on my phone and message them to you. What's your number?"`);
+  scene.text(`"It's OK ${((s as any).pcs_firstname ?? '')}, I can take the pictures on my phone and message them to you. What's your number?"`);
   scene.text('You give her your phone number and she quickly types the number into her phone, "Cool, firstly that bag is not going to look good in the shot."');
   scene.text('She looks around quickly. "There\'s nowhere safe to stash them, but it\'s OK, I can carry them."');
   (s as any).orgasm_or = 'no';

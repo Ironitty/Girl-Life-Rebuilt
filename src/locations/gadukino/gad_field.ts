@@ -190,7 +190,7 @@ function enterCow2(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temper ?? 0) >= 15  &&  ((s as any).sunWeather ?? 0) === 1) {
     // TODO-QSP: dynamic text: "You can go for a swim if you want, <<$pcs_nickname>>. I''ll keep an eye on the ...
-    scene.text(`"You can go for a swim if you want, ${((s as any).pcs_nickname || '')}. I'll keep an eye on the herd," says your grandfather.`);
+    scene.text(`"You can go for a swim if you want, ${((s as any).pcs_nickname ?? '')}. I'll keep an eye on the herd," says your grandfather.`);
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_herd_cattle'] === 1) {
     if (((s as any).hour ?? 0) < 16) {
@@ -313,7 +313,7 @@ function enterCow3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/gadukino/mira/mira2.jpg');
     scene.text('While keeping an eye on the cow herd, you see Mira in the distance, approaching. You happily wave to her.');
     // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. I wanted to visit you, and I''ve brought some water with...
-    scene.text(`"Hi, ${((s as any).pcs_nickname || '')}. I wanted to visit you, and I've brought some water with me," she says, nearing you. "Have you missed me?"`);
+    scene.text(`"Hi, ${((s as any).pcs_nickname ?? '')}. I wanted to visit you, and I've brought some water with me," she says, nearing you. "Have you missed me?"`);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A60', 1);
     qspCall(s, 'stat', '');

@@ -15,7 +15,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 3  ||  (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 3  &&  ((s as any).katjaQW ?? 0)?.['slut'] < 65))  &&  ((s as any).katjaQW ?? 0)?.['take_of_panties_day'] !== ((s as any).daystart ?? 0)) {
     scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting1.jpg');
     // TODO-QSP: dynamic text: You find Katja sitting alone in a chair. "Hi, ' + iif( katjaQW['couple'] = 0, '<...
-    scene.text('You find Katja sitting alone in a chair. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname || '') + '\', \'my love\') + \'! What are you doing here?" Katja asks when she sees you.');
+    scene.text('You find Katja sitting alone in a chair. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname ?? '') + '\', \'my love\') + \'! What are you doing here?" Katja asks when she sees you.');
     // TODO-QSP: dynamic text: "I ' + iif($ARGS[1] = 'from_room', 'came looking for you', 'was just looking aro...
     scene.text('"I ' + ((Number((s as any).locArgs?.[1] ?? 0) === 'from_room') ? ('came looking for you') : ('was just looking around')) + ', what are you doing?" you ask in return.');
     scene.text('"I\'m just waiting for my food to finish cooking," she says, pointing at the oven.');
@@ -40,21 +40,21 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).katjaQW ?? 0)?.['slut'] < 30  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] === 0) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You can''t just go around flashing your pu… You aren''t wear...
-      scene.text(`"${((st as any).pcs_nickname || '')}! You can't just go around flashing your pu… You aren't wearing panties! What are you doing?! Put some on!" Katja exclaims in shock.`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')}! You can't just go around flashing your pu… You aren't wearing panties! What are you doing?! Put some on!" Katja exclaims in shock.`);
       scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now show me if you\'re wearing panties or not," you respond as you cover your pussy again.');
     } else {
       if (((st as any).katjaQW ?? 0)?.['slut'] < 50  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] < 2) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You can''t just go around flashing your pussy. Put some pant...
-        scene.text(`"${((st as any).pcs_nickname || '')}! You can't just go around flashing your pussy. Put some panties on!" Katja says, though she's clearly not really angry.`);
+        scene.text(`"${((st as any).pcs_nickname ?? '')}! You can't just go around flashing your pussy. Put some panties on!" Katja says, though she's clearly not really angry.`);
         scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you\'re wearing panties or not," you respond as you cover your pussy again.');
       } else {
         if (((st as any).katjaQW ?? 0)?.['slut'] < 100  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] < 4) {
           // TODO-QSP: dynamic text: "Stop it, <<$pcs_nickname>>! You should really put some panties on," Katja says,...
-          scene.text(`"Stop it, ${((st as any).pcs_nickname || '')}! You should really put some panties on," Katja says, but she can't seem to keep her eyes from staring at your pussy.`);
+          scene.text(`"Stop it, ${((st as any).pcs_nickname ?? '')}! You should really put some panties on," Katja says, but she can't seem to keep her eyes from staring at your pussy.`);
           scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you\'re wearing panties or not," you respond to her as you cover your pussy again.');
         } else {
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you naughty girl! You should put some panties on," Katja say...
-          scene.text(`"${((st as any).pcs_nickname || '')}, you naughty girl! You should put some panties on," Katja says, not at all convincingly, while her eyes devour your exposed pussy.`);
+          scene.text(`"${((st as any).pcs_nickname ?? '')}, you naughty girl! You should put some panties on," Katja says, not at all convincingly, while her eyes devour your exposed pussy.`);
           scene.text('"I don\'t wear panties since it\'s much nicer not to wear them. Now, show me if you\'re wearing panties or not," you respond to her as you cover your pussy again.');
         }
       }
@@ -104,7 +104,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 5  &&  ((s as any).katjaQW ?? 0)?.['take_of_panties_day'] !== ((s as any).daystart ?? 0)) {
       scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_sitting2.jpg');
       // TODO-QSP: dynamic text: You find Katja sitting alone at the dinner table. "Hi, ' + iif( katjaQW['couple'...
-      scene.text('You find Katja sitting alone at the dinner table. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname || '') + '\', \'my love\') + \'! What are you doing here?" she asks when she sees you.');
+      scene.text('You find Katja sitting alone at the dinner table. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname ?? '') + '\', \'my love\') + \'! What are you doing here?" she asks when she sees you.');
       // TODO-QSP: dynamic text: "I ' + iif($ARGS[1] = 'from_room', 'came looking for you', 'was just looking aro...
       scene.text('"I ' + ((Number((s as any).locArgs?.[1] ?? 0) === 'from_room') ? ('came looking for you') : ('was just looking around')) + '. What are you doing?" you ask back.');
       scene.text('"I\'m just waiting for my food to finish cooking," she answers, pointing at the oven.');
@@ -129,11 +129,11 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).katjaQW ?? 0)?.['slut'] < 100  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] < 4) {
       // TODO-QSP: dynamic text: "Stop it, <<$pcs_nickname>>! You should really put some panties on," Katja says,...
-      scene.text(`"Stop it, ${((st as any).pcs_nickname || '')}! You should really put some panties on," Katja says, though she can't seem to keep her eyes from staring at your pussy.`);
+      scene.text(`"Stop it, ${((st as any).pcs_nickname ?? '')}! You should really put some panties on," Katja says, though she can't seem to keep her eyes from staring at your pussy.`);
       scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you wear panties or not," you respond as you cover your pussy again.');
     } else {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you naughty girl! You should put some panties on!" Katja say...
-      scene.text(`"${((st as any).pcs_nickname || '')}, you naughty girl! You should put some panties on!" Katja says, not at all convincingly, while her eyes devour your exposed pussy.`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')}, you naughty girl! You should put some panties on!" Katja says, not at all convincingly, while her eyes devour your exposed pussy.`);
       scene.text('"I don\'t wear panties since it\'s much nicer not to. Now, show me if you wear panties or not," you respond as you cover your pussy again.');
     }
     scene.actions([
@@ -225,7 +225,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       if (((s as any).week ?? 0) < 4  &&  (((s as any).katjaQW ?? 0)?.['slut'] < 100  ||  ((s as any).hour ?? 0) < 18)) {
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_standing1.jpg');
         // TODO-QSP: dynamic text: You find Katja standing at the kitchen table. "Hi, ' + iif( katjaQW['couple'] = ...
-        scene.text('You find Katja standing at the kitchen table. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname || '') + '\', \'my love\') + \'! What are you doing here?" Katja asks when she sees you.');
+        scene.text('You find Katja standing at the kitchen table. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname ?? '') + '\', \'my love\') + \'! What are you doing here?" Katja asks when she sees you.');
         // TODO-QSP: dynamic text: "I ' + iif($ARGS[1] = 'from_room', 'came looking for you', 'was just looking aro...
         scene.text('"I ' + ((Number((s as any).locArgs?.[1] ?? 0) === 'from_room') ? ('came looking for you') : ('was just looking around')) + '. What are you doing?" you ask back.');
         scene.text('"I\'m staring to cook my dinner," she answers.');
@@ -233,7 +233,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         ((s as any).katjaQW = (s as any).katjaQW ?? {})['drinks'] = ((s as any).katjaQW['drinks'] ?? 0) + (2);
         scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_standing_with_drink.jpg');
         // TODO-QSP: dynamic text: You find Katja standing at the kitchen table drinking a glass of white wine. "Hi...
-        scene.text('You find Katja standing at the kitchen table drinking a glass of white wine. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname || '') + '\', \'my love\') + \'. What are you doing here?" Katja asks when she sees you.');
+        scene.text('You find Katja standing at the kitchen table drinking a glass of white wine. "Hi, \' + iif( katjaQW[\'couple\'] = 0, \'' + ((s as any).pcs_nickname ?? '') + '\', \'my love\') + \'. What are you doing here?" Katja asks when she sees you.');
         // TODO-QSP: dynamic text: "I ' + iif($ARGS[1] = 'from_room', 'came looking for you', 'was just looking aro...
         scene.text('"I ' + ((Number((s as any).locArgs?.[1] ?? 0) === 'from_room') ? ('came looking for you') : ('was just looking around')) + '. What are you doing?" you ask back.');
         scene.text('"I\'m just having a glass of wine before I start to cook my dinner," she answers.');
@@ -359,7 +359,7 @@ function enterKitchenShowPussy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/pantyquest/kitchen_standing_showing_pussy1.jpg');
   scene.text('"Your turn, Katja. Show me that you\'re not wearing panties," you demand.');
   // TODO-QSP: dynamic text: "Really, <<$pcs_nickname>>! This again? It''s like you don''t trust me," Katja s...
-  scene.text(`"Really, ${((s as any).pcs_nickname || '')}! This again? It's like you don't trust me," Katja says, rolling her eyes.`);
+  scene.text(`"Really, ${((s as any).pcs_nickname ?? '')}! This again? It's like you don't trust me," Katja says, rolling her eyes.`);
   scene.text('Despite her objection, she hikes up her skirt and shows you her smoothly shaved pussy, not hidden by any panties.');
   scene.text('"I do trust you, it\'s just that-" you start saying but are promptly cut off.');
   scene.text('"You are a pervert that gets off on ogling innocent girls\' naked private parts," she says with a naughty glint in her eyes.');
@@ -400,25 +400,25 @@ function enterUniHallway(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).katjaQW ?? 0)?.['slut'] < 30  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] === 0) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You can''t just go around flashing your pu… You aren''t wear...
-      scene.text(`"${((st as any).pcs_nickname || '')}! You can't just go around flashing your pu… You aren't wearing panties! What are you doing?! Put some on!" Katja exclaims in shock.`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')}! You can't just go around flashing your pu… You aren't wearing panties! What are you doing?! Put some on!" Katja exclaims in shock.`);
       scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now show me if you\'re wearing panties or not," you respond as you cover your pussy again.');
     } else {
       if (((st as any).katjaQW ?? 0)?.['slut'] < 50  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] < 2) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You can''t just go around flashing your pussy. Put some pant...
-        scene.text(`"${((st as any).pcs_nickname || '')}! You can't just go around flashing your pussy. Put some panties on!" Katja says, though she's clearly not really angry.`);
+        scene.text(`"${((st as any).pcs_nickname ?? '')}! You can't just go around flashing your pussy. Put some panties on!" Katja says, though she's clearly not really angry.`);
         scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you\'re wearing panties or not," you respond as you cover your pussy again.');
       } else {
         if (((st as any).katjaQW ?? 0)?.['slut'] < 100  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] < 4) {
           // TODO-QSP: dynamic text: "Stop it, <<$pcs_nickname>>! You should really put some panties on," Katja says,...
-          scene.text(`"Stop it, ${((st as any).pcs_nickname || '')}! You should really put some panties on," Katja says, but she can't seem to keep her eyes from staring at your pussy.`);
+          scene.text(`"Stop it, ${((st as any).pcs_nickname ?? '')}! You should really put some panties on," Katja says, but she can't seem to keep her eyes from staring at your pussy.`);
           scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you\'re wearing panties or not," you respond to her as you cover your pussy again.');
         } else {
           if (((st as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5) {
             // TODO-QSP: dynamic text: "Very nice, <<$pcs_nickname>>. ' + iif( pcs_pubes > 3 , 'But you really need to ...
-            scene.text('"Very nice, ' + ((st as any).pcs_nickname || '') + '. \' + iif( pcs_pubes > 3 , \'But you really need to shave that bush off\', \'Perfectly smooth, how a pussy should be\') + \'," Katja says as her eyes devour your exposed pussy.');
+            scene.text('"Very nice, ' + ((st as any).pcs_nickname ?? '') + '. \' + iif( pcs_pubes > 3 , \'But you really need to shave that bush off\', \'Perfectly smooth, how a pussy should be\') + \'," Katja says as her eyes devour your exposed pussy.');
           } else {
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you naughty girl! You should put some panties on," Katja say...
-            scene.text(`"${((st as any).pcs_nickname || '')}, you naughty girl! You should put some panties on," Katja says, not at all convincingly, while her eyes devour your exposed pussy.`);
+            scene.text(`"${((st as any).pcs_nickname ?? '')}, you naughty girl! You should put some panties on," Katja says, not at all convincingly, while her eyes devour your exposed pussy.`);
             scene.text('"I don\'t wear panties since it\'s much nicer not to. Now, show me if you\'re wearing panties or not," you respond to her as you cover your pussy again.');
           }
         }
@@ -640,16 +640,16 @@ function enterUniExit(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).katjaQW ?? 0)?.['slut'] < 50  &&  ((st as any).katjaQW ?? 0)?.['pantiesQWstage'] === 1) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You can''t just go around flashing your pussy; put some pant...
-      scene.text(`"${((st as any).pcs_nickname || '')}! You can't just go around flashing your pussy; put some panties on!" Katja scolds, not really angry.`);
+      scene.text(`"${((st as any).pcs_nickname ?? '')}! You can't just go around flashing your pussy; put some panties on!" Katja scolds, not really angry.`);
       scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you\'re wearing panties or not," you demand as you cover your pussy again.');
     } else {
       if (((st as any).katjaQW ?? 0)?.['slut'] < 100) {
         // TODO-QSP: dynamic text: "Stop it, <<$pcs_nickname>>! You should really put some panties on," Katja says,...
-        scene.text(`"Stop it, ${((st as any).pcs_nickname || '')}! You should really put some panties on," Katja says, though she can't seem to keep her eyes from staring at your pussy.`);
+        scene.text(`"Stop it, ${((st as any).pcs_nickname ?? '')}! You should really put some panties on," Katja says, though she can't seem to keep her eyes from staring at your pussy.`);
         scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you\'re wearing panties or not," you demand as you cover your pussy again.');
       } else {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you naughty girl! You should put some panties on!" Katja say...
-        scene.text(`"${((st as any).pcs_nickname || '')}, you naughty girl! You should put some panties on!" Katja says not at all convincingly while her eyes devour your exposed pussy.`);
+        scene.text(`"${((st as any).pcs_nickname ?? '')}, you naughty girl! You should put some panties on!" Katja says not at all convincingly while her eyes devour your exposed pussy.`);
         scene.text('"I don\'t wear panties since it\'s much nicer not to. Now show me if you\'re wearing panties or not," you demand as you cover your pussy again.');
       }
     }
@@ -723,25 +723,25 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
   scene.text('"Like what you see?" you say to Katja with a sly smile.');
   if (((s as any).katjaQW ?? 0)?.['slut'] < 30  &&  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 0) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You can''t just go around flashing your pu… You aren''t wear...
-    scene.text(`"${((s as any).pcs_nickname || '')}! You can't just go around flashing your pu… You aren't wearing panties! What are you doing, put some panties on!" Katja says, very shocked.`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}! You can't just go around flashing your pu… You aren't wearing panties! What are you doing, put some panties on!" Katja says, very shocked.`);
     scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you wear panties or not," you demand as you close your legs, covering your pussy again.');
   } else {
     if (((s as any).katjaQW ?? 0)?.['slut'] < 50  &&  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 2) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>! You can''t just go around flashing your pussy. Put some pant...
-      scene.text(`"${((s as any).pcs_nickname || '')}! You can't just go around flashing your pussy. Put some panties on!" Katja says, not really angry.`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}! You can't just go around flashing your pussy. Put some panties on!" Katja says, not really angry.`);
       scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you wear panties or not," you demand as you close your legs, covering your pussy again.');
     } else {
       if (((s as any).katjaQW ?? 0)?.['slut'] < 100  &&  ((s as any).katjaQW ?? 0)?.['pantiesQWstage'] < 4) {
         // TODO-QSP: dynamic text: "Stop it, <<$pcs_nickname>>! You should really put some panties on!" Katja says,...
-        scene.text(`"Stop it, ${((s as any).pcs_nickname || '')}! You should really put some panties on!" Katja says, though she can't seem to keep her eyes from staring at your pussy.`);
+        scene.text(`"Stop it, ${((s as any).pcs_nickname ?? '')}! You should really put some panties on!" Katja says, though she can't seem to keep her eyes from staring at your pussy.`);
         scene.text('"I flash who I want to, and I don\'t wear panties since it\'s much nicer not to. Now, show me if you wear panties or not," you demand as you close your legs, covering your pussy again.');
       } else {
         if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] >= 5) {
           // TODO-QSP: dynamic text: "Very nice, <<$pcs_nickname>>. ' + iif( pcs_pubes > 3 , 'But you really need to ...
-          scene.text('"Very nice, ' + ((s as any).pcs_nickname || '') + '. \' + iif( pcs_pubes > 3 , \'But you really need to shave that bush off\', \'Perfectly smooth, how a pussy should be\') + \'," Katja says as her eyes devour your exposed pussy.');
+          scene.text('"Very nice, ' + ((s as any).pcs_nickname ?? '') + '. \' + iif( pcs_pubes > 3 , \'But you really need to shave that bush off\', \'Perfectly smooth, how a pussy should be\') + \'," Katja says as her eyes devour your exposed pussy.');
         } else {
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you naughty girl! You should put some panties on!" Katja say...
-          scene.text(`"${((s as any).pcs_nickname || '')}, you naughty girl! You should put some panties on!" Katja says not at all convincingly while her eyes devour your exposed pussy.`);
+          scene.text(`"${((s as any).pcs_nickname ?? '')}, you naughty girl! You should put some panties on!" Katja says not at all convincingly while her eyes devour your exposed pussy.`);
           scene.text('"I don\'t wear panties since it\'s much nicer not to wear them. Now, show me if you wear panties or not," you demand as you close your legs, covering your pussy again.');
         }
       }

@@ -15,7 +15,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'item_cart', 'shopping_var_clear');
     (st as any).picrand = (Math.floor(Math.random() * 8) + 0);
     qspCall(st, 'stat', '');
-    scene.img(`images/locations/city/shared/shoplift/steal${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/city/shared/shoplift/steal${((st as any).picrand ?? '')}.jpg`);
     scene.text('Standing in front of the make-up section of the supermarket, you nervously look over your shoulder to make sure none of the employees are able to spot you.');
     scene.text('Seeing no one, you casually reach out for the make-up you usually use and tuck it away…');
     scene.text('After looking around the cosmetic section for a while more, you decide it\'s time to make your escape.');
@@ -24,7 +24,7 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/leave.jpg');
     // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, just act normal…" you sigh quietly as you step towards ...
-    scene.text(`"Okay ${((st as any).pcs_nickname || '')}, just act normal…" you sigh quietly as you step towards the exit, trying to not draw any attention towards yourself.`);
+    scene.text(`"Okay ${((st as any).pcs_nickname ?? '')}, just act normal…" you sigh quietly as you step towards the exit, trying to not draw any attention towards yourself.`);
     scene.text('Don\'t panic…');
     scene.text('Walk casually…');
     scene.text('Almost there…');
@@ -499,7 +499,7 @@ function enterPunish(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/shoplift/sex/revenge/revenge1.jpg');
   scene.text('The guard forcefully drags you into the room and shoves you towards the chair. "Well well, look who\'s back… if it isn\'t the little rat!" he heatedly comments.');
   // TODO-QSP: dynamic text: <i>Fuck it''s the same guard, now you''ve done it, <<$pcs_nickname>>, get prepar...
-  scene.text(`<i>Fuck it's the same guard, now you've done it, ${((s as any).pcs_nickname || '')}, get prepared for whatever awaits you… your fate is in his hands…</i>`);
+  scene.text(`<i>Fuck it's the same guard, now you've done it, ${((s as any).pcs_nickname ?? '')}, get prepared for whatever awaits you… your fate is in his hands…</i>`);
   scene.text('"I hate you fucking rats. Do you know what I had to go through to get away from ending up in jail. Luckily one of the pigs didn\'t mind getting bribed so I got away," he grins, "And now for your punishment."');
   // TODO-QSP: end
   scene.actions([
@@ -592,7 +592,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     (st as any).observ_exp = ((st as any).observ_exp ?? 0) + (5);
     (st as any).picrand = (Math.floor(Math.random() * 8) + 0);
     qspCall(st, 'stat', '');
-    scene.img(`images/locations/city/shared/shoplift/steal${((st as any).picrand || '')}.jpg`);
+    scene.img(`images/locations/city/shared/shoplift/steal${((st as any).picrand ?? '')}.jpg`);
     scene.text('Standing in front of the make-up section of the supermarket, you nervously look over your shoulder to make sure none of the employees are able to spot you.');
     scene.text('Seeing no one, you casually reach out for the make-up you usually use and tuck it away…');
     scene.text('After looking around the cosmetic section for a while more, you decide it\'s time to make your escape.');
@@ -601,7 +601,7 @@ function enterPav(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/city/shared/shoplift/leave.jpg');
     // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, just act normal…" you sigh quietly as you step towards ...
-    scene.text(`"Okay ${((st as any).pcs_nickname || '')}, just act normal…" you sigh quietly as you step towards the exit, trying to not draw any attention towards yourself.`);
+    scene.text(`"Okay ${((st as any).pcs_nickname ?? '')}, just act normal…" you sigh quietly as you step towards the exit, trying to not draw any attention towards yourself.`);
     scene.text('Don\'t panic…');
     scene.text('Walk casually…');
     scene.text('Almost there…');

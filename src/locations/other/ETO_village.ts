@@ -178,7 +178,7 @@ function enterNeighborCottage(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.img('images/locations/suburban/kuzmich.jpg');
     // TODO-QSP: dynamic text: You: "Hello! My name is <<$pcs_nickname>>, I''m your new neighbor. We haven''t m...
-    scene.text(`You: "Hello! My name is ${((st as any).pcs_nickname || '')}, I'm your new neighbor. We haven't met yet."`);
+    scene.text(`You: "Hello! My name is ${((st as any).pcs_nickname ?? '')}, I'm your new neighbor. We haven't met yet."`);
     scene.text('Neighbor: "Hi. I\'m Kuzmich. So you\'re the new neighbor."');
     scene.text('<font color="magenta">You: "Yes. Can you help me? My entire garden is overgrown with weeds, and I\'d like to clean it up."</font>');
     scene.text('Kuzmich: "Well, you can hire some of the local men. They\'re all workers. You can find them across the alley."');

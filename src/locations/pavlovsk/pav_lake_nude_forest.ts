@@ -68,7 +68,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'arousal', 'voyeur', 10);
     (st as any).voyeurism = ((st as any).voyeurism ?? 0) + (1);
     (st as any).viewforestpiss = (Math.floor(Math.random() * 169) + 1);
-    scene.img(`images/locations/pavlovsk/lake/secluded_beach/piss_forest/piss_forest_${((st as any).viewforestpiss || '')}.jpg`);
+    scene.img(`images/locations/pavlovsk/lake/secluded_beach/piss_forest/piss_forest_${((st as any).viewforestpiss ?? '')}.jpg`);
     scene.text('You slip behind a tree and watch as a cute girl looks for a private spot to do her business. She finally decides on a patch of dirt near some bushes and squats down. You peek your head around the tree for a better look as the girl finds her balance and appears to relax. A stream of urine begins to flow from her and you hear a light moan escape her mouth.');
     scene.actions([
       { label: 'Go back', goto: ['pav_lake_nude_forest', ''] },

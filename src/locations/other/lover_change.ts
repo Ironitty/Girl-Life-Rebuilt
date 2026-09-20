@@ -13,14 +13,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterHair(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: As you arrive at the salon with <<$npcdesc>>, <<$Xe>> heads over to the counter ...
-  scene.text(`As you arrive at the salon with ${((s as any).npcdesc || '')}, ${((s as any).Xe || '')} heads over to the counter and tells something to the barber. The barber nods and comes towards you.`);
+  scene.text(`As you arrive at the salon with ${((s as any).npcdesc ?? '')}, ${((s as any).Xe ?? '')} heads over to the counter and tells something to the barber. The barber nods and comes towards you.`);
   // TODO-QSP: dynamic text: "So Ms. <<$pcs_lastname>>, you want to get your hair dyed <<$hairPref>> now is t...
-  scene.text(`"So Ms. ${((s as any).pcs_lastname || '')}, you want to get your hair dyed ${((s as any).hairPref || '')} now is that right?"`);
+  scene.text(`"So Ms. ${((s as any).pcs_lastname ?? '')}, you want to get your hair dyed ${((s as any).hairPref ?? '')} now is that right?"`);
   scene.actions([
 { label: 'Nod', handler: (st: GameState) => {
     scene.text('Knowing there is no way to back out of this now, you meekly nod.');
     // TODO-QSP: dynamic text: "Alrighty then, your hair will be <<$hairPref>> before you know it!"
-    scene.text(`"Alrighty then, your hair will be ${((st as any).hairPref || '')} before you know it!"`);
+    scene.text(`"Alrighty then, your hair will be ${((st as any).hairPref ?? '')} before you know it!"`);
     scene.actions([
       { label: 'Take a seat', handler: (st: GameState) => {
     (st as any).pcs_haircol = ((st as any).temp_haircol ?? 0);
@@ -29,13 +29,13 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: In less than half an hour you see that your hair''s original color has been chan...
-    scene.text(`In less than half an hour you see that your hair's original color has been changed to ${((st as any).hairPref || '')}.`);
+    scene.text(`In less than half an hour you see that your hair's original color has been changed to ${((st as any).hairPref ?? '')}.`);
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Get up from chair and go to your ' + String(((st as any).npcrelat || '') ?? '') + '.', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Get up from chair and go to your ' + String(((st as any).npcrelat ?? '') ?? '') + '.', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You walk towards your <<$npcrelat>> with your new <<$hairPref>> hair and <<$Xe>>...
-    scene.text(`You walk towards your ${((st as any).npcrelat || '')} with your new ${((st as any).hairPref || '')} hair and ${((st as any).Xe || '')} tells you that you look amazing.`);
+    scene.text(`You walk towards your ${((st as any).npcrelat ?? '')} with your new ${((st as any).hairPref ?? '')} hair and ${((st as any).Xe ?? '')} tells you that you look amazing.`);
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     scene.text('You then leave the salon and head home.');
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     scene.actions([
@@ -57,7 +57,7 @@ function enterMake(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).makeupSetting = ((s as any).temp_makepref ?? 0);
   // TODO-QSP: dynamic text: After you agree to change your makeup routine for <<$Xem>>, you talk a bit with ...
-  scene.text(`After you agree to change your makeup routine for ${((s as any).Xem || '')}, you talk a bit with ${((s as any).Xem || '')} for an hour and then head home.`);
+  scene.text(`After you agree to change your makeup routine for ${((s as any).Xem ?? '')}, you talk a bit with ${((s as any).Xem ?? '')} for an hour and then head home.`);
   scene.text('You can\'t say why, but you feel it would be harder to say no next time if he asked you to change something.');
   ((s as any).npc_compliance = (s as any).npc_compliance ?? {})[String((s as any).npcID ?? 0)] = ((s as any).npc_compliance[String((s as any).npcID ?? 0)] ?? 0) - (1);
   scene.actions([
@@ -71,7 +71,7 @@ function enterMake(s: GameState, scene: SceneBuilder): void {
 function enterPier(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: Since you agreed to adjust your piercings to fit your <<$npcrelat>>''s preferenc...
-  scene.text(`Since you agreed to adjust your piercings to fit your ${((s as any).npcrelat || '')}'s preferences, ${((s as any).Xe || '')} looks at any pre-existing piercings you may have.`);
+  scene.text(`Since you agreed to adjust your piercings to fit your ${((s as any).npcrelat ?? '')}'s preferences, ${((s as any).Xe ?? '')} looks at any pre-existing piercings you may have.`);
   if (((s as any).pcs_piercings ?? 0)?.['wearing'] >= ((s as any).pierPrefTmpMin ?? 0)  &&  ((s as any).pcs_piercings ?? 0)?.['wearing'] < ((s as any).pierPrefTmpMax ?? 0)) {
     scene.text('This should not fire off. NO else if.');
     scene.actions([
@@ -81,63 +81,63 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_piercings ?? 0)?.['wearing'] > ((s as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$npcdesc>> says that you just need to remove the ones that you have and you wi...
-      scene.text(`${((s as any).npcdesc || '')} says that you just need to remove the ones that you have and you will look amazing.`);
+      scene.text(`${((s as any).npcdesc ?? '')} says that you just need to remove the ones that you have and you will look amazing.`);
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).Xem || '') ?? '') + ' remove some piercings.', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).Xem ?? '') ?? '') + ' remove some piercings.', handler: (st: GameState) => {
     if (((st as any).pcs_piercings ?? 0)?.['navel'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> takes the barbell out of your navel.
-      scene.text(`${((st as any).Xec || '')} takes the barbell out of your navel.`);
+      scene.text(`${((st as any).Xec ?? '')} takes the barbell out of your navel.`);
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (2);
       qspCall(st, 'piercing_management', 'remove', 'navel');
     }
     if (((st as any).pcs_piercings ?? 0)?.['brow'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] > ((st as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$npcdesc>> <<$Xec>> sees the piercing in your eyebrow and proceeds to remove i...
-      scene.text(`${((st as any).npcdesc || '')} ${((st as any).Xec || '')} sees the piercing in your eyebrow and proceeds to remove it.`);
+      scene.text(`${((st as any).npcdesc ?? '')} ${((st as any).Xec ?? '')} sees the piercing in your eyebrow and proceeds to remove it.`);
       qspCall(st, 'piercing_management', 'remove', 'brow');
     }
     if (((st as any).pcs_piercings ?? 0)?.['lip'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] > ((st as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> carefully takes the ring out of your lips.
-      scene.text(`${((st as any).Xec || '')} carefully takes the ring out of your lips.`);
+      scene.text(`${((st as any).Xec ?? '')} carefully takes the ring out of your lips.`);
       qspCall(st, 'piercing_management', 'remove', 'lip');
     }
     if (((st as any).pcs_piercings ?? 0)?.['nipples'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] > ((st as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$npcdesc>> looks around, then carefully uses <<$Xyr>> hands to take the nipple...
-      scene.text(`${((st as any).npcdesc || '')} looks around, then carefully uses ${((st as any).Xyr || '')} hands to take the nipple rings off your breasts.`);
+      scene.text(`${((st as any).npcdesc ?? '')} looks around, then carefully uses ${((st as any).Xyr ?? '')} hands to take the nipple rings off your breasts.`);
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
       qspCall(st, 'piercing_management', 'remove', 'nipples');
     }
     if (((st as any).pcs_piercings ?? 0)?.['nose'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] > ((st as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> sees the nose ring that you are wearing and removes it.
-      scene.text(`${((st as any).Xec || '')} sees the nose ring that you are wearing and removes it.`);
+      scene.text(`${((st as any).Xec ?? '')} sees the nose ring that you are wearing and removes it.`);
       qspCall(st, 'piercing_management', 'remove', 'nose');
     }
     if (((st as any).pcs_piercings ?? 0)?.['pussy'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] > ((st as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$npcdesc>> gets close to your ear, "Don''t make a scene okay?", then he non ch...
-      scene.text(`${((st as any).npcdesc || '')} gets close to your ear, "Don't make a scene okay?", then he non chalontely slides ${((st as any).Xyr || '')} hand down to your labia, and removes the ring there.`);
+      scene.text(`${((st as any).npcdesc ?? '')} gets close to your ear, "Don't make a scene okay?", then he non chalontely slides ${((st as any).Xyr ?? '')} hand down to your labia, and removes the ring there.`);
       scene.text('You cover your mouth as you let out a quick "Eep!", but in a second, it\'s over.');
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (7);
       qspCall(st, 'piercing_management', 'remove', 'pussy');
     }
     if (((st as any).pcs_piercings ?? 0)?.['tongue'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] > ((st as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> asks you to stick out your tongue, then removes the barbell in your ton...
-      scene.text(`${((st as any).Xec || '')} asks you to stick out your tongue, then removes the barbell in your tongue.`);
+      scene.text(`${((st as any).Xec ?? '')} asks you to stick out your tongue, then removes the barbell in your tongue.`);
       qspCall(st, 'piercing_management', 'remove', 'tongue');
     }
     if (((st as any).pcs_piercings ?? 0)?.['ears'] > 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] > ((st as any).pierPrefTmpMax ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> sees your earrings and quickly takes them off.
-      scene.text(`${((st as any).Xec || '')} sees your earrings and quickly takes them off.`);
+      scene.text(`${((st as any).Xec ?? '')} sees your earrings and quickly takes them off.`);
       qspCall(st, 'piercing_management', 'remove', 'ears');
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => '"All done!" ' + String(((st as any).npcdesc || '') ?? '') + ' says.', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => '"All done!" ' + String(((st as any).npcdesc ?? '') ?? '') + ' says.', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: <<$npcdesc>> says "All done!" and promptly hands you the piercings <<$Xe>> took ...
-    scene.text(`${((st as any).npcdesc || '')} says "All done!" and promptly hands you the piercings ${((st as any).Xe || '')} took off.`);
+    scene.text(`${((st as any).npcdesc ?? '')} says "All done!" and promptly hands you the piercings ${((st as any).Xe ?? '')} took off.`);
     // TODO-QSP: dynamic text: After this you guys talk for an hour about various things, before <<$Xe>> gets u...
-    scene.text(`After this you guys talk for an hour about various things, before ${((st as any).Xe || '')} gets up and says ${((st as any).Xe || '')} has to go.`);
+    scene.text(`After this you guys talk for an hour about various things, before ${((st as any).Xe ?? '')} gets up and says ${((st as any).Xe ?? '')} has to go.`);
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     scene.actions([
 { label: 'Continue', goto: ['homes_properties', 'go_home'] },
@@ -150,66 +150,66 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_piercings ?? 0)?.['total'] >= ((s as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$npcdesc>> sees that you have enough piercings already, and that you just need...
-        scene.text(`${((s as any).npcdesc || '')} sees that you have enough piercings already, and that you just need to wear them.`);
+        scene.text(`${((s as any).npcdesc ?? '')} sees that you have enough piercings already, and that you just need to wear them.`);
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).Xem || '') ?? '') + ' add piercings', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'Let ' + String(((s as any).Xem ?? '') ?? '') + ' add piercings', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <<$Xec>> pulls out a couple of piercings and starts to put them on you.
-    scene.text(`${((st as any).Xec || '')} pulls out a couple of piercings and starts to put them on you.`);
+    scene.text(`${((st as any).Xec ?? '')} pulls out a couple of piercings and starts to put them on you.`);
     if (((st as any).pcs_piercings ?? 0)?.['tongue'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> asks you to stick out your tongue, then inserts a barbell into your ton...
-      scene.text(`${((st as any).Xec || '')} asks you to stick out your tongue, then inserts a barbell into your tongue.`);
+      scene.text(`${((st as any).Xec ?? '')} asks you to stick out your tongue, then inserts a barbell into your tongue.`);
       qspCall(st, 'piercing_management', 'wear', 'tongue', 1);
     }
     if (((st as any).pcs_piercings ?? 0)?.['lip'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> gently holds your lip, then inserts a ring.
-      scene.text(`${((st as any).Xec || '')} gently holds your lip, then inserts a ring.`);
+      scene.text(`${((st as any).Xec ?? '')} gently holds your lip, then inserts a ring.`);
       qspCall(st, 'piercing_management', 'wear', 'lip', 1);
     }
     if (((st as any).pcs_piercings ?? 0)?.['ears'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> sees you do not have earrings and proceeds to put rings onto your ears....
-      scene.text(`${((st as any).Xec || '')} sees you do not have earrings and proceeds to put rings onto your ears. `);
+      scene.text(`${((st as any).Xec ?? '')} sees you do not have earrings and proceeds to put rings onto your ears. `);
       qspCall(st, 'piercing_management', 'wear', 'ears', 1);
     }
     if (((st as any).pcs_piercings ?? 0)?.['nose'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> takes out a ring and then carefully inserts a ring through your nose.
-      scene.text(`${((st as any).Xec || '')} takes out a ring and then carefully inserts a ring through your nose.`);
+      scene.text(`${((st as any).Xec ?? '')} takes out a ring and then carefully inserts a ring through your nose.`);
       qspCall(st, 'piercing_management', 'wear', 'nose', 1);
     }
     if (((st as any).pcs_piercings ?? 0)?.['brow'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$npcdesc>> moves to your eyebrow and proceeds to insert a barbell.
-      scene.text(`${((st as any).npcdesc || '')} moves to your eyebrow and proceeds to insert a barbell.`);
+      scene.text(`${((st as any).npcdesc ?? '')} moves to your eyebrow and proceeds to insert a barbell.`);
       qspCall(st, 'piercing_management', 'wear', 'brow', 1);
     }
     if (((st as any).pcs_piercings ?? 0)?.['navel'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$Xec>> takes out a barbell and inserts it into your navel.
-      scene.text(`${((st as any).Xec || '')} takes out a barbell and inserts it into your navel.`);
+      scene.text(`${((st as any).Xec ?? '')} takes out a barbell and inserts it into your navel.`);
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (2);
       qspCall(st, 'piercing_management', 'wear', 'navel', 1);
     }
     if (((st as any).pcs_piercings ?? 0)?.['nipples'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$npcdesc>> looks around, then pulls out a couple of nipple rings. You can tell...
-      scene.text(`${((st as any).npcdesc || '')} looks around, then pulls out a couple of nipple rings. You can tell it slightly turns ${((st as any).Xem || '')} on as ${((st as any).Xe || '')} works ${((st as any).Xyr || '')} way up your shirt to put on the nipple rings.`);
+      scene.text(`${((st as any).npcdesc ?? '')} looks around, then pulls out a couple of nipple rings. You can tell it slightly turns ${((st as any).Xem ?? '')} on as ${((st as any).Xe ?? '')} works ${((st as any).Xyr ?? '')} way up your shirt to put on the nipple rings.`);
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
       qspCall(st, 'piercing_management', 'wear', 'nipples', 1);
     }
     if (((st as any).pcs_piercings ?? 0)?.['pussy'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: <<$npcdesc>> gets close to your ear, "Don''t make a scene okay?", then <<$Xe>> n...
-      scene.text(`${((st as any).npcdesc || '')} gets close to your ear, "Don't make a scene okay?", then ${((st as any).Xe || '')} nonchalantly slides ${((st as any).Xyr || '')} hand down to your labia, and inserts a ring.`);
+      scene.text(`${((st as any).npcdesc ?? '')} gets close to your ear, "Don't make a scene okay?", then ${((st as any).Xe ?? '')} nonchalantly slides ${((st as any).Xyr ?? '')} hand down to your labia, and inserts a ring.`);
       scene.text('You cover your mouth as you let out a quick "Eep!", but in a second, it\'s over.');
       (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (7);
       qspCall(st, 'piercing_management', 'wear', 'pussy', 1);
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => '"All done!" ' + String(((st as any).npcdesc || '') ?? '') + ' says.', handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => '"All done!" ' + String(((st as any).npcdesc ?? '') ?? '') + ' says.', handler: (st: GameState) => {
     qspCall(st, 'stat', '');
     scene.text('You look at your body and examine it.');
     if (((st as any).pierPrefTmpMax ?? 0) === 2) {
       // TODO-QSP: dynamic text: This should not fire off how did <<$Xe>> want to add stuff to nothing?
-      scene.text(`This should not fire off how did ${((st as any).Xe || '')} want to add stuff to nothing?`);
+      scene.text(`This should not fire off how did ${((st as any).Xe ?? '')} want to add stuff to nothing?`);
     } else {
       if (((st as any).pierPrefTmpMax ?? 0) === 5) {
         // TODO-QSP: dynamic text: You can tell <<$Xe>> likes a girl with a bit more piercings, and you can''t help...
-        scene.text(`You can tell ${((st as any).Xe || '')} likes a girl with a bit more piercings, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
+        scene.text(`You can tell ${((st as any).Xe ?? '')} likes a girl with a bit more piercings, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
       } else {
         if (((st as any).pierPrefTmpMin ?? 0) === 6) {
           scene.text('With this many piercings, you can feel many people will be exploring your body with their eyes, curious on where else you may have piercings.');
@@ -218,22 +218,22 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
       // TODO-QSP: dynamic text: You can see <<$Xe>> loves how many piercings you have, as <<$Xe>> has a slight b...
-      scene.text(`You can see ${((st as any).Xe || '')} loves how many piercings you have, as ${((st as any).Xe || '')} has a slight blush on ${((st as any).Xyr || '')} face.`);
+      scene.text(`You can see ${((st as any).Xe ?? '')} loves how many piercings you have, as ${((st as any).Xe ?? '')} has a slight blush on ${((st as any).Xyr ?? '')} face.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last examination with <<$Xyr>> eyes and gives you a q...
-        scene.text(`${((st as any).npcdesc || '')} gives you one last examination with ${((st as any).Xyr || '')} eyes and gives you a quick kiss on your cheek.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gives you one last examination with ${((st as any).Xyr ?? '')} eyes and gives you a quick kiss on your cheek.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick squeeze on the ass, kisses you on...
-        scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
+        scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
       }
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: After this you guys talk for an hour about various things, before <<$Xe>> gets u...
-    scene.text(`After this you guys talk for an hour about various things, before ${((st as any).Xe || '')} gets up and says ${((st as any).Xe || '')} has to go.`);
+    scene.text(`After this you guys talk for an hour about various things, before ${((st as any).Xe ?? '')} gets up and says ${((st as any).Xe ?? '')} has to go.`);
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 60;
     scene.actions([
@@ -248,15 +248,15 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> takes you by the hand and heads over to the piercing salon.
-        scene.text(`${((s as any).npcdesc || '')} takes you by the hand and heads over to the piercing salon.`);
+        scene.text(`${((s as any).npcdesc ?? '')} takes you by the hand and heads over to the piercing salon.`);
         scene.actions([
           { label: 'Enter the piercing salon', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you both arrive at the salon, <<$Xe>> talks real quick to the tattoo artist a...
-    scene.text(`As you both arrive at the salon, ${((st as any).Xe || '')} talks real quick to the tattoo artist and piercer.`);
+    scene.text(`As you both arrive at the salon, ${((st as any).Xe ?? '')} talks real quick to the tattoo artist and piercer.`);
     // TODO-QSP: dynamic text: You see <<$Xem>> hand the artist some money and the artist starts to walk up tow...
-    scene.text(`You see ${((st as any).Xem || '')} hand the artist some money and the artist starts to walk up towards you.`);
+    scene.text(`You see ${((st as any).Xem ?? '')} hand the artist some money and the artist starts to walk up towards you.`);
     // TODO-QSP: dynamic text: "Your <<$npcrelat>> says you want to get some piercings?", the artist asks.
-    scene.text(`"Your ${((st as any).npcrelat || '')} says you want to get some piercings?", the artist asks.`);
+    scene.text(`"Your ${((st as any).npcrelat ?? '')} says you want to get some piercings?", the artist asks.`);
     scene.actions([
       { label: 'Quietly nod', handler: (st: GameState) => {
     scene.text('You know you can\'t pull out now, so you meekly nod.');
@@ -346,62 +346,62 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     scene.text('"All done!", the artist says as he starts to clean up his various tools. He says to not irritate the places that he pierced and baby them for a week or two.');
     scene.text('Before you leave he puts on the various new piercings throughout your body.');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you go back towards him, <<$Xe>> looks you up and down.
-    scene.text(`As you go back towards him, ${((st as any).Xe || '')} looks you up and down.`);
+    scene.text(`As you go back towards him, ${((st as any).Xe ?? '')} looks you up and down.`);
     if (((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)  &&  ((st as any).pcs_piercings ?? 0)?.['total'] >= ((st as any).pierPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: "Now lets just add the rest of the piercings…", <<$npcdesc>> says.
-      scene.text(`"Now lets just add the rest of the piercings…", ${((st as any).npcdesc || '')} says.`);
+      scene.text(`"Now lets just add the rest of the piercings…", ${((st as any).npcdesc ?? '')} says.`);
       if (((st as any).pcs_piercings ?? 0)?.['tongue'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$Xec>> asks you to stick out your tongue, then inserts a barbell into your ton...
-        scene.text(`${((st as any).Xec || '')} asks you to stick out your tongue, then inserts a barbell into your tongue.`);
+        scene.text(`${((st as any).Xec ?? '')} asks you to stick out your tongue, then inserts a barbell into your tongue.`);
         qspCall(st, 'piercing_management', 'add', 'tongue', 1);
       }
       if (((st as any).pcs_piercings ?? 0)?.['lip'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$Xec>> gently holds your lip, then inserts a ring.
-        scene.text(`${((st as any).Xec || '')} gently holds your lip, then inserts a ring.`);
+        scene.text(`${((st as any).Xec ?? '')} gently holds your lip, then inserts a ring.`);
         qspCall(st, 'piercing_management', 'add', 'lip', 1);
       }
       if (((st as any).pcs_piercings ?? 0)?.['ears'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$Xec>> sees you do not have earrings and proceeds to put rings onto your ears....
-        scene.text(`${((st as any).Xec || '')} sees you do not have earrings and proceeds to put rings onto your ears. `);
+        scene.text(`${((st as any).Xec ?? '')} sees you do not have earrings and proceeds to put rings onto your ears. `);
         qspCall(st, 'piercing_management', 'add', 'ears', 1);
       }
       if (((st as any).pcs_piercings ?? 0)?.['nose'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$Xec>> takes out a ring and then carefully inserts a ring through your nose.
-        scene.text(`${((st as any).Xec || '')} takes out a ring and then carefully inserts a ring through your nose.`);
+        scene.text(`${((st as any).Xec ?? '')} takes out a ring and then carefully inserts a ring through your nose.`);
         qspCall(st, 'piercing_management', 'add', 'nose', 1);
       }
       if (((st as any).pcs_piercings ?? 0)?.['brow'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$npcdesc>> moves to your eyebrow and proceeds to insert a barbell.
-        scene.text(`${((st as any).npcdesc || '')} moves to your eyebrow and proceeds to insert a barbell.`);
+        scene.text(`${((st as any).npcdesc ?? '')} moves to your eyebrow and proceeds to insert a barbell.`);
         qspCall(st, 'piercing_management', 'add', 'brow', 1);
       }
       if (((st as any).pcs_piercings ?? 0)?.['navel'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$Xec>> takes out a barbell and inserts it into your navel.
-        scene.text(`${((st as any).Xec || '')} takes out a barbell and inserts it into your navel.`);
+        scene.text(`${((st as any).Xec ?? '')} takes out a barbell and inserts it into your navel.`);
         (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (2);
         qspCall(st, 'piercing_management', 'add', 'navel', 1);
       }
       if (((st as any).pcs_piercings ?? 0)?.['nipples'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$npcdesc>> looks around, then pulls out a couple of nipple rings. You can tell...
-        scene.text(`${((st as any).npcdesc || '')} looks around, then pulls out a couple of nipple rings. You can tell it slightly turns ${((st as any).Xem || '')} on as ${((st as any).Xe || '')} works ${((st as any).Xyr || '')} way up your shirt to put on the nipple rings.`);
+        scene.text(`${((st as any).npcdesc ?? '')} looks around, then pulls out a couple of nipple rings. You can tell it slightly turns ${((st as any).Xem ?? '')} on as ${((st as any).Xe ?? '')} works ${((st as any).Xyr ?? '')} way up your shirt to put on the nipple rings.`);
         (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (5);
         qspCall(st, 'piercing_management', 'add', 'nipples', 1);
       }
       if (((st as any).pcs_piercings ?? 0)?.['pussy'] < 0  &&  ((st as any).pcs_piercings ?? 0)?.['wearing'] < ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gets close to your ear, "Don''t make a scene okay?", then <<$Xe>> n...
-        scene.text(`${((st as any).npcdesc || '')} gets close to your ear, "Don't make a scene okay?", then ${((st as any).Xe || '')} nonchalantly slides ${((st as any).Xyr || '')} hand down to your labia, and inserts a ring.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gets close to your ear, "Don't make a scene okay?", then ${((st as any).Xe ?? '')} nonchalantly slides ${((st as any).Xyr ?? '')} hand down to your labia, and inserts a ring.`);
         scene.text('You cover your mouth as you let out a quick "Eep!", but in a second, it\'s over.');
         (st as any).pcs_horny = ((st as any).pcs_horny ?? 0) + (7);
         qspCall(st, 'piercing_management', 'add', 'pussy', 1);
       }
       qspCall(st, 'stat', '');
       // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-      scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+      scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
       if (((st as any).pierPrefTmpMax ?? 0) === 5) {
         // TODO-QSP: dynamic text: You can tell <<$Xe>> likes a girl with a bit more piercings, and you can''t help...
-        scene.text(`You can tell ${((st as any).Xe || '')} likes a girl with a bit more piercings, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
+        scene.text(`You can tell ${((st as any).Xe ?? '')} likes a girl with a bit more piercings, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
       } else {
         if (((st as any).pierPrefTmpMin ?? 0) === 6) {
           scene.text('With this many piercings, you can feel many people will be exploring your body with their eyes, curious on where else you may have piercings.');
@@ -409,14 +409,14 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
       }
       if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
         // TODO-QSP: dynamic text: You can see <<$Xe>> loves how many piercings you have, as <<$Xe>> has a slight b...
-        scene.text(`You can see ${((st as any).Xe || '')} loves how many piercings you have, as ${((st as any).Xe || '')} has a slight blush on ${((st as any).Xyr || '')} face.`);
+        scene.text(`You can see ${((st as any).Xe ?? '')} loves how many piercings you have, as ${((st as any).Xe ?? '')} has a slight blush on ${((st as any).Xyr ?? '')} face.`);
       } else {
         if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
           // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last examination with <<$Xyr>> eyes and gives you a q...
-          scene.text(`${((st as any).npcdesc || '')} gives you one last examination with ${((st as any).Xyr || '')} eyes and gives you a quick kiss on your cheek.`);
+          scene.text(`${((st as any).npcdesc ?? '')} gives you one last examination with ${((st as any).Xyr ?? '')} eyes and gives you a quick kiss on your cheek.`);
         } else {
           // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick squeeze on the ass, kisses you on...
-          scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
+          scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
         }
       }
       scene.actions([
@@ -424,7 +424,7 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 40;
     scene.text('After getting the piercings, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
 { label: 'Continue', goto: ['homes_properties', 'go_home'] },
@@ -435,10 +435,10 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).pcs_piercings ?? 0)?.['wearing'] >= ((st as any).pierPrefTmpMin ?? 0)) {
         // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-        scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+        scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
         if (((st as any).pierPrefTmpMax ?? 0) === 5) {
           // TODO-QSP: dynamic text: You can tell <<$Xe>> likes a girl with a bit more piercings, and you can''t help...
-          scene.text(`You can tell ${((st as any).Xe || '')} likes a girl with a bit more piercings, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
+          scene.text(`You can tell ${((st as any).Xe ?? '')} likes a girl with a bit more piercings, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
         } else {
           if (((st as any).pierPrefTmpMin ?? 0) === 6) {
             scene.text('With this many piercings, you can feel many people will be exploring your body with their eyes, curious on where else you may have piercings.');
@@ -446,14 +446,14 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
         }
         if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
           // TODO-QSP: dynamic text: You can see <<$Xe>> loves how many piercings you have, as <<$Xe>> has a slight b...
-          scene.text(`You can see ${((st as any).Xe || '')} loves how many piercings you have, as ${((st as any).Xe || '')} has a slight blush on ${((st as any).Xyr || '')} face.`);
+          scene.text(`You can see ${((st as any).Xe ?? '')} loves how many piercings you have, as ${((st as any).Xe ?? '')} has a slight blush on ${((st as any).Xyr ?? '')} face.`);
         } else {
           if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
             // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last examination with <<$Xyr>> eyes and gives you a q...
-            scene.text(`${((st as any).npcdesc || '')} gives you one last examination with ${((st as any).Xyr || '')} eyes and gives you a quick kiss on your cheek.`);
+            scene.text(`${((st as any).npcdesc ?? '')} gives you one last examination with ${((st as any).Xyr ?? '')} eyes and gives you a quick kiss on your cheek.`);
           } else {
             // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick squeeze on the ass, kisses you on...
-            scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
+            scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
           }
         }
         scene.actions([
@@ -461,7 +461,7 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 40;
     scene.text('After getting the piercings, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
@@ -472,21 +472,21 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-        scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+        scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
         if (((st as any).pierPrefTmpMin ?? 0) > 1) {
           // TODO-QSP: dynamic text: You can tell <<$Xe>> likes a girl with a more piercings and you can''t help but ...
-          scene.text(`You can tell ${((st as any).Xe || '')} likes a girl with a more piercings and you can't help but agree in some aspect, it does make you look a bit sexier.`);
+          scene.text(`You can tell ${((st as any).Xe ?? '')} likes a girl with a more piercings and you can't help but agree in some aspect, it does make you look a bit sexier.`);
         }
         if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
           // TODO-QSP: dynamic text: You can see <<$Xe>> is pleased with your piercing, as <<$Xe>> has a slight blush...
-          scene.text(`You can see ${((st as any).Xe || '')} is pleased with your piercing, as ${((st as any).Xe || '')} has a slight blush on ${((st as any).Xyr || '')} face.`);
+          scene.text(`You can see ${((st as any).Xe ?? '')} is pleased with your piercing, as ${((st as any).Xe ?? '')} has a slight blush on ${((st as any).Xyr ?? '')} face.`);
         } else {
           if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
             // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last examination with <<$Xyr>> eyes and gives you a q...
-            scene.text(`${((st as any).npcdesc || '')} gives you one last examination with ${((st as any).Xyr || '')} eyes and gives you a quick kiss on your cheek.`);
+            scene.text(`${((st as any).npcdesc ?? '')} gives you one last examination with ${((st as any).Xyr ?? '')} eyes and gives you a quick kiss on your cheek.`);
           } else {
             // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick squeeze on the ass, kisses you on...
-            scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "You look much better."`);
+            scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "You look much better."`);
           }
         }
         scene.actions([
@@ -494,7 +494,7 @@ function enterPier(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 40;
     scene.text('After getting the piercing, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
@@ -527,15 +527,15 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Enter Tattoo Parlor', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the tattoo parlor, <<$npcdesc>> looks you up and down to decide...
-    scene.text(`As you arrive at the tattoo parlor, ${((st as any).npcdesc || '')} looks you up and down to decide what needs to be done about your tattoos.`);
+    scene.text(`As you arrive at the tattoo parlor, ${((st as any).npcdesc ?? '')} looks you up and down to decide what needs to be done about your tattoos.`);
     if (((st as any).pcs_tattoos ?? 0)?.['total'] < ((st as any).tattPrefTmpMin ?? 0)) {
       scene.text('You need some more tattoos, it would make you look so much better!');
       // TODO-QSP: dynamic text: <<$Xec>> heads over to the counter and starts talks to the tattoo artist.
-      scene.text(`${((st as any).Xec || '')} heads over to the counter and starts talks to the tattoo artist.`);
+      scene.text(`${((st as any).Xec ?? '')} heads over to the counter and starts talks to the tattoo artist.`);
       // TODO-QSP: dynamic text: You see <<$Xem>> hand the artist some money and the artist starts to walk up tow...
-      scene.text(`You see ${((st as any).Xem || '')} hand the artist some money and the artist starts to walk up towards you.`);
+      scene.text(`You see ${((st as any).Xem ?? '')} hand the artist some money and the artist starts to walk up towards you.`);
       // TODO-QSP: dynamic text: "Your <<$npcrelat>> says you want to get some tattoos?", the artist asks.
-      scene.text(`"Your ${((st as any).npcrelat || '')} says you want to get some tattoos?", the artist asks.`);
+      scene.text(`"Your ${((st as any).npcrelat ?? '')} says you want to get some tattoos?", the artist asks.`);
       scene.actions([
         { label: 'Quietly nod', handler: (st: GameState) => {
     scene.text('You know you can\'t pull out now, so you meekly nod.');
@@ -670,14 +670,14 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
     scene.text('"I must say, your body looks amazing with the art on you!"');
     scene.text('You are reluctant to admit it, but having these tattoos feels like they do make you look sexier for some people, though a bit more slutty too.');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you go back towards him, <<$Xe>> looks you up and down.
-    scene.text(`As you go back towards him, ${((st as any).Xe || '')} looks you up and down.`);
+    scene.text(`As you go back towards him, ${((st as any).Xe ?? '')} looks you up and down.`);
     // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-    scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+    scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
     if (((st as any).tattPrefTmpMax ?? 0) === 5) {
       // TODO-QSP: dynamic text: You can tell <<$Xe>> likes a girl with at least a couple of tattoos, and you can...
-      scene.text(`You can tell ${((st as any).Xe || '')} likes a girl with at least a couple of tattoos, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
+      scene.text(`You can tell ${((st as any).Xe ?? '')} likes a girl with at least a couple of tattoos, and you can't help but agree in some aspect, it does make you look a bit sexier.`);
     } else {
       if (((st as any).tattPrefTmpMin ?? 0) === 6) {
         scene.text('With this many tattoos, you look like a punk or scene girl, and you can feel that many people would want to explore you to see if you have any "hidden" gems underneath your clothes.');
@@ -685,14 +685,14 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: You can see <<$Xe>> loves how many tattoos you have, as <<$Xe>> has a slight blu...
-      scene.text(`You can see ${((st as any).Xe || '')} loves how many tattoos you have, as ${((st as any).Xe || '')} has a slight blush on ${((st as any).Xyr || '')} face.`);
+      scene.text(`You can see ${((st as any).Xe ?? '')} loves how many tattoos you have, as ${((st as any).Xe ?? '')} has a slight blush on ${((st as any).Xyr ?? '')} face.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last examination with <<$Xyr>> eyes and gives you a q...
-        scene.text(`${((st as any).npcdesc || '')} gives you one last examination with ${((st as any).Xyr || '')} eyes and gives you a quick kiss on your cheek.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gives you one last examination with ${((st as any).Xyr ?? '')} eyes and gives you a quick kiss on your cheek.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick squeeze on the ass, kisses you on...
-        scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
+        scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
       }
     }
     scene.actions([
@@ -700,7 +700,7 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 40;
     scene.text('After getting the tattoos, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
@@ -719,11 +719,11 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
       if (((st as any).pcs_tattoos ?? 0)?.['total'] > ((st as any).tattPrefTmpMax ?? 0)) {
         scene.text('You need to get rid of some tattoos, it would make you look so much better!');
         // TODO-QSP: dynamic text: <<$Xec>> heads over to the counter and starts talks to the tattoo artist.
-        scene.text(`${((st as any).Xec || '')} heads over to the counter and starts talks to the tattoo artist.`);
+        scene.text(`${((st as any).Xec ?? '')} heads over to the counter and starts talks to the tattoo artist.`);
         // TODO-QSP: dynamic text: You see <<$Xem>> hand the artist some money and the artist starts to walk up tow...
-        scene.text(`You see ${((st as any).Xem || '')} hand the artist some money and the artist starts to walk up towards you.`);
+        scene.text(`You see ${((st as any).Xem ?? '')} hand the artist some money and the artist starts to walk up towards you.`);
         // TODO-QSP: dynamic text: "Your <<$npcrelat>> says you want to get rid of some tattoos?", the artist asks.
-        scene.text(`"Your ${((st as any).npcrelat || '')} says you want to get rid of some tattoos?", the artist asks.`);
+        scene.text(`"Your ${((st as any).npcrelat ?? '')} says you want to get rid of some tattoos?", the artist asks.`);
         scene.actions([
           { label: 'Quietly nod', handler: (st: GameState) => {
     scene.text('You know you can\'t pull out now, so you meekly nod.');
@@ -857,30 +857,30 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
     scene.text('"Me myself, I like a girl with a lot of tattoos, but to each their own." he tells you.');
     scene.text('You are reluctant to admit it, but taking away tattoos does make your skin look much cleaner, and makes people focus more on the figure, and not just the art on it.');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you go back towards <<$Xem>>, <<$Xe>> looks you up and down.
-    scene.text(`As you go back towards ${((st as any).Xem || '')}, ${((st as any).Xe || '')} looks you up and down.`);
+    scene.text(`As you go back towards ${((st as any).Xem ?? '')}, ${((st as any).Xe ?? '')} looks you up and down.`);
     // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-    scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+    scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
     if (((st as any).tattPrefTmpMax ?? 0) === 2) {
       // TODO-QSP: dynamic text: You can tell <<$Xe>> hates girls with tattoos and likes them to have as few as p...
-      scene.text(`You can tell ${((st as any).Xe || '')} hates girls with tattoos and likes them to have as few as possible. You can't help but agree in some aspect, it does make your body look a bit sexier.`);
+      scene.text(`You can tell ${((st as any).Xe ?? '')} hates girls with tattoos and likes them to have as few as possible. You can't help but agree in some aspect, it does make your body look a bit sexier.`);
     } else {
       if (((st as any).tattPrefTmpMax ?? 0) === 5) {
         // TODO-QSP: dynamic text: You can tell that though <<$npcdesc>> likes a girl to have some tattoos, <<$Xe>>...
-        scene.text(`You can tell that though ${((st as any).npcdesc || '')} likes a girl to have some tattoos, ${((st as any).Xe || '')} doesn't want them to be the focus on a girl. You can't help but agree that there is a thing as too many tattoos.`);
+        scene.text(`You can tell that though ${((st as any).npcdesc ?? '')} likes a girl to have some tattoos, ${((st as any).Xe ?? '')} doesn't want them to be the focus on a girl. You can't help but agree that there is a thing as too many tattoos.`);
       }
     }
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: You can see <<$Xe>> loves how many tattoos you have, as <<$Xe>> has a slight blu...
-      scene.text(`You can see ${((st as any).Xe || '')} loves how many tattoos you have, as ${((st as any).Xe || '')} has a slight blush on ${((st as any).Xyr || '')} face.`);
+      scene.text(`You can see ${((st as any).Xe ?? '')} loves how many tattoos you have, as ${((st as any).Xe ?? '')} has a slight blush on ${((st as any).Xyr ?? '')} face.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last examination with <<$Xyr>> eyes and gives you a q...
-        scene.text(`${((st as any).npcdesc || '')} gives you one last examination with ${((st as any).Xyr || '')} eyes and gives you a quick kiss on your cheek.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gives you one last examination with ${((st as any).Xyr ?? '')} eyes and gives you a quick kiss on your cheek.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick squeeze on the ass, kisses you on...
-        scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
+        scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick squeeze on the ass, kisses you on the lips and says, "Now this is a bombshell."`);
       }
     }
     scene.actions([
@@ -888,7 +888,7 @@ function enterTatt(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 40;
     scene.text('After getting rid of the tattoos, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
@@ -915,17 +915,17 @@ function enterLips(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Enter clinic', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the clinic, <<$npcdesc>> walks up to the front desc and asks to...
-    scene.text(`As you arrive at the clinic, ${((st as any).npcdesc || '')} walks up to the front desc and asks to speak with the plastic surgeon. After a couple of minutes the plastic surgeon comes out with a clipboard.`);
+    scene.text(`As you arrive at the clinic, ${((st as any).npcdesc ?? '')} walks up to the front desc and asks to speak with the plastic surgeon. After a couple of minutes the plastic surgeon comes out with a clipboard.`);
     // TODO-QSP: dynamic text: <<$npcdesc>> talks to the surgeon and after a brief exchange of words, <<$Xe>> h...
-    scene.text(`${((st as any).npcdesc || '')} talks to the surgeon and after a brief exchange of words, ${((st as any).Xe || '')} hands the surgeon a respectable stack of bills. The surgeon discreetly puts the bills into his jacket and starts to walk toward you.`);
+    scene.text(`${((st as any).npcdesc ?? '')} talks to the surgeon and after a brief exchange of words, ${((st as any).Xe ?? '')} hands the surgeon a respectable stack of bills. The surgeon discreetly puts the bills into his jacket and starts to walk toward you.`);
     // TODO-QSP: dynamic text: Even though you don''t know what <<$npcdesc>> said to the surgeon, you still jum...
-    scene.text(`Even though you don't know what ${((st as any).npcdesc || '')} said to the surgeon, you still jump when he starts to speak to you.`);
+    scene.text(`Even though you don't know what ${((st as any).npcdesc ?? '')} said to the surgeon, you still jump when he starts to speak to you.`);
     if (((st as any).pcs_lip ?? 0) < ((st as any).lipsPrefTmpMin ?? 0)) {
       // TODO-QSP: dynamic text: "So that <<$person>> over there says you want to get lip enhancements?", the doc...
-      scene.text(`"So that ${((st as any).person || '')} over there says you want to get lip enhancements?", the doctor asks quizically, looking at the size of your lips.`);
+      scene.text(`"So that ${((st as any).person ?? '')} over there says you want to get lip enhancements?", the doctor asks quizically, looking at the size of your lips.`);
     } else {
       // TODO-QSP: dynamic text: "So that <<$person>> over there says you want to get a lip reduction?", the doct...
-      scene.text(`"So that ${((st as any).person || '')} over there says you want to get a lip reduction?", the doctor asks quizically, looking at the size of your lips.`);
+      scene.text(`"So that ${((st as any).person ?? '')} over there says you want to get a lip reduction?", the doctor asks quizically, looking at the size of your lips.`);
     }
     scene.text('"Y-yes.", you manage to squeek out, your face turning slightly red at the topic of the conversation.');
     scene.text('"All right, lets get started right away", he says as he looks at his clipboard.');
@@ -953,37 +953,37 @@ function enterLips(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You stand up and leave the room.');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Go back towards your ' + String(((st as any).npcrelat ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you go back towards <<$Xem>>, <<$Xe>> looks you up and down.
-    scene.text(`As you go back towards ${((st as any).Xem || '')}, ${((st as any).Xe || '')} looks you up and down.`);
+    scene.text(`As you go back towards ${((st as any).Xem ?? '')}, ${((st as any).Xe ?? '')} looks you up and down.`);
     // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-    scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+    scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
     if (((st as any).lipsPrefTmp ?? 0) === 1) {
       // TODO-QSP: dynamic text: You can tell <<$Xe>> loves girls with more modest yet full lips, and you have to...
-      scene.text(`You can tell ${((st as any).Xe || '')} loves girls with more modest yet full lips, and you have to admit, it's better than having big whorish, cocksucking lips.`);
+      scene.text(`You can tell ${((st as any).Xe ?? '')} loves girls with more modest yet full lips, and you have to admit, it's better than having big whorish, cocksucking lips.`);
     } else {
       if (((st as any).lipsPrefTmp ?? 0) === 2) {
         // TODO-QSP: dynamic text: You can tell that <<$npcdesc>> likes a girl to have whorish, cocksucking lips, a...
-        scene.text(`You can tell that ${((st as any).npcdesc || '')} likes a girl to have whorish, cocksucking lips, and as you give the mirror in the room a quick slutty face, you have to admit it does make you look sexier.`);
+        scene.text(`You can tell that ${((st as any).npcdesc ?? '')} likes a girl to have whorish, cocksucking lips, and as you give the mirror in the room a quick slutty face, you have to admit it does make you look sexier.`);
       }
     }
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: You can see <<$Xe>> loves the size of your lips, for even with all of <<$Xyr>> s...
-      scene.text(`You can see ${((st as any).Xe || '')} loves the size of your lips, for even with all of ${((st as any).Xyr || '')} shyness, ${((st as any).Xe || '')} still gives you a kiss on your new lips.`);
+      scene.text(`You can see ${((st as any).Xe ?? '')} loves the size of your lips, for even with all of ${((st as any).Xyr ?? '')} shyness, ${((st as any).Xe ?? '')} still gives you a kiss on your new lips.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last examination of your new lips before giving you a...
-        scene.text(`${((st as any).npcdesc || '')} gives you one last examination of your new lips before giving you a kiss on the lips, probably to test the new wares.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gives you one last examination of your new lips before giving you a kiss on the lips, probably to test the new wares.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick squeeze on the ass, kisses you on...
-        scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick squeeze on the ass, kisses you on your new lips and says, "Now those lips are the lips of a goddess."`);
+        scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick squeeze on the ass, kisses you on your new lips and says, "Now those lips are the lips of a goddess."`);
       }
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.text('After improving your lips, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
@@ -1008,17 +1008,17 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Enter clinic', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the clinic, <<$npcdesc>> walks up to the front desc and asks to...
-    scene.text(`As you arrive at the clinic, ${((st as any).npcdesc || '')} walks up to the front desc and asks to speak with the plastic surgeon. After a couple of minutes the plastic surgeon comes out with a clipboard.`);
+    scene.text(`As you arrive at the clinic, ${((st as any).npcdesc ?? '')} walks up to the front desc and asks to speak with the plastic surgeon. After a couple of minutes the plastic surgeon comes out with a clipboard.`);
     // TODO-QSP: dynamic text: <<$npcdesc>> talks to the surgeon and after a brief exchange of words, <<$Xe>> h...
-    scene.text(`${((st as any).npcdesc || '')} talks to the surgeon and after a brief exchange of words, ${((st as any).Xe || '')} hands the surgeon a respectable stack of bills. The surgeon discreetly puts the bills into his jacket and starts to walk toward you.`);
+    scene.text(`${((st as any).npcdesc ?? '')} talks to the surgeon and after a brief exchange of words, ${((st as any).Xe ?? '')} hands the surgeon a respectable stack of bills. The surgeon discreetly puts the bills into his jacket and starts to walk toward you.`);
     if (((st as any).tits ?? 0) < ((st as any).titMin ?? 0)) {
       // TODO-QSP: dynamic text: Even though you don''t know what <<$npcdesc>> said to the surgeon, you still jum...
-      scene.text(`Even though you don't know what ${((st as any).npcdesc || '')} said to the surgeon, you still jump when he starts to speak to you.`);
+      scene.text(`Even though you don't know what ${((st as any).npcdesc ?? '')} said to the surgeon, you still jump when he starts to speak to you.`);
       // TODO-QSP: dynamic text: "So that <<$person>> over there says you want to get breast implants?", the doct...
-      scene.text(`"So that ${((st as any).person || '')} over there says you want to get breast implants?", the doctor asks quizically, looking you up and down.`);
+      scene.text(`"So that ${((st as any).person ?? '')} over there says you want to get breast implants?", the doctor asks quizically, looking you up and down.`);
       scene.text('"Y-yes.", you manage to squeek out, your face turning slightly red at the topic of the conversation.');
       // TODO-QSP: dynamic text: "All right, lets get started right away, let me see what size <<$Xe>> got for yo...
-      scene.text(`"All right, lets get started right away, let me see what size ${((st as any).Xe || '')} got for you…", he says as he looks at his clipboard.`);
+      scene.text(`"All right, lets get started right away, let me see what size ${((st as any).Xe ?? '')} got for you…", he says as he looks at his clipboard.`);
       (st as any).titAmount = (((st as any).titMin ?? 0) - ((st as any).tits ?? 0)) * 5 + 9;
       if (((st as any).titAmount ?? 0) <= 10) {
         scene.text('"It seems you will be getting our smallest breast implants."');
@@ -1062,43 +1062,43 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
     ((st as any).bodyVars = (st as any).bodyVars ?? {})['bust_silicone'] = ((st as any).bodyVars['bust_silicone'] ?? 0) + (((st as any).titAmount ?? 0));
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, are you listening?"
-    scene.text(`"${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}, are you listening?"`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}, are you listening?"`);
     scene.text(' \'Wait… I\'m awake?\' It seemed just a couple of seconds ago you were laying down on the operating table about to have surgery.');
     scene.text(' \'My breasts feel fuller…\' ');
     // TODO-QSP: dynamic text: You grab your breasts as you look down, and you see you have a bigger breasts! Y...
-    scene.text(`You grab your breasts as you look down, and you see you have a bigger breasts! Your breasts are now ${((st as any).titsize || '')}s.`);
-    scene.img(`images/pc/body/tits/t${((st as any).tits || '')}.jpg`);
+    scene.text(`You grab your breasts as you look down, and you see you have a bigger breasts! Your breasts are now ${((st as any).titsize ?? '')}s.`);
+    scene.img(`images/pc/body/tits/t${((st as any).tits ?? '')}.jpg`);
     // TODO-QSP: dynamic text: You aren''t paying attention to the doctor as he finishes up, and you slowly get...
-    scene.text(`You aren't paying attention to the doctor as he finishes up, and you slowly get off the operating table and head over to your ${((st as any).npcrelat || '')}.`);
+    scene.text(`You aren't paying attention to the doctor as he finishes up, and you slowly get off the operating table and head over to your ${((st as any).npcrelat ?? '')}.`);
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Head over to your ' + String(((st as any).npcrelat || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Head over to your ' + String(((st as any).npcrelat ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you go back towards <<$Xem>>, <<$Xe>> looks you up and down.
-    scene.text(`As you go back towards ${((st as any).Xem || '')}, ${((st as any).Xe || '')} looks you up and down.`);
+    scene.text(`As you go back towards ${((st as any).Xem ?? '')}, ${((st as any).Xe ?? '')} looks you up and down.`);
     // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-    scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+    scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
     if ((!((st as any).titBoy ?? 0))) {
       scene.text('If you are getting inplants this should not fire off.');
     } else {
       if (((st as any).titBoy ?? 0) === 1) {
         // TODO-QSP: dynamic text: You can tell that <<$npcdesc>> likes a girl with a good rack, thankfully althoug...
-        scene.text(`You can tell that ${((st as any).npcdesc || '')} likes a girl with a good rack, thankfully although you look more like a bimbo than before, ${((st as any).Xyr || '')} tit preference is not outrageously big, and you must admit, it does make you look sexier.`);
+        scene.text(`You can tell that ${((st as any).npcdesc ?? '')} likes a girl with a good rack, thankfully although you look more like a bimbo than before, ${((st as any).Xyr ?? '')} tit preference is not outrageously big, and you must admit, it does make you look sexier.`);
       } else {
         if (((st as any).titBoy ?? 0) === 2) {
           // TODO-QSP: dynamic text: You can clearly tell <<$npcdesc>> loves a girl with bimbo-sized tits, as you hol...
-          scene.text(`You can clearly tell ${((st as any).npcdesc || '')} loves a girl with bimbo-sized tits, as you hold your tits you look at yourself in the mirror. The girl staring back at you looks like a bimbo that doesn't know where to put her whorish tits. And you have to admit, it does turn you on a little.`);
+          scene.text(`You can clearly tell ${((st as any).npcdesc ?? '')} loves a girl with bimbo-sized tits, as you hold your tits you look at yourself in the mirror. The girl staring back at you looks like a bimbo that doesn't know where to put her whorish tits. And you have to admit, it does turn you on a little.`);
         }
       }
     }
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: From the blush on <<$Xyr>> face, you can tell <<$npcdesc>> loves your new breast...
-      scene.text(`From the blush on ${((st as any).Xyr || '')} face, you can tell ${((st as any).npcdesc || '')} loves your new breasts.`);
+      scene.text(`From the blush on ${((st as any).Xyr ?? '')} face, you can tell ${((st as any).npcdesc ?? '')} loves your new breasts.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last look and gives you a quick kiss on your cheek.
-        scene.text(`${((st as any).npcdesc || '')} gives you one last look and gives you a quick kiss on your cheek.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gives you one last look and gives you a quick kiss on your cheek.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick slap on the ass, kisses you on th...
-        scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick slap on the ass, kisses you on the lips and says, "Now you look like a bombshell!"`);
+        scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick slap on the ass, kisses you on the lips and says, "Now you look like a bombshell!"`);
       }
     }
     scene.actions([
@@ -1106,7 +1106,7 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 40;
     scene.text('After getting your new breasts, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
@@ -1126,12 +1126,12 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).tits ?? 0) > ((st as any).titMax ?? 0)) {
         // TODO-QSP: dynamic text: Even though you don''t know what <<$npcdesc>> said to the surgeon, you still jum...
-        scene.text(`Even though you don't know what ${((st as any).npcdesc || '')} said to the surgeon, you still jump when he starts to speak to you.`);
+        scene.text(`Even though you don't know what ${((st as any).npcdesc ?? '')} said to the surgeon, you still jump when he starts to speak to you.`);
         // TODO-QSP: dynamic text: "So that <<$person>> over there says you want to get breast implants?", the doct...
-        scene.text(`"So that ${((st as any).person || '')} over there says you want to get breast implants?", the doctor asks quizically, looking you up and down.`);
+        scene.text(`"So that ${((st as any).person ?? '')} over there says you want to get breast implants?", the doctor asks quizically, looking you up and down.`);
         scene.text('"Y-yes.", you manage to squeek out, your face turning slightly red at the topic of the conversation.');
         // TODO-QSP: dynamic text: "All right, lets get started right away, <<$Xe>> had a set size <<$Xe>> wanted s...
-        scene.text(`"All right, lets get started right away, ${((st as any).Xe || '')} had a set size ${((st as any).Xe || '')} wanted so we will be doing that.", he says as he looks at his clipboard.`);
+        scene.text(`"All right, lets get started right away, ${((st as any).Xe ?? '')} had a set size ${((st as any).Xe ?? '')} wanted so we will be doing that.", he says as he looks at his clipboard.`);
         (st as any).titAmount = (((st as any).tits ?? 0) - ((st as any).titMax ?? 0)) * 5 + 9;
         scene.text('"If you would follow me, I will take you to the operating room.", the doctor says indifferently.');
         scene.actions([
@@ -1155,31 +1155,31 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, are you listening?"
-    scene.text(`"${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}, are you listening?"`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}, are you listening?"`);
     scene.text(' \'Wait… I\'m awake?\' It seemed just a couple of seconds ago you were laying down on the operating table about to have surgery.');
     scene.text(' \'My breasts feel lighter…\' ');
     // TODO-QSP: dynamic text: You grab your breasts as you look down, and you realize you have much smaller br...
-    scene.text(`You grab your breasts as you look down, and you realize you have much smaller breasts! Your breasts are now ${((st as any).titsize || '')}s.`);
-    scene.img(`images/pc/body/tits/t${((st as any).tits || '')}.jpg`);
+    scene.text(`You grab your breasts as you look down, and you realize you have much smaller breasts! Your breasts are now ${((st as any).titsize ?? '')}s.`);
+    scene.img(`images/pc/body/tits/t${((st as any).tits ?? '')}.jpg`);
     // TODO-QSP: dynamic text: You aren''t paying attention to the doctor as he finishes up, and you slowly get...
-    scene.text(`You aren't paying attention to the doctor as he finishes up, and you slowly get off the operating table and head over to your ${((st as any).npcrelat || '')}.`);
+    scene.text(`You aren't paying attention to the doctor as he finishes up, and you slowly get off the operating table and head over to your ${((st as any).npcrelat ?? '')}.`);
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Head over to your ' + String(((st as any).npcrelat || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Head over to your ' + String(((st as any).npcrelat ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you go back towards <<$Xem>>, <<$Xe>> looks you up and down.
-    scene.text(`As you go back towards ${((st as any).Xem || '')}, ${((st as any).Xe || '')} looks you up and down.`);
+    scene.text(`As you go back towards ${((st as any).Xem ?? '')}, ${((st as any).Xe ?? '')} looks you up and down.`);
     // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-    scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+    scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
     if (((st as any).titMin ?? 0) < 2) {
       // TODO-QSP: dynamic text: You can tell that <<$npcdesc>> likes a girl without whorish tits, and you can ki...
-      scene.text(`You can tell that ${((st as any).npcdesc || '')} likes a girl without whorish tits, and you can kind of see why as you slowly grope your now tinier breasts.`);
+      scene.text(`You can tell that ${((st as any).npcdesc ?? '')} likes a girl without whorish tits, and you can kind of see why as you slowly grope your now tinier breasts.`);
     } else {
       if (((st as any).titMin ?? 0) < 4) {
         // TODO-QSP: dynamic text: You can tell that <<$npcdesc>> likes a girl with an average rack, and you admitt...
-        scene.text(`You can tell that ${((st as any).npcdesc || '')} likes a girl with an average rack, and you admittedly agree with ${((st as any).Xem || '')}, as you slowly massage your breasts.`);
+        scene.text(`You can tell that ${((st as any).npcdesc ?? '')} likes a girl with an average rack, and you admittedly agree with ${((st as any).Xem ?? '')}, as you slowly massage your breasts.`);
       } else {
         if (((st as any).titMin ?? 0) < 6) {
           // TODO-QSP: dynamic text: You can tell that <<$npcdesc>> likes a girl with a good rack, but thankfully not...
-          scene.text(`You can tell that ${((st as any).npcdesc || '')} likes a girl with a good rack, but thankfully not too big, and you admittedly agree with ${((st as any).Xem || '')}, as you slowly massage your breasts.`);
+          scene.text(`You can tell that ${((st as any).npcdesc ?? '')} likes a girl with a good rack, but thankfully not too big, and you admittedly agree with ${((st as any).Xem ?? '')}, as you slowly massage your breasts.`);
         } else {
           scene.text('Reducing to max? What?');
         }
@@ -1187,14 +1187,14 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
     }
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: From the blush on <<$Xyr>> face, you can tell <<$npcdesc>> loves your new breast...
-      scene.text(`From the blush on ${((st as any).Xyr || '')} face, you can tell ${((st as any).npcdesc || '')} loves your new breasts.`);
+      scene.text(`From the blush on ${((st as any).Xyr ?? '')} face, you can tell ${((st as any).npcdesc ?? '')} loves your new breasts.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gives you one last look and gives you a quick kiss on your cheek.
-        scene.text(`${((st as any).npcdesc || '')} gives you one last look and gives you a quick kiss on your cheek.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gives you one last look and gives you a quick kiss on your cheek.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick slap on the ass, kisses you on th...
-        scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick slap on the ass, kisses you on the lips and says, "Now you look like a bombshell!"`);
+        scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick slap on the ass, kisses you on the lips and says, "Now you look like a bombshell!"`);
       }
     }
     scene.actions([
@@ -1202,7 +1202,7 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 40;
     scene.text('After getting your new breasts, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([
@@ -1236,11 +1236,11 @@ function enterFigure(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Enter clinic', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you arrive at the clinic, <<$npcdesc>> walks up to the front desc and asks to...
-    scene.text(`As you arrive at the clinic, ${((st as any).npcdesc || '')} walks up to the front desc and asks to speak with the plastic surgeon. After a couple of minutes the plastic surgeon comes out with a clipboard.`);
+    scene.text(`As you arrive at the clinic, ${((st as any).npcdesc ?? '')} walks up to the front desc and asks to speak with the plastic surgeon. After a couple of minutes the plastic surgeon comes out with a clipboard.`);
     // TODO-QSP: dynamic text: <<$npcdesc>> talks to the surgeon and after a brief exchange of words, <<$Xe>> h...
-    scene.text(`${((st as any).npcdesc || '')} talks to the surgeon and after a brief exchange of words, ${((st as any).Xe || '')} hands the surgeon a respectable stack of bills. The surgeon discreetly puts the bills into his jacket and starts to walk toward you.`);
+    scene.text(`${((st as any).npcdesc ?? '')} talks to the surgeon and after a brief exchange of words, ${((st as any).Xe ?? '')} hands the surgeon a respectable stack of bills. The surgeon discreetly puts the bills into his jacket and starts to walk toward you.`);
     // TODO-QSP: dynamic text: Even though you don''t know what <<$npcdesc>> said to the surgeon, you still jum...
-    scene.text(`Even though you don't know what ${((st as any).npcdesc || '')} said to the surgeon, you still jump when he starts to speak to you.`);
+    scene.text(`Even though you don't know what ${((st as any).npcdesc ?? '')} said to the surgeon, you still jump when he starts to speak to you.`);
     scene.text('"So you want to get a lyposuction procedure done, is that right?", the doctor asks you.');
     scene.actions([
       { label: 'Meekly nod', handler: (st: GameState) => {
@@ -1272,46 +1272,46 @@ function enterFigure(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, are you listening?"
-    scene.text(`"${((st as any).pcs_firstname || '')} ${((st as any).pcs_lastname || '')}, are you listening?"`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')} ${((st as any).pcs_lastname ?? '')}, are you listening?"`);
     scene.text(' \'Wait… I\'m awake?\' It seemed just a couple of seconds ago you were laying down on the operating table about to have surgery.');
     // TODO-QSP: dynamic text: You aren''t paying attention to the doctor as he finishes up, and you slowly get...
-    scene.text(`You aren't paying attention to the doctor as he finishes up, and you slowly get off the operating table and head over to your ${((st as any).npcrelat || '')}.`);
+    scene.text(`You aren't paying attention to the doctor as he finishes up, and you slowly get off the operating table and head over to your ${((st as any).npcrelat ?? '')}.`);
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Head over to your ' + String(((st as any).npcrelat || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Head over to your ' + String(((st as any).npcrelat ?? '') ?? ''), handler: (st: GameState) => {
     // TODO-QSP: dynamic text: As you go back towards <<$Xem>>, <<$Xe>> looks you up and down.
-    scene.text(`As you go back towards ${((st as any).Xem || '')}, ${((st as any).Xe || '')} looks you up and down.`);
+    scene.text(`As you go back towards ${((st as any).Xem ?? '')}, ${((st as any).Xe ?? '')} looks you up and down.`);
     // TODO-QSP: dynamic text: "There we go!", <<$Xe>> says with a smile.
-    scene.text(`"There we go!", ${((st as any).Xe || '')} says with a smile.`);
+    scene.text(`"There we go!", ${((st as any).Xe ?? '')} says with a smile.`);
     (st as any).img_temp = qspFunc(s, '$body_image', '', 'body');
-    scene.img(`${((st as any).img_temp || '')}`);
+    scene.img(`${((st as any).img_temp ?? '')}`);
     if (((st as any).figurePrefMin ?? 0) < 19) {
       // TODO-QSP: dynamic text: You can tell that <<$npcdesc>> likes a girl that has very little fat on her whor...
-      scene.text(`You can tell that ${((st as any).npcdesc || '')} likes a girl that has very little fat on her whorish tits, and you can kind of see why as you slowly look at yourself in the mirror.`);
+      scene.text(`You can tell that ${((st as any).npcdesc ?? '')} likes a girl that has very little fat on her whorish tits, and you can kind of see why as you slowly look at yourself in the mirror.`);
     } else {
       if (((st as any).figurePrefMin ?? 0) < 25) {
         // TODO-QSP: dynamic text: You can tell that <<$npcdesc>> likes a girl that''s not too fat, but thankfully ...
-        scene.text(`You can tell that ${((st as any).npcdesc || '')} likes a girl that's not too fat, but thankfully not too skinny, and you admittedly agree with ${((st as any).Xem || '')}, as you slowly run your hands over your now smaller curves.`);
+        scene.text(`You can tell that ${((st as any).npcdesc ?? '')} likes a girl that's not too fat, but thankfully not too skinny, and you admittedly agree with ${((st as any).Xem ?? '')}, as you slowly run your hands over your now smaller curves.`);
       } else {
         scene.text('Reducing to max? What?');
       }
     }
     if (((st as any).npc_gentle ?? 0)?.[String((st as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: From the blush on <<$Xyr>> face, you can tell <<$npcdesc>> loves your new figure...
-      scene.text(`From the blush on ${((st as any).Xyr || '')} face, you can tell ${((st as any).npcdesc || '')} loves your new figure.`);
+      scene.text(`From the blush on ${((st as any).Xyr ?? '')} face, you can tell ${((st as any).npcdesc ?? '')} loves your new figure.`);
     } else {
       if (((st as any).npc_rough ?? 0)?.[String((st as any).boy ?? 0)] === 0) {
         // TODO-QSP: dynamic text: <<$npcdesc>> gives your figure one last look and gives you a quick kiss on your ...
-        scene.text(`${((st as any).npcdesc || '')} gives your figure one last look and gives you a quick kiss on your cheek.`);
+        scene.text(`${((st as any).npcdesc ?? '')} gives your figure one last look and gives you a quick kiss on your cheek.`);
       } else {
         // TODO-QSP: dynamic text: <<$npcdesc>> comes up to you, and with a quick slap on the ass, kisses you on th...
-        scene.text(`${((st as any).npcdesc || '')} comes up to you, and with a quick slap on the ass, kisses you on the lips and says, "Now you have the body of a bombshell!"`);
+        scene.text(`${((st as any).npcdesc ?? '')} comes up to you, and with a quick slap on the ass, kisses you on the lips and says, "Now you have the body of a bombshell!"`);
       }
     }
     scene.actions([
 { label: 'Continue', handler: (st: GameState) => {
     scene.text('After getting a lyposuction treatment, you both part ways and head home.');
     // TODO-QSP: dynamic text: You can''t say why, but you feel it would be harder to say no next time if <<$Xe...
-    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe || '')} asked you to change something.`);
+    scene.text(`You can't say why, but you feel it would be harder to say no next time if ${((st as any).Xe ?? '')} asked you to change something.`);
     ((st as any).npc_compliance = (st as any).npc_compliance ?? {})[String((st as any).npcID ?? 0)] = ((st as any).npc_compliance[String((st as any).npcID ?? 0)] ?? 0) - (1);
     (st as any).minut = ((st as any).minut ?? 0) + 20;
     scene.actions([

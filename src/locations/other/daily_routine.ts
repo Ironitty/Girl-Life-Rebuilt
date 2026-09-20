@@ -89,7 +89,7 @@ function enterHub(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dr_unavail ?? 0) !== '') {
     // TODO-QSP: dynamic text: <i>Not available now: <<$dr_unavail>>.</i>
-    scene.text(`<i>Not available now: ${((s as any).dr_unavail || '')}.</i>`);
+    scene.text(`<i>Not available now: ${((s as any).dr_unavail ?? '')}.</i>`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1206,7 +1206,7 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
         }
       }
       // TODO-QSP: dynamic text: <tr><td width=35%><<$dr_col1>></td><td><<$dr_col2>></td></tr>
-      scene.text(`<tr><td width=35%>${((s as any).dr_col1 || '')}</td><td>${((s as any).dr_col2 || '')}</td></tr>`);
+      scene.text(`<tr><td width=35%>${((s as any).dr_col1 ?? '')}</td><td>${((s as any).dr_col2 ?? '')}</td></tr>`);
       // TODO-QSP: killvar 'dr_col1'
       // TODO-QSP: killvar 'dr_col2'
       // TODO-QSP: jump 'droutine_mp_orderloop'
@@ -1259,10 +1259,10 @@ function enterManagePhase(s: GameState, scene: SceneBuilder): void {
       if (((s as any).droutine ?? 0)?.['current_category'] !== ((s as any).dr_prevcat ?? 0)) {
         (s as any).dr_prevcat = ((s as any).droutine ?? 0)?.['current_category'];
         // TODO-QSP: dynamic text: <tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b><<$dr...
-        scene.text(`<tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b>${((s as any).dr_prevcat || '')}</b></td></tr>`);
+        scene.text(`<tr><td colspan=2 style="padding-top:10px;border-bottom:1px solid #555"><b>${((s as any).dr_prevcat ?? '')}</b></td></tr>`);
       }
       // TODO-QSP: dynamic text: <tr><td width=35%><font color="#888"><<$dr_col1>></font></td><td><<$dr_col2>></t...
-      scene.text(`<tr><td width=35%><font color="#888">${((s as any).dr_col1 || '')}</font></td><td>${((s as any).dr_col2 || '')}</td></tr>`);
+      scene.text(`<tr><td width=35%><font color="#888">${((s as any).dr_col1 ?? '')}</font></td><td>${((s as any).dr_col2 ?? '')}</td></tr>`);
     }
     // TODO-QSP: killvar 'dr_col1'
     // TODO-QSP: killvar 'dr_col2'
@@ -1351,7 +1351,7 @@ function enterRenderListInline(s: GameState, scene: SceneBuilder): void {
     (s as any).dr_line = '(none)';
   }
   // TODO-QSP: dynamic text:   <<$dr_line>>
-  scene.text(`  ${((s as any).dr_line || '')}`);
+  scene.text(`  ${((s as any).dr_line ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }

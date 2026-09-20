@@ -48,11 +48,11 @@ function enterPalec1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/reactions/fuckyou_underwear.jpg"></cen...
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/pc/reactions/fuckyou_underwear.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/reactions/fuckyou_underwear.jpg"></center>`);
   }
   if (((s as any).pantyworntype ?? 0) === 'none') {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/reactions/fuckyou_naked.jpg"></center>
-    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/pc/reactions/fuckyou_naked.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh ?? '')} src="images/pc/reactions/fuckyou_naked.jpg"></center>`);
   }
   scene.text('<center>You flip off the neighbor, who quickly heads back indoors.</center>');
   // TODO-QSP: end

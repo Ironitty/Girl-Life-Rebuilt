@@ -75,7 +75,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
     (st as any).temp = (Math.floor(Math.random() * 3) + 1);
     if (((st as any).temp ?? 0) === 1) {
       // TODO-QSP: dynamic text: Mira fondles your <<$titsize>> breasts, gently squeezing them in her hands and k...
-      scene.text(`Mira fondles your ${((st as any).titsize || '')} breasts, gently squeezing them in her hands and kissing them.`);
+      scene.text(`Mira fondles your ${((st as any).titsize ?? '')} breasts, gently squeezing them in her hands and kissing them.`);
     }
     if (((st as any).temp ?? 0) === 2) {
       scene.text('You feel her hot breath on your chest and her slick tongue caressing your nipples and giving you great pleasure.');

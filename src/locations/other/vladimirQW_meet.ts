@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Vladimir</b></center>');
   scene.img('images/characters/city/vladimir/001.jpg');
   // TODO-QSP: dynamic text: As you enter the lobby of the restaurant, Vladimir comes to you carrying a lush ...
-  scene.text(`As you enter the lobby of the restaurant, Vladimir comes to you carrying a lush bouquet of roses. "Hello ${((s as any).pcs_nickname || '')}. Well, let's go to the restaurant?"`);
+  scene.text(`As you enter the lobby of the restaurant, Vladimir comes to you carrying a lush bouquet of roses. "Hello ${((s as any).pcs_nickname ?? '')}. Well, let's go to the restaurant?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Take the bouquet and enter the restaurant with Vladimir', handler: (st: GameState) => {
@@ -29,7 +29,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: You make the order and the waiter whisks the menu away. At the table, an awkward...
-    scene.text(`You make the order and the waiter whisks the menu away. At the table, an awkward silence descends. Vladimir pauses for a moment and asks. "So ${((st as any).pcs_nickname || '')} who do you work for?"`);
+    scene.text(`You make the order and the waiter whisks the menu away. At the table, an awkward silence descends. Vladimir pauses for a moment and asks. "So ${((st as any).pcs_nickname ?? '')} who do you work for?"`);
     if (((st as any).job_status ?? 0)?.['city_market_saleswoman'] === 'employed') {
       (st as any).qwvladwork = 'I work in the market.';
     } else {
@@ -44,11 +44,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((st as any).qwvladwork || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((st as any).qwvladwork ?? '') ?? ''), handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;
     qspCall(st, 'stat', '');
     // TODO-QSP: dynamic text: "<<$qwvladwork>>" You tell him.
-    scene.text(`"${((st as any).qwvladwork || '')}" You tell him.`);
+    scene.text(`"${((st as any).qwvladwork ?? '')}" You tell him.`);
     scene.text('"Right. I work behind a big desk, a businessman. I buy and sell, for short."');
     scene.text('At this time the waiter appears carrying your orders to the table. After the plates are placed, Vladimir continues.');
     scene.text('"I\'m 40 years old. Married and have a child. I\'ve been with my wife for a long time and nothing binds us together any more, I\'m ready to divorce her at any time."');
@@ -117,7 +117,7 @@ function enterQwmeetdy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/glory/001.jpg');
     scene.text('Stepping out of the car you just now get a good look at the driver. He appears to be a young man of Asian origin. Apparently confident he smiles at you with a hint of impudence.');
     // TODO-QSP: dynamic text: Vladimir looks out of the car "This is my driver, Glory. He may be a little scar...
-    scene.text(`Vladimir looks out of the car "This is my driver, Glory. He may be a little scary. I'll call you ${((st as any).pcs_nickname || '')}"`);
+    scene.text(`Vladimir looks out of the car "This is my driver, Glory. He may be a little scary. I'll call you ${((st as any).pcs_nickname ?? '')}"`);
     scene.text('The Asian man smiles again and you shut the back door. Leaping into the driver\'s seat, he again looks at you greedily, undressing you with his eyes, and slams his door with a smirk. The wheels screech and the car immediately jumps away from the pavement and speeds away, disappearing into the distance.');
     scene.actions([
       { label: 'Go home', handler: (st: GameState) => {
@@ -156,7 +156,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
 
 function enterQwslavady(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Glory speaks up without looking around at you "<<$pcs_nickname>>, where did you ...
-  scene.text(`Glory speaks up without looking around at you "${((s as any).pcs_nickname || '')}, where did you meet Volodya?"`);
+  scene.text(`Glory speaks up without looking around at you "${((s as any).pcs_nickname ?? '')}, where did you meet Volodya?"`);
   scene.text('You\'re a little surprised that the driver calls his boss Volodya but you reply that you met in the park.');
   scene.text('The driver smiles "Yeah I remember. I drove him to the park with his wife and child. Then you must already know that he has a wife and child, right?"');
   scene.text('You nod, "Yes, he told me." Glory chuckles avoiding another car at full speed "It\'s clear. Cinderella has found her prince on a white horse."');
@@ -185,7 +185,7 @@ function enterQwslavady(s: GameState, scene: SceneBuilder): void {
 function enterQwmeetkatdy(s: GameState, scene: SceneBuilder): void {
   scene.text('After the kiss, Vladimir holds you by the hand and takes you to meet his friends. Near the motor yacht stand two men and one woman, talking.');
   // TODO-QSP: dynamic text: Vladimir brings you to the thinner of the two men, a man of a certain age with a...
-  scene.text(`Vladimir brings you to the thinner of the two men, a man of a certain age with a rigid, fastidious persona. "Nicholas this is ${((s as any).pcs_nickname || '')}."`);
+  scene.text(`Vladimir brings you to the thinner of the two men, a man of a certain age with a rigid, fastidious persona. "Nicholas this is ${((s as any).pcs_nickname ?? '')}."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Greet him', handler: (st: GameState) => {
@@ -195,7 +195,7 @@ function enterQwmeetkatdy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/nicholas/01.jpg');
     scene.text('Nicholas doesn\'t blink as he looks at you and politely comments, "Well met."');
     // TODO-QSP: dynamic text: Vladimir next introduces you to the girl standing alongside Nicholas. "Isolde, <...
-    scene.text(`Vladimir next introduces you to the girl standing alongside Nicholas. "Isolde, ${((st as any).pcs_nickname || '')}. ${((st as any).pcs_nickname || '')}, Isolde."`);
+    scene.text(`Vladimir next introduces you to the girl standing alongside Nicholas. "Isolde, ${((st as any).pcs_nickname ?? '')}. ${((st as any).pcs_nickname ?? '')}, Isolde."`);
     scene.actions([
       { label: 'Greet her', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -204,7 +204,7 @@ function enterQwmeetkatdy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/isolde/izolda.jpg');
     scene.text('The young blonde smiles and greets you.');
     // TODO-QSP: dynamic text: Vladimir brings you to his second friend. "This, Vitaly, is <<$pcs_nickname>>."
-    scene.text(`Vladimir brings you to his second friend. "This, Vitaly, is ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`Vladimir brings you to his second friend. "This, Vitaly, is ${((st as any).pcs_nickname ?? '')}."`);
     scene.actions([
       { label: 'Greet him', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -392,7 +392,7 @@ function enterQwbereg(s: GameState, scene: SceneBuilder): void {
     (st as any).pose = 0;
     scene.img('images/shared/sex/vag/miss/vag.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> spreads your legs and begins to fondle your pussy with his fingers.
-    scene.text(`${((st as any).boydesc || '')} spreads your legs and begins to fondle your pussy with his fingers.`);
+    scene.text(`${((st as any).boydesc ?? '')} spreads your legs and begins to fondle your pussy with his fingers.`);
     qspCall(st, 'dinsex', 'boy_puts_condom');
     qspCall(st, 'arousal', 'vaginal_finger', 5);
     qspCall(st, 'dinsex', 'vaginal_sex', 10);
@@ -558,7 +558,7 @@ function enterQwmeetdin(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'money', 'earn', ((st as any).temp_money ?? 0), 'cash');
     ((st as any).vladimirQW = (st as any).vladimirQW ?? {})['money_given'] = ((st as any).vladimirQW['money_given'] ?? 0) + (((st as any).temp_money ?? 0));
     // TODO-QSP: dynamic text: You walk with Vladimir into the bedroom. Vladimir sceptically cast his gaze abou...
-    scene.text(`You walk with Vladimir into the bedroom. Vladimir sceptically cast his gaze about your humble abode and takes out his wallet. "I hope you will not mind if I give you some money?" He hands you ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_money || ''))}. You take the money you are offered.`);
+    scene.text(`You walk with Vladimir into the bedroom. Vladimir sceptically cast his gaze about your humble abode and takes out his wallet. "I hope you will not mind if I give you some money?" He hands you ${qspFunc(s, 'money', 'string_profit', ((st as any).temp_money ?? ''))}. You take the money you are offered.`);
     scene.actions([
       { label: 'Continue', goto: ['BDsex', 'start'] },
     ]);

@@ -45,7 +45,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/peter.jpg');
     // TODO-QSP: dynamic text: You approach the counter and introduce yourself. "Hey there, I''m <<$pcs_nicknam...
-    scene.text(`You approach the counter and introduce yourself. "Hey there, I'm ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`You approach the counter and introduce yourself. "Hey there, I'm ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"I\'m Peter," he replies. "I\'ve been watching you for a while and I find you rather… interesting. Do you want to come back to my place for some \'fun\'?"');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -180,7 +180,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         { label: 'Introduce yourself', handler: (st: GameState) => {
     scene.img('images/characters/city/peter/peter.jpg');
     // TODO-QSP: dynamic text: You approach the counter and introduce yourself. "Hey there, I''m <<$pcs_nicknam...
-    scene.text(`You approach the counter and introduce yourself. "Hey there, I'm ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`You approach the counter and introduce yourself. "Hey there, I'm ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"I\'m Peter," he replies. "I\'ve been watching you for a while and I find you rather… interesting. Do you want to come back to my place for some \'fun\'?"');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -522,7 +522,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ghnow ?? 0) > 0) {
     // TODO-QSP: dynamic text: You served <<ghnow>> cocks on this visit.
-    scene.text(`You served ${((s as any).ghnow || '')} cocks on this visit.`);
+    scene.text(`You served ${((s as any).ghnow ?? '')} cocks on this visit.`);
   }
   if (((s as any).hour ?? 0) >= 11  ||  ((s as any).hour ?? 0) < 3) {
     scene.actions([
@@ -558,7 +558,7 @@ function enterPeepbooth(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['gloryhole'] = ((st as any).stat['gloryhole'] ?? 0) + (1);
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0));
     (st as any).ghprand = (Math.floor(Math.random() * 36) + 1);
-    scene.img(`images/shared/sex/gloryhole/gloryhole${((st as any).ghprand || '')}.jpg`);
+    scene.img(`images/shared/sex/gloryhole/gloryhole${((st as any).ghprand ?? '')}.jpg`);
     scene.text('You take the cock into your mouth and start enthusiastically sucking it.');
     scene.text('After a few minutes, he stranger\'s cock begins to throb and he cums in your mouth, filling it with a huge amount of thick cum. You swallow it, and once you\'ve licked his cock clean, it disappears back into the hole. You hear the man sighing in satisfaction before he leaves the booth.');
     qspCall(st, 'arousal', 'bj', 5, 'sub');
@@ -707,9 +707,9 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
         scene.text('As you browse the store, you see a very attractive young black woman trying on latex clothes. She smiles when she notices you looking at her.');
         scene.text('After a few minutes, she walks over and boldly caresses your hair. "You\'re a pretty little thing, what\'s your name?"');
         // TODO-QSP: dynamic text: "<<$pcs_firstname>>, but most people call me <<$pcs_nickname>>. What''s your nam...
-        scene.text(`"${((s as any).pcs_firstname || '')}, but most people call me ${((s as any).pcs_nickname || '')}. What's your name?" you reply.`);
+        scene.text(`"${((s as any).pcs_firstname ?? '')}, but most people call me ${((s as any).pcs_nickname ?? '')}. What's your name?" you reply.`);
         // TODO-QSP: dynamic text: She smiles. "<<$pcs_nickname>>, what a pretty name. I''m Kendra, but you can cal...
-        scene.text(`She smiles. "${((s as any).pcs_nickname || '')}, what a pretty name. I'm Kendra, but you can call me Mistress Kendra," she says with confidence.`);
+        scene.text(`She smiles. "${((s as any).pcs_nickname ?? '')}, what a pretty name. I'm Kendra, but you can call me Mistress Kendra," she says with confidence.`);
         scene.text('"Oh…" you reply. She\'s one of those people.');
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
@@ -723,12 +723,12 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
     if (((st as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((st as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
       scene.text('You ask her about her clothes and start talking with her. You tell her that you live in Pavlovsk and are in your final year of school and she replies by saying that she\'s a student from the Republic of Congo and is attending the local university on a student visa.');
       // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
-      scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname || '')}, and become mine."`);
+      scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname ?? '')}, and become mine."`);
       scene.text('You have no doubt where this will lead…');
     } else {
       scene.text('You ask her about her clothes and start talking with her. You tell her a bit about yourself and she replies by saying that she\'s a student from the Republic of Congo and is attending the local university on a student visa.');
       // TODO-QSP: dynamic text: You talk about a wide range of subjects for a while before she smiles at you. "Y...
-      scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname || '')}, and become mine."`);
+      scene.text(`You talk about a wide range of subjects for a while before she smiles at you. "You're very pretty. I love making pretty little Russian bitches my slaves. Call me Mistress Kendra, ${((st as any).pcs_nickname ?? '')}, and become mine."`);
       scene.text('You have no doubt where this will lead…');
     }
     scene.actions([
@@ -1084,7 +1084,7 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
       scene.text('You just nod and allow her to go back to browsing.');
     } else {
       // TODO-QSP: dynamic text: She smiles when she sees you. "<<$pcs_nickname>>? I didn''t expect to ever see y...
-      scene.text(`She smiles when she sees you. "${((s as any).pcs_nickname || '')}? I didn't expect to ever see you in here."`);
+      scene.text(`She smiles when she sees you. "${((s as any).pcs_nickname ?? '')}? I didn't expect to ever see you in here."`);
       scene.text('"I was just browsing," you reply.');
       scene.text('"Same," she says. "I need some new cheap underwear that I don\'t mind losing, but I might see if they have any new toys in stock while I\'m here."');
       scene.text('You chat for a few more minutes before she excuses herself.');

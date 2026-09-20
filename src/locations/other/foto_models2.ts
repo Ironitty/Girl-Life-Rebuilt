@@ -125,7 +125,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
     if (((st as any).tits ?? 0) <= 4) {
       scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/5.jpg');
       // TODO-QSP: dynamic text: "What''s the matter, slut? Jealous?" she says with a smirk, obviously lording th...
-      scene.text(`"What's the matter, slut? Jealous?" she says with a smirk, obviously lording the size and shape of her tits over you and your ${((st as any).titsize || '')} breasts.`);
+      scene.text(`"What's the matter, slut? Jealous?" she says with a smirk, obviously lording the size and shape of her tits over you and your ${((st as any).titsize ?? '')} breasts.`);
       scene.actions([
         { label: 'Grind your teeth in jealousy', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/4.jpg');
@@ -186,7 +186,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
         if (((st as any).tits ?? 0) >= 5) {
           scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/1.jpg');
           // TODO-QSP: dynamic text: "What''s the matter, whore? Wish you didn''t have such fat cow tits?" she says w...
-          scene.text(`"What's the matter, whore? Wish you didn't have such fat cow tits?" she says with fake concern and pushing out her chest, obviously trying to talk down your larger ${((st as any).titsize || '')} breasts.`);
+          scene.text(`"What's the matter, whore? Wish you didn't have such fat cow tits?" she says with fake concern and pushing out her chest, obviously trying to talk down your larger ${((st as any).titsize ?? '')} breasts.`);
           scene.actions([
             { label: '"What\'s wrong with having big breasts?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/2.jpg');

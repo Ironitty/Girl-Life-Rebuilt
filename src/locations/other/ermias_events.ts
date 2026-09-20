@@ -1948,7 +1948,7 @@ function enterThreesomeStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You pop Ermias\'s cock out of your mouth and look at the floor as you feel yourself starting to blush.');
     scene.text('"That doesn\'t matter," Lebogang replies. "Mind sharing your... latest conquest?"');
     // TODO-QSP: dynamic text: Ermias looks down at you. "That is up to <<$pcs_nickname>>. Do you want another ...
-    scene.text(`Ermias looks down at you. "That is up to ${((s as any).pcs_nickname || '')}. Do you want another big cock to suck on as I fuck your little white pussy?"`);
+    scene.text(`Ermias looks down at you. "That is up to ${((s as any).pcs_nickname ?? '')}. Do you want another big cock to suck on as I fuck your little white pussy?"`);
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([

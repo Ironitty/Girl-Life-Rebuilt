@@ -72,7 +72,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/park/gop/sex/gop/podval_end.jpg');
     // TODO-QSP: dynamic text: Finally the Gopniks are finished with you. They talk loudly about what a good fu...
-    scene.text(`Finally the Gopniks are finished with you. They talk loudly about what a good fuck you were while they get dressed. When they realize you're too drunk to get dressed, they help you pull your clothes back on and sloppily button them up, before they drag you outside and put you down against the wall of the house. ${((st as any).boydesc2 || '')} slaps your face and tells you: "You should be able to find your own way home, we have places to be. You were a good fuck, ${((st as any).pcs_nickname || '')}. Come look us up in the park again if you want more where that came from."`);
+    scene.text(`Finally the Gopniks are finished with you. They talk loudly about what a good fuck you were while they get dressed. When they realize you're too drunk to get dressed, they help you pull your clothes back on and sloppily button them up, before they drag you outside and put you down against the wall of the house. ${((st as any).boydesc2 ?? '')} slaps your face and tells you: "You should be able to find your own way home, we have places to be. You were a good fuck, ${((st as any).pcs_nickname ?? '')}. Come look us up in the park again if you want more where that came from."`);
     scene.text('You slump to a seated position holding your throbbing head in your hands. You can\'t clearly remember enough to be sure if you started things or if they raped you but you know what you need more than anything is to find your way home and to your own bed.');
     qspCall(st, 'arousal', 'end');
     scene.actions([
@@ -91,7 +91,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (st as any).face_write = 1;
     (st as any).podvalwriterand = 0;
     qspCall(st, 'stat', '');
-    scene.img(`images/locations/pavlovsk/park/gop/sex/gop/podvalwrite${((st as any).podvalwriterand || '')}.jpg`);
+    scene.img(`images/locations/pavlovsk/park/gop/sex/gop/podvalwrite${((st as any).podvalwriterand ?? '')}.jpg`);
     scene.text('When the last Gopnik has had his fun with you and tucks his cock back into his pants, they all gather around you with some markers. You realize they\'re drawing or writing things on your body and try to get up, but one of them easily pushes you back down. You still feel too drunk to stop them and decide to just let it happen, hoping it\'ll come off easily once you get a chance to wash yourself. Eventually they allow you to get up, but not before your body is fully covered in lewd comments.');
     scene.text('They guide you out of the basement and throw your belongings out the door before closing it, leaving you to get dressed in the front yard of the house. You quickly do, praying that no one will walk past and see the obscene texts on your naked body. Luckily, no one does and you manage to get dressed unseen. Then you look around, trying to figure out where those guys took you to begin with.');
     qspCall(st, 'arousal', 'end');

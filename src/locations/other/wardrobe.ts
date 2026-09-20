@@ -142,7 +142,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = /u0027currentOutfit/u0027 */ return s; }); window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027main/u0027); return false;">Set here as default wardrobe page</a>';
   }
   // TODO-QSP: dynamic text: <center><<$wardrobeSetDefault>></center>
-  scene.text(`<center>${((s as any).wardrobeSetDefault || '')}</center>`);
+  scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
     // TODO-QSP: dynamic text: <center>You put the '+iif($pursepantytype ! '', 'panties', '')+iif($pursepantyty...
     scene.text('<center>You put the ' + ((((s as any).pursepantytype ?? 0) !== '') ? ('panties') : ('')) + ((((s as any).pursepantytype ?? 0) !== ''  &&  ((s as any).pursebratype ?? 0) !== '') ? (' and ') : ('')) + ((((s as any).pursebratype ?? 0) !== '') ? ('bra') : ('')) + ' from your purse back in the wardrobe.</center><br>');
@@ -415,7 +415,7 @@ function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
     (s as any).wardrobeSetDefault = '<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $wardrobeDefaultPagePref = $wloc */ return s; }); window.__gameStore.getState().doGoto(/u0027wardrobe/u0027, /u0027' + ((s as any).wloc ?? 0) + '/u0027); return false;">Set here as default wardrobe page</a>';
   }
   // TODO-QSP: dynamic text: <center><<$wardrobeSetDefault>></center>
-  scene.text(`<center>${((s as any).wardrobeSetDefault || '')}</center>`);
+  scene.text(`<center>${((s as any).wardrobeSetDefault ?? '')}</center>`);
   scene.text('<center><table><th>Name</th><th>Outfit</th><th>Bra/Bodysuit</th><th>Panties</th><th>Shoes</th><th>Coat</th><th>Purse</th><th></th><th></th><th></th><th></th><th></th><tr>');
   (s as any).temp = ((s as any).default_entry ?? 0);
   // TODO-QSP: :loopdefault_entry_set
@@ -762,7 +762,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
             if (((s as any).temp_bodysuit_not_wear_reason ?? 0) !== '') {
               scene.text('ERROR! This should not be reached.');
               // TODO-QSP: dynamic text: You can''t wear this bodysuit because <<$temp_bodysuit_not_wear_reason>>, but th...
-              scene.text(`You can't wear this bodysuit because ${((s as any).temp_bodysuit_not_wear_reason || '')}, but the text for this has not be written.`);
+              scene.text(`You can't wear this bodysuit because ${((s as any).temp_bodysuit_not_wear_reason ?? '')}, but the text for this has not be written.`);
               scene.text('Please contact a developer');
             }
           }
@@ -782,7 +782,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_bra_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_bra_not_wear_reason ?? 0) !== 'hypno') {
             scene.text('ERROR! This should not be reached.');
             // TODO-QSP: dynamic text: You can''t wear this bra because <<$temp_bra_not_wear_reason>>, but the text for...
-            scene.text(`You can't wear this bra because ${((s as any).temp_bra_not_wear_reason || '')}, but the text for this has not be written.`);
+            scene.text(`You can't wear this bra because ${((s as any).temp_bra_not_wear_reason ?? '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
         }
@@ -800,7 +800,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_panties_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_panties_not_wear_reason ?? 0) !== 'hypno') {
             scene.text('ERROR! This should not be reached.');
             // TODO-QSP: dynamic text: You can''t wear these panties because <<$temp_panties_not_wear_reason>>, but the...
-            scene.text(`You can't wear these panties because ${((s as any).temp_panties_not_wear_reason || '')}, but the text for this has not be written.`);
+            scene.text(`You can't wear these panties because ${((s as any).temp_panties_not_wear_reason ?? '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
         }
@@ -809,7 +809,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno'  ||  ((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno')) {
       (s as any).temp_hypno_items = ((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno'  &&  ((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno') ? ('bra and panties') : (((((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno') ? ('bra') : ('panties'))));
       // TODO-QSP: dynamic text: You reach for your <<$temp_hypno_items>> but something holds you back. You hate ...
-      scene.text(`You reach for your ${((s as any).temp_hypno_items || '')} but something holds you back. You hate wearing ${((s as any).temp_hypno_items || '')}, so why put them on?`);
+      scene.text(`You reach for your ${((s as any).temp_hypno_items ?? '')} but something holds you back. You hate wearing ${((s as any).temp_hypno_items ?? '')}, so why put them on?`);
       qspCall(s, 'willpower', 'misc', 'resist', 'easy');
       if (((s as any).cheatVars ?? 0)?.['willpower'] === 0) {
         (s as any).will_cost = ((s as any).will_cost ?? 0) + (((s as any).hypnoTime ?? 0));
@@ -868,7 +868,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_sho_not_wear_reason ?? 0) !== '') {
             scene.text('ERROR! This should not be reached.');
             // TODO-QSP: dynamic text: You can''t wear these shoes because <<$temp_sho_not_wear_reason>>, but the text ...
-            scene.text(`You can't wear these shoes because ${((s as any).temp_sho_not_wear_reason || '')}, but the text for this has not be written.`);
+            scene.text(`You can't wear these shoes because ${((s as any).temp_sho_not_wear_reason ?? '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
         }
@@ -884,7 +884,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_purse_not_wear_reason ?? 0) !== '') {
         scene.text('ERROR! This should not be reached.');
         // TODO-QSP: dynamic text: You can''t wear this purse because <<$temp_purse_not_wear_reason>>, but the text...
-        scene.text(`You can't wear this purse because ${((s as any).temp_purse_not_wear_reason || '')}, but the text for this has not be written.`);
+        scene.text(`You can't wear this purse because ${((s as any).temp_purse_not_wear_reason ?? '')}, but the text for this has not be written.`);
         scene.text('Please contact a developer');
       }
     }
@@ -901,7 +901,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_coat_not_wear_reason ?? 0) !== '') {
           scene.text('ERROR! This should not be reached.');
           // TODO-QSP: dynamic text: You can''t wear this coat because <<$temp_coat_not_wear_reason>>, but the text f...
-          scene.text(`You can't wear this coat because ${((s as any).temp_coat_not_wear_reason || '')}, but the text for this has not be written.`);
+          scene.text(`You can't wear this coat because ${((s as any).temp_coat_not_wear_reason ?? '')}, but the text for this has not be written.`);
           scene.text('Please contact a developer');
         }
       }
@@ -1001,7 +1001,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).temp_clo_not_wear_reason ?? 0) !== '') {
                   scene.text('ERROR! This should not be reached.');
                   // TODO-QSP: dynamic text: You can''t wear this outfit because <<$temp_clo_not_wear_reason>>, but the text ...
-                  scene.text(`You can't wear this outfit because ${((s as any).temp_clo_not_wear_reason || '')}, but the text for this has not be written.`);
+                  scene.text(`You can't wear this outfit because ${((s as any).temp_clo_not_wear_reason ?? '')}, but the text for this has not be written.`);
                   scene.text('Please contact a developer');
                   scene.actions([
                     { label: 'Return', handler: (st: GameState) => { qspGoto(st, 'wardrobe', ((st as any).wloc ?? '')); } },

@@ -268,14 +268,14 @@ function enterSection1CageClient(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hmm, she looks young, exactly as I ordered. What is your age, slave?"');
       scene.text('<center><b>"I… I am 18, Master."</b></center>');
       scene.text('"No, tell me your true age, girl."');
-      scene.text(`<center><b>"Well… it's ${((s as any).age || '')} years, Master."</b></center>`);
+      scene.text(`<center><b>"Well… it's ${((s as any).age ?? '')} years, Master."</b></center>`);
       scene.text('"Good, very good. Now let us go."');
     } else {
       ((s as any).brothel_vars = (s as any).brothel_vars ?? {})['rage_meter'] = 50;
       scene.text('"Ahh, my pet is already in its place I see."');
       scene.text('He scans you through the bars with hungry eyes.');
       scene.text('"Hmm, she doesn\'t look as young as I expected. What is your age, slave?"');
-      scene.text(`<center><b>"I… I am ${((s as any).age || '')}, Master."</b></center>`);
+      scene.text(`<center><b>"I… I am ${((s as any).age ?? '')}, Master."</b></center>`);
       scene.text('He turns pale and is obviously annoyed.');
       scene.text('<center><b>"Idiots. I told them what I want, and they delivered me this. Bad for you slut, you will feel the cost of their failure."</b></center>');
       scene.text('"Let\'s go you walking set of holes!"');

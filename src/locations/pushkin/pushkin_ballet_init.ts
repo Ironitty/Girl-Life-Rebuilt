@@ -362,9 +362,9 @@ function enterBalletDebug(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     scene.text('---- Ballet Debug Log ----');
     // TODO-QSP: dynamic text: Date: <<daystart>> - <<year>>, <<month>>, <<day>>
-    scene.text(`Date: ${((s as any).daystart || '')} - ${((s as any).year || '')}, ${((s as any).month || '')}, ${((s as any).day || '')}`);
+    scene.text(`Date: ${((s as any).daystart ?? '')} - ${((s as any).year ?? '')}, ${((s as any).month ?? '')}, ${((s as any).day ?? '')}`);
     // TODO-QSP: dynamic text: Girl Life version: <<version_major+"."+version_minor+"."+version_revision+"."+ve...
-    scene.text(`Girl Life version: ${((s as any).version_major || '') + '.' + ((s as any).version_minor || '') + '.' + ((s as any).version_revision || '') + '.' + ((s as any).version_patch || '') + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash || '') + ' (dev build)') : (''))}`);
+    scene.text(`Girl Life version: ${((s as any).version_major ?? '') + '.' + ((s as any).version_minor ?? '') + '.' + ((s as any).version_revision ?? '') + '.' + ((s as any).version_patch ?? '') + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash ?? '') + ' (dev build)') : (''))}`);
     // TODO-QSP: :debug_ballet_loop
     // TODO-QSP: 'Entry <<i>>: ' + $ballet_log[i]
     (s as any).i = ((s as any).i ?? 0) + (1);

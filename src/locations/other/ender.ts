@@ -178,7 +178,7 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                       }
                       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/girlbeatsguy2.jpg');
                       // TODO-QSP: dynamic text: "Where the hell did you learn how to fight <<$pcs_nickname>>?" Lera asks in an a...
-                      scene.text(`"Where the hell did you learn how to fight ${((s as any).pcs_nickname || '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
+                      scene.text(`"Where the hell did you learn how to fight ${((s as any).pcs_nickname ?? '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
                       // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                       scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'string_profit', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                       scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
@@ -283,10 +283,10 @@ function enterLoss(s: GameState, scene: SceneBuilder): void {
                                   scene.img('images/locations/shared/street/lostfight.jpg');
                                   scene.text('You groan on pain as the frozen ground reaches for you. Damm. That wasn\'t your best idea now that you see it, especially because the police have just arrived to break up the brawl turned riot.');
                                   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! Oh my god! What happened to you?!"
-                                  scene.text(`"${((s as any).pcs_nickname || '')}! Oh my god! What happened to you?!"`);
+                                  scene.text(`"${((s as any).pcs_nickname ?? '')}! Oh my god! What happened to you?!"`);
                                   scene.text('Katja and Vicky appear over you and help Vanya take away your beaten body. It hurts a lot but somehow, after a while, you manage to stand without seeing stars. The trio looks at you in askance.');
                                   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
-                                  scene.text(`"${((s as any).pcs_nickname || '')}! I don't know what to do with you! What were you thinking?!"`);
+                                  scene.text(`"${((s as any).pcs_nickname ?? '')}! I don't know what to do with you! What were you thinking?!"`);
                                   scene.text('Katja is really, really pissed and for a long while, she chastizes your actions. The fact that you are hurting doesn\'t seem to make her stop, but finally, after a long-winded tirade, the redhead seems to deflate and gives you a tired hug.');
                                   scene.text('"Please! Don\'t do that again!"');
                                   scene.text('It feels nice and makes Vanya & Vicky spell a sonorous "Kawai!" before quickly turning back and running away from an embarrassed/angry Katja. It was "fun", but it is time to look for something else to do.');
@@ -708,10 +708,10 @@ function enterWin(s: GameState, scene: SceneBuilder): void {
                               scene.text('"Take that bitches!"');
                               scene.text('With one last kick, the bitch squad lies fallen before you, whimpering in pain thanks to the sound beating they\'ve received at your hand, but as you look around for your next victim, a redheaded girl grabs you and pulls you away from the brawl turned riot, towards the waiting Vanya & Vicky.');
                               // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
-                              scene.text(`"${((s as any).pcs_nickname || '')}! I don't know what to do with you! What were you thinking?!"`);
+                              scene.text(`"${((s as any).pcs_nickname ?? '')}! I don't know what to do with you! What were you thinking?!"`);
                               scene.text('You… aren\'t too sure why the hell you incited the massive brawl that now is being broken apart by the police, and as you try to look for a good answer, Vanya chooses that moment to express his opinion.');
                               // TODO-QSP: dynamic text: "Well… Katja, I want to say, well… That is hockey! Give me those five <<$pcs_nic...
-                              scene.text(`"Well… Katja, I want to say, well… That is hockey! Give me those five ${((s as any).pcs_nickname || '')}!"`);
+                              scene.text(`"Well… Katja, I want to say, well… That is hockey! Give me those five ${((s as any).pcs_nickname ?? '')}!"`);
                               scene.text('Katja looks dumbfounded as he raises his hand, more even when you clap it, followed by a shrugging Vicky, who jumps and does the same. As you turn smiling towards Katja, waiting for her to join, she facepalms, turns and begins to walk away, musing about your idiocy. Well, it is probably better if you follow her, so after saying goodbye to Vanya & Vicky, you go with her. It was "fun" but it is time to look for something else to do.');
                               scene.actions([
                                 { label: 'Continue', goto: ['katjaEV', 'kathan'] },
@@ -1030,20 +1030,20 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                       scene.img('images/characters/pavlovsk/school/boy/dimka/revenge/girlbeatsguy2.jpg');
                       if (((s as any).fightPStats ?? 0)?.['Health'] === ((s as any).pcs_health ?? 0)) {
                         // TODO-QSP: dynamic text: What the fuck <<$pcs_nickname>>?" Lera asks in an annoyed tone before sweeping D...
-                        scene.text(`What the fuck ${((s as any).pcs_nickname || '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
+                        scene.text(`What the fuck ${((s as any).pcs_nickname ?? '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
                         // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                         scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'format', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                         scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
                       } else {
                         if (((s as any).fightPStats ?? 0)?.['Health'] > ((s as any).pcs_health ?? 0)/2) {
                           // TODO-QSP: dynamic text: "That was pathetic <<$pcs_nickname>>." Lera states in shock before sweeping Dimk...
-                          scene.text(`"That was pathetic ${((s as any).pcs_nickname || '')}." Lera states in shock before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
+                          scene.text(`"That was pathetic ${((s as any).pcs_nickname ?? '')}." Lera states in shock before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
                           // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                           scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'format', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                           scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
                         } else {
                           // TODO-QSP: dynamic text: "Where the hell did you learn how to fight <<$pcs_nickname>>?" Lera asks in an a...
-                          scene.text(`"Where the hell did you learn how to fight ${((s as any).pcs_nickname || '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
+                          scene.text(`"Where the hell did you learn how to fight ${((s as any).pcs_nickname ?? '')}?" Lera asks in an annoyed tone before sweeping Dimka's legs out from under him. Lena and Lera proceed to kick and stomp Dimka until he starts begging them to stop.`);
                           // TODO-QSP: dynamic text: After a few more hits, they get bored and check his pockets for cash. "<<$func('...
                           scene.text(`After a few more hits, they get bored and check his pockets for cash. "${qspFunc(s, 'money', 'format', 10000)}?! Sweet!" They split the money among themselves, leaving none for you.`);
                           scene.text('Lena turns to you and tauntingly says "You either need to learn how to fight or get used to serving us, little bunny." Before you can say anything, the bell rings for class.');
@@ -1171,7 +1171,7 @@ function enterSurrender(s: GameState, scene: SceneBuilder): void {
                                   scene.text('"You will piss blood bitch!"');
                                   scene.text('Suddenly, a screaming Vanya runs towards the bitch squad and sweeps their legs with his hockey stick, causing them fall and letting the twins grab your hands and take you away from the brawl turned riot."');
                                   // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I don''t know what to do with you! What were you thinking?!"
-                                  scene.text(`"${((s as any).pcs_nickname || '')}! I don't know what to do with you! What were you thinking?!"`);
+                                  scene.text(`"${((s as any).pcs_nickname ?? '')}! I don't know what to do with you! What were you thinking?!"`);
                                   scene.text('Katja is really, really pissed and for a long while, she chastizes your actions, but finally, after a long-winded tirade, the redhead seems to deflate and gives you a tired hug.');
                                   scene.text('"Please! Don\'t do that again!"');
                                   scene.text('It feels nice and makes Vanya & Vicky spell a sonorous "Kawai!" before quickly turning back and running away from an embarrassed/angry Katja. It was "fun", but it is time to look for something else to do.');

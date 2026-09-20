@@ -77,7 +77,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s go for a walk in the park."');
     if (((st as any).willAgree ?? 0)) {
       // TODO-QSP: dynamic text: <<$telsob>>, "See you in the park in an hour."
-      scene.text(`${((st as any).telsob || '')}, "See you in the park in an hour."`);
+      scene.text(`${((st as any).telsob ?? '')}, "See you in the park in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -98,7 +98,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
     scene.text('"Want to go see a movie?"');
     if (((st as any).willAgree ?? 0)) {
       // TODO-QSP: dynamic text: <<$telsob>>, "See you at the movie theater in an hour."
-      scene.text(`${((st as any).telsob || '')}, "See you at the movie theater in an hour."`);
+      scene.text(`${((st as any).telsob ?? '')}, "See you at the movie theater in an hour."`);
       scene.actions([
         { label: 'Go', goto: ['kinosvid', ''] },
       ]);
@@ -110,7 +110,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s play pool."');
     if (((st as any).willAgree ?? 0)) {
       // TODO-QSP: dynamic text: <<$telsob>>, "See you at the pool hall in an hour."
-      scene.text(`${((st as any).telsob || '')}, "See you at the pool hall in an hour."`);
+      scene.text(`${((st as any).telsob ?? '')}, "See you at the pool hall in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -127,7 +127,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s go to the cafe."');
     if (((st as any).willAgree ?? 0)) {
       // TODO-QSP: dynamic text: <<$telsob>>, "See you at the cafe in an hour."
-      scene.text(`${((st as any).telsob || '')}, "See you at the cafe in an hour."`);
+      scene.text(`${((st as any).telsob ?? '')}, "See you at the cafe in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -144,7 +144,7 @@ function enterMobilaraz(s: GameState, scene: SceneBuilder): void {
     scene.text('"Let\'s go to the casino."');
     if (((st as any).willAgree ?? 0)) {
       // TODO-QSP: dynamic text: <<$telsob>>, "See you in the casino in an hour."
-      scene.text(`${((st as any).telsob || '')}, "See you in the casino in an hour."`);
+      scene.text(`${((st as any).telsob ?? '')}, "See you in the casino in an hour."`);
       scene.actions([
         { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -202,7 +202,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you in the park in an hour."
-    scene.text(`${((st as any).telsob || '')}, "See you in the park in an hour."`);
+    scene.text(`${((st as any).telsob ?? '')}, "See you in the park in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -226,7 +226,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you at the pool hall in an hour."
-    scene.text(`${((st as any).telsob || '')}, "See you at the pool hall in an hour."`);
+    scene.text(`${((st as any).telsob ?? '')}, "See you at the pool hall in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -258,7 +258,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you at the movie theater in an hour."
-    scene.text(`${((st as any).telsob || '')}, "See you at the movie theater in an hour."`);
+    scene.text(`${((st as any).telsob ?? '')}, "See you at the movie theater in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -278,7 +278,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you at the cafe in an hour."
-    scene.text(`${((st as any).telsob || '')}, "See you at the cafe in an hour."`);
+    scene.text(`${((st as any).telsob ?? '')}, "See you at the cafe in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -298,7 +298,7 @@ function enterCallingTheLoverF(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$telsob>>, "See you in the casino in an hour."
-    scene.text(`${((st as any).telsob || '')}, "See you in the casino in an hour."`);
+    scene.text(`${((st as any).telsob ?? '')}, "See you in the casino in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -341,7 +341,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you in the park in an hour."
-    scene.text(`${((st as any).caller || '')}, "See you in the park in an hour."`);
+    scene.text(`${((st as any).caller ?? '')}, "See you in the park in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -365,7 +365,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you at the pool hall in an hour."
-    scene.text(`${((st as any).caller || '')}, "See you at the pool hall in an hour."`);
+    scene.text(`${((st as any).caller ?? '')}, "See you at the pool hall in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -388,7 +388,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you at the movie theater in an hour."
-    scene.text(`${((st as any).caller || '')}, "See you at the movie theater in an hour."`);
+    scene.text(`${((st as any).caller ?? '')}, "See you at the movie theater in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -408,7 +408,7 @@ function enterCallingTheLoverM(s: GameState, scene: SceneBuilder): void {
       return;
     }
     // TODO-QSP: dynamic text: <<$caller>>, "See you at the cafe in an hour."
-    scene.text(`${((st as any).caller || '')}, "See you at the cafe in an hour."`);
+    scene.text(`${((st as any).caller ?? '')}, "See you at the cafe in an hour."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     if (((st as any).clothingworntype ?? 0) === 'nude') {
@@ -455,13 +455,13 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $DateNickName[5] = '<<$pcs_nickname>>'
   // TODO-QSP: $call4Date["SvetaName"] = $DateNickName[rand(0, arrsize('$DateNickName')-1)]
   // TODO-QSP: dynamic text: Hey <<$call4Date["SvetaName"]>>, it''s me, <<$caller>>. How''s it going?
-  scene.text(`Hey ${((s as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, it's me, ${((s as any).caller || '')}. How's it going?`);
+  scene.text(`Hey ${((s as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, it's me, ${((s as any).caller ?? '')}. How's it going?`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Reply', handler: (st: GameState) => {
     scene.text('"Pretty good, you?"');
     // TODO-QSP: dynamic text: <<$caller>>, "Great, but I kind of miss you, can we meet today?"
-    scene.text(`${((st as any).caller || '')}, "Great, but I kind of miss you, can we meet today?"`);
+    scene.text(`${((st as any).caller ?? '')}, "Great, but I kind of miss you, can we meet today?"`);
     if (((st as any).knowpreg ?? 0) === 1  &&  (!((st as any).pregtalk ?? 0))) {
       if ((((st as any).pregChem ?? 0) / 24) > ((st as any).call4Date ?? 0)?.['lover_days']) {
         scene.actions([
@@ -469,7 +469,7 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: npc_rel[$call4Date["NPC"]] = 0
     scene.text('"Honey, I\'m pregnant with your child."');
     // TODO-QSP: dynamic text: <<$caller>>, "How the fuck did I manage that? Unless I own a time-machine and we...
-    scene.text(`${((st as any).caller || '')}, "How the fuck did I manage that? Unless I own a time-machine and went back to before we met and fucked you, it's someone else's, go and tell him. I don't want to see you again, goodbye."`);
+    scene.text(`${((st as any).caller ?? '')}, "How the fuck did I manage that? Unless I own a time-machine and went back to before we met and fucked you, it's someone else's, go and tell him. I don't want to see you again, goodbye."`);
     scene.actions([
       { label: 'Hang up.', goto: ['lover_call', 'fin'] },
     ]);
@@ -484,26 +484,26 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
       if (((st as any).npc_rel ?? 0)[((st as any).call4Date ?? 0)?.['NPC']] < 85) {
         qspCall(st, 'money', 'earn', 20000);
         // TODO-QSP: dynamic text: <<$caller>> "I''m not yet ready to become a dad. I''ll give you the money for an...
-        scene.text(`${((st as any).caller || '')} "I'm not yet ready to become a dad. I'll give you the money for an abortion. Get rid of the child.`);
+        scene.text(`${((st as any).caller ?? '')} "I'm not yet ready to become a dad. I'll give you the money for an abortion. Get rid of the child.`);
         scene.actions([
           { label: 'Hang up', goto: ['lover_call', 'fin'] },
         ]);
       } else {
         // TODO-QSP: npc_love[$call4Date["NPC"]] = 1
         // TODO-QSP: dynamic text: <<$caller>>, "This is wonderful! We have to celebrate!"
-        scene.text(`${((st as any).caller || '')}, "This is wonderful! We have to celebrate!"`);
+        scene.text(`${((st as any).caller ?? '')}, "This is wonderful! We have to celebrate!"`);
         // TODO-QSP: dynamic text: You start talking about living together. <<$caller>> tells you that he is not ag...
-        scene.text(`You start talking about living together. ${((st as any).caller || '')} tells you that he is not against it on principle, but first he wants you to meet his parents.`);
+        scene.text(`You start talking about living together. ${((st as any).caller ?? '')} tells you that he is not against it on principle, but first he wants you to meet his parents.`);
         // TODO-QSP: dynamic text: He warns you that his mother is very demanding and rigorous. <<$caller>> says th...
-        scene.text(`He warns you that his mother is very demanding and rigorous. ${((st as any).caller || '')} says that he loves his mother and does not want to upset her. Therefore, you must look gorgeous, wear a dress from a boutique, and have well-groomed and curled hair and makeup in moderation.`);
+        scene.text(`He warns you that his mother is very demanding and rigorous. ${((st as any).caller ?? '')} says that he loves his mother and does not want to upset her. Therefore, you must look gorgeous, wear a dress from a boutique, and have well-groomed and curled hair and makeup in moderation.`);
         // TODO-QSP: dynamic text: When you are totally ready <<$caller>> will take you to his parents.
-        scene.text(`When you are totally ready ${((st as any).caller || '')} will take you to his parents.`);
+        scene.text(`When you are totally ready ${((st as any).caller ?? '')} will take you to his parents.`);
         scene.actions([
           { label: 'Hang up', goto: ['lover_call', 'fin'] },
           { label: 'Meet tonight', handler: (st: GameState) => {
     scene.text('"How about this evening?"');
     // TODO-QSP: dynamic text: <<$caller>>, "Sounds great! When can I come to pick you up?"
-    scene.text(`${((st as any).caller || '')}, "Sounds great! When can I come to pick you up?"`);
+    scene.text(`${((st as any).caller ?? '')}, "Sounds great! When can I come to pick you up?"`);
     scene.actions([
       { label: 'Pick a time', handler: (st: GameState) => {
     // TODO-QSP: npc_meetday[$call4Date['NPC']] = daystart
@@ -512,9 +512,9 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: npc_meethour[$call4Date['NPC']] = 20
     }
     // TODO-QSP: dynamic text: "How about <<temp_hour>>:00?"
-    scene.text(`"How about ${((st as any).temp_hour || '')}:00?"`);
+    scene.text(`"How about ${((st as any).temp_hour ?? '')}:00?"`);
     // TODO-QSP: dynamic text: <<$caller>>, "Okay <<$call4Date["SvetaName"]>>, see you at <<npc_meethour[$call4...
-    scene.text(`${((st as any).caller || '')}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00."`);
+    scene.text(`${((st as any).caller ?? '')}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00."`);
     scene.actions([
       { label: 'Hang up', goto: ['lover_call', 'fin'] },
     ]);
@@ -527,14 +527,14 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
       if (((st as any).npc_rough ?? 0)[((st as any).call4Date ?? 0)?.['NPC']] === 0) {
         qspCall(st, 'money', 'earn', 20000);
         // TODO-QSP: dynamic text: <<$caller>> "I''m not yet ready to become a dad. I''ll give you the money get an...
-        scene.text(`${((st as any).caller || '')} "I'm not yet ready to become a dad. I'll give you the money get an abortion."`);
+        scene.text(`${((st as any).caller ?? '')} "I'm not yet ready to become a dad. I'll give you the money get an abortion."`);
         scene.actions([
           { label: 'Hang up', goto: ['lover_call', 'fin'] },
         ]);
       } else {
         (st as any).pregtalk = 0;
         // TODO-QSP: dynamic text: <<$caller>>, "What? You whore! Someone fucked your pussy, and now you drop it on...
-        scene.text(`${((st as any).caller || '')}, "What? You whore! Someone fucked your pussy, and now you drop it on me. You're dumped.`);
+        scene.text(`${((st as any).caller ?? '')}, "What? You whore! Someone fucked your pussy, and now you drop it on me. You're dumped.`);
         // TODO-QSP: gs 'lover', 'remove_boyfriend', $call4Date["NPC"]
         scene.actions([
           { label: 'Hang up', goto: ['lover_call', 'fin'] },
@@ -550,7 +550,7 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
           { label: 'Sorry, I\'m working today', handler: (st: GameState) => {
     scene.text('"Sorry, I\'m working today."');
     // TODO-QSP: dynamic text: <<$caller>>, "Okay, I''ll call tomorrow."
-    scene.text(`${((st as any).caller || '')}, "Okay, I'll call tomorrow."`);
+    scene.text(`${((st as any).caller ?? '')}, "Okay, I'll call tomorrow."`);
     scene.actions([
       { label: 'Hang up', goto: ['lover_call', 'fin'] },
     ]);
@@ -575,7 +575,7 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
   } },
       { label: 'Pick time (old content)', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: <<$caller>>, "Sounds great! When can I come to pick you up?"
-    scene.text(`${((st as any).caller || '')}, "Sounds great! When can I come to pick you up?"`);
+    scene.text(`${((st as any).caller ?? '')}, "Sounds great! When can I come to pick you up?"`);
     scene.actions([
       { label: 'Pick a time', handler: (st: GameState) => {
     // TODO-QSP: npc_meetday[$call4Date['NPC']] = daystart
@@ -586,7 +586,7 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "How about <<npc_meethour[$call4Date[''NPC'']]>>:00?."
     scene.text(`"How about ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00?."`);
     // TODO-QSP: dynamic text: <<$caller>>, "Okay <<$call4Date["SvetaName"]>>, see you at <<npc_meethour[$call4...
-    scene.text(`${((st as any).caller || '')}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00."`);
+    scene.text(`${((st as any).caller ?? '')}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00."`);
     scene.actions([
       { label: 'Hang up', goto: ['lover_call', 'fin'] },
     ]);
@@ -600,11 +600,11 @@ function enterLoverM(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m busy today. Call tomorrow."');
     if (((st as any).npc_rel ?? 0)[((st as any).call4Date ?? 0)?.['NPC']] <= 0) {
       // TODO-QSP: dynamic text: <<$caller>>, Are you fucking me, you know what. Suck my dick.
-      scene.text(`${((st as any).caller || '')}, Are you fucking me, you know what. Suck my dick.`);
+      scene.text(`${((st as any).caller ?? '')}, Are you fucking me, you know what. Suck my dick.`);
       // TODO-QSP: gs 'lover', 'remove_boyfriend', $call4Date["NPC"]
     } else {
       // TODO-QSP: dynamic text: (<<$caller>>) - Okay, I''ll call tomorrow.
-      scene.text(`(${((st as any).caller || '')}) - Okay, I'll call tomorrow.`);
+      scene.text(`(${((st as any).caller ?? '')}) - Okay, I'll call tomorrow.`);
     }
     scene.actions([
       { label: 'Hang up', goto: ['lover_call', 'fin'] },
@@ -629,19 +629,19 @@ function enterLoverF(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $DateNickName[5] = '<<$pcs_nickname>>'
   // TODO-QSP: $call4Date["SvetaName"] = $DateNickName[rand(0, arrsize('$DateNickName')-1)]
   // TODO-QSP: dynamic text: Hey <<$call4Date["SvetaName"]>>, it''s me, <<$caller>>. How''s it going?
-  scene.text(`Hey ${((s as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, it's me, ${((s as any).caller || '')}. How's it going?`);
+  scene.text(`Hey ${((s as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, it's me, ${((s as any).caller ?? '')}. How's it going?`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Reply', handler: (st: GameState) => {
     scene.text('"Pretty good, you?"');
     // TODO-QSP: dynamic text: <<$caller>>, "Great, but I kind of miss you, can we meet today?"
-    scene.text(`${((st as any).caller || '')}, "Great, but I kind of miss you, can we meet today?"`);
+    scene.text(`${((st as any).caller ?? '')}, "Great, but I kind of miss you, can we meet today?"`);
     scene.actions([
       { label: 'Tonight', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $call4Date["NPC"], rand(0, 1)
     scene.text('"How about this evening?"');
     // TODO-QSP: dynamic text: <<$caller>>, "Sounds great! When can I come to pick you up?"
-    scene.text(`${((st as any).caller || '')}, "Sounds great! When can I come to pick you up?"`);
+    scene.text(`${((st as any).caller ?? '')}, "Sounds great! When can I come to pick you up?"`);
     scene.actions([
       { label: 'Pick a time', handler: (st: GameState) => {
     // TODO-QSP: npc_meetday[$call4Date['NPC']] = daystart
@@ -652,7 +652,7 @@ function enterLoverF(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "How about <<npc_meethour[$call4Date[''NPC'']]>>:00?."
     scene.text(`"How about ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00?."`);
     // TODO-QSP: dynamic text: <<$caller>>, "Okay <<$call4Date["SvetaName"]>>, see you at <<npc_meethour[$call4...
-    scene.text(`${((st as any).caller || '')}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00."`);
+    scene.text(`${((st as any).caller ?? '')}, "Okay ${((st as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((st as any).npc_meethour ?? 0)?.[((st as any).call4Date ?? 0)?.['NPC'] ?? '']}:00."`);
     scene.actions([
       { label: 'Hang up', goto: ['lover_call', 'fin'] },
     ]);
@@ -664,11 +664,11 @@ function enterLoverF(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m busy today. Call tomorrow."');
     if (((st as any).npc_rel ?? 0)[((st as any).call4Date ?? 0)?.['NPC']] <= 20) {
       // TODO-QSP: dynamic text: <<$caller>>, Are you fucking me, you know what. Fuck off.
-      scene.text(`${((st as any).caller || '')}, Are you fucking me, you know what. Fuck off.`);
+      scene.text(`${((st as any).caller ?? '')}, Are you fucking me, you know what. Fuck off.`);
       // TODO-QSP: gs 'lover', 'remove_girlfriend', $call4Date["NPC"]
     } else {
       // TODO-QSP: dynamic text: (<<$caller>>) - Okay, I''ll call tomorrow.
-      scene.text(`(${((st as any).caller || '')}) - Okay, I'll call tomorrow.`);
+      scene.text(`(${((st as any).caller ?? '')}) - Okay, I'll call tomorrow.`);
     }
     scene.actions([
       { label: 'Hang up', goto: ['lover_call', 'fin'] },

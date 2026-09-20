@@ -55,7 +55,7 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
   scene.text('Their mother eagerly welcomes you inside:');
   if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2) {
     // TODO-QSP: dynamic text: "Hello guys, Vanya! Oh, and hello <<$pcs_nickname>>, nice to see you again."
-    scene.text(`"Hello guys, Vanya! Oh, and hello ${((s as any).pcs_nickname || '')}, nice to see you again."`);
+    scene.text(`"Hello guys, Vanya! Oh, and hello ${((s as any).pcs_nickname ?? '')}, nice to see you again."`);
     scene.text('"Come in, come in, don\'t be shy! I did not know you were friends with Vicky as well, what a wonderful surprise! I will be in the kitchen having some tea, if anyone would care to join me."');
   } else {
     scene.text('"Hello guys, Vanya! And would you like to introduce your girlfriend, Vicky?"');
@@ -104,10 +104,10 @@ function enterFirstMeet(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: Tamara smiles and shakes her head, "You don''t need to be so formal, <<$pcs_nick...
-    scene.text(`Tamara smiles and shakes her head, "You don't need to be so formal, ${((st as any).pcs_nickname || '')}. We're not at work here, so you can just call me Tamara."`);
+    scene.text(`Tamara smiles and shakes her head, "You don't need to be so formal, ${((st as any).pcs_nickname ?? '')}. We're not at work here, so you can just call me Tamara."`);
     scene.text('As if on cue, Vicky walks back into the kitchen, "Room is all tidied, if you two are done talking."');
     // TODO-QSP: dynamic text: "Vicky, your girlfriend is wonderful! You should invite <<$pcs_nickname>> over m...
-    scene.text(`"Vicky, your girlfriend is wonderful! You should invite ${((st as any).pcs_nickname || '')} over more often!"`);
+    scene.text(`"Vicky, your girlfriend is wonderful! You should invite ${((st as any).pcs_nickname ?? '')} over more often!"`);
     scene.text('"But Mom, you always talk so much, it scares all my friends off."');
     scene.text('Tamara pretend sighs and says: "So that is what I get for all that time I spent raising you?! Fine, do not worry about your lonely mother; just go play with your friend!"');
     scene.actions([
@@ -135,10 +135,10 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).zz_stage ?? 0) < 8) {
-      scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea' + ((s as any).zz_stage || '') + '.jpg');
+      scene.img('images/locations/pavlovsk/resident/meynolds/tamara_tea' + ((s as any).zz_stage ?? '') + '.jpg');
       if (((s as any).zz_stage ?? 0) === 1) {
         // TODO-QSP: dynamic text: "Oh hi, <<$pcs_nickname>>! I''m so glad to see you! Come in, come in, make yours...
-        scene.text(`"Oh hi, ${((s as any).pcs_nickname || '')}! I'm so glad to see you! Come in, come in, make yourself at home! I'll put on a kettle right away!"`);
+        scene.text(`"Oh hi, ${((s as any).pcs_nickname ?? '')}! I'm so glad to see you! Come in, come in, make yourself at home! I'll put on a kettle right away!"`);
         scene.text('"My little carrots are somewhere in the house, while I\'m here all alone…"');
         scene.text('You shyly walk past her, passing through a spacious hall from which a staircase leads to the second floor to the kitchen. The kitchen is large, bright and spacious, tastefully furnished. From the kitchen there is access to the veranda. You sit down at the oval dining table and Tamara, wearing an apron, quickly moves over to the fridge, pulling out all sorts of jars with jam, fruit and cheese and placing them on the table.');
       } else {
@@ -160,7 +160,7 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
                 scene.text('You can see both Katja\'s and Vicky\'s small quirks in Aunt Tamara. She has preserved the beauty of Katja, sophisticated but not as youthfully naïve as Katja. She is calmer and more sensible than Vicky, even being more sociable and open than the cautious Katja.');
                 scene.text('Tamara gets a bottle of wine from the wine cooler and one glass:');
                 // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you won''t mind if Aunt Tamara has a glass of wine while we ...
-                scene.text(`"${((s as any).pcs_nickname || '')}, you won't mind if Aunt Tamara has a glass of wine while we have this wonderful conversation?"`);
+                scene.text(`"${((s as any).pcs_nickname ?? '')}, you won't mind if Aunt Tamara has a glass of wine while we have this wonderful conversation?"`);
                 scene.text('"I have been living a reclusive life instead of just running wild. So that\'s made me very distrusting. At work, I\'m not dear Tamara, but the big bad "boss", or the strict "businesswoman", I know that the "friendly female staff" are bad mouthing me, they probably think I slept my way up to the top."');
               } else {
                 if (((s as any).zz_stage ?? 0) === 6) {
@@ -199,7 +199,7 @@ function enterNextMeet(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('"I\'m sorry, Aunt Tamara, I must go home or else I\'ll get some stern scolding…"');
       // TODO-QSP: dynamic text: "Well, I can''t say I''m not disappointed <<$pcs_nickname>>. Don''t stop anywher...
-      scene.text(`"Well, I can't say I'm not disappointed ${((s as any).pcs_nickname || '')}. Don't stop anywhere on your way home." said a disappointed Aunt Tamara.`);
+      scene.text(`"Well, I can't say I'm not disappointed ${((s as any).pcs_nickname ?? '')}. Don't stop anywhere on your way home." said a disappointed Aunt Tamara.`);
       scene.text('"Remember this, if you change your mind and want to hang out, come visit us anytime again! You\'re always welcome here!"');
       scene.actions([
         { label: 'Go home', goto: ['pav_residential', ''] },
@@ -225,12 +225,12 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
     scene.text('You drink tea and talk casually with each other. You\'re sitting on needles filled with anticipation waiting for Tamara to speak up.');
     scene.text('Having finished the tea, Tamara casually says:');
     // TODO-QSP: dynamic text: "Stand up, <<$pcs_nickname>>. I want to take a look at you."
-    scene.text(`"Stand up, ${((st as any).pcs_nickname || '')}. I want to take a look at you."`);
+    scene.text(`"Stand up, ${((st as any).pcs_nickname ?? '')}. I want to take a look at you."`);
     scene.text('You stand up. She carefully examines you like a bug under a microscope.');
     scene.text('"Turn around, darling."');
     scene.text('You turn, letting her to check you out from all sides.');
     // TODO-QSP: dynamic text: "Not bad, <<$pcs_nickname>>. I can work with this." said Tamara nodding. "But ri...
-    scene.text(`"Not bad, ${((st as any).pcs_nickname || '')}. I can work with this." said Tamara nodding. "But right now you're just raw clay, which can be formed as a sculptural masterpiece or a simple brick. And who knows it may turn out to be just a dried up worthless piece of clay. Everything depends on you."`);
+    scene.text(`"Not bad, ${((st as any).pcs_nickname ?? '')}. I can work with this." said Tamara nodding. "But right now you're just raw clay, which can be formed as a sculptural masterpiece or a simple brick. And who knows it may turn out to be just a dried up worthless piece of clay. Everything depends on you."`);
     scene.text('She continues looking at you somewhat skeptical. It feels like she\'s in a store checking the quality of the item. Under her careful scrutiny, you begin to shrink, like a violet.');
     scene.text('"Walk around a little."');
     scene.text('You take a few steps in the kitchen. Tamara snorts:');
@@ -250,7 +250,7 @@ function enterLearning0(s: GameState, scene: SceneBuilder): void {
         scene.text('"You did okay…" nods Tamara. "But you still need to improve."');
       } else {
         // TODO-QSP: dynamic text: "Very nice, <<$pcs_nickname>>!" nods Tamara approvingly. "One less thing you nee...
-        scene.text(`"Very nice, ${((st as any).pcs_nickname || '')}!" nods Tamara approvingly. "One less thing you need to learn."`);
+        scene.text(`"Very nice, ${((st as any).pcs_nickname ?? '')}!" nods Tamara approvingly. "One less thing you need to learn."`);
       }
     }
     scene.actions([
@@ -344,7 +344,7 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Go further', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what do you wear to school?" she asks you as you''re walking...
-    scene.text(`"${((st as any).pcs_nickname || '')}, what do you wear to school?" she asks you as you're walking out from the beauty salon.`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}, what do you wear to school?" she asks you as you're walking out from the beauty salon.`);
     scene.text('"Well, we have to wear a compulsory school uniform."<br>');
     (st as any).newdress_loop = 0;
     // TODO-QSP: :looptamaraschool
@@ -392,7 +392,7 @@ function enterLearning1(s: GameState, scene: SceneBuilder): void {
       (st as any).newdress_id = (Math.floor(Math.random() * 36) + 1);
       if (qspFunc(s, 'clothing', 'is_owned', 'gm_school', ((st as any).newdress_id ?? 0)) === 0) {
         qspCall(st, 'clothing', 'add_item', 'gm_school', ((st as any).newdress_id ?? 0));
-        scene.img(`images/pc/items/gm/school/${((st as any).newdress_id || '')}.jpg`);
+        scene.img(`images/pc/items/gm/school/${((st as any).newdress_id ?? '')}.jpg`);
       } else {
         (st as any).newdress_loop = ((st as any).newdress_loop ?? 0) + (1);
         if (((st as any).newdress_loop ?? 0) > 1000) {
@@ -583,7 +583,7 @@ function enterParty1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/expensiverest/restoran.jpg');
   scene.text('Tamara stops the car in front of the restaurant.');
   // TODO-QSP: dynamic text: "Listen closely now, <<$pcs_nickname>>. It''s a very formal party with some big ...
-  scene.text(`"Listen closely now, ${((s as any).pcs_nickname || '')}. It's a very formal party with some big shots from the city so try not to embarrass me. You should act like Cinderella at the ball, be charming and entrance them with your beauty. Don't get drunk and begin dancing naked on the table or accompany different men to the toilet, you're not a prostitute. I really hope you follow my advice. Unlike the time I let Vicky tag along…`);
+  scene.text(`"Listen closely now, ${((s as any).pcs_nickname ?? '')}. It's a very formal party with some big shots from the city so try not to embarrass me. You should act like Cinderella at the ball, be charming and entrance them with your beauty. Don't get drunk and begin dancing naked on the table or accompany different men to the toilet, you're not a prostitute. I really hope you follow my advice. Unlike the time I let Vicky tag along…`);
   scene.text('You wisely decide not to ask Aunt Tamara what happened that time she brought Vicky with her, you\'ll ask her at the party instead.');
   // TODO-QSP: end
   scene.actions([
@@ -736,7 +736,7 @@ function enterParty4(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).zz_stage ?? 0))) {
     (s as any).zz_stage = 16;
   }
-  scene.img('images/characters/pavlovsk/school/girl/vicky/event/party' + ((((s as any).zz_stage ?? 0) === 18) ? (17) : (((s as any).zz_stage || ''))) + '.jpg');
+  scene.img('images/characters/pavlovsk/school/girl/vicky/event/party' + ((((s as any).zz_stage ?? 0) === 18) ? (17) : (((s as any).zz_stage ?? ''))) + '.jpg');
   if (((s as any).zz_stage ?? 0) === 16) {
     (s as any).zz_stage = ((s as any).zz_stage ?? 0) + (1);
     scene.text('The champagne silently creeps up on you. You\'re feeling more loose and finally find the strength to mingle. The alcohol is making you a bit horny and you can\'t shake off the desire, wanting to hook up with someone. You are totally forgetting the strict orders that Tamara gave you about "keeping your composure at all times, and not going looking for sexual encounters".');
@@ -907,19 +907,19 @@ function enterParty6(s: GameState, scene: SceneBuilder): void {
     scene.text('Grabbing you by the elbow, she leads you to the very couple that had awoken your interest, "Bronson" and his lady friend.');
     scene.text('She greets the man like an old friend, kissing him on the cheek, but indifferently greets the woman by his side. "Something complicated happened between these two…" you think to yourself.');
     // TODO-QSP: dynamic text: "Let me introduce my pupil, <<$pcs_nickname>>."
-    scene.text(`"Let me introduce my pupil, ${((st as any).pcs_nickname || '')}."`);
+    scene.text(`"Let me introduce my pupil, ${((st as any).pcs_nickname ?? '')}."`);
     scene.text('"Bronson" smiles, making you back off a bit seeing his face up close. It looks quite rough like someone has slashed his face with a razor. His missing teeth makes his smile seem off and crooked. But despite the roughly slashed face and crooked smile, he seems very sincere.');
     // TODO-QSP: dynamic text: "It''s so nice meeting someone young here! The only other people here are old go...
-    scene.text(`"It's so nice meeting someone young here! The only other people here are old goblins and hags… But not you. With your youth and beauty, you're like a ray of sunshine! You have to forgive an old man for the bad compliments, ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`"It's so nice meeting someone young here! The only other people here are old goblins and hags… But not you. With your youth and beauty, you're like a ray of sunshine! You have to forgive an old man for the bad compliments, ${((st as any).pcs_firstname ?? '')}."`);
     scene.text('"My dear Tamara! You always had a great eye for talent!"');
     scene.text('"I still remember your scent, it\'s the same one when you helped me many years ago… When I had to get away from my husband…" Sighs Tamara with concealed sadness, briefly glancing at him. "There\'s definitely something going on here." You think to yourself.');
     scene.text('"Well, let\'s not dwell on the past. Let bygones be bygones! "Bronson" smiles, answering without any malice or mockery. His friend, feeling clearly undesirable in this conversation, places her half empty glass of champagne on the table, grabbing a new one from a passing waiter, silently walked away towards the musicians. She moves away without having said one word.');
     scene.text('You keep up the small talk. "Bronson" gradually looks at you like he\'s trying to read you. With some help from Tamara you don\'t get embarrassed by this prying eyes. The way the two of them behave it\'s quite obvious that they’re old friends. Though, you believe that they\'re more than friends.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, will you make an old man happy and dine with him?" He asks ...
-    scene.text(`"${((st as any).pcs_firstname || '')}, will you make an old man happy and dine with him?" He asks you confidently. The way he conducts himself in a conversation, despite the sloppy appearance, makes him somehow, likable and not frightening.`);
+    scene.text(`"${((st as any).pcs_firstname ?? '')}, will you make an old man happy and dine with him?" He asks you confidently. The way he conducts himself in a conversation, despite the sloppy appearance, makes him somehow, likable and not frightening.`);
     scene.text('"I would be honoured."');
     // TODO-QSP: dynamic text: "Well, then it''s settled, <<$pcs_firstname>>!" "Bronson" smiles and moves away ...
-    scene.text(`"Well, then it's settled, ${((st as any).pcs_firstname || '')}!" "Bronson" smiles and moves away from you and Aunt Tamara. You suddenly realize that he didn't ask you for your number. Now that you think about it, he never properly introduced himself, even though you talked for a good hour!`);
+    scene.text(`"Well, then it's settled, ${((st as any).pcs_firstname ?? '')}!" "Bronson" smiles and moves away from you and Aunt Tamara. You suddenly realize that he didn't ask you for your number. Now that you think about it, he never properly introduced himself, even though you talked for a good hour!`);
     scene.actions([
       { label: 'Mingle', goto: ['mey_tamara_events', 'party2'] },
     ]);
@@ -934,7 +934,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
   (s as any).zz_stage = qspUntranslated(s, "args[1]", { location: "mey_tamara_events" });
   if (((s as any).zz_stage ?? 0)!==3) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/pavlovsk/school/girl/vicky/eve...
-    scene.text('<center><img ' + ((s as any).set_imgh || '') + ' src="images/characters/pavlovsk/school/girl/vicky/event/reputation\'+zz_stage+\'.jpg"></center>');
+    scene.text('<center><img ' + ((s as any).set_imgh ?? '') + ' src="images/characters/pavlovsk/school/girl/vicky/event/reputation\'+zz_stage+\'.jpg"></center>');
   }
   if ((!((s as any).zz_stage ?? 0))) {
     scene.text('You stand in front of Tamara, with your eyes tearing up.');
@@ -977,7 +977,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
             if (((s as any).zz_stage ?? 0) === 5) {
               scene.text('Suddenly the caresses stop abruptly. You turn your head wondering why it stopped. Sitting on the bed next to you, you notice a completely nude Tamara, awkwardly cross legged, looking away from you…');
               // TODO-QSP: dynamic text: "I''m sorry, <<$pcs_nickname>>, I think I got a little carried away again… you''...
-              scene.text(`"I'm sorry, ${((s as any).pcs_nickname || '')}, I think I got a little carried away again… you've never seen me naked…"`);
+              scene.text(`"I'm sorry, ${((s as any).pcs_nickname ?? '')}, I think I got a little carried away again… you've never seen me naked…"`);
             } else {
               if (((s as any).zz_stage ?? 0) === 6) {
                 scene.text('An impulse makes you take off your shirt and sit next to your mentor. You start caressing her magnificent breasts, touching her pink nipples with your fingers.');
@@ -999,7 +999,7 @@ function enterReputation(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).zz_stage ?? 0) === 11) {
                           scene.text('Catching your breath, you thank your mentor. But there is no time for that. You slide a finger inside her feeling her pulsating pussy. Tamara pants harder and harder, you edge her several times. While sucking and nibbling on her pussy when you feel she can\'t handle it anymore. She bends her knees, screams, and cums hard. You lick her clean after she orgasms. It looks like you\'re a quick learner! She lays back after a few seconds, panting, with sweat coating her body. Tamara, satisfied, finally turns to face you saying…');
                           // TODO-QSP: dynamic text: "Thanks <<$pcs_nickname>>! You have a real talent! Promise me you won''t waste i...
-                          scene.text(`"Thanks ${((s as any).pcs_nickname || '')}! You have a real talent! Promise me you won't waste it on those primates hanging out in the Park… They don't deserve you…"`);
+                          scene.text(`"Thanks ${((s as any).pcs_nickname ?? '')}! You have a real talent! Promise me you won't waste it on those primates hanging out in the Park… They don't deserve you…"`);
                         }
                       }
                     }

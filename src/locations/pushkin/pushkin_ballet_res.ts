@@ -34,7 +34,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('"Very well. I suggest you read the rules in your bedroom. Ignorance will not be accepted as an excuse."');
   scene.text('"With that out of the way, I will now assign your rooms." She consults her clipboard and starts reading out student names, ticking them off as she allocates rooms.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>?" "Here!" you reply, "You''ve been assigne...
-  scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}?" "Here!" you reply, "You've been assigned to room twelve, first floor to the right of the staircase. Do you have any questions? No? Good I will see you in the communal room once you've settled in."`);
+  scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}?" "Here!" you reply, "You've been assigned to room twelve, first floor to the right of the staircase. Do you have any questions? No? Good I will see you in the communal room once you've settled in."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Find your room', handler: (st: GameState) => {
@@ -583,16 +583,16 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
     scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s icy voice through the intercom.`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
-    scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, can I be let in please?", there's a few seconds pause.`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, can I be let in please?", there's a few seconds pause.`);
     // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, you will see me in my office. Now." You c...
-    scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, you will see me in my office. Now." You can swear the temperature around you just plummeted a few degrees and the door was buzzed open.`);
+    scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, you will see me in my office. Now." You can swear the temperature around you just plummeted a few degrees and the door was buzzed open.`);
     qspGoto(s, 'pushkin_ballet_res', 'warden_room');
   } else {
     if ((((s as any).hour ?? 0) >= 17  ||  ((s as any).hour ?? 0) < 21 )  &&  ((s as any).ballet_awol ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
       scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s voice through the intercom.`);
       // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
-      scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, can I be let in please?", there's a few seconds pause and you hear the door being buzzed open.`);
+      scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, can I be let in please?", there's a few seconds pause and you hear the door being buzzed open.`);
       qspGoto(s, 'pushkin_ballet_res', 'hallway');
     } else {
       if (((s as any).ballet_awol ?? 0) === 1) {
@@ -602,9 +602,9 @@ function enterWarden(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "Pushkin Ballet Residential Block, how may I help you?", you hear Madam <<$npc_l...
         scene.text(`"Pushkin Ballet Residential Block, how may I help you?", you hear Madam ${((s as any).npc_lastname ?? 0)?.['A286'] ?? ''}'s voice through the intercom.`);
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, can I be let in please?", there''s a few ...
-        scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, can I be let in please?", there's a few seconds pause.`);
+        scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, can I be let in please?", there's a few seconds pause.`);
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, where the hell have you been? Get in here...
-        scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, where the hell have you been? Get in here. Now.", you gulp at her voice and with trepidation make your way to her office.`);
+        scene.text(`"${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, where the hell have you been? Get in here. Now.", you gulp at her voice and with trepidation make your way to her office.`);
         qspGoto(s, 'pushkin_ballet_res', 'warden_room');
       } else {
         (s as any).minut = ((s as any).minut ?? 0) + 10;

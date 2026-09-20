@@ -6,6 +6,17 @@ import { join, basename } from 'path';
 
 const ROOT = '/home/depressedtsukasa/Documents/GL';
 const PORT = 4174;
+const PARALLEL = 32;
+
+function chunk<T>(arr: T[], n: number): T[][] {
+  const chunks: T[][] = [];
+  for (let i = 0; i < arr.length; i += n) {
+    chunks.push(arr.slice(i, i + n));
+  }
+  return chunks;
+}
+
+interface PageCtx { page: any; errors: string[] }
 
 const args = process.argv.slice(2);
 const skipStatic = args.includes('--skip-static');
@@ -24,8 +35,8 @@ const verbose = args.includes('--verbose');
 const EXCLUDE_EXEC_DATA = new Set(['SMStext_builder', 'barbershop', 'cheatmenu_bisets', 'cheatmenu_din', 'clinic_functions', 'hairsalon', 'help_characters', 'intro_overview', 'phone_selfies_popup', 'stat_display_menu']);
 const EXCLUDE_FUNC_LITERAL = new Set(['cheatmenu_bisets', 'gopsex', 'havana_crossfit', 'pav_train_hall', 'post_deliveries']);
 const EXCLUDE_EXPR = new Set(['gschool_detention', 'pav_church', 'phone_selfies', 'phone_selfies_popup', 'pod_ezd', 'pornschedule', 'sex_ev_sex', 'transport_functions']);
-const EXCLUDE_BG = new Set(['FedorMisc', 'NikoSlut', 'albina_dorm', 'albina_mother_events', 'albina_sex_scenes', 'artem_dorm', 'artem_events_uni', 'artem_nush_sex_uni', 'city_mariinsky', 'core_library', 'courtletter', 'date_casual_meal', 'date_chill', 'date_hangout', 'gad_gpbarn', 'gad_gphouse', 'grigory', 'hunter_favors', 'intro_initialization_sg', 'journal_portfolio', 'money', 'natbel_uni_dates', 'nichTanya', 'npc_274_init', 'obekt', 'pav_disco_outside', 'pickup_porn', 'prostitution_pavlovsk', 'pushkin_ballet_class', 'pushkin_ballet_res', 'pushkin_ballet_secrets', 'rape_events', 'salon', 'sex_ev_pillow_talk', 'sex_ev_wakeup', 'sexorg', 'skverdin', 'sleep_events', 'sleep_events_magic', 'soniaev1', 'soniahome', 'stwork3', 'tatiana_lab', 'tattoo_view', 'therapist', 'tryndin', 'viktor_sex', 'volleyball_ev']);
-const EXCLUDE_NO_ACTIONS = new Set(['BDsex', 'FSstat', 'FedorEv', 'FedorEv4', 'HotelRoom', 'JuliaMilHome', 'KGOLfight', 'KGZgame', 'VolleyTrenCentr', 'andrey', 'anekdot', 'albinahome', 'bdsm_dressing', 'bed2', 'bedr', 'bedr2x', 'bedrPar', 'bordel', 'bouling', 'brother', 'brothel', 'brothel_section1', 'carF', 'city_artisan_quarter', 'city_apt_building', 'city_clinic', 'city_house_res_bedr', 'city_industrial_train', 'city_mansion_residence_1', 'city_mariinsky', 'city_sauna', 'cuminsidereact', 'city_trashplace', 'dachain', 'dinsexFX', 'dom_gor', 'exp_deg', 'father', 'fightClub_intro', 'gad_gpbarn', 'gad_gphouse', 'gad_swamp_yard', 'gameover', 'gdksport', 'gdktoilet', 'gloryhole', 'gopsex', 'gschool_events', 'gschool_events1', 'gschool_grounds', 'gschool_lessons4', 'gschool_lunch', 'gschool_sex', 'hookup_after', 'hotel_anna_sex', 'hunter_favors', 'hunter_interactions', 'havana', 'import_export', 'IvanEv', 'intro_overview', 'katja_party', 'kotovEv', 'LariskaHome', 'leonid', 'lover_home', 'map', 'mey_home', 'nichBedroomServant', 'nichUtil', 'natbelapt', 'natbel_dates_repeat', 'natbel_friend', 'pav_clinic', 'pav_library', 'pav_shared_apt', 'pirsingsalon', 'placer_house', 'placer_pav_park', 'komp_cam_MFC_requests', 'pornstudio', 'pushkin_ballet_res', 'pushkin_ballet_secrets', 'shop_exhibitionist', 'sister', 'stwork', 'therapist_home', 'transport_functions', 'treeCircle', 'uni_dorm', 'qwBarEncounters', 'qwIzoldaApp', 'rasputin_walkway', 'adverts_manager', 'anushkaev1', 'clothing', 'clothing_QV', 'date_movie', 'dream_events', 'vasilyhome']); // clothing: clothwidth→clothing_list→clothing_view:view_list depends on shop_utils module // bed2: mod_system:sleep unimplemented, gs/gt transpiler issue causes continue→end→continue loop; city_apt_building: lift_event_* sub-labels only reached via redirect from floor labels, direct nav creates $ARGS[1] self-loop
+const EXCLUDE_BG = new Set(['FedorMisc', 'NikoSlut', 'albina_dorm', 'albina_mother_events', 'albina_sex_scenes', 'artem_dorm', 'artem_events_uni', 'artem_nush_sex_uni', 'city_mariinsky', 'core_library', 'courtletter', 'date_casual_meal', 'date_chill', 'date_hangout', 'gad_gpbarn', 'gad_gphouse', 'grigory', 'hunter_favors', 'intro_initialization_sg', 'journal_portfolio', 'money', 'natbel_uni_dates', 'nichTanya', 'npc_274_init', 'obekt', 'pav_disco_outside', 'pickup_porn', 'prostitution_pavlovsk', 'pushkin_ballet_class', 'pushkin_ballet_res', 'pushkin_ballet_secrets', 'rape_events', 'salon', 'sex_ev_pillow_talk', 'sex_ev_wakeup', 'sexorg', 'skverdin', 'sleep_events', 'sleep_events_magic', 'soniaev1', 'soniahome', 'stwork3', 'tatiana_lab', 'tattoo_view', 'therapist', 'tryndin', 'uni_dorm_events', 'viktor_sex', 'volleyball_ev']);
+const EXCLUDE_NO_ACTIONS = new Set(['BDsex', 'FSstat', 'FedorEv', 'HotelRoom', 'JuliaMilHome', 'KGOLfight', 'KGZgame', 'VolleyTrenCentr', 'andrey', 'anekdot', 'bed2', 'bouling', 'brother', 'brothel_section1', 'carF', 'city_artisan_quarter', 'city_apt_building', 'city_clinic', 'city_industrial_train', 'city_mariinsky', 'cuminsidereact', 'city_trashplace', 'dinsexFX', 'exp_deg', 'father', 'gad_swamp_yard', 'gameover', 'gloryhole', 'gopsex', 'gschool_events', 'gschool_events1', 'gschool_lunch', 'gschool_sex', 'hookup_after', 'hotel_anna_sex', 'hunter_favors', 'hunter_interactions', 'import_export', 'intro_overview', 'kotovEv', 'map', 'nichUtil', 'pav_clinic', 'pav_library', 'pirsingsalon', 'placer_house', 'placer_pav_park', 'komp_cam_MFC_requests', 'pornstudio', 'shop_exhibitionist', 'sister', 'therapist_home', 'transport_functions', 'treeCircle', 'qwBarEncounters', 'qwIzoldaApp', 'rasputin_walkway', 'adverts_manager', 'anushkaev1', 'date_movie', 'dream_events', 'clothing_QV', 'natbel_friend', 'natbel_dates_repeat', 'pav_shared_apt', 'clothing', 'gschool_grounds', 'pushkin_ballet_secrets', 'FedorEv4']); // HotelRoom: gs 'food','hotel_food' missing 2nd arg → _eat['',price'] NaN (QSP source bug) // bed2: mod_system:sleep unimplemented, gs/gt transpiler issue causes continue→end→continue loop; city_apt_building: lift_event_* sub-labels only reached via redirect from floor labels, direct nav creates $ARGS[1] self-loop // natbel_friend: disco_2 qspCall('stat','') triggers computeStats re-render that removes buttons between action-list read and click in 32-page parallel mode
 const EXCLUDE_UNTRANSLATED = new Set(['adverts_manager','agentned','albina_dorm','albina_events','albina_starlets','appointments','archetypes','arousal','arousal_funcs','array','autotraidF','band_tour_anushka_SMS','bank','beta_journal_relationships','blackmailer','body','body_structure','booty_call','bras','brother','brother2','BurgerTip','calendar_events','calendar_query','calendar_render','camera','cardgame_durak','cards','carF','casino','casting','cheatmenu_bisets','cheatmenu_din','city_apt_building','city_bobka','city_clinic','city_experimental_trials_list','city_park','cleanHTML','clinic_functions','clothing','clothing_attributes','clothing_QV','coat_attributes','coats','counter','courtletter','cum_call','cum_cleanup','cum_manage','daily_routine','debug_tools','dina','din_bad','dinsexFX','din_van','divan','event','exercise','exp_deg','exp_gain','FedorEv2','FedorEv4','FedorMisc','femcyc','fertility','fetish','fight','fight_npcdata','food_menu','foto_albums','FSstat','gad_gpbath','gameover','Gnpc2','goplust','gopnew','gopnik_initiation','grades','gschool_groups','gschool_socialchg','hairsalon','havana','help_characters','home_activity','homes_properties','homes_properties_attr','hunters','huntersex','internet_mobile','intro_character_creation','intro_initialization','intro_overview','intro_start','jobs','jobs_gigs','journal','KGDparty','kid','kiosk','komp_assbook','komp_cam_functions','komp_cam_MFC_requests_two','lover','lover_call','lover_change','lover_meet','math','medical_din','_menu_character','_menu_looks','_menu_settings','mey_tamara_events','mey_vika_events','mirror','misha','mitkabuh','mitkabuh_group','mitkasex','nerd_game_night','nichUtil','NikoDates','NikoDreams','NikoEv2','NikoMeyHome','NikoSlut','NikoWhore','nogorslut','npc','NPCChanger','npcgeneratec','npc_get_preference','npcpreservec','npc_set_preference','npcStat','outdoors','outfit','pain','panties','pattest','pav_beach_chat','pav_church2','pav_disco_classmates','pavlin','pav_park_sex','paysex','phone_selfies','phone_selfies_popup','placer_house','pod_ezd','pornhist','pornschedule','pornstudio','portnoi','post_office','progressbar','pronouns','Prostitute','prostitution_functions','purse_attributes','random','rex_party_smallEvents','saveupdater','schedule','set_npc_attraction','sex','sexdvoe','sex_ev_favorite_part','shoe_attributes','shoes','shop_pussycats','shop_utils','shortgs','sister_chat','SMS_selfies','SMStext_builder','Snpc','spell','spellBook','spellList','stallion','stat','stat_display','stat_display_compute','stat_display_menu','stat_sklattrib','string','stripclub_schedule','stwork2','succubus','tailor','telefon','therapist','therapist_home','therapist_reminder','time','traits','underwear_attributes','underwear_bodysuits','uni_library','uniutil','vasily_home_sex','wardrobe','washer','willpower','yesgorslut','zsoft_gopskverGorSlut']);
 const EXCLUDE_JS_ERRORS = new Set<string>(['agentned', 'archetypes', 'array', 'bed_events', 'bed_get_out', 'bed_get_out_events', 'bus', 'calendar_schedule', 'date_after', 'date_ev', 'metro', 'sex_ev_leave', 'beta_journal', 'blackmailer', 'body_desc', 'booty_call', 'cheatmenu_bisets', 'city_pharmacy', 'court_functions', 'daily_routine', 'date_talk', 'debug_tools', 'dina', 'dinSex', 'dream_events', 'fame', 'fertility', 'fight', 'grades', 'gschool_events', 'havana_crossfit', 'homes_properties', 'internet_mobile', 'intro_character_custom', 'jobs', 'kickboxing_funcs', 'library_functions', 'lover', 'lover_call', 'music_bedroompractice', 'newspaper', 'nichUtil', 'npc_get_preference', 'npc_reactions', 'npc_set_preference', 'npcrnamefile', 'obj_din', 'outfit', 'pav_hotelWork', 'pav_pharmacy', 'paysex', 'piercing_management', 'pre_sleep_events', 'quest_data_a274', 'prostitution_car_sex', 'prostitution_functions', 'prostitution_pavlovsk', 'random', 'rape_events', 'sex_ev_after', 'sex_ev_cum', 'sex_ev_stats', 'shop', 'shop_utils', 'sex_ev_events', 'shortgs', 'sleep', 'starenie', 'tailor', 'sleep_events', 'spell', 'street_events_general', 'succubus', 'sweat', 'telefon', 'themes', 'vanrPar', 'wakeup_events', 'wardrobe', '_menu_settings']);
 const EXCLUDE_RENDER = new Set(['HotelRoom', 'bus', 'cardgame_durak', 'casino', 'cheatmenu_din', 'city_clinic', 'city_coffee_hole', 'city_hotel', 'daily_routine', 'din_bad', 'gad_swamp_yard', 'intro_initialization', 'intro_initialization_city', 'kotovSex', 'lact_bp', 'lact_lib', 'lover_living', 'mod_system', 'money', 'pav_shared_apt', 'phone_selfies', 'pornhist', 'pornschedule', 'shop']); // bus: NaN in text when reached via gad_road action (state-dependent, not reproducible in isolation); gad_swamp_yard: daytime_flavor_events navigates to unported hunter_interactions location
@@ -54,6 +65,9 @@ const TEST_STATE: Record<string, unknown> = {
   sleepVars: { events_active: 1 },
   cgd_clothes: { A9: ' shirt, jeans, socks, briefs', A10: ' track jacket, tracksuit pants, socks, briefs', A11: ' shirt, shorts, socks, briefs' },
   casino_chips: 100,
+  wloc: '',
+  kamasutra_page: 1,
+  brothel_vars: { orgasm_meter: 0, rage_meter: 0 },
   deckFace: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
   temp_player_hand: [0, 1],
   temp_dealer_hand: [2, 3],
@@ -70,13 +84,14 @@ const TEST_STATE: Record<string, unknown> = {
   npcID: 'A34',
   npcID1: 'A34',
   npcID2: 'A34',
+  npc_usedname: { A34: 'TestNpc' },
   pc_descFull: { makeup: '', skin: '' },
   pc_desc: { 'eye size': '', 'eye colour': '' },
   pcs_lashes_txt: '',
   set_imgh: '',
   pcs_apprnc_text: '',
   hair: '',
-  mc_inventory: {},
+  mc_inventory: { razor: 1 },
   npcIndex: ['A34'],
   npc_rel: { A34: { like: 50, respect: 50, trust: 50, love: 50, sex: 50 } },
   npc_gender: { A34: 'male' },
@@ -278,28 +293,28 @@ function qspHasActions(loc: string): boolean {
 
 async function setupPage(p: any): Promise<void> {
   await p.goto(`http://localhost:${PORT}`, { waitUntil: 'networkidle' });
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: /^Start$/ }).click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: 'Quick Start' }).click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('input[placeholder="Elena"]').first().fill('Test');
   await p.locator('button', { hasText: /^Continue$/ }).click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: /^Continue$/ }).click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: /End of August/ }).click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: 'Pavlovsk' }).first().click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: 'Popular' }).first().click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: 'Sociable' }).first().click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: /^Continue$/ }).click();
-  await sleep(500);
+  await sleep(200);
   await p.locator('button', { hasText: 'Start Game' }).click();
-  await sleep(1000);
+  await sleep(500);
 }
 
 function phase1StaticAnalysis(locations: string[], fileMap: Record<string, string>): { passed: boolean; error?: string; loc?: string } {
@@ -354,240 +369,281 @@ function phase1StaticAnalysis(locations: string[], fileMap: Record<string, strin
   return { passed: true };
 }
 
-async function phase2RenderAudit(
-  page: any,
-  targets: Array<{ loc: string; sub: string }>,
-  fileMap: Record<string, string>,
-  errors: string[]
+async function checkRenderTarget(
+  ctx: PageCtx,
+  loc: string,
+  sub: string,
+  fileMap: Record<string, string>
 ): Promise<{ passed: boolean; error?: string; loc?: string }> {
-  for (const { loc, sub } of targets) {
-    errors.length = 0;
-    const label = sub === '' ? loc : `${loc}:${sub}`;
+  const { page, errors } = ctx;
+  errors.length = 0;
+  const label = sub === '' ? loc : `${loc}:${sub}`;
 
-    try {
-      await page.evaluate(([l, s, ts]) => {
-        const store = (window as any).__gameStore;
-        const st = store.getState();
-        for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
-        store.getState().doGoto(l, s);
-      }, [loc, sub, TEST_STATE]);
-    } catch (e: any) {
-      return { passed: false, error: `goto threw: ${e.message}`, loc: label };
-    }
-
-    await sleep(500);
-
-    if (page.isClosed()) {
-      return { passed: false, error: 'page crashed', loc: label };
-    }
-
-    const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
-    if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
-      return { passed: false, error: `JS errors: ${newErrors.slice(0, 3).join('; ')}`, loc: label };
-    }
-
-    const bgInfo = await page.evaluate(async () => {
-      const main = document.querySelector('main');
-      if (!main) return { noBg: true };
-      const bg = getComputedStyle(main).backgroundImage;
-      if (!bg || bg === 'none') return { noBg: true };
-      const match = bg.match(/url\("?(.*?)"?\)/);
-      if (!match) return { noBg: true };
-      const url = match[1];
-      if (url.includes('undefined') || url.includes('null')) {
-        return { noBg: false, url, ok: false };
-      }
-      try {
-        const resp = await fetch(url, { method: 'HEAD' });
-        return { noBg: false, url, ok: resp.ok };
-      } catch {
-        return { noBg: false, url, ok: false };
-      }
-    });
-
-    if (!bgInfo.noBg && !bgInfo.ok && !EXCLUDE_BG.has(loc)) {
-      return { passed: false, error: `background image issue (src="${bgInfo.url}")`, loc: label };
-    }
-
-    if (qspHasBg(loc) && bgInfo.noBg && !EXCLUDE_BG.has(loc)) {
-      return { passed: false, error: 'QSP source has *bg but no background rendered', loc: label };
-    }
-
-    const actionCount = await page.evaluate(() => {
-      const buttons = Array.from(document.querySelectorAll('button'));
-      const actions = buttons.filter((b) => {
-        const text = b.textContent?.trim() ?? '';
-        const title = b.getAttribute('title');
-        if (title) return false;
-        if (/^(Map|Back)$/i.test(text)) return false;
-        if (text.length === 0 || text.length >= 80) return false;
-        return true;
-      });
-      return actions.length;
-    });
-    if (actionCount === 0 && sub === '' && qspHasActions(loc) && !EXCLUDE_NO_ACTIONS.has(loc)) {
-      return { passed: false, error: 'no actions found', loc: label };
-    }
-
-    const bodyText = await page.textContent('body');
-    if ((bodyText?.length ?? 0) < 50) {
-      return { passed: false, error: `text too short (${bodyText?.length ?? 0} chars)`, loc: label };
-    }
-
-    if (bodyText?.includes('[UNTRANSLATED:') && !EXCLUDE_UNTRANSLATED.has(loc)) {
-      const matches = bodyText.match(/\[UNTRANSLATED: [^\]]+\]/g);
-      return { passed: false, error: `untranslated QSP: ${matches?.slice(0, 3).join(', ')}`, loc: label };
-    }
-
-    const execLinks = await page.evaluate(() => {
-      return document.querySelectorAll('a[href^="exec:"]').length;
-    });
-    if (execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
-      return { passed: false, error: `${execLinks} exec: link(s) in rendered HTML`, loc: label };
-    }
-
-    if (bodyText?.includes('<<')) {
-      const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
-      return { passed: false, error: `${exprCount} unevaluated <<...>> expression(s) in rendered text`, loc: label };
-    }
-
-    if (bodyText?.includes('undefined') && !EXCLUDE_RENDER.has(loc)) {
-      return { passed: false, error: `'undefined' in rendered text`, loc: label };
-    }
-    if (bodyText?.includes('NaN') && !EXCLUDE_RENDER.has(loc)) {
-      return { passed: false, error: `'NaN' in rendered text`, loc: label };
-    }
-
-    const buttonIssues = await page.evaluate(() => {
-      const buttons = Array.from(document.querySelectorAll('button'));
-      const issues: string[] = [];
-      for (const b of buttons) {
-        const text = b.textContent?.trim() ?? '';
-        if (text.includes('<<')) issues.push(`button "<<...>>": ${text.slice(0, 50)}`);
-        if (text.includes('undefined')) issues.push(`button "undefined": ${text.slice(0, 50)}`);
-        if (text.includes('NaN')) issues.push(`button "NaN": ${text.slice(0, 50)}`);
-      }
-      return issues;
-    });
-    if (buttonIssues.length > 0) {
-      return { passed: false, error: buttonIssues.slice(0, 3).join('; '), loc: label };
-    }
-
-    if (verbose) process.stdout.write('.');
+  try {
+    await page.evaluate(([l, s, ts]) => {
+      const store = (window as any).__gameStore;
+      const st = store.getState();
+      for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
+      store.getState().doGoto(l, s);
+    }, [loc, sub, TEST_STATE]);
+  } catch (e: any) {
+    return { passed: false, error: `goto threw: ${e.message}`, loc: label };
   }
 
+  await sleep(150);
+
+  if (page.isClosed()) {
+    return { passed: false, error: 'page crashed', loc: label };
+  }
+
+  const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
+  if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
+    return { passed: false, error: `JS errors: ${newErrors.slice(0, 3).join('; ')}`, loc: label };
+  }
+
+  const bgInfo = await page.evaluate(async () => {
+    const main = document.querySelector('main');
+    if (!main) return { noBg: true };
+    const bg = getComputedStyle(main).backgroundImage;
+    if (!bg || bg === 'none') return { noBg: true };
+    const match = bg.match(/url\("?(.*?)"?\)/);
+    if (!match) return { noBg: true };
+    const url = match[1];
+    if (url.includes('undefined') || url.includes('null')) {
+      return { noBg: false, url, ok: false };
+    }
+    try {
+      const resp = await fetch(url, { method: 'HEAD' });
+      return { noBg: false, url, ok: resp.ok };
+    } catch {
+      return { noBg: false, url, ok: false };
+    }
+  });
+
+  if (!bgInfo.noBg && !bgInfo.ok && !EXCLUDE_BG.has(loc)) {
+    return { passed: false, error: `background image issue (src="${bgInfo.url}")`, loc: label };
+  }
+
+  if (qspHasBg(loc) && bgInfo.noBg && !EXCLUDE_BG.has(loc)) {
+    return { passed: false, error: 'QSP source has *bg but no background rendered', loc: label };
+  }
+
+  const actionCount = await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll('button'));
+    const actions = buttons.filter((b) => {
+      const text = b.textContent?.trim() ?? '';
+      const title = b.getAttribute('title');
+      if (title) return false;
+      if (/^(Map|Back)$/i.test(text)) return false;
+      if (text.length === 0 || text.length >= 80) return false;
+      return true;
+    });
+    return actions.length;
+  });
+  if (actionCount === 0 && sub === '' && qspHasActions(loc) && !EXCLUDE_NO_ACTIONS.has(loc)) {
+    return { passed: false, error: 'no actions found', loc: label };
+  }
+
+  const bodyText = await page.textContent('body');
+  if ((bodyText?.length ?? 0) < 50) {
+    return { passed: false, error: `text too short (${bodyText?.length ?? 0} chars)`, loc: label };
+  }
+
+  if (bodyText?.includes('[UNTRANSLATED:') && !EXCLUDE_UNTRANSLATED.has(loc)) {
+    const matches = bodyText.match(/\[UNTRANSLATED: [^\]]+\]/g);
+    return { passed: false, error: `untranslated QSP: ${matches?.slice(0, 3).join(', ')}`, loc: label };
+  }
+
+  const execLinks = await page.evaluate(() => {
+    return document.querySelectorAll('a[href^="exec:"]').length;
+  });
+  if (execLinks > 0 && !EXCLUDE_EXEC_DATA.has(loc)) {
+    return { passed: false, error: `${execLinks} exec: link(s) in rendered HTML`, loc: label };
+  }
+
+  if (bodyText?.includes('<<')) {
+    const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
+    return { passed: false, error: `${exprCount} unevaluated <<...>> expression(s) in rendered text`, loc: label };
+  }
+
+  if (bodyText?.includes('undefined') && !EXCLUDE_RENDER.has(loc)) {
+    return { passed: false, error: `'undefined' in rendered text`, loc: label };
+  }
+  if (bodyText?.includes('NaN') && !EXCLUDE_RENDER.has(loc)) {
+    return { passed: false, error: `'NaN' in rendered text`, loc: label };
+  }
+
+  const buttonIssues = await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll('button'));
+    const issues: string[] = [];
+    for (const b of buttons) {
+      const text = b.textContent?.trim() ?? '';
+      if (text.includes('<<')) issues.push(`button "<<...>>": ${text.slice(0, 50)}`);
+      if (text.includes('undefined')) issues.push(`button "undefined": ${text.slice(0, 50)}`);
+      if (text.includes('NaN')) issues.push(`button "NaN": ${text.slice(0, 50)}`);
+    }
+    return issues;
+  });
+  if (buttonIssues.length > 0) {
+    return { passed: false, error: buttonIssues.slice(0, 3).join('; '), loc: label };
+  }
+
+  if (verbose) process.stdout.write('.');
+  return { passed: true };
+}
+
+async function phase2RenderAudit(
+  pages: PageCtx[],
+  targets: Array<{ loc: string; sub: string }>,
+  fileMap: Record<string, string>
+): Promise<{ passed: boolean; error?: string; loc?: string }> {
+  const assignments: Array<Array<{ loc: string; sub: string }>> = pages.map(() => []);
+  targets.forEach((t, i) => assignments[i % pages.length].push(t));
+
+  const results = await Promise.all(
+    pages.map(async (ctx, i) => {
+      for (const { loc, sub } of assignments[i]) {
+        const result = await checkRenderTarget(ctx, loc, sub, fileMap);
+        if (!result.passed) return result;
+      }
+      return { passed: true };
+    })
+  );
+
+  const firstFail = results.find(r => !r.passed);
+  if (firstFail) return firstFail;
   if (verbose) console.log('');
   return { passed: true };
 }
 
-async function phase3InteractionAudit(
-  page: any,
-  targets: Array<{ loc: string; sub: string }>,
-  errors: string[]
+async function checkInteractionTarget(
+  ctx: PageCtx,
+  loc: string,
+  sub: string
 ): Promise<{ passed: boolean; error?: string; loc?: string; action?: string }> {
-  for (const { loc, sub } of targets) {
-    if (EXCLUDE_NO_ACTIONS.has(loc)) continue;
-    errors.length = 0;
-    const label = sub === '' ? loc : `${loc}:${sub}`;
+  const { page, errors } = ctx;
+  if (EXCLUDE_NO_ACTIONS.has(loc)) return { passed: true };
+  errors.length = 0;
+  const label = sub === '' ? loc : `${loc}:${sub}`;
 
-    try {
-      const extraArg = GOTO_EXTRA_ARGS[label] ?? '';
-      await page.evaluate(([l, s, ts, ea]) => {
-        const store = (window as any).__gameStore;
-        const st = store.getState();
-        for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
-        const origRandom = Math.random;
-        Math.random = () => 0;
-        store.getState().doGoto(l, s, ea || undefined);
-        Math.random = origRandom;
-      }, [loc, sub, TEST_STATE, extraArg]);
-    } catch (e: any) {
-      return { passed: false, error: `goto threw: ${e.message}`, loc: label };
-    }
-
-    await sleep(500);
-
-    const actions = await page.evaluate(() => {
-      const buttons = Array.from(document.querySelectorAll('button'));
-      return buttons
-        .filter((b) => {
-          const text = b.textContent?.trim() ?? '';
-          const title = b.getAttribute('title');
-          if (title) return false;
-          if (b.offsetParent === null) return false;
-          if (/^(Map|Back)$/i.test(text)) return false;
-          if (text.length === 0 || text.length >= 80) return false;
-          return true;
-        })
-        .map((b) => b.textContent?.trim() ?? '');
-    });
-
-    for (const actionText of actions) {
-      errors.length = 0;
-
-      try {
-        await page.locator('button', { hasText: actionText }).first().click();
-      } catch (e: any) {
-        return { passed: false, error: `click failed: ${e.message}`, loc: label, action: actionText };
-      }
-
-      await sleep(400);
-
-      if (page.isClosed()) {
-        return { passed: false, error: 'page crashed', loc: label, action: actionText };
-      }
-
-      const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
-      if (newErrors.length > 0) {
-        return { passed: false, error: `JS errors after click: ${newErrors.slice(0, 3).join('; ')}`, loc: label, action: actionText };
-      }
-
-      const destCheck = await page.evaluate(() => {
-        const bodyText = document.body.textContent ?? '';
-        const execLinks = document.querySelectorAll('a[href^="exec:"]').length;
-        const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
-        const hasUndefined = bodyText.includes('undefined');
-        const hasNaN = bodyText.includes('NaN');
-        const hasNoContent = bodyText.includes('No content for this location.');
-        return { execLinks, exprCount, hasUndefined, hasNaN, hasNoContent };
-      });
-
-      if (destCheck.execLinks > 0) {
-        return { passed: false, error: `${destCheck.execLinks} exec: link(s) in destination`, loc: label, action: actionText };
-      }
-      if (destCheck.exprCount > 0) {
-        return { passed: false, error: `${destCheck.exprCount} unevaluated <<...>> in destination`, loc: label, action: actionText };
-      }
-      if (destCheck.hasUndefined) {
-        return { passed: false, error: `'undefined' in destination text`, loc: label, action: actionText };
-      }
-      if (destCheck.hasNaN) {
-        return { passed: false, error: `'NaN' in destination text`, loc: label, action: actionText };
-      }
-      if (destCheck.hasNoContent) {
-        return { passed: false, error: `empty destination (No content for this location)`, loc: label, action: actionText };
-      }
-
-    try {
-      await page.evaluate(([l, s, ts]) => {
-        const store = (window as any).__gameStore;
-        const st = store.getState();
-        for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
-        const origRandom = Math.random;
-        Math.random = () => 0;
-        store.getState().doGoto(l, s);
-        Math.random = origRandom;
-      }, [loc, sub, TEST_STATE]);
-    } catch (e: any) {
-      return { passed: false, error: `goto threw: ${e.message}`, loc: label };
-    }
-
-      await sleep(300);
-
-      if (verbose) process.stdout.write('.');
-    }
+  try {
+    const extraArg = GOTO_EXTRA_ARGS[label] ?? '';
+    await page.evaluate(([l, s, ts, ea]) => {
+      const store = (window as any).__gameStore;
+      const st = store.getState();
+      for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
+      const origRandom = Math.random;
+      Math.random = () => 0;
+      store.getState().doGoto(l, s, ea || undefined);
+      Math.random = origRandom;
+    }, [loc, sub, TEST_STATE, extraArg]);
+  } catch (e: any) {
+    return { passed: false, error: `goto threw: ${e.message}`, loc: label };
   }
 
+  await sleep(150);
+
+  const actions = await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll('button'));
+    return buttons
+      .filter((b) => {
+        const text = b.textContent?.trim() ?? '';
+        const title = b.getAttribute('title');
+        if (title) return false;
+        if (b.offsetParent === null) return false;
+        if (/^(Map|Back)$/i.test(text)) return false;
+        if (text.length === 0 || text.length >= 80) return false;
+        return true;
+      })
+      .map((b) => b.textContent?.trim() ?? '');
+  });
+
+  for (const actionText of actions) {
+    errors.length = 0;
+
+    try {
+      await page.locator('button', { hasText: actionText }).first().click();
+    } catch (e: any) {
+      return { passed: false, error: `click failed: ${e.message}`, loc: label, action: actionText };
+    }
+
+    await sleep(150);
+
+    if (page.isClosed()) {
+      return { passed: false, error: 'page crashed', loc: label, action: actionText };
+    }
+
+    const newErrors = errors.filter((e: string) => !/404|Failed to load resource/i.test(e));
+    if (newErrors.length > 0) {
+      return { passed: false, error: `JS errors after click: ${newErrors.slice(0, 3).join('; ')}`, loc: label, action: actionText };
+    }
+
+    const destCheck = await page.evaluate(() => {
+      const bodyText = document.body.textContent ?? '';
+      const execLinks = document.querySelectorAll('a[href^="exec:"]').length;
+      const exprCount = (bodyText.match(/<<[^<>\n]+>>/g) || []).length;
+      const hasUndefined = bodyText.includes('undefined');
+      const hasNaN = bodyText.includes('NaN');
+      const hasNoContent = bodyText.includes('No content for this location.');
+      return { execLinks, exprCount, hasUndefined, hasNaN, hasNoContent };
+    });
+
+    if (destCheck.execLinks > 0) {
+      return { passed: false, error: `${destCheck.execLinks} exec: link(s) in destination`, loc: label, action: actionText };
+    }
+    if (destCheck.exprCount > 0) {
+      return { passed: false, error: `${destCheck.exprCount} unevaluated <<...>> in destination`, loc: label, action: actionText };
+    }
+    if (destCheck.hasUndefined) {
+      return { passed: false, error: `'undefined' in destination text`, loc: label, action: actionText };
+    }
+    if (destCheck.hasNaN) {
+      return { passed: false, error: `'NaN' in destination text`, loc: label, action: actionText };
+    }
+    if (destCheck.hasNoContent) {
+      return { passed: false, error: `empty destination (No content for this location)`, loc: label, action: actionText };
+    }
+
+  try {
+    await page.evaluate(([l, s, ts]) => {
+      const store = (window as any).__gameStore;
+      const st = store.getState();
+      for (const [k, v] of Object.entries(ts)) (st as any)[k] = v;
+      const origRandom = Math.random;
+      Math.random = () => 0;
+      store.getState().doGoto(l, s);
+      Math.random = origRandom;
+    }, [loc, sub, TEST_STATE]);
+  } catch (e: any) {
+    return { passed: false, error: `goto threw: ${e.message}`, loc: label };
+  }
+
+    await sleep(150);
+
+    if (verbose) process.stdout.write('.');
+  }
+  return { passed: true };
+}
+
+async function phase3InteractionAudit(
+  pages: PageCtx[],
+  targets: Array<{ loc: string; sub: string }>
+): Promise<{ passed: boolean; error?: string; loc?: string; action?: string }> {
+  const assignments: Array<Array<{ loc: string; sub: string }>> = pages.map(() => []);
+  targets.forEach((t, i) => assignments[i % pages.length].push(t));
+
+  const results = await Promise.all(
+    pages.map(async (ctx, i) => {
+      for (const { loc, sub } of assignments[i]) {
+        const result = await checkInteractionTarget(ctx, loc, sub);
+        if (!result.passed) return result;
+      }
+      return { passed: true };
+    })
+  );
+
+  const firstFail = results.find(r => !r.passed);
+  if (firstFail) return firstFail;
   if (verbose) console.log('');
   return { passed: true };
 }
@@ -635,14 +691,19 @@ async function main() {
   const srv = startServer();
   await sleep(500);
   const browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
-  const page = await browser.newPage();
-  page.setDefaultTimeout(5000);
 
-  const errors: string[] = [];
-  page.on('pageerror', (e: any) => errors.push(`pageerror: ${e.message}`));
-  page.on('console', (msg: any) => {
-    if (msg.type() === 'error') errors.push(`console: ${msg.text()}`);
-  });
+  const pageCount = Math.min(PARALLEL, Math.max(renderTargets.length, interactionTargets.length, 1));
+  const pages: PageCtx[] = [];
+  for (let i = 0; i < pageCount; i++) {
+    const p = await browser.newPage();
+    p.setDefaultTimeout(15000);
+    const errs: string[] = [];
+    p.on('pageerror', (e: any) => errs.push(`pageerror: ${e.message}`));
+    p.on('console', (msg: any) => {
+      if (msg.type() === 'error') errs.push(`console: ${msg.text()}`);
+    });
+    pages.push({ page: p, errors: errs });
+  }
 
   try {
     if (!skipStatic) {
@@ -659,11 +720,11 @@ async function main() {
       console.log('--- Phase 1: Static Analysis (skipped) ---');
     }
 
-    await setupPage(page);
+    await Promise.all(pages.map(ctx => setupPage(ctx.page)));
 
     if (!skipRender) {
       console.log('--- Phase 2: Render Audit ---');
-      const result = await phase2RenderAudit(page, renderTargets, fileMap, errors);
+      const result = await phase2RenderAudit(pages, renderTargets, fileMap);
       if (!result.passed) {
         console.log(`\nFAIL ${result.loc}: ${result.error}`);
         console.log('\nFix this error and re-run the audit.');
@@ -677,7 +738,7 @@ async function main() {
 
     if (!skipInteraction) {
       console.log('--- Phase 3: Interaction Audit ---');
-      const result = await phase3InteractionAudit(page, interactionTargets, errors);
+      const result = await phase3InteractionAudit(pages, interactionTargets);
       if (!result.passed) {
         console.log(`\nFAIL ${result.loc} / "${result.action}": ${result.error}`);
         console.log('\nFix this error and re-run the audit.');

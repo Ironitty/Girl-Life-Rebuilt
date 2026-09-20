@@ -18,7 +18,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'stat', '');
     scene.text('You approach the man\'s desk. He glances up and recognizes you.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>! I didn''t expect to see you back here. What can I do for you...
-    scene.text(`"${((st as any).pcs_nickname || '')}! I didn't expect to see you back here. What can I do for you?"`);
+    scene.text(`"${((st as any).pcs_nickname ?? '')}! I didn't expect to see you back here. What can I do for you?"`);
     scene.text('"I was wondering if the maid position is still open," you ask. "I\'d like to come back, if that\'s alright."');
     scene.text('Herman leans back in his chair, thinking it over for a moment. "Well, we\'ve been a bit short-staffed, to be honest. I don\'t see why not."');
     // TODO-QSP: dynamic text: "Same terms as before: working between '+func('time', 'get_time_string', 16, 0)+...

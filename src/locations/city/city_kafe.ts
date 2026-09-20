@@ -100,7 +100,7 @@ function enterFabi2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/fabi/FAB-001.jpg');
   // TODO-QSP: dynamic text: Fabi is filling in some government forms as you sit next to him. "Hey <<$pcs_nic...
-  scene.text(`Fabi is filling in some government forms as you sit next to him. "Hey ${((s as any).pcs_nickname || '')}, what's up?"`);
+  scene.text(`Fabi is filling in some government forms as you sit next to him. "Hey ${((s as any).pcs_nickname ?? '')}, what's up?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['city_kafe', 'start'] },
@@ -139,7 +139,7 @@ function enterOldJob(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The Roadhouse</b></center>');
   scene.img('images/locations/city/residential/cafe/kafe.jpg');
   // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>! Good to see you again!" Fabi says with a smile. "What br...
-  scene.text(`"Ah, ${((s as any).pcs_nickname || '')}! Good to see you again!" Fabi says with a smile. "What brings you back to the Roadhouse?"`);
+  scene.text(`"Ah, ${((s as any).pcs_nickname ?? '')}! Good to see you again!" Fabi says with a smile. "What brings you back to the Roadhouse?"`);
   scene.text('"I was wondering if you needed any help?" you reply. "I\'d like to waitress for you again."');
   scene.text('His smile widens. "I loved having you here. We still need the help, so if you want to come back to work the same hours, then you\'re welcome to do so."');
   // TODO-QSP: end
@@ -161,7 +161,7 @@ function enterFabi(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/cafe/fabi/FAB-001.jpg');
   scene.text('As you approach the owner, he looks up from his papers and gives you a tired smile. "Hello. I\'m Fabiyan Pankratov, owner of the Roadhouse, but everyone just calls me Fabi. I don\'t think I\'ve seen you around here before. What can I do for you?"');
   // TODO-QSP: dynamic text: "I''m <<$pcs_firstname>> <<$pcs_lastname>>," you tell him. "I was wondering if y...
-  scene.text(`"I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}," you tell him. "I was wondering if you have any waitress jobs available?"`);
+  scene.text(`"I'm ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}," you tell him. "I was wondering if you have any waitress jobs available?"`);
   scene.text('His smile broadens and he looks a little less tired. "Ah, so you want to work here? Well why wouldn\'t you? Rockabilly music, the greaser subculture, Cadillacs, motorcycles and hamburgers! I love this period of American culture, it\'s so vibrant and exciting! I\'ve put every ruble I have into making this place the perfect recreation of an American diner from 1958. Who doesn\'t love that?"');
   scene.text('A glance around the place shows you that the diner is barely half full, and most of those dining are eating Russian food rather than American. Fabi is still raving about America in the 1950s, talking about Elvis Presley, someone called Carl Perkins, and cheeseburgers and French fries. His enthusiasm is honest and infectious, but you came here for a reason, so you clear your throat. "Fabi? About the job?"');
   // TODO-QSP: dynamic text: He grins sheepishly. "Sorry, I get carried away sometimes. Let me tell you about...
@@ -362,7 +362,7 @@ function enterLunchAlone(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEatLunch(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/food/food_' + (Math.floor(Math.random() * 4) + 1) + '.jpg');
   // TODO-QSP: dynamic text: You take your time eating your meal and playing on your phone. It''s just a ligh...
-  scene.text(`You take your time eating your meal and playing on your phone. It's just a light lunch, but it's quite tasty and${((s as any).mtxt || '')}`);
+  scene.text(`You take your time eating your meal and playing on your phone. It's just a light lunch, but it's quite tasty and${((s as any).mtxt ?? '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', goto: ['city_kafe', 'lunch'] },

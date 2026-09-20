@@ -192,7 +192,7 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
     (st as any).meat_stew = ((st as any).meat_stew ?? 0) - (1);
     if (((st as any).meat_stew ?? 0) > 0) {
       // TODO-QSP: dynamic text: There''s <<meat_stew>> '+iif(meat_stew > 1, 'servings', 'serving')+' of stew lef...
-      scene.text('There\'s ' + ((st as any).meat_stew || '') + ' \'+iif(meat_stew > 1, \'servings\', \'serving\')+\' of stew left in the pot');
+      scene.text('There\'s ' + ((st as any).meat_stew ?? '') + ' \'+iif(meat_stew > 1, \'servings\', \'serving\')+\' of stew left in the pot');
     } else {
       scene.text('You have finished the last of the stew. The pot is empty.');
     }
@@ -206,7 +206,7 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
     (st as any).mushroom_soup = ((st as any).mushroom_soup ?? 0) - (1);
     if (((st as any).mushroom_soup ?? 0) > 0) {
       // TODO-QSP: dynamic text: There''s <<mushroom_soup>> '+iif(mushroom_soup > 1, 'servings', 'serving')+' of ...
-      scene.text('There\'s ' + ((st as any).mushroom_soup || '') + ' \'+iif(mushroom_soup > 1, \'servings\', \'serving\')+\' of soup left in the pot');
+      scene.text('There\'s ' + ((st as any).mushroom_soup ?? '') + ' \'+iif(mushroom_soup > 1, \'servings\', \'serving\')+\' of soup left in the pot');
     } else {
       scene.text('You have finished the last of the soup, and the pot is empty.');
     }
@@ -414,7 +414,7 @@ function enterSwampEscape(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: '<center><img <<$set_imgh>> src="images/locations/gadukino/hunters/handshelp.jpg"></center>' & !! in...
       scene.text('As you start moving into the swamp, Igor calls after you.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, where are you going? You will get stuck in there!
-      scene.text(`"${((s as any).pcs_nickname || '')}, where are you going? You will get stuck in there!`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}, where are you going? You will get stuck in there!`);
       qspCall(s, 'stat', '');
       scene.actions([
         { label: 'Turn back', goto: ['gad_swamp_yard', 'start'] },

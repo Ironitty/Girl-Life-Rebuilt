@@ -116,18 +116,18 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['loc'] === 'house_party') {
     if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'perverted'  ||  ((s as any).npc_fidelity ?? 0)?.[String((s as any).npcID ?? 0)] === 'cheater') {
       // TODO-QSP: dynamic text: You stumble into an empty room with <<$npcdesc>>, barely getting through the doo...
-      scene.text(`You stumble into an empty room with ${((s as any).npcdesc || '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, rough hands slide over your skin.`);
+      scene.text(`You stumble into an empty room with ${((s as any).npcdesc ?? '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, rough hands slide over your skin.`);
       scene.text('"Girls like you all want the same thing," he grins as he tears it off and pins you to the wall. His hands seem to find every inch of your bare skin. By the time you\'re at the bed, there\'s a trail of clothing across the floor.');
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
         // TODO-QSP: dynamic text: You stumble into an empty room with <<$npcdesc>>, barely getting through the doo...
-        scene.text(`You stumble into an empty room with ${((s as any).npcdesc || '')}, barely getting through the door before clothes start getting discarded. His eyes light up as your breasts are exposed and he openly leers at them.`);
+        scene.text(`You stumble into an empty room with ${((s as any).npcdesc ?? '')}, barely getting through the door before clothes start getting discarded. His eyes light up as your breasts are exposed and he openly leers at them.`);
         // TODO-QSP: dynamic text: "Fuck..." The way <<$npcdesc>> stares at your boobs, he looks like a boy on Chri...
-        scene.text(`"Fuck..." The way ${((s as any).npcdesc || '')} stares at your boobs, he looks like a boy on Christmas day. He suddenly remembers he needs to get undressed as well and scrambles to take off his pants. His eyes never leave your body as you lead him toward the bed.`);
+        scene.text(`"Fuck..." The way ${((s as any).npcdesc ?? '')} stares at your boobs, he looks like a boy on Christmas day. He suddenly remembers he needs to get undressed as well and scrambles to take off his pants. His eyes never leave your body as you lead him toward the bed.`);
       } else {
         if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
           // TODO-QSP: dynamic text: You stumble into an empty room with <<$npcdesc>>, barely getting through the doo...
-          scene.text(`You stumble into an empty room with ${((s as any).npcdesc || '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, warm hands slide stop you.`);
+          scene.text(`You stumble into an empty room with ${((s as any).npcdesc ?? '')}, barely getting through the door before clothes start getting discarded. Before you can fully get your ${((s as any).sex_ev ?? 0)?.['top_noun'] ?? ''} off, warm hands slide stop you.`);
           scene.text('"Hold up your arms," he orders as he expertly pulls it over your shoulders. His slightly labored breath makes you want to rush but he takes his time. By the time you\'re make the bed, you are naked and panting.');
         } else {
           scene.text('You tear each other\'s clothes off, leaving a trail of discarded fabrics.');
@@ -142,7 +142,7 @@ function enterFranticUndress(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'childish') {
         // TODO-QSP: dynamic text: <<$npcdesc>> can''t keep his eyes off you as you lead him.
-        scene.text(`${((s as any).npcdesc || '')} can't keep his eyes off you as you lead him.`);
+        scene.text(`${((s as any).npcdesc ?? '')} can't keep his eyes off you as you lead him.`);
         scene.text('"Fuck," he groans as you start to undress once you\'re inside the door. His eyes light up as your breasts are exposed and he openly leers at them. He suddenly remembers he needs to get undressed as well and scrambles to take off his pants. His eyes never leave your body as you lead him toward the bed.');
       } else {
         if (((s as any).npc_humor ?? 0)?.[String((s as any).npcID ?? 0)] === 'intellectual') {
@@ -197,11 +197,11 @@ function enterTopUndress(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/sex/undress/top1.mp4');
       if (((s as any).tits ?? 0) >= 4  &&  ((s as any).PCloThinness ?? 0) <= 2  &&  ((s as any).PCloTopCut ?? 0) <= 2) {
         // TODO-QSP: dynamic text: You pull off your top, revealing your <<$pcs_breastdesc>> breasts to <<$npcdesc>...
-        scene.text(`You pull off your top, revealing your ${((s as any).pcs_breastdesc || '')} breasts to ${((s as any).npcdesc || '')} and he grins hungrily at them.`);
+        scene.text(`You pull off your top, revealing your ${((s as any).pcs_breastdesc ?? '')} breasts to ${((s as any).npcdesc ?? '')} and he grins hungrily at them.`);
         scene.text('"I\'ll never understand why you bother hiding tits like these," he breathes as your thick clothing slips from your fingers to the floor.');
       } else {
         // TODO-QSP: dynamic text: You pull off your top, revealing your <<$pcs_breastdesc>> breasts to <<$npcdesc>...
-        scene.text(`You pull off your top, revealing your ${((s as any).pcs_breastdesc || '')} breasts to ${((s as any).npcdesc || '')}.`);
+        scene.text(`You pull off your top, revealing your ${((s as any).pcs_breastdesc ?? '')} breasts to ${((s as any).npcdesc ?? '')}.`);
         scene.text('"Never get tired of seeing those," he grins, moving you towards the bed.');
       }
     } else {
@@ -279,7 +279,7 @@ function enterPantyStrip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', (-5));
   scene.img('images/shared/sex/undress/panties2.mp4');
   // TODO-QSP: dynamic text: With only one piece of clothing remaining, you turn your back to <<$npcdesc>> an...
-  scene.text(`With only one piece of clothing remaining, you turn your back to ${((s as any).npcdesc || '')} and slip your panties down your thighs, giving him a magnificent view of your ass and both holes as you bend over before stepping out of them and giving him the full view of the front.`);
+  scene.text(`With only one piece of clothing remaining, you turn your back to ${((s as any).npcdesc ?? '')} and slip your panties down your thighs, giving him a magnificent view of your ass and both holes as you bend over before stepping out of them and giving him the full view of the front.`);
   if (((s as any).npc_seen_pussy ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
   }
   qspCall(s, 'sex_ev_start', 'starting_route');

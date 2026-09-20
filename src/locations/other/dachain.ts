@@ -30,7 +30,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).stol = 'a new <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027stol/u0027, /u0027start/u0027); return false;">table</a>';
   }
   // TODO-QSP: dynamic text: In front of the window there is <<$stol>>.
-  scene.text(`In front of the window there is ${((s as any).stol || '')}.`);
+  scene.text(`In front of the window there is ${((s as any).stol ?? '')}.`);
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
     scene.text('Your <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027komp/u0027, /u0027start/u0027); return false;">computer</a> is on the table. Unfortunately, there is no internet service in the village.');
@@ -89,7 +89,7 @@ function enterDachakit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs ''ki...
-    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027dirtarm/u0027); return false;">Wash the dishes</a>.`);
+    scene.text(`<b>${((s as any).dirttarelka ?? '')}</b> dirty dishes are lying in the sink. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027dirtarm/u0027); return false;">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: dynamic text: Next to the sink is dishwashing liquid, enough for <b><<mc_inventory[''dish_soap...
@@ -105,7 +105,7 @@ function enterDachakit(s: GameState, scene: SceneBuilder): void {
       (s as any).edagot = '<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027kit_din/u0027, /u0027edagotd/u0027); return false;">Cook a meal</a>';
     }
     // TODO-QSP: dynamic text: There''s enough food for <b><<mc_inventory[''food_basic'']>></b> ' + iif(mc_inve...
-    scene.text('There\'s enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot || '') + '');
+    scene.text('There\'s enough food for <b>' + ((s as any).mc_inventory ?? 0)?.['food_basic'] ?? '' + '</b> \' + iif(mc_inventory[\'food_basic\'] = 1, \'serving\', \'servings\') + \'. ' + ((s as any).edagot ?? '') + '');
   } else {
     if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
       scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');

@@ -49,7 +49,7 @@ function enterBrotherShowerBj(s: GameState, scene: SceneBuilder): void {
       qspGoto(st, 'brother_shower_sex', 'shower_swallow');
     } else {
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," he says through grunts. "I''m gonna cum soon. Can I cum...
-      scene.text(`"Hey ${((st as any).pcs_nickname || '')}," he says through grunts. "I'm gonna cum soon. Can I cum on your face?"`);
+      scene.text(`"Hey ${((st as any).pcs_nickname ?? '')}," he says through grunts. "I'm gonna cum soon. Can I cum on your face?"`);
       scene.actions([
         { label: 'Ignore him and keep sucking', handler: (st: GameState) => {
     qspCall(st, 'cum_call', 'mouth_swallow', 'A34', 1);
@@ -158,7 +158,7 @@ function enterBrotherShowerFuckFirst(s: GameState, scene: SceneBuilder): void {
   if (((s as any).brotherQW ?? 0)?.['know_not_virgin'] === 1) {
     ((s as any).brotherQW = (s as any).brotherQW ?? {})['fuck'] = ((s as any).brotherQW['fuck'] ?? 0) + (1);
     // TODO-QSP: dynamic text: "I was wondering if you were going to let me join the "Boys Who Fuck <<$pcs_nick...
-    scene.text(`"I was wondering if you were going to let me join the "Boys Who Fuck ${((s as any).pcs_nickname || '')}" Club," he says, grin radiating from behind you.`);
+    scene.text(`"I was wondering if you were going to let me join the "Boys Who Fuck ${((s as any).pcs_nickname ?? '')}" Club," he says, grin radiating from behind you.`);
     scene.actions([
       { label: 'It\'s pretty exclusive', handler: (st: GameState) => {
     ((st as any).brotherQW = (st as any).brotherQW ?? {})['club'] = 1;
@@ -629,7 +629,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).brothercumchoice ?? 0) === 1) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>-! I''m gonna cum! What should I do?"
-    scene.text(`"${((s as any).pcs_nickname || '')}-! I'm gonna cum! What should I do?"`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}-! I'm gonna cum! What should I do?"`);
     scene.actions([
       { label: 'Not inside me!', handler: (st: GameState) => {
     qspCall(st, 'arousal', 'hj', 1, 'incest');
@@ -646,7 +646,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).brothercumchoice ?? 0) === 2) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>-! I''m almost there! Can I come inside you today?"
-      scene.text(`"${((s as any).pcs_nickname || '')}-! I'm almost there! Can I come inside you today?"`);
+      scene.text(`"${((s as any).pcs_nickname ?? '')}-! I'm almost there! Can I come inside you today?"`);
       if (((s as any).knowpreg ?? 0) === 0  &&  (!((s as any).thinkpreg ?? 0))) {
         scene.actions([
           { label: 'Push him off (not inside!)', handler: (st: GameState) => {
@@ -695,7 +695,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).brothercumchoice ?? 0) === 3) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>-! I''m almost there! Let me cum on your face!"
-        scene.text(`"${((s as any).pcs_nickname || '')}-! I'm almost there! Let me cum on your face!"`);
+        scene.text(`"${((s as any).pcs_nickname ?? '')}-! I'm almost there! Let me cum on your face!"`);
         scene.actions([
           { label: 'Let him cum on your face', goto: ['brother_shower_sex', 'shower_facial'] },
           { label: 'Ignore him, make him come inside you', goto: ['brother_shower_sex', 'shower_forced_creampie'] },
@@ -703,7 +703,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).brothercumchoice ?? 0) === 4) {
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>-! I''m almost there! Can I cum in your mouth?"
-          scene.text(`"${((s as any).pcs_nickname || '')}-! I'm almost there! Can I cum in your mouth?"`);
+          scene.text(`"${((s as any).pcs_nickname ?? '')}-! I'm almost there! Can I cum in your mouth?"`);
           (s as any).brotherbjcomment = 3;
           scene.actions([
             { label: 'Let him cum in your mouth', goto: ['brother_shower_sex', 'shower_swallow'] },
@@ -782,7 +782,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Kolka\'s eyes are wide and filled with worry.');
       // TODO-QSP: dynamic text: "I am <i>so</i> sorry <<$pcs_nickname>>! I didn''t mean to! I just couldn''t hol...
-      scene.text(`"I am <i>so</i> sorry ${((st as any).pcs_nickname || '')}! I didn't mean to! I just couldn't hold it in and before I could say anything I just-!"`);
+      scene.text(`"I am <i>so</i> sorry ${((st as any).pcs_nickname ?? '')}! I didn't mean to! I just couldn't hold it in and before I could say anything I just-!"`);
       if (((st as any).birth_control ?? 0)?.['think_safe'] === 1) {
         ((st as any).birth_control = (st as any).birth_control ?? {})['kolka_knows'] = 1;
         scene.actions([
@@ -804,7 +804,7 @@ function enterBrotherFuckCum(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh my god," you say, adopting an expression of severe panic. "You just came inside me! Your own sister! Do you have any idea what that means?"');
     scene.text('He wilts back from you. "I-"');
     // TODO-QSP: dynamic text: "I could get pregnant Kolka! I''m only <<age>>! I''m not ready to be a mother! A...
-    scene.text(`"I could get pregnant Kolka! I'm only ${((st as any).age || '')}! I'm not ready to be a mother! Are you ready to be a father?? If I have a baby, are you going to take responsibility? Oh god, what is ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} going to think? Her son knocking up his sister?!"`);
+    scene.text(`"I could get pregnant Kolka! I'm only ${((st as any).age ?? '')}! I'm not ready to be a mother! Are you ready to be a father?? If I have a baby, are you going to take responsibility? Oh god, what is ${((st as any).npc_nickname ?? 0)?.['A29'] ?? ''} going to think? Her son knocking up his sister?!"`);
     scene.text('Kolka\'s face visibly pales. "Oh shit! No! What are we going to do? I don\'t want to be a dad! I don\'t want to get in trouble for this! I-! I-!"');
     scene.text('He\'s on the verge of tears now and you can\'t hold back any longer and bust into near uncontrollable laughter. Your body is wracked with giggles, trying not to let your laughs escape the room and echo outside the door.');
     scene.text('"WHY ARE YOU LAUGHING?! THIS IS SERIOUS! YOU WERE SERIOUS A SECOND AGO!!"');
@@ -930,7 +930,7 @@ function enterShowerSwallow(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You keep sucking on Kolka\'s cock until he starts tapping on your head.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>-! I''m gonna-!"
-    scene.text(`"${((s as any).pcs_nickname || '')}-! I'm gonna-!"`);
+    scene.text(`"${((s as any).pcs_nickname ?? '')}-! I'm gonna-!"`);
     scene.text('He doesn\'t even finish the word before you feel hot liquid squirting into your mouth.');
     scene.text('"… cum."');
   }
@@ -953,7 +953,7 @@ function enterShowerSwallow(s: GameState, scene: SceneBuilder): void {
         scene.text('Kolka regards you with a bit of a look as you stand back up.');
         scene.text('"What?" you ask at him.');
         // TODO-QSP: dynamic text: "You''re kind of a slut, aren''t you <<$pcs_nickname>>?"
-        scene.text(`"You're kind of a slut, aren't you ${((st as any).pcs_nickname || '')}?"`);
+        scene.text(`"You're kind of a slut, aren't you ${((st as any).pcs_nickname ?? '')}?"`);
         scene.actions([
           { label: 'Feign insult', handler: (st: GameState) => {
     scene.text('You gasp in mock indignation. "Kolka! How dare you! I have never been anything other than ladylike! How could you call your beloved sister a slut?"');
@@ -983,7 +983,7 @@ function enterShowerSwallow(s: GameState, scene: SceneBuilder): void {
           { label: 'Kiss him to gross him out', handler: (st: GameState) => {
     scene.text('You frown at him and fling your arms around his neck without warning. You press your lips against his and force your tongue into his mouth as far as it can go. He sputters, flailing backward and pushing you away.');
     // TODO-QSP: dynamic text: "Ugh! Ew! Gross! What the hell <<$pcs_nickname>>?! I just came in your mouth! I ...
-    scene.text(`"Ugh! Ew! Gross! What the hell ${((st as any).pcs_nickname || '')}?! I just came in your mouth! I don't want to taste that!"`);
+    scene.text(`"Ugh! Ew! Gross! What the hell ${((st as any).pcs_nickname ?? '')}?! I just came in your mouth! I don't want to taste that!"`);
     scene.text('He rips open the shower curtain and you grin back in satisfaction as he stumbles out to escape.');
     scene.text('"Well maybe you shouldn\'t be calling girls sluts just because they\'re nice enough to swallow your cum!"');
     scene.text('<i>Well,</i> you think to yourself. <i>I didn\'t <b>just</b> swallow. I did also say I thought it was tasty. I suppose that is a bit slutty isn\'t it?</i>');
@@ -1230,7 +1230,7 @@ function enterShowerCreampie(s: GameState, scene: SceneBuilder): void {
         if (((s as any).birth_control ?? 0)?.['think_safe'] === 1) {
           ((s as any).birth_control = (s as any).birth_control ?? {})['kolka_knows'] = 1;
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" he says with wide eyes. "Is it okay that I came inside you ...
-          scene.text(`"${((s as any).pcs_nickname || '')}!" he says with wide eyes. "Is it okay that I came inside you like that? What if you get pregnant?"`);
+          scene.text(`"${((s as any).pcs_nickname ?? '')}!" he says with wide eyes. "Is it okay that I came inside you like that? What if you get pregnant?"`);
           scene.text('"Don\'t worry about it," you smile. "I\'m on birth control. I could take a thousand creampies from you, I won\'t get pregnant."');
           scene.text('Kolka\'s eyes get even wider and his cock already seems to be hardening up again.');
           scene.text('<i>Whoops,</i> you think to yourself. <i>I wonder if it\'s going to come back to bite me that I told him that…</i>');
@@ -1379,7 +1379,7 @@ function enterShowerFillMeUp(s: GameState, scene: SceneBuilder): void {
           if (((st as any).birth_control ?? 0)?.['think_safe'] === 1) {
             ((st as any).birth_control = (st as any).birth_control ?? {})['kolka_knows'] = 1;
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" he says with wide eyes. "Is it okay that I came inside you ...
-            scene.text(`"${((st as any).pcs_nickname || '')}!" he says with wide eyes. "Is it okay that I came inside you like that? What if you get pregnant?"`);
+            scene.text(`"${((st as any).pcs_nickname ?? '')}!" he says with wide eyes. "Is it okay that I came inside you like that? What if you get pregnant?"`);
             scene.text('"Don\'t worry about it," you smile. "I\'m on birth control. I could take a thousand creampies from you, I won\'t get pregnant."');
             scene.text('Kolka\'s eyes get even wider and his cock already seems to be hardening up again.');
             scene.text('<i>Whoops,</i> you think to yourself. <i>I wonder if it\'s going to come back to bite me that I told him that…</i>');
@@ -1485,14 +1485,14 @@ function enterBrotherShowerFuckEnd(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).brotherQW ?? 0)?.['virgin_lie'] < 3) {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Can I ask you something? I''ve been wondering…"
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}. Can I ask you something? I've been wondering…"`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}. Can I ask you something? I've been wondering…"`);
           scene.text('"Hmm? What is it?"');
           scene.text('"When I put it in before, I thought I felt something, some kind of resistance. When I pushed past it I heard you make a sound, like you were in pain. Was… was that your hymen?"');
           scene.text('You freeze in place suddenly, not knowing what to do.');
           scene.text('"Did you lie to me about not being a virgin?"');
           scene.text('You turn towards him, biting your lip and not saying anything. The guilty look on your face gives everything away.');
           // TODO-QSP: dynamic text: "Why did you lie about that <<$pcs_nickname>>?"
-          scene.text(`"Why did you lie about that ${((s as any).pcs_nickname || '')}?"`);
+          scene.text(`"Why did you lie about that ${((s as any).pcs_nickname ?? '')}?"`);
           ((s as any).brotherQW = (s as any).brotherQW ?? {})['virgin_think_took'] = 0;
           scene.actions([
             { label: 'I don\'t know', handler: (st: GameState) => {
@@ -1510,7 +1510,7 @@ function enterBrotherShowerFuckEnd(s: GameState, scene: SceneBuilder): void {
     scene.text('You shy away. And then blink a few times registering what you just heard.');
     scene.text('"What…?"');
     // TODO-QSP: dynamic text: "I called you a dummy <<$pcs_nickname>>. How could you think that I''d like you ...
-    scene.text(`"I called you a dummy ${((st as any).pcs_nickname || '')}. How could you think that I'd like you more if you were fucking other guys? You know that most guys like to fuck virgins, right?"`);
+    scene.text(`"I called you a dummy ${((st as any).pcs_nickname ?? '')}. How could you think that I'd like you more if you were fucking other guys? You know that most guys like to fuck virgins, right?"`);
     scene.text('"They do?"');
     scene.text('"Yes, we do! Anyone can fuck a slut. That\'s what makes them sluts. But a girl is only a virgin once. And besides…" His grin grows wider. "This means that we lost our virginities together. I have yours and you have mine. And… I know we\'re siblings and stuff… I know that some people think that\'s wrong, but you being my sister just makes this feel more right to me. I feel closer to you now. How many other brothers and sisters can say they had their first time together? I\'m glad you were a virgin! And I\'m glad we got to share that together…"');
     scene.text('He trails off and you eye him for a moment before you break into a smile, wrapping him a tight hug.');
@@ -1548,7 +1548,7 @@ function enterBrotherShowerFuckEnd(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Can I ask you something? I''ve been wondering…"
-          scene.text(`"Hey ${((s as any).pcs_nickname || '')}. Can I ask you something? I've been wondering…"`);
+          scene.text(`"Hey ${((s as any).pcs_nickname ?? '')}. Can I ask you something? I've been wondering…"`);
           scene.text('"Hmm? What is it?"');
           if (((s as any).pcs_vag ?? 0) >= 25) {
             ((s as any).brotherQW = (s as any).brotherQW ?? {})['virgin_think_took'] = 0;

@@ -90,9 +90,9 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/group/rinkrug.jpg');
     scene.text('You nod your head and they laugh and pull out their dicks as they walk over. They stroke themselves as they wait for Arthur to finish. It doesn\'t take long before he pulls out and you feel spurts of warm cum splattering over your ass and lower back. Once he\'s done, he wipes his dick on your ass and climbs off you.');
     // TODO-QSP: dynamic text: Adbul immediately moves in behind you and pulls you up by the hips onto all four...
-    scene.text(`Adbul immediately moves in behind you and pulls you up by the hips onto all fours. He wastes no time and plunges his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick into your pussy. You notice he doesn't feel very big, but that doesn't seem to bother him in the slightest as he fucks you hard and fast, constantly slapping your ass cheeks as he makes comments to the others and laughs.`);
+    scene.text(`Adbul immediately moves in behind you and pulls you up by the hips onto all fours. He wastes no time and plunges his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick into your pussy. You notice he doesn't feel very big, but that doesn't seem to bother him in the slightest as he fucks you hard and fast, constantly slapping your ass cheeks as he makes comments to the others and laughs.`);
     // TODO-QSP: dynamic text: Meanwhile Hassan kneels in front of you and slaps his <<dick>>cm <<$dick_girth>>...
-    scene.text(`Meanwhile Hassan kneels in front of you and slaps his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick against your face several times until you open your mouth. As soon as you do, he shoves his cock inside and holds your head tight as he fucks your mouth and throat.`);
+    scene.text(`Meanwhile Hassan kneels in front of you and slaps his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick against your face several times until you open your mouth. As soon as you do, he shoves his cock inside and holds your head tight as he fucks your mouth and throat.`);
     scene.text('As the two guys spitroast you, Arthur gets dressed and takes a seat. He takes a swig of his drink as he watches you getting fucked.');
     scene.text('After a few minutes, Abdul pulls out and shoots his load over your ass and lower back, adding to the mess Arthur has already made. A few seconds later, Hassan groans and shoots his load into your mouth. Satasfied, they get up and say something to Arthur as they put their dicks away. They then leave without saying anything more.');
     // TODO-QSP: dynamic text: Once they''re gone, Arthur looks at you with a smile. "So you like cock do you? ...
@@ -135,7 +135,7 @@ function enterTheBeginning(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'cum_call', 'mouth_swallow', ((st as any).boy ?? 0), 1);
     scene.img('images/shared/sex/blowjob/deep4.jpg');
     // TODO-QSP: dynamic text: You kneel down in front of Arthur as he takes his <<dick>>cm <<$dick_girth>> coc...
-    scene.text(`You kneel down in front of Arthur as he takes his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} cock out. You take it into your mouth and start sucking it, Arthur letting you guide the action and do all the work, only occasionally thrusting himself down your throat and making you gag.`);
+    scene.text(`You kneel down in front of Arthur as he takes his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} cock out. You take it into your mouth and start sucking it, Arthur letting you guide the action and do all the work, only occasionally thrusting himself down your throat and making you gag.`);
     if (((st as any).horand ?? 0) > ((st as any).pcs_horny ?? 0)) {
       (st as any).orgasm_or = 'no';
       qspCall(st, 'arousal', 'bj', 10, 'sub', 'rough', 'deepthroat');
@@ -242,12 +242,12 @@ function enterGroup(s: GameState, scene: SceneBuilder): void {
     { label: 'More', handler: (st: GameState) => {
     scene.img('images/shared/sex/group/triplep.jpg');
     // TODO-QSP: dynamic text: Satisfied with this, Abdul stops and lies down on a couch, pulling you over with...
-    scene.text(`Satisfied with this, Abdul stops and lies down on a couch, pulling you over with him. You straddle him and feel his ${((st as any).dick || '')}cm ${((st as any).dick_girth || '')} dick slide inside your pussy as Arthur stands to the side and pulls your head towards him.`);
+    scene.text(`Satisfied with this, Abdul stops and lies down on a couch, pulling you over with him. You straddle him and feel his ${((st as any).dick ?? '')}cm ${((st as any).dick_girth ?? '')} dick slide inside your pussy as Arthur stands to the side and pulls your head towards him.`);
     (st as any).anal = ((st as any).anal ?? 0) + (1);
     // TODO-QSP: dynamic text: You open your mouth and start sucking his <<dick2>>cm <<$dick_girth2>> dick whil...
-    scene.text(`You open your mouth and start sucking his ${((st as any).dick2 || '')}cm ${((st as any).dick_girth2 || '')} dick while Hassan kneels down behind you and you feel the tip of his cock rubbing against your asshole. You groan in pain as he forces his dick into your ass.`);
+    scene.text(`You open your mouth and start sucking his ${((st as any).dick2 ?? '')}cm ${((st as any).dick_girth2 ?? '')} dick while Hassan kneels down behind you and you feel the tip of his cock rubbing against your asshole. You groan in pain as he forces his dick into your ass.`);
     // TODO-QSP: dynamic text: You feel his <<dick1>>cm <<$dick_girth1>> cock stretching your ass. The three me...
-    scene.text(`You feel his ${((st as any).dick1 || '')}cm ${((st as any).dick_girth1 || '')} cock stretching your ass. The three men then all start fucking you in tandem. This goes on for some time, occasionally stopping so they can switch positions. They eventually stop and get you back on your knees, pushing your head back and telling you to open your mouth. They all jerk off on your face and into your mouth.`);
+    scene.text(`You feel his ${((st as any).dick1 ?? '')}cm ${((st as any).dick_girth1 ?? '')} cock stretching your ass. The three men then all start fucking you in tandem. This goes on for some time, occasionally stopping so they can switch positions. They eventually stop and get you back on your knees, pushing your head back and telling you to open your mouth. They all jerk off on your face and into your mouth.`);
     (st as any).horand = (Math.floor(Math.random() * 100) + 1);
     if (((st as any).horand ?? 0) > ((st as any).pcs_horny ?? 0)) {
       (st as any).orgasm_or = 'no';
@@ -282,7 +282,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A73');
   scene.img('images/shared/sex/blowjob/bj15.jpg');
   // TODO-QSP: dynamic text: Arthur leads you into the warehouse and pushes you onto your knees in front of h...
-  scene.text(`Arthur leads you into the warehouse and pushes you onto your knees in front of him before he pulls his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick out. He smacks you in the face with it and then rubs the tip against your lips before he shoves his dick into your mouth and starts roughly fucking your throat.`);
+  scene.text(`Arthur leads you into the warehouse and pushes you onto your knees in front of him before he pulls his ${((s as any).dick ?? '')}cm ${((s as any).dick_girth ?? '')} dick out. He smacks you in the face with it and then rubs the tip against your lips before he shoves his dick into your mouth and starts roughly fucking your throat.`);
   qspCall(s, 'arousal', 'bj', 10, 'sub', 'rough');
   qspCall(s, 'stat', '');
   // TODO-QSP: end

@@ -126,7 +126,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp_kickboxVars ?? 0)?.['npc_health'] <= 0) {
       // TODO-QSP: dynamic text: <b><font color = green><<$boydesc>> lost by TKO</font></b>
-      scene.text(`<b><font color = green>${((s as any).boydesc || '')} lost by TKO</font></b>`);
+      scene.text(`<b><font color = green>${((s as any).boydesc ?? '')} lost by TKO</font></b>`);
       qspGoto(s, 'havana_kickboxing', 'end', 'winKO');
     }
   }
@@ -170,12 +170,12 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      scene.text(`${((s as any).boydesc || '')} attacks`);
+      scene.text(`${((s as any).boydesc ?? '')} attacks`);
       (s as any).tiprand = (Math.floor(Math.random() * 3) + 0);
       if ((!((s as any).tiprand ?? 0))) {
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'Block ' + String(((s as any).boydesc || '') ?? '') + '\'s quick jab', handler: (st: GameState) => {
-    scene.text(`${((st as any).boydesc || '')} deals a quick jab, stepping forward.`);
+          { label: '', labelFn: (s: GameState) => 'Block ' + String(((s as any).boydesc ?? '') ?? '') + '\'s quick jab', handler: (st: GameState) => {
+    scene.text(`${((st as any).boydesc ?? '')} deals a quick jab, stepping forward.`);
     qspCall(st, 'kickboxing_funcs', 'attack', 'enemy', 'jab');
     if (((st as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       qspGoto(st, 'havana_kickboxing', 'end', 'lossKO');
@@ -186,8 +186,8 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).tiprand ?? 0) === 1) {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Dodge ' + String(((s as any).boydesc || '') ?? '') + '\'s power punch', handler: (st: GameState) => {
-    scene.text(`${((st as any).boydesc || '')} applies a power punch.`);
+            { label: '', labelFn: (s: GameState) => 'Dodge ' + String(((s as any).boydesc ?? '') ?? '') + '\'s power punch', handler: (st: GameState) => {
+    scene.text(`${((st as any).boydesc ?? '')} applies a power punch.`);
     qspCall(st, 'kickboxing_funcs', 'attack', 'enemy', 'punch');
     if (((st as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       qspGoto(st, 'havana_kickboxing', 'end', 'lossKO');
@@ -197,8 +197,8 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'Dodge ' + String(((s as any).boydesc || '') ?? '') + '\'s kick', handler: (st: GameState) => {
-    scene.text(`${((st as any).boydesc || '')} goes for a kick.`);
+            { label: '', labelFn: (s: GameState) => 'Dodge ' + String(((s as any).boydesc ?? '') ?? '') + '\'s kick', handler: (st: GameState) => {
+    scene.text(`${((st as any).boydesc ?? '')} goes for a kick.`);
     qspCall(st, 'kickboxing_funcs', 'attack', 'enemy', 'kick');
     if (((st as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       qspGoto(st, 'havana_kickboxing', 'end', 'lossKO');

@@ -652,7 +652,7 @@ function enterReadNoticeBoard(s: GameState, scene: SceneBuilder): void {
     scene.text('"I want to look at it first. If it\'s too much hassle to do your job, I can leave."');
     scene.text('"OK then you can go look at the apartment. It\'s upstairs, room 17. I will not go with you, my legs ache."');
     // TODO-QSP: dynamic text: What an unpleasant man. He has you sign a registrar and then says, "Follow me <<...
-    scene.text(`What an unpleasant man. He has you sign a registrar and then says, "Follow me ${((st as any).pcs_firstname || '')}."`);
+    scene.text(`What an unpleasant man. He has you sign a registrar and then says, "Follow me ${((st as any).pcs_firstname ?? '')}."`);
     scene.text('You follow him through the dimly lit lobby and down a corridor. You can hear barely discernible sounds from various apartments, merging into ghostly mutterings that set the hair on the back of your neck on end. You hear one that almost sounds like it\'s whispering, "Run."');
     scene.text('Stopping by an old dresser, the old man rummages through a drawer, "Looks like you are in luck my dear…"');
     scene.text('The old man puts a key in your hand, "Here."');

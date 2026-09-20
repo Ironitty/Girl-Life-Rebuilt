@@ -30,7 +30,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey, I never asked," you muse. "What is it you do for work again?"');
     if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'cashier_supermarket') {
       // TODO-QSP: dynamic text: "Nothing special, just a cashier at a generic supermarket," <<$npcdesc>> shrugs.
-      scene.text(`"Nothing special, just a cashier at a generic supermarket," ${((st as any).npcdesc || '')} shrugs.`);
+      scene.text(`"Nothing special, just a cashier at a generic supermarket," ${((st as any).npcdesc ?? '')} shrugs.`);
       scene.text('"Pyaterochka?" you ask and he nods.');
       scene.text('"That\'s the one."');
       if (((st as any).region ?? 0) === 'pav') {
@@ -40,35 +40,35 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'cashier_liquor') {
         // TODO-QSP: dynamic text: "Cashier at a liquor store," <<$npcdesc>> shrugs. "Pretty boring."
-        scene.text(`"Cashier at a liquor store," ${((st as any).npcdesc || '')} shrugs. "Pretty boring."`);
+        scene.text(`"Cashier at a liquor store," ${((st as any).npcdesc ?? '')} shrugs. "Pretty boring."`);
         qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
       } else {
         if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'cashier_coffee') {
           // TODO-QSP: dynamic text: "I work the register at a coffee shop," <<$npcdesc>> says. "It gets pretty hecti...
-          scene.text(`"I work the register at a coffee shop," ${((st as any).npcdesc || '')} says. "It gets pretty hectic in there sometimes. Especially mornings."`);
+          scene.text(`"I work the register at a coffee shop," ${((st as any).npcdesc ?? '')} says. "It gets pretty hectic in there sometimes. Especially mornings."`);
           scene.text('"That\'s cool. Is the coffee any good?"');
           scene.text('"It\'s fine I guess," he shrugs. "Nothing special. Just generic shit."');
           qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
         } else {
           if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'barista') {
             // TODO-QSP: dynamic text: "I work as a barista at a coffee shop," <<$npcdesc>> says. "It gets pretty hecti...
-            scene.text(`"I work as a barista at a coffee shop," ${((st as any).npcdesc || '')} says. "It gets pretty hectic in there sometimes. Especially mornings.`);
+            scene.text(`"I work as a barista at a coffee shop," ${((st as any).npcdesc ?? '')} says. "It gets pretty hectic in there sometimes. Especially mornings.`);
             scene.text('"That\'s cool. Is the coffee any good?"');
             scene.text('"It is when I make it," he smirks.');
             qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
           } else {
             if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'fast_food') {
               // TODO-QSP: dynamic text: "I flip burgers at this chain fast food joint," <<$npcdesc>> says. " Pay sucks a...
-              scene.text(`"I flip burgers at this chain fast food joint," ${((st as any).npcdesc || '')} says. " Pay sucks and customers are all assholes. Service industry is shit."`);
+              scene.text(`"I flip burgers at this chain fast food joint," ${((st as any).npcdesc ?? '')} says. " Pay sucks and customers are all assholes. Service industry is shit."`);
             } else {
               if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'taxi_driver') {
                 // TODO-QSP: dynamic text: "I drive a cab in the city," <<$npcdesc>> says. "Not much, but it pays the bills...
-                scene.text(`"I drive a cab in the city," ${((st as any).npcdesc || '')} says. "Not much, but it pays the bills.`);
+                scene.text(`"I drive a cab in the city," ${((st as any).npcdesc ?? '')} says. "Not much, but it pays the bills.`);
                 qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
               } else {
                 if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'masseuse') {
                   // TODO-QSP: dynamic text: "I work as a masseuse in the city," <<$npcdesc>> says.
-                  scene.text(`"I work as a masseuse in the city," ${((st as any).npcdesc || '')} says.`);
+                  scene.text(`"I work as a masseuse in the city," ${((st as any).npcdesc ?? '')} says.`);
                   scene.actions([
                     { label: 'That\'s cool', handler: (st: GameState) => {
     scene.text('"That\'s cool. You\'ll have to show me your skills sometime," you smile.');
@@ -79,7 +79,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
     if (((st as any).npc_insecure ?? 0)?.[String((st as any).npcID ?? 0)] === 1) {
       qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 'hate');
       // TODO-QSP: dynamic text: "What the fuck?" <<$npcdesc>> gives you a deep frown of disgust. "What do you th...
-      scene.text(`"What the fuck?" ${((st as any).npcdesc || '')} gives you a deep frown of disgust. "What do you think I am, some kind of faggot?"`);
+      scene.text(`"What the fuck?" ${((st as any).npcdesc ?? '')} gives you a deep frown of disgust. "What do you think I am, some kind of faggot?"`);
       scene.text('"I was just joking," you say.');
       scene.text('"Jokes are supposed to be funny."');
     } else {
@@ -99,7 +99,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'masseuse_sexual') {
                     // TODO-QSP: dynamic text: "I work as a masseuse in the city," <<$npcdesc>> says.
-                    scene.text(`"I work as a masseuse in the city," ${((st as any).npcdesc || '')} says.`);
+                    scene.text(`"I work as a masseuse in the city," ${((st as any).npcdesc ?? '')} says.`);
                     scene.actions([
                       { label: 'That\'s cool', handler: (st: GameState) => {
     scene.text('"That\'s cool. You\'ll have to show me your skills sometime," you smile.');
@@ -139,10 +139,10 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                     if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'factory') {
                       if (((st as any).region ?? 0) === 'pav') {
                         // TODO-QSP: dynamic text: "I work at the textile factory," <<$npcdesc>> says.
-                        scene.text(`"I work at the textile factory," ${((st as any).npcdesc || '')} says.`);
+                        scene.text(`"I work at the textile factory," ${((st as any).npcdesc ?? '')} says.`);
                       } else {
                         // TODO-QSP: dynamic text: "I work at the textile factory in the next town over," <<$npcdesc>> says.
-                        scene.text(`"I work at the textile factory in the next town over," ${((st as any).npcdesc || '')} says.`);
+                        scene.text(`"I work at the textile factory in the next town over," ${((st as any).npcdesc ?? '')} says.`);
                         if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
                           scene.text('"The one in Pavlovsk?"');
                           scene.text('"Yeah, how\'d you know?"');
@@ -154,33 +154,33 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'bartender') {
                         // TODO-QSP: dynamic text: "Bartender," <<$npcdesc>> says.
-                        scene.text(`"Bartender," ${((st as any).npcdesc || '')} says.`);
+                        scene.text(`"Bartender," ${((st as any).npcdesc ?? '')} says.`);
                         scene.text('"That\'s pretty cool. So you have to know how to make a lot of fancy drinks?"');
                         scene.text('"Yeah, but everyone just orders vodka anyways," he snickers.');
                         qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
                       } else {
                         if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'mechanic') {
                           // TODO-QSP: dynamic text: "I work on cars," <<$npcdesc>> says.
-                          scene.text(`"I work on cars," ${((st as any).npcdesc || '')} says.`);
+                          scene.text(`"I work on cars," ${((st as any).npcdesc ?? '')} says.`);
                           scene.text('"Oh cool, like a mechanic?"');
                           scene.text('"Yeah, exactly."');
                           qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
                         } else {
                           if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'line_cook') {
                             // TODO-QSP: dynamic text: "I work in a kitchen," <<$npcdesc>> says.
-                            scene.text(`"I work in a kitchen," ${((st as any).npcdesc || '')} says.`);
+                            scene.text(`"I work in a kitchen," ${((st as any).npcdesc ?? '')} says.`);
                             scene.text('"Oh, cool. Like a chef?"');
                             scene.text('"No, I\'m just a line cook. Nothing fancy."');
                             qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
                           } else {
                             if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'waiter') {
                               // TODO-QSP: dynamic text: "I wait tables," <<$npcdesc>> says.
-                              scene.text(`"I wait tables," ${((st as any).npcdesc || '')} says.`);
+                              scene.text(`"I wait tables," ${((st as any).npcdesc ?? '')} says.`);
                               qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
                             } else {
                               if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'personal_trainer') {
                                 // TODO-QSP: dynamic text: "I work at a gym as a personal trainer," <<$npcdesc>> says.
-                                scene.text(`"I work at a gym as a personal trainer," ${((st as any).npcdesc || '')} says.`);
+                                scene.text(`"I work at a gym as a personal trainer," ${((st as any).npcdesc ?? '')} says.`);
                                 scene.actions([
                                   { label: 'That\'s cool', handler: (st: GameState) => {
     scene.text('"Oh, that\'s cool. So you know how to get people in shape? Got any tips to keep a girl\'s figure?"');
@@ -200,7 +200,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                               } else {
                                 if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'programmer') {
                                   // TODO-QSP: dynamic text: "I work in tech," <<$npcdesc>> says. "Do the programming for an IT company in th...
-                                  scene.text(`"I work in tech," ${((st as any).npcdesc || '')} says. "Do the programming for an IT company in the city."`);
+                                  scene.text(`"I work in tech," ${((st as any).npcdesc ?? '')} says. "Do the programming for an IT company in the city."`);
                                   scene.text('"So you can fix my computer if I have a problem?"');
                                   scene.text('"Oh fuck," he groans. "Not you too."');
                                   qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
@@ -210,7 +210,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                                       ((st as any).npc_criminal_known = (st as any).npc_criminal_known ?? {})[String((st as any).npcID ?? 0)] = 1;
                                       if (((st as any).npc_crime_type ?? 0)?.[String((st as any).npcID ?? 0)] === 'drug_dealer') {
                                         // TODO-QSP: dynamic text: "I sell drugs," <<$npcdesc>> says blatantly.
-                                        scene.text(`"I sell drugs," ${((st as any).npcdesc || '')} says blatantly.`);
+                                        scene.text(`"I sell drugs," ${((st as any).npcdesc ?? '')} says blatantly.`);
                                         scene.actions([
                                           { label: 'Uncomfortable', handler: (st: GameState) => {
     ((st as any).npc_criminal_discomfort = (st as any).npc_criminal_discomfort ?? {})[String((st as any).npcID ?? 0)] = 1;
@@ -236,7 +236,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         if (((st as any).npc_crime_type ?? 0)?.[String((st as any).npcID ?? 0)] === 'enforcer') {
                                           // TODO-QSP: dynamic text: "I''m an enforcer for a gang," <<$npcdesc>> says blatantly.
-                                          scene.text(`"I'm an enforcer for a gang," ${((st as any).npcdesc || '')} says blatantly.`);
+                                          scene.text(`"I'm an enforcer for a gang," ${((st as any).npcdesc ?? '')} says blatantly.`);
                                           scene.actions([
                                             { label: 'Uncomfortable', handler: (st: GameState) => {
     ((st as any).npc_criminal_discomfort = (st as any).npc_criminal_discomfort ?? {})[String((st as any).npcID ?? 0)] = 1;
@@ -261,7 +261,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                                           ]);
                                         } else {
                                           // TODO-QSP: dynamic text: "I steal things," <<$npcdesc>> says blatantly.
-                                          scene.text(`"I steal things," ${((st as any).npcdesc || '')} says blatantly.`);
+                                          scene.text(`"I steal things," ${((st as any).npcdesc ?? '')} says blatantly.`);
                                           scene.actions([
                                             { label: 'Uncomfortable', handler: (st: GameState) => {
     ((st as any).npc_criminal_discomfort = (st as any).npc_criminal_discomfort ?? {})[String((st as any).npcID ?? 0)] = 1;
@@ -289,7 +289,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                                     } else {
                                       if (((st as any).npc_crime_type ?? 0)?.[String((st as any).npcID ?? 0)] === 'drug_dealer') {
                                         // TODO-QSP: dynamic text: "I work in pharmaceuticals," <<$npcdesc>> says.
-                                        scene.text(`"I work in pharmaceuticals," ${((st as any).npcdesc || '')} says.`);
+                                        scene.text(`"I work in pharmaceuticals," ${((st as any).npcdesc ?? '')} says.`);
                                         if (((st as any).start_type ?? 0)?.['loc'] === 'sg') {
                                           scene.text('"That\'s cool. My aunt is a pharmacist too."');
                                           scene.text('"Oh. Good to know."');
@@ -300,14 +300,14 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                                       } else {
                                         if (((st as any).npc_crime_type ?? 0)?.[String((st as any).npcID ?? 0)] === 'enforcer') {
                                           // TODO-QSP: dynamic text: "I''m a sort of fixer," <<$npcdesc>> says.
-                                          scene.text(`"I'm a sort of fixer," ${((st as any).npcdesc || '')} says.`);
+                                          scene.text(`"I'm a sort of fixer," ${((st as any).npcdesc ?? '')} says.`);
                                           scene.text('"Fixer? You mean like a handyman?"');
                                           scene.text('"Not really," he shrugs. "It\'s more like I\'m on call to help people out. When someone calls me, I head over and give them a hand."');
                                           scene.text('"Sounds... chaotic."');
                                           scene.text('"Yeah, a little. Never know exactly what the problem is until I get there."');
                                         } else {
                                           // TODO-QSP: dynamic text: "I work in acquisitions and sales," <<$npcdesc>> says.
-                                          scene.text(`"I work in acquisitions and sales," ${((st as any).npcdesc || '')} says.`);
+                                          scene.text(`"I work in acquisitions and sales," ${((st as any).npcdesc ?? '')} says.`);
                                           scene.text('"So... like a salesman?"');
                                           scene.text('"Sort of? I\'m kind of a middle man. I get things from people and then sell them to other people."');
                                         }
@@ -317,7 +317,7 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                                   } else {
                                     if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'businessman') {
                                       // TODO-QSP: dynamic text: "I run a company I founded," <<$npcdesc>> says casually.
-                                      scene.text(`"I run a company I founded," ${((st as any).npcdesc || '')} says casually.`);
+                                      scene.text(`"I run a company I founded," ${((st as any).npcdesc ?? '')} says casually.`);
                                       scene.text('"Oh wow. Explains the apartment. What do you sell?"');
                                       scene.text('"Imported cars from China. Everybody needs cars."');
                                       scene.text('"Very practical," you nod."');
@@ -325,29 +325,29 @@ function enterWhatsYourJob(s: GameState, scene: SceneBuilder): void {
                                     } else {
                                       if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'lawyer') {
                                         // TODO-QSP: dynamic text: "I''m the partner at a law firm here in the city," <<$npcdesc>> says.
-                                        scene.text(`"I'm the partner at a law firm here in the city," ${((st as any).npcdesc || '')} says.`);
+                                        scene.text(`"I'm the partner at a law firm here in the city," ${((st as any).npcdesc ?? '')} says.`);
                                         scene.text('"Oh wow. Impressive. Explains the condo."');
                                         qspCall(st, 'sex_ev_pillow_talk2', 'small_talk');
                                       } else {
                                         if (((st as any).npc_occupation ?? 0)?.[String((st as any).npcID ?? 0)] === 'investment_banker') {
                                           if (((st as any).sex_ev ?? 0)?.['loc'] !== 'pc_home') {
                                             // TODO-QSP: dynamic text: "I work for one of the big banks here in the city," <<$npcdesc>> says.
-                                            scene.text(`"I work for one of the big banks here in the city," ${((st as any).npcdesc || '')} says.`);
+                                            scene.text(`"I work for one of the big banks here in the city," ${((st as any).npcdesc ?? '')} says.`);
                                             scene.text('"Oh wow. Impressive. Explains the condo," you smirk. "So if I\'m looking to start a career in finance I should come to you?"');
                                           } else {
                                             if (((st as any).sex_ev ?? 0)?.['loc'] === 'pc_home') {
                                               // TODO-QSP: dynamic text: "I work for one of the big banks here in the city," <<$npcdesc>> says.
-                                              scene.text(`"I work for one of the big banks here in the city," ${((st as any).npcdesc || '')} says.`);
+                                              scene.text(`"I work for one of the big banks here in the city," ${((st as any).npcdesc ?? '')} says.`);
                                               scene.text('"And you come over to my place instead of inviting me over to yours?" you smirk. "So if I\'m looking to start a career in finance I should come to you?"');
                                             } else {
                                               if (((st as any).sex_ev ?? 0)?.['loc'] === 'hotel_room') {
                                                 if (((st as any).region ?? 0) === 'pav') {
                                                   // TODO-QSP: dynamic text: "I work for one of the big banks in the city," <<$npcdesc>> says.
-                                                  scene.text(`"I work for one of the big banks in the city," ${((st as any).npcdesc || '')} says.`);
+                                                  scene.text(`"I work for one of the big banks in the city," ${((st as any).npcdesc ?? '')} says.`);
                                                   scene.text('"Oh wow. Impressive. Explains this fancy hotel room," you smirk sarcastically at the cheap decor of the motel. "So if I\'m looking to start a career in finance I should come to you?"');
                                                 } else {
                                                   // TODO-QSP: dynamic text: "I work for one of the big banks here in the city," <<$npcdesc>> says.
-                                                  scene.text(`"I work for one of the big banks here in the city," ${((st as any).npcdesc || '')} says.`);
+                                                  scene.text(`"I work for one of the big banks here in the city," ${((st as any).npcdesc ?? '')} says.`);
                                                   scene.text('"Oh wow. Impressive. Explains this fancy hotel room," you smirk. "So if I\'m looking to start a career in finance I should come to you?"');
                                                 }
                                               }

@@ -30,7 +30,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     if (((s as any).prostitute_client_condom ?? 0) === 'Yes') {
       qspCall(s, 'prostitution_functions', 'remove_condom');
       // TODO-QSP: dynamic text: You take your condom and put it on his <<dick>>cm dick.
-      scene.text(`You take your condom and put it on his ${((s as any).dick || '')}cm dick.`);
+      scene.text(`You take your condom and put it on his ${((s as any).dick ?? '')}cm dick.`);
     }
     // TODO-QSP: iif(rand(1, 10) < 6, '"Don''t keep me waiting,', '"Get to work,')+iif(rand(1, 10) < 4, ' whore', ' g...
   } else {
@@ -44,7 +44,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
         if (((s as any).prostitute_client_condom ?? 0) === 'Yes') {
           qspCall(s, 'prostitution_functions', 'remove_condom');
           // TODO-QSP: dynamic text: You take your condom and put it on his <<dick>>cm dick.
-          scene.text(`You take your condom and put it on his ${((s as any).dick || '')}cm dick.`);
+          scene.text(`You take your condom and put it on his ${((s as any).dick ?? '')}cm dick.`);
         }
         scene.text('"Get me ready," he commands and you obediently start to suck him hard.');
       }
@@ -95,7 +95,7 @@ function enterVaginal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).prostitute_client_condom ?? 0) === 'Yes'  &&  ((s as any).prostitute ?? 0)?.['condom'] === 0) {
       qspCall(s, 'prostitution_functions', 'remove_condom');
       // TODO-QSP: dynamic text: You take your condom and put it on his <<dick>>cm dick.
-      scene.text(`You take your condom and put it on his ${((s as any).dick || '')}cm dick.`);
+      scene.text(`You take your condom and put it on his ${((s as any).dick ?? '')}cm dick.`);
     }
     qspCall(s, 'arousal', 'auto_lube', 'vaginal');
     // TODO-QSP: dynamic text: You spread your legs and help guide his member to the right place. '+iif(pcs_hor...
@@ -144,7 +144,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).prostitute_client_condom ?? 0) === 'Yes'  &&  ((s as any).prostitute ?? 0)?.['condom'] === 0) {
       qspCall(s, 'prostitution_functions', 'remove_condom');
       // TODO-QSP: dynamic text: You take your condom and put it on his <<dick>>cm dick.
-      scene.text(`You take your condom and put it on his ${((s as any).dick || '')}cm dick.`);
+      scene.text(`You take your condom and put it on his ${((s as any).dick ?? '')}cm dick.`);
     }
     qspCall(s, 'arousal', 'auto_lube', 'anal');
     scene.text('You spread your legs and help guide his member to the right place. He pushes his member against your asshole and without giving you a word of warning forces his dick inside.');
@@ -741,7 +741,7 @@ function enterRegularStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute_client_condom ?? 0) === 'Yes') {
     qspCall(s, 'prostitution_functions', 'remove_condom');
     // TODO-QSP: dynamic text: You take your condom and put it on his <<dick>>cm dick.
-    scene.text(`You take your condom and put it on his ${((s as any).dick || '')}cm dick.`);
+    scene.text(`You take your condom and put it on his ${((s as any).dick ?? '')}cm dick.`);
   }
   scene.text('You bow your head down and tenderly take the head of his dick in your mouth.');
   scene.text('"Oh fuck," he says when you circle your tongue around the head.');
@@ -818,7 +818,7 @@ function enterRegularStartBj(s: GameState, scene: SceneBuilder): void {
 function enterRegularStartLick(s: GameState, scene: SceneBuilder): void {
   (s as any).prostitute_scene_lick = 1;
   (s as any).prostitute_pic_rand = (Math.floor(Math.random() * 2) + 0);
-  scene.img(`images/shared/prostitution/car/regular/sex/start_lick'+'${((s as any).prostitute_pick_rand || '')}'+'.mp4`);
+  scene.img(`images/shared/prostitution/car/regular/sex/start_lick'+'${((s as any).prostitute_pick_rand ?? '')}'+'.mp4`);
   scene.text('He hinges down the passenger seat. "Lay down, I want to taste you," he tells you. You eagerly obey and spread your legs.');
   // TODO-QSP: dynamic text: "Beautiful," he comments on your'+iif(pcs_horny < 40, ' dry ', ' wet ')+'pussy.
   scene.text('"Beautiful," he comments on your' + ((((s as any).pcs_horny ?? 0) < 40) ? (' dry ') : (' wet ')) + 'pussy.');
@@ -864,7 +864,7 @@ function enterRegularVaginal(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).prostitute ?? 0)?.['scene_repeat'] === 1) {
       (s as any).prostitute_pic_rand = (Math.floor(Math.random() * 3) + 3);
-      scene.img(`images/shared/prostitution/car/regular/sex/main_pussy${((s as any).prostitute_pic_rand || '')}.mp4`);
+      scene.img(`images/shared/prostitution/car/regular/sex/main_pussy${((s as any).prostitute_pic_rand ?? '')}.mp4`);
       if (((s as any).prostitute_pic_rand ?? 0) < 5) {
         scene.text('After a few minutes you switch positions. He puts the passenger seat back and moves to the back of the car and pulls you with him. You get on top of him and he continues pushing inside you.');
       } else {

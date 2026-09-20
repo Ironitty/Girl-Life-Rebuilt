@@ -22,7 +22,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
       (s as any).startdob = 'Your birthday: <b>' + (String(100 + ((s as any).birthday ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + (String(100 + ((s as any).birthmonth ?? 0)).slice((2)-1, ((2)-1)+(2))) + '/' + ((s as any).birthyear ?? 0) + '</b> (DD/MM/YYYY)';
     }
     // TODO-QSP: dynamic text: <a href="exec:gt ''intro_character_creation'', ''core_birthday''"><<$startdob>><...
-    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027core_birthday/u0027); return false;">${((s as any).startdob || '')}</a>.`);
+    scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027core_birthday/u0027); return false;">${((s as any).startdob ?? '')}</a>.`);
   } else {
     scene.text('<center><b>Birthday Picker</b></center>');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
@@ -47,7 +47,7 @@ function enterCoreBirthday(s: GameState, scene: SceneBuilder): void {
     (s as any).birthmonth = qspFunc(s, 'math', 'int_clamp', ((s as any).birthmonth ?? 0), 1, 12);
     (s as any).birthday = qspFunc(s, 'math', 'int_clamp', ((s as any).birthday ?? 0), 1, ((s as any).monthdays ?? 0));
     // TODO-QSP: dynamic text: <center><<iif($start_type[''magic''] = ''tg'', ''Her'', ''Your'')>> birthday: <b...
-    scene.text(`<center>${((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? ('Her') : ('Your'))} birthday: <b>${((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? ''} ${((s as any).birthday || '')}${qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday || ''))}, ${((s as any).birthyear || '')}</b></center>`);
+    scene.text(`<center>${((((s as any).start_type ?? 0)?.['magic'] === 'tg') ? ('Her') : ('Your'))} birthday: <b>${((s as any).monthName ?? 0)?.[String((s as any).birthmonth ?? 0)] ?? ''} ${((s as any).birthday ?? '')}${qspFunc(s, 'shortgs', 'get_number_suffix', ((s as any).birthday ?? ''))}, ${((s as any).birthyear ?? '')}</b></center>`);
     // TODO-QSP: dynamic text: <center><a href="exec:birthday += 5 & gs ''intro_character_creation'', ''core_bi...
     scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.birthday +=s.5; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027core_birthday/u0027); return false;">+5 Days</a></center>');
     // TODO-QSP: dynamic text: <center><a href="exec:birthday += 1 & gs ''intro_character_creation'', ''core_bi...
@@ -205,7 +205,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         }
         scene.img('images/system/1_openings/shared/pre_1.jpg');
         // TODO-QSP: dynamic text: You are <<$pcs_firstname>> <<$pcs_lastname>>, nicknamed <<$pcs_nickname>> for sh...
-        scene.text(`You are ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, nicknamed ${((s as any).pcs_nickname || '')} for short.`);
+        scene.text(`You are ${((s as any).pcs_firstname ?? '')} ${((s as any).pcs_lastname ?? '')}, nicknamed ${((s as any).pcs_nickname ?? '')} for short.`);
         // TODO-QSP: dynamic text: Your mother''s name is <<$npc_firstname[''A29'']>> and your biological father le...
         scene.text(`Your mother's name is ${((s as any).npc_firstname ?? 0)?.['A29'] ?? ''} and your biological father left when you were a baby, your mother marrying your stepfather, ${((s as any).npc_firstname ?? 0)?.['A28'] ?? ''}, shortly afterwards.`);
         // TODO-QSP: dynamic text: <<$npc_firstname[''A33'']>> is your older sister, who is two years older than yo...
@@ -354,7 +354,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gt 'intro_character_creation', 'start3', $ARGS[1]
   } },
     ]);
-  } },,
+  } },
 { label: 'Gadukino Start', handler: (st: GameState) => {
     scene.text('<center><h2>Gadukino</h2></center>');
     scene.img('images/system/1_openings/shared/site_gadukino.jpg');
@@ -394,16 +394,16 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
     if (Number((s as any).locArgs?.[1] ?? 0) === 'cool') {
       { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cool']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([
-        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have || '') ?? '') + ' a lot of friends', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have ?? '') ?? '') + ' a lot of friends', handler: (st: GameState) => {
     qspCall(st, 'intro_character_creation', 'group_desc', 'cool', 'socialite');
   } },
-        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' beautiful', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' beautiful', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'beauti...
   } },
-        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' just hanging in there', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' just hanging in there', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'anorex...
   } },
-        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' like, bubbly and hot', handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' like, bubbly and hot', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'cool', 'bimbo'
   } },
       ]);
@@ -411,16 +411,16 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
       if (Number((s as any).locArgs?.[1] ?? 0) === 'jock') {
         { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'jock']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' an avid volleyball player', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid volleyball player', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'volley...
   } },
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' an avid dancer', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid dancer', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'dancer...
   } },
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' an avid runner', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid runner', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'runner...
   } },
-          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' an avid football player', handler: (st: GameState) => {
+          { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid football player', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'jock', 'footba...
   } },
         ]);
@@ -428,16 +428,16 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
         if (Number((s as any).locArgs?.[1] ?? 0) === 'nerd') {
           { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nerd']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
           scene.actions([
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' the Queen of the Nerds!', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the Queen of the Nerds!', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'nerdqu...
   } },
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' a good student', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a good student', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'goodst...
   } },
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' a computer geek', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a computer geek', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'comput...
   } },
-            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' an avid chess player', handler: (st: GameState) => {
+            { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an avid chess player', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'nerd', 'chessp...
   } },
           ]);
@@ -446,19 +446,19 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
             { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gopnik']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).tsg ?? 0)) {
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' ' + String(((s as any).npc_nickname ?? 0)?.['A9'] ?? '' ?? '') + '\'s girlfriend', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' ' + String(((s as any).npc_nickname ?? 0)?.['A9'] ?? '' ?? '') + '\'s girlfriend', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'vite...
   } },
               ]);
             }
             scene.actions([
-              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' a gopnik', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a gopnik', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'gopn...
   } },
-              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' a punk or troublemaker', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a punk or troublemaker', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'trou...
   } },
-              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' an alternative, party girl or rebel', handler: (st: GameState) => {
+              { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an alternative, party girl or rebel', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'gopnik', 'alte...
   } },
             ]);
@@ -466,22 +466,22 @@ function enterCharselect(s: GameState, scene: SceneBuilder): void {
             if (Number((s as any).locArgs?.[1] ?? 0) === 'outcast') {
               { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'outcast']; enterGroupDesc(s, scene); (s as any).locArgs = __savedLocArgs; }
               scene.actions([
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have || '') ?? '') + ' no friends', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_have ?? '') ?? '') + ' no friends', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'fri...
   } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' an ugly duckling', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' an ugly duckling', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'ugl...
   } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' a good girl', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a good girl', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'goo...
   } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' a slut', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' a slut', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'slu...
   } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' the resident goth', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the resident goth', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'got...
   } },
-                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb || '') ?? '') + ' the poor kid', handler: (st: GameState) => {
+                { label: '', labelFn: (s: GameState) => 'I ' + String(((s as any).temp_verb ?? '') ?? '') + ' the poor kid', handler: (st: GameState) => {
     // TODO-QSP: gt 'intro_character_creation', 'group_desc', 'outcast', 'poo...
   } },
               ]);
@@ -925,9 +925,9 @@ function enterSetupPersonality(s: GameState, scene: SceneBuilder): void {
     ((st as any).start_type = (st as any).start_type ?? {})['cat'] = ((st as any).temp_cat ?? 0);
     // TODO-QSP: gs 'intro_character_templates', 'set_template', $start_type['cat']
     qspGoto(st, 'intro_character_creation', 'appearance_hub');
-  } },,
-{ label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },,
-{ label: '', labelFn: (s: GameState) => 'Return to the ' + String(((s as any).temp_group || '') ?? '') + ' options', handler: (st: GameState) => { qspGoto(st, 'intro_character_creation', 'charselect', ((st as any).temp_group ?? '')); } },,
+  } },
+{ label: 'Select another start at random', goto: ['intro_character_creation', 'random_start'] },
+{ label: '', labelFn: (s: GameState) => 'Return to the ' + String(((s as any).temp_group ?? '') ?? '') + ' options', handler: (st: GameState) => { qspGoto(st, 'intro_character_creation', 'charselect', ((st as any).temp_group ?? '')); } },
 { label: 'Return to starting options', goto: ['intro_character_creation', 'charselect'] },
 ]);
   return;
@@ -1018,17 +1018,17 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'body_desc', 'hair');
   if (((s as any).face_style ?? 0)?.['type'] === 1) {
     // TODO-QSP: dynamic text: <center><i><<$hair>></i> You may also <a href="exec: $face_style[''avatar_hair''...
-    scene.text(`<center><i>${((s as any).hair || '')}</i> You may also <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $face_style[/u0027avatar_hair/u0027] = input(/u0027Enter a description of your hair:/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">manually enter a description</a> if you would prefer.</center>`);
+    scene.text(`<center><i>${((s as any).hair ?? '')}</i> You may also <a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: $face_style[/u0027avatar_hair/u0027] = input(/u0027Enter a description of your hair:/u0027) */ return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">manually enter a description</a> if you would prefer.</center>`);
   }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHairNextPrev(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: <center>Hair length: <<$pc_descWordy[''hair length'']>> — <a href="exec:pcs_hair...
-  scene.text(`<center>Hair length: ${((s as any).pc_descWordy ?? 0)?.['hair length'] ?? ''} — <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_hairlng = ${((s as any).hairlng_next || '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">Change length</a></center>`);
+  scene.text(`<center>Hair length: ${((s as any).pc_descWordy ?? 0)?.['hair length'] ?? ''} — <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_hairlng = ${((s as any).hairlng_next ?? '')}; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">Change length</a></center>`);
   if (((s as any).curly ?? 0) <= 0) {
     // TODO-QSP: dynamic text: <center>Hair: <a href="exec:defcurly = 1 & curly = 2147483647 & gs ''intro_chara...
-    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = s.1; s.curly = s.2147483647; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">straight</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor || '')}</a></center>`);
+    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = s.1; s.curly = s.2147483647; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">straight</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor ?? '')}</a></center>`);
   } else {
     // TODO-QSP: dynamic text: <center>Hair: <a href="exec:defcurly = 0 & curly = 0 & gs ''intro_character_crea...
-    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = s.0; s.curly = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">curly</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor || '')}</a></center>`);
+    scene.text(`<center>Hair: <a href="#" onclick="window.__gameStore.setState((s) => { s.defcurly = s.0; s.curly = s.0; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">curly</a>, <a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_haircol = (pcs_haircol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027hair/u0027); return false;">${((s as any).pcs_haircolor ?? '')}</a></center>`);
   }
   scene.actions([
 { label: '<b>Done</b>', handler: (st: GameState) => {
@@ -1050,7 +1050,7 @@ function enterEyes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).face_style ?? 0)?.['type'] === 1) {
     scene.img(`${qspFunc(s, '$face_image', '')}`);
   } else {
-    scene.img(`images/pc/body/eyes/${((s as any).pcs_eyecolor || '')}.jpg`);
+    scene.img(`images/pc/body/eyes/${((s as any).pcs_eyecolor ?? '')}.jpg`);
   }
   if (((s as any).face_style ?? 0)?.['type'] === 1) {
     scene.text('<center>Adjust your eyes and eyelashes to match your avatar.</center>');
@@ -1058,7 +1058,7 @@ function enterEyes(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><i><<$pc_descFull[''eyes'']>></i></center>
   scene.text(`<center><i>${((s as any).pc_descFull ?? 0)?.['eyes'] ?? ''}</i></center>`);
   // TODO-QSP: dynamic text: <center><a href="exec: pcs_eyecol = (pcs_eyecol + 1) mod 4 & gs ''intro_characte...
-  scene.text(`<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyecol = (pcs_eyecol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027eyes/u0027); return false;">Change eye color (${((s as any).pcs_eyecolor || '')})</a></center>`);
+  scene.text(`<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_eyecol = (pcs_eyecol + 1) mod 4; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027eyes/u0027); return false;">Change eye color (${((s as any).pcs_eyecolor ?? '')})</a></center>`);
   if (((s as any).pcs_lashes ?? 0) < 2) {
     // TODO-QSP: dynamic text: <center><a href="exec:pcs_lashes += 1 & gs ''intro_character_creation'', ''eyes'...
     scene.text('<center><a href="#" onclick="window.__gameStore.setState((s) => { s.pcs_lashes +=s.1; return s; }); window.__gameStore.getState().doGoto(/u0027intro_character_creation/u0027, /u0027eyes/u0027); return false;">Lengthen lashes</a></center>');

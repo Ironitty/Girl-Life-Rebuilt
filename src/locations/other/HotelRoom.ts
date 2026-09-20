@@ -329,7 +329,7 @@ function enterTv(s: GameState, scene: SceneBuilder): void {
   if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
     scene.img('images/locations/pavlovsk/hotel/tv2.jpg');
   } else {
-    scene.img(`images/locations/pavlovsk/hotel/tv${((s as any).HotelRoom || '')}.jpg`);
+    scene.img(`images/locations/pavlovsk/hotel/tv${((s as any).HotelRoom ?? '')}.jpg`);
   }
   scene.text('You turn on the TV and make yourself comfortable on the bed.');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {

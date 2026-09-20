@@ -41,7 +41,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$temp_text>>
-    scene.text(`${((s as any).temp_text || '')}`);
+    scene.text(`${((s as any).temp_text ?? '')}`);
   } else {
     scene.text('You are currently not using a fixed set.');
   }
@@ -214,10 +214,10 @@ function enterCustomFolderDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).cheatVars ?? 0)?.['fix_bodyimg'] === 1  &&  ((s as any).cheatVars ?? 0)?.['fix_bi_set'] === Number((s as any).locArgs?.[1] ?? 0)) {
       // TODO-QSP: dynamic text: <i><b><a style="color:#00FF00" href="exec: gs ''cheatmenu_bisets'', ''cs_main'',...
-      scene.text(`<i><b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027); return false;">${((s as any).cs_display_text || '')}</a></b></i>`);
+      scene.text(`<i><b><a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027); return false;">${((s as any).cs_display_text ?? '')}</a></b></i>`);
     } else {
       // TODO-QSP: dynamic text: <a href="exec: gs ''cheatmenu_bisets'', ''cs_main'', <<ARGS[1]>>"><b><<$cs_displ...
-      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027); return false;"><b>${((s as any).cs_display_text || '')}</b></a>`);
+      scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027); return false;"><b>${((s as any).cs_display_text ?? '')}</b></a>`);
     }
     (s as any).temp_cm_bi_flag = ((s as any).temp_cm_bi_flag ?? 0) + (1);
   }
@@ -328,7 +328,7 @@ function enterCsExport(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_export_text = (String(((s as any).temp_export_text ?? 0)).split('  ').join(''));
   // TODO-QSP: dynamic text: <<$temp_export_text>>
-  scene.text(`${((s as any).temp_export_text || '')}`);
+  scene.text(`${((s as any).temp_export_text ?? '')}`);
   // TODO-QSP: $cheatmenu['table_end']
   // TODO-QSP: end
   scene.actions([
@@ -366,7 +366,7 @@ function enterCsMainSimple(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=  func('cheatmenu_bisets', 'get_custom_bodyimg_desc_link_simple', cmbs_set, 8)
   // TODO-QSP: $temp_table += '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table || '')}`);
+  scene.text(`${((s as any).temp_table ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -490,7 +490,7 @@ function enterCsMainAdvanced(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_table += '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table || '')}`);
+  scene.text(`${((s as any).temp_table ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -512,10 +512,10 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cmd_desc ?? 0) === '') {
     (s as any).temp_cmd_desc = qspFunc(s, 'cheatmenu_bisets', 'cs_get_default_desc', ((s as any).cmbs_set ?? 0), ((s as any).cmbs_class ?? 0));
     // TODO-QSP: dynamic text: You are: <a href="exec: gs ''cheatmenu_bisets'', ''cs_change_desc_adv'', <<cmbs_...
-    scene.text(`You are: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_desc_adv/u0027); return false;">${((s as any).temp_cmd_desc || '')}</a>`);
+    scene.text(`You are: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_desc_adv/u0027); return false;">${((s as any).temp_cmd_desc ?? '')}</a>`);
   } else {
     // TODO-QSP: dynamic text: You are: <a href="exec: gs ''cheatmenu_bisets'', ''cs_change_desc_adv'', <<cmbs_...
-    scene.text(`You are: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_desc_adv/u0027); return false;">${((s as any).temp_cmd_desc || '')}</a>    <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_set_default_desc_adv/u0027); return false;">Use default description</a>`);
+    scene.text(`You are: <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_desc_adv/u0027); return false;">${((s as any).temp_cmd_desc ?? '')}</a>    <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_set_default_desc_adv/u0027); return false;">Use default description</a>`);
   }
   (s as any).temp_cmd_path = ((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).cmbs_set ?? 0)) + '_path'];
   if (((s as any).temp_cmd_path ?? 0) === '') {
@@ -528,7 +528,7 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cmd_subpath = (String(((s as any).temp_cmd_subpath ?? 0)).slice((22)-1));
   }
   // TODO-QSP: dynamic text: Path: <<$temp_cmd_path>>/<a href="exec: gs ''cheatmenu_bisets'', ''cs_change_sub...
-  scene.text(`Path: ${((s as any).temp_cmd_path || '')}/<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_subpath/u0027); return false;">${((s as any).temp_cmd_subpath || '')}</a>`);
+  scene.text(`Path: ${((s as any).temp_cmd_path ?? '')}/<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_subpath/u0027); return false;">${((s as any).temp_cmd_subpath ?? '')}</a>`);
   (s as any).temp_table = '<table width=80% align="center">';
   // TODO-QSP: $temp_table +=    '<tr>'
   // TODO-QSP: $temp_table +=      '<th>Currently using</th>'
@@ -549,7 +549,7 @@ function enterCsMainAdvanced2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=    '</tr>'
   // TODO-QSP: $temp_table += '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table || '')}`);
+  scene.text(`${((s as any).temp_table ?? '')}`);
   // TODO-QSP: $cheatmenu['table_end']
   // TODO-QSP: end
   scene.actions([
@@ -620,7 +620,7 @@ function enterGetPregsetLink(s: GameState, scene: SceneBuilder): void {
   (s as any).preg_set = ((s as any).locArgs?.[2] ?? 0);
   scene.text('<center><h1>Cheat menu</h1></center>');
   // TODO-QSP: dynamic text: <center><b>Pregnancy Image Set Display - Set = <<preg_set>></b></center>
-  scene.text(`<center><b>Pregnancy Image Set Display - Set = ${((s as any).preg_set || '')}</b></center>`);
+  scene.text(`<center><b>Pregnancy Image Set Display - Set = ${((s as any).preg_set ?? '')}</b></center>`);
   // TODO-QSP: $cheatmenu['table_start']
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_main/u0027, String(window.__gameStore.getState().temp_set ?? /u0027/u0027)); return false;"><b>Go Back</b></a>');
   (s as any).temp_cmd_path = ((s as any).cheatVars ?? 0)?.['fix_biset_' + String(((s as any).temp_set ?? 0)) + '_path'];
@@ -633,7 +633,7 @@ function enterGetPregsetLink(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_cmd_subpath = 'preg/0';
   }
   // TODO-QSP: dynamic text: Path: <<$temp_cmd_path>>/<a href="exec: gs ''cheatmenu_bisets'', ''cs_change_pre...
-  scene.text(`Path: ${((s as any).temp_cmd_path || '')}/<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_preg_subpath/u0027); return false;">${((s as any).temp_cmd_subpath || '')}</a>`);
+  scene.text(`Path: ${((s as any).temp_cmd_path ?? '')}/<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027cheatmenu_bisets/u0027, /u0027cs_change_preg_subpath/u0027); return false;">${((s as any).temp_cmd_subpath ?? '')}</a>`);
   (s as any).temp_table = '<table width=80% align="center">';
   // TODO-QSP: $temp_table +=    '<tr>'
   // TODO-QSP: $temp_table +=      '<th>Currently using</th>'
@@ -759,7 +759,7 @@ function enterCsCopyClassMenu(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_table += '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table || '')}`);
+  scene.text(`${((s as any).temp_table ?? '')}`);
   if (((s as any).cmd_copy_class ?? 0)?.['counter'] > 0) {
     scene.actions([
       { label: 'Reset', handler: (st: GameState) => {

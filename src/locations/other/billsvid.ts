@@ -15,7 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Pool</b></center>');
   scene.img('images/locations/city/citycenter/mall/pool/sex/0.jpg');
   // TODO-QSP: dynamic text: You and <<$telsob>> rent a booth
-  scene.text(`You and ${((s as any).telsob || '')} rent a booth`);
+  scene.text(`You and ${((s as any).telsob ?? '')} rent a booth`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Play', handler: (st: GameState) => {
@@ -102,19 +102,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enter1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/pool/sex/1.jpg');
   // TODO-QSP: dynamic text: When you once again leaned over the table to play a shot, <<$telsob>> leans over...
-  scene.text(`When you once again leaned over the table to play a shot, ${((s as any).telsob || '')} leans over and slips her hands on your hips, then upwards to cup your breasts.`);
+  scene.text(`When you once again leaned over the table to play a shot, ${((s as any).telsob ?? '')} leans over and slips her hands on your hips, then upwards to cup your breasts.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
   qspCall(s, 'willpower', 'cuni', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Not now ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Not now ' + String(((s as any).telsob ?? '') ?? ''), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Not now ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Not now ' + String(((s as any).telsob ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'willpower', 'cuni', 'resist');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
@@ -128,7 +128,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     ((st as any).stat = (st as any).stat ?? {})['lesbian_count'] = ((st as any).stat['lesbian_count'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/mall/pool/sex/2.jpg');
     // TODO-QSP: dynamic text: You turn around and kiss her, in response <<$telsob>> quickly takes off her clot...
-    scene.text(`You turn around and kiss her, in response ${((st as any).telsob || '')} quickly takes off her clothes, helps you strip and throws you against the table, you jump on it, and continue to kiss.`);
+    scene.text(`You turn around and kiss her, in response ${((st as any).telsob ?? '')} quickly takes off her clothes, helps you strip and throws you against the table, you jump on it, and continue to kiss.`);
     qspCall(st, 'arousal', 'kiss', 5, 'lesbian');
     qspCall(st, 'stat', '');
     qspCall(st, 'willpower', 'cuni', 'force');
@@ -195,7 +195,7 @@ function enter10(s: GameState, scene: SceneBuilder): void {
 function enter11(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/pool/sex/3.jpg');
   // TODO-QSP: dynamic text: You stand in front of the table, legs spread, and <<$telsob>> drops to her knees...
-  scene.text(`You stand in front of the table, legs spread, and ${((s as any).telsob || '')} drops to her knees in front of you and begins to kiss your pussy, but her tongue does not bring you to the desired state.`);
+  scene.text(`You stand in front of the table, legs spread, and ${((s as any).telsob ?? '')} drops to her knees in front of you and begins to kiss your pussy, but her tongue does not bring you to the desired state.`);
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if ((!((s as any).bilsvidkiy ?? 0))) {
@@ -233,7 +233,7 @@ function enter12(s: GameState, scene: SceneBuilder): void {
   (s as any).bilsvidkiy = 1;
   scene.img('images/locations/city/citycenter/mall/pool/sex/6.jpg');
   // TODO-QSP: dynamic text: <<$telsob>> climbs on the table and spreads her legs wide. Picking up the cue yo...
-  scene.text(`${((s as any).telsob || '')} climbs on the table and spreads her legs wide. Picking up the cue you decide to try and pot the pink in the middle pocket. ${((s as any).telsob || '')} diligently responds to your movements and rhythm. A few minutes later collapsing on the table in a shuddering orgasm.`);
+  scene.text(`${((s as any).telsob ?? '')} climbs on the table and spreads her legs wide. Picking up the cue you decide to try and pot the pink in the middle pocket. ${((s as any).telsob ?? '')} diligently responds to your movements and rhythm. A few minutes later collapsing on the table in a shuddering orgasm.`);
   qspCall(s, 'arousal', 'vaginal_dildo_give', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if ((!((s as any).bilsvidukiy ?? 0))) {
@@ -267,7 +267,7 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   (s as any).bilsvidukiy = 1;
   scene.img('images/locations/city/citycenter/mall/pool/sex/5.jpg');
   // TODO-QSP: dynamic text: You sit on the edge of the table, throwing one leg on the table. "How''s my cuei...
-  scene.text(`You sit on the edge of the table, throwing one leg on the table. "How's my cueing action?" ${((s as any).telsob || '')} jokes as she dramatically uses her tongue to moisten her cue, before quickly inserting it into your pussy. You squeal in surprise. She diligently fucks you with the cue, turning it in different directions, you're massaging your clitoris with a finger. After a few minutes of pleasant sensations spread through your body and you float into a world of orgasm.`);
+  scene.text(`You sit on the edge of the table, throwing one leg on the table. "How's my cueing action?" ${((s as any).telsob ?? '')} jokes as she dramatically uses her tongue to moisten her cue, before quickly inserting it into your pussy. You squeal in surprise. She diligently fucks you with the cue, turning it in different directions, you're massaging your clitoris with a finger. After a few minutes of pleasant sensations spread through your body and you float into a world of orgasm.`);
   (s as any).orgasm_or = 'yes';
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian');
   qspCall(s, 'stat', '');
@@ -286,19 +286,19 @@ function enter13(s: GameState, scene: SceneBuilder): void {
 function enter2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/pool/sex/10.jpg');
   // TODO-QSP: dynamic text: During the game <<$telsob>> is constantly trying to put her arms around you, she...
-  scene.text(`During the game ${((s as any).telsob || '')} is constantly trying to put her arms around you, she wraps her hand around your hips, then casually touches your chest.`);
+  scene.text(`During the game ${((s as any).telsob ?? '')} is constantly trying to put her arms around you, she wraps her hand around your hips, then casually touches your chest.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
   qspCall(s, 'willpower', 'cuni', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Continue to play ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Continue to play ' + String(((s as any).telsob ?? '') ?? ''), handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => 'Continue to play ' + String(((s as any).telsob || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => 'Continue to play ' + String(((s as any).telsob ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, 'willpower', 'cuni', 'resist');
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'stat', '');
@@ -311,14 +311,14 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     { label: 'Kiss her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/11.jpg');
     // TODO-QSP: dynamic text: When <<$telsob>> once again put her hand on your stomach, you move closer to her...
-    scene.text(`When ${((st as any).telsob || '')} once again put her hand on your stomach, you move closer to her and kiss. Her hand immediately slipped under your clothes and massaged your breast.`);
+    scene.text(`When ${((st as any).telsob ?? '')} once again put her hand on your stomach, you move closer to her and kiss. Her hand immediately slipped under your clothes and massaged your breast.`);
     qspCall(st, 'arousal', 'kiss', 5, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Proceed', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/12.jpg');
     // TODO-QSP: dynamic text: <<$telsob>> knelt down and taking off your clothes starts to kiss you down towar...
-    scene.text(`${((st as any).telsob || '')} knelt down and taking off your clothes starts to kiss you down toward your crotch, until her tongue is under your pussy.`);
+    scene.text(`${((st as any).telsob ?? '')} knelt down and taking off your clothes starts to kiss you down toward your crotch, until her tongue is under your pussy.`);
     qspCall(st, 'arousal', 'foreplay', 5, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
@@ -337,14 +337,14 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       { label: 'Your turn', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/15.jpg');
     // TODO-QSP: dynamic text: When <<$telsob>> has finished, you climb on the table and position your pussy ri...
-    scene.text(`When ${((st as any).telsob || '')} has finished, you climb on the table and position your pussy right in front of her face, ${((st as any).telsob || '')} immediately begins to caress you with her lips, and parting you with her fingers she tries to thrust her tongue even deeper.`);
+    scene.text(`When ${((st as any).telsob ?? '')} has finished, you climb on the table and position your pussy right in front of her face, ${((st as any).telsob ?? '')} immediately begins to caress you with her lips, and parting you with her fingers she tries to thrust her tongue even deeper.`);
     qspCall(st, 'arousal', 'cuni', 5, 'lesbian');
     qspCall(st, 'stat', '');
     scene.actions([
       { label: 'Lick her', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pool/sex/16.jpg');
     // TODO-QSP: dynamic text: You turn around so that your face is above her pussy, and start licking her. Aft...
-    scene.text(`You turn around so that your face is above her pussy, and start licking her. After a few minutes, you feel her body shake and ${((st as any).telsob || '')} groans strongly pressing against your pussy, and then you are shrouded in pleasant waves of orgasm.`);
+    scene.text(`You turn around so that your face is above her pussy, and start licking her. After a few minutes, you feel her body shake and ${((st as any).telsob ?? '')} groans strongly pressing against your pussy, and then you are shrouded in pleasant waves of orgasm.`);
     (st as any).orgasm_or = 'yes';
     qspCall(st, 'arousal', 'cuni', 5, 'lesbian');
     qspCall(st, 'stat', '');
@@ -371,14 +371,14 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   if (((s as any).telsob ?? 0) === ((s as any).boydesc ?? 0)) {
     // TODO-QSP: dynamic text: When you have finished playing, <<$telsob>> looks at you and waits for your next...
-    scene.text(`When you have finished playing, ${((s as any).telsob || '')} looks at you and waits for your next move.`);
+    scene.text(`When you have finished playing, ${((s as any).telsob ?? '')} looks at you and waits for your next move.`);
     scene.actions([
       { label: 'Say goodbye', goto: ['city_mall', ''] },
       { label: 'Invite her to your home', goto: ['lezbsex', 'startloverhome'] },
     ]);
   } else {
     // TODO-QSP: dynamic text: When you have finished playing, <<$telsob>> says that she needs to run and leave...
-    scene.text(`When you have finished playing, ${((s as any).telsob || '')} says that she needs to run and leaves.`);
+    scene.text(`When you have finished playing, ${((s as any).telsob ?? '')} says that she needs to run and leaves.`);
     scene.actions([
       { label: 'Leave', goto: ['city_mall', ''] },
     ]);

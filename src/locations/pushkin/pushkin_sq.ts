@@ -90,16 +90,16 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcgeneratec', '', 0, '', 'like');
       qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
       // TODO-QSP: dynamic text: You are approached by <<$npcheight_pref>>, <<$npcbuild>> guy with <<$npchair>> h...
-      scene.text(`You are approached by ${((s as any).npcheight_pref || '')}, ${((s as any).npcbuild || '')} guy with ${((s as any).npchair || '')} hair. He is wearing ${((s as any).npcClo || '')}.`);
+      scene.text(`You are approached by ${((s as any).npcheight_pref ?? '')}, ${((s as any).npcbuild ?? '')} guy with ${((s as any).npchair ?? '')} hair. He is wearing ${((s as any).npcClo ?? '')}.`);
       // TODO-QSP: dynamic text: The guy introduced himself as <<$boydesc>> and asks you for your telephone numbe...
-      scene.text(`The guy introduced himself as ${((s as any).boydesc || '')} and asks you for your telephone number.`);
+      scene.text(`The guy introduced himself as ${((s as any).boydesc ?? '')} and asks you for your telephone number.`);
       scene.actions([
-{ label: 'Walk away', goto: ['pushkin_sq', ''] },,
+{ label: 'Walk away', goto: ['pushkin_sq', ''] },
 { label: 'Tell him your telephone number.', handler: (st: GameState) => {
     qspCall(st, 'lover', 'add_boyfriend', ((st as any).npcID ?? 0));
     (st as any).stopboy = 0;
     // TODO-QSP: dynamic text: <<$boydesc>> saved your phone number and left.
-    scene.text(`${((st as any).boydesc || '')} saved your phone number and left.`);
+    scene.text(`${((st as any).boydesc ?? '')} saved your phone number and left.`);
     scene.actions([
       { label: 'Continue', goto: ['pushkin_sq', ''] },
     ]);
@@ -144,7 +144,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('The girls and boys at the local hangout happily greet you.');
     if (((st as any).pantyworntype ?? 0) === 'none'  &&  (!((st as any).sttan ?? 0))) {
       // TODO-QSP: dynamic text: "Hey guys, <<$pcs_nickname>> is going commando," one of the boys says.
-      scene.text(`"Hey guys, ${((st as any).pcs_nickname || '')} is going commando," one of the boys says.`);
+      scene.text(`"Hey guys, ${((st as any).pcs_nickname ?? '')} is going commando," one of the boys says.`);
       scene.actions([
         { label: 'Continue', goto: ['dibodi', 'sotusa'] },
       ]);

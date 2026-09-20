@@ -141,7 +141,7 @@ function enterGentleclubE1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/gentleclub/e1p1.jpg');
   scene.text('As you enter the study you see Nicholas sitting on his table talking to another business man.');
   // TODO-QSP: dynamic text: "Good, you are here. This is <<$pcs_firstname>>, my new maid. <<$pcs_nickname>>,...
-  scene.text(`"Good, you are here. This is ${((s as any).pcs_firstname || '')}, my new maid. ${((s as any).pcs_nickname || '')}, this is Mister Fetisov."`);
+  scene.text(`"Good, you are here. This is ${((s as any).pcs_firstname ?? '')}, my new maid. ${((s as any).pcs_nickname ?? '')}, this is Mister Fetisov."`);
   scene.text('You curtsy and Mister Fetisov slightly nods in your direction.');
   scene.text('For the next hour you are busy serving different kinds of refreshments to the two men. They are talking about business opportunities, the course of the industry and the global economy.');
   scene.text('You have the feeling that Mister Fetisov is inspecting your butt and your breasts whenever you are not looking.');
@@ -154,7 +154,7 @@ function enterGentleclubE1(s: GameState, scene: SceneBuilder): void {
     scene.text('You wait in the study while Nicholas escorts Mister Fetisov to the door and says his farewell.');
     scene.text('When he returns he looks a little bit puzzled.');
     // TODO-QSP: dynamic text: "I am sorry, <<$pcs_nickname>>, I have no idea what that was about. Mister Fetis...
-    scene.text(`"I am sorry, ${((st as any).pcs_nickname || '')}, I have no idea what that was about. Mister Fetisov seems to have gotten some kind of impression from you."`);
+    scene.text(`"I am sorry, ${((st as any).pcs_nickname ?? '')}, I have no idea what that was about. Mister Fetisov seems to have gotten some kind of impression from you."`);
     scene.text('You slowly nod.');
     scene.text('"I don\'t know what kind of club this is." He shows you the card he received. It looks very expensive with embossed blue letters on it. But there is no more information than an address.');
     scene.text('"As you might have noticed Mister Fetisov is a really important man and doing business with him would be very advantageous, not only for me, but for my whole company."');
@@ -196,7 +196,7 @@ function enterReHire(s: GameState, scene: SceneBuilder): void {
     { label: 'Approach Nicholas and ask for job back.', handler: (st: GameState) => {
     scene.img('images/characters/city/nicholas/01.jpg');
     // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, what brings you here?" Nicholas asks while still reading...
-    scene.text(`"Oh, ${((st as any).pcs_nickname || '')}, what brings you here?" Nicholas asks while still reading his papers.`);
+    scene.text(`"Oh, ${((st as any).pcs_nickname ?? '')}, what brings you here?" Nicholas asks while still reading his papers.`);
     // TODO-QSP: dynamic text: "'+$npc_nickname['A52']+', I was wondering if you still needed a maid?"
     scene.text('"\'+$npc_nickname[\'A52\']+\', I was wondering if you still needed a maid?"');
     qspCall(st, 'nichUtil', 'rehired');

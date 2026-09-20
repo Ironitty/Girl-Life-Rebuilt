@@ -148,7 +148,7 @@ function enterToggleMenu(s: GameState, scene: SceneBuilder): void {
     scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</b>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i || '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
   }
   // TODO-QSP: dynamic text: $temp_toggle_names
   scene.text(String((s as any).temp_toggle_names ?? ''));
@@ -175,7 +175,7 @@ function enterToggleMenuRev(s: GameState, scene: SceneBuilder): void {
     scene.text(`<b>${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</b>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:<<$ARGS[2]>>=<<i>> & gt '$menu_settings', '<<$ARGS[1]>>'"><<$ARGS[...
-    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i || '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
+    scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).locArgs?.[2] ?? '')}=${((s as any).i ?? '')} */ return s; }); window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027${((s as any).locArgs?.[1] ?? '')}/u0027); return false;">${((s as any).ARGS ?? 0)?.[((s as any).i ?? '')+4]}</a>`);
   }
   (s as any).i = ((s as any).i ?? 0) - (1);
   if (((s as any).i ?? 0) >= 0) {
@@ -232,11 +232,11 @@ function enterToggleMenuSym(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).temp_tms_matched ?? 0))) {
       // TODO-QSP: dynamic '$temp_tms_custom_val = $str(' + $ARGS[4] + ')'
       // TODO-QSP: dynamic text: <b>Custom: <<$temp_tms_custom_val>>%</b>
-      scene.text(`<b>Custom: ${((s as any).temp_tms_custom_val || '')}%</b>`);
+      scene.text(`<b>Custom: ${((s as any).temp_tms_custom_val ?? '')}%</b>`);
     } else {
       (s as any).temp_tms_custom_exec = (String(((s as any).locArgs?.[5] ?? 0)).split('\'').join('\''));
       // TODO-QSP: dynamic text: <a href="exec: <<$temp_tms_custom_exec>>">Custom</a>
-      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).temp_tms_custom_exec || '')} */ return s; }); return false;">Custom</a>`);
+      scene.text(`<a href="#" onclick="window.__gameStore.setState((s) => { /* TODO-QSP: ${((s as any).temp_tms_custom_exec ?? '')} */ return s; }); return false;">Custom</a>`);
     }
   }
   if (Number((s as any).locArgs?.[6] ?? 0) !== '') {
@@ -405,7 +405,7 @@ function enterLifesimCheatsOn(s: GameState, scene: SceneBuilder): void {
   scene.text('We strongly discourage the use of this feature, but we also recognize that the life sim aspect is not for everybody.');
   scene.text('Are you sure you want to activate this?');
   scene.actions([
-{ label: 'No, I do not want to disable all life sim features', goto: ['$menu_settings', ''] },,
+{ label: 'No, I do not want to disable all life sim features', goto: ['$menu_settings', ''] },
 { label: 'Yes, disable all life sim features', handler: (st: GameState) => {
     ((st as any).cheatVars = (st as any).cheatVars ?? {})['willpower'] = 1;
     ((st as any).cheatVars = (st as any).cheatVars ?? {})['inf_willpower'] = 1;
@@ -774,10 +774,10 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Font Family: <<$custom_theme['fname']>>&nbsp;
   scene.text(`Font Family: ${((s as any).custom_theme ?? 0)?.['fname'] ?? ''}&nbsp;`);
   scene.text('Font Size:&nbsp;');
-  scene.img(`images/system/ui/less${((s as any).icon_selector || '')}.png`);
+  scene.img(`images/system/ui/less${((s as any).icon_selector ?? '')}.png`);
   // TODO-QSP: dynamic text: &nbsp;<<custom_theme['fsize']>>&nbsp;
   scene.text(`&nbsp;${((s as any).custom_theme ?? 0)?.['fsize'] ?? ''}&nbsp;`);
-  scene.img(`images/system/ui/more${((s as any).icon_selector || '')}.png`);
+  scene.img(`images/system/ui/more${((s as any).icon_selector ?? '')}.png`);
   // TODO-QSP: dynamic text: BG Color: <<func('shortgs', 'rgb_to_hex', custom_theme['bcolor'])>>&nbsp;
   scene.text(`BG Color: ${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).custom_theme ?? 0)?.['bcolor'] ?? '')}&nbsp;`);
   // TODO-QSP: dynamic text: 'R:&nbsp;' + $func('$menu_settings', 'theme_customize_print_color_line', 'red', ...
@@ -827,10 +827,10 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
     ((s as any).custom_theme = (s as any).custom_theme ?? {})['increment'] = 16;
   }
   scene.text('Increment:&nbsp;');
-  scene.img(`images/system/ui/less${((s as any).icon_selector || '')}.png`);
+  scene.img(`images/system/ui/less${((s as any).icon_selector ?? '')}.png`);
   // TODO-QSP: dynamic text: &nbsp;<<custom_theme['increment']>>&nbsp;
   scene.text(`&nbsp;${((s as any).custom_theme ?? 0)?.['increment'] ?? ''}&nbsp;`);
-  scene.img(`images/system/ui/more${((s as any).icon_selector || '')}.png`);
+  scene.img(`images/system/ui/more${((s as any).icon_selector ?? '')}.png`);
   scene.text('</font></td>');
   ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg'] = ((s as any).custom_theme ?? 0)?.['table_bg'];
   ((s as any).theme_hex = (s as any).theme_hex ?? {})['table_bg_alt'] = ((s as any).custom_theme ?? 0)?.['table_bg_alt'];
@@ -846,13 +846,13 @@ function enterThemeCustomize(s: GameState, scene: SceneBuilder): void {
   scene.text(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. A <font color="${((s as any).custom_theme ?? 0)?.['bimbo'] ?? ''}">bimbo</font> wandered into a <font color="${((s as any).custom_theme ?? 0)?.['goth'] ?? ''}">goth</font> café, sparking a <font color="${((s as any).custom_theme ?? 0)?.['punk'] ?? ''}">punk</font> uprising while the air crackled with <font color="${((s as any).custom_theme ?? 0)?.['hypno'] ?? ''}">hypno</font> energy. <a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027theme_customize/u0027); return false;">Pellentesque habitant</a> morbi tristique senectus et netus.`);
   scene.text('<table cellpadding="0" cellspacing="0" style="border-collapse:collapse; min-width:320px;">');
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg']>>; padding:6px 14px; color...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 1, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 1, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 1, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 1, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg_alt']>>; padding:6px 14px; c...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 2, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 2, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 2, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 2, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg']>>; padding:6px 14px; color...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 3, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 3, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 3, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 3, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg</td></tr>`);
   // TODO-QSP: dynamic text: <tr><td style="background:<<$custom_theme['table_bg_alt']>>; padding:6px 14px; c...
-  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 4, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')};">Row 4, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex || '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
+  scene.text(`<tr><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 4, Column A</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')};">Row 4, Column B</td><td style="background:${((s as any).custom_theme ?? 0)?.['table_bg_alt'] ?? ''}; padding:6px 14px; color:${((s as any).tc_fg_hex ?? '')}; font-style:italic; opacity:0.7;">table_bg_alt</td></tr>`);
   scene.text('</table>');
   scene.text('<table style="border-collapse:collapse; vertical-align:top;"><tr>');
   scene.text('<td style="vertical-align:top; padding-right:16px;">');
@@ -1420,20 +1420,20 @@ function enterMods(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).settingmode ?? 0) === 2) {
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Return to game start' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Return to game start' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
     qspGoto(st, 'start', 'start');
   } },
     ]);
   } else {
     if (((s as any).settingmode ?? 0) === 1) {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Return to character creation' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Return to character creation' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
     qspGoto(st, 'begin', 'start');
   } },
       ]);
     } else {
       scene.actions([
-        { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Exit the menu' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
+        { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Exit the menu' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'menu_exit');
     dynamicGoto(st, 'menu_loc', 'menu_arg');
   } },
@@ -1450,10 +1450,10 @@ function enterMods(s: GameState, scene: SceneBuilder): void {
   } else {
     qspCall(s, '$menu_settings', 'display_mod_table');
     scene.actions([
-      { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Update all mods' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Update all mods' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'update_all_mods');
   } },
-      { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Disable all mods' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
+      { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Disable all mods' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'delete_all_mods');
   } },
     ]);
@@ -1461,7 +1461,7 @@ function enterMods(s: GameState, scene: SceneBuilder): void {
   scene.text('</center>');
   // TODO-QSP: end
   scene.actions([
-    { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre || '') ?? '') + 'Install new mod' + String(((s as any).temp_act_post || '') ?? ''), handler: (st: GameState) => {
+    { label: '', labelFn: (s: GameState) => String(((s as any).temp_act_pre ?? '') ?? '') + 'Install new mod' + String(((s as any).temp_act_post ?? '') ?? ''), handler: (st: GameState) => {
     qspCall(st, '$menu_settings', 'install_new_mod');
   } },
   ]);
@@ -1483,7 +1483,7 @@ function enterDisplayModTable(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :mod_alllist
   if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] === '') {
     // TODO-QSP: dynamic text: ERROR loading mod id <<mod_i>>, no mod name available
-    scene.text(`ERROR loading mod id ${((s as any).mod_i || '')}, no mod name available`);
+    scene.text(`ERROR loading mod id ${((s as any).mod_i ?? '')}, no mod name available`);
   } else {
     // TODO-QSP: $temp_table +=  '<tr>'
     // TODO-QSP: $temp_table +=    '<td><<mod_i>></td>'
@@ -1501,7 +1501,7 @@ function enterDisplayModTable(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_table += '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table || '')}`);
+  scene.text(`${((s as any).temp_table ?? '')}`);
   // TODO-QSP: end
   scene.build();
 }
@@ -1589,7 +1589,7 @@ function enterTheme(s: GameState, scene: SceneBuilder): void {
     (s as any).phoneNameTemp = 'Woodshop';
   }
   // TODO-QSP: dynamic text: Current theme: <b><<$phoneNameTemp>></b>
-  scene.text(`Current theme: <b>${((s as any).phoneNameTemp || '')}</b>`);
+  scene.text(`Current theme: <b>${((s as any).phoneNameTemp ?? '')}</b>`);
   scene.text('Choose from the available themes:');
   (s as any).i = 0;
   (s as any).temp_table = '<table><tr>';
@@ -1621,15 +1621,15 @@ function enterExplanationStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Glossary</h2></center>');
   // TODO-QSP: $settings['table_start']
   // TODO-QSP: dynamic text: Here we want to explain the different stats <<$pcs_firstname>> has, and give oth...
-  scene.text(`Here we want to explain the different stats ${((s as any).pcs_firstname || '')} has, and give other useful information about the play mechanics.`);
+  scene.text(`Here we want to explain the different stats ${((s as any).pcs_firstname ?? '')} has, and give other useful information about the play mechanics.`);
   scene.text('The glossary is divided over several pages explaining different aspects of the character stats. For a new player we recommend going through them in the order presented, but if you need some specific information, just go to the page containing it.');
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_icons/u0027); return false;">The first page</a> includes the basic information and explanations of the different icons that appear in the stat display.');
   // TODO-QSP: dynamic text: <a href="exec:gt ''$menu_settings'', ''explanation_attributes''">The second page...
-  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_attributes/u0027); return false;">The second page</a> includes information about the basic attributes ${((s as any).pcs_firstname || '')} has.`);
+  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_attributes/u0027); return false;">The second page</a> includes information about the basic attributes ${((s as any).pcs_firstname ?? '')} has.`);
   // TODO-QSP: dynamic text: <a href="exec:gt ''$menu_settings'', ''explanation_skill''">The third page</a> i...
-  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_skill/u0027); return false;">The third page</a> includes information about the skills ${((s as any).pcs_firstname || '')} has.`);
+  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_skill/u0027); return false;">The third page</a> includes information about the skills ${((s as any).pcs_firstname ?? '')} has.`);
   // TODO-QSP: dynamic text: <a href="exec:gt ''$menu_settings'', ''explanation_status''">The fourth page</a>...
-  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_status/u0027); return false;">The fourth page</a> includes information about the different status effects like mood, hunger, and willpower ${((s as any).pcs_firstname || '')} has.`);
+  scene.text(`<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_status/u0027); return false;">The fourth page</a> includes information about the different status effects like mood, hunger, and willpower ${((s as any).pcs_firstname ?? '')} has.`);
   scene.text('<a href="#" onclick="window.__gameStore.getState().doGoto(/u0027$menu_settings/u0027, /u0027explanation_archetypes/u0027); return false;">The fifth page</a> includes information about the archetype system, its effects, and withdrawal.');
   // TODO-QSP: $settings['table_end']
   if (((s as any).stat_explanation ?? 0) === '') {
@@ -1638,7 +1638,7 @@ function enterExplanationStart(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h2>About</h2></center>');
     // TODO-QSP: $settings['table_start']
     // TODO-QSP: dynamic text: <h4><center>Girl Life version <<version_major+"."+version_minor+"."+version_revi...
-    scene.text(`<h4><center>Girl Life version ${((s as any).version_major || '') + '.' + ((s as any).version_minor || '') + '.' + ((s as any).version_revision || '') + '.' + ((s as any).version_patch || '') + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash || '') + ' (dev build)') : (''))}<br>built on ${((s as any).builddate || '')}</center></h4>`);
+    scene.text(`<h4><center>Girl Life version ${((s as any).version_major ?? '') + '.' + ((s as any).version_minor ?? '') + '.' + ((s as any).version_revision ?? '') + '.' + ((s as any).version_patch ?? '') + ((((s as any).git_hash ?? 0) !== "") ? ('<br>' + ((s as any).git_hash ?? '') + ' (dev build)') : (''))}<br>built on ${((s as any).builddate ?? '')}</center></h4>`);
     // TODO-QSP: $settings['table_end']
   }
   // TODO-QSP: end
@@ -1659,34 +1659,34 @@ function enterExplanationIcons(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The Character description have ' + iif($start_type['magic'] <> 'nomagic' , '6', ...
   scene.text('The Character description have ' + ((((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') ? ('6') : ('7')) + ' different tabs. The first tab "Character" gives a general overview of your character\'s looks and physique. The second tab is "Skills". We will explain skills later in this introduction.');
   // TODO-QSP: dynamic text: The third tab "Statistics" lists several achievements that <<$pcs_firstname>> ha...
-  scene.text(`The third tab "Statistics" lists several achievements that ${((s as any).pcs_firstname || '')} has made in the game. The fourth tab "Pain" has a detailed description of any pain ${((s as any).pcs_firstname || '')} is experiencing.`);
+  scene.text(`The third tab "Statistics" lists several achievements that ${((s as any).pcs_firstname ?? '')} has made in the game. The fourth tab "Pain" has a detailed description of any pain ${((s as any).pcs_firstname ?? '')} is experiencing.`);
   // TODO-QSP: 'The fifth tab, "Traits" lists several traits <<$pcs_firstname>> has or can obtain, as well as how t...
   scene.img('images/system/icons/menu/icon_lookself.png');
   if (((s as any).bag ?? 0) > 0) {
     scene.img('images/system/icons/menu/icon_purse.png');
   }
   scene.img(`images/system/icons/menu/${((((s as any).telefon ?? 0)?.['UnreadSMS']===0) ? ('icon_phone.png') : ('icon_phone_sms.gif'))}`);
-  scene.img(`images/system/icons/menu/${((s as any).journalIcon || '')}`);
+  scene.img(`images/system/icons/menu/${((s as any).journalIcon ?? '')}`);
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
     scene.text('  The first tab there is very important, since you can use it to cast spells once you learn them.');
   }
   scene.text('  This includes a tab for a description of where you live and the possibility to change this is you have several options. A tab with information about your work.');
   scene.text('  The "Quest" tab contains hints on how to start and proceed with several of the quests in the game. Not all quests are included yet, but this a good place to look if you want to know some of the things that are possible, and the first place you should look if you feel stuck in a quest.');
   // TODO-QSP: dynamic text:   The relations tab has information about how other NPC''s see <<$pcs_firstname>...
-  scene.text(`  The relations tab has information about how other NPC's see ${((s as any).pcs_firstname || '')}. The value goes from 0 to 100. If it is below 20 it means they dislike or even hate you. Between 20 and 60 is generally neutral. Above 60 the NPC considers ${((s as any).pcs_firstname || '')} a friend and above 80 is when they might fall in love with a character.`);
+  scene.text(`  The relations tab has information about how other NPC's see ${((s as any).pcs_firstname ?? '')}. The value goes from 0 to 100. If it is below 20 it means they dislike or even hate you. Between 20 and 60 is generally neutral. Above 60 the NPC considers ${((s as any).pcs_firstname ?? '')} a friend and above 80 is when they might fall in love with a character.`);
   scene.text('  But each character is different, and some might never fall in love with the character and for some NPC\'s it might not be enough to just get them to like you.');
   // TODO-QSP: '  The game information tab includes a lot of information about the world. ' + iif($start_type['loc'...
   scene.img('images/system/icons/menu/icon_menu.png');
   if ((!((s as any).bag ?? 0))) {
     // TODO-QSP: dynamic text: If <<$pcs_firstname>> owned a purse there would also be an icon for it in the li...
-    scene.text(`If ${((s as any).pcs_firstname || '')} owned a purse there would also be an icon for it in the line. Which can be used to interact with the things you are caring around. A purse can be bought in a shop, or maybe ${((s as any).pcs_firstname || '')}'s grandparents have one that can be used lying among all their stuff.`);
+    scene.text(`If ${((s as any).pcs_firstname ?? '')} owned a purse there would also be an icon for it in the line. Which can be used to interact with the things you are caring around. A purse can be bought in a shop, or maybe ${((s as any).pcs_firstname ?? '')}'s grandparents have one that can be used lying among all their stuff.`);
   }
   // TODO-QSP: dynamic text: Below these Icons is a line that informs you how much money <<$pcs_firstname>> h...
-  scene.text(`Below these Icons is a line that informs you how much money ${((s as any).pcs_firstname || '')} has. But one them and on their bank account.`);
+  scene.text(`Below these Icons is a line that informs you how much money ${((s as any).pcs_firstname ?? '')} has. But one them and on their bank account.`);
   scene.text('Next comes the Icon window, there will be different icons that inform you about the status of your character and things they have to do. These icons will display a text when you hover your mouse over them, and mist can be clicked for more information or to remedy the problem they warn about.');
   scene.img('images/system/icons/status/vagina.png');
   // TODO-QSP: dynamic text: Then there will be a line about things you have to do if you have any. The next ...
-  scene.text(`Then there will be a line about things you have to do if you have any. The next line is mostly about clothes and below this can be a line with information about ${((s as any).pcs_firstname || '')}'s state if they are drunk or on drugs.`);
+  scene.text(`Then there will be a line about things you have to do if you have any. The next line is mostly about clothes and below this can be a line with information about ${((s as any).pcs_firstname ?? '')}'s state if they are drunk or on drugs.`);
   scene.text('Below the icons is a line where you can turn on and off information in the status display. The "text" will display the same information as the icons, but in text, and the "images" will add images of the character\'s clothes and body.');
   scene.text('We will wait with the discussion of the "status" part till later. for now make sure that the "attributes" tab is turned on, since this is the one we will explain next.');
   if (((s as any).stat_explanation ?? 0) === '') {
@@ -1749,7 +1749,7 @@ function enterExplanationSkill(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: '<table border="0"><tr><td colspan="2">In the stat display, skills are grouped into different catego...
   qspCall(s, '$menu_settings', 'explanation_build_skill');
   // TODO-QSP: dynamic text: <center>These are all the skills. Next we will explain the different statuses <<...
-  scene.text(`<center>These are all the skills. Next we will explain the different statuses ${((s as any).pcs_firstname || '')} can have. So move up in the stat display and make sure that status is shown.</center>`);
+  scene.text(`<center>These are all the skills. Next we will explain the different statuses ${((s as any).pcs_firstname ?? '')} can have. So move up in the stat display and make sure that status is shown.</center>`);
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
       { label: 'Exit the menu', handler: (st: GameState) => {
@@ -1780,7 +1780,7 @@ function enterExplanationStatus(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: '<table border="0"><tr><td colspan="2">The status bars represent different parts of the player''s ph...
   qspCall(s, '$menu_settings', 'explanation_build_stat');
   // TODO-QSP: dynamic text: <center>This ends the basic description of <<$pcs_firstname>>''s stat. Next, we'...
-  scene.text(`<center>This ends the basic description of ${((s as any).pcs_firstname || '')}'s stat. Next, we'll cover the archetype system.</center>`);
+  scene.text(`<center>This ends the basic description of ${((s as any).pcs_firstname ?? '')}'s stat. Next, we'll cover the archetype system.</center>`);
   if (((s as any).stat_explanation ?? 0) === '') {
     scene.actions([
       { label: 'Exit the menu', handler: (st: GameState) => {

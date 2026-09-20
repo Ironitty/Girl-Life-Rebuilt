@@ -62,7 +62,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A291');
   }
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/shared/headshots_main/big${(String(((s as any).npcID || '')).slice((2)-1))}.jpg`);
+  scene.img(`images/characters/shared/headshots_main/big${(String(((s as any).npcID ?? '')).slice((2)-1))}.jpg`);
   // TODO-QSP: 'You walk up to the counter and stike up a conversation with the <<iif(nerdvana_staff = 0, ''lanky''...
   qspCall(s, 'blackmailer', 'set_nerdvana_talk_act');
   // TODO-QSP: end

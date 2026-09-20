@@ -187,14 +187,14 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
   (s as any).autotraidF_carnum = ((s as any).locArgs?.[1] ?? 0);
   (s as any).autotraidF_benz = ((s as any).locArgs?.[3] ?? 0);
   // TODO-QSP: dynamic text: <center><b><<$autotraidF_carname>></b></center>
-  scene.text(`<center><b>${((s as any).autotraidF_carname || '')}</b></center>`);
-  scene.img(`images/pc/items/accessories/car/car${((s as any).autotraidF_carnum || '')}.jpg`);
+  scene.text(`<center><b>${((s as any).autotraidF_carname ?? '')}</b></center>`);
+  scene.img(`images/pc/items/accessories/car/car${((s as any).autotraidF_carnum ?? '')}.jpg`);
   if (((s as any).used_car ?? 0)[((s as any).autotraidF_carnum ?? 0) + '_condition'] === 0  &&  ((s as any).used_car ?? 0)[((s as any).autotraidF_carnum ?? 0) + '_price'] === 0) {
     (s as any).carT = ((s as any).locArgs?.[2] ?? 0);
     qspCall(s, 'car_funcs', 'avt');
   }
   // TODO-QSP: dynamic text: <<$used_car[''<<autotraidF_carnum>>_condition_desc'']>> The car salesman wants '...
-  scene.text(`${qspUntranslated(s, "used_car['<<autotraidF_carnum", { location: "autotraidF" })}_condition_desc']>> The car salesman wants ' + $func('money', 'string_price', used_car['${((s as any).autotraidF_carnum || '')}_price']) + ' for it.`);
+  scene.text(`${qspUntranslated(s, "used_car['<<autotraidF_carnum", { location: "autotraidF" })}_condition_desc']>> The car salesman wants ' + $func('money', 'string_price', used_car['${((s as any).autotraidF_carnum ?? '')}_price']) + ' for it.`);
   if (((s as any).car ?? 0) === 0  &&  ((s as any).license ?? 0)?.['drive'] === 1) {
     scene.actions([
       { label: 'Buy the car', handler: (st: GameState) => {
@@ -222,7 +222,7 @@ function enterBuyCar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'car_funcs', 'setloc', 'autotraidF', 'start', 'city');
   ((s as any).car = (s as any).car ?? {})['current_condition'] = ((s as any).used_car ?? 0)?.[String(((s as any).autotraidF_carnum ?? 0)) + '_condition'];
   // TODO-QSP: dynamic text: You agree and before you know it, the car salesman and you have signed all the n...
-  scene.text(`You agree and before you know it, the car salesman and you have signed all the necessary documents. You pay the ' + $func('money', 'string_price', used_car['${((s as any).autotraidF_carnum || '')}_price']) + ', and the car is yours.`);
+  scene.text(`You agree and before you know it, the car salesman and you have signed all the necessary documents. You pay the ' + $func('money', 'string_price', used_car['${((s as any).autotraidF_carnum ?? '')}_price']) + ', and the car is yours.`);
   scene.text('Since it\'s crammed in between about a million other vehicles, the car salesman moves it outside near the yard\'s entrance for you and warns you that there is very little gas in the tank.');
   ((s as any).used_car = (s as any).used_car ?? {})[String(((s as any).autotraidF_carnum ?? 0)) + '_condition'] = (-1);
   ((s as any).used_car = (s as any).used_car ?? {})[String(((s as any).autotraidF_carnum ?? 0)) + '_price'] = (-1);
