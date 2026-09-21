@@ -34,7 +34,7 @@ function enterCheckimg(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'begin', 'start');
   qspCall(s, 'cheatmenu_din', '');
-  // TODO-QSP: showstat 1
+  scene.showMenu();
   scene.text('<center><b>CHOOSE GAME START</b></center>');
   scene.text('<center>There are three main start types:');
   scene.text('Last year of school (before or after summer holidays);');

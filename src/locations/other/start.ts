@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: killall
   (s as any).usehtml = 1;
   (s as any).debug = 1;
-  // TODO-QSP: showstat 0
+  scene.hideMenu();
   // TODO-QSP: showobjs 0
   // TODO-QSP: showinput 0
   if (((s as any).qspver ?? 0) > '9.9.9') {

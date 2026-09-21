@@ -18,6 +18,7 @@ export class SceneBuilder {
   obj(o: string) { this.curobjs = o; return this; }
   background(b: string) { this.backimage = b; return this; }
   hideMenu() { this.menuOff = true; return this; }
+  showMenu() { this.menuOff = false; return this; }
 
   build(): SceneState {
     return this;

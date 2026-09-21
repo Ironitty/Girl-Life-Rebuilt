@@ -129,7 +129,7 @@ function enterScreen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEndscreen(s: GameState, scene: SceneBuilder): void {
-  // TODO-QSP: showstat 0
+  scene.hideMenu();
   // TODO-QSP: showobjs 0
   // TODO-QSP: showinput 0
   (s as any).fcolor = 0;

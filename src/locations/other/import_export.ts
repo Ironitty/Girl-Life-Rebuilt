@@ -13,7 +13,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    // TODO-QSP: showstat 0
+    scene.hideMenu();
     (st as any).usehtml = 0;
     (st as any).export_str = 'cfg_vars[\'disable_autosave\'] = ' + ((st as any).cfg_vars ?? 0)?.['disable_autosave'] + '';
     // TODO-QSP: $export_str += ' & ' + "cheatVars['gameover'] = <<cheatVars['gameover']>>"
@@ -306,7 +306,7 @@ function enterExport(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
     (st as any).usehtml = 1;
-    // TODO-QSP: showstat 1
+    scene.showMenu();
     // TODO-QSP: gs '$menu_settings'
   } },
     ]);

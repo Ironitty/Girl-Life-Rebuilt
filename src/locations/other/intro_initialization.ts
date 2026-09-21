@@ -180,7 +180,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMid(s, scene); (s as any).locArgs = __savedLocArgs; }
   { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
-  // TODO-QSP: showstat 1
+  scene.showMenu();
   ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 1;
   // TODO-QSP: showobjs cfg_vars['debug']
   qspCall(s, 'obj_din', 'old');
@@ -385,7 +385,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'traits', 'init');
   qspCall(s, 'traits', 'daily');
   qspCall(s, 'stat', '');
-  // TODO-QSP: showstat 0
+  scene.hideMenu();
   ((s as any).cfg_vars = (s as any).cfg_vars ?? {})['debug'] = 0;
   // TODO-QSP: showobjs cfg_vars['debug']
   if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] > 0) {

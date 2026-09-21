@@ -334,6 +334,7 @@ export const initialState = {
   settingmode: 0,
   debug: {},
   cfg_vars: {},
+  set_imgh: '',
   statAlerts: [],
 
   dateVars: toDate(1),
